@@ -15,6 +15,10 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("RESIDUAL_WHOLE_WORD_FABRICATION_FRONTIER_AND_JOINT_PROPOSALS", "oma-integration", [4472, 4484, 5522, 5523, 5536, 5537, 5544, 5545, 5546, 5547], ["ALG-RTR15", "ALG-RTR22", "ALG-RTR26", "ALG-RTR27"],
+         ["oma.optimization.fabrication_alternatives.compile_fabrication_alternatives", "oma.routing.fabrication_residual.residual_proposals", "oma.routing.certified_fabrication.build_certified_fabrication_proposals", "oma.routing.proposals.project_proposals"], ["oma.optimization.fabrication_alternatives.verify_fabrication_alternatives", "oma.optimization.fabrication.verify_orthogonal_fabrication", "oma.routing.joint_checker.verify_joint_candidate"], "tests/test_optimization_fabrication_alternatives.py",
+         "Bounded new specialization of the fabrication lift and represented pricing domain. A compact prefix trie excludes only complete independently checked seven-coordinate graph-state words already generated as proposals; all prefixes, shared edges and successors of excluded goal states remain available. Grounded full reachable-product closure, independently reconstructed geometry/count/trie transitions, nonnegative rational potentials, terminal debt and a realizing path certify each exact count in the residual finite language. The pi coefficient remains fixed at wL*R*k/2. One optional source-bound residual round binds its original checked frontier, exact excluded words and generation ledger, then freshly checks binary64 bodies. The real joint consumer enables the round only under an explicit fitting budget before freezing the finite menu.",
+         [], "Residual exact-count nominal optimum only, not original-language closure, full K-shortest ordering, all ties, simple paths, native cost lower bounds, physical uniqueness or continuous completeness. Excluded words are not declared physically infeasible; a native collision with another route cannot induce an unconditional edge or path cut. K<=32 and full joint budget B<=1024 remain distinct. Word/step/state/work/input/certificate/time budgets preserve UNKNOWN without partial closure. Binary64 duplicate or unresolved paths consume bounded attempts. Current source/frame/support authenticity and full native geometry, actual fitting count, selection, managed acceptance and fresh exported-file checking remain separate. Final callback input/certificate mutation guards prevent relabeling a different same-invocation problem; no atomic concurrent-memory or filesystem claim."),
         ("UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER", "1-10", [16069, 16077, 16118, 16135, 16139, 16203, 16836, 16853, 17130, 17158, 17615, 17681], ["ALG-PO1", "ALG-PO2", "ALG-PO7", "THM-PO7", "THM-PO8", "THM-PO12"],
          ["oma.optimization.two_sink_pressure.compile_two_sink_pressure", "oma.routing.network_pressure.partition_two_sink_tree", "oma.routing.network_pressure.derive_two_sink_pressure_model", "oma.routing.network_pressure.evaluate_pressure_network"], ["oma.optimization.two_sink_pressure.verify_two_sink_pressure", "oma.routing.network_checker.verify_network_candidate"], "tests/test_two_sink_pressure.py",
          "Bounded nonlinear port relation for exactly one tee and two forward outlets. Every parameter tuple in the complete rational Cartesian box has one unique interior split when independently checked adverse endpoint signs and a strict derivative lower bound hold. Independently reconstructed squared-flow, square-root and conserved-branch bounds enclose every such operating point; actual widths are reported. The native adapter independently reparses the full component/path partition, derives coefficient and elevation intervals from current native metric inputs, binds total-pressure boundary assumptions, and checks both minimum deliveries plus all physical port velocities. Tee total loss is referenced to inlet flow and its skeleton receives no additional Darcy charge.",
@@ -193,6 +197,21 @@ def main():
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
     coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
     for row in register:
+        if row["obligation"] == "RESIDUAL_WHOLE_WORD_FABRICATION_FRONTIER_AND_JOINT_PROPOSALS":
+            row["automated_tests"].extend(["tests/test_certified_fabrication_residual.py", "tests/test_joint_residual_fabrication.py"])
+            row["full_source_algorithms_implemented"] = False
+            row["documentation"] = "docs/math/fabrication-residual-frontier.md"
+            row["real_model_benchmark"] = {"status": "ANALYTIC_IFC_JOINT_SELECTION_ACCEPTANCE_EXPORT_RECHECK_PASS",
+                "evidence": "evidence/math/fabrication-residual/latest.json",
+                "scope": "Frozen synthetic wall plus separately declared competing route, with no solver/checker stubs. Cheaper original exact-count option has actual positive native common volume; a costlier residual option of the same two-fitting count is selected, accepted at revision 2, exported as actual IFC and independently rechecked. Both complete checks cover 5+1 source pairs and 5 cross-route pairs. This is analytic IFC integration, not a real Office benchmark or whole-building release."}
+            row["consumer_scope"] = {"mission_field": "JointRoutingScenario.max_new_fittings", "absent_budget_activates_residual": False,
+                "residual_rounds": 1, "default_phase_seconds": 3, "default_maximum_outputs": 8,
+                "represented_count_maximum": 32, "declared_joint_budget_maximum": 1024,
+                "excluded_word_semantics": "ALREADY_GENERATED_COMPLETE_GRAPH_WORDS_ONLY",
+                "independent_source_frame_coverage_and_binary64_checks": True,
+                "native_rejection_promoted_to_unconditional_infeasibility": False,
+                "kernel_proof_grants_physical_acceptance": False,
+                "physical_complete_cartesian_or_continuous_universe": False}
         if row["obligation"] == "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER":
             row["related_sources"] = [{"document": "oma-integration", "sha256": identities["oma-integration"],
                 "paragraphs": [4592, 4609, 5530, 5531, 5532, 5533], "objects": ["DEF-RTR56", "ALG-RTR19", "ALG-RTR20"]}]

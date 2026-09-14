@@ -1,0 +1,2663 @@
+{
+  "status": "PASS",
+  "checker_version": "oma-independent-checker/2:1d8467cf5bda99a3992f9bc01a33a07fff29f629ea8be2f5336114be8ee47d10",
+  "source_sha256": "c539ac9005c42d3032bd2e8d2091d0a2324db9ce41df6f356497ddc60b59292a",
+  "original_source_unchanged": true,
+  "problem": {
+    "schema": "oma.fabrication-grid-problem/1",
+    "context_root": "REGENERATED_RESIDUAL_IFC_COUNTEREXAMPLE",
+    "source_roots": {
+      "source_sha256": "c539ac9005c42d3032bd2e8d2091d0a2324db9ce41df6f356497ddc60b59292a"
+    },
+    "allowed_bounds": [
+      [
+        -2,
+        -2,
+        0
+      ],
+      [
+        4,
+        5,
+        2
+      ]
+    ],
+    "grid_axes": [
+      [
+        -1,
+        0,
+        1,
+        2,
+        3
+      ],
+      [
+        -1,
+        0,
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        "3/2"
+      ]
+    ],
+    "start": [
+      -1,
+      1,
+      1
+    ],
+    "goal": [
+      3,
+      1,
+      1
+    ],
+    "diameter_m": "1/4",
+    "insulation_m": "0",
+    "bend_radius_m": "1/2",
+    "minimum_straight_m": "1/8",
+    "clearance_m": "1/8",
+    "outer_obstacles": [
+      {
+        "id": "actual-wall",
+        "bounds": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ]
+      }
+    ]
+  },
+  "objective": {
+    "schema": "oma.fabrication-grid-cost/1",
+    "length_weight": "1",
+    "fitting_weight": "0"
+  },
+  "initial_frontier": {
+    "schema": "oma.fabrication-count-frontier/1",
+    "status": "CERTIFIED",
+    "scope": "EXACT_COUNT_NOMINAL_COST_FRONTIER_ON_DECLARED_FINITE_FABRICATION_GRAPH",
+    "rule": "EXACT_TURN_COUNT_PRODUCT_NONNEGATIVE_RATIONAL_DEFERRED_COST_V1",
+    "input_root": "0fded1f2865504cc66bc893d5da119e3990195b00f63f6f9f764b97f4451882f",
+    "graph_root": "1b8aee2402a154d1f301b66ffbe4f8c411f0411c60292f118ea995fcf18669a0",
+    "objective": {
+      "schema": "oma.fabrication-grid-cost/1",
+      "length_weight": "1",
+      "fitting_weight": "0"
+    },
+    "objective_root": "2b8e72e83aef89dd141703303b47de4ba063c1c87451e76e327805e18e4e04e6",
+    "count_domain": {
+      "minimum": 0,
+      "maximum": 2,
+      "meaning": "EXACT_NUMBER_OF_NINETY_DEGREE_TURNS"
+    },
+    "count_domain_root": "297d0e80075971aac0412f63e8a0a35ce5fe7a5e2f8b4a6e9f56c480448efa14",
+    "frontier_model_root": "b796d3cf8b8972be260f72122419c303b15ef63e01415438ec8afed833e4f1fc",
+    "limitations": {
+      "exact_count_not_at_most_count": true,
+      "declared_finite_graph_only": true,
+      "source_and_frame_authenticity_checked": false,
+      "nonadjacent_self_interference_checked": false,
+      "continuous_route_completeness": false,
+      "physical_route_infeasibility_claim": false,
+      "native_numeric_objective_lower_bound": false,
+      "native_IFC_candidate_acceptance_authority": false,
+      "all_equal_cost_paths_retained": false,
+      "joint_resource_or_collision_selection_performed": false
+    },
+    "states": [
+      {
+        "state": [
+          0,
+          2,
+          0,
+          -1,
+          -1,
+          0,
+          0
+        ],
+        "potential": "0",
+        "parent": null
+      },
+      {
+        "state": [
+          0,
+          1,
+          0,
+          2,
+          2,
+          0,
+          0
+        ],
+        "potential": "0",
+        "parent": 0
+      },
+      {
+        "state": [
+          0,
+          0,
+          0,
+          2,
+          2,
+          0,
+          0
+        ],
+        "potential": "0",
+        "parent": 1
+      },
+      {
+        "state": [
+          0,
+          2,
+          1,
+          5,
+          0,
+          0,
+          0
+        ],
+        "potential": "0",
+        "parent": 0
+      },
+      {
+        "state": [
+          0,
+          3,
+          0,
+          3,
+          2,
+          0,
+          0
+        ],
+        "potential": "0",
+        "parent": 0
+      },
+      {
+        "state": [
+          0,
+          4,
+          0,
+          3,
+          2,
+          0,
+          0
+        ],
+        "potential": "0",
+        "parent": 4
+      },
+      {
+        "state": [
+          0,
+          1,
+          1,
+          5,
+          0,
+          1,
+          1
+        ],
+        "potential": "1/2",
+        "parent": 1
+      },
+      {
+        "state": [
+          0,
+          3,
+          1,
+          5,
+          0,
+          1,
+          1
+        ],
+        "potential": "1/2",
+        "parent": 4
+      },
+      {
+        "state": [
+          0,
+          0,
+          1,
+          5,
+          0,
+          1,
+          1
+        ],
+        "potential": "3/2",
+        "parent": 2
+      },
+      {
+        "state": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "potential": "3/2",
+        "parent": 2
+      },
+      {
+        "state": [
+          2,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "potential": "3/2",
+        "parent": 9
+      },
+      {
+        "state": [
+          3,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "potential": "3/2",
+        "parent": 10
+      },
+      {
+        "state": [
+          4,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "potential": "3/2",
+        "parent": 11
+      },
+      {
+        "state": [
+          0,
+          4,
+          1,
+          5,
+          0,
+          1,
+          1
+        ],
+        "potential": "5/2",
+        "parent": 5
+      },
+      {
+        "state": [
+          1,
+          4,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "potential": "5/2",
+        "parent": 5
+      },
+      {
+        "state": [
+          2,
+          0,
+          1,
+          5,
+          0,
+          1,
+          2
+        ],
+        "potential": "5/2",
+        "parent": 10
+      },
+      {
+        "state": [
+          2,
+          4,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "potential": "5/2",
+        "parent": 14
+      },
+      {
+        "state": [
+          3,
+          4,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "potential": "5/2",
+        "parent": 16
+      },
+      {
+        "state": [
+          4,
+          4,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "potential": "5/2",
+        "parent": 17
+      },
+      {
+        "state": [
+          2,
+          4,
+          1,
+          5,
+          0,
+          1,
+          2
+        ],
+        "potential": "7/2",
+        "parent": 16
+      },
+      {
+        "state": [
+          3,
+          0,
+          1,
+          5,
+          0,
+          1,
+          2
+        ],
+        "potential": "7/2",
+        "parent": 11
+      },
+      {
+        "state": [
+          3,
+          4,
+          1,
+          5,
+          0,
+          1,
+          2
+        ],
+        "potential": "9/2",
+        "parent": 17
+      },
+      {
+        "state": [
+          4,
+          0,
+          1,
+          5,
+          0,
+          1,
+          2
+        ],
+        "potential": "9/2",
+        "parent": 12
+      },
+      {
+        "state": [
+          4,
+          1,
+          0,
+          3,
+          0,
+          1,
+          2
+        ],
+        "potential": "9/2",
+        "parent": 12
+      },
+      {
+        "state": [
+          4,
+          2,
+          0,
+          3,
+          0,
+          1,
+          2
+        ],
+        "potential": "9/2",
+        "parent": 23
+      },
+      {
+        "state": [
+          4,
+          3,
+          0,
+          3,
+          0,
+          1,
+          2
+        ],
+        "potential": "9/2",
+        "parent": 24
+      },
+      {
+        "state": [
+          4,
+          4,
+          0,
+          3,
+          0,
+          1,
+          2
+        ],
+        "potential": "9/2",
+        "parent": 25
+      },
+      {
+        "state": [
+          4,
+          3,
+          0,
+          2,
+          4,
+          1,
+          2
+        ],
+        "potential": "11/2",
+        "parent": 18
+      },
+      {
+        "state": [
+          4,
+          2,
+          0,
+          2,
+          4,
+          1,
+          2
+        ],
+        "potential": "11/2",
+        "parent": 27
+      },
+      {
+        "state": [
+          4,
+          1,
+          0,
+          2,
+          4,
+          1,
+          2
+        ],
+        "potential": "11/2",
+        "parent": 28
+      },
+      {
+        "state": [
+          4,
+          0,
+          0,
+          2,
+          4,
+          1,
+          2
+        ],
+        "potential": "11/2",
+        "parent": 29
+      },
+      {
+        "state": [
+          4,
+          4,
+          1,
+          5,
+          0,
+          1,
+          2
+        ],
+        "potential": "11/2",
+        "parent": 18
+      }
+    ],
+    "frontier": [
+      {
+        "fittings": 0,
+        "status": "NO_PATH_AT_EXACT_COUNT",
+        "cost": null,
+        "path_states": [],
+        "points_m": []
+      },
+      {
+        "fittings": 1,
+        "status": "NO_PATH_AT_EXACT_COUNT",
+        "cost": null,
+        "path_states": [],
+        "points_m": []
+      },
+      {
+        "fittings": 2,
+        "status": "OPTIMAL_PATH",
+        "cost": [
+          "6",
+          "1/2"
+        ],
+        "path_states": [
+          [
+            0,
+            2,
+            0,
+            -1,
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            2,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            2,
+            2,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            3,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            4,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            4,
+            1,
+            0,
+            3,
+            0,
+            1,
+            2
+          ],
+          [
+            4,
+            2,
+            0,
+            3,
+            0,
+            1,
+            2
+          ]
+        ],
+        "points_m": [
+          [
+            "-1",
+            "1",
+            "1"
+          ],
+          [
+            "-1",
+            "-1",
+            "1"
+          ],
+          [
+            "3",
+            "-1",
+            "1"
+          ],
+          [
+            "3",
+            "1",
+            "1"
+          ]
+        ]
+      }
+    ],
+    "producer_work": 440,
+    "certificate_root": "9a3020eff7392c3d603e44de3b54ee1fb5ffc37b18b8d6fcd9e8fdfd7c32726e"
+  },
+  "initial_frontier_check": {
+    "status": "PASS",
+    "scope": "EXACT_COUNT_NOMINAL_COST_FRONTIER_ON_DECLARED_FINITE_FABRICATION_GRAPH",
+    "proof_complete": true,
+    "input_root": "0fded1f2865504cc66bc893d5da119e3990195b00f63f6f9f764b97f4451882f",
+    "graph_root": "1b8aee2402a154d1f301b66ffbe4f8c411f0411c60292f118ea995fcf18669a0",
+    "frontier_model_root": "b796d3cf8b8972be260f72122419c303b15ef63e01415438ec8afed833e4f1fc",
+    "count_domain_root": "297d0e80075971aac0412f63e8a0a35ce5fe7a5e2f8b4a6e9f56c480448efa14",
+    "certificate_root": "9a3020eff7392c3d603e44de3b54ee1fb5ffc37b18b8d6fcd9e8fdfd7c32726e",
+    "counts_checked": 3,
+    "reachable_counts": [
+      2
+    ],
+    "states_checked": 32,
+    "transitions_reconstructed": 46,
+    "work": 535,
+    "limitations": {
+      "exact_count_not_at_most_count": true,
+      "declared_finite_graph_only": true,
+      "source_and_frame_authenticity_checked": false,
+      "nonadjacent_self_interference_checked": false,
+      "continuous_route_completeness": false,
+      "physical_route_infeasibility_claim": false,
+      "native_numeric_objective_lower_bound": false,
+      "native_IFC_candidate_acceptance_authority": false,
+      "all_equal_cost_paths_retained": false,
+      "joint_resource_or_collision_selection_performed": false
+    }
+  },
+  "excluded_complete_words": [
+    [
+      [
+        0,
+        2,
+        0,
+        -1,
+        -1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        2,
+        2,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        2,
+        2,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        3,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        4,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        4,
+        1,
+        0,
+        3,
+        0,
+        1,
+        2
+      ],
+      [
+        4,
+        2,
+        0,
+        3,
+        0,
+        1,
+        2
+      ]
+    ]
+  ],
+  "residual_frontier": {
+    "schema": "oma.fabrication-residual-frontier/1",
+    "status": "CERTIFIED",
+    "scope": "EXACT_COUNT_NOMINAL_OPTIMUM_IN_DECLARED_RESIDUAL_GRAPH_WORD_LANGUAGE",
+    "rule": "WHOLE_WORD_TERMINAL_EXCLUSION_TRIE_EXACT_COUNT_V1",
+    "input_root": "0fded1f2865504cc66bc893d5da119e3990195b00f63f6f9f764b97f4451882f",
+    "graph_root": "1b8aee2402a154d1f301b66ffbe4f8c411f0411c60292f118ea995fcf18669a0",
+    "objective": {
+      "schema": "oma.fabrication-grid-cost/1",
+      "length_weight": "1",
+      "fitting_weight": "0"
+    },
+    "objective_root": "2b8e72e83aef89dd141703303b47de4ba063c1c87451e76e327805e18e4e04e6",
+    "count_domain": {
+      "minimum": 0,
+      "maximum": 2,
+      "meaning": "EXACT_NUMBER_OF_NINETY_DEGREE_TURNS"
+    },
+    "count_domain_root": "297d0e80075971aac0412f63e8a0a35ce5fe7a5e2f8b4a6e9f56c480448efa14",
+    "exclusion_policy": "ALREADY_GENERATED_COMPLETE_GRAPH_WORDS_ONLY",
+    "exclusion_root": "c2d9edec729f0d7f4e44e9ef32b048657591391797f774ab3c1bbab76c481baf",
+    "automaton_root": "1f1e6e977602cfe6f137df89349bc0fea36b38346fd7aa7637a1c1b8ce25309a",
+    "residual_model_root": "aef44336bb2ac8dd603966421b8e6d8afde19b341a230b284268576688416cb8",
+    "excluded_word_count": 1,
+    "excluded_step_count": 8,
+    "automaton_nodes": 9,
+    "finite_word_step_bound": 12,
+    "limitations": {
+      "exact_count_not_at_most_count": true,
+      "declared_finite_graph_only": true,
+      "source_and_frame_authenticity_checked": false,
+      "nonadjacent_self_interference_checked": false,
+      "continuous_route_completeness": false,
+      "physical_route_infeasibility_claim": false,
+      "native_numeric_objective_lower_bound": false,
+      "native_IFC_candidate_acceptance_authority": false,
+      "all_equal_cost_paths_retained": false,
+      "joint_resource_or_collision_selection_performed": false,
+      "original_graph_infeasibility_claim": false,
+      "excluded_words_physically_infeasible": false,
+      "prefix_or_edge_exclusions": false,
+      "original_count_optimality": false,
+      "sequential_rank_without_independent_round_chain": false,
+      "physical_unique_path_completeness": false
+    },
+    "states": [
+      {
+        "state": [
+          0,
+          2,
+          0,
+          -1,
+          -1,
+          0,
+          0,
+          0
+        ],
+        "potential": "0",
+        "parent": null
+      },
+      {
+        "state": [
+          0,
+          1,
+          0,
+          2,
+          2,
+          0,
+          0,
+          1
+        ],
+        "potential": "0",
+        "parent": 0
+      },
+      {
+        "state": [
+          0,
+          0,
+          0,
+          2,
+          2,
+          0,
+          0,
+          2
+        ],
+        "potential": "0",
+        "parent": 1
+      },
+      {
+        "state": [
+          0,
+          2,
+          1,
+          5,
+          0,
+          0,
+          0,
+          -1
+        ],
+        "potential": "0",
+        "parent": 0
+      },
+      {
+        "state": [
+          0,
+          3,
+          0,
+          3,
+          2,
+          0,
+          0,
+          -1
+        ],
+        "potential": "0",
+        "parent": 0
+      },
+      {
+        "state": [
+          0,
+          4,
+          0,
+          3,
+          2,
+          0,
+          0,
+          -1
+        ],
+        "potential": "0",
+        "parent": 4
+      },
+      {
+        "state": [
+          0,
+          1,
+          1,
+          5,
+          0,
+          1,
+          1,
+          -1
+        ],
+        "potential": "1/2",
+        "parent": 1
+      },
+      {
+        "state": [
+          0,
+          3,
+          1,
+          5,
+          0,
+          1,
+          1,
+          -1
+        ],
+        "potential": "1/2",
+        "parent": 4
+      },
+      {
+        "state": [
+          0,
+          0,
+          1,
+          5,
+          0,
+          1,
+          1,
+          -1
+        ],
+        "potential": "3/2",
+        "parent": 2
+      },
+      {
+        "state": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          3
+        ],
+        "potential": "3/2",
+        "parent": 2
+      },
+      {
+        "state": [
+          2,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          4
+        ],
+        "potential": "3/2",
+        "parent": 9
+      },
+      {
+        "state": [
+          3,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          5
+        ],
+        "potential": "3/2",
+        "parent": 10
+      },
+      {
+        "state": [
+          4,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          6
+        ],
+        "potential": "3/2",
+        "parent": 11
+      },
+      {
+        "state": [
+          0,
+          4,
+          1,
+          5,
+          0,
+          1,
+          1,
+          -1
+        ],
+        "potential": "5/2",
+        "parent": 5
+      },
+      {
+        "state": [
+          1,
+          4,
+          0,
+          1,
+          0,
+          1,
+          1,
+          -1
+        ],
+        "potential": "5/2",
+        "parent": 5
+      },
+      {
+        "state": [
+          2,
+          0,
+          1,
+          5,
+          0,
+          1,
+          2,
+          -1
+        ],
+        "potential": "5/2",
+        "parent": 10
+      },
+      {
+        "state": [
+          2,
+          4,
+          0,
+          1,
+          0,
+          1,
+          1,
+          -1
+        ],
+        "potential": "5/2",
+        "parent": 14
+      },
+      {
+        "state": [
+          3,
+          4,
+          0,
+          1,
+          0,
+          1,
+          1,
+          -1
+        ],
+        "potential": "5/2",
+        "parent": 16
+      },
+      {
+        "state": [
+          4,
+          4,
+          0,
+          1,
+          0,
+          1,
+          1,
+          -1
+        ],
+        "potential": "5/2",
+        "parent": 17
+      },
+      {
+        "state": [
+          2,
+          4,
+          1,
+          5,
+          0,
+          1,
+          2,
+          -1
+        ],
+        "potential": "7/2",
+        "parent": 16
+      },
+      {
+        "state": [
+          3,
+          0,
+          1,
+          5,
+          0,
+          1,
+          2,
+          -1
+        ],
+        "potential": "7/2",
+        "parent": 11
+      },
+      {
+        "state": [
+          3,
+          4,
+          1,
+          5,
+          0,
+          1,
+          2,
+          -1
+        ],
+        "potential": "9/2",
+        "parent": 17
+      },
+      {
+        "state": [
+          4,
+          0,
+          1,
+          5,
+          0,
+          1,
+          2,
+          -1
+        ],
+        "potential": "9/2",
+        "parent": 12
+      },
+      {
+        "state": [
+          4,
+          1,
+          0,
+          3,
+          0,
+          1,
+          2,
+          7
+        ],
+        "potential": "9/2",
+        "parent": 12
+      },
+      {
+        "state": [
+          4,
+          2,
+          0,
+          3,
+          0,
+          1,
+          2,
+          8
+        ],
+        "potential": "9/2",
+        "parent": 23
+      },
+      {
+        "state": [
+          4,
+          3,
+          0,
+          3,
+          0,
+          1,
+          2,
+          -1
+        ],
+        "potential": "9/2",
+        "parent": 24
+      },
+      {
+        "state": [
+          4,
+          4,
+          0,
+          3,
+          0,
+          1,
+          2,
+          -1
+        ],
+        "potential": "9/2",
+        "parent": 25
+      },
+      {
+        "state": [
+          4,
+          3,
+          0,
+          2,
+          4,
+          1,
+          2,
+          -1
+        ],
+        "potential": "11/2",
+        "parent": 18
+      },
+      {
+        "state": [
+          4,
+          2,
+          0,
+          2,
+          4,
+          1,
+          2,
+          -1
+        ],
+        "potential": "11/2",
+        "parent": 27
+      },
+      {
+        "state": [
+          4,
+          1,
+          0,
+          2,
+          4,
+          1,
+          2,
+          -1
+        ],
+        "potential": "11/2",
+        "parent": 28
+      },
+      {
+        "state": [
+          4,
+          0,
+          0,
+          2,
+          4,
+          1,
+          2,
+          -1
+        ],
+        "potential": "11/2",
+        "parent": 29
+      },
+      {
+        "state": [
+          4,
+          4,
+          1,
+          5,
+          0,
+          1,
+          2,
+          -1
+        ],
+        "potential": "11/2",
+        "parent": 18
+      }
+    ],
+    "frontier": [
+      {
+        "fittings": 0,
+        "status": "NO_PATH_IN_DECLARED_RESIDUAL_LANGUAGE_AT_EXACT_COUNT",
+        "cost": null,
+        "path_states": [],
+        "points_m": []
+      },
+      {
+        "fittings": 1,
+        "status": "NO_PATH_IN_DECLARED_RESIDUAL_LANGUAGE_AT_EXACT_COUNT",
+        "cost": null,
+        "path_states": [],
+        "points_m": []
+      },
+      {
+        "fittings": 2,
+        "status": "RESIDUAL_OPTIMAL_PATH",
+        "cost": [
+          "8",
+          "1/2"
+        ],
+        "path_states": [
+          [
+            0,
+            2,
+            0,
+            -1,
+            -1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            3,
+            2,
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            4,
+            0,
+            3,
+            2,
+            0,
+            0,
+            -1
+          ],
+          [
+            1,
+            4,
+            0,
+            1,
+            0,
+            1,
+            1,
+            -1
+          ],
+          [
+            2,
+            4,
+            0,
+            1,
+            0,
+            1,
+            1,
+            -1
+          ],
+          [
+            3,
+            4,
+            0,
+            1,
+            0,
+            1,
+            1,
+            -1
+          ],
+          [
+            4,
+            4,
+            0,
+            1,
+            0,
+            1,
+            1,
+            -1
+          ],
+          [
+            4,
+            3,
+            0,
+            2,
+            4,
+            1,
+            2,
+            -1
+          ],
+          [
+            4,
+            2,
+            0,
+            2,
+            4,
+            1,
+            2,
+            -1
+          ]
+        ],
+        "points_m": [
+          [
+            "-1",
+            "1",
+            "1"
+          ],
+          [
+            "-1",
+            "4",
+            "1"
+          ],
+          [
+            "3",
+            "4",
+            "1"
+          ],
+          [
+            "3",
+            "1",
+            "1"
+          ]
+        ]
+      }
+    ],
+    "producer_work": 952,
+    "certificate_root": "bb1e636279088253ea7a76bf1b34e8ae7c4857959fbcef3257f6ff93be39ef92"
+  },
+  "independent_residual_check": {
+    "status": "PASS",
+    "scope": "EXACT_COUNT_NOMINAL_OPTIMUM_IN_DECLARED_RESIDUAL_GRAPH_WORD_LANGUAGE",
+    "proof_complete": true,
+    "input_root": "0fded1f2865504cc66bc893d5da119e3990195b00f63f6f9f764b97f4451882f",
+    "graph_root": "1b8aee2402a154d1f301b66ffbe4f8c411f0411c60292f118ea995fcf18669a0",
+    "objective_root": "2b8e72e83aef89dd141703303b47de4ba063c1c87451e76e327805e18e4e04e6",
+    "count_domain_root": "297d0e80075971aac0412f63e8a0a35ce5fe7a5e2f8b4a6e9f56c480448efa14",
+    "exclusion_root": "c2d9edec729f0d7f4e44e9ef32b048657591391797f774ab3c1bbab76c481baf",
+    "automaton_root": "1f1e6e977602cfe6f137df89349bc0fea36b38346fd7aa7637a1c1b8ce25309a",
+    "residual_model_root": "aef44336bb2ac8dd603966421b8e6d8afde19b341a230b284268576688416cb8",
+    "certificate_root": "bb1e636279088253ea7a76bf1b34e8ae7c4857959fbcef3257f6ff93be39ef92",
+    "counts_checked": 3,
+    "reachable_counts": [
+      2
+    ],
+    "states_checked": 32,
+    "transitions_reconstructed": 46,
+    "work": 6708,
+    "limitations": {
+      "exact_count_not_at_most_count": true,
+      "declared_finite_graph_only": true,
+      "source_and_frame_authenticity_checked": false,
+      "nonadjacent_self_interference_checked": false,
+      "continuous_route_completeness": false,
+      "physical_route_infeasibility_claim": false,
+      "native_numeric_objective_lower_bound": false,
+      "native_IFC_candidate_acceptance_authority": false,
+      "all_equal_cost_paths_retained": false,
+      "joint_resource_or_collision_selection_performed": false,
+      "original_graph_infeasibility_claim": false,
+      "excluded_words_physically_infeasible": false,
+      "prefix_or_edge_exclusions": false,
+      "original_count_optimality": false,
+      "sequential_rank_without_independent_round_chain": false,
+      "physical_unique_path_completeness": false
+    }
+  },
+  "binary64_fabrication_check": {
+    "status": "PASS",
+    "fabrication_status": "PASS",
+    "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+    "root": "355de6336bad84e6aeb9c454becc8d65632d62438426c1812cc9a74151b177bc",
+    "certificate_root": "e493d670cafddf06c8a719527d51c4593d192a125ee9e7352115f64df525676a",
+    "components_checked": 5,
+    "transitions_checked": 2,
+    "disposition": {
+      "status": "PASS",
+      "failures": [],
+      "unresolved": []
+    },
+    "limitations": {
+      "full_fabrication_graph_or_homotopy_complete": false,
+      "manufacturer_catalog_or_supports_checked": false,
+      "nonadjacent_component_self_interference_checked": false,
+      "gravity_slope_or_service_physics_checked": false,
+      "obstacle_outer_cover_authenticity_checked": false,
+      "native_IFC_geometry_equality_checked": false,
+      "candidate_acceptance_authority": false,
+      "automatic_numerical_writer_pruning_authority": false,
+      "physical_route_universe_infeasibility_claim": false
+    }
+  },
+  "ifc_correspondence": {
+    "status": "PASS",
+    "scope": "NUMERICAL_IFC_REOPENED_PRIMITIVE_AND_SYMMETRIC_DIFFERENCE_CORRESPONDENCE; NOT_FORMAL_NATIVE_EQUALITY",
+    "parts_checked": 5,
+    "parts": [
+      {
+        "ifc_guid": "1YB$wVidjQsPOXFPKB5tSU",
+        "kind": "segment",
+        "index": 0,
+        "analytic_volume_m3": 0.1227184630308513,
+        "actual_source_geometry": {
+          "kind": "segment",
+          "radius_m": 0.125,
+          "length_m": 2.5,
+          "analytic_volume_m3": 0.1227184630308513,
+          "path_lengths_m": {
+            "a:b": 2.5
+          },
+          "caps": {
+            "a": {
+              "position_m": [
+                -1.0,
+                1.0,
+                1.0
+              ],
+              "outward_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ]
+            },
+            "b": {
+              "position_m": [
+                -1.0,
+                3.5,
+                1.0
+              ],
+              "outward_normal": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            }
+          },
+          "start_m": [
+            -1.0,
+            1.0,
+            1.0
+          ],
+          "end_m": [
+            -1.0,
+            3.5,
+            1.0
+          ]
+        },
+        "native_agreement": {
+          "status": "PASS",
+          "actual_volume_m3": 0.1227184630308514,
+          "expected_volume_m3": 0.12271846303085127,
+          "symmetric_difference_volumes_m3": [
+            0.0,
+            0.0
+          ],
+          "linear_budget_m": 1.11e-05,
+          "volume_budget_m3": 2.9137526640002663e-05,
+          "proof_level": "NUMERICAL_CAD_SYMMETRIC_DIFFERENCE_AND_VOLUME; NOT_FORMAL_NATIVE_EQUALITY"
+        }
+      },
+      {
+        "ifc_guid": "0D8s4einnRO9GTtVEpIswK",
+        "kind": "elbow",
+        "index": 1,
+        "analytic_volume_m3": 0.038553142191755305,
+        "actual_source_geometry": {
+          "kind": "elbow",
+          "radius_m": 0.125,
+          "length_m": 0.7853981633974483,
+          "analytic_volume_m3": 0.038553142191755305,
+          "path_lengths_m": {
+            "a:b": 0.7853981633974483
+          },
+          "caps": {
+            "a": {
+              "position_m": [
+                -1.0,
+                3.5,
+                1.0
+              ],
+              "outward_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ]
+            },
+            "b": {
+              "position_m": [
+                -0.5,
+                4.0,
+                1.0
+              ],
+              "outward_normal": [
+                1.0,
+                -0.0,
+                0.0
+              ]
+            }
+          },
+          "center_m": [
+            -0.5,
+            3.5,
+            1.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "bend_radius_m": 0.5,
+          "angle_rad": 1.5707963267948966,
+          "start_m": [
+            -1.0,
+            3.5,
+            1.0
+          ],
+          "end_m": [
+            -0.5,
+            4.0,
+            1.0
+          ]
+        },
+        "native_agreement": {
+          "status": "PASS",
+          "actual_volume_m3": 0.03855314219175536,
+          "expected_volume_m3": 0.0385531421917553,
+          "symmetric_difference_volumes_m3": [
+            0.0,
+            0.0
+          ],
+          "linear_budget_m": 1.11e-05,
+          "volume_budget_m3": 1.7668843651676206e-05,
+          "proof_level": "NUMERICAL_CAD_SYMMETRIC_DIFFERENCE_AND_VOLUME; NOT_FORMAL_NATIVE_EQUALITY"
+        }
+      },
+      {
+        "ifc_guid": "3qFbDUI3zQg8Z5JFDmPMcX",
+        "kind": "segment",
+        "index": 1,
+        "analytic_volume_m3": 0.14726215563702155,
+        "actual_source_geometry": {
+          "kind": "segment",
+          "radius_m": 0.125,
+          "length_m": 3.0,
+          "analytic_volume_m3": 0.14726215563702155,
+          "path_lengths_m": {
+            "a:b": 3.0
+          },
+          "caps": {
+            "a": {
+              "position_m": [
+                -0.5,
+                4.0,
+                1.0
+              ],
+              "outward_normal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ]
+            },
+            "b": {
+              "position_m": [
+                2.5,
+                4.0,
+                1.0
+              ],
+              "outward_normal": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "start_m": [
+            -0.5,
+            4.0,
+            1.0
+          ],
+          "end_m": [
+            2.5,
+            4.0,
+            1.0
+          ]
+        },
+        "native_agreement": {
+          "status": "PASS",
+          "actual_volume_m3": 0.14726215563702166,
+          "expected_volume_m3": 0.14726215563702147,
+          "symmetric_difference_volumes_m3": [
+            0.0,
+            0.0
+          ],
+          "linear_budget_m": 1.11e-05,
+          "volume_budget_m3": 3.468753108000267e-05,
+          "proof_level": "NUMERICAL_CAD_SYMMETRIC_DIFFERENCE_AND_VOLUME; NOT_FORMAL_NATIVE_EQUALITY"
+        }
+      },
+      {
+        "ifc_guid": "2Kd4XzbJHOSx2mFjnO1crG",
+        "kind": "elbow",
+        "index": 2,
+        "analytic_volume_m3": 0.038553142191755305,
+        "actual_source_geometry": {
+          "kind": "elbow",
+          "radius_m": 0.125,
+          "length_m": 0.7853981633974483,
+          "analytic_volume_m3": 0.038553142191755305,
+          "path_lengths_m": {
+            "a:b": 0.7853981633974483
+          },
+          "caps": {
+            "a": {
+              "position_m": [
+                2.5,
+                4.0,
+                1.0
+              ],
+              "outward_normal": [
+                -1.0,
+                0.0,
+                -0.0
+              ]
+            },
+            "b": {
+              "position_m": [
+                3.0,
+                3.5,
+                1.0
+              ],
+              "outward_normal": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            }
+          },
+          "center_m": [
+            2.5,
+            3.5,
+            1.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "bend_radius_m": 0.5,
+          "angle_rad": 1.5707963267948966,
+          "start_m": [
+            2.5,
+            4.0,
+            1.0
+          ],
+          "end_m": [
+            3.0,
+            3.5,
+            1.0
+          ]
+        },
+        "native_agreement": {
+          "status": "PASS",
+          "actual_volume_m3": 0.03855314219175536,
+          "expected_volume_m3": 0.03855314219175529,
+          "symmetric_difference_volumes_m3": [
+            0.0,
+            0.0
+          ],
+          "linear_budget_m": 1.11e-05,
+          "volume_budget_m3": 1.766884365167619e-05,
+          "proof_level": "NUMERICAL_CAD_SYMMETRIC_DIFFERENCE_AND_VOLUME; NOT_FORMAL_NATIVE_EQUALITY"
+        }
+      },
+      {
+        "ifc_guid": "3UNXZpOtnMnwhvfsksX$Rv",
+        "kind": "segment",
+        "index": 2,
+        "analytic_volume_m3": 0.1227184630308513,
+        "actual_source_geometry": {
+          "kind": "segment",
+          "radius_m": 0.125,
+          "length_m": 2.5,
+          "analytic_volume_m3": 0.1227184630308513,
+          "path_lengths_m": {
+            "a:b": 2.5
+          },
+          "caps": {
+            "a": {
+              "position_m": [
+                3.0,
+                3.5,
+                1.0
+              ],
+              "outward_normal": [
+                -0.0,
+                1.0,
+                -0.0
+              ]
+            },
+            "b": {
+              "position_m": [
+                3.0,
+                1.0,
+                1.0
+              ],
+              "outward_normal": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            }
+          },
+          "start_m": [
+            3.0,
+            3.5,
+            1.0
+          ],
+          "end_m": [
+            3.0,
+            1.0,
+            1.0
+          ]
+        },
+        "native_agreement": {
+          "status": "PASS",
+          "actual_volume_m3": 0.12271846303085142,
+          "expected_volume_m3": 0.12271846303085125,
+          "symmetric_difference_volumes_m3": [
+            0.0,
+            0.0
+          ],
+          "linear_budget_m": 1.11e-05,
+          "volume_budget_m3": 2.913752664000264e-05,
+          "proof_level": "NUMERICAL_CAD_SYMMETRIC_DIFFERENCE_AND_VOLUME; NOT_FORMAL_NATIVE_EQUALITY"
+        }
+      }
+    ],
+    "whole_route_acceptance": false
+  },
+  "native_source_check": {
+    "checker": "oma-native-cad/1",
+    "status": "PASS",
+    "implementation": {
+      "cad_code_sha256": "699ab61c5ea04e7c78ca72434fce2fd687e6c9b62be2233d9573d1ba61392e15",
+      "enclosure_code_sha256": "9fa5eda8395d9549637531cebff3fb0c4afc948be5e3f9ba66e13bf076b68ff9",
+      "python_version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+      "numpy_version": "2.5.3",
+      "ifcopenshell_version": "0.8.5",
+      "ocp_version": "8.0.1.0.0"
+    },
+    "scope": "new_route_vs_all_source_physical_obstacles",
+    "sources": [
+      {
+        "path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\next-best-fabrication\\evidence\\native-residual\\bb60216bcaa9463f8d9f3223dcb804a0\\source.ifc",
+        "sha256": "c539ac9005c42d3032bd2e8d2091d0a2324db9ce41df6f356497ddc60b59292a"
+      }
+    ],
+    "cache_trust": {
+      "conversion_provenance": "LOCAL_CHECKER_PRODUCED_NATIVE_CACHE_ASSUMED",
+      "revalidation": "Digests, source/build keys, native topology, volume and bounds detect corruption",
+      "hostile_replacement": "Equality to original IFC is not proved against a hostile replaced BRep plus forged neighboring hashes/source claims",
+      "source_enclosures": "Independently rebuilt from current raw source bytes",
+      "pair_verdicts": "Fresh native or enclosure comparisons; no cached scalar PASS authority"
+    },
+    "effective_host_edits": [],
+    "export_sha256": "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de",
+    "route_guids": [
+      "0D8s4einnRO9GTtVEpIswK",
+      "1YB$wVidjQsPOXFPKB5tSU",
+      "2Kd4XzbJHOSx2mFjnO1crG",
+      "3UNXZpOtnMnwhvfsksX$Rv",
+      "3qFbDUI3zQg8Z5JFDmPMcX"
+    ],
+    "route_count": 5,
+    "obstacle_count": 1,
+    "pairs_accounted": 5,
+    "broad_separation_passes": 5,
+    "pair_results": [],
+    "failed_pairs": 0,
+    "unknown_pairs": 0,
+    "missing_geometry": [],
+    "invalid_solids": [],
+    "blocked_pairs": 0,
+    "represented_support_enclosures": 0,
+    "clearance_m": 0.125,
+    "numerical_tolerance_m": 1e-06,
+    "coordinate_status": "VERIFIED_SAME_SOURCE_RECORDS",
+    "coordinate_evidence": {
+      "method": "SOURCE_SHA_AND_ALL_ORIGINAL_STEP_RECORDS_RECHECKED",
+      "source_sha256": "c539ac9005c42d3032bd2e8d2091d0a2324db9ce41df6f356497ddc60b59292a",
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "export_sha256": "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de"
+    },
+    "representation_interpretation": {
+      "policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+      "native_solid_geometry": "INDEPENDENT_NUMERICAL_CAD_VALIDATION",
+      "invalid_native_fallback": "EXACT_SUPPORTED_REPRESENTED_SUPPORT_SUBSET_OF_OUTER_BOX",
+      "source_support_details": "Each independently rebuilt source certificate binds its supported analytic items and face interpretation",
+      "source_native_validity": "UNRESOLVED_WHERE_REPORTED_INVALID",
+      "scope_exclusion": "No assertion about arbitrary outside-vertex-hull projection or undocumented physical extent"
+    },
+    "coordination_status": "PASS",
+    "self_interference_status": "PASS",
+    "self_pair_results": [
+      {
+        "participants": [
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:131",
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:44"
+        ],
+        "participant_guids": [
+          "3qFbDUI3zQg8Z5JFDmPMcX",
+          "1YB$wVidjQsPOXFPKB5tSU"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 0.5303018016186631,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:131",
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:86"
+        ],
+        "participant_guids": [
+          "3qFbDUI3zQg8Z5JFDmPMcX",
+          "0D8s4einnRO9GTtVEpIswK"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": 0.0,
+        "distance_m": 1.1102230246251565e-16,
+        "witness": {
+          "p1": [
+            -0.5,
+            4.125,
+            1.0
+          ],
+          "p2": [
+            -0.5000000000000001,
+            4.125,
+            1.0
+          ]
+        },
+        "clearance_margin_m": 1.1102230246251565e-16,
+        "reason": "ZERO_VOLUME_CONTACT_CONFINED_TO_EXPLICIT_JOINT_DISK",
+        "interface": {
+          "point_a": [
+            -0.5,
+            4.0,
+            1.0
+          ],
+          "point_b": [
+            -0.5,
+            4.0,
+            1.0
+          ],
+          "axis_a": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "axis_b": [
+            -1.0,
+            -0.0,
+            -0.0
+          ],
+          "radius_a": 0.125,
+          "radius_b": 0.125,
+          "flow_axis_a": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "flow_axis_b": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+          "flow_a": "SOURCE",
+          "flow_b": "SINK",
+          "relationship_guid": "2nplnJzkrNFBZxsLFrrFeB"
+        }
+      },
+      {
+        "participants": [
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:131",
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:174"
+        ],
+        "participant_guids": [
+          "3qFbDUI3zQg8Z5JFDmPMcX",
+          "2Kd4XzbJHOSx2mFjnO1crG"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": 0.0,
+        "distance_m": 0.0,
+        "witness": {
+          "p1": [
+            2.5,
+            4.125,
+            1.0
+          ],
+          "p2": [
+            2.5,
+            4.125,
+            1.0
+          ]
+        },
+        "clearance_margin_m": 0.0,
+        "reason": "ZERO_VOLUME_CONTACT_CONFINED_TO_EXPLICIT_JOINT_DISK",
+        "interface": {
+          "point_a": [
+            2.5,
+            4.0,
+            1.0
+          ],
+          "point_b": [
+            2.5,
+            4.0,
+            1.0
+          ],
+          "axis_a": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "axis_b": [
+            -1.0,
+            -0.0,
+            -0.0
+          ],
+          "radius_a": 0.125,
+          "radius_b": 0.125,
+          "flow_axis_a": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "flow_axis_b": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+          "flow_a": "SOURCE",
+          "flow_b": "SINK",
+          "relationship_guid": "37bB1MXuHVDO1f5YvYvYGO"
+        }
+      },
+      {
+        "participants": [
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:131",
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:219"
+        ],
+        "participant_guids": [
+          "3qFbDUI3zQg8Z5JFDmPMcX",
+          "3UNXZpOtnMnwhvfsksX$Rv"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 0.530301801618663,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:44",
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:86"
+        ],
+        "participant_guids": [
+          "1YB$wVidjQsPOXFPKB5tSU",
+          "0D8s4einnRO9GTtVEpIswK"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": 0.0,
+        "distance_m": 0.0,
+        "witness": {
+          "p1": [
+            -0.875,
+            3.5,
+            1.0
+          ],
+          "p2": [
+            -0.875,
+            3.5,
+            1.0
+          ]
+        },
+        "clearance_margin_m": 0.0,
+        "reason": "ZERO_VOLUME_CONTACT_CONFINED_TO_EXPLICIT_JOINT_DISK",
+        "interface": {
+          "point_a": [
+            -1.0,
+            3.5,
+            1.0
+          ],
+          "point_b": [
+            -1.0,
+            3.5,
+            1.0
+          ],
+          "axis_a": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "axis_b": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "radius_a": 0.125,
+          "radius_b": 0.125,
+          "flow_axis_a": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "flow_axis_b": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+          "flow_a": "SOURCE",
+          "flow_b": "SINK",
+          "relationship_guid": "0G2u_vjs5Lwu0aVR4q1M2S"
+        }
+      },
+      {
+        "participants": [
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:44",
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:174"
+        ],
+        "participant_guids": [
+          "1YB$wVidjQsPOXFPKB5tSU",
+          "2Kd4XzbJHOSx2mFjnO1crG"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 3.37498,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:44",
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:219"
+        ],
+        "participant_guids": [
+          "1YB$wVidjQsPOXFPKB5tSU",
+          "3UNXZpOtnMnwhvfsksX$Rv"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 3.74998,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:86",
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:174"
+        ],
+        "participant_guids": [
+          "0D8s4einnRO9GTtVEpIswK",
+          "2Kd4XzbJHOSx2mFjnO1crG"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 2.9999799999999976,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:86",
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:219"
+        ],
+        "participant_guids": [
+          "0D8s4einnRO9GTtVEpIswK",
+          "3UNXZpOtnMnwhvfsksX$Rv"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 3.3749799999999976,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:174",
+          "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:219"
+        ],
+        "participant_guids": [
+          "2Kd4XzbJHOSx2mFjnO1crG",
+          "3UNXZpOtnMnwhvfsksX$Rv"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": 0.0,
+        "distance_m": 0.0,
+        "witness": {
+          "p1": [
+            3.125,
+            3.5,
+            1.0
+          ],
+          "p2": [
+            3.125,
+            3.5,
+            1.0
+          ]
+        },
+        "clearance_margin_m": 0.0,
+        "reason": "ZERO_VOLUME_CONTACT_CONFINED_TO_EXPLICIT_JOINT_DISK",
+        "interface": {
+          "point_a": [
+            3.0,
+            3.5,
+            1.0
+          ],
+          "point_b": [
+            3.0,
+            3.5,
+            1.0
+          ],
+          "axis_a": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "axis_b": [
+            -0.0,
+            1.0,
+            -0.0
+          ],
+          "radius_a": 0.125,
+          "radius_b": 0.125,
+          "flow_axis_a": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "flow_axis_b": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+          "flow_a": "SOURCE",
+          "flow_b": "SINK",
+          "relationship_guid": "1k0vHkpr9QIgdgpJBBIOwn"
+        }
+      }
+    ],
+    "connectivity_status": "NOT_RUN",
+    "contract": "Independent OCP Boolean common-volume plus shape distance on valid native closed solids; ambiguous near-contact never passes",
+    "proof_level": "NUMERICAL_CAD_CHECK; kernel tolerance accounting is not a formally certified interval bound",
+    "common_mode_risk": "Shared IFC parser and upstream OpenCASCADE representation; different OCP kernel binding rechecks native topology",
+    "performance": {
+      "cad_load_seconds": 0.06932049999886658,
+      "total_seconds": 0.2089680000062799,
+      "source_cache": [
+        {
+          "physical_inventory": {
+            "version": "oma.physical-source-inventory/1",
+            "implementation_sha256": "31e78e4a1fe01813b22a09676077664c8240946ca84297a3fbe42fa3747fd0a5",
+            "source_sha256": "c539ac9005c42d3032bd2e8d2091d0a2324db9ce41df6f356497ddc60b59292a",
+            "physical_step_ids": [
+              15
+            ],
+            "physical_product_count": 1,
+            "assemblies": {},
+            "errors": [],
+            "assembly_status_counts": {},
+            "scope": "COMPLETE_SOURCE_DECLARATIONS; EACH_ASSEMBLY_LEAF_REQUIRES_GEOMETRY_OR_EXPLICIT_FAILURE_ACCOUNTING",
+            "root": "0cd22cbd3080f086568318294933a5157b5b1625283c27178166aeabe93d30f6"
+          },
+          "selected_physical_count": 1,
+          "accounted_assembly_step_ids": [],
+          "source_load_seconds": 0.024259099998744205,
+          "federation_transform_seconds": 0.002099899997119792
+        }
+      ],
+      "broadphase": {
+        "backend": "cpu",
+        "independent_cpu_omission_guard": true,
+        "index_omitted_pairs": 5,
+        "cpu_certified_omitted_pairs": 5,
+        "false_negative_guard_reinsertions": 0,
+        "fallback_reason": null,
+        "timings": {
+          "setup_seconds": 3.9998849388211966e-07,
+          "upload_seconds": 0.0,
+          "query_seconds": 2.7900008717551827e-05,
+          "queries": 5,
+          "comparisons": 5
+        }
+      },
+      "pairs_entering_individual_check": 0
+    }
+  },
+  "other_route_source_check": {
+    "checker": "oma-native-cad/1",
+    "status": "PASS",
+    "implementation": {
+      "cad_code_sha256": "699ab61c5ea04e7c78ca72434fce2fd687e6c9b62be2233d9573d1ba61392e15",
+      "enclosure_code_sha256": "9fa5eda8395d9549637531cebff3fb0c4afc948be5e3f9ba66e13bf076b68ff9",
+      "python_version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+      "numpy_version": "2.5.3",
+      "ifcopenshell_version": "0.8.5",
+      "ocp_version": "8.0.1.0.0"
+    },
+    "scope": "new_route_vs_all_source_physical_obstacles",
+    "sources": [
+      {
+        "path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\next-best-fabrication\\evidence\\native-residual\\bb60216bcaa9463f8d9f3223dcb804a0\\source.ifc",
+        "sha256": "c539ac9005c42d3032bd2e8d2091d0a2324db9ce41df6f356497ddc60b59292a"
+      }
+    ],
+    "cache_trust": {
+      "conversion_provenance": "LOCAL_CHECKER_PRODUCED_NATIVE_CACHE_ASSUMED",
+      "revalidation": "Digests, source/build keys, native topology, volume and bounds detect corruption",
+      "hostile_replacement": "Equality to original IFC is not proved against a hostile replaced BRep plus forged neighboring hashes/source claims",
+      "source_enclosures": "Independently rebuilt from current raw source bytes",
+      "pair_verdicts": "Fresh native or enclosure comparisons; no cached scalar PASS authority"
+    },
+    "effective_host_edits": [],
+    "export_sha256": "f4cfb4aca71aef7f73209ef14823d774c5dc3b6b8b543383fd39b5a89ecdeca9",
+    "route_guids": [
+      "2qro7lzwjTzBlMKWyaubIm"
+    ],
+    "route_count": 1,
+    "obstacle_count": 1,
+    "pairs_accounted": 1,
+    "broad_separation_passes": 1,
+    "pair_results": [],
+    "failed_pairs": 0,
+    "unknown_pairs": 0,
+    "missing_geometry": [],
+    "invalid_solids": [],
+    "blocked_pairs": 0,
+    "represented_support_enclosures": 0,
+    "clearance_m": 0.125,
+    "numerical_tolerance_m": 1e-06,
+    "coordinate_status": "VERIFIED_SAME_SOURCE_RECORDS",
+    "coordinate_evidence": {
+      "method": "SOURCE_SHA_AND_ALL_ORIGINAL_STEP_RECORDS_RECHECKED",
+      "source_sha256": "c539ac9005c42d3032bd2e8d2091d0a2324db9ce41df6f356497ddc60b59292a",
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "export_sha256": "f4cfb4aca71aef7f73209ef14823d774c5dc3b6b8b543383fd39b5a89ecdeca9"
+    },
+    "representation_interpretation": {
+      "policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+      "native_solid_geometry": "INDEPENDENT_NUMERICAL_CAD_VALIDATION",
+      "invalid_native_fallback": "EXACT_SUPPORTED_REPRESENTED_SUPPORT_SUBSET_OF_OUTER_BOX",
+      "source_support_details": "Each independently rebuilt source certificate binds its supported analytic items and face interpretation",
+      "source_native_validity": "UNRESOLVED_WHERE_REPORTED_INVALID",
+      "scope_exclusion": "No assertion about arbitrary outside-vertex-hull projection or undocumented physical extent"
+    },
+    "coordination_status": "PASS",
+    "self_interference_status": "PASS",
+    "self_pair_results": [],
+    "connectivity_status": "NOT_RUN",
+    "contract": "Independent OCP Boolean common-volume plus shape distance on valid native closed solids; ambiguous near-contact never passes",
+    "proof_level": "NUMERICAL_CAD_CHECK; kernel tolerance accounting is not a formally certified interval bound",
+    "common_mode_risk": "Shared IFC parser and upstream OpenCASCADE representation; different OCP kernel binding rechecks native topology",
+    "performance": {
+      "cad_load_seconds": 0.05987789999926463,
+      "total_seconds": 0.07039350000559352,
+      "source_cache": [
+        {
+          "physical_inventory": {
+            "version": "oma.physical-source-inventory/1",
+            "implementation_sha256": "31e78e4a1fe01813b22a09676077664c8240946ca84297a3fbe42fa3747fd0a5",
+            "source_sha256": "c539ac9005c42d3032bd2e8d2091d0a2324db9ce41df6f356497ddc60b59292a",
+            "physical_step_ids": [
+              15
+            ],
+            "physical_product_count": 1,
+            "assemblies": {},
+            "errors": [],
+            "assembly_status_counts": {},
+            "scope": "COMPLETE_SOURCE_DECLARATIONS; EACH_ASSEMBLY_LEAF_REQUIRES_GEOMETRY_OR_EXPLICIT_FAILURE_ACCOUNTING",
+            "root": "0cd22cbd3080f086568318294933a5157b5b1625283c27178166aeabe93d30f6"
+          },
+          "selected_physical_count": 1,
+          "accounted_assembly_step_ids": [],
+          "source_load_seconds": 0.02640380000229925,
+          "federation_transform_seconds": 0.0019828999938908964
+        }
+      ],
+      "broadphase": {
+        "backend": "cpu",
+        "independent_cpu_omission_guard": true,
+        "index_omitted_pairs": 1,
+        "cpu_certified_omitted_pairs": 1,
+        "false_negative_guard_reinsertions": 0,
+        "fallback_reason": null,
+        "timings": {
+          "setup_seconds": 4.00003045797348e-07,
+          "upload_seconds": 0.0,
+          "query_seconds": 2.9799994081258774e-05,
+          "queries": 1,
+          "comparisons": 1
+        }
+      },
+      "pairs_entering_individual_check": 0
+    }
+  },
+  "complete_current_cross_route_pairs": [
+    {
+      "participants": [
+        "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:44",
+        "f4cfb4aca71aef7f73209ef14823d774c5dc3b6b8b543383fd39b5a89ecdeca9:44"
+      ],
+      "participant_guids": [
+        "1YB$wVidjQsPOXFPKB5tSU",
+        "2qro7lzwjTzBlMKWyaubIm"
+      ],
+      "required_clearance_m": 0.125,
+      "numerical_budget_m": 2.1000000000000002e-05,
+      "status": "PASS",
+      "common_volume_m3": null,
+      "distance_m": null,
+      "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+      "distance_lower_bound_m": 2.5647572986152123,
+      "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+      "support_kinds": [
+        "native_solid",
+        "native_solid"
+      ],
+      "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+    },
+    {
+      "participants": [
+        "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:174",
+        "f4cfb4aca71aef7f73209ef14823d774c5dc3b6b8b543383fd39b5a89ecdeca9:44"
+      ],
+      "participant_guids": [
+        "2Kd4XzbJHOSx2mFjnO1crG",
+        "2qro7lzwjTzBlMKWyaubIm"
+      ],
+      "required_clearance_m": 0.125,
+      "numerical_budget_m": 2.1000000000000002e-05,
+      "status": "PASS",
+      "common_volume_m3": null,
+      "distance_m": null,
+      "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+      "distance_lower_bound_m": 4.585959005573423,
+      "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+      "support_kinds": [
+        "native_solid",
+        "native_solid"
+      ],
+      "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+    },
+    {
+      "participants": [
+        "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:86",
+        "f4cfb4aca71aef7f73209ef14823d774c5dc3b6b8b543383fd39b5a89ecdeca9:44"
+      ],
+      "participant_guids": [
+        "0D8s4einnRO9GTtVEpIswK",
+        "2qro7lzwjTzBlMKWyaubIm"
+      ],
+      "required_clearance_m": 0.125,
+      "numerical_budget_m": 2.1000000000000002e-05,
+      "status": "PASS",
+      "common_volume_m3": null,
+      "distance_m": null,
+      "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+      "distance_lower_bound_m": 4.585959005573424,
+      "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+      "support_kinds": [
+        "native_solid",
+        "native_solid"
+      ],
+      "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+    },
+    {
+      "participants": [
+        "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:131",
+        "f4cfb4aca71aef7f73209ef14823d774c5dc3b6b8b543383fd39b5a89ecdeca9:44"
+      ],
+      "participant_guids": [
+        "3qFbDUI3zQg8Z5JFDmPMcX",
+        "2qro7lzwjTzBlMKWyaubIm"
+      ],
+      "required_clearance_m": 0.125,
+      "numerical_budget_m": 2.1000000000000002e-05,
+      "status": "PASS",
+      "common_volume_m3": null,
+      "distance_m": null,
+      "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+      "distance_lower_bound_m": 4.74998,
+      "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+      "support_kinds": [
+        "native_solid",
+        "native_solid"
+      ],
+      "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+    },
+    {
+      "participants": [
+        "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de:219",
+        "f4cfb4aca71aef7f73209ef14823d774c5dc3b6b8b543383fd39b5a89ecdeca9:44"
+      ],
+      "participant_guids": [
+        "3UNXZpOtnMnwhvfsksX$Rv",
+        "2qro7lzwjTzBlMKWyaubIm"
+      ],
+      "required_clearance_m": 0.125,
+      "numerical_budget_m": 2.1000000000000002e-05,
+      "status": "PASS",
+      "common_volume_m3": null,
+      "distance_m": null,
+      "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+      "distance_lower_bound_m": 2.5647572986152123,
+      "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+      "support_kinds": [
+        "native_solid",
+        "native_solid"
+      ],
+      "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+    }
+  ],
+  "semantics": {
+    "errors": [],
+    "length_m": 9.570796326794897,
+    "fitting_count": 2,
+    "parts": [
+      {
+        "guid": "0D8s4einnRO9GTtVEpIswK",
+        "length_m": 0.7853981633974483,
+        "radius_m": 0.125
+      },
+      {
+        "guid": "2Kd4XzbJHOSx2mFjnO1crG",
+        "length_m": 0.7853981633974483,
+        "radius_m": 0.125
+      },
+      {
+        "guid": "1YB$wVidjQsPOXFPKB5tSU",
+        "length_m": 2.5,
+        "radius_m": 0.125
+      },
+      {
+        "guid": "3qFbDUI3zQg8Z5JFDmPMcX",
+        "length_m": 3.0,
+        "radius_m": 0.125
+      },
+      {
+        "guid": "3UNXZpOtnMnwhvfsksX$Rv",
+        "length_m": 2.5,
+        "radius_m": 0.125
+      }
+    ],
+    "route_directrix": {
+      "errors": [],
+      "parts_checked": 5,
+      "tolerance_m": 1e-07,
+      "scope": "NUMERICAL_ACTUAL_IFC_DIRECTRIX_CORRESPONDENCE_TO_COMPLETE_DECLARED_POLYLINE"
+    },
+    "connections": 4,
+    "original_records_checked": 32,
+    "slope_margins": []
+  },
+  "route_export_sha256": "6980247b5f9d45503aa1aeb1f4c437d4c87a1c30fc6d3f9bc47f157024a8c0de",
+  "other_route_export_sha256": "f4cfb4aca71aef7f73209ef14823d774c5dc3b6b8b543383fd39b5a89ecdeca9",
+  "full_joint_acceptance_executed": false,
+  "physical_or_continuous_optimality": false
+}

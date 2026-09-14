@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="1.793" timestamp="2026-09-14T16:38:33.700888-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname=".oma.development.next-best-fabrication.tests.test_certified_fabrication_residual" name="test_joint_proposal_pipeline_persists_residual_language_and_generation_roots" time="1.368"><failure message="KeyError: 'path_certificate_kind'">source = [{'path': WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-287/residual-source0/original.ifc'), 'sh...0b8080e9364', 'transform_m': [[1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0], [0.0, 0.0, 1.0, 0.0], [0.0, 0.0, 0.0, 1.0]]}]
+tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-287/test_joint_proposal_pipeline_p0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001BC58EB9A00&gt;
+
+    def test_joint_proposal_pipeline_persists_residual_language_and_generation_roots(source,tmp_path,monkeypatch):
+        from oma.routing.proposals import project_proposals
+        from oma.store import Store
+        s = scenario().model_copy(update={"max_candidates":6})
+        cells = certified_cells.build_certified_cell_proposals(source,s,context_root="pipeline-source",grid_divisions=4)
+        lifted = certified_fabrication.build_certified_fabrication_proposals(source,s,cells,context_root="pipeline-source",
+            max_fittings=1,residual_rounds=1,max_pricing_work=1)
+        assert len(additional(lifted)) == 1
+        store = Store(tmp_path/"store")
+        project = store.create_project("Residual provenance",{})
+        mission = {"max_new_fittings":1,"route_demands":[{"id":"service","alternatives":[s.model_dump(mode="json")]}]}
+        origin = store.create_run(project["id"],{"operation":"route_joint","mission":mission})
+        monkeypatch.setattr(certified_cells,"build_certified_cell_proposals",lambda *a,**k:deepcopy(cells))
+        seen = []
+        def prepared(*args,**kwargs):
+            seen.append(kwargs)
+            return deepcopy(lifted)
+        monkeypatch.setattr(certified_fabrication,"build_certified_fabrication_proposals",prepared)
+        proposals = list(project_proposals(store,origin,{"sources":[]},s,[],deadline=time.monotonic()+60,
+            checkpoint=lambda stage:None,on_search=lambda payload:None,max_fittings=1,request_demand_id="service"))
+        assert seen[0]["residual_rounds"] == 1 and seen[0]["max_fittings"] == 1
+&gt;       p, = additional({"proposals":proposals})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.oma\development\next-best-fabrication\tests\test_certified_fabrication_residual.py:219: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+report = {'proposals': [{'points_m': [[10.0, 10.0, 1.0], [14.0, 14.0, 1.0]], 'rationale': 'Direct terminal connection is the ba...cation_status': 'PASS', 'certificate_root': 'c6971772524ba8f3c2b631c34153c95c5193ec716fb6ac2bc18adfccea0f2293', ...}}]}
+
+    def additional(report):
+&gt;       return [p for p in report["proposals"] if p["path_certificate_kind"] == "FABRICATION_RESIDUAL_FRONTIER"]
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'path_certificate_kind'
+
+.oma\development\next-best-fabrication\tests\test_certified_fabrication_residual.py:24: KeyError</failure></testcase></testsuite></testsuites>
