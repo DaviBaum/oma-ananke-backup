@@ -51,7 +51,7 @@ def _complete_check_obligations(store, state, baseline, kind):
             "network-all-source-clearance", "network-all-component-pairs", "network-permitted-zone", "network-demand-conditioned-service"), "PASS")
         if state["derived_artifacts"]["network_contract"]["scenario"]["target_modality"] != "ENGINEERING_SERVICE":
             expected["network-demand-conditioned-service"] = "NOT_APPLICABLE"
-        if any(state["derived_artifacts"]["network_contract"]["scenario"].get(k) is not None for k in ("pressure_driven", "passive_tree")):
+        if any(state["derived_artifacts"]["network_contract"]["scenario"].get(k) is not None for k in ("pressure_driven", "passive_tree", "coupled_tree")):
             expected["network-pressure-operating-point"] = "PASS"
         if state["derived_artifacts"].get("export_correspondence"):
             expected["network-export-federation-correspondence"] = "PASS"
@@ -141,7 +141,7 @@ def validate_physical_report_admission(store, candidate, run, state, baseline, r
             scope = "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
         elif kind == "physical_network":
             boundary_scope = ("fixed total-pressure boundaries and minimum deliveries"
-                if any(run["request"]["mission"].get(k) is not None for k in ("pressure_driven", "passive_tree")) else "fixed demands")
+                if any(run["request"]["mission"].get(k) is not None for k in ("pressure_driven", "passive_tree", "coupled_tree")) else "fixed demands")
             scope = f"SHARED_PHYSICAL_NETWORK: complete local component tree, {boundary_scope} and all source obstacles; whole-building adequacy not certified"
         else:
             scenario = state["derived_artifacts"]["routing_scenario"]

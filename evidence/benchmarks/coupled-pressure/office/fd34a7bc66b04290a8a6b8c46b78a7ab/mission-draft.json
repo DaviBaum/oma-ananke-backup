@@ -1,0 +1,523 @@
+{
+  "mission_type": "shared_network",
+  "source_id": null,
+  "system_type": "PRESSURE_PIPE",
+  "start_m": [
+    23.519774999999974,
+    -7.091475000000081,
+    5.892220999999475
+  ],
+  "sinks": [
+    {
+      "id": "sink-a",
+      "demand_id": "demand-a",
+      "end_m": [
+        24.519774999999974,
+        -6.091475000000081,
+        5.892220999999475
+      ],
+      "required_flow_m3_s": null,
+      "available_static_pressure_pa": null
+    },
+    {
+      "id": "sink-b",
+      "demand_id": "demand-b",
+      "end_m": [
+        27.519774999999974,
+        -7.091475000000081,
+        5.892220999999475
+      ],
+      "required_flow_m3_s": null,
+      "available_static_pressure_pa": null
+    },
+    {
+      "id": "sink-c",
+      "demand_id": "demand-c",
+      "end_m": [
+        26.519774999999974,
+        -6.091475000000081,
+        5.892220999999475
+      ],
+      "required_flow_m3_s": null,
+      "available_static_pressure_pa": null
+    }
+  ],
+  "diameter_m": 0.1,
+  "insulation_m": 0.02,
+  "clearance_m": 0.1,
+  "minimum_straight_m": 0.05,
+  "minimum_bend_radius_m": 0.1,
+  "allowed_zone": {
+    "min": [
+      23.249774999999975,
+      -7.361475000000081,
+      5.622220999999475
+    ],
+    "max": [
+      27.789774999999974,
+      -5.82147500000008,
+      6.162220999999476
+    ]
+  },
+  "scenario_terminals": true,
+  "target_modality": "ENGINEERING_SERVICE",
+  "source_representation_policy": "NATIVE_CAD_WITH_SOURCE_VERTEX_HULL_ENCLOSURES",
+  "network_alternatives": [
+    {
+      "schema": "oma-physical-network/1",
+      "network_id": "office-explicit-unequal-outlet-three-sink",
+      "system_type": "PRESSURE_PIPE",
+      "components": [
+        {
+          "id": "trunk",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          },
+          "kind": "segment",
+          "geometry": {
+            "start_m": [
+              23.519774999999974,
+              -7.091475000000081,
+              5.892220999999475
+            ],
+            "end_m": [
+              24.319774999999975,
+              -7.091475000000081,
+              5.892220999999475
+            ]
+          }
+        },
+        {
+          "id": "tee-1",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE",
+            "branch": "SOURCE"
+          },
+          "kind": "tee",
+          "geometry": {
+            "frame_m": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                24.519774999999974
+              ],
+              [
+                0.0,
+                1.0,
+                0.0,
+                -7.091475000000081
+              ],
+              [
+                0.0,
+                0.0,
+                1.0,
+                5.892220999999475
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "trunk_takeout_m": 0.2,
+            "branch_takeout_m": 0.2
+          }
+        },
+        {
+          "id": "arm-a",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          },
+          "kind": "segment",
+          "geometry": {
+            "start_m": [
+              24.519774999999974,
+              -6.891475000000081,
+              5.892220999999475
+            ],
+            "end_m": [
+              24.519774999999974,
+              -6.091475000000081,
+              5.892220999999475
+            ]
+          }
+        },
+        {
+          "id": "inter-tee",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          },
+          "kind": "segment",
+          "geometry": {
+            "start_m": [
+              24.719774999999974,
+              -7.091475000000081,
+              5.892220999999475
+            ],
+            "end_m": [
+              26.319774999999975,
+              -7.091475000000081,
+              5.892220999999475
+            ]
+          }
+        },
+        {
+          "id": "tee-2",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE",
+            "branch": "SOURCE"
+          },
+          "kind": "tee",
+          "geometry": {
+            "frame_m": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                26.519774999999974
+              ],
+              [
+                0.0,
+                1.0,
+                0.0,
+                -7.091475000000081
+              ],
+              [
+                0.0,
+                0.0,
+                1.0,
+                5.892220999999475
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "trunk_takeout_m": 0.2,
+            "branch_takeout_m": 0.2
+          }
+        },
+        {
+          "id": "arm-b",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          },
+          "kind": "segment",
+          "geometry": {
+            "start_m": [
+              26.719774999999974,
+              -7.091475000000081,
+              5.892220999999475
+            ],
+            "end_m": [
+              27.519774999999974,
+              -7.091475000000081,
+              5.892220999999475
+            ]
+          }
+        },
+        {
+          "id": "arm-c",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          },
+          "kind": "segment",
+          "geometry": {
+            "start_m": [
+              26.519774999999974,
+              -6.891475000000081,
+              5.892220999999475
+            ],
+            "end_m": [
+              26.519774999999974,
+              -6.091475000000081,
+              5.892220999999475
+            ]
+          }
+        }
+      ],
+      "connections": [
+        {
+          "source": {
+            "component": "trunk",
+            "port": "b"
+          },
+          "sink": {
+            "component": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "source": {
+            "component": "tee-1",
+            "port": "branch"
+          },
+          "sink": {
+            "component": "arm-a",
+            "port": "a"
+          }
+        },
+        {
+          "source": {
+            "component": "tee-1",
+            "port": "b"
+          },
+          "sink": {
+            "component": "inter-tee",
+            "port": "a"
+          }
+        },
+        {
+          "source": {
+            "component": "inter-tee",
+            "port": "b"
+          },
+          "sink": {
+            "component": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "source": {
+            "component": "tee-2",
+            "port": "b"
+          },
+          "sink": {
+            "component": "arm-b",
+            "port": "a"
+          }
+        },
+        {
+          "source": {
+            "component": "tee-2",
+            "port": "branch"
+          },
+          "sink": {
+            "component": "arm-c",
+            "port": "a"
+          }
+        }
+      ],
+      "source": {
+        "component": "trunk",
+        "port": "a"
+      },
+      "sinks": [
+        {
+          "id": "sink-a",
+          "endpoint": {
+            "component": "arm-a",
+            "port": "b"
+          }
+        },
+        {
+          "id": "sink-b",
+          "endpoint": {
+            "component": "arm-b",
+            "port": "b"
+          }
+        },
+        {
+          "id": "sink-c",
+          "endpoint": {
+            "component": "arm-c",
+            "port": "b"
+          }
+        }
+      ],
+      "demand_paths": [
+        {
+          "demand_id": "demand-a",
+          "sink_id": "sink-a",
+          "steps": [
+            {
+              "component": "trunk",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "tee-1",
+              "entry_port": "a",
+              "exit_port": "branch"
+            },
+            {
+              "component": "arm-a",
+              "entry_port": "a",
+              "exit_port": "b"
+            }
+          ]
+        },
+        {
+          "demand_id": "demand-b",
+          "sink_id": "sink-b",
+          "steps": [
+            {
+              "component": "trunk",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "tee-1",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "inter-tee",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "tee-2",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "arm-b",
+              "entry_port": "a",
+              "exit_port": "b"
+            }
+          ]
+        },
+        {
+          "demand_id": "demand-c",
+          "sink_id": "sink-c",
+          "steps": [
+            {
+              "component": "trunk",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "tee-1",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "inter-tee",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "tee-2",
+              "entry_port": "a",
+              "exit_port": "branch"
+            },
+            {
+              "component": "arm-c",
+              "entry_port": "a",
+              "exit_port": "b"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "physics": null,
+  "objective_weights": {
+    "length_m": 1.0
+  },
+  "assumptions": [
+    "New hypothetical regulated total-pressure service with three sinks and two distinct unequal-outlet tees",
+    "Native outer envelopes imply an ideal declared circular bore only after subtracting declared insulation; bore is not directly measured",
+    "Every original Office physical object remains in the full native obstacle denominator",
+    "Hypothetical scenario terminals do not claim attachment to original building ports",
+    "One retained geometry alternative; no optimization-improvement or whole-building sufficiency claim"
+  ],
+  "coupled_tree": {
+    "schema": "oma.coupled-tree-boundary/1",
+    "source_total_pressure_pa": {
+      "lower": "200",
+      "upper": "200"
+    },
+    "sink_total_pressures_pa": {
+      "sink-a": {
+        "lower": "37768529/500000",
+        "upper": "75537059/1000000"
+      },
+      "sink-b": {
+        "lower": "79934397/1000000",
+        "upper": "39967199/500000"
+      },
+      "sink-c": {
+        "lower": "73956447/1000000",
+        "upper": "2311139/31250"
+      }
+    },
+    "minimum_sink_flows_m3_s": {
+      "sink-a": "1/400",
+      "sink-b": "3/2500",
+      "sink-c": "1/1250"
+    },
+    "flow_search_box_m3_s": {
+      "sink-a": {
+        "lower": "2997/1000000",
+        "upper": "3003/1000000"
+      },
+      "sink-b": {
+        "lower": "1483/1000000",
+        "upper": "1517/1000000"
+      },
+      "sink-c": {
+        "lower": "983/1000000",
+        "upper": "1017/1000000"
+      }
+    },
+    "density_kg_m3": "1000",
+    "darcy_friction": "1/50",
+    "maximum_velocity_m_s": "2",
+    "gravity_m_s2": "196133/20000",
+    "elbow_loss_coefficient": "1/5",
+    "tee_outlet_loss_coefficients": {
+      "tee-1": {
+        "b": "1/5",
+        "branch": "3/10"
+      },
+      "tee-2": {
+        "b": "1/4",
+        "branch": "2/5"
+      }
+    },
+    "applicability": "New hypothetical Office ideal steady incompressible bore model with distinct positive total inlet-flow-referenced loss at each physical tee outlet. Tee internal distributed loss is included; no additional Darcy charge for tee skeleton.",
+    "boundary_control_assumption": "New hypothetical regulated total-pressure intervals at the unchanged four physical terminal caps. Sink pressures are manufactured independently from exact rational nominal leaf flows and declared Office geometry before fresh checks. Prior common-loss mission remains unchanged.",
+    "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+    "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+    "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+    "friction_convention": "DARCY",
+    "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+    "tee_loss_reference": "OUTLET_SPECIFIC_TOTAL_LOSS_AT_TOTAL_INLET_FLOW",
+    "connection_model": "NO_EXTRA_LOSS_AT_CHECKED_MATCHING_CONNECTED_CAPS",
+    "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+  }
+}

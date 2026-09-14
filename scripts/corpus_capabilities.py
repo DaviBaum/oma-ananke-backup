@@ -26,7 +26,7 @@ FAMILY_LIMITS = {
     "DS": "Finite explicit regional merge tables, exact context closure and original menu multiplicities are supported; automatic decomposition discovery and arbitrary physical separator sufficiency are not established.",
     "AB": "Finite table quotients and bounded Boolean-circuit symbolic refinement are implemented; arbitrary theorem/SMT interfaces, complete engineering CEGAR and physical context completeness are not established.",
     "ER": "Exact intervals and a bounded grounded-passive residual/stability certificate are implemented. The latter proves pressure and parameterized-flow errors with explicit path conductances and zero-crossing bounds; physical discrepancy, full cover/adaptive enclosure and resource-rational refinement remain open.",
-    "PO": "Exact supplied rational linear port relations, a uniformly forward two-sink pressure relation and grounded positive-K signed quadratic graph enclosures are implemented with independent checks. The graph kernel covers its declared trees/loops, zero and reversed flow; native graph applicability is not established. Existing native two-sink and fixed-flow adapters retain loss and component-specific metric assumptions. General coupled nonlinear, dynamic, PDE and full physical applicability contracts remain open.",
+    "PO": "Exact supplied rational linear port relations, a uniformly forward two-sink pressure relation and grounded positive-K signed quadratic graph enclosures are implemented with independent checks. The graph kernel covers declared trees/loops, zero and reversed flow. Separate native directed-tree adapters support explicit common or unequal tee outlet losses; the unequal model requires independently checked same-model local existence and global nonnegative uniqueness, every native component/port and complete service. Fixed-flow/two-sink adapters retain component-specific metric assumptions. General coupled nonlinear, dynamic, PDE, physical bore/loss applicability and complete physical contracts remain open.",
     "CS": "Complete supplied finite nondeterministic relations admit a checked strong bisimulation; general causal physical transition discovery, evidence effects and full CSSP closure are not implemented.",
     "ASS": "Grounded finite positive assurance derivations, minimal support antichains, cuts and actual report foundations are implemented; no whole-project assurance closure is inferred from a local route report.",
     "SOV": "Frozen authorized candidate definitions and protected-state gates are present; complete menu-sensitive intent languages, global option preservation after every authorized amendment and general sovereign rewrite search are not implemented.",
@@ -71,6 +71,16 @@ ADAPTERS = {
     "ALG-CMP53": (["oma.dependencies.DependencyEngine.compare_with_cold"], "Explicit finite graph and current metadata-input evaluator cold equality", ["tests/test_dependencies.py"]),
     "ALG-CMP75": (["oma.exporting.export_project"], "Actual edited IFC with independent reopened-file checks within stated local scope", ["tests/test_joint_routing.py"]),
 }
+
+
+for _source_id in ("ALG-RTR19", "ALG-RTR20"):
+    _callables, _scope, _tests = ADAPTERS[_source_id]
+    ADAPTERS[_source_id] = (_callables + [
+        "oma.routing.coupled_tree_pressure.derive_coupled_tree_model",
+        "oma.routing.coupled_tree_pressure.evaluate_coupled_tree",
+        "oma.routing.coupled_tree_pressure.verify_coupled_tree_envelope"],
+        _scope + "; a separate explicit unequal-outlet native tree adapter now independently reconstructs all dimensional/path/port relations and requires both local and global same-model operating proofs before complete service, managed acceptance and fresh export. Existing missions remain unchanged; no complete topology synthesis or physical applicability theorem",
+        _tests + ["tests/test_coupled_tree_pressure_adapter.py", "tests/test_coupled_tree_integration.py"])
 
 
 def scope_for(document, family, name, title):

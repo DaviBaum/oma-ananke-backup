@@ -1,0 +1,39 @@
+.........F.............................................................. [ 66%]
+.....................................                                    [100%]
+================================== FAILURES ===================================
+________________ test_resealed_semantic_attacks[path1-value1] _________________
+
+result = {'status': 'CERTIFIED_ENVELOPE', 'verdict': 'PASS', 'proof_complete': True, 'scope': 'SUPPLIED_NATIVE_METRICS_UNEQUAL_INLET_FLOW_TEE_TREE_UNIQUE_NONNEGATIVE_EQUILIBRIUM', ...}
+path = ('derivation', 'term_physics', 0, 'descendant_leaves')
+value = ['sink-a']
+
+    @pytest.mark.parametrize("path,value",[
+        (("derivation","counts","physical_ports"),15),
+        (("derivation","term_physics",0,"descendant_leaves"),["sink-a"]),
+        (("derivation","term_physics",0,"tee_darcy_charged"),True),
+        (("derivation","port_paths",0,"loss_terms"),[]),
+        (("derivation","component_sections","tee-1","diameter_m","lower"),"1/10"),
+        (("derivation","parameter_rounding","step"),"1/100"),
+        (("service","physical_ports",0,"flow_expression"),{"sink-c":1}),
+        (("service","physical_ports",0,"flow_m3_s","upper"),"1"),
+        (("service","physical_ports",0,"total_head_pa","lower"),"1"),
+        (("service","physical_ports",0,"total_pressure_pa","lower"),"1"),
+        (("service","physical_ports",0,"velocity_m_s","upper"),"0"),
+        (("service","deliveries",0,"minimum_m3_s"),"0"),
+        (("service","conservation_identities",0,"difference"),{"sink-a":1}),
+        (("service","head_path_identities",0,"loss_terms"),[]),
+        (("service","verdict"),"FAIL"),
+        (("service","limitations","static_pressure_reported"),True),
+        (("flow_box","sink-a","upper"),"1/100"),
+        (("model","physical_model_root"),"f"*64),
+    ])
+    def test_resealed_semantic_attacks(result,path,value):
+        b,n,m,c=inputs();packet=deepcopy(result["certificate"]);obj=packet
+        for key in path[:-1]:obj=obj[key]
+>       assert obj[path[-1]]!=value
+E       AssertionError: assert ['sink-a'] != ['sink-a']
+
+.oma\development\coupled-native-tree\validation\520bc34143e141baa67ec4d8f1ec7bdf\tests\test_coupled_tree_pressure_adapter.py:143: AssertionError
+=========================== short test summary info ===========================
+FAILED .oma/development/coupled-native-tree/validation/520bc34143e141baa67ec4d8f1ec7bdf/tests/test_coupled_tree_pressure_adapter.py::test_resealed_semantic_attacks[path1-value1]
+1 failed, 108 passed in 3.99s

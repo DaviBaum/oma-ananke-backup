@@ -61,7 +61,7 @@ def export_network_project(store, project, state, candidate, draft, original_rep
             "rationale": "Fresh independent check of the entire exported shared network and all federation files"})
         checks.verify(checked_copy, original_report)
     service_scope = ("declared fixed-loss pressure-driven operating model"
-        if any(state.get("derived_artifacts", {}).get("network_contract", {}).get("scenario", {}).get(k) is not None for k in ("pressure_driven", "passive_tree"))
+        if any(state.get("derived_artifacts", {}).get("network_contract", {}).get("scenario", {}).get(k) is not None for k in ("pressure_driven", "passive_tree", "coupled_tree"))
         else "supplied-flow checks")
     manifest["limitations"].append(f"Local shared-network coordination and {service_scope} do not certify pre-existing defects or whole-building engineering adequacy")
     atomic_json(directory / "manifest.json", manifest)

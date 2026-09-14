@@ -1,0 +1,1752 @@
+{
+  "source_checkpoint": "oma-independent-checker/2:8f6f5c18b77bb9ef45e7cd3b2c24987a13c822cca706178f0a8d173fc03c1206",
+  "cases": {
+    "fixed_flow": {
+      "scenario": {
+        "mission_type": "shared_network",
+        "source_id": null,
+        "system_type": "PRESSURE_PIPE",
+        "start_m": [
+          -1.0,
+          4.0,
+          3.0
+        ],
+        "sinks": [
+          {
+            "id": "sink-a",
+            "demand_id": "demand-a",
+            "end_m": [
+              1.0,
+              4.0,
+              3.0
+            ],
+            "required_flow_m3_s": 0.001,
+            "available_static_pressure_pa": 1000.0
+          },
+          {
+            "id": "sink-b",
+            "demand_id": "demand-b",
+            "end_m": [
+              0.0,
+              5.0,
+              3.0
+            ],
+            "required_flow_m3_s": 0.002,
+            "available_static_pressure_pa": 1000.0
+          }
+        ],
+        "diameter_m": 0.1,
+        "insulation_m": 0.02,
+        "clearance_m": 0.01,
+        "minimum_straight_m": 0.05,
+        "minimum_bend_radius_m": 0.1,
+        "allowed_zone": {
+          "min": [
+            -2.0,
+            3.0,
+            2.0
+          ],
+          "max": [
+            2.0,
+            6.0,
+            4.0
+          ]
+        },
+        "scenario_terminals": true,
+        "target_modality": "ENGINEERING_SERVICE",
+        "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+        "network_alternatives": [
+          {
+            "schema": "oma-physical-network/1",
+            "network_id": "example-shared-two-sink-network",
+            "system_type": "PRESSURE_PIPE",
+            "components": [
+              {
+                "id": "trunk",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    -1.0,
+                    4.0,
+                    3.0
+                  ],
+                  "end_m": [
+                    -0.2,
+                    4.0,
+                    3.0
+                  ]
+                }
+              },
+              {
+                "id": "junction",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE",
+                  "branch": "SOURCE"
+                },
+                "kind": "tee",
+                "geometry": {
+                  "frame_m": [
+                    [
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      1.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0,
+                      3.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "trunk_takeout_m": 0.2,
+                  "branch_takeout_m": 0.2
+                }
+              },
+              {
+                "id": "arm-a",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    0.2,
+                    4.0,
+                    3.0
+                  ],
+                  "end_m": [
+                    1.0,
+                    4.0,
+                    3.0
+                  ]
+                }
+              },
+              {
+                "id": "arm-b",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    0.0,
+                    4.2,
+                    3.0
+                  ],
+                  "end_m": [
+                    0.0,
+                    5.0,
+                    3.0
+                  ]
+                }
+              }
+            ],
+            "connections": [
+              {
+                "source": {
+                  "component": "trunk",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "junction",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "junction",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "arm-a",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "junction",
+                  "port": "branch"
+                },
+                "sink": {
+                  "component": "arm-b",
+                  "port": "a"
+                }
+              }
+            ],
+            "source": {
+              "component": "trunk",
+              "port": "a"
+            },
+            "sinks": [
+              {
+                "id": "sink-a",
+                "endpoint": {
+                  "component": "arm-a",
+                  "port": "b"
+                }
+              },
+              {
+                "id": "sink-b",
+                "endpoint": {
+                  "component": "arm-b",
+                  "port": "b"
+                }
+              }
+            ],
+            "demand_paths": [
+              {
+                "demand_id": "demand-a",
+                "sink_id": "sink-a",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "junction",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "arm-a",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              },
+              {
+                "demand_id": "demand-b",
+                "sink_id": "sink-b",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "junction",
+                    "entry_port": "a",
+                    "exit_port": "branch"
+                  },
+                  {
+                    "component": "arm-b",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "physics": {
+          "density_kg_m3": 1000.0,
+          "darcy_friction": 0.02,
+          "maximum_velocity_m_s": 2.0,
+          "gravity_m_s2": 9.80665,
+          "elbow_loss_coefficient": 0.2,
+          "tee_straight_loss_coefficient": 0.2,
+          "tee_branch_loss_coefficient": 1.2,
+          "source_kinetic_energy_correction": 1.0,
+          "sink_kinetic_energy_correction": 1.0,
+          "applicability": "Test-only supplied stationary incompressible water model and specified equal-tee family",
+          "fixed_flow_control_assumption": "Both downstream test flows prescribed by external controls",
+          "friction_convention": "DARCY",
+          "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+          "tee_loss_reference": "INLET_VELOCITY_TOTAL_IRREVERSIBLE_LOSS",
+          "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+        },
+        "objective_weights": {
+          "length_m": 1.0
+        },
+        "assumptions": []
+      },
+      "requirements": [
+        {
+          "id": "mission:scenario-network:325e42b8438567c35938",
+          "demands": [
+            {
+              "id": "demand-a",
+              "source_port": "scenario-network:325e42b8438567c35938:source",
+              "sink_ports": [
+                "scenario-network:325e42b8438567c35938:sink:sink-a"
+              ],
+              "service": "PRESSURE_PIPE",
+              "section": {
+                "shape": "circular",
+                "diameter_m": 0.1,
+                "width_m": null,
+                "height_m": null,
+                "rotation_rad": 0.0,
+                "insulation_m": 0.02
+              },
+              "required_flow_m3_s": 0.001,
+              "min_slope": null,
+              "clearance_m": 0.01,
+              "maintenance_clearance_m": 0.0,
+              "provenance": {
+                "source_id": "scenario:325e42b8438567c3593814d0c8cc0684b86c994ff5e81b2030347dad2275d864",
+                "content_hash": "325e42b8438567c3593814d0c8cc0684b86c994ff5e81b2030347dad2275d864",
+                "step_id": null,
+                "guid": null,
+                "kind": "scenario",
+                "description": "Explicit hypothetical network terminals and fixed demands"
+              }
+            },
+            {
+              "id": "demand-b",
+              "source_port": "scenario-network:325e42b8438567c35938:source",
+              "sink_ports": [
+                "scenario-network:325e42b8438567c35938:sink:sink-b"
+              ],
+              "service": "PRESSURE_PIPE",
+              "section": {
+                "shape": "circular",
+                "diameter_m": 0.1,
+                "width_m": null,
+                "height_m": null,
+                "rotation_rad": 0.0,
+                "insulation_m": 0.02
+              },
+              "required_flow_m3_s": 0.002,
+              "min_slope": null,
+              "clearance_m": 0.01,
+              "maintenance_clearance_m": 0.0,
+              "provenance": {
+                "source_id": "scenario:325e42b8438567c3593814d0c8cc0684b86c994ff5e81b2030347dad2275d864",
+                "content_hash": "325e42b8438567c3593814d0c8cc0684b86c994ff5e81b2030347dad2275d864",
+                "step_id": null,
+                "guid": null,
+                "kind": "scenario",
+                "description": "Explicit hypothetical network terminals and fixed demands"
+              }
+            }
+          ],
+          "protected_ids": [],
+          "editable_ids": [],
+          "allowed_zones": [
+            {
+              "min": [
+                -2.0,
+                3.0,
+                2.0
+              ],
+              "max": [
+                2.0,
+                6.0,
+                4.0
+              ]
+            }
+          ],
+          "rule_hash": "1285d1b13298c90be97861a85d56c4d74fcadd8b0a036217eecc80046b0e9915",
+          "catalog_hash": "347adca576aa9c2804de3f6f4ac2dacb1cbaf61643fb16be61c36c2d5a33e382",
+          "scenario_hash": "325e42b8438567c3593814d0c8cc0684b86c994ff5e81b2030347dad2275d864",
+          "objective_weights": {
+            "length_m": 1.0
+          },
+          "assumptions": []
+        },
+        [
+          {
+            "id": "scenario-network:325e42b8438567c35938:source",
+            "entity_id": null,
+            "position_m": [
+              -1.0,
+              4.0,
+              3.0
+            ],
+            "axis": null,
+            "physical_outward_normal": null,
+            "axis_convention": "HISTORICAL_UNKNOWN",
+            "owner_placement_status": "SCENARIO_NOT_APPLICABLE",
+            "coordinate_frame": "federation",
+            "position_status": "KNOWN",
+            "ownership_status": "UNVERIFIED",
+            "direction": "SOURCE",
+            "service": "PRESSURE_PIPE",
+            "section": {
+              "shape": "circular",
+              "diameter_m": 0.1,
+              "width_m": null,
+              "height_m": null,
+              "rotation_rad": 0.0,
+              "insulation_m": 0.02
+            },
+            "connection_evidence": "scenario",
+            "provenance": {
+              "source_id": "scenario:325e42b8438567c3593814d0c8cc0684b86c994ff5e81b2030347dad2275d864",
+              "content_hash": "325e42b8438567c3593814d0c8cc0684b86c994ff5e81b2030347dad2275d864",
+              "step_id": null,
+              "guid": null,
+              "kind": "scenario",
+              "description": "Explicit hypothetical network terminals and fixed demands"
+            }
+          },
+          {
+            "id": "scenario-network:325e42b8438567c35938:sink:sink-a",
+            "entity_id": null,
+            "position_m": [
+              1.0,
+              4.0,
+              3.0
+            ],
+            "axis": null,
+            "physical_outward_normal": null,
+            "axis_convention": "HISTORICAL_UNKNOWN",
+            "owner_placement_status": "SCENARIO_NOT_APPLICABLE",
+            "coordinate_frame": "federation",
+            "position_status": "KNOWN",
+            "ownership_status": "UNVERIFIED",
+            "direction": "SINK",
+            "service": "PRESSURE_PIPE",
+            "section": {
+              "shape": "circular",
+              "diameter_m": 0.1,
+              "width_m": null,
+              "height_m": null,
+              "rotation_rad": 0.0,
+              "insulation_m": 0.02
+            },
+            "connection_evidence": "scenario",
+            "provenance": {
+              "source_id": "scenario:325e42b8438567c3593814d0c8cc0684b86c994ff5e81b2030347dad2275d864",
+              "content_hash": "325e42b8438567c3593814d0c8cc0684b86c994ff5e81b2030347dad2275d864",
+              "step_id": null,
+              "guid": null,
+              "kind": "scenario",
+              "description": "Explicit hypothetical network terminals and fixed demands"
+            }
+          },
+          {
+            "id": "scenario-network:325e42b8438567c35938:sink:sink-b",
+            "entity_id": null,
+            "position_m": [
+              0.0,
+              5.0,
+              3.0
+            ],
+            "axis": null,
+            "physical_outward_normal": null,
+            "axis_convention": "HISTORICAL_UNKNOWN",
+            "owner_placement_status": "SCENARIO_NOT_APPLICABLE",
+            "coordinate_frame": "federation",
+            "position_status": "KNOWN",
+            "ownership_status": "UNVERIFIED",
+            "direction": "SINK",
+            "service": "PRESSURE_PIPE",
+            "section": {
+              "shape": "circular",
+              "diameter_m": 0.1,
+              "width_m": null,
+              "height_m": null,
+              "rotation_rad": 0.0,
+              "insulation_m": 0.02
+            },
+            "connection_evidence": "scenario",
+            "provenance": {
+              "source_id": "scenario:325e42b8438567c3593814d0c8cc0684b86c994ff5e81b2030347dad2275d864",
+              "content_hash": "325e42b8438567c3593814d0c8cc0684b86c994ff5e81b2030347dad2275d864",
+              "step_id": null,
+              "guid": null,
+              "kind": "scenario",
+              "description": "Explicit hypothetical network terminals and fixed demands"
+            }
+          }
+        ],
+        {
+          "shape": "circular",
+          "diameter_m": 0.1,
+          "width_m": null,
+          "height_m": null,
+          "rotation_rad": 0.0,
+          "insulation_m": 0.02
+        }
+      ]
+    },
+    "two_sink": {
+      "scenario": {
+        "mission_type": "shared_network",
+        "source_id": null,
+        "system_type": "PRESSURE_PIPE",
+        "start_m": [
+          -1.0,
+          4.0,
+          3.0
+        ],
+        "sinks": [
+          {
+            "id": "sink-a",
+            "demand_id": "demand-a",
+            "end_m": [
+              1.0,
+              4.0,
+              3.0
+            ],
+            "required_flow_m3_s": 0.001,
+            "available_static_pressure_pa": null
+          },
+          {
+            "id": "sink-b",
+            "demand_id": "demand-b",
+            "end_m": [
+              0.0,
+              5.0,
+              3.0
+            ],
+            "required_flow_m3_s": 0.002,
+            "available_static_pressure_pa": null
+          }
+        ],
+        "diameter_m": 0.1,
+        "insulation_m": 0.02,
+        "clearance_m": 0.01,
+        "minimum_straight_m": 0.05,
+        "minimum_bend_radius_m": 0.1,
+        "allowed_zone": {
+          "min": [
+            -2.0,
+            3.0,
+            2.0
+          ],
+          "max": [
+            2.0,
+            6.0,
+            4.0
+          ]
+        },
+        "scenario_terminals": true,
+        "target_modality": "ENGINEERING_SERVICE",
+        "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+        "network_alternatives": [
+          {
+            "schema": "oma-physical-network/1",
+            "network_id": "example-shared-two-sink-network",
+            "system_type": "PRESSURE_PIPE",
+            "components": [
+              {
+                "id": "trunk",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    -1.0,
+                    4.0,
+                    3.0
+                  ],
+                  "end_m": [
+                    -0.2,
+                    4.0,
+                    3.0
+                  ]
+                }
+              },
+              {
+                "id": "junction",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE",
+                  "branch": "SOURCE"
+                },
+                "kind": "tee",
+                "geometry": {
+                  "frame_m": [
+                    [
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      1.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0,
+                      3.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "trunk_takeout_m": 0.2,
+                  "branch_takeout_m": 0.2
+                }
+              },
+              {
+                "id": "arm-a",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    0.2,
+                    4.0,
+                    3.0
+                  ],
+                  "end_m": [
+                    1.0,
+                    4.0,
+                    3.0
+                  ]
+                }
+              },
+              {
+                "id": "arm-b",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    0.0,
+                    4.2,
+                    3.0
+                  ],
+                  "end_m": [
+                    0.0,
+                    5.0,
+                    3.0
+                  ]
+                }
+              }
+            ],
+            "connections": [
+              {
+                "source": {
+                  "component": "trunk",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "junction",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "junction",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "arm-a",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "junction",
+                  "port": "branch"
+                },
+                "sink": {
+                  "component": "arm-b",
+                  "port": "a"
+                }
+              }
+            ],
+            "source": {
+              "component": "trunk",
+              "port": "a"
+            },
+            "sinks": [
+              {
+                "id": "sink-a",
+                "endpoint": {
+                  "component": "arm-a",
+                  "port": "b"
+                }
+              },
+              {
+                "id": "sink-b",
+                "endpoint": {
+                  "component": "arm-b",
+                  "port": "b"
+                }
+              }
+            ],
+            "demand_paths": [
+              {
+                "demand_id": "demand-a",
+                "sink_id": "sink-a",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "junction",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "arm-a",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              },
+              {
+                "demand_id": "demand-b",
+                "sink_id": "sink-b",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "junction",
+                    "entry_port": "a",
+                    "exit_port": "branch"
+                  },
+                  {
+                    "component": "arm-b",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "physics": null,
+        "pressure_driven": {
+          "schema": "oma.two-sink-pressure-boundary/1",
+          "source_total_pressure_pa": 100.0,
+          "sink_total_pressures_pa": {
+            "sink-a": 0.0,
+            "sink-b": 0.0
+          },
+          "density_kg_m3": 1000.0,
+          "darcy_friction": 0.02,
+          "maximum_velocity_m_s": 2.0,
+          "gravity_m_s2": 9.80665,
+          "elbow_loss_coefficient": 0.2,
+          "tee_straight_loss_coefficient": 0.2,
+          "tee_branch_loss_coefficient": 0.2,
+          "applicability": "Test-only supplied stationary incompressible water model and specified equal-tee family",
+          "boundary_control_assumption": "Test-only regulated total pressures at the three physical ports",
+          "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+          "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+          "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+          "friction_convention": "DARCY",
+          "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+          "tee_loss_reference": "INLET_VELOCITY_TOTAL_IRREVERSIBLE_LOSS",
+          "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+        },
+        "objective_weights": {
+          "length_m": 1.0
+        },
+        "assumptions": []
+      },
+      "requirements": [
+        {
+          "id": "mission:scenario-network:247c7f544e00fcbb38ab",
+          "demands": [
+            {
+              "id": "demand-a",
+              "source_port": "scenario-network:247c7f544e00fcbb38ab:source",
+              "sink_ports": [
+                "scenario-network:247c7f544e00fcbb38ab:sink:sink-a"
+              ],
+              "service": "PRESSURE_PIPE",
+              "section": {
+                "shape": "circular",
+                "diameter_m": 0.1,
+                "width_m": null,
+                "height_m": null,
+                "rotation_rad": 0.0,
+                "insulation_m": 0.02
+              },
+              "required_flow_m3_s": 0.001,
+              "min_slope": null,
+              "clearance_m": 0.01,
+              "maintenance_clearance_m": 0.0,
+              "provenance": {
+                "source_id": "scenario:247c7f544e00fcbb38abebe381f7981d73a0d945e1fea21200a2013d5c428803",
+                "content_hash": "247c7f544e00fcbb38abebe381f7981d73a0d945e1fea21200a2013d5c428803",
+                "step_id": null,
+                "guid": null,
+                "kind": "scenario",
+                "description": "Explicit hypothetical network terminals and fixed demands"
+              }
+            },
+            {
+              "id": "demand-b",
+              "source_port": "scenario-network:247c7f544e00fcbb38ab:source",
+              "sink_ports": [
+                "scenario-network:247c7f544e00fcbb38ab:sink:sink-b"
+              ],
+              "service": "PRESSURE_PIPE",
+              "section": {
+                "shape": "circular",
+                "diameter_m": 0.1,
+                "width_m": null,
+                "height_m": null,
+                "rotation_rad": 0.0,
+                "insulation_m": 0.02
+              },
+              "required_flow_m3_s": 0.002,
+              "min_slope": null,
+              "clearance_m": 0.01,
+              "maintenance_clearance_m": 0.0,
+              "provenance": {
+                "source_id": "scenario:247c7f544e00fcbb38abebe381f7981d73a0d945e1fea21200a2013d5c428803",
+                "content_hash": "247c7f544e00fcbb38abebe381f7981d73a0d945e1fea21200a2013d5c428803",
+                "step_id": null,
+                "guid": null,
+                "kind": "scenario",
+                "description": "Explicit hypothetical network terminals and fixed demands"
+              }
+            }
+          ],
+          "protected_ids": [],
+          "editable_ids": [],
+          "allowed_zones": [
+            {
+              "min": [
+                -2.0,
+                3.0,
+                2.0
+              ],
+              "max": [
+                2.0,
+                6.0,
+                4.0
+              ]
+            }
+          ],
+          "rule_hash": "af7b0e93b8cf95021a0346cea5c5e1f6b08bcf811ef8435cf73ffe6dddeee1c9",
+          "catalog_hash": "347adca576aa9c2804de3f6f4ac2dacb1cbaf61643fb16be61c36c2d5a33e382",
+          "scenario_hash": "247c7f544e00fcbb38abebe381f7981d73a0d945e1fea21200a2013d5c428803",
+          "objective_weights": {
+            "length_m": 1.0
+          },
+          "assumptions": []
+        },
+        [
+          {
+            "id": "scenario-network:247c7f544e00fcbb38ab:source",
+            "entity_id": null,
+            "position_m": [
+              -1.0,
+              4.0,
+              3.0
+            ],
+            "axis": null,
+            "physical_outward_normal": null,
+            "axis_convention": "HISTORICAL_UNKNOWN",
+            "owner_placement_status": "SCENARIO_NOT_APPLICABLE",
+            "coordinate_frame": "federation",
+            "position_status": "KNOWN",
+            "ownership_status": "UNVERIFIED",
+            "direction": "SOURCE",
+            "service": "PRESSURE_PIPE",
+            "section": {
+              "shape": "circular",
+              "diameter_m": 0.1,
+              "width_m": null,
+              "height_m": null,
+              "rotation_rad": 0.0,
+              "insulation_m": 0.02
+            },
+            "connection_evidence": "scenario",
+            "provenance": {
+              "source_id": "scenario:247c7f544e00fcbb38abebe381f7981d73a0d945e1fea21200a2013d5c428803",
+              "content_hash": "247c7f544e00fcbb38abebe381f7981d73a0d945e1fea21200a2013d5c428803",
+              "step_id": null,
+              "guid": null,
+              "kind": "scenario",
+              "description": "Explicit hypothetical network terminals and fixed demands"
+            }
+          },
+          {
+            "id": "scenario-network:247c7f544e00fcbb38ab:sink:sink-a",
+            "entity_id": null,
+            "position_m": [
+              1.0,
+              4.0,
+              3.0
+            ],
+            "axis": null,
+            "physical_outward_normal": null,
+            "axis_convention": "HISTORICAL_UNKNOWN",
+            "owner_placement_status": "SCENARIO_NOT_APPLICABLE",
+            "coordinate_frame": "federation",
+            "position_status": "KNOWN",
+            "ownership_status": "UNVERIFIED",
+            "direction": "SINK",
+            "service": "PRESSURE_PIPE",
+            "section": {
+              "shape": "circular",
+              "diameter_m": 0.1,
+              "width_m": null,
+              "height_m": null,
+              "rotation_rad": 0.0,
+              "insulation_m": 0.02
+            },
+            "connection_evidence": "scenario",
+            "provenance": {
+              "source_id": "scenario:247c7f544e00fcbb38abebe381f7981d73a0d945e1fea21200a2013d5c428803",
+              "content_hash": "247c7f544e00fcbb38abebe381f7981d73a0d945e1fea21200a2013d5c428803",
+              "step_id": null,
+              "guid": null,
+              "kind": "scenario",
+              "description": "Explicit hypothetical network terminals and fixed demands"
+            }
+          },
+          {
+            "id": "scenario-network:247c7f544e00fcbb38ab:sink:sink-b",
+            "entity_id": null,
+            "position_m": [
+              0.0,
+              5.0,
+              3.0
+            ],
+            "axis": null,
+            "physical_outward_normal": null,
+            "axis_convention": "HISTORICAL_UNKNOWN",
+            "owner_placement_status": "SCENARIO_NOT_APPLICABLE",
+            "coordinate_frame": "federation",
+            "position_status": "KNOWN",
+            "ownership_status": "UNVERIFIED",
+            "direction": "SINK",
+            "service": "PRESSURE_PIPE",
+            "section": {
+              "shape": "circular",
+              "diameter_m": 0.1,
+              "width_m": null,
+              "height_m": null,
+              "rotation_rad": 0.0,
+              "insulation_m": 0.02
+            },
+            "connection_evidence": "scenario",
+            "provenance": {
+              "source_id": "scenario:247c7f544e00fcbb38abebe381f7981d73a0d945e1fea21200a2013d5c428803",
+              "content_hash": "247c7f544e00fcbb38abebe381f7981d73a0d945e1fea21200a2013d5c428803",
+              "step_id": null,
+              "guid": null,
+              "kind": "scenario",
+              "description": "Explicit hypothetical network terminals and fixed demands"
+            }
+          }
+        ],
+        {
+          "shape": "circular",
+          "diameter_m": 0.1,
+          "width_m": null,
+          "height_m": null,
+          "rotation_rad": 0.0,
+          "insulation_m": 0.02
+        }
+      ]
+    },
+    "common_tee": {
+      "scenario": {
+        "mission_type": "shared_network",
+        "source_id": null,
+        "system_type": "PRESSURE_PIPE",
+        "start_m": [
+          -1.0,
+          4.0,
+          3.0
+        ],
+        "sinks": [
+          {
+            "id": "sink-a",
+            "demand_id": "demand-a",
+            "end_m": [
+              0.0,
+              5.0,
+              3.0
+            ],
+            "required_flow_m3_s": null,
+            "available_static_pressure_pa": null
+          },
+          {
+            "id": "sink-b",
+            "demand_id": "demand-b",
+            "end_m": [
+              3.0,
+              4.0,
+              3.0
+            ],
+            "required_flow_m3_s": null,
+            "available_static_pressure_pa": null
+          },
+          {
+            "id": "sink-c",
+            "demand_id": "demand-c",
+            "end_m": [
+              2.0,
+              5.0,
+              3.0
+            ],
+            "required_flow_m3_s": null,
+            "available_static_pressure_pa": null
+          }
+        ],
+        "diameter_m": 0.1,
+        "insulation_m": 0.02,
+        "clearance_m": 0.1,
+        "minimum_straight_m": 0.05,
+        "minimum_bend_radius_m": 0.1,
+        "allowed_zone": {
+          "min": [
+            -1.3,
+            3.7,
+            2.7
+          ],
+          "max": [
+            3.3,
+            5.3,
+            3.3
+          ]
+        },
+        "scenario_terminals": true,
+        "target_modality": "ENGINEERING_SERVICE",
+        "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+        "network_alternatives": [
+          {
+            "schema": "oma-physical-network/1",
+            "network_id": "explicit-positive-common-loss-three-sink-tree",
+            "system_type": "PRESSURE_PIPE",
+            "components": [
+              {
+                "id": "trunk",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    -1.0,
+                    4.0,
+                    3.0
+                  ],
+                  "end_m": [
+                    -0.2,
+                    4.0,
+                    3.0
+                  ]
+                }
+              },
+              {
+                "id": "tee-1",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE",
+                  "branch": "SOURCE"
+                },
+                "kind": "tee",
+                "geometry": {
+                  "frame_m": [
+                    [
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      1.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0,
+                      3.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "trunk_takeout_m": 0.2,
+                  "branch_takeout_m": 0.2
+                }
+              },
+              {
+                "id": "arm-a",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    0.0,
+                    4.2,
+                    3.0
+                  ],
+                  "end_m": [
+                    0.0,
+                    5.0,
+                    3.0
+                  ]
+                }
+              },
+              {
+                "id": "inter-tee",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    0.2,
+                    4.0,
+                    3.0
+                  ],
+                  "end_m": [
+                    1.8,
+                    4.0,
+                    3.0
+                  ]
+                }
+              },
+              {
+                "id": "tee-2",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE",
+                  "branch": "SOURCE"
+                },
+                "kind": "tee",
+                "geometry": {
+                  "frame_m": [
+                    [
+                      1.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ],
+                    [
+                      0.0,
+                      1.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0,
+                      3.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "trunk_takeout_m": 0.2,
+                  "branch_takeout_m": 0.2
+                }
+              },
+              {
+                "id": "arm-b",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    2.2,
+                    4.0,
+                    3.0
+                  ],
+                  "end_m": [
+                    3.0,
+                    4.0,
+                    3.0
+                  ]
+                }
+              },
+              {
+                "id": "arm-c",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    2.0,
+                    4.2,
+                    3.0
+                  ],
+                  "end_m": [
+                    2.0,
+                    5.0,
+                    3.0
+                  ]
+                }
+              }
+            ],
+            "connections": [
+              {
+                "source": {
+                  "component": "trunk",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "tee-1",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "tee-1",
+                  "port": "branch"
+                },
+                "sink": {
+                  "component": "arm-a",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "tee-1",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "inter-tee",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "inter-tee",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "tee-2",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "tee-2",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "arm-b",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "tee-2",
+                  "port": "branch"
+                },
+                "sink": {
+                  "component": "arm-c",
+                  "port": "a"
+                }
+              }
+            ],
+            "source": {
+              "component": "trunk",
+              "port": "a"
+            },
+            "sinks": [
+              {
+                "id": "sink-a",
+                "endpoint": {
+                  "component": "arm-a",
+                  "port": "b"
+                }
+              },
+              {
+                "id": "sink-b",
+                "endpoint": {
+                  "component": "arm-b",
+                  "port": "b"
+                }
+              },
+              {
+                "id": "sink-c",
+                "endpoint": {
+                  "component": "arm-c",
+                  "port": "b"
+                }
+              }
+            ],
+            "demand_paths": [
+              {
+                "demand_id": "demand-a",
+                "sink_id": "sink-a",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "tee-1",
+                    "entry_port": "a",
+                    "exit_port": "branch"
+                  },
+                  {
+                    "component": "arm-a",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              },
+              {
+                "demand_id": "demand-b",
+                "sink_id": "sink-b",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "tee-1",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "inter-tee",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "tee-2",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "arm-b",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              },
+              {
+                "demand_id": "demand-c",
+                "sink_id": "sink-c",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "tee-1",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "inter-tee",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "tee-2",
+                    "entry_port": "a",
+                    "exit_port": "branch"
+                  },
+                  {
+                    "component": "arm-c",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "physics": null,
+        "passive_tree": {
+          "schema": "oma.passive-tree-boundary/1",
+          "source_total_pressure_pa": "100",
+          "sink_total_pressures_pa": {
+            "sink-a": "0",
+            "sink-b": "0",
+            "sink-c": "0"
+          },
+          "minimum_sink_flows_m3_s": {
+            "sink-a": "1/1000",
+            "sink-b": "1/2000",
+            "sink-c": "1/2000"
+          },
+          "density_kg_m3": "1000",
+          "darcy_friction": "1/50",
+          "maximum_velocity_m_s": "2",
+          "gravity_m_s2": "196133/20000",
+          "elbow_loss_coefficient": "1/5",
+          "tee_common_loss_coefficients": {
+            "tee-1": "1/5",
+            "tee-2": "3/10"
+          },
+          "applicability": "New explicit ideal steady incompressible circular-bore model. Each physical tee has identical positive TOTAL inlet-flow-referenced loss at both outlets, including its internal distributed losses. No old unequal-outlet contract is reused.",
+          "boundary_control_assumption": "Hypothetical regulated total-pressure terminals at the exact four physical boundary caps",
+          "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+          "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+          "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+          "friction_convention": "DARCY",
+          "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+          "tee_loss_reference": "IDENTICAL_OUTLET_TOTAL_LOSS_AT_INLET_FLOW_COMMON_HEAD",
+          "connection_model": "NO_EXTRA_LOSS_AT_CHECKED_MATCHING_CONNECTED_CAPS",
+          "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+        },
+        "objective_weights": {
+          "length_m": 1.0
+        },
+        "assumptions": []
+      },
+      "requirements": [
+        {
+          "id": "mission:scenario-network:b5749c1de45b806033ed",
+          "demands": [
+            {
+              "id": "demand-a",
+              "source_port": "scenario-network:b5749c1de45b806033ed:source",
+              "sink_ports": [
+                "scenario-network:b5749c1de45b806033ed:sink:sink-a"
+              ],
+              "service": "PRESSURE_PIPE",
+              "section": {
+                "shape": "circular",
+                "diameter_m": 0.1,
+                "width_m": null,
+                "height_m": null,
+                "rotation_rad": 0.0,
+                "insulation_m": 0.02
+              },
+              "required_flow_m3_s": 0.001,
+              "min_slope": null,
+              "clearance_m": 0.1,
+              "maintenance_clearance_m": 0.0,
+              "provenance": {
+                "source_id": "scenario:b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+                "content_hash": "b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+                "step_id": null,
+                "guid": null,
+                "kind": "scenario",
+                "description": "Explicit hypothetical network terminals and exact passive-tree minimum deliveries"
+              }
+            },
+            {
+              "id": "demand-b",
+              "source_port": "scenario-network:b5749c1de45b806033ed:source",
+              "sink_ports": [
+                "scenario-network:b5749c1de45b806033ed:sink:sink-b"
+              ],
+              "service": "PRESSURE_PIPE",
+              "section": {
+                "shape": "circular",
+                "diameter_m": 0.1,
+                "width_m": null,
+                "height_m": null,
+                "rotation_rad": 0.0,
+                "insulation_m": 0.02
+              },
+              "required_flow_m3_s": 0.0005,
+              "min_slope": null,
+              "clearance_m": 0.1,
+              "maintenance_clearance_m": 0.0,
+              "provenance": {
+                "source_id": "scenario:b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+                "content_hash": "b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+                "step_id": null,
+                "guid": null,
+                "kind": "scenario",
+                "description": "Explicit hypothetical network terminals and exact passive-tree minimum deliveries"
+              }
+            },
+            {
+              "id": "demand-c",
+              "source_port": "scenario-network:b5749c1de45b806033ed:source",
+              "sink_ports": [
+                "scenario-network:b5749c1de45b806033ed:sink:sink-c"
+              ],
+              "service": "PRESSURE_PIPE",
+              "section": {
+                "shape": "circular",
+                "diameter_m": 0.1,
+                "width_m": null,
+                "height_m": null,
+                "rotation_rad": 0.0,
+                "insulation_m": 0.02
+              },
+              "required_flow_m3_s": 0.0005,
+              "min_slope": null,
+              "clearance_m": 0.1,
+              "maintenance_clearance_m": 0.0,
+              "provenance": {
+                "source_id": "scenario:b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+                "content_hash": "b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+                "step_id": null,
+                "guid": null,
+                "kind": "scenario",
+                "description": "Explicit hypothetical network terminals and exact passive-tree minimum deliveries"
+              }
+            }
+          ],
+          "protected_ids": [],
+          "editable_ids": [],
+          "allowed_zones": [
+            {
+              "min": [
+                -1.3,
+                3.7,
+                2.7
+              ],
+              "max": [
+                3.3,
+                5.3,
+                3.3
+              ]
+            }
+          ],
+          "rule_hash": "bc06ce139f253194a61b9460d16918d5798af2c1d4b6ce0339da0617a0bb024a",
+          "catalog_hash": "ef175b23994149a66d34106969cd5bde7098546baff3798de2763e3a7e6aead5",
+          "scenario_hash": "b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+          "objective_weights": {
+            "length_m": 1.0
+          },
+          "assumptions": []
+        },
+        [
+          {
+            "id": "scenario-network:b5749c1de45b806033ed:source",
+            "entity_id": null,
+            "position_m": [
+              -1.0,
+              4.0,
+              3.0
+            ],
+            "axis": null,
+            "physical_outward_normal": null,
+            "axis_convention": "HISTORICAL_UNKNOWN",
+            "owner_placement_status": "SCENARIO_NOT_APPLICABLE",
+            "coordinate_frame": "federation",
+            "position_status": "KNOWN",
+            "ownership_status": "UNVERIFIED",
+            "direction": "SOURCE",
+            "service": "PRESSURE_PIPE",
+            "section": {
+              "shape": "circular",
+              "diameter_m": 0.1,
+              "width_m": null,
+              "height_m": null,
+              "rotation_rad": 0.0,
+              "insulation_m": 0.02
+            },
+            "connection_evidence": "scenario",
+            "provenance": {
+              "source_id": "scenario:b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+              "content_hash": "b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+              "step_id": null,
+              "guid": null,
+              "kind": "scenario",
+              "description": "Explicit hypothetical network terminals and exact passive-tree minimum deliveries"
+            }
+          },
+          {
+            "id": "scenario-network:b5749c1de45b806033ed:sink:sink-a",
+            "entity_id": null,
+            "position_m": [
+              0.0,
+              5.0,
+              3.0
+            ],
+            "axis": null,
+            "physical_outward_normal": null,
+            "axis_convention": "HISTORICAL_UNKNOWN",
+            "owner_placement_status": "SCENARIO_NOT_APPLICABLE",
+            "coordinate_frame": "federation",
+            "position_status": "KNOWN",
+            "ownership_status": "UNVERIFIED",
+            "direction": "SINK",
+            "service": "PRESSURE_PIPE",
+            "section": {
+              "shape": "circular",
+              "diameter_m": 0.1,
+              "width_m": null,
+              "height_m": null,
+              "rotation_rad": 0.0,
+              "insulation_m": 0.02
+            },
+            "connection_evidence": "scenario",
+            "provenance": {
+              "source_id": "scenario:b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+              "content_hash": "b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+              "step_id": null,
+              "guid": null,
+              "kind": "scenario",
+              "description": "Explicit hypothetical network terminals and exact passive-tree minimum deliveries"
+            }
+          },
+          {
+            "id": "scenario-network:b5749c1de45b806033ed:sink:sink-b",
+            "entity_id": null,
+            "position_m": [
+              3.0,
+              4.0,
+              3.0
+            ],
+            "axis": null,
+            "physical_outward_normal": null,
+            "axis_convention": "HISTORICAL_UNKNOWN",
+            "owner_placement_status": "SCENARIO_NOT_APPLICABLE",
+            "coordinate_frame": "federation",
+            "position_status": "KNOWN",
+            "ownership_status": "UNVERIFIED",
+            "direction": "SINK",
+            "service": "PRESSURE_PIPE",
+            "section": {
+              "shape": "circular",
+              "diameter_m": 0.1,
+              "width_m": null,
+              "height_m": null,
+              "rotation_rad": 0.0,
+              "insulation_m": 0.02
+            },
+            "connection_evidence": "scenario",
+            "provenance": {
+              "source_id": "scenario:b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+              "content_hash": "b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+              "step_id": null,
+              "guid": null,
+              "kind": "scenario",
+              "description": "Explicit hypothetical network terminals and exact passive-tree minimum deliveries"
+            }
+          },
+          {
+            "id": "scenario-network:b5749c1de45b806033ed:sink:sink-c",
+            "entity_id": null,
+            "position_m": [
+              2.0,
+              5.0,
+              3.0
+            ],
+            "axis": null,
+            "physical_outward_normal": null,
+            "axis_convention": "HISTORICAL_UNKNOWN",
+            "owner_placement_status": "SCENARIO_NOT_APPLICABLE",
+            "coordinate_frame": "federation",
+            "position_status": "KNOWN",
+            "ownership_status": "UNVERIFIED",
+            "direction": "SINK",
+            "service": "PRESSURE_PIPE",
+            "section": {
+              "shape": "circular",
+              "diameter_m": 0.1,
+              "width_m": null,
+              "height_m": null,
+              "rotation_rad": 0.0,
+              "insulation_m": 0.02
+            },
+            "connection_evidence": "scenario",
+            "provenance": {
+              "source_id": "scenario:b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+              "content_hash": "b5749c1de45b806033ed5a042e7b31c420ae014927bd4eb414c145d2a10e721c",
+              "step_id": null,
+              "guid": null,
+              "kind": "scenario",
+              "description": "Explicit hypothetical network terminals and exact passive-tree minimum deliveries"
+            }
+          }
+        ],
+        {
+          "shape": "circular",
+          "diameter_m": 0.1,
+          "width_m": null,
+          "height_m": null,
+          "rotation_rad": 0.0,
+          "insulation_m": 0.02
+        }
+      ]
+    }
+  }
+}

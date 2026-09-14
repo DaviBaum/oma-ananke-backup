@@ -31,7 +31,7 @@ def verify_network_candidate(store, candidate_id):
         status = next((v for v in (Verdict.FAIL, Verdict.BLOCKED, Verdict.UNKNOWN, Verdict.NOT_RUN)
                        if any(r.status == v for r in results)), Verdict.PASS)
         boundary_scope = ("fixed total-pressure boundaries and minimum deliveries"
-            if any(run.get("request", {}).get("mission", {}).get(k) is not None for k in ("pressure_driven", "passive_tree")) else "fixed demands")
+            if any(run.get("request", {}).get("mission", {}).get(k) is not None for k in ("pressure_driven", "passive_tree", "coupled_tree")) else "fixed demands")
         report = VerificationReport(candidate_root=candidate["state_root"], mission_hash=digest(state.get("mission")),
             rule_hash=(state.get("mission") or {}).get("rule_hash", "missing-network-mission"), checker_version=CHECKER_VERSION,
             status=status, scope=f"SHARED_PHYSICAL_NETWORK: complete local component tree, {boundary_scope} and all source obstacles; whole-building adequacy not certified",
@@ -135,7 +135,7 @@ def verify_network_candidate(store, candidate_id):
         add("network-all-source-clearance", "NOT_RUN", "Full source denominator not checked after a conclusive forbidden-volume counterexample", {"artifact": probe_root})
         for identity in ("network-all-component-pairs", "network-permitted-zone", "network-demand-conditioned-service"):
             add(identity, "NOT_RUN", "Stopped after a conclusive physical counterexample; no remaining feasibility claim")
-        if request.pressure_driven is not None or request.passive_tree is not None:
+        if request.pressure_driven is not None or request.passive_tree is not None or request.coupled_tree is not None:
             add("network-pressure-operating-point", "NOT_RUN", "Operating relation was not evaluated after the physical counterexample")
         return finish()
     cad = cad_check_routes(original_paths, path, guids, clearance_m=request.clearance_m, numerical_tolerance_m=1e-6,
@@ -176,7 +176,38 @@ def verify_network_candidate(store, candidate_id):
             return slot_position(endpoint.key())
         positions = {"source": position(selected.source), "sinks": {s.id: position(s.endpoint) for s in selected.sinks}}
         radii = {p["component_id"]: Interval(Fraction(str(p["radius_m"])) - budget, Fraction(str(p["radius_m"])) + budget) for p in semantics["parts"]}
-        if request.passive_tree is not None:
+        if request.coupled_tree is not None:
+            from .coupled_tree_pressure import evaluate_coupled_tree, METRIC_SCHEMA
+            def bounds(value):
+                return {"lower": str(value.lo), "upper": str(value.hi)}
+            metrics = {"schema": METRIC_SCHEMA, "network_root": digest(selected.model_dump(mode="json", by_alias=True)),
+                "native_evidence_root": semantic_root,
+                "components": {c.id: {"length_m": bounds(lengths[c.id]), "outer_radius_m": bounds(radii[c.id]),
+                    "ports": {p: {"position_m": [bounds(v) for v in slot_position((c.id, p))]} for p in c.ports}}
+                    for c in selected.components}}
+            metrics_root = store.put(metrics)
+            control.checkpoint("network_coupled_envelope_start")
+            calculation = evaluate_coupled_tree(request.coupled_tree, selected, metrics,
+                context={"candidate_root": candidate["state_root"], "baseline_root": run["base_root"],
+                    "source_sha256": source["sha256"], "export_sha256": materialized["export_sha256"],
+                    "native_semantics_root": semantic_root, "native_metrics_root": metrics_root,
+                    "native_cad_root": cad_root, "checker_version": CHECKER_VERSION,
+                    "mission_hash": digest(state["mission"]), "rule_hash": state["mission"]["rule_hash"],
+                    "native_metric_absolute_tolerance_m": str(budget)}, checkpoint=control.search_checkpoint)
+            # Hot arithmetic may reuse only a recent ordinary Run observation.
+            # Step/pause/cancel remain explicit, and this forced boundary cannot
+            # reuse that observation before persisting a calculated result.
+            control.checkpoint("network_coupled_envelope_complete")
+            calculation_root = store.put(calculation)
+            checked = calculation.get("independent_check", {})
+            operating = ("PASS" if calculation.get("proof_complete") is True and checked.get("status") == "PASS"
+                and checked.get("local_check", {}).get("status") == "PASS" and checked.get("global_check", {}).get("status") == "PASS"
+                else "BLOCKED" if calculation.get("status") == "BLOCKED" else "UNKNOWN")
+            add("network-pressure-operating-point", operating,
+                "Independent local pressure enclosure and global nonnegative uniqueness, complete native path terms and outlet-specific inlet-flow losses checked",
+                {"artifact": calculation_root, "native_metrics_artifact": metrics_root, "model_root": checked.get("model_root")})
+            reason = "Every physical port's forward flow and speed, all exact minimum deliveries and complete continuity identities checked under the explicit coupled tree model"
+        elif request.passive_tree is not None:
             from .passive_tree_pressure import evaluate_passive_tree, METRIC_SCHEMA
             def bounds(value):
                 return {"lower": str(value.lo), "upper": str(value.hi)}

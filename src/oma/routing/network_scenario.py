@@ -10,6 +10,7 @@ from pydantic import Field, model_serializer, model_validator
 
 from oma.models import Bounds, Model, Nonnegative, Positive, Vec3
 from .passive_tree_scenario import PassiveTreeBoundary
+from .coupled_tree_scenario import CoupledTreeBoundary
 
 Identifier = Annotated[str, Field(min_length=1, max_length=120, pattern=r"^[A-Za-z0-9_.:-]+$")]
 Service = Literal["PRESSURE_PIPE", "ROUND_DUCT", "FIRE_PROTECTION"]
@@ -291,6 +292,7 @@ class SharedNetworkScenario(Model):
     physics: NetworkPhysics | None = None
     pressure_driven: TwoSinkPressureBoundary | None = None
     passive_tree: PassiveTreeBoundary | None = None
+    coupled_tree: CoupledTreeBoundary | None = None
     objective_weights: dict[Literal["length_m", "fitting_count"], Nonnegative] = Field(default_factory=lambda: {"length_m": 1.})
     assumptions: tuple[str, ...] = ()
 
@@ -304,6 +306,8 @@ class SharedNetworkScenario(Model):
             raw.pop("pressure_driven", None)
         if self.passive_tree is None:
             raw.pop("passive_tree", None)
+        if self.coupled_tree is None:
+            raw.pop("coupled_tree", None)
         return raw
 
     @model_validator(mode="after")
@@ -311,6 +315,15 @@ class SharedNetworkScenario(Model):
         required = {s.id: s for s in self.sinks}
         if len(required) != len(self.sinks) or len({s.demand_id for s in self.sinks}) != len(self.sinks):
             raise ValueError("Sink and demand identities must be unique")
+        if self.coupled_tree is not None:
+            if any(value is not None for value in (self.physics, self.pressure_driven, self.passive_tree)):
+                raise ValueError("The explicit coupled tree boundary cannot coexist with other hydraulic models")
+            if any(s.required_flow_m3_s is not None or s.available_static_pressure_pa is not None for s in self.sinks):
+                raise ValueError("Coupled tree exact minimum deliveries belong only in the boundary contract")
+            if self.system_type != "PRESSURE_PIPE" or self.target_modality != "ENGINEERING_SERVICE":
+                raise ValueError("Coupled tree calculation requires a pressure-pipe engineering-service mission")
+            if set(self.coupled_tree.sink_total_pressures_pa) != set(required):
+                raise ValueError("Every coupled tree sink needs its pressure, minimum delivery and proof search box")
         if self.passive_tree is not None:
             if self.physics is not None or self.pressure_driven is not None:
                 raise ValueError("The explicit passive tree boundary cannot coexist with other hydraulic models")
@@ -335,6 +348,8 @@ class SharedNetworkScenario(Model):
             raise ValueError("At least one positive objective weight is required")
         for network in self.network_alternatives:
             components = {c.id: c for c in network.components}
+            if self.coupled_tree is not None and set(self.coupled_tree.tee_outlet_loss_coefficients) != {c.id for c in components.values() if c.kind == "tee"}:
+                raise ValueError("Every alternative must cover exactly the declared unequal-outlet tee identities")
             if self.passive_tree is not None and set(self.passive_tree.tee_common_loss_coefficients) != {c.id for c in components.values() if c.kind == "tee"}:
                 raise ValueError("Every alternative must cover exactly the declared common-loss tee identities")
             if self.pressure_driven is not None and sum(c.kind == "tee" for c in components.values()) != 1:
@@ -367,7 +382,8 @@ def network_requirements(baseline, scenario):
     prefix = f"scenario-network:{scenario_hash[:20]}"
     section = Section(shape="circular", diameter_m=scenario.diameter_m, insulation_m=scenario.insulation_m)
     provenance = Provenance(source_id=f"scenario:{scenario_hash}", content_hash=scenario_hash,
-        kind="scenario", description=("Explicit hypothetical network terminals and exact passive-tree minimum deliveries"
+        kind="scenario", description=("Explicit hypothetical network terminals and exact coupled-tree minimum deliveries"
+            if scenario.coupled_tree is not None else "Explicit hypothetical network terminals and exact passive-tree minimum deliveries"
             if scenario.passive_tree is not None else "Explicit hypothetical network terminals and fixed demands"))
     terminals = [(f"{prefix}:source", scenario.start_m, "SOURCE")]
     terminals += [(f"{prefix}:sink:{s.id}", s.end_m, "SINK") for s in scenario.sinks]
@@ -377,9 +393,10 @@ def network_requirements(baseline, scenario):
     # Demand's existing float field is descriptive metadata. The new boundary
     # keeps the exact minimum as the sole checking authority and in the rule hash.
     def descriptive_flow(sink):
-        if scenario.passive_tree is None:
+        boundary = scenario.coupled_tree if scenario.coupled_tree is not None else scenario.passive_tree
+        if boundary is None:
             return sink.required_flow_m3_s
-        projected = float(Fraction(scenario.passive_tree.minimum_sink_flows_m3_s[sink.id]))
+        projected = float(Fraction(boundary.minimum_sink_flows_m3_s[sink.id]))
         if not math.isfinite(projected) or projected <= 0:
             raise ValueError("Exact passive minimum has no finite positive demand metadata projection")
         return projected
@@ -394,6 +411,8 @@ def network_requirements(baseline, scenario):
         rule["pressure_driven"] = raw["pressure_driven"]
     if scenario.passive_tree is not None:
         rule["passive_tree"] = raw["passive_tree"]
+    if scenario.coupled_tree is not None:
+        rule["coupled_tree"] = raw["coupled_tree"]
     catalog = {"section": section.model_dump(mode="json"), "minimum_straight_m": scenario.minimum_straight_m,
         "minimum_bend_radius_m": scenario.minimum_bend_radius_m, "component_alternatives": raw["network_alternatives"]}
     mission = Mission(id=f"mission:{prefix}", demands=tuple(demands), protected_ids=tuple(e["id"] for e in baseline.get("entities", [])),

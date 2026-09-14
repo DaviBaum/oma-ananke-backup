@@ -69,6 +69,14 @@ def build_report_assurance(store, candidate, report_root, *, executable, assessm
             declared.append({"source_representation_policy": scenario["source_representation_policy"]})
         if scenario.get("scenario_terminals"):
             declared.append("Terminal locations and demand are explicitly supplied scenario inputs, not surveyed/as-built facts")
+        if scenario.get("coupled_tree") is not None:
+            declared.append({"coupled_tree_network_boundary_inputs": scenario["coupled_tree"],
+                "source_position_m": scenario["start_m"], "sinks": scenario["sinks"],
+                "flow_interpretation": "Exact minima are authoritative; Demand floats are descriptive. Every physical port requires positive flow and bounded speed. The search box proposes an enclosure; separate positive-singleton hierarchical uniqueness must exclude other nonnegative equilibria",
+                "boundary_interpretation": "Explicit intervals of total pressure exclude elevation; each actual cap elevation enters head separately. Each tee outlet has its own inlet-flow-referenced total loss; its skeleton has no extra Darcy charge",
+                "section_interpretation": "Ideal bore from native outer-radius enclosures minus declared insulation; actual inner bore and wall are not measured",
+                "model_interpretation": "Declared fixed steady incompressible loss and nonnegative-flow regime; physical catalog, controls and applicability remain external. Reverse-flow laws are not certified",
+                "connection_interpretation": "Matching native connected caps add no declared loss; every physical component, port, source/sink path and continuity identity is accounted"})
         if scenario.get("passive_tree") is not None:
             declared.append({"passive_tree_network_boundary_inputs": scenario["passive_tree"],
                 "source_position_m": scenario["start_m"], "sinks": scenario["sinks"],

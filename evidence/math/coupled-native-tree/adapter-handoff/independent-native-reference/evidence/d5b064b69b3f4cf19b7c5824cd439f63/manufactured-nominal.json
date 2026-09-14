@@ -1,0 +1,43 @@
+{
+  "nominal_leaf_flows_m3_s": {
+    "sink-a": "3/1000",
+    "sink-b": "3/2000",
+    "sink-c": "1/1000"
+  },
+  "nominal_bore_m": "1/10",
+  "nominal_insulation_m": "1/50",
+  "nominal_area_m2": "pi/400",
+  "nominal_source_total_pressure_pa": "200",
+  "nominal_boundary_elevation_m": "3",
+  "coefficient_without_pi_squared": {
+    "trunk": "12800000",
+    "tee-1:b": "16000000",
+    "tee-1:branch": "24000000",
+    "arm-a": "12800000",
+    "inter-tee": "25600000",
+    "tee-2:b": "20000000",
+    "tee-2:branch": "32000000",
+    "arm-b": "12800000",
+    "arm-c": "12800000"
+  },
+  "sink_pressure_expression": {
+    "sink-b": {
+      "rational_offset": "200",
+      "negative_pi_inverse_square_coefficient": "1185"
+    },
+    "sink-c": {
+      "rational_offset": "200",
+      "negative_pi_inverse_square_coefficient": "1244"
+    },
+    "sink-a": {
+      "rational_offset": "200",
+      "negative_pi_inverse_square_coefficient": "6142/5"
+    }
+  },
+  "sink_pressure_bracket_method": "Exact 48-term Machin alternating bounds rounded outward to 1e-6 Pa",
+  "pi_interval": {
+    "lower": "3141592653589793238462643/1000000000000000000000000",
+    "upper": "785398163397448309615661/250000000000000000000000"
+  },
+  "scope": "Exact manufactured nominal symbolic point plus rational outward regulator intervals; not native uncertainty or global uniqueness."
+}

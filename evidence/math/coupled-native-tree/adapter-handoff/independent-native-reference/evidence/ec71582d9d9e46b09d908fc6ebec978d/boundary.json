@@ -1,0 +1,65 @@
+{
+  "schema": "oma.coupled-tree-boundary/1",
+  "source_total_pressure_pa": {
+    "lower": "200",
+    "upper": "200"
+  },
+  "sink_total_pressures_pa": {
+    "sink-b": {
+      "lower": "79934397/1000000",
+      "upper": "39967199/500000"
+    },
+    "sink-c": {
+      "lower": "73956447/1000000",
+      "upper": "2311139/31250"
+    },
+    "sink-a": {
+      "lower": "37768529/500000",
+      "upper": "75537059/1000000"
+    }
+  },
+  "minimum_sink_flows_m3_s": {
+    "sink-a": "1/400",
+    "sink-b": "3/2500",
+    "sink-c": "1/1250"
+  },
+  "flow_search_box_m3_s": {
+    "sink-a": {
+      "lower": "299/100000",
+      "upper": "301/100000"
+    },
+    "sink-b": {
+      "lower": "149/100000",
+      "upper": "151/100000"
+    },
+    "sink-c": {
+      "lower": "99/100000",
+      "upper": "101/100000"
+    }
+  },
+  "density_kg_m3": "1000",
+  "darcy_friction": "1/50",
+  "maximum_velocity_m_s": "2",
+  "gravity_m_s2": "9.80665",
+  "elbow_loss_coefficient": "1/5",
+  "tee_outlet_loss_coefficients": {
+    "tee-1": {
+      "b": "1/5",
+      "branch": "3/10"
+    },
+    "tee-2": {
+      "b": "1/4",
+      "branch": "2/5"
+    }
+  },
+  "applicability": "New hypothetical ideal steady incompressible bore model. Each tee outlet has its own strictly positive TOTAL loss coefficient referenced to full inlet flow. Internal tee distributed loss is included; no tee skeleton Darcy term. Existing common-loss missions are unchanged.",
+  "boundary_control_assumption": "Hypothetical regulated total-pressure intervals at the four physical boundary caps, manufactured from declared rational positive nominal leaf flows before native checks.",
+  "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+  "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+  "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+  "friction_convention": "DARCY",
+  "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+  "tee_loss_reference": "OUTLET_SPECIFIC_TOTAL_LOSS_AT_TOTAL_INLET_FLOW",
+  "connection_model": "NO_EXTRA_LOSS_AT_CHECKED_MATCHING_CONNECTED_CAPS",
+  "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+}

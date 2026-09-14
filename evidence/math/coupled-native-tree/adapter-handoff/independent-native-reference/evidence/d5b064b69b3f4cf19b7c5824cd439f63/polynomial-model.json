@@ -1,0 +1,179 @@
+{
+  "schema": "oma.coupled-tree-quadratic-pressure-model/1",
+  "leaves": [
+    "sink-a",
+    "sink-b",
+    "sink-c"
+  ],
+  "coefficients": {
+    "trunk": {
+      "lower": "1425824519684662705/1099511627776",
+      "upper": "713056639192884311/549755813888"
+    },
+    "tee-1:b": {
+      "lower": "891159261558487197/549755813888",
+      "upper": "891301858447802507/549755813888"
+    },
+    "tee-1:branch": {
+      "lower": "334184723084432699/137438953472",
+      "upper": "2673905575343407521/1099511627776"
+    },
+    "arm-a": {
+      "lower": "1425824519684662349/1099511627776",
+      "upper": "713056639192884133/549755813888"
+    },
+    "inter-tee": {
+      "lower": "1425825410826101435/549755813888",
+      "upper": "2852224774132167561/1099511627776"
+    },
+    "tee-2:b": {
+      "lower": "2227898153896217993/1099511627776",
+      "upper": "557063661529876567/274877906944"
+    },
+    "tee-2:branch": {
+      "lower": "3564637046233948789/1099511627776",
+      "upper": "891301858447802507/274877906944"
+    },
+    "arm-b": {
+      "lower": "1425824519684662349/1099511627776",
+      "upper": "713056639192884133/549755813888"
+    },
+    "arm-c": {
+      "lower": "1425824519684662349/1099511627776",
+      "upper": "713056639192884133/549755813888"
+    }
+  },
+  "terms": [
+    {
+      "id": "trunk",
+      "coefficient_id": "trunk",
+      "descendant_leaves": [
+        "sink-a",
+        "sink-b",
+        "sink-c"
+      ],
+      "applies_to_leaves": [
+        "sink-a",
+        "sink-b",
+        "sink-c"
+      ]
+    },
+    {
+      "id": "tee-1:b",
+      "coefficient_id": "tee-1:b",
+      "descendant_leaves": [
+        "sink-a",
+        "sink-b",
+        "sink-c"
+      ],
+      "applies_to_leaves": [
+        "sink-b",
+        "sink-c"
+      ]
+    },
+    {
+      "id": "tee-1:branch",
+      "coefficient_id": "tee-1:branch",
+      "descendant_leaves": [
+        "sink-a",
+        "sink-b",
+        "sink-c"
+      ],
+      "applies_to_leaves": [
+        "sink-a"
+      ]
+    },
+    {
+      "id": "arm-a",
+      "coefficient_id": "arm-a",
+      "descendant_leaves": [
+        "sink-a"
+      ],
+      "applies_to_leaves": [
+        "sink-a"
+      ]
+    },
+    {
+      "id": "inter-tee",
+      "coefficient_id": "inter-tee",
+      "descendant_leaves": [
+        "sink-b",
+        "sink-c"
+      ],
+      "applies_to_leaves": [
+        "sink-b",
+        "sink-c"
+      ]
+    },
+    {
+      "id": "tee-2:b",
+      "coefficient_id": "tee-2:b",
+      "descendant_leaves": [
+        "sink-b",
+        "sink-c"
+      ],
+      "applies_to_leaves": [
+        "sink-b"
+      ]
+    },
+    {
+      "id": "tee-2:branch",
+      "coefficient_id": "tee-2:branch",
+      "descendant_leaves": [
+        "sink-b",
+        "sink-c"
+      ],
+      "applies_to_leaves": [
+        "sink-c"
+      ]
+    },
+    {
+      "id": "arm-b",
+      "coefficient_id": "arm-b",
+      "descendant_leaves": [
+        "sink-b"
+      ],
+      "applies_to_leaves": [
+        "sink-b"
+      ]
+    },
+    {
+      "id": "arm-c",
+      "coefficient_id": "arm-c",
+      "descendant_leaves": [
+        "sink-c"
+      ],
+      "applies_to_leaves": [
+        "sink-c"
+      ]
+    }
+  ],
+  "available_heads": {
+    "sink-a": {
+      "lower": "136826885805289/1099511627776",
+      "upper": "136870017007619/1099511627776"
+    },
+    "sink-b": {
+      "lower": "32997990110879/274877906944",
+      "upper": "132035091645847/1099511627776"
+    },
+    "sink-c": {
+      "lower": "138564785978779/1099511627776",
+      "upper": "69303958590555/549755813888"
+    }
+  },
+  "context_root": "eca15d87a10c3bbf240e7357e8b6f88df95c2cdb2a87ce62f573f03a5c6ebe45",
+  "physical_model_root": "897a1a5bcb2e06946a8bc0b458c5fbbf95ac5c99c0c140d5811d1f7127ecacad",
+  "assumptions": {
+    "parameter_domain": "CARTESIAN_BOX_WITH_REUSED_NAMED_COEFFICIENT_IDENTITIES",
+    "equation": "SUM_APPLICABLE_A_TIMES_DESCENDANT_FLOW_SUM_SQUARED_MINUS_AVAILABLE_HEAD",
+    "head_quantity": "AVAILABLE_TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_PA",
+    "regime": "STRICTLY_POSITIVE_LEAF_FLOWS_FIXED_QUADRATIC_LOSS_LAW",
+    "units": {
+      "head": "Pa",
+      "flow": "m^3/s",
+      "coefficient": "Pa*s^2/m^6"
+    },
+    "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+  }
+}

@@ -1,0 +1,72 @@
+.................FF..................................................... [  9%]
+........................................................................ [ 19%]
+........................................................................ [ 28%]
+........................................................................ [ 38%]
+........................................................................ [ 48%]
+........................................................................ [ 57%]
+........................................................................ [ 67%]
+........................................................................ [ 77%]
+........................................................................ [ 86%]
+........................................................................ [ 96%]
+..........................                                               [100%]
+================================== FAILURES ===================================
+_ test_native_geometry_cannot_override_bad_or_uncertified_coupled_service[wrong_search_box] _
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/.oma/development/coupled-native-integration/evidence/integration-5aa41849e4584b10a4368ede96e8d9cb/native-stores/test_native_geometry_cannot_ov2')
+fault = 'wrong_search_box'
+
+    @pytest.mark.parametrize("fault", ["delivery", "velocity", "wrong_search_box", "reverse_pressure"])
+    def test_native_geometry_cannot_override_bad_or_uncertified_coupled_service(tmp_path,fault):
+        raw = coupled_tree_scenario()
+        boundary = raw["coupled_tree"]
+        if fault == "delivery": boundary["minimum_sink_flows_m3_s"]["sink-a"]="1"
+        if fault == "velocity": boundary["maximum_velocity_m_s"]="1/1000"
+        if fault == "wrong_search_box": boundary["flow_search_box_m3_s"]={k:{"lower":"1","upper":"2"} for k in boundary["flow_search_box_m3_s"]}
+        if fault == "reverse_pressure": boundary["source_total_pressure_pa"]={"lower":"-100","upper":"-100"}
+        store,project,run,candidate,report,rows = run_native(tmp_path,raw)
+        assert rows["network-all-source-clearance"]["status"] == rows["network-all-component-pairs"]["status"] == "PASS"
+        if fault in ("delivery","velocity"):
+            assert rows["network-pressure-operating-point"]["status"] == "PASS",report
+            assert rows["network-demand-conditioned-service"]["status"] == "FAIL",report
+        else:
+            assert rows["network-pressure-operating-point"]["status"] == "UNKNOWN",report
+            assert rows["network-demand-conditioned-service"]["status"] == "UNKNOWN",report
+>       assert candidate["status"] == "REJECTED" and run["status"] == "NO_INCUMBENT_FOUND"
+E       AssertionError: assert ('UNKNOWN' == 'REJECTED'
+E         
+E         - REJECTED
+E         + UNKNOWN)
+
+tests\test_coupled_tree_integration.py:143: AssertionError
+_ test_native_geometry_cannot_override_bad_or_uncertified_coupled_service[reverse_pressure] _
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/.oma/development/coupled-native-integration/evidence/integration-5aa41849e4584b10a4368ede96e8d9cb/native-stores/test_native_geometry_cannot_ov3')
+fault = 'reverse_pressure'
+
+    @pytest.mark.parametrize("fault", ["delivery", "velocity", "wrong_search_box", "reverse_pressure"])
+    def test_native_geometry_cannot_override_bad_or_uncertified_coupled_service(tmp_path,fault):
+        raw = coupled_tree_scenario()
+        boundary = raw["coupled_tree"]
+        if fault == "delivery": boundary["minimum_sink_flows_m3_s"]["sink-a"]="1"
+        if fault == "velocity": boundary["maximum_velocity_m_s"]="1/1000"
+        if fault == "wrong_search_box": boundary["flow_search_box_m3_s"]={k:{"lower":"1","upper":"2"} for k in boundary["flow_search_box_m3_s"]}
+        if fault == "reverse_pressure": boundary["source_total_pressure_pa"]={"lower":"-100","upper":"-100"}
+        store,project,run,candidate,report,rows = run_native(tmp_path,raw)
+        assert rows["network-all-source-clearance"]["status"] == rows["network-all-component-pairs"]["status"] == "PASS"
+        if fault in ("delivery","velocity"):
+            assert rows["network-pressure-operating-point"]["status"] == "PASS",report
+            assert rows["network-demand-conditioned-service"]["status"] == "FAIL",report
+        else:
+            assert rows["network-pressure-operating-point"]["status"] == "UNKNOWN",report
+            assert rows["network-demand-conditioned-service"]["status"] == "UNKNOWN",report
+>       assert candidate["status"] == "REJECTED" and run["status"] == "NO_INCUMBENT_FOUND"
+E       AssertionError: assert ('UNKNOWN' == 'REJECTED'
+E         
+E         - REJECTED
+E         + UNKNOWN)
+
+tests\test_coupled_tree_integration.py:143: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_coupled_tree_integration.py::test_native_geometry_cannot_override_bad_or_uncertified_coupled_service[wrong_search_box]
+FAILED tests/test_coupled_tree_integration.py::test_native_geometry_cannot_override_bad_or_uncertified_coupled_service[reverse_pressure]
+2 failed, 744 passed in 94.03s (0:01:34)

@@ -15,6 +15,10 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("NATIVE_UNEQUAL_OUTLET_TREE_MODEL_GLOBAL_OPERATING_AND_SERVICE_ENVELOPE", "oma-integration", [4592, 4609, 5530, 5531, 5532, 5533, 5534, 5535, 5536, 5537], ["DEF-RTR56", "ALG-RTR19", "ALG-RTR20", "ALG-RTR21", "ALG-RTR22"],
+         ["oma.routing.coupled_tree_pressure.derive_coupled_tree_model", "oma.routing.coupled_tree_pressure.evaluate_coupled_tree"], ["oma.routing.coupled_tree_pressure.verify_coupled_tree_envelope", "oma.routing.network_checker.verify_network_candidate"], "tests/test_coupled_tree_pressure_adapter.py",
+         "An explicit new boundary declares distinct positive inlet-flow-referenced loss coefficients for every tee outlet. Complete current native component lengths/radii and transformed cap boxes derive all leaf equations and every physical port's flow/head/velocity. Producer descent and independent sink-to-source reconstruction agree on all terms and paths. Exact raw coefficient/head intervals are retained and independently enclosed on a fixed outward dyadic grid; the rounded parameter model conservatively includes the correlated physical tuple. Same-model local existence and global nonnegative uniqueness proofs are both required, followed by strict forward flow, exact sink delivery and each actual component's velocity. Managed checking, publication, acceptance and fresh exported-IFC rechecking retain complete current source, native, mission, rule and executable bindings.",
+         ["Outward 2^-40 dyadic parameter enlargement is an explicit bounded-arithmetic specialization; it does not replace intervals with nominal values."], "Declared ideal-bore, fixed-loss, steady directed pressure trees only. Tee bodies receive no additional Darcy loss under the stated total coefficient convention. Native metric enclosure truth, actual inner bore, physical coefficient validity, matching-cap transition model and boundary regulation remain external premises. No negative-flow uniqueness, global topology generation/optimality, universal physical fiber or complete original algorithm. Missing singleton positivity, insufficient contraction, incomplete inventories or exhausted resources remain UNKNOWN; operating proof PASS cannot override service FAIL or UNKNOWN."),
         ("LAMINAR_COUPLED_TREE_POSITIVE_ROOT_GLOBAL_UNIVALENCE", "1-10", [16081, 16114, 16118, 16135, 17645, 17681], ["THM-PO11", "THM-PO12", "ALG-PO2"],
          ["oma.optimization.coupled_tree_univalence.compile_coupled_tree_univalence"], ["oma.optimization.coupled_tree_univalence.verify_coupled_tree_univalence", "oma.optimization.coupled_tree_univalence.verify_coupled_tree_nonnegative_family"], "tests/test_coupled_tree_univalence.py",
          "A new sufficient specialization for the declared laminar coupled-tree polynomial. Every leaf has a strictly positive lower sum of singleton-descendant coefficients. Exact same-tuple difference-of-squares polarization between q>0 and r>=0 gives a laminar sum of nonnegative supported rank-one matrices. A complete leaf/group hierarchy and positive singleton bases support an independent induction with det(B)>0 and entrywise-positive 1^T B^-1; a nonnegative rank-one update preserves both. The difference matrix is invertible, so a positive root excludes every other nonnegative root. Only conjunction with an independently checked local Banach certificate on the same complete model and parameter box establishes a unique nonnegative solution for every parameter tuple.",
@@ -217,6 +221,24 @@ def main():
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
     coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
     for row in register:
+        if row["obligation"] == "NATIVE_UNEQUAL_OUTLET_TREE_MODEL_GLOBAL_OPERATING_AND_SERVICE_ENVELOPE":
+            row["documentation"] = "docs/math/coupled-native-tree.md"
+            row["evidence"] = "evidence/math/coupled-native-tree/latest.json"
+            row["full_source_algorithms_implemented"] = False
+            row["automated_tests"].extend(["tests/test_coupled_tree_integration.py", "tests/test_coupled_tree_univalence.py", "tests/test_coupled_tree_pressure.py"])
+            row["real_model_benchmark"] = {"status": "ANALYTIC_NATIVE_ACCEPTANCE_AND_FRESH_EXPORTED_IFC_PASS",
+                "evidence": "evidence/math/coupled-native-tree/corrected-integration/",
+                "scope": "Seven physical components, two unequal-loss tees, sixteen ports, three deliveries, seventeen continuity and nineteen head-path identities. Native checks account for seven source pairs and twenty-one self pairs.113 adapter tests plus independent dimensional/algebra/27-attack audit pass. Corrected20 actual integration tests pass; initial746 retains744 passing cases and two corrected UNKNOWN-versus-REJECTED test expectations. Full2467 regression is separately running."}
+            row["consumer_scope"] = {"mission_field": "SharedNetworkScenario.coupled_tree", "default": None,
+                "existing_missions_reinterpreted": False, "same_model_local_and_global_proofs_required": True,
+                "all_physical_port_sections_and_exact_delivery_minima_required": True,
+                "native_complete_report_admission_required": True, "proof_box_is_an_existence_proposal": True,
+                "negative_flow_uniqueness": False, "complete_physical_model_applicability": False}
+            row["real_model_benchmark"]["office_campaign"] = {
+                "status": "ONE_DECLARED_UNEQUAL_TEE_MISSION_ACCEPTED_AND_FRESH_EXPORT_RECHECKED",
+                "evidence": "evidence/benchmarks/coupled-pressure/office/fd34a7bc66b04290a8a6b8c46b78a7ab/independent-completion.json",
+                "source_checkpoint": "5e8fe9659cfde60f84f5cf93f38a1959428b3e7522de741e905d1f505db2b73c",
+                "scope": "56.329s, all5621 source pairs/21 self pairs/16 ports/3 deliveries/17 continuity/19 head identities. Both same-model local/global proofs pass for selected and freshly exported IFC. All62930 parsed original entities and original Stores/source bytes preserved. One hypothetical model and geometry alternative, no improvement or unrestricted topology claim."}
         if row["obligation"] == "LAMINAR_COUPLED_TREE_POSITIVE_ROOT_GLOBAL_UNIVALENCE":
             row["documentation"] = "docs/math/coupled-tree-univalence.md"
             row["evidence"] = "evidence/math/coupled-tree-univalence/latest.json"

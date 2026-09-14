@@ -1,0 +1,197 @@
+{
+  "schema": "oma.office-unequal-tree-manufactured-boundary/1",
+  "nominal_leaf_flows_m3_s": {
+    "sink-a": "3/1000",
+    "sink-b": "3/2000",
+    "sink-c": "1/1000"
+  },
+  "nominal_lengths_from_declared_office_coordinates_m": {
+    "trunk": "800000000000001/1000000000000000",
+    "arm-a": "4/5",
+    "inter-tee": "1600000000000001/1000000000000000",
+    "arm-b": "4/5",
+    "arm-c": "4/5"
+  },
+  "nominal_bore_m": "1/10",
+  "declared_insulation_m": "1/50",
+  "nominal_area_m2": "pi/400",
+  "source_elevation_m": "235688839999979/40000000000000",
+  "density_kg_m3": "1000",
+  "gravity_m_s2": "196133/20000",
+  "sink_pressure_expressions": {
+    "sink-a": {
+      "rational_offset_pa": "200",
+      "negative_pi_inverse_square_coefficient_pa": "307100000000000121/250000000000000"
+    },
+    "sink-b": {
+      "rational_offset_pa": "200",
+      "negative_pi_inverse_square_coefficient_pa": "148125000000000073/125000000000000"
+    },
+    "sink-c": {
+      "rational_offset_pa": "200",
+      "negative_pi_inverse_square_coefficient_pa": "155500000000000073/125000000000000"
+    }
+  },
+  "complete_path_loss_partition": {
+    "sink-a": [
+      {
+        "component": "trunk",
+        "outlet": "b",
+        "full_inlet_descendants": [
+          "sink-a",
+          "sink-b",
+          "sink-c"
+        ],
+        "nominal_inlet_flow_m3_s": "11/2000",
+        "dimensionless_loss_factor": "800000000000001/5000000000000000",
+        "tee_darcy_charged": false
+      },
+      {
+        "component": "tee-1",
+        "outlet": "branch",
+        "full_inlet_descendants": [
+          "sink-a",
+          "sink-b",
+          "sink-c"
+        ],
+        "nominal_inlet_flow_m3_s": "11/2000",
+        "dimensionless_loss_factor": "3/10",
+        "tee_darcy_charged": false
+      },
+      {
+        "component": "arm-a",
+        "outlet": "b",
+        "full_inlet_descendants": [
+          "sink-a"
+        ],
+        "nominal_inlet_flow_m3_s": "3/1000",
+        "dimensionless_loss_factor": "4/25",
+        "tee_darcy_charged": false
+      }
+    ],
+    "sink-b": [
+      {
+        "component": "trunk",
+        "outlet": "b",
+        "full_inlet_descendants": [
+          "sink-a",
+          "sink-b",
+          "sink-c"
+        ],
+        "nominal_inlet_flow_m3_s": "11/2000",
+        "dimensionless_loss_factor": "800000000000001/5000000000000000",
+        "tee_darcy_charged": false
+      },
+      {
+        "component": "tee-1",
+        "outlet": "b",
+        "full_inlet_descendants": [
+          "sink-a",
+          "sink-b",
+          "sink-c"
+        ],
+        "nominal_inlet_flow_m3_s": "11/2000",
+        "dimensionless_loss_factor": "1/5",
+        "tee_darcy_charged": false
+      },
+      {
+        "component": "inter-tee",
+        "outlet": "b",
+        "full_inlet_descendants": [
+          "sink-b",
+          "sink-c"
+        ],
+        "nominal_inlet_flow_m3_s": "1/400",
+        "dimensionless_loss_factor": "1600000000000001/5000000000000000",
+        "tee_darcy_charged": false
+      },
+      {
+        "component": "tee-2",
+        "outlet": "b",
+        "full_inlet_descendants": [
+          "sink-b",
+          "sink-c"
+        ],
+        "nominal_inlet_flow_m3_s": "1/400",
+        "dimensionless_loss_factor": "1/4",
+        "tee_darcy_charged": false
+      },
+      {
+        "component": "arm-b",
+        "outlet": "b",
+        "full_inlet_descendants": [
+          "sink-b"
+        ],
+        "nominal_inlet_flow_m3_s": "3/2000",
+        "dimensionless_loss_factor": "4/25",
+        "tee_darcy_charged": false
+      }
+    ],
+    "sink-c": [
+      {
+        "component": "trunk",
+        "outlet": "b",
+        "full_inlet_descendants": [
+          "sink-a",
+          "sink-b",
+          "sink-c"
+        ],
+        "nominal_inlet_flow_m3_s": "11/2000",
+        "dimensionless_loss_factor": "800000000000001/5000000000000000",
+        "tee_darcy_charged": false
+      },
+      {
+        "component": "tee-1",
+        "outlet": "b",
+        "full_inlet_descendants": [
+          "sink-a",
+          "sink-b",
+          "sink-c"
+        ],
+        "nominal_inlet_flow_m3_s": "11/2000",
+        "dimensionless_loss_factor": "1/5",
+        "tee_darcy_charged": false
+      },
+      {
+        "component": "inter-tee",
+        "outlet": "b",
+        "full_inlet_descendants": [
+          "sink-b",
+          "sink-c"
+        ],
+        "nominal_inlet_flow_m3_s": "1/400",
+        "dimensionless_loss_factor": "1600000000000001/5000000000000000",
+        "tee_darcy_charged": false
+      },
+      {
+        "component": "tee-2",
+        "outlet": "branch",
+        "full_inlet_descendants": [
+          "sink-b",
+          "sink-c"
+        ],
+        "nominal_inlet_flow_m3_s": "1/400",
+        "dimensionless_loss_factor": "2/5",
+        "tee_darcy_charged": false
+      },
+      {
+        "component": "arm-c",
+        "outlet": "b",
+        "full_inlet_descendants": [
+          "sink-c"
+        ],
+        "nominal_inlet_flow_m3_s": "1/1000",
+        "dimensionless_loss_factor": "4/25",
+        "tee_darcy_charged": false
+      }
+    ]
+  },
+  "pi_bounds": {
+    "lower": "15354354324532699411114698259234445098348414064112826486614186169241671147822838309609704380996850452072370772421533234354132215825565187301209328509720418434260755972545213991217977798528293211089738363510161151333967067959486944941903307407947898058343005100921774665672217147595655765736168347438609156191986768596360037141904438516/4887442777467597645158876471902175797281271424803700336076374170274859984319246487645760318548396385042850465946276167884206822442433593357743109448112864563372228390839382001085547822281594377853681029590897465580913693584070288330452885379922040844734236548351349846563693388827331815624688444998913183781041880138218402862548828125",
+    "upper": "1344020091081449853041324404267646320823201105032547266908333727459400563907625829936609880569124382819169344731005860189734974194540388426952264873322288079665852832411349019921049279052807813712334750625874032800513829414683042856058827087043714793207826514395077401519142707671180882115313905599933835051831184026422826620335888/427814882220864274536411868831268342403080427934008537672342410871208485873780788820727956316275659130866972387237282950596700201540028479696005798927965596135591848080336653865088830927469265056081041087419466184145383797908850364178925909903716745569426003427053959713913743529291487861267173631318883053609170019626617431640625"
+  },
+  "pressure_rounding": "Independent 48-term rational Machin bounds, then outward 1e-6 Pa regulator brackets",
+  "box_history": "Anisotropic halfwidths from retained analytic reference: uniform1e-5 was UNKNOWN; (3,17,17)e-6 verified. Those are proposal-history results only, not current Office checks.",
+  "native_checks": "NOT_RUN",
+  "application_schema_validation": "PENDING_COMBINED_FROZEN_SOURCE"
+}
