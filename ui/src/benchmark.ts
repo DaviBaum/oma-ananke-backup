@@ -31,11 +31,75 @@ export interface NavigationBenchmark {
   frame_interval_p50_ms: number;
   frame_interval_p95_ms: number;
   cpu_submission_p95_ms: number;
-  gpu_timer_status?: "AVAILABLE" | "UNAVAILABLE" | "DISJOINT" | "NO_SAMPLES";
+  gpu_timer_status?:
+    "AVAILABLE" | "UNAVAILABLE" | "DISABLED" | "DISJOINT" | "NO_SAMPLES";
   gpu_frame_p95_ms?: number;
   gpu_samples?: number;
   frames_over_33_33ms: number;
   average_30fps_gate: "PASS" | "FAIL" | "NOT_EVALUATED";
+  scheduling?: SchedulingEvidence;
+}
+export interface SchedulingEvidence {
+  timer_requested_ms: number;
+  timer_samples: number;
+  timer_interval_p50_ms: number;
+  timer_interval_p95_ms: number;
+  timer_interval_max_ms: number;
+  timer_intervals_ms: number[];
+  start: { visibility: DocumentVisibilityState; focused: boolean };
+  end: { visibility: DocumentVisibilityState; focused: boolean };
+  context_changes: {
+    elapsed_ms: number;
+    visibility: DocumentVisibilityState;
+    focused: boolean;
+  }[];
+}
+
+/** Independent timer samples expose scheduling context; they do not replace RAF measurements. */
+export function startSchedulingProbe(warmupMs = 2000) {
+  const context = () => ({
+    visibility: document.visibilityState,
+    focused: document.hasFocus(),
+  });
+  const start = context(),
+    started = performance.now();
+  let previous = started,
+    previousContext = start,
+    stopped = false;
+  const intervals: number[] = [],
+    changes: SchedulingEvidence["context_changes"] = [];
+  let timer: ReturnType<typeof setTimeout>;
+  const tick = () => {
+    if (stopped) return;
+    const now = performance.now(),
+      current = context();
+    if (now - started >= warmupMs) intervals.push(now - previous);
+    if (
+      current.visibility !== previousContext.visibility ||
+      current.focused !== previousContext.focused
+    ) {
+      changes.push({ elapsed_ms: now - started, ...current });
+      previousContext = current;
+    }
+    previous = now;
+    timer = setTimeout(tick, 100);
+  };
+  timer = setTimeout(tick, 100);
+  return () => {
+    stopped = true;
+    clearTimeout(timer);
+    return {
+      timer_requested_ms: 100,
+      timer_samples: intervals.length,
+      timer_interval_p50_ms: percentile(intervals, 0.5),
+      timer_interval_p95_ms: percentile(intervals, 0.95),
+      timer_interval_max_ms: Math.max(0, ...intervals),
+      timer_intervals_ms: [...intervals],
+      start,
+      end: context(),
+      context_changes: [...changes],
+    } satisfies SchedulingEvidence;
+  };
 }
 export function percentile(values: number[], quantile: number) {
   if (!values.length) return 0;

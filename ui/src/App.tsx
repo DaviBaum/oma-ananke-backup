@@ -1399,6 +1399,11 @@ export default function App() {
             onSelect={selectEntity}
             onImport={() => setModal("import")}
             loading={stateSelection ? loadingView : loadingGeometry}
+            importStatus={
+              !stateSelection && activeRun?.operation === "import"
+                ? activeRun.status
+                : null
+            }
             progress={stateSelection ? viewMeshProgress : meshProgress}
             error={stateSelection ? viewError : geometryError}
             projectId={projectId}
@@ -1590,9 +1595,35 @@ export default function App() {
                       <TriangleAlert size={16} />
                       <div>
                         <strong>Missing engineering inputs</strong>
-                        {snapshot.missing_inputs.map((item, i) => (
-                          <p key={i}>{readable(item)}</p>
-                        ))}
+                        {snapshot.missing_inputs.map((item, i) => {
+                          const record =
+                            item && typeof item === "object"
+                              ? (item as Record<string, unknown>)
+                              : null;
+                          return (
+                            <div key={i}>
+                              <p>
+                                {record
+                                  ? readable(
+                                      record.reason ??
+                                        record.message ??
+                                        "Input requires review",
+                                    )
+                                  : readable(item)}
+                              </p>
+                              {record && (
+                                <button
+                                  className="text-button"
+                                  onClick={() => inspectRecord(item)}
+                                >
+                                  {record.code === "FEDERATION_DATUM_REVIEW"
+                                    ? "Inspect datum evidence"
+                                    : "Inspect input evidence"}
+                                </button>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   )}

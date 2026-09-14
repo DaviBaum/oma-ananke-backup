@@ -54,6 +54,7 @@ export const disciplineColor = (s: string) =>
 import {
   percentile,
   downloadJson,
+  startSchedulingProbe,
   type NavigationBenchmark,
 } from "./benchmark";
 
@@ -70,6 +71,7 @@ interface Props {
   onSelect: (id: string | null) => void;
   onImport: () => void;
   loading: boolean;
+  importStatus?: string | null;
   progress?: MeshProgress | null;
   error: string | null;
   projectId: string | null;
@@ -184,6 +186,7 @@ export default function Viewport(props: Props) {
     offset: THREE.Vector3;
     phase: string;
     metadata: NavigationBenchmark;
+    stopSchedulingProbe: ReturnType<typeof startSchedulingProbe>;
   } | null>(null);
   const finishBenchmark = (reason?: string) => {
     const run = benchmarkRun.current,
@@ -202,13 +205,16 @@ export default function Viewport(props: Props) {
       frame_interval_p50_ms: percentile(run.intervals, 0.5),
       frame_interval_p95_ms: percentile(run.intervals, 0.95),
       cpu_submission_p95_ms: percentile(run.costs, 0.95),
-      gpu_timer_status: run.gpuDisjoint
-        ? "DISJOINT"
-        : run.metadata.gpu_timer_status === "UNAVAILABLE"
-          ? "UNAVAILABLE"
-          : run.gpuCosts.length
-            ? "AVAILABLE"
-            : "NO_SAMPLES",
+      gpu_timer_status:
+        run.metadata.gpu_timer_status === "DISABLED"
+          ? "DISABLED"
+          : run.gpuDisjoint
+            ? "DISJOINT"
+            : run.metadata.gpu_timer_status === "UNAVAILABLE"
+              ? "UNAVAILABLE"
+              : run.gpuCosts.length
+                ? "AVAILABLE"
+                : "NO_SAMPLES",
       gpu_frame_p95_ms:
         run.gpuDisjoint || !run.gpuCosts.length
           ? undefined
@@ -220,6 +226,7 @@ export default function Viewport(props: Props) {
         : fps >= 30
           ? "PASS"
           : "FAIL",
+      scheduling: run.stopSchedulingProbe(),
     };
     c.camera.position.copy(run.position);
     c.controls.target.copy(run.target);
@@ -236,7 +243,7 @@ export default function Viewport(props: Props) {
   };
   const finishBenchmarkRef = useRef(finishBenchmark);
   finishBenchmarkRef.current = finishBenchmark;
-  const startBenchmark = () => {
+  const startBenchmark = (sampleGpu = true) => {
     const c = ctx.current;
     if (!c || !stats.objects || benchmarkRun.current || mode !== "perspective")
       return;
@@ -274,11 +281,13 @@ export default function Viewport(props: Props) {
         measurement_ms: 10000,
         path: "Fixed 360-degree Z-axis orbit about fitted visible bounds; constant radius/elevation. Actual scene rendered each animation frame.",
         frame_cost:
-          "Frame intervals measure delivered RAF cadence during camera motion. CPU submission timing excludes asynchronous GPU completion. When available, EXT_disjoint_timer_query_webgl2 samples actual GPU render duration every tenth measured frame; disjoint queries are rejected.",
+          "Frame intervals measure delivered RAF cadence during camera motion. CPU submission timing excludes asynchronous GPU completion. When available, EXT_disjoint_timer_query_webgl2 samples actual GPU render duration from the first measured frame, then every ten measured frames; disjoint queries are rejected. A separate requested 100ms timer records scheduling context without replacing the RAF measurements.",
       },
-      gpu_timer_status: gl.getExtension("EXT_disjoint_timer_query_webgl2")
-        ? "NO_SAMPLES"
-        : "UNAVAILABLE",
+      gpu_timer_status: !sampleGpu
+        ? "DISABLED"
+        : gl.getExtension("EXT_disjoint_timer_query_webgl2")
+          ? "NO_SAMPLES"
+          : "UNAVAILABLE",
       frames: 0,
       elapsed_ms: 0,
       average_fps: 0,
@@ -300,6 +309,7 @@ export default function Viewport(props: Props) {
       offset: c.camera.position.clone().sub(c.controls.target),
       phase: "Warming up",
       metadata,
+      stopSchedulingProbe: startSchedulingProbe(),
     };
     setBenchmark(null);
     setBenchmarkPhase("Warming up");
@@ -558,7 +568,11 @@ export default function Viewport(props: Props) {
       pending = false;
       const renderStart = performance.now();
       const gpuQuery =
-        sample && run && gpuTimer && run.intervals.length % 10 === 0
+        sample &&
+        run &&
+        run.metadata.gpu_timer_status !== "DISABLED" &&
+        gpuTimer &&
+        run.intervals.length % 10 === 1
           ? gpuGl.createQuery()
           : null;
       if (gpuQuery) gpuGl.beginQuery(gpuTimer!.TIME_ELAPSED_EXT, gpuQuery);
@@ -1466,9 +1480,17 @@ export default function Viewport(props: Props) {
         !props.error && (
           <div className="viewport-loading">
             <Box size={30} />
-            <strong>No renderable geometry</strong>
+            <strong>
+              {props.importStatus
+                ? props.importStatus === "PAUSED"
+                  ? "IFC import paused"
+                  : "IFC import in progress"
+                : "No renderable geometry"}
+            </strong>
             <span>
-              Inspect the input audit for unsupported or unresolved objects.
+              {props.importStatus
+                ? "Source geometry becomes available after the complete federation is committed. Follow the actual worker stages below."
+                : "Inspect the input audit for unsupported or unresolved objects."}
             </span>
           </div>
         )}
@@ -1490,7 +1512,7 @@ export default function Viewport(props: Props) {
               disabled={
                 !stats.objects || mode !== "perspective" || props.loading
               }
-              onClick={startBenchmark}
+              onClick={() => startBenchmark()}
               title="2-second warmup, then a measured 10-second orbit of this scene"
             >
               <Gauge size={13} /> Navigation benchmark
@@ -1539,6 +1561,20 @@ export default function Viewport(props: Props) {
                 <summary>Measurement record</summary>
                 <pre>{JSON.stringify(benchmark, null, 2)}</pre>
               </details>
+              <button onClick={() => setBenchmark(null)}>
+                <X size={12} /> Dismiss measurement
+              </button>
+              <button
+                disabled={
+                  !stats.objects ||
+                  mode !== "perspective" ||
+                  props.loading ||
+                  !!benchmarkPhase
+                }
+                onClick={() => startBenchmark(false)}
+              >
+                Measure without GPU queries
+              </button>
             </div>
           )}
         </div>

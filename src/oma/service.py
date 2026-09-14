@@ -172,7 +172,8 @@ class EngineService:
         if state.get("mission") is None:
             missing.append("Routing requires an explicit mission: ports, service demands, sections, constraints and permitted changes")
         federation = state.get("derived_artifacts", {}).get("federation", {})
-        if federation.get("status") not in {None, "VERIFIED"}:
+        alignment_status = federation.get("alignment_status", federation.get("status"))
+        if alignment_status not in {None, "VERIFIED"}:
             missing.append({"code": "FEDERATION_DATUM_REVIEW", "reason": "Cross-file coordinate agreement requires checked datum evidence", "details": federation})
         entities = []
         for entity in state.get("entities", []):
