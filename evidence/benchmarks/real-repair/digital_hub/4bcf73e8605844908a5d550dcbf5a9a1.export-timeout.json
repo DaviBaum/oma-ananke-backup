@@ -1,0 +1,17 @@
+{
+  "status": "ORCHESTRATION_TIMEOUT_AFTER_ACCEPTANCE",
+  "candidate_id": "4bcf73e8605844908a5d550dcbf5a9a1",
+  "exported_candidate_id": "a6815fcaac7c46728ac81e3d24751098",
+  "export_id": "749caf454cf040d4978bcdae8648d14c",
+  "pinned_build": "3830d597ab4bd49e34a10a677f4b89d8812abe4439cbd61971c94ffd75f983f8",
+  "limit_seconds": 600,
+  "accepted_revision": 2,
+  "scope": "Timeout is not a native geometry failure; exact exported bytes and candidate retained for bounded 3600-second resumption",
+  "process_result": {
+    "chunk_id": "e58737",
+    "wall_time_seconds": 0.0000022,
+    "exit_code": 1,
+    "original_token_count": 532,
+    "output": "Traceback (most recent call last):\r\n  File \"C:\\Users\\Davi\\Downloads\\oma\\scripts\\ifc_finalize_checked_repair.py\", line 118, in <module>\r\n    finalize(args.candidate,args.project_label)\r\n  File \"C:\\Users\\Davi\\Downloads\\oma\\scripts\\ifc_finalize_checked_repair.py\", line 40, in finalize\r\n    exported=export_project(store,project[\"id\"],candidate_id,draft=False)\r\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\Davi\\Downloads\\oma\\.oma\\runtimes\\3830d597ab4bd49e34a10a677f4b89d8812abe4439cbd61971c94ffd75f983f8\\src\\oma\\exporting.py\", line 87, in export_project\r\n    process = subprocess.run([sys.executable, \"-m\", \"oma.verification\", str(store.directory), exported_candidate[\"id\"]], capture_output=True, text=True, timeout=600, creationflags=getattr(subprocess, \"CREATE_NO_WINDOW\", 0), env=frozen_environment(store.directory))\r\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\subprocess.py\", line 550, in run\r\n    stdout, stderr = process.communicate(input, timeout=timeout)\r\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\subprocess.py\", line 1209, in communicate\r\n    stdout, stderr = self._communicate(input, endtime, timeout)\r\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\subprocess.py\", line 1630, in _communicate\r\n    raise TimeoutExpired(self.args, orig_timeout)\r\nsubprocess.TimeoutExpired: Command '['C:\\\\Users\\\\Davi\\\\Downloads\\\\oma\\\\.venv\\\\Scripts\\\\python.exe', '-m', 'oma.verification', 'C:\\\\Users\\\\Davi\\\\Downloads\\\\oma\\\\.oma', 'a6815fcaac7c46728ac81e3d24751098']' timed out after 600 seconds\r\n"
+  }
+}
