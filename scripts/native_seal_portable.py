@@ -7,6 +7,7 @@ import shutil
 
 from native_prepare import ROOT, DEST, EVIDENCE, sha, json_write
 from native_portable_candidate import copy_file
+from native_package_evidence import verify_payload, verify_suite_xml, PAYLOAD_DIRECTORIES, PAYLOAD_FILES
 
 
 def main():
@@ -17,6 +18,33 @@ def main():
     assert result["status"] == "ISOLATED_NATIVE_PORTABLE_OFFLINE_WORKFLOW_PASS"
     package = Path(result["package"]).resolve()
     assert package.is_relative_to((DEST / "portable-candidates").resolve())
+    verify_payload(package, result)
+    full_suite = json.loads((args.result.parent / "bundled-full-suite.json").read_text())
+    assert full_suite["status"] == "BUNDLED_EXACT_FROZEN_FULL_SUITE_PASS_WITH_DECLARED_DIRECT_INTERPRETER_NOT_APPLICABLE"
+    assert full_suite["checker_version"] == result["identity"]["checker_version"]
+    assert full_suite["source_checkpoint"] == result["source_checkpoint"]
+    assert Path(full_suite["package"]).resolve() == package
+    assert full_suite["portable_validation_result_sha256"] == sha(args.result)
+    assert full_suite["validated_payload_manifest_sha256"] == result["validated_payload_manifest_sha256"]
+    assert full_suite["test_node_manifest_sha256"] == result["application_test_validation"]["test_node_manifest_sha256"]
+    assert full_suite["test_node_count"] == result["application_test_validation"]["test_node_count"]
+    assert sha(args.result.parent / "bundled-tests.xml") == full_suite["test_xml_sha256"]
+    assert full_suite["failed"] == 0 and len(full_suite["skipped"]) == 3
+    nodes = package / "provenance/checkpoint-validation/selected-tests.args"
+    assert sha(nodes) == full_suite["test_node_manifest_sha256"]
+    accounting = verify_suite_xml(args.result.parent / "bundled-tests.xml", nodes.read_text().splitlines())
+    assert all(full_suite[key] == value for key, value in accounting.items())
+    guard = json.loads((args.result.parent / "offline-guard-probe.json").read_text())
+    assert guard["status"] == "BUNDLED_AND_FROZEN_PYTHON_NETWORK_DENIAL_VERIFIED"
+    assert guard["package_validation_sha256"] == sha(args.result)
+    assert len(guard["records"]) == 2 and {r["mode"] for r in guard["records"]} == {"BUNDLED", "FROZEN_CHECKER"}
+    assert all(r["checker_version"] == result["identity"]["checker_version"]
+               and r["status"] == "PYTHON_SOCKET_CONNECT_DENIED" for r in guard["records"])
+    actual = json.loads((args.result.parent / "real-office-validation.json").read_text())
+    assert actual["status"] == "REAL_EXPORTED_OFFICE_RECHECK_PASS"
+    assert actual["checker_version"] == result["identity"]["checker_version"]
+    assert actual["source_checkpoint"] == result["source_checkpoint"]
+    assert actual["execution"]["report_published"] and actual["execution"]["status"] == "COMPLETED"
     provenance = package / "provenance"
     assert not (provenance / "commands").exists()
     records = []
@@ -34,18 +62,24 @@ def main():
                 copy_file(path, provenance / "generated-build-config" / stage / name)
     copy_file(args.result, provenance / "portable-validation.json")
     copy_file(args.result.parent / "workflow.json", provenance / "portable-workflow.json")
-    for optional in ("real-office-validation.json", "offline-guard-probe.json"):
+    for optional in ("real-office-validation.json", "real-office-native-scope.json", "ui-byte-equivalence.json",
+                     "offline-guard-probe.json", "bundled-full-suite.json", "bundled-tests.xml"):
         if (args.result.parent / optional).exists():
             copy_file(args.result.parent / optional, provenance / optional)
+    if (args.result.parent / "attempts").is_dir():
+        shutil.copytree(args.result.parent / "attempts", provenance / "validation-attempts")
     test_count = result.get("application_test_validation", {}).get("passed", 916)
     note = f"""This is a local candidate package, not a complete production release.
 
 It uses the pinned {result['source_checkpoint']} application source with the separately identified
 CGAL-disabled custom IfcOpenShell wheel and standalone Python 3.12.14. The exact
 source, extension, wheel and checker identities appear in package-manifest.json.
-The {test_count}-test suite applies to the same application source under Python 3.12.10;
-the bundled Python 3.12.14 has its own recorded complete offline analytic
-import, planted-collision rejection, route acceptance and fresh IFC export test.
+The {test_count}-test suite passed under Python 3.12.10 with the custom native build.
+The exact same frozen suite under bundled Python 3.12.14 passed {full_suite['passed']}
+tests, with three explicitly recorded virtual-environment bridge corruption tests
+not applicable to its direct interpreter. The bundle also passed its complete
+offline analytic import, planted-collision rejection, route acceptance and fresh
+IFC export workflow, plus a fresh real Office exported joint-route recheck.
 
 Source archives, applicable notices, declared source patches, actual command
 logs, generated configurations and build scripts are retained in provenance.
@@ -67,6 +101,7 @@ See provenance/review-status.md and the capability register for retained limits.
 UI assets are included unchanged; this campaign performed backend/native tests.
 """
     (package / "CANDIDATE-STATUS.txt").write_text(note, encoding="utf-8")
+    verify_payload(package, result)
     paths = []
     for path in sorted(package.rglob("*")):
         if path.is_symlink():
@@ -90,6 +125,12 @@ UI assets are included unchanged; this campaign performed backend/native tests.
              "file_count": len(rows), "logical_bytes": sum(row["bytes"] for row in rows),
              "exclusions": ["artifact-files.json itself"],
              "scope": "Exact package files after offline validation; runtime-generated future files are outside this snapshot"}
+    payload = json.loads((package / "validated-payload.json").read_text())
+    assert sha(package / "validated-payload.json") == result["validated_payload_manifest_sha256"]
+    indexed_payload = {row["path"]: {key: row[key] for key in ("sha256", "bytes")}
+                       for row in rows if row["path"] in PAYLOAD_FILES
+                       or row["path"].split("/", 1)[0] in PAYLOAD_DIRECTORIES}
+    assert indexed_payload == payload["files"], "Indexed executable bytes differ from the tested portable payload"
     json_write(package / "artifact-files.json", index)
     handoff = {"status": "ISOLATED_NATIVE_PORTABLE_CANDIDATE_SEALED_NOT_PROMOTED", "package": str(package),
                "validation_result_sha256": sha(args.result), "checker_version": result["identity"]["checker_version"],
@@ -97,6 +138,11 @@ UI assets are included unchanged; this campaign performed backend/native tests.
                "artifact_index_sha256": sha(package / "artifact-files.json"), "file_count": len(rows),
                "logical_bytes": index["logical_bytes"], "active_runtime_modified": False,
                "previous_portable_preview_modified": False, "public_redistribution": "NOT_CLEARED"}
+    handoff.update(bundled_full_suite_sha256=sha(args.result.parent / "bundled-full-suite.json"),
+                   validated_payload_manifest_sha256=result["validated_payload_manifest_sha256"],
+                   bundled_test_xml_sha256=sha(args.result.parent / "bundled-tests.xml"),
+                   bundled_passed=full_suite["passed"], bundled_not_applicable=full_suite["skipped"],
+                   offline_guard_sha256=sha(args.result.parent / "offline-guard-probe.json"))
     if (args.result.parent / "real-office-validation.json").exists():
         actual = json.loads((args.result.parent / "real-office-validation.json").read_text())
         assert actual["status"] == "REAL_EXPORTED_OFFICE_RECHECK_PASS" and actual["checker_version"] == handoff["checker_version"]

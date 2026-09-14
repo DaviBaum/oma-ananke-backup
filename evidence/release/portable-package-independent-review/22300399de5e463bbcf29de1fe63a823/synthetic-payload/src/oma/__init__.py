@@ -1,0 +1,1 @@
+# synthetic validator fixture

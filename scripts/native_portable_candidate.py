@@ -17,6 +17,7 @@ from packaging.utils import canonicalize_name, parse_wheel_filename
 
 from native_prepare import ROOT, DEST, EVIDENCE, sha, json_write
 from native_build import run
+from native_package_evidence import payload_files, verify_payload
 
 
 SOURCE = "94e74251a39d1f0d8cc77feb9d2df686e3927eb49473b67d09d8bdf66843c93f"
@@ -99,7 +100,7 @@ def main():
         env = os.environ.copy()
         for key in ("PYTHONPATH", "OMA_EXECUTABLE_BUILD", "OMA_CONTROL_RUN_ID"):
             env.pop(key, None)
-        env.update(PYTHONNOUSERSITE="1", PIP_NO_INDEX="1", PIP_DISABLE_PIP_VERSION_CHECK="1")
+        env.update(PYTHONNOUSERSITE="1", PYTHONDONTWRITEBYTECODE="1", PIP_NO_INDEX="1", PIP_DISABLE_PIP_VERSION_CHECK="1")
         installation = run("candidate-bundle-offline-install", [sys.executable, "-m", "pip", "install", "--no-index", "--no-deps",
             "--no-compile", "--ignore-installed", "--find-links", wheelhouse, "--target", package / "runtime/Lib/site-packages", "-r", lock],
             cwd=package, env=env, budget=1200)
@@ -133,6 +134,8 @@ def main():
             copy_file(path, provenance / "native-build" / path.name)
         if checkpoint:
             shutil.copytree(args.checkpoint_validation.parent, provenance / "checkpoint-validation")
+            assert sha(Path(checkpoint["test_node_manifest"])) == checkpoint["test_node_manifest_sha256"]
+            copy_file(Path(checkpoint["test_node_manifest"]), provenance / "checkpoint-validation/selected-tests.args")
             shutil.copytree(Path(checkpoint["destination"]) / "test-suite", provenance / "checkpoint-test-sources",
                             ignore=shutil.ignore_patterns("__pycache__", ".pytest_cache"))
         for name in ("README.md",):
@@ -170,12 +173,18 @@ print(json.dumps({'python':sys.version,'executable':sys.executable,'oma':oma.__f
                       source_provenance=provenance_files, installation_record=str(installation / "record.json"),
                       python_network_guard="Audit-hook denial enabled in bundle and checker subprocesses; no OS/native socket firewall claim",
                       ui_claim="Existing prebuilt assets copied; no new UI validation in this backend campaign")
+        payload = {"schema": "oma.validated-portable-payload/1", "source_checkpoint": source_checkpoint,
+                   "checker_version": identity["checker_version"], "files": payload_files(package),
+                   "scope": "Exact executable, runtime, application, UI, wheelhouse, launchers, docs and workflow script bytes; later QA/provenance evidence is separate"}
+        json_write(package / "validated-payload.json", payload)
+        result["validated_payload_manifest_sha256"] = sha(package / "validated-payload.json")
         json_write(package / "package-manifest.json", result)
         smoke = run("candidate-bundle-offline-workflow", [executable, "-s", package / "scripts/verify_portable_preview.py", "--child", package],
                     cwd=package, env=env, budget=600)
         workflow = json.loads((package / "offline-qa/result.json").read_text())
         assert workflow["status"] == "PASS" and workflow["checker_build"] == identity["checker_version"]
         assert workflow["export"]["round_trip"] == "PASS" and workflow["export"]["status"] == "CHECKED_LOCAL_SCOPE"
+        verify_payload(package, result)
         result.update(status="ISOLATED_NATIVE_PORTABLE_OFFLINE_WORKFLOW_PASS", workflow=workflow,
                       workflow_record=str(smoke / "record.json"))
         json_write(evidence / "workflow.json", workflow)
