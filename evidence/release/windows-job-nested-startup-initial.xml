@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="1.826" timestamp="2026-09-14T15:19:40.438999-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_windows_job_containment" name="test_nested_frozen_environment_rederives_private_dll_startup" time="1.536"><failure message="AssertionError: ({'status': 'FAILED', 'command': ['C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe', '-c', &quot;from pathlib i...8e3a569f5849539198c45192fab12906e71b561a72ba535c47e91b2dfd99b', 'started_at': '2026-09-14T20:19:41.972072+00:00', ...})&#10;assert 'FAILED' == 'COMPLETED'&#10;  &#10;  - COMPLETED&#10;  + FAILED">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-257/test_nested_frozen_environment0')
+
+    def test_nested_frozen_environment_rederives_private_dll_startup(tmp_path):
+        """A worker resets PYTHONPATH before launching its independent checker."""
+        from oma.build_identity import frozen_environment
+        import ifcopenshell
+        outer_env=frozen_environment(tmp_path/"outer-snapshot")
+        identity=tmp_path/"inner-identity.json"
+        inner_result=tmp_path/"inner-result.json"
+        inner=("import _socket,ssl,sqlite3,unicodedata,ifcopenshell,OCP,sys,os,json; "
+            +"from oma.build_identity import checker_version; "
+            +f"open({str(identity)!r},'w').write(json.dumps(dict(pid=os.getpid(),prefix=sys.prefix,exe=sys.executable,"
+            +"ifc=ifcopenshell.__file__,version=checker_version())))")
+        outer=("from pathlib import Path\nimport sys,time,json\n"
+            +"from oma.build_identity import frozen_environment\nfrom oma.export_checks import supervise_check\n"
+            +f"env=frozen_environment(Path({str(tmp_path/'inner-snapshot')!r}))\n"
+            +"assert str(Path(sys.prefix)/'DLLs') not in env['PYTHONPATH']\n"
+            +f"result=supervise_check([sys.executable,'-c',{inner!r}],environment=env,directory=Path({str(tmp_path/'inner-check')!r}),deadline=time.monotonic()+12,reserve_bytes=0)\n"
+            +f"Path({str(inner_result)!r}).write_text(json.dumps(result))\n"
+            +"raise SystemExit(0 if result['status']=='COMPLETED' else 23)\n")
+        result=export_checks.supervise_check([sys.executable,"-c",outer],environment=outer_env,
+            directory=tmp_path/"outer-check",deadline=time.monotonic()+20,reserve_bytes=0)
+        nested=json.loads(inner_result.read_text()) if inner_result.exists() else None
+&gt;       assert result["status"] == "COMPLETED",(result,nested)
+E       AssertionError: ({'status': 'FAILED', 'command': ['C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe', '-c', "from pathlib i...8e3a569f5849539198c45192fab12906e71b561a72ba535c47e91b2dfd99b', 'started_at': '2026-09-14T20:19:41.972072+00:00', ...})
+E       assert 'FAILED' == 'COMPLETED'
+E         
+E         - COMPLETED
+E         + FAILED
+
+tests\test_windows_job_containment.py:204: AssertionError</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,55 @@
+{
+  "status": "LEGACY_REUSE_REPRODUCED_AND_CORRECTED",
+  "scope": "Controlled local HTTP fixture only; actual8765and8766 not accessed",
+  "old_script_git_commit": "b5897f71594e5f807152d01e6a78920727500edb",
+  "old_script_sha256": "65df41c7a9457e7cef48752825f2042b971c3f62f239d9bf740f10ea0666ad14",
+  "new_script_sha256": "94083162494b8ab8389d1f5b9970881d8ed16d534a16cc7531372cb9f012804a",
+  "source_runtime": "43d9e1f2008588386493ad1ab75c4b38f21522057c4c28d8ba3d007385809873",
+  "port": 51240,
+  "health_payload": {
+    "application": "oma-ananke",
+    "status": "ok"
+  },
+  "requests": [
+    "/api/health",
+    "/api/health"
+  ],
+  "observations": [
+    {
+      "label": "Old",
+      "command": [
+        "powershell.exe",
+        "-NoLogo",
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "C:\\Users\\Davi\\Downloads\\oma\\evidence\\release\\launcher-identity\\legacy-probe\\39349a85df5e4f13a7da92c8bab298fe\\Start-Old.ps1",
+        "-Port",
+        "51240",
+        "-NoBrowser"
+      ],
+      "exit_code": 0,
+      "server_still_alive": true,
+      "service_was_not_started": true
+    },
+    {
+      "label": "New",
+      "command": [
+        "powershell.exe",
+        "-NoLogo",
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "C:\\Users\\Davi\\Downloads\\oma\\evidence\\release\\launcher-identity\\legacy-probe\\39349a85df5e4f13a7da92c8bab298fe\\Start-New.ps1",
+        "-Port",
+        "51240",
+        "-NoBrowser"
+      ],
+      "exit_code": 1,
+      "server_still_alive": true,
+      "service_was_not_started": true
+    }
+  ]
+}

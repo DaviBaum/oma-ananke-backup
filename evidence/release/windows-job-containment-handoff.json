@@ -1,0 +1,73 @@
+{
+  "status": "TARGETED_NATIVE_AND_INDEPENDENT_REPLAYS_PASS",
+  "finding": "IFC-CHECK-CONTAINMENT-002",
+  "scope": "Windows process lifecycle and evidence publication; no new physical validity claim",
+  "old_implementation": "Observed descendant polling returned COMPLETED before an unobserved DEVNULL grandchild wrote its final marker.",
+  "additional_runtime_finding": "Assigning Microsoft Store venv launcher alone is insufficient: App Execution Alias broker starts interpreter outside inherited job.",
+  "implementation": "Suspended exact interpreter launch, pre-resume job assignment/membership, kernel active count completion, owned job termination, kill-on-close, explicit handle inheritance, bounded log cleanup.",
+  "runtime_bridge": "Byte-identical loaded CPython executable and stdlib DLL cache, source/complete inventory/configuration hashes checked; original venv packages and frozen app path; active venv unchanged.",
+  "limits": [
+    "Windows only; unsupported platforms launch nothing.",
+    "Ordinary CreateProcess inheritance, not hostile external process broker containment.",
+    "Locally trusted cache; integrity checks are not security against hostile same-user filesystem control.",
+    "Memory limit uses sampled aggregate RSS, not a hard allocation quota.",
+    "Cleanup can continue beyond work deadline for bounded termination and log draining."
+  ],
+  "failed_attempts_retained": [
+    "process-tree-discovery-race/attempts/3d0019e91ae3472b97bbc74c1ee66fac",
+    "process-tree-discovery-race/attempts/f08efa93474f42b391d1f847e6e146b1"
+  ],
+  "corrected_replays": [
+    "process-tree-discovery-race/attempts/207042c5fd284d009b6bf678bc7ba671",
+    "process-tree-discovery-race/attempts/5d2228156baa47928909084df864a4eb"
+  ],
+  "independent_native_three_generation": "process-tree-discovery-race/bridge-attempts/b1c0100752f94bbabc0a7c7deaf967a2/observation.json",
+  "tests": [
+    {
+      "path": "evidence\\release\\windows-job-supervision-final.xml",
+      "sha256": "226c0ada982ca5b0cc8c8d823602d90ab85703121062f3d1a709a96d391819c6",
+      "checker_version": "a6a3c4e9c2a65d5841ce7db81896392cc8215f637d247fcc719254dff2d7b3ec",
+      "tests": "49",
+      "failures": "0",
+      "errors": "0",
+      "time": "61.576"
+    },
+    {
+      "path": "evidence\\release\\windows-job-containment-focused.xml",
+      "sha256": "7d54321cb386c2e29f3020caa254275b4a7930b15de88aa2f47dc01d9c2ee7d2",
+      "checker_version": "4e232c213c2e14d2867fe51b570d25150a32c10d835909e40130173f07404bef",
+      "tests": "14",
+      "failures": "0",
+      "errors": "0",
+      "time": "6.382"
+    }
+  ],
+  "initial_test_runs_retained": [
+    "windows-job-existing-supervision.xml",
+    "windows-job-supervision-first.xml"
+  ],
+  "files": {
+    "src/oma/windows_job.py": "00d79333a32cf93f0ec5d74f07fece45f4f59ba4a2fdef40a04fd4ca49a35366",
+    "src/oma/export_checks.py": "15eb7c9ea603893dca055333db4f59d15a2400f41ced8b0d68652bb1e9c327f5",
+    "tests/test_windows_job_containment.py": "96c2cec71e615502f982280b680cb4d2f0265f06197dcffa6c780507f69fdcb8",
+    "docs/windows-check-containment.md": "62d7fc33df1a2be4d8950767ce6bd017c5f0b82c7815fe7bb208f5f887c0ecaa"
+  },
+  "supersedes_supervision_description_only": "route-check-execution/handoff.json; historical deferred publication results remain retained",
+  "nested_startup_amendment": {
+    "trigger": "EngineService worker calls frozen_environment, replacing PYTHONPATH before a nested native checker. Original bridge relied on inherited private DLL path and failed to import _socket.",
+    "initial_failure": "evidence/release/windows-job-nested-startup-initial.xml",
+    "initial_build": "fbc8e3a569f5849539198c45192fab12906e71b561a72ba535c47e91b2dfd99b",
+    "fix": "Hash-bound generated .pth prepends sys.prefix/DLLs at every site startup, before original packages, independent of inherited PYTHONPATH.",
+    "corrected_build": "f4fe04b0909a50c58d5d92f84e631afe33304766166ed6732b6a0623dc10b8f4",
+    "junit": "evidence\\release\\windows-job-nested-startup-corrected.xml",
+    "junit_sha256": "c56908e70f22ae07e14f1b9a9eef6ae7227ee7d6f4de77ec8d56d0a8066e72c6",
+    "tests": {
+      "tests": "17",
+      "failures": "0",
+      "errors": "0",
+      "time": "14.376"
+    },
+    "actual_service_native_recheck_and_acceptance_passed": true,
+    "original_package_path_and_checker_identity_equal": true
+  }
+}

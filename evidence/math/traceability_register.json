@@ -6,6 +6,107 @@
   "full_engine_mathematics_implemented": false,
   "obligations": [
     {
+      "obligation": "EXACT_COUNT_FABRICATION_FRONTIER_AND_SOURCE_PROPOSALS",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          5522,
+          5523,
+          5536,
+          5537,
+          5544,
+          5545,
+          5548,
+          5549,
+          5568,
+          5569
+        ],
+        "objects": [
+          "ALG-RTR15",
+          "ALG-RTR22",
+          "ALG-RTR26",
+          "ALG-RTR28",
+          "ALG-RTR38"
+        ]
+      },
+      "interpretation_and_assumptions": "Bounded specialization of the source fabrication lift, column-cost and pricing-closure obligations. Product states add exact quarter-turn count k; each fixed k has constant pi coefficient wL*R*k/2, so nonnegative rational deferred costs admit exact Dijkstra. Independent grounded predecessor reachability, full outgoing closure, all rational edge/terminal inequalities and one realizing path certify every count 0..K. K is at most 32; graph walks may repeat vertices or visit the goal before returning. Actual source consumer binds full immutable joint budget B and cap min(B,32), authenticated source/frame coverage, objective and executable, then independently checks each binary64 fixed-fabrication path before proposing it.",
+      "implementations": [
+        "oma.optimization.fabrication_frontier.compile_fabrication_frontier",
+        "oma.routing.certified_fabrication.build_certified_fabrication_proposals",
+        "oma.routing.proposals.project_proposals"
+      ],
+      "independent_checkers": [
+        "oma.optimization.fabrication_frontier.verify_fabrication_frontier",
+        "oma.optimization.fabrication.verify_orthogonal_fabrication",
+        "oma.routing.fitting_budget.check_joint_fitting_budget"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.fabrication_frontier.compile_fabrication_frontier",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.certified_fabrication.build_certified_fabrication_proposals",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.proposals.project_proposals",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_frontier.verify_fabrication_frontier",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication.verify_orthogonal_fabrication",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.fitting_budget.check_joint_fitting_budget",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_fabrication_frontier.py",
+        "tests/test_certified_fabrication_frontier.py",
+        "tests/test_joint_fitting_budget.py",
+        "tests/test_joint_fitting_budget_adversarial.py"
+      ],
+      "real_model_benchmark": {
+        "status": "ACTUAL_ANALYTIC_SOURCE_ADAPTER_AND_SEPARATE_NATIVE_WALL_CORRESPONDENCE",
+        "evidence": "evidence/math/fabrication-frontier/latest.json",
+        "scope": "Complete actual analytic wall source/frame/outer-support accounting; independently closed exact counts 0 through 2, checked binary64 k=2 path, five actual native parts/two elbows, full obstacle/self/zone/semantics checks. This retained attempt does not accept a project or check an aggregate joint budget."
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Exact nominal fixed-count optima only. No all-tie, simple-path, nonadjacent self-interference, continuous/native objective, full physical universe or acceptance claim. State/work/byte/time exhaustion remains UNKNOWN; default adapter limits are 24000 product states, 1000000 work units, 3 seconds or half the remaining time, and 8 output paths. Counts above 32 and output-limit alternatives remain unexamined. Fallback routes are not declared resource-feasible. Separate current IFC counting and finite checked-candidate master enforce the optional newly authored independent-elbow budget; no shared-tree/corridor resource is inferred.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ],
+      "independent_review": "evidence/release/fabrication-frontier-independent-review.json",
+      "consumer_scope": {
+        "mission_field": "JointRoutingScenario.max_new_fittings",
+        "default": null,
+        "declared_budget_maximum": 1024,
+        "represented_per_route_count_maximum": 32,
+        "native_resource": "NEW_INDEPENDENT_ROUND_90_DEGREE_ELBOWS",
+        "prior_routes": "EXCLUDED_PROTECTED_BASELINE",
+        "nominal_bounds_are_native_or_continuous_bounds": false,
+        "complete_cartesian_physical_route_universe": false
+      }
+    },
+    {
       "obligation": "SOURCE_AWARE_BOUNDED_GRID_ENRICHMENT",
       "source": {
         "document": "oma-integration",
@@ -1944,6 +2045,7 @@
     "evidence/release/fabrication-pricing-adversarial.xml",
     "evidence/math/fabrication-grid-tests.xml",
     "evidence/release/fabrication-grid-native-zone-adversarial.xml",
+    "evidence/release/certified-fabrication-frontier.xml",
     "evidence/math/route-metadata-tests.xml"
   ],
   "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py tests/test_optimization_route_cells.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"

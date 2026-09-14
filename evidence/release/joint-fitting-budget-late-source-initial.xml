@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.116" timestamp="2026-09-14T14:58:59.317985-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_joint_fitting_budget_adversarial" name="test_source_changed_while_paused_at_final_checkpoint_cannot_keep_current_count_pass" time="1.698"><failure message="AssertionError: {'id': 'joint-new-fitting-budget', 'status': 'PASS', 'reason': 'Actual new fitting use satisfies the declared budget', 'scope': 'Current newly authored independent round 90-degree elbow budget; protected prior routes excluded', ...}&#10;assert &lt;Verdict.PASS: 'PASS'&gt; != 'PASS'&#10; +  where &lt;Verdict.PASS: 'PASS'&gt; = CheckResult(id='joint-new-fitting-budget', status=&lt;Verdict.PASS: 'PASS'&gt;, reason='Actual new fitting use satisfies the...25ab6f0e132f0014b1b208b7ace7893', 'audit-second': '730ab62ab1fadfa3957b014d5f96cf58ae9a54867ab1add5dd86b3361f5c7dec'}}).status">straight_budget_case = {'store': &lt;oma.store.Store object at 0x0000029096604290&gt;, 'run': {'id': '57601a872b2041fd8838e5c384922a47', 'project_i... 'id': 'bd23409d1a38dd75cdc020d277a4ef41f8233dfc047023c6b7916d80acc0d18b:38', 'ifc_type': 'IfcSpace', ...}], ...}, ...}
+
+    def test_source_changed_while_paused_at_final_checkpoint_cannot_keep_current_count_pass(straight_budget_case):
+        case=straight_budget_case
+        path=case["store"].resolve_path(case["state"]["sources"][0]["immutable_path"])
+        original=path.read_bytes()
+        changed=[]
+        def checkpoint(stage):
+            if stage=="joint_fitting_complete":
+                path.write_bytes(original+b"\n")
+                changed.append(True)
+        try:
+            report=_check(case,checkpoint=checkpoint)
+            current=path.read_bytes()
+        finally:
+            path.write_bytes(original)
+        assert changed and current!=original
+&gt;       assert report.status!="PASS",report.model_dump(mode="json")
+E       AssertionError: {'id': 'joint-new-fitting-budget', 'status': 'PASS', 'reason': 'Actual new fitting use satisfies the declared budget', 'scope': 'Current newly authored independent round 90-degree elbow budget; protected prior routes excluded', ...}
+E       assert &lt;Verdict.PASS: 'PASS'&gt; != 'PASS'
+E        +  where &lt;Verdict.PASS: 'PASS'&gt; = CheckResult(id='joint-new-fitting-budget', status=&lt;Verdict.PASS: 'PASS'&gt;, reason='Actual new fitting use satisfies the...25ab6f0e132f0014b1b208b7ace7893', 'audit-second': '730ab62ab1fadfa3957b014d5f96cf58ae9a54867ab1add5dd86b3361f5c7dec'}}).status
+
+tests\test_joint_fitting_budget_adversarial.py:152: AssertionError</failure></testcase></testsuite></testsuites>

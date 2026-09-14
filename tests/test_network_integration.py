@@ -84,16 +84,15 @@ def test_shared_network_import_check_select_accept_export_and_reopen(tmp_path):
     # survive relocation; authority is reacquired from actual restored bytes.
     from oma.backup import restore_store
     from oma.service import EngineService
-    import subprocess
-    import sys
+    from oma.verification import recheck_candidate_run
     backup = store.backup(tmp_path / "network-backup")
     old_directory = store.directory.resolve()
     assert old_directory.is_relative_to(tmp_path.resolve())
     old_directory.rename(tmp_path / "network-original-unavailable")
     restored = restore_store(backup, tmp_path / "network-restored")
-    checked = subprocess.run([sys.executable, "-m", "oma.verification", str(restored.directory), candidate["id"]],
-        capture_output=True, text=True, timeout=60)
-    assert checked.returncode == 0, checked.stderr
+    recheck = restored.create_run(project["id"], {"operation": "recheck", "candidate_id": candidate["id"], "budget_seconds": 60})
+    recheck_candidate_run(restored, recheck, WorkerControl(restored, recheck["id"]))
+    assert restored.run(recheck["id"])["status"] == "COMPLETED"
     renewed = restored.candidate(candidate["id"])
     assert renewed["state_root"] == candidate["state_root"]
     assert renewed["status"] == "CHECKED"

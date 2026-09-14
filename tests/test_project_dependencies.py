@@ -73,8 +73,18 @@ def test_reserved_looking_source_identity_is_not_omitted():
 
 
 def test_recorded_report_gets_grounded_assurance_and_revision_derivation(tmp_path):
+    from oma.ifc.audit import sha256_file
     store = Store(tmp_path / "store")
     state = state_fixture()
+    # This remains an analytic metadata/assurance fixture, with no CAD verdict.
+    # Acceptance nevertheless needs real hash-bound bytes for its file claims.
+    for source in state["sources"]:
+        path = tmp_path / (source["id"] + ".synthetic-source")
+        path.write_text("Synthetic dependency input: " + source["id"], encoding="utf-8")
+        source.update(immutable_path=str(path), sha256=sha256_file(path))
+    output = tmp_path / "route.synthetic-materialization"
+    output.write_text("Synthetic dependency route; no native geometry assertion", encoding="utf-8")
+    state["routes"][0]["geometry_artifact"] = store.put({"export_path": str(output), "export_sha256": sha256_file(output)})
     project = store.create_project("assurance fixture", state, project_id="fixture")
     run = store.create_run(project["id"], {"operation": "check"})
     candidate = store.add_candidate(run["id"], state, {"kind": "test"})
@@ -98,6 +108,7 @@ def test_recorded_report_gets_grounded_assurance_and_revision_derivation(tmp_pat
     transition = store.get(publication["payload"]["derivation_root"])
     assert transition["cold_equivalent"]
     assert transition["after_root"] == candidate["state_root"]
+    assert store.get(publication["payload"]["current_physical_input_root"])["file_count"] == 3
     # Evidence is rooted in the event graph, so portable backup retains it.
     backup = Store(store.backup(tmp_path / "backup"))
     assert backup.get(event["payload"]["assurance"]["root"]) == packet

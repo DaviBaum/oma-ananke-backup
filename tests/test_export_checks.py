@@ -105,17 +105,17 @@ def test_checked_export_timeout_preserves_the_actual_draft_and_original_bytes(tm
     candidate = store.candidates(project["id"])[0]
     assert candidate["status"] == "CHECKED", store.get(candidate["report_root"])
     head = store.project(project["id"])
-    original_run = ExportChecks.run
+    original_verify = ExportChecks._verify_candidate
 
-    def delayed_real_checker(self, module, arguments, stage):
-        if module != "oma.verification":
-            return original_run(self, module, arguments, stage)
+    def delayed_real_checker(self, candidate):
         # The IFC round trip is real. The full-check subprocess stalls before
         # producing evidence, reproducing a native-kernel timeout at its boundary.
         self.deadline = time.monotonic() + .3
-        return original_run(self, "timeit", ["--number", "1", "import time; time.sleep(30)"], stage)
+        return original_verify(self, candidate)
 
-    monkeypatch.setattr(ExportChecks, "run", delayed_real_checker)
+    from oma.routing import check_execution
+    monkeypatch.setattr(check_execution, "_command", lambda *args: [sys.executable,"-c","import time; time.sleep(30)"])
+    monkeypatch.setattr(ExportChecks, "_verify_candidate", delayed_real_checker)
     with pytest.raises(IntegrityError, match="draft evidence preserved"):
         export_project(store, project["id"], candidate["id"], draft=False, budget_seconds=30)
     directories = list((store.directory / "exports").iterdir())
@@ -132,6 +132,81 @@ def test_checked_export_timeout_preserves_the_actual_draft_and_original_bytes(tm
     assert source.read_bytes() == original and store.project(project["id"]) == head
     event = next(e for e in reversed(store.events(project["id"])) if e["stage"] == "export")
     assert event["status"] == "DRAFT" and store.get(event["artifacts"][0]) == manifest
+
+
+@pytest.mark.parametrize("after,expected", [("pass","COMPLETED"),("import sys; sys.exit(17)","FAILED"),
+    ("import time; time.sleep(30)","UNKNOWN_TIMEOUT")])
+def test_actual_native_export_pass_requires_complete_process_for_acceptance_authority(tmp_path, monkeypatch, after, expected):
+    from oma.build_identity import checker_version
+    from oma.exporting import export_project
+    from oma.routing.engine import route_project_run
+    from oma.routing import check_execution
+    from oma.store import IntegrityError, Store
+    from oma.worker import WorkerControl, import_sources
+    from test_ifc_pipeline import make_fixture
+
+    source = make_fixture(tmp_path/"source.ifc")
+    original_bytes = source.read_bytes()
+    store = Store(tmp_path/"store")
+    project = store.create_project("Native exported PASS requires complete execution", {})
+    imported = store.create_run(project["id"], {"operation":"import","paths":[str(source)]})
+    import_sources(store, imported, WorkerControl(store, imported["id"]))
+    mission = {"start":[-1.,-1.,1.],"end":[3.,-1.,1.],"system_type":"PRESSURE_PIPE", "diameter_m":.1,
+        "insulation_m":.02,"bend_radius_m":.3,"minimum_straight_m":.05,"clearance_m":.1,
+        "allowed_zone":{"min":[-2.,-2.,-2.],"max":[4.,4.,4.]},"scenario_terminals":True,"max_candidates":1}
+    run = store.create_run(project["id"], {"operation":"route","mission":mission,"budget_seconds":60})
+    route_project_run(store,run,WorkerControl(store,run["id"]))
+    incumbent = store.candidates(project["id"])[0]
+    assert incumbent["status"] == "CHECKED"
+    original_head = store.project(project["id"])
+    original_verifier = ExportChecks._verify_candidate
+
+    def native_then_abnormal(store, request):
+        code = ("from oma.routing.check_execution import _child; "
+            f"_child({str(store.directory)!r},{str(request)!r}); {after}")
+        return [sys.executable,"-c",code]
+
+    def bounded(self, candidate):
+        # Materialization and IFC round trip are real. The full native checker
+        # really returns PASS; only process teardown is fault-injected afterward.
+        self.deadline = min(self.deadline,time.monotonic()+5)
+        return original_verifier(self,candidate)
+
+    monkeypatch.setattr(check_execution,"_command",native_then_abnormal)
+    monkeypatch.setattr(ExportChecks,"_verify_candidate",bounded)
+    if expected == "COMPLETED":
+        export_project(store,project["id"],incumbent["id"],draft=False,budget_seconds=45)
+    else:
+        with pytest.raises(IntegrityError,match="draft evidence preserved"):
+            export_project(store,project["id"],incumbent["id"],draft=False,budget_seconds=45)
+    manifest_path = next((store.directory/"exports").glob("*/manifest.json"))
+    manifest = json.loads(manifest_path.read_text())
+    assert manifest["status"] == ("CHECKED_LOCAL_SCOPE" if expected == "COMPLETED" else "DRAFT"), manifest
+    assert manifest["round_trip"] == ("PASS" if expected == "COMPLETED" else expected), manifest
+    checks = manifest["checking"]["checks"]
+    assert [check["status"] for check in checks] == ["COMPLETED",expected]
+    process = checks[-1]
+    assert process["elapsed_seconds"] > 0 and process["report_published"] == (expected == "COMPLETED")
+    deferred = json.loads((Path(process["execution_directory"])/"receipt.json").read_text())
+    observed = store.get(deferred["report_root"])
+    assert observed["status"] == "PASS" and observed["objective"]["length_m"] == 4
+    assert next(r["status"] for r in observed["results"] if r["id"] == "physical-interference-and-clearance") == "PASS"
+    exported = store.candidate(manifest["checking"]["exported_candidate_id"])
+    assert exported["id"] != incumbent["id"]
+    if expected == "COMPLETED":
+        assert exported["status"] == "CHECKED" and exported["report_root"] == deferred["report_root"]
+        assert len(manifest["checking"]["release_bindings"]) == 9
+        assert all(manifest["checking"]["release_bindings"].values())
+    else:
+        assert exported["status"] == "UNKNOWN" and exported["report_root"] is None
+        with pytest.raises(IntegrityError):
+            store.accept(project["id"],exported["id"],1,"incomplete-export",checker_version=checker_version())
+    assert store.candidate(incumbent["id"]) == incumbent
+    assert store.project(project["id"]) == original_head and source.read_bytes() == original_bytes
+    owner = store.run(process["control_run_id"])
+    assert owner["operation"] == "recheck" and owner["request"]["candidate_id"] == exported["id"]
+    assert owner["status"] == ("COMPLETED" if expected == "COMPLETED" else "TIMED_OUT" if expected == "UNKNOWN_TIMEOUT" else "FAILED")
+    assert process["checker_version"] == manifest["checking"]["checker_version"] == observed["checker_version"]
 
 
 @pytest.mark.parametrize("field", ["candidate_root", "checker_version", "mission_hash", "rule_hash", "objective", "scope", "check_set", "exported_bytes"])
@@ -164,7 +239,7 @@ def test_release_gate_rejects_stale_or_narrowed_passing_report(tmp_path, monkeyp
     monkeypatch.setattr(store, "candidate", lambda _id: candidate)
     manifest = {"status": "DRAFT", "limitations": [], "round_trip": "PASS", "files": [{"path": str(file), "sha256": file_hash}]}
     checks = ExportChecks(store, tmp_path / "export", manifest)
-    monkeypatch.setattr(checks, "run", lambda *args: {"status": "COMPLETED"})
+    monkeypatch.setattr(checks, "_verify_candidate", lambda *args: {"status": "COMPLETED", "report_published": True})
     checks.verify(candidate, original)
     assert manifest["status"] == "DRAFT"
     assert manifest["round_trip"] == "FAIL_EVIDENCE_BINDING"

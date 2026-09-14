@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="2" time="7.230" timestamp="2026-09-14T15:29:11.015455-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_joint_objective_authority" name="test_native_source_counterexample_leaves_unperformed_aggregate_objective_empty" time="3.953"><failure message="AssertionError: assert 'PASS' == 'NOT_RUN'&#10;  &#10;  - NOT_RUN&#10;  + PASS">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-262/test_native_source_counterexam0')
+
+    def test_native_source_counterexample_leaves_unperformed_aggregate_objective_empty(tmp_path):
+        case = native_objective_case(tmp_path/"source-clash",source_clash=True)
+        report = case["report"]
+        by_id = {r["id"]:r for r in report["results"]}
+        for route in case["state"]["routes"]:
+            rid = route["id"]
+            assert by_id[rid+":exported-physical-semantics"]["status"] == "PASS"
+            assert by_id[rid+":native-forbidden-volume-counterexample"]["status"] == "FAIL"
+            assert by_id[rid+":independent-objective-recomputation"]["status"] == "NOT_RUN"
+&gt;       assert by_id["joint-objective"]["status"] == "NOT_RUN"
+E       AssertionError: assert 'PASS' == 'NOT_RUN'
+E         
+E         - NOT_RUN
+E         + PASS
+
+tests\test_joint_objective_authority.py:49: AssertionError</failure></testcase><testcase classname="tests.test_joint_objective_authority" name="test_global_collision_failure_can_retain_a_genuinely_checked_complete_objective" time="2.789" /></testsuite></testsuites>

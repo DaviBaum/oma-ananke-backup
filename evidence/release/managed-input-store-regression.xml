@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="52" time="11.986" timestamp="2026-09-14T15:11:56.283900-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_store" name="test_immutable_branches_idempotent_retry_and_conflict" time="0.087" /><testcase classname="tests.test_store" name="test_concurrent_writers_publish_only_one_revision_and_event" time="0.141" /><testcase classname="tests.test_store" name="test_failed_publication_rolls_back_revision_and_outbox" time="0.066" /><testcase classname="tests.test_store" name="test_corrupt_blob_and_nonfinite_inputs_rejected" time="0.053" /><testcase classname="tests.test_store" name="test_acceptance_requires_exact_root_mission_and_checker_version" time="0.184" /><testcase classname="tests.test_store" name="test_recovery_revert_backup_and_restore" time="0.190" /><testcase classname="tests.test_store" name="test_terminal_job_cannot_be_resurrected_by_late_supervisor" time="0.090" /><testcase classname="tests.test_store" name="test_import_and_run_retries_create_one_durable_job" time="0.172" /><testcase classname="tests.test_store" name="test_portable_backup_binds_bytes_and_resolves_without_original" time="0.208" /><testcase classname="tests.test_store" name="test_large_asset_copy_does_not_hold_live_publication_lock" time="0.119" /><testcase classname="tests.test_store" name="test_cache_provenance_hash_map_is_not_treated_as_file_paths" time="0.119" /><testcase classname="tests.test_verification_execution_atomicity" name="test_private_pending_and_timed_out_report_cannot_be_accepted_or_republished" time="0.316" /><testcase classname="tests.test_verification_execution_atomicity" name="test_stop_arriving_during_assurance_work_prevents_atomic_pass[cancel]" time="0.232" /><testcase classname="tests.test_verification_execution_atomicity" name="test_stop_arriving_during_assurance_work_prevents_atomic_pass[pause]" time="0.226" /><testcase classname="tests.test_verification_execution_atomicity" name="test_stop_arriving_during_assurance_work_prevents_atomic_pass[terminal]" time="0.238" /><testcase classname="tests.test_verification_execution_atomicity" name="test_stop_arriving_during_assurance_work_prevents_atomic_pass[deadline]" time="0.214" /><testcase classname="tests.test_verification_execution_atomicity" name="test_newer_execution_finishing_during_old_assurance_cannot_be_overwritten" time="0.331" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[root]" time="0.223" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[mission]" time="0.221" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[rules]" time="0.227" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[build]" time="0.189" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[origin_request]" time="0.228" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[control_request]" time="0.238" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[candidate_scope]" time="0.226" /><testcase classname="tests.test_verification_execution_atomicity" name="test_completed_origin_can_be_rechecked_only_by_fresh_owned_control_run" time="0.418" /><testcase classname="tests.test_verification_execution_atomicity" name="test_timeout_does_not_discard_another_completed_incumbent" time="0.377" /><testcase classname="tests.test_verification_execution_atomicity" name="test_acceptance_revalidates_latest_report_inside_revision_transaction[new_pending]" time="0.317" /><testcase classname="tests.test_verification_execution_atomicity" name="test_acceptance_revalidates_latest_report_inside_revision_transaction[new_rejection]" time="0.445" /><testcase classname="tests.test_verification_execution_atomicity" name="test_tokens_and_control_owners_cannot_be_rebound_to_unrelated_candidates" time="0.310" /><testcase classname="tests.test_verification_execution_atomicity" name="test_step_control_can_publish_a_completed_owned_check" time="0.245" /><testcase classname="tests.test_verification_execution_atomicity" name="test_completed_execution_cannot_cover_changed_candidate_scope_metadata" time="0.275" /><testcase classname="tests.test_verification_execution_atomicity" name="test_backup_retains_execution_fences_and_prior_report_evidence" time="0.438" /><testcase classname="tests.test_legacy_execution_fence" name="test_legacy_late_pass_cannot_publish_during_or_after_incomplete_execution[RUNNING]" time="0.161" /><testcase classname="tests.test_legacy_execution_fence" name="test_legacy_late_pass_cannot_publish_during_or_after_incomplete_execution[UNKNOWN_TIMEOUT]" time="0.175" /><testcase classname="tests.test_legacy_execution_fence" name="test_legacy_late_pass_cannot_publish_during_or_after_incomplete_execution[UNKNOWN_ABNORMAL_EXIT]" time="0.175" /><testcase classname="tests.test_legacy_execution_fence" name="test_legacy_late_pass_cannot_publish_during_or_after_incomplete_execution[UNKNOWN_CANCELLED]" time="0.171" /><testcase classname="tests.test_legacy_execution_fence" name="test_legacy_old_pass_cannot_replace_new_rejected_report" time="0.343" /><testcase classname="tests.test_legacy_execution_fence" name="test_legacy_acceptance_cannot_attach_stale_or_unbound_report_to_managed_revision[none]" time="0.237" /><testcase classname="tests.test_legacy_execution_fence" name="test_legacy_acceptance_cannot_attach_stale_or_unbound_report_to_managed_revision[running]" time="0.281" /><testcase classname="tests.test_legacy_execution_fence" name="test_legacy_acceptance_cannot_attach_stale_or_unbound_report_to_managed_revision[rejected]" time="0.333" /><testcase classname="tests.test_legacy_execution_fence" name="test_legacy_acceptance_cannot_attach_stale_or_unbound_report_to_managed_revision[new_pass]" time="0.349" /><testcase classname="tests.test_legacy_execution_fence" name="test_current_managed_acceptance_consumes_exact_report_authorization_and_is_idempotent" time="0.340" /><testcase classname="tests.test_legacy_execution_fence" name="test_failed_publication_rolls_back_authorization_revision_and_event_together" time="0.349" /><testcase classname="tests.test_legacy_execution_fence" name="test_unmanaged_legacy_candidate_remains_compatible_after_store_reopen" time="0.233" /><testcase classname="tests.test_legacy_execution_fence" name="test_database_backup_preserves_managed_publication_fences" time="0.189" /><testcase classname="tests.test_acceptance_build_freshness" name="test_acceptance_build_is_checked_after_actual_derivation_before_commit[False]" time="0.299" /><testcase classname="tests.test_acceptance_build_freshness" name="test_acceptance_build_is_checked_after_actual_derivation_before_commit[True]" time="0.267" /><testcase classname="tests.test_project_dependencies" name="test_actual_state_reuse_matches_cold_and_distant_geometry_invalidates_clearance" time="0.022" /><testcase classname="tests.test_project_dependencies" name="test_nonlocal_flow_and_new_fields_are_accounted_without_claiming_geometry_pass" time="0.015" /><testcase classname="tests.test_project_dependencies" name="test_reserved_looking_source_identity_is_not_omitted" time="0.007" /><testcase classname="tests.test_project_dependencies" name="test_recorded_report_gets_grounded_assurance_and_revision_derivation" time="0.155"><failure message="oma.store.IntegrityError: Current physical input bytes are missing or their bindings are incomplete: 'immutable_path'">store = &lt;oma.store.Store object at 0x0000028BBD731070&gt;
+candidate = {'kind': 'test', 'id': '07eb6e14542649078b70dddc44ecd336', 'project_id': 'fixture', 'run_id': '1dad1bb3bcb247388582a0eb01515414', ...}
+state = {'derived_artifacts': {}, 'entities': [{'geometry': {'bounds': [0, 1], 'status': 'represented'}, 'id': 'near:1', 'prov...}}], 'explicit_connections': [], 'inferred_connections': [{'evidence': 'proximity_only', 'ports': ['in', 'out']}], ...}
+baseline = {'derived_artifacts': {}, 'entities': [{'geometry': {'bounds': [0, 1], 'status': 'represented'}, 'id': 'near:1', 'prov...}}], 'explicit_connections': [], 'inferred_connections': [{'evidence': 'proximity_only', 'ports': ['in', 'out']}], ...}
+deadline = None
+
+    def check_current_physical_inputs(store, candidate, state, baseline, *, deadline=None):
+        records = [*state.get("routes", []), *state.get("physical_networks", [])]
+        if (candidate.get("kind") not in PHYSICAL_KINDS and not state.get("sources")
+                and not any(record.get("geometry_artifact") for record in records)):
+            return None  # Explicit analytic protocol fixtures have no physical files.
+        if not state.get("sources"):
+            raise IntegrityError("Physical input applicability has no complete original IFC source set")
+        files = {}
+        def add(value, expected, reference):
+            if (not isinstance(value, str) or not value or not isinstance(expected, str)
+                    or len(expected) != 64 or any(c not in "0123456789abcdef" for c in expected)):
+                raise IntegrityError("Physical input applicability has an incomplete path/hash binding")
+            path = store.resolve_path(value).resolve()
+            if path in files and files[path]["sha256"] != expected:
+                raise IntegrityError("Physical input applicability binds one current file to conflicting hashes")
+            files.setdefault(path, {"path": str(path), "sha256": expected, "references": []})["references"].append(reference)
+        try:
+            for label, current in (("current", state), ("protected-baseline", baseline)):
+                for source in current.get("sources", []):
+&gt;                   add(source["immutable_path"], source["sha256"], f"{label}:source:{source['id']}")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+E                   KeyError: 'immutable_path'
+
+.oma\test-builds\runtimes\9f16f8234e22f6114202abe573de1bfe6db820b4ca4bbd222bc3cb9be278d597\src\oma\physical_inputs.py:38: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-247/test_recorded_report_gets_grou0')
+
+    def test_recorded_report_gets_grounded_assurance_and_revision_derivation(tmp_path):
+        store = Store(tmp_path / "store")
+        state = state_fixture()
+        project = store.create_project("assurance fixture", state, project_id="fixture")
+        run = store.create_run(project["id"], {"operation": "check"})
+        candidate = store.add_candidate(run["id"], state, {"kind": "test"})
+        report = VerificationReport(candidate_root=candidate["state_root"], mission_hash=digest(state["mission"]),
+            rule_hash=state["mission"]["rule_hash"], checker_version="test-build", status=Verdict.PASS,
+            scope="Analytic fixture check only", results=(CheckResult(id="fixture", status=Verdict.PASS,
+            reason="Known synthetic reference", scope="Analytic fixture check only"),), objective={},
+            common_mode_risks=("Test assumption, not a real building",), created_at=utcnow())
+        checked = store.record_verification(candidate["id"], report)
+        event = next(e for e in reversed(store.events(project["id"])) if e["stage"] == "verification")
+        packet = store.get(event["payload"]["assurance"]["root"])
+        assert packet["support_status"] == "SUPPORTED_CONDITIONALLY"
+        assert packet["independent_assurance_check"]["status"] == "PASS"
+        assert packet["whole_building_certification"] == "NOT_ESTABLISHED"
+        assert packet["assumption_ledger"]
+        stale = build_report_assurance(store, checked, checked["report_root"], executable="changed-build", assessment_time=utcnow())
+        assert stale["support_status"] == "UNSUPPORTED"
+        assert set(stale["certificate"]["excluded_foundations"].values()) == {"INAPPLICABLE_CONTEXT"}
+&gt;       store.accept(project["id"], candidate["id"], 0, "accept", checker_version="test-build")
+
+tests\test_project_dependencies.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.oma\test-builds\runtimes\9f16f8234e22f6114202abe573de1bfe6db820b4ca4bbd222bc3cb9be278d597\src\oma\store.py:718: in accept
+    result = self.publish(project_id, self.get(candidate["state_root"]), expected_revision, idempotency_key,
+.oma\test-builds\runtimes\9f16f8234e22f6114202abe573de1bfe6db820b4ca4bbd222bc3cb9be278d597\src\oma\store.py:398: in publish
+    checked_inputs = check_current_physical_inputs(self, {**json.loads(current["payload"]), **dict(current)},
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = &lt;oma.store.Store object at 0x0000028BBD731070&gt;
+candidate = {'kind': 'test', 'id': '07eb6e14542649078b70dddc44ecd336', 'project_id': 'fixture', 'run_id': '1dad1bb3bcb247388582a0eb01515414', ...}
+state = {'derived_artifacts': {}, 'entities': [{'geometry': {'bounds': [0, 1], 'status': 'represented'}, 'id': 'near:1', 'prov...}}], 'explicit_connections': [], 'inferred_connections': [{'evidence': 'proximity_only', 'ports': ['in', 'out']}], ...}
+baseline = {'derived_artifacts': {}, 'entities': [{'geometry': {'bounds': [0, 1], 'status': 'represented'}, 'id': 'near:1', 'prov...}}], 'explicit_connections': [], 'inferred_connections': [{'evidence': 'proximity_only', 'ports': ['in', 'out']}], ...}
+deadline = None
+
+    def check_current_physical_inputs(store, candidate, state, baseline, *, deadline=None):
+        records = [*state.get("routes", []), *state.get("physical_networks", [])]
+        if (candidate.get("kind") not in PHYSICAL_KINDS and not state.get("sources")
+                and not any(record.get("geometry_artifact") for record in records)):
+            return None  # Explicit analytic protocol fixtures have no physical files.
+        if not state.get("sources"):
+            raise IntegrityError("Physical input applicability has no complete original IFC source set")
+        files = {}
+        def add(value, expected, reference):
+            if (not isinstance(value, str) or not value or not isinstance(expected, str)
+                    or len(expected) != 64 or any(c not in "0123456789abcdef" for c in expected)):
+                raise IntegrityError("Physical input applicability has an incomplete path/hash binding")
+            path = store.resolve_path(value).resolve()
+            if path in files and files[path]["sha256"] != expected:
+                raise IntegrityError("Physical input applicability binds one current file to conflicting hashes")
+            files.setdefault(path, {"path": str(path), "sha256": expected, "references": []})["references"].append(reference)
+        try:
+            for label, current in (("current", state), ("protected-baseline", baseline)):
+                for source in current.get("sources", []):
+                    add(source["immutable_path"], source["sha256"], f"{label}:source:{source['id']}")
+                for record in [*current.get("routes", []), *current.get("physical_networks", [])]:
+                    material = store.get(record["geometry_artifact"])
+                    add(material["export_path"], material["export_sha256"], f"{label}:materialization:{record['id']}")
+            if not files:
+                raise IntegrityError("Physical input applicability has an empty file denominator")
+            for path, row in sorted(files.items(), key=lambda pair: str(pair[0])):
+                hasher = hashlib.sha256()
+                with path.open("rb") as stream:
+                    before = os.fstat(stream.fileno())
+                    while True:
+                        if deadline is not None and time.monotonic() &gt;= deadline:
+                            raise IntegrityError("Verification deadline expired during current physical input validation")
+                        chunk = stream.read(8 * 1024 * 1024)
+                        if not chunk:
+                            break
+                        hasher.update(chunk)
+                    after = os.fstat(stream.fileno())
+                    current_path = path.stat()
+                identity = lambda info: (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns)
+                if identity(before) != identity(after) or identity(after) != identity(current_path) or hasher.hexdigest() != row["sha256"]:
+                    raise IntegrityError("Current physical input bytes changed after the independent check: " + str(path))
+                row["bytes"] = after.st_size
+        except (OSError, KeyError, TypeError) as exc:
+&gt;           raise IntegrityError("Current physical input bytes are missing or their bindings are incomplete: " + str(exc)) from exc
+E           oma.store.IntegrityError: Current physical input bytes are missing or their bindings are incomplete: 'immutable_path'
+
+.oma\test-builds\runtimes\9f16f8234e22f6114202abe573de1bfe6db820b4ca4bbd222bc3cb9be278d597\src\oma\physical_inputs.py:62: IntegrityError</failure></testcase><testcase classname="tests.test_project_dependencies" name="test_known_port_advisory_invalidates_support_and_blocks_accept_and_checked_export" time="0.214" /></testsuite></testsuites>

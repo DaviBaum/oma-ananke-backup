@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="125" time="207.888" timestamp="2026-09-14T14:46:32.080988-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_routing_integration" name="test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_route" time="55.878"><failure message="AssertionError: Traceback (most recent call last):&#10;    File &quot;&lt;frozen runpy&gt;&quot;, line 198, in _run_module_as_main&#10;    File &quot;&lt;frozen runpy&gt;&quot;, line 88, in _run_code&#10;    File &quot;C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\verification.py&quot;, line 143, in &lt;module&gt;&#10;      main()&#10;    File &quot;C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\verification.py&quot;, line 136, in main&#10;      report = verify_route_candidate(store, candidate[&quot;id&quot;])&#10;               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&#10;    File &quot;C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\checker.py&quot;, line 696, in verify_route_candidate&#10;      store.record_verification(candidate_id, report)&#10;    File &quot;C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\store.py&quot;, line 587, in record_verification&#10;      raise IntegrityError(&quot;Managed candidate requires its current completed checker execution&quot;)&#10;  oma.store.IntegrityError: Managed candidate requires its current completed checker execution&#10;  &#10;assert 1 == 0&#10; +  where 1 = CompletedProcess(args=['C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe', '-m', 'oma.verification', 'C:\\U...d checker execution&quot;)\noma.store.IntegrityError: Managed candidate requires its current completed checker execution\n').returncode">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-223/test_real_ifc_pipeline_rejects0')
+
+    def test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_route(tmp_path):
+        source = make_fixture(tmp_path / "obstacle.ifc")
+        store = Store(tmp_path / "store")
+        project = store.create_project("Analytic seeded building", {"sources": [], "entities": []})
+        imp = store.create_run(project["id"], {"operation": "import", "paths": [str(source)]})
+        import_sources(store, imp, WorkerControl(store, imp["id"]))
+        scenario = {"start": [-1., 1., 1.], "end": [3., 1., 1.], "system_type": "PRESSURE_PIPE",
+                    "diameter_m": .1, "insulation_m": .02, "bend_radius_m": .3, "minimum_straight_m": .05,
+                    "clearance_m": .1, "allowed_zone": {"min": [-2., -2., -2.], "max": [4., 4., 4.]},
+                    "scenario_terminals": True, "max_candidates": 12}
+        run = store.create_run(project["id"], {"operation": "route", "mission": scenario, "budget_seconds": 90})
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+        candidates = store.candidates(project["id"])
+        assert candidates[0]["status"] == "REJECTED"
+        rejected = store.get(candidates[0]["report_root"])
+        assert next(r["status"] for r in rejected["results"] if r["id"] == "native-forbidden-volume-counterexample") == "FAIL"
+        assert next(r["status"] for r in rejected["results"] if r["id"] == "physical-interference-and-clearance") == "NOT_RUN"
+        checked = [c for c in candidates if c["status"] == "CHECKED"]
+        assert checked, [(c["status"], store.get(c["report_root"])["results"] if c["report_root"] else None) for c in candidates]
+        # This native workflow must consume a source-bound fabrication-state path,
+        # then independently check actual elbows and the complete obstacle set.
+        certified = [c for c in checked if c.get("proposal_evidence")]
+        assert certified
+        checked = certified + [c for c in checked if not c.get("proposal_evidence")]
+        evidence = checked[0]["proposal_evidence"]
+        model = store.get(evidence["report_root"])
+        assert model["context"]["base_root"] == run["base_root"]
+        assert evidence["method"] == "SOURCE_BOUND_FABRICATION_GRAPH"
+        assert model["report"]["status"] == "CHECKED_FABRICATION_PROPOSALS"
+        assert model["report"]["source_coverage_check"]["physical_elements"] == 1
+        assert model["report"]["binary64_fabrication_check"]["fabrication_status"] == "PASS"
+        assert not evidence["route_acceptance"] and not evidence["physical_infeasibility_claim"]
+        assert store.get(checked[0]["state_root"])["derived_artifacts"]["route_proposal_evidence"] == evidence
+        from oma.verification import CHECKER_VERSION
+        result = store.accept(project["id"], checked[0]["id"], 1, "accept", checker_version=CHECKER_VERSION)
+        assert result["revision"] == 2
+        report = store.get(checked[0]["report_root"])
+        assert report["status"] == "PASS"
+        fabrication = next(r for r in report["results"] if r["id"] == "nominal-fabrication-witness-integrity")
+        assert fabrication["status"] == "PASS"
+        assert fabrication["witness"]["origin_run_id"] == run["id"]
+        assert fabrication["witness"]["producer_check_reused"] is False
+        assert fabrication["witness"]["candidate_acceptance_authority"] is False
+        assert report["objective"]["length_m"] &gt; 4
+        assert len(report["results"]) &gt;= 9
+        assert store.get(store.history(project["id"])[-1]["root"])["sources"] == []
+        assert store.project(project["id"])["state_root"] == checked[0]["state_root"]
+        from oma.exporting import export_project
+        bundle = export_project(store, project["id"], checked[0]["id"], draft=False)
+        assert bundle["status"] == "CHECKED_LOCAL_SCOPE"
+        assert bundle["round_trip"] == "PASS"
+        exported_report = store.get(store.get(bundle["artifact_root"])["verification_root"])
+        exported_fabrication = next(r for r in exported_report["results"] if r["id"] == "nominal-fabrication-witness-integrity")
+        assert exported_fabrication["status"] == "PASS"
+        assert exported_fabrication["witness"]["artifact_root"] == fabrication["witness"]["artifact_root"]
+        assert len(bundle["files"]) == 1  # Edited source replaces original; no duplicate discipline.
+        assert bundle["files"][0]["changed"]
+        store.revert(project["id"], 1, 2, "undo-repair")
+        assert store.project(project["id"])["revision"] == 3
+        assert store.get(store.project(project["id"])["state_root"])["routes"] == []
+        # An optimizer cannot weaken its own fixed mission and then certify the edit.
+        modified = store.get(checked[0]["state_root"])
+        modified["derived_artifacts"]["routing_scenario"]["clearance_m"] = 0
+        adversarial = store.add_candidate(run["id"], modified, {"kind": "physical_route", "changed_ids": checked[0]["changed_ids"]})
+        from oma.routing.checker import verify_route_candidate
+        mutated_report = verify_route_candidate(store, adversarial["id"])
+        assert next(r for r in mutated_report.results if r.id == "fixed-request-assumptions").status == "FAIL"
+        # Portability is checked with actual imported meshes and IFC solids, then
+        # independently verified in a new process with the old store unavailable.
+        from oma.backup import restore_store
+        from oma.service import EngineService
+        import subprocess
+        import sys
+        backup = store.backup(tmp_path / "backup")
+        store.directory.rename(tmp_path / "original-unavailable")
+        restored = restore_store(backup, tmp_path / "relocated")
+        result = subprocess.run([sys.executable, "-m", "oma.verification", str(restored.directory), checked[0]["id"]],
+                                capture_output=True, text=True, timeout=90)
+&gt;       assert result.returncode == 0, result.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "&lt;frozen runpy&gt;", line 198, in _run_module_as_main
+E           File "&lt;frozen runpy&gt;", line 88, in _run_code
+E           File "C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\verification.py", line 143, in &lt;module&gt;
+E             main()
+E           File "C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\verification.py", line 136, in main
+E             report = verify_route_candidate(store, candidate["id"])
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\checker.py", line 696, in verify_route_candidate
+E             store.record_verification(candidate_id, report)
+E           File "C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\store.py", line 587, in record_verification
+E             raise IntegrityError("Managed candidate requires its current completed checker execution")
+E         oma.store.IntegrityError: Managed candidate requires its current completed checker execution
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe', '-m', 'oma.verification', 'C:\\U...d checker execution")\noma.store.IntegrityError: Managed candidate requires its current completed checker execution\n').returncode
+
+tests\test_routing_integration.py:87: AssertionError</failure></testcase><testcase classname="tests.test_routing_integration" name="test_missing_mission_is_recorded_not_a_fabricated_route" time="0.083" /><testcase classname="tests.test_joint_routing" name="test_joint_search_consumes_checked_cell_path_and_rechecks_complete_route_set" time="20.856" /><testcase classname="tests.test_joint_routing" name="test_simultaneous_routes_reject_crossing_and_select_authorized_option" time="14.917" /><testcase classname="tests.test_network_integration" name="test_shared_network_import_check_select_accept_export_and_reopen" time="8.301"><failure message="AssertionError: Traceback (most recent call last):&#10;    File &quot;&lt;frozen runpy&gt;&quot;, line 198, in _run_module_as_main&#10;    File &quot;&lt;frozen runpy&gt;&quot;, line 88, in _run_code&#10;    File &quot;C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\verification.py&quot;, line 143, in &lt;module&gt;&#10;      main()&#10;    File &quot;C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\verification.py&quot;, line 130, in main&#10;      report = verify_network_candidate(store, candidate[&quot;id&quot;])&#10;               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&#10;    File &quot;C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\network_checker.py&quot;, line 176, in verify_network_candidate&#10;      return finish()&#10;             ^^^^^^^^&#10;    File &quot;C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\network_checker.py&quot;, line 41, in finish&#10;      store.record_verification(candidate_id, report)&#10;    File &quot;C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\store.py&quot;, line 587, in record_verification&#10;      raise IntegrityError(&quot;Managed candidate requires its current completed checker execution&quot;)&#10;  oma.store.IntegrityError: Managed candidate requires its current completed checker execution&#10;  &#10;assert 1 == 0&#10; +  where 1 = CompletedProcess(args=['C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe', '-m', 'oma.verification', 'C:\\U...d checker execution&quot;)\noma.store.IntegrityError: Managed candidate requires its current completed checker execution\n').returncode">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-223/test_shared_network_import_che0')
+
+    def test_shared_network_import_check_select_accept_export_and_reopen(tmp_path):
+        store, project = imported_project(tmp_path)
+        mission = network_scenario()
+        run = store.create_run(project["id"], {"operation": "optimize", "mission": mission, "budget_seconds": 90})
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+        candidates = store.candidates(project["id"])
+        assert len(candidates) == 1, store.run(run["id"])
+        candidate = candidates[0]
+        report = store.get(candidate["report_root"])
+        assert candidate["status"] == "CHECKED", report
+        assert store.run(run["id"])["status"] == "COMPLETED"
+        assert report["objective"] == {"length_m": 3., "fitting_count": 1.}
+        calculation = next(r["witness"]["calculation"] for r in report["results"] if r["id"] == "network-demand-conditioned-service")
+        assert calculation["source_flow_m3_s"] == "3/1000"
+        assert calculation["components"]["junction"]["flow_m3_s"]["branch"] == "1/500"
+        assert calculation["unique_physical_components"] == 4
+        assert calculation["operating_point_solution"] == "NOT_ESTABLISHED"
+        from oma.project_assurance import candidate_assurance
+        case = candidate_assurance(store, candidate["id"])
+        assert any("fixed_network_boundary_inputs" in a["statement"] for a in case["assumption_ledger"])
+        assert any("INLET_VELOCITY_TOTAL_IRREVERSIBLE_LOSS" in a["statement"] for a in case["assumption_ledger"])
+        state = store.get(candidate["state_root"])
+        assert state["routes"] == []
+        assert len(state["physical_networks"]) == 1
+        from oma.build_identity import checker_version
+        from oma.exporting import export_project
+        store.accept(project["id"], candidate["id"], 1, "accept-shared", checker_version=checker_version())
+        exported = export_project(store, project["id"], candidate["id"], draft=False)
+        assert exported["status"] == "CHECKED_LOCAL_SCOPE", exported
+        assert exported["round_trip"] == "PASS"
+        import ifcopenshell
+        model = ifcopenshell.open(exported["files"][0]["path"])
+        assert len(model.by_type("IfcPipeSegment")) == 3
+        assert len(model.by_type("IfcPipeFitting")) == 1
+        assert len(model.by_type("IfcDistributionPort")) == 9
+        assert len(model.by_type("IfcRelConnectsPorts")) == 3
+        # Rewriting state metadata cannot erase a branch or change its fixed flow.
+        tampered = copy.deepcopy(state)
+        tampered["mission"]["demands"][1]["required_flow_m3_s"] = .0001
+        forged = store.add_candidate(run["id"], tampered, {"kind": "physical_network", "changed_ids": candidate["changed_ids"]})
+        assert verify_network_candidate(store, forged["id"]).status == "FAIL"
+        tampered = copy.deepcopy(state)
+        tampered["physical_networks"][0]["component_ids"].pop()
+        forged = store.add_candidate(run["id"], tampered, {"kind": "physical_network", "changed_ids": candidate["changed_ids"]})
+        assert verify_network_candidate(store, forged["id"]).status == "FAIL"
+        # A subsequent operation must not silently drop accepted network obligations.
+        more = store.create_run(project["id"], {"operation": "optimize", "mission": mission, "budget_seconds": 30})
+        route_project_run(store, more, WorkerControl(store, more["id"]))
+        assert store.run(more["id"])["status"] == "MISSING_INPUTS"
+        # Immutable graph, native part bytes, coordinate sidecars and proof roots
+        # survive relocation; authority is reacquired from actual restored bytes.
+        from oma.backup import restore_store
+        from oma.service import EngineService
+        import subprocess
+        import sys
+        backup = store.backup(tmp_path / "network-backup")
+        old_directory = store.directory.resolve()
+        assert old_directory.is_relative_to(tmp_path.resolve())
+        old_directory.rename(tmp_path / "network-original-unavailable")
+        restored = restore_store(backup, tmp_path / "network-restored")
+        checked = subprocess.run([sys.executable, "-m", "oma.verification", str(restored.directory), candidate["id"]],
+            capture_output=True, text=True, timeout=60)
+&gt;       assert checked.returncode == 0, checked.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "&lt;frozen runpy&gt;", line 198, in _run_module_as_main
+E           File "&lt;frozen runpy&gt;", line 88, in _run_code
+E           File "C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\verification.py", line 143, in &lt;module&gt;
+E             main()
+E           File "C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\verification.py", line 130, in main
+E             report = verify_network_candidate(store, candidate["id"])
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\network_checker.py", line 176, in verify_network_candidate
+E             return finish()
+E                    ^^^^^^^^
+E           File "C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\network_checker.py", line 41, in finish
+E             store.record_verification(candidate_id, report)
+E           File "C:\Users\Davi\Downloads\oma\.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\store.py", line 587, in record_verification
+E             raise IntegrityError("Managed candidate requires its current completed checker execution")
+E         oma.store.IntegrityError: Managed candidate requires its current completed checker execution
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe', '-m', 'oma.verification', 'C:\\U...d checker execution")\noma.store.IntegrityError: Managed candidate requires its current completed checker execution\n').returncode
+
+tests\test_network_integration.py:96: AssertionError</failure></testcase><testcase classname="tests.test_network_integration" name="test_shared_network_missing_flow_is_blocked_despite_clear_geometry" time="2.480" /><testcase classname="tests.test_network_integration" name="test_shared_network_native_counterexample_leaves_full_denominator_not_run" time="3.292" /><testcase classname="tests.test_network_integration" name="test_unresolved_multiple_source_alignment_cannot_use_single_source_identity" time="0.413" /><testcase classname="tests.test_network_revision" name="test_initial_optional_revision_field_preserves_historical_scenario_hash" time="0.001" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_change_fixed_requirements[&lt;lambda&gt;0]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_change_fixed_requirements[&lt;lambda&gt;1]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_change_fixed_requirements[&lt;lambda&gt;2]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_change_fixed_requirements[&lt;lambda&gt;3]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_change_fixed_requirements[&lt;lambda&gt;4]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_change_fixed_requirements[&lt;lambda&gt;5]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_change_fixed_requirements[&lt;lambda&gt;6]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_change_fixed_requirements[&lt;lambda&gt;7]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_change_fixed_requirements[&lt;lambda&gt;8]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_change_fixed_requirements[&lt;lambda&gt;9]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_change_fixed_requirements[&lt;lambda&gt;10]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_change_fixed_requirements[&lt;lambda&gt;11]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_silently_discard_previous_obligations[&lt;lambda&gt;0]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_silently_discard_previous_obligations[&lt;lambda&gt;1]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_silently_discard_previous_obligations[&lt;lambda&gt;2]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_silently_discard_previous_obligations[&lt;lambda&gt;3]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_silently_discard_previous_obligations[&lt;lambda&gt;4]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_cannot_silently_discard_previous_obligations[&lt;lambda&gt;5]" time="0.002" /><testcase classname="tests.test_network_revision" name="test_revision_preserves_original_ports_and_binds_every_previous_component" time="0.002" /><testcase classname="tests.test_network_revision" name="test_actual_revision_replaces_one_tree_and_rechecks_its_export" time="7.788" /><testcase classname="tests.test_selection_adversarial" name="test_current_checked_flag_cannot_admit_a_misbound_report[root]" time="2.813" /><testcase classname="tests.test_selection_adversarial" name="test_current_checked_flag_cannot_admit_a_misbound_report[version]" time="0.027" /><testcase classname="tests.test_selection_adversarial" name="test_current_checked_flag_cannot_admit_a_misbound_report[mission]" time="0.029" /><testcase classname="tests.test_selection_adversarial" name="test_current_checked_flag_cannot_admit_a_misbound_report[rules]" time="0.026" /><testcase classname="tests.test_selection_adversarial" name="test_current_checked_flag_cannot_admit_a_misbound_report[scope]" time="0.031" /><testcase classname="tests.test_selection_adversarial" name="test_current_checked_flag_cannot_admit_a_misbound_report[missing_body_check]" time="0.029" /><testcase classname="tests.test_selection_adversarial" name="test_current_checked_flag_cannot_admit_a_misbound_report[duplicate_check]" time="0.028" /><testcase classname="tests.test_selection_adversarial" name="test_current_checked_flag_cannot_admit_a_misbound_report[negative_objective]" time="0.027" /><testcase classname="tests.test_selection_adversarial" name="test_current_checked_flag_cannot_hide_changed_materialized_bytes" time="0.036" /><testcase classname="tests.test_selection_adversarial" name="test_every_report_obligation_must_remain_present_and_keep_its_applicable_status[single]" time="3.696" /><testcase classname="tests.test_selection_adversarial" name="test_every_report_obligation_must_remain_present_and_keep_its_applicable_status[joint]" time="3.956" /><testcase classname="tests.test_selection_adversarial" name="test_every_report_obligation_must_remain_present_and_keep_its_applicable_status[network]" time="3.192" /><testcase classname="tests.test_selection_adversarial" name="test_fresh_rejection_of_cached_incumbent_is_not_selected[single]" time="2.788"><failure message="oma.store.IntegrityError: Managed candidate requires its current completed checker execution">kind = 'single'
+tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-223/test_fresh_rejection_of_cached0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000167FD2DB3B0&gt;
+
+    @pytest.mark.parametrize("kind", ["single", "joint", "network"])
+    def test_fresh_rejection_of_cached_incumbent_is_not_selected(kind, tmp_path, monkeypatch):
+        store, project, run = imported_case(tmp_path, kind)
+        update = store.update_run
+        rejected = []
+    
+        def concurrent_recheck(run_id, status, detail="", stage="compute", **fields):
+            result = update(run_id, status, detail, stage, **fields)
+            if run_id != run["id"] or stage not in {"selection", "joint_selection", "network_selection"} or rejected:
+                return result
+            candidate = next(c for c in store.candidates(project["id"]) if c["run_id"] == run_id)
+            assert candidate["status"] == "CHECKED"
+            state = store.get(candidate["state_root"])
+            record = state["physical_networks"][0] if kind == "network" else state["routes"][0]
+            path = store.resolve_path(store.get(record["geometry_artifact"])["export_path"])
+            original = path.read_bytes()
+            # A real second verifier observes changed candidate bytes while the
+            # optimizer still holds its first PASS/cost. Restoring the file does
+            # not erase that latest rejection or authorize the old cached verdict.
+            try:
+                path.write_bytes(original + b"\n")
+                if kind == "single":
+                    from oma.routing.checker import verify_route_candidate as checker
+                elif kind == "joint":
+                    from oma.routing.joint_checker import verify_joint_candidate as checker
+                else:
+                    from oma.routing.network_checker import verify_network_candidate as checker
+                report = checker(store, candidate["id"])
+                assert report.status == "FAIL"
+            finally:
+                path.write_bytes(original)
+            assert store.candidate(candidate["id"])["status"] == "REJECTED"
+            rejected.append(candidate["id"])
+            return result
+    
+        monkeypatch.setattr(store, "update_run", concurrent_recheck)
+&gt;       route_project_run(store, run, WorkerControl(store, run["id"]))
+
+tests\test_selection_adversarial.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\engine.py:156: in route_project_run
+    store.update_run(run["id"], "RUNNING", f"Candidate {attempted}: {checked['status']}; {len(feasible_ids)} checked alternatives", "selection")
+tests\test_selection_adversarial.py:143: in concurrent_recheck
+    report = checker(store, candidate["id"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\checker.py:696: in verify_route_candidate
+    store.record_verification(candidate_id, report)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;oma.store.Store object at 0x00000167FD2DA1E0&gt;
+candidate_id = '456dd353d9a24cd7a700cd7e0ec49a53'
+report = VerificationReport(schema_version=1, candidate_root='30063fee751bc508c787e1fb40cac84b0edbde83684b724d45a78e83842e1ef5'...ntions; checker separately reads native geometry, topology and volume'), created_at='2026-09-14T19:48:43.523666+00:00')
+_execution_id = None, _execution_evidence_root = None
+
+    def record_verification(self, candidate_id: str, report, *, _execution_id: str | None = None, _execution_evidence_root: str | None = None) -&gt; dict:
+        from .models import VerificationReport, Verdict
+        report = VerificationReport.model_validate(report)
+        if report.checker_version.startswith("oma-independent-checker/"):
+            from .build_identity import checker_version
+            if report.checker_version != checker_version():
+                raise IntegrityError("Executable checker changed during verification; rerun on a stable build")
+        report_root = self.put(report)
+        from .project_assurance import build_report_assurance
+        assurance = build_report_assurance(self, self.candidate(candidate_id), report_root,
+            executable=report.checker_version, assessment_time=report.created_at)
+        assurance_root = self.put(assurance)
+        # Assurance construction may be expensive; publication checks below run
+        # after it and share the candidate update transaction with token/control
+        # validation. Orphaned blobs confer no current candidate authority.
+        if report.checker_version.startswith("oma-independent-checker/"):
+            if report.checker_version != checker_version():
+                raise IntegrityError("Executable checker changed while preparing report publication")
+        with self.transaction() as db:
+            row = db.execute("SELECT * FROM candidates WHERE id=?", (candidate_id,)).fetchone()
+            if not row or row["state_root"] != report.candidate_root:
+                raise IntegrityError("Checker report root does not match persisted candidate")
+            if _execution_id is not None:
+                binding = self._check_execution_guard(db, row, _execution_id, report=report, complete=True)
+                db.execute("UPDATE check_executions SET status='COMPLETED',finished_at=?,evidence_root=?,report_root=? WHERE execution_id=?",
+                    (utcnow(), _execution_evidence_root, report_root, _execution_id))
+            elif db.execute("SELECT 1 FROM candidate_check_executions WHERE candidate_id=?", (candidate_id,)).fetchone():
+&gt;               raise IntegrityError("Managed candidate requires its current completed checker execution")
+E               oma.store.IntegrityError: Managed candidate requires its current completed checker execution
+
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\store.py:587: IntegrityError</failure></testcase><testcase classname="tests.test_selection_adversarial" name="test_fresh_rejection_of_cached_incumbent_is_not_selected[joint]" time="2.641"><failure message="oma.store.IntegrityError: Managed candidate requires its current completed checker execution">kind = 'joint'
+tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-223/test_fresh_rejection_of_cached1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000167FD60C3B0&gt;
+
+    @pytest.mark.parametrize("kind", ["single", "joint", "network"])
+    def test_fresh_rejection_of_cached_incumbent_is_not_selected(kind, tmp_path, monkeypatch):
+        store, project, run = imported_case(tmp_path, kind)
+        update = store.update_run
+        rejected = []
+    
+        def concurrent_recheck(run_id, status, detail="", stage="compute", **fields):
+            result = update(run_id, status, detail, stage, **fields)
+            if run_id != run["id"] or stage not in {"selection", "joint_selection", "network_selection"} or rejected:
+                return result
+            candidate = next(c for c in store.candidates(project["id"]) if c["run_id"] == run_id)
+            assert candidate["status"] == "CHECKED"
+            state = store.get(candidate["state_root"])
+            record = state["physical_networks"][0] if kind == "network" else state["routes"][0]
+            path = store.resolve_path(store.get(record["geometry_artifact"])["export_path"])
+            original = path.read_bytes()
+            # A real second verifier observes changed candidate bytes while the
+            # optimizer still holds its first PASS/cost. Restoring the file does
+            # not erase that latest rejection or authorize the old cached verdict.
+            try:
+                path.write_bytes(original + b"\n")
+                if kind == "single":
+                    from oma.routing.checker import verify_route_candidate as checker
+                elif kind == "joint":
+                    from oma.routing.joint_checker import verify_joint_candidate as checker
+                else:
+                    from oma.routing.network_checker import verify_network_candidate as checker
+                report = checker(store, candidate["id"])
+                assert report.status == "FAIL"
+            finally:
+                path.write_bytes(original)
+            assert store.candidate(candidate["id"])["status"] == "REJECTED"
+            rejected.append(candidate["id"])
+            return result
+    
+        monkeypatch.setattr(store, "update_run", concurrent_recheck)
+&gt;       route_project_run(store, run, WorkerControl(store, run["id"]))
+
+tests\test_selection_adversarial.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\engine.py:43: in route_project_run
+    return joint_project_run(store, run, control)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\joint.py:188: in joint_project_run
+    store.update_run(run["id"], "RUNNING", f"Joint assignment {attempted}: {checked['status']}; {checked_count} checked alternatives", "joint_selection")
+tests\test_selection_adversarial.py:143: in concurrent_recheck
+    report = checker(store, candidate["id"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\joint_checker.py:114: in verify_joint_candidate
+    return _check_prepared_routes(store, candidate, state, baseline, run, control, contracts, routes,
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\joint_checker.py:201: in _check_prepared_routes
+    return _publish(store, candidate, state, results, total)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\joint_checker.py:209: in _publish
+    store.record_verification(candidate["id"], report)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;oma.store.Store object at 0x00000167FD60FA40&gt;
+candidate_id = 'f272610bde624e72bfaf563a2d569d0d'
+report = VerificationReport(schema_version=1, candidate_root='1efcd573112ce50331be3f21a6c5e8155b335261906be916c3d689ce42a3b133'...e/design alternatives do not establish complete continuous optimality'), created_at='2026-09-14T19:48:46.204552+00:00')
+_execution_id = None, _execution_evidence_root = None
+
+    def record_verification(self, candidate_id: str, report, *, _execution_id: str | None = None, _execution_evidence_root: str | None = None) -&gt; dict:
+        from .models import VerificationReport, Verdict
+        report = VerificationReport.model_validate(report)
+        if report.checker_version.startswith("oma-independent-checker/"):
+            from .build_identity import checker_version
+            if report.checker_version != checker_version():
+                raise IntegrityError("Executable checker changed during verification; rerun on a stable build")
+        report_root = self.put(report)
+        from .project_assurance import build_report_assurance
+        assurance = build_report_assurance(self, self.candidate(candidate_id), report_root,
+            executable=report.checker_version, assessment_time=report.created_at)
+        assurance_root = self.put(assurance)
+        # Assurance construction may be expensive; publication checks below run
+        # after it and share the candidate update transaction with token/control
+        # validation. Orphaned blobs confer no current candidate authority.
+        if report.checker_version.startswith("oma-independent-checker/"):
+            if report.checker_version != checker_version():
+                raise IntegrityError("Executable checker changed while preparing report publication")
+        with self.transaction() as db:
+            row = db.execute("SELECT * FROM candidates WHERE id=?", (candidate_id,)).fetchone()
+            if not row or row["state_root"] != report.candidate_root:
+                raise IntegrityError("Checker report root does not match persisted candidate")
+            if _execution_id is not None:
+                binding = self._check_execution_guard(db, row, _execution_id, report=report, complete=True)
+                db.execute("UPDATE check_executions SET status='COMPLETED',finished_at=?,evidence_root=?,report_root=? WHERE execution_id=?",
+                    (utcnow(), _execution_evidence_root, report_root, _execution_id))
+            elif db.execute("SELECT 1 FROM candidate_check_executions WHERE candidate_id=?", (candidate_id,)).fetchone():
+&gt;               raise IntegrityError("Managed candidate requires its current completed checker execution")
+E               oma.store.IntegrityError: Managed candidate requires its current completed checker execution
+
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\store.py:587: IntegrityError</failure></testcase><testcase classname="tests.test_selection_adversarial" name="test_fresh_rejection_of_cached_incumbent_is_not_selected[network]" time="2.509"><failure message="oma.store.IntegrityError: Managed candidate requires its current completed checker execution">kind = 'network'
+tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-223/test_fresh_rejection_of_cached2')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000167FD5C17C0&gt;
+
+    @pytest.mark.parametrize("kind", ["single", "joint", "network"])
+    def test_fresh_rejection_of_cached_incumbent_is_not_selected(kind, tmp_path, monkeypatch):
+        store, project, run = imported_case(tmp_path, kind)
+        update = store.update_run
+        rejected = []
+    
+        def concurrent_recheck(run_id, status, detail="", stage="compute", **fields):
+            result = update(run_id, status, detail, stage, **fields)
+            if run_id != run["id"] or stage not in {"selection", "joint_selection", "network_selection"} or rejected:
+                return result
+            candidate = next(c for c in store.candidates(project["id"]) if c["run_id"] == run_id)
+            assert candidate["status"] == "CHECKED"
+            state = store.get(candidate["state_root"])
+            record = state["physical_networks"][0] if kind == "network" else state["routes"][0]
+            path = store.resolve_path(store.get(record["geometry_artifact"])["export_path"])
+            original = path.read_bytes()
+            # A real second verifier observes changed candidate bytes while the
+            # optimizer still holds its first PASS/cost. Restoring the file does
+            # not erase that latest rejection or authorize the old cached verdict.
+            try:
+                path.write_bytes(original + b"\n")
+                if kind == "single":
+                    from oma.routing.checker import verify_route_candidate as checker
+                elif kind == "joint":
+                    from oma.routing.joint_checker import verify_joint_candidate as checker
+                else:
+                    from oma.routing.network_checker import verify_network_candidate as checker
+                report = checker(store, candidate["id"])
+                assert report.status == "FAIL"
+            finally:
+                path.write_bytes(original)
+            assert store.candidate(candidate["id"])["status"] == "REJECTED"
+            rejected.append(candidate["id"])
+            return result
+    
+        monkeypatch.setattr(store, "update_run", concurrent_recheck)
+&gt;       route_project_run(store, run, WorkerControl(store, run["id"]))
+
+tests\test_selection_adversarial.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\engine.py:34: in route_project_run
+    return network_project_run(store, run, control)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\network_engine.py:84: in network_project_run
+    store.update_run(run["id"], "RUNNING", f"Shared network {index+1}: {checked['status']}", "network_selection")
+tests\test_selection_adversarial.py:143: in concurrent_recheck
+    report = checker(store, candidate["id"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\network_checker.py:113: in verify_network_candidate
+    return finish()
+           ^^^^^^^^
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\routing\network_checker.py:41: in finish
+    store.record_verification(candidate_id, report)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;oma.store.Store object at 0x00000167FD5C3C50&gt;
+candidate_id = 'e75fcff656644bd59f122e77318bc0ae'
+report = VerificationReport(schema_version=1, candidate_root='52862ec1940f5565b0eeb193dcf2eb69352bb9a2055b26c59c6db4c667be7e57'...o not establish global continuous or unrestricted topology optimality'), created_at='2026-09-14T19:48:48.745545+00:00')
+_execution_id = None, _execution_evidence_root = None
+
+    def record_verification(self, candidate_id: str, report, *, _execution_id: str | None = None, _execution_evidence_root: str | None = None) -&gt; dict:
+        from .models import VerificationReport, Verdict
+        report = VerificationReport.model_validate(report)
+        if report.checker_version.startswith("oma-independent-checker/"):
+            from .build_identity import checker_version
+            if report.checker_version != checker_version():
+                raise IntegrityError("Executable checker changed during verification; rerun on a stable build")
+        report_root = self.put(report)
+        from .project_assurance import build_report_assurance
+        assurance = build_report_assurance(self, self.candidate(candidate_id), report_root,
+            executable=report.checker_version, assessment_time=report.created_at)
+        assurance_root = self.put(assurance)
+        # Assurance construction may be expensive; publication checks below run
+        # after it and share the candidate update transaction with token/control
+        # validation. Orphaned blobs confer no current candidate authority.
+        if report.checker_version.startswith("oma-independent-checker/"):
+            if report.checker_version != checker_version():
+                raise IntegrityError("Executable checker changed while preparing report publication")
+        with self.transaction() as db:
+            row = db.execute("SELECT * FROM candidates WHERE id=?", (candidate_id,)).fetchone()
+            if not row or row["state_root"] != report.candidate_root:
+                raise IntegrityError("Checker report root does not match persisted candidate")
+            if _execution_id is not None:
+                binding = self._check_execution_guard(db, row, _execution_id, report=report, complete=True)
+                db.execute("UPDATE check_executions SET status='COMPLETED',finished_at=?,evidence_root=?,report_root=? WHERE execution_id=?",
+                    (utcnow(), _execution_evidence_root, report_root, _execution_id))
+            elif db.execute("SELECT 1 FROM candidate_check_executions WHERE candidate_id=?", (candidate_id,)).fetchone():
+&gt;               raise IntegrityError("Managed candidate requires its current completed checker execution")
+E               oma.store.IntegrityError: Managed candidate requires its current completed checker execution
+
+.oma\runtimes\1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd\src\oma\store.py:587: IntegrityError</failure></testcase><testcase classname="tests.test_selection_adversarial" name="test_finite_selection_limit_retains_a_separately_checked_incumbent_without_optimum_claim[single]" time="2.841" /><testcase classname="tests.test_selection_adversarial" name="test_finite_selection_limit_retains_a_separately_checked_incumbent_without_optimum_claim[joint]" time="2.780" /><testcase classname="tests.test_selection_adversarial" name="test_finite_selection_limit_retains_a_separately_checked_incumbent_without_optimum_claim[network]" time="2.655" /><testcase classname="tests.test_selection_adversarial" name="test_interrupted_child_is_not_admitted_even_if_it_wrote_a_pass_before_timeout[single]" time="2.804"><failure message="assert []">kind = 'single'
+tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-223/test_interrupted_child_is_not_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000167FD8393A0&gt;
+
+    @pytest.mark.parametrize("kind", ["single", "joint", "network"])
+    def test_interrupted_child_is_not_admitted_even_if_it_wrote_a_pass_before_timeout(kind, tmp_path, monkeypatch):
+        store, project, run = imported_case(tmp_path, kind)
+        execute = subprocess.run
+        interrupted = []
+    
+        def late_timeout(command, **kwargs):
+            result = execute(command, **kwargs)
+            if list(command[1:3]) == ["-m", "oma.verification"]:
+                candidate = store.candidate(command[-1])
+                assert result.returncode == 0 and candidate["status"] == "CHECKED"
+                interrupted.append(candidate["id"])
+                # Exercise the parent observation when a report has been persisted
+                # but the checker process fails to complete within its deadline.
+                raise subprocess.TimeoutExpired(command, kwargs["timeout"], output=result.stdout, stderr=result.stderr)
+            return result
+    
+        monkeypatch.setattr(subprocess, "run", late_timeout)
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+&gt;       assert interrupted
+E       assert []
+
+tests\test_selection_adversarial.py:202: AssertionError</failure></testcase><testcase classname="tests.test_selection_adversarial" name="test_interrupted_child_is_not_admitted_even_if_it_wrote_a_pass_before_timeout[joint]" time="2.618"><failure message="assert []">kind = 'joint'
+tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-223/test_interrupted_child_is_not_1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000167FD838B00&gt;
+
+    @pytest.mark.parametrize("kind", ["single", "joint", "network"])
+    def test_interrupted_child_is_not_admitted_even_if_it_wrote_a_pass_before_timeout(kind, tmp_path, monkeypatch):
+        store, project, run = imported_case(tmp_path, kind)
+        execute = subprocess.run
+        interrupted = []
+    
+        def late_timeout(command, **kwargs):
+            result = execute(command, **kwargs)
+            if list(command[1:3]) == ["-m", "oma.verification"]:
+                candidate = store.candidate(command[-1])
+                assert result.returncode == 0 and candidate["status"] == "CHECKED"
+                interrupted.append(candidate["id"])
+                # Exercise the parent observation when a report has been persisted
+                # but the checker process fails to complete within its deadline.
+                raise subprocess.TimeoutExpired(command, kwargs["timeout"], output=result.stdout, stderr=result.stderr)
+            return result
+    
+        monkeypatch.setattr(subprocess, "run", late_timeout)
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+&gt;       assert interrupted
+E       assert []
+
+tests\test_selection_adversarial.py:202: AssertionError</failure></testcase><testcase classname="tests.test_selection_adversarial" name="test_interrupted_child_is_not_admitted_even_if_it_wrote_a_pass_before_timeout[network]" time="2.536"><failure message="assert []">kind = 'network'
+tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-223/test_interrupted_child_is_not_2')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000167FD4F3D40&gt;
+
+    @pytest.mark.parametrize("kind", ["single", "joint", "network"])
+    def test_interrupted_child_is_not_admitted_even_if_it_wrote_a_pass_before_timeout(kind, tmp_path, monkeypatch):
+        store, project, run = imported_case(tmp_path, kind)
+        execute = subprocess.run
+        interrupted = []
+    
+        def late_timeout(command, **kwargs):
+            result = execute(command, **kwargs)
+            if list(command[1:3]) == ["-m", "oma.verification"]:
+                candidate = store.candidate(command[-1])
+                assert result.returncode == 0 and candidate["status"] == "CHECKED"
+                interrupted.append(candidate["id"])
+                # Exercise the parent observation when a report has been persisted
+                # but the checker process fails to complete within its deadline.
+                raise subprocess.TimeoutExpired(command, kwargs["timeout"], output=result.stdout, stderr=result.stderr)
+            return result
+    
+        monkeypatch.setattr(subprocess, "run", late_timeout)
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+&gt;       assert interrupted
+E       assert []
+
+tests\test_selection_adversarial.py:202: AssertionError</failure></testcase><testcase classname="tests.test_route_check_execution" name="test_private_pass_requires_successful_process_completion[pass-10-COMPLETED]" time="1.068" /><testcase classname="tests.test_route_check_execution" name="test_private_pass_requires_successful_process_completion[import sys; sys.exit(17)-10-FAILED]" time="1.079" /><testcase classname="tests.test_route_check_execution" name="test_private_pass_requires_successful_process_completion[import time; time.sleep(3)-1.5-UNKNOWN_TIMEOUT]" time="1.663" /><testcase classname="tests.test_route_check_execution" name="test_cancel_after_private_pass_never_publishes_it" time="1.079" /><testcase classname="tests.test_route_check_execution" name="test_zero_exit_without_current_bound_receipt_is_unknown[missing]" time="0.700" /><testcase classname="tests.test_route_check_execution" name="test_zero_exit_without_current_bound_receipt_is_unknown[wrong_execution]" time="0.945" /><testcase classname="tests.test_route_check_execution" name="test_zero_exit_without_current_bound_receipt_is_unknown[wrong_mission]" time="0.998" /><testcase classname="tests.test_route_check_execution" name="test_zero_exit_without_current_bound_receipt_is_unknown[wrong_report_root]" time="1.001" /><testcase classname="tests.test_route_check_execution" name="test_supervised_nested_late_receipt_is_killed_and_never_authoritative" time="1.632" /><testcase classname="tests.test_route_check_execution" name="test_resource_limit_cannot_infer_a_geometry_failure" time="0.641" /><testcase classname="tests.test_route_check_execution" name="test_invalid_deadline_does_not_launch_or_change_candidate[True]" time="0.081" /><testcase classname="tests.test_route_check_execution" name="test_invalid_deadline_does_not_launch_or_change_candidate[inf]" time="0.081" /><testcase classname="tests.test_route_check_execution" name="test_invalid_deadline_does_not_launch_or_change_candidate[nan]" time="0.082" /><testcase classname="tests.test_route_check_execution" name="test_actual_native_joint_report_survives_deferred_dispatch[False-PASS]" time="2.606" /><testcase classname="tests.test_route_check_execution" name="test_actual_native_joint_report_survives_deferred_dispatch[True-FAIL]" time="2.599" /><testcase classname="tests.test_route_check_execution" name="test_cancellation_callback_before_launch_and_control_failure_are_closed" time="0.005" /><testcase classname="tests.test_route_check_execution" name="test_control_poll_failure_after_launch_terminates_owned_process" time="0.141" /><testcase classname="tests.test_route_check_execution" name="test_separate_historical_recheck_retains_original_mission_and_native_report" time="4.264" /><testcase classname="tests.test_verification_execution_atomicity" name="test_private_pending_and_timed_out_report_cannot_be_accepted_or_republished" time="0.301" /><testcase classname="tests.test_verification_execution_atomicity" name="test_stop_arriving_during_assurance_work_prevents_atomic_pass[cancel]" time="0.219" /><testcase classname="tests.test_verification_execution_atomicity" name="test_stop_arriving_during_assurance_work_prevents_atomic_pass[pause]" time="0.218" /><testcase classname="tests.test_verification_execution_atomicity" name="test_stop_arriving_during_assurance_work_prevents_atomic_pass[terminal]" time="0.218" /><testcase classname="tests.test_verification_execution_atomicity" name="test_stop_arriving_during_assurance_work_prevents_atomic_pass[deadline]" time="0.222" /><testcase classname="tests.test_verification_execution_atomicity" name="test_newer_execution_finishing_during_old_assurance_cannot_be_overwritten" time="0.320" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[root]" time="0.225" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[mission]" time="0.209" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[rules]" time="0.218" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[build]" time="0.180" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[origin_request]" time="0.232" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[control_request]" time="0.228" /><testcase classname="tests.test_verification_execution_atomicity" name="test_completed_origin_can_be_rechecked_only_by_fresh_owned_control_run" time="0.373" /><testcase classname="tests.test_verification_execution_atomicity" name="test_timeout_does_not_discard_another_completed_incumbent" time="0.332" /><testcase classname="tests.test_verification_execution_atomicity" name="test_acceptance_revalidates_latest_report_inside_revision_transaction[new_pending]" time="0.296" /><testcase classname="tests.test_verification_execution_atomicity" name="test_acceptance_revalidates_latest_report_inside_revision_transaction[new_rejection]" time="0.351" /><testcase classname="tests.test_verification_execution_atomicity" name="test_tokens_and_control_owners_cannot_be_rebound_to_unrelated_candidates" time="0.300" /><testcase classname="tests.test_verification_execution_atomicity" name="test_step_control_can_publish_a_completed_owned_check" time="0.231" /><testcase classname="tests.test_verification_execution_atomicity" name="test_backup_retains_execution_fences_and_prior_report_evidence" time="0.412" /><testcase classname="tests.test_export_checks" name="test_child_timeout_retains_bounded_logs_and_terminates_only_its_tree" time="2.035" /><testcase classname="tests.test_export_checks" name="test_child_resource_limit_is_an_unknown_not_a_failed_geometry_claim" time="0.044" /><testcase classname="tests.test_export_checks" name="test_parent_exit_allows_only_bounded_descendant_shutdown[0.6-COMPLETED]" time="0.745" /><testcase classname="tests.test_export_checks" name="test_parent_exit_allows_only_bounded_descendant_shutdown[60-UNKNOWN_PROCESS_TREE]" time="1.529" /><testcase classname="tests.test_export_checks" name="test_multiple_child_checks_share_one_deadline" time="2.071" /><testcase classname="tests.test_export_checks" name="test_checked_export_timeout_preserves_the_actual_draft_and_original_bytes" time="3.656" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[candidate_root]" time="0.505" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[checker_version]" time="0.517" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[mission_hash]" time="0.499" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[rule_hash]" time="0.498" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[objective]" time="0.720" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[scope]" time="0.533" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[check_set]" time="0.549" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[exported_bytes]" time="0.501" /><testcase classname="tests.test_export_checks" name="test_export_budget_api_and_cli_are_bounded_and_forwarded" time="0.294" /><testcase classname="tests.test_joint_negative_integration" name="test_three_demands_recheck_remapped_conflict_then_check_moved_choice_completely" time="9.847" /><testcase classname="tests.test_joint_negative_integration" name="test_fabricated_old_failure_against_current_separated_parts_falls_through" time="1.819" /><testcase classname="tests.test_fabrication_evidence" name="test_current_replay_preserves_model_disposition_without_route_authority[points0-0.1-PASS]" time="0.119" /><testcase classname="tests.test_fabrication_evidence" name="test_current_replay_preserves_model_disposition_without_route_authority[points1-0.25-FAIL]" time="0.120" /><testcase classname="tests.test_fabrication_evidence" name="test_current_replay_preserves_model_disposition_without_route_authority[points2-0.1-UNKNOWN]" time="0.121" /><testcase classname="tests.test_fabrication_evidence" name="test_fabrication_reference_cannot_forge_inputs_origin_scope_or_proof[path]" time="0.105" /><testcase classname="tests.test_fabrication_evidence" name="test_fabrication_reference_cannot_forge_inputs_origin_scope_or_proof[origin]" time="0.107" /><testcase classname="tests.test_fabrication_evidence" name="test_fabrication_reference_cannot_forge_inputs_origin_scope_or_proof[scope]" time="0.103" /><testcase classname="tests.test_fabrication_evidence" name="test_fabrication_reference_cannot_forge_inputs_origin_scope_or_proof[disposition]" time="0.104" /><testcase classname="tests.test_fabrication_evidence" name="test_fabrication_reference_cannot_forge_inputs_origin_scope_or_proof[producer_check]" time="0.108" /><testcase classname="tests.test_fabrication_evidence" name="test_fabrication_reference_cannot_forge_inputs_origin_scope_or_proof[component]" time="0.108" /><testcase classname="tests.test_store" name="test_immutable_branches_idempotent_retry_and_conflict" time="0.078" /><testcase classname="tests.test_store" name="test_concurrent_writers_publish_only_one_revision_and_event" time="0.112" /><testcase classname="tests.test_store" name="test_failed_publication_rolls_back_revision_and_outbox" time="0.058" /><testcase classname="tests.test_store" name="test_corrupt_blob_and_nonfinite_inputs_rejected" time="0.040" /><testcase classname="tests.test_store" name="test_acceptance_requires_exact_root_mission_and_checker_version" time="0.126" /><testcase classname="tests.test_store" name="test_recovery_revert_backup_and_restore" time="0.171" /><testcase classname="tests.test_store" name="test_terminal_job_cannot_be_resurrected_by_late_supervisor" time="0.082" /><testcase classname="tests.test_store" name="test_import_and_run_retries_create_one_durable_job" time="0.183" /><testcase classname="tests.test_store" name="test_portable_backup_binds_bytes_and_resolves_without_original" time="0.212" /><testcase classname="tests.test_store" name="test_large_asset_copy_does_not_hold_live_publication_lock" time="0.109" /><testcase classname="tests.test_store" name="test_cache_provenance_hash_map_is_not_treated_as_file_paths" time="0.122" /><testcase classname="tests.test_worker_control" name="test_repeated_step_consumed_once_across_independent_controls" time="0.466" /></testsuite></testsuites>

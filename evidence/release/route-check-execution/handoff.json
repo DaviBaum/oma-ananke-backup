@@ -1,0 +1,90 @@
+{
+  "status": "TARGETED_CHECKS_PASS_ROOT_INTEGRATION_PENDING",
+  "scope": "Owned candidate checker process execution, deferred report publication, and atomic Store admission; not a new physical validity or mathematical optimality claim",
+  "finding": {
+    "id": "IFC-CHECK-EXECUTION-001",
+    "simple_venv_launcher": "Immediate Python/conhost transient teardown observed; no persistent orphan or late result in the simple case",
+    "nested_venv_child": "Actual finite hidden nested child survives subprocess.run timeout and writes PASS after caller returned",
+    "simple_evidence": "evidence/release/route-check-execution/d0d9c94f9a054a4197ce519502064a25/result.json",
+    "nested_evidence": "evidence/release/route-check-execution/dea56e0cc6bb49778cf929c02c9adb18/result.json",
+    "no_live_api_or_project_modified": true,
+    "cleanup": "Only observed descendant process identities were eligible; all finite probes exited naturally; no unrelated process signalled",
+    "watchdog_scope": "Worker.execute has a watchdog; direct route calls do not. Current-descendant enumeration after intermediate death is not retained ownership proof."
+  },
+  "implementation": {
+    "helper": "run_candidate_check(store,candidate_id,deadline=absolute_monotonic,control_run_id=separate_recheck_only)",
+    "child": "Fresh process uses same independent native dispatcher with DeferredVerificationStore; only private receipt/blob publication, no live candidate CHECKED",
+    "supervisor": "Existing bounded export supervisor with optional nonblocking cancellation callback; time/memory/logs/observed-owned-descendant cleanup",
+    "admission": "Store begin/finish execution token; same transaction fences root/request/control/deadline and publication, independently implemented/reviewed by export_backend",
+    "failed_execution": "Candidate UNKNOWN; prior/pending report evidence retained without acceptance authority",
+    "report_scope": "Child geometric report unchanged; timeout/resource/cancellation never a geometric FAIL"
+  },
+  "tests": [
+    {
+      "junit": "evidence/release/route-check-execution-targeted.xml",
+      "checker_version": "oma-independent-checker/2:f4c4405a7a4a300a5641a6f5257966e79d08193ced7e3acdbf1c45e235c286c5",
+      "tests": 31,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 31.082
+    },
+    {
+      "junit": "evidence/release/route-check-execution-helper.xml",
+      "checker_version": "oma-independent-checker/2:1cef42ad72437e507a0e652c29d047dfd6727668c8c1d8146d9e2c67435128dd",
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 22.674
+    }
+  ],
+  "tested_cases": [
+    "private PASS then normal exit",
+    "private PASS then nonzero exit",
+    "private PASS then timeout",
+    "cancel after private PASS and concurrent accept rejection",
+    "missing/forged receipt or report",
+    "nested delayed receipt prevented",
+    "resource excess",
+    "invalid deadlines",
+    "native joint PASS and FAIL",
+    "actual historical recheck under fresh control run",
+    "control polling failure cleanup"
+  ],
+  "reviewed_files": {
+    "src/oma/routing/check_execution.py": "bc10f3c731451fdbba621ac2c011f0b93d9450a9cd80e9b0092d4d00a082e3c2",
+    "src/oma/export_checks.py": "68fc60728616c16f9a53c3595c20e78067ee6a6c2dfd037d68f7d64345c93091",
+    "tests/test_route_check_execution.py": "16481a10db12efcb587f996e89a0f17f31ca479659685a3fe2e1ea154e04e22a",
+    "scripts/route_check_process_probe.py": "2f17b0151b2bb7dde084b2fb6fda72752c92175777ec36a16cbb8aa639f870bf"
+  },
+  "remaining": "Root ordinary/joint/network/baseline/recheck integration and complete checkpoint; do not infer integration suite completion from this handoff. No active runtime/native promotion.",
+  "export_extension": {
+    "status": "TARGETED_PASS",
+    "source_build": "oma-independent-checker/2:ecccd8825aa4569cb776b9082c281617acf2a7590afea2c55b49e6b8d2eff3db",
+    "helper_environment": "Optional existing frozen environment is copied; Store and child independently enforce its exact checker version. Export uses its original frozen environment and shared deadline.",
+    "control_owner": "Each new exported candidate has its own explicit recheck run. Original optimization run/state/mission/head unchanged.",
+    "native_regressions": "Real IFC roundtrip and all-source native PASS, followed by normal completion, nonzero exit, or timeout. Only normal process completion produces checked export; failure cases retain private PASS evidence but candidate UNKNOWN and bundle DRAFT. Original checked incumbent remains unchanged.",
+    "release_bindings": "All nine original release bindings and complete check inventory retained.",
+    "source_sha256": {
+      "src/oma/export_checks.py": "12038bbee046e12046c85f2ccc1dc5d1c4f076a2012dc6210d9ae4e590d4e01c",
+      "src/oma/routing/check_execution.py": "b650c858ffec70cff0862ca73e72a9507673a388af30a3faa529aaa56daf4139",
+      "tests/test_export_checks.py": "bc20798828013586a2fa0e4aa0022356181a6b007d2c51da9dc0e6c90097c7eb",
+      "tests/test_route_check_execution.py": "16481a10db12efcb587f996e89a0f17f31ca479659685a3fe2e1ea154e04e22a"
+    },
+    "checks": [
+      {
+        "junit": "evidence\\release\\export-deferred-report-execution.xml",
+        "tests": 35,
+        "failures": 0,
+        "errors": 0,
+        "seconds": 49.208
+      },
+      {
+        "junit": "evidence\\release\\export-deferred-report-final.xml",
+        "tests": 18,
+        "failures": 0,
+        "errors": 0,
+        "seconds": 33.69
+      }
+    ]
+  }
+}

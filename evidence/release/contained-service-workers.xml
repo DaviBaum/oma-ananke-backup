@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="5" time="4.341" timestamp="2026-09-14T15:18:16.587454-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_service_contained_workers" name="test_service_native_recheck_completes_nested_jobs_and_keeps_exact_acceptance" time="1.831"><failure message="AssertionError: assert 'FAILED' == 'COMPLETED'&#10;  &#10;  - COMPLETED&#10;  + FAILED">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-255/test_service_native_recheck_co0')
+
+    def test_service_native_recheck_completes_nested_jobs_and_keeps_exact_acceptance(tmp_path):
+        case = _native_candidate(tmp_path / "native", crossing=False)
+        service = EngineService(case["store"].directory)
+        store, candidate = service.store, case["candidate"]
+        try:
+            run = service.start_run(candidate["project_id"], {
+                "operation": "recheck", "candidate_id": candidate["id"], "budget_seconds": 45})
+            until(lambda: run["id"] not in service.threads)
+&gt;           assert store.run(run["id"])["status"] == "COMPLETED"
+E           AssertionError: assert 'FAILED' == 'COMPLETED'
+E             
+E             - COMPLETED
+E             + FAILED
+
+tests\test_service_contained_workers.py:26: AssertionError</failure></testcase><testcase classname="tests.test_service_contained_workers" name="test_service_shutdown_stops_a_real_paused_worker_job_without_candidate_publication" time="1.331" /><testcase classname="tests.test_api" name="test_loopback_api_rejects_external_origins_and_invalid_imports" time="0.095" /><testcase classname="tests.test_api" name="test_snapshot_events_and_revert_are_real_revision_data" time="0.162" /><testcase classname="tests.test_api" name="test_candidate_recheck_is_project_bound_and_idempotent" time="0.160" /></testsuite></testsuites>

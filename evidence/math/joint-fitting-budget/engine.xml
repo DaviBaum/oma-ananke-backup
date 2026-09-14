@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="20.457" timestamp="2026-09-14T14:59:01.998315-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_joint_fitting_budget" name="test_joint_engine_selects_checked_mixed_routes_with_exact_capacity_row" time="20.013"><failure message="AssertionError: assert {} == {'new-fabricated-elbows': 6}&#10;  &#10;  Right contains 1 more item:&#10;  {'new-fabricated-elbows': 6}&#10;  Use -v to get more diff">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-234/test_joint_engine_selects_chec0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002CA4E1C9460&gt;
+
+    def test_joint_engine_selects_checked_mixed_routes_with_exact_capacity_row(tmp_path, monkeypatch):
+        """Control only the finite menu; actual materialization, child checks and master run."""
+        import oma.routing.joint as joint
+        from oma.routing.fabrication_evidence import persist_fabrication_proposal
+        source = make_fixture(tmp_path / "source.ifc")
+        store = Store(tmp_path / "store")
+        project = store.create_project("Exact fitting budget engine tradeoff", {})
+        imported = store.create_run(project["id"], {"operation": "import", "paths": [str(source)]})
+        import_sources(store, imported, WorkerControl(store, imported["id"]))
+        demands = []
+        for index in range(2):
+            path = _points("long", 1. + index * .5)
+            scenario = RoutingScenario(start=path[0], end=path[-1], system_type="PRESSURE_PIPE",
+                diameter_m=.1, insulation_m=.02, bend_radius_m=.3, minimum_straight_m=.05,
+                clearance_m=.1, allowed_zone={"min": [-2., -2., -2.], "max": [6., 6., 6.]},
+                scenario_terminals=True, max_candidates=2, objective_weights={"length_m": 1., "fitting_count": 0.})
+            demands.append({"id": "service-" + str(index), "alternatives": [scenario.model_dump(mode="json")]})
+        raw = {"route_demands": demands, "max_joint_candidates": 4, "max_paths_per_alternative": 2, "max_new_fittings": 6}
+        run = store.create_run(project["id"], {"operation": "route", "mission": raw, "budget_seconds": 120})
+        def finite_menu(store, run, state, scenario, obstacles, *, checkpoint, request_demand_id, max_fittings, **kwargs):
+            assert max_fittings == 6
+            for kind in ("long", "short"):
+                yield persist_fabrication_proposal(store, run, scenario, {"points_m": _points(kind, scenario.start[2])},
+                    checkpoint=checkpoint, request_demand_id=request_demand_id)
+        original_solve = joint.solve_finite_codesign
+        captured = []
+        def capture(problem, **kwargs):
+            captured.append(problem)
+            return original_solve(problem, **kwargs)
+        monkeypatch.setattr(joint, "project_proposals", finite_menu)
+        monkeypatch.setattr(joint, "solve_finite_codesign", capture)
+        joint.joint_project_run(store, run, WorkerControl(store, run["id"]))
+        candidates = [c for c in store.candidates(project["id"]) if c["run_id"] == run["id"]]
+        assert [c["status"] for c in candidates] == ["CHECKED", "CHECKED", "CHECKED", "REJECTED"]
+        event = next(e for e in reversed(store.events(project["id"], limit=1000)) if e["stage"] == "complete")
+        assert event["payload"]["selected_candidate_ids"][0] in {candidates[1]["id"], candidates[2]["id"]}
+        assert event["payload"]["global_lower_bound"] is None
+        assert len(captured) == 1
+        for case in captured[0].cases:
+            if case.routing is not None:
+&gt;               assert dict(case.routing.capacities) == {"new-fabricated-elbows": 6}
+E               AssertionError: assert {} == {'new-fabricated-elbows': 6}
+E                 
+E                 Right contains 1 more item:
+E                 {'new-fabricated-elbows': 6}
+E                 Use -v to get more diff
+
+tests\test_joint_fitting_budget.py:251: AssertionError</failure></testcase></testsuite></testsuites>

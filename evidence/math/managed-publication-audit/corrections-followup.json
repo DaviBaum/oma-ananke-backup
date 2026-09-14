@@ -1,0 +1,53 @@
+{
+  "schema": "oma.managed-publication-independent-followup/1",
+  "scope": "Bounded actual native input-freshness and Windows lifecycle review; no claim of complete backend verification",
+  "initial_review_preserved": "evidence/math/managed-publication-audit/review.json",
+  "findings": [
+    {
+      "id": "CURRENT_PHYSICAL_BYTES_CHANGED_AFTER_MANAGED_PASS",
+      "status": "REPRODUCED_AND_CORRECTED",
+      "initial_build": "oma-independent-checker/2:ddfd5fc9596ad28d15affcce58edc9c932d3da5f889a9dcf0d05288b305bb9c5",
+      "initial_evidence": "evidence/release/acceptance-input-freshness/attempts/ce98a55d8b4347a7ba4ea62147821a7e",
+      "observed": "Two isolated actual IFC fixtures had a genuine managed native PASS. Moving source geometry or enlarging a current route solid made fresh native checks FAIL, yet both old candidates were accepted at revision 2.",
+      "correction": "The parent now hashes every declared current and protected-baseline source/materialization input after transition derivation inside the acceptance transaction. Managed PASS publication repeats the physical input check after assurance construction.",
+      "regression_file": "tests/test_acceptance_input_freshness.py",
+      "corrected_build": "oma-independent-checker/2:dd5f0bfefb07007a5a312be9dd4c3700977b586773823b795bbd589f32af925d",
+      "tests_passed": 4,
+      "test_seconds": 9.56,
+      "test_evidence": "evidence/release/acceptance-input-freshness.xml",
+      "validated_cases": [
+        "Actual source geometry changed after native PASS: acceptance rejected without revision or event.",
+        "Actual materialized route geometry changed after native PASS: acceptance rejected without revision or event.",
+        "Genuine private native PASS followed by source mutation during parent assurance: no public report admission.",
+        "Unchanged actual native inputs: valid acceptance with complete hash receipt."
+      ],
+      "boundary": "Root and alias mappings are transaction-bound. Arbitrary external filesystem changes are not locked out atomically, and hashes do not rerun geometry. Original user files were never modified by the audit."
+    },
+    {
+      "id": "UNOBSERVED_DESCENDANT_OUTLIVES_COMPLETED_SUPERVISION",
+      "status": "REPRODUCED_AND_CORRECTED_FOR_DECLARED_CREATEPROCESS_SCOPE",
+      "initial_runnable_script": "evidence/release/process-tree-discovery-race/reproduce.py",
+      "script_sha256": "2b2770b69e2c19e82872a83e7c30aabfae44ef1de875af9dae245a3d12b31deb",
+      "initial_retained_attempt": "evidence/release/process-tree-discovery-race/attempts/3d0019e91ae3472b97bbc74c1ee66fac",
+      "corrected_build": "oma-independent-checker/2:182b4b51dc2f0a0f73f460c6a33e77c481e374f05c7221dbb4c016bf44a3edbb",
+      "corrected_attempt": "evidence/release/process-tree-discovery-race/attempts/5d2228156baa47928909084df864a4eb",
+      "observed_after_correction": "The same native process race returned COMPLETED after 1.093 seconds only when the descendant marker already existed and the owned kernel job was empty.",
+      "correction": "Create the direct loaded CPython image suspended; assign and verify its exact owned Job Object before resuming. Count completion through kernel job accounting. A byte-checked private interpreter bridge avoids the Microsoft Store launcher broker and preserves a direct sys.executable for ordinary recursive launches.",
+      "independent_bridge_script": "evidence/release/process-tree-discovery-race/bridge_audit.py",
+      "independent_bridge_script_sha256": "1d5a174944344afa3ccdd354105cf81ffe871f440b2a47da5fd81f688e1f69d9",
+      "independent_bridge_attempt": "evidence/release/process-tree-discovery-race/bridge-attempts/b1c0100752f94bbabc0a7c7deaf967a2",
+      "independent_bridge_seconds": 3.312,
+      "independent_bridge_checks_passed": 7,
+      "validated_cases": [
+        "All three recursive ordinary sys.executable processes use their actual loaded direct image.",
+        "All three simultaneous PIDs appear in the owned kernel job inventory.",
+        "Every process constructs an actual OCP box and IFC4 model.",
+        "ifcopenshell, cadquery-ocp, numpy, scipy, pydantic and psutil versions match the parent venv.",
+        "Every process imports the same frozen oma source path.",
+        "The job has zero active processes at completion."
+      ],
+      "boundary": "This is ordinary CreateProcess descendant lifecycle containment, not a security sandbox against arbitrary external brokers. The byte-checked local cache is not a hostile-user boundary. Private sys.prefix differs intentionally; original venv packages and original standard library are used. Parent interpreter preparation is not preemptible, with its deadline checked before launching a child."
+    }
+  ],
+  "production_files_modified_by_reviewer": []
+}

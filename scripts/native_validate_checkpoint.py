@@ -16,7 +16,9 @@ from native_build import run
 def test_files():
     paths = [p for p in (ROOT / "tests").rglob("*") if p.is_file() and "__pycache__" not in p.parts and ".pytest_cache" not in p.parts]
     return [*paths, ROOT / "pyproject.toml", ROOT / "docs/ifc-network-spec.json",
-            ROOT / "scripts/corpus_route_metadata_probe.py"]
+            ROOT / "scripts/corpus_route_metadata_probe.py",
+            ROOT / "scripts/native_real_model_validation.py", ROOT / "scripts/native_prepare.py",
+            ROOT / "scripts/native_build.py", ROOT / "Start-OMA.ps1"]
 
 
 def main():

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="5" time="123.405" timestamp="2026-09-14T15:08:59.902590-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_export_checks" name="test_child_timeout_retains_bounded_logs_and_terminates_only_its_tree" time="60.145"><failure message="AssertionError: {'status': 'UNKNOWN_LOG_DRAIN', 'command': ['C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe', '-c', &quot;impo...); time.sleep(60)&quot;], 'checker_version': 'test-process-contract', 'started_at': '2026-09-14T20:09:00.110829+00:00', ...}&#10;assert 'UNKNOWN_LOG_DRAIN' == 'UNKNOWN_TIMEOUT'&#10;  &#10;  - UNKNOWN_TIMEOUT&#10;  + UNKNOWN_LOG_DRAIN">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-244/test_child_timeout_retains_bou0')
+
+    def test_child_timeout_retains_bounded_logs_and_terminates_only_its_tree(tmp_path):
+        marker = tmp_path / "descendant.pid"
+        program = ("import subprocess,sys,time; "
+            "p=subprocess.Popen([sys.executable,'-c','import time; time.sleep(60)']); "
+            f"open({str(marker)!r},'w').write(str(p.pid)); "
+            f"sys.stdout.write('x'*{LOG_LIMIT_BYTES + 1000}); sys.stdout.flush(); "
+            "sys.stderr.write('native check started\\n'); sys.stderr.flush(); time.sleep(60)")
+        unrelated = subprocess.Popen([sys.executable, "-c", "import time; time.sleep(60)"],
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+        try:
+            result = supervise_check([sys.executable, "-c", program],
+                environment={**os.environ, "OMA_EXECUTABLE_BUILD": "test-process-contract"},
+                directory=tmp_path / "check", deadline=time.monotonic() + 2, reserve_bytes=0)
+&gt;           assert result["status"] == "UNKNOWN_TIMEOUT", result
+E           AssertionError: {'status': 'UNKNOWN_LOG_DRAIN', 'command': ['C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe', '-c', "impo...); time.sleep(60)"], 'checker_version': 'test-process-contract', 'started_at': '2026-09-14T20:09:00.110829+00:00', ...}
+E           assert 'UNKNOWN_LOG_DRAIN' == 'UNKNOWN_TIMEOUT'
+E             
+E             - UNKNOWN_TIMEOUT
+E             + UNKNOWN_LOG_DRAIN
+
+tests\test_export_checks.py:29: AssertionError</failure></testcase><testcase classname="tests.test_export_checks" name="test_child_resource_limit_is_an_unknown_not_a_failed_geometry_claim" time="0.012" /><testcase classname="tests.test_export_checks" name="test_parent_exit_allows_only_bounded_descendant_shutdown[0.6-COMPLETED]" time="0.777" /><testcase classname="tests.test_export_checks" name="test_parent_exit_allows_only_bounded_descendant_shutdown[60-UNKNOWN_PROCESS_TREE]" time="60.144"><failure message="AssertionError: {'status': 'UNKNOWN_LOG_DRAIN', 'command': ['C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe', '-c', &quot;impo...d)); time.sleep(.3)&quot;], 'checker_version': 'test-shutdown-grace', 'started_at': '2026-09-14T20:10:01.109083+00:00', ...}&#10;assert 'UNKNOWN_LOG_DRAIN' == 'UNKNOWN_PROCESS_TREE'&#10;  &#10;  - UNKNOWN_PROCESS_TREE&#10;  + UNKNOWN_LOG_DRAIN">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-244/test_parent_exit_allows_only_b1')
+child_seconds = 60, outcome = 'UNKNOWN_PROCESS_TREE'
+
+    @pytest.mark.parametrize("child_seconds,outcome", [(.6,"COMPLETED"),(60,"UNKNOWN_PROCESS_TREE")])
+    def test_parent_exit_allows_only_bounded_descendant_shutdown(tmp_path,child_seconds,outcome):
+        marker = tmp_path / "child.pid"
+        program = ("import subprocess,sys,time; "
+            f"p=subprocess.Popen([sys.executable,'-c','import time; time.sleep({child_seconds})']); "
+            f"open({str(marker)!r},'w').write(str(p.pid)); time.sleep(.3)")
+        result = supervise_check([sys.executable,"-c",program],
+            environment={**os.environ,"OMA_EXECUTABLE_BUILD":"test-shutdown-grace"},
+            directory=tmp_path/"check",deadline=time.monotonic()+5,reserve_bytes=0)
+&gt;       assert result["status"] == outcome, result
+E       AssertionError: {'status': 'UNKNOWN_LOG_DRAIN', 'command': ['C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe', '-c', "impo...d)); time.sleep(.3)"], 'checker_version': 'test-shutdown-grace', 'started_at': '2026-09-14T20:10:01.109083+00:00', ...}
+E       assert 'UNKNOWN_LOG_DRAIN' == 'UNKNOWN_PROCESS_TREE'
+E         
+E         - UNKNOWN_PROCESS_TREE
+E         + UNKNOWN_LOG_DRAIN
+
+tests\test_export_checks.py:63: AssertionError</failure></testcase><testcase classname="tests.test_export_checks" name="test_multiple_child_checks_share_one_deadline" time="2.048" /></testsuite></testsuites>

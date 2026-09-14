@@ -1,0 +1,27 @@
+{
+  "scope": "CLI managed recheck publication and control boundary; isolated actual IFC fixtures",
+  "build": "oma-independent-checker/2:4396616cb75a742c2a72785ba1d02cca403d58eb09f5eadcc27f3ba9ddb590ff",
+  "command": ".venv/Scripts/python.exe scripts/test_frozen.py -q tests/test_cli_managed_verify.py --junitxml=evidence/release/cli-managed-verify.xml",
+  "tests_passed": 11,
+  "seconds": 19.33,
+  "production_scope": "src/oma/cli.py verify command only",
+  "contract": {
+    "default_budget_seconds": 300,
+    "allowed_budget_seconds": [1, 3600],
+    "owner": "Fresh explicit recheck run bound to the existing candidate",
+    "report_authority": "Existing managed child receipt and parent admission protocol",
+    "exit_0": "Completed check with published bound report, including physical FAIL",
+    "exit_2": "Incomplete execution or admission error; no report claimed by this invocation",
+    "acceptance_performed": false,
+    "original_mission_or_run_changed": false
+  },
+  "actual_native_cases": [
+    "Historical managed PASS: fresh supervised check publishes a new bound report.",
+    "Historical managed FAIL: fresh supervised check publishes FAIL and exits 0 for completed execution.",
+    "Actual private native PASS followed by a sleeping child: timeout exits 2, candidate UNKNOWN, report unpublished, acceptance rejected."
+  ],
+  "additional_cases": [
+    "Setup error does not present a retained earlier report as the current invocation's result.",
+    "Nonfinite, zero, negative, excessive and boolean budgets are rejected before storage is created."
+  ]
+}

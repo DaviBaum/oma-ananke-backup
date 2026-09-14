@@ -15,6 +15,10 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("EXACT_COUNT_FABRICATION_FRONTIER_AND_SOURCE_PROPOSALS", "oma-integration", [5522, 5523, 5536, 5537, 5544, 5545, 5548, 5549, 5568, 5569], ["ALG-RTR15", "ALG-RTR22", "ALG-RTR26", "ALG-RTR28", "ALG-RTR38"],
+         ["oma.optimization.fabrication_frontier.compile_fabrication_frontier", "oma.routing.certified_fabrication.build_certified_fabrication_proposals", "oma.routing.proposals.project_proposals"], ["oma.optimization.fabrication_frontier.verify_fabrication_frontier", "oma.optimization.fabrication.verify_orthogonal_fabrication", "oma.routing.fitting_budget.check_joint_fitting_budget"], "tests/test_optimization_fabrication_frontier.py",
+         "Bounded specialization of the source fabrication lift, column-cost and pricing-closure obligations. Product states add exact quarter-turn count k; each fixed k has constant pi coefficient wL*R*k/2, so nonnegative rational deferred costs admit exact Dijkstra. Independent grounded predecessor reachability, full outgoing closure, all rational edge/terminal inequalities and one realizing path certify every count 0..K. K is at most 32; graph walks may repeat vertices or visit the goal before returning. Actual source consumer binds full immutable joint budget B and cap min(B,32), authenticated source/frame coverage, objective and executable, then independently checks each binary64 fixed-fabrication path before proposing it.",
+         [], "Exact nominal fixed-count optima only. No all-tie, simple-path, nonadjacent self-interference, continuous/native objective, full physical universe or acceptance claim. State/work/byte/time exhaustion remains UNKNOWN; default adapter limits are 24000 product states, 1000000 work units, 3 seconds or half the remaining time, and 8 output paths. Counts above 32 and output-limit alternatives remain unexamined. Fallback routes are not declared resource-feasible. Separate current IFC counting and finite checked-candidate master enforce the optional newly authored independent-elbow budget; no shared-tree/corridor resource is inferred."),
         ("SOURCE_AWARE_BOUNDED_GRID_ENRICHMENT", "oma-integration", [5522, 5523, 5524, 5525, 5546, 5547], ["ALG-RTR15", "ALG-RTR16", "ALG-RTR27"],
          ["oma.routing.fabrication_grid.enrich_fabrication_grid"], ["oma.routing.fabrication_grid.verify_fabrication_grid_enrichment"], "tests/test_fabrication_grid.py",
          "A bounded heuristic coordinate specialization, not source-prescribed CEGAR: retain every baseline coordinate; propose exact complete source-box face offsets and terminal first/two-trim thresholds; account every plane and budget omission. Independent equations, unique addition witnesses and baseline/product checks establish grid provenance only. Generic axis-balanced allocation has default cap10; application cap8 gives at most10775 structural states including pricing sink.",
@@ -185,6 +189,17 @@ def main():
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
     coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
     for row in register:
+        if row["obligation"] == "EXACT_COUNT_FABRICATION_FRONTIER_AND_SOURCE_PROPOSALS":
+            row["automated_tests"].extend(["tests/test_certified_fabrication_frontier.py", "tests/test_joint_fitting_budget.py", "tests/test_joint_fitting_budget_adversarial.py"])
+            row["real_model_benchmark"] = {"status": "ACTUAL_ANALYTIC_SOURCE_ADAPTER_AND_SEPARATE_NATIVE_WALL_CORRESPONDENCE",
+                "evidence": "evidence/math/fabrication-frontier/latest.json",
+                "scope": "Complete actual analytic wall source/frame/outer-support accounting; independently closed exact counts 0 through 2, checked binary64 k=2 path, five actual native parts/two elbows, full obstacle/self/zone/semantics checks. This retained attempt does not accept a project or check an aggregate joint budget."}
+            row["independent_review"] = "evidence/release/fabrication-frontier-independent-review.json"
+            row["consumer_scope"] = {"mission_field":"JointRoutingScenario.max_new_fittings", "default":None,
+                "declared_budget_maximum":1024,"represented_per_route_count_maximum":32,
+                "native_resource":"NEW_INDEPENDENT_ROUND_90_DEGREE_ELBOWS", "prior_routes":"EXCLUDED_PROTECTED_BASELINE",
+                "nominal_bounds_are_native_or_continuous_bounds":False,
+                "complete_cartesian_physical_route_universe":False}
         if row["obligation"] == "SOURCE_AWARE_BOUNDED_GRID_ENRICHMENT":
             row["real_model_benchmark"] = {"status": "SOURCE_DERIVED_REAL_OFFICE_PROPOSAL_AND_FRESH_COMPLETE_NATIVE_CHECK",
                 "evidence": "evidence/math/fabrication-grid/latest.json", "scope": "100-micrometre guarded finite model, independent plane/grid and nominal pricing certificates; fresh4015 native pairs against803 obstacles, native zone and primitive correspondence. No candidate acceptance or continuous optimum."}
@@ -210,7 +225,7 @@ def main():
              "obligations": register, "pending_source_mechanisms": pending,
              "unit_test_run": {"path": str(test_path.relative_to(ROOT)), "tests": int(suite.get("tests")) if suite is not None else None,
                                "failures": int(suite.get("failures")) if suite is not None else None},
-             "additional_adapter_test_runs": ["evidence/math/certified-cells-adapter-tests.xml", "evidence/math/opening-inverse-regression.xml", "evidence/math/fabrication-tests.xml", "evidence/math/fabrication-search-tests.xml", "evidence/math/fabrication-pricing-tests.xml", "evidence/release/fabrication-pricing-adversarial.xml", "evidence/math/fabrication-grid-tests.xml", "evidence/release/fabrication-grid-native-zone-adversarial.xml", "evidence/math/route-metadata-tests.xml"],
+             "additional_adapter_test_runs": ["evidence/math/certified-cells-adapter-tests.xml", "evidence/math/opening-inverse-regression.xml", "evidence/math/fabrication-tests.xml", "evidence/math/fabrication-search-tests.xml", "evidence/math/fabrication-pricing-tests.xml", "evidence/release/fabrication-pricing-adversarial.xml", "evidence/math/fabrication-grid-tests.xml", "evidence/release/fabrication-grid-native-zone-adversarial.xml", "evidence/release/certified-fabrication-frontier.xml", "evidence/math/route-metadata-tests.xml"],
              "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py tests/test_optimization_route_cells.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"}
     destination = ROOT / "evidence/math/traceability_register.json"
     destination.write_text(json.dumps(proof, indent=2) + "\n", encoding="utf-8")

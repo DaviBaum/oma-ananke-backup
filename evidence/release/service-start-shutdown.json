@@ -1,0 +1,19 @@
+{
+  "scope": "Bounded real Store and native Python thread lifecycle test; no worker or IFC verdict",
+  "initial_reproduction_build": "oma-independent-checker/2:4396616cb75a742c2a72785ba1d02cca403d58eb09f5eadcc27f3ba9ddb590ff",
+  "initial_reproduction": "evidence/release/process-tree-discovery-race/service-race-attempts/0e2d14426cdc4fc3abf8bbf13fa3f9c9",
+  "initial_script": "evidence/release/process-tree-discovery-race/service_start_shutdown_race.py",
+  "initial_failure": "shutdown joined an owned thread before Thread.start and raised RuntimeError",
+  "corrected_build": "oma-independent-checker/2:e3fde02b5d3ef2eeeb59cbcdf780f1ea6361c42e3e35e22cd5a2d220d7a1b78d",
+  "correction": "Thread registry publication and Thread.start share the shutdown snapshot lock; closed scheduling cancels before startup; failed thread starts clean up the registry.",
+  "regression_file": "tests/test_service_start_shutdown.py",
+  "test_evidence": "evidence/release/service-start-shutdown.xml",
+  "tests_passed": 3,
+  "seconds": 0.79,
+  "checked_cases": [
+    "Concurrent shutdown waits for delayed startup, then cancels the run and joins the actual supervisor without launching a child.",
+    "A queued run scheduled after service closing starts neither a thread nor a job.",
+    "Thread.start RuntimeError persists FAILED and removes the unstarted thread, leaving shutdown usable."
+  ],
+  "production_files_modified_by_reviewer": []
+}

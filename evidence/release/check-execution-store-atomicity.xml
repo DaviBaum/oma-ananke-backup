@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="33" time="6.710" timestamp="2026-09-14T14:45:25.408485-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_verification_execution_atomicity" name="test_private_pending_and_timed_out_report_cannot_be_accepted_or_republished" time="0.370" /><testcase classname="tests.test_verification_execution_atomicity" name="test_stop_arriving_during_assurance_work_prevents_atomic_pass[cancel]" time="0.231" /><testcase classname="tests.test_verification_execution_atomicity" name="test_stop_arriving_during_assurance_work_prevents_atomic_pass[pause]" time="0.234" /><testcase classname="tests.test_verification_execution_atomicity" name="test_stop_arriving_during_assurance_work_prevents_atomic_pass[terminal]" time="0.224" /><testcase classname="tests.test_verification_execution_atomicity" name="test_stop_arriving_during_assurance_work_prevents_atomic_pass[deadline]" time="0.215" /><testcase classname="tests.test_verification_execution_atomicity" name="test_newer_execution_finishing_during_old_assurance_cannot_be_overwritten" time="0.316"><failure message="AssertionError: assert ('CHECKED' == 'CHECKED'&#10;  &#10;    CHECKED and '999a97e70a73...8f14f4cfb0c45' == '4be7aff35055...c1067d5b360c6'&#10;  &#10;  - 4be7aff35055a851c2f61a2f56bda238f6dd6fb917e410e81f5c1067d5b360c6&#10;  + 999a97e70a73c80dba728d747effce943043a866733b356f0c18f14f4cfb0c45)">case = (&lt;oma.store.Store object at 0x000001F15D14B4A0&gt;, {'id': '7473b3f2a8524282af02b1319032dbbc', 'name': 'Execution publica... 'checker_version': 'oma-independent-checker/2:e9071229bc73eaef6d5e74c765672defaac537198f54a9b5a88efddaed2c07d8', ...})
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001F15D9B12B0&gt;
+
+    def test_newer_execution_finishing_during_old_assurance_cannot_be_overwritten(case, monkeypatch):
+        import oma.project_assurance as assurance
+        store, _, _, candidate, report = case
+        first, _ = begin(case)
+        newer = deepcopy(report)
+        newer["objective"] = {"value": 2.}
+        invoked = []
+        original = assurance.build_report_assurance
+        def interleave(*args, **kwargs):
+            if not invoked:
+                invoked.append(True)
+                second, _ = begin(case)
+                store.finish_check_execution(candidate["id"], second, status="COMPLETED", report=newer)
+            return original(*args, **kwargs)
+        monkeypatch.setattr(assurance, "build_report_assurance", interleave)
+        with pytest.raises(IntegrityError, match="no longer owns"):
+            store.finish_check_execution(candidate["id"], first, status="COMPLETED", report=report)
+        with pytest.raises(IntegrityError):
+            store.finish_check_execution(candidate["id"], first, status="UNKNOWN_TIMEOUT")
+        current = store.candidate(candidate["id"])
+&gt;       assert current["status"] == "CHECKED" and current["report_root"] == store.put(newer)
+E       AssertionError: assert ('CHECKED' == 'CHECKED'
+E         
+E           CHECKED and '999a97e70a73...8f14f4cfb0c45' == '4be7aff35055...c1067d5b360c6'
+E         
+E         - 4be7aff35055a851c2f61a2f56bda238f6dd6fb917e410e81f5c1067d5b360c6
+E         + 999a97e70a73c80dba728d747effce943043a866733b356f0c18f14f4cfb0c45)
+
+tests\test_verification_execution_atomicity.py:100: AssertionError</failure></testcase><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[root]" time="0.235" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[mission]" time="0.212" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[rules]" time="0.243" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[build]" time="0.186" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[origin_request]" time="0.236" /><testcase classname="tests.test_verification_execution_atomicity" name="test_execution_receipt_cannot_change_bound_inputs_at_commit[control_request]" time="0.254" /><testcase classname="tests.test_verification_execution_atomicity" name="test_completed_origin_can_be_rechecked_only_by_fresh_owned_control_run" time="0.338"><failure message="AssertionError: assert 'da220e1cf6ae...6f54eb2e84eac' == '8f25d4309c21...392eb85af040e'&#10;  &#10;  - 8f25d4309c212aca9924fd61eee3a0adbb5d255ee243db24f8e392eb85af040e&#10;  + da220e1cf6aea3289384770ed2af0a0f8790f17ba5bf6dab0796f54eb2e84eac">case = (&lt;oma.store.Store object at 0x000001F15D6185F0&gt;, {'id': 'f7a63030a0964d7fbdc8ed4e00a2c220', 'name': 'Execution publica... 'checker_version': 'oma-independent-checker/2:e9071229bc73eaef6d5e74c765672defaac537198f54a9b5a88efddaed2c07d8', ...})
+
+    def test_completed_origin_can_be_rechecked_only_by_fresh_owned_control_run(case):
+        store, project, run, candidate, report = case
+        first, _ = begin(case)
+        store.finish_check_execution(candidate["id"], first, status="COMPLETED", report=report)
+        store.update_run(run["id"], "COMPLETED")
+        with pytest.raises(IntegrityError, match="fresh recheck run"):
+            begin(case)
+        owner = store.create_run(project["id"], {"operation": "recheck", "candidate_id": candidate["id"]})
+        token, binding = begin(case, control_run_id=owner["id"])
+&gt;       assert binding["prior_report_root"] == store.put(report)
+E       AssertionError: assert 'da220e1cf6ae...6f54eb2e84eac' == '8f25d4309c21...392eb85af040e'
+E         
+E         - 8f25d4309c212aca9924fd61eee3a0adbb5d255ee243db24f8e392eb85af040e
+E         + da220e1cf6aea3289384770ed2af0a0f8790f17ba5bf6dab0796f54eb2e84eac
+
+tests\test_verification_execution_atomicity.py:131: AssertionError</failure></testcase><testcase classname="tests.test_verification_execution_atomicity" name="test_timeout_does_not_discard_another_completed_incumbent" time="0.347" /><testcase classname="tests.test_verification_execution_atomicity" name="test_acceptance_revalidates_latest_report_inside_revision_transaction[new_pending]" time="0.292" /><testcase classname="tests.test_verification_execution_atomicity" name="test_acceptance_revalidates_latest_report_inside_revision_transaction[new_rejection]" time="0.391" /><testcase classname="tests.test_verification_execution_atomicity" name="test_tokens_and_control_owners_cannot_be_rebound_to_unrelated_candidates" time="0.306" /><testcase classname="tests.test_store" name="test_immutable_branches_idempotent_retry_and_conflict" time="0.090" /><testcase classname="tests.test_store" name="test_concurrent_writers_publish_only_one_revision_and_event" time="0.139" /><testcase classname="tests.test_store" name="test_failed_publication_rolls_back_revision_and_outbox" time="0.063" /><testcase classname="tests.test_store" name="test_corrupt_blob_and_nonfinite_inputs_rejected" time="0.040" /><testcase classname="tests.test_store" name="test_acceptance_requires_exact_root_mission_and_checker_version" time="0.132" /><testcase classname="tests.test_store" name="test_recovery_revert_backup_and_restore" time="0.193" /><testcase classname="tests.test_store" name="test_terminal_job_cannot_be_resurrected_by_late_supervisor" time="0.083" /><testcase classname="tests.test_store" name="test_import_and_run_retries_create_one_durable_job" time="0.153" /><testcase classname="tests.test_store" name="test_portable_backup_binds_bytes_and_resolves_without_original" time="0.255" /><testcase classname="tests.test_store" name="test_large_asset_copy_does_not_hold_live_publication_lock" time="0.121" /><testcase classname="tests.test_store" name="test_cache_provenance_hash_map_is_not_treated_as_file_paths" time="0.112" /><testcase classname="tests.test_project_dependencies" name="test_actual_state_reuse_matches_cold_and_distant_geometry_invalidates_clearance" time="0.023" /><testcase classname="tests.test_project_dependencies" name="test_nonlocal_flow_and_new_fields_are_accounted_without_claiming_geometry_pass" time="0.015" /><testcase classname="tests.test_project_dependencies" name="test_reserved_looking_source_identity_is_not_omitted" time="0.009" /><testcase classname="tests.test_project_dependencies" name="test_recorded_report_gets_grounded_assurance_and_revision_derivation" time="0.218" /><testcase classname="tests.test_project_dependencies" name="test_known_port_advisory_invalidates_support_and_blocks_accept_and_checked_export" time="0.182" /></testsuite></testsuites>

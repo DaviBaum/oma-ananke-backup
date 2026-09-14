@@ -1,7 +1,6 @@
 """Actual checked candidates must remain valid when final selection is published."""
 import importlib
 from copy import deepcopy
-import subprocess
 
 import pytest
 
@@ -134,14 +133,11 @@ def test_fresh_rejection_of_cached_incumbent_is_not_selected(kind, tmp_path, mon
         # not erase that latest rejection or authorize the old cached verdict.
         try:
             path.write_bytes(original + b"\n")
-            if kind == "single":
-                from oma.routing.checker import verify_route_candidate as checker
-            elif kind == "joint":
-                from oma.routing.joint_checker import verify_joint_candidate as checker
-            else:
-                from oma.routing.network_checker import verify_network_candidate as checker
-            report = checker(store, candidate["id"])
-            assert report.status == "FAIL"
+            from oma.routing.check_execution import run_candidate_check
+            import time
+            execution = run_candidate_check(store, candidate["id"], deadline=time.monotonic() + 60)
+            assert execution["status"] == "COMPLETED" and execution["report_published"]
+            assert execution["report_status"] == "FAIL"
         finally:
             path.write_bytes(original)
         assert store.candidate(candidate["id"])["status"] == "REJECTED"
@@ -183,24 +179,35 @@ def test_finite_selection_limit_retains_a_separately_checked_incumbent_without_o
 @pytest.mark.parametrize("kind", ["single", "joint", "network"])
 def test_interrupted_child_is_not_admitted_even_if_it_wrote_a_pass_before_timeout(kind, tmp_path, monkeypatch):
     store, project, run = imported_case(tmp_path, kind)
-    execute = subprocess.run
+    import json
+    from pathlib import Path
+    import oma.routing.check_execution as checking
+    execute = checking.supervise_check
     interrupted = []
 
     def late_timeout(command, **kwargs):
         result = execute(command, **kwargs)
-        if list(command[1:3]) == ["-m", "oma.verification"]:
-            candidate = store.candidate(command[-1])
-            assert result.returncode == 0 and candidate["status"] == "CHECKED"
+        if list(command[1:3]) == ["-m", "oma.routing.check_execution"]:
+            request = json.loads(Path(command[-1]).read_text(encoding="utf-8"))
+            receipt = json.loads((Path(command[-1]).parent / "receipt.json").read_text(encoding="utf-8"))
+            candidate = store.candidate(request["candidate_id"])
+            assert result["status"] == "COMPLETED" and candidate["status"] == "CHECKING"
+            assert receipt["report_status"] == "PASS"
             interrupted.append(candidate["id"])
-            # Exercise the parent observation when a report has been persisted
-            # but the checker process fails to complete within its deadline.
-            raise subprocess.TimeoutExpired(command, kwargs["timeout"], output=result.stdout, stderr=result.stderr)
+            # The actual native report exists only as a private receipt when
+            # the parent observes an incomplete checker process.
+            return {**result, "status": "UNKNOWN_TIMEOUT", "reason": "Injected timeout after actual native PASS receipt"}
         return result
 
-    monkeypatch.setattr(subprocess, "run", late_timeout)
+    monkeypatch.setattr(checking, "supervise_check", late_timeout)
     route_project_run(store, run, WorkerControl(store, run["id"]))
     assert interrupted
-    assert all(store.candidate(cid)["status"] == "CHECKED" for cid in interrupted)
+    assert all(store.candidate(cid)["status"] == "UNKNOWN" and store.candidate(cid)["report_root"] is None for cid in interrupted)
+    from oma.store import IntegrityError
+    from oma.build_identity import checker_version
+    for cid in interrupted:
+        with pytest.raises(IntegrityError, match="passing independent report"):
+            store.accept(project["id"], cid, store.project(project["id"])["revision"], "late-pass-" + cid, checker_version=checker_version())
     event = final_event(store, project, run)
     assert not event["payload"]["selected_candidate_ids"]
     retained = store.get(event["payload"]["selection_evidence_root"])

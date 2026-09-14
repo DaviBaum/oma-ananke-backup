@@ -77,14 +77,13 @@ def test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_ro
     # independently verified in a new process with the old store unavailable.
     from oma.backup import restore_store
     from oma.service import EngineService
-    import subprocess
-    import sys
+    from oma.verification import recheck_candidate_run
     backup = store.backup(tmp_path / "backup")
     store.directory.rename(tmp_path / "original-unavailable")
     restored = restore_store(backup, tmp_path / "relocated")
-    result = subprocess.run([sys.executable, "-m", "oma.verification", str(restored.directory), checked[0]["id"]],
-                            capture_output=True, text=True, timeout=90)
-    assert result.returncode == 0, result.stderr
+    recheck = restored.create_run(project["id"], {"operation": "recheck", "candidate_id": checked[0]["id"], "budget_seconds": 90})
+    recheck_candidate_run(restored, recheck, WorkerControl(restored, recheck["id"]))
+    assert restored.run(recheck["id"])["status"] == "COMPLETED"
     relocated = restored.candidate(checked[0]["id"])
     assert relocated["state_root"] == checked[0]["state_root"]
     assert relocated["status"] == "CHECKED"

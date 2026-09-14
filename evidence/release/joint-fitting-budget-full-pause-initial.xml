@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="7.577" timestamp="2026-09-14T14:59:59.715126-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_joint_fitting_budget_adversarial" name="test_complete_joint_report_rejects_source_changed_at_final_fitting_pause" time="7.153"><failure message="AssertionError: {'schema_version': 1, 'candidate_root': 'a7abc5068bc6b4518380ac0f7582728e5b77be09b26e770ee3040168d99deee1', 'mission_h...513ff322e5e929c954fa5a2934f23d9', 'rule_hash': '7009bdaee8816f1ff8c5717833afbd86633e60a807e6608dfe7bc28453d2c00d', ...}&#10;assert &lt;Verdict.PASS: 'PASS'&gt; != 'PASS'&#10; +  where &lt;Verdict.PASS: 'PASS'&gt; = VerificationReport(schema_version=1, candidate_root='a7abc5068bc6b4518380ac0f7582728e5b77be09b26e770ee3040168d99deee1'...e/design alternatives do not establish complete continuous optimality'), created_at='2026-09-14T20:00:07.054384+00:00').status">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-235/test_complete_joint_report_rej0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002B0C84B2420&gt;
+
+    def test_complete_joint_report_rejects_source_changed_at_final_fitting_pause(tmp_path,monkeypatch):
+        import uuid
+        from test_joint_fitting_budget import _native_budget_candidate
+        from oma.ifc.audit import atomic_json,sha256_file
+        from oma.routing.joint_checker import verify_joint_candidate
+        from oma.worker import WorkerControl
+        case=_native_budget_candidate(tmp_path/"actual",kinds=("long","short"),budget=6)
+        assert case["report"].status=="PASS",case["report"].model_dump(mode="json")
+        store=case["store"]
+        candidate=store.add_candidate(case["run"]["id"],case["state"],{"kind":"physical_route_set","changed_ids":case["new_ids"]})
+        source=store.resolve_path(case["state"]["sources"][0]["immutable_path"])
+        original=source.read_bytes()
+        original_checkpoint=WorkerControl.checkpoint
+        changed=[]
+        def pause_boundary(self,stage="compute"):
+            original_checkpoint(self,stage)
+            if stage=="joint_fitting_complete" and not changed:
+                source.write_bytes(original+b"\n")
+                changed.append(True)
+        monkeypatch.setattr(WorkerControl,"checkpoint",pause_boundary)
+        try:
+            report=verify_joint_candidate(store,candidate["id"])
+            altered=source.read_bytes()
+            current_sha=sha256_file(source)
+        finally:
+            source.write_bytes(original)
+        assert changed and altered!=original
+        evidence=Path("evidence/release/joint-fitting-budget-audit")/uuid.uuid4().hex
+        evidence.mkdir(parents=True)
+        (evidence/"declared-source.ifc").write_bytes(original)
+        (evidence/"source-after-pause.ifc").write_bytes(altered)
+        atomic_json(evidence/"result.json",{"case":"SOURCE_MUTATION_AT_FINAL_FITTING_PAUSE","checker_version":report.checker_version,
+            "declared_source_sha256":case["state"]["sources"][0]["sha256"],"current_source_sha256_at_publication":current_sha,
+            "actual_native_baseline_report":case["report"].model_dump(mode="json"),"after_pause_full_report":report.model_dump(mode="json"),
+            "candidate_status_at_publication":store.candidate(candidate["id"])["status"],"original_restored":sha256_file(source)==case["state"]["sources"][0]["sha256"]})
+&gt;       assert report.status!="PASS",report.model_dump(mode="json")
+E       AssertionError: {'schema_version': 1, 'candidate_root': 'a7abc5068bc6b4518380ac0f7582728e5b77be09b26e770ee3040168d99deee1', 'mission_h...513ff322e5e929c954fa5a2934f23d9', 'rule_hash': '7009bdaee8816f1ff8c5717833afbd86633e60a807e6608dfe7bc28453d2c00d', ...}
+E       assert &lt;Verdict.PASS: 'PASS'&gt; != 'PASS'
+E        +  where &lt;Verdict.PASS: 'PASS'&gt; = VerificationReport(schema_version=1, candidate_root='a7abc5068bc6b4518380ac0f7582728e5b77be09b26e770ee3040168d99deee1'...e/design alternatives do not establish complete continuous optimality'), created_at='2026-09-14T20:00:07.054384+00:00').status
+
+tests\test_joint_fitting_budget_adversarial.py:190: AssertionError</failure></testcase></testsuite></testsuites>

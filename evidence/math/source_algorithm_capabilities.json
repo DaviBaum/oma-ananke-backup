@@ -13265,10 +13265,15 @@
       "bounded_related_callables": [
         "oma.optimization.fabrication.compile_orthogonal_fabrication",
         "oma.optimization.fabrication.verify_orthogonal_fabrication",
+        "oma.optimization.fabrication_frontier.compile_fabrication_frontier",
+        "oma.optimization.fabrication_frontier.verify_fabrication_frontier",
         "oma.optimization.fabrication_search.compile_fabrication_search",
         "oma.optimization.fabrication_search.verify_fabrication_search",
+        "oma.routing.certified_fabrication.build_certified_fabrication_proposals",
         "oma.routing.fabrication_grid.enrich_fabrication_grid",
-        "oma.routing.fabrication_grid.verify_fabrication_grid_enrichment"
+        "oma.routing.fabrication_grid.verify_fabrication_grid_enrichment",
+        "oma.routing.fitting_budget.check_joint_fitting_budget",
+        "oma.routing.proposals.project_proposals"
       ],
       "callable_probe": [
         {
@@ -13280,11 +13285,23 @@
           "callable": true
         },
         {
+          "path": "oma.optimization.fabrication_frontier.compile_fabrication_frontier",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_frontier.verify_fabrication_frontier",
+          "callable": true
+        },
+        {
           "path": "oma.optimization.fabrication_search.compile_fabrication_search",
           "callable": true
         },
         {
           "path": "oma.optimization.fabrication_search.verify_fabrication_search",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.certified_fabrication.build_certified_fabrication_proposals",
           "callable": true
         },
         {
@@ -13294,17 +13311,30 @@
         {
           "path": "oma.routing.fabrication_grid.verify_fabrication_grid_enrichment",
           "callable": true
+        },
+        {
+          "path": "oma.routing.fitting_budget.check_joint_fitting_budget",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.proposals.project_proposals",
+          "callable": true
         }
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "EXACT_COUNT_FABRICATION_FRONTIER_AND_SOURCE_PROPOSALS",
         "SOURCE_AWARE_BOUNDED_GRID_ENRICHMENT",
         "BOUNDED_FABRICATION_LIFTED_GRID_SEARCH",
         "EXACT_ORTHOGONAL_FABRICATION_TRANSITIONS"
       ],
       "automated_tests": [
+        "tests/test_certified_fabrication_frontier.py",
         "tests/test_fabrication_grid.py",
+        "tests/test_joint_fitting_budget.py",
+        "tests/test_joint_fitting_budget_adversarial.py",
         "tests/test_optimization_fabrication.py",
+        "tests/test_optimization_fabrication_frontier.py",
         "tests/test_optimization_fabrication_search.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
@@ -13678,12 +13708,30 @@
       "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
+        "oma.optimization.fabrication.verify_orthogonal_fabrication",
+        "oma.optimization.fabrication_frontier.compile_fabrication_frontier",
+        "oma.optimization.fabrication_frontier.verify_fabrication_frontier",
         "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
         "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
+        "oma.routing.certified_fabrication.build_certified_fabrication_proposals",
         "oma.routing.checker.verify_route_candidate",
-        "oma.routing.network_checker.verify_network_candidate"
+        "oma.routing.fitting_budget.check_joint_fitting_budget",
+        "oma.routing.network_checker.verify_network_candidate",
+        "oma.routing.proposals.project_proposals"
       ],
       "callable_probe": [
+        {
+          "path": "oma.optimization.fabrication.verify_orthogonal_fabrication",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_frontier.compile_fabrication_frontier",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_frontier.verify_fabrication_frontier",
+          "callable": true
+        },
         {
           "path": "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
           "callable": true
@@ -13693,20 +13741,37 @@
           "callable": true
         },
         {
+          "path": "oma.routing.certified_fabrication.build_certified_fabrication_proposals",
+          "callable": true
+        },
+        {
           "path": "oma.routing.checker.verify_route_candidate",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.fitting_budget.check_joint_fitting_budget",
           "callable": true
         },
         {
           "path": "oma.routing.network_checker.verify_network_candidate",
           "callable": true
+        },
+        {
+          "path": "oma.routing.proposals.project_proposals",
+          "callable": true
         }
       ],
       "actual_adapter_contract": "Actual candidate geometry/semantics/report checks; no unrestricted source column schema closure",
       "relied_on_obligations": [
+        "EXACT_COUNT_FABRICATION_FRONTIER_AND_SOURCE_PROPOSALS",
         "FINITE_FABRICATION_GRAPH_COST_PRICING"
       ],
       "automated_tests": [
+        "tests/test_certified_fabrication_frontier.py",
+        "tests/test_joint_fitting_budget.py",
+        "tests/test_joint_fitting_budget_adversarial.py",
         "tests/test_network_integration.py",
+        "tests/test_optimization_fabrication_frontier.py",
         "tests/test_optimization_fabrication_pricing.py",
         "tests/test_routing_integration.py"
       ],
@@ -13887,11 +13952,29 @@
       "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
+        "oma.optimization.fabrication.verify_orthogonal_fabrication",
+        "oma.optimization.fabrication_frontier.compile_fabrication_frontier",
+        "oma.optimization.fabrication_frontier.verify_fabrication_frontier",
         "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
         "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
-        "oma.optimization.master.price_columns"
+        "oma.optimization.master.price_columns",
+        "oma.routing.certified_fabrication.build_certified_fabrication_proposals",
+        "oma.routing.fitting_budget.check_joint_fitting_budget",
+        "oma.routing.proposals.project_proposals"
       ],
       "callable_probe": [
+        {
+          "path": "oma.optimization.fabrication.verify_orthogonal_fabrication",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_frontier.compile_fabrication_frontier",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_frontier.verify_fabrication_frontier",
+          "callable": true
+        },
         {
           "path": "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
           "callable": true
@@ -13903,13 +13986,30 @@
         {
           "path": "oma.optimization.master.price_columns",
           "callable": true
+        },
+        {
+          "path": "oma.routing.certified_fabrication.build_certified_fabrication_proposals",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.fitting_budget.check_joint_fitting_budget",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.proposals.project_proposals",
+          "callable": true
         }
       ],
-      "actual_adapter_contract": "Exact supplied finite column pricing plus independently certified nominal length/fitting optimum on a declared finite fabrication graph; general node-dual resource pricing and continuous closure remain open",
+      "actual_adapter_contract": "Exact supplied finite column pricing, independently certified nominal length/fitting optimum and exact-count frontier on a declared finite fabrication graph. Actual source-bound frontier proposals support optional native fitting budgets; general node-dual resource pricing and continuous closure remain open",
       "relied_on_obligations": [
+        "EXACT_COUNT_FABRICATION_FRONTIER_AND_SOURCE_PROPOSALS",
         "FINITE_FABRICATION_GRAPH_COST_PRICING"
       ],
       "automated_tests": [
+        "tests/test_certified_fabrication_frontier.py",
+        "tests/test_joint_fitting_budget.py",
+        "tests/test_joint_fitting_budget_adversarial.py",
+        "tests/test_optimization_fabrication_frontier.py",
         "tests/test_optimization_fabrication_pricing.py",
         "tests/test_optimization_master.py"
       ],
@@ -14008,12 +14108,30 @@
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
         "oma.optimization.checker.verify_dual",
+        "oma.optimization.fabrication.verify_orthogonal_fabrication",
+        "oma.optimization.fabrication_frontier.compile_fabrication_frontier",
+        "oma.optimization.fabrication_frontier.verify_fabrication_frontier",
         "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
-        "oma.optimization.fabrication_pricing.verify_fabrication_pricing"
+        "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
+        "oma.routing.certified_fabrication.build_certified_fabrication_proposals",
+        "oma.routing.fitting_budget.check_joint_fitting_budget",
+        "oma.routing.proposals.project_proposals"
       ],
       "callable_probe": [
         {
           "path": "oma.optimization.checker.verify_dual",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication.verify_orthogonal_fabrication",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_frontier.compile_fabrication_frontier",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_frontier.verify_fabrication_frontier",
           "callable": true
         },
         {
@@ -14023,13 +14141,30 @@
         {
           "path": "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
           "callable": true
+        },
+        {
+          "path": "oma.routing.certified_fabrication.build_certified_fabrication_proposals",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.fitting_budget.check_joint_fitting_budget",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.proposals.project_proposals",
+          "callable": true
         }
       ],
-      "actual_adapter_contract": "Finite explicitly enumerated pricing closure only; continuous and topology-complete pricing open",
+      "actual_adapter_contract": "Finite supplied-column dual closure and independently grounded complete reachable-state/count closure for a declared bounded fabrication graph; physical route, continuous and topology-complete pricing remain open",
       "relied_on_obligations": [
+        "EXACT_COUNT_FABRICATION_FRONTIER_AND_SOURCE_PROPOSALS",
         "FINITE_FABRICATION_GRAPH_COST_PRICING"
       ],
       "automated_tests": [
+        "tests/test_certified_fabrication_frontier.py",
+        "tests/test_joint_fitting_budget.py",
+        "tests/test_joint_fitting_budget_adversarial.py",
+        "tests/test_optimization_fabrication_frontier.py",
         "tests/test_optimization_fabrication_pricing.py",
         "tests/test_optimization_master.py"
       ],
@@ -14469,10 +14604,28 @@
       "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
+        "oma.optimization.fabrication.verify_orthogonal_fabrication",
+        "oma.optimization.fabrication_frontier.compile_fabrication_frontier",
+        "oma.optimization.fabrication_frontier.verify_fabrication_frontier",
         "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
-        "oma.optimization.fabrication_pricing.verify_fabrication_pricing"
+        "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
+        "oma.routing.certified_fabrication.build_certified_fabrication_proposals",
+        "oma.routing.fitting_budget.check_joint_fitting_budget",
+        "oma.routing.proposals.project_proposals"
       ],
       "callable_probe": [
+        {
+          "path": "oma.optimization.fabrication.verify_orthogonal_fabrication",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_frontier.compile_fabrication_frontier",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_frontier.verify_fabrication_frontier",
+          "callable": true
+        },
         {
           "path": "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
           "callable": true
@@ -14480,13 +14633,30 @@
         {
           "path": "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
           "callable": true
+        },
+        {
+          "path": "oma.routing.certified_fabrication.build_certified_fabrication_proposals",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.fitting_budget.check_joint_fitting_budget",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.proposals.project_proposals",
+          "callable": true
         }
       ],
-      "actual_adapter_contract": "CPU exact finite fabrication path cost and total sparse dual-potential checks with independently bounded pi comparisons; no GPU producer or continuous/native objective bound",
+      "actual_adapter_contract": "CPU exact finite fabrication path cost and dual-potential checks; scalar costs use independently bounded pi comparisons, while exact-count frontier potentials are rational with independently fixed pi coefficient. No GPU producer or continuous/native objective bound",
       "relied_on_obligations": [
+        "EXACT_COUNT_FABRICATION_FRONTIER_AND_SOURCE_PROPOSALS",
         "FINITE_FABRICATION_GRAPH_COST_PRICING"
       ],
       "automated_tests": [
+        "tests/test_certified_fabrication_frontier.py",
+        "tests/test_joint_fitting_budget.py",
+        "tests/test_joint_fitting_budget_adversarial.py",
+        "tests/test_optimization_fabrication_frontier.py",
         "tests/test_optimization_fabrication_pricing.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
