@@ -17,6 +17,7 @@ from oma.optimization.codesign import DesignCase, FiniteCoDesignProblem, solve_f
 from oma.optimization.master import MasterProblem, RouteColumn
 from oma.store import digest
 from .network_scenario import SharedNetworkScenario, network_requirements, network_baseline_context
+from .objectives import reported_route_cost
 
 
 def network_project_run(store, run, control):
@@ -75,7 +76,7 @@ def network_project_run(store, run, control):
         checked = store.candidate(candidate["id"])
         report = store.get(checked["report_root"])
         verdict = "PASS" if checked["status"] == "CHECKED" else "FAIL" if checked["status"] == "REJECTED" else "UNKNOWN"
-        cost = sum((Fraction(str(w)) * Fraction(str(report["objective"][k])) for k, w in scenario.objective_weights.items()), Fraction(0)) if verdict == "PASS" else None
+        cost = reported_route_cost(report["objective"], scenario.objective_weights) if verdict == "PASS" else None
         outcomes.append(FiniteOutcome(checked["id"], verdict, cost, evidence_root=checked["report_root"]))
         columns = MasterProblem(net_ids=("physical-network",), columns=(RouteColumn(checked["id"], "physical-network", cost,
             artifact_ref=checked["report_root"]),), state_root=checked["state_root"], declared_universe_complete=True) if verdict == "PASS" else None

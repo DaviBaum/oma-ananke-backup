@@ -20,7 +20,8 @@ from oma.optimization.codesign import DesignCase, FiniteCoDesignProblem, solve_f
 from oma.optimization.finite import FiniteOutcome
 from oma.optimization.master import MasterProblem, RouteColumn
 from oma.store import digest
-from .generator import proposal_paths
+from .proposals import project_proposals
+from .objectives import reported_route_cost
 from .joint_materialize import materialize_route_set
 from .joint_scenario import parse_joint_request
 from .physical_archive import freeze_route_menu, compile_route_archive
@@ -78,8 +79,10 @@ def joint_project_run(store, run, control):
     for demand in request.route_demands:
         options = []
         for alternative_index, scenario in enumerate(demand.alternatives):
-            for path_index, proposal in enumerate(itertools.islice(proposal_paths(scenario, obstacles, deadline=deadline,
-                    checkpoint=lambda: control.checkpoint("joint_search")), min(scenario.max_candidates, request.max_paths_per_alternative))):
+            proposals = project_proposals(store, run, state, scenario, obstacles, deadline=deadline,
+                checkpoint=control.checkpoint, on_search=lambda payload: None, request_demand_id=demand.id)
+            for path_index, proposal in enumerate(itertools.islice(proposals,
+                    min(scenario.max_candidates, request.max_paths_per_alternative))):
                 options.append((f"{alternative_index}:{path_index}", scenario, proposal))
                 if time.monotonic() >= deadline:
                     break
@@ -96,6 +99,10 @@ def joint_project_run(store, run, control):
         control.checkpoint("joint_assignment")
         attempted += 1
         candidate_state = copy.deepcopy(state)
+        proposal_evidence = copy.deepcopy(state.get("derived_artifacts", {}).get("route_proposal_evidence_by_route", {}))
+        fabrication_evidence = copy.deepcopy(state.get("derived_artifacts", {}).get("fabrication_evidence_by_route", {}))
+        if len(state.get("routes", [])) == 1 and state.get("derived_artifacts", {}).get("route_proposal_evidence"):
+            proposal_evidence[state["routes"][0]["id"]] = state["derived_artifacts"]["route_proposal_evidence"]
         contracts = copy.deepcopy(existing)
         routes = copy.deepcopy(state.get("routes", []))
         specs = {r["id"]: copy.deepcopy(store.get(r["geometry_artifact"])["route_spec"]) for r in routes}
@@ -121,6 +128,9 @@ def joint_project_run(store, run, control):
             if source.get("transform_m") is not None:
                 spec["source_to_federation_matrix"] = source["transform_m"]
             specs[route_id] = spec
+            if proposal.get("geometry_evidence"):
+                proposal_evidence[route_id] = proposal["geometry_evidence"]
+            fabrication_evidence[route_id] = proposal["fabrication_evidence"]
             new_ids.append(route_id)
         directory = store.directory / "candidates" / run["id"] / f"joint-{attempted:03d}"
         try:
@@ -139,8 +149,12 @@ def joint_project_run(store, run, control):
             scenario_hash=digest([m["scenario_hash"] for m in missions]), objective_weights=weights).model_dump(mode="json")
         candidate_state.setdefault("derived_artifacts", {}).update(routing_contracts=contracts,
             route_exports=[{"source_id": contracts[r]["source_id"], "route_spec": specs[r]} for r in specs])
+        if proposal_evidence:
+            candidate_state["derived_artifacts"]["route_proposal_evidence_by_route"] = proposal_evidence
+        candidate_state["derived_artifacts"]["fabrication_evidence_by_route"] = fabrication_evidence
         candidate = store.add_candidate(run["id"], candidate_state, {"kind": "physical_route_set", "changed_ids": new_ids,
             "physical_menu_root": frozen_menu_root, "physical_menu_assignment": [a[0] for a in assignment],
+            "proposal_evidence": proposal_evidence,
             "routes": routes, "objective": {}, "rationale": "Simultaneous physical route and explicitly authorized design-option assignment"})
         store.update_run(run["id"], "CHECKING", "Independently checking every route, protected prior obligation and cross-route pair", "joint_verification", payload={"candidate_id": candidate["id"]})
         from oma.build_identity import frozen_environment
@@ -160,7 +174,7 @@ def joint_project_run(store, run, control):
             checked_count += 1
             values = next(r["witness"]["per_route"] for r in report["results"] if r["id"] == "joint-objective")
             columns = MasterProblem(net_ids=tuple(values), columns=tuple(RouteColumn(rid, rid,
-                sum(Fraction(str(weights.get(k, 0))) * Fraction(str(v)) for k, v in objective.items()), artifact_ref=checked["report_root"])
+                reported_route_cost(objective, weights), artifact_ref=checked["report_root"])
                 for rid, objective in values.items()), state_root=checked["state_root"], objective_policy=json.dumps(weights, sort_keys=True), declared_universe_complete=True)
         cases.append(DesignCase(checked["id"], tuple((d.id, choice[0]) for d, choice in zip(request.route_demands, assignment)),
             checked["state_root"], Fraction(0), FiniteOutcome(checked["id"], verdict, Fraction(0) if verdict == "PASS" else None, evidence_root=checked["report_root"]), columns))

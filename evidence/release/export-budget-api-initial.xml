@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="5" time="3.223" timestamp="2026-09-14T13:28:00.630811-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_export_checks" name="test_multiple_child_checks_share_one_deadline" time="2.061"><failure message="AssertionError: {'status': 'UNKNOWN_TIMEOUT', 'command': ['C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe', '-m', 'timeit...9a10771f2aebc44fe7dd3a7655bf8944dad5181cf5a7429d45f414dfd453d6', 'started_at': '2026-09-14T18:28:01.535857+00:00', ...}&#10;assert 'UNKNOWN_TIMEOUT' == 'COMPLETED'&#10;  &#10;  - COMPLETED&#10;  + UNKNOWN_TIMEOUT">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-162/test_multiple_child_checks_sha0')
+
+    def test_multiple_child_checks_share_one_deadline(tmp_path):
+        from oma.store import Store
+        manifest = {"status": "DRAFT", "limitations": [], "files": []}
+        checks = ExportChecks(Store(tmp_path / "store"), tmp_path / "export", manifest, budget_seconds=2)
+        first = checks.run("timeit", ["--number", "1", "import time; time.sleep(.6)"], "first")
+        second = checks.run("timeit", ["--number", "1", "import time; time.sleep(10)"], "second")
+&gt;       assert first["status"] == "COMPLETED", first
+E       AssertionError: {'status': 'UNKNOWN_TIMEOUT', 'command': ['C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe', '-m', 'timeit...9a10771f2aebc44fe7dd3a7655bf8944dad5181cf5a7429d45f414dfd453d6', 'started_at': '2026-09-14T18:28:01.535857+00:00', ...}
+E       assert 'UNKNOWN_TIMEOUT' == 'COMPLETED'
+E         
+E         - COMPLETED
+E         + UNKNOWN_TIMEOUT
+
+tests\test_export_checks.py:60: AssertionError</failure></testcase><testcase classname="tests.test_export_checks" name="test_export_budget_api_and_cli_are_bounded_and_forwarded" time="0.150" /><testcase classname="tests.test_api" name="test_loopback_api_rejects_external_origins_and_invalid_imports" time="0.067" /><testcase classname="tests.test_api" name="test_snapshot_events_and_revert_are_real_revision_data" time="0.200" /><testcase classname="tests.test_api" name="test_candidate_recheck_is_project_bound_and_idempotent" time="0.194" /></testsuite></testsuites>

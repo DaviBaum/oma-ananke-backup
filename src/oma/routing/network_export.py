@@ -1,18 +1,14 @@
 """Export the complete shared physical network and independently recheck copies."""
 import copy
-import json
-from pathlib import Path
 import shutil
-import subprocess
-import sys
 import uuid
 
-from oma.build_identity import frozen_environment
+from oma.export_checks import DEFAULT_EXPORT_BUDGET_SECONDS, ExportChecks
 from oma.ifc.audit import atomic_json, sha256_file
 from oma.store import IntegrityError, utcnow
 
 
-def export_network_project(store, project, state, candidate, draft, original_report=None):
+def export_network_project(store, project, state, candidate, draft, original_report=None, *, budget_seconds=DEFAULT_EXPORT_BUDGET_SECONDS, started=None):
     records = state.get("physical_networks", [])
     if len(records) != 1 or state.get("routes"):
         raise IntegrityError("Export requires one complete supported network and preserved source set")
@@ -23,11 +19,12 @@ def export_network_project(store, project, state, candidate, draft, original_rep
     export_id = uuid.uuid4().hex
     directory = store.directory / "exports" / export_id
     directory.mkdir(parents=True)
-    runtime = frozen_environment(store.directory)
     manifest = {"export_id": export_id, "project_id": project["id"], "candidate_id": candidate["id"] if candidate else None,
         "state_root": root, "created_at": utcnow(), "status": "DRAFT", "round_trip": "NOT_RUN", "files": [],
         "whole_building_release": "NOT_CERTIFIED", "limitations": [], "correspondences": [],
         "source_redistribution": "Local user export; original project license terms retained"}
+    checks = ExportChecks(store, directory, manifest, budget_seconds=budget_seconds, started=started)
+    atomic_json(directory / "state.json", state)
     exported = None
     for index, source in enumerate(state["sources"]):
         original = store.resolve_path(source["immutable_path"])
@@ -44,12 +41,7 @@ def export_network_project(store, project, state, candidate, draft, original_rep
                         "export_sha256": sha256_file(destination), "reimport": {"status": "NOT_RUN"}}
             sidecar = destination.with_suffix(".manifest.json")
             atomic_json(sidecar, exported)
-            result = subprocess.run([sys.executable, "-m", "oma.ifc.network_semantics", str(sidecar)],
-                capture_output=True, text=True, timeout=300, env=runtime, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
-            exported = json.loads(sidecar.read_text(encoding="utf-8"))
-            manifest["round_trip"] = exported.get("reimport", {}).get("status", "FAIL") if not result.returncode else "FAIL"
-            if result.returncode:
-                manifest["limitations"].append(result.stderr[-3000:])
+            exported, manifest["round_trip"] = checks.reimport("oma.ifc.network_semantics", sidecar)
             manifest["correspondences"].append({"source_id": source_id, "network_id": record["id"],
                 "replacement_path": str(destination), "part_guids": [p["ifc_guid"] for p in materialized["added_parts"]],
                 "demand_ids": record["demand_ids"], "component_ids": record["component_ids"]})
@@ -57,6 +49,7 @@ def export_network_project(store, project, state, candidate, draft, original_rep
             shutil.copyfile(original, destination)
         manifest["files"].append({"path": str(destination), "source_id": source["id"], "sha256": sha256_file(destination),
             "source_sha256": source["sha256"], "schema": source["schema"], "changed": changed})
+        checks.persist()
     if exported is None:
         raise IntegrityError("Physical network source is absent from exported federation")
     if not draft and manifest["round_trip"] == "PASS":
@@ -66,20 +59,7 @@ def export_network_project(store, project, state, candidate, draft, original_rep
         checked_copy = store.add_candidate(candidate["run_id"], copied_state, {"kind": "physical_network", "export_recheck": True,
             "changed_ids": candidate["changed_ids"], "routes": [], "networks": copied_state["physical_networks"], "objective": {},
             "rationale": "Fresh independent check of the entire exported shared network and all federation files"})
-        result = subprocess.run([sys.executable, "-m", "oma.verification", str(store.directory), checked_copy["id"]],
-            capture_output=True, text=True, timeout=600, env=runtime, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
-        checked = store.candidate(checked_copy["id"])
-        if result.returncode == 0 and checked["status"] == "CHECKED":
-            report = store.get(checked["report_root"])
-            if report["objective"] == original_report["objective"]:
-                manifest.update(status="CHECKED_LOCAL_SCOPE", checked_scope=report["scope"], objective=report["objective"],
-                    exported_state_root=checked["state_root"], verification_root=checked["report_root"])
-                atomic_json(directory / "verification.json", report)
-            else:
-                manifest["round_trip"] = "FAIL_OBJECTIVE_MISMATCH"
-        else:
-            manifest["round_trip"] = "FAIL_INDEPENDENT_CHECK"
-            manifest["limitations"].append(result.stderr[-3000:] or checked["status"])
+        checks.verify(checked_copy, original_report)
     manifest["limitations"].append("Local shared-network coordination and supplied-flow checks do not certify pre-existing defects or whole-building engineering adequacy")
     atomic_json(directory / "manifest.json", manifest)
     atomic_json(directory / "state.json", state)

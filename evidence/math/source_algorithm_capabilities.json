@@ -624,7 +624,7 @@
       "local_algorithm_id_count": 46,
       "body_heading_occurrences": 92,
       "reference_only_id_count": 0,
-      "bounded_related_components": 24,
+      "bounded_related_components": 25,
       "full_source_algorithms_implemented": 0
     },
     {
@@ -13260,13 +13260,29 @@
       "review_evidence": "evidence/math/combined_review_coverage.json",
       "scope_classification": "REQUIRED_ENGINE_MATHEMATICS",
       "scope_reason": "Source mechanism concerns the standalone state, routing, authorized co-design, verification or local compiler workflow; implementation may still be partial or absent.",
-      "implementation_disposition": "FULL_SOURCE_MECHANISM_NOT_IMPLEMENTED",
+      "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
-      "bounded_related_callables": [],
-      "callable_probe": [],
+      "bounded_related_callables": [
+        "oma.optimization.fabrication.compile_orthogonal_fabrication",
+        "oma.optimization.fabrication.verify_orthogonal_fabrication"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.fabrication.compile_orthogonal_fabrication",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication.verify_orthogonal_fabrication",
+          "callable": true
+        }
+      ],
       "actual_adapter_contract": null,
-      "relied_on_obligations": [],
-      "automated_tests": [],
+      "relied_on_obligations": [
+        "EXACT_ORTHOGONAL_FABRICATION_TRANSITIONS"
+      ],
+      "automated_tests": [
+        "tests/test_optimization_fabrication.py"
+      ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
       "reference_only_note": null
     },
@@ -14796,7 +14812,9 @@
       "bounded_related_callables": [
         "oma.optimization.route_cells.compile_route_cells",
         "oma.optimization.route_cells.verify_route_cell_refinement",
-        "oma.optimization.route_cells.verify_route_cells"
+        "oma.optimization.route_cells.verify_route_cells",
+        "oma.routing.certified_cells.build_certified_cell_proposals",
+        "oma.routing.certified_cells.verify_cell_coverage"
       ],
       "callable_probe": [
         {
@@ -14810,13 +14828,23 @@
         {
           "path": "oma.optimization.route_cells.verify_route_cells",
           "callable": true
+        },
+        {
+          "path": "oma.routing.certified_cells.build_certified_cell_proposals",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.certified_cells.verify_cell_coverage",
+          "callable": true
         }
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "SOURCE_BOUND_IFC_OUTER_CELL_PROPOSALS",
         "CERTIFIED_TRANSLATIONAL_INNER_OUTER_ROUTE_CELLS"
       ],
       "automated_tests": [
+        "tests/test_certified_cells.py",
         "tests/test_optimization_route_cells.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
@@ -14855,7 +14883,9 @@
       "bounded_related_callables": [
         "oma.optimization.route_cells.compile_route_cells",
         "oma.optimization.route_cells.verify_route_cell_refinement",
-        "oma.optimization.route_cells.verify_route_cells"
+        "oma.optimization.route_cells.verify_route_cells",
+        "oma.routing.certified_cells.build_certified_cell_proposals",
+        "oma.routing.certified_cells.verify_cell_coverage"
       ],
       "callable_probe": [
         {
@@ -14869,13 +14899,23 @@
         {
           "path": "oma.optimization.route_cells.verify_route_cells",
           "callable": true
+        },
+        {
+          "path": "oma.routing.certified_cells.build_certified_cell_proposals",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.certified_cells.verify_cell_coverage",
+          "callable": true
         }
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "SOURCE_BOUND_IFC_OUTER_CELL_PROPOSALS",
         "CERTIFIED_TRANSLATIONAL_INNER_OUTER_ROUTE_CELLS"
       ],
       "automated_tests": [
+        "tests/test_certified_cells.py",
         "tests/test_optimization_route_cells.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
@@ -14973,7 +15013,9 @@
       "bounded_related_callables": [
         "oma.optimization.route_cells.compile_route_cells",
         "oma.optimization.route_cells.verify_route_cell_refinement",
-        "oma.optimization.route_cells.verify_route_cells"
+        "oma.optimization.route_cells.verify_route_cells",
+        "oma.routing.certified_cells.build_certified_cell_proposals",
+        "oma.routing.certified_cells.verify_cell_coverage"
       ],
       "callable_probe": [
         {
@@ -14987,13 +15029,23 @@
         {
           "path": "oma.optimization.route_cells.verify_route_cells",
           "callable": true
+        },
+        {
+          "path": "oma.routing.certified_cells.build_certified_cell_proposals",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.certified_cells.verify_cell_coverage",
+          "callable": true
         }
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "SOURCE_BOUND_IFC_OUTER_CELL_PROPOSALS",
         "CERTIFIED_TRANSLATIONAL_INNER_OUTER_ROUTE_CELLS"
       ],
       "automated_tests": [
+        "tests/test_certified_cells.py",
         "tests/test_optimization_route_cells.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",

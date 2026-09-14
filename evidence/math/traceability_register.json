@@ -6,6 +6,140 @@
   "full_engine_mathematics_implemented": false,
   "obligations": [
     {
+      "obligation": "EXACT_ORTHOGONAL_FABRICATION_TRANSITIONS",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4472,
+          4473,
+          4474,
+          4475,
+          4476,
+          4484,
+          5522,
+          5523,
+          1289,
+          1290
+        ],
+        "objects": [
+          "DEF-RTR39",
+          "DEF-RTR40",
+          "DEF-RTR41",
+          "ALG-RTR15",
+          "THM-SIR25"
+        ]
+      },
+      "interpretation_and_assumptions": "Exact fixed axis-aligned constant-round polyline realization with tangent quarter bends, both-end straight trim debts, strict positive remaining-straight requirements, fixed size identities and full insulated body bounds. Independent attained support extrema and tangent identities check the complete component/transition denominator; exact outer-box separation is sufficient and inconclusive overlap remains UNKNOWN.",
+      "implementations": [
+        "oma.optimization.fabrication.compile_orthogonal_fabrication"
+      ],
+      "independent_checkers": [
+        "oma.optimization.fabrication.verify_orthogonal_fabrication"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.fabrication.compile_orthogonal_fabrication",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication.verify_orthogonal_fabrication",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_fabrication.py"
+      ],
+      "real_model_benchmark": {
+        "status": "SYNTHETIC_ACTUAL_IFC_PRIMITIVE_CORRESPONDENCE_AND_BOUNDARY_TESTS",
+        "evidence": "evidence/math/fabrication/latest.json",
+        "scope": "Actual IFC4 and IFC2X3 round primitives; separate numerical CAD correspondence and exact model proofs, no whole-route or acceptance claim"
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "A bounded component of the source fabrication-size lift only: no complete graph/homotopy, manufacturer catalog, support/slope/service or self-interference closure. Oversized input is an uninspected count/context-bound UNKNOWN, not a geometry-root claim. Exact model rejection is not automatic pruning authority over the numerical IFC writer. Retained native correspondence and actual strict-threshold counterexample are explicitly numerical and do not grant acceptance.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "SOURCE_BOUND_IFC_OUTER_CELL_PROPOSALS",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4293,
+          4367,
+          5502,
+          5504,
+          5508
+        ],
+        "objects": [
+          "DEF-RTR12",
+          "DEF-RTR24",
+          "ALG-RTR5",
+          "ALG-RTR6",
+          "ALG-RTR8"
+        ]
+      },
+      "interpretation_and_assumptions": "Fresh immutable source hashes, complete physical-element/assembly denominator, audited common frames and complete native or exact-source outer support. Independent affine corner containment, exact out-of-zone separating planes and grouped-cover checks feed a bounded cell certificate; each final binary64 capsule proposal is independently rechecked.",
+      "implementations": [
+        "oma.routing.certified_cells.build_certified_cell_proposals"
+      ],
+      "independent_checkers": [
+        "oma.routing.certified_cells.verify_cell_coverage",
+        "oma.optimization.route_cells.verify_route_cells"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.routing.certified_cells.build_certified_cell_proposals",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.certified_cells.verify_cell_coverage",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.route_cells.verify_route_cells",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_certified_cells.py"
+      ],
+      "real_model_benchmark": {
+        "status": "SEE_RETAINED_SOURCE_BOUND_MODEL_AND_SEPARATE_NATIVE_CHECKS",
+        "evidence": "evidence/math/certified-cells/latest.json",
+        "scope": "Pinned analytic IFC detour and immutable Office model proposal evidence; see exact dependency hashes and attempt summary, no acceptance authority"
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Native outer bounds and local BRep cache retain explicit numerical/provenance assumptions. Inner occupancy is empty, edited-host scenarios are not applicable, no physical infeasibility or fabricated-elbow coverage is transferred, and every route still needs full independent materialized checks. Separate adapter test artifact and actual IFC benchmark retain exact execution scope.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
       "obligation": "CERTIFIED_TRANSLATIONAL_INNER_OUTER_ROUTE_CELLS",
       "source": {
         "document": "oma-integration",
@@ -1609,5 +1743,10 @@
     "tests": 318,
     "failures": 0
   },
+  "additional_adapter_test_runs": [
+    "evidence/math/certified-cells-adapter-tests.xml",
+    "evidence/math/opening-inverse-regression.xml",
+    "evidence/math/fabrication-tests.xml"
+  ],
   "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py tests/test_optimization_route_cells.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"
 }

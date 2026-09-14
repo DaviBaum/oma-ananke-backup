@@ -2,6 +2,7 @@
 from __future__ import annotations
 import argparse
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -9,7 +10,8 @@ import sys
 import time
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/"src"))
+if not os.environ.get("OMA_EXECUTABLE_BUILD"):
+    sys.path.insert(0,str(ROOT/"src"))
 from oma.build_identity import checker_version,frozen_environment
 from oma.exporting import export_project
 from oma.ifc.audit import atomic_json,sha256_file

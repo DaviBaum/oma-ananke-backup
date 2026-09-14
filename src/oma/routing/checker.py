@@ -14,10 +14,190 @@ import numpy as np
 from oma.ifc.audit import sha256_file
 from oma.ifc.cad import cad_check_routes, load_cad, _has_native_geometry
 from oma.ifc.ports import ownership_ledger, port_facts, connected_pair_errors, circular_owner_radius
-from oma.models import CheckResult, VerificationReport, Verdict, Section
+from oma.models import CheckResult, VerificationReport, Verdict, Section, Route
 from oma.store import Store, digest, utcnow
 from oma.verification import CHECKER_VERSION
 from .scenario import RoutingScenario
+
+
+def _finite_route_points(value):
+    if not isinstance(value,(list,tuple)) or not 2 <= len(value) <= 10000:
+        raise ValueError("A bounded explicit route point sequence is required")
+    if any(not isinstance(p,(list,tuple)) or len(p)!=3 or any(type(x) not in (int,float) for x in p) for p in value):
+        raise ValueError("Route coordinates must be finite real numbers, not Boolean or symbolic values")
+    points=np.asarray(value,dtype=float)
+    if not np.isfinite(points).all():
+        raise ValueError("Nonfinite route coordinates")
+    return points
+
+
+def _route_metadata_binding(store,state,requested,materialization,route_ids,selected_source,*,composite):
+    """Bind each displayed route and export instruction to the checked artifact."""
+    try:
+        all_routes=state.get("routes",[])
+        identities=[r["id"] for r in all_routes]
+        if len(set(identities))!=len(identities) or len(set(route_ids))!=len(route_ids):
+            raise ValueError("Duplicate route or changed-component identities")
+        rid=materialization["route_id"]
+        routes=[r for r in all_routes if r["id"]==rid]
+        if len(routes)!=1 or rid not in route_ids:
+            raise ValueError("Exactly one checked route must own the materialization identity")
+        route=routes[0]
+        Route.model_validate(route)
+        if len(route["demand_ids"])!=1 or len(route["port_ids"])!=2 or len(set(route["port_ids"]))!=2:
+            raise ValueError("Ordinary route requires one demand and two distinct terminal identities")
+        if route.get("fittings") or route.get("shared_trunk_id") is not None:
+            raise ValueError("Unsupported extra fitting or shared-trunk metadata on an ordinary route")
+        editable={f"{requested.authorized_opening.source_sha256}:{requested.authorized_opening.host_step_id}"} if requested.authorized_opening else set()
+        if composite:
+            if list(route_ids)!=[rid]:raise ValueError("Composite subcheck must select exactly its own route")
+        elif len(all_routes)!=1 or set(route_ids)!={rid}|editable:
+            raise ValueError("Standalone route and changed-component inventory must be exactly one route plus its authorized host")
+        spec=materialization["route_spec"]
+        expected={"route_id":rid,"diameter_m":requested.diameter_m,"insulation_m":requested.insulation_m,
+            "bend_radius_m":requested.bend_radius_m,"minimum_straight_m":requested.minimum_straight_m,
+            "system_type":requested.system_type,"assumption_root":digest(requested.model_dump(mode="json"))}
+        if not selected_source:raise ValueError("Missing authorized source")
+        for key in ("source_port_guid","sink_port_guid"):
+            if getattr(requested,key) is not None:expected[key]=getattr(requested,key)
+        if selected_source.get("transform_m") is not None:expected["source_to_federation_matrix"]=selected_source["transform_m"]
+        if set(spec)!=(set(expected)|{"points_m"}):
+            raise ValueError("Route specification contains missing or unsupported fields")
+        if digest({k:spec[k] for k in expected})!=digest(expected):
+            raise ValueError("Materialization route identity, size, service, source frame or assumption root differs")
+        points=_finite_route_points(route["points_m"])
+        declared=_finite_route_points(spec["points_m"])
+        if points.shape!=declared.shape or not np.array_equal(points,declared):
+            raise ValueError("Displayed route points differ from the materialization specification")
+        artifact_root=digest(materialization)
+        if route.get("geometry_artifact")!=artifact_root or digest(store.get(artifact_root))!=artifact_root:
+            raise ValueError("Route geometry artifact is not the complete currently checked materialization")
+        derived=state.get("derived_artifacts",{})
+        fabrication=derived.get("fabrication_evidence_by_route",{})
+        if (not isinstance(fabrication,dict) or not set(fabrication)<=set(identities)
+                or any(not isinstance(value,dict) for value in fabrication.values())):
+            raise ValueError("Fabrication evidence names missing or phantom routes")
+        exports=derived.get("route_exports",[])
+        export_ids=[r["route_spec"]["route_id"] for r in exports]
+        if len(export_ids)!=len(set(export_ids)) or set(export_ids)!=set(identities):
+            raise ValueError("Complete unique route-export instruction inventory required")
+        own=next(e for e in exports if e["route_spec"]["route_id"]==rid)
+        if own["source_id"]!=selected_source["id"] or digest(own["route_spec"])!=digest(spec):
+            raise ValueError("Export instruction changed the checked source or route specification")
+        if not composite:
+            binding=derived["route_materialization"]
+            if (binding["root"]!=artifact_root or binding["source_id"]!=selected_source["id"]
+                    or store.resolve_path(binding["path"])!=store.resolve_path(materialization["export_path"])):
+                raise ValueError("Standalone materialization root, source or file pointer differs")
+        parts=materialization["added_parts"]
+        guids=[p["ifc_guid"] for p in parts]
+        steps=[p["step_id"] for p in parts]
+        if not parts or len(guids)!=len(set(guids)) or len(steps)!=len(set(steps)):
+            raise ValueError("Physical parts require complete unique IFC and STEP identities")
+        for index,part in enumerate(parts):
+            if part["route_id"]!=rid or type(part["part_index"]) is not int or part["part_index"]!=index:
+                raise ValueError("Physical part sequence or route owner differs")
+        return {"status":"PASS","route_id":rid,"materialization_root":artifact_root,
+            "route_count":len(all_routes),"part_count":len(parts),"points_bound":len(points),"composite_subcheck":composite}
+    except (ValueError,KeyError,TypeError,IndexError,StopIteration,OverflowError) as exc:
+        return {"status":"FAIL","reason":str(exc)}
+
+
+def _actual_route_directrix(model,materialization):
+    """Numerically verify actual tangent primitives against every declared leg.
+
+    This reads IFC independently and checks line/circle tangent identities; it
+    never invokes the writer or trusts its `expected` geometry as the oracle.
+    """
+    from oma.ifc.network_semantics import read_component_geometry
+    tolerance=1e-7
+    try:
+        spec=materialization["route_spec"]
+        points=_finite_route_points(spec["points_m"])
+        matrix=np.asarray(spec.get("source_to_federation_matrix",np.eye(4)),dtype=float)
+        if (matrix.shape!=(4,4) or not np.isfinite(matrix).all()
+                or not np.allclose(matrix[3],[0,0,0,1],rtol=0,atol=1e-12)
+                or not np.allclose(matrix[:3,:3].T@matrix[:3,:3],np.eye(3),rtol=0,atol=1e-9)
+                or np.linalg.det(matrix[:3,:3])<=0):raise ValueError("Unsupported route source frame")
+        inverse=np.linalg.inv(matrix)
+        points=points@inverse[:3,:3].T+inverse[:3,3]
+        vectors=np.diff(points,axis=0);lengths=np.linalg.norm(vectors,axis=1)
+        if not np.isfinite(lengths).all() or (lengths<=1e-9).any():raise ValueError("Invalid declared route leg")
+        directions=vectors/lengths[:,None]
+        turns={}
+        for i,(u,v) in enumerate(zip(directions,directions[1:]),1):
+            cosine=float(np.clip(np.dot(u,v),-1,1));theta=math.acos(cosine)
+            if math.pi-theta<1e-6:raise ValueError("Declared U-turn has no supported tangent bend")
+            if theta>=1e-8:turns[i]=(cosine,theta)
+        order=[]
+        for i in range(len(vectors)):
+            order.append(("segment",i))
+            if i+1 in turns:order.append(("elbow",i+1))
+        parts=materialization["added_parts"]
+        if len(parts)!=len(order):raise ValueError("Actual component denominator differs from the declared polyline realization")
+        facts=[]
+        for part,(kind,index) in zip(parts,order,strict=True):
+            element=model.by_guid(part["ifc_guid"])
+            if element.id()!=part["step_id"] or part["kind"]!=kind:
+                raise ValueError("Part kind, GUID or STEP identity differs")
+            actual=read_component_geometry(model,element)
+            if actual["kind"]!=kind:raise ValueError("Actual IFC directrix family differs")
+            expected_class=("IfcDuct" if spec["system_type"]=="ROUND_DUCT" else "IfcPipe")+("Segment" if kind=="segment" else "Fitting")
+            if model.schema=="IFC2X3":expected_class="IfcFlowSegment" if kind=="segment" else "IfcFlowFitting"
+            if element.is_a()!=expected_class:raise ValueError("Actual IFC service family differs")
+            psets=[r.RelatingPropertyDefinition for r in element.IsDefinedBy if r.is_a("IfcRelDefinesByProperties")
+                and r.RelatingPropertyDefinition.is_a("IfcPropertySet") and r.RelatingPropertyDefinition.Name=="OMA_RouteProvenance"]
+            if len(psets)!=1:raise ValueError("Unique actual route provenance required")
+            properties={p.Name:p.NominalValue.wrappedValue for p in psets[0].HasProperties if p.is_a("IfcPropertySingleValue") and p.NominalValue is not None}
+            if len(properties)!=len(psets[0].HasProperties):raise ValueError("Duplicate or unsupported route provenance")
+            for key,wanted in (("RouteId",spec["route_id"]),("AssumptionRoot",spec.get("assumption_root","EXPLICIT_ROUTE_SPEC")),("SystemFamily",spec["system_type"])):
+                if properties.get(key)!=wanted:raise ValueError("Actual IFC route identity or assumption provenance differs")
+            for key,wanted in (("Diameter_m",spec["diameter_m"]),("Insulation_m",spec.get("insulation_m",0))):
+                if type(properties.get(key)) not in (int,float) or properties[key]!=wanted:raise ValueError("Actual IFC size provenance differs")
+            a,b=np.asarray(actual["start_m"]),np.asarray(actual["end_m"])
+            if kind=="segment":
+                u=directions[index]
+                start_distance=float(np.dot(a-points[index],u));end_distance=float(np.dot(b-points[index],u))
+                if (np.linalg.norm(a-points[index]-start_distance*u)>tolerance
+                        or np.linalg.norm(b-points[index]-end_distance*u)>tolerance
+                        or start_distance < -tolerance or end_distance>lengths[index]+tolerance or end_distance<=start_distance
+                        or np.linalg.norm(np.asarray(actual["caps"]["b"]["outward_normal"])-u)>tolerance):
+                    raise ValueError("Actual straight is not the declared directed polyline leg")
+                if index not in turns and np.linalg.norm(a-points[index])>tolerance:
+                    raise ValueError("Actual straight starts at a different fixed vertex")
+                if index+1 not in turns and np.linalg.norm(b-points[index+1])>tolerance:
+                    raise ValueError("Actual straight ends at a different fixed vertex")
+            else:
+                u,v=directions[index-1:index+1];cosine,theta=turns[index]
+                center=np.asarray(actual["center_m"]);R=float(spec["bend_radius_m"])
+                sine=float(np.linalg.norm(np.cross(u,v)))
+                if (not math.isfinite(R) or R<=0 or abs(actual["bend_radius_m"]-R)>tolerance
+                        or abs(actual["angle_rad"]-theta)>tolerance
+                        or np.linalg.norm(np.asarray(actual["normal"])-np.cross(u,v)/sine)>tolerance
+                        or np.linalg.norm(a-center+R*(v-cosine*u)/sine)>tolerance
+                        or np.linalg.norm(b-center-R*(u-cosine*v)/sine)>tolerance
+                        or np.linalg.norm(np.asarray(actual["caps"]["a"]["outward_normal"])+u)>tolerance
+                        or np.linalg.norm(np.asarray(actual["caps"]["b"]["outward_normal"])-v)>tolerance):
+                    raise ValueError("Actual circular bend differs from the declared tangent corner and radius")
+            if facts and np.linalg.norm(np.asarray(facts[-1]["end_m"])-a)>tolerance:
+                raise ValueError("Actual ordered primitive directrices do not join")
+            claimed=part["expected"]
+            if claimed["kind"]!=kind or not math.isfinite(claimed["length_m"]) or abs(claimed["length_m"]-actual["length_m"])>tolerance:
+                raise ValueError("Materialization component metadata differs from its actual directrix")
+            for key,actual_key in (("start","start_m"),("end","end_m"),("center","center_m"),("normal","normal")):
+                if key in claimed:
+                    value=np.asarray(claimed[key],dtype=float)
+                    if value.shape!=(3,) or not np.isfinite(value).all() or np.linalg.norm(value-np.asarray(actual[actual_key]))>tolerance:
+                        raise ValueError("Materialization component coordinate metadata differs from actual IFC")
+            if kind=="elbow":
+                for key in ("bend_radius_m","angle_rad"):
+                    if not math.isfinite(claimed[key]) or abs(claimed[key]-actual[key])>tolerance:
+                        raise ValueError("Materialization bend metadata differs from actual IFC")
+            facts.append(actual)
+        return {"errors":[],"parts_checked":len(facts),"tolerance_m":tolerance,
+            "scope":"NUMERICAL_ACTUAL_IFC_DIRECTRIX_CORRESPONDENCE_TO_COMPLETE_DECLARED_POLYLINE"}
+    except (ValueError,KeyError,TypeError,IndexError,RuntimeError,OverflowError,np.linalg.LinAlgError) as exc:
+        return {"errors":[str(exc)],"tolerance_m":tolerance}
 
 
 def check_physical_ports(path, cad_objects, source_matrix=None, port_guids=None):
@@ -224,11 +404,13 @@ def _semantics(path, source_path, materialization, scenario, known_physical_guid
         actual_external = [(r.RelatingPort.id(), r.RelatedPort.id()) for r in external_links]
         if len(actual_external) != len(expected_external) or set(actual_external) != expected_external:
             errors.append("Actual external port bindings differ from the fixed requested original terminals")
-    return {"errors": errors, "length_m": sum(lengths), "fitting_count": fittings, "parts": records,
+    directrix=_actual_route_directrix(model,materialization)
+    errors.extend(directrix["errors"])
+    return {"errors": errors, "length_m": sum(lengths), "fitting_count": fittings, "parts": records,"route_directrix":directrix,
             "connections": len(links), "original_records_checked": len(original_ids), "slope_margins": slopes}
 
 
-def evaluate_route_state(store, state, baseline, requested, scenario, mission, materialization, route_ids, control, *, known_physical_guids=None):
+def evaluate_route_state(store, state, baseline, requested, scenario, mission, materialization, route_ids, control, *, candidate_run=None, known_physical_guids=None):
     """Independently evaluate one obligation against a pinned composite state."""
     path = store.resolve_path(materialization["export_path"])
     results = []
@@ -265,6 +447,19 @@ def evaluate_route_state(store, state, baseline, requested, scenario, mission, m
         and materialization.get("route_spec", {}).get("source_to_federation_matrix") == selected_source.get("transform_m"))
     add("materialization-source-frame", "PASS" if source_frame_bound else "FAIL",
         "Route source bytes and source-to-federation frame match the immutable imported source" if source_frame_bound else "Route materialization changed its source identity or coordinate frame")
+    metadata=_route_metadata_binding(store,state,requested,materialization,route_ids,selected_source,
+        composite=known_physical_guids is not None)
+    add("route-materialization-correspondence",metadata["status"],
+        "Complete route, changed-component and export inventories bind the actual checked materialization" if metadata["status"]=="PASS" else metadata["reason"],witness=metadata)
+    if metadata["status"]!="PASS":
+        add("physical-interference-and-clearance","NOT_RUN","Route metadata and materialized geometry identities do not agree")
+        return results,objective,[]
+    from .fabrication_evidence import check_route_fabrication_evidence
+    route=next(r for r in state["routes"] if r["id"]==metadata["route_id"])
+    checked=check_route_fabrication_evidence(store,state,baseline,scenario,route,candidate_run)
+    add("nominal-fabrication-witness-integrity",checked["status"],
+        "Independent proof replay validates the stated nominal disposition only; native geometry and acceptance remain separate" if checked["status"]=="PASS" else checked["reason"],
+        witness=checked,scope="Optional exact nominal model proof integrity; no native PASS or pruning authority")
     correspondence = state.get("derived_artifacts", {}).get("export_correspondence")
     if correspondence:
         matched = len(correspondence["files"]) == len(state["sources"])
@@ -275,7 +470,7 @@ def evaluate_route_state(store, state, baseline, requested, scenario, mission, m
         add("export-federation-correspondence", "PASS" if matched else "FAIL", "Every exported discipline hash and replacement correspondence independently rechecked")
     routes = [r for r in state["routes"] if r["id"] in route_ids]
     demand_ids = {d["id"] for d in mission["demands"]}
-    coverage = len(routes) == 1 and set(routes[0]["demand_ids"]) == demand_ids and len(demand_ids) == 1
+    coverage = len(routes) == 1 and set(routes[0]["demand_ids"]) == demand_ids and len(demand_ids) == len(mission["demands"]) == 1
     if coverage:
         demand = mission["demands"][0]
         required_section = Section(shape="circular", diameter_m=requested.diameter_m, insulation_m=requested.insulation_m).model_dump(mode="json")
@@ -437,7 +632,7 @@ def verify_route_candidate(store: Store, candidate_id: str):
     materialization = store.get(state["derived_artifacts"]["route_materialization"]["root"])
     path = store.resolve_path(materialization["export_path"])
     results, objective, _ = evaluate_route_state(store, state, baseline,
-        RoutingScenario.model_validate(run["request"]["mission"]), scenario, mission, materialization, candidate["changed_ids"], control)
+        RoutingScenario.model_validate(run["request"]["mission"]), scenario, mission, materialization, candidate["changed_ids"], control,candidate_run=run)
     if any(r.status == Verdict.FAIL for r in results):
         status = Verdict.FAIL
     elif any(r.status == Verdict.BLOCKED for r in results):

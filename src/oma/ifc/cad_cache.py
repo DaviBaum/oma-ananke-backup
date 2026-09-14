@@ -20,9 +20,10 @@ CODE_SHA256 = sha256_file(__file__)
 
 
 def _key(source,guids,source_representation_policy):
-    from . import cad, enclosure
+    from . import cad, enclosure, inventory
     return {"source_sha256":sha256_file(source),"guids":sorted(guids) if guids is not None else None,
             "cad_code_sha256":cad.CODE_SHA256,"enclosure_code_sha256":enclosure.CODE_SHA256,"cache_code_sha256":CODE_SHA256,
+            "inventory_code_sha256":inventory.CODE_SHA256,"inventory_version":inventory.VERSION,
             "ifcopenshell_version":importlib.metadata.version("ifcopenshell"),
             "python_version":sys.version,"numpy_version":np.__version__,
             "ocp_version":importlib.metadata.version("cadquery-ocp"),"format":"checker-native-source-cache/1",
@@ -60,6 +61,7 @@ def load_or_build(source,*,guids,threads,directory,report,build,source_represent
     objects=None
     errors=None
     migration_from=None
+    inventory_report={}
     read_path,read_hash=manifest_path,manifest_hash
     if not manifest_path.exists() or not manifest_hash.exists():
         # A different source/kernel/CAD policy is never a migration candidate.
@@ -98,16 +100,24 @@ def load_or_build(source,*,guids,threads,directory,report,build,source_represent
                 raise ValueError("Cache applicability key mismatch")
             import ifcopenshell
             model=ifcopenshell.open(str(source))
-            expected={e.id():e for e in model.by_type("IfcElement") if not e.is_a("IfcFeatureElementSubtraction")
-                      and (guids is None or e.GlobalId in guids)}
+            from .inventory import physical_inventory, inventory_evidence, accounted_assemblies
+            inventory=physical_inventory(model)
+            expected={e.id():e for e in inventory["products"] if guids is None or e.GlobalId in guids}
             accounted={i["metadata"]["step_id"] for i in manifest["objects"]}
             if len(accounted)!=len(manifest["objects"]):
                 raise ValueError("Duplicate cached source object identities")
             accounted.update(int(e["entity_id"].rsplit(":",1)[1]) for e in manifest["errors"] if e.get("entity_id"))
-            assemblies={e.id() for e in expected.values() if e.Representation is None and
-                        any(r.RelatedObjects for r in getattr(e,"IsDecomposedBy",()))}
+            assemblies=accounted_assemblies(inventory, expected, accounted)
             if accounted|assemblies != set(expected):
                 raise ValueError("Cached physical object accounting differs from original source")
+            required_errors={(e["step_id"], e["reason"]) for e in inventory["errors"] if e["step_id"] in expected}
+            actual_errors={(int(e["entity_id"].rsplit(":",1)[1]), e["reason"]) for e in manifest["errors"] if e.get("entity_id")}
+            if not required_errors <= actual_errors:
+                raise ValueError("Cached source inventory failures were omitted")
+            inventory_report={"physical_inventory":inventory_evidence(inventory,key["source_sha256"]),
+                              "selected_physical_count":len(expected),"accounted_assembly_step_ids":sorted(assemblies)}
+            if manifest.get("inventory_report") != inventory_report:
+                raise ValueError("Cached inventory evidence differs from fresh source reconstruction")
             objects=[]
             native_bounds={}
             for item in manifest["objects"]:
@@ -166,7 +176,7 @@ def load_or_build(source,*,guids,threads,directory,report,build,source_represent
                         obj.support_kind="exact_source_support_enclosure"
             if not migration_from:
                 if report is not None:
-                    report.update(status="HIT_REVALIDATED",key=root,seconds=time.perf_counter()-start,objects=len(objects),cache_trust=CACHE_TRUST)
+                    report.update(status="HIT_REVALIDATED",key=root,seconds=time.perf_counter()-start,objects=len(objects),cache_trust=CACHE_TRUST,**inventory_report)
                 return objects,manifest["errors"]
             errors=manifest["errors"]
             disposition="REUSED_NATIVE_RECHECKED_SOURCE_SUPPORT"
@@ -177,7 +187,8 @@ def load_or_build(source,*,guids,threads,directory,report,build,source_represent
             invalid_reason=f"{type(exc).__name__}: {exc}"
             objects=None
     if objects is None:
-        objects,errors=build(source,guids=guids,threads=threads,source_representation_policy=source_representation_policy,checkpoint=checkpoint)
+        inventory_report={}
+        objects,errors=build(source,guids=guids,threads=threads,source_representation_policy=source_representation_policy,checkpoint=checkpoint,inventory_report=inventory_report)
     stored=[]
     blobs=directory / "objects";blobs.mkdir(parents=True,exist_ok=True)
     for obj in sorted(objects,key=lambda o:o.step_id):
@@ -194,10 +205,10 @@ def load_or_build(source,*,guids,threads,directory,report,build,source_represent
         stored.append({"metadata":metadata,"brep_sha256":sha,"compressed_sha256":hashlib.sha256(compressed).hexdigest()})
     manifest_path.parent.mkdir(parents=True,exist_ok=True)
     temporary=manifest_path.with_suffix(".tmp-"+uuid.uuid4().hex)
-    temporary.write_text(json.dumps({"key":key,"objects":stored,"errors":errors,"cache_trust":CACHE_TRUST},allow_nan=False),encoding="utf-8")
+    temporary.write_text(json.dumps({"key":key,"objects":stored,"errors":errors,"cache_trust":CACHE_TRUST,"inventory_report":inventory_report},allow_nan=False),encoding="utf-8")
     temporary.replace(manifest_path)
     manifest_hash.write_text(sha256_file(manifest_path),encoding="ascii")
     if report is not None:
         report.update(status=disposition,key=root,seconds=time.perf_counter()-start,objects=len(objects),invalid_reason=invalid_reason,
-                      native_artifact_source_key=migration_from if disposition=="REUSED_NATIVE_RECHECKED_SOURCE_SUPPORT" else None,cache_trust=CACHE_TRUST)
+                      native_artifact_source_key=migration_from if disposition=="REUSED_NATIVE_RECHECKED_SOURCE_SUPPORT" else None,cache_trust=CACHE_TRUST,**inventory_report)
     return objects,errors

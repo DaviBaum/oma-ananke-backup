@@ -56,6 +56,7 @@ class RevertRequest(CommitRequest):
 class ExportRequest(Input):
     candidate_id: str | None = None
     draft: bool = True
+    budget_seconds: float = Field(default=3600, ge=1, le=7200, allow_inf_nan=False)
 
 
 class RecheckRequest(Input):
@@ -250,7 +251,7 @@ def create_app(directory: str | Path | None = None, *, recover: bool = True) -> 
     @app.post("/api/projects/{project_id}/export")
     def export(project_id: str, body: ExportRequest):
         from .exporting import export_project
-        return export_project(service.store, project_id, body.candidate_id, body.draft)
+        return export_project(service.store, project_id, body.candidate_id, body.draft, budget_seconds=body.budget_seconds)
 
     @app.get("/api/artifacts/{root}")
     def artifact(root: str):

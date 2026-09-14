@@ -18,7 +18,8 @@ from oma.models import Demand, Mission, Port, Provenance, Route, Section
 from oma.optimization.master import MasterProblem, RouteColumn, solve_master
 from oma.optimization.checker import verify_master_result
 from oma.store import Store, digest
-from .generator import proposal_paths
+from .proposals import project_proposals
+from .objectives import reported_route_cost
 from .scenario import RoutingScenario
 
 
@@ -84,7 +85,7 @@ def route_project_run(store: Store, run: dict, control):
     obstacles = [e["geometry"]["bounds"]["min"] + e["geometry"]["bounds"]["max"] for e in state.get("entities", []) if e.get("geometry", {}).get("bounds")]
     store.append_event(run["project_id"], run_id=run["id"], state_root=run["base_root"], stage="mission", status="RUNNING",
                        message="Fixed terminals, physical section, permitted zone and protected sources bound to scenario", artifacts=[store.put(scenario_data)],
-                       payload={"mission": mission.model_dump(mode="json"), "search_scope": "finite heuristic candidates; no continuous optimality claim"})
+                       payload={"mission": mission.model_dump(mode="json"), "search_scope": "bounded source-checked geometric and heuristic proposals; no continuous optimality claim"})
     columns, feasible_ids = [], []
     attempted = 0
     last_search_emit = 0.
@@ -93,7 +94,8 @@ def route_project_run(store: Store, run: dict, control):
         if time.monotonic() - last_search_emit >= .25:
             store.append_event(run["project_id"], run_id=run["id"], state_root=run["base_root"], stage="route_search", status="RUNNING", message="Exploring physical route proposals", payload=payload)
             last_search_emit = time.monotonic()
-    for proposal in proposal_paths(scenario, obstacles, deadline=deadline, checkpoint=lambda: control.checkpoint("route_search"), on_search=search_event):
+    for proposal in project_proposals(store, run, state, scenario, obstacles, deadline=deadline,
+                                     checkpoint=control.checkpoint, on_search=search_event):
         if attempted >= scenario.max_candidates or time.monotonic() >= deadline:
             break
         control.checkpoint("materialize")
@@ -131,8 +133,12 @@ def route_project_run(store: Store, run: dict, control):
         if opening:
             store.put(materialized["authorized_opening"])
             candidate_state["derived_artifacts"]["opening_edit"] = edit_record(opening, materialized["authorized_opening"], run["base_root"])
+        if proposal.get("geometry_evidence"):
+            candidate_state["derived_artifacts"]["route_proposal_evidence"] = proposal["geometry_evidence"]
+        candidate_state["derived_artifacts"]["fabrication_evidence_by_route"] = {route_id:proposal["fabrication_evidence"]}
         candidate = store.add_candidate(run["id"], candidate_state, {"kind": "physical_route", "routes": [route.model_dump(mode="json")],
-                   "changed_ids": [route_id, *editable_ids], "objective": {}, "rationale": proposal["rationale"], "target_modality": scenario.target_modality})
+                   "changed_ids": [route_id, *editable_ids], "objective": {}, "rationale": proposal["rationale"],
+                   "proposal_evidence": proposal.get("geometry_evidence"), "target_modality": scenario.target_modality})
         store.update_run(run["id"], "CHECKING", "Independent checker is reloading physical solids, mission and protected sources", "verification", payload={"candidate_id": candidate["id"]})
         remaining = deadline - time.monotonic()
         if remaining < 1:
@@ -151,7 +157,7 @@ def route_project_run(store: Store, run: dict, control):
         checked = store.candidate(candidate["id"])
         if checked["status"] == "CHECKED":
             report = store.get(checked["report_root"])
-            cost = sum(scenario.objective_weights.get(k, 0) * v for k, v in report["objective"].items())
+            cost = reported_route_cost(report["objective"], scenario.objective_weights)
             columns.append(RouteColumn(checked["id"], net_id, cost, artifact_ref=checked["report_root"]))
             feasible_ids.append(checked["id"])
         store.update_run(run["id"], "RUNNING", f"Candidate {attempted}: {checked['status']}; {len(feasible_ids)} checked alternatives", "selection")

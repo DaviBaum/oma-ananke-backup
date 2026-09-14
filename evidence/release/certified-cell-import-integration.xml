@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="19" time="38.272" timestamp="2026-09-14T13:05:50.251170-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_import_checkpoints" name="test_cancel_during_late_import_never_publishes_partial_inventory[import_inventory_refresh]" time="0.257" /><testcase classname="tests.test_import_checkpoints" name="test_cancel_during_late_import_never_publishes_partial_inventory[import_inventory_refreshed]" time="0.141" /><testcase classname="tests.test_import_checkpoints" name="test_cancel_during_late_import_never_publishes_partial_inventory[federation_source]" time="0.148" /><testcase classname="tests.test_import_checkpoints" name="test_cancel_during_late_import_never_publishes_partial_inventory[federation_source_parsed]" time="0.149" /><testcase classname="tests.test_import_checkpoints" name="test_cancel_during_late_import_never_publishes_partial_inventory[federation_entity_batch]" time="0.155" /><testcase classname="tests.test_import_checkpoints" name="test_cancel_during_late_import_never_publishes_partial_inventory[connectivity_ownership_source]" time="0.150" /><testcase classname="tests.test_import_checkpoints" name="test_cancel_during_late_import_never_publishes_partial_inventory[connectivity_source]" time="0.168" /><testcase classname="tests.test_import_checkpoints" name="test_cancel_during_late_import_never_publishes_partial_inventory[import_state_serialization]" time="0.179" /><testcase classname="tests.test_import_checkpoints" name="test_cancel_during_late_import_never_publishes_partial_inventory[import_publish]" time="0.250" /><testcase classname="tests.test_import_checkpoints" name="test_completed_import_exposes_real_stage_denominators" time="0.244" /><testcase classname="tests.test_import_checkpoints" name="test_cached_import_refreshes_inventory_and_persists_actual_port_audit" time="0.274" /><testcase classname="tests.test_import_checkpoints" name="test_normalization_can_cancel_inside_large_source_without_suppressing_signal[connectivity_port_batch]" time="0.004" /><testcase classname="tests.test_import_checkpoints" name="test_normalization_can_cancel_inside_large_source_without_suppressing_signal[connectivity_connection_batch]" time="0.023" /><testcase classname="tests.test_project_proposals" name="test_single_candidate_budget_never_starts_second_geometry_search" time="0.083" /><testcase classname="tests.test_project_proposals" name="test_inconclusive_cell_model_is_retained_and_other_routes_remain_available[UNKNOWN]" time="0.110" /><testcase classname="tests.test_project_proposals" name="test_inconclusive_cell_model_is_retained_and_other_routes_remain_available[BLOCKED]" time="0.116" /><testcase classname="tests.test_project_proposals" name="test_cancellation_during_model_publication_stops_all_proposals" time="0.091" /><testcase classname="tests.test_routing_integration" name="test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_route" time="35.220"><failure message="oma.store.IntegrityError: Checker version changed; recheck required">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-146/test_real_ifc_pipeline_rejects0')
+
+    def test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_route(tmp_path):
+        source = make_fixture(tmp_path / "obstacle.ifc")
+        store = Store(tmp_path / "store")
+        project = store.create_project("Analytic seeded building", {"sources": [], "entities": []})
+        imp = store.create_run(project["id"], {"operation": "import", "paths": [str(source)]})
+        import_sources(store, imp, WorkerControl(store, imp["id"]))
+        scenario = {"start": [-1., 1., 1.], "end": [3., 1., 1.], "system_type": "PRESSURE_PIPE",
+                    "diameter_m": .1, "insulation_m": .02, "bend_radius_m": .3, "minimum_straight_m": .05,
+                    "clearance_m": .1, "allowed_zone": {"min": [-2., -2., -2.], "max": [4., 4., 4.]},
+                    "scenario_terminals": True, "max_candidates": 12}
+        run = store.create_run(project["id"], {"operation": "route", "mission": scenario, "budget_seconds": 90})
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+        candidates = store.candidates(project["id"])
+        assert candidates[0]["status"] == "REJECTED"
+        rejected = store.get(candidates[0]["report_root"])
+        assert next(r["status"] for r in rejected["results"] if r["id"] == "native-forbidden-volume-counterexample") == "FAIL"
+        assert next(r["status"] for r in rejected["results"] if r["id"] == "physical-interference-and-clearance") == "NOT_RUN"
+        checked = [c for c in candidates if c["status"] == "CHECKED"]
+        assert checked, [(c["status"], store.get(c["report_root"])["results"] if c["report_root"] else None) for c in candidates]
+        # This native workflow must actually consume a source-checked cell proposal,
+        # then independently check its fabricated elbows and complete obstacle set.
+        certified = [c for c in checked if c.get("proposal_evidence")]
+        assert certified
+        checked = certified + [c for c in checked if not c.get("proposal_evidence")]
+        evidence = checked[0]["proposal_evidence"]
+        model = store.get(evidence["report_root"])
+        assert model["context"]["base_root"] == run["base_root"]
+        assert model["report"]["status"] == "CHECKED_GEOMETRIC_PROPOSALS"
+        assert model["report"]["coverage_check"]["physical_elements"] == 1
+        assert not evidence["route_acceptance"] and not evidence["physical_infeasibility_claim"]
+        assert store.get(checked[0]["state_root"])["derived_artifacts"]["route_proposal_evidence"] == evidence
+        from oma.verification import CHECKER_VERSION
+&gt;       result = store.accept(project["id"], checked[0]["id"], 1, "accept", checker_version=CHECKER_VERSION)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_routing_integration.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;oma.store.Store object at 0x0000021083948320&gt;
+project_id = '20ef88bd0ebd4c348a74b04f978d6e44'
+candidate_id = 'd8850a32271642acb58f98338958c558', expected_revision = 1
+idempotency_key = 'accept'
+checker_version = 'oma-independent-checker/2:657b91deee49f2ff577551ecfb60bd913fe4ff9a2a7a27f8a4da8a777cb709f5'
+
+    def accept(self, project_id: str, candidate_id: str, expected_revision: int, idempotency_key: str, *, checker_version: str) -&gt; dict:
+        if checker_version.startswith("oma-independent-checker/"):
+            from .build_identity import checker_version as current_version
+            checker_version = current_version()
+        candidate = self.candidate(candidate_id)
+        if candidate["project_id"] != project_id:
+            raise IntegrityError("Candidate belongs to another project")
+        from .validation_advisories import candidate_advisories
+        if candidate_advisories(self, candidate):
+            raise IntegrityError("IFC-PORT-001: prior authored port semantics require regeneration and a fresh independent check")
+        if candidate["base_revision"] != expected_revision:
+            raise Conflict("Candidate was computed from a different revision; rebase and recheck required")
+        if candidate["status"] != "CHECKED" or not candidate["report_root"]:
+            raise IntegrityError("Candidate has no complete passing independent report")
+        report = self.get(candidate["report_root"])
+        if report["checker_version"] != checker_version:
+&gt;           raise IntegrityError("Checker version changed; recheck required")
+E           oma.store.IntegrityError: Checker version changed; recheck required
+
+src\oma\store.py:466: IntegrityError</failure></testcase><testcase classname="tests.test_routing_integration" name="test_missing_mission_is_recorded_not_a_fabricated_route" time="0.080" /></testsuite></testsuites>

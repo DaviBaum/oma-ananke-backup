@@ -35,11 +35,18 @@ oma revert PROJECT_ID TARGET_REVISION EXPECTED_REVISION
 oma backup C:/path/to/new-backup-directory
 ```
 
-The route/optimize commands currently cover explicit single-service circular
-route scenarios and a finite checked candidate master. They do not establish
-complete continuous routing, full joint multi-system co-design, or all ANANKE
-theory. Adding further routes to an already edited routing mission remains
-disabled until preservation of all prior route obligations is integrated.
+The route/optimize commands support explicit circular routes, simultaneous
+route demands, shared trunk/tee networks, and scoped revisions preserving prior
+requirements. Exact finite optimization selects independently checked physical
+alternatives. Source-bound route-cell mathematics supplies additional checked
+geometric proposals; fabricated fittings still require a fresh physical check.
+Complete continuous routing, broader topology and all ANANKE theory remain open.
+
+One explicitly permitted rectangular wall/slab opening can be authored with its
+route, inspected as actual cut geometry, accepted, exported and rechecked. The
+opening form requires native host inspection, a bounded allowed edit volume and
+explicit permission. Structural and fire approval are outside this geometric
+contract. Subsequent opening-preserving revisions remain unsupported.
 
 An explicit scenario supplies start/end positions in meters, system family,
 diameter, insulation, bend radius, minimum straight length, clearance, a permitted
@@ -61,11 +68,15 @@ The original user directive is in `docs/PRODUCTION_DIRECTIVE.md`. Source hashes,
 native equation extraction and exact reviewed locations are in `evidence/math/`.
 Real IFC acquisition, per-model audit and federation evidence are in
 `evidence/ifc/`. Hardware and benchmark records are in `evidence/hardware/` and
-`evidence/benchmarks/`. The source corpus is inventoried but not yet fully read.
+`evidence/benchmarks/`. Reading of all supplied canonical, integration and
+historical mathematics is accounted, including 228 historical chunks and 264
+native tables. Missing original sections are recorded. Reading coverage is
+separate from mathematical validation and implementation completeness.
 
 IFC-Bench is pinned to immutable commit
 `66c0737e7a48d7e0ce9303f213d88f670cb27855`. All 50 IFC files were acquired;
-the full geometry/compatibility campaign is still running. Dataset inputs are
+all 50 have recorded geometry/compatibility dispositions. Unknown geometry and
+remaining real-model engineering campaigns are explicit. Dataset inputs are
 downloaded separately and are not bundled with the application. Project-specific
 licenses and model cards are retained alongside acquired data.
 

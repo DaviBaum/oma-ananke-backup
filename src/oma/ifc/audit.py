@@ -81,6 +81,9 @@ def audit_file(path: str | Path, output_dir: str | Path | None = None, geometry:
             raise ValueError("Expected actual STEP IFC bytes, not pointer, HTML, or arbitrary data")
     source = sha256_file(path)
     model = ifcopenshell.open(str(path))
+    from .inventory import physical_inventory, apply_inventory_audit
+    inventory = physical_inventory(model)
+    cyclic_decomposition = any(e["reason"] == "CYCLIC_OR_DEPTH_EXHAUSTED_PHYSICAL_DECOMPOSITION" for e in inventory["errors"])
     parsed_seconds = time.perf_counter() - start
     unit_scale = ifcopenshell.util.unit.calculate_unit_scale(model)
     if not np.isfinite(unit_scale) or unit_scale <= 0:
@@ -96,7 +99,7 @@ def audit_file(path: str | Path, output_dir: str | Path | None = None, geometry:
         physical = product.is_a("IfcElement") and not product.is_a("IfcFeatureElementSubtraction")
         representation = getattr(product, "Representation", None)
         children = [child.id() for rel in getattr(product, "IsDecomposedBy", ()) for child in rel.RelatedObjects]
-        explicitly_non_geometric = (not physical and representation is None) or (physical and representation is None and bool(children))
+        explicitly_non_geometric = not physical and representation is None
         state = "unresolved" if representation or physical else "explicitly_non_geometric"
         if explicitly_non_geometric:
             state = "explicitly_non_geometric"
@@ -107,6 +110,8 @@ def audit_file(path: str | Path, output_dir: str | Path | None = None, geometry:
                   "has_representation": representation is not None, "decomposed_children": children,
                   "predefined_type": getattr(product, "PredefinedType", None)}
         try:
+            if cyclic_decomposition:
+                raise ValueError("Source decomposition is cyclic; recursive containment traversal not attempted")
             container = ifcopenshell.util.element.get_container(product)
             record["container_step_id"] = container.id() if container else None
             record["container_name"] = getattr(container, "Name", None) if container else None
@@ -167,7 +172,7 @@ def audit_file(path: str | Path, output_dir: str | Path | None = None, geometry:
     settings.set("mesher-angular-deflection", 0.1)
     iterator_error = None
     try:
-        if geometry:
+        if geometry and not cyclic_decomposition:
             iterator = ifcopenshell.geom.iterator(settings, model, max(1, min(16, threads)))
             if iterator.initialize():
                 while True:
@@ -265,6 +270,8 @@ def audit_file(path: str | Path, output_dir: str | Path | None = None, geometry:
         blockers.append({"code": "AMBIGUOUS_OR_MISSING_LENGTH_UNITS"})
     if iterator_error:
         blockers.append({"code": "GEOMETRY_ITERATOR_ERROR", "detail": iterator_error})
+    if cyclic_decomposition:
+        blockers.append({"code": "CYCLIC_DECOMPOSITION_GEOMETRY_NOT_ATTEMPTED"})
     connections_status = "PRESENT" if explicit_connections else "MISSING_INPUTS"
     crs = [_json_safe(entity.get_info()) for name in ("IfcProjectedCRS", "IfcMapConversion", "IfcMapConversionScaled") for entity in _safe_types(model, name)]
     contexts = [{"step_id": c.id(), "type": c.is_a(), "identifier": c.ContextIdentifier,
@@ -301,6 +308,7 @@ def audit_file(path: str | Path, output_dir: str | Path | None = None, geometry:
              "performance": {"parse_seconds": parsed_seconds, "metadata_seconds": metadata_seconds,
                              "geometry_seconds": geometry_seconds, "total_seconds": time.perf_counter() - start,
                              "vertices": total_vertices, "triangles": total_faces, "geometry_threads": threads}}
+    audit = apply_inventory_audit(audit, inventory, source)
     if out:
         audit["artifacts"] = {"audit": str(out / f"{artifact_stem}.audit.json")}
         if mesh_path:

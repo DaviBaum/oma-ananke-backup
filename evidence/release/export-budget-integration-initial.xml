@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="17" time="81.489" timestamp="2026-09-14T13:24:49.617162-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_export_checks" name="test_child_timeout_retains_bounded_logs_and_terminates_only_its_tree" time="2.039" /><testcase classname="tests.test_export_checks" name="test_child_resource_limit_is_an_unknown_not_a_failed_geometry_claim" time="0.027" /><testcase classname="tests.test_export_checks" name="test_checked_export_timeout_preserves_the_actual_draft_and_original_bytes" time="3.505" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[candidate_root]" time="0.446" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[checker_version]" time="0.453" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[mission_hash]" time="0.488" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[rule_hash]" time="0.465" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[objective]" time="0.454" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[scope]" time="0.478" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[check_set]" time="0.481" /><testcase classname="tests.test_export_checks" name="test_release_gate_rejects_stale_or_narrowed_passing_report[exported_bytes]" time="0.479" /><testcase classname="tests.test_export_checks" name="test_export_budget_api_and_cli_are_bounded_and_forwarded" time="0.233" /><testcase classname="tests.test_routing_integration" name="test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_route" time="37.127"><failure message="oma.store.IntegrityError: Export recheck failed; draft evidence preserved at C:\Users\Davi\AppData\Local\Temp\pytest-of-Davi\pytest-157\test_real_ifc_pipeline_rejects0\store\exports\baf5da8fcced465b815b0f6cc37d0f64">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-157/test_real_ifc_pipeline_rejects0')
+
+    def test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_route(tmp_path):
+        source = make_fixture(tmp_path / "obstacle.ifc")
+        store = Store(tmp_path / "store")
+        project = store.create_project("Analytic seeded building", {"sources": [], "entities": []})
+        imp = store.create_run(project["id"], {"operation": "import", "paths": [str(source)]})
+        import_sources(store, imp, WorkerControl(store, imp["id"]))
+        scenario = {"start": [-1., 1., 1.], "end": [3., 1., 1.], "system_type": "PRESSURE_PIPE",
+                    "diameter_m": .1, "insulation_m": .02, "bend_radius_m": .3, "minimum_straight_m": .05,
+                    "clearance_m": .1, "allowed_zone": {"min": [-2., -2., -2.], "max": [4., 4., 4.]},
+                    "scenario_terminals": True, "max_candidates": 12}
+        run = store.create_run(project["id"], {"operation": "route", "mission": scenario, "budget_seconds": 90})
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+        candidates = store.candidates(project["id"])
+        assert candidates[0]["status"] == "REJECTED"
+        rejected = store.get(candidates[0]["report_root"])
+        assert next(r["status"] for r in rejected["results"] if r["id"] == "native-forbidden-volume-counterexample") == "FAIL"
+        assert next(r["status"] for r in rejected["results"] if r["id"] == "physical-interference-and-clearance") == "NOT_RUN"
+        checked = [c for c in candidates if c["status"] == "CHECKED"]
+        assert checked, [(c["status"], store.get(c["report_root"])["results"] if c["report_root"] else None) for c in candidates]
+        # This native workflow must actually consume a source-checked cell proposal,
+        # then independently check its fabricated elbows and complete obstacle set.
+        certified = [c for c in checked if c.get("proposal_evidence")]
+        assert certified
+        checked = certified + [c for c in checked if not c.get("proposal_evidence")]
+        evidence = checked[0]["proposal_evidence"]
+        model = store.get(evidence["report_root"])
+        assert model["context"]["base_root"] == run["base_root"]
+        assert model["report"]["status"] == "CHECKED_GEOMETRIC_PROPOSALS"
+        assert model["report"]["coverage_check"]["physical_elements"] == 1
+        assert not evidence["route_acceptance"] and not evidence["physical_infeasibility_claim"]
+        assert store.get(checked[0]["state_root"])["derived_artifacts"]["route_proposal_evidence"] == evidence
+        from oma.verification import CHECKER_VERSION
+        result = store.accept(project["id"], checked[0]["id"], 1, "accept", checker_version=CHECKER_VERSION)
+        assert result["revision"] == 2
+        report = store.get(checked[0]["report_root"])
+        assert report["status"] == "PASS"
+        assert report["objective"]["length_m"] &gt; 4
+        assert len(report["results"]) &gt;= 9
+        assert store.get(store.history(project["id"])[-1]["root"])["sources"] == []
+        assert store.project(project["id"])["state_root"] == checked[0]["state_root"]
+        from oma.exporting import export_project
+&gt;       bundle = export_project(store, project["id"], checked[0]["id"], draft=False)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_routing_integration.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = &lt;oma.store.Store object at 0x000001EBFE541A30&gt;
+project_id = '1c6adfc8234145cca62c884fadda6e6e'
+candidate_id = 'eb91e254507d4dd6b810b4455b0855f3', draft = False
+budget_seconds = 3600.0
+
+    def export_project(store: Store, project_id: str, candidate_id: str | None = None, draft: bool = True,
+                       *, budget_seconds: float = DEFAULT_EXPORT_BUDGET_SECONDS) -&gt; dict:
+        started = time.monotonic()
+        budget_seconds = export_budget(budget_seconds)
+        project = store.project(project_id)
+        candidate = store.candidate(candidate_id) if candidate_id else None
+        if candidate and candidate["project_id"] != project_id:
+            raise IntegrityError("Candidate belongs to a different project")
+        root = candidate["state_root"] if candidate else project["state_root"]
+        state = store.get(root)
+        if not state.get("sources"):
+            raise ValueError("Import must finish before export")
+        if not draft:
+            from .build_identity import checker_version
+            if not candidate or candidate["status"] != "CHECKED" or not candidate.get("report_root"):
+                raise IntegrityError("Checked export requires complete independent evidence for an explicit candidate")
+            from .validation_advisories import candidate_advisories
+            if candidate_advisories(store, candidate, state):
+                raise IntegrityError("IFC-PORT-001: prior authored port semantics require regeneration and a fresh independent check")
+            report = store.get(candidate["report_root"])
+            if report["status"] != "PASS" or report["candidate_root"] != root or report["checker_version"] != checker_version():
+                raise IntegrityError("Candidate does not have a passing root-matched report")
+        if state.get("physical_networks"):
+            from .routing.network_export import export_network_project
+            return export_network_project(store, project, state, candidate, draft, report if not draft else None, budget_seconds=budget_seconds, started=started)
+        if state.get("derived_artifacts", {}).get("routing_contracts"):
+            from .routing.joint_export import export_joint_project
+            return export_joint_project(store, project, state, candidate, draft, report if not draft else None, budget_seconds=budget_seconds, started=started)
+        route_specs = state.get("derived_artifacts", {}).get("route_exports", [])
+        if len(route_specs) &gt; 1:
+            raise ValueError("Joint multi-route export correspondence is required; cannot drop or duplicate routes")
+        export_id = uuid.uuid4().hex
+        directory = store.directory / "exports" / export_id
+        directory.mkdir(parents=True)
+        manifest = {"export_id": export_id, "project_id": project_id, "candidate_id": candidate_id, "state_root": root,
+                    "created_at": utcnow(), "status": "DRAFT", "files": [], "correspondences": [],
+                    "round_trip": "NOT_RUN", "whole_building_release": "NOT_CERTIFIED", "limitations": [], "source_redistribution": "Local user export; original project license terms retained"}
+        checks = ExportChecks(store, directory, manifest, budget_seconds=budget_seconds, started=started)
+        atomic_json(directory / "state.json", state)
+        exported_materialization = None
+        for index, source in enumerate(state["sources"]):
+            original = store.resolve_path(source["immutable_path"])
+            if sha256_file(original) != source["sha256"]:
+                raise IntegrityError("Immutable source hash mismatch; export stopped")
+            destination = directory / f"{index + 1:02d}_{source['name']}"
+            spec = next((r for r in route_specs if r["source_id"] == source["id"]), None)
+            if spec:
+                prior = store.get(state["derived_artifacts"]["route_materialization"]["root"])
+                if sha256_file(store.resolve_path(prior["export_path"])) != prior["export_sha256"] or prior["source_sha256"] != source["sha256"]:
+                    raise IntegrityError("Physical IFC no longer matches checked materialization")
+                shutil.copyfile(store.resolve_path(prior["export_path"]), destination)
+                exported_materialization = {**prior, "source_path": str(original), "export_path": str(destination), "export_sha256": sha256_file(destination), "reimport": {"status": "NOT_RUN"}}
+                atomic_json(destination.with_suffix(".manifest.json"), exported_materialization)
+                manifest["correspondences"].append({"source_id": source["id"], "replacement_path": str(destination), "route_id": spec["route_spec"]["route_id"], "part_guids": [p["ifc_guid"] for p in prior["added_parts"]]})
+                if prior.get("authorized_opening"):
+                    opening = prior["authorized_opening"]
+                    manifest["correspondences"][-1]["authorized_opening"] = {"host_guid": opening["request"]["host_guid"],
+                        "host_step_id": opening["request"]["host_step_id"], "opening_guid": opening["opening_guid"],
+                        "request_root": opening["request_root"], "scope": opening["scope"]}
+            else:
+                shutil.copyfile(original, destination)
+            manifest["files"].append({"path": str(destination), "source_id": source["id"], "sha256": sha256_file(destination),
+                                      "source_sha256": source["sha256"], "schema": source["schema"], "changed": bool(spec)})
+            checks.persist()
+        if exported_materialization:
+            exported_materialization, manifest["round_trip"] = checks.reimport("oma.ifc.recheck", Path(exported_materialization["export_path"]).with_suffix(".manifest.json"))
+            if not draft and manifest["round_trip"] == "PASS":
+                exported_state = copy.deepcopy(state)
+                materialized_root = store.put(exported_materialization)
+                exported_state["derived_artifacts"]["route_materialization"].update(root=materialized_root, path=exported_materialization["export_path"])
+                for route in exported_state["routes"]:
+                    if route["id"] in candidate["changed_ids"]:
+                        route["geometry_artifact"] = materialized_root
+                exported_state["derived_artifacts"]["export_correspondence"] = {"input_candidate_root": root, "files": manifest["files"]}
+                exported_candidate = store.add_candidate(candidate["run_id"], exported_state, {"kind": "physical_route", "export_recheck": True, "changed_ids": candidate["changed_ids"], "routes": exported_state["routes"], "objective": {}, "rationale": "Independent verification of exported physical IFC copy"})
+                checks.verify(exported_candidate, report)
+        else:
+            manifest["round_trip"] = "BYTE_IDENTICAL_ORIGINALS"
+            manifest["limitations"].append("No accepted route edits in this state; exported files are unchanged source copies")
+        manifest["limitations"].append("Local route checks do not certify pre-existing defects or whole-building adequacy")
+        atomic_json(directory / "manifest.json", manifest)
+        snapshot = store.get(root)
+        atomic_json(directory / "state.json", snapshot)
+        events, cursor = [], 0
+        while batch := store.events(project_id, cursor, 1000):
+            events.extend(batch)
+            cursor = batch[-1]["seq"]
+        atomic_json(directory / "events.json", events)
+        manifest_root = store.put(manifest)
+        store.append_event(project_id, state_root=root, candidate_id=candidate_id, stage="export", status=manifest["status"], message="IFC export bundle written with replacement map and checking evidence", artifacts=[manifest_root], payload={"directory": str(directory), "round_trip": manifest["round_trip"]})
+        if not draft and manifest["status"] != "CHECKED_LOCAL_SCOPE":
+&gt;           raise IntegrityError(f"Export recheck failed; draft evidence preserved at {directory}")
+E           oma.store.IntegrityError: Export recheck failed; draft evidence preserved at C:\Users\Davi\AppData\Local\Temp\pytest-of-Davi\pytest-157\test_real_ifc_pipeline_rejects0\store\exports\baf5da8fcced465b815b0f6cc37d0f64
+
+.oma\test-builds\runtimes\450dadd862b4ff011ffd3de22d8ab0cf31cbf6a0f80b9c667ed892778e23791f\src\oma\exporting.py:107: IntegrityError</failure></testcase><testcase classname="tests.test_joint_routing" name="test_joint_search_consumes_checked_cell_path_and_rechecks_complete_route_set" time="10.863"><failure message="oma.store.IntegrityError: Joint export failed fresh checking; evidence retained at C:\Users\Davi\AppData\Local\Temp\pytest-of-Davi\pytest-157\test_joint_search_consumes_che0\store\exports\e7fe3714079a4e8583f2bc0341ab9a2f">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-157/test_joint_search_consumes_che0')
+
+    def test_joint_search_consumes_checked_cell_path_and_rechecks_complete_route_set(tmp_path):
+        from oma.build_identity import checker_version
+        from oma.exporting import export_project
+        from oma.store import digest
+        source = make_fixture(tmp_path / "obstacle.ifc")
+        store = Store(tmp_path / "store")
+        project = store.create_project("Source-cell simultaneous repair", {"sources": [], "entities": []})
+        imp = store.create_run(project["id"], {"operation": "import", "paths": [str(source)]})
+        import_sources(store, imp, WorkerControl(store, imp["id"]))
+        first = {"start": [-1., 1., 1.], "end": [3., 1., 1.], "system_type": "PRESSURE_PIPE",
+            "diameter_m": .1, "insulation_m": .02, "bend_radius_m": .3, "minimum_straight_m": .05,
+            "clearance_m": .1, "allowed_zone": {"min": [-2., -2., -2.], "max": [4., 4., 4.]},
+            "scenario_terminals": True, "max_candidates": 2}
+        second = {**first, "start": [-1., 3.5, 3.5], "end": [3., 3.5, 3.5], "max_candidates": 1}
+        mission = {"route_demands": [{"id": "obstructed", "alternatives": [first]},
+                                   {"id": "clear", "alternatives": [second]}],
+                   "max_joint_candidates": 2, "max_paths_per_alternative": 2}
+        run = store.create_run(project["id"], {"operation": "optimize", "mission": mission, "budget_seconds": 90})
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+        candidates = store.candidates(project["id"])
+        assert len(candidates) == 2
+        assert candidates[0]["status"] == "REJECTED"
+        checked = candidates[1]
+        assert checked["status"] == "CHECKED", store.get(checked["report_root"])
+        assert len(checked["proposal_evidence"]) == 1
+        route_id, evidence = next(iter(checked["proposal_evidence"].items()))
+        artifact = store.get(evidence["report_root"])
+        assert artifact["context"]["request_demand_id"] == "obstructed"
+        assert artifact["context"]["request_root"] == digest(run["request"])
+        assert artifact["context"]["base_root"] == run["base_root"]
+        assert artifact["report"]["coverage_check"]["physical_elements"] == 1
+        assert not artifact["route_acceptance"] and not artifact["physical_infeasibility_claim"]
+        state = store.get(checked["state_root"])
+        assert state["derived_artifacts"]["route_proposal_evidence_by_route"][route_id] == evidence
+        assert len(state["routes"]) == 2
+        report = store.get(checked["report_root"])
+        assert next(r for r in report["results"] if r["id"] == "cross-route-interference")["status"] == "PASS"
+        store.accept(project["id"], checked["id"], 1, "accept-joint-cell-repair", checker_version=checker_version())
+&gt;       exported = export_project(store, project["id"], checked["id"], draft=False)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_joint_routing.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.oma\test-builds\runtimes\450dadd862b4ff011ffd3de22d8ab0cf31cbf6a0f80b9c667ed892778e23791f\src\oma\exporting.py:43: in export_project
+    return export_joint_project(store, project, state, candidate, draft, report if not draft else None, budget_seconds=budget_seconds, started=started)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = &lt;oma.store.Store object at 0x000001EBFE6E4FE0&gt;
+project = {'id': '27aa68f2454f4e96bd99eb5a01cd9798', 'name': 'Source-cell simultaneous repair', 'revision': 2, 'state_root': 'b058f806c7a4c3269fdeab4d1e60d8910c8a2868beead17faf291a8f2ec6beee', ...}
+state = {'assumptions': [{'data': {'allowed_zone': {'max': [4.0, 4.0, 4.0], 'min': [-2.0, -2.0, -2.0]}, 'assumptions': [], 'be...60ed03b2f1a7531e053c952dba81b24a419d74e1178233e1535058185fb54c7:15', 'ifc_type': 'IfcBuildingElementProxy', ...}], ...}
+candidate = {'changed_ids': ['oma-7e2c5947e43b-002-00', 'oma-7e2c5947e43b-002-01'], 'kind': 'physical_route_set', 'objective': {}, 'physical_menu_assignment': ['0:1', '0:0'], ...}
+draft = False
+original_report = {'candidate_root': 'b058f806c7a4c3269fdeab4d1e60d8910c8a2868beead17faf291a8f2ec6beee', 'checker_version': 'oma-indepen... alternatives do not establish complete continuous optimality'], 'created_at': '2026-09-14T18:25:43.273613+00:00', ...}
+budget_seconds = 3600.0, started = 69767.687
+
+    def export_joint_project(store, project, state, candidate, draft, original_report=None, *, budget_seconds=DEFAULT_EXPORT_BUDGET_SECONDS, started=None):
+        root = candidate["state_root"] if candidate else project["state_root"]
+        export_id = uuid.uuid4().hex
+        directory = store.directory / "exports" / export_id
+        directory.mkdir(parents=True)
+        manifest = {"export_id": export_id, "project_id": project["id"], "candidate_id": candidate["id"] if candidate else None,
+            "state_root": root, "created_at": utcnow(), "status": "DRAFT", "files": [], "correspondences": [],
+            "round_trip": "NOT_RUN", "whole_building_release": "NOT_CERTIFIED", "limitations": [],
+            "source_redistribution": "Local user export; original project license terms retained"}
+        contracts = state["derived_artifacts"]["routing_contracts"]
+        routes = {r["id"]: r for r in state["routes"]}
+        exported = {}
+        checks = ExportChecks(store, directory, manifest, budget_seconds=budget_seconds, started=started)
+        atomic_json(directory / "state.json", state)
+        roundtrips = []
+        for index, source in enumerate(state["sources"]):
+            original = store.resolve_path(source["immutable_path"])
+            if sha256_file(original) != source["sha256"]:
+                raise IntegrityError("Original source bytes changed; joint export stopped")
+            destination = directory / f"{index+1:02d}_{source['name']}"
+            members = [r for r in routes if contracts[r]["source_id"] == source["id"]]
+            if members:
+                materials = [store.get(routes[r]["geometry_artifact"]) for r in members]
+                files = {(str(store.resolve_path(m["export_path"])), m["export_sha256"]) for m in materials}
+                if len(files) != 1 or any(m["source_sha256"] != source["sha256"] for m in materials):
+                    raise IntegrityError("Routes lack one complete source replacement")
+                physical_path, physical_hash = files.pop()
+                if sha256_file(physical_path) != physical_hash:
+                    raise IntegrityError("Composite physical IFC bytes changed")
+                shutil.copyfile(physical_path, destination)
+                for rid, material in zip(members, materials):
+                    exported[rid] = {**material, "source_path": str(original), "export_path": str(destination),
+                        "export_sha256": sha256_file(destination), "reimport": {"status": "NOT_RUN"}}
+                    manifest_path = directory / f"route-{rid}.manifest.json"
+                    atomic_json(manifest_path, exported[rid])
+                    exported[rid], status = checks.reimport("oma.ifc.recheck", manifest_path)
+                    roundtrips.append(status)
+                atomic_json(destination.with_suffix(".manifest.json"), exported[members[0]])
+                manifest["correspondences"].append({"source_id": source["id"], "replacement_path": str(destination),
+                    "route_ids": members, "part_guids": [p["ifc_guid"] for m in materials for p in m["added_parts"]]})
+            else:
+                shutil.copyfile(original, destination)
+            manifest["files"].append({"path": str(destination), "source_id": source["id"], "sha256": sha256_file(destination),
+                "source_sha256": source["sha256"], "schema": source["schema"], "changed": bool(members)})
+            checks.persist()
+        manifest["round_trip"] = "PASS" if roundtrips and all(r == "PASS" for r in roundtrips) else next((r for r in roundtrips if r != "PASS"), "NOT_RUN")
+        if not draft and manifest["round_trip"] == "PASS":
+            exported_state = copy.deepcopy(state)
+            for route in exported_state["routes"]:
+                route["geometry_artifact"] = store.put(exported[route["id"]])
+            exported_state["derived_artifacts"]["export_correspondence"] = {"input_candidate_root": root, "files": manifest["files"]}
+            exported_candidate = store.add_candidate(candidate["run_id"], exported_state, {"kind": "physical_route_set", "export_recheck": True,
+                "changed_ids": candidate["changed_ids"], "routes": exported_state["routes"], "objective": {}, "rationale": "Independent check of complete exported composite IFC files"})
+            checks.verify(exported_candidate, original_report)
+        manifest["limitations"].append("Local route-set checks do not certify pre-existing defects or complete whole-building engineering adequacy")
+        atomic_json(directory / "manifest.json", manifest)
+        atomic_json(directory / "state.json", state)
+        events, cursor = [], 0
+        while batch := store.events(project["id"], cursor, 1000):
+            events.extend(batch)
+            cursor = batch[-1]["seq"]
+        atomic_json(directory / "events.json", events)
+        manifest_root = store.put(manifest)
+        store.append_event(project["id"], state_root=root, candidate_id=candidate["id"] if candidate else None, stage="export", status=manifest["status"],
+            message="Complete simultaneous route IFC replacements exported and independently rechecked", artifacts=[manifest_root],
+            payload={"directory": str(directory), "round_trip": manifest["round_trip"]})
+        if not draft and manifest["status"] != "CHECKED_LOCAL_SCOPE":
+&gt;           raise IntegrityError(f"Joint export failed fresh checking; evidence retained at {directory}")
+E           oma.store.IntegrityError: Joint export failed fresh checking; evidence retained at C:\Users\Davi\AppData\Local\Temp\pytest-of-Davi\pytest-157\test_joint_search_consumes_che0\store\exports\e7fe3714079a4e8583f2bc0341ab9a2f
+
+.oma\test-builds\runtimes\450dadd862b4ff011ffd3de22d8ab0cf31cbf6a0f80b9c667ed892778e23791f\src\oma\routing\joint_export.py:80: IntegrityError</failure></testcase><testcase classname="tests.test_network_integration" name="test_shared_network_import_check_select_accept_export_and_reopen" time="5.462"><failure message="oma.store.IntegrityError: Network export failed fresh checking; evidence retained at C:\Users\Davi\AppData\Local\Temp\pytest-of-Davi\pytest-157\test_shared_network_import_che0\store\exports\82e10171170a4d6782fc0c3bb4f81ca8">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-157/test_shared_network_import_che0')
+
+    def test_shared_network_import_check_select_accept_export_and_reopen(tmp_path):
+        store, project = imported_project(tmp_path)
+        mission = network_scenario()
+        run = store.create_run(project["id"], {"operation": "optimize", "mission": mission, "budget_seconds": 90})
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+        candidates = store.candidates(project["id"])
+        assert len(candidates) == 1, store.run(run["id"])
+        candidate = candidates[0]
+        report = store.get(candidate["report_root"])
+        assert candidate["status"] == "CHECKED", report
+        assert store.run(run["id"])["status"] == "COMPLETED"
+        assert report["objective"] == {"length_m": 3., "fitting_count": 1.}
+        calculation = next(r["witness"]["calculation"] for r in report["results"] if r["id"] == "network-demand-conditioned-service")
+        assert calculation["source_flow_m3_s"] == "3/1000"
+        assert calculation["components"]["junction"]["flow_m3_s"]["branch"] == "1/500"
+        assert calculation["unique_physical_components"] == 4
+        assert calculation["operating_point_solution"] == "NOT_ESTABLISHED"
+        from oma.project_assurance import candidate_assurance
+        case = candidate_assurance(store, candidate["id"])
+        assert any("fixed_network_boundary_inputs" in a["statement"] for a in case["assumption_ledger"])
+        assert any("INLET_VELOCITY_TOTAL_IRREVERSIBLE_LOSS" in a["statement"] for a in case["assumption_ledger"])
+        state = store.get(candidate["state_root"])
+        assert state["routes"] == []
+        assert len(state["physical_networks"]) == 1
+        from oma.build_identity import checker_version
+        from oma.exporting import export_project
+        store.accept(project["id"], candidate["id"], 1, "accept-shared", checker_version=checker_version())
+&gt;       exported = export_project(store, project["id"], candidate["id"], draft=False)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_network_integration.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.oma\test-builds\runtimes\450dadd862b4ff011ffd3de22d8ab0cf31cbf6a0f80b9c667ed892778e23791f\src\oma\exporting.py:40: in export_project
+    return export_network_project(store, project, state, candidate, draft, report if not draft else None, budget_seconds=budget_seconds, started=started)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = &lt;oma.store.Store object at 0x000001EBFE7E2810&gt;
+project = {'id': '2b0417aa279a4430871b8df799140102', 'name': 'Shared trunk', 'revision': 2, 'state_root': 'a838be18cd1c44c9864858394d51f15e3b4f1b228400e64505117b31f704c795', ...}
+state = {'assumptions': [], 'dependencies': {}, 'derived_artifacts': {'connectivity_normalization': {'counts': {}, 'explicit_c...c249fabfd4bb3950e4452fe55151cd00a6895af475b08c89c567348fa3ac640:15', 'ifc_type': 'IfcBuildingElementProxy', ...}], ...}
+candidate = {'changed_ids': ['example-shared-two-sink-network:trunk', 'example-shared-two-sink-network:junction', 'example-shared-...1c18f9295423975cc61c6c64628e585169008edbbc44110', 'id': 'example-shared-two-sink-network', ...}], 'objective': {}, ...}
+draft = False
+original_report = {'candidate_root': 'a838be18cd1c44c9864858394d51f15e3b4f1b228400e64505117b31f704c795', 'checker_version': 'oma-indepen...tablish global continuous or unrestricted topology optimality'], 'created_at': '2026-09-14T18:25:50.233563+00:00', ...}
+budget_seconds = 3600.0, started = 69774.578
+
+    def export_network_project(store, project, state, candidate, draft, original_report=None, *, budget_seconds=DEFAULT_EXPORT_BUDGET_SECONDS, started=None):
+        records = state.get("physical_networks", [])
+        if len(records) != 1 or state.get("routes"):
+            raise IntegrityError("Export requires one complete supported network and preserved source set")
+        record = records[0]
+        materialized = store.get(record["geometry_artifact"])
+        source_id = state["derived_artifacts"]["network_contract"]["source_id"]
+        root = candidate["state_root"] if candidate else project["state_root"]
+        export_id = uuid.uuid4().hex
+        directory = store.directory / "exports" / export_id
+        directory.mkdir(parents=True)
+        manifest = {"export_id": export_id, "project_id": project["id"], "candidate_id": candidate["id"] if candidate else None,
+            "state_root": root, "created_at": utcnow(), "status": "DRAFT", "round_trip": "NOT_RUN", "files": [],
+            "whole_building_release": "NOT_CERTIFIED", "limitations": [], "correspondences": [],
+            "source_redistribution": "Local user export; original project license terms retained"}
+        checks = ExportChecks(store, directory, manifest, budget_seconds=budget_seconds, started=started)
+        atomic_json(directory / "state.json", state)
+        exported = None
+        for index, source in enumerate(state["sources"]):
+            original = store.resolve_path(source["immutable_path"])
+            if not original.is_file() or sha256_file(original) != source["sha256"]:
+                raise IntegrityError("Original source bytes changed; network export stopped")
+            destination = directory / f"{index+1:02d}_{source['name']}"
+            changed = source["id"] == source_id
+            if changed:
+                physical = store.resolve_path(materialized["export_path"])
+                if sha256_file(physical) != materialized["export_sha256"] or materialized["source_sha256"] != source["sha256"]:
+                    raise IntegrityError("Complete physical network no longer matches its immutable artifact")
+                shutil.copyfile(physical, destination)
+                exported = {**materialized, "source_path": str(original), "export_path": str(destination),
+                            "export_sha256": sha256_file(destination), "reimport": {"status": "NOT_RUN"}}
+                sidecar = destination.with_suffix(".manifest.json")
+                atomic_json(sidecar, exported)
+                exported, manifest["round_trip"] = checks.reimport("oma.ifc.network_semantics", sidecar)
+                manifest["correspondences"].append({"source_id": source_id, "network_id": record["id"],
+                    "replacement_path": str(destination), "part_guids": [p["ifc_guid"] for p in materialized["added_parts"]],
+                    "demand_ids": record["demand_ids"], "component_ids": record["component_ids"]})
+            else:
+                shutil.copyfile(original, destination)
+            manifest["files"].append({"path": str(destination), "source_id": source["id"], "sha256": sha256_file(destination),
+                "source_sha256": source["sha256"], "schema": source["schema"], "changed": changed})
+            checks.persist()
+        if exported is None:
+            raise IntegrityError("Physical network source is absent from exported federation")
+        if not draft and manifest["round_trip"] == "PASS":
+            copied_state = copy.deepcopy(state)
+            copied_state["physical_networks"][0]["geometry_artifact"] = store.put(exported)
+            copied_state["derived_artifacts"]["export_correspondence"] = {"input_candidate_root": root, "files": manifest["files"]}
+            checked_copy = store.add_candidate(candidate["run_id"], copied_state, {"kind": "physical_network", "export_recheck": True,
+                "changed_ids": candidate["changed_ids"], "routes": [], "networks": copied_state["physical_networks"], "objective": {},
+                "rationale": "Fresh independent check of the entire exported shared network and all federation files"})
+            checks.verify(checked_copy, original_report)
+        manifest["limitations"].append("Local shared-network coordination and supplied-flow checks do not certify pre-existing defects or whole-building engineering adequacy")
+        atomic_json(directory / "manifest.json", manifest)
+        atomic_json(directory / "state.json", state)
+        events, cursor = [], 0
+        while batch := store.events(project["id"], cursor, 1000):
+            events.extend(batch)
+            cursor = batch[-1]["seq"]
+        atomic_json(directory / "events.json", events)
+        manifest_root = store.put(manifest)
+        store.append_event(project["id"], state_root=root, candidate_id=candidate["id"] if candidate else None, stage="export",
+            status=manifest["status"], message="Complete shared-network IFC exported and independently rechecked", artifacts=[manifest_root],
+            payload={"directory": str(directory), "round_trip": manifest["round_trip"]})
+        if not draft and manifest["status"] != "CHECKED_LOCAL_SCOPE":
+&gt;           raise IntegrityError(f"Network export failed fresh checking; evidence retained at {directory}")
+E           oma.store.IntegrityError: Network export failed fresh checking; evidence retained at C:\Users\Davi\AppData\Local\Temp\pytest-of-Davi\pytest-157\test_shared_network_import_che0\store\exports\82e10171170a4d6782fc0c3bb4f81ca8
+
+.oma\test-builds\runtimes\450dadd862b4ff011ffd3de22d8ab0cf31cbf6a0f80b9c667ed892778e23791f\src\oma\routing\network_export.py:78: IntegrityError</failure></testcase><testcase classname="tests.test_network_revision" name="test_actual_revision_replaces_one_tree_and_rechecks_its_export" time="8.020"><failure message="oma.store.IntegrityError: Network export failed fresh checking; evidence retained at C:\Users\Davi\AppData\Local\Temp\pytest-of-Davi\pytest-157\test_actual_revision_replaces_0\store\exports\09bc01f5932e45fe9800d3338f79bb8d">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-157/test_actual_revision_replaces_0')
+
+    def test_actual_revision_replaces_one_tree_and_rechecks_its_export(tmp_path):
+        import ifcopenshell
+        from oma.build_identity import checker_version
+        from oma.exporting import export_project
+        from oma.routing.engine import route_project_run
+        from oma.routing.network_checker import verify_network_candidate
+        from oma.worker import WorkerControl
+        from test_network_integration import imported_project
+    
+        store, project = imported_project(tmp_path)
+        first = store.create_run(project["id"], {"operation": "optimize", "mission": network_scenario(), "budget_seconds": 60})
+        route_project_run(store, first, WorkerControl(store, first["id"]))
+        old = store.candidates(project["id"])[0]
+        assert old["status"] == "CHECKED"
+        store.accept(project["id"], old["id"], 1, "accept-before-revision", checker_version=checker_version())
+        baseline = store.get(old["state_root"])
+        request = revised_scenario(baseline)
+        request["source_id"] = baseline["sources"][0]["id"]
+        run = store.create_run(project["id"], {"operation": "optimize", "mission": request, "budget_seconds": 60})
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+        candidate = next(c for c in store.candidates(project["id"]) if c["run_id"] == run["id"])
+        report = store.get(candidate["report_root"])
+        assert candidate["status"] == "CHECKED", report
+        assert store.get(old["state_root"]) == baseline
+        state = store.get(candidate["state_root"])
+        revision = state["derived_artifacts"]["network_contract"]["revision"]
+        assert revision["base_root"] == old["state_root"]
+        assert len(candidate["changed_ids"]) == 8
+        assert len(state["ports"]) == len(baseline["ports"])
+        assert not set(baseline["physical_networks"][0]["port_ids"]) &amp; {p["id"] for p in state["ports"]}
+        # An injected candidate cannot erase its predecessor or forge revision roots.
+        for kind in ("lineage", "changed", "original"):
+            forged_state, changes = copy.deepcopy(state), list(candidate["changed_ids"])
+            if kind == "lineage":
+                forged_state["derived_artifacts"]["network_contract"]["revision"]["base_root"] = "0" * 64
+            elif kind == "changed":
+                changes.pop()
+            else:
+                forged_state["sources"][0]["sha256"] = "0" * 64
+            forged = store.add_candidate(run["id"], forged_state, {"kind": "physical_network", "changed_ids": changes})
+            assert verify_network_candidate(store, forged["id"]).status == "FAIL"
+        store.accept(project["id"], candidate["id"], 2, "accept-revision", checker_version=checker_version())
+&gt;       exported = export_project(store, project["id"], candidate["id"], draft=False)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_network_revision.py:137: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.oma\test-builds\runtimes\450dadd862b4ff011ffd3de22d8ab0cf31cbf6a0f80b9c667ed892778e23791f\src\oma\exporting.py:40: in export_project
+    return export_network_project(store, project, state, candidate, draft, report if not draft else None, budget_seconds=budget_seconds, started=started)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = &lt;oma.store.Store object at 0x000001EBFE6F6120&gt;
+project = {'id': 'b55c0064e0a849d892c0931ab6a03a00', 'name': 'Shared trunk', 'revision': 3, 'state_root': 'a5478c40ae2ac46eb0b429559e09e0001314f67fcd315ba8b8d35fd393a00fe9', ...}
+state = {'assumptions': [], 'dependencies': {}, 'derived_artifacts': {'connectivity_normalization': {'counts': {}, 'explicit_c...2c0a33cc2e48116c966ab5f8a740a2a0185bfdc9844dacbadb7389d60354320:15', 'ifc_type': 'IfcBuildingElementProxy', ...}], ...}
+candidate = {'changed_ids': ['example-shared-two-sink-network:arm-a', 'example-shared-two-sink-network:arm-b', 'example-shared-two... '395a5d45dcafa3d6f47f9da3947884ae97d7d735fab9a741c8254ee3e300fb3f', 'id': 'revised-tree', ...}], 'objective': {}, ...}
+draft = False
+original_report = {'candidate_root': 'a5478c40ae2ac46eb0b429559e09e0001314f67fcd315ba8b8d35fd393a00fe9', 'checker_version': 'oma-indepen...tablish global continuous or unrestricted topology optimality'], 'created_at': '2026-09-14T18:25:57.773455+00:00', ...}
+budget_seconds = 3600.0, started = 69782.421
+
+    def export_network_project(store, project, state, candidate, draft, original_report=None, *, budget_seconds=DEFAULT_EXPORT_BUDGET_SECONDS, started=None):
+        records = state.get("physical_networks", [])
+        if len(records) != 1 or state.get("routes"):
+            raise IntegrityError("Export requires one complete supported network and preserved source set")
+        record = records[0]
+        materialized = store.get(record["geometry_artifact"])
+        source_id = state["derived_artifacts"]["network_contract"]["source_id"]
+        root = candidate["state_root"] if candidate else project["state_root"]
+        export_id = uuid.uuid4().hex
+        directory = store.directory / "exports" / export_id
+        directory.mkdir(parents=True)
+        manifest = {"export_id": export_id, "project_id": project["id"], "candidate_id": candidate["id"] if candidate else None,
+            "state_root": root, "created_at": utcnow(), "status": "DRAFT", "round_trip": "NOT_RUN", "files": [],
+            "whole_building_release": "NOT_CERTIFIED", "limitations": [], "correspondences": [],
+            "source_redistribution": "Local user export; original project license terms retained"}
+        checks = ExportChecks(store, directory, manifest, budget_seconds=budget_seconds, started=started)
+        atomic_json(directory / "state.json", state)
+        exported = None
+        for index, source in enumerate(state["sources"]):
+            original = store.resolve_path(source["immutable_path"])
+            if not original.is_file() or sha256_file(original) != source["sha256"]:
+                raise IntegrityError("Original source bytes changed; network export stopped")
+            destination = directory / f"{index+1:02d}_{source['name']}"
+            changed = source["id"] == source_id
+            if changed:
+                physical = store.resolve_path(materialized["export_path"])
+                if sha256_file(physical) != materialized["export_sha256"] or materialized["source_sha256"] != source["sha256"]:
+                    raise IntegrityError("Complete physical network no longer matches its immutable artifact")
+                shutil.copyfile(physical, destination)
+                exported = {**materialized, "source_path": str(original), "export_path": str(destination),
+                            "export_sha256": sha256_file(destination), "reimport": {"status": "NOT_RUN"}}
+                sidecar = destination.with_suffix(".manifest.json")
+                atomic_json(sidecar, exported)
+                exported, manifest["round_trip"] = checks.reimport("oma.ifc.network_semantics", sidecar)
+                manifest["correspondences"].append({"source_id": source_id, "network_id": record["id"],
+                    "replacement_path": str(destination), "part_guids": [p["ifc_guid"] for p in materialized["added_parts"]],
+                    "demand_ids": record["demand_ids"], "component_ids": record["component_ids"]})
+            else:
+                shutil.copyfile(original, destination)
+            manifest["files"].append({"path": str(destination), "source_id": source["id"], "sha256": sha256_file(destination),
+                "source_sha256": source["sha256"], "schema": source["schema"], "changed": changed})
+            checks.persist()
+        if exported is None:
+            raise IntegrityError("Physical network source is absent from exported federation")
+        if not draft and manifest["round_trip"] == "PASS":
+            copied_state = copy.deepcopy(state)
+            copied_state["physical_networks"][0]["geometry_artifact"] = store.put(exported)
+            copied_state["derived_artifacts"]["export_correspondence"] = {"input_candidate_root": root, "files": manifest["files"]}
+            checked_copy = store.add_candidate(candidate["run_id"], copied_state, {"kind": "physical_network", "export_recheck": True,
+                "changed_ids": candidate["changed_ids"], "routes": [], "networks": copied_state["physical_networks"], "objective": {},
+                "rationale": "Fresh independent check of the entire exported shared network and all federation files"})
+            checks.verify(checked_copy, original_report)
+        manifest["limitations"].append("Local shared-network coordination and supplied-flow checks do not certify pre-existing defects or whole-building engineering adequacy")
+        atomic_json(directory / "manifest.json", manifest)
+        atomic_json(directory / "state.json", state)
+        events, cursor = [], 0
+        while batch := store.events(project["id"], cursor, 1000):
+            events.extend(batch)
+            cursor = batch[-1]["seq"]
+        atomic_json(directory / "events.json", events)
+        manifest_root = store.put(manifest)
+        store.append_event(project["id"], state_root=root, candidate_id=candidate["id"] if candidate else None, stage="export",
+            status=manifest["status"], message="Complete shared-network IFC exported and independently rechecked", artifacts=[manifest_root],
+            payload={"directory": str(directory), "round_trip": manifest["round_trip"]})
+        if not draft and manifest["status"] != "CHECKED_LOCAL_SCOPE":
+&gt;           raise IntegrityError(f"Network export failed fresh checking; evidence retained at {directory}")
+E           oma.store.IntegrityError: Network export failed fresh checking; evidence retained at C:\Users\Davi\AppData\Local\Temp\pytest-of-Davi\pytest-157\test_actual_revision_replaces_0\store\exports\09bc01f5932e45fe9800d3338f79bb8d
+
+.oma\test-builds\runtimes\450dadd862b4ff011ffd3de22d8ab0cf31cbf6a0f80b9c667ed892778e23791f\src\oma\routing\network_export.py:78: IntegrityError</failure></testcase><testcase classname="tests.test_opening_integration" name="test_route_through_authorized_host_is_checked_accepted_exported_and_reversible" time="9.380"><failure message="oma.store.IntegrityError: Export recheck failed; draft evidence preserved at C:\Users\Davi\AppData\Local\Temp\pytest-of-Davi\pytest-157\test_route_through_authorized_0\store\exports\38d9c4b471424eb18cfae8cbbe6df676">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-157/test_route_through_authorized_0')
+
+    def test_route_through_authorized_host_is_checked_accepted_exported_and_reversible(tmp_path):
+        path, guid = host_fixture(tmp_path / "source.ifc")
+        original_bytes = path.read_bytes()
+        store = Store(tmp_path / "store")
+        project = store.create_project("Actual opening and route", {})
+        imp = store.create_run(project["id"], {"operation": "import", "paths": [str(path)]})
+        import_sources(store, imp, WorkerControl(store, imp["id"]))
+        baseline_root = store.project(project["id"])["state_root"]
+        baseline = store.get(baseline_root)
+        raw = scenario()
+        blocked = store.create_run(project["id"], {"operation": "route", "mission": raw, "budget_seconds": 90})
+        route_project_run(store, blocked, WorkerControl(store, blocked["id"]))
+        assert store.candidates(project["id"])[0]["status"] == "REJECTED"
+    
+        raw["authorized_opening"] = opening_request(path, guid)
+        run = store.create_run(project["id"], {"operation": "route", "mission": raw, "budget_seconds": 90})
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+        candidates = [c for c in store.candidates(project["id"]) if c["run_id"] == run["id"]]
+        assert len(candidates) == 1, store.run(run["id"])
+        candidate = candidates[0]
+        assert candidate["status"] == "CHECKED", store.get(candidate["report_root"]) if candidate["report_root"] else candidate
+        state = store.get(candidate["state_root"])
+        report = store.get(candidate["report_root"])
+        host_id = state["derived_artifacts"]["opening_edit"]["host_entity_id"]
+        assert state["entities"] == baseline["entities"]
+        assert state["mission"]["editable_ids"] == [host_id]
+        assert host_id not in state["mission"]["protected_ids"] and host_id in candidate["changed_ids"]
+        physical = next(r for r in report["results"] if r["id"] == "physical-interference-and-clearance")
+        cad = store.get(physical["witness"]["artifact"])
+        assert cad["obstacle_count"] == cad["pairs_accounted"] == 1
+        assert len(cad["effective_host_edits"]) == 1
+        assert cad["effective_host_edits"][0]["host_guid"] == guid
+        assert report["objective"]["length_m"] == pytest.approx(2.)
+        accepted = store.accept(project["id"], candidate["id"], 1, "accept-opening", checker_version=CHECKER_VERSION)
+        assert accepted["revision"] == 2
+&gt;       exported = export_project(store, project["id"], candidate["id"], draft=False)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_opening_integration.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = &lt;oma.store.Store object at 0x000001EBFE7E0FE0&gt;
+project_id = '3b79c4311b77473c82db2e5e58346a9d'
+candidate_id = '9c35da7c08b3498e940893920b9fa0a7', draft = False
+budget_seconds = 3600.0
+
+    def export_project(store: Store, project_id: str, candidate_id: str | None = None, draft: bool = True,
+                       *, budget_seconds: float = DEFAULT_EXPORT_BUDGET_SECONDS) -&gt; dict:
+        started = time.monotonic()
+        budget_seconds = export_budget(budget_seconds)
+        project = store.project(project_id)
+        candidate = store.candidate(candidate_id) if candidate_id else None
+        if candidate and candidate["project_id"] != project_id:
+            raise IntegrityError("Candidate belongs to a different project")
+        root = candidate["state_root"] if candidate else project["state_root"]
+        state = store.get(root)
+        if not state.get("sources"):
+            raise ValueError("Import must finish before export")
+        if not draft:
+            from .build_identity import checker_version
+            if not candidate or candidate["status"] != "CHECKED" or not candidate.get("report_root"):
+                raise IntegrityError("Checked export requires complete independent evidence for an explicit candidate")
+            from .validation_advisories import candidate_advisories
+            if candidate_advisories(store, candidate, state):
+                raise IntegrityError("IFC-PORT-001: prior authored port semantics require regeneration and a fresh independent check")
+            report = store.get(candidate["report_root"])
+            if report["status"] != "PASS" or report["candidate_root"] != root or report["checker_version"] != checker_version():
+                raise IntegrityError("Candidate does not have a passing root-matched report")
+        if state.get("physical_networks"):
+            from .routing.network_export import export_network_project
+            return export_network_project(store, project, state, candidate, draft, report if not draft else None, budget_seconds=budget_seconds, started=started)
+        if state.get("derived_artifacts", {}).get("routing_contracts"):
+            from .routing.joint_export import export_joint_project
+            return export_joint_project(store, project, state, candidate, draft, report if not draft else None, budget_seconds=budget_seconds, started=started)
+        route_specs = state.get("derived_artifacts", {}).get("route_exports", [])
+        if len(route_specs) &gt; 1:
+            raise ValueError("Joint multi-route export correspondence is required; cannot drop or duplicate routes")
+        export_id = uuid.uuid4().hex
+        directory = store.directory / "exports" / export_id
+        directory.mkdir(parents=True)
+        manifest = {"export_id": export_id, "project_id": project_id, "candidate_id": candidate_id, "state_root": root,
+                    "created_at": utcnow(), "status": "DRAFT", "files": [], "correspondences": [],
+                    "round_trip": "NOT_RUN", "whole_building_release": "NOT_CERTIFIED", "limitations": [], "source_redistribution": "Local user export; original project license terms retained"}
+        checks = ExportChecks(store, directory, manifest, budget_seconds=budget_seconds, started=started)
+        atomic_json(directory / "state.json", state)
+        exported_materialization = None
+        for index, source in enumerate(state["sources"]):
+            original = store.resolve_path(source["immutable_path"])
+            if sha256_file(original) != source["sha256"]:
+                raise IntegrityError("Immutable source hash mismatch; export stopped")
+            destination = directory / f"{index + 1:02d}_{source['name']}"
+            spec = next((r for r in route_specs if r["source_id"] == source["id"]), None)
+            if spec:
+                prior = store.get(state["derived_artifacts"]["route_materialization"]["root"])
+                if sha256_file(store.resolve_path(prior["export_path"])) != prior["export_sha256"] or prior["source_sha256"] != source["sha256"]:
+                    raise IntegrityError("Physical IFC no longer matches checked materialization")
+                shutil.copyfile(store.resolve_path(prior["export_path"]), destination)
+                exported_materialization = {**prior, "source_path": str(original), "export_path": str(destination), "export_sha256": sha256_file(destination), "reimport": {"status": "NOT_RUN"}}
+                atomic_json(destination.with_suffix(".manifest.json"), exported_materialization)
+                manifest["correspondences"].append({"source_id": source["id"], "replacement_path": str(destination), "route_id": spec["route_spec"]["route_id"], "part_guids": [p["ifc_guid"] for p in prior["added_parts"]]})
+                if prior.get("authorized_opening"):
+                    opening = prior["authorized_opening"]
+                    manifest["correspondences"][-1]["authorized_opening"] = {"host_guid": opening["request"]["host_guid"],
+                        "host_step_id": opening["request"]["host_step_id"], "opening_guid": opening["opening_guid"],
+                        "request_root": opening["request_root"], "scope": opening["scope"]}
+            else:
+                shutil.copyfile(original, destination)
+            manifest["files"].append({"path": str(destination), "source_id": source["id"], "sha256": sha256_file(destination),
+                                      "source_sha256": source["sha256"], "schema": source["schema"], "changed": bool(spec)})
+            checks.persist()
+        if exported_materialization:
+            exported_materialization, manifest["round_trip"] = checks.reimport("oma.ifc.recheck", Path(exported_materialization["export_path"]).with_suffix(".manifest.json"))
+            if not draft and manifest["round_trip"] == "PASS":
+                exported_state = copy.deepcopy(state)
+                materialized_root = store.put(exported_materialization)
+                exported_state["derived_artifacts"]["route_materialization"].update(root=materialized_root, path=exported_materialization["export_path"])
+                for route in exported_state["routes"]:
+                    if route["id"] in candidate["changed_ids"]:
+                        route["geometry_artifact"] = materialized_root
+                exported_state["derived_artifacts"]["export_correspondence"] = {"input_candidate_root": root, "files": manifest["files"]}
+                exported_candidate = store.add_candidate(candidate["run_id"], exported_state, {"kind": "physical_route", "export_recheck": True, "changed_ids": candidate["changed_ids"], "routes": exported_state["routes"], "objective": {}, "rationale": "Independent verification of exported physical IFC copy"})
+                checks.verify(exported_candidate, report)
+        else:
+            manifest["round_trip"] = "BYTE_IDENTICAL_ORIGINALS"
+            manifest["limitations"].append("No accepted route edits in this state; exported files are unchanged source copies")
+        manifest["limitations"].append("Local route checks do not certify pre-existing defects or whole-building adequacy")
+        atomic_json(directory / "manifest.json", manifest)
+        snapshot = store.get(root)
+        atomic_json(directory / "state.json", snapshot)
+        events, cursor = [], 0
+        while batch := store.events(project_id, cursor, 1000):
+            events.extend(batch)
+            cursor = batch[-1]["seq"]
+        atomic_json(directory / "events.json", events)
+        manifest_root = store.put(manifest)
+        store.append_event(project_id, state_root=root, candidate_id=candidate_id, stage="export", status=manifest["status"], message="IFC export bundle written with replacement map and checking evidence", artifacts=[manifest_root], payload={"directory": str(directory), "round_trip": manifest["round_trip"]})
+        if not draft and manifest["status"] != "CHECKED_LOCAL_SCOPE":
+&gt;           raise IntegrityError(f"Export recheck failed; draft evidence preserved at {directory}")
+E           oma.store.IntegrityError: Export recheck failed; draft evidence preserved at C:\Users\Davi\AppData\Local\Temp\pytest-of-Davi\pytest-157\test_route_through_authorized_0\store\exports\38d9c4b471424eb18cfae8cbbe6df676
+
+.oma\test-builds\runtimes\450dadd862b4ff011ffd3de22d8ab0cf31cbf6a0f80b9c667ed892778e23791f\src\oma\exporting.py:107: IntegrityError</failure></testcase></testsuite></testsuites>

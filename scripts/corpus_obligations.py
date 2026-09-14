@@ -15,6 +15,14 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("EXACT_ORTHOGONAL_FABRICATION_TRANSITIONS", "oma-integration", [4472, 4473, 4474, 4475, 4476, 4484, 5522, 5523, 1289, 1290], ["DEF-RTR39", "DEF-RTR40", "DEF-RTR41", "ALG-RTR15", "THM-SIR25"],
+         ["oma.optimization.fabrication.compile_orthogonal_fabrication"], ["oma.optimization.fabrication.verify_orthogonal_fabrication"], "tests/test_optimization_fabrication.py",
+         "Exact fixed axis-aligned constant-round polyline realization with tangent quarter bends, both-end straight trim debts, strict positive remaining-straight requirements, fixed size identities and full insulated body bounds. Independent attained support extrema and tangent identities check the complete component/transition denominator; exact outer-box separation is sufficient and inconclusive overlap remains UNKNOWN.",
+         [], "A bounded component of the source fabrication-size lift only: no complete graph/homotopy, manufacturer catalog, support/slope/service or self-interference closure. Oversized input is an uninspected count/context-bound UNKNOWN, not a geometry-root claim. Exact model rejection is not automatic pruning authority over the numerical IFC writer. Retained native correspondence and actual strict-threshold counterexample are explicitly numerical and do not grant acceptance."),
+        ("SOURCE_BOUND_IFC_OUTER_CELL_PROPOSALS", "oma-integration", [4293, 4367, 5502, 5504, 5508], ["DEF-RTR12", "DEF-RTR24", "ALG-RTR5", "ALG-RTR6", "ALG-RTR8"],
+         ["oma.routing.certified_cells.build_certified_cell_proposals"], ["oma.routing.certified_cells.verify_cell_coverage", "oma.optimization.route_cells.verify_route_cells"], "tests/test_certified_cells.py",
+         "Fresh immutable source hashes, complete physical-element/assembly denominator, audited common frames and complete native or exact-source outer support. Independent affine corner containment, exact out-of-zone separating planes and grouped-cover checks feed a bounded cell certificate; each final binary64 capsule proposal is independently rechecked.",
+         [], "Native outer bounds and local BRep cache retain explicit numerical/provenance assumptions. Inner occupancy is empty, edited-host scenarios are not applicable, no physical infeasibility or fabricated-elbow coverage is transferred, and every route still needs full independent materialized checks. Separate adapter test artifact and actual IFC benchmark retain exact execution scope."),
         ("CERTIFIED_TRANSLATIONAL_INNER_OUTER_ROUTE_CELLS", "oma-integration", [4293, 4367, 4369, 4432], ["DEF-RTR12", "DEF-RTR24", "ALG-RTR5", "ALG-RTR6", "ALG-RTR7", "ALG-RTR8", "ALG-RTR9", "ALG-RTR10"],
          ["oma.optimization.route_cells.compile_route_cells"], ["oma.optimization.route_cells.verify_route_cells", "oma.optimization.route_cells.verify_route_cell_refinement"], "tests/test_optimization_route_cells.py",
          "Exact finite Cartesian cover of the full allowed-box domain eroded by a translating ball. Complete obstacle outer boxes prove free cells by checked separating planes; occupied inner boxes prove blocked cells by convex corner coverage. All MIXED cells remain outer. Independent cell denominator, 26-neighbour path/cut, full capsule embedding, length interval and fixed-model refinement checks establish bounded-model inner/outer inclusions.",
@@ -165,6 +173,12 @@ def main():
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
     coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
     for row in register:
+        if row["obligation"] == "EXACT_ORTHOGONAL_FABRICATION_TRANSITIONS":
+            row["real_model_benchmark"] = {"status": "SYNTHETIC_ACTUAL_IFC_PRIMITIVE_CORRESPONDENCE_AND_BOUNDARY_TESTS",
+                "evidence": "evidence/math/fabrication/latest.json", "scope": "Actual IFC4 and IFC2X3 round primitives; separate numerical CAD correspondence and exact model proofs, no whole-route or acceptance claim"}
+        if row["obligation"] == "SOURCE_BOUND_IFC_OUTER_CELL_PROPOSALS":
+            row["real_model_benchmark"] = {"status": "SEE_RETAINED_SOURCE_BOUND_MODEL_AND_SEPARATE_NATIVE_CHECKS",
+                "evidence": "evidence/math/certified-cells/latest.json", "scope": "Pinned analytic IFC detour and immutable Office model proposal evidence; see exact dependency hashes and attempt summary, no acceptance authority"}
         if row["obligation"] == "ACTUAL_FROZEN_PHYSICAL_MENU_PROJECTION":
             row["real_model_benchmark"] = {"status": "HISTORICAL_IMMUTABLE_REAL_REPORT_PROJECTIONS_CHECKED",
                 "evidence": "evidence/math/physical-menu-office.benchmark.json",
@@ -175,6 +189,7 @@ def main():
              "obligations": register, "pending_source_mechanisms": pending,
              "unit_test_run": {"path": str(test_path.relative_to(ROOT)), "tests": int(suite.get("tests")) if suite is not None else None,
                                "failures": int(suite.get("failures")) if suite is not None else None},
+             "additional_adapter_test_runs": ["evidence/math/certified-cells-adapter-tests.xml", "evidence/math/opening-inverse-regression.xml", "evidence/math/fabrication-tests.xml"],
              "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py tests/test_optimization_route_cells.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"}
     destination = ROOT / "evidence/math/traceability_register.json"
     destination.write_text(json.dumps(proof, indent=2) + "\n", encoding="utf-8")

@@ -266,7 +266,8 @@ def _source_conversion_diagnostics(model, selected, raw):
 
 def _load_cad_uncached(path: str | Path, *, guids: set[str] | None = None, threads: int = 4,
                        source_representation_policy=DEFAULT_SOURCE_REPRESENTATION_POLICY,
-                       checkpoint: Callable[[str], None] | None = None) -> tuple[list[CadObject], list[dict]]:
+                       checkpoint: Callable[[str], None] | None = None,
+                       inventory_report: dict | None = None) -> tuple[list[CadObject], list[dict]]:
     """Read all selected physical objects as world-meter native solids.
 
     Returns objects plus explicit missing/conversion failures. Source assemblies
@@ -291,17 +292,30 @@ def _load_cad_uncached(path: str | Path, *, guids: set[str] | None = None, threa
              if getattr(u, "UnitType", None) == "LENGTHUNIT"]
     if len(units) != 1:
         return [], [{"source_sha256": source, "reason": "AMBIGUOUS_OR_MISSING_LENGTH_UNITS"}]
-    entities = [e for e in model.by_type("IfcElement") if not e.is_a("IfcFeatureElementSubtraction")
-                and (guids is None or e.GlobalId in guids)]
+    from .inventory import physical_inventory, inventory_evidence, accounted_assemblies
+    inventory = physical_inventory(model)
+    entities = [e for e in inventory["products"] if guids is None or e.GlobalId in guids]
     selected = {e.id(): e for e in entities}
     if guids is not None:
         absent = guids - {e.GlobalId for e in entities}
         if absent:
             return [], [{"source_sha256": source, "reason": "REQUESTED_GUIDS_ABSENT", "guids": sorted(absent)}]
+    # Native implementations may traverse inverse decomposition while converting
+    # even a selected leaf. A cyclic source must be rejected before that call.
+    if any(e["reason"] == "CYCLIC_OR_DEPTH_EXHAUSTED_PHYSICAL_DECOMPOSITION" for e in inventory["errors"]):
+        failures = [{"entity_id": f"{source}:{e.id()}", "ifc_guid": e.GlobalId,
+                     "reason": "CYCLIC_SOURCE_DECOMPOSITION_NATIVE_CONVERSION_NOT_RUN"} for e in entities]
+        failures.extend({"entity_id": f"{source}:{e['step_id']}", **e} for e in inventory["errors"] if e["step_id"] in selected)
+        if inventory_report is not None:
+            inventory_report.update(physical_inventory=inventory_evidence(inventory, source),
+                                    selected_physical_count=len(selected), accounted_assembly_step_ids=[])
+        return [], failures
     settings = ifcopenshell.geom.settings()
     settings.set("iterator-output", ifcopenshell.ifcopenshell_wrapper.SERIALIZED)
     settings.set("use-world-coords", True)
-    result, errors, processed = [], [], set()
+    result, processed = [], set()
+    errors = [{"entity_id": f"{source}:{error['step_id']}", **error}
+              for error in inventory["errors"] if error["step_id"] in selected]
     from .enclosure import ExactIfcEncloser
     encloser = None
     def apply_exact_enclosure(obj):
@@ -315,8 +329,9 @@ def _load_cad_uncached(path: str | Path, *, guids: set[str] | None = None, threa
             lo,hi=certificate["bounds_m"]
             obj.bounds=tuple(np.nextafter(float(Fraction(v)),-np.inf) for v in lo)+tuple(np.nextafter(float(Fraction(v)),np.inf) for v in hi)
             obj.support_kind="exact_source_support_enclosure"
-    if selected:
-        iterator = ifcopenshell.geom.iterator(settings, model, max(1, min(16, threads)), include=entities)
+    represented_entities = [e for e in entities if e.Representation is not None]
+    if represented_entities:
+        iterator = ifcopenshell.geom.iterator(settings, model, max(1, min(16, threads)), include=represented_entities)
         if iterator.initialize():
             while True:
                 if checkpoint:
@@ -363,14 +378,17 @@ def _load_cad_uncached(path: str | Path, *, guids: set[str] | None = None, threa
                                        "reason": "CAD_CONVERSION_FAILURE", "error": f"{type(exc).__name__}: {exc}"})
                 if not iterator.next():
                     break
-    for entity in entities:
+    for entity in represented_entities:
         if entity.id() in processed:
-            continue
-        children = [c for rel in getattr(entity, "IsDecomposedBy", ()) for c in rel.RelatedObjects]
-        if entity.Representation is None and children:
             continue
         errors.append({"entity_id": f"{source}:{entity.id()}", "ifc_guid": entity.GlobalId,
                        "reason": "MISSING_PHYSICAL_CAD_GEOMETRY"})
+    accounted = {o.step_id for o in result} | {int(e["entity_id"].rsplit(":", 1)[1]) for e in errors if e.get("entity_id")}
+    assemblies = accounted_assemblies(inventory, selected, accounted)
+    for entity in entities:
+        if entity.id() not in accounted | assemblies:
+            errors.append({"entity_id": f"{source}:{entity.id()}", "ifc_guid": entity.GlobalId,
+                           "reason": "PHYSICAL_ASSEMBLY_DESCENDANTS_NOT_ACCOUNTED"})
     diagnostics,unscoped=_source_conversion_diagnostics(model,selected,ifcopenshell.get_log())
     errors.extend({"source_sha256":source,**error} for error in unscoped)
     for obj in result:
@@ -384,6 +402,9 @@ def _load_cad_uncached(path: str | Path, *, guids: set[str] | None = None, threa
             obj.reason="PARTIAL_NATIVE_SOURCE_CONVERSION_FAILURE"
             obj.support_kind="unresolved_native_support"
             apply_exact_enclosure(obj)
+    if inventory_report is not None:
+        inventory_report.update(physical_inventory=inventory_evidence(inventory, source),
+                                selected_physical_count=len(selected), accounted_assembly_step_ids=sorted(assemblies))
     return result, errors
 
 
@@ -398,7 +419,7 @@ def load_cad(path: str | Path, *, guids: set[str] | None = None, threads: int = 
     margins and engineering verdicts do not exist in this cache.
     """
     if cache_directory is None:
-        return _load_cad_uncached(path, guids=guids, threads=threads, source_representation_policy=source_representation_policy, checkpoint=checkpoint)
+        return _load_cad_uncached(path, guids=guids, threads=threads, source_representation_policy=source_representation_policy, checkpoint=checkpoint, inventory_report=cache_report)
     from .cad_cache import load_or_build
     return load_or_build(path, guids=guids, threads=threads, directory=cache_directory,
                          report=cache_report, build=_load_cad_uncached, source_representation_policy=source_representation_policy, checkpoint=checkpoint)

@@ -44,6 +44,7 @@ class WorkerControl:
 
 def import_sources(store: Store, run: dict, control: WorkerControl):
     from .ifc.audit import audit_file, federation_manifest, sha256_file
+    from .ifc.inventory import refresh_inventory_audit
     from .service import validate_ifc_paths
     paths = validate_ifc_paths(run["request"]["paths"])
     audits = []
@@ -74,6 +75,12 @@ def import_sources(store: Store, run: dict, control: WorkerControl):
                 break
         if audit is None:
             audit = audit_file(immutable, out, geometry=True, mesh=True, threads=4)
+        control.checkpoint("import_inventory_refresh")
+        audit = refresh_inventory_audit(audit, immutable, checkpoint=control.checkpoint)
+        # Cached audit locations may name an unavailable earlier import/export.
+        # All following source reads use this freshly hash-checked immutable copy.
+        audit["source_path"] = str(immutable)
+        control.checkpoint("import_inventory_refreshed")
         audit_root = store.put(audit)
         discipline = path.stem  # Source label, not evidence that a discipline is present.
         source = {"id": source_hash, "name": path.name, "original_path": str(path), "immutable_path": str(immutable),
@@ -146,7 +153,11 @@ def import_sources(store: Store, run: dict, control: WorkerControl):
         source_progress("connectivity_ownership", "Rechecking explicit source port ownership", {
             "source": source["name"], "source_sha256": source["sha256"], "file_index": index + 1,
             "file_count": len(sources), "port_count": len(audit.get("ports", []))})
-        refreshed.append(refresh_ownership(store, audit, source, checkpoint=control.checkpoint))
+        refreshed_audit = refresh_ownership(store, audit, source, checkpoint=control.checkpoint)
+        # The persisted source and port audit references must name the facts
+        # actually used by normalization, including refreshed legacy ownership.
+        source["audit_root"] = store.put(refreshed_audit)
+        refreshed.append(refreshed_audit)
     audits = refreshed
     ports, connections, connectivity = normalize_connectivity(audits, sources, checkpoint=control.checkpoint,
         on_source=lambda payload: source_progress("connectivity", "Normalizing explicit source ports and connections", payload))

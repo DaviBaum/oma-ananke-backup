@@ -1,19 +1,21 @@
 """Immutable local export bundles, identity maps and explicit release status."""
 from __future__ import annotations
 
-import json
 import copy
 import shutil
-import subprocess
-import sys
+import time
 import uuid
 from pathlib import Path
 
 from .ifc.audit import atomic_json, sha256_file
 from .store import IntegrityError, Store, utcnow
+from .export_checks import DEFAULT_EXPORT_BUDGET_SECONDS, ExportChecks, export_budget
 
 
-def export_project(store: Store, project_id: str, candidate_id: str | None = None, draft: bool = True) -> dict:
+def export_project(store: Store, project_id: str, candidate_id: str | None = None, draft: bool = True,
+                   *, budget_seconds: float = DEFAULT_EXPORT_BUDGET_SECONDS) -> dict:
+    started = time.monotonic()
+    budget_seconds = export_budget(budget_seconds)
     project = store.project(project_id)
     candidate = store.candidate(candidate_id) if candidate_id else None
     if candidate and candidate["project_id"] != project_id:
@@ -34,10 +36,10 @@ def export_project(store: Store, project_id: str, candidate_id: str | None = Non
             raise IntegrityError("Candidate does not have a passing root-matched report")
     if state.get("physical_networks"):
         from .routing.network_export import export_network_project
-        return export_network_project(store, project, state, candidate, draft, report if not draft else None)
+        return export_network_project(store, project, state, candidate, draft, report if not draft else None, budget_seconds=budget_seconds, started=started)
     if state.get("derived_artifacts", {}).get("routing_contracts"):
         from .routing.joint_export import export_joint_project
-        return export_joint_project(store, project, state, candidate, draft, report if not draft else None)
+        return export_joint_project(store, project, state, candidate, draft, report if not draft else None, budget_seconds=budget_seconds, started=started)
     route_specs = state.get("derived_artifacts", {}).get("route_exports", [])
     if len(route_specs) > 1:
         raise ValueError("Joint multi-route export correspondence is required; cannot drop or duplicate routes")
@@ -47,6 +49,8 @@ def export_project(store: Store, project_id: str, candidate_id: str | None = Non
     manifest = {"export_id": export_id, "project_id": project_id, "candidate_id": candidate_id, "state_root": root,
                 "created_at": utcnow(), "status": "DRAFT", "files": [], "correspondences": [],
                 "round_trip": "NOT_RUN", "whole_building_release": "NOT_CERTIFIED", "limitations": [], "source_redistribution": "Local user export; original project license terms retained"}
+    checks = ExportChecks(store, directory, manifest, budget_seconds=budget_seconds, started=started)
+    atomic_json(directory / "state.json", state)
     exported_materialization = None
     for index, source in enumerate(state["sources"]):
         original = store.resolve_path(source["immutable_path"])
@@ -71,14 +75,9 @@ def export_project(store: Store, project_id: str, candidate_id: str | None = Non
             shutil.copyfile(original, destination)
         manifest["files"].append({"path": str(destination), "source_id": source["id"], "sha256": sha256_file(destination),
                                   "source_sha256": source["sha256"], "schema": source["schema"], "changed": bool(spec)})
+        checks.persist()
     if exported_materialization:
-        process = subprocess.run([sys.executable, "-m", "oma.ifc.recheck", str(Path(exported_materialization["export_path"]).with_suffix(".manifest.json"))], capture_output=True, text=True, timeout=300, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
-        if process.returncode:
-            manifest["round_trip"] = "FAIL"
-            manifest["limitations"].append(process.stderr[-3000:])
-        else:
-            exported_materialization = json.loads(Path(exported_materialization["export_path"]).with_suffix(".manifest.json").read_text(encoding="utf-8"))
-            manifest["round_trip"] = exported_materialization["reimport"]["status"]
+        exported_materialization, manifest["round_trip"] = checks.reimport("oma.ifc.recheck", Path(exported_materialization["export_path"]).with_suffix(".manifest.json"))
         if not draft and manifest["round_trip"] == "PASS":
             exported_state = copy.deepcopy(state)
             materialized_root = store.put(exported_materialization)
@@ -88,19 +87,7 @@ def export_project(store: Store, project_id: str, candidate_id: str | None = Non
                     route["geometry_artifact"] = materialized_root
             exported_state["derived_artifacts"]["export_correspondence"] = {"input_candidate_root": root, "files": manifest["files"]}
             exported_candidate = store.add_candidate(candidate["run_id"], exported_state, {"kind": "physical_route", "export_recheck": True, "changed_ids": candidate["changed_ids"], "routes": exported_state["routes"], "objective": {}, "rationale": "Independent verification of exported physical IFC copy"})
-            from .build_identity import frozen_environment
-            process = subprocess.run([sys.executable, "-m", "oma.verification", str(store.directory), exported_candidate["id"]], capture_output=True, text=True, timeout=600, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0), env=frozen_environment(store.directory))
-            checked = store.candidate(exported_candidate["id"])
-            if process.returncode == 0 and checked["status"] == "CHECKED":
-                export_report = store.get(checked["report_root"])
-                if export_report["objective"] == report["objective"]:
-                    manifest.update(status="CHECKED_LOCAL_SCOPE", checked_scope=export_report["scope"], exported_state_root=checked["state_root"], verification_root=checked["report_root"], objective=export_report["objective"], round_trip="PASS")
-                    atomic_json(directory / "verification.json", export_report)
-                else:
-                    manifest["round_trip"] = "FAIL_OBJECTIVE_MISMATCH"
-            else:
-                manifest["round_trip"] = "FAIL_INDEPENDENT_CHECK"
-                manifest["limitations"].append(process.stderr[-3000:] or checked["status"])
+            checks.verify(exported_candidate, report)
     else:
         manifest["round_trip"] = "BYTE_IDENTICAL_ORIGINALS"
         manifest["limitations"].append("No accepted route edits in this state; exported files are unchanged source copies")

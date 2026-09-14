@@ -1,18 +1,14 @@
 """Complete composite IFC replacement bundles and fresh exported-state checks."""
 import copy
-import json
-from pathlib import Path
 import shutil
-import subprocess
-import sys
 import uuid
 
-from oma.build_identity import frozen_environment
+from oma.export_checks import DEFAULT_EXPORT_BUDGET_SECONDS, ExportChecks
 from oma.ifc.audit import atomic_json, sha256_file
 from oma.store import IntegrityError, utcnow
 
 
-def export_joint_project(store, project, state, candidate, draft, original_report=None):
+def export_joint_project(store, project, state, candidate, draft, original_report=None, *, budget_seconds=DEFAULT_EXPORT_BUDGET_SECONDS, started=None):
     root = candidate["state_root"] if candidate else project["state_root"]
     export_id = uuid.uuid4().hex
     directory = store.directory / "exports" / export_id
@@ -24,7 +20,8 @@ def export_joint_project(store, project, state, candidate, draft, original_repor
     contracts = state["derived_artifacts"]["routing_contracts"]
     routes = {r["id"]: r for r in state["routes"]}
     exported = {}
-    runtime = frozen_environment(store.directory)
+    checks = ExportChecks(store, directory, manifest, budget_seconds=budget_seconds, started=started)
+    atomic_json(directory / "state.json", state)
     roundtrips = []
     for index, source in enumerate(state["sources"]):
         original = store.resolve_path(source["immutable_path"])
@@ -46,14 +43,8 @@ def export_joint_project(store, project, state, candidate, draft, original_repor
                     "export_sha256": sha256_file(destination), "reimport": {"status": "NOT_RUN"}}
                 manifest_path = directory / f"route-{rid}.manifest.json"
                 atomic_json(manifest_path, exported[rid])
-                process = subprocess.run([sys.executable, "-m", "oma.ifc.recheck", str(manifest_path)],
-                    capture_output=True, text=True, timeout=300, env=runtime, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
-                if process.returncode:
-                    roundtrips.append("FAIL")
-                    manifest["limitations"].append(process.stderr[-3000:])
-                else:
-                    exported[rid] = json.loads(manifest_path.read_text(encoding="utf-8"))
-                    roundtrips.append(exported[rid]["reimport"]["status"])
+                exported[rid], status = checks.reimport("oma.ifc.recheck", manifest_path)
+                roundtrips.append(status)
             atomic_json(destination.with_suffix(".manifest.json"), exported[members[0]])
             manifest["correspondences"].append({"source_id": source["id"], "replacement_path": str(destination),
                 "route_ids": members, "part_guids": [p["ifc_guid"] for m in materials for p in m["added_parts"]]})
@@ -61,7 +52,8 @@ def export_joint_project(store, project, state, candidate, draft, original_repor
             shutil.copyfile(original, destination)
         manifest["files"].append({"path": str(destination), "source_id": source["id"], "sha256": sha256_file(destination),
             "source_sha256": source["sha256"], "schema": source["schema"], "changed": bool(members)})
-    manifest["round_trip"] = "PASS" if roundtrips and all(r == "PASS" for r in roundtrips) else "FAIL"
+        checks.persist()
+    manifest["round_trip"] = "PASS" if roundtrips and all(r == "PASS" for r in roundtrips) else next((r for r in roundtrips if r != "PASS"), "NOT_RUN")
     if not draft and manifest["round_trip"] == "PASS":
         exported_state = copy.deepcopy(state)
         for route in exported_state["routes"]:
@@ -69,20 +61,7 @@ def export_joint_project(store, project, state, candidate, draft, original_repor
         exported_state["derived_artifacts"]["export_correspondence"] = {"input_candidate_root": root, "files": manifest["files"]}
         exported_candidate = store.add_candidate(candidate["run_id"], exported_state, {"kind": "physical_route_set", "export_recheck": True,
             "changed_ids": candidate["changed_ids"], "routes": exported_state["routes"], "objective": {}, "rationale": "Independent check of complete exported composite IFC files"})
-        process = subprocess.run([sys.executable, "-m", "oma.verification", str(store.directory), exported_candidate["id"]],
-            capture_output=True, text=True, timeout=600, env=runtime, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
-        checked = store.candidate(exported_candidate["id"])
-        if process.returncode == 0 and checked["status"] == "CHECKED":
-            report = store.get(checked["report_root"])
-            if report["objective"] == original_report["objective"]:
-                manifest.update(status="CHECKED_LOCAL_SCOPE", checked_scope=report["scope"], exported_state_root=checked["state_root"],
-                    verification_root=checked["report_root"], objective=report["objective"])
-                atomic_json(directory / "verification.json", report)
-            else:
-                manifest["round_trip"] = "FAIL_OBJECTIVE_MISMATCH"
-        else:
-            manifest["round_trip"] = "FAIL_INDEPENDENT_CHECK"
-            manifest["limitations"].append(process.stderr[-3000:] or checked["status"])
+        checks.verify(exported_candidate, original_report)
     manifest["limitations"].append("Local route-set checks do not certify pre-existing defects or complete whole-building engineering adequacy")
     atomic_json(directory / "manifest.json", manifest)
     atomic_json(directory / "state.json", state)

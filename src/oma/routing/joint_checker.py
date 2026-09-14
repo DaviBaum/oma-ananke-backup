@@ -39,6 +39,7 @@ def verify_joint_candidate(store, candidate_id):
     required = {d.id: d for d in request.route_demands}
     covered = Counter(contracts.get(r, {}).get("request_demand_id") for r in new)
     complete = (len(routes) == len(state.get("routes", [])) and set(contracts) == set(routes) and set(old) <= set(routes)
+        and len(candidate.get("changed_ids", [])) == len(new)
         and set(candidate.get("changed_ids", [])) == new and covered == Counter({d: 1 for d in required}))
     add("joint-demand-coverage", "PASS" if complete else "FAIL", "Every new demand and prior route has exactly one explicit mission and physical route")
     if not complete:
@@ -105,7 +106,7 @@ def verify_joint_candidate(store, candidate_id):
         source_valid &= source is not None and material["source_sha256"] == source["sha256"] and store.resolve_path(material["source_path"]) == store.resolve_path(source["immutable_path"])
         add(f"route-source-binding:{rid}", "PASS" if source_valid else "FAIL", "Route materialization belongs to its authorized immutable discipline")
         found, objective, solids = evaluate_route_state(store, state, baseline, requested, scenario, contract["mission"], material, [rid], control,
-            known_physical_guids=per_source[contract["source_id"]])
+            candidate_run=run,known_physical_guids=per_source[contract["source_id"]])
         results.extend(item.model_copy(update={"id": f"{rid}:{item.id}"}) for item in found)
         objectives[rid], bodies[rid] = objective, solids
     # Source checks exclude proposed routes, so the cross-route Cartesian

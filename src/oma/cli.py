@@ -157,10 +157,10 @@ def accept(candidate_id: str, expected_revision: int, data_dir: Path = Path(".om
 
 
 @app.command("export")
-def export_command(project_id: str, candidate_id: str | None = None, draft: bool = True, data_dir: Path = Path(".oma")):
+def export_command(project_id: str, candidate_id: str | None = None, draft: bool = True, data_dir: Path = Path(".oma"), budget_seconds: float = 3600):
     """Write immutable IFC export bundle and explicit checking disposition."""
     from .exporting import export_project
-    output(export_project(Store(data_dir), project_id, candidate_id, draft))
+    output(export_project(Store(data_dir), project_id, candidate_id, draft, budget_seconds=budget_seconds))
 
 
 @app.command()

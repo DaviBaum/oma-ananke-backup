@@ -25,11 +25,28 @@ def test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_ro
     assert next(r["status"] for r in rejected["results"] if r["id"] == "physical-interference-and-clearance") == "NOT_RUN"
     checked = [c for c in candidates if c["status"] == "CHECKED"]
     assert checked, [(c["status"], store.get(c["report_root"])["results"] if c["report_root"] else None) for c in candidates]
+    # This native workflow must actually consume a source-checked cell proposal,
+    # then independently check its fabricated elbows and complete obstacle set.
+    certified = [c for c in checked if c.get("proposal_evidence")]
+    assert certified
+    checked = certified + [c for c in checked if not c.get("proposal_evidence")]
+    evidence = checked[0]["proposal_evidence"]
+    model = store.get(evidence["report_root"])
+    assert model["context"]["base_root"] == run["base_root"]
+    assert model["report"]["status"] == "CHECKED_GEOMETRIC_PROPOSALS"
+    assert model["report"]["coverage_check"]["physical_elements"] == 1
+    assert not evidence["route_acceptance"] and not evidence["physical_infeasibility_claim"]
+    assert store.get(checked[0]["state_root"])["derived_artifacts"]["route_proposal_evidence"] == evidence
     from oma.verification import CHECKER_VERSION
     result = store.accept(project["id"], checked[0]["id"], 1, "accept", checker_version=CHECKER_VERSION)
     assert result["revision"] == 2
     report = store.get(checked[0]["report_root"])
     assert report["status"] == "PASS"
+    fabrication = next(r for r in report["results"] if r["id"] == "nominal-fabrication-witness-integrity")
+    assert fabrication["status"] == "PASS"
+    assert fabrication["witness"]["origin_run_id"] == run["id"]
+    assert fabrication["witness"]["producer_check_reused"] is False
+    assert fabrication["witness"]["candidate_acceptance_authority"] is False
     assert report["objective"]["length_m"] > 4
     assert len(report["results"]) >= 9
     assert store.get(store.history(project["id"])[-1]["root"])["sources"] == []
@@ -38,6 +55,10 @@ def test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_ro
     bundle = export_project(store, project["id"], checked[0]["id"], draft=False)
     assert bundle["status"] == "CHECKED_LOCAL_SCOPE"
     assert bundle["round_trip"] == "PASS"
+    exported_report = store.get(store.get(bundle["artifact_root"])["verification_root"])
+    exported_fabrication = next(r for r in exported_report["results"] if r["id"] == "nominal-fabrication-witness-integrity")
+    assert exported_fabrication["status"] == "PASS"
+    assert exported_fabrication["witness"]["artifact_root"] == fabrication["witness"]["artifact_root"]
     assert len(bundle["files"]) == 1  # Edited source replaces original; no duplicate discipline.
     assert bundle["files"][0]["changed"]
     store.revert(project["id"], 1, 2, "undo-repair")
@@ -66,6 +87,9 @@ def test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_ro
     assert relocated["state_root"] == checked[0]["state_root"]
     assert relocated["status"] == "CHECKED"
     assert restored.get(relocated["report_root"])["objective"] == report["objective"]
+    restored_fabrication = next(r for r in restored.get(relocated["report_root"])["results"] if r["id"] == "nominal-fabrication-witness-integrity")
+    assert restored_fabrication["status"] == "PASS"
+    assert restored_fabrication["witness"]["artifact_root"] == fabrication["witness"]["artifact_root"]
     view = EngineService(restored.directory).geometry(project["id"], candidate_id=checked[0]["id"])
     assert any(mesh["entity_id"] in checked[0]["changed_ids"] for mesh in view["meshes"])
 

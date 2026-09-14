@@ -1,7 +1,7 @@
 """Materialize physical round routes in a copy of an IFC2X3/IFC4 model.
 
 Unedited STEP entities are preserved; new pieces have explicit system/port
-connectivity, exact straight/arc swept envelopes, and scenario provenance.
+connectivity, tangent straight/arc swept envelopes, and scenario provenance.
 This writer does not attach an engineering PASS label to unverified geometry.
 """
 from __future__ import annotations
@@ -26,10 +26,20 @@ def _guid(namespace: str, key: str) -> str:
 
 
 def fillet_route(points, bend_radius_m: float, minimum_straight_m: float = 0.0) -> list[dict]:
-    """Construct exact tangent lines and circular arcs for a filleted polyline."""
+    """Construct tangent lines/arcs; source-axis predicates use exact rationals.
+
+    Other orientations retain numerical construction. Native coordinates and
+    angles require the separate numerical IFC/solid correspondence checks.
+    """
     points = np.asarray(points, dtype=np.float64)
     if points.ndim != 2 or points.shape[1] != 3 or len(points) < 2 or not np.isfinite(points).all():
         raise ValueError("Route needs at least two finite xyz points")
+    if not math.isfinite(bend_radius_m) or not math.isfinite(minimum_straight_m) or bend_radius_m < 0 or minimum_straight_m < 0:
+        raise ValueError("Finite nonnegative fitting dimensions required")
+    from .orthogonal_fillet import orthogonal_fillet_parts
+    exact_parts = orthogonal_fillet_parts(points, bend_radius_m, minimum_straight_m)
+    if exact_parts is not None:
+        return exact_parts
     vectors = np.diff(points, axis=0)
     lengths = np.linalg.norm(vectors, axis=1)
     if (lengths <= 1e-9).any():
