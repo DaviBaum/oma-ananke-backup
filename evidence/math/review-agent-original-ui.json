@@ -1,0 +1,233 @@
+{
+  "schema": "oma.independent_original_source_review.v1",
+  "reviewer": "workbench-ui-agent",
+  "status": "NATIVE_TEXT_AND_ATTACHED_TABLE_ROWS_READ",
+  "independent_math_verification": false,
+  "scope": {
+    "acknowledged_chunk_ranges": [[73, 96], [145, 190]],
+    "acknowledged_unique_chunks": 70,
+    "missing_assigned_chunks": [],
+    "ledger": "evidence/math/pages/review/review-ledger.jsonl",
+    "correspondence_map": "evidence/math/pages/review/map.json",
+    "method": "Each assigned chunk was read in full and individually acknowledged with substantive notes, including every attached table row. Exact duplicates retain correspondence to their first occurrence; native paragraph gaps are not reconstructed text.",
+    "exclusions": [
+      "No proof-assistant compilation is claimed.",
+      "No empirical execution of synthetic examples or regression-oracle tables is claimed.",
+      "Missing original P26 initial text is not replaced by the separate reconstructed canonical source.",
+      "Later P27 correction was reported by the math auditor; chunk191 was not part of this reviewer assignment."
+    ]
+  },
+  "sources": {
+    "original-11-20": {
+      "name": "11-20.pages",
+      "sha256": "17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200"
+    },
+    "original-21-30": {
+      "name": "21-30.pages",
+      "sha256": "2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098"
+    }
+  },
+  "findings": [
+    {
+      "id": "UI-ORIG-SOV-MENU",
+      "source": "original-11-20",
+      "native_ranges": [[3792, 3792], [4046, 4046]],
+      "classification": "LATER_VALID_COUNTEREXAMPLE_QUALIFIES_EARLIER_EXAMPLE",
+      "finding": "The earlier menu example with weak ties does not alone establish the intended choice inconsistency. The later stronger menu choices C({x,y})={y} and C({x,y,z})={x,z} give the required counterexample.",
+      "implementation_obligation": "Preserve the full authorized menu and its choice relation; do not silently replace set-valued choice with a scalar score.",
+      "qualification": "Do not report the entire menu theorem as unsupported after the later valid construction. Exact context is in chunk73-96 ledger notes."
+    },
+    {
+      "id": "UI-ORIG-SOV-WAIVER-PRUNING",
+      "source": "original-11-20",
+      "native_ranges": [[5338, 5338], [5420, 5468]],
+      "classification": "ALGORITHM_CONTEXT_INVALIDATION_GAP",
+      "finding": "A candidate pruned under protected requirement H at authority state I0 can become admissible when an authorized waiver removes H at I1. Persistent pruning is unsound unless exclusions dependent on H are reopened.",
+      "implementation_obligation": "Bind pruning certificates to the active authority and requirement state; invalidate and reconsider them after authorized requirement changes.",
+      "qualification": "Earlier P5338 already recognizes reopening. The issue is preserving that obligation in the algorithm, not denying that the source ever states it."
+    },
+    {
+      "id": "UI-ORIG-PHY-UNIFORM-ACTION",
+      "source": "original-11-20",
+      "native_ranges": [[12813, 12813]],
+      "source_referents": ["THM-PHY20", "ALG-PHY5", "THM-PHY28", "THM-PHY25"],
+      "classification": "QUANTIFIER_AND_INITIAL_CONTAINMENT_SCOPE",
+      "finding": "Scenario-wise existence of actions does not imply one executable information-compatible action. Full-state and history-based realizations have different quantifiers. Actual initial-state containment is necessary for transfer from modeled safety to the actual trajectory.",
+      "implementation_obligation": "Check uniform or nonanticipative policy witnesses for hidden-state uncertainty, and preserve actual initial containment as an explicit premise.",
+      "qualification": "Later P12813 explicitly distinguishes full-state from history refinement; ALG-PHY5 already requires the uniform form. The earlier PHY28 scope concern is qualified by PHY25 and subsequent ODT initial-containment premises. This report does not invent an unobserved native range for those referents; precise read-context notes remain in the ledger."
+    },
+    {
+      "id": "UI-ORIG-SEC-BOOT-CHAIN",
+      "source": "original-21-30",
+      "native_ranges": [[6523, 6529]],
+      "classification": "FORMAL_SKETCH_PREDICATE_GAP",
+      "finding": "BootChainValid uses List.Pairwise without an explicit initial trust predicate. An unauthorized singleton satisfies the pairwise condition vacuously. List.Pairwise also checks nonadjacent pairs, whereas the stated boot verification relation concerns the chain order.",
+      "implementation_obligation": "Require trusted initial image and explicit adjacent-chain verification with current authorization.",
+      "qualification": "The prose security theorem supplies initial trust. The finding concerns an uncompiled Lean-style sketch, not a measured defect in the implemented application."
+    },
+    {
+      "id": "UI-ORIG-SEC-LEASE-ATTAINMENT",
+      "source": "original-21-30",
+      "native_ranges": [[5869, 5869]],
+      "source_referents": ["ALG-SEC22"],
+      "classification": "OPTIMUM_ATTAINMENT_GAP",
+      "finding": "A request for the largest certified horizon needs an attainment assumption. If valid horizons form an open interval, its supremum is not itself a valid maximum.",
+      "implementation_obligation": "Return a certified feasible horizon and its bound/attainment status, or prove the maximum is attained.",
+      "qualification": "A finite enumerated set can have a largest checked member without proving a global largest horizon."
+    },
+    {
+      "id": "UI-ORIG-PRIV-MEASURABILITY",
+      "source": "original-21-30",
+      "native_ranges": [[8279, 8303]],
+      "source_referents": ["THM-PRIV16"],
+      "classification": "THEOREM_DOMAIN_PREMISE",
+      "finding": "General measurable-output postprocessing requires measurability of g because the proof applies the original guarantee to g inverse of an event.",
+      "implementation_obligation": "Require a measurable postprocessor or retain the finite discrete domain where this follows automatically.",
+      "qualification": "This does not invalidate finite discrete postprocessing."
+    },
+    {
+      "id": "UI-ORIG-PRIV-DEPLOYED-UNLEARNING",
+      "source": "original-21-30",
+      "native_ranges": [[9327, 9345]],
+      "source_referents": ["ALG-PRIV8"],
+      "classification": "ARTIFACT_BINDING_GAP",
+      "finding": "The supplied stored model M is not used; the comparison applies U to freshly reconstructed T(D, eta). That does not by itself establish forgetting for the actual deployed M.",
+      "implementation_obligation": "Bind M to the training artifact or apply and verify the operation on M itself; bind the produced deployed artifact and randomness/provenance.",
+      "qualification": "The ideal retraining equivalence remains a valid stipulated property of the recomputed model."
+    },
+    {
+      "id": "UI-ORIG-PRIV-MINIMALITY",
+      "source": "original-21-30",
+      "native_ranges": [[9372, 9389], [11074, 11074]],
+      "source_referents": ["ALG-PRIV10"],
+      "classification": "SUFFICIENCY_IS_NOT_MINIMALITY",
+      "finding": "Checking f=decoder composed with a proves sufficiency. The raw identity representation also passes, so this test cannot alone certify coarsest purpose minimization.",
+      "implementation_obligation": "Distinguish sufficient/refined representations from a certified coarsest quotient; require a minimality certificate for that stronger label.",
+      "qualification": "The final P11074 law explicitly requires coarseness, reinforcing the stronger requirement rather than repairing the algorithm."
+    },
+    {
+      "id": "UI-ORIG-HUM-ACTUAL-ACTION",
+      "source": "original-21-30",
+      "native_ranges": [[12217, 12237], [12809, 12809], [12881, 12897]],
+      "source_referents": ["THM-HUM24", "THM-HUM34"],
+      "classification": "PROOF_INFERENCE_QUALIFIED_BY_EXPLICIT_LIMITATIONS",
+      "finding": "An informative display, suitable person and timely action do not entail that the person selected the correct action. An incorrect timely choice is a counterexample unless actual policy conformance is a premise.",
+      "implementation_obligation": "Separate availability of a correct executable policy from evidence that the action was actually performed correctly.",
+      "qualification": "P12809 states correctly that the correct action can be selected. P12881/P12897 explicitly decline to prove universal procedure compliance or actual override exercise. Do not characterize this as an undisclosed whole-program guarantee."
+    },
+    {
+      "id": "UI-ORIG-HUM-STAFFING-AUTHORITY",
+      "source": "original-21-30",
+      "native_ranges": [[13989, 13990], [14174, 14178], [14601, 14601], [20682, 20698]],
+      "classification": "FORMAL_EDGE_AND_REPAIR_SCOPE",
+      "finding": "The staffing-edge sketch omits the separately required authority premise unless CurrentTaskFit is strengthened to include it. Cross-training adds compatibility edges but cannot create a third unit worker for three genuinely simultaneous unit-worker tasks.",
+      "implementation_obligation": "Enforce authority and all resource capacities in an actual schedule witness; candidate interventions must be checked jointly.",
+      "qualification": "Later P14601 correctly describes cross-training as adding edges. The hotel lists potential interventions, which are not automatically sufficient repairs."
+    },
+    {
+      "id": "UI-ORIG-ACC-UNCHANGED-FAIL",
+      "source": "original-21-30",
+      "native_ranges": [[15871, 15888], [16748, 16748]],
+      "source_referents": ["THM-ACC16"],
+      "classification": "CONCLUSION_STRONGER_THAN_PREMISES",
+      "finding": "All mandatory recomputed roots passing does not imply all mandatory roots pass. Keep an unchanged failed root r2 while changed r1 passes: recomputation is cold-equivalent but whole acceptance remains failed.",
+      "implementation_obligation": "Require the final complete mandatory-root conjunction or a previously accepted unaffected baseline before claiming restored whole acceptance.",
+      "qualification": "P16748 applies the theorem to affected claims only. Cold-equivalence itself is not refuted."
+    },
+    {
+      "id": "UI-ORIG-ACC-LATENT-STATUS",
+      "source": "original-21-30",
+      "native_ranges": [[16114, 16125], [16666, 16666], [16761, 16761], [18649, 18649]],
+      "source_referents": ["THM-ACC22"],
+      "classification": "STATUS_OVERSTATEMENT_WITH_LATER_NARROWER_FORM",
+      "finding": "A nonempty defective portion blocks defect-free PASS but does not force UNKNOWN; if every evidence-consistent state is defective, defect-free status is FAIL.",
+      "implementation_obligation": "Use the full three-way state relation and preserve evidence consistency/nonemptiness.",
+      "qualification": "Later proof/consolidated wording correctly states only that defect-free status is blocked."
+    },
+    {
+      "id": "UI-ORIG-ACC-DECODER-NONEMPTY",
+      "source": "original-21-30",
+      "native_ranges": [[16332, 16364], [20864, 20864]],
+      "source_referents": ["THM-ACC27"],
+      "classification": "THEOREM_DOMAIN_PREMISE",
+      "finding": "Extending a decoder arbitrarily outside the observation image requires an inhabited output type, or a premise implying that. Empty state domain, nonempty observation codomain and empty output codomain give the edge case.",
+      "implementation_obligation": "Restrict the decoder to the observation image or supply an explicit nonempty output premise.",
+      "qualification": "Later LIFE factorization explicitly supplies Nonempty MaintenanceAction, so that later sketch handles the edge case."
+    },
+    {
+      "id": "UI-ORIG-ACC-SET-VALUED-OBSERVATION",
+      "source": "original-21-30",
+      "native_ranges": [[17121, 17153], [17199, 17224]],
+      "source_referents": ["ALG-ACC9", "ALG-ACC10", "ALG-ACC13", "ALG-ACC14"],
+      "classification": "CONCRETE_ALGORITHM_COUNTEREXAMPLE",
+      "finding": "ALG9 admits set-valued outcomes, while ALG10 tests only equality of sets across opposite verdicts. T(good)={0,1}, T(bad)={1,2}: the unequal sets pass that test, but observation1 is ambiguous. Equal-signature diagnostic classes likewise do not guarantee separation of unequal overlapping signatures.",
+      "implementation_obligation": "For set-valued observations, require disjoint outcome sets across incompatible verdict/action obligations. Otherwise restrict the interface to deterministic observations.",
+      "qualification": "The deterministic factorization theorem is not refuted. Equality remains a sufficient negative witness, but is not a complete test for set-valued diagnosability."
+    },
+    {
+      "id": "UI-ORIG-ACC-OUTER-LATENT-WITNESS",
+      "source": "original-21-30",
+      "native_ranges": [[17449, 17460]],
+      "source_referents": ["ALG-ACC24", "ALG-ACC25"],
+      "classification": "ABSTRACTION_AND_CONSISTENCY_GUARDS",
+      "finding": "A nonempty sound outer approximation can contain only spurious defective states and therefore does not prove concrete latent-defect existence. An empty inconsistent evidence fiber cannot justify defect exclusion by vacuity.",
+      "implementation_obligation": "Retain EXACT versus OUTER status and require a concrete consistent witness for possibility claims; gate empty-evidence conflicts separately.",
+      "qualification": "A nonempty exact defective fiber establishes modeled possibility. A sound empty defective enclosure can exclude modeled defects only with valid actual-state containment."
+    },
+    {
+      "id": "UI-ORIG-LIFE-MISSING-INITIAL-BODY",
+      "source": "original-21-30",
+      "native_ranges": [[19011, 19016]],
+      "classification": "ORIGINAL_SOURCE_GAP",
+      "finding": "The end of P25 is followed immediately by Continuation of THM-LIFE34, proof step14. The initial P26 chapter and theorem body through proof step13 are absent from the native original.",
+      "implementation_obligation": "Represent this source as continuation-only and do not claim missing initial statements or proofs were read.",
+      "qualification": "The math auditor independently searched all native body records and confirmed the gap. The separately reviewed canonical reconstruction is not interchangeable source text."
+    },
+    {
+      "id": "UI-ORIG-LIFE-HYPOTHESIS-REPAIR",
+      "source": "original-21-30",
+      "native_ranges": [[19127, 19132], [19149, 19158]],
+      "tables": ["1736499", "1736531"],
+      "classification": "HISTORICAL_DEFECT_REPAIRED_BY_LATER_SOURCE",
+      "finding": "Proof step25 attributes checker soundness and complete dependencies to local25; local25 instead supplies independent package acceptance. Original LIFE34 has25 local hypotheses; the standing registry contains27 assumptions.",
+      "implementation_obligation": "Keep local HYP and standing ASSUMP namespaces distinct. Recertification requires its actual dependency and checker premises.",
+      "qualification": "The math auditor read original P27 chunk191 and reports its explicit repair: local HYP16 recertification plus standing ASSUMP26 checker soundness and ASSUMP27 dependency completeness; HYP25 remains acceptance. This reviewer did not independently read chunk191. The reconstructed canonical LIFE whole theorem has18 hypotheses and cannot silently substitute."
+    },
+    {
+      "id": "UI-ORIG-LIFE-HORIZON-DOMAIN",
+      "source": "original-21-30",
+      "native_ranges": [[19474, 19502], [20892, 20902]],
+      "source_referents": ["ALG-LIFE6"],
+      "classification": "ALGORITHM_DOMAIN_GUARD",
+      "finding": "The algorithm accepts a finite degradation bound and divides mmin/r without an explicit positivity guard. A valid zero deterioration bound needs a separate case. The later formal theorem explicitly requires0<r.",
+      "implementation_obligation": "Enforce the positive-rate domain or branch on zero rate, then cap the horizon by actual expiries and preserve strict/nonstrict endpoint semantics.",
+      "qualification": "This is not a counterexample to the stated positive-rate formal theorem."
+    },
+    {
+      "id": "UI-ORIG-LIFE-OBSOLESCENCE-SCOPE",
+      "source": "original-21-30",
+      "native_ranges": [[19033, 19054], [19933, 19958], [20704, 20714], [21519, 21524]],
+      "classification": "IMPORTANT_SOURCE_QUALIFICATION",
+      "finding": "Original text says obsolescence MAY empty a repair fiber and repeatedly includes approved substitutes, retrofit and other valid policies. Discontinuing one original part does not eliminate all admitted alternatives automatically.",
+      "implementation_obligation": "Prove all paths unavailable before EMPTY_REPAIR_FIBER, or return a bounded/search-incomplete status; preserve authorization and timing of replacements.",
+      "qualification": "Do not import the stronger defective formulation from the separate reconstructed LIFE source into the historical original."
+    },
+    {
+      "id": "UI-ORIG-LIFE-SAFE-FORMAL-PREMISES",
+      "source": "original-21-30",
+      "native_ranges": [[20948, 20951], [20982, 20995], [21000, 21019], [21558, 21565]],
+      "classification": "CORRECT_SCOPED_OBLIGATIONS",
+      "finding": "Natural inventory subtraction is guarded by issued+lost<=current+received. Decommissioning invariant explicitly requires initial safety and a valid transition trace. Nonnegative mass balance proves accounting bounds, not functional circularity or environmental superiority.",
+      "implementation_obligation": "Retain these premises and distinct modalities in executable adapters rather than relying on type names or administrative completion.",
+      "qualification": "The source calls its Lean-style sketches uncompiled and marks full package checking as research-level."
+    }
+  ],
+  "cross_cutting_obligations": [
+    "Materialized state, serialized artifact and actual as-built state require separate evidence bridges.",
+    "Exact, robust bounded, probabilistic, outer-approximate, forecast and conditional-authority claims retain their own modalities.",
+    "Dependency-directed checking must match cold status including FAIL and UNKNOWN; reuse requires current applicability and complete dependency context.",
+    "Fixed-theory refinement can shrink state fibers; legitimate theory expansion or authority changes can reopen them.",
+    "Executable algorithm bodies, external model fidelity and practical complexity do not follow from registry titles or typed output lists.",
+    "Synthetic examples and requested regression oracles are not measurements of an actual hotel or deployed solver."
+  ]
+}

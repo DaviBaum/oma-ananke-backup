@@ -65,7 +65,8 @@ def main():
         "all_historical_native_content_read": all(s["content_reading_complete"] for s in sources),
         "independent_verification_of_every_mathematical_claim": False,
         "all_historical_algorithms_implemented": False,
-        "known_missing_body": "Original Prompt 7 is absent; Prompt 8 explicitly admits only its typed rewrite bridge.",
+        "known_missing_body": "Original Prompt 7 is absent. Original Prompt 26 begins at the continuation of THM-LIFE34, proof step 14; its preceding body is absent. See source-gaps.json for exact native boundaries.",
+        "source_gaps_artifact": "evidence/math/pages/source-gaps.json",
         "notice": "Review means full novel native text and attached table rows read, with exact duplicate correspondence validated. It does not repair damaged source formulas or establish proofs, physical validity, implementation or reconstructed-canonical equivalence.",
     }
     (DEST / "coverage.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf8")

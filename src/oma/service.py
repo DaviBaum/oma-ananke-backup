@@ -213,12 +213,24 @@ class EngineService:
 
     def network_views(self, state: dict) -> list[dict]:
         views = []
+        contract = state.get("derived_artifacts", {}).get("network_contract", {})
         for network in state.get("physical_networks", []):
             if not network.get("geometry_artifact"):
                 continue
             materialized = self.store.get(network["geometry_artifact"])
-            views.append({**network, "source_file": Path(materialized["export_path"]).name, "network_spec": materialized["network_spec"],
-                          "added_parts": materialized["added_parts"]})
+            view = {**network, "source_file": Path(materialized["export_path"]).name,
+                    "network_spec": materialized["network_spec"], "added_parts": materialized["added_parts"]}
+            if contract.get("selected_alternative") == network["id"]:
+                view["network_contract"] = contract
+                revision = contract.get("revision", {})
+                previous_artifact = revision.get("previous_geometry_artifact")
+                if previous_artifact:
+                    previous = self.store.get(previous_artifact)
+                    view["previous_network"] = {"id": revision["replaced_network_id"],
+                        "geometry_artifact": previous_artifact, "network_spec": previous["network_spec"],
+                        "component_ids": [c["id"] for c in previous["network_spec"]["components"]],
+                        "added_parts": previous["added_parts"], "source_file": Path(previous["export_path"]).name}
+            views.append(view)
         return views
 
     def geometry(self, project_id: str, revision: int | None = None, candidate_id: str | None = None) -> dict:

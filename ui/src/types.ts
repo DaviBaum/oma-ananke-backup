@@ -166,6 +166,28 @@ export interface NetworkSpec {
   }[];
 }
 export interface PhysicalNetwork {
+  network_contract?: {
+    scenario: Record<string, unknown>;
+    selected_alternative: string;
+    source_id: string;
+    revision?: {
+      base_root: string;
+      replaced_network_id: string;
+      previous_component_ids: string[];
+      previous_network_root: string;
+      previous_contract_root: string;
+      previous_geometry_artifact?: string;
+      fixed_requirements_root: string;
+    };
+  };
+  previous_network?: Pick<
+    PhysicalNetwork,
+    | "id"
+    | "geometry_artifact"
+    | "network_spec"
+    | "component_ids"
+    | "added_parts"
+  >;
   id: string;
   demand_ids: string[];
   component_ids: string[];
@@ -229,6 +251,7 @@ export interface CheckRecord {
   witness?: Issue["witness"];
 }
 export interface Snapshot {
+  networks?: PhysicalNetwork[];
   project: Project;
   entities: Entity[];
   sources: Record<string, unknown>[];

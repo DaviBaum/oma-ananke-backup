@@ -1393,7 +1393,13 @@ export default function Viewport(props: Props) {
             <div className="compare-line" style={{ left: `${split}%` }}>
               <span>↔</span>
             </div>
-            <div className="compare-label before">Baseline context</div>
+            <div className="compare-label before">
+              {props.candidate.networks?.some(
+                (network) => network.network_contract?.revision,
+              )
+                ? "Source context · previous network not loaded"
+                : "Baseline context"}
+            </div>
             <div className="compare-label after">Candidate geometry</div>
             <input
               className="compare-range"

@@ -16,7 +16,7 @@ from oma.optimization.finite import FiniteOutcome
 from oma.optimization.codesign import DesignCase, FiniteCoDesignProblem, solve_finite_codesign, verify_finite_codesign_result
 from oma.optimization.master import MasterProblem, RouteColumn
 from oma.store import digest
-from .network_scenario import SharedNetworkScenario, network_requirements
+from .network_scenario import SharedNetworkScenario, network_requirements, network_baseline_context
 
 
 def network_project_run(store, run, control):
@@ -24,14 +24,7 @@ def network_project_run(store, run, control):
     baseline = store.get(run["base_root"])
     try:
         scenario = SharedNetworkScenario.model_validate(run["request"]["mission"])
-        if baseline.get("routes") or baseline.get("physical_networks") or baseline.get("mission"):
-            raise ValueError("This shared-network operation requires an imported baseline without an existing engineered mission; existing obligations cannot be discarded")
-        sources = baseline.get("sources", [])
-        source = next((s for s in sources if s["id"] == scenario.source_id), sources[0] if sources and scenario.source_id is None else None)
-        if source is None:
-            raise ValueError("Select a completed immutable IFC source in this federation")
-        if source.get("transform_m") is None:
-            raise ValueError("Shared-network placement requires an explicit resolved source-to-federation transform")
+        source, kept_ports, revision = network_baseline_context(baseline, scenario)
     except (ValidationError, ValueError) as exc:
         store.update_run(run["id"], "MISSING_INPUTS", str(exc), "network_mission")
         return
@@ -57,10 +50,14 @@ def network_project_run(store, run, control):
             component_ids=tuple(c.id for c in network.components), port_ids=tuple(p["id"] for p in ports),
             service=scenario.system_type, section=section, geometry_artifact=material_root).model_dump(mode="json")
         state = copy.deepcopy(baseline)
-        state.update(mission=mission, physical_networks=[record], ports=[*baseline.get("ports", []), *ports])
+        state.update(mission=mission, physical_networks=[record], ports=[*kept_ports, *ports])
+        state.setdefault("derived_artifacts", {}).pop("export_correspondence", None)
         state.setdefault("derived_artifacts", {})["network_contract"] = {
             "scenario": scenario.model_dump(mode="json", by_alias=True), "selected_alternative": network.network_id, "source_id": source["id"]}
         changed = [f"{record['id']}:{cid}" for cid in record["component_ids"]]
+        if revision:
+            state["derived_artifacts"]["network_contract"]["revision"] = {**revision, "base_root": run["base_root"]}
+            changed = sorted(set(changed) | set(revision["previous_component_ids"]))
         candidate = store.add_candidate(run["id"], state, {"kind": "physical_network", "changed_ids": changed,
             "routes": [], "networks": [{**record, "spec": spec}], "objective": {},
             "rationale": "One physical component tree shared by all fixed demands; explicit authorized network alternative"})

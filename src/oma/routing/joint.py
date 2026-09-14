@@ -23,6 +23,7 @@ from oma.store import digest
 from .generator import proposal_paths
 from .joint_materialize import materialize_route_set
 from .joint_scenario import parse_joint_request
+from .physical_archive import freeze_route_menu, compile_route_archive
 
 
 def baseline_contracts(state):
@@ -84,6 +85,10 @@ def joint_project_run(store, run, control):
                     break
         choices.append(options)
         domains.append((demand.id, tuple(option[0] for option in options)))
+    frozen_menu_root = freeze_route_menu(store, run, state, request, choices)
+    store.append_event(run["project_id"], run_id=run["id"], state_root=run["base_root"], stage="physical_menu",
+        status="FROZEN", message="Generated route choices frozen with all requirements and source identities; continuous search remains open",
+        artifacts=[frozen_menu_root])
     cases, checked_count, attempted = [], 0, 0
     for assignment in itertools.islice(itertools.product(*choices), request.max_joint_candidates):
         if time.monotonic() >= deadline:
@@ -135,6 +140,7 @@ def joint_project_run(store, run, control):
         candidate_state.setdefault("derived_artifacts", {}).update(routing_contracts=contracts,
             route_exports=[{"source_id": contracts[r]["source_id"], "route_spec": specs[r]} for r in specs])
         candidate = store.add_candidate(run["id"], candidate_state, {"kind": "physical_route_set", "changed_ids": new_ids,
+            "physical_menu_root": frozen_menu_root, "physical_menu_assignment": [a[0] for a in assignment],
             "routes": routes, "objective": {}, "rationale": "Simultaneous physical route and explicitly authorized design-option assignment"})
         store.update_run(run["id"], "CHECKING", "Independently checking every route, protected prior obligation and cross-route pair", "joint_verification", payload={"candidate_id": candidate["id"]})
         from oma.build_identity import frozen_environment
@@ -170,7 +176,13 @@ def joint_project_run(store, run, control):
         chosen = selected["selected_design_id"]
     else:
         chosen, artifact = None, None
+    control.checkpoint("physical_menu_compilation")
+    archive = compile_route_archive(store, frozen_menu_root, [c.id for c in cases], deadline=deadline)
+    compiled = store.get(archive)
+    store.append_event(run["project_id"], run_id=run["id"], state_root=run["base_root"], stage="physical_menu_compilation",
+        status=compiled["status"], message="Source-derived finite contextual and causal compilers applied to actual checked report projections",
+        artifacts=[archive], payload={"summary": compiled.get("summary"), "candidate_acceptance_authority": False})
     store.update_run(run["id"], "COMPLETED" if chosen else "BUDGET_EXHAUSTED" if time.monotonic() >= deadline else "NO_INCUMBENT_FOUND",
         "Checked simultaneous incumbent available; no continuous global optimality claim" if chosen else "No checked simultaneous incumbent in the examined assignments; infeasibility is not established",
-        "complete", artifacts=[artifact] if artifact else [], payload={"selected_candidate_ids": [chosen] if chosen else [],
+        "complete", artifacts=[r for r in (artifact, archive) if r], payload={"selected_candidate_ids": [chosen] if chosen else [],
             "attempted": attempted, "checked_feasible": checked_count, "global_lower_bound": None, "global_gap": None})

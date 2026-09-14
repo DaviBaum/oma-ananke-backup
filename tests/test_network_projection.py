@@ -76,3 +76,29 @@ def test_display_rejects_ambiguous_network_manifest(tmp_path, damage):
     state["physical_networks"][0]["geometry_artifact"] = service.store.put(manifest)
     with pytest.raises(IntegrityError):
         list(iter_network_meshes(service.store, state))
+
+
+def test_network_revision_projects_exact_contract_and_previous_graph_without_old_meshes(tmp_path):
+    service = EngineService(tmp_path / "engine")
+    state, manifest = create_network(service, tmp_path)
+    previous = copy.deepcopy(manifest)
+    previous["network_spec"]["network_id"] = "old-network"
+    previous_root = service.store.put(previous)
+    contract = {"scenario": {"mission_type": "shared_network", "preserved": {"flow": .003}},
+        "selected_alternative": "network-record", "source_id": "source",
+        "revision": {"base_root": "prior-state", "replaced_network_id": "old-network",
+            "previous_component_ids": [f"old-network:{c['id']}" for c in previous["network_spec"]["components"]],
+            "previous_geometry_artifact": previous_root, "previous_network_root": "old-record",
+            "previous_contract_root": "old-contract", "fixed_requirements_root": "fixed"}}
+    state["derived_artifacts"] = {"network_contract": contract}
+    view = service.network_views(state)[0]
+    assert view["network_contract"] == contract
+    assert view["previous_network"]["network_spec"] == previous["network_spec"]
+    assert view["previous_network"]["geometry_artifact"] == previous_root
+    meshes = list(iter_network_meshes(service.store, state))
+    assert len(meshes) == 4
+    assert all(m["entity_id"].startswith("network-record:") for m in meshes)
+    # A contract for a different component tree must not offer revision inputs.
+    contract["selected_alternative"] = "unrelated"
+    view = service.network_views(state)[0]
+    assert "network_contract" not in view and "previous_network" not in view

@@ -1,0 +1,37 @@
+{
+  "schema": "oma.historical-source-gaps/1",
+  "scope": "Supplied native Pages body records; separately reconstructed DOCX is not an equivalent replacement",
+  "gaps": [
+    {
+      "id": "ORIGINAL_P7_BODY_ABSENT",
+      "source": "1-10",
+      "source_sha256": "0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970",
+      "boundary": "P18291 ends Prompt 6; P18292 begins Prompt 8",
+      "later_admission": "Prompt 8 P18363 explicitly states the previous complete body is unavailable; only its declared typed rewrite bridge is admitted.",
+      "disposition": "Do not claim original Prompt 7 was supplied, read, reconstructed equivalently or implemented in full. Admit the later bridge only under its own explicit hypotheses."
+    },
+    {
+      "id": "ORIGINAL_P26_INITIAL_BODY_ABSENT",
+      "source": "21-30",
+      "source_sha256": "2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098",
+      "boundary": "P19011 is the final Prompt 25 principle; P19012 is 'Continuation of THM-LIFE34', followed by proof step 14.",
+      "native_continuation_title_text_sha256": "2ac7fd8ae4de6e67ef699d36499637d3a89c3318b20f4c8211e0b2b9afbe2628",
+      "missing_scope": "Original Prompt 26 initial sections, theorem statement and proof steps 1–13 are absent before the continuation. Later registries and summaries do not supply the missing proof bodies.",
+      "later_repair": "Prompt 27 repairs references in the retained continuation using local HYP-LIFE34(1–25) and separately numbered standing assumptions. This does not reproduce the absent initial proof.",
+      "canonical_difference": "The separately reconstructed canonical LIFE body has its own full text and an 18-hypothesis whole theorem; the original continuation and later registry refer to 25 hypotheses. The canonical source must not silently replace the missing original body.",
+      "disposition": "Record complete reading of supplied continuation only; retain an explicit source-body gate for original P26 claims whose defining statement or proof is absent."
+    }
+  ],
+  "content_damage": [
+    {
+      "source": "1-10",
+      "table": 1736391,
+      "row": 4,
+      "column": 3,
+      "cell_type": 8,
+      "cell_hex": "050800000000000060080000010000000200000001000000",
+      "disposition": "Native formula-error cell retained verbatim; no inferred replacement."
+    }
+  ],
+  "notice": "A complete reading ledger can cover all supplied native content while the supplied source itself remains incomplete. Source availability, semantic review, theorem validity, executable implementation and physical application are separate gates."
+}

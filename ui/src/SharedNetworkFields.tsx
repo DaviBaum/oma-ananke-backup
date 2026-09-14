@@ -3,15 +3,23 @@ import { GitBranch, Plus, Code2 } from "lucide-react";
 import NetworkDiagram from "./NetworkDiagram";
 import { parseSharedNetwork, sharedNetworkExample } from "./sharedNetwork";
 import { vector } from "./mission";
+import {
+  buildNetworkRevision,
+  type NetworkRevisionSeed,
+} from "./networkRevision";
 
 export default function SharedNetworkFields({
   value,
   onChange,
   baselineBlocked = false,
+  revision,
+  revisionStale = false,
 }: {
   value: string;
   onChange: (value: string) => void;
   baselineBlocked?: boolean;
+  revision?: NetworkRevisionSeed | null;
+  revisionStale?: boolean;
 }) {
   const [example, setExample] = useState({
     center: "0, 0, 0",
@@ -25,20 +33,31 @@ export default function SharedNetworkFields({
     [selected, setSelected] = useState<string | null>(null);
   const result = useMemo(() => {
     try {
-      return { data: parseSharedNetwork(value), error: null };
+      return {
+        data: revision
+          ? buildNetworkRevision(revision, value)
+          : parseSharedNetwork(value),
+        error: null,
+      };
     } catch (e) {
       return { data: null, error: (e as Error).message };
     }
-  }, [value]);
+  }, [value, revision]);
   const active =
     result.data?.networks[Math.min(index, result.data.networks.length - 1)];
   return (
     <div className="shared-network-editor">
-      {baselineBlocked && (
+      {revisionStale && (
+        <p className="form-error" role="alert">
+          The project or accepted head changed after this revision was prepared.
+          Close this editor and use Revise this network from the current head.
+        </p>
+      )}
+      {baselineBlocked && !revision && (
         <p className="form-error" role="status">
-          Shared-network runs require an imported baseline with no engineered
-          mission. Select or import that baseline to run. You can prepare this
-          mission here.
+          A new shared-network mission requires an imported baseline with no
+          engineered mission. To change an accepted shared network, use Revise
+          this network from the current head.
         </p>
       )}
       <div className="section-label">
@@ -51,76 +70,123 @@ export default function SharedNetworkFields({
         once. Every alternative preserves the fixed terminals, section, service,
         zone and assurance policy.
       </p>
-      <details className="network-example" open={!value.trim()}>
-        <summary>
-          <Plus size={14} /> Create an editable two-sink example
-        </summary>
-        <p>
-          This creates a geometric scenario at the coordinates below. Review the
-          generated mission before starting a run.
-        </p>
-        <div className="form-grid">
-          {Object.entries({
-            center: "Tee center X, Y, Z (m)",
-            diameter: "Nominal diameter (m)",
-            insulation: "Insulation thickness (m)",
-            reach: "Center-to-terminal reach (m)",
-            takeout: "Tee takeout (m)",
-          }).map(([key, label]) => (
-            <label key={key} className="field">
-              {label}
-              <input
-                value={example[key as keyof typeof example]}
-                onChange={(e) =>
-                  setExample({ ...example, [key]: e.target.value })
-                }
-              />
-            </label>
-          ))}
-        </div>
-        {exampleError && (
-          <p className="form-error" role="alert">
-            {exampleError}
+      {revision && (
+        <div className="network-fixed-requirements">
+          <strong>
+            Revising {revision.network.id} · accepted r{revision.baseRevision}
+          </strong>
+          <p>
+            Source and sink identities, positions, flows, pressures, section,
+            clearance, zone, physics, objective and assurance requirements are
+            fixed to the accepted scenario. Every replacement receives fresh
+            native checks before it can be accepted.
           </p>
-        )}
-        <button
-          className="secondary"
-          onClick={() => {
-            try {
-              if (Object.values(example).some((v) => !v.trim()))
-                throw new Error("Every example field needs an explicit value.");
-              const mission = sharedNetworkExample(
-                vector(example.center),
-                Number(example.diameter),
-                Number(example.insulation),
-                Number(example.reach),
-                Number(example.takeout),
-              );
-              onChange(JSON.stringify(mission, null, 2));
-              setExampleError("");
-              setIndex(0);
-            } catch (e) {
-              setExampleError((e as Error).message);
-            }
-          }}
-        >
-          <Plus size={14} />
-          {value.trim()
-            ? "Replace JSON with this example"
-            : "Create example JSON"}
-        </button>
-      </details>
+          <details open>
+            <summary>Fixed requirements · read-only</summary>
+            <textarea
+              aria-label="Fixed network requirements"
+              className="network-json network-fixed-json"
+              readOnly
+              value={JSON.stringify(revision.fixed, null, 2)}
+              spellCheck={false}
+            />
+          </details>
+          <details>
+            <summary>
+              Accepted graph · {revision.network.component_ids.length} unique
+              parts
+            </summary>
+            <NetworkDiagram
+              spec={revision.network.network_spec}
+              selected={null}
+              onSelect={() => {}}
+            />
+          </details>
+        </div>
+      )}
+      {!revision && (
+        <details className="network-example" open={!value.trim()}>
+          <summary>
+            <Plus size={14} /> Create an editable two-sink example
+          </summary>
+          <p>
+            This creates a geometric scenario at the coordinates below. Review
+            the generated mission before starting a run.
+          </p>
+          <div className="form-grid">
+            {Object.entries({
+              center: "Tee center X, Y, Z (m)",
+              diameter: "Nominal diameter (m)",
+              insulation: "Insulation thickness (m)",
+              reach: "Center-to-terminal reach (m)",
+              takeout: "Tee takeout (m)",
+            }).map(([key, label]) => (
+              <label key={key} className="field">
+                {label}
+                <input
+                  value={example[key as keyof typeof example]}
+                  onChange={(e) =>
+                    setExample({ ...example, [key]: e.target.value })
+                  }
+                />
+              </label>
+            ))}
+          </div>
+          {exampleError && (
+            <p className="form-error" role="alert">
+              {exampleError}
+            </p>
+          )}
+          <button
+            className="secondary"
+            onClick={() => {
+              try {
+                if (Object.values(example).some((v) => !v.trim()))
+                  throw new Error(
+                    "Every example field needs an explicit value.",
+                  );
+                const mission = sharedNetworkExample(
+                  vector(example.center),
+                  Number(example.diameter),
+                  Number(example.insulation),
+                  Number(example.reach),
+                  Number(example.takeout),
+                );
+                onChange(JSON.stringify(mission, null, 2));
+                setExampleError("");
+                setIndex(0);
+              } catch (e) {
+                setExampleError((e as Error).message);
+              }
+            }}
+          >
+            <Plus size={14} />
+            {value.trim()
+              ? "Replace JSON with this example"
+              : "Create example JSON"}
+          </button>
+        </details>
+      )}
       <label className="field network-json-label">
         <span>
-          <Code2 size={14} /> Shared-network mission JSON
+          <Code2 size={14} />{" "}
+          {revision
+            ? "Replacement alternatives JSON"
+            : "Shared-network mission JSON"}
         </span>
         <textarea
           className="network-json"
-          aria-label="Shared-network mission JSON"
+          aria-label={
+            revision
+              ? "Replacement alternatives JSON"
+              : "Shared-network mission JSON"
+          }
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={
-            '{\n  "mission_type": "shared_network",\n  "network_alternatives": []\n}'
+            revision
+              ? "[]"
+              : '{\n  "mission_type": "shared_network",\n  "network_alternatives": []\n}'
           }
           spellCheck={false}
         />
@@ -168,7 +234,9 @@ export default function SharedNetworkFields({
           The server supplies the pinned federation datum. Engineering-service
           checks require explicit sink flows, available pressures, fluid
           properties, fitting losses and applicability assumptions in the JSON.
-          The example supplies no hydraulic evidence.
+          {revision
+            ? " The accepted requirements remain fixed while the physical graph alternatives are edited."
+            : " The example supplies no hydraulic evidence."}
         </span>
       </div>
     </div>

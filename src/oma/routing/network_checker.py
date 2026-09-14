@@ -14,7 +14,7 @@ from oma.optimization.physical import Interval
 from oma.store import digest, utcnow
 from oma.verification import CHECKER_VERSION, candidate_control
 from .network_flow import evaluate_network_flow
-from .network_scenario import SharedNetworkScenario, network_requirements
+from .network_scenario import SharedNetworkScenario, network_requirements, network_baseline_context
 
 
 def verify_network_candidate(store, candidate_id):
@@ -46,7 +46,7 @@ def verify_network_candidate(store, candidate_id):
         mission, ports, section = network_requirements(baseline, request)
         selected = next(n for n in request.network_alternatives if n.network_id == contract["selected_alternative"])
         sources = baseline.get("sources", [])
-        source = next((s for s in sources if s["id"] == request.source_id), sources[0] if sources and request.source_id is None else None)
+        source, kept_ports, revision = network_baseline_context(baseline, request)
         if source is None or source.get("transform_m") is None or contract["source_id"] != source["id"]:
             raise ValueError("Selected source does not belong to the fixed requested federation")
         network_records = state.get("physical_networks", [])
@@ -57,20 +57,28 @@ def verify_network_candidate(store, candidate_id):
     except (ValueError, KeyError, StopIteration, TypeError) as exc:
         add("network-contract", "FAIL", f"Missing or invalid persisted network contract: {exc}")
         return finish()
-    fixed = (contract["scenario"] == request.model_dump(mode="json", by_alias=True) and state.get("mission") == mission)
+    expected_contract = {"scenario": request.model_dump(mode="json", by_alias=True),
+        "selected_alternative": selected.network_id, "source_id": source["id"]}
+    if revision:
+        expected_contract["revision"] = {**revision, "base_root": run["base_root"]}
+    fixed = contract == expected_contract and state.get("mission") == mission
     add("fixed-network-requirements", "PASS" if fixed else "FAIL", "Full scenario, demands, constraints, component alternatives and objective policy bind the original immutable run request")
     expected_record = PhysicalNetwork(id=selected.network_id, demand_ids=tuple(s.demand_id for s in request.sinks),
         component_ids=tuple(c.id for c in selected.components), port_ids=tuple(p["id"] for p in ports), service=request.system_type,
         section=section, geometry_artifact=record.geometry_artifact).model_dump(mode="json")
-    coverage = (network_records == [expected_record] and set(candidate.get("changed_ids", [])) == {f"{record.id}:{c.id}" for c in selected.components})
+    expected_changes = {f"{record.id}:{c.id}" for c in selected.components}
+    if revision:
+        expected_changes.update(revision["previous_component_ids"])
+    coverage = (network_records == [expected_record] and set(candidate.get("changed_ids", [])) == expected_changes
+                and len(candidate.get("changed_ids", [])) == len(expected_changes))
     add("unique-network-demand-coverage", "PASS" if coverage else "FAIL", "Every fixed demand shares one uniquely inventoried component tree; no duplicated trunk or missing branch")
     allowed_changes = {"mission", "ports", "physical_networks", "derived_artifacts"}
     preserved = all(state.get(k) == v for k, v in baseline.items() if k not in allowed_changes)
     preserved &= set(state) <= set(baseline) | allowed_changes
-    preserved &= state.get("ports") == [*baseline.get("ports", []), *ports]
-    preserved &= not (baseline.get("routes") or baseline.get("physical_networks") or baseline.get("mission"))
+    preserved &= state.get("ports") == [*kept_ports, *ports]
     derived = state.get("derived_artifacts", {})
-    preserved &= all(derived.get(k) == v for k, v in baseline.get("derived_artifacts", {}).items())
+    preserved &= all(derived.get(k) == v for k, v in baseline.get("derived_artifacts", {}).items()
+                     if k not in {"network_contract", "export_correspondence"})
     preserved &= set(derived) <= set(baseline.get("derived_artifacts", {})) | {"network_contract", "export_correspondence"}
     add("protected-network-baseline", "PASS" if preserved else "FAIL", "All original source, entity, connectivity, policy and previous obligation content is preserved")
     expected_spec = selected.model_dump(mode="json", by_alias=True)

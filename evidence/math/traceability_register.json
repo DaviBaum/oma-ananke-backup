@@ -1,8 +1,74 @@
 {
-  "schema": "oma.math.traceability/1",
-  "source_review_complete": false,
+  "schema": "oma.math.traceability/2",
+  "source_review_complete": true,
+  "source_review_coverage": "evidence/math/combined_review_coverage.json",
+  "source_bodies_available_in_full": false,
   "full_engine_mathematics_implemented": false,
   "obligations": [
+    {
+      "obligation": "ACTUAL_FROZEN_PHYSICAL_MENU_PROJECTION",
+      "source": {
+        "document": "1-10",
+        "sha256": "0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970",
+        "paragraphs": [
+          6005,
+          6031,
+          8179,
+          8841,
+          19214,
+          20012
+        ],
+        "objects": [
+          "ALG-MN0",
+          "ALG-MN1",
+          "ALG-DS1",
+          "ALG-DS3",
+          "ALG-CS1",
+          "ALG-CS6"
+        ]
+      },
+      "interpretation_and_assumptions": "Complete finite ordered menu with immutable choice definitions, context and named report projection. Every assignment is retained; unexamined assignments are UNKNOWN. Exact prefix separator and full assignment replacement-action bisimulation preserve all higher-order interactions, original labels and report references. Caller authenticates physical report applicability.",
+      "implementations": [
+        "oma.optimization.physical_menu.compile_physical_menu"
+      ],
+      "independent_checkers": [
+        "oma.optimization.physical_menu.verify_physical_menu"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.physical_menu.compile_physical_menu",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.physical_menu.verify_physical_menu",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_physical_menu.py"
+      ],
+      "real_model_benchmark": {
+        "status": "HISTORICAL_IMMUTABLE_REAL_REPORT_PROJECTIONS_CHECKED",
+        "evidence": "evidence/math/physical-menu-office.benchmark.json",
+        "scope": "Historical report observations only; no current native recertification"
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Projection equivalence only, with no acceptance authority or native PASS reuse. Historical actual Office reports produce one FAIL and one PASS assignment; withholding the PASS yields FAIL plus UNKNOWN. Different historical checker builds remain explicit in that benchmark projection. Current-build application assembly is separately implemented in routing/physical_archive.py and checked by root-owned integration tests; this kernel does not authenticate arbitrary supplied roots.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
     {
       "obligation": "ORIGINAL_FINITE_CAUSAL_BISIMULATION",
       "source": {
@@ -1401,7 +1467,7 @@
     }
   ],
   "pending_source_mechanisms": [
-    "Complete historical Pages source review and semantic reconciliation with substantially different reconstructed canonical bodies",
+    "Retain original P7 and initial P26 source-body availability gaps; complete supplied-content review does not recover missing text or prove reconstructed-body equivalence",
     "General 3D solid/mesh uncertainty and complete obstacle-accounting closure",
     "Certified inner graph with continuous fitting/body transitions",
     "Complete outer abstraction and adaptive CEGAR geometry proofs",
@@ -1416,8 +1482,8 @@
   ],
   "unit_test_run": {
     "path": "evidence\\math\\implemented-obligation-tests.xml",
-    "tests": 191,
+    "tests": 220,
     "failures": 0
   },
-  "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"
+  "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"
 }

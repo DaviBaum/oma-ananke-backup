@@ -50,6 +50,13 @@ import { buildMission, emptyMission } from "./mission";
 import JointMissionFields from "./JointMissionFields";
 import SharedNetworkFields from "./SharedNetworkFields";
 import NetworkDiagram from "./NetworkDiagram";
+import NetworkLineage from "./NetworkLineage";
+import {
+  prepareNetworkRevision,
+  buildNetworkRevision,
+  networkRevisionIsCurrent,
+  type NetworkRevisionSeed,
+} from "./networkRevision";
 import { parseSharedNetwork } from "./sharedNetwork";
 import { buildJointMission, newJointMission } from "./jointMission";
 import { applicabilityReason, currentPassingCheck } from "./checkApplicability";
@@ -299,6 +306,9 @@ export default function App() {
     ),
     [jointMission, setJointMission] = useState(newJointMission),
     [sharedNetwork, setSharedNetwork] = useState(""),
+    [networkRevision, setNetworkRevision] =
+      useState<NetworkRevisionSeed | null>(null),
+    [revisionAlternatives, setRevisionAlternatives] = useState(""),
     [draft, setDraft] = useState(true);
   const [evidenceTarget, setEvidenceTarget] = useState<EvidenceTarget | null>(
     null,
@@ -897,11 +907,26 @@ export default function App() {
   const doRun = async () => {
     if (!projectId) return;
     try {
+      if (
+        stateSelection ||
+        (networkRevision &&
+          !networkRevisionIsCurrent(
+            networkRevision,
+            headSnapshot,
+            !!stateSelection,
+          ))
+      )
+        throw new Error(
+          "Return to the current accepted head and prepare this revision again.",
+        );
       const mission =
         operation === "check"
           ? undefined
           : missionMode === "network"
-            ? parseSharedNetwork(sharedNetwork).mission
+            ? networkRevision
+              ? buildNetworkRevision(networkRevision, revisionAlternatives)
+                  .mission
+              : parseSharedNetwork(sharedNetwork).mission
             : missionMode === "joint"
               ? buildJointMission(jointMission)
               : buildMission(missionForm);
@@ -932,9 +957,38 @@ export default function App() {
     }
   };
   const showRun = () => {
+    setNetworkRevision(null);
     setOperation("check");
     setModal("run");
   };
+  const reviseNetwork = () => {
+    if (!headSnapshot || stateSelection) return;
+    try {
+      const seed = prepareNetworkRevision(headSnapshot);
+      setNetworkRevision(seed);
+      setRevisionAlternatives(JSON.stringify(seed.alternatives, null, 2));
+      setMissionMode("network");
+      setOperation("optimize");
+      setScope("all");
+      setModal("run");
+    } catch (e) {
+      setError((e as Error).message);
+    }
+  };
+  const revisionOffer = useMemo(() => {
+    if (!snapshot?.networks?.length) return null;
+    try {
+      return {
+        network: prepareNetworkRevision(snapshot).network,
+        reason: null,
+      };
+    } catch (e) {
+      return { network: null, reason: (e as Error).message };
+    }
+  }, [snapshot]);
+  const revisionStale =
+    !!networkRevision &&
+    !networkRevisionIsCurrent(networkRevision, headSnapshot, !!stateSelection);
   const exportModel = async () => {
     if (!projectId) return;
     if (!draft && !currentPassingCheck(exportCandidate)) {
@@ -1492,6 +1546,45 @@ export default function App() {
                       onOpen={inspectRecord}
                     />
                   )}{" "}
+                  {revisionOffer && (
+                    <div className="network-revision-card">
+                      <div className="section-label">
+                        <span>SHARED NETWORK</span>
+                        <GitBranch size={15} />
+                      </div>
+                      <strong>{snapshot?.networks?.[0]?.id}</strong>
+                      <p>
+                        Revise the physical layout while preserving every
+                        accepted service requirement.
+                      </p>
+                      <button
+                        className="secondary"
+                        onClick={reviseNetwork}
+                        disabled={
+                          !revisionOffer.network ||
+                          !!stateSelection ||
+                          !!busy ||
+                          !connected
+                        }
+                      >
+                        <GitBranch size={14} /> Revise this network
+                      </button>
+                      {(revisionOffer.reason || stateSelection) && (
+                        <p className="muted">
+                          {stateSelection
+                            ? "Return to the current accepted head to revise its network."
+                            : revisionOffer.reason}
+                        </p>
+                      )}
+                      {snapshot?.networks?.map((network) => (
+                        <NetworkLineage
+                          key={network.id}
+                          network={network}
+                          onInspect={inspectRecord}
+                        />
+                      ))}
+                    </div>
+                  )}
                   {!!snapshot?.missing_inputs.length && (
                     <div className="missing-card">
                       <TriangleAlert size={16} />
@@ -2124,6 +2217,10 @@ export default function App() {
                               {network.component_ids.length} unique components ·{" "}
                               {network.demand_ids.length} demands
                             </summary>
+                            <NetworkLineage
+                              network={network}
+                              onInspect={inspectRecord}
+                            />
                             <NetworkDiagram
                               spec={network.network_spec}
                               selected={
@@ -2509,49 +2606,59 @@ export default function App() {
       )}
       {modal === "run" && (
         <Modal
-          title="A new engineering run."
+          title={
+            networkRevision
+              ? "Revise the accepted network."
+              : "A new engineering run."
+          }
           kicker="EXPLICIT SCOPE · RECORDED EVIDENCE"
           onClose={closeModal}
         >
-          <div className="operation-choices">
-            {[
-              {
-                id: "check",
-                icon: ShieldCheck,
-                name: "Baseline check",
-                desc: "Inspect the current engineering state.",
-              },
-              {
-                id: "route",
-                icon: GitBranch,
-                name: "Physical route",
-                desc: "Route an explicit scenario through the model.",
-              },
-              {
-                id: "optimize",
-                icon: Zap,
-                name: "Optimize",
-                desc: "Explore candidates within the declared scope.",
-              },
-            ].map(({ id, icon: Icon, name, desc }) => (
-              <button
-                key={id}
-                className={operation === id ? "selected" : ""}
-                onClick={() => setOperation(id as RunRequest["operation"])}
-              >
-                <Icon size={19} />
-                <span>
-                  <strong>{name}</strong>
-                  <small>{desc}</small>
-                </span>
-                {operation === id && <Check size={16} />}
-              </button>
-            ))}
-          </div>
+          {!networkRevision && (
+            <div className="operation-choices">
+              {[
+                {
+                  id: "check",
+                  icon: ShieldCheck,
+                  name: "Baseline check",
+                  desc: "Inspect the current engineering state.",
+                },
+                {
+                  id: "route",
+                  icon: GitBranch,
+                  name: "Physical route",
+                  desc: "Route an explicit scenario through the model.",
+                },
+                {
+                  id: "optimize",
+                  icon: Zap,
+                  name: "Optimize",
+                  desc: "Explore candidates within the declared scope.",
+                },
+              ].map(({ id, icon: Icon, name, desc }) => (
+                <button
+                  key={id}
+                  className={operation === id ? "selected" : ""}
+                  onClick={() => setOperation(id as RunRequest["operation"])}
+                >
+                  <Icon size={19} />
+                  <span>
+                    <strong>{name}</strong>
+                    <small>{desc}</small>
+                  </span>
+                  {operation === id && <Check size={16} />}
+                </button>
+              ))}
+            </div>
+          )}
           <div className="form-grid">
             <label className="field">
               Scope
-              <select value={scope} onChange={(e) => setScope(e.target.value)}>
+              <select
+                value={scope}
+                disabled={!!networkRevision}
+                onChange={(e) => setScope(e.target.value)}
+              >
                 <option value="all">Entire federation</option>
                 <option value="visible">
                   Visible objects ({visibleIds.size})
@@ -2576,34 +2683,40 @@ export default function App() {
           </div>
           {operation !== "check" && (
             <>
-              <div
-                className="mission-mode"
-                role="group"
-                aria-label="Route mission structure"
-              >
-                <button
-                  className={missionMode === "single" ? "selected" : ""}
-                  onClick={() => setMissionMode("single")}
+              {!networkRevision && (
+                <div
+                  className="mission-mode"
+                  role="group"
+                  aria-label="Route mission structure"
                 >
-                  Single route
-                </button>
-                <button
-                  className={missionMode === "joint" ? "selected" : ""}
-                  onClick={() => setMissionMode("joint")}
-                >
-                  Simultaneous demands
-                </button>
-                <button
-                  className={missionMode === "network" ? "selected" : ""}
-                  onClick={() => setMissionMode("network")}
-                >
-                  Shared network
-                </button>
-              </div>
+                  <button
+                    className={missionMode === "single" ? "selected" : ""}
+                    onClick={() => setMissionMode("single")}
+                  >
+                    Single route
+                  </button>
+                  <button
+                    className={missionMode === "joint" ? "selected" : ""}
+                    onClick={() => setMissionMode("joint")}
+                  >
+                    Simultaneous demands
+                  </button>
+                  <button
+                    className={missionMode === "network" ? "selected" : ""}
+                    onClick={() => setMissionMode("network")}
+                  >
+                    Shared network
+                  </button>
+                </div>
+              )}
               {missionMode === "network" ? (
                 <SharedNetworkFields
-                  value={sharedNetwork}
-                  onChange={setSharedNetwork}
+                  value={networkRevision ? revisionAlternatives : sharedNetwork}
+                  onChange={
+                    networkRevision ? setRevisionAlternatives : setSharedNetwork
+                  }
+                  revision={networkRevision}
+                  revisionStale={revisionStale}
                   baselineBlocked={!!snapshot?.constraints.length}
                 />
               ) : missionMode === "joint" ? (
@@ -2630,14 +2743,17 @@ export default function App() {
               disabled={
                 !!busy ||
                 !connected ||
+                !!stateSelection ||
+                revisionStale ||
                 (operation !== "check" &&
                   missionMode === "network" &&
-                  !!snapshot?.constraints.length)
+                  !!snapshot?.constraints.length &&
+                  !networkRevision)
               }
               onClick={() => void doRun()}
             >
               <Play size={14} />
-              Start run
+              {networkRevision ? "Check replacement alternatives" : "Start run"}
             </button>
           </div>
         </Modal>

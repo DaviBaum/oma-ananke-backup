@@ -4,7 +4,7 @@ The workbench's shared-network mission checks one physical component tree agains
 
 The present family supports one source, at least two sinks, equal circular sections, straight segments, circular elbows and orthogonal three-port tees. Every connection and oriented demand path is explicit. The schema rejects duplicated components, disconnected branches, cycles, unused ports, inconsistent flow directions, changes to fixed terminals or sections, and undersized fitting takeouts. Each complete alternative is materialized in a copy of the original IFC. An independently checked finite co-design selection compares the actual feasible alternatives; no unrestricted continuous or topology optimum follows.
 
-An initial network mission requires a baseline with no previous engineered mission. Operations that would silently discard an existing route or network are blocked. Network-preserving edits, reducers, arbitrary fittings, multiple supplies, loops, drainage collection and original equipment-port attachment are still open capabilities.
+An initial network mission requires a baseline with no previous engineered mission. An explicit revision may replace one existing tree while preserving all its fixed requirements, as described below. Operations that would silently discard an existing route or network are blocked. Mixed-network edits, reducers, arbitrary fittings, multiple supplies, loops, drainage collection and original equipment-port attachment are still open capabilities.
 
 `network_checker.py` reloads the immutable request, candidate and source hashes, checks exact obligation coverage and source preservation, then reads actual native IFC geometry, ports, component connectivity and system membership. It checks every component against all imported source obstacles, every component pair and each full solid against the permitted zone. Native and analytic volumes and path lengths cross-check each other. Numerical CAD tolerances and source-envelope policies are explicit evidence assumptions.
 
@@ -26,3 +26,18 @@ The frozen scenario in `evidence/benchmarks/shared-network/office/b36e301376fe49
 Both alternatives passed their complete native and source checks. The direct layout saves 0.181327412 m within this two-alternative comparison. Its two demand paths are 1.2 m each; summing them would incorrectly charge the shared trunk twice. This is a new shared-source mission and is not comparable to the earlier Office mission with two independent sources.
 
 The selected candidate `123924e355164a5ba330e5b30cc72384` was accepted in project `a561fdf78fcc411295e4821cb560c829`. Export `2089437ddc994677b46231ddb03a5b5d` passed fresh round-trip verification; the IFC SHA256 is `c116e3cf909e97719a613888043ca2b214aba538575e17f79dd3639bb5a12e58`. The complete run took 83.026 seconds at the executable version recorded in the result. Subsequent executable changes require renewed report applicability; historical evidence is retained.
+# Explicit revisions
+
+`replace_network_id` names the single existing network to replace. The previous
+scenario, mission, component inventory and synthetic ports must agree exactly.
+Every requirement except the alternative physical designs remains fixed, including
+all terminals, demands, flows, pressure budgets, geometry limits, zone, clearance,
+physics conventions, assumptions and objective policy. An omitted source ID is
+normalized to the actual recorded source before comparison.
+
+The replacement is rebuilt from immutable original IFC bytes. Old route parts are
+not appended to its inventory. The new contract records the base state root, prior
+network/contract roots, previous physical artifact and complete component IDs;
+changed IDs include both old and new parts. Each revised candidate and exported
+IFC undergo fresh native checks. Changing broader requirements or replacing mixed
+networks needs a separate explicit contract and remains unsupported.

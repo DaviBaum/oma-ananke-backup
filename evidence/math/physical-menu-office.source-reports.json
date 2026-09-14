@@ -1,0 +1,864 @@
+[
+  {
+    "candidate_root": "1f395013bf59b50f7f5ffe58d688f8e85f24b51ea6fbd71324feeb7101765e01",
+    "checker_version": "oma-independent-checker/2:d2040115d21a5793c81f50b96315ac72d6182c4ba5e81ffbdd9d567a8af14ef7",
+    "common_mode_risks": [
+      "Shared IFC parser and numerical OCP kernel",
+      "Finite physical route/design alternatives do not establish complete continuous optimality"
+    ],
+    "created_at": "2026-09-14T08:44:06.479364+00:00",
+    "mission_hash": "80278d0b1df9a4024aedd1e9e29fa00ac3f86fb8a8244baa1d64958d9a0747f7",
+    "objective": {
+      "fitting_count": 0.0,
+      "length_m": 2.400000000000002
+    },
+    "results": [
+      {
+        "id": "joint-demand-coverage",
+        "participants": [],
+        "reason": "Every new demand and prior route has exactly one explicit mission and physical route",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "protected-prior-missions",
+        "participants": [],
+        "reason": "Prior route definitions and engineering mission contents are unchanged",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "joint-replacement-coverage",
+        "participants": [],
+        "reason": "Each edited source has one complete physical replacement containing all its routes",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "route-source-binding:oma-1a7dc095a7f6-001-00",
+        "participants": [],
+        "reason": "Route materialization belongs to its authorized immutable discipline",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-00:fixed-request-assumptions",
+        "participants": [],
+        "reason": "Scenario, clearance, physical sizes and objective policy match the immutable original run request",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-00:protected-source-preservation",
+        "participants": [],
+        "reason": "All baseline entity content and source identities preserved",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-00:materialized-input-integrity",
+        "participants": [],
+        "reason": "Persisted IFC hashes rechecked",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-00:fixed-service-obligations",
+        "participants": [],
+        "reason": "All declared terminals, section and insulation obligations preserved",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-00:exported-physical-semantics",
+        "participants": [],
+        "reason": "Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "recomputed": {
+            "connections": 0,
+            "errors": [],
+            "fitting_count": 0,
+            "length_m": 1.2000000000000028,
+            "original_records_checked": 62930,
+            "parts": [
+              {
+                "guid": "3vCYs0Gp5S9RgQEdBcEomI",
+                "length_m": 1.2000000000000028,
+                "radius_m": 0.07
+              }
+            ],
+            "slope_margins": []
+          }
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-00:physical-interference-and-clearance",
+        "participants": [],
+        "reason": "Native solids checked: 803 route/obstacle pairs, 0 forbidden pairs, 0 ambiguous pairs; datum VERIFIED_SAME_SOURCE_RECORDS",
+        "scope": "New route versus every source physical obstacle; pre-existing building defects remain outside this local repair claim",
+        "status": "PASS",
+        "witness": {
+          "artifact": "70ebb7ef759f30844718712a5f4766a5b4876e92a4fc45e8d9f4d63d578a1da7"
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-00:physical-self-interference",
+        "participants": [],
+        "reason": "All route part pairs checked with local joint-interface authorization",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "artifact": "70ebb7ef759f30844718712a5f4766a5b4876e92a4fc45e8d9f4d63d578a1da7"
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-00:physical-port-body-attachment",
+        "participants": [],
+        "reason": "Every terminal/joint port independently classified on its actual solid cap with matching outward direction",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "ports": [
+            {
+              "owner_guid": "3vCYs0Gp5S9RgQEdBcEomI",
+              "point": [
+                24.169774999999973,
+                -7.091475000000081,
+                5.892220999999475
+              ],
+              "port_guid": "1yiiqD8N5S5gCP0dO2aKmq",
+              "probe_m": 0.0002,
+              "reason": "Physical cap, outside and inside agree with port axis",
+              "states": [
+                "TopAbs_State.TopAbs_ON",
+                "TopAbs_State.TopAbs_OUT",
+                "TopAbs_State.TopAbs_IN"
+              ],
+              "status": "PASS",
+              "tolerance_m": 1e-05
+            },
+            {
+              "owner_guid": "3vCYs0Gp5S9RgQEdBcEomI",
+              "point": [
+                25.369774999999976,
+                -7.091475000000081,
+                5.892220999999475
+              ],
+              "port_guid": "0njdOxaU9QuQm6Dl1e2l8Z",
+              "probe_m": 0.0002,
+              "reason": "Physical cap, outside and inside agree with port axis",
+              "states": [
+                "TopAbs_State.TopAbs_ON",
+                "TopAbs_State.TopAbs_OUT",
+                "TopAbs_State.TopAbs_IN"
+              ],
+              "status": "PASS",
+              "tolerance_m": 1e-05
+            }
+          ]
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-00:permitted-zone-containment",
+        "participants": [],
+        "reason": "Full native route envelopes checked against permitted zone boundary",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-00:independent-objective-recomputation",
+        "participants": [],
+        "reason": "Length recomputed from IFC directrices and independently cross-checked from solid volumes",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "difference_m": 6.661338147750939e-16,
+          "directrix_length_m": 1.2000000000000028,
+          "volume_length_m": 1.2000000000000022
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-00:gravity-slope",
+        "participants": [],
+        "reason": "Service is not a gravity network",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "NOT_APPLICABLE",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-00:engineering-service",
+        "participants": [],
+        "reason": "Requested scope is local geometric coordination; hydraulic capacity/fire protection design is not certified",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "NOT_APPLICABLE",
+        "witness": {}
+      },
+      {
+        "id": "route-source-binding:oma-1a7dc095a7f6-001-01",
+        "participants": [],
+        "reason": "Route materialization belongs to its authorized immutable discipline",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-01:fixed-request-assumptions",
+        "participants": [],
+        "reason": "Scenario, clearance, physical sizes and objective policy match the immutable original run request",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-01:protected-source-preservation",
+        "participants": [],
+        "reason": "All baseline entity content and source identities preserved",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-01:materialized-input-integrity",
+        "participants": [],
+        "reason": "Persisted IFC hashes rechecked",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-01:fixed-service-obligations",
+        "participants": [],
+        "reason": "All declared terminals, section and insulation obligations preserved",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-01:exported-physical-semantics",
+        "participants": [],
+        "reason": "Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "recomputed": {
+            "connections": 0,
+            "errors": [],
+            "fitting_count": 0,
+            "length_m": 1.1999999999999993,
+            "original_records_checked": 62930,
+            "parts": [
+              {
+                "guid": "3yO5Yr$BjGZhpvq2vcDjwo",
+                "length_m": 1.1999999999999993,
+                "radius_m": 0.07
+              }
+            ],
+            "slope_margins": []
+          }
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-01:physical-interference-and-clearance",
+        "participants": [],
+        "reason": "Native solids checked: 803 route/obstacle pairs, 0 forbidden pairs, 0 ambiguous pairs; datum VERIFIED_SAME_SOURCE_RECORDS",
+        "scope": "New route versus every source physical obstacle; pre-existing building defects remain outside this local repair claim",
+        "status": "PASS",
+        "witness": {
+          "artifact": "21fa1a7bc3463c515a4ced74e9096e0ba844d0a30de44ab4f49ca75f2ef2ce35"
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-01:physical-self-interference",
+        "participants": [],
+        "reason": "All route part pairs checked with local joint-interface authorization",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "artifact": "21fa1a7bc3463c515a4ced74e9096e0ba844d0a30de44ab4f49ca75f2ef2ce35"
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-01:physical-port-body-attachment",
+        "participants": [],
+        "reason": "Every terminal/joint port independently classified on its actual solid cap with matching outward direction",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "ports": [
+            {
+              "owner_guid": "3yO5Yr$BjGZhpvq2vcDjwo",
+              "point": [
+                24.769774999999974,
+                -7.69147500000008,
+                5.892220999999475
+              ],
+              "port_guid": "1alx4POO5GhuTbXdMFKRvf",
+              "probe_m": 0.0002,
+              "reason": "Physical cap, outside and inside agree with port axis",
+              "states": [
+                "TopAbs_State.TopAbs_ON",
+                "TopAbs_State.TopAbs_OUT",
+                "TopAbs_State.TopAbs_IN"
+              ],
+              "status": "PASS",
+              "tolerance_m": 1e-05
+            },
+            {
+              "owner_guid": "3yO5Yr$BjGZhpvq2vcDjwo",
+              "point": [
+                24.769774999999974,
+                -6.491475000000081,
+                5.892220999999475
+              ],
+              "port_guid": "0iEx3uCunLie5uPrTr5BDd",
+              "probe_m": 0.0002,
+              "reason": "Physical cap, outside and inside agree with port axis",
+              "states": [
+                "TopAbs_State.TopAbs_ON",
+                "TopAbs_State.TopAbs_OUT",
+                "TopAbs_State.TopAbs_IN"
+              ],
+              "status": "PASS",
+              "tolerance_m": 1e-05
+            }
+          ]
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-01:permitted-zone-containment",
+        "participants": [],
+        "reason": "Full native route envelopes checked against permitted zone boundary",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-01:independent-objective-recomputation",
+        "participants": [],
+        "reason": "Length recomputed from IFC directrices and independently cross-checked from solid volumes",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "difference_m": 4.440892098500626e-16,
+          "directrix_length_m": 1.1999999999999993,
+          "volume_length_m": 1.1999999999999988
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-01:gravity-slope",
+        "participants": [],
+        "reason": "Service is not a gravity network",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "NOT_APPLICABLE",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-001-01:engineering-service",
+        "participants": [],
+        "reason": "Requested scope is local geometric coordination; hydraulic capacity/fire protection design is not certified",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "NOT_APPLICABLE",
+        "witness": {}
+      },
+      {
+        "id": "cross-route-interference",
+        "participants": [],
+        "reason": "All 1 physical part pairs between independent routes checked; 1 unresolved or forbidden pairs",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "FAIL",
+        "witness": {
+          "findings": [
+            {
+              "common_volume_m3": 0.0018293333317382899,
+              "distance_m": 0.0,
+              "numerical_budget_m": 2.1000000000000002e-05,
+              "participant_guids": [
+                "3vCYs0Gp5S9RgQEdBcEomI",
+                "3yO5Yr$BjGZhpvq2vcDjwo"
+              ],
+              "participants": [
+                "01f9fa3ef8e3773643a4252ddff958978469c60f02d48ba6c055915196529516:62937",
+                "01f9fa3ef8e3773643a4252ddff958978469c60f02d48ba6c055915196529516:62982"
+              ],
+              "reason": "POSITIVE_COMMON_SOLID_VOLUME",
+              "required_clearance_m": 0.1,
+              "rule": "FORBIDDEN_INTERFERENCE",
+              "status": "FAIL",
+              "witness": {
+                "p1": [
+                  24.839775,
+                  -7.02147500000008,
+                  5.89222099999948
+                ],
+                "p2": [
+                  24.839775,
+                  -7.02147500000008,
+                  5.89222099999948
+                ]
+              }
+            }
+          ],
+          "pairs_accounted": 1
+        }
+      },
+      {
+        "id": "joint-mission-binding",
+        "participants": [],
+        "reason": "Composite mission, catalog, rules, protected state and objective bind all individual obligations",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "joint-objective",
+        "participants": [],
+        "reason": "Objective recomputed from every actual IFC route and independently cross-checked against native solid volumes",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {
+          "per_route": {
+            "oma-1a7dc095a7f6-001-00": {
+              "fitting_count": 0.0,
+              "length_m": 1.2000000000000028
+            },
+            "oma-1a7dc095a7f6-001-01": {
+              "fitting_count": 0.0,
+              "length_m": 1.1999999999999993
+            }
+          }
+        }
+      }
+    ],
+    "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+    "schema_version": 1,
+    "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified",
+    "status": "FAIL"
+  },
+  {
+    "candidate_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+    "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c",
+    "common_mode_risks": [
+      "Shared IFC parser and numerical OCP kernel",
+      "Finite physical route/design alternatives do not establish complete continuous optimality"
+    ],
+    "created_at": "2026-09-14T08:48:30.336860+00:00",
+    "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+    "objective": {
+      "fitting_count": 0.0,
+      "length_m": 2.400000000000002
+    },
+    "results": [
+      {
+        "id": "joint-demand-coverage",
+        "participants": [],
+        "reason": "Every new demand and prior route has exactly one explicit mission and physical route",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "protected-prior-missions",
+        "participants": [],
+        "reason": "Prior route definitions and engineering mission contents are unchanged",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "joint-replacement-coverage",
+        "participants": [],
+        "reason": "Each edited source has one complete physical replacement containing all its routes",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "route-source-binding:oma-1a7dc095a7f6-002-00",
+        "participants": [],
+        "reason": "Route materialization belongs to its authorized immutable discipline",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-00:fixed-request-assumptions",
+        "participants": [],
+        "reason": "Scenario, clearance, physical sizes and objective policy match the immutable original run request",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-00:protected-source-preservation",
+        "participants": [],
+        "reason": "All baseline entity content and source identities preserved",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-00:materialized-input-integrity",
+        "participants": [],
+        "reason": "Persisted IFC hashes rechecked",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-00:fixed-service-obligations",
+        "participants": [],
+        "reason": "All declared terminals, section and insulation obligations preserved",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-00:exported-physical-semantics",
+        "participants": [],
+        "reason": "Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "recomputed": {
+            "connections": 0,
+            "errors": [],
+            "fitting_count": 0,
+            "length_m": 1.2000000000000028,
+            "original_records_checked": 62930,
+            "parts": [
+              {
+                "guid": "34RUYdLWjVtf6nC8V_ZuNL",
+                "length_m": 1.2000000000000028,
+                "radius_m": 0.07
+              }
+            ],
+            "slope_margins": []
+          }
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-00:physical-interference-and-clearance",
+        "participants": [],
+        "reason": "Native solids checked: 803 route/obstacle pairs, 0 forbidden pairs, 0 ambiguous pairs; datum VERIFIED_SAME_SOURCE_RECORDS",
+        "scope": "New route versus every source physical obstacle; pre-existing building defects remain outside this local repair claim",
+        "status": "PASS",
+        "witness": {
+          "artifact": "2f293c41fe07709cc77d2d80d2dfd8c9950fda636f5533fcc47e5e3a5dddba58"
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-00:physical-self-interference",
+        "participants": [],
+        "reason": "All route part pairs checked with local joint-interface authorization",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "artifact": "2f293c41fe07709cc77d2d80d2dfd8c9950fda636f5533fcc47e5e3a5dddba58"
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-00:physical-port-body-attachment",
+        "participants": [],
+        "reason": "Every terminal/joint port independently classified on its actual solid cap with matching outward direction",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "ports": [
+            {
+              "owner_guid": "34RUYdLWjVtf6nC8V_ZuNL",
+              "point": [
+                24.169774999999973,
+                -7.091475000000081,
+                5.892220999999475
+              ],
+              "port_guid": "3Edd6cPIfUBh33rFS24I_V",
+              "probe_m": 0.0002,
+              "reason": "Physical cap, outside and inside agree with port axis",
+              "states": [
+                "TopAbs_State.TopAbs_ON",
+                "TopAbs_State.TopAbs_OUT",
+                "TopAbs_State.TopAbs_IN"
+              ],
+              "status": "PASS",
+              "tolerance_m": 1e-05
+            },
+            {
+              "owner_guid": "34RUYdLWjVtf6nC8V_ZuNL",
+              "point": [
+                25.369774999999976,
+                -7.091475000000081,
+                5.892220999999475
+              ],
+              "port_guid": "0mISDQhUXR0AXQLiHopfo2",
+              "probe_m": 0.0002,
+              "reason": "Physical cap, outside and inside agree with port axis",
+              "states": [
+                "TopAbs_State.TopAbs_ON",
+                "TopAbs_State.TopAbs_OUT",
+                "TopAbs_State.TopAbs_IN"
+              ],
+              "status": "PASS",
+              "tolerance_m": 1e-05
+            }
+          ]
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-00:permitted-zone-containment",
+        "participants": [],
+        "reason": "Full native route envelopes checked against permitted zone boundary",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-00:independent-objective-recomputation",
+        "participants": [],
+        "reason": "Length recomputed from IFC directrices and independently cross-checked from solid volumes",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "difference_m": 6.661338147750939e-16,
+          "directrix_length_m": 1.2000000000000028,
+          "volume_length_m": 1.2000000000000022
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-00:gravity-slope",
+        "participants": [],
+        "reason": "Service is not a gravity network",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "NOT_APPLICABLE",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-00:engineering-service",
+        "participants": [],
+        "reason": "Requested scope is local geometric coordination; hydraulic capacity/fire protection design is not certified",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "NOT_APPLICABLE",
+        "witness": {}
+      },
+      {
+        "id": "route-source-binding:oma-1a7dc095a7f6-002-01",
+        "participants": [],
+        "reason": "Route materialization belongs to its authorized immutable discipline",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-01:fixed-request-assumptions",
+        "participants": [],
+        "reason": "Scenario, clearance, physical sizes and objective policy match the immutable original run request",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-01:protected-source-preservation",
+        "participants": [],
+        "reason": "All baseline entity content and source identities preserved",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-01:materialized-input-integrity",
+        "participants": [],
+        "reason": "Persisted IFC hashes rechecked",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-01:fixed-service-obligations",
+        "participants": [],
+        "reason": "All declared terminals, section and insulation obligations preserved",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-01:exported-physical-semantics",
+        "participants": [],
+        "reason": "Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "recomputed": {
+            "connections": 0,
+            "errors": [],
+            "fitting_count": 0,
+            "length_m": 1.1999999999999993,
+            "original_records_checked": 62930,
+            "parts": [
+              {
+                "guid": "1VtfkhSBjLdgnna7FKnTAu",
+                "length_m": 1.1999999999999993,
+                "radius_m": 0.07
+              }
+            ],
+            "slope_margins": []
+          }
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-01:physical-interference-and-clearance",
+        "participants": [],
+        "reason": "Native solids checked: 803 route/obstacle pairs, 0 forbidden pairs, 0 ambiguous pairs; datum VERIFIED_SAME_SOURCE_RECORDS",
+        "scope": "New route versus every source physical obstacle; pre-existing building defects remain outside this local repair claim",
+        "status": "PASS",
+        "witness": {
+          "artifact": "dbae661863c3fdfaaae56bfa90bc7782cda4601544ac7973fcd1b66c27f8218d"
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-01:physical-self-interference",
+        "participants": [],
+        "reason": "All route part pairs checked with local joint-interface authorization",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "artifact": "dbae661863c3fdfaaae56bfa90bc7782cda4601544ac7973fcd1b66c27f8218d"
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-01:physical-port-body-attachment",
+        "participants": [],
+        "reason": "Every terminal/joint port independently classified on its actual solid cap with matching outward direction",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "ports": [
+            {
+              "owner_guid": "1VtfkhSBjLdgnna7FKnTAu",
+              "point": [
+                24.769774999999974,
+                -7.69147500000008,
+                6.242220999999475
+              ],
+              "port_guid": "10fzOmnZfNm85wdJChh_F2",
+              "probe_m": 0.0002,
+              "reason": "Physical cap, outside and inside agree with port axis",
+              "states": [
+                "TopAbs_State.TopAbs_ON",
+                "TopAbs_State.TopAbs_OUT",
+                "TopAbs_State.TopAbs_IN"
+              ],
+              "status": "PASS",
+              "tolerance_m": 1e-05
+            },
+            {
+              "owner_guid": "1VtfkhSBjLdgnna7FKnTAu",
+              "point": [
+                24.769774999999974,
+                -6.491475000000081,
+                6.242220999999475
+              ],
+              "port_guid": "1L$yJRzd1GcfPsdOGdqPze",
+              "probe_m": 0.0002,
+              "reason": "Physical cap, outside and inside agree with port axis",
+              "states": [
+                "TopAbs_State.TopAbs_ON",
+                "TopAbs_State.TopAbs_OUT",
+                "TopAbs_State.TopAbs_IN"
+              ],
+              "status": "PASS",
+              "tolerance_m": 1e-05
+            }
+          ]
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-01:permitted-zone-containment",
+        "participants": [],
+        "reason": "Full native route envelopes checked against permitted zone boundary",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-01:independent-objective-recomputation",
+        "participants": [],
+        "reason": "Length recomputed from IFC directrices and independently cross-checked from solid volumes",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "PASS",
+        "witness": {
+          "difference_m": 4.440892098500626e-16,
+          "directrix_length_m": 1.1999999999999993,
+          "volume_length_m": 1.1999999999999988
+        }
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-01:gravity-slope",
+        "participants": [],
+        "reason": "Service is not a gravity network",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "NOT_APPLICABLE",
+        "witness": {}
+      },
+      {
+        "id": "oma-1a7dc095a7f6-002-01:engineering-service",
+        "participants": [],
+        "reason": "Requested scope is local geometric coordination; hydraulic capacity/fire protection design is not certified",
+        "scope": "Proposed route and its declared obstacle scope",
+        "status": "NOT_APPLICABLE",
+        "witness": {}
+      },
+      {
+        "id": "cross-route-interference",
+        "participants": [],
+        "reason": "All 1 physical part pairs between independent routes checked; 0 unresolved or forbidden pairs",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {
+          "findings": [],
+          "pairs_accounted": 1
+        }
+      },
+      {
+        "id": "joint-mission-binding",
+        "participants": [],
+        "reason": "Composite mission, catalog, rules, protected state and objective bind all individual obligations",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {}
+      },
+      {
+        "id": "joint-objective",
+        "participants": [],
+        "reason": "Objective recomputed from every actual IFC route and independently cross-checked against native solid volumes",
+        "scope": "Complete proposed route set and protected previous route obligations",
+        "status": "PASS",
+        "witness": {
+          "per_route": {
+            "oma-1a7dc095a7f6-002-00": {
+              "fitting_count": 0.0,
+              "length_m": 1.2000000000000028
+            },
+            "oma-1a7dc095a7f6-002-01": {
+              "fitting_count": 0.0,
+              "length_m": 1.1999999999999993
+            }
+          }
+        }
+      }
+    ],
+    "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+    "schema_version": 1,
+    "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified",
+    "status": "PASS"
+  }
+]

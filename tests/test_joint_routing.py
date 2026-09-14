@@ -6,7 +6,7 @@ from oma.worker import WorkerControl, import_sources
 from test_ifc_pipeline import make_fixture
 
 
-def test_simultaneous_routes_reject_crossing_and_select_authorized_option(tmp_path):
+def test_simultaneous_routes_reject_crossing_and_select_authorized_option(tmp_path, monkeypatch):
     source = make_fixture(tmp_path / "obstacle.ifc")
     store = Store(tmp_path / "store")
     project = store.create_project("Simultaneous route design", {"sources": [], "entities": []})
@@ -31,6 +31,52 @@ def test_simultaneous_routes_reject_crossing_and_select_authorized_option(tmp_pa
     report = store.get(candidates[1]["report_root"])
     assert report["objective"] == {"length_m": 6., "fitting_count": 0.}
     assert store.run(run["id"])["status"] == "COMPLETED"
+    from oma.routing.physical_archive import assemble_route_menu_problem, compile_route_archive
+    from oma.optimization.physical_menu import verify_physical_menu
+    from oma.store import IntegrityError
+    import pytest
+    import time
+    event = next(e for e in store.events(project["id"], limit=1000) if e["stage"] == "physical_menu_compilation")
+    archive = store.get(event["artifacts"][0])
+    problem, certificate = store.get(archive["problem_root"]), store.get(archive["certificate_root"])
+    assert archive["independent_check"]["status"] == "PASS"
+    assert archive["summary"]["assignment_count"] == 2
+    assert archive["summary"]["verdict_counts"] == {"FAIL": 1, "PASS": 1}
+    assert {r["candidate_id"] for r in problem["examined"]} == {c["id"] for c in candidates}
+    assert verify_physical_menu(problem, certificate)["status"] == "PASS"
+    frozen_root = candidates[0]["physical_menu_root"]
+    partial = store.get(compile_route_archive(store, frozen_root, [candidates[0]["id"]], deadline=time.monotonic() + 10))
+    assert partial["summary"]["verdict_counts"] == {"FAIL": 1, "UNKNOWN": 1}
+    assert partial["candidate_acceptance_authority"] is False
+    import oma.routing.physical_archive as archive_module
+    with monkeypatch.context() as patch:
+        patch.setattr(archive_module, "verify_physical_menu", lambda *a, **kw: {"status": "UNKNOWN", "reason": "WORK_BUDGET"})
+        bounded = store.get(compile_route_archive(store, frozen_root, [candidates[0]["id"]], deadline=time.monotonic() + 10))
+        assert bounded["status"] == "UNKNOWN" and bounded["summary"] is None
+    with monkeypatch.context() as patch:
+        patch.setattr(archive_module, "_byte_hash", lambda *a: (_ for _ in ()).throw(archive_module.ArchiveBudgetExceeded()))
+        bounded = store.get(compile_route_archive(store, frozen_root, [candidates[0]["id"]], deadline=time.monotonic() + 10))
+        assert bounded["status"] == "UNKNOWN" and bounded["reason"] == "RUN_TIME_BUDGET"
+    # A real PASS cannot be relabeled as the crossing choice or rebound to a
+    # different report. These gates check actual persisted definitions/bytes.
+    original_candidate = store.candidate
+    for field, value, expected in (
+        ("physical_menu_assignment", candidates[0]["physical_menu_assignment"], "realization differs"),
+        ("report_root", candidates[0]["report_root"], "stale, misbound"),
+        ("status", "REJECTED", "flag and independently"),
+    ):
+        with monkeypatch.context() as patch:
+            patch.setattr(store, "candidate", lambda cid, field=field, value=value: {**original_candidate(cid), field: value})
+            with pytest.raises(IntegrityError, match=expected):
+                assemble_route_menu_problem(store, frozen_root, [candidates[1]["id"]])
+    actual_file = store.resolve_path(store.get(store.get(candidates[1]["state_root"])["routes"][0]["geometry_artifact"])["export_path"])
+    original_bytes = actual_file.read_bytes()
+    try:
+        actual_file.write_bytes(original_bytes + b"\n")
+        with pytest.raises(IntegrityError, match="candidate bytes changed"):
+            assemble_route_menu_problem(store, frozen_root, [candidates[1]["id"]])
+    finally:
+        actual_file.write_bytes(original_bytes)
     from oma.verification import CHECKER_VERSION
     from oma.exporting import export_project
     store.accept(project["id"], candidates[1]["id"], 1, "accept-joint", checker_version=CHECKER_VERSION)

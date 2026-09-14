@@ -156,6 +156,25 @@ def test_cancellation_checkpoint_propagates_without_leaking_child_authority(tmp_
         find_forbidden_volume_witness(**request, checkpoint=cancel)
 
 
+def test_hard_wall_remains_active_while_parent_checkpoint_is_paused(tmp_path, monkeypatch):
+    import oma.ifc.negative_witness as module
+    request = case(tmp_path)
+    request["max_seconds"] = .05
+    started = []
+    popen = module.subprocess.Popen
+    def capture(*args, **kwargs):
+        process = popen(*args, **kwargs)
+        started.append(process)
+        return process
+    monkeypatch.setattr(module.subprocess, "Popen", capture)
+    def pause(stage):
+        time.sleep(.3)
+        assert started[0].poll() is not None, "The native child must stop even while its parent checkpoint blocks"
+    result = find_forbidden_volume_witness(**request, checkpoint=pause)
+    assert_no_authority(result)
+    assert result["stop_reason"] == "HARD_WALL_LIMIT"
+
+
 def test_verified_federation_rederived_transform_and_forgery(tmp_path):
     source = make_fixture(tmp_path / "source.ifc")
     model = ifcopenshell.open(str(source))

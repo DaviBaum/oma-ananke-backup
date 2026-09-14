@@ -5,7 +5,7 @@ import math
 from typing import Annotated, Literal
 
 import numpy as np
-from pydantic import Field, model_validator
+from pydantic import Field, model_serializer, model_validator
 
 from oma.models import Bounds, Model, Nonnegative, Positive, Vec3
 
@@ -249,6 +249,7 @@ class NetworkPhysics(Model):
 class SharedNetworkScenario(Model):
     mission_type: Literal["shared_network"]
     source_id: Identifier | None = None
+    replace_network_id: Identifier | None = None
     system_type: Service
     start_m: Vec3
     sinks: tuple[SinkRequirement, ...] = Field(min_length=2, max_length=32)
@@ -265,6 +266,14 @@ class SharedNetworkScenario(Model):
     physics: NetworkPhysics | None = None
     objective_weights: dict[Literal["length_m", "fitting_count"], Nonnegative] = Field(default_factory=lambda: {"length_m": 1.})
     assumptions: tuple[str, ...] = ()
+
+    @model_serializer(mode="wrap")
+    def preserve_initial_contract(self, handler):
+        # Optional revision support must not rewrite existing scenario hashes.
+        raw = handler(self)
+        if self.replace_network_id is None:
+            raw.pop("replace_network_id", None)
+        return raw
 
     @model_validator(mode="after")
     def fixed_contract(self):
@@ -323,3 +332,74 @@ def network_requirements(baseline, scenario):
         allowed_zones=(scenario.allowed_zone,), rule_hash=digest(rule), catalog_hash=digest(catalog), scenario_hash=scenario_hash,
         objective_weights=scenario.objective_weights, assumptions=scenario.assumptions)
     return mission.model_dump(mode="json"), [p.model_dump(mode="json") for p in ports], section.model_dump(mode="json")
+
+
+def network_fixed_requirements(scenario, source_id):
+    """All declared requirements except the explicitly replaceable design menu."""
+    raw = scenario.model_dump(mode="json", by_alias=True)
+    raw.pop("network_alternatives")
+    raw.pop("replace_network_id", None)
+    raw["source_id"] = source_id
+    return raw
+
+
+def network_baseline_context(baseline, scenario):
+    """Validate the unchanged obligation contract, never reuse a physical verdict.
+
+    A revision names the single existing network. Its old synthetic terminals
+    are removed only after exact canonical matching; all original ports remain.
+    """
+    from oma.models import PhysicalNetwork
+    from oma.store import digest
+
+    sources = baseline.get("sources", [])
+    source = next((s for s in sources if s["id"] == scenario.source_id),
+                  sources[0] if sources and scenario.source_id is None else None)
+    if source is None or source.get("transform_m") is None:
+        raise ValueError("Select an immutable IFC source with an explicit resolved source-to-federation transform")
+    old_networks = baseline.get("physical_networks", [])
+    if scenario.replace_network_id is None:
+        if baseline.get("routes") or old_networks or baseline.get("mission"):
+            raise ValueError("An existing engineered mission requires an explicit network replacement; its obligations cannot be discarded")
+        return source, list(baseline.get("ports", [])), None
+    if baseline.get("routes") or len(old_networks) != 1 or old_networks[0].get("id") != scenario.replace_network_id:
+        raise ValueError("Replacement must name the one existing shared network without discarding any other routes or networks")
+    old_contract = baseline.get("derived_artifacts", {}).get("network_contract", {})
+    try:
+        previous = SharedNetworkScenario.model_validate(old_contract["scenario"])
+        selected = next(n for n in previous.network_alternatives if n.network_id == old_contract["selected_alternative"])
+        old = PhysicalNetwork.model_validate(old_networks[0])
+        old_mission, old_ports, old_section = network_requirements(baseline, previous)
+    except (KeyError, StopIteration, TypeError) as exc:
+        raise ValueError("The previous network has no complete immutable requirement contract") from exc
+    expected = PhysicalNetwork(id=selected.network_id, demand_ids=tuple(s.demand_id for s in previous.sinks),
+        component_ids=tuple(c.id for c in selected.components), port_ids=tuple(p["id"] for p in old_ports),
+        service=previous.system_type, section=old_section, geometry_artifact=old.geometry_artifact).model_dump(mode="json")
+    if old_networks != [expected] or baseline.get("mission") != old_mission:
+        raise ValueError("Previous demand, component inventory or mission content differs from its immutable contract")
+    previous_source = next((s for s in sources if s["id"] == previous.source_id),
+                          sources[0] if sources and previous.source_id is None else None)
+    if (previous_source is None or previous_source["id"] != source["id"] or old_contract.get("source_id") != source["id"]
+            or network_fixed_requirements(previous, source["id"]) != network_fixed_requirements(scenario, source["id"])):
+        raise ValueError("Network revision must preserve every fixed terminal, demand, section, zone, physics, rule, assumption and objective requirement")
+    ids = {p["id"] for p in old_ports}
+    actual = [p for p in baseline.get("ports", []) if p["id"] in ids]
+    if actual != old_ports:
+        raise ValueError("Previous synthetic network terminals are missing, duplicated or changed")
+    kept = [p for p in baseline.get("ports", []) if p["id"] not in ids]
+    def refers_to_removed(value):
+        if isinstance(value, str):
+            return value in ids
+        if isinstance(value, dict):
+            return any(refers_to_removed(v) for v in value.values())
+        if isinstance(value, (list, tuple)):
+            return any(refers_to_removed(v) for v in value)
+        return False
+    if any(refers_to_removed(baseline.get(k, [])) for k in ("explicit_connections", "inferred_connections")):
+        raise ValueError("Synthetic terminal connections require a broader explicit replacement contract")
+    revision = {"replaced_network_id": old.id,
+        "previous_component_ids": [f"{old.id}:{cid}" for cid in old.component_ids],
+        "previous_geometry_artifact": old.geometry_artifact,
+        "previous_network_root": digest(old_networks[0]), "previous_contract_root": digest(old_contract),
+        "fixed_requirements_root": digest(network_fixed_requirements(scenario, source["id"]))}
+    return source, kept, revision
