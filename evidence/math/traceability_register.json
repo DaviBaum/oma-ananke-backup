@@ -6,6 +6,67 @@
   "full_engine_mathematics_implemented": false,
   "obligations": [
     {
+      "obligation": "SOURCE_AWARE_BOUNDED_GRID_ENRICHMENT",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          5522,
+          5523,
+          5524,
+          5525,
+          5546,
+          5547
+        ],
+        "objects": [
+          "ALG-RTR15",
+          "ALG-RTR16",
+          "ALG-RTR27"
+        ]
+      },
+      "interpretation_and_assumptions": "A bounded heuristic coordinate specialization, not source-prescribed CEGAR: retain every baseline coordinate; propose exact complete source-box face offsets and terminal first/two-trim thresholds; account every plane and budget omission. Independent equations, unique addition witnesses and baseline/product checks establish grid provenance only. Generic axis-balanced allocation has default cap10; application cap8 gives at most10775 structural states including pricing sink.",
+      "implementations": [
+        "oma.routing.fabrication_grid.enrich_fabrication_grid"
+      ],
+      "independent_checkers": [
+        "oma.routing.fabrication_grid.verify_fabrication_grid_enrichment"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.routing.fabrication_grid.enrich_fabrication_grid",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.fabrication_grid.verify_fabrication_grid_enrichment",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_fabrication_grid.py"
+      ],
+      "real_model_benchmark": {
+        "status": "SOURCE_DERIVED_REAL_OFFICE_PROPOSAL_AND_FRESH_COMPLETE_NATIVE_CHECK",
+        "evidence": "evidence/math/fabrication-grid/latest.json",
+        "scope": "100-micrometre guarded finite model, independent plane/grid and nominal pricing certificates; fresh4015 native pairs against803 obstacles, native zone and primitive correspondence. No candidate acceptance or continuous optimum."
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "No free-space, feasibility, ranking optimality, physical infeasibility or native acceptance claim. Source/frame/support authenticity is external, and positive search/body guards are not certified numerical error bounds. Every route still needs graph, binary64 fabrication and native checks. Actual Office evidence is historical-model-derived proposal generation with fresh complete native checks, not accepted project revision or continuous optimality.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
       "obligation": "FINITE_FABRICATION_GRAPH_COST_PRICING",
       "source": {
         "document": "oma-integration",
@@ -1881,6 +1942,8 @@
     "evidence/math/fabrication-search-tests.xml",
     "evidence/math/fabrication-pricing-tests.xml",
     "evidence/release/fabrication-pricing-adversarial.xml",
+    "evidence/math/fabrication-grid-tests.xml",
+    "evidence/release/fabrication-grid-native-zone-adversarial.xml",
     "evidence/math/route-metadata-tests.xml"
   ],
   "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py tests/test_optimization_route_cells.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"

@@ -13266,7 +13266,9 @@
         "oma.optimization.fabrication.compile_orthogonal_fabrication",
         "oma.optimization.fabrication.verify_orthogonal_fabrication",
         "oma.optimization.fabrication_search.compile_fabrication_search",
-        "oma.optimization.fabrication_search.verify_fabrication_search"
+        "oma.optimization.fabrication_search.verify_fabrication_search",
+        "oma.routing.fabrication_grid.enrich_fabrication_grid",
+        "oma.routing.fabrication_grid.verify_fabrication_grid_enrichment"
       ],
       "callable_probe": [
         {
@@ -13284,14 +13286,24 @@
         {
           "path": "oma.optimization.fabrication_search.verify_fabrication_search",
           "callable": true
+        },
+        {
+          "path": "oma.routing.fabrication_grid.enrich_fabrication_grid",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.fabrication_grid.verify_fabrication_grid_enrichment",
+          "callable": true
         }
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "SOURCE_AWARE_BOUNDED_GRID_ENRICHMENT",
         "BOUNDED_FABRICATION_LIFTED_GRID_SEARCH",
         "EXACT_ORTHOGONAL_FABRICATION_TRANSITIONS"
       ],
       "automated_tests": [
+        "tests/test_fabrication_grid.py",
         "tests/test_optimization_fabrication.py",
         "tests/test_optimization_fabrication_search.py"
       ],
@@ -13329,17 +13341,30 @@
       "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
-        "oma.routing.engine.route_project_run"
+        "oma.routing.engine.route_project_run",
+        "oma.routing.fabrication_grid.enrich_fabrication_grid",
+        "oma.routing.fabrication_grid.verify_fabrication_grid_enrichment"
       ],
       "callable_probe": [
         {
           "path": "oma.routing.engine.route_project_run",
           "callable": true
+        },
+        {
+          "path": "oma.routing.fabrication_grid.enrich_fabrication_grid",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.fabrication_grid.verify_fabrication_grid_enrichment",
+          "callable": true
         }
       ],
       "actual_adapter_contract": "Finite generated physical routes with independent checking; not a complete certified continuous route graph",
-      "relied_on_obligations": [],
+      "relied_on_obligations": [
+        "SOURCE_AWARE_BOUNDED_GRID_ENRICHMENT"
+      ],
       "automated_tests": [
+        "tests/test_fabrication_grid.py",
         "tests/test_routing_integration.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
@@ -13922,17 +13947,30 @@
       "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
+        "oma.routing.fabrication_grid.enrich_fabrication_grid",
+        "oma.routing.fabrication_grid.verify_fabrication_grid_enrichment",
         "oma.routing.generator.proposal_paths"
       ],
       "callable_probe": [
+        {
+          "path": "oma.routing.fabrication_grid.enrich_fabrication_grid",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.fabrication_grid.verify_fabrication_grid_enrichment",
+          "callable": true
+        },
         {
           "path": "oma.routing.generator.proposal_paths",
           "callable": true
         }
       ],
-      "actual_adapter_contract": "Bounded proposal enumeration only; proposal paths grant no verdict or global bound",
-      "relied_on_obligations": [],
+      "actual_adapter_contract": "Bounded proposal enumeration and exact source-plane/terminal-trim grid-coordinate provenance; no feasibility verdict, certified CEGAR or global bound",
+      "relied_on_obligations": [
+        "SOURCE_AWARE_BOUNDED_GRID_ENRICHMENT"
+      ],
       "automated_tests": [
+        "tests/test_fabrication_grid.py",
         "tests/test_routing_integration.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",

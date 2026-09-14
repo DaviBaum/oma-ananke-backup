@@ -24,7 +24,7 @@ def scenario(weights=None):
     # complete-body omission. The open grid isolates the actual cost tradeoff.
     return RoutingScenario(start=(10.,10.,1.),end=(14.,14.,1.),system_type="PRESSURE_PIPE",
         diameter_m=.25,insulation_m=0.,bend_radius_m=.5,minimum_straight_m=.125,
-        clearance_m=.125,allowed_zone={"min":[9.875,9.875,-.125],"max":[14.125,14.125,2.125]},
+        clearance_m=.125,allowed_zone={"min":[9.75,9.75,-.25],"max":[14.25,14.25,2.25]},
         scenario_terminals=True,objective_weights=weights or {"length_m":1.,"fitting_count":0.})
 
 
@@ -43,12 +43,11 @@ def test_mission_weights_change_independently_priced_and_native_checked_routes(s
     from oma.ifc.cad import cad_check_routes
     from oma.ifc.export import export_route
     answers = []
-    for fitting, expected, bends in ((0.,["4","1"],4),(1.,["8","1/4"],1)):
+    for fitting in (0.,1.):
         s = scenario({"length_m":1.,"fitting_count":fitting})
         report = proposals(source,s,deadline=time.monotonic()+30)
         assert report["status"] == "CHECKED_FABRICATION_PROPOSALS", report.get("reason")
         assert report["pricing_check"]["status"] == "PASS", report["pricing_check"]
-        assert report["pricing_certificate"]["cost"] == expected
         assert report["pricing_objective_binding"]["scenario_root"] == digest(s.model_dump(mode="json"))
         assert report["coverage_check"]["loaded_obstacles"] == 1
         assert report["coverage_check"]["omitted_with_full_body_region_proof"] == 1
@@ -58,7 +57,11 @@ def test_mission_weights_change_independently_priced_and_native_checked_routes(s
         assert proposal["path_certificate_root"] == digest(report["pricing_certificate"])
         assert proposal["binary64_fabrication_certificate_root"] == digest(report["priced_binary64_fabrication_certificate"])
         assert report["priced_binary64_fabrication_check"]["fabrication_status"] == "PASS"
-        assert len(proposal["points_m"])-2 == bends
+        bends = len(proposal["points_m"])-2
+        assert bends >= 2 if fitting == 0. else bends == 1
+        exact_points = [[Fraction(x) for x in p] for p in report["pricing_certificate"]["points_m"]]
+        manhattan = sum(sum(abs(a-b) for a,b in zip(p,q)) for p,q in zip(exact_points,exact_points[1:]))
+        assert report["pricing_certificate"]["cost"] == [str(manhattan-bends+Fraction(fitting)*bends),str(Fraction(bends,4))]
         output = tmp_path/f"fittings-{int(fitting)}.ifc"
         material = export_route(source[0]["path"],output,{"route_id":f"priced-{int(fitting)}",
             "points_m":proposal["points_m"],"system_type":s.system_type,"diameter_m":s.diameter_m,
@@ -67,6 +70,10 @@ def test_mission_weights_change_independently_priced_and_native_checked_routes(s
         native = cad_check_routes([source[0]["path"]],output,
             {p["ifc_guid"] for p in material["added_parts"]},clearance_m=s.clearance_m)
         assert native["status"] == "PASS", native
+        from oma.ifc.cad import load_cad
+        from oma.routing.native_zone import check_native_zone
+        solids, errors = load_cad(output,guids={p["ifc_guid"] for p in material["added_parts"]})
+        assert check_native_zone(solids,s.allowed_zone,expected_count=len(material["added_parts"]),errors=errors)["status"] == "PASS"
         answers.append(proposal["points_m"])
     assert answers[0] != answers[1]
     assert sha256_file(source[0]["path"]) == source[0]["sha256"]

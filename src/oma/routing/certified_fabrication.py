@@ -184,7 +184,17 @@ def build_certified_fabrication_proposals(source_specs, scenario, source_report,
         if coverage_check["status"] != "PASS":
             raise ValueError("Independent full-body support accounting failed")
         radius = _q(scenario.diameter_m)/2 + _q(scenario.insulation_m)
-        allowed = certified_cells._box(coverage["allowed_bounds"])
+        mission_allowed = certified_cells._box(coverage["allowed_bounds"])
+        # Search inside the mission rather than placing nominal bodies exactly
+        # on its boundary. This is a declared proposal restriction, not an error
+        # certificate for arbitrary native shapes or an altered mission rule.
+        boundary_guard = Q(1,10000)
+        allowed = (tuple(x+boundary_guard for x in mission_allowed[0]),
+            tuple(x-boundary_guard for x in mission_allowed[1]))
+        result["search_domain"] = {"mission_allowed_bounds":coverage["allowed_bounds"],
+            "graph_allowed_bounds":certified_cells._json_box(allowed),
+            "inward_body_search_guard_m":str(boundary_guard),
+            "native_error_bound_certified":False,"physical_infeasibility_claim":False}
         axes = []
         for axis,(lo,hi) in enumerate(zip(*allowed)):
             lo,hi = lo+radius,hi-radius
@@ -192,10 +202,23 @@ def build_certified_fabrication_proposals(source_specs, scenario, source_report,
             if lo > hi or not lo <= start <= hi or not lo <= goal <= hi:
                 return finish("UNKNOWN","Exact nominal endpoint ball is outside the eroded allowed region")
             axes.append([str(v) for v in sorted({lo+(hi-lo)*i/grid_divisions for i in range(grid_divisions+1)} | {start,goal})])
+        from .fabrication_grid import enrich_fabrication_grid, verify_fabrication_grid_enrichment
+        grid_args = (axes,scenario.start,scenario.end,certified_cells._json_box(allowed),
+            coverage["outer_obstacles"],str(radius),scenario.clearance_m)
+        grid_options = {"bend_radius_m":scenario.bend_radius_m,
+            "minimum_straight_m":scenario.minimum_straight_m,
+            "max_axis_values":max(8,max(map(len,axes))),"checkpoint":check}
+        enriched = enrich_fabrication_grid(*grid_args,**grid_options)
+        enrichment_check = verify_fabrication_grid_enrichment(*grid_args,enriched,**grid_options)
+        result.update(grid_enrichment=enriched,grid_enrichment_check=enrichment_check)
+        if enrichment_check["status"] == "PASS":
+            axes = enriched["grid_axes"]
         problem = {"schema":"oma.fabrication-grid-problem/1", "context_root":context_root,
             "source_roots":{"source_report":source_report["report_root"],"source_coverage":digest(original),
-                "body_outer_coverage":digest(coverage),"executable":result["executable_version"]},
-            "allowed_bounds":coverage["allowed_bounds"],"grid_axes":axes,
+                "body_outer_coverage":digest(coverage),"search_domain":digest(result["search_domain"]),
+                "grid_enrichment":digest(enriched),
+                "executable":result["executable_version"]},
+            "allowed_bounds":certified_cells._json_box(allowed),"grid_axes":axes,
             "start":list(scenario.start),"goal":list(scenario.end),
             "diameter_m":scenario.diameter_m,"insulation_m":scenario.insulation_m,"bend_radius_m":scenario.bend_radius_m,
             "minimum_straight_m":scenario.minimum_straight_m,"clearance_m":scenario.clearance_m,

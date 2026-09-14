@@ -581,20 +581,16 @@ def evaluate_route_state(store, state, baseline, requested, scenario, mission, m
             add("original-terminal-body-attachment", "PASS" if terminal_pass else "FAIL",
                 "Requested existing IFC terminal axes and positions independently checked against their own native source solids",
                 witness={"ports": terminal_ports, "source_errors": terminal_errors})
-        enclosed = not errors and len(actual) == len(guids)
-        unknown_zone = False
+        from .native_zone import check_native_zone
+        zone = check_native_zone(actual,scenario.allowed_zone,expected_count=len(guids),
+            errors=errors,checkpoint=control.checkpoint)
         volume_length = 0.
         for solid in actual:
             if not _has_native_geometry(solid) or solid.bounds is None:
-                enclosed = False
                 continue
-            gap = min(*(solid.bounds[i] - scenario.allowed_zone.min[i] for i in range(3)), *(scenario.allowed_zone.max[i] - solid.bounds[i+3] for i in range(3)))
-            if gap < 0:
-                enclosed = False
-            if gap <= 1e-6 + solid.kernel_tolerance_m:
-                unknown_zone = True
             volume_length += solid.volume_m3 / (math.pi * scenario.outer_radius ** 2)
-        add("permitted-zone-containment", "FAIL" if not enclosed else "UNKNOWN" if unknown_zone else "PASS", "Full native route envelopes checked against permitted zone boundary")
+        add("permitted-zone-containment",zone["status"],
+            "Full native route envelopes checked against permitted zone boundary",witness=zone["witness"])
         error = abs(volume_length - objective["length_m"])
         add("independent-objective-recomputation", "PASS" if error <= max(1e-6, objective["length_m"] * 1e-6) else "FAIL",
             "Length recomputed from IFC directrices and independently cross-checked from solid volumes", witness={"directrix_length_m": objective["length_m"], "volume_length_m": volume_length, "difference_m": error})

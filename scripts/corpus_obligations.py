@@ -15,6 +15,10 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("SOURCE_AWARE_BOUNDED_GRID_ENRICHMENT", "oma-integration", [5522, 5523, 5524, 5525, 5546, 5547], ["ALG-RTR15", "ALG-RTR16", "ALG-RTR27"],
+         ["oma.routing.fabrication_grid.enrich_fabrication_grid"], ["oma.routing.fabrication_grid.verify_fabrication_grid_enrichment"], "tests/test_fabrication_grid.py",
+         "A bounded heuristic coordinate specialization, not source-prescribed CEGAR: retain every baseline coordinate; propose exact complete source-box face offsets and terminal first/two-trim thresholds; account every plane and budget omission. Independent equations, unique addition witnesses and baseline/product checks establish grid provenance only. Generic axis-balanced allocation has default cap10; application cap8 gives at most10775 structural states including pricing sink.",
+         [], "No free-space, feasibility, ranking optimality, physical infeasibility or native acceptance claim. Source/frame/support authenticity is external, and positive search/body guards are not certified numerical error bounds. Every route still needs graph, binary64 fabrication and native checks. Actual Office evidence is historical-model-derived proposal generation with fresh complete native checks, not accepted project revision or continuous optimality."),
         ("FINITE_FABRICATION_GRAPH_COST_PRICING", "oma-integration", [5536, 5537, 5544, 5545, 5548, 5549, 5568, 5569], ["ALG-RTR22", "ALG-RTR26", "ALG-RTR28", "ALG-RTR38"],
          ["oma.optimization.fabrication_pricing.compile_fabrication_pricing"], ["oma.optimization.fabrication_pricing.verify_fabrication_pricing"], "tests/test_optimization_fabrication_pricing.py",
          "Fixed nonnegative exact length and per-quarter-bend objective on the complete declared finite fabrication graph. Deferred straight/arc charges and an explicit terminal sink make every edge nonnegative. Rational coefficient pairs a+b*pi use independently reconstructed alternating-series pi enclosures. A realizing path and total sparse capped potential independently prove finite graph optimality; every explicit state's outgoing edge is checked, and default-state edges are discharged by the nonnegative-cost theorem.",
@@ -181,6 +185,9 @@ def main():
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
     coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
     for row in register:
+        if row["obligation"] == "SOURCE_AWARE_BOUNDED_GRID_ENRICHMENT":
+            row["real_model_benchmark"] = {"status": "SOURCE_DERIVED_REAL_OFFICE_PROPOSAL_AND_FRESH_COMPLETE_NATIVE_CHECK",
+                "evidence": "evidence/math/fabrication-grid/latest.json", "scope": "100-micrometre guarded finite model, independent plane/grid and nominal pricing certificates; fresh4015 native pairs against803 obstacles, native zone and primitive correspondence. No candidate acceptance or continuous optimum."}
         if row["obligation"] == "FINITE_FABRICATION_GRAPH_COST_PRICING":
             row["real_model_benchmark"] = {"status": "FINITE_GRAPH_OPTIMUM_AND_SEPARATE_SYNTHETIC_ACTUAL_IFC_WALL_CHECK",
                 "evidence": "evidence/math/fabrication-pricing/latest.json", "scope": "Exact finite nominal cost optimum, independent dual/path proof, actual native five-part IFC4 wall coordination; no native objective bound, candidate acceptance or continuous closure"}
@@ -203,7 +210,7 @@ def main():
              "obligations": register, "pending_source_mechanisms": pending,
              "unit_test_run": {"path": str(test_path.relative_to(ROOT)), "tests": int(suite.get("tests")) if suite is not None else None,
                                "failures": int(suite.get("failures")) if suite is not None else None},
-             "additional_adapter_test_runs": ["evidence/math/certified-cells-adapter-tests.xml", "evidence/math/opening-inverse-regression.xml", "evidence/math/fabrication-tests.xml", "evidence/math/fabrication-search-tests.xml", "evidence/math/fabrication-pricing-tests.xml", "evidence/release/fabrication-pricing-adversarial.xml", "evidence/math/route-metadata-tests.xml"],
+             "additional_adapter_test_runs": ["evidence/math/certified-cells-adapter-tests.xml", "evidence/math/opening-inverse-regression.xml", "evidence/math/fabrication-tests.xml", "evidence/math/fabrication-search-tests.xml", "evidence/math/fabrication-pricing-tests.xml", "evidence/release/fabrication-pricing-adversarial.xml", "evidence/math/fabrication-grid-tests.xml", "evidence/release/fabrication-grid-native-zone-adversarial.xml", "evidence/math/route-metadata-tests.xml"],
              "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py tests/test_optimization_route_cells.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"}
     destination = ROOT / "evidence/math/traceability_register.json"
     destination.write_text(json.dumps(proof, indent=2) + "\n", encoding="utf-8")
