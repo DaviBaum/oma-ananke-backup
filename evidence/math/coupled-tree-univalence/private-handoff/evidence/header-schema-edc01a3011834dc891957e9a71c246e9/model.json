@@ -1,0 +1,58 @@
+{
+  "schema": "oma.coupled-tree-quadratic-pressure-model/1",
+  "leaves": [
+    "a"
+  ],
+  "terms": [
+    {
+      "id": "singleton-a",
+      "coefficient_id": "singleton",
+      "descendant_leaves": [
+        "a"
+      ],
+      "applies_to_leaves": [
+        "a"
+      ]
+    },
+    {
+      "id": "unequal-root",
+      "coefficient_id": "shared",
+      "descendant_leaves": [
+        "a"
+      ],
+      "applies_to_leaves": [
+        "a"
+      ]
+    }
+  ],
+  "coefficients": {
+    "singleton": {
+      "lower": "1",
+      "upper": "1"
+    },
+    "shared": {
+      "lower": "1/10",
+      "upper": "1/10"
+    }
+  },
+  "available_heads": {
+    "a": {
+      "lower": "11/10",
+      "upper": "11/10"
+    }
+  },
+  "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "assumptions": {
+    "parameter_domain": "CARTESIAN_BOX_WITH_REUSED_NAMED_COEFFICIENT_IDENTITIES",
+    "equation": "SUM_APPLICABLE_A_TIMES_DESCENDANT_FLOW_SUM_SQUARED_MINUS_AVAILABLE_HEAD",
+    "head_quantity": "AVAILABLE_TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_PA",
+    "regime": "STRICTLY_POSITIVE_LEAF_FLOWS_FIXED_QUADRATIC_LOSS_LAW",
+    "units": {
+      "head": "Pa",
+      "flow": "m^3/s",
+      "coefficient": "Pa*s^2/m^6"
+    },
+    "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+  }
+}

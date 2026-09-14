@@ -15,6 +15,10 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("LAMINAR_COUPLED_TREE_POSITIVE_ROOT_GLOBAL_UNIVALENCE", "1-10", [16081, 16114, 16118, 16135, 17645, 17681], ["THM-PO11", "THM-PO12", "ALG-PO2"],
+         ["oma.optimization.coupled_tree_univalence.compile_coupled_tree_univalence"], ["oma.optimization.coupled_tree_univalence.verify_coupled_tree_univalence", "oma.optimization.coupled_tree_univalence.verify_coupled_tree_nonnegative_family"], "tests/test_coupled_tree_univalence.py",
+         "A new sufficient specialization for the declared laminar coupled-tree polynomial. Every leaf has a strictly positive lower sum of singleton-descendant coefficients. Exact same-tuple difference-of-squares polarization between q>0 and r>=0 gives a laminar sum of nonnegative supported rank-one matrices. A complete leaf/group hierarchy and positive singleton bases support an independent induction with det(B)>0 and entrywise-positive 1^T B^-1; a nonnegative rank-one update preserves both. The difference matrix is invertible, so a positive root excludes every other nonnegative root. Only conjunction with an independently checked local Banach certificate on the same complete model and parameter box establishes a unique nonnegative solution for every parameter tuple.",
+         ["New derived sufficient theorem; not a verbatim theorem or complete algorithm from original P6."], "Univalence alone does not establish existence or infeasibility. No negative/reverse-flow uniqueness, entrywise-positive inverse, uniform strong-monotonicity constant, native physical applicability or service authority. Missing singleton positivity or exhausted count/work/bit/byte limits gives UNKNOWN. Full normalized model, parameter, hierarchy, term and context identities plus final input guards are mandatory; full original source algorithm completion remains false."),
         ("UNIFORM_POSITIVE_BOX_COUPLED_TREE_PRESSURE_CERTIFICATE", "1-10", [14530, 14546, 16081, 16114, 16118, 16135, 17645, 17681], ["THM-PO11", "THM-PO12", "ALG-PO2"],
          ["oma.optimization.coupled_tree_pressure.compile_coupled_tree_pressure"], ["oma.optimization.coupled_tree_pressure.verify_coupled_tree_pressure"], "tests/test_coupled_tree_pressure.py",
          "The declared complete polynomial system has one leaf-flow variable per outlet, named nonnegative coefficient intervals and laminar descendant/applicability sets. Every term contributes a coefficient times its full descendant-flow sum squared to every applicable leaf equation. Unequal tee outlet losses therefore need not give a symmetric Jacobian. For each same parameter tuple the independently reconstructed center residual and full interval Jacobian define T(q)=q-R*F(q), with an exact inverse witness proving R invertible. Full signed interval matrix arithmetic proves strict inclusion of the mean-value image inside the supplied positive box and an induced infinity-norm contraction below one. Banach then proves exactly one positive root inside that box for every admitted tuple. Complete term/equation/matrix/parameter/box inventories and final guards prevent incomplete or stale proof authority.",
@@ -213,6 +217,16 @@ def main():
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
     coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
     for row in register:
+        if row["obligation"] == "LAMINAR_COUPLED_TREE_POSITIVE_ROOT_GLOBAL_UNIVALENCE":
+            row["documentation"] = "docs/math/coupled-tree-univalence.md"
+            row["evidence"] = "evidence/math/coupled-tree-univalence/latest.json"
+            row["full_source_algorithms_implemented"] = False
+            row["real_model_benchmark"] = {"status": "INDEPENDENT_ALGEBRA_AND_NATIVE_DERIVED_POLYNOMIAL_REPLAY_PASS",
+                "evidence": "evidence/math/coupled-tree-univalence/native-peer-handoff.json",
+                "scope": "57 kernel tests and 484 combined cases pass. Root audit checks 24 exact matrix/family models, rejects 240 resealed attacks and retains four truthful local-box UNKNOWN proposals. Supplemental native-derived nine-term model composition passes; this module alone supplies no native acceptance or export authority."}
+            row["consumer_scope"] = {"strictly_positive_singleton_lower_sums_required": True,
+                "univalence_alone_establishes_existence": False, "positive_root_excludes_other_nonnegative_roots": True,
+                "same_complete_model_and_parameter_box_required_for_composition": True, "negative_flow_uniqueness": False}
         if row["obligation"] == "UNIFORM_POSITIVE_BOX_COUPLED_TREE_PRESSURE_CERTIFICATE":
             row["documentation"] = "docs/math/coupled-tree-pressure.md"
             row["evidence"] = "evidence/math/coupled-tree-pressure/latest.json"

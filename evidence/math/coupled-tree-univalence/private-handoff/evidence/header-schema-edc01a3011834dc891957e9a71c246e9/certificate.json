@@ -1,0 +1,127 @@
+{
+  "schema": "oma.coupled-tree-laminar-univalence/1",
+  "status": "CERTIFIED_UNIVALENCE",
+  "scope": "AT_MOST_ONE_POSITIVE_ROOT_AND_ANY_POSITIVE_ROOT_EXCLUDES_OTHER_NONNEGATIVE_ROOTS_FOR_EACH_FIXED_PARAMETER_TUPLE",
+  "rule": "EXACT_POLARIZATION_LAMINAR_POSITIVE_SINGLETON_V1",
+  "model_root": "f8ba5899463e43f680e46c008da3b3fc66b20e27965f473a042ac4ec127ed7f3",
+  "parameter_root": "fc196ebf93de63506b75ae0cb1858abea1bc535f04d1498507e00db8c493a19b",
+  "topology_root": "a9c32406983becdbd0beb35efeff9276a20b13bcae605a1b26f303396681de66",
+  "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "model_manifest": {
+    "assumptions": {
+      "parameter_domain": "CARTESIAN_BOX_WITH_REUSED_NAMED_COEFFICIENT_IDENTITIES",
+      "equation": "SUM_APPLICABLE_A_TIMES_DESCENDANT_FLOW_SUM_SQUARED_MINUS_AVAILABLE_HEAD",
+      "head_quantity": "AVAILABLE_TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_PA",
+      "regime": "STRICTLY_POSITIVE_LEAF_FLOWS_FIXED_QUADRATIC_LOSS_LAW",
+      "units": {
+        "head": "Pa",
+        "flow": "m^3/s",
+        "coefficient": "Pa*s^2/m^6"
+      },
+      "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+    },
+    "available_heads": {
+      "a": {
+        "lower": "11/10",
+        "upper": "11/10"
+      }
+    },
+    "coefficients": {
+      "shared": {
+        "lower": "1/10",
+        "upper": "1/10"
+      },
+      "singleton": {
+        "lower": "1",
+        "upper": "1"
+      }
+    },
+    "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "leaves": [
+      "a"
+    ],
+    "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "oma.coupled-tree-quadratic-pressure-model/1",
+    "terms": [
+      {
+        "id": "singleton-a",
+        "coefficient_id": "singleton",
+        "descendant_leaves": [
+          "a"
+        ],
+        "applies_to_leaves": [
+          "a"
+        ]
+      },
+      {
+        "id": "unequal-root",
+        "coefficient_id": "shared",
+        "descendant_leaves": [
+          "a"
+        ],
+        "applies_to_leaves": [
+          "a"
+        ]
+      }
+    ]
+  },
+  "polarization": {
+    "same_parameter_tuple": 1,
+    "q_domain": "EVERY_COORDINATE_STRICTLY_POSITIVE",
+    "r_domain": "EVERY_COORDINATE_NONNEGATIVE",
+    "term": "a_t*(S_D(q)+S_D(r))*1_A*1_D^T",
+    "block_invariant": "det(B)>0 AND 1^T*B^-1 ENTRYWISE_POSITIVE",
+    "rank_one_denominator": "1+(1^T*B^-1)*u>0",
+    "updated_inverse_row": "(1^T*B^-1)/(1+(1^T*B^-1)*u)",
+    "entrywise_nonnegative_inverse_required": false
+  },
+  "limitations": {
+    "existence_proved_by_univalence_alone": false,
+    "reverse_or_negative_flow_uniqueness": false,
+    "uniform_strong_monotonicity_constant": false,
+    "one_common_solution_for_all_parameter_choices": false,
+    "native_geometry_or_physical_model_truth": false,
+    "delivery_velocity_or_native_acceptance_authority": false,
+    "original_source_completion": false,
+    "failed_certificate_is_infeasibility_or_nonuniqueness": false
+  },
+  "counts": {
+    "leaves": 1,
+    "terms": 2,
+    "coefficients": 2,
+    "hierarchy_nodes": 1
+  },
+  "hierarchy_root": "711c64cbe464ade63cd0a8f7d18386fd5269dd1676edd9225021dfa1f1d9821c",
+  "hierarchy": [
+    {
+      "id": "711c64cbe464ade63cd0a8f7d18386fd5269dd1676edd9225021dfa1f1d9821c",
+      "leaves": [
+        "a"
+      ],
+      "parent": null,
+      "children": [],
+      "term_ids": [
+        "singleton-a",
+        "unequal-root"
+      ],
+      "row_terms": {
+        "a": [
+          "singleton-a",
+          "unequal-root"
+        ]
+      },
+      "step": "POSITIVE_SINGLETON_BASE"
+    }
+  ],
+  "leaf_witnesses": {
+    "a": {
+      "singleton_terms": [
+        "singleton-a",
+        "unequal-root"
+      ],
+      "coefficient_lower_sum": "11/10"
+    }
+  },
+  "certificate_root": "df5e6686d9dff7be597f48b6964ce37ef54cd807740364a8dd3d77816d863a44"
+}

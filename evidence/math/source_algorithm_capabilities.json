@@ -18690,6 +18690,9 @@
       "bounded_related_callables": [
         "oma.optimization.coupled_tree_pressure.compile_coupled_tree_pressure",
         "oma.optimization.coupled_tree_pressure.verify_coupled_tree_pressure",
+        "oma.optimization.coupled_tree_univalence.compile_coupled_tree_univalence",
+        "oma.optimization.coupled_tree_univalence.verify_coupled_tree_nonnegative_family",
+        "oma.optimization.coupled_tree_univalence.verify_coupled_tree_univalence",
         "oma.optimization.passive_pressure.compile_passive_pressure",
         "oma.optimization.passive_pressure.verify_passive_pressure",
         "oma.optimization.two_sink_pressure.compile_two_sink_pressure",
@@ -18709,6 +18712,18 @@
         },
         {
           "path": "oma.optimization.coupled_tree_pressure.verify_coupled_tree_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.coupled_tree_univalence.compile_coupled_tree_univalence",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.coupled_tree_univalence.verify_coupled_tree_nonnegative_family",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.coupled_tree_univalence.verify_coupled_tree_univalence",
           "callable": true
         },
         {
@@ -18758,6 +18773,7 @@
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "LAMINAR_COUPLED_TREE_POSITIVE_ROOT_GLOBAL_UNIVALENCE",
         "UNIFORM_POSITIVE_BOX_COUPLED_TREE_PRESSURE_CERTIFICATE",
         "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE",
         "GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES",
@@ -18765,6 +18781,7 @@
       ],
       "automated_tests": [
         "tests/test_coupled_tree_pressure.py",
+        "tests/test_coupled_tree_univalence.py",
         "tests/test_network_pressure.py",
         "tests/test_network_pressure_integration.py",
         "tests/test_network_pressure_native_section.py",

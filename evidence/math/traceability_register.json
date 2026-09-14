@@ -6,6 +6,84 @@
   "full_engine_mathematics_implemented": false,
   "obligations": [
     {
+      "obligation": "LAMINAR_COUPLED_TREE_POSITIVE_ROOT_GLOBAL_UNIVALENCE",
+      "source": {
+        "document": "1-10",
+        "sha256": "0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970",
+        "paragraphs": [
+          16081,
+          16114,
+          16118,
+          16135,
+          17645,
+          17681
+        ],
+        "objects": [
+          "THM-PO11",
+          "THM-PO12",
+          "ALG-PO2"
+        ]
+      },
+      "interpretation_and_assumptions": "A new sufficient specialization for the declared laminar coupled-tree polynomial. Every leaf has a strictly positive lower sum of singleton-descendant coefficients. Exact same-tuple difference-of-squares polarization between q>0 and r>=0 gives a laminar sum of nonnegative supported rank-one matrices. A complete leaf/group hierarchy and positive singleton bases support an independent induction with det(B)>0 and entrywise-positive 1^T B^-1; a nonnegative rank-one update preserves both. The difference matrix is invertible, so a positive root excludes every other nonnegative root. Only conjunction with an independently checked local Banach certificate on the same complete model and parameter box establishes a unique nonnegative solution for every parameter tuple.",
+      "implementations": [
+        "oma.optimization.coupled_tree_univalence.compile_coupled_tree_univalence"
+      ],
+      "independent_checkers": [
+        "oma.optimization.coupled_tree_univalence.verify_coupled_tree_univalence",
+        "oma.optimization.coupled_tree_univalence.verify_coupled_tree_nonnegative_family"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.coupled_tree_univalence.compile_coupled_tree_univalence",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.coupled_tree_univalence.verify_coupled_tree_univalence",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.coupled_tree_univalence.verify_coupled_tree_nonnegative_family",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_coupled_tree_univalence.py"
+      ],
+      "real_model_benchmark": {
+        "status": "INDEPENDENT_ALGEBRA_AND_NATIVE_DERIVED_POLYNOMIAL_REPLAY_PASS",
+        "evidence": "evidence/math/coupled-tree-univalence/native-peer-handoff.json",
+        "scope": "57 kernel tests and 484 combined cases pass. Root audit checks 24 exact matrix/family models, rejects 240 resealed attacks and retains four truthful local-box UNKNOWN proposals. Supplemental native-derived nine-term model composition passes; this module alone supplies no native acceptance or export authority."
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [
+        "New derived sufficient theorem; not a verbatim theorem or complete algorithm from original P6."
+      ],
+      "certificate_and_limitations": "Univalence alone does not establish existence or infeasibility. No negative/reverse-flow uniqueness, entrywise-positive inverse, uniform strong-monotonicity constant, native physical applicability or service authority. Missing singleton positivity or exhausted count/work/bit/byte limits gives UNKNOWN. Full normalized model, parameter, hierarchy, term and context identities plus final input guards are mandatory; full original source algorithm completion remains false.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ],
+      "documentation": "docs/math/coupled-tree-univalence.md",
+      "evidence": "evidence/math/coupled-tree-univalence/latest.json",
+      "full_source_algorithms_implemented": false,
+      "consumer_scope": {
+        "strictly_positive_singleton_lower_sums_required": true,
+        "univalence_alone_establishes_existence": false,
+        "positive_root_excludes_other_nonnegative_roots": true,
+        "same_complete_model_and_parameter_box_required_for_composition": true,
+        "negative_flow_uniqueness": false
+      }
+    },
+    {
       "obligation": "UNIFORM_POSITIVE_BOX_COUPLED_TREE_PRESSURE_CERTIFICATE",
       "source": {
         "document": "1-10",

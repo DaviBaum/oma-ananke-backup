@@ -1,0 +1,352 @@
+{
+  "schema": "oma.coupled-tree-laminar-univalence/1",
+  "status": "CERTIFIED_UNIVALENCE",
+  "scope": "AT_MOST_ONE_POSITIVE_ROOT_AND_ANY_POSITIVE_ROOT_EXCLUDES_OTHER_NONNEGATIVE_ROOTS_FOR_EACH_FIXED_PARAMETER_TUPLE",
+  "rule": "EXACT_POLARIZATION_LAMINAR_POSITIVE_SINGLETON_V1",
+  "model_root": "c0a84667d5f013a63350202c4ae3d3dee05f8d6e38c30fd3fbb26c5065f3db0a",
+  "parameter_root": "a1f254221e5fb9404489c4d11507f63981d98bbcb6c9dcbf9b2c2024b4a6453d",
+  "topology_root": "54e5f064ca249e7fbc2ff69512ca37e92fadaeb5cb6131d1601dd90f03e2f5a8",
+  "context_root": "eca15d87a10c3bbf240e7357e8b6f88df95c2cdb2a87ce62f573f03a5c6ebe45",
+  "physical_model_root": "897a1a5bcb2e06946a8bc0b458c5fbbf95ac5c99c0c140d5811d1f7127ecacad",
+  "model_manifest": {
+    "assumptions": {
+      "parameter_domain": "CARTESIAN_BOX_WITH_REUSED_NAMED_COEFFICIENT_IDENTITIES",
+      "equation": "SUM_APPLICABLE_A_TIMES_DESCENDANT_FLOW_SUM_SQUARED_MINUS_AVAILABLE_HEAD",
+      "head_quantity": "AVAILABLE_TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_PA",
+      "regime": "STRICTLY_POSITIVE_LEAF_FLOWS_FIXED_QUADRATIC_LOSS_LAW",
+      "units": {
+        "head": "Pa",
+        "flow": "m^3/s",
+        "coefficient": "Pa*s^2/m^6"
+      },
+      "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+    },
+    "available_heads": {
+      "sink-a": {
+        "lower": "136826885805289/1099511627776",
+        "upper": "136870017007619/1099511627776"
+      },
+      "sink-b": {
+        "lower": "32997990110879/274877906944",
+        "upper": "132035091645847/1099511627776"
+      },
+      "sink-c": {
+        "lower": "138564785978779/1099511627776",
+        "upper": "69303958590555/549755813888"
+      }
+    },
+    "coefficients": {
+      "arm-a": {
+        "lower": "1425824519684662349/1099511627776",
+        "upper": "713056639192884133/549755813888"
+      },
+      "arm-b": {
+        "lower": "1425824519684662349/1099511627776",
+        "upper": "713056639192884133/549755813888"
+      },
+      "arm-c": {
+        "lower": "1425824519684662349/1099511627776",
+        "upper": "713056639192884133/549755813888"
+      },
+      "inter-tee": {
+        "lower": "1425825410826101435/549755813888",
+        "upper": "2852224774132167561/1099511627776"
+      },
+      "tee-1:b": {
+        "lower": "891159261558487197/549755813888",
+        "upper": "891301858447802507/549755813888"
+      },
+      "tee-1:branch": {
+        "lower": "334184723084432699/137438953472",
+        "upper": "2673905575343407521/1099511627776"
+      },
+      "tee-2:b": {
+        "lower": "2227898153896217993/1099511627776",
+        "upper": "557063661529876567/274877906944"
+      },
+      "tee-2:branch": {
+        "lower": "3564637046233948789/1099511627776",
+        "upper": "891301858447802507/274877906944"
+      },
+      "trunk": {
+        "lower": "1425824519684662705/1099511627776",
+        "upper": "713056639192884311/549755813888"
+      }
+    },
+    "context_root": "eca15d87a10c3bbf240e7357e8b6f88df95c2cdb2a87ce62f573f03a5c6ebe45",
+    "leaves": [
+      "sink-a",
+      "sink-b",
+      "sink-c"
+    ],
+    "physical_model_root": "897a1a5bcb2e06946a8bc0b458c5fbbf95ac5c99c0c140d5811d1f7127ecacad",
+    "schema": "oma.coupled-tree-quadratic-pressure-model/1",
+    "terms": [
+      {
+        "id": "arm-a",
+        "coefficient_id": "arm-a",
+        "descendant_leaves": [
+          "sink-a"
+        ],
+        "applies_to_leaves": [
+          "sink-a"
+        ]
+      },
+      {
+        "id": "arm-b",
+        "coefficient_id": "arm-b",
+        "descendant_leaves": [
+          "sink-b"
+        ],
+        "applies_to_leaves": [
+          "sink-b"
+        ]
+      },
+      {
+        "id": "arm-c",
+        "coefficient_id": "arm-c",
+        "descendant_leaves": [
+          "sink-c"
+        ],
+        "applies_to_leaves": [
+          "sink-c"
+        ]
+      },
+      {
+        "id": "inter-tee",
+        "coefficient_id": "inter-tee",
+        "descendant_leaves": [
+          "sink-b",
+          "sink-c"
+        ],
+        "applies_to_leaves": [
+          "sink-b",
+          "sink-c"
+        ]
+      },
+      {
+        "id": "tee-1:b",
+        "coefficient_id": "tee-1:b",
+        "descendant_leaves": [
+          "sink-a",
+          "sink-b",
+          "sink-c"
+        ],
+        "applies_to_leaves": [
+          "sink-b",
+          "sink-c"
+        ]
+      },
+      {
+        "id": "tee-1:branch",
+        "coefficient_id": "tee-1:branch",
+        "descendant_leaves": [
+          "sink-a",
+          "sink-b",
+          "sink-c"
+        ],
+        "applies_to_leaves": [
+          "sink-a"
+        ]
+      },
+      {
+        "id": "tee-2:b",
+        "coefficient_id": "tee-2:b",
+        "descendant_leaves": [
+          "sink-b",
+          "sink-c"
+        ],
+        "applies_to_leaves": [
+          "sink-b"
+        ]
+      },
+      {
+        "id": "tee-2:branch",
+        "coefficient_id": "tee-2:branch",
+        "descendant_leaves": [
+          "sink-b",
+          "sink-c"
+        ],
+        "applies_to_leaves": [
+          "sink-c"
+        ]
+      },
+      {
+        "id": "trunk",
+        "coefficient_id": "trunk",
+        "descendant_leaves": [
+          "sink-a",
+          "sink-b",
+          "sink-c"
+        ],
+        "applies_to_leaves": [
+          "sink-a",
+          "sink-b",
+          "sink-c"
+        ]
+      }
+    ]
+  },
+  "polarization": {
+    "same_parameter_tuple": true,
+    "q_domain": "EVERY_COORDINATE_STRICTLY_POSITIVE",
+    "r_domain": "EVERY_COORDINATE_NONNEGATIVE",
+    "term": "a_t*(S_D(q)+S_D(r))*1_A*1_D^T",
+    "block_invariant": "det(B)>0 AND 1^T*B^-1 ENTRYWISE_POSITIVE",
+    "rank_one_denominator": "1+(1^T*B^-1)*u>0",
+    "updated_inverse_row": "(1^T*B^-1)/(1+(1^T*B^-1)*u)",
+    "entrywise_nonnegative_inverse_required": false
+  },
+  "limitations": {
+    "existence_proved_by_univalence_alone": false,
+    "reverse_or_negative_flow_uniqueness": false,
+    "uniform_strong_monotonicity_constant": false,
+    "one_common_solution_for_all_parameter_choices": false,
+    "native_geometry_or_physical_model_truth": false,
+    "delivery_velocity_or_native_acceptance_authority": false,
+    "original_source_completion": false,
+    "failed_certificate_is_infeasibility_or_nonuniqueness": false
+  },
+  "counts": {
+    "leaves": 3,
+    "terms": 9,
+    "coefficients": 9,
+    "hierarchy_nodes": 5
+  },
+  "hierarchy_root": "e4708442317e4f3ad10c61df53f1f1ada860a83f326d5228ba7bd90de4571e77",
+  "hierarchy": [
+    {
+      "id": "57bcf77061342fdb7f2242e5440f8e9f7cc8c25a89d1dcd7acd069060cd44066",
+      "leaves": [
+        "sink-a"
+      ],
+      "parent": "e4708442317e4f3ad10c61df53f1f1ada860a83f326d5228ba7bd90de4571e77",
+      "children": [],
+      "term_ids": [
+        "arm-a"
+      ],
+      "row_terms": {
+        "sink-a": [
+          "arm-a"
+        ]
+      },
+      "step": "POSITIVE_SINGLETON_BASE"
+    },
+    {
+      "id": "4874d9d0bc0cf1d9ff8c5e5b59fca5c49cc3af8ce6c2a15906f38a899e7a2d3d",
+      "leaves": [
+        "sink-b"
+      ],
+      "parent": "bc927e90a53744b31ab623a0805789a7e565d6de2df1bfeec0f552a3bd80bf86",
+      "children": [],
+      "term_ids": [
+        "arm-b"
+      ],
+      "row_terms": {
+        "sink-b": [
+          "arm-b"
+        ]
+      },
+      "step": "POSITIVE_SINGLETON_BASE"
+    },
+    {
+      "id": "77283b765aaa29dd9b68eb32fa9b791f65d794d13f85a5069a70a33d46ab7ab9",
+      "leaves": [
+        "sink-c"
+      ],
+      "parent": "bc927e90a53744b31ab623a0805789a7e565d6de2df1bfeec0f552a3bd80bf86",
+      "children": [],
+      "term_ids": [
+        "arm-c"
+      ],
+      "row_terms": {
+        "sink-c": [
+          "arm-c"
+        ]
+      },
+      "step": "POSITIVE_SINGLETON_BASE"
+    },
+    {
+      "id": "bc927e90a53744b31ab623a0805789a7e565d6de2df1bfeec0f552a3bd80bf86",
+      "leaves": [
+        "sink-b",
+        "sink-c"
+      ],
+      "parent": "e4708442317e4f3ad10c61df53f1f1ada860a83f326d5228ba7bd90de4571e77",
+      "children": [
+        "4874d9d0bc0cf1d9ff8c5e5b59fca5c49cc3af8ce6c2a15906f38a899e7a2d3d",
+        "77283b765aaa29dd9b68eb32fa9b791f65d794d13f85a5069a70a33d46ab7ab9"
+      ],
+      "term_ids": [
+        "inter-tee",
+        "tee-2:b",
+        "tee-2:branch"
+      ],
+      "row_terms": {
+        "sink-b": [
+          "inter-tee",
+          "tee-2:b"
+        ],
+        "sink-c": [
+          "inter-tee",
+          "tee-2:branch"
+        ]
+      },
+      "step": "LAMINAR_BLOCK_RANK_ONE_UPDATE"
+    },
+    {
+      "id": "e4708442317e4f3ad10c61df53f1f1ada860a83f326d5228ba7bd90de4571e77",
+      "leaves": [
+        "sink-a",
+        "sink-b",
+        "sink-c"
+      ],
+      "parent": null,
+      "children": [
+        "57bcf77061342fdb7f2242e5440f8e9f7cc8c25a89d1dcd7acd069060cd44066",
+        "bc927e90a53744b31ab623a0805789a7e565d6de2df1bfeec0f552a3bd80bf86"
+      ],
+      "term_ids": [
+        "tee-1:b",
+        "tee-1:branch",
+        "trunk"
+      ],
+      "row_terms": {
+        "sink-a": [
+          "tee-1:branch",
+          "trunk"
+        ],
+        "sink-b": [
+          "tee-1:b",
+          "trunk"
+        ],
+        "sink-c": [
+          "tee-1:b",
+          "trunk"
+        ]
+      },
+      "step": "LAMINAR_BLOCK_RANK_ONE_UPDATE"
+    }
+  ],
+  "leaf_witnesses": {
+    "sink-a": {
+      "singleton_terms": [
+        "arm-a"
+      ],
+      "coefficient_lower_sum": "1425824519684662349/1099511627776"
+    },
+    "sink-b": {
+      "singleton_terms": [
+        "arm-b"
+      ],
+      "coefficient_lower_sum": "1425824519684662349/1099511627776"
+    },
+    "sink-c": {
+      "singleton_terms": [
+        "arm-c"
+      ],
+      "coefficient_lower_sum": "1425824519684662349/1099511627776"
+    }
+  },
+  "certificate_root": "4fe1582deff11752b9381ba4ae95d97996381168baa57be5adefea688e315a91"
+}
