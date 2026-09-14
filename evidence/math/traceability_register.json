@@ -6,6 +6,70 @@
   "full_engine_mathematics_implemented": false,
   "obligations": [
     {
+      "obligation": "FINITE_FABRICATION_GRAPH_COST_PRICING",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          5536,
+          5537,
+          5544,
+          5545,
+          5548,
+          5549,
+          5568,
+          5569
+        ],
+        "objects": [
+          "ALG-RTR22",
+          "ALG-RTR26",
+          "ALG-RTR28",
+          "ALG-RTR38"
+        ]
+      },
+      "interpretation_and_assumptions": "Fixed nonnegative exact length and per-quarter-bend objective on the complete declared finite fabrication graph. Deferred straight/arc charges and an explicit terminal sink make every edge nonnegative. Rational coefficient pairs a+b*pi use independently reconstructed alternating-series pi enclosures. A realizing path and total sparse capped potential independently prove finite graph optimality; every explicit state's outgoing edge is checked, and default-state edges are discharged by the nonnegative-cost theorem.",
+      "implementations": [
+        "oma.optimization.fabrication_pricing.compile_fabrication_pricing"
+      ],
+      "independent_checkers": [
+        "oma.optimization.fabrication_pricing.verify_fabrication_pricing"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_fabrication_pricing.py"
+      ],
+      "real_model_benchmark": {
+        "status": "FINITE_GRAPH_OPTIMUM_AND_SEPARATE_SYNTHETIC_ACTUAL_IFC_WALL_CHECK",
+        "evidence": "evidence/math/fabrication-pricing/latest.json",
+        "scope": "Exact finite nominal cost optimum, independent dual/path proof, actual native five-part IFC4 wall coordination; no native objective bound, candidate acceptance or continuous closure"
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "A bounded pricing and CPU dual-edge component only, not full source node-dual/resource/branch-automaton/all-net closure. No continuous or native numeric objective lower bound, no physical infeasibility or acceptance transfer, no all-tie option preservation. State/work/arithmetic/precision exhaustion remains UNKNOWN. Source/frame/outer-support applicability is external. Actual IFC wall correspondence and five native pairs remain a separate numerical check.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
       "obligation": "BOUNDED_FABRICATION_LIFTED_GRID_SEARCH",
       "source": {
         "document": "oma-integration",
@@ -1815,6 +1879,8 @@
     "evidence/math/opening-inverse-regression.xml",
     "evidence/math/fabrication-tests.xml",
     "evidence/math/fabrication-search-tests.xml",
+    "evidence/math/fabrication-pricing-tests.xml",
+    "evidence/release/fabrication-pricing-adversarial.xml",
     "evidence/math/route-metadata-tests.xml"
   ],
   "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py tests/test_optimization_route_cells.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"

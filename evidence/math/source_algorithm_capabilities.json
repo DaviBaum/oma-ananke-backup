@@ -624,7 +624,7 @@
       "local_algorithm_id_count": 46,
       "body_heading_occurrences": 92,
       "reference_only_id_count": 0,
-      "bounded_related_components": 25,
+      "bounded_related_components": 26,
       "full_source_algorithms_implemented": 0
     },
     {
@@ -13653,10 +13653,20 @@
       "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
+        "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
+        "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
         "oma.routing.checker.verify_route_candidate",
         "oma.routing.network_checker.verify_network_candidate"
       ],
       "callable_probe": [
+        {
+          "path": "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
+          "callable": true
+        },
         {
           "path": "oma.routing.checker.verify_route_candidate",
           "callable": true
@@ -13667,9 +13677,12 @@
         }
       ],
       "actual_adapter_contract": "Actual candidate geometry/semantics/report checks; no unrestricted source column schema closure",
-      "relied_on_obligations": [],
+      "relied_on_obligations": [
+        "FINITE_FABRICATION_GRAPH_COST_PRICING"
+      ],
       "automated_tests": [
         "tests/test_network_integration.py",
+        "tests/test_optimization_fabrication_pricing.py",
         "tests/test_routing_integration.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
@@ -13849,17 +13862,30 @@
       "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
+        "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
+        "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
         "oma.optimization.master.price_columns"
       ],
       "callable_probe": [
+        {
+          "path": "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
+          "callable": true
+        },
         {
           "path": "oma.optimization.master.price_columns",
           "callable": true
         }
       ],
-      "actual_adapter_contract": "Exact pricing over the explicitly supplied finite column universe only",
-      "relied_on_obligations": [],
+      "actual_adapter_contract": "Exact supplied finite column pricing plus independently certified nominal length/fitting optimum on a declared finite fabrication graph; general node-dual resource pricing and continuous closure remain open",
+      "relied_on_obligations": [
+        "FINITE_FABRICATION_GRAPH_COST_PRICING"
+      ],
       "automated_tests": [
+        "tests/test_optimization_fabrication_pricing.py",
         "tests/test_optimization_master.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
@@ -13943,17 +13969,30 @@
       "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
-        "oma.optimization.checker.verify_dual"
+        "oma.optimization.checker.verify_dual",
+        "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
+        "oma.optimization.fabrication_pricing.verify_fabrication_pricing"
       ],
       "callable_probe": [
         {
           "path": "oma.optimization.checker.verify_dual",
           "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
+          "callable": true
         }
       ],
       "actual_adapter_contract": "Finite explicitly enumerated pricing closure only; continuous and topology-complete pricing open",
-      "relied_on_obligations": [],
+      "relied_on_obligations": [
+        "FINITE_FABRICATION_GRAPH_COST_PRICING"
+      ],
       "automated_tests": [
+        "tests/test_optimization_fabrication_pricing.py",
         "tests/test_optimization_master.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
@@ -14389,13 +14428,29 @@
       "review_evidence": "evidence/math/combined_review_coverage.json",
       "scope_classification": "REQUIRED_ENGINE_MATHEMATICS",
       "scope_reason": "Source mechanism concerns the standalone state, routing, authorized co-design, verification or local compiler workflow; implementation may still be partial or absent.",
-      "implementation_disposition": "FULL_SOURCE_MECHANISM_NOT_IMPLEMENTED",
+      "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
-      "bounded_related_callables": [],
-      "callable_probe": [],
-      "actual_adapter_contract": null,
-      "relied_on_obligations": [],
-      "automated_tests": [],
+      "bounded_related_callables": [
+        "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
+        "oma.optimization.fabrication_pricing.verify_fabrication_pricing"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.fabrication_pricing.compile_fabrication_pricing",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_pricing.verify_fabrication_pricing",
+          "callable": true
+        }
+      ],
+      "actual_adapter_contract": "CPU exact finite fabrication path cost and total sparse dual-potential checks with independently bounded pi comparisons; no GPU producer or continuous/native objective bound",
+      "relied_on_obligations": [
+        "FINITE_FABRICATION_GRAPH_COST_PRICING"
+      ],
+      "automated_tests": [
+        "tests/test_optimization_fabrication_pricing.py"
+      ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
       "reference_only_note": null
     },

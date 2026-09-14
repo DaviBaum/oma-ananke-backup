@@ -79,9 +79,10 @@ def project_proposals(store, run, state, scenario, obstacles, *, deadline, check
                     "route_acceptance":False,"physical_infeasibility_claim":False})
                 store.append_event(run["project_id"],run_id=run["id"],state_root=run["base_root"],
                     stage="fabrication_graph",status=lifted["status"],artifacts=[lifted_root],
-                    message="Finite route search checked bend trim, straight length and full body support; native checks remain required",
+                    message="Finite fabrication route and bounded nominal cost pricing evaluated; native checks remain required",
                     payload={"proposal_count":len(lifted["proposals"]),"reason":lifted.get("reason"),
                         "request_demand_id":request_demand_id,"coverage":lifted.get("coverage_check"),
+                        "pricing":lifted.get("pricing_check"),
                         "timing":lifted["timing"],"route_acceptance":False,"physical_infeasibility_claim":False})
                 for proposal in lifted["proposals"]:
                     if time.monotonic() >= deadline:
@@ -90,7 +91,11 @@ def project_proposals(store, run, state, scenario, obstacles, *, deadline, check
                         yield {**proposal,"geometry_evidence":{
                             "method":"SOURCE_BOUND_FABRICATION_GRAPH","report_root":lifted_root,
                             "context_root":digest(context),"model_root":lifted["model_root"],
-                            "fabrication_search_certificate_root":digest(lifted["certificate"]),
+                            "path_certificate_kind":proposal["path_certificate_kind"],
+                            "path_certificate_root":proposal["path_certificate_root"],
+                            "binary64_fabrication_certificate_root":proposal["binary64_fabrication_certificate_root"],
+                            "nominal_graph_optimality":proposal["nominal_graph_optimality"],
+                            "binary64_objective_optimality":False,
                             "coverage_root":digest(lifted["coverage"]),"scope":proposal["geometry_scope"],
                             "route_acceptance":False,"physical_infeasibility_claim":False}}
             for proposal in report["proposals"]:

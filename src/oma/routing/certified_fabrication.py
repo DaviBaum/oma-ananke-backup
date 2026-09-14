@@ -102,14 +102,24 @@ class _Deadline(Exception):
     pass
 
 
+class _PricingDeadline(Exception):
+    pass
+
+
 def build_certified_fabrication_proposals(source_specs, scenario, source_report, *, context_root,
-        grid_divisions=4, max_outer_boxes=128, max_states=12000, max_work=150000, deadline=None, checkpoint=None):
+        grid_divisions=4, max_outer_boxes=128, max_states=12000, max_work=150000,
+        max_pricing_work=500000, max_pi_terms=256, deadline=None, checkpoint=None):
     """Create bounded fabrication-aware proposals from complete source support.
 
     The source report must come from the current source-bound adapter invocation.
     Its content identity, executable dependencies, full coverage and actual input
     files are checked again. A self-authored replacement report is not assumed
     authentic merely because it can be hashed.
+
+    A checked feasible graph path is retained before the optional cost phase.
+    Pricing proves only the exact nominal objective on this finite graph. Its
+    rational coordinates are freshly fabricated after binary64 conversion;
+    the converted path has no inherited exact-cost or native acceptance claim.
     """
     started = time.monotonic()
     result = {"schema":"oma.ifc-fabrication-search-proposals/1", "status":"UNKNOWN", "proposals":[],
@@ -209,6 +219,69 @@ def build_certified_fabrication_proposals(source_specs, scenario, source_report,
         result.update(binary64_fabrication_certificate=final,binary64_fabrication_check=replay)
         if replay["status"] != "PASS" or replay["fabrication_status"] != "PASS":
             return finish("UNKNOWN","Binary64 conversion has no passing complete nominal fabrication proof")
+
+        def proposal(path, proof, binary_proof, *, priced=False):
+            return {"points_m":path,
+                "rationale":("Independently priced finite fabrication-state path" if priced else
+                    "Independently checked feasible finite fabrication-state path") +
+                    " with complete source outer coverage; actual IFC and service checks pending",
+                "geometry_scope":"EXACT_NOMINAL_ORTHOGONAL_BODY_IN_DECLARED_SOURCE_OUTER_MODEL",
+                "path_certificate_kind":"FABRICATION_PRICING" if priced else "FABRICATION_SEARCH",
+                "path_certificate_root":digest(proof),
+                "binary64_fabrication_certificate_root":digest(binary_proof),
+                "nominal_graph_optimality":priced,
+                "binary64_objective_optimality":False,
+                "candidate_acceptance_authority":False,"physical_infeasibility_claim":False}
+
+        proposals = [proposal(points,certificate,final)]
+        # Use the same declared decimal weight policy as checked candidate
+        # selection; nominal geometry still has the graph's exact binary-input
+        # interpretation. Missing dimensions have zero weight.
+        from oma.optimization.master import rational
+        objective = {"schema":"oma.fabrication-grid-cost/1",
+            "length_weight":str(rational(scenario.objective_weights.get("length_m",0))),
+            "fitting_weight":str(rational(scenario.objective_weights.get("fitting_count",0)))}
+        result["pricing_objective"] = objective
+        result["pricing_objective_binding"] = {
+            "scenario_root":digest(scenario.model_dump(mode="json")),
+            "declared_weights":dict(scenario.objective_weights),
+            "weight_interpretation":"EXACT_DECLARED_DECIMAL_VALUES",
+            "native_numeric_objective_lower_bound":False,
+            "continuous_optimality_claim":False}
+        pricing_started = time.monotonic()
+        pricing_deadline = pricing_started + min(6., max(0.,deadline-pricing_started)*.6) if deadline is not None else pricing_started+6.
+        def price_check(stage):
+            check(stage)
+            if time.monotonic() >= pricing_deadline:
+                raise _PricingDeadline()
+        try:
+            from oma.optimization.fabrication_pricing import compile_fabrication_pricing, verify_fabrication_pricing
+            priced = compile_fabrication_pricing(problem,objective,max_states=max_states,
+                max_work=max_pricing_work,max_pi_terms=max_pi_terms,checkpoint=price_check)
+            result["pricing_certificate"] = priced
+            price_check("fabrication_pricing_independent_replay")
+            price_replay = verify_fabrication_pricing(problem,objective,priced,max_states=max_states,
+                max_work=max_pricing_work,max_pi_terms=max_pi_terms,checkpoint=price_check)
+            result["pricing_check"] = price_replay
+            if price_replay["status"] == "PASS" and price_replay.get("pricing_outcome") == "OPTIMAL_PATH":
+                priced_points = [[float(_q(x)) for x in p] for p in priced["points_m"]]
+                priced_context = digest({"problem_root":model_root,"certificate_root":digest(priced),"points_m":priced_points})
+                priced_body = compile_orthogonal_fabrication(scenario,priced_points,context_root=priced_context,
+                    outer_obstacles=coverage["outer_obstacles"],outer_model_root=digest(coverage))
+                priced_body_check = verify_orthogonal_fabrication(scenario,priced_points,priced_body,context_root=priced_context,
+                    outer_obstacles=coverage["outer_obstacles"],outer_model_root=digest(coverage))
+                result.update(priced_binary64_fabrication_certificate=priced_body,priced_binary64_fabrication_check=priced_body_check)
+                price_check("fabrication_pricing_conversion_checked")
+                if priced_body_check["status"] == "PASS" and priced_body_check["fabrication_status"] == "PASS":
+                    proposals.insert(0,proposal(priced_points,priced,priced_body,priced=True))
+                    if priced_points == points:
+                        proposals.pop()
+        except _PricingDeadline as error:
+            if caller_check.failure is error:
+                raise
+            result["pricing_check"] = {"status":"UNKNOWN","reason":"FABRICATION_PRICING_DEADLINE",
+                "feasible_graph_fallback_retained":True}
+        result["pricing_timing"] = {"total_seconds":time.monotonic()-pricing_started}
         check("fabrication_graph_publish")
         for source in expected:
             if source_hash(source["path"]) != source["sha256"]:
@@ -216,10 +289,7 @@ def build_certified_fabrication_proposals(source_specs, scenario, source_report,
         if checker_version() != result["executable_version"]:
             raise ValueError("Source implementation changed during fabrication search")
         check("fabrication_proposal_publish")
-        result["proposals"] = [{"points_m":points,
-            "rationale":"Independently checked finite fabrication-state path with complete source outer coverage; actual IFC and service checks pending",
-            "geometry_scope":"EXACT_NOMINAL_ORTHOGONAL_BODY_IN_DECLARED_SOURCE_OUTER_MODEL",
-            "candidate_acceptance_authority":False,"physical_infeasibility_claim":False}]
+        result["proposals"] = proposals
         return finish("CHECKED_FABRICATION_PROPOSALS")
     except _Deadline as error:
         if caller_check.failure is error:

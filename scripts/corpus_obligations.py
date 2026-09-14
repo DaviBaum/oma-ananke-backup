@@ -15,6 +15,10 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("FINITE_FABRICATION_GRAPH_COST_PRICING", "oma-integration", [5536, 5537, 5544, 5545, 5548, 5549, 5568, 5569], ["ALG-RTR22", "ALG-RTR26", "ALG-RTR28", "ALG-RTR38"],
+         ["oma.optimization.fabrication_pricing.compile_fabrication_pricing"], ["oma.optimization.fabrication_pricing.verify_fabrication_pricing"], "tests/test_optimization_fabrication_pricing.py",
+         "Fixed nonnegative exact length and per-quarter-bend objective on the complete declared finite fabrication graph. Deferred straight/arc charges and an explicit terminal sink make every edge nonnegative. Rational coefficient pairs a+b*pi use independently reconstructed alternating-series pi enclosures. A realizing path and total sparse capped potential independently prove finite graph optimality; every explicit state's outgoing edge is checked, and default-state edges are discharged by the nonnegative-cost theorem.",
+         [], "A bounded pricing and CPU dual-edge component only, not full source node-dual/resource/branch-automaton/all-net closure. No continuous or native numeric objective lower bound, no physical infeasibility or acceptance transfer, no all-tie option preservation. State/work/arithmetic/precision exhaustion remains UNKNOWN. Source/frame/outer-support applicability is external. Actual IFC wall correspondence and five native pairs remain a separate numerical check."),
         ("BOUNDED_FABRICATION_LIFTED_GRID_SEARCH", "oma-integration", [4472, 4473, 4474, 4475, 4476, 4484, 5522, 5523, 1289, 1290], ["DEF-RTR39", "DEF-RTR40", "DEF-RTR41", "ALG-RTR15", "THM-SIR25"],
          ["oma.optimization.fabrication_search.compile_fabrication_search"], ["oma.optimization.fabrication_search.verify_fabrication_search"], "tests/test_optimization_fabrication_search.py",
          "Exact finite Cartesian route search carries incoming direction, straight-run origin and previous bend trim debt. Admitted straight continuations and quarter turns satisfy exact remaining-straight, full primitive envelope, allowed-box and complete outer-box separation predicates. Independent transition reconstruction checks a source-to-goal state path or a source-containing goal-free successor-closed finite set; producer geometry bound construction is not reused.",
@@ -177,6 +181,9 @@ def main():
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
     coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
     for row in register:
+        if row["obligation"] == "FINITE_FABRICATION_GRAPH_COST_PRICING":
+            row["real_model_benchmark"] = {"status": "FINITE_GRAPH_OPTIMUM_AND_SEPARATE_SYNTHETIC_ACTUAL_IFC_WALL_CHECK",
+                "evidence": "evidence/math/fabrication-pricing/latest.json", "scope": "Exact finite nominal cost optimum, independent dual/path proof, actual native five-part IFC4 wall coordination; no native objective bound, candidate acceptance or continuous closure"}
         if row["obligation"] == "BOUNDED_FABRICATION_LIFTED_GRID_SEARCH":
             row["real_model_benchmark"] = {"status": "SYNTHETIC_ACTUAL_IFC_WALL_DETOUR_AND_FINITE_GRAPH_CUT",
                 "evidence": "evidence/math/fabrication-search/latest.json", "scope": "Exact finite graph, separate fixed-polyline proof and actual native five-part IFC4 wall coordination in metres/millimetres; no accepted candidate or continuous closure"}
@@ -196,7 +203,7 @@ def main():
              "obligations": register, "pending_source_mechanisms": pending,
              "unit_test_run": {"path": str(test_path.relative_to(ROOT)), "tests": int(suite.get("tests")) if suite is not None else None,
                                "failures": int(suite.get("failures")) if suite is not None else None},
-             "additional_adapter_test_runs": ["evidence/math/certified-cells-adapter-tests.xml", "evidence/math/opening-inverse-regression.xml", "evidence/math/fabrication-tests.xml", "evidence/math/fabrication-search-tests.xml", "evidence/math/route-metadata-tests.xml"],
+             "additional_adapter_test_runs": ["evidence/math/certified-cells-adapter-tests.xml", "evidence/math/opening-inverse-regression.xml", "evidence/math/fabrication-tests.xml", "evidence/math/fabrication-search-tests.xml", "evidence/math/fabrication-pricing-tests.xml", "evidence/release/fabrication-pricing-adversarial.xml", "evidence/math/route-metadata-tests.xml"],
              "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py tests/test_optimization_route_cells.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"}
     destination = ROOT / "evidence/math/traceability_register.json"
     destination.write_text(json.dumps(proof, indent=2) + "\n", encoding="utf-8")
