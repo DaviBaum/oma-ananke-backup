@@ -123,3 +123,119 @@ def test_nonplanar_completion_family_is_explicit_and_encloses_both_diagonals(tmp
                 weights = (Q(first,4),Q(second,4),Q(4-first-second,4))
                 point = [sum(w*p[i] for w,p in zip(weights,triangle)) for i in range(3)]
                 assert all(lo[i] <= point[i] <= hi[i] for i in range(3))
+
+
+def extrusion(model, *, kind="rectangle", depth=6., direction=(0.,0.,2.), origin=(0.,0.,0.), radius=2.):
+    if kind == "circle":
+        profile = model.create_entity("IfcCircleProfileDef",ProfileType="AREA",Radius=radius)
+    else:
+        profile = model.create_entity("IfcRectangleProfileDef",ProfileType="AREA",XDim=4.,YDim=2.)
+    return model.create_entity("IfcExtrudedAreaSolid",SweptArea=profile,
+        Position=model.create_entity("IfcAxis2Placement3D",Location=model.create_entity("IfcCartesianPoint",Coordinates=origin)),
+        ExtrudedDirection=model.create_entity("IfcDirection",DirectionRatios=direction),Depth=depth)
+
+
+def set_items(path, model, product, items):
+    product.Representation.Representations[0].Items = tuple(items)
+    model.write(str(path))
+    return ExactIfcEncloser(path,model).enclose_product(product)
+
+
+def curve2(model, points, *, indexed=False, explicit=False):
+    if indexed:
+        return model.create_entity("IfcIndexedPolyCurve",
+            Points=model.create_entity("IfcCartesianPointList2D",CoordList=points),
+            Segments=(model.create_entity("IfcLineIndex",tuple(range(1,len(points)+1))),) if explicit else None,
+            SelfIntersect=False)
+    return model.create_entity("IfcPolyline",Points=tuple(model.create_entity("IfcCartesianPoint",Coordinates=p) for p in points))
+
+
+@pytest.mark.parametrize("kind,expected",[("rectangle",((-1,1,3),(3,3,9))),("circle",((-1,0,3),(3,4,9)))])
+def test_positive_source_extrusions_bound_continuous_profile(tmp_path,kind,expected):
+    path=tmp_path/"extrusion.ifc"
+    model,product=fixture(path)
+    item=extrusion(model,kind=kind)
+    result=set_items(path,model,product,[item])
+    assert bounds(result)==expected
+    assert result["item_coverage"][0]["source_depth"]=="6"
+    assert result["whole_product_solid_validity"]=="NOT_ESTABLISHED"
+
+
+def test_extrusion_oblique_direction_normalization_and_profile_position(tmp_path):
+    path=tmp_path/"oblique.ifc"
+    model,product=fixture(path,millimetres=True)
+    item=extrusion(model,depth=5.,direction=(0.,3.,4.))
+    item.SweptArea.Position=model.create_entity("IfcAxis2Placement2D",
+        Location=model.create_entity("IfcCartesianPoint",Coordinates=(10.,20.)),
+        RefDirection=model.create_entity("IfcDirection",DirectionRatios=(0.,1.)))
+    lo,hi=bounds(set_items(path,model,product,[item]))
+    assert lo==(Q(10,1000),Q(20,1000),Q(3,1000))
+    assert hi==(Q(12,1000),Q(27,1000),Q(7,1000))
+
+
+@pytest.mark.parametrize("indexed,explicit",[(False,False),(True,False),(True,True)])
+def test_source_polygon_profile_with_hole_encloses_entire_extrusion(tmp_path,indexed,explicit):
+    path=tmp_path/"polyline.ifc"
+    model,product=fixture(path)
+    outer=curve2(model,((0.,0.),(5.,0.),(5.,4.),(0.,4.),(0.,0.)),indexed=indexed,explicit=explicit)
+    inner=curve2(model,((1.,1.),(2.,1.),(2.,2.),(1.,2.),(1.,1.)),indexed=indexed,explicit=explicit)
+    item=extrusion(model)
+    item.SweptArea=model.create_entity("IfcArbitraryProfileDefWithVoids",ProfileType="AREA",OuterCurve=outer,InnerCurves=(inner,))
+    result=set_items(path,model,product,[item])
+    assert bounds(result)==((1,2,3),(6,6,9))
+    assert result["item_coverage"][0]["source_holes_checked"]==1
+
+
+@pytest.mark.parametrize("operator,expected",[
+    ("DIFFERENCE",((-1,1,3),(3,3,9))),
+    ("UNION",((-1,1,3),(5,3,9))),
+    ("INTERSECTION",((1,1,3),(3,3,9)))])
+def test_boolean_regularized_support_has_exact_closed_outer_enclosure(tmp_path,operator,expected):
+    path=tmp_path/"boolean.ifc"
+    model,product=fixture(path)
+    first,second=extrusion(model),extrusion(model,origin=(2.,0.,0.))
+    boolean=model.create_entity("IfcBooleanResult",Operator=operator,FirstOperand=first,SecondOperand=second)
+    result=set_items(path,model,product,[boolean])
+    assert bounds(result)==expected
+    assert len(result["item_coverage"])==3
+    assert result["item_coverage"][-1]["exact_result_topology"]=="NOT_ESTABLISHED"
+
+
+@pytest.mark.parametrize("mutation,reason",[
+    ("radius","NONPOSITIVE_OR_INVALID_RADIUS"),("depth","NONPOSITIVE_OR_INVALID_DEPTH"),
+    ("direction","EXTRUSION_DIRECTION_PARALLEL_TO_PROFILE"),
+    ("open","OPEN_OR_SHORT_PROFILE_CURVE"),("self_intersection","SELF_INTERSECTING_PROFILE"),
+    ("void_outside","PROFILE_VOID_OUTSIDE_OUTER"),("arc","UNSUPPORTED_PROFILE_ARC_OR_SEGMENT")])
+def test_malformed_extrusion_cannot_be_hidden_by_valid_body_sibling(tmp_path,mutation,reason):
+    path=tmp_path/"malformed.ifc"
+    model,product=fixture(path)
+    original=product.Representation.Representations[0].Items[0]
+    item=extrusion(model,kind="circle" if mutation=="radius" else "rectangle")
+    if mutation=="radius":item.SweptArea.Radius=-1.
+    if mutation=="depth":item.Depth=0.
+    if mutation=="direction":item.ExtrudedDirection.DirectionRatios=(1.,0.,0.)
+    if mutation in ("open","self_intersection","void_outside","arc"):
+        coordinates=((0.,0.),(4.,0.),(4.,4.),(0.,4.),(0.,0.))
+        if mutation=="open":coordinates=coordinates[:-1]
+        if mutation=="self_intersection":coordinates=((0.,0.),(4.,3.),(0.,4.),(3.,0.),(0.,0.))
+        outer=curve2(model,coordinates,indexed=mutation=="arc")
+        item.SweptArea=model.create_entity("IfcArbitraryClosedProfileDef",ProfileType="AREA",OuterCurve=outer)
+        if mutation=="void_outside":
+            hole=curve2(model,((10.,10.),(11.,10.),(11.,11.),(10.,11.),(10.,10.)))
+            item.SweptArea=model.create_entity("IfcArbitraryProfileDefWithVoids",ProfileType="AREA",OuterCurve=outer,InnerCurves=(hole,))
+        if mutation=="arc":outer.Segments=(model.create_entity("IfcArcIndex",(1,2,3)),model.create_entity("IfcLineIndex",(3,4,5)))
+    result=set_items(path,model,product,[original,item])
+    assert result["status"]=="UNKNOWN" and reason in result["reason"]
+    assert "bounds_m" not in result
+
+
+def test_difference_does_not_rescue_invalid_or_cyclic_suboperand(tmp_path):
+    path=tmp_path/"bad_boolean.ifc"
+    model,product=fixture(path)
+    first,second=extrusion(model),extrusion(model,kind="circle",radius=-1.)
+    boolean=model.create_entity("IfcBooleanResult",Operator="DIFFERENCE",FirstOperand=first,SecondOperand=second)
+    result=set_items(path,model,product,[boolean])
+    assert result["status"]=="UNKNOWN" and "RADIUS" in result["reason"]
+    boolean.SecondOperand=boolean
+    result=set_items(path,model,product,[boolean])
+    assert result["status"]=="UNKNOWN" and result["reason"]=="CYCLIC_GEOMETRIC_OPERAND"

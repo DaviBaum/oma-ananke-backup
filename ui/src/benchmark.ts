@@ -11,6 +11,8 @@ export interface NavigationBenchmark {
     draw_calls: number;
     width: number;
     height: number;
+    drawing_buffer_width?: number;
+    drawing_buffer_height?: number;
     pixel_ratio: number;
     clipped: boolean;
     xray: boolean;
@@ -29,6 +31,9 @@ export interface NavigationBenchmark {
   frame_interval_p50_ms: number;
   frame_interval_p95_ms: number;
   cpu_submission_p95_ms: number;
+  gpu_timer_status?: "AVAILABLE" | "UNAVAILABLE" | "DISJOINT" | "NO_SAMPLES";
+  gpu_frame_p95_ms?: number;
+  gpu_samples?: number;
   frames_over_33_33ms: number;
   average_30fps_gate: "PASS" | "FAIL" | "NOT_EVALUATED";
 }

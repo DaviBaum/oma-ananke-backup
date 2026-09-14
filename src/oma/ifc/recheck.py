@@ -9,6 +9,7 @@ import ifcopenshell.util.placement
 import ifcopenshell.util.unit
 import numpy as np
 from oma.ifc.audit import atomic_json, sha256_file
+from oma.ifc.ports import ownership_ledger, port_facts, connected_pair_errors
 
 
 def recheck(manifest_path):
@@ -38,6 +39,7 @@ def recheck(manifest_path):
     settings.set("mesher-angular-deflection", 0.05)
     findings = []
     all_ports = set()
+    ledger = ownership_ledger(exported)
     for item in manifest["added_parts"]:
         entity = exported.by_guid(item["ifc_guid"])
         shape = ifcopenshell.geom.create_shape(settings, entity)
@@ -57,7 +59,12 @@ def recheck(manifest_path):
                        else np.asarray(expected["end"])-expected["start"])
             tangent /= np.linalg.norm(tangent)
             expected_outward = tangent if endpoint_index else -tangent
-            if not np.allclose(matrix[:3, 2], expected_outward, rtol=0, atol=1e-7):
+            facts = port_facts(port, ledger[port.id()], scale)
+            if facts["errors"] or facts["owner_guids"] != [entity.GlobalId]:
+                raise ValueError(f"Port ownership/relative placement invalid: {facts['errors']}")
+            if port.FlowDirection != ("SINK" if endpoint_index == 0 else "SOURCE"):
+                raise ValueError("Port flow role differs from intended route endpoint")
+            if not np.allclose(facts["physical_outward_normal"], expected_outward, rtol=0, atol=1e-7):
                 raise ValueError("Port orientation differs from physical route tangent")
         outer_radius = manifest["route_spec"]["diameter_m"]/2 + manifest["route_spec"].get("insulation_m", 0)
         # End-face vertices must reach both intended ends, catching truncated sweeps.
@@ -72,6 +79,18 @@ def recheck(manifest_path):
                      if r.RelatingPort.id() in all_ports and r.RelatedPort.id() in all_ports]
     if len(relationships) != manifest["explicit_internal_connections"]:
         raise ValueError("Export lost or duplicated intended route connectivity")
+    all_connections = [r for r in exported.by_type("IfcRelConnectsPorts")
+                       if r.RelatingPort.id() in all_ports or r.RelatedPort.id() in all_ports]
+    degree = {p: 0 for p in all_ports}
+    for relationship in all_connections:
+        problems = connected_pair_errors(relationship.RelatingPort, relationship.RelatedPort, ledger, scale)
+        if problems:
+            raise ValueError(f"Exported port connection invalid: {problems}")
+        for port in (relationship.RelatingPort, relationship.RelatedPort):
+            if port.id() in degree:
+                degree[port.id()] += 1
+    if any(count > 1 for count in degree.values()):
+        raise ValueError("Exported route port has multiple connections")
     system = exported.by_guid(manifest["source_system_guid"])
     grouped = {o.GlobalId for r in system.IsGroupedBy for o in r.RelatedObjects}
     if grouped != {p["ifc_guid"] for p in manifest["added_parts"]}:

@@ -13,6 +13,8 @@ import type {
   Health,
   RunRequest,
   Run,
+  AssuranceRecord,
+  DependencyRecord,
 } from "./types";
 export class ApiError extends Error {
   constructor(
@@ -175,6 +177,46 @@ export const api = {
     creation<Run>(`start:${id}:${JSON.stringify(run)}`, `${p(id)}/runs`, {
       ...run,
     }),
+  recheck: (id: string, candidate: string, budget_seconds = 300) =>
+    creation<Run>(
+      `recheck:${id}:${candidate}:${budget_seconds}`,
+      `${p(id)}/candidates/${encodeURIComponent(candidate)}/recheck`,
+      { budget_seconds },
+    ),
+  assurance: async (
+    id: string,
+    candidate: string,
+    root: string,
+    signal?: AbortSignal,
+  ) => {
+    const data = await request<AssuranceRecord>(
+      `${p(id)}/candidates/${encodeURIComponent(candidate)}/assurance`,
+      undefined,
+      signal,
+    );
+    if (data.candidate_id !== candidate || data.candidate_root !== root)
+      throw new Error(
+        "Assurance belongs to a different candidate or state root. Reload this view.",
+      );
+    return data;
+  },
+  dependencies: async (
+    id: string,
+    selection: StateSelection,
+    root: string,
+    signal?: AbortSignal,
+  ) => {
+    const data = await request<DependencyRecord>(
+      `${p(id)}/dependencies${selectionQuery(selection)}`,
+      undefined,
+      signal,
+    );
+    if (data.after_root !== root)
+      throw new Error(
+        "Dependency evidence belongs to a different state root. Reload this view.",
+      );
+    return data;
+  },
   control: async (id: string, action: string) => {
     startControl(id, action);
     try {

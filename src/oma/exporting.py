@@ -26,6 +26,9 @@ def export_project(store: Store, project_id: str, candidate_id: str | None = Non
         from .build_identity import checker_version
         if not candidate or candidate["status"] != "CHECKED" or not candidate.get("report_root"):
             raise IntegrityError("Checked export requires complete independent evidence for an explicit candidate")
+        from .validation_advisories import candidate_advisories
+        if candidate_advisories(store, candidate, state):
+            raise IntegrityError("IFC-PORT-001: prior authored port semantics require regeneration and a fresh independent check")
         report = store.get(candidate["report_root"])
         if report["status"] != "PASS" or report["candidate_root"] != root or report["checker_version"] != checker_version():
             raise IntegrityError("Candidate does not have a passing root-matched report")

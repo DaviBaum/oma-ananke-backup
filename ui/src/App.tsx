@@ -1,4 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { projectView } from "./viewState";
+import LocalFiles from "./LocalFiles";
+import { uploadLocalFiles, type UploadStatus } from "./uploads";
 import {
   Activity,
   ArrowDownToLine,
@@ -44,11 +47,16 @@ import {
 import Viewport, { disciplineColor } from "./Viewport";
 import MissionFields from "./MissionFields";
 import { buildMission, emptyMission } from "./mission";
+import JointMissionFields from "./JointMissionFields";
+import { buildJointMission, newJointMission } from "./jointMission";
+import { applicabilityReason, currentPassingCheck } from "./checkApplicability";
 import { isServiceElement } from "./semantics";
 import { scopeEvidence } from "./evidenceScope";
 import type { MeshProgress } from "./meshStream";
 import { recordTiming, observeControls, timingEvidence } from "./telemetry";
 import { ArtifactLinks, SourceAudits, checkIssue } from "./Evidence";
+import EvidenceReview, { type EvidenceTarget } from "./EvidenceReview";
+import ValidationAdvisories from "./ValidationAdvisories";
 import {
   request,
   api,
@@ -154,15 +162,17 @@ function Modal({
   wide?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
   useEffect(() => {
     const previous = document.activeElement as HTMLElement;
     ref.current?.focus();
     const handle = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") closeRef.current();
       if (e.key === "Tab") {
         const nodes = Array.from(
           ref.current?.querySelectorAll<HTMLElement>(
-            'button:not(:disabled),input,textarea,select,[tabindex="0"]',
+            'button:not(:disabled),input:not(:disabled),textarea:not(:disabled),select:not(:disabled),summary,a[href],[tabindex="0"]',
           ) ?? [],
         );
         if (nodes.length && e.shiftKey && document.activeElement === nodes[0]) {
@@ -183,7 +193,7 @@ function Modal({
       document.removeEventListener("keydown", handle);
       previous?.focus();
     };
-  }, [onClose]);
+  }, []);
   return (
     <div
       className="modal-backdrop"
@@ -241,8 +251,11 @@ export default function App() {
     [viewGeometry, setViewGeometry] = useState<Geometry | null>(null),
     [loadingView, setLoadingView] = useState(false),
     [viewError, setViewError] = useState<string | null>(null);
-  const snapshot = stateSelection ? viewSnapshot : headSnapshot,
-    geometry = stateSelection ? viewGeometry : headGeometry;
+  const { snapshot, geometry } = projectView(
+    projectId,
+    stateSelection ? viewSnapshot : headSnapshot,
+    stateSelection ? viewGeometry : headGeometry,
+  );
   const [nav, setNav] = useState("model"),
     [rightTab, setRightTab] = useState("overview"),
     [bottomTab, setBottomTab] = useState("activity"),
@@ -272,16 +285,24 @@ export default function App() {
     [record, setRecord] = useState<unknown>(null),
     [importPaths, setImportPaths] = useState(""),
     [importName, setImportName] = useState(""),
+    [importFiles, setImportFiles] = useState<File[]>([]),
+    [uploadStatus, setUploadStatus] = useState<UploadStatus | null>(null),
     [operation, setOperation] = useState<RunRequest["operation"]>("check"),
     [scope, setScope] = useState("all"),
     [budget, setBudget] = useState(30),
     [missionForm, setMissionForm] = useState(emptyMission),
+    [missionMode, setMissionMode] = useState<"single" | "joint">("single"),
+    [jointMission, setJointMission] = useState(newJointMission),
     [draft, setDraft] = useState(true);
+  const [evidenceTarget, setEvidenceTarget] = useState<EvidenceTarget | null>(
+    null,
+  );
   const recordJSON = useMemo(
     () => JSON.stringify(record, null, 2) ?? "null",
     [record],
   );
   const cursor = useRef(0),
+    uploadAbort = useRef<AbortController | null>(null),
     generation = useRef(0),
     refreshRef = useRef<() => Promise<void>>(async () => {}),
     stateRoot = useRef("");
@@ -297,7 +318,15 @@ export default function App() {
     [viewMeshProgress, setViewMeshProgress] = useState<MeshProgress | null>(
       null,
     );
-  const closeModal = useCallback(() => setModal(null), []);
+  const closeModal = useCallback(() => {
+    uploadAbort.current?.abort(
+      new DOMException(
+        "File transfer cancelled. Received files remain local and can be reused on retry.",
+        "AbortError",
+      ),
+    );
+    setModal(null);
+  }, []);
   const refreshProjects = useCallback(async () => {
     const list = await api.projects();
     setProjects(list);
@@ -369,6 +398,7 @@ export default function App() {
     setSystem("");
     setServicesOnly(false);
     setGeometryError(null);
+    setMeshProgress(null);
     if (!projectId) {
       setLoadingGeometry(false);
       refreshRef.current = async () => {};
@@ -453,6 +483,7 @@ export default function App() {
     const streamStarted = performance.now();
     stream.onopen = () => {
       if (current()) {
+        const reconnected = disconnectedAt !== undefined;
         streamOpen = true;
         recordTiming(
           disconnectedAt === undefined
@@ -465,6 +496,10 @@ export default function App() {
           },
         );
         disconnectedAt = undefined;
+        if (reconnected)
+          void refresh().catch((error) => {
+            if (current()) setSyncError((error as Error).message);
+          });
       }
     };
     stream.onerror = () => {
@@ -524,7 +559,7 @@ export default function App() {
           setEvents((previous) => mergeEvents(previous, valid, projectId));
           cursor.current = eventCursor(valid, cursor.current);
           await refresh();
-        } else if (++ticks % 6 === 0) {
+        } else if (++ticks % 24 === 0) {
           await refresh();
         }
         backlog = incoming.length >= 500;
@@ -725,6 +760,18 @@ export default function App() {
         : checks
             .filter((c) => checkFilter === "all" || c.status === checkFilter)
             .map(checkIssue);
+  const selectedCurrentCandidate = selectedCandidate
+    ? candidates.find((candidate) => candidate.id === selectedCandidate.id)
+    : undefined;
+  const exportCandidate =
+    selectedCurrentCandidate ??
+    (!selectedCandidate
+      ? candidates.find(
+          (candidate) =>
+            candidate.state_root === snapshot?.project.state_root &&
+            /^(CHECKED|ACCEPTED)$/.test(candidate.status),
+        )
+      : undefined);
   const failures = issues.filter((i) =>
       /FAIL|REJECT/.test(i.status.toUpperCase()),
     ),
@@ -800,13 +847,32 @@ export default function App() {
       .split(/\r?\n/)
       .map((p) => p.trim().replace(/^"|"$/g, ""))
       .filter(Boolean);
-    if (!paths.length) {
-      setError("Enter at least one absolute IFC file path.");
+    if (!paths.length && !importFiles.length) {
+      setError("Choose local IFC files or enter absolute IFC paths.");
       return;
     }
-    const result = await perform("Importing IFC models", () =>
-      api.import(paths, importName.trim() || "Untitled federation"),
-    );
+    const controller = new AbortController();
+    uploadAbort.current = controller;
+    const result = await perform("Importing IFC models", async () => {
+      const receipts = await uploadLocalFiles(
+        importFiles,
+        controller.signal,
+        setUploadStatus,
+      );
+      controller.signal.throwIfAborted();
+      setUploadStatus({
+        phase: "IMPORTING",
+        completed: receipts.length,
+        total: importFiles.length,
+      });
+      uploadAbort.current = null;
+      return api.import(
+        [...new Set([...receipts.map((receipt) => receipt.path), ...paths])],
+        importName.trim() || "Untitled federation",
+      );
+    });
+    uploadAbort.current = null;
+    setUploadStatus(null);
     if (result) {
       const p =
         "project" in (result as object)
@@ -816,6 +882,7 @@ export default function App() {
       setProjectId(p.id);
       setModal(null);
       setImportPaths("");
+      setImportFiles([]);
       setNotice(
         "IFC import recorded. Inspect geometry coverage and baseline evidence before making changes.",
       );
@@ -825,7 +892,11 @@ export default function App() {
     if (!projectId) return;
     try {
       const mission =
-        operation === "check" ? undefined : buildMission(missionForm);
+        operation === "check"
+          ? undefined
+          : missionMode === "joint"
+            ? buildJointMission(jointMission)
+            : buildMission(missionForm);
       const result = await perform("Starting run", () =>
         api.start(projectId, {
           operation,
@@ -858,6 +929,10 @@ export default function App() {
   };
   const exportModel = async () => {
     if (!projectId) return;
+    if (!draft && !currentPassingCheck(exportCandidate)) {
+      setError(applicabilityReason(exportCandidate));
+      return;
+    }
     const result = await perform("Exporting IFC and evidence", () =>
       api.export(projectId, selectedCandidate?.id, draft),
     );
@@ -975,7 +1050,13 @@ export default function App() {
             <select
               aria-label="Select project"
               value={projectId ?? ""}
-              onChange={(e) => setProjectId(e.target.value || null)}
+              onChange={(e) => {
+                recordTiming("project_view_requested", {
+                  project_id: e.target.value,
+                  previous_project_id: projectId,
+                });
+                setProjectId(e.target.value || null);
+              }}
             >
               <option value="" disabled>
                 Select a project
@@ -1178,6 +1259,7 @@ export default function App() {
               className="secondary"
               disabled={
                 !projectId ||
+                !snapshot ||
                 !!busy ||
                 !!stateSelection?.revision ||
                 stateSelection?.revision === 0
@@ -1189,7 +1271,13 @@ export default function App() {
             </button>
             <button
               className="primary"
-              disabled={!projectId || !connected || !!busy || !!stateSelection}
+              disabled={
+                !projectId ||
+                !snapshot ||
+                !connected ||
+                !!busy ||
+                !!stateSelection
+              }
               onClick={showRun}
             >
               <Play size={14} fill="currentColor" />
@@ -1245,7 +1333,7 @@ export default function App() {
             visibleIds={visibleIds}
             selected={selected}
             issue={selectedIssue}
-            candidate={selectedCandidate}
+            candidate={selectedCurrentCandidate ?? selectedCandidate}
             onSelect={selectEntity}
             onImport={() => setModal("import")}
             loading={stateSelection ? loadingView : loadingGeometry}
@@ -1428,6 +1516,26 @@ export default function App() {
                         <Code2 size={12} />
                       </button>
                     </div>
+                  )}
+                  {snapshot && projectId && (
+                    <button
+                      className="secondary state-dependencies"
+                      onClick={() =>
+                        setEvidenceTarget({
+                          projectId,
+                          root: snapshot.project.state_root,
+                          revision: snapshot.project.revision,
+                          candidate:
+                            selectedCurrentCandidate ??
+                            selectedCandidate ??
+                            undefined,
+                          initialTab: "dependencies",
+                        })
+                      }
+                    >
+                      <GitBranch size={14} />
+                      Inspect revision dependencies
+                    </button>
                   )}
                 </>
               )}
@@ -1820,7 +1928,9 @@ export default function App() {
                     <span>
                       {latestRun
                         ? short(latestRun.id)
-                        : "No computation is running"}
+                        : headSnapshot
+                          ? "No computation is running"
+                          : "Run state has not loaded"}
                     </span>
                   </div>
                   {activeRun && (
@@ -1931,6 +2041,7 @@ export default function App() {
                           <strong>Candidate {short(candidate.id)}</strong>
                           <small>
                             {candidate.changed_ids.length} changed IDs ·{" "}
+                            {candidate.routes.length} routes ·{" "}
                             {date(candidate.created_at)}
                           </small>
                         </span>
@@ -1953,23 +2064,104 @@ export default function App() {
                         </div>
                         <ChevronRight size={15} />
                       </button>
+                      <div
+                        className={`candidate-applicability ${candidate.check?.applicability === "CURRENT" && !candidate.validation_advisories?.length ? "current" : "stale"}`}
+                      >
+                        <span>{applicabilityReason(candidate)}</span>
+                        {candidate.check?.checker_version && (
+                          <small
+                            title={`Checked: ${candidate.check.checker_version}; current: ${candidate.check.current_checker_version ?? "not reported"}`}
+                          >
+                            Checked with …
+                            {candidate.check.checker_version.slice(-12)} ·
+                            current{" "}
+                            {candidate.check.current_checker_version
+                              ? `…${candidate.check.current_checker_version.slice(-12)}`
+                              : "not reported"}
+                          </small>
+                        )}
+                      </div>
+                      <ValidationAdvisories
+                        advisories={candidate.validation_advisories}
+                        compact
+                      />
+                      {selectedCandidate?.id === candidate.id &&
+                        candidate.routes.length > 0 && (
+                          <div
+                            className="candidate-route-list"
+                            aria-label="Candidate route membership"
+                          >
+                            {candidate.routes.map((route, i) => (
+                              <button
+                                key={route.id ?? i}
+                                disabled={!route.id}
+                                onClick={() =>
+                                  route.id && selectEntity(route.id)
+                                }
+                                title={route.id}
+                              >
+                                <GitBranch size={12} />
+                                {typeof route.request_demand_id === "string"
+                                  ? route.request_demand_id
+                                  : Array.isArray(route.demand_ids)
+                                    ? route.demand_ids.join(", ")
+                                    : `Route ${i + 1}`}{" "}
+                                ·{" "}
+                                {String(
+                                  route.service ?? "physical route",
+                                ).replaceAll("_", " ")}
+                              </button>
+                            ))}
+                          </div>
+                        )}
                       <div className="candidate-bottom">
                         <span>
                           <ShieldCheck size={13} />
                           {candidate.check?.reason ??
                             `Checker: ${candidate.check?.status ?? "not reported"}`}
                         </span>
-                        <button onClick={() => inspectRecord(candidate)}>
+                        <button
+                          onClick={() =>
+                            projectId &&
+                            setEvidenceTarget({
+                              projectId,
+                              root: candidate.state_root,
+                              candidate,
+                            })
+                          }
+                        >
                           <Code2 size={13} />
                           Evidence
                         </button>
                         <button
+                          disabled={
+                            !!busy ||
+                            !connected ||
+                            !!activeRun ||
+                            stateSelection?.revision !== undefined
+                          }
+                          onClick={() => {
+                            if (projectId)
+                              void perform(
+                                "Rechecking original candidate mission",
+                                () => api.recheck(projectId, candidate.id),
+                                "Recheck submitted with the original mission. Follow its durable run events.",
+                              ).then((run) => {
+                                if (run) {
+                                  setBottomTab("activity");
+                                  setNav("runs");
+                                }
+                              });
+                          }}
+                          title="Reopen candidate geometry and run the current independent checker against its original mission."
+                        >
+                          <RefreshCw size={13} />
+                          Recheck
+                        </button>
+                        <button
                           className="accept-button"
                           disabled={
-                            !/^(CHECKED|ACCEPTED)$/.test(candidate.status) ||
-                            !/^PASS$|^CHECKED$/.test(
-                              candidate.check?.status ?? "",
-                            ) ||
+                            !currentPassingCheck(candidate) ||
                             !!busy ||
                             candidate.status === "ACCEPTED" ||
                             stateSelection?.revision !== undefined
@@ -2046,6 +2238,21 @@ export default function App() {
                         >
                           <Code2 size={13} />
                           Record
+                        </button>
+                        <button
+                          className="secondary"
+                          onClick={() =>
+                            projectId &&
+                            setEvidenceTarget({
+                              projectId,
+                              root: revision.state_root,
+                              revision: revision.revision,
+                              initialTab: "dependencies",
+                            })
+                          }
+                        >
+                          <GitBranch size={13} />
+                          Dependencies
                         </button>
                         <button
                           className="secondary"
@@ -2133,6 +2340,16 @@ export default function App() {
           {busy}
         </div>
       )}
+      {evidenceTarget && (
+        <Modal
+          title="Evidence and dependencies"
+          kicker="RECORDED ENGINEERING CONTEXT"
+          wide
+          onClose={() => setEvidenceTarget(null)}
+        >
+          <EvidenceReview target={evidenceTarget} />
+        </Modal>
+      )}
       {modal === "import" && (
         <Modal
           title="Bring your building together."
@@ -2159,18 +2376,53 @@ export default function App() {
               onChange={(e) => setImportName(e.target.value)}
             />
           </label>
-          <label className="field">
-            Absolute IFC paths <span>One file per line</span>
-            <textarea
-              rows={5}
-              spellCheck={false}
-              placeholder={
-                "C:\\Models\\architecture.ifc\nC:\\Models\\ventilation.ifc"
-              }
-              value={importPaths}
-              onChange={(e) => setImportPaths(e.target.value)}
-            />
-          </label>
+          <LocalFiles
+            files={importFiles}
+            onChange={setImportFiles}
+            onError={setError}
+            disabled={!!busy}
+          />
+          <details className="import-paths" open={!!importPaths}>
+            <summary>Use existing absolute IFC paths</summary>
+            <label className="field">
+              Absolute IFC paths <span>One file per line</span>
+              <textarea
+                rows={5}
+                spellCheck={false}
+                placeholder={
+                  "C:\\Models\\architecture.ifc\nC:\\Models\\ventilation.ifc"
+                }
+                value={importPaths}
+                onChange={(e) => setImportPaths(e.target.value)}
+              />
+            </label>
+          </details>
+          {uploadStatus && (
+            <div className="upload-status" role="status">
+              <LoaderCircle size={15} className="spin" />
+              <span>
+                {uploadStatus.phase === "IMPORTING"
+                  ? "Recording import and queuing the actual IFC audit…"
+                  : uploadStatus.phase === "UPLOADING"
+                    ? `Transferring ${uploadStatus.filename} to the local engine · ${uploadStatus.completed}/${uploadStatus.total} files received`
+                    : `${uploadStatus.completed}/${uploadStatus.total} files received and hashed`}
+              </span>
+              {uploadStatus.phase !== "IMPORTING" && (
+                <button
+                  onClick={() =>
+                    uploadAbort.current?.abort(
+                      new DOMException(
+                        "File transfer cancelled. Received files remain local and can be reused on retry.",
+                        "AbortError",
+                      ),
+                    )
+                  }
+                >
+                  Cancel transfer
+                </button>
+              )}
+            </div>
+          )}
           <div className="inline-note">
             <Info size={15} />
             Files stay on this workstation. Federation alignment is audited,
@@ -2186,7 +2438,11 @@ export default function App() {
             </button>
             <button
               className="primary"
-              disabled={!!busy || !importPaths.trim() || !connected}
+              disabled={
+                !!busy ||
+                (!importPaths.trim() && !importFiles.length) ||
+                !connected
+              }
               onClick={() => void doImport()}
             >
               {busy ? (
@@ -2267,7 +2523,34 @@ export default function App() {
             </label>
           </div>
           {operation !== "check" && (
-            <MissionFields value={missionForm} onChange={setMissionForm} />
+            <>
+              <div
+                className="mission-mode"
+                role="group"
+                aria-label="Route mission structure"
+              >
+                <button
+                  className={missionMode === "single" ? "selected" : ""}
+                  onClick={() => setMissionMode("single")}
+                >
+                  Single route
+                </button>
+                <button
+                  className={missionMode === "joint" ? "selected" : ""}
+                  onClick={() => setMissionMode("joint")}
+                >
+                  Simultaneous demands
+                </button>
+              </div>
+              {missionMode === "joint" ? (
+                <JointMissionFields
+                  value={jointMission}
+                  onChange={setJointMission}
+                />
+              ) : (
+                <MissionFields value={missionForm} onChange={setMissionForm} />
+              )}
+            </>
           )}
           <div className="inline-note">
             <ShieldCheck size={16} />
@@ -2315,6 +2598,9 @@ export default function App() {
               status={selectedCandidate?.status ?? snapshot?.project.status}
             />
           </div>
+          <ValidationAdvisories
+            advisories={exportCandidate?.validation_advisories}
+          />
           <label className="checkbox-field">
             <input
               type="checkbox"
@@ -2331,8 +2617,8 @@ export default function App() {
           </label>
           <div className="inline-note">
             <Info size={15} />
-            The server enforces release predicates. Choosing a checked release
-            never bypasses mandatory evidence.
+            {applicabilityReason(exportCandidate)} The server independently
+            enforces release predicates.
           </div>
           <div className="modal-actions">
             <button className="secondary" onClick={closeModal}>
@@ -2340,7 +2626,11 @@ export default function App() {
             </button>
             <button
               className="primary"
-              disabled={!!busy}
+              disabled={
+                !!busy ||
+                !connected ||
+                (!draft && !currentPassingCheck(exportCandidate))
+              }
               onClick={() => void exportModel()}
             >
               <ArrowDownToLine size={15} />

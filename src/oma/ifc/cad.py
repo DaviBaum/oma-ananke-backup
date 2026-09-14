@@ -9,8 +9,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import io
+import importlib.metadata
 import json
 from pathlib import Path
+import re
+import sys
 import time
 from typing import Any, Callable
 
@@ -27,7 +30,8 @@ def _representation_interpretation(policy):
     if policy not in (DEFAULT_SOURCE_REPRESENTATION_POLICY, VERTEX_HULL_SOURCE_REPRESENTATION_POLICY):
         raise ValueError("Unsupported source representation interpretation")
     return {"policy":policy, "native_solid_geometry":"INDEPENDENT_NUMERICAL_CAD_VALIDATION",
-            "invalid_native_fallback": "ALL_SOURCE_VERTEX_HULL_COMPLETIONS_SUBSET_OF_OUTER_BOX" if policy == VERTEX_HULL_SOURCE_REPRESENTATION_POLICY else "EXACT_PLANAR_SOURCE_SUPPORT_SUBSET_OF_OUTER_BOX",
+            "invalid_native_fallback": "EXACT_SUPPORTED_ANALYTIC_SUPPORT_AND_DECLARED_FACE_VERTEX_HULL_COMPLETIONS_SUBSET_OF_OUTER_BOX" if policy == VERTEX_HULL_SOURCE_REPRESENTATION_POLICY else "EXACT_SUPPORTED_REPRESENTED_SUPPORT_SUBSET_OF_OUTER_BOX",
+            "source_support_details":"Each independently rebuilt source certificate binds its supported analytic items and face interpretation",
             "source_native_validity":"UNRESOLVED_WHERE_REPORTED_INVALID",
             "scope_exclusion":"No assertion about arbitrary outside-vertex-hull projection or undocumented physical extent"}
 
@@ -85,10 +89,15 @@ def _inspect_shape(shape):
         return bounds, 0., 0., False, "NO_CLOSED_CAD_SOLID"
     all_faces = set(_subshapes(shape, TopAbs_FACE))
     solid_faces = set()
+    solid_edges = set()
+    solid_vertices = set()
     while solids.More():
         solid_faces.update(_subshapes(solids.Current(), TopAbs_FACE))
+        solid_edges.update(_subshapes(solids.Current(), TopAbs_EDGE))
+        solid_vertices.update(_subshapes(solids.Current(), TopAbs_VERTEX))
         solids.Next()
-    if all_faces != solid_faces:
+    if (all_faces != solid_faces or set(_subshapes(shape,TopAbs_EDGE)) != solid_edges
+            or set(_subshapes(shape,TopAbs_VERTEX)) != solid_vertices):
         return bounds, 0., 0., False, "PARTIALLY_NON_SOLID_TOPOLOGY"
     props = GProp_GProps()
     BRepGProp.VolumeProperties_s(shape, props)
@@ -113,7 +122,7 @@ def _promote_closed_surfaces(shape):
     (possible void) shells are rejected, never filled by a generated hull.
     """
     from OCP.BRepBuilderAPI import BRepBuilderAPI_Sewing, BRepBuilderAPI_MakeSolid
-    from OCP.TopAbs import TopAbs_FACE, TopAbs_SHELL
+    from OCP.TopAbs import TopAbs_FACE, TopAbs_SHELL, TopAbs_EDGE, TopAbs_VERTEX
     from OCP.TopoDS import TopoDS, TopoDS_Compound
     from OCP.BRep import BRep_Builder, BRep_Tool
     from OCP.BRepCheck import BRepCheck_Analyzer
@@ -121,6 +130,12 @@ def _promote_closed_surfaces(shape):
     before_faces = _subshapes(shape, TopAbs_FACE)
     if not before_faces:
         return None, {"reason": "NO_SOURCE_FACES"}
+    for kind in (TopAbs_EDGE,TopAbs_VERTEX):
+        accounted=set()
+        for face in before_faces.values():
+            accounted.update(_subshapes(face,kind))
+        if accounted != set(_subshapes(shape,kind)):
+            return None,{"reason":"LOOSE_SOURCE_EDGES_OR_VERTICES_CANNOT_BE_DROPPED"}
     sewing = BRepBuilderAPI_Sewing(1e-7, True, True, True, False)
     sewing.Add(shape)
     sewing.Perform()
@@ -161,7 +176,7 @@ def _complete_representation_support(model, entity):
                  "IfcPolygonalFaceSet", "IfcTriangulatedFaceSet", "IfcShellBasedSurfaceModel", "IfcFaceBasedSurfaceModel",
                  "IfcBooleanResult", "IfcBooleanClippingResult", "IfcHalfSpaceSolid", "IfcPolygonalBoundedHalfSpace",
                  "IfcCsgSolid", "IfcBlock", "IfcSphere", "IfcRightCircularCylinder", "IfcRightCircularCone",
-                 "IfcBoundingBox", "IfcMappedItem", "IfcGeometricSet"}
+                 "IfcMappedItem", "IfcGeometricSet"}
     body = [r for r in entity.Representation.Representations if r.RepresentationIdentifier in ("Body", "Facetation", None)] if entity.Representation else []
     items = []
     unsupported = []
@@ -181,6 +196,36 @@ def _complete_representation_support(model, entity):
     return {"complete_supported_body_representation": bool(items) and not unsupported,
             "representation_items": items, "unsupported_item_types": sorted(set(unsupported)),
             "scope": "Imported IFC representation support, not undocumented real-world extent"}
+
+
+def _source_conversion_diagnostics(model, selected, raw):
+    """Separate explicit non-geometric style failures from geometry failures."""
+    by_product, unscoped = {}, []
+    for line in raw.splitlines():
+        if not line.strip():
+            continue
+        try:
+            item=json.loads(line)
+        except (ValueError,TypeError):
+            unscoped.append({"reason":"UNPARSEABLE_NATIVE_CONVERSION_DIAGNOSTIC","text":line[:2000]})
+            continue
+        if item.get("level", "").lower() not in ("error","fatal"):
+            continue
+        instance_match=re.match(r"#(\d+)",item.get("instance", ""))
+        product_match=re.match(r"#(\d+)",item.get("product", ""))
+        instance=model.by_id(int(instance_match.group(1))) if instance_match else None
+        # These explicit classes carry material appearance, not occupied support.
+        appearance=bool(instance and (instance.is_a("IfcMaterial") or instance.is_a("IfcSurfaceStyle")
+                        or instance.is_a("IfcSurfaceStyleRendering") or instance.is_a("IfcColourRgb")))
+        product_id=int(product_match.group(1)) if product_match else None
+        record={"level":item.get("level"),"message":item.get("message"),
+                "instance_step_id":instance.id() if instance else None,"instance_type":instance.is_a() if instance else None,
+                "scope":"MATERIAL_APPEARANCE_ONLY" if appearance else "GEOMETRY_CONVERSION_FAILURE"}
+        if product_id in selected:
+            by_product.setdefault(product_id,[]).append(record)
+        elif not appearance:
+            unscoped.append({"reason":"UNSCOPED_NATIVE_GEOMETRY_CONVERSION_FAILURE",**record})
+    return by_product,unscoped
 
 
 def _load_cad_uncached(path: str | Path, *, guids: set[str] | None = None, threads: int = 4,
@@ -203,6 +248,8 @@ def _load_cad_uncached(path: str | Path, *, guids: set[str] | None = None, threa
         checkpoint("cad_source_parse")
     path = Path(path).resolve()
     source = sha256_file(path)
+    ifcopenshell.get_log()  # Clear prior operations' diagnostics in this process.
+    ifcopenshell.ifcopenshell_wrapper.set_log_format_json()
     model = ifcopenshell.open(str(path))
     units = [u for assignment in model.by_type("IfcUnitAssignment") for u in assignment.Units
              if getattr(u, "UnitType", None) == "LENGTHUNIT"]
@@ -221,6 +268,17 @@ def _load_cad_uncached(path: str | Path, *, guids: set[str] | None = None, threa
     result, errors, processed = [], [], set()
     from .enclosure import ExactIfcEncloser
     encloser = None
+    def apply_exact_enclosure(obj):
+        nonlocal encloser
+        if encloser is None:
+            encloser=ExactIfcEncloser(path,model,vertex_hull_completion=source_representation_policy == VERTEX_HULL_SOURCE_REPRESENTATION_POLICY)
+        certificate=encloser.enclose_product(selected[obj.step_id])
+        obj.support_evidence["exact_source_enclosure"]=certificate
+        if certificate["status"] == "ENCLOSURE_CHECKED":
+            from fractions import Fraction
+            lo,hi=certificate["bounds_m"]
+            obj.bounds=tuple(np.nextafter(float(Fraction(v)),-np.inf) for v in lo)+tuple(np.nextafter(float(Fraction(v)),np.inf) for v in hi)
+            obj.support_kind="exact_source_support_enclosure"
     if selected:
         iterator = ifcopenshell.geom.iterator(settings, model, max(1, min(16, threads)), include=entities)
         if iterator.initialize():
@@ -244,6 +302,11 @@ def _load_cad_uncached(path: str | Path, *, guids: set[str] | None = None, threa
                                 shape = promoted
                                 bounds, volume, tolerance, valid, reason = _inspect_shape(shape)
                                 support_kind = "original_faces_closed_shell_promotion"
+                        if valid and not support["complete_supported_body_representation"]:
+                            support["native_topology_valid"]=True
+                            valid=False
+                            reason="INCOMPLETE_OR_UNSUPPORTED_SOURCE_BODY_ITEMS"
+                            support_kind="unresolved_native_support"
                         if not valid and bounds is not None and support["complete_supported_body_representation"]:
                             if encloser is None:
                                 encloser = ExactIfcEncloser(path, model, vertex_hull_completion=source_representation_policy == VERTEX_HULL_SOURCE_REPRESENTATION_POLICY)
@@ -272,6 +335,19 @@ def _load_cad_uncached(path: str | Path, *, guids: set[str] | None = None, threa
             continue
         errors.append({"entity_id": f"{source}:{entity.id()}", "ifc_guid": entity.GlobalId,
                        "reason": "MISSING_PHYSICAL_CAD_GEOMETRY"})
+    diagnostics,unscoped=_source_conversion_diagnostics(model,selected,ifcopenshell.get_log())
+    errors.extend({"source_sha256":source,**error} for error in unscoped)
+    for obj in result:
+        records=diagnostics.get(obj.step_id,[])
+        if records:
+            obj.support_evidence["native_conversion_diagnostics"]=records
+        if any(r["scope"] == "GEOMETRY_CONVERSION_FAILURE" for r in records):
+            if obj.valid:
+                obj.support_evidence["native_topology_valid"]=True
+            obj.valid=False
+            obj.reason="PARTIAL_NATIVE_SOURCE_CONVERSION_FAILURE"
+            obj.support_kind="unresolved_native_support"
+            apply_exact_enclosure(obj)
     return result, errors
 
 
@@ -364,16 +440,23 @@ def _explicit_joints(export_path, route_guids):
     import ifcopenshell
     import ifcopenshell.util.placement
     import ifcopenshell.util.unit
+    from .ports import ownership_ledger, port_facts, connected_pair_errors
     model = ifcopenshell.open(str(export_path))
     scale = ifcopenshell.util.unit.calculate_unit_scale(model)
-    owners = {r.RelatingPort.id(): r.RelatedElement for r in model.by_type("IfcRelConnectsPortToElement")}
+    ledger = ownership_ledger(model)
+    owners = {pid: next(iter(record["owners"].values())) for pid, record in ledger.items()
+              if len(record["owners"]) == 1 and len(record["relationships"]) == 1}
     joints = {}
     for rel in model.by_type("IfcRelConnectsPorts"):
         left, right = owners.get(rel.RelatingPort.id()), owners.get(rel.RelatedPort.id())
         if left is None or right is None or left.GlobalId not in route_guids or right.GlobalId not in route_guids:
             continue
+        if connected_pair_errors(rel.RelatingPort, rel.RelatedPort, ledger, scale):
+            continue
         pa = ifcopenshell.util.placement.get_local_placement(rel.RelatingPort.ObjectPlacement)
         pb = ifcopenshell.util.placement.get_local_placement(rel.RelatedPort.ObjectPlacement)
+        fa = port_facts(rel.RelatingPort, ledger[rel.RelatingPort.id()], scale)
+        fb = port_facts(rel.RelatedPort, ledger[rel.RelatedPort.id()], scale)
         solids_a = [i for rep in left.Representation.Representations for i in rep.Items if i.is_a("IfcSweptAreaSolid") and i.SweptArea.is_a("IfcCircleProfileDef")]
         solids_b = [i for rep in right.Representation.Representations for i in rep.Items if i.is_a("IfcSweptAreaSolid") and i.SweptArea.is_a("IfcCircleProfileDef")]
         if len(solids_a) != 1 or len(solids_b) != 1:
@@ -381,7 +464,8 @@ def _explicit_joints(export_path, route_guids):
         radius_a, radius_b = solids_a[0].SweptArea.Radius*scale, solids_b[0].SweptArea.Radius*scale
         joints[frozenset((left.GlobalId, right.GlobalId))] = {
             "point_a": (pa[:3,3]*scale).tolist(), "point_b": (pb[:3,3]*scale).tolist(),
-            "axis_a": pa[:3,2].tolist(), "axis_b": pb[:3,2].tolist(), "radius_a": radius_a, "radius_b": radius_b,
+            "axis_a": fa["physical_outward_normal"], "axis_b": fb["physical_outward_normal"], "radius_a": radius_a, "radius_b": radius_b,
+            "flow_axis_a": fa["flow_axis"], "flow_axis_b": fb["flow_axis"], "axis_convention": fa["axis_convention"],
             "flow_a": rel.RelatingPort.FlowDirection, "flow_b": rel.RelatedPort.FlowDirection,
             "relationship_guid": rel.GlobalId}
     return joints
@@ -488,8 +572,13 @@ def _transform_object(obj, matrix):
             "matrix": transform.tolist(), "bounds_m": [[str(x) for x in target_lo], [str(x) for x in target_hi]],
             "method": "EXACT_RATIONAL_AFFINE_BOX_IMAGE_AT_DECLARED_BINARY64_MATRIX",
             "frame": "VERIFIED_LOCAL_FEDERATION_ENGINEERING_METRES"}}
+    # Transforming a partial native body cannot repair missing/unsupported IFC
+    # source items. Preserve the source-level disposition even when the copied
+    # native fragment itself happens to be a valid solid.
+    transformed_valid = obj.valid and valid
+    transformed_reason = reason if not valid else obj.reason
     return CadObject(obj.entity_id, obj.guid, obj.step_id, obj.source_sha256, obj.ifc_type, shape,
-                     bounds, volume, tolerance, valid, reason, obj.support_kind, support)
+                     bounds, volume, tolerance, transformed_valid, transformed_reason, obj.support_kind, support)
 
 
 def _revalidate_federation(original_paths, requested):
@@ -585,18 +674,32 @@ def cad_check_routes(original_paths, export_path, route_guids, *, clearance_m=0.
     export_manifest = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {}
     route_transform = transforms.get(export_manifest.get("source_sha256"))
     if route_transform is not None:
-        routes = [_transform_object(o, route_transform) for o in routes]
+        transformed_routes=[]
+        for obj in routes:
+            if checkpoint:
+                checkpoint("cad_federation_transform_route")
+            transformed_routes.append(_transform_object(obj,route_transform))
+        routes=transformed_routes
     obstacles, errors = [], list(route_errors)
     cache_reports = []
     sources = []
     for path in original_paths:
+        source_started=time.perf_counter()
         cache_report = {}
         objects, failures = load_cad(path, threads=threads, cache_directory=cache_directory, cache_report=cache_report,
                                      source_representation_policy=source_representation_policy, checkpoint=checkpoint)
         cache_reports.append(cache_report)
+        source_loaded=time.perf_counter()
         source_root = sha256_file(path)
         if source_root in transforms:
-            objects = [_transform_object(o, transforms[source_root]) for o in objects]
+            transformed_objects=[]
+            for obj in objects:
+                if checkpoint:
+                    checkpoint("cad_federation_transform_object")
+                transformed_objects.append(_transform_object(obj,transforms[source_root]))
+            objects=transformed_objects
+        cache_report.update(source_load_seconds=source_loaded-source_started,
+                            federation_transform_seconds=time.perf_counter()-source_loaded)
         obstacles.extend(objects)
         errors.extend(failures)
         sources.append({"path": str(Path(path).resolve()), "sha256": sha256_file(path)})
@@ -654,6 +757,11 @@ def cad_check_routes(original_paths, export_path, route_guids, *, clearance_m=0.
     coordinate_status = "VERIFIED_SAME_SOURCE_RECORDS" if preservation else "VERIFIED_FEDERATION_EVIDENCE" if verified_external else "UNRESOLVED"
     status = "FAIL" if failed or self_status == "FAIL" else "BLOCKED" if errors or unresolved_geometry or blocked or not routes else "UNKNOWN" if unknown or self_status == "UNKNOWN" else "PASS"
     result = {"checker": "oma-native-cad/1", "status": status,
+              "implementation": {"cad_code_sha256":CODE_SHA256,
+                                 "enclosure_code_sha256":__import__(__package__+".enclosure",fromlist=["CODE_SHA256"]).CODE_SHA256,
+                                 "python_version":sys.version,"numpy_version":np.__version__,
+                                 "ifcopenshell_version":importlib.metadata.version("ifcopenshell"),
+                                 "ocp_version":importlib.metadata.version("cadquery-ocp")},
               "scope": "new_route_vs_all_source_physical_obstacles", "sources": sources,
               "export_sha256": sha256_file(export_path), "route_guids": sorted(route_guids),
               "route_count": len(routes), "obstacle_count": len(obstacles), "pairs_accounted": pairs,

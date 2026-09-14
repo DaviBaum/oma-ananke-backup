@@ -13,13 +13,14 @@ import numpy as np
 
 from oma.ifc.audit import sha256_file
 from oma.ifc.cad import cad_check_routes, load_cad
+from oma.ifc.ports import ownership_ledger, port_facts, connected_pair_errors, circular_owner_radius
 from oma.models import CheckResult, VerificationReport, Verdict
 from oma.store import Store, digest, utcnow
 from oma.verification import CHECKER_VERSION
 from .scenario import RoutingScenario
 
 
-def check_physical_ports(path, cad_objects, source_matrix=None):
+def check_physical_ports(path, cad_objects, source_matrix=None, port_guids=None):
     """Every IFC port must lie on its own solid cap with the claimed outward axis.
 
     Checking only port-to-port coincidence can miss a translated/shortened body.
@@ -36,14 +37,21 @@ def check_physical_ports(path, cad_objects, source_matrix=None):
     transform = np.asarray(source_matrix if source_matrix is not None else np.eye(4), dtype=float)
     by_guid = {s.guid: s for s in cad_objects}
     findings = []
-    for relation in model.by_type("IfcRelConnectsPortToElement"):
-        solid = by_guid.get(relation.RelatedElement.GlobalId)
-        if solid is None:
+    for record in ownership_ledger(model).values():
+        if port_guids is not None and record["port"].GlobalId not in port_guids:
             continue
-        port = relation.RelatingPort
-        frame = ifcopenshell.util.placement.get_local_placement(port.ObjectPlacement)
-        center = transform[:3,:3] @ (frame[:3,3] * scale) + transform[:3,3]
-        axis = transform[:3,:3] @ frame[:3,2]
+        selected = [o for o in record["owners"].values() if o.GlobalId in by_guid]
+        if not selected:
+            continue
+        port = record["port"]
+        solid = by_guid[selected[0].GlobalId]
+        facts = port_facts(port, record, scale, transform)
+        if facts["errors"] or not solid.valid:
+            findings.append({**facts, "owner_guid": solid.guid, "status": "FAIL",
+                             "reason": "Invalid owner, owner-relative placement, flow frame or native owner solid"})
+            continue
+        center = np.asarray(facts["position_m"])
+        axis = np.asarray(facts["physical_outward_normal"])
         tolerance = max(1e-7, solid.kernel_tolerance_m)
         probe = max(1e-4, 20 * tolerance)
         states = []
@@ -51,8 +59,8 @@ def check_physical_ports(path, cad_objects, source_matrix=None):
             classifier = BRepClass3d_SolidClassifier(solid.shape, gp_Pnt(*point), tolerance)
             states.append(classifier.State())
         passed = states == [TopAbs_ON, TopAbs_OUT, TopAbs_IN]
-        findings.append({"port_guid": port.GlobalId, "owner_guid": solid.guid, "status": "PASS" if passed else "FAIL",
-                         "reason": "Physical cap, outside and inside agree with port axis" if passed else "Port does not terminate its owner's actual physical solid with the declared axis",
+        findings.append({**facts, "owner_guid": solid.guid, "status": "PASS" if passed else "FAIL",
+                         "reason": "Physical cap agrees with outward normal derived from IFC flow Axis" if passed else "Port does not terminate its owner's actual physical solid with the declared flow Axis",
                          "states": [str(s) for s in states], "point": center.tolist(), "probe_m": probe, "tolerance_m": tolerance})
     return findings
 
@@ -128,15 +136,31 @@ def _semantics(path, source_path, materialization, scenario, known_physical_guid
         lengths.append(length)
         records.append({"guid": element.GlobalId, "length_m": length, "radius_m": radius})
     owners, owned = {}, {e.id(): [] for e in new_physical}
-    for rel in model.by_type("IfcRelConnectsPortToElement"):
-        if rel.RelatedElement.id() in owned:
-            owners[rel.RelatingPort.id()] = rel.RelatedElement.id()
-            owned[rel.RelatedElement.id()].append(rel.RelatingPort)
+    ledger = ownership_ledger(model)
+    for pid, record in ledger.items():
+        associated = set(record["owners"]) & set(owned)
+        if not associated:
+            continue
+        facts = port_facts(record["port"], record, scale)
+        errors.extend(facts["errors"])
+        if len(associated) == 1:
+            owner_id = next(iter(associated))
+            owners[pid] = owner_id
+            owned[owner_id].append(record["port"])
     links = []
     degree = {p: 0 for p in owners}
+    total_degree = {p: 0 for p in owners}
+    external_links = []
     graph = {e: set() for e in owned}
     for rel in model.by_type("IfcRelConnectsPorts"):
         a, b = rel.RelatingPort.id(), rel.RelatedPort.id()
+        if a in owners or b in owners:
+            errors.extend(connected_pair_errors(rel.RelatingPort, rel.RelatedPort, ledger, scale))
+            for pid in (a, b):
+                if pid in total_degree:
+                    total_degree[pid] += 1
+            if (a in owners) != (b in owners):
+                external_links.append(rel)
         if a in owners and b in owners:
             links.append((a, b))
             degree[a] += 1
@@ -149,7 +173,7 @@ def _semantics(path, source_path, materialization, scenario, known_physical_guid
             pb = ifcopenshell.util.placement.get_local_placement(rel.RelatedPort.ObjectPlacement)[:3, 3] * scale
             if np.linalg.norm(pa - pb) > 1e-7:
                 errors.append("Connected IFC ports occupy different physical positions")
-    if any(len(ports) != 2 for ports in owned.values()) or any(d > 1 for d in degree.values()):
+    if any(len(ports) != 2 for ports in owned.values()) or any(d > 1 for d in total_degree.values()):
         errors.append("Part port ownership/connection multiplicity is inconsistent")
     seen, stack = set(), list(graph)[:1]
     while stack:
@@ -168,6 +192,30 @@ def _semantics(path, source_path, materialization, scenario, known_physical_guid
         for port, expected in ((inlet, scenario.start), (outlet, scenario.end)):
             if port is None or np.linalg.norm(source_matrix[:3,:3] @ (ifcopenshell.util.placement.get_local_placement(port.ObjectPlacement)[:3, 3] * scale) + source_matrix[:3,3] - expected) > 1e-7:
                 errors.append("Exported route terminal position or direction differs from fixed mission")
+        expected_external = set()
+        for role, guid, route_port in (("SOURCE", scenario.source_port_guid, inlet), ("SINK", scenario.sink_port_guid, outlet)):
+            if guid is None:
+                continue
+            try:
+                before = original.by_guid(guid)
+                external = model.by_guid(guid)
+                if not before.is_a("IfcDistributionPort") or route_port is None:
+                    raise ValueError("Unsupported original terminal")
+                if before.FlowDirection != role or before.ConnectedTo or before.ConnectedFrom:
+                    raise ValueError("Original terminal has incompatible flow or is already connected")
+                if str(before) != str(external):
+                    raise ValueError("Original terminal record changed")
+                expected_external.add((external.id(), route_port.id()) if role == "SOURCE" else (route_port.id(), external.id()))
+                errors.extend(port_facts(external, ledger[external.id()], scale)["errors"])
+                declared_owners = ledger[external.id()]["owners"]
+                radius = circular_owner_radius(next(iter(declared_owners.values())), scale) if len(declared_owners) == 1 else None
+                if radius is None or abs(radius - scenario.outer_radius) > 1e-7:
+                    errors.append("Original terminal section is unknown or differs from the fixed service envelope")
+            except (RuntimeError, ValueError, KeyError) as exc:
+                errors.append(f"Original terminal binding invalid: {exc}")
+        actual_external = [(r.RelatingPort.id(), r.RelatedPort.id()) for r in external_links]
+        if len(actual_external) != len(expected_external) or set(actual_external) != expected_external:
+            errors.append("Actual external port bindings differ from the fixed requested original terminals")
     return {"errors": errors, "length_m": sum(lengths), "fitting_count": fittings, "parts": records,
             "connections": len(links), "original_records_checked": len(original_ids), "slope_margins": slopes}
 
@@ -239,6 +287,22 @@ def evaluate_route_state(store, state, baseline, requested, scenario, mission, m
         physical_ports = check_physical_ports(path, actual, matrix)
         port_pass = len(physical_ports) == 2 * len(actual) and all(p["status"] == "PASS" for p in physical_ports)
         add("physical-port-body-attachment", "PASS" if port_pass else "FAIL", "Every terminal/joint port independently classified on its actual solid cap with matching outward direction", witness={"ports": physical_ports})
+        terminal_guids = {g for g in (scenario.source_port_guid, scenario.sink_port_guid) if g is not None}
+        if terminal_guids:
+            import ifcopenshell
+            source_path = store.resolve_path(materialization["source_path"])
+            original_model = ifcopenshell.open(str(source_path))
+            terminal_ledger = ownership_ledger(original_model)
+            owners = {owner.GlobalId for record in terminal_ledger.values() if record["port"].GlobalId in terminal_guids
+                      for owner in record["owners"].values()}
+            terminal_objects, terminal_errors = load_cad(source_path, guids=owners, checkpoint=control.checkpoint)
+            if matrix:
+                terminal_objects = [_transform_object(s, matrix) for s in terminal_objects]
+            terminal_ports = check_physical_ports(source_path, terminal_objects, matrix, terminal_guids)
+            terminal_pass = not terminal_errors and len(terminal_ports) == len(terminal_guids) and all(p["status"] == "PASS" for p in terminal_ports)
+            add("original-terminal-body-attachment", "PASS" if terminal_pass else "FAIL",
+                "Requested existing IFC terminal axes and positions independently checked against their own native source solids",
+                witness={"ports": terminal_ports, "source_errors": terminal_errors})
         enclosed = not errors and len(actual) == len(guids)
         unknown_zone = False
         volume_length = 0.

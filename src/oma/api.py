@@ -160,6 +160,33 @@ def create_app(directory: str | Path | None = None, *, recover: bool = True) -> 
         return {"state_root": project["state_root"], "ports": records[begin:begin+count], "total": len(records), "offset": begin,
                 "next_offset": begin+count if begin+count < len(records) else None}
 
+    @app.get("/api/projects/{project_id}/candidates/{candidate_id}/assurance")
+    def assurance(project_id: str, candidate_id: str):
+        from .project_assurance import candidate_assurance
+        candidate = service.store.candidate(candidate_id)
+        if candidate["project_id"] != project_id:
+            raise IntegrityError("Candidate belongs to another project")
+        return candidate_assurance(service.store, candidate_id)
+
+    @app.get("/api/projects/{project_id}/dependencies")
+    def dependencies(project_id: str, revision: int | None = None, candidate_id: str | None = None):
+        from .project_dependencies import derive_transition
+        from .build_identity import checker_version
+        project = service.selected_project(project_id, revision, candidate_id)
+        selected = service.store.get(project["state_root"])
+        report = None
+        if candidate_id:
+            candidate = service.store.candidate(candidate_id)
+            prior = service.store.get(service.store.run(candidate["run_id"])["base_root"])
+            report = service.store.get(candidate["report_root"]) if candidate.get("report_root") else None
+        else:
+            record = next(row for row in service.store.history(project_id) if row["revision"] == project["revision"])
+            prior = service.store.get(record["parent_root"]) if record.get("parent_root") else selected
+            if record.get("candidate_id"):
+                candidate = service.store.candidate(record["candidate_id"])
+                report = service.store.get(candidate["report_root"]) if candidate.get("report_root") else None
+        return derive_transition(prior, selected, executable=checker_version(), after_report=report)
+
     @app.get("/api/projects/{project_id}/events")
     def events(project_id: str, after: int = 0, limit: int = 200):
         service.store.project(project_id)

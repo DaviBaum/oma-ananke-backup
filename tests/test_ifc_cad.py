@@ -183,6 +183,40 @@ def test_federation_transform_retains_exact_source_enclosure(tmp_path):
     assert not shifted.valid
 
 
+def test_federation_transform_cannot_upgrade_a_valid_fragment_of_incomplete_source():
+    from oma.ifc.cad import _transform_object
+    fragment=box("partial-source-fragment")
+    fragment.valid=False
+    fragment.reason="PARTIAL_NATIVE_SOURCE_CONVERSION_FAILURE"
+    fragment.support_kind="unresolved_native_support"
+    fragment.support_evidence={"native_topology_valid":True,"exact_source_enclosure":{"status":"UNKNOWN","reason":"UNSUPPORTED_SOURCE_ITEM"}}
+    transform=np.eye(4);transform[:3,3]=[5.,6.,7.]
+    moved=_transform_object(fragment,transform)
+    assert _inspect_shape(moved.shape)[3]
+    assert not moved.valid
+    assert moved.reason==fragment.reason
+    assert check_pair(box("remote",origin=(100.,100.,100.)),moved)["status"]=="UNKNOWN"
+
+
+def test_federation_has_cooperative_checkpoint_between_source_object_transforms(tmp_path,monkeypatch):
+    import oma.ifc.cad as cad
+    from oma.ifc.audit import sha256_file
+    source=make_fixture(tmp_path/"source.ifc")
+    exported=tmp_path/"route.ifc"
+    manifest=export_route(source,exported,{"route_id":"checkpoint","system_type":"PRESSURE_PIPE",
+        "points_m":[[0.,4.,3.],[4.,4.,3.]],"diameter_m":.1})
+    transform=np.eye(4);transform[:3,3]=[5.,6.,7.]
+    monkeypatch.setattr(cad,"_revalidate_federation",lambda *args:{"sources":[{"source_sha256":sha256_file(source),"transform":transform.tolist()}]})
+    cancellation=RuntimeError("Pause requested at a consistent transformed source object boundary")
+    def checkpoint(stage):
+        if stage=="cad_federation_transform_object":
+            raise cancellation
+    with pytest.raises(RuntimeError) as error:
+        cad_check_routes([source],exported,[p["ifc_guid"] for p in manifest["added_parts"]],
+                         coordinate_evidence={"status":"VERIFIED"},checkpoint=checkpoint)
+    assert error.value is cancellation
+
+
 def test_cache_checkpoint_cancellation_is_not_converted_to_corruption(tmp_path):
     source=make_fixture(tmp_path / "source.ifc")
     cache=tmp_path / "cache"
@@ -223,3 +257,153 @@ def test_accelerator_false_negative_is_restored_by_independent_cpu_guard(tmp_pat
     assert checked["status"] == "FAIL"
     assert checked["pairs_accounted"] == 1
     assert checked["performance"]["broadphase"]["false_negative_guard_reinsertions"] == 1
+
+
+def test_loose_wire_cannot_disappear_during_solid_promotion():
+    from OCP.TopoDS import TopoDS_Compound
+    from OCP.BRep import BRep_Builder
+    from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeEdge
+    from OCP.gp import gp_Pnt
+    from oma.ifc.cad import _promote_closed_surfaces
+    shape=TopoDS_Compound();builder=BRep_Builder();builder.MakeCompound(shape)
+    builder.Add(shape,box("body").shape)
+    builder.Add(shape,BRepBuilderAPI_MakeEdge(gp_Pnt(10.,0.,0.),gp_Pnt(11.,0.,0.)).Edge())
+    assert _inspect_shape(shape)[4] == "PARTIALLY_NON_SOLID_TOPOLOGY"
+    promoted,evidence=_promote_closed_surfaces(shape)
+    assert promoted is None
+    assert evidence["reason"] == "LOOSE_SOURCE_EDGES_OR_VERTICES_CANNOT_BE_DROPPED"
+
+
+def test_failed_body_sibling_blocks_even_when_native_product_returns_a_solid(tmp_path):
+    import ifcopenshell
+    source=make_fixture(tmp_path / "partial-source.ifc")
+    model=ifcopenshell.open(str(source))
+    product=model.by_type("IfcBuildingElementProxy")[0]
+    representation=product.Representation.Representations[0]
+    existing=representation.Items[0]
+    profile=model.create_entity("IfcCircleProfileDef",ProfileType="AREA",Radius=-1.)
+    malformed=model.create_entity("IfcExtrudedAreaSolid",SweptArea=profile,Position=existing.Position,
+                                   ExtrudedDirection=existing.ExtrudedDirection,Depth=1.)
+    representation.Items=list(representation.Items)+[malformed]
+    model.write(str(source))
+    cache=tmp_path / "cache"
+    objects,errors=load_cad(source,cache_directory=cache)
+    assert not errors and len(objects)==1
+    assert not objects[0].valid
+    assert objects[0].reason == "PARTIAL_NATIVE_SOURCE_CONVERSION_FAILURE"
+    assert objects[0].support_evidence["native_topology_valid"]
+    report={}
+    warm,warm_errors=load_cad(source,cache_directory=cache,cache_report=report)
+    assert report["status"] == "HIT_REVALIDATED"
+    assert not warm_errors and not warm[0].valid
+    assert check_pair(box("remote",origin=(100.,100.,100.)),warm[0])["status"] == "UNKNOWN"
+
+
+def test_cache_migration_revalidates_native_shape_and_rebuilds_prior_unknown_support(tmp_path,monkeypatch):
+    import oma.ifc.cad as cad
+    import oma.ifc.enclosure as enclosure
+    from test_ifc_enclosure import fixture
+    source=tmp_path / "face.ifc";fixture(source)
+    cache=tmp_path / "cache"
+    original=enclosure.ExactIfcEncloser.enclose_product
+    monkeypatch.setattr(enclosure,"CODE_SHA256","prior-enclosure-implementation")
+    monkeypatch.setattr(enclosure.ExactIfcEncloser,"enclose_product",lambda self,product:{"status":"UNKNOWN","reason":"PRIOR_UNSUPPORTED_SOURCE_ITEM"})
+    cold,cold_errors=load_cad(source,cache_directory=cache)
+    assert not cold_errors and cold[0].support_kind=="unresolved_native_support"
+    calls=[]
+    def current_check(self,product):
+        calls.append(product.id())
+        return original(self,product)
+    monkeypatch.setattr(enclosure,"CODE_SHA256","current-enclosure-implementation")
+    monkeypatch.setattr(enclosure.ExactIfcEncloser,"enclose_product",current_check)
+    monkeypatch.setattr(cad,"_load_cad_uncached",lambda *args,**kwargs:pytest.fail("Unchanged native faces should not be converted or sewn again"))
+    report={}
+    migrated,errors=load_cad(source,cache_directory=cache,cache_report=report)
+    assert report["status"]=="REUSED_NATIVE_RECHECKED_SOURCE_SUPPORT"
+    assert not errors and calls==[migrated[0].step_id]
+    assert not migrated[0].valid and migrated[0].support_kind=="exact_source_support_enclosure"
+    certificate=migrated[0].support_evidence["exact_source_enclosure"]
+    assert certificate["checker_code_sha256"]=="current-enclosure-implementation"
+    assert certificate["bounds_m"]==[["1","2","3"],["3","3","3"]]
+    warm_report={}
+    load_cad(source,cache_directory=cache,cache_report=warm_report)
+    assert warm_report["status"]=="HIT_REVALIDATED"
+    assert len(calls)==2
+
+
+@pytest.mark.parametrize("fault",("blob","topology","accounting","old_enclosure_bounds"))
+def test_cache_migration_rejects_corrupt_native_artifacts_and_ignores_old_enclosure_bounds(tmp_path,monkeypatch,fault):
+    import hashlib
+    import oma.ifc.enclosure as enclosure
+    from test_ifc_enclosure import fixture
+    source=tmp_path / "face.ifc";fixture(source)
+    cache=tmp_path / "cache"
+    load_cad(source,cache_directory=cache)
+    manifest_path=next((cache/"entries").glob("*/manifest.json"))
+    manifest=json.loads(manifest_path.read_text())
+    if fault=="blob":
+        next((cache/"objects").glob("*.brep.gz")).write_bytes(b"wrong native shape bytes")
+    elif fault=="topology":
+        manifest["objects"][0]["metadata"]["valid"]=True
+    elif fault=="accounting":
+        manifest["objects"]=[]
+    else:
+        manifest["objects"][0]["metadata"]["support_evidence"]["exact_source_enclosure"]["bounds_m"]=[["999","999","999"],["999","999","999"]]
+    manifest_path.write_text(json.dumps(manifest))
+    manifest_path.with_name("manifest.sha256").write_text(hashlib.sha256(manifest_path.read_bytes()).hexdigest())
+    monkeypatch.setattr(enclosure,"CODE_SHA256","new-enclosure-version")
+    report={}
+    objects,errors=load_cad(source,cache_directory=cache,cache_report=report)
+    assert not errors and len(objects)==1 and not objects[0].valid
+    assert report["status"]==("REUSED_NATIVE_RECHECKED_SOURCE_SUPPORT" if fault=="old_enclosure_bounds" else "CORRUPT_REBUILT")
+    assert objects[0].support_evidence["exact_source_enclosure"]["bounds_m"]==[["1","2","3"],["3","3","3"]]
+
+
+@pytest.mark.parametrize("changed",("cad_code_sha256","source_sha256","ifcopenshell_version","ocp_version","python_version","numpy_version","guids","geometry_policy","format"))
+def test_native_migration_applicability_excludes_changed_source_code_kernels_or_policy(tmp_path,changed):
+    from oma.ifc.cad_cache import _key,_same_native_applicability
+    source=make_fixture(tmp_path/"source.ifc")
+    current=_key(source,None,"NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES")
+    previous=dict(current)
+    previous["enclosure_code_sha256"]="old-enclosure"
+    previous["cache_code_sha256"]="old-reader"
+    assert _same_native_applicability(previous,current)
+    previous[changed]="changed-applicability"
+    assert not _same_native_applicability(previous,current)
+
+
+def test_cache_migration_keeps_unsupported_sibling_blocker(tmp_path,monkeypatch):
+    import oma.ifc.enclosure as enclosure
+    from test_ifc_enclosure import fixture
+    source=tmp_path/"mixed-source.ifc";fixture(source,mixed=True)
+    cache=tmp_path/"cache"
+    cold,_=load_cad(source,cache_directory=cache)
+    assert cold and not cold[0].valid
+    monkeypatch.setattr(enclosure,"CODE_SHA256","new-enclosure-version")
+    report={}
+    objects,errors=load_cad(source,cache_directory=cache,cache_report=report)
+    assert not errors and report["status"]=="REUSED_NATIVE_RECHECKED_SOURCE_SUPPORT"
+    assert objects[0].support_kind=="unresolved_native_support"
+    assert check_pair(box("remote",origin=(100.,100.,100.)),objects[0])["status"]=="UNKNOWN"
+
+
+def test_current_cache_reconstructs_exact_enclosure_bounds_and_kernel_tolerance(tmp_path):
+    import hashlib
+    from test_ifc_enclosure import fixture
+    source=tmp_path/"face.ifc";fixture(source)
+    cache=tmp_path/"cache"
+    cold,_=load_cad(source,cache_directory=cache)
+    manifest_path=next((cache/"entries").glob("*/manifest.json"))
+    manifest=json.loads(manifest_path.read_text())
+    metadata=manifest["objects"][0]["metadata"]
+    metadata["bounds"]=[999.]*6
+    metadata["kernel_tolerance_m"]=-100.
+    manifest_path.write_text(json.dumps(manifest))
+    manifest_path.with_name("manifest.sha256").write_text(hashlib.sha256(manifest_path.read_bytes()).hexdigest())
+    report={}
+    warm,errors=load_cad(source,cache_directory=cache,cache_report=report)
+    assert not errors and report["status"]=="HIT_REVALIDATED"
+    assert warm[0].bounds==cold[0].bounds
+    assert warm[0].kernel_tolerance_m==cold[0].kernel_tolerance_m
+    through=box("through",origin=(1.5,2.5,2.9),size=(.1,.1,.2))
+    assert check_pair(through,warm[0],clearance_m=.1)["status"]=="BLOCKED"

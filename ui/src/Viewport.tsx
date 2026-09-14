@@ -119,14 +119,17 @@ function cOrigin(origin: THREE.Vector3): Vec3 {
 }
 function entityBounds(data: MeshData, origin: THREE.Vector3) {
   const box = new THREE.Box3();
-  for (let i = 0; i < data.vertices.length; i += 3)
-    box.expandByPoint(
-      new THREE.Vector3(
-        data.vertices[i] - origin.x,
-        data.vertices[i + 1] - origin.y,
-        data.vertices[i + 2] - origin.z,
-      ),
-    );
+  for (let i = 0; i < data.vertices.length; i += 3) {
+    const x = data.vertices[i] - origin.x,
+      y = data.vertices[i + 1] - origin.y,
+      z = data.vertices[i + 2] - origin.z;
+    box.min.x = Math.min(box.min.x, x);
+    box.max.x = Math.max(box.max.x, x);
+    box.min.y = Math.min(box.min.y, y);
+    box.max.y = Math.max(box.max.y, y);
+    box.min.z = Math.min(box.min.z, z);
+    box.max.z = Math.max(box.max.z, z);
+  }
   return box;
 }
 export default function Viewport(props: Props) {
@@ -144,6 +147,8 @@ export default function Viewport(props: Props) {
     [webglError, setWebglError] = useState<string | null>(null),
     [stats, setStats] = useState({ triangles: 0, objects: 0 });
   const [sectionBox, setSectionBox] = useState<Bounds | null>(null);
+  const [preparing, setPreparing] = useState(false);
+  const [geometryReady, setGeometryReady] = useState(0);
   const viewState = useRef({
     sectionBox,
     mode,
@@ -171,6 +176,8 @@ export default function Viewport(props: Props) {
     last: number;
     intervals: number[];
     costs: number[];
+    gpuCosts: number[];
+    gpuDisjoint: boolean;
     position: THREE.Vector3;
     target: THREE.Vector3;
     offset: THREE.Vector3;
@@ -194,6 +201,18 @@ export default function Viewport(props: Props) {
       frame_interval_p50_ms: percentile(run.intervals, 0.5),
       frame_interval_p95_ms: percentile(run.intervals, 0.95),
       cpu_submission_p95_ms: percentile(run.costs, 0.95),
+      gpu_timer_status: run.gpuDisjoint
+        ? "DISJOINT"
+        : run.metadata.gpu_timer_status === "UNAVAILABLE"
+          ? "UNAVAILABLE"
+          : run.gpuCosts.length
+            ? "AVAILABLE"
+            : "NO_SAMPLES",
+      gpu_frame_p95_ms:
+        run.gpuDisjoint || !run.gpuCosts.length
+          ? undefined
+          : percentile(run.gpuCosts, 0.95),
+      gpu_samples: run.gpuCosts.length,
       frames_over_33_33ms: run.intervals.filter((n) => n > 1000 / 30).length,
       average_30fps_gate: reason
         ? "NOT_EVALUATED"
@@ -241,6 +260,8 @@ export default function Viewport(props: Props) {
         draw_calls: c.renderer.info.render.calls,
         width: c.renderer.domElement.clientWidth,
         height: c.renderer.domElement.clientHeight,
+        drawing_buffer_width: gl.drawingBufferWidth,
+        drawing_buffer_height: gl.drawingBufferHeight,
         pixel_ratio: c.renderer.getPixelRatio(),
         clipped: clip || !!sectionBox,
         xray,
@@ -252,8 +273,11 @@ export default function Viewport(props: Props) {
         measurement_ms: 10000,
         path: "Fixed 360-degree Z-axis orbit about fitted visible bounds; constant radius/elevation. Actual scene rendered each animation frame.",
         frame_cost:
-          "Frame intervals measure delivered RAF cadence during camera motion. CPU submission timing excludes asynchronous GPU completion; this is not a GPU timer query.",
+          "Frame intervals measure delivered RAF cadence during camera motion. CPU submission timing excludes asynchronous GPU completion. When available, EXT_disjoint_timer_query_webgl2 samples actual GPU render duration every tenth measured frame; disjoint queries are rejected.",
       },
+      gpu_timer_status: gl.getExtension("EXT_disjoint_timer_query_webgl2")
+        ? "NO_SAMPLES"
+        : "UNAVAILABLE",
       frames: 0,
       elapsed_ms: 0,
       average_fps: 0,
@@ -268,6 +292,8 @@ export default function Viewport(props: Props) {
       last: 0,
       intervals: [],
       costs: [],
+      gpuCosts: [],
+      gpuDisjoint: false,
       position: c.camera.position.clone(),
       target: c.controls.target.clone(),
       offset: c.camera.position.clone().sub(c.controls.target),
@@ -368,6 +394,12 @@ export default function Viewport(props: Props) {
       side: THREE.DoubleSide,
     });
     const pickPixel = new Uint8Array(4);
+    const gpuGl = renderer.getContext() as WebGL2RenderingContext;
+    const gpuTimer = gpuGl.getExtension("EXT_disjoint_timer_query_webgl2");
+    const gpuQueries: {
+      query: WebGLQuery;
+      run: NonNullable<typeof benchmarkRun.current>;
+    }[] = [];
     let pending = true,
       frame = 0;
     const context: SceneContext = {
@@ -434,6 +466,8 @@ export default function Viewport(props: Props) {
         (sectionOutline.material as THREE.Material).dispose();
         grid.geometry.dispose();
         (grid.material as THREE.Material).dispose();
+        for (const pendingQuery of gpuQueries)
+          gpuGl.deleteQuery(pendingQuery.query);
         pickTarget.dispose();
         pickMaterial.dispose();
         renderer.dispose();
@@ -462,6 +496,33 @@ export default function Viewport(props: Props) {
     resize.observe(container);
     const clock = () => {
       frame = requestAnimationFrame(clock);
+      if (gpuTimer && gpuQueries.length) {
+        const disjoint = !!gpuGl.getParameter(gpuTimer.GPU_DISJOINT_EXT);
+        for (let i = gpuQueries.length - 1; i >= 0; i--) {
+          const pendingQuery = gpuQueries[i];
+          const available = gpuGl.getQueryParameter(
+            pendingQuery.query,
+            gpuGl.QUERY_RESULT_AVAILABLE,
+          );
+          if (disjoint) {
+            pendingQuery.run.gpuDisjoint = true;
+            pendingQuery.run.gpuCosts = [];
+          }
+          if (available || disjoint) {
+            if (!disjoint)
+              pendingQuery.run.gpuCosts.push(
+                Number(
+                  gpuGl.getQueryParameter(
+                    pendingQuery.query,
+                    gpuGl.QUERY_RESULT,
+                  ),
+                ) / 1e6,
+              );
+            gpuGl.deleteQuery(pendingQuery.query);
+            gpuQueries.splice(i, 1);
+          }
+        }
+      }
       const run = benchmarkRun.current,
         now = performance.now();
       let sample = false;
@@ -495,6 +556,11 @@ export default function Viewport(props: Props) {
       if (!pending) return;
       pending = false;
       const renderStart = performance.now();
+      const gpuQuery =
+        sample && run && gpuTimer && run.intervals.length % 10 === 0
+          ? gpuGl.createQuery()
+          : null;
+      if (gpuQuery) gpuGl.beginQuery(gpuTimer!.TIME_ELAPSED_EXT, gpuQuery);
       const state = viewState.current;
       const z =
         context.bounds.min.z +
@@ -534,6 +600,7 @@ export default function Viewport(props: Props) {
         renderer.setScissorTest(true);
         renderer.setScissor(0, 0, (width * state.split) / 100, height);
         overlays.visible = false;
+        selection.visible = !selection.userData.candidate;
         candidateBatches.forEach((child) => {
           child.visible = false;
         });
@@ -545,6 +612,7 @@ export default function Viewport(props: Props) {
           height,
         );
         overlays.visible = true;
+        selection.visible = true;
         candidateBatches.forEach((child) => {
           child.visible = true;
         });
@@ -552,7 +620,12 @@ export default function Viewport(props: Props) {
         renderer.setScissorTest(false);
       } else {
         overlays.visible = true;
+        selection.visible = true;
         renderer.render(scene, context.camera);
+      }
+      if (gpuQuery && run) {
+        gpuGl.endQuery(gpuTimer!.TIME_ELAPSED_EXT);
+        gpuQueries.push({ query: gpuQuery, run });
       }
       if (sample && benchmarkRun.current)
         benchmarkRun.current.costs.push(performance.now() - renderStart);
@@ -640,6 +713,18 @@ export default function Viewport(props: Props) {
     const c = ctx.current;
     if (!c) return;
     const bufferStarted = performance.now();
+    let cancelled = false,
+      committed = false,
+      yieldedAt = performance.now();
+    const prepared = new THREE.Group();
+    const checkpoint = async (force = false) => {
+      if (force || performance.now() - yieldedAt > 12) {
+        await new Promise<void>((resolve) => setTimeout(resolve, 0));
+        yieldedAt = performance.now();
+      }
+      if (cancelled)
+        throw new DOMException("Geometry preparation cancelled", "AbortError");
+    };
     if (benchmarkRun.current)
       finishBenchmarkRef.current("Scene geometry or visibility changed");
     else setBenchmark(null);
@@ -647,174 +732,208 @@ export default function Viewport(props: Props) {
     c.meshes.clear();
     c.pickIds = [""];
     disposeGroup(c.model);
-    if (!props.geometry) {
-      c.meshes.clear();
-      setStats({ triangles: 0, objects: 0 });
-      c.redraw();
-      return;
-    }
-    if (
-      props.geometry.units !== "m" ||
-      (props.geometry.coordinate_system &&
-        props.geometry.coordinate_system !== "world")
-    ) {
-      setWebglError(
-        "Geometry must declare world coordinates in meters. Rendering is blocked until the coordinate audit is resolved.",
-      );
-      return;
-    }
-    const invalid = props.geometry.meshes.filter((m) => !isValidMesh(m));
-    if (invalid.length) {
-      setWebglError(
-        `${invalid.length} mesh artifacts have invalid coordinates or topology. Rendering is blocked; inspect source artifacts.`,
-      );
-      return;
-    }
-    setWebglError(null);
-    c.meshes = indexEntityMeshes(props.geometry.meshes);
-    const rawBounds = new THREE.Box3();
-    for (const m of props.geometry.meshes)
-      for (let i = 0; i < m.vertices.length; i += 3)
-        rawBounds.expandByPoint(
-          new THREE.Vector3(
-            m.vertices[i],
-            m.vertices[i + 1],
-            m.vertices[i + 2],
-          ),
-        );
-    if (rawBounds.isEmpty()) {
-      setStats({ triangles: 0, objects: 0 });
-      c.redraw();
-      return;
-    }
-    const newProject = projectRef.current !== props.projectId;
-    if (newProject) {
-      setSectionBox(null);
-      c.origin.copy(rawBounds.getCenter(new THREE.Vector3()));
-      projectRef.current = props.projectId;
-    }
-    c.bounds.copy(rawBounds).translate(c.origin.clone().negate());
-    const entities = new Map(props.entities.map((e) => [e.id, e]));
-    const groups = new Map<string, MeshData[]>();
-    const proposedIds = new Set(
-      props.candidate?.routes.map((route) => route.id).filter(Boolean) ?? [],
-    );
-    const objectIds = new Set<string>();
-    const pickIndices = new Map<string, number>();
-    let triangleCount = 0;
-    for (const m of props.geometry.meshes) {
-      if (!props.visibleIds.has(m.entity_id) || !m.faces.length) continue;
-      const discipline = String(
-        entities.get(m.entity_id)?.discipline ?? m.discipline ?? "unknown",
-      );
-      const key = `${discipline}|${proposedIds.has(m.entity_id) ? "candidate" : "original"}`;
-      if (!groups.has(key)) groups.set(key, []);
-      groups.get(key)!.push(m);
-      triangleCount += m.faces.length / 3;
-      objectIds.add(m.entity_id);
-      if (!pickIndices.has(m.entity_id)) {
-        pickIndices.set(m.entity_id, c.pickIds.length);
-        c.pickIds.push(m.entity_id);
-      }
-    }
-    for (const [key, items] of groups) {
-      const [discipline, kind] = key.split("|");
-      let chunk: MeshData[] = [],
-        count = 0;
-      const flush = () => {
-        if (!chunk.length) return;
-        const positions = new Float32Array(
-            chunk.reduce((sum, m) => sum + m.vertices.length, 0),
-          ),
-          indices = new Uint32Array(
-            chunk.reduce((sum, m) => sum + m.faces.length, 0),
-          ),
-          ranges: Range[] = [];
-        const pickColors = new Uint8Array(positions.length);
-        let positionOffset = 0,
-          indexOffset = 0;
-        for (const item of chunk) {
-          const offset = positionOffset / 3;
-          const identity = pickIndices.get(item.entity_id)!;
-          for (
-            let k = positionOffset;
-            k < positionOffset + item.vertices.length;
-            k += 3
-          ) {
-            pickColors[k] = identity & 255;
-            pickColors[k + 1] = (identity >>> 8) & 255;
-            pickColors[k + 2] = (identity >>> 16) & 255;
-          }
-          for (let k = 0; k < item.vertices.length; k += 3) {
-            positions[positionOffset++] = item.vertices[k] - c.origin.x;
-            positions[positionOffset++] = item.vertices[k + 1] - c.origin.y;
-            positions[positionOffset++] = item.vertices[k + 2] - c.origin.z;
-          }
-          for (const face of item.faces) indices[indexOffset++] = face + offset;
-          ranges.push({ end: indexOffset / 3, id: item.entity_id });
-        }
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-        geo.setIndex(new THREE.BufferAttribute(indices, 1));
-        geo.setAttribute(
-          "color",
-          new THREE.BufferAttribute(pickColors, 3, true),
-        );
-        geo.computeVertexNormals();
-        geo.computeBoundingSphere();
-        const material = new THREE.MeshStandardMaterial({
-          color: kind === "candidate" ? "#308d76" : disciplineColor(discipline),
-          roughness: 0.78,
-          metalness: 0.025,
-          side: THREE.DoubleSide,
-          transparent: xray,
-          opacity: xray ? 0.2 : 1,
-          depthWrite: !xray,
-        });
-        const mesh = new THREE.Mesh(geo, material);
-        mesh.userData.ranges = ranges;
-        mesh.userData.candidate = kind === "candidate";
-        c.model.add(mesh);
-        chunk = [];
-        count = 0;
-      };
-      for (const item of items) {
-        chunk.push(item);
-        count += item.vertices.length;
-        if (count > 600000) flush();
-      }
-      flush();
-    }
-    const size = c.bounds.getSize(new THREE.Vector3()),
-      span = Math.max(size.x, size.y, 10);
-    c.grid.scale.setScalar(span / 65);
-    c.grid.position.set(
-      c.bounds.getCenter(new THREE.Vector3()).x,
-      c.bounds.getCenter(new THREE.Vector3()).y,
-      c.bounds.min.z - 0.025,
-    );
-    setStats({ triangles: triangleCount, objects: objectIds.size });
-    recordTiming("geometry_buffers_ready", {
-      project_id: props.projectId,
-      state_root: props.geometry.state_root,
-      objects: objectIds.size,
-      triangles: triangleCount,
-      elapsed_ms: performance.now() - bufferStarted,
-    });
-    if (newProject) {
-      const buildingBox = new THREE.Box3();
-      for (const [id, mesh] of c.meshes) {
-        const type = entities.get(id)?.ifc_type ?? "";
-        if (
-          /^Ifc(Wall|Slab|Column|Beam|Roof|Door|Window|Stair|CurtainWall|Member|Plate|Flow|Pipe|Duct)/.test(
-            type,
-          )
-        )
-          buildingBox.union(entityBounds(mesh, c.origin));
-      }
-      c.fit(buildingBox.isEmpty() ? undefined : buildingBox);
-    }
+    disposeGroup(c.selection);
+    disposeGroup(c.overlays);
     c.redraw();
+    setPreparing(!!props.geometry);
+    void (async () => {
+      await checkpoint(true);
+      if (!props.geometry) {
+        c.meshes.clear();
+        setStats({ triangles: 0, objects: 0 });
+        c.redraw();
+        return;
+      }
+      if (
+        props.geometry.units !== "m" ||
+        (props.geometry.coordinate_system &&
+          props.geometry.coordinate_system !== "world")
+      ) {
+        setWebglError(
+          "Geometry must declare world coordinates in meters. Rendering is blocked until the coordinate audit is resolved.",
+        );
+        return;
+      }
+      const invalid: MeshData[] = [];
+      for (const mesh of props.geometry.meshes) {
+        if (!isValidMesh(mesh)) invalid.push(mesh);
+        await checkpoint();
+      }
+      if (invalid.length) {
+        setWebglError(
+          `${invalid.length} mesh artifacts have invalid coordinates or topology. Rendering is blocked; inspect source artifacts.`,
+        );
+        return;
+      }
+      setWebglError(null);
+      c.meshes = indexEntityMeshes(props.geometry.meshes);
+      const rawBounds = new THREE.Box3();
+      const zero = new THREE.Vector3();
+      for (const m of props.geometry.meshes) {
+        rawBounds.union(entityBounds(m, zero));
+        await checkpoint();
+      }
+      if (rawBounds.isEmpty()) {
+        setStats({ triangles: 0, objects: 0 });
+        c.redraw();
+        return;
+      }
+      const newProject = projectRef.current !== props.projectId;
+      if (newProject) {
+        setSectionBox(null);
+        c.origin.copy(rawBounds.getCenter(new THREE.Vector3()));
+      }
+      c.bounds.copy(rawBounds).translate(c.origin.clone().negate());
+      const entities = new Map(props.entities.map((e) => [e.id, e]));
+      const groups = new Map<string, MeshData[]>();
+      const proposedIds = new Set(
+        props.candidate?.routes.map((route) => route.id).filter(Boolean) ?? [],
+      );
+      const objectIds = new Set<string>();
+      const pickIndices = new Map<string, number>();
+      let triangleCount = 0;
+      for (const m of props.geometry.meshes) {
+        await checkpoint();
+        if (!props.visibleIds.has(m.entity_id) || !m.faces.length) continue;
+        const discipline = String(
+          entities.get(m.entity_id)?.discipline ?? m.discipline ?? "unknown",
+        );
+        const key = `${discipline}|${proposedIds.has(m.entity_id) ? "candidate" : "original"}`;
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key)!.push(m);
+        triangleCount += m.faces.length / 3;
+        objectIds.add(m.entity_id);
+        if (!pickIndices.has(m.entity_id)) {
+          pickIndices.set(m.entity_id, c.pickIds.length);
+          c.pickIds.push(m.entity_id);
+        }
+      }
+      for (const [key, items] of groups) {
+        const [discipline, kind] = key.split("|");
+        let chunk: MeshData[] = [],
+          count = 0;
+        const flush = () => {
+          if (!chunk.length) return;
+          const positions = new Float32Array(
+              chunk.reduce((sum, m) => sum + m.vertices.length, 0),
+            ),
+            indices = new Uint32Array(
+              chunk.reduce((sum, m) => sum + m.faces.length, 0),
+            ),
+            ranges: Range[] = [];
+          const pickColors = new Uint8Array(positions.length);
+          let positionOffset = 0,
+            indexOffset = 0;
+          for (const item of chunk) {
+            const offset = positionOffset / 3;
+            const identity = pickIndices.get(item.entity_id)!;
+            for (
+              let k = positionOffset;
+              k < positionOffset + item.vertices.length;
+              k += 3
+            ) {
+              pickColors[k] = identity & 255;
+              pickColors[k + 1] = (identity >>> 8) & 255;
+              pickColors[k + 2] = (identity >>> 16) & 255;
+            }
+            for (let k = 0; k < item.vertices.length; k += 3) {
+              positions[positionOffset++] = item.vertices[k] - c.origin.x;
+              positions[positionOffset++] = item.vertices[k + 1] - c.origin.y;
+              positions[positionOffset++] = item.vertices[k + 2] - c.origin.z;
+            }
+            for (const face of item.faces)
+              indices[indexOffset++] = face + offset;
+            ranges.push({ end: indexOffset / 3, id: item.entity_id });
+          }
+          const geo = new THREE.BufferGeometry();
+          geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+          geo.setIndex(new THREE.BufferAttribute(indices, 1));
+          geo.setAttribute(
+            "color",
+            new THREE.BufferAttribute(pickColors, 3, true),
+          );
+          geo.computeVertexNormals();
+          geo.computeBoundingSphere();
+          const material = new THREE.MeshStandardMaterial({
+            color:
+              kind === "candidate" ? "#308d76" : disciplineColor(discipline),
+            roughness: 0.78,
+            metalness: 0.025,
+            side: THREE.DoubleSide,
+            transparent: xray,
+            opacity: xray ? 0.2 : 1,
+            depthWrite: !xray,
+          });
+          const mesh = new THREE.Mesh(geo, material);
+          mesh.userData.ranges = ranges;
+          mesh.userData.candidate = kind === "candidate";
+          prepared.add(mesh);
+          chunk = [];
+          count = 0;
+        };
+        for (const item of items) {
+          await checkpoint();
+          chunk.push(item);
+          count += item.vertices.length;
+          if (count > 600000) flush();
+        }
+        flush();
+        await checkpoint();
+      }
+      const size = c.bounds.getSize(new THREE.Vector3()),
+        span = Math.max(size.x, size.y, 10);
+      c.grid.scale.setScalar(span / 65);
+      c.grid.position.set(
+        c.bounds.getCenter(new THREE.Vector3()).x,
+        c.bounds.getCenter(new THREE.Vector3()).y,
+        c.bounds.min.z - 0.025,
+      );
+      if (newProject) {
+        const buildingBox = new THREE.Box3();
+        for (const [id, mesh] of c.meshes) {
+          await checkpoint();
+          const type = entities.get(id)?.ifc_type ?? "";
+          if (
+            /^Ifc(Wall|Slab|Column|Beam|Roof|Door|Window|Stair|CurtainWall|Member|Plate|Flow|Pipe|Duct)/.test(
+              type,
+            )
+          )
+            buildingBox.union(entityBounds(mesh, c.origin));
+        }
+        c.fit(buildingBox.isEmpty() ? undefined : buildingBox);
+      }
+      await checkpoint();
+      c.model.add(...[...prepared.children]);
+      projectRef.current = props.projectId;
+      committed = true;
+      setStats({ triangles: triangleCount, objects: objectIds.size });
+      setGeometryReady((value) => value + 1);
+      recordTiming("geometry_buffers_ready", {
+        project_id: props.projectId,
+        state_root: props.geometry.state_root,
+        objects: objectIds.size,
+        triangles: triangleCount,
+        elapsed_ms: performance.now() - bufferStarted,
+      });
+      c.redraw();
+    })()
+      .catch((error: Error) => {
+        if (!cancelled) setWebglError(error.message);
+      })
+      .finally(() => {
+        disposeGroup(prepared);
+        if (!cancelled) setPreparing(false);
+      });
+    return () => {
+      cancelled = true;
+      if (!committed && props.geometry)
+        recordTiming("geometry_preparation_cancelled", {
+          project_id: props.projectId,
+          state_root: props.geometry.state_root,
+          elapsed_ms: performance.now() - bufferStarted,
+        });
+      disposeGroup(prepared);
+    };
   }, [
     props.geometry,
     props.entities,
@@ -827,7 +946,10 @@ export default function Viewport(props: Props) {
     const c = ctx.current;
     if (!c) return;
     disposeGroup(c.selection);
-    if (props.selected) {
+    c.selection.userData.candidate = !!props.candidate?.routes.some(
+      (route) => route.id === props.selected,
+    );
+    if (props.selected && !preparing) {
       const data = c.meshes.get(props.selected);
       if (data) {
         const geo = buildRenderable(data, c.origin);
@@ -854,11 +976,21 @@ export default function Viewport(props: Props) {
       }
     }
     c.redraw();
-  }, [props.selected, props.geometry]);
+  }, [
+    props.selected,
+    props.geometry,
+    props.candidate?.id,
+    geometryReady,
+    preparing,
+  ]);
   useEffect(() => {
     const c = ctx.current;
     if (!c) return;
     disposeGroup(c.overlays);
+    if (preparing) {
+      c.redraw();
+      return;
+    }
     if (props.issue?.witness?.point) {
       const position = new THREE.Vector3(...props.issue.witness.point).sub(
         c.origin,
@@ -954,7 +1086,14 @@ export default function Viewport(props: Props) {
       }
     }
     c.redraw();
-  }, [props.issue, props.candidate, props.geometry, envelopes]);
+  }, [
+    props.issue,
+    props.candidate,
+    props.geometry,
+    envelopes,
+    geometryReady,
+    preparing,
+  ]);
   useEffect(() => {
     const c = ctx.current;
     if (!c) return;
@@ -1218,6 +1357,29 @@ export default function Viewport(props: Props) {
             <Layers2 size={14} />
             Compare candidate geometry
           </button>
+          <button
+            onClick={() => {
+              const c = ctx.current;
+              if (!c) return;
+              const box = new THREE.Box3();
+              for (const route of props.candidate?.routes ?? []) {
+                const mesh = route.id ? c.meshes.get(route.id) : undefined;
+                if (mesh) box.union(entityBounds(mesh, c.origin));
+                else
+                  for (const point of route.points_m ??
+                    route.points ??
+                    route.centerline ??
+                    [])
+                    box.expandByPoint(
+                      new THREE.Vector3(...point).sub(c.origin),
+                    );
+              }
+              if (!box.isEmpty()) c.fit(box.expandByScalar(0.2));
+            }}
+          >
+            <Focus size={13} />
+            Focus candidate
+          </button>
           <span>{props.candidate.status}</span>
         </div>
       )}
@@ -1266,14 +1428,18 @@ export default function Viewport(props: Props) {
           </div>
         </div>
       )}
-      {props.loading && (
+      {(props.loading || preparing) && (
         <div className="viewport-loading">
           <span className="spinner" />
-          <strong>Loading model geometry</strong>
+          <strong>
+            {preparing ? "Preparing model geometry" : "Loading model geometry"}
+          </strong>
           <span>
-            {props.progress
-              ? `${props.progress.received_meshes.toLocaleString()} actual meshes received / ${(props.progress.received_bytes / 1048576).toFixed(1)} MiB decoded`
-              : "Reading actual IFC mesh artifacts"}
+            {preparing
+              ? "Building complete mesh buffers; project switching remains available"
+              : props.progress
+                ? `${props.progress.received_meshes.toLocaleString()} actual meshes received / ${(props.progress.received_bytes / 1048576).toFixed(1)} MiB decoded`
+                : "Reading actual IFC mesh artifacts"}
           </span>
         </div>
       )}
@@ -1295,67 +1461,77 @@ export default function Viewport(props: Props) {
             </span>
           </div>
         )}
-      <div className="navigation-benchmark">
-        {benchmarkPhase ? (
-          <div className="benchmark-progress" role="status">
-            <span className="spinner" />
-            {benchmarkPhase}
+      {(!props.candidate || benchmarkPhase) && (
+        <div className="navigation-benchmark">
+          {benchmarkPhase ? (
+            <div className="benchmark-progress" role="status">
+              <span className="spinner" />
+              {benchmarkPhase}
+              <button
+                onClick={() => finishBenchmark("Cancelled by user")}
+                aria-label="Cancel navigation benchmark"
+              >
+                <X size={13} />
+              </button>
+            </div>
+          ) : (
             <button
-              onClick={() => finishBenchmark("Cancelled by user")}
-              aria-label="Cancel navigation benchmark"
-            >
-              <X size={13} />
-            </button>
-          </div>
-        ) : (
-          <button
-            disabled={!stats.objects || mode !== "perspective" || props.loading}
-            onClick={startBenchmark}
-            title="2-second warmup, then a measured 10-second orbit of this scene"
-          >
-            <Gauge size={13} /> Navigation benchmark
-          </button>
-        )}
-        {benchmark && (
-          <div
-            className="benchmark-result"
-            data-testid="navigation-benchmark-result"
-          >
-            <strong>
-              {benchmark.status === "COMPLETED"
-                ? `${benchmark.average_fps.toFixed(1)} FPS`
-                : "Benchmark cancelled"}
-            </strong>
-            <span>
-              {benchmark.scene.objects.toLocaleString()} objects {"\u00b7"}{" "}
-              {benchmark.frame_interval_p95_ms.toFixed(1)} ms p95
-            </span>
-            <span
-              className={
-                benchmark.average_30fps_gate === "PASS"
-                  ? "benchmark-pass"
-                  : "benchmark-fail"
+              disabled={
+                !stats.objects || mode !== "perspective" || props.loading
               }
+              onClick={startBenchmark}
+              title="2-second warmup, then a measured 10-second orbit of this scene"
             >
-              30 FPS mean gate: {benchmark.average_30fps_gate}
-            </span>
-            <button
-              onClick={() =>
-                downloadJson(
-                  benchmark,
-                  `oma-navigation-${props.projectId}.json`,
-                )
-              }
-            >
-              <Download size={12} /> JSON evidence
+              <Gauge size={13} /> Navigation benchmark
             </button>
-            <details>
-              <summary>Measurement record</summary>
-              <pre>{JSON.stringify(benchmark, null, 2)}</pre>
-            </details>
-          </div>
-        )}
-      </div>
+          )}
+          {benchmark && (
+            <div
+              className="benchmark-result"
+              data-testid="navigation-benchmark-result"
+            >
+              <strong>
+                {benchmark.status === "COMPLETED"
+                  ? `${benchmark.average_fps.toFixed(1)} FPS`
+                  : "Benchmark cancelled"}
+              </strong>
+              <span>
+                {benchmark.scene.objects.toLocaleString()} objects {"\u00b7"}{" "}
+                {benchmark.frame_interval_p95_ms.toFixed(1)} ms p95
+              </span>
+              {benchmark.gpu_frame_p95_ms !== undefined && (
+                <span>
+                  GPU p95 {benchmark.gpu_frame_p95_ms.toFixed(2)} ms (
+                  {benchmark.gpu_samples} queries)
+                </span>
+              )}
+              <span
+                className={
+                  benchmark.average_30fps_gate === "PASS"
+                    ? "benchmark-pass"
+                    : "benchmark-fail"
+                }
+              >
+                30 FPS mean gate: {benchmark.average_30fps_gate}
+              </span>
+              <button
+                onClick={() =>
+                  downloadJson(
+                    benchmark,
+                    `oma-navigation-${props.projectId}.json`,
+                  )
+                }
+              >
+                <Download size={12} /> JSON evidence
+              </button>
+              <details>
+                <summary>Measurement record</summary>
+                <pre>{JSON.stringify(benchmark, null, 2)}</pre>
+              </details>
+            </div>
+          )}
+        </div>
+      )}
       <div className="viewport-bottom">
         <span>
           <span className="legend-dot" />

@@ -1,4 +1,4 @@
-"""Certified outer boxes for a finite, explicitly supported IFC face subset.
+"""Certified outer boxes for an explicitly supported IFC geometry subset.
 
 Decimal STEP coordinates are read as rationals from the immutable source bytes.
 Affine axes are normalized with rational interval square roots. No OpenCASCADE
@@ -14,7 +14,7 @@ import re
 from threading import RLock
 
 from oma.optimization.physical import Interval as I, sqrt_interval
-from oma.exact import orient3d
+from oma.exact import orient2d, orient3d
 
 CODE_SHA256 = sha256(Path(__file__).read_bytes()).hexdigest()
 
@@ -199,6 +199,38 @@ def _axis_matrix(origin, x, z, y_hint=None, scales=(1, 1, 1)):
     return tuple(tuple(columns[j][i] * scales[j] for j in range(3)) + (_iv(origin[i]),) for i in range(3)) + ((_iv(0), _iv(0), _iv(0), _iv(1)),)
 
 
+def _on_segment2(a, b, p):
+    return orient2d(a,b,p) == 0 and all(min(a[i],b[i]) <= p[i] <= max(a[i],b[i]) for i in range(2))
+
+
+def _segments_meet2(a, b, c, d):
+    u,v,w,z = orient2d(a,b,c),orient2d(a,b,d),orient2d(c,d,a),orient2d(c,d,b)
+    return (u*v < 0 and w*z < 0) or any((
+        u == 0 and _on_segment2(a,b,c), v == 0 and _on_segment2(a,b,d),
+        w == 0 and _on_segment2(c,d,a), z == 0 and _on_segment2(c,d,b)))
+
+
+def _inside_polygon2(point, loop):
+    """Exact even-odd test, returning False for a boundary point."""
+    parity = False
+    for a,b in zip(loop,loop[1:]):
+        if _on_segment2(a,b,point):
+            return False
+        if (a[1] > point[1]) != (b[1] > point[1]):
+            cross_x = a[0] + (point[1]-a[1])*(b[0]-a[0])/(b[1]-a[1])
+            if cross_x > point[0]:
+                parity = not parity
+    return parity
+
+
+def _box(points):
+    return tuple(min(p[i].lo for p in points) for i in range(3)), tuple(max(p[i].hi for p in points) for i in range(3))
+
+
+def _box_corners(lo, hi):
+    return [tuple(_iv(hi[i] if mask & (1 << i) else lo[i]) for i in range(3)) for mask in range(8)]
+
+
 class ExactIfcEncloser:
     def __init__(self, source_path, model, *, vertex_hull_completion=False):
         self.raw = StepRationals(source_path, model)
@@ -213,6 +245,115 @@ class ExactIfcEncloser:
         if not isinstance(value, tuple) or len(value) != 3 or not all(isinstance(x, Q) for x in value):
             raise EnclosureUnknown("EXPECTED_THREE_SOURCE_RATIONAL_COORDINATES")
         return value
+
+    def _coords2(self, entity, name="Coordinates"):
+        value = self.g(entity, name)
+        if not isinstance(value, tuple) or len(value) != 2 or not all(isinstance(x,Q) for x in value):
+            raise EnclosureUnknown("EXPECTED_TWO_SOURCE_RATIONAL_COORDINATES")
+        return value
+
+    def _positive(self, entity, attribute):
+        value = self.g(entity, attribute)
+        if not isinstance(value,Q) or value <= 0:
+            raise EnclosureUnknown("NONPOSITIVE_OR_INVALID_" + attribute.upper())
+        return value
+
+    def _axis2(self, entity):
+        if entity is None:
+            return _identity()
+        if not entity.is_a("IfcAxis2Placement2D"):
+            raise EnclosureUnknown("UNSUPPORTED_PROFILE_PLACEMENT")
+        origin = self._coords2(self.g(entity,"Location"))
+        direction = self.g(entity,"RefDirection")
+        x = self._coords2(direction,"DirectionRatios") if direction else (Q(1),Q(0))
+        return _axis_matrix((*origin,Q(0)), (*x,Q(0)), (0,0,1))
+
+    def _polyline2(self, curve):
+        if curve.is_a() == "IfcPolyline":
+            points = tuple(self._coords2(p) for p in self.g(curve,"Points"))
+        elif curve.is_a() == "IfcIndexedPolyCurve":
+            point_list = self.g(curve,"Points")
+            if point_list.is_a() != "IfcCartesianPointList2D":
+                raise EnclosureUnknown("NON_2D_PROFILE_POINT_LIST")
+            points = self.g(point_list,"CoordList")
+            if not points or any(len(p) != 2 or any(not isinstance(v,Q) for v in p) for p in points):
+                raise EnclosureUnknown("INVALID_PROFILE_POINT_LIST")
+            segments = self.g(curve,"Segments")
+            if segments is not None:
+                ordered = []
+                for segment in segments:
+                    if not (isinstance(segment,tuple) and len(segment)==2 and segment[0]=="IFCLINEINDEX"
+                            and len(segment[1])==1 and isinstance(segment[1][0],tuple) and len(segment[1][0])>=2):
+                        raise EnclosureUnknown("UNSUPPORTED_PROFILE_ARC_OR_SEGMENT")
+                    indices = segment[1][0]
+                    if any(not isinstance(i,Q) or i.denominator != 1 or not 1 <= i <= len(points) for i in indices):
+                        raise EnclosureUnknown("PROFILE_INDEX_OUT_OF_RANGE")
+                    part = [points[int(i)-1] for i in indices]
+                    if ordered and ordered[-1] != part[0]:
+                        raise EnclosureUnknown("DISCONNECTED_PROFILE_SEGMENTS")
+                    ordered.extend(part if not ordered else part[1:])
+                points = tuple(ordered)
+        else:
+            raise EnclosureUnknown("UNSUPPORTED_PROFILE_CURVE:" + curve.is_a())
+        if len(points) < 4 or points[0] != points[-1]:
+            raise EnclosureUnknown("OPEN_OR_SHORT_PROFILE_CURVE")
+        # Bounded exact work; exhaustion is not evidence of malformed geometry.
+        if len(points) > 2048:
+            raise EnclosureUnknown("PROFILE_VALIDATION_BUDGET")
+        if any(a==b for a,b in zip(points,points[1:])):
+            raise EnclosureUnknown("ZERO_LENGTH_PROFILE_SEGMENT")
+        if sum(a[0]*b[1]-a[1]*b[0] for a,b in zip(points,points[1:])) == 0:
+            raise EnclosureUnknown("ZERO_AREA_PROFILE")
+        edges = list(zip(points,points[1:]))
+        for i,(a,b) in enumerate(edges):
+            for j in range(i+1,len(edges)):
+                c,d = edges[j]
+                if j == i+1 or (i==0 and j==len(edges)-1):
+                    # Adjacent segments may share exactly their endpoint, but
+                    # collinear backtracking has overlapping interiors.
+                    common = b if j == i+1 else a
+                    other_a = a if j == i+1 else b
+                    other_b = d if j == i+1 else c
+                    if orient2d(other_a,common,other_b)==0 and (
+                            _on_segment2(other_a,common,other_b) or _on_segment2(common,other_b,other_a)):
+                        raise EnclosureUnknown("OVERLAPPING_PROFILE_SEGMENTS")
+                elif _segments_meet2(a,b,c,d):
+                    raise EnclosureUnknown("SELF_INTERSECTING_PROFILE")
+        return points
+
+    def _profile(self, profile):
+        if self.g(profile,"ProfileType") != "AREA":
+            raise EnclosureUnknown("NON_AREA_EXTRUSION_PROFILE")
+        kind = profile.is_a()
+        if kind == "IfcRectangleProfileDef":
+            x,y = self._positive(profile,"XDim")/2,self._positive(profile,"YDim")/2
+            points = ((-x,-y),(x,-y),(x,y),(-x,y))
+        elif kind == "IfcCircleProfileDef":
+            radius = self._positive(profile,"Radius")
+            # The entire disk is contained in this square. Corners are an
+            # enclosure witness, not a tessellation of the circular boundary.
+            points = ((-radius,-radius),(radius,-radius),(radius,radius),(-radius,radius))
+        elif kind in ("IfcArbitraryClosedProfileDef","IfcArbitraryProfileDefWithVoids"):
+            outer = self._polyline2(self.g(profile,"OuterCurve"))
+            inners = [self._polyline2(c) for c in self.g(profile,"InnerCurves",()) or ()]
+            if kind == "IfcArbitraryProfileDefWithVoids" and not inners:
+                raise EnclosureUnknown("MISSING_PROFILE_INNER_CURVES")
+            loops = [outer]+inners
+            for i,loop in enumerate(loops):
+                for other in loops[i+1:]:
+                    if any(_segments_meet2(a,b,c,d) for a,b in zip(loop,loop[1:]) for c,d in zip(other,other[1:])):
+                        raise EnclosureUnknown("INTERSECTING_PROFILE_BOUNDARIES")
+            if any(not _inside_polygon2(h[0],outer) for h in inners):
+                raise EnclosureUnknown("PROFILE_VOID_OUTSIDE_OUTER")
+            if any(_inside_polygon2(a[0],b) or _inside_polygon2(b[0],a) for i,a in enumerate(inners) for b in inners[i+1:]):
+                raise EnclosureUnknown("NESTED_PROFILE_VOIDS")
+            points = outer[:-1]
+        else:
+            # In particular, tapered/hollow/filleted subclasses are not silently
+            # interpreted as their simpler parent profile.
+            raise EnclosureUnknown("UNSUPPORTED_EXTRUSION_PROFILE:"+kind)
+        matrix = self._axis2(self.g(profile,"Position"))
+        return [_apply(matrix,(*p,Q(0))) for p in points]
 
     def _direction(self, entity, default):
         return self._coords(entity, "DirectionRatios") if entity else default
@@ -386,6 +527,62 @@ class ExactIfcEncloser:
             raise EnclosureUnknown("EMPTY_SOURCE_FACE_SET")
         return result, face_count
 
+    def _support(self, item, transform, coverage, seen=frozenset()):
+        if item.id() in seen:
+            raise EnclosureUnknown("CYCLIC_GEOMETRIC_OPERAND")
+        seen = seen | {item.id()}
+        if item.is_a() == "IfcExtrudedAreaSolid":
+            depth = self._positive(item,"Depth")
+            direction = self._coords(self.g(item,"ExtrudedDirection"),"DirectionRatios")
+            if direction[2] == 0:
+                raise EnclosureUnknown("EXTRUSION_DIRECTION_PARALLEL_TO_PROFILE")
+            delta = tuple(v*depth for v in _normalise(direction))
+            profile = self.g(item,"SweptArea")
+            base = self._profile(profile)
+            local = base + [tuple(p[i]+delta[i] for i in range(3)) for p in base]
+            position = _compose(transform,self._axis(self.g(item,"Position")))
+            result = [_apply(position,p) for p in local]
+            coverage.append({"step_id":item.id(),"type":item.is_a(),
+                "profile_step_id":profile.id(),"profile_type":profile.is_a(),
+                "source_depth":str(depth),"source_direction":[str(v) for v in direction],
+                "support":"COMPLETE_LINEAR_EXTRUSION_OF_EXACT_PROFILE_ENCLOSURE",
+                "profile_semantics":"EXACT_SIMPLE_POLYGON_OR_POSITIVE_RECTANGLE_OR_CIRCLE",
+                "source_holes_checked":len(self.g(profile,"InnerCurves",()) or ())})
+            return result
+        if item.is_a("IfcBooleanResult"):
+            operator = self.g(item,"Operator")
+            if operator not in ("DIFFERENCE","UNION","INTERSECTION"):
+                raise EnclosureUnknown("UNSUPPORTED_BOOLEAN_OPERATOR")
+            if item.is_a("IfcBooleanClippingResult") and operator != "DIFFERENCE":
+                raise EnclosureUnknown("INVALID_CLIPPING_OPERATOR")
+            first, second = self.g(item,"FirstOperand"),self.g(item,"SecondOperand")
+            # Both operand definitions must be interpretable. A malformed or
+            # unsupported sibling is not rescued merely because A\B subset A.
+            first_box = _box(self._support(first,transform,coverage,seen))
+            second_box = _box(self._support(second,transform,coverage,seen))
+            if operator == "DIFFERENCE":
+                lo,hi = first_box
+            elif operator == "UNION":
+                lo = tuple(min(first_box[0][i],second_box[0][i]) for i in range(3))
+                hi = tuple(max(first_box[1][i],second_box[1][i]) for i in range(3))
+            else:
+                lo = tuple(max(first_box[0][i],second_box[0][i]) for i in range(3))
+                hi = tuple(min(first_box[1][i],second_box[1][i]) for i in range(3))
+                if any(a>=b for a,b in zip(lo,hi)):
+                    raise EnclosureUnknown("EMPTY_OR_DEGENERATE_BOOLEAN_SOLID_BOUND")
+            coverage.append({"step_id":item.id(),"type":item.is_a(),"operator":operator,
+                "operand_step_ids":[first.id(),second.id()],
+                "support":"REGULARIZED_BOOLEAN_CONTAINMENT_IN_CLOSED_OUTER_BOXES",
+                "exact_result_topology":"NOT_ESTABLISHED"})
+            return _box_corners(lo,hi)
+        previous_nonplanar = self.nonplanar_polygons
+        local,count = self._points(item)
+        result = [_apply(transform,p) for p in local]
+        coverage.append({"step_id":item.id(),"type":item.is_a(),"source_faces":count,
+            "source_vertex_occurrences":len(local),"nonplanar_polygon_checks":self.nonplanar_polygons-previous_nonplanar,
+            "support":"VERTEX_HULL_COMPLETION_FAMILY" if self.vertex_hull_completion else "PLANAR_VERTEX_CONVEX_HULL_ENCLOSURE"})
+        return result
+
     def _representation(self, representation, transform, points, coverage, seen=frozenset()):
         if representation.id() in seen:
             raise EnclosureUnknown("CYCLIC_MAPPED_REPRESENTATION")
@@ -403,12 +600,7 @@ class ExactIfcEncloser:
                 self._representation(self.g(source, "MappedRepresentation"), _compose(transform, mapping), points, coverage, seen | {representation.id()})
                 coverage.append({"step_id": item.id(), "type": item.is_a(), "support": "COMPLETE_MAPPED_CHILDREN"})
             else:
-                previous_nonplanar = self.nonplanar_polygons
-                local, count = self._points(item)
-                points.extend(_apply(transform, p) for p in local)
-                coverage.append({"step_id": item.id(), "type": item.is_a(), "source_faces": count,
-                    "source_vertex_occurrences": len(local), "nonplanar_polygon_checks": self.nonplanar_polygons - previous_nonplanar,
-                    "support": "VERTEX_HULL_COMPLETION_FAMILY" if self.vertex_hull_completion else "PLANAR_VERTEX_CONVEX_HULL_ENCLOSURE"})
+                points.extend(self._support(item,transform,coverage))
 
     def enclose_product(self, product):
         with self._lock:
@@ -416,10 +608,11 @@ class ExactIfcEncloser:
 
     def _enclose_product(self, product):
         self.nonplanar_polygons = 0
-        base = {"schema": "oma.ifc.source-enclosure/1", "source_sha256": self.raw.source_sha256,
+        base = {"schema": "oma.ifc.source-enclosure/2", "source_sha256": self.raw.source_sha256,
             "checker_code_sha256": CODE_SHA256,
             "product_step_id": product.id(), "frame": "IFC_LOCAL_ENGINEERING_METRES",
-            "claim": "ALL_SELECTED_BODY_PLANAR_SUPPORT_IS_SUBSET_OF_OUTER_BOX",
+            "claim": "ALL_SELECTED_BODY_SUPPORTED_REPRESENTED_SUPPORT_IS_SUBSET_OF_OUTER_BOX",
+            "analytic_support": "POSITIVE_LINEAR_EXTRUSIONS_AND_SUPPORTED_REGULARIZED_BOOLEANS",
             "whole_product_solid_validity": "NOT_ESTABLISHED", "unrepresented_physical_extent": "UNKNOWN"}
         if self.vertex_hull_completion:
             base.update({"claim": "ALL_SOURCE_VERTEX_HULL_COMPLETIONS_SUBSET_OF_OUTER_BOX",

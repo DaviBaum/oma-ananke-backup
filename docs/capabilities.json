@@ -92,9 +92,10 @@
         "tests/test_ifc_pipeline.py",
         "evidence/ifc/duplex-native-export-v4.json",
         "tests/test_joint_routing.py",
-        "docs/joint-routing.md"
+        "docs/joint-routing.md",
+        "docs/validation-advisories.md"
       ],
-      "scope": "Single and composite route replacements preserve source STEP records and freshly check exported IFC; analytic three-route cumulative export passes; full real federation campaign ongoing"
+      "scope": "Single and composite route replacements preserve source STEP records and freshly check exported IFC; analytic three-route cumulative export passes; full real federation campaign ongoing IFC-PORT-001 discovered after earlier export checks: historical authored-port semantic PASS is superseded. Corrected flow axes, ownership/placement and source-to-sink ordering require fresh regenerated examples; acceptance/checked-export advisory gate remains active for older artifacts."
     },
     {
       "id": "oma_ananke_joint_optimization",
@@ -114,9 +115,16 @@
       "milestone": "M4",
       "status": "IN_PROGRESS",
       "evidence": [
-        "tests/test_dependencies.py"
+        "src/oma/dependencies.py",
+        "src/oma/project_dependencies.py",
+        "src/oma/assurance.py",
+        "src/oma/project_assurance.py",
+        "tests/test_project_dependencies.py",
+        "tests/test_assurance.py",
+        "docs/math/assurance-project-contract.md",
+        "evidence/benchmarks/dependencies/sixty5-full-frozen-compact.json"
       ],
-      "scope": "Tested fullcontext keys, guarded reads, transitive invalidation, finite fixedpoints and cold equivalence primitives; realproject integration pending"
+      "scope": "Actual persisted revision inventory, declared netlist, demand membership, full geometry/service input invalidation and report applicability use guarded dependencies with cold equivalence at publication. Grounded report assurance includes model/TCB assumptions, exact-context applicability, alternatives, complete cores/cuts and independent replay. Cross-root native CAD/simulation certificate reuse and full source-defined dependency discovery remain incomplete."
     },
     {
       "id": "engineering_analysis",

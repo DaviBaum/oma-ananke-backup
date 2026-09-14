@@ -218,6 +218,8 @@ def audit_file(path: str | Path, output_dir: str | Path | None = None, geometry:
             record["geometry_reason"] = "iterator_did_not_produce_geometry" if geometry else "geometry_not_attempted"
     geometry_seconds = time.perf_counter() - geometry_start
     ports = []
+    from .ports import ownership_ledger, port_facts
+    port_ledger = ownership_ledger(model)
     port_owners = defaultdict(set)
     port_owner_relationships = defaultdict(set)
     for rel in _safe_types(model, "IfcRelConnectsPortToElement"):
@@ -230,12 +232,17 @@ def audit_file(path: str | Path, output_dir: str | Path | None = None, geometry:
                 port_owner_relationships[child.id()].add(rel.id())
     for port in _safe_types(model, "IfcDistributionPort"):
         owners = sorted(port_owners[port.id()])
+        axis_facts = port_facts(port, port_ledger[port.id()], unit_scale)
         ports.append({**_identity(port, source), "name": port.Name,
                       "owner_step_ids": owners, "owner_step_id": owners[0] if len(owners) == 1 else None,
                       "owner_status": "unique" if len(owners) == 1 else "ambiguous" if owners else "missing",
                       "owner_relationship_step_ids": sorted(port_owner_relationships[port.id()]),
                       "flow_direction": port.FlowDirection, "system_type": getattr(port, "SystemType", None),
                       "predefined_type": getattr(port, "PredefinedType", None),
+                      "axis_convention": axis_facts["axis_convention"],
+                      "owner_placement_status": axis_facts["owner_placement_status"],
+                      "port_semantic_errors": axis_facts["errors"],
+                      "flow_axis": axis_facts["flow_axis"], "physical_outward_normal": axis_facts["physical_outward_normal"],
                       "placement_matrix_m": by_id.get(port.id(), {}).get("placement_matrix_m")})
     explicit_connections = [{"relationship_step_id": rel.id(), "port_a_step_id": rel.RelatingPort.id(),
                              "port_b_step_id": rel.RelatedPort.id(), "realizing_element_step_id":

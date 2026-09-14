@@ -1,0 +1,1986 @@
+{
+  "schema": "oma-assurance/1",
+  "candidate_id": "f583693cce4644ad8306b31d51c8540f",
+  "candidate_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+  "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+  "recorded_engineering_status": "PASS",
+  "assessment_context": {
+    "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+    "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+    "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+    "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+    "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+    "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+    "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+    "checker_version": "oma-independent-checker/2:4a72b091698f93196216f30568010b41dba208d50120c1427c86e60cab2dc91f"
+  },
+  "recorded_context": {
+    "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+    "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+    "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+    "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+    "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+    "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+    "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+    "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+  },
+  "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified",
+  "support_status": "UNSUPPORTED",
+  "independent_assurance_check": {
+    "status": "PASS",
+    "reason": "Grounded witnesses and complete finite antichain closure verified",
+    "work": 0
+  },
+  "theory": {
+    "claims": [
+      {
+        "id": "claim:report-verdict",
+        "statement": "The recorded report has a complete PASS disposition",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      },
+      {
+        "id": "claim:result:0",
+        "statement": "joint-demand-coverage: PASS \u2014 Every new demand and prior route has exactly one explicit mission and physical route",
+        "scope": "Complete proposed route set and protected previous route obligations"
+      },
+      {
+        "id": "claim:result:1",
+        "statement": "protected-prior-missions: PASS \u2014 Prior route definitions and engineering mission contents are unchanged",
+        "scope": "Complete proposed route set and protected previous route obligations"
+      },
+      {
+        "id": "claim:result:2",
+        "statement": "joint-replacement-coverage: PASS \u2014 Each edited source has one complete physical replacement containing all its routes",
+        "scope": "Complete proposed route set and protected previous route obligations"
+      },
+      {
+        "id": "claim:result:3",
+        "statement": "route-source-binding:oma-1a7dc095a7f6-002-00: PASS \u2014 Route materialization belongs to its authorized immutable discipline",
+        "scope": "Complete proposed route set and protected previous route obligations"
+      },
+      {
+        "id": "claim:result:4",
+        "statement": "oma-1a7dc095a7f6-002-00:fixed-request-assumptions: PASS \u2014 Scenario, clearance, physical sizes and objective policy match the immutable original run request",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:5",
+        "statement": "oma-1a7dc095a7f6-002-00:protected-source-preservation: PASS \u2014 All baseline entity content and source identities preserved",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:6",
+        "statement": "oma-1a7dc095a7f6-002-00:materialized-input-integrity: PASS \u2014 Persisted IFC hashes rechecked",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:7",
+        "statement": "oma-1a7dc095a7f6-002-00:fixed-service-obligations: PASS \u2014 All declared terminals, section and insulation obligations preserved",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:8",
+        "statement": "oma-1a7dc095a7f6-002-00:exported-physical-semantics: PASS \u2014 Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:9",
+        "statement": "oma-1a7dc095a7f6-002-00:physical-interference-and-clearance: PASS \u2014 Native solids checked: 803 route/obstacle pairs, 0 forbidden pairs, 0 ambiguous pairs; datum VERIFIED_SAME_SOURCE_RECORDS",
+        "scope": "New route versus every source physical obstacle; pre-existing building defects remain outside this local repair claim"
+      },
+      {
+        "id": "claim:result:10",
+        "statement": "oma-1a7dc095a7f6-002-00:physical-self-interference: PASS \u2014 All route part pairs checked with local joint-interface authorization",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:11",
+        "statement": "oma-1a7dc095a7f6-002-00:physical-port-body-attachment: PASS \u2014 Every terminal/joint port independently classified on its actual solid cap with matching outward direction",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:12",
+        "statement": "oma-1a7dc095a7f6-002-00:permitted-zone-containment: PASS \u2014 Full native route envelopes checked against permitted zone boundary",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:13",
+        "statement": "oma-1a7dc095a7f6-002-00:independent-objective-recomputation: PASS \u2014 Length recomputed from IFC directrices and independently cross-checked from solid volumes",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:14",
+        "statement": "oma-1a7dc095a7f6-002-00:gravity-slope: NOT_APPLICABLE \u2014 Service is not a gravity network",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:15",
+        "statement": "oma-1a7dc095a7f6-002-00:engineering-service: NOT_APPLICABLE \u2014 Requested scope is local geometric coordination; hydraulic capacity/fire protection design is not certified",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:16",
+        "statement": "route-source-binding:oma-1a7dc095a7f6-002-01: PASS \u2014 Route materialization belongs to its authorized immutable discipline",
+        "scope": "Complete proposed route set and protected previous route obligations"
+      },
+      {
+        "id": "claim:result:17",
+        "statement": "oma-1a7dc095a7f6-002-01:fixed-request-assumptions: PASS \u2014 Scenario, clearance, physical sizes and objective policy match the immutable original run request",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:18",
+        "statement": "oma-1a7dc095a7f6-002-01:protected-source-preservation: PASS \u2014 All baseline entity content and source identities preserved",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:19",
+        "statement": "oma-1a7dc095a7f6-002-01:materialized-input-integrity: PASS \u2014 Persisted IFC hashes rechecked",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:20",
+        "statement": "oma-1a7dc095a7f6-002-01:fixed-service-obligations: PASS \u2014 All declared terminals, section and insulation obligations preserved",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:21",
+        "statement": "oma-1a7dc095a7f6-002-01:exported-physical-semantics: PASS \u2014 Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:22",
+        "statement": "oma-1a7dc095a7f6-002-01:physical-interference-and-clearance: PASS \u2014 Native solids checked: 803 route/obstacle pairs, 0 forbidden pairs, 0 ambiguous pairs; datum VERIFIED_SAME_SOURCE_RECORDS",
+        "scope": "New route versus every source physical obstacle; pre-existing building defects remain outside this local repair claim"
+      },
+      {
+        "id": "claim:result:23",
+        "statement": "oma-1a7dc095a7f6-002-01:physical-self-interference: PASS \u2014 All route part pairs checked with local joint-interface authorization",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:24",
+        "statement": "oma-1a7dc095a7f6-002-01:physical-port-body-attachment: PASS \u2014 Every terminal/joint port independently classified on its actual solid cap with matching outward direction",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:25",
+        "statement": "oma-1a7dc095a7f6-002-01:permitted-zone-containment: PASS \u2014 Full native route envelopes checked against permitted zone boundary",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:26",
+        "statement": "oma-1a7dc095a7f6-002-01:independent-objective-recomputation: PASS \u2014 Length recomputed from IFC directrices and independently cross-checked from solid volumes",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:27",
+        "statement": "oma-1a7dc095a7f6-002-01:gravity-slope: NOT_APPLICABLE \u2014 Service is not a gravity network",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:28",
+        "statement": "oma-1a7dc095a7f6-002-01:engineering-service: NOT_APPLICABLE \u2014 Requested scope is local geometric coordination; hydraulic capacity/fire protection design is not certified",
+        "scope": "Proposed route and its declared obstacle scope"
+      },
+      {
+        "id": "claim:result:29",
+        "statement": "cross-route-interference: PASS \u2014 All 1 physical part pairs between independent routes checked; 0 unresolved or forbidden pairs",
+        "scope": "Complete proposed route set and protected previous route obligations"
+      },
+      {
+        "id": "claim:result:30",
+        "statement": "joint-mission-binding: PASS \u2014 Composite mission, catalog, rules, protected state and objective bind all individual obligations",
+        "scope": "Complete proposed route set and protected previous route obligations"
+      },
+      {
+        "id": "claim:result:31",
+        "statement": "joint-objective: PASS \u2014 Objective recomputed from every actual IFC route and independently cross-checked against native solid volumes",
+        "scope": "Complete proposed route set and protected previous route obligations"
+      },
+      {
+        "id": "claim:tcb:ba46026f2ba74ef9769d",
+        "statement": "The recorded independent checker and its declared inference policy correctly implement the stated checking contract",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      },
+      {
+        "id": "claim:tcb:54df19f95f9152ebe5db",
+        "statement": "The enumerated checker obligations cover this report's expressly limited scope",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      },
+      {
+        "id": "claim:tcb:daa0d801806e0aa8ead1",
+        "statement": "Shared IFC parser and numerical OCP kernel",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      },
+      {
+        "id": "claim:tcb:d90917f18de3c6540e9f",
+        "statement": "Finite physical route/design alternatives do not establish complete continuous optimality",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      },
+      {
+        "id": "claim:assumption:8f8efb30a7e912898279",
+        "statement": "{\"data\": {\"allowed_zone\": {\"max\": [25.569774999999975, -6.291475000000081, 6.442220999999475], \"min\": [23.969774999999974, -7.891475000000081, 5.692220999999475]}, \"assumptions\": [\"Hypothetical terminals and explicitly authorized elevation options; existing service intent is not inferred\", \"Fixed 100 mm service, 20 mm insulation and 100 mm clearance\", \"Source-space bounds only select a hypothetical zone; actual room containment and hydraulic adequacy are not asserted\"], \"bend_radius_m\": 0.3, \"clearance_m\": 0.1, \"diameter_m\": 0.1, \"end\": [25.369774999999976, -7.091475000000081, 5.892220999999475], \"insulation_m\": 0.02, \"max_candidates\": 1, \"min_slope\": null, \"minimum_straight_m\": 0.05, \"objective_weights\": {\"fitting_count\": 0.0, \"length_m\": 1.0}, \"physics\": null, \"provenance\": \"Explicit frozen real-model simultaneous service options\", \"scenario_terminals\": true, \"search_step_m\": 0.25, \"sink_port_guid\": null, \"source\": \"OMA independently checked real IFC multi-demand campaign\", \"source_id\": \"7108485ac8d2856922a83f1353aea8c6eaab60ff393546750bf648200617a544\", \"source_port_guid\": null, \"source_representation_policy\": \"NATIVE_CAD_WITH_SOURCE_VERTEX_HULL_ENCLOSURES\", \"start\": [24.169774999999973, -7.091475000000081, 5.892220999999475], \"system_type\": \"PRESSURE_PIPE\", \"target_modality\": \"LOCAL_GEOMETRIC_COORDINATION\"}, \"kind\": \"explicit_scenario\", \"root\": \"2c5b472623140720283961b397748dccd64889292a2a525aa1edc3f066eec239\"}",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      },
+      {
+        "id": "claim:assumption:95cd6d6d7169af39c5af",
+        "statement": "{\"data\": {\"allowed_zone\": {\"max\": [25.569774999999975, -6.291475000000081, 6.442220999999475], \"min\": [23.969774999999974, -7.891475000000081, 5.692220999999475]}, \"assumptions\": [\"Hypothetical terminals and explicitly authorized elevation options; existing service intent is not inferred\", \"Fixed 100 mm service, 20 mm insulation and 100 mm clearance\", \"Source-space bounds only select a hypothetical zone; actual room containment and hydraulic adequacy are not asserted\"], \"bend_radius_m\": 0.3, \"clearance_m\": 0.1, \"diameter_m\": 0.1, \"end\": [24.769774999999974, -6.491475000000081, 6.242220999999475], \"insulation_m\": 0.02, \"max_candidates\": 1, \"min_slope\": null, \"minimum_straight_m\": 0.05, \"objective_weights\": {\"fitting_count\": 0.0, \"length_m\": 1.0}, \"physics\": null, \"provenance\": \"Explicit frozen real-model simultaneous service options\", \"scenario_terminals\": true, \"search_step_m\": 0.25, \"sink_port_guid\": null, \"source\": \"OMA independently checked real IFC multi-demand campaign\", \"source_id\": \"7108485ac8d2856922a83f1353aea8c6eaab60ff393546750bf648200617a544\", \"source_port_guid\": null, \"source_representation_policy\": \"NATIVE_CAD_WITH_SOURCE_VERTEX_HULL_ENCLOSURES\", \"start\": [24.769774999999974, -7.69147500000008, 6.242220999999475], \"system_type\": \"PRESSURE_PIPE\", \"target_modality\": \"LOCAL_GEOMETRIC_COORDINATION\"}, \"kind\": \"explicit_scenario\", \"root\": \"d82d38c6b3cc6b9e547fdb14cb5107a35d64bce300997de98b28b6c1390113a0\"}",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      },
+      {
+        "id": "claim:assumption:27bac59d84013442eb97",
+        "statement": "Hypothetical terminals and explicitly authorized elevation options; existing service intent is not inferred",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      },
+      {
+        "id": "claim:assumption:d191f6ca0dea52bbbf95",
+        "statement": "Fixed 100 mm service, 20 mm insulation and 100 mm clearance",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      },
+      {
+        "id": "claim:assumption:82406a28d224ef467469",
+        "statement": "Source-space bounds only select a hypothetical zone; actual room containment and hydraulic adequacy are not asserted",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      },
+      {
+        "id": "claim:assumption:56ef32648e08196877cc",
+        "statement": "{\"source_representation_policy\": \"NATIVE_CAD_WITH_SOURCE_VERTEX_HULL_ENCLOSURES\"}",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      },
+      {
+        "id": "claim:assumption:fa59ae54723d7d9c040f",
+        "statement": "Terminal locations and demand are explicitly supplied scenario inputs, not surveyed/as-built facts",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      },
+      {
+        "id": "recorded-scope-support",
+        "statement": "All recorded obligations for this exact declared report scope are supported, conditional on the listed trust and model assumptions",
+        "scope": "SIMULTANEOUS_ROUTE_SET: all declared routes and source obstacles; numerical CAD contract; whole-building adequacy not certified"
+      }
+    ],
+    "foundations": [
+      {
+        "id": "report-verdict",
+        "claims": [
+          "claim:report-verdict"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "The recorded report has a complete PASS disposition",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:0",
+        "claims": [
+          "claim:result:0"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "joint-demand-coverage: PASS \u2014 Every new demand and prior route has exactly one explicit mission and physical route",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:1",
+        "claims": [
+          "claim:result:1"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "protected-prior-missions: PASS \u2014 Prior route definitions and engineering mission contents are unchanged",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:2",
+        "claims": [
+          "claim:result:2"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "joint-replacement-coverage: PASS \u2014 Each edited source has one complete physical replacement containing all its routes",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:3",
+        "claims": [
+          "claim:result:3"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "route-source-binding:oma-1a7dc095a7f6-002-00: PASS \u2014 Route materialization belongs to its authorized immutable discipline",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:4",
+        "claims": [
+          "claim:result:4"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-00:fixed-request-assumptions: PASS \u2014 Scenario, clearance, physical sizes and objective policy match the immutable original run request",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:5",
+        "claims": [
+          "claim:result:5"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-00:protected-source-preservation: PASS \u2014 All baseline entity content and source identities preserved",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:6",
+        "claims": [
+          "claim:result:6"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-00:materialized-input-integrity: PASS \u2014 Persisted IFC hashes rechecked",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:7",
+        "claims": [
+          "claim:result:7"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-00:fixed-service-obligations: PASS \u2014 All declared terminals, section and insulation obligations preserved",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:8",
+        "claims": [
+          "claim:result:8"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-00:exported-physical-semantics: PASS \u2014 Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:9",
+        "claims": [
+          "claim:result:9"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-00:physical-interference-and-clearance: PASS \u2014 Native solids checked: 803 route/obstacle pairs, 0 forbidden pairs, 0 ambiguous pairs; datum VERIFIED_SAME_SOURCE_RECORDS",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:10",
+        "claims": [
+          "claim:result:10"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-00:physical-self-interference: PASS \u2014 All route part pairs checked with local joint-interface authorization",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:11",
+        "claims": [
+          "claim:result:11"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-00:physical-port-body-attachment: PASS \u2014 Every terminal/joint port independently classified on its actual solid cap with matching outward direction",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:12",
+        "claims": [
+          "claim:result:12"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-00:permitted-zone-containment: PASS \u2014 Full native route envelopes checked against permitted zone boundary",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:13",
+        "claims": [
+          "claim:result:13"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-00:independent-objective-recomputation: PASS \u2014 Length recomputed from IFC directrices and independently cross-checked from solid volumes",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:14",
+        "claims": [
+          "claim:result:14"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-00:gravity-slope: NOT_APPLICABLE \u2014 Service is not a gravity network",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:15",
+        "claims": [
+          "claim:result:15"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-00:engineering-service: NOT_APPLICABLE \u2014 Requested scope is local geometric coordination; hydraulic capacity/fire protection design is not certified",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:16",
+        "claims": [
+          "claim:result:16"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "route-source-binding:oma-1a7dc095a7f6-002-01: PASS \u2014 Route materialization belongs to its authorized immutable discipline",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:17",
+        "claims": [
+          "claim:result:17"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-01:fixed-request-assumptions: PASS \u2014 Scenario, clearance, physical sizes and objective policy match the immutable original run request",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:18",
+        "claims": [
+          "claim:result:18"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-01:protected-source-preservation: PASS \u2014 All baseline entity content and source identities preserved",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:19",
+        "claims": [
+          "claim:result:19"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-01:materialized-input-integrity: PASS \u2014 Persisted IFC hashes rechecked",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:20",
+        "claims": [
+          "claim:result:20"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-01:fixed-service-obligations: PASS \u2014 All declared terminals, section and insulation obligations preserved",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:21",
+        "claims": [
+          "claim:result:21"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-01:exported-physical-semantics: PASS \u2014 Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:22",
+        "claims": [
+          "claim:result:22"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-01:physical-interference-and-clearance: PASS \u2014 Native solids checked: 803 route/obstacle pairs, 0 forbidden pairs, 0 ambiguous pairs; datum VERIFIED_SAME_SOURCE_RECORDS",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:23",
+        "claims": [
+          "claim:result:23"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-01:physical-self-interference: PASS \u2014 All route part pairs checked with local joint-interface authorization",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:24",
+        "claims": [
+          "claim:result:24"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-01:physical-port-body-attachment: PASS \u2014 Every terminal/joint port independently classified on its actual solid cap with matching outward direction",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:25",
+        "claims": [
+          "claim:result:25"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-01:permitted-zone-containment: PASS \u2014 Full native route envelopes checked against permitted zone boundary",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:26",
+        "claims": [
+          "claim:result:26"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-01:independent-objective-recomputation: PASS \u2014 Length recomputed from IFC directrices and independently cross-checked from solid volumes",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:27",
+        "claims": [
+          "claim:result:27"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-01:gravity-slope: NOT_APPLICABLE \u2014 Service is not a gravity network",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:28",
+        "claims": [
+          "claim:result:28"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "oma-1a7dc095a7f6-002-01:engineering-service: NOT_APPLICABLE \u2014 Requested scope is local geometric coordination; hydraulic capacity/fire protection design is not certified",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:29",
+        "claims": [
+          "claim:result:29"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "cross-route-interference: PASS \u2014 All 1 physical part pairs between independent routes checked; 0 unresolved or forbidden pairs",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:30",
+        "claims": [
+          "claim:result:30"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "joint-mission-binding: PASS \u2014 Composite mission, catalog, rules, protected state and objective bind all individual obligations",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "result:31",
+        "claims": [
+          "claim:result:31"
+        ],
+        "kind": "EVIDENCE",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "joint-objective: PASS \u2014 Objective recomputed from every actual IFC route and independently cross-checked against native solid volumes",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "tcb:ba46026f2ba74ef9769d",
+        "claims": [
+          "claim:tcb:ba46026f2ba74ef9769d"
+        ],
+        "kind": "TCB",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "The recorded independent checker and its declared inference policy correctly implement the stated checking contract",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "tcb:54df19f95f9152ebe5db",
+        "claims": [
+          "claim:tcb:54df19f95f9152ebe5db"
+        ],
+        "kind": "TCB",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "The enumerated checker obligations cover this report's expressly limited scope",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "tcb:daa0d801806e0aa8ead1",
+        "claims": [
+          "claim:tcb:daa0d801806e0aa8ead1"
+        ],
+        "kind": "TCB",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "Shared IFC parser and numerical OCP kernel",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "tcb:d90917f18de3c6540e9f",
+        "claims": [
+          "claim:tcb:d90917f18de3c6540e9f"
+        ],
+        "kind": "TCB",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "Finite physical route/design alternatives do not establish complete continuous optimality",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "assumption:8f8efb30a7e912898279",
+        "claims": [
+          "claim:assumption:8f8efb30a7e912898279"
+        ],
+        "kind": "ASSUMPTION",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "{\"data\": {\"allowed_zone\": {\"max\": [25.569774999999975, -6.291475000000081, 6.442220999999475], \"min\": [23.969774999999974, -7.891475000000081, 5.692220999999475]}, \"assumptions\": [\"Hypothetical terminals and explicitly authorized elevation options; existing service intent is not inferred\", \"Fixed 100 mm service, 20 mm insulation and 100 mm clearance\", \"Source-space bounds only select a hypothetical zone; actual room containment and hydraulic adequacy are not asserted\"], \"bend_radius_m\": 0.3, \"clearance_m\": 0.1, \"diameter_m\": 0.1, \"end\": [25.369774999999976, -7.091475000000081, 5.892220999999475], \"insulation_m\": 0.02, \"max_candidates\": 1, \"min_slope\": null, \"minimum_straight_m\": 0.05, \"objective_weights\": {\"fitting_count\": 0.0, \"length_m\": 1.0}, \"physics\": null, \"provenance\": \"Explicit frozen real-model simultaneous service options\", \"scenario_terminals\": true, \"search_step_m\": 0.25, \"sink_port_guid\": null, \"source\": \"OMA independently checked real IFC multi-demand campaign\", \"source_id\": \"7108485ac8d2856922a83f1353aea8c6eaab60ff393546750bf648200617a544\", \"source_port_guid\": null, \"source_representation_policy\": \"NATIVE_CAD_WITH_SOURCE_VERTEX_HULL_ENCLOSURES\", \"start\": [24.169774999999973, -7.091475000000081, 5.892220999999475], \"system_type\": \"PRESSURE_PIPE\", \"target_modality\": \"LOCAL_GEOMETRIC_COORDINATION\"}, \"kind\": \"explicit_scenario\", \"root\": \"2c5b472623140720283961b397748dccd64889292a2a525aa1edc3f066eec239\"}",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "assumption:95cd6d6d7169af39c5af",
+        "claims": [
+          "claim:assumption:95cd6d6d7169af39c5af"
+        ],
+        "kind": "ASSUMPTION",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "{\"data\": {\"allowed_zone\": {\"max\": [25.569774999999975, -6.291475000000081, 6.442220999999475], \"min\": [23.969774999999974, -7.891475000000081, 5.692220999999475]}, \"assumptions\": [\"Hypothetical terminals and explicitly authorized elevation options; existing service intent is not inferred\", \"Fixed 100 mm service, 20 mm insulation and 100 mm clearance\", \"Source-space bounds only select a hypothetical zone; actual room containment and hydraulic adequacy are not asserted\"], \"bend_radius_m\": 0.3, \"clearance_m\": 0.1, \"diameter_m\": 0.1, \"end\": [24.769774999999974, -6.491475000000081, 6.242220999999475], \"insulation_m\": 0.02, \"max_candidates\": 1, \"min_slope\": null, \"minimum_straight_m\": 0.05, \"objective_weights\": {\"fitting_count\": 0.0, \"length_m\": 1.0}, \"physics\": null, \"provenance\": \"Explicit frozen real-model simultaneous service options\", \"scenario_terminals\": true, \"search_step_m\": 0.25, \"sink_port_guid\": null, \"source\": \"OMA independently checked real IFC multi-demand campaign\", \"source_id\": \"7108485ac8d2856922a83f1353aea8c6eaab60ff393546750bf648200617a544\", \"source_port_guid\": null, \"source_representation_policy\": \"NATIVE_CAD_WITH_SOURCE_VERTEX_HULL_ENCLOSURES\", \"start\": [24.769774999999974, -7.69147500000008, 6.242220999999475], \"system_type\": \"PRESSURE_PIPE\", \"target_modality\": \"LOCAL_GEOMETRIC_COORDINATION\"}, \"kind\": \"explicit_scenario\", \"root\": \"d82d38c6b3cc6b9e547fdb14cb5107a35d64bce300997de98b28b6c1390113a0\"}",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "assumption:27bac59d84013442eb97",
+        "claims": [
+          "claim:assumption:27bac59d84013442eb97"
+        ],
+        "kind": "ASSUMPTION",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "Hypothetical terminals and explicitly authorized elevation options; existing service intent is not inferred",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "assumption:d191f6ca0dea52bbbf95",
+        "claims": [
+          "claim:assumption:d191f6ca0dea52bbbf95"
+        ],
+        "kind": "ASSUMPTION",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "Fixed 100 mm service, 20 mm insulation and 100 mm clearance",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "assumption:82406a28d224ef467469",
+        "claims": [
+          "claim:assumption:82406a28d224ef467469"
+        ],
+        "kind": "ASSUMPTION",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "Source-space bounds only select a hypothetical zone; actual room containment and hydraulic adequacy are not asserted",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "assumption:56ef32648e08196877cc",
+        "claims": [
+          "claim:assumption:56ef32648e08196877cc"
+        ],
+        "kind": "ASSUMPTION",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "{\"source_representation_policy\": \"NATIVE_CAD_WITH_SOURCE_VERTEX_HULL_ENCLOSURES\"}",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      },
+      {
+        "id": "assumption:fa59ae54723d7d9c040f",
+        "claims": [
+          "claim:assumption:fa59ae54723d7d9c040f"
+        ],
+        "kind": "ASSUMPTION",
+        "bindings": {
+          "state_root": "76c1d773a711a3398d0e622f87af5eeeb099f57db7f348f9ce5d6624725fa6a2",
+          "mission_hash": "10af7c0b079ea62a8d1bb55541f9ee46e485f6badc3765a807101b3ab8682f2b",
+          "rule_hash": "d9f7ad50ef1ef92d2912493419e545043a054d5b9cbfb90119c594c928c328c3",
+          "scenario_hash": "4f3ec98b35e35c4022cbb4d4f463e150d36c669dd6ff46781c26f43c587abf99",
+          "catalog_hash": "8feaea64ec6d084849cfd0164a6fab63f6be05205b7e8181f75fab8fe22906e7",
+          "numerical_policy_hash": "fe5a4a76f6658cea6dd042f688af74fec04bf1bb0a3e8348781f3d32000249a9",
+          "source_manifest_hash": "80552303fcaa9ab4d57a1d2f9a30da25751ede081d16c67a1324d6c576dd4c33",
+          "checker_version": "oma-independent-checker/2:ef22f799576bd9ce179ed1539276299847c27cc6e9db6a61650b639c94ee690c"
+        },
+        "description": "Terminal locations and demand are explicitly supplied scenario inputs, not surveyed/as-built facts",
+        "valid_from": null,
+        "valid_until": null,
+        "time_basis": "OBSERVATION_TIME",
+        "observed_at": "2026-09-14T08:48:30.336860+00:00"
+      }
+    ],
+    "inferences": [
+      {
+        "id": "report-conjunction",
+        "conclusion": "recorded-scope-support",
+        "premises": [
+          "claim:report-verdict",
+          "claim:result:0",
+          "claim:result:1",
+          "claim:result:2",
+          "claim:result:3",
+          "claim:result:4",
+          "claim:result:5",
+          "claim:result:6",
+          "claim:result:7",
+          "claim:result:8",
+          "claim:result:9",
+          "claim:result:10",
+          "claim:result:11",
+          "claim:result:12",
+          "claim:result:13",
+          "claim:result:14",
+          "claim:result:15",
+          "claim:result:16",
+          "claim:result:17",
+          "claim:result:18",
+          "claim:result:19",
+          "claim:result:20",
+          "claim:result:21",
+          "claim:result:22",
+          "claim:result:23",
+          "claim:result:24",
+          "claim:result:25",
+          "claim:result:26",
+          "claim:result:27",
+          "claim:result:28",
+          "claim:result:29",
+          "claim:result:30",
+          "claim:result:31",
+          "claim:tcb:ba46026f2ba74ef9769d",
+          "claim:tcb:54df19f95f9152ebe5db",
+          "claim:tcb:daa0d801806e0aa8ead1",
+          "claim:tcb:d90917f18de3c6540e9f",
+          "claim:assumption:8f8efb30a7e912898279",
+          "claim:assumption:95cd6d6d7169af39c5af",
+          "claim:assumption:27bac59d84013442eb97",
+          "claim:assumption:d191f6ca0dea52bbbf95",
+          "claim:assumption:82406a28d224ef467469",
+          "claim:assumption:56ef32648e08196877cc",
+          "claim:assumption:fa59ae54723d7d9c040f"
+        ],
+        "justification": "Conjunction of every recorded disposition and all explicit trust/model conditions; no omitted claim is introduced"
+      }
+    ],
+    "targets": [
+      "recorded-scope-support"
+    ]
+  },
+  "certificate": {
+    "theory_hash": "d431ff9c65e00e6115698e123193fcb09fd0ada7d68e96d90b21f184c3e5937d",
+    "family_hash": "1913e721fecb9da8db38da24155567aa13818cbadcdeb23420f36fca1b920a30",
+    "assessment_time": "2026-09-14T08:57:34.623405+00:00",
+    "complete": true,
+    "status": "UNSUPPORTED",
+    "frontiers": {
+      "claim:assumption:27bac59d84013442eb97": [],
+      "claim:assumption:56ef32648e08196877cc": [],
+      "claim:assumption:82406a28d224ef467469": [],
+      "claim:assumption:8f8efb30a7e912898279": [],
+      "claim:assumption:95cd6d6d7169af39c5af": [],
+      "claim:assumption:d191f6ca0dea52bbbf95": [],
+      "claim:assumption:fa59ae54723d7d9c040f": [],
+      "claim:report-verdict": [],
+      "claim:result:0": [],
+      "claim:result:1": [],
+      "claim:result:10": [],
+      "claim:result:11": [],
+      "claim:result:12": [],
+      "claim:result:13": [],
+      "claim:result:14": [],
+      "claim:result:15": [],
+      "claim:result:16": [],
+      "claim:result:17": [],
+      "claim:result:18": [],
+      "claim:result:19": [],
+      "claim:result:2": [],
+      "claim:result:20": [],
+      "claim:result:21": [],
+      "claim:result:22": [],
+      "claim:result:23": [],
+      "claim:result:24": [],
+      "claim:result:25": [],
+      "claim:result:26": [],
+      "claim:result:27": [],
+      "claim:result:28": [],
+      "claim:result:29": [],
+      "claim:result:3": [],
+      "claim:result:30": [],
+      "claim:result:31": [],
+      "claim:result:4": [],
+      "claim:result:5": [],
+      "claim:result:6": [],
+      "claim:result:7": [],
+      "claim:result:8": [],
+      "claim:result:9": [],
+      "claim:tcb:54df19f95f9152ebe5db": [],
+      "claim:tcb:ba46026f2ba74ef9769d": [],
+      "claim:tcb:d90917f18de3c6540e9f": [],
+      "claim:tcb:daa0d801806e0aa8ead1": [],
+      "recorded-scope-support": []
+    },
+    "steps": [],
+    "cores": [],
+    "excluded_foundations": {
+      "report-verdict": "INAPPLICABLE_CONTEXT",
+      "result:0": "INAPPLICABLE_CONTEXT",
+      "result:1": "INAPPLICABLE_CONTEXT",
+      "result:2": "INAPPLICABLE_CONTEXT",
+      "result:3": "INAPPLICABLE_CONTEXT",
+      "result:4": "INAPPLICABLE_CONTEXT",
+      "result:5": "INAPPLICABLE_CONTEXT",
+      "result:6": "INAPPLICABLE_CONTEXT",
+      "result:7": "INAPPLICABLE_CONTEXT",
+      "result:8": "INAPPLICABLE_CONTEXT",
+      "result:9": "INAPPLICABLE_CONTEXT",
+      "result:10": "INAPPLICABLE_CONTEXT",
+      "result:11": "INAPPLICABLE_CONTEXT",
+      "result:12": "INAPPLICABLE_CONTEXT",
+      "result:13": "INAPPLICABLE_CONTEXT",
+      "result:14": "INAPPLICABLE_CONTEXT",
+      "result:15": "INAPPLICABLE_CONTEXT",
+      "result:16": "INAPPLICABLE_CONTEXT",
+      "result:17": "INAPPLICABLE_CONTEXT",
+      "result:18": "INAPPLICABLE_CONTEXT",
+      "result:19": "INAPPLICABLE_CONTEXT",
+      "result:20": "INAPPLICABLE_CONTEXT",
+      "result:21": "INAPPLICABLE_CONTEXT",
+      "result:22": "INAPPLICABLE_CONTEXT",
+      "result:23": "INAPPLICABLE_CONTEXT",
+      "result:24": "INAPPLICABLE_CONTEXT",
+      "result:25": "INAPPLICABLE_CONTEXT",
+      "result:26": "INAPPLICABLE_CONTEXT",
+      "result:27": "INAPPLICABLE_CONTEXT",
+      "result:28": "INAPPLICABLE_CONTEXT",
+      "result:29": "INAPPLICABLE_CONTEXT",
+      "result:30": "INAPPLICABLE_CONTEXT",
+      "result:31": "INAPPLICABLE_CONTEXT",
+      "tcb:ba46026f2ba74ef9769d": "INAPPLICABLE_CONTEXT",
+      "tcb:54df19f95f9152ebe5db": "INAPPLICABLE_CONTEXT",
+      "tcb:daa0d801806e0aa8ead1": "INAPPLICABLE_CONTEXT",
+      "tcb:d90917f18de3c6540e9f": "INAPPLICABLE_CONTEXT",
+      "assumption:8f8efb30a7e912898279": "INAPPLICABLE_CONTEXT",
+      "assumption:95cd6d6d7169af39c5af": "INAPPLICABLE_CONTEXT",
+      "assumption:27bac59d84013442eb97": "INAPPLICABLE_CONTEXT",
+      "assumption:d191f6ca0dea52bbbf95": "INAPPLICABLE_CONTEXT",
+      "assumption:82406a28d224ef467469": "INAPPLICABLE_CONTEXT",
+      "assumption:56ef32648e08196877cc": "INAPPLICABLE_CONTEXT",
+      "assumption:fa59ae54723d7d9c040f": "INAPPLICABLE_CONTEXT"
+    },
+    "work": 0,
+    "claim_scope": "Only listed targets under the supplied inference theory and foundation assumptions"
+  },
+  "assumption_ledger": [
+    {
+      "id": "tcb:ba46026f2ba74ef9769d",
+      "claim": "claim:tcb:ba46026f2ba74ef9769d",
+      "kind": "TCB",
+      "statement": "The recorded independent checker and its declared inference policy correctly implement the stated checking contract",
+      "status": "DECLARED_CONDITION",
+      "technical_truth": "NOT_ESTABLISHED_BY_AUTHENTICITY"
+    },
+    {
+      "id": "tcb:54df19f95f9152ebe5db",
+      "claim": "claim:tcb:54df19f95f9152ebe5db",
+      "kind": "TCB",
+      "statement": "The enumerated checker obligations cover this report's expressly limited scope",
+      "status": "DECLARED_CONDITION",
+      "technical_truth": "NOT_ESTABLISHED_BY_AUTHENTICITY"
+    },
+    {
+      "id": "tcb:daa0d801806e0aa8ead1",
+      "claim": "claim:tcb:daa0d801806e0aa8ead1",
+      "kind": "TCB",
+      "statement": "Shared IFC parser and numerical OCP kernel",
+      "status": "DECLARED_CONDITION",
+      "technical_truth": "NOT_ESTABLISHED_BY_AUTHENTICITY"
+    },
+    {
+      "id": "tcb:d90917f18de3c6540e9f",
+      "claim": "claim:tcb:d90917f18de3c6540e9f",
+      "kind": "TCB",
+      "statement": "Finite physical route/design alternatives do not establish complete continuous optimality",
+      "status": "DECLARED_CONDITION",
+      "technical_truth": "NOT_ESTABLISHED_BY_AUTHENTICITY"
+    },
+    {
+      "id": "assumption:8f8efb30a7e912898279",
+      "claim": "claim:assumption:8f8efb30a7e912898279",
+      "kind": "ASSUMPTION",
+      "statement": "{\"data\": {\"allowed_zone\": {\"max\": [25.569774999999975, -6.291475000000081, 6.442220999999475], \"min\": [23.969774999999974, -7.891475000000081, 5.692220999999475]}, \"assumptions\": [\"Hypothetical terminals and explicitly authorized elevation options; existing service intent is not inferred\", \"Fixed 100 mm service, 20 mm insulation and 100 mm clearance\", \"Source-space bounds only select a hypothetical zone; actual room containment and hydraulic adequacy are not asserted\"], \"bend_radius_m\": 0.3, \"clearance_m\": 0.1, \"diameter_m\": 0.1, \"end\": [25.369774999999976, -7.091475000000081, 5.892220999999475], \"insulation_m\": 0.02, \"max_candidates\": 1, \"min_slope\": null, \"minimum_straight_m\": 0.05, \"objective_weights\": {\"fitting_count\": 0.0, \"length_m\": 1.0}, \"physics\": null, \"provenance\": \"Explicit frozen real-model simultaneous service options\", \"scenario_terminals\": true, \"search_step_m\": 0.25, \"sink_port_guid\": null, \"source\": \"OMA independently checked real IFC multi-demand campaign\", \"source_id\": \"7108485ac8d2856922a83f1353aea8c6eaab60ff393546750bf648200617a544\", \"source_port_guid\": null, \"source_representation_policy\": \"NATIVE_CAD_WITH_SOURCE_VERTEX_HULL_ENCLOSURES\", \"start\": [24.169774999999973, -7.091475000000081, 5.892220999999475], \"system_type\": \"PRESSURE_PIPE\", \"target_modality\": \"LOCAL_GEOMETRIC_COORDINATION\"}, \"kind\": \"explicit_scenario\", \"root\": \"2c5b472623140720283961b397748dccd64889292a2a525aa1edc3f066eec239\"}",
+      "status": "DECLARED_CONDITION",
+      "technical_truth": "NOT_ESTABLISHED_BY_AUTHENTICITY"
+    },
+    {
+      "id": "assumption:95cd6d6d7169af39c5af",
+      "claim": "claim:assumption:95cd6d6d7169af39c5af",
+      "kind": "ASSUMPTION",
+      "statement": "{\"data\": {\"allowed_zone\": {\"max\": [25.569774999999975, -6.291475000000081, 6.442220999999475], \"min\": [23.969774999999974, -7.891475000000081, 5.692220999999475]}, \"assumptions\": [\"Hypothetical terminals and explicitly authorized elevation options; existing service intent is not inferred\", \"Fixed 100 mm service, 20 mm insulation and 100 mm clearance\", \"Source-space bounds only select a hypothetical zone; actual room containment and hydraulic adequacy are not asserted\"], \"bend_radius_m\": 0.3, \"clearance_m\": 0.1, \"diameter_m\": 0.1, \"end\": [24.769774999999974, -6.491475000000081, 6.242220999999475], \"insulation_m\": 0.02, \"max_candidates\": 1, \"min_slope\": null, \"minimum_straight_m\": 0.05, \"objective_weights\": {\"fitting_count\": 0.0, \"length_m\": 1.0}, \"physics\": null, \"provenance\": \"Explicit frozen real-model simultaneous service options\", \"scenario_terminals\": true, \"search_step_m\": 0.25, \"sink_port_guid\": null, \"source\": \"OMA independently checked real IFC multi-demand campaign\", \"source_id\": \"7108485ac8d2856922a83f1353aea8c6eaab60ff393546750bf648200617a544\", \"source_port_guid\": null, \"source_representation_policy\": \"NATIVE_CAD_WITH_SOURCE_VERTEX_HULL_ENCLOSURES\", \"start\": [24.769774999999974, -7.69147500000008, 6.242220999999475], \"system_type\": \"PRESSURE_PIPE\", \"target_modality\": \"LOCAL_GEOMETRIC_COORDINATION\"}, \"kind\": \"explicit_scenario\", \"root\": \"d82d38c6b3cc6b9e547fdb14cb5107a35d64bce300997de98b28b6c1390113a0\"}",
+      "status": "DECLARED_CONDITION",
+      "technical_truth": "NOT_ESTABLISHED_BY_AUTHENTICITY"
+    },
+    {
+      "id": "assumption:27bac59d84013442eb97",
+      "claim": "claim:assumption:27bac59d84013442eb97",
+      "kind": "ASSUMPTION",
+      "statement": "Hypothetical terminals and explicitly authorized elevation options; existing service intent is not inferred",
+      "status": "DECLARED_CONDITION",
+      "technical_truth": "NOT_ESTABLISHED_BY_AUTHENTICITY"
+    },
+    {
+      "id": "assumption:d191f6ca0dea52bbbf95",
+      "claim": "claim:assumption:d191f6ca0dea52bbbf95",
+      "kind": "ASSUMPTION",
+      "statement": "Fixed 100 mm service, 20 mm insulation and 100 mm clearance",
+      "status": "DECLARED_CONDITION",
+      "technical_truth": "NOT_ESTABLISHED_BY_AUTHENTICITY"
+    },
+    {
+      "id": "assumption:82406a28d224ef467469",
+      "claim": "claim:assumption:82406a28d224ef467469",
+      "kind": "ASSUMPTION",
+      "statement": "Source-space bounds only select a hypothetical zone; actual room containment and hydraulic adequacy are not asserted",
+      "status": "DECLARED_CONDITION",
+      "technical_truth": "NOT_ESTABLISHED_BY_AUTHENTICITY"
+    },
+    {
+      "id": "assumption:56ef32648e08196877cc",
+      "claim": "claim:assumption:56ef32648e08196877cc",
+      "kind": "ASSUMPTION",
+      "statement": "{\"source_representation_policy\": \"NATIVE_CAD_WITH_SOURCE_VERTEX_HULL_ENCLOSURES\"}",
+      "status": "DECLARED_CONDITION",
+      "technical_truth": "NOT_ESTABLISHED_BY_AUTHENTICITY"
+    },
+    {
+      "id": "assumption:fa59ae54723d7d9c040f",
+      "claim": "claim:assumption:fa59ae54723d7d9c040f",
+      "kind": "ASSUMPTION",
+      "statement": "Terminal locations and demand are explicitly supplied scenario inputs, not surveyed/as-built facts",
+      "status": "DECLARED_CONDITION",
+      "technical_truth": "NOT_ESTABLISHED_BY_AUTHENTICITY"
+    }
+  ],
+  "dispositions": [
+    {
+      "claim": "claim:result:0",
+      "id": "joint-demand-coverage",
+      "status": "PASS",
+      "reason": "Every new demand and prior route has exactly one explicit mission and physical route",
+      "scope": "Complete proposed route set and protected previous route obligations",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:1",
+      "id": "protected-prior-missions",
+      "status": "PASS",
+      "reason": "Prior route definitions and engineering mission contents are unchanged",
+      "scope": "Complete proposed route set and protected previous route obligations",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:2",
+      "id": "joint-replacement-coverage",
+      "status": "PASS",
+      "reason": "Each edited source has one complete physical replacement containing all its routes",
+      "scope": "Complete proposed route set and protected previous route obligations",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:3",
+      "id": "route-source-binding:oma-1a7dc095a7f6-002-00",
+      "status": "PASS",
+      "reason": "Route materialization belongs to its authorized immutable discipline",
+      "scope": "Complete proposed route set and protected previous route obligations",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:4",
+      "id": "oma-1a7dc095a7f6-002-00:fixed-request-assumptions",
+      "status": "PASS",
+      "reason": "Scenario, clearance, physical sizes and objective policy match the immutable original run request",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:5",
+      "id": "oma-1a7dc095a7f6-002-00:protected-source-preservation",
+      "status": "PASS",
+      "reason": "All baseline entity content and source identities preserved",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:6",
+      "id": "oma-1a7dc095a7f6-002-00:materialized-input-integrity",
+      "status": "PASS",
+      "reason": "Persisted IFC hashes rechecked",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:7",
+      "id": "oma-1a7dc095a7f6-002-00:fixed-service-obligations",
+      "status": "PASS",
+      "reason": "All declared terminals, section and insulation obligations preserved",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:8",
+      "id": "oma-1a7dc095a7f6-002-00:exported-physical-semantics",
+      "status": "PASS",
+      "reason": "Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {
+        "recomputed": {
+          "connections": 0,
+          "errors": [],
+          "fitting_count": 0,
+          "length_m": 1.2000000000000028,
+          "original_records_checked": 62930,
+          "parts": [
+            {
+              "guid": "34RUYdLWjVtf6nC8V_ZuNL",
+              "length_m": 1.2000000000000028,
+              "radius_m": 0.07
+            }
+          ],
+          "slope_margins": []
+        }
+      },
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:9",
+      "id": "oma-1a7dc095a7f6-002-00:physical-interference-and-clearance",
+      "status": "PASS",
+      "reason": "Native solids checked: 803 route/obstacle pairs, 0 forbidden pairs, 0 ambiguous pairs; datum VERIFIED_SAME_SOURCE_RECORDS",
+      "scope": "New route versus every source physical obstacle; pre-existing building defects remain outside this local repair claim",
+      "participants": [],
+      "witness": {
+        "artifact": "2f293c41fe07709cc77d2d80d2dfd8c9950fda636f5533fcc47e5e3a5dddba58"
+      },
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:10",
+      "id": "oma-1a7dc095a7f6-002-00:physical-self-interference",
+      "status": "PASS",
+      "reason": "All route part pairs checked with local joint-interface authorization",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {
+        "artifact": "2f293c41fe07709cc77d2d80d2dfd8c9950fda636f5533fcc47e5e3a5dddba58"
+      },
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:11",
+      "id": "oma-1a7dc095a7f6-002-00:physical-port-body-attachment",
+      "status": "PASS",
+      "reason": "Every terminal/joint port independently classified on its actual solid cap with matching outward direction",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {
+        "ports": [
+          {
+            "owner_guid": "34RUYdLWjVtf6nC8V_ZuNL",
+            "point": [
+              24.169774999999973,
+              -7.091475000000081,
+              5.892220999999475
+            ],
+            "port_guid": "3Edd6cPIfUBh33rFS24I_V",
+            "probe_m": 0.0002,
+            "reason": "Physical cap, outside and inside agree with port axis",
+            "states": [
+              "TopAbs_State.TopAbs_ON",
+              "TopAbs_State.TopAbs_OUT",
+              "TopAbs_State.TopAbs_IN"
+            ],
+            "status": "PASS",
+            "tolerance_m": 1e-05
+          },
+          {
+            "owner_guid": "34RUYdLWjVtf6nC8V_ZuNL",
+            "point": [
+              25.369774999999976,
+              -7.091475000000081,
+              5.892220999999475
+            ],
+            "port_guid": "0mISDQhUXR0AXQLiHopfo2",
+            "probe_m": 0.0002,
+            "reason": "Physical cap, outside and inside agree with port axis",
+            "states": [
+              "TopAbs_State.TopAbs_ON",
+              "TopAbs_State.TopAbs_OUT",
+              "TopAbs_State.TopAbs_IN"
+            ],
+            "status": "PASS",
+            "tolerance_m": 1e-05
+          }
+        ]
+      },
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:12",
+      "id": "oma-1a7dc095a7f6-002-00:permitted-zone-containment",
+      "status": "PASS",
+      "reason": "Full native route envelopes checked against permitted zone boundary",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:13",
+      "id": "oma-1a7dc095a7f6-002-00:independent-objective-recomputation",
+      "status": "PASS",
+      "reason": "Length recomputed from IFC directrices and independently cross-checked from solid volumes",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {
+        "difference_m": 6.661338147750939e-16,
+        "directrix_length_m": 1.2000000000000028,
+        "volume_length_m": 1.2000000000000022
+      },
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:14",
+      "id": "oma-1a7dc095a7f6-002-00:gravity-slope",
+      "status": "NOT_APPLICABLE",
+      "reason": "Service is not a gravity network",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:15",
+      "id": "oma-1a7dc095a7f6-002-00:engineering-service",
+      "status": "NOT_APPLICABLE",
+      "reason": "Requested scope is local geometric coordination; hydraulic capacity/fire protection design is not certified",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:16",
+      "id": "route-source-binding:oma-1a7dc095a7f6-002-01",
+      "status": "PASS",
+      "reason": "Route materialization belongs to its authorized immutable discipline",
+      "scope": "Complete proposed route set and protected previous route obligations",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:17",
+      "id": "oma-1a7dc095a7f6-002-01:fixed-request-assumptions",
+      "status": "PASS",
+      "reason": "Scenario, clearance, physical sizes and objective policy match the immutable original run request",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:18",
+      "id": "oma-1a7dc095a7f6-002-01:protected-source-preservation",
+      "status": "PASS",
+      "reason": "All baseline entity content and source identities preserved",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:19",
+      "id": "oma-1a7dc095a7f6-002-01:materialized-input-integrity",
+      "status": "PASS",
+      "reason": "Persisted IFC hashes rechecked",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:20",
+      "id": "oma-1a7dc095a7f6-002-01:fixed-service-obligations",
+      "status": "PASS",
+      "reason": "All declared terminals, section and insulation obligations preserved",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:21",
+      "id": "oma-1a7dc095a7f6-002-01:exported-physical-semantics",
+      "status": "PASS",
+      "reason": "Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {
+        "recomputed": {
+          "connections": 0,
+          "errors": [],
+          "fitting_count": 0,
+          "length_m": 1.1999999999999993,
+          "original_records_checked": 62930,
+          "parts": [
+            {
+              "guid": "1VtfkhSBjLdgnna7FKnTAu",
+              "length_m": 1.1999999999999993,
+              "radius_m": 0.07
+            }
+          ],
+          "slope_margins": []
+        }
+      },
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:22",
+      "id": "oma-1a7dc095a7f6-002-01:physical-interference-and-clearance",
+      "status": "PASS",
+      "reason": "Native solids checked: 803 route/obstacle pairs, 0 forbidden pairs, 0 ambiguous pairs; datum VERIFIED_SAME_SOURCE_RECORDS",
+      "scope": "New route versus every source physical obstacle; pre-existing building defects remain outside this local repair claim",
+      "participants": [],
+      "witness": {
+        "artifact": "dbae661863c3fdfaaae56bfa90bc7782cda4601544ac7973fcd1b66c27f8218d"
+      },
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:23",
+      "id": "oma-1a7dc095a7f6-002-01:physical-self-interference",
+      "status": "PASS",
+      "reason": "All route part pairs checked with local joint-interface authorization",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {
+        "artifact": "dbae661863c3fdfaaae56bfa90bc7782cda4601544ac7973fcd1b66c27f8218d"
+      },
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:24",
+      "id": "oma-1a7dc095a7f6-002-01:physical-port-body-attachment",
+      "status": "PASS",
+      "reason": "Every terminal/joint port independently classified on its actual solid cap with matching outward direction",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {
+        "ports": [
+          {
+            "owner_guid": "1VtfkhSBjLdgnna7FKnTAu",
+            "point": [
+              24.769774999999974,
+              -7.69147500000008,
+              6.242220999999475
+            ],
+            "port_guid": "10fzOmnZfNm85wdJChh_F2",
+            "probe_m": 0.0002,
+            "reason": "Physical cap, outside and inside agree with port axis",
+            "states": [
+              "TopAbs_State.TopAbs_ON",
+              "TopAbs_State.TopAbs_OUT",
+              "TopAbs_State.TopAbs_IN"
+            ],
+            "status": "PASS",
+            "tolerance_m": 1e-05
+          },
+          {
+            "owner_guid": "1VtfkhSBjLdgnna7FKnTAu",
+            "point": [
+              24.769774999999974,
+              -6.491475000000081,
+              6.242220999999475
+            ],
+            "port_guid": "1L$yJRzd1GcfPsdOGdqPze",
+            "probe_m": 0.0002,
+            "reason": "Physical cap, outside and inside agree with port axis",
+            "states": [
+              "TopAbs_State.TopAbs_ON",
+              "TopAbs_State.TopAbs_OUT",
+              "TopAbs_State.TopAbs_IN"
+            ],
+            "status": "PASS",
+            "tolerance_m": 1e-05
+          }
+        ]
+      },
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:25",
+      "id": "oma-1a7dc095a7f6-002-01:permitted-zone-containment",
+      "status": "PASS",
+      "reason": "Full native route envelopes checked against permitted zone boundary",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:26",
+      "id": "oma-1a7dc095a7f6-002-01:independent-objective-recomputation",
+      "status": "PASS",
+      "reason": "Length recomputed from IFC directrices and independently cross-checked from solid volumes",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {
+        "difference_m": 4.440892098500626e-16,
+        "directrix_length_m": 1.1999999999999993,
+        "volume_length_m": 1.1999999999999988
+      },
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:27",
+      "id": "oma-1a7dc095a7f6-002-01:gravity-slope",
+      "status": "NOT_APPLICABLE",
+      "reason": "Service is not a gravity network",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:28",
+      "id": "oma-1a7dc095a7f6-002-01:engineering-service",
+      "status": "NOT_APPLICABLE",
+      "reason": "Requested scope is local geometric coordination; hydraulic capacity/fire protection design is not certified",
+      "scope": "Proposed route and its declared obstacle scope",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:29",
+      "id": "cross-route-interference",
+      "status": "PASS",
+      "reason": "All 1 physical part pairs between independent routes checked; 0 unresolved or forbidden pairs",
+      "scope": "Complete proposed route set and protected previous route obligations",
+      "participants": [],
+      "witness": {
+        "findings": [],
+        "pairs_accounted": 1
+      },
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:30",
+      "id": "joint-mission-binding",
+      "status": "PASS",
+      "reason": "Composite mission, catalog, rules, protected state and objective bind all individual obligations",
+      "scope": "Complete proposed route set and protected previous route obligations",
+      "participants": [],
+      "witness": {},
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    },
+    {
+      "claim": "claim:result:31",
+      "id": "joint-objective",
+      "status": "PASS",
+      "reason": "Objective recomputed from every actual IFC route and independently cross-checked against native solid volumes",
+      "scope": "Complete proposed route set and protected previous route obligations",
+      "participants": [],
+      "witness": {
+        "per_route": {
+          "oma-1a7dc095a7f6-002-00": {
+            "fitting_count": 0.0,
+            "length_m": 1.2000000000000028
+          },
+          "oma-1a7dc095a7f6-002-01": {
+            "fitting_count": 0.0,
+            "length_m": 1.1999999999999993
+          }
+        }
+      },
+      "report_root": "9b990e98f6cce26b86a375e8f9d939218c784aa3de4585cc1f209f0d4d1f3c38",
+      "truth_basis": "Independent checker's recorded numerical/model-conditional disposition"
+    }
+  ],
+  "external_evidence_cuts": {
+    "status": "NOT_APPLICABLE",
+    "cuts": [],
+    "reason": "Targets currently lack support"
+  },
+  "fresh_physical_recheck": "NOT_RUN",
+  "current_external_file_bytes": "NOT_REHASHED_BY_THIS_EVIDENCE_QUERY",
+  "whole_building_certification": "NOT_ESTABLISHED",
+  "global_optimality": "NOT_ESTABLISHED"
+}

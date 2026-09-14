@@ -188,3 +188,16 @@ def test_large_asset_copy_does_not_hold_live_publication_lock(store, tmp_path, m
         restored = Store(saved.result(timeout=5))
     assert restored.project(p["id"])["revision"] == 0
     assert store.project(p["id"])["revision"] == 1
+
+
+def test_cache_provenance_hash_map_is_not_treated_as_file_paths(store, tmp_path):
+    raw = tmp_path / "real-mesh.json.gz"
+    raw.write_bytes(b"actual bytes for backup reference fixture")
+    from oma.backup import file_hash
+    project = store.create_project("cache provenance", {
+        "artifacts": {"mesh_json_gz": str(raw)},
+        "derived_cache_provenance": {"artifact_sha256": {"mesh_json_gz": file_hash(raw)}}})
+    saved = Store(store.backup(tmp_path / "backup-cache"))
+    state = saved.get(saved.project(project["id"])["state_root"])
+    assert state["derived_cache_provenance"]["artifact_sha256"]["mesh_json_gz"] == file_hash(raw)
+    assert saved.resolve_path(state["artifacts"]["mesh_json_gz"]).read_bytes() == raw.read_bytes()

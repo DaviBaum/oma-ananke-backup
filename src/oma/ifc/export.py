@@ -17,6 +17,7 @@ import uuid
 import numpy as np
 
 from .audit import atomic_json, sha256_file
+from .ports import encoded_flow_axis, ownership_ledger, connected_pair_errors, circular_owner_radius
 
 
 def _guid(namespace: str, key: str) -> str:
@@ -188,9 +189,15 @@ def export_route(source_path: str | Path, destination_path: str | Path, route_sp
                 tangent = np.asarray(part["end"])-np.asarray(part["start"])
             tangent /= np.linalg.norm(tangent)
             outward = -tangent if suffix == "in" else tangent
+            port_placement = local(location, encoded_flow_axis(outward, flow))
+            port_placement.PlacementRelTo = element.ObjectPlacement
             port = rooted("IfcDistributionPort", f"part:{index}:port:{suffix}", Name=f"{route_id}/{index}/{suffix}",
-                          ObjectPlacement=local(location, outward), FlowDirection=flow)
-            rooted("IfcRelConnectsPortToElement", f"part:{index}:owner:{suffix}", RelatingPort=port, RelatedElement=element)
+                          ObjectPlacement=port_placement, FlowDirection=flow)
+            if model.schema == "IFC2X3":
+                rooted("IfcRelConnectsPortToElement", f"part:{index}:owner:{suffix}", RelatingPort=port, RelatedElement=element)
+            else:
+                port.PredefinedType = "DUCT" if system_type == "ROUND_DUCT" else "PIPE"
+                rooted("IfcRelNests", f"part:{index}:owner:{suffix}", RelatingObject=element, RelatedObjects=[port])
             ports.append(port)
         if previous_out:
             rooted("IfcRelConnectsPorts", f"joint:{index}", RelatingPort=previous_out, RelatedPort=ports[0], RealizingElement=element)
@@ -221,7 +228,17 @@ def export_route(source_path: str | Path, destination_path: str | Path, route_sp
                 raise ValueError(f"{endpoint} does not identify an explicit source port")
             if getattr(existing, "ConnectedTo", ()) or getattr(existing, "ConnectedFrom", ()):
                 raise ValueError("Existing port already connected; reroute requires explicit relationship replacement")
-            rooted("IfcRelConnectsPorts", endpoint, RelatingPort=existing, RelatedPort=all_ports[port_index], RealizingElement=elements[0 if port_index == 0 else -1])
+            source_port, sink_port = ((existing, all_ports[port_index]) if endpoint == "source_port_guid"
+                                      else (all_ports[port_index], existing))
+            ledger = ownership_ledger(model)
+            problems = connected_pair_errors(source_port, sink_port, ledger, scale)
+            owners = ledger[existing.id()]["owners"]
+            radius = circular_owner_radius(next(iter(owners.values())), scale) if len(owners) == 1 else None
+            if radius is None or abs(radius - outer_radius) > 1e-7:
+                problems.append("EXISTING_TERMINAL_SECTION_UNKNOWN_OR_INCOMPATIBLE")
+            if problems:
+                raise ValueError(f"Existing terminal binding incompatible: {problems}")
+            rooted("IfcRelConnectsPorts", endpoint, RelatingPort=source_port, RelatedPort=sink_port, RealizingElement=elements[0 if port_index == 0 else -1])
     changed = [step for step, text in original.items() if str(model.by_id(step)) != text]
     if changed:
         raise RuntimeError(f"Unexpected modification of original STEP records: {changed[:10]}")
@@ -231,6 +248,7 @@ def export_route(source_path: str | Path, destination_path: str | Path, route_sp
     temporary.replace(destination)
     result = {"source_path": str(source), "source_sha256": root, "export_path": str(destination),
               "export_sha256": sha256_file(destination), "schema": model.schema, "route_id": route_id,
+              "port_axis_convention": "IFC_FLOW_AXIS_V1",
               "route_spec": route_spec, "status": "DRAFT", "original_step_records": len(original),
               "original_records_changed": changed, "added_parts": correspondences,
               "explicit_internal_connections": len(parts)-1, "source_system_guid": system.GlobalId,

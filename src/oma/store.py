@@ -285,6 +285,16 @@ class Store:
                 raise IntegrityError("Mission/rule applicability mismatch")
         request_hash = digest({"root": root, "expected": expected_revision, "status": status, "candidate": candidate_id,
                                "report": _verified_report_root, "changed_ids": changed_ids or []})
+        derivation_root = None
+        predecessor = self.project(project_id)
+        if state.get("schema_version") == 1 and predecessor["revision"] == expected_revision:
+            from .project_dependencies import derive_transition
+            from .build_identity import checker_version
+            derivation = derive_transition(self.get(predecessor["state_root"]), state, executable=checker_version(),
+                after_report=self.get(_verified_report_root) if _verified_report_root else None)
+            if not derivation["cold_equivalent"]:
+                raise IntegrityError("Incremental project derivations differ from a fresh cold rebuild")
+            derivation_root = self.put(derivation)
         with self.transaction() as db:
             prior = db.execute("SELECT * FROM requests WHERE project_id=? AND key=?", (project_id, idempotency_key)).fetchone()
             if prior:
@@ -302,8 +312,8 @@ class Store:
             db.execute("UPDATE projects SET revision=?,state_root=?,status=? WHERE id=?", (revision, root, status, project_id))
             event = self._event(db, project_id, state_root=root, candidate_id=candidate_id, status=status,
                                 message=f"Revision {revision} committed", changed_ids=changed_ids or [],
-                                artifacts=[root] + ([_verified_report_root] if _verified_report_root else []),
-                                payload={"revision": revision, "parent_root": project["state_root"]})
+                                artifacts=[root] + ([_verified_report_root] if _verified_report_root else []) + ([derivation_root] if derivation_root else []),
+                                payload={"revision": revision, "parent_root": project["state_root"], "derivation_root": derivation_root})
             response = {"project_id": project_id, "revision": revision, "state_root": root, "status": status, "event_seq": event["seq"]}
             db.execute("INSERT INTO requests VALUES(?,?,?,?)", (project_id, idempotency_key, request_hash, canonical(response).decode()))
             return response
@@ -423,6 +433,10 @@ class Store:
             if report.checker_version != checker_version():
                 raise IntegrityError("Executable checker changed during verification; rerun on a stable build")
         report_root = self.put(report)
+        from .project_assurance import build_report_assurance
+        assurance = build_report_assurance(self, self.candidate(candidate_id), report_root,
+            executable=report.checker_version, assessment_time=report.created_at)
+        assurance_root = self.put(assurance)
         with self.transaction() as db:
             row = db.execute("SELECT * FROM candidates WHERE id=?", (candidate_id,)).fetchone()
             if not row or row["state_root"] != report.candidate_root:
@@ -430,7 +444,7 @@ class Store:
             status = "CHECKED" if report.status == Verdict.PASS else ("REJECTED" if report.status == Verdict.FAIL else report.status.value)
             db.execute("UPDATE candidates SET status=?,report_root=? WHERE id=?", (status, report_root, candidate_id))
             from collections import Counter
-            self._event(db, row["project_id"], run_id=row["run_id"], candidate_id=candidate_id, state_root=row["state_root"], stage="verification", status=status, message=f"Independent check: {report.status}", artifacts=[report_root], payload={"check": {"status": report.status.value, "scope": report.scope, "counts": dict(Counter(r.status.value for r in report.results)), "objective": report.objective, "report_root": report_root}})
+            self._event(db, row["project_id"], run_id=row["run_id"], candidate_id=candidate_id, state_root=row["state_root"], stage="verification", status=status, message=f"Independent check: {report.status}", artifacts=[report_root, assurance_root], payload={"check": {"status": report.status.value, "scope": report.scope, "counts": dict(Counter(r.status.value for r in report.results)), "objective": report.objective, "report_root": report_root}, "assurance": {"root": assurance_root, "status": assurance["support_status"], "scope": assurance["scope"]}})
         return self.candidate(candidate_id)
 
     def accept(self, project_id: str, candidate_id: str, expected_revision: int, idempotency_key: str, *, checker_version: str) -> dict:
@@ -440,6 +454,9 @@ class Store:
         candidate = self.candidate(candidate_id)
         if candidate["project_id"] != project_id:
             raise IntegrityError("Candidate belongs to another project")
+        from .validation_advisories import candidate_advisories
+        if candidate_advisories(self, candidate):
+            raise IntegrityError("IFC-PORT-001: prior authored port semantics require regeneration and a fresh independent check")
         if candidate["base_revision"] != expected_revision:
             raise Conflict("Candidate was computed from a different revision; rebase and recheck required")
         if candidate["status"] != "CHECKED" or not candidate["report_root"]:

@@ -153,8 +153,13 @@ class EngineService:
             candidate.setdefault("objective", {})
             candidate.setdefault("changed_ids", [])
             candidate.setdefault("routes", [])
-            if candidate.get("kind") in {"physical_route", "physical_route_set"} and not candidate["routes"]:
-                candidate["routes"] = self.store.get(candidate["state_root"]).get("routes", [])
+            if candidate.get("kind") in {"physical_route", "physical_route_set"}:
+                candidate_state = self.store.get(candidate["state_root"])
+                from .validation_advisories import candidate_advisories
+                candidate["validation_advisories"] = candidate_advisories(self.store, candidate, candidate_state)
+                contracts = candidate_state.get("derived_artifacts", {}).get("routing_contracts", {})
+                candidate["routes"] = [{**route, "request_demand_id": contracts.get(route["id"], {}).get("request_demand_id")}
+                    for route in (candidate["routes"] or candidate_state.get("routes", []))]
         sources = state.get("sources", [])
         missing = []
         if not sources:

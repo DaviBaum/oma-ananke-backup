@@ -36,7 +36,9 @@ def _asset_references(value):
                 yield item
             elif key == "path" and isinstance(item, str) and ("sha256" in value or "source_sha256" in value):
                 yield item
-            elif key != "properties":
+            elif key not in {"properties", "artifact_sha256"}:
+                # Cache provenance records a checksum map using the same names
+                # as source artifact paths. Its hash values are not filenames.
                 yield from _asset_references(item)
     elif isinstance(value, list):
         for item in value:

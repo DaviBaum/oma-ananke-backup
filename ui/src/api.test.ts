@@ -20,6 +20,72 @@ const event = (
   status: "RUNNING",
 });
 describe("durable event reconciliation", () => {
+  it("rejects assurance for another candidate even when its root matches", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockResolvedValue(
+          new Response(
+            JSON.stringify({
+              candidate_id: "other",
+              candidate_root: "root",
+              support_status: "SUPPORTED_CONDITIONALLY",
+            }),
+          ),
+        ),
+    );
+    try {
+      await expect(
+        api.assurance("project", "selected", "root"),
+      ).rejects.toThrow("different candidate or state root");
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+  it("pins dependency revision zero and rejects a stale response root", async () => {
+    const fetcher = vi
+      .fn()
+      .mockResolvedValue(
+        new Response(JSON.stringify({ after_root: "previous-root" })),
+      );
+    vi.stubGlobal("fetch", fetcher);
+    try {
+      await expect(
+        api.dependencies("project", { revision: 0 }, "selected-root"),
+      ).rejects.toThrow("different state root");
+      expect(fetcher.mock.calls[0][0]).toBe(
+        "/api/projects/project/dependencies?revision=0",
+      );
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+  it("retains one recheck identity across an uncertain retry", async () => {
+    const fetcher = vi
+      .fn()
+      .mockRejectedValueOnce(new TypeError("Connection lost"))
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify({ id: "rechecked", status: "QUEUED" }), {
+          status: 202,
+        }),
+      );
+    vi.stubGlobal("fetch", fetcher);
+    try {
+      await expect(
+        api.recheck("p-recheck", "candidate-a", 300),
+      ).rejects.toThrow("Connection lost");
+      await api.recheck("p-recheck", "candidate-a", 300);
+      expect(fetcher.mock.calls[0][0]).toBe(
+        "/api/projects/p-recheck/candidates/candidate-a/recheck",
+      );
+      const bodies = fetcher.mock.calls.map((c) => JSON.parse(c[1].body));
+      expect(bodies[0]).toEqual(bodies[1]);
+      expect(bodies[0].budget_seconds).toBe(300);
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
   it("retries an uncertain run creation with the same key, then gives a new explicit run a new identity", async () => {
     const fetcher = vi
       .fn()

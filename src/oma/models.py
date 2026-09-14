@@ -89,6 +89,9 @@ class Port(Model):
     entity_id: str | None
     position_m: Vec3 | None
     axis: Vec3 | None = None
+    physical_outward_normal: Vec3 | None = None
+    axis_convention: str = "HISTORICAL_UNKNOWN"
+    owner_placement_status: Literal["OWNER_RELATIVE", "INVALID", "UNVERIFIED", "SCENARIO_NOT_APPLICABLE"] = "UNVERIFIED"
     coordinate_frame: str = "federation"
     position_status: Literal["KNOWN", "MISSING", "INVALID", "UNRESOLVED_FEDERATION"] = "KNOWN"
     ownership_status: Literal["DECLARED", "MISSING", "AMBIGUOUS", "UNVERIFIED"] = "DECLARED"

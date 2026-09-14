@@ -101,12 +101,20 @@ export interface Route {
   [key: string]: unknown;
 }
 export interface Candidate {
+  validation_advisories?: ValidationAdvisory[];
   id: string;
   run_id?: string;
   state_root: string;
   status: Status;
   objective: Record<string, number>;
-  check?: { status: Status; reason?: string; scope?: unknown };
+  check?: {
+    status: Status;
+    reason?: string;
+    scope?: unknown;
+    applicability?: "CURRENT" | "STALE_EXECUTABLE" | "WRONG_ROOT" | string;
+    checker_version?: string;
+    current_checker_version?: string;
+  };
   changed_ids: string[];
   created_at?: string;
   routes: Route[];
@@ -205,4 +213,78 @@ export interface RunRequest {
   mission?: Record<string, unknown>;
   budget_seconds?: number;
   seed?: number;
+}
+export interface AssuranceRecord {
+  validation_advisories?: ValidationAdvisory[];
+  candidate_id: string;
+  candidate_root: string;
+  support_status: string;
+  reason?: string;
+  recorded_engineering_status?: string;
+  scope?: string;
+  assessment_context?: Record<string, unknown>;
+  recorded_context?: Record<string, unknown>;
+  independent_assurance_check?: { status: string; reason?: string };
+  assumption_ledger?: {
+    id: string;
+    kind: string;
+    statement: string;
+    status: string;
+    technical_truth?: string;
+  }[];
+  dispositions?: {
+    id: string;
+    status: string;
+    reason: string;
+    scope: string;
+    truth_basis?: string;
+    [key: string]: unknown;
+  }[];
+  certificate?: {
+    complete?: boolean;
+    cores?: string[][];
+    excluded_foundations?: Record<string, string>;
+    [key: string]: unknown;
+  };
+  theory?: {
+    foundations?: { id: string; description: string; [key: string]: unknown }[];
+    [key: string]: unknown;
+  };
+  external_evidence_cuts?: {
+    status?: string;
+    cuts?: string[][];
+    [key: string]: unknown;
+  };
+  fresh_physical_recheck?: string;
+  current_external_file_bytes?: string;
+  whole_building_certification?: string;
+  global_optimality?: string;
+  [key: string]: unknown;
+}
+export interface ValidationAdvisory {
+  id: string;
+  status: string;
+  route_ids: string[];
+  claim: string;
+  reason: string;
+  source: string;
+  scope: string;
+  resolution_contract: string;
+}
+export interface DependencyRecord {
+  before_root: string;
+  after_root: string;
+  changed_authoritative_inputs: string[];
+  conservatively_affected: string[];
+  semantic_output_changes: string[];
+  recomputed: string[];
+  reused: string[];
+  cold_equivalent: boolean;
+  input_roots: Record<string, string>;
+  dependencies: Record<string, string[]>;
+  artifacts: Record<string, unknown>;
+  scope: string;
+  elapsed_seconds?: number;
+  physical_checks_reused_across_roots?: boolean;
+  [key: string]: unknown;
 }

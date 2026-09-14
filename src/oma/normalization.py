@@ -10,7 +10,7 @@ from .models import Port, Provenance
 
 def refresh_ownership(store, audit: dict, source: dict) -> dict:
     """Read legacy audit ownership afresh from the hash-verified immutable IFC."""
-    if all("owner_step_ids" in p for p in audit.get("ports", [])):
+    if all("owner_step_ids" in p and "owner_placement_status" in p and "axis_convention" in p for p in audit.get("ports", [])):
         return audit
     import ifcopenshell
     from .ifc.audit import sha256_file
@@ -18,21 +18,20 @@ def refresh_ownership(store, audit: dict, source: dict) -> dict:
     if sha256_file(path) != source["sha256"]:
         raise ValueError("Source hash changed before explicit connectivity normalization")
     model = ifcopenshell.open(str(path))
-    owners, relationships = {}, {}
-    for rel in model.by_type("IfcRelConnectsPortToElement"):
-        owners.setdefault(rel.RelatingPort.id(), set()).add(rel.RelatedElement.id())
-        relationships.setdefault(rel.RelatingPort.id(), set()).add(rel.id())
-    for rel in model.by_type("IfcRelNests"):
-        for child in rel.RelatedObjects:
-            if child.is_a("IfcDistributionPort"):
-                owners.setdefault(child.id(), set()).add(rel.RelatingObject.id())
-                relationships.setdefault(child.id(), set()).add(rel.id())
+    import ifcopenshell.util.unit
+    from .ifc.ports import ownership_ledger, port_facts
+    ledger = ownership_ledger(model)
+    scale = ifcopenshell.util.unit.calculate_unit_scale(model)
     records = []
     for record in audit.get("ports", []):
-        ids = sorted(owners.get(record["step_id"], []))
+        facts = port_facts(model.by_id(record["step_id"]), ledger[record["step_id"]], scale)
+        ids = facts["owner_step_ids"]
         records.append({**record, "owner_step_ids": ids, "owner_step_id": ids[0] if len(ids) == 1 else None,
-                        "owner_relationship_step_ids": sorted(relationships.get(record["step_id"], []))})
-    return {**audit, "ports": records, "ownership_normalization": {"method": "fresh_explicit_IFC_relationships/1", "source_sha256": source["sha256"]}}
+                        "owner_relationship_step_ids": facts["owner_relationship_step_ids"],
+                        "axis_convention": facts["axis_convention"], "owner_placement_status": facts["owner_placement_status"],
+                        "port_semantic_errors": facts["errors"], "flow_axis": facts["flow_axis"],
+                        "physical_outward_normal": facts["physical_outward_normal"]})
+    return {**audit, "ports": records, "ownership_normalization": {"method": "fresh_explicit_IFC_relationships_and_flow_axes/2", "source_sha256": source["sha256"]}}
 
 
 def normalize_connectivity(audits: list[dict], sources: list[dict]):
@@ -73,8 +72,18 @@ def normalize_connectivity(audits: list[dict], sources: list[dict]):
             if direction not in {"SOURCE", "SINK", "SOURCEANDSINK", "NOTDEFINED"}:
                 issues.append({"port_id": identity, "code": "INVALID_DECLARED_FLOW_DIRECTION", "raw": direction})
                 direction = "NOTDEFINED"
+            from .ifc.ports import physical_normal
+            normal = physical_normal(axis, direction) if axis is not None else None
+            convention = record.get("axis_convention", "HISTORICAL_UNKNOWN")
+            if convention == "HISTORICAL_UNKNOWN":
+                normal = None
+            owner_placement = record.get("owner_placement_status", "UNVERIFIED")
+            if record.get("port_semantic_errors"):
+                issues.append({"port_id": identity, "code": "IMPORTED_PORT_SEMANTICS_UNRESOLVED", "details": record["port_semantic_errors"]})
             port = Port(id=identity, entity_id=f"{source_id}:{owner}" if owner is not None else None,
                         position_m=position, axis=axis, coordinate_frame="federation" if frame is not None else f"source:{source_id}",
+                        physical_outward_normal=None if normal is None else tuple(normal), axis_convention=convention,
+                        owner_placement_status=owner_placement,
                         position_status=status, ownership_status=ownership, direction=direction,
                         service=record.get("system_type") or "NOTDEFINED", section=None, connection_evidence="explicit_ifc",
                         provenance=Provenance(source_id=source_id, content_hash=source_id, step_id=record["step_id"],
