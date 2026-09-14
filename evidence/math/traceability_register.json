@@ -6,6 +6,81 @@
   "full_engine_mathematics_implemented": false,
   "obligations": [
     {
+      "obligation": "GROUNDED_PASSIVE_RESIDUAL_TO_SOLUTION_ERROR_BOUND",
+      "source": {
+        "document": "1-10",
+        "sha256": "0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970",
+        "paragraphs": [
+          13753,
+          13781,
+          16360,
+          16397,
+          16836,
+          16853,
+          17130,
+          17158
+        ],
+        "objects": [
+          "THM-ER22",
+          "THM-PO14",
+          "ALG-PO7"
+        ]
+      },
+      "interpretation_and_assumptions": "On a complete grounded positive-K graph, the supplied exact internal head vector lies in each component's boundary hull and uses the same actual Dirichlet parameter tuple as the equilibrium. Every positive-span edge has a checked positive conductance satisfying 4*c*c*K.upper*span<=1; complete simple grounding paths and weighted Cauchy-Schwarz give sigma=sum_internal(sum_path(1/c)). Independent signed-root incidence and norm bounds prove uniform pressure L2 error at most sigma*R. Constant-span and boundary-only cases have explicit zero-error branches. The parameterized reference-flow family is widened by independently checked sqrt(2*endpoint_error/K.lower), including the essential zero-crossing factor two, then intersected with direct pressure-box images. Full model/query/term/node/path/radical inventories and final mutation guards are independently checked.",
+      "implementations": [
+        "oma.optimization.passive_residual.compile_passive_residual"
+      ],
+      "independent_checkers": [
+        "oma.optimization.passive_residual.verify_passive_residual"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.passive_residual.compile_passive_residual",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.passive_residual.verify_passive_residual",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_passive_residual.py"
+      ],
+      "real_model_benchmark": {
+        "status": "EXACT_DECLARED_MODEL_AND_INDEPENDENT_IMPLEMENTATION_REVIEW_PASS",
+        "evidence": "evidence/math/passive-residual-bound/independent-implementation-review/e7ac3e79600843fdb8a4ba3fbc7debf8/result.json",
+        "scope": "86 focused residual cases, 24 independently manufactured exact graph cases, 243 rejected attacks and four budget cases. All 303 combined residual/passive/native-tree/control compatibility tests pass. This kernel does not establish native applicability or add physical acceptance authority."
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "A bounded-domain stability specialization, not a global unbounded strong-monotonicity constant. Parameter variation is included and is not labeled pure numerical solver error. Reference flows depend on actual boundary/resistance parameters and need not conserve internal flow. Coarse valid bounds may miss the requested target. No native model applicability, physical discrepancy, delivery, acceptance, best approximation, tight hull or full original algorithm completion; count/path/work/bit/byte exhaustion remains UNKNOWN.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ],
+      "documentation": "docs/math/passive-residual-bound.md",
+      "evidence": "evidence/math/passive-residual-bound/latest.json",
+      "full_source_algorithms_implemented": false,
+      "consumer_scope": {
+        "native_geometry_adapter": false,
+        "physical_discrepancy_bound": false,
+        "same_actual_boundary_tuple_required": true,
+        "reference_flow_is_parameterized": true,
+        "default_nodes": 64,
+        "default_edges": 128,
+        "default_path_steps": 4096
+      }
+    },
+    {
       "obligation": "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE",
       "source": {
         "document": "oma-integration",

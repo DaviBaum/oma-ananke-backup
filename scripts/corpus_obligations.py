@@ -15,6 +15,10 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("GROUNDED_PASSIVE_RESIDUAL_TO_SOLUTION_ERROR_BOUND", "1-10", [13753, 13781, 16360, 16397, 16836, 16853, 17130, 17158], ["THM-ER22", "THM-PO14", "ALG-PO7"],
+         ["oma.optimization.passive_residual.compile_passive_residual"], ["oma.optimization.passive_residual.verify_passive_residual"], "tests/test_passive_residual.py",
+         "On a complete grounded positive-K graph, the supplied exact internal head vector lies in each component's boundary hull and uses the same actual Dirichlet parameter tuple as the equilibrium. Every positive-span edge has a checked positive conductance satisfying 4*c*c*K.upper*span<=1; complete simple grounding paths and weighted Cauchy-Schwarz give sigma=sum_internal(sum_path(1/c)). Independent signed-root incidence and norm bounds prove uniform pressure L2 error at most sigma*R. Constant-span and boundary-only cases have explicit zero-error branches. The parameterized reference-flow family is widened by independently checked sqrt(2*endpoint_error/K.lower), including the essential zero-crossing factor two, then intersected with direct pressure-box images. Full model/query/term/node/path/radical inventories and final mutation guards are independently checked.",
+         [], "A bounded-domain stability specialization, not a global unbounded strong-monotonicity constant. Parameter variation is included and is not labeled pure numerical solver error. Reference flows depend on actual boundary/resistance parameters and need not conserve internal flow. Coarse valid bounds may miss the requested target. No native model applicability, physical discrepancy, delivery, acceptance, best approximation, tight hull or full original algorithm completion; count/path/work/bit/byte exhaustion remains UNKNOWN."),
         ("NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE", "oma-integration", [4592, 4609, 5530, 5531, 5532, 5533, 5534, 5535, 5536, 5537], ["DEF-RTR56", "ALG-RTR19", "ALG-RTR20", "ALG-RTR21", "ALG-RTR22"],
          ["oma.routing.passive_tree_pressure.derive_passive_tree_model", "oma.routing.passive_tree_pressure.evaluate_passive_tree"], ["oma.routing.passive_tree_pressure.verify_passive_tree_envelope", "oma.routing.network_checker.verify_network_candidate"], "tests/test_passive_tree_pressure.py",
          "A new exact boundary contract explicitly assigns every tee one positive inlet-flow-referenced total loss common to its two outlets. Fresh native component lengths, radius enclosures and every transformed physical cap position determine a complete grounded graph quotient. Independent adjacency reconstruction and direct dimensional extrema replay each port group and per-component resistance. Independently verified passive pressure bounds induce every physical port flow, total pressure, velocity, exact minimum delivery and complete continuity identity. Native geometry and operating proof are separate mandatory checks; acceptance and fresh exported-byte checks bind current candidate, mission, rules, source, geometry and executable roots. Exact rational minima remain authoritative while legacy Demand floats are descriptive projections only.",
@@ -205,6 +209,16 @@ def main():
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
     coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
     for row in register:
+        if row["obligation"] == "GROUNDED_PASSIVE_RESIDUAL_TO_SOLUTION_ERROR_BOUND":
+            row["documentation"] = "docs/math/passive-residual-bound.md"
+            row["evidence"] = "evidence/math/passive-residual-bound/latest.json"
+            row["full_source_algorithms_implemented"] = False
+            row["real_model_benchmark"] = {"status": "EXACT_DECLARED_MODEL_AND_INDEPENDENT_IMPLEMENTATION_REVIEW_PASS",
+                "evidence": "evidence/math/passive-residual-bound/independent-implementation-review/e7ac3e79600843fdb8a4ba3fbc7debf8/result.json",
+                "scope": "86 focused residual cases, 24 independently manufactured exact graph cases, 243 rejected attacks and four budget cases. All 303 combined residual/passive/native-tree/control compatibility tests pass. This kernel does not establish native applicability or add physical acceptance authority."}
+            row["consumer_scope"] = {"native_geometry_adapter": False, "physical_discrepancy_bound": False,
+                "same_actual_boundary_tuple_required": True, "reference_flow_is_parameterized": True,
+                "default_nodes": 64, "default_edges": 128, "default_path_steps": 4096}
         if row["obligation"] == "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE":
             row["related_sources"] = [{"document": "1-10", "sha256": identities["1-10"],
                 "paragraphs": [16069, 16077, 16836, 16853], "objects": ["ALG-PO1", "ALG-PO2", "ALG-PO7"]}]
