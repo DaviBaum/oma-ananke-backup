@@ -15,6 +15,14 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("EXACT_RECTILINEAR_AUTHORIZED_OPENING_SUPPORT", "oma-integration", [1647, 1653], ["ALG-SIR26", "DEF-SIR25", "DEF-SIR34"],
+         ["oma.optimization.rectilinear_opening.compile_rectilinear_opening"], ["oma.optimization.rectilinear_opening.verify_rectilinear_opening"], "tests/test_optimization_rectilinear_opening.py",
+         "Corrected explicitly bounded materialization model: one rational local host box and one strictly interior transverse footprint extending beyond both thickness faces. Four closed cells exactly represent the regularized difference. Independent endpoint-arrangement checker verifies complete set coverage including boundaries, disjoint interiors and exact volumes, with context/source/host/frame/authorization roots bound.",
+         [], "Exact supplied local rational geometry only. Declared identities are not authenticated authority, frame validity, source geometry truth, native exported IFC equality, structural or fire approval. Native adapter and actual real-host benchmark remain separate. Forty-eight focused tests include shifted equal-volume attacks and fifty randomized independent voxel ground truths."),
+        ("ACTUAL_FROZEN_PHYSICAL_MENU_PROJECTION", "1-10", [6005, 6031, 8179, 8841, 19214, 20012], ["ALG-MN0", "ALG-MN1", "ALG-DS1", "ALG-DS3", "ALG-CS1", "ALG-CS6"],
+         ["oma.optimization.physical_menu.compile_physical_menu"], ["oma.optimization.physical_menu.verify_physical_menu"], "tests/test_optimization_physical_menu.py",
+         "Complete finite ordered menu with immutable choice definitions, context and named report projection. Every assignment is retained; unexamined assignments are UNKNOWN. Exact prefix separator and full assignment replacement-action bisimulation preserve all higher-order interactions, original labels and report references. Caller authenticates physical report applicability.",
+         [], "Projection equivalence only, with no acceptance authority or native PASS reuse. Historical actual Office reports produce one FAIL and one PASS assignment; withholding the PASS yields FAIL plus UNKNOWN. Different historical checker builds remain explicit in that benchmark projection. Current-build application assembly is separately implemented in routing/physical_archive.py and checked by root-owned integration tests; this kernel does not authenticate arbitrary supplied roots."),
         ("ORIGINAL_FINITE_CAUSAL_BISIMULATION", "1-10", [18648, 18747, 19214, 19264, 19974, 20012], ["DEF-CS5", "LEM-CS3", "THM-CS3", "ALG-CS1", "THM-CS21", "ALG-CS6"],
          ["oma.optimization.bisimulation.compile_bisimulation"], ["oma.optimization.bisimulation.verify_bisimulation"], "tests/test_optimization_bisimulation.py",
          "Complete finite typed state/action relations and direct observations under immutable context. Exact successor-block-set refinement gives the coarsest strong bisimulation; missing rows are invalid while explicit empty rows mean disabled actions. Independent verifier checks every relation row and typed acyclic modal characteristic formulas without repeating refinement.",
@@ -136,7 +144,7 @@ def main():
                          "certificate_and_limitations": limitation,
                          "cache_invalidation": ["source-state", "geometry", "envelope", "net-obligations", "catalog", "rules", "objective", "scenarios", "theory", "checker", "solver-version"]})
     pending = [
-        "Complete historical Pages source review and semantic reconciliation with substantially different reconstructed canonical bodies",
+        "Retain original P7 and initial P26 source-body availability gaps; complete supplied-content review does not recover missing text or prove reconstructed-body equivalence",
         "General 3D solid/mesh uncertainty and complete obstacle-accounting closure",
         "Certified inner graph with continuous fitting/body transitions",
         "Complete outer abstraction and adaptive CEGAR geometry proofs",
@@ -151,15 +159,24 @@ def main():
     ]
     test_path = ROOT / "evidence/math/implemented-obligation-tests.xml"
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
-    proof = {"schema": "oma.math.traceability/1", "source_review_complete": False, "full_engine_mathematics_implemented": False,
+    coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
+    for row in register:
+        if row["obligation"] == "ACTUAL_FROZEN_PHYSICAL_MENU_PROJECTION":
+            row["real_model_benchmark"] = {"status": "HISTORICAL_IMMUTABLE_REAL_REPORT_PROJECTIONS_CHECKED",
+                "evidence": "evidence/math/physical-menu-office.benchmark.json",
+                "scope": "Historical report observations only; no current native recertification"}
+    proof = {"schema": "oma.math.traceability/2", "source_review_complete": coverage["whole_corpus_fully_read"],
+             "source_review_coverage": "evidence/math/combined_review_coverage.json", "source_bodies_available_in_full": False,
+             "full_engine_mathematics_implemented": False,
              "obligations": register, "pending_source_mechanisms": pending,
              "unit_test_run": {"path": str(test_path.relative_to(ROOT)), "tests": int(suite.get("tests")) if suite is not None else None,
                                "failures": int(suite.get("failures")) if suite is not None else None},
-             "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"}
+             "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"}
     destination = ROOT / "evidence/math/traceability_register.json"
     destination.write_text(json.dumps(proof, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"registered_obligations": len(register), "callables_resolved": all(c["callable"] for r in register for c in r["callable_probe"]),
-                      "full_corpus_gate": "INCOMPLETE", "unit_tests": proof["unit_test_run"]}))
+                      "supplied_content_review_complete": proof["source_review_complete"],
+                      "full_engine_gate": "INCOMPLETE", "unit_tests": proof["unit_test_run"]}))
 
 
 if __name__ == "__main__":

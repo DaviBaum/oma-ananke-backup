@@ -24,6 +24,13 @@ from .audit import atomic_json, sha256_file
 CODE_SHA256 = sha256_file(__file__)
 DEFAULT_SOURCE_REPRESENTATION_POLICY = "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES"
 VERTEX_HULL_SOURCE_REPRESENTATION_POLICY = "NATIVE_CAD_WITH_SOURCE_VERTEX_HULL_ENCLOSURES"
+CACHE_TRUST = {
+    "conversion_provenance": "LOCAL_CHECKER_PRODUCED_NATIVE_CACHE_ASSUMED",
+    "revalidation": "Digests, source/build keys, native topology, volume and bounds detect corruption",
+    "hostile_replacement": "Equality to original IFC is not proved against a hostile replaced BRep plus forged neighboring hashes/source claims",
+    "source_enclosures": "Independently rebuilt from current raw source bytes",
+    "pair_verdicts": "Fresh native or enclosure comparisons; no cached scalar PASS authority",
+}
 
 
 def _representation_interpretation(policy):
@@ -45,12 +52,34 @@ class CadObject:
     ifc_type: str
     shape: Any
     bounds: tuple
-    volume_m3: float
+    volume_m3: float | None
     kernel_tolerance_m: float
     valid: bool
     reason: str | None = None
     support_kind: str = "native_solid"
     support_evidence: dict | None = None
+
+
+def _has_native_geometry(obj):
+    return bool(obj is not None and obj.valid and obj.shape is not None
+                and obj.support_kind in ("native_solid", "original_faces_closed_shell_promotion")
+                and _valid_kernel_tolerance(obj))
+
+
+def _valid_kernel_tolerance(obj):
+    try:
+        value = float(obj.kernel_tolerance_m)
+        return bool(np.isfinite(value) and value >= 0)
+    except (TypeError, ValueError, OverflowError):
+        return False
+
+
+def _valid_bounds(bounds):
+    try:
+        values = np.asarray(bounds, dtype=float)
+        return bool(values.shape == (6,) and np.isfinite(values).all() and np.all(values[:3] <= values[3:]))
+    except (TypeError, ValueError, OverflowError):
+        return False
 
 
 def _subshapes(shape, kind):
@@ -75,6 +104,8 @@ def _inspect_shape(shape):
     from OCP.TopoDS import TopoDS
     from OCP.BRep import BRep_Tool
 
+    if shape is None:
+        return None, 0., 0., False, "NATIVE_SHAPE_UNAVAILABLE"
     if shape.IsNull():
         return None, 0., 0., False, "NULL_CAD_SHAPE"
     box = Bnd_Box()
@@ -83,6 +114,8 @@ def _inspect_shape(shape):
     if not box.IsVoid() and not box.IsOpen():
         lower, upper = box.CornerMin(), box.CornerMax()
         bounds = (lower.X(), lower.Y(), lower.Z(), upper.X(), upper.Y(), upper.Z())
+    if bounds is None or not np.isfinite(bounds).all() or any(bounds[i] > bounds[i+3] for i in range(3)):
+        return bounds, 0., 0., False, "MISSING_OR_INVALID_FINITE_NATIVE_BOUNDS"
     valid = BRepCheck_Analyzer(shape, True).IsValid()
     solids = TopExp_Explorer(shape, TopAbs_SOLID)
     if not solids.More():
@@ -106,7 +139,10 @@ def _inspect_shape(shape):
     for kind, cast in ((TopAbs_VERTEX, TopoDS.Vertex), (TopAbs_EDGE, TopoDS.Edge), (TopAbs_FACE, TopoDS.Face)):
         explorer = TopExp_Explorer(shape, kind)
         while explorer.More():
-            tolerance = max(tolerance, BRep_Tool.Tolerance_s(cast(explorer.Current())))
+            item_tolerance = BRep_Tool.Tolerance_s(cast(explorer.Current()))
+            if not np.isfinite(item_tolerance) or item_tolerance < 0:
+                return bounds, volume, item_tolerance, False, "INVALID_NATIVE_NUMERICAL_TOLERANCE"
+            tolerance = max(tolerance, item_tolerance)
             explorer.Next()
     if not valid:
         return bounds, volume, tolerance, False, "INVALID_CAD_TOPOLOGY"
@@ -384,21 +420,32 @@ def check_pair(a: CadObject, b: CadObject, *, clearance_m: float = 0., numerical
 
     if not np.isfinite(clearance_m) or clearance_m < 0 or not np.isfinite(numerical_tolerance_m) or numerical_tolerance_m <= 0:
         raise ValueError("Finite nonnegative clearance and positive numerical tolerance required")
-    budget = numerical_tolerance_m + a.kernel_tolerance_m + b.kernel_tolerance_m
+    try:
+        tolerances = [float(obj.kernel_tolerance_m) for obj in (a, b)]
+    except (TypeError, ValueError, OverflowError):
+        tolerances = [float("nan")]
+    valid_tolerances = all(np.isfinite(t) and t >= 0 for t in tolerances)
+    budget = numerical_tolerance_m + sum(tolerances) if valid_tolerances else None
     result = {"participants": [a.entity_id, b.entity_id], "participant_guids": [a.guid, b.guid],
               "required_clearance_m": clearance_m, "numerical_budget_m": budget, "status": "UNKNOWN",
               "common_volume_m3": None, "distance_m": None}
-    enclosed_a = a.valid or a.support_kind == "exact_source_support_enclosure"
-    enclosed_b = b.valid or b.support_kind == "exact_source_support_enclosure"
+    if not valid_tolerances or not np.isfinite(budget):
+        return {**result, "numerical_budget_m": None, "reason": "INVALID_NATIVE_NUMERICAL_TOLERANCE"}
+    if any(obj.valid and not _has_native_geometry(obj) for obj in (a, b)):
+        return {**result, "reason": "INCONSISTENT_OR_UNAVAILABLE_NATIVE_GEOMETRY_AUTHORITY"}
+    enclosed_a = _has_native_geometry(a) or a.support_kind == "exact_source_support_enclosure"
+    enclosed_b = _has_native_geometry(b) or b.support_kind == "exact_source_support_enclosure"
     if not enclosed_a or not enclosed_b:
         return {**result, "reason": "INVALID_OR_UNSUPPORTED_SOLID", "details": [a.reason, b.reason]}
+    if not _valid_bounds(a.bounds) or not _valid_bounds(b.bounds):
+        return {**result, "reason": "INVALID_FINITE_SUPPORT_BOUNDS"}
     broad_margin = _bbox_distance(a.bounds, b.bounds) - clearance_m
     if broad_margin > budget:
         return {**result, "status": "PASS", "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
                 "distance_lower_bound_m": broad_margin + clearance_m, "stage": "BROAD_PHASE_PROVEN_SEPARATION",
                 "support_kinds": [a.support_kind,b.support_kind],
                 "scope": "All represented obstacle support, including interior completion within checked outer enclosure"}
-    if not a.valid or not b.valid:
+    if not _has_native_geometry(a) or not _has_native_geometry(b):
         return {**result, "status":"BLOCKED", "reason":"ROUTE_TOO_CLOSE_TO_EXACT_OUTER_ENCLOSURE_WITH_UNRESOLVED_INTERIOR",
                 "support_kinds":[a.support_kind,b.support_kind]}
     try:
@@ -419,8 +466,13 @@ def check_pair(a: CadObject, b: CadObject, *, clearance_m: float = 0., numerical
         if not distance.IsDone() or distance.NbSolution() < 1:
             return {**result, "reason": "CAD_DISTANCE_DID_NOT_COMPLETE"}
         measured = float(distance.Value())
+        if not np.isfinite(measured) or measured < 0:
+            return {**result, "reason": "INVALID_NATIVE_DISTANCE"}
         p1, p2 = distance.PointOnShape1(1), distance.PointOnShape2(1)
-        result.update(distance_m=measured, witness={"p1": [p1.X(), p1.Y(), p1.Z()], "p2": [p2.X(), p2.Y(), p2.Z()]})
+        witness = {"p1": [p1.X(), p1.Y(), p1.Z()], "p2": [p2.X(), p2.Y(), p2.Z()]}
+        if not np.isfinite([witness["p1"], witness["p2"]]).all():
+            return {**result, "reason": "NONFINITE_NATIVE_DISTANCE_WITNESS"}
+        result.update(distance_m=measured, witness=witness)
         # Never use positive distance as a substitute for overlap checking.
         if common_volume > 0:
             return {**result, "status": "FAIL", "reason": "POSITIVE_COMMON_SOLID_VOLUME", "rule": "FORBIDDEN_INTERFERENCE"}
@@ -481,6 +533,8 @@ def _explicit_joints(export_path, route_guids):
 
 def _authorize_joint_contact(a, b, joint, tolerance):
     """Constrain zero-volume common topology to one explicit interface disk."""
+    if not _has_native_geometry(a) or not _has_native_geometry(b):
+        return False, "JOINT_REQUIRES_VALID_NATIVE_SOLIDS"
     from OCP.BRepAlgoAPI import BRepAlgoAPI_Common, BRepAlgoAPI_Cut, BRepAlgoAPI_Section
     from OCP.BRepPrimAPI import BRepPrimAPI_MakeCylinder
     from OCP.gp import gp_Ax2, gp_Pnt, gp_Dir
@@ -551,21 +605,25 @@ def _transform_object(obj, matrix):
     from OCP.gp import gp_Trsf
     from OCP.BRepBuilderAPI import BRepBuilderAPI_Transform
     transform = np.asarray(matrix, dtype=float)
-    if np.allclose(transform, np.eye(4), rtol=0, atol=1e-15):
-        return obj
-    if transform.shape != (4,4) or not np.allclose(transform[:3,:3].T @ transform[:3,:3], np.eye(3), atol=1e-9) or np.linalg.det(transform[:3,:3]) <= 0:
+    if (transform.shape != (4,4) or not np.isfinite(transform).all()
+            or not np.array_equal(transform[3], [0.,0.,0.,1.])
+            or not np.allclose(transform[:3,:3].T @ transform[:3,:3], np.eye(3), rtol=0, atol=1e-9)
+            or np.linalg.det(transform[:3,:3]) <= 0):
         raise ValueError("CAD federation transform must be rigid and orientation preserving")
-    trsf = gp_Trsf()
-    trsf.SetValues(*transform[:3,:].ravel().tolist())
-    shape = BRepBuilderAPI_Transform(obj.shape, trsf, True).Shape()
-    bounds, volume, tolerance, valid, reason = _inspect_shape(shape)
+    if obj.valid and not _has_native_geometry(obj):
+        raise ValueError("Enclosure-only or unavailable native geometry cannot acquire native validity")
     support = obj.support_evidence
     if obj.support_kind == "exact_source_support_enclosure":
         # The native shape may omit or project source polygon support. Its box
         # must never replace the independently extracted source enclosure.
         from fractions import Fraction
         certificate = support["exact_source_enclosure"]
+        if (certificate.get("status") != "ENCLOSURE_CHECKED" or certificate.get("source_sha256") != obj.source_sha256
+                or certificate.get("product_step_id") != obj.step_id or certificate.get("frame") != "IFC_LOCAL_ENGINEERING_METRES"):
+            raise ValueError("Exact source enclosure identity, frame or checking disposition changed")
         source_lo, source_hi = [[Fraction(x) for x in row] for row in certificate["bounds_m"]]
+        if len(source_lo) != 3 or len(source_hi) != 3 or any(lo > hi for lo, hi in zip(source_lo, source_hi)):
+            raise ValueError("Malformed source enclosure intervals")
         target_lo, target_hi = [], []
         for row in transform[:3]:
             lower = upper = Fraction.from_float(float(row[3]))
@@ -576,10 +634,26 @@ def _transform_object(obj, matrix):
             target_lo.append(lower)
             target_hi.append(upper)
         bounds = tuple(np.nextafter(float(x), -np.inf) for x in target_lo) + tuple(np.nextafter(float(x), np.inf) for x in target_hi)
+        if not _valid_bounds(bounds):
+            raise ValueError("Transformed exact source enclosure has no finite outward binary64 bounds")
         support = {**support, "federation_enclosure_transform": {
             "matrix": transform.tolist(), "bounds_m": [[str(x) for x in target_lo], [str(x) for x in target_hi]],
             "method": "EXACT_RATIONAL_AFFINE_BOX_IMAGE_AT_DECLARED_BINARY64_MATRIX",
-            "frame": "VERIFIED_LOCAL_FEDERATION_ENGINEERING_METRES"}}
+            "frame": "VERIFIED_LOCAL_FEDERATION_ENGINEERING_METRES"},
+            "native_geometry_authority": "NONE_ENCLOSURE_ONLY",
+            "native_shape_disposition": "NOT_TRANSFORMED_OR_RETAINED",
+            "source_native_invalid_reason": obj.reason}
+        # Invalid source native topology supplies no authority. Its exact outer
+        # support is sufficient for separation and cannot establish overlap.
+        return CadObject(obj.entity_id, obj.guid, obj.step_id, obj.source_sha256, obj.ifc_type,
+                         None, bounds, None, obj.kernel_tolerance_m, False, obj.reason,
+                         obj.support_kind, support)
+    if np.array_equal(transform, np.eye(4)):
+        return obj
+    trsf = gp_Trsf()
+    trsf.SetValues(*transform[:3,:].ravel().tolist())
+    shape = BRepBuilderAPI_Transform(obj.shape, trsf, True).Shape()
+    bounds, volume, tolerance, valid, reason = _inspect_shape(shape)
     # Transforming a partial native body cannot repair missing/unsupported IFC
     # source items. Preserve the source-level disposition even when the copied
     # native fragment itself happens to be a valid solid.
@@ -611,11 +685,10 @@ def _candidate_obstacle_pairs(routes, obstacles, clearance, tolerance, backend, 
     Unsupported objects are always returned and still block downstream checking.
     """
     from oma.broadphase import BroadphaseIndex
-    eligible = [i for i,obj in enumerate(obstacles) if (obj.valid or obj.support_kind == "exact_source_support_enclosure")
-                and obj.bounds is not None and len(obj.bounds) == 6 and np.isfinite(obj.bounds).all()
-                and np.all(np.asarray(obj.bounds[:3]) <= np.asarray(obj.bounds[3:]))]
+    eligible = [i for i,obj in enumerate(obstacles) if (_has_native_geometry(obj) or (not obj.valid and obj.support_kind == "exact_source_support_enclosure"))
+                and _valid_bounds(obj.bounds) and _valid_kernel_tolerance(obj)]
     others = set(range(len(obstacles))) - set(eligible)
-    valid_routes = [i for i,obj in enumerate(routes) if obj.valid and obj.bounds is not None and np.isfinite(obj.bounds).all()]
+    valid_routes = [i for i,obj in enumerate(routes) if _has_native_geometry(obj) and _valid_bounds(obj.bounds)]
     candidates = {i:list(range(len(obstacles))) for i in range(len(routes)) if i not in valid_routes}
     metrics = {"backend":"cpu", "independent_cpu_omission_guard":True, "index_omitted_pairs":0,
                "cpu_certified_omitted_pairs":0,"false_negative_guard_reinsertions":0}
@@ -752,10 +825,12 @@ def cad_check_routes(original_paths, export_path, route_guids, *, clearance_m=0.
                 accepted, reason = _authorize_joint_contact(first, second, joint, numerical_tolerance_m)
                 check.update(status="PASS" if accepted else "UNKNOWN", reason=reason, interface=joint)
             self_results.append(check)
-    self_status = "FAIL" if any(x["status"] == "FAIL" for x in self_results) else "UNKNOWN" if any(x["status"] == "UNKNOWN" for x in self_results) else "PASS"
+    self_status = ("FAIL" if any(x["status"] == "FAIL" for x in self_results)
+                   else "BLOCKED" if any(not _has_native_geometry(x) for x in routes) or any(x["status"] == "BLOCKED" for x in self_results)
+                   else "UNKNOWN" if any(x["status"] == "UNKNOWN" for x in self_results) else "PASS")
     invalid = [{"entity_id": x.entity_id, "reason": x.reason, "support_kind":x.support_kind,
                 "support_evidence":x.support_evidence} for x in routes + obstacles if not x.valid]
-    unresolved_geometry = [x for x in routes if not x.valid] + [x for x in obstacles if not x.valid and x.support_kind != "exact_source_support_enclosure"]
+    unresolved_geometry = [x for x in routes if not _has_native_geometry(x)] + [x for x in obstacles if not x.valid and x.support_kind != "exact_source_support_enclosure"]
     # If exactly one source is also the exported source, coordinates are unchanged
     # and source record preservation is checked independently by export recheck.
     preservation = _source_preservation_evidence(original_paths, export_path)
@@ -771,6 +846,7 @@ def cad_check_routes(original_paths, export_path, route_guids, *, clearance_m=0.
                                  "ifcopenshell_version":importlib.metadata.version("ifcopenshell"),
                                  "ocp_version":importlib.metadata.version("cadquery-ocp")},
               "scope": "new_route_vs_all_source_physical_obstacles", "sources": sources,
+              "cache_trust": CACHE_TRUST,
               "export_sha256": sha256_file(export_path), "route_guids": sorted(route_guids),
               "route_count": len(routes), "obstacle_count": len(obstacles), "pairs_accounted": pairs,
               "broad_separation_passes": broad_pass, "pair_results": results, "failed_pairs": failed,

@@ -6,6 +6,62 @@
   "full_engine_mathematics_implemented": false,
   "obligations": [
     {
+      "obligation": "EXACT_RECTILINEAR_AUTHORIZED_OPENING_SUPPORT",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          1647,
+          1653
+        ],
+        "objects": [
+          "ALG-SIR26",
+          "DEF-SIR25",
+          "DEF-SIR34"
+        ]
+      },
+      "interpretation_and_assumptions": "Corrected explicitly bounded materialization model: one rational local host box and one strictly interior transverse footprint extending beyond both thickness faces. Four closed cells exactly represent the regularized difference. Independent endpoint-arrangement checker verifies complete set coverage including boundaries, disjoint interiors and exact volumes, with context/source/host/frame/authorization roots bound.",
+      "implementations": [
+        "oma.optimization.rectilinear_opening.compile_rectilinear_opening"
+      ],
+      "independent_checkers": [
+        "oma.optimization.rectilinear_opening.verify_rectilinear_opening"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.rectilinear_opening.compile_rectilinear_opening",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.rectilinear_opening.verify_rectilinear_opening",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_rectilinear_opening.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Exact supplied local rational geometry only. Declared identities are not authenticated authority, frame validity, source geometry truth, native exported IFC equality, structural or fire approval. Native adapter and actual real-host benchmark remain separate. Forty-eight focused tests include shifted equal-volume attacks and fifty randomized independent voxel ground truths.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
       "obligation": "ACTUAL_FROZEN_PHYSICAL_MENU_PROJECTION",
       "source": {
         "document": "1-10",
@@ -1482,8 +1538,8 @@
   ],
   "unit_test_run": {
     "path": "evidence\\math\\implemented-obligation-tests.xml",
-    "tests": 220,
+    "tests": 268,
     "failures": 0
   },
-  "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"
+  "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"
 }

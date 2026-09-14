@@ -47,7 +47,7 @@ def load_or_build(source,*,guids,threads,directory,report,build,source_represent
     from OCP.BRepTools import BRepTools
     from OCP.BRep import BRep_Builder
     from OCP.TopoDS import TopoDS_Shape
-    from .cad import CadObject,_inspect_shape
+    from .cad import CadObject,_inspect_shape,CACHE_TRUST
     start=time.perf_counter()
     key=_key(source,guids,source_representation_policy)
     root=hashlib.sha256(json.dumps(key,sort_keys=True).encode()).hexdigest()
@@ -166,7 +166,7 @@ def load_or_build(source,*,guids,threads,directory,report,build,source_represent
                         obj.support_kind="exact_source_support_enclosure"
             if not migration_from:
                 if report is not None:
-                    report.update(status="HIT_REVALIDATED",key=root,seconds=time.perf_counter()-start,objects=len(objects))
+                    report.update(status="HIT_REVALIDATED",key=root,seconds=time.perf_counter()-start,objects=len(objects),cache_trust=CACHE_TRUST)
                 return objects,manifest["errors"]
             errors=manifest["errors"]
             disposition="REUSED_NATIVE_RECHECKED_SOURCE_SUPPORT"
@@ -182,6 +182,8 @@ def load_or_build(source,*,guids,threads,directory,report,build,source_represent
     blobs=directory / "objects";blobs.mkdir(parents=True,exist_ok=True)
     for obj in sorted(objects,key=lambda o:o.step_id):
         consistent_checkpoint("cad_cache_publish_object")
+        if obj.shape is None:
+            raise ValueError("A transformed enclosure-only object cannot be published as native source geometry")
         stream=io.BytesIO(); BRepTools.Write_s(obj.shape,stream);raw=stream.getvalue()
         sha=hashlib.sha256(raw).hexdigest();compressed=gzip.compress(raw,compresslevel=3,mtime=0)
         destination=blobs / (sha+".brep.gz")
@@ -192,10 +194,10 @@ def load_or_build(source,*,guids,threads,directory,report,build,source_represent
         stored.append({"metadata":metadata,"brep_sha256":sha,"compressed_sha256":hashlib.sha256(compressed).hexdigest()})
     manifest_path.parent.mkdir(parents=True,exist_ok=True)
     temporary=manifest_path.with_suffix(".tmp-"+uuid.uuid4().hex)
-    temporary.write_text(json.dumps({"key":key,"objects":stored,"errors":errors},allow_nan=False),encoding="utf-8")
+    temporary.write_text(json.dumps({"key":key,"objects":stored,"errors":errors,"cache_trust":CACHE_TRUST},allow_nan=False),encoding="utf-8")
     temporary.replace(manifest_path)
     manifest_hash.write_text(sha256_file(manifest_path),encoding="ascii")
     if report is not None:
         report.update(status=disposition,key=root,seconds=time.perf_counter()-start,objects=len(objects),invalid_reason=invalid_reason,
-                      native_artifact_source_key=migration_from if disposition=="REUSED_NATIVE_RECHECKED_SOURCE_SUPPORT" else None)
+                      native_artifact_source_key=migration_from if disposition=="REUSED_NATIVE_RECHECKED_SOURCE_SUPPORT" else None,cache_trust=CACHE_TRUST)
     return objects,errors

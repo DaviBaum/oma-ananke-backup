@@ -83,7 +83,9 @@ def import_sources(store: Store, run: dict, control: WorkerControl):
                   "geometry_counts": audit["geometry_counts"], "units": audit["units"], "performance": audit["performance"]}
         sources.append(source)
         audits.append(audit)
-        for record in audit["products"]:
+        for record_index, record in enumerate(audit["products"]):
+            if record_index % 512 == 0:
+                control.checkpoint("import_entity_batch")
             geometry_status = record["geometry_status"]
             if geometry_status == "explicitly_non_geometric":
                 geometry_status = "non_geometric"
@@ -98,7 +100,12 @@ def import_sources(store: Store, run: dict, control: WorkerControl):
     control.checkpoint("federation")
     from .ifc.federation import audited_local_federation
     import numpy as np
-    local_coordinates = audited_local_federation(audits)
+    def source_progress(stage, message, payload):
+        store.append_event(run["project_id"], run_id=run["id"], state_root=run["base_root"],
+                           stage=stage, status="RUNNING", message=message, payload=payload)
+
+    local_coordinates = audited_local_federation(audits, checkpoint=control.checkpoint,
+        on_source=lambda payload: source_progress("federation", "Rechecking source coordinate anchors", payload))
     federation = federation_manifest(audits, run["project_id"], local_coordinates["transforms"])
     for source in sources:
         transform = local_coordinates["transforms"].get(source["id"], {}).get("matrix")
@@ -119,8 +126,11 @@ def import_sources(store: Store, run: dict, control: WorkerControl):
                 corners = corners @ matrix[:3,:3].T + matrix[:3,3]
                 source["bounds"] = {"min": corners.min(axis=0).tolist(), "max": corners.max(axis=0).tolist()}
     transformed_entities = []
-    for entity in entities:
-        transform = next((s.get("transform_m") for s in sources if s["id"] == entity.provenance.source_id), None)
+    source_frames = {source["id"]: source.get("transform_m") for source in sources}
+    for entity_index, entity in enumerate(entities):
+        if entity_index % 512 == 0:
+            control.checkpoint("federation_entity_batch")
+        transform = source_frames.get(entity.provenance.source_id)
         if transform is not None and entity.geometry.bounds:
             import itertools
             bounds = entity.geometry.bounds
@@ -130,13 +140,26 @@ def import_sources(store: Store, run: dict, control: WorkerControl):
             entity = entity.model_copy(update={"geometry": entity.geometry.model_copy(update={"bounds": type(bounds)(min=tuple(corners.min(axis=0)), max=tuple(corners.max(axis=0)))})})
         transformed_entities.append(entity)
     from .normalization import normalize_connectivity, refresh_ownership
-    audits = [refresh_ownership(store, audit, source) for audit, source in zip(audits, sources)]
-    ports, connections, connectivity = normalize_connectivity(audits, sources)
+    refreshed = []
+    for index, (audit, source) in enumerate(zip(audits, sources)):
+        control.checkpoint("connectivity_ownership_source")
+        source_progress("connectivity_ownership", "Rechecking explicit source port ownership", {
+            "source": source["name"], "source_sha256": source["sha256"], "file_index": index + 1,
+            "file_count": len(sources), "port_count": len(audit.get("ports", []))})
+        refreshed.append(refresh_ownership(store, audit, source, checkpoint=control.checkpoint))
+    audits = refreshed
+    ports, connections, connectivity = normalize_connectivity(audits, sources, checkpoint=control.checkpoint,
+        on_source=lambda payload: source_progress("connectivity", "Normalizing explicit source ports and connections", payload))
+    control.checkpoint("import_state_serialization")
+    source_progress("import_state", "Serializing complete source and connectivity inventory", {
+        "source_count": len(sources), "entity_count": len(transformed_entities), "port_count": len(ports),
+        "connection_count": len(connections), "alignment_status": federation.get("alignment_status")})
     state = EngineeringState(project_id=run["project_id"], sources=tuple(sources), entities=tuple(transformed_entities),
                              ports=ports, explicit_connections=connections,
                              derived_artifacts={"federation": federation, "local_coordinate_evidence": local_coordinates,
                                                 "connectivity_normalization": connectivity,
                                                 "source_port_audits": {s["id"]: s["audit_root"] for s in sources}}).model_dump(mode="json")
+    control.checkpoint("import_publish")
     store.publish(run["project_id"], state, run["base_revision"], f"import:{run['id']}", status="BASELINE", changed_ids=[e.id for e in entities])
     store.update_run(run["id"], "COMPLETED", "IFC import complete; engineering checks have not yet run", "import")
 

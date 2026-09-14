@@ -8,7 +8,7 @@ import numpy as np
 from .models import Port, Provenance
 
 
-def refresh_ownership(store, audit: dict, source: dict) -> dict:
+def refresh_ownership(store, audit: dict, source: dict, *, checkpoint=None) -> dict:
     """Read legacy audit ownership afresh from the hash-verified immutable IFC."""
     if all("owner_step_ids" in p and "owner_placement_status" in p and "axis_convention" in p for p in audit.get("ports", [])):
         return audit
@@ -18,12 +18,16 @@ def refresh_ownership(store, audit: dict, source: dict) -> dict:
     if sha256_file(path) != source["sha256"]:
         raise ValueError("Source hash changed before explicit connectivity normalization")
     model = ifcopenshell.open(str(path))
+    if checkpoint:
+        checkpoint("connectivity_source_parsed")
     import ifcopenshell.util.unit
     from .ifc.ports import ownership_ledger, port_facts
     ledger = ownership_ledger(model)
     scale = ifcopenshell.util.unit.calculate_unit_scale(model)
     records = []
-    for record in audit.get("ports", []):
+    for index, record in enumerate(audit.get("ports", [])):
+        if checkpoint and index % 512 == 0:
+            checkpoint("connectivity_ownership_batch")
         facts = port_facts(model.by_id(record["step_id"]), ledger[record["step_id"]], scale)
         ids = facts["owner_step_ids"]
         records.append({**record, "owner_step_ids": ids, "owner_step_id": ids[0] if len(ids) == 1 else None,
@@ -34,16 +38,24 @@ def refresh_ownership(store, audit: dict, source: dict) -> dict:
     return {**audit, "ports": records, "ownership_normalization": {"method": "fresh_explicit_IFC_relationships_and_flow_axes/2", "source_sha256": source["sha256"]}}
 
 
-def normalize_connectivity(audits: list[dict], sources: list[dict]):
+def normalize_connectivity(audits: list[dict], sources: list[dict], *, checkpoint=None, on_source=None):
     ports, connections, issues = [], [], []
     counts = Counter()
     source_map = {s["id"]: s for s in sources}
-    for audit in audits:
+    for source_index, audit in enumerate(audits):
+        if checkpoint:
+            checkpoint("connectivity_source")
         source_id = audit["source_sha256"]
         source = source_map[source_id]
+        if on_source:
+            on_source({"source_sha256": source_id, "source": source.get("name", source_id),
+                       "file_index": source_index + 1, "file_count": len(audits),
+                       "port_count": len(audit.get("ports", [])), "completed_ports": len(ports)})
         frame = source.get("transform_m")
         known_ids = {p["step_id"] for p in audit.get("ports", [])}
-        for record in audit.get("ports", []):
+        for index, record in enumerate(audit.get("ports", [])):
+            if checkpoint and index % 512 == 0:
+                checkpoint("connectivity_port_batch")
             identity = f"{source_id}:{record['step_id']}"
             position, axis = None, None
             status = "MISSING"
@@ -93,7 +105,9 @@ def normalize_connectivity(audits: list[dict], sources: list[dict]):
             counts[f"owner_{ownership}"] += 1
             if status != "KNOWN" or ownership != "DECLARED":
                 issues.append({"port_id": identity, "code": "PORT_INPUT_OBLIGATION", "position": status, "ownership": ownership})
-        for record in audit.get("explicit_connections", []):
+        for index, record in enumerate(audit.get("explicit_connections", [])):
+            if checkpoint and index % 512 == 0:
+                checkpoint("connectivity_connection_batch")
             a, b = record["port_a_step_id"], record["port_b_step_id"]
             connections.append((f"{source_id}:{a}", f"{source_id}:{b}"))
             if a not in known_ids or b not in known_ids:
@@ -111,11 +125,11 @@ def normalize_project_run(store, run, control):
     audits = []
     for source in state.get("sources", []):
         control.checkpoint("connectivity_source")
-        audits.append(refresh_ownership(store, store.get(source["audit_root"]), source))
+        audits.append(refresh_ownership(store, store.get(source["audit_root"]), source, checkpoint=control.checkpoint))
     if not audits:
         store.update_run(run["id"], "MISSING_INPUTS", "Source import must finish before normalization", "connectivity")
         return
-    ports, connections, report = normalize_connectivity(audits, state["sources"])
+    ports, connections, report = normalize_connectivity(audits, state["sources"], checkpoint=control.checkpoint)
     original_ports = [p for p in state.get("ports", []) if p["connection_evidence"] != "explicit_ifc"]
     state["ports"] = [p.model_dump(mode="json") for p in ports] + original_ports
     state["explicit_connections"] = list(connections)

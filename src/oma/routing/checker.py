@@ -12,7 +12,7 @@ from pathlib import Path
 import numpy as np
 
 from oma.ifc.audit import sha256_file
-from oma.ifc.cad import cad_check_routes, load_cad
+from oma.ifc.cad import cad_check_routes, load_cad, _has_native_geometry
 from oma.ifc.ports import ownership_ledger, port_facts, connected_pair_errors, circular_owner_radius
 from oma.models import CheckResult, VerificationReport, Verdict
 from oma.store import Store, digest, utcnow
@@ -46,7 +46,7 @@ def check_physical_ports(path, cad_objects, source_matrix=None, port_guids=None)
         port = record["port"]
         solid = by_guid[selected[0].GlobalId]
         facts = port_facts(port, record, scale, transform)
-        if facts["errors"] or not solid.valid:
+        if facts["errors"] or not _has_native_geometry(solid):
             findings.append({**facts, "owner_guid": solid.guid, "status": "FAIL",
                              "reason": "Invalid owner, owner-relative placement, flow frame or native owner solid"})
             continue
@@ -318,7 +318,7 @@ def evaluate_route_state(store, state, baseline, requested, scenario, mission, m
         unknown_zone = False
         volume_length = 0.
         for solid in actual:
-            if not solid.valid or solid.bounds is None:
+            if not _has_native_geometry(solid) or solid.bounds is None:
                 enclosed = False
                 continue
             gap = min(*(solid.bounds[i] - scenario.allowed_zone.min[i] for i in range(3)), *(scenario.allowed_zone.max[i] - solid.bounds[i+3] for i in range(3)))

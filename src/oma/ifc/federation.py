@@ -9,7 +9,7 @@ import numpy as np
 from .audit import sha256_file
 
 
-def audited_local_federation(audits: list[dict], reference_source_id: str | None = None) -> dict:
+def audited_local_federation(audits: list[dict], reference_source_id: str | None = None, *, checkpoint=None, on_source=None) -> dict:
     """Derive transforms from shared Site and Building identities and placements.
 
     Preconditions: one shared site and building GUID per source, matching relative
@@ -25,11 +25,18 @@ def audited_local_federation(audits: list[dict], reference_source_id: str | None
     if not audits:
         raise ValueError("No federation sources")
     observations = []
-    for audit in audits:
+    for index, audit in enumerate(audits):
+        if checkpoint:
+            checkpoint("federation_source")
+        if on_source:
+            on_source({"source_sha256": audit["source_sha256"], "file_index": index + 1,
+                       "file_count": len(audits), "source": str(audit["source_path"])})
         path = audit["source_path"]
         if sha256_file(path) != audit["source_sha256"]:
             raise ValueError("Source hash changed after import")
         model = ifcopenshell.open(path)
+        if checkpoint:
+            checkpoint("federation_source_parsed")
         scale = ifcopenshell.util.unit.calculate_unit_scale(model)
         declared_length_units = [u for assignment in model.by_type("IfcUnitAssignment") for u in assignment.Units if getattr(u,"UnitType",None) == "LENGTHUNIT"]
         sites, buildings = model.by_type("IfcSite"), model.by_type("IfcBuilding")

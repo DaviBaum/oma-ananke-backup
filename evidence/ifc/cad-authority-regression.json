@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "scope": "Native numerical guard, enclosure-only transforms and native consumer authority regressions",
+  "checks": [
+    {
+      "command": "pytest tests/test_ifc_cad_authority.py tests/test_ifc_cad.py tests/test_ifc_federation.py tests/test_ifc_ports.py tests/test_ifc_network.py tests/test_ifc_negative_witness.py -q",
+      "passed": 133,
+      "seconds": 36.85
+    },
+    {
+      "command": "pytest tests/test_ifc_cad_authority.py -q",
+      "passed": 32,
+      "seconds": 2.34,
+      "note": "Adds two native consumer fault-injection tests to the prior combined suite; 135 distinct focused tests total"
+    }
+  ],
+  "source_sha256": {
+    "src/oma/ifc/cad.py": "63c1785c0efd9c365c4ab3e8eec7e81322421f4e4b7b093f9b40ebca9e54f602",
+    "src/oma/ifc/cad_cache.py": "daaf9d9598d165d1fbd5d4e6e9d3d9fcefbaa9eff3c3bb0411adf7cf37377cae",
+    "src/oma/ifc/network_semantics.py": "92d0976e7d5fd745484634f7446f91341b56bad426d8a9f1963b76abce4f7d69",
+    "src/oma/routing/checker.py": "d57bf682c221729b1ad38b8e67bfd256632a8f829801505ce3d28152b9e39f6d",
+    "tests/test_ifc_cad_authority.py": "5c41fa708dfd36d14c1d5b4a700f66081906db3487e315e829e7811df724737c"
+  },
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "ifcopenshell": "0.8.5",
+  "ocp": "8.0.1.0.0",
+  "limits": [
+    "Numerical CAD checks are not interval-certified geometry proofs",
+    "Native cache assumes local checker-produced conversion provenance; hostile coherent replacement is not independently disproved",
+    "Exact source enclosures prove separation only; overlapping enclosure remains BLOCKED"
+  ]
+}

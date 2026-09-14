@@ -109,7 +109,7 @@ def read_component_geometry(model,element):
 def check_network_semantics(export_path,source_path,manifest):
     import ifcopenshell
     import ifcopenshell.util.unit
-    from .cad import load_cad,_subshapes
+    from .cad import load_cad,_subshapes,_has_native_geometry
     from OCP.BRepClass3d import BRepClass3d_SolidClassifier
     from OCP.gp import gp_Pnt
     from OCP.TopAbs import TopAbs_IN,TopAbs_ON,TopAbs_OUT,TopAbs_SOLID
@@ -179,8 +179,9 @@ def check_network_semantics(export_path,source_path,manifest):
                 errors.append(f"Actual port ownership differs from all component slots:{cid}")
             shape=native_map.get(element.GlobalId)
             volume_error=None
-            solid_count=0 if shape is None else len(_subshapes(shape.shape,TopAbs_SOLID))
-            if shape is None or not shape.valid:
+            native_available=_has_native_geometry(shape)
+            solid_count=0 if not native_available else len(_subshapes(shape.shape,TopAbs_SOLID))
+            if not native_available:
                 errors.append(f"Component is not a completely represented valid native solid:{cid}")
             else:
                 if solid_count!=1:
@@ -204,7 +205,9 @@ def check_network_semantics(export_path,source_path,manifest):
                     problems.append("Port center differs from actual physical component cap")
                 if port_data["physical_outward_normal"] is None or np.linalg.norm(np.asarray(port_data["physical_outward_normal"])-cap["outward_normal"])>1e-7:
                     problems.append("Port flow Axis differs from actual cap outward normal")
-                if shape is not None and shape.valid and port_data["position_m"] is not None and port_data["physical_outward_normal"] is not None:
+                if not native_available:
+                    problems.append("Native cap authority is unavailable")
+                if native_available and port_data["position_m"] is not None and port_data["physical_outward_normal"] is not None:
                     tolerance=max(1e-7,shape.kernel_tolerance_m);probe=max(1e-4,20*tolerance)
                     p,n=np.asarray(port_data["position_m"]),np.asarray(port_data["physical_outward_normal"])
                     states=[BRepClass3d_SolidClassifier(shape.shape,gp_Pnt(*q),tolerance).State() for q in (p,p+probe*n,p-probe*n)]
