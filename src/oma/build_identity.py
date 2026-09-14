@@ -5,6 +5,7 @@ import hashlib
 import importlib.metadata
 import os
 import shutil
+import sys
 import uuid
 from pathlib import Path
 
@@ -12,6 +13,7 @@ from pathlib import Path
 def checker_version() -> str:
     root = Path(__file__).resolve().parent
     digest = hashlib.sha256()
+    digest.update(sys.version.encode())
     for path in sorted(root.rglob("*.py")):
         digest.update(path.relative_to(root).as_posix().encode())
         digest.update(b"\0")

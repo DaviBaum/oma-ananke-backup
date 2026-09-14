@@ -129,6 +129,8 @@ class EngineService:
         project = self.selected_project(project_id, revision, candidate_id)
         state = self.store.get(project["state_root"])
         candidates = self.store.candidates(project_id)
+        from .build_identity import checker_version
+        current_checker = checker_version()
         issues = []
         checks = []
         for candidate in candidates:
@@ -137,7 +139,9 @@ class EngineService:
                 from collections import Counter
                 reasons = Counter(r["reason"] for r in report["results"] if r["status"] not in {"PASS", "NOT_APPLICABLE"})
                 summary = "; ".join(f"{reason} ({count})" if count > 1 else reason for reason, count in reasons.most_common(8))
-                candidate["check"] = {"status": report["status"], "reason": summary or "Declared check set passed", "scope": report["scope"], "result_count": len(report["results"]), "reason_counts": dict(reasons)}
+                applicability = "WRONG_ROOT" if report["candidate_root"] != candidate["state_root"] else "STALE_EXECUTABLE" if report["checker_version"] != current_checker else "CURRENT"
+                candidate["check"] = {"status": report["status"], "reason": summary or "Declared check set passed", "scope": report["scope"], "result_count": len(report["results"]), "reason_counts": dict(reasons),
+                    "applicability": applicability, "checker_version": report["checker_version"], "current_checker_version": current_checker}
                 candidate["objective"] = report["objective"]
                 for result in report["results"]:
                     checks.append({**result, "candidate_id": candidate["id"], "report_root": candidate["report_root"]})
@@ -149,7 +153,7 @@ class EngineService:
             candidate.setdefault("objective", {})
             candidate.setdefault("changed_ids", [])
             candidate.setdefault("routes", [])
-            if candidate.get("kind") == "physical_route" and not candidate["routes"]:
+            if candidate.get("kind") in {"physical_route", "physical_route_set"} and not candidate["routes"]:
                 candidate["routes"] = self.store.get(candidate["state_root"]).get("routes", [])
         sources = state.get("sources", [])
         missing = []
@@ -184,6 +188,11 @@ class EngineService:
 
     def geometry(self, project_id: str, revision: int | None = None, candidate_id: str | None = None) -> dict:
         project = self.selected_project(project_id, revision, candidate_id)
+        return self.geometry_at(project)
+
+    def geometry_at(self, project: dict) -> dict:
+        """Render the already selected immutable root, even if the head changes."""
+        project_id = project["id"]
         state = self.store.get(project["state_root"])
         meshes, minimum, maximum = [], None, None
         for source in state.get("sources", []):

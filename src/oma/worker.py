@@ -185,6 +185,9 @@ def execute(directory: str, run_id: str):
         elif run["operation"] == "check":
             from .verification import check_project_run
             check_project_run(store, run, control)
+        elif run["operation"] == "recheck":
+            from .verification import recheck_candidate_run
+            recheck_candidate_run(store, run, control)
         elif run["operation"] in {"route", "optimize"}:
             from .routing.engine import route_project_run
             route_project_run(store, run, control)

@@ -32,7 +32,9 @@ def _copy(source: Path, destination: Path):
 def _asset_references(value):
     if isinstance(value, dict):
         for key, item in value.items():
-            if key in {"immutable_path", "source_path", "export_path", "mesh_json_gz", "mesh_npz"} and isinstance(item, str):
+            if key in {"immutable_path", "source_path", "export_path", "mesh_json_gz", "mesh_npz", "audit", "replacement_path"} and isinstance(item, str):
+                yield item
+            elif key == "path" and isinstance(item, str) and ("sha256" in value or "source_sha256" in value):
                 yield item
             elif key != "properties":
                 yield from _asset_references(item)
@@ -41,14 +43,25 @@ def _asset_references(value):
             yield from _asset_references(item)
 
 
+def _content_roots(value):
+    if isinstance(value, str) and len(value) == 64 and all(c in "0123456789abcdef" for c in value):
+        yield value
+    elif isinstance(value, dict):
+        for item in value.values():
+            yield from _content_roots(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from _content_roots(item)
+
+
 def backup_store(store: Store, destination: str | Path) -> Path:
     destination = Path(destination).resolve()
     if destination == store.directory or destination.is_relative_to(store.directory):
         raise ValueError("Backup destination must be outside the live store")
     destination.mkdir(parents=True, exist_ok=False)
-    # Full published assets, including past candidates and exports. Kernel caches,
-    # rendered view caches and logs are reproducible and not proof dependencies.
-    omitted = {"cad-cache", "logs"}
+    # The write lock covers only the database snapshot. Referenced content is
+    # immutable and has no concurrent garbage collector, so large asset copies
+    # cannot freeze unrelated publications or durable control requests.
     with store.transaction():
         with store.connect() as source, sqlite3.connect(destination / "oma.sqlite3") as target:
             source.backup(target)
@@ -58,35 +71,53 @@ def backup_store(store: Store, destination: str | Path) -> Path:
             # Restoring never inherits live process ownership or a permission to
             # resume a run from the original machine.
             target.execute("DELETE FROM run_owners")
-            for path in store.directory.rglob("*"):
-                relative = path.relative_to(store.directory)
-                if not path.is_file() or relative.parts[0] in omitted or relative.name.startswith(".pending-") or relative.suffix == ".pending":
-                    continue
-                if relative.parts[0] in {"oma.sqlite3", "oma.sqlite3-wal", "oma.sqlite3-shm", "backup-manifest.json", "service.json"}:
-                    continue
-                if relative.parts[:2] == ("geometry", "views"):
-                    continue
-                if path.is_symlink() or not path.resolve().is_relative_to(store.directory):
-                    raise IntegrityError("Backup refuses a linked asset outside the store")
-                _copy(path, destination / relative)
-            for blob in store.blobs.glob("*.json.z"):
-                for reference in _asset_references(store.get(blob.name.removesuffix(".json.z"))):
-                    resolved = store.resolve_path(reference).resolve()
-                    if resolved.is_relative_to(store.directory):
-                        if not (destination / resolved.relative_to(store.directory)).is_file():
-                            raise IntegrityError(f"Referenced asset is absent from backup: {resolved.name}")
-                        continue
-                    if not resolved.is_file():
-                        raise IntegrityError(f"External referenced asset is missing: {resolved.name}")
-                    hashed = file_hash(resolved)
-                    relative = Path("external-assets") / hashed / resolved.name
-                    if not (destination / relative).exists():
-                        _copy(resolved, destination / relative)
-                    target.execute("INSERT OR REPLACE INTO asset_aliases VALUES(?,?,?)", (reference, str(relative), hashed))
             target.commit()
             target.execute("PRAGMA wal_checkpoint(TRUNCATE)")
             target.execute("PRAGMA journal_mode=DELETE")
         target.close()
+    with sqlite3.connect(destination / "oma.sqlite3") as target:
+        roots = {r[0] for r in target.execute("SELECT root FROM revisions UNION SELECT state_root FROM candidates UNION SELECT report_root FROM candidates WHERE report_root IS NOT NULL UNION SELECT base_root FROM runs")}
+        documents = [json.loads(r[0]) for r in target.execute("SELECT payload FROM events UNION ALL SELECT request FROM runs UNION ALL SELECT payload FROM candidates UNION ALL SELECT response FROM requests")]
+        references, copied = set(), set()
+        for document in documents:
+            references.update(_asset_references(document))
+            roots.update(r for r in _content_roots(document) if (store.blobs / f"{r}.json.z").exists())
+        while roots:
+            root = roots.pop()
+            if root in copied:
+                continue
+            document = store.get(root)
+            _copy(store.blobs / f"{root}.json.z", destination / "blobs" / f"{root}.json.z")
+            copied.add(root)
+            references.update(_asset_references(document))
+            roots.update(r for r in _content_roots(document) if r not in copied and (store.blobs / f"{r}.json.z").exists())
+        for reference in sorted(references):
+            resolved = store.resolve_path(reference).resolve()
+            if not resolved.is_file():
+                raise IntegrityError(f"Referenced asset is missing: {resolved.name}")
+            hashed = file_hash(resolved)
+            relative = resolved.relative_to(store.directory) if resolved.is_relative_to(store.directory) else Path("external-assets") / hashed / resolved.name
+            if not (destination / relative).exists():
+                _copy(resolved, destination / relative)
+            # Native CAD revalidation reads an IFC's materialization sidecar to
+            # independently establish unchanged source coordinates. It is part
+            # of the physical artifact, not a reproducible display cache.
+            if resolved.suffix.lower() == ".ifc":
+                sidecar = resolved.with_suffix(".manifest.json")
+                if sidecar.is_file():
+                    _copy(sidecar, (destination / relative).with_suffix(".manifest.json"))
+            if not resolved.is_relative_to(store.directory):
+                target.execute("INSERT OR REPLACE INTO asset_aliases VALUES(?,?,?)", (reference, str(relative), hashed))
+        # Keep archived checker executables for reproducibility of historical
+        # report versions; copied .py files are never loaded from proof blobs.
+        runtimes = store.directory / "runtimes"
+        for version in runtimes.iterdir() if runtimes.exists() else []:
+            if (version / "build-version.txt").is_file():
+                for path in version.rglob("*"):
+                    if path.is_file() and (path.suffix == ".py" or path.name == "build-version.txt"):
+                        _copy(path, destination / path.relative_to(store.directory))
+        target.commit()
+    target.close()
     assets = [{"path": str(path.relative_to(destination)).replace("\\", "/"), "size_bytes": path.stat().st_size,
                "sha256": file_hash(path)} for path in sorted(destination.rglob("*")) if path.is_file()]
     manifest = {"format": "oma-portable-store/1", "created_at": utcnow(), "source_store": str(store.directory),

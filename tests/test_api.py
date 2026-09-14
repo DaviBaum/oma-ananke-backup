@@ -33,3 +33,21 @@ def test_snapshot_events_and_revert_are_real_revision_data(tmp_path):
         body["idempotency_key"] = "stale"
         assert client.post(f"/api/projects/{p['id']}/revert", json=body).status_code == 409
         assert client.post(f"/api/projects/{p['id']}/export", json={"draft": False}).status_code == 422
+
+
+def test_candidate_recheck_is_project_bound_and_idempotent(tmp_path):
+    app = create_app(tmp_path / "engine")
+    service = app.state.engine
+    service.schedule = lambda run_id: None
+    project = service.store.create_project("first", {})
+    other = service.store.create_project("other", {})
+    old = service.store.create_run(project["id"], {"operation": "check"})
+    candidate = service.store.add_candidate(old["id"], service.store.get(old["base_root"]), {"kind": "baseline_check"})
+    with TestClient(app) as client:
+        body = {"budget_seconds": 60, "idempotency_key": "fresh-1"}
+        url = f"/api/projects/{project['id']}/candidates/{candidate['id']}/recheck"
+        one = client.post(url, json=body)
+        assert one.status_code == 202
+        assert one.json()["request"]["candidate_id"] == candidate["id"]
+        assert client.post(url, json=body).json()["id"] == one.json()["id"]
+        assert client.post(f"/api/projects/{other['id']}/candidates/{candidate['id']}/recheck", json=body).status_code == 422

@@ -57,7 +57,7 @@ def check_physical_ports(path, cad_objects, source_matrix=None):
     return findings
 
 
-def _semantics(path, source_path, materialization, scenario):
+def _semantics(path, source_path, materialization, scenario, known_physical_guids=None):
     import ifcopenshell
     import ifcopenshell.util.placement
     import ifcopenshell.util.unit
@@ -71,8 +71,9 @@ def _semantics(path, source_path, materialization, scenario):
     expected_guids = {p["ifc_guid"] for p in materialization["added_parts"]}
     new_physical = [e for e in model.by_type("IfcElement") if e.id() not in original_ids]
     errors = []
-    if {e.GlobalId for e in new_physical} != expected_guids:
+    if {e.GlobalId for e in new_physical} != (expected_guids if known_physical_guids is None else set(known_physical_guids)):
         errors.append("Materialized part accounting differs from actual added IFC physical entities")
+    new_physical = [e for e in new_physical if e.GlobalId in expected_guids]
     changed = []
     for before in original:
         try:
@@ -171,22 +172,14 @@ def _semantics(path, source_path, materialization, scenario):
             "connections": len(links), "original_records_checked": len(original_ids), "slope_margins": slopes}
 
 
-def verify_route_candidate(store: Store, candidate_id: str):
-    candidate = store.candidate(candidate_id)
-    state = store.get(candidate["state_root"])
-    run = store.run(candidate["run_id"])
-    from oma.worker import WorkerControl
-    control = WorkerControl(store, candidate["run_id"])
-    baseline = store.get(run["base_root"])
-    scenario = RoutingScenario.model_validate(state["derived_artifacts"]["routing_scenario"])
-    mission = state["mission"]
-    materialization = store.get(state["derived_artifacts"]["route_materialization"]["root"])
+def evaluate_route_state(store, state, baseline, requested, scenario, mission, materialization, route_ids, control, *, known_physical_guids=None):
+    """Independently evaluate one obligation against a pinned composite state."""
     path = store.resolve_path(materialization["export_path"])
     results = []
     objective = {}
+    actual = []
     def add(identity, status, reason, *, participants=(), witness=None, scope="Proposed route and its declared obstacle scope"):
         results.append(CheckResult(id=identity, status=Verdict(status), reason=reason, scope=scope, participants=tuple(participants), witness=witness or {}))
-    requested = RoutingScenario.model_validate(run["request"]["mission"])
     request_bound = scenario.model_dump(mode="json") == requested.model_dump(mode="json") and mission["scenario_hash"] == digest(requested.model_dump(mode="json"))
     add("fixed-request-assumptions", "PASS" if request_bound else "FAIL", "Scenario, clearance, physical sizes and objective policy match the immutable original run request" if request_bound else "Candidate changed the fixed requested engineering assumptions")
     same_sources = state["sources"] == baseline["sources"]
@@ -210,7 +203,6 @@ def verify_route_candidate(store: Store, candidate_id: str):
             if not exported["changed"]:
                 matched &= exported["sha256"] == exported["source_sha256"]
         add("export-federation-correspondence", "PASS" if matched else "FAIL", "Every exported discipline hash and replacement correspondence independently rechecked")
-    route_ids = candidate["changed_ids"]
     routes = [r for r in state["routes"] if r["id"] in route_ids]
     demand_ids = {d["id"] for d in mission["demands"]}
     coverage = len(routes) == 1 and set(routes[0]["demand_ids"]) == demand_ids and len(demand_ids) == 1
@@ -223,7 +215,7 @@ def verify_route_candidate(store: Store, candidate_id: str):
     add("fixed-service-obligations", "PASS" if coverage else "FAIL", "All declared terminals, section and insulation obligations preserved" if coverage else "A service/terminal/section obligation changed or lacks coverage")
     semantics = None
     if hash_match and original_match:
-        semantics = _semantics(path, store.resolve_path(materialization["source_path"]), materialization, scenario)
+        semantics = _semantics(path, store.resolve_path(materialization["source_path"]), materialization, scenario, known_physical_guids)
         add("exported-physical-semantics", "PASS" if not semantics["errors"] else "FAIL", "Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree" if not semantics["errors"] else "; ".join(semantics["errors"]), witness={"recomputed": semantics})
         objective = {"length_m": semantics["length_m"], "fitting_count": float(semantics["fitting_count"])}
         guids = {p["ifc_guid"] for p in materialization["added_parts"]}
@@ -283,6 +275,22 @@ def verify_route_candidate(store: Store, candidate_id: str):
             add("engineering-service", "BLOCKED", "Requested engineering service lacks a supported physical calculation with complete inputs")
     else:
         add("engineering-service", "NOT_APPLICABLE", "Requested scope is local geometric coordination; hydraulic capacity/fire protection design is not certified")
+    return results, objective, actual
+
+
+def verify_route_candidate(store: Store, candidate_id: str):
+    candidate = store.candidate(candidate_id)
+    state = store.get(candidate["state_root"])
+    run = store.run(candidate["run_id"])
+    from oma.verification import candidate_control
+    control = candidate_control(store, candidate)
+    baseline = store.get(run["base_root"])
+    scenario = RoutingScenario.model_validate(state["derived_artifacts"]["routing_scenario"])
+    mission = state["mission"]
+    materialization = store.get(state["derived_artifacts"]["route_materialization"]["root"])
+    path = store.resolve_path(materialization["export_path"])
+    results, objective, _ = evaluate_route_state(store, state, baseline,
+        RoutingScenario.model_validate(run["request"]["mission"]), scenario, mission, materialization, candidate["changed_ids"], control)
     if any(r.status == Verdict.FAIL for r in results):
         status = Verdict.FAIL
     elif any(r.status == Verdict.BLOCKED for r in results):

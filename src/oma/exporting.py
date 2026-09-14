@@ -29,6 +29,9 @@ def export_project(store: Store, project_id: str, candidate_id: str | None = Non
         report = store.get(candidate["report_root"])
         if report["status"] != "PASS" or report["candidate_root"] != root or report["checker_version"] != checker_version():
             raise IntegrityError("Candidate does not have a passing root-matched report")
+    if state.get("derived_artifacts", {}).get("routing_contracts"):
+        from .routing.joint_export import export_joint_project
+        return export_joint_project(store, project, state, candidate, draft, report if not draft else None)
     route_specs = state.get("derived_artifacts", {}).get("route_exports", [])
     if len(route_specs) > 1:
         raise ValueError("Joint multi-route export correspondence is required; cannot drop or duplicate routes")
@@ -58,8 +61,7 @@ def export_project(store: Store, project_id: str, candidate_id: str | None = Non
         manifest["files"].append({"path": str(destination), "source_id": source["id"], "sha256": sha256_file(destination),
                                   "source_sha256": source["sha256"], "schema": source["schema"], "changed": bool(spec)})
     if exported_materialization:
-        worker = Path(__file__).resolve().parents[2] / "scripts" / "ifc_recheck.py"
-        process = subprocess.run([sys.executable, str(worker), str(Path(exported_materialization["export_path"]).with_suffix(".manifest.json"))], capture_output=True, text=True, timeout=300, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+        process = subprocess.run([sys.executable, "-m", "oma.ifc.recheck", str(Path(exported_materialization["export_path"]).with_suffix(".manifest.json"))], capture_output=True, text=True, timeout=300, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
         if process.returncode:
             manifest["round_trip"] = "FAIL"
             manifest["limitations"].append(process.stderr[-3000:])

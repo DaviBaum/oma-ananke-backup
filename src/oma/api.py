@@ -58,6 +58,11 @@ class ExportRequest(Input):
     draft: bool = True
 
 
+class RecheckRequest(Input):
+    budget_seconds: float = Field(default=300, ge=1, le=3600, allow_inf_nan=False)
+    idempotency_key: str | None = Field(default=None, min_length=1, max_length=256)
+
+
 def create_app(directory: str | Path | None = None, *, recover: bool = True) -> FastAPI:
     service = EngineService(directory or os.environ.get("OMA_DATA_DIR", ".oma"))
 
@@ -130,7 +135,7 @@ def create_app(directory: str | Path | None = None, *, recover: bool = True) -> 
         project = service.selected_project(project_id, revision, candidate_id)
         cache = service.store.directory / "geometry" / "views" / f"v2-{project['state_root']}.json.gz"
         if not cache.exists():
-            payload = service.geometry(project_id, revision, candidate_id)
+            payload = service.geometry_at(project)
             payload.pop("revision", None)  # Geometry belongs to a root; undo may reuse it at a newer revision.
             cache.parent.mkdir(parents=True, exist_ok=True)
             temporary = cache.with_suffix(f".{uuid.uuid4().hex}.pending")
@@ -198,6 +203,13 @@ def create_app(directory: str | Path | None = None, *, recover: bool = True) -> 
         from .verification import CHECKER_VERSION
         return service.store.accept(project_id, candidate_id, body.expected_revision, body.idempotency_key, checker_version=CHECKER_VERSION)
 
+    @app.post("/api/projects/{project_id}/candidates/{candidate_id}/recheck", status_code=202)
+    def recheck(project_id: str, candidate_id: str, body: RecheckRequest):
+        candidate = service.store.candidate(candidate_id)
+        if candidate["project_id"] != project_id:
+            raise ValueError("Candidate belongs to another project")
+        return service.start_run(project_id, {"operation": "recheck", "candidate_id": candidate_id, **body.model_dump(mode="json")})
+
     @app.post("/api/projects/{project_id}/revert")
     def revert(project_id: str, body: RevertRequest):
         return service.store.revert(project_id, body.revision, body.expected_revision, body.idempotency_key)
@@ -210,6 +222,9 @@ def create_app(directory: str | Path | None = None, *, recover: bool = True) -> 
     @app.get("/api/artifacts/{root}")
     def artifact(root: str):
         return service.store.get(root)
+
+    from .uploads import register_upload
+    register_upload(app, service)
 
     static = Path(__file__).resolve().parents[2] / "ui" / "dist"
     if static.exists():

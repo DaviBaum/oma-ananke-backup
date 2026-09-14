@@ -30,6 +30,9 @@ def route_project_run(store: Store, run: dict, control):
     if not raw:
         store.update_run(run["id"], "MISSING_INPUTS", "Explicit routing mission is required", "mission")
         return
+    if "route_demands" in raw or store.get(run["base_root"]).get("routes"):
+        from .joint import joint_project_run
+        return joint_project_run(store, run, control)
     try:
         scenario = RoutingScenario.model_validate(raw)
     except ValidationError as exc:
@@ -37,9 +40,6 @@ def route_project_run(store: Store, run: dict, control):
         store.update_run(run["id"], "MISSING_INPUTS", "Routing mission is incomplete or inconsistent", "mission", payload={"missing_inputs": errors})
         return
     state = store.get(run["base_root"])
-    if state.get("routes"):
-        store.update_run(run["id"], "UNSUPPORTED_OPERATION", "Additional-route co-design requires preservation of existing route missions and joint clash scope; this operation is not yet enabled", "mission")
-        return
     sources = state.get("sources", [])
     if not sources:
         store.update_run(run["id"], "MISSING_INPUTS", "No completed IFC sources", "mission")

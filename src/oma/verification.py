@@ -6,6 +6,7 @@ helpers. Mature-kernel common-mode limitations are included in each report.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -18,6 +19,18 @@ from .build_identity import checker_version
 CHECKER_VERSION = checker_version()
 
 
+def candidate_control(store, candidate):
+    """Route a requested recheck's controls without changing its original mission."""
+    from .worker import WorkerControl
+    owner = os.environ.get("OMA_CONTROL_RUN_ID")
+    if owner:
+        run = store.run(owner)
+        if (run["operation"] != "recheck" or run["request"].get("candidate_id") != candidate["id"]
+                or run["project_id"] != candidate["project_id"]):
+            raise ValueError("Independent checker control run does not own this requested recheck")
+    return WorkerControl(store, owner or candidate["run_id"])
+
+
 def verify_baseline(store: Store, candidate_id: str):
     from .ifc.check import check_files
     from .ifc.audit import sha256_file
@@ -26,8 +39,7 @@ def verify_baseline(store: Store, candidate_id: str):
     sources = state.get("sources", [])
     results = []
     paths = []
-    from .worker import WorkerControl
-    control = WorkerControl(store, candidate["run_id"])
+    control = candidate_control(store, candidate)
     for source in sources:
         path = store.resolve_path(source["immutable_path"])
         matched = path.is_file() and sha256_file(path) == source["sha256"]
@@ -88,10 +100,32 @@ def check_project_run(store, run, control):
     store.update_run(run["id"], "COMPLETED", f"Baseline check finished: {candidate['status']}", "verification", artifacts=[candidate["report_root"]])
 
 
+def recheck_candidate_run(store, run, control):
+    candidate = store.candidate(run["request"]["candidate_id"])
+    if candidate["project_id"] != run["project_id"]:
+        raise ValueError("Recheck candidate belongs to another project")
+    control.checkpoint("recheck")
+    from .build_identity import frozen_environment
+    env = frozen_environment(store.directory)
+    env["OMA_CONTROL_RUN_ID"] = run["id"]
+    store.update_run(run["id"], "CHECKING", "Rechecking the persisted candidate under its immutable original mission", "recheck", payload={"candidate_id": candidate["id"]})
+    result = subprocess.run([sys.executable, "-m", "oma.verification", str(store.directory), candidate["id"]], capture_output=True,
+        text=True, timeout=run["request"].get("budget_seconds", 300), env=env, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+    control.checkpoint("recheck_complete")
+    if result.returncode:
+        raise RuntimeError(result.stderr[-3000:])
+    checked = store.candidate(candidate["id"])
+    store.update_run(run["id"], "COMPLETED", f"Fresh candidate check finished: {checked['status']}", "recheck",
+        artifacts=[checked["report_root"]], payload={"candidate_id": checked["id"], "status": checked["status"]})
+
+
 def main():
     store = Store(sys.argv[1])
     candidate = store.candidate(sys.argv[2])
-    if candidate.get("kind") == "physical_route":
+    if candidate.get("kind") == "physical_route_set":
+        from .routing.joint_checker import verify_joint_candidate
+        report = verify_joint_candidate(store, candidate["id"])
+    elif candidate.get("kind") == "physical_route":
         from .routing.checker import verify_route_candidate
         report = verify_route_candidate(store, candidate["id"])
     else:

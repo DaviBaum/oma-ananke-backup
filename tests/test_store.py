@@ -160,3 +160,31 @@ def test_portable_backup_binds_bytes_and_resolves_without_original(store, tmp_pa
     copied.write_bytes(b"tampered source fixture")
     with pytest.raises(IntegrityError, match="hash mismatch"):
         restore_store(backup, tmp_path / "tampered-restore")
+
+
+def test_large_asset_copy_does_not_hold_live_publication_lock(store, tmp_path, monkeypatch):
+    from oma import backup as module
+    import threading
+    p = store.create_project("concurrent backup", {"value": 1})
+    copying, release = threading.Event(), threading.Event()
+    real_copy = module._copy
+    first = True
+    def delayed_copy(source, target):
+        nonlocal first
+        if first:
+            first = False
+            copying.set()
+            assert release.wait(5)
+        return real_copy(source, target)
+    monkeypatch.setattr(module, "_copy", delayed_copy)
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        saved = pool.submit(store.backup, tmp_path / "snapshot")
+        assert copying.wait(3)
+        write = pool.submit(store.publish, p["id"], {"project_id": p["id"], "value": 2}, 0, "during-backup")
+        try:
+            assert write.result(timeout=2)["revision"] == 1
+        finally:
+            release.set()
+        restored = Store(saved.result(timeout=5))
+    assert restored.project(p["id"])["revision"] == 0
+    assert store.project(p["id"])["revision"] == 1
