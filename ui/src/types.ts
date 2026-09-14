@@ -19,6 +19,7 @@ export type Status =
   | "COMPLETED"
   | string;
 export interface Entity {
+  effective_geometry?: OpeningEdit;
   id: string;
   guid?: string;
   step_id?: number;
@@ -101,6 +102,7 @@ export interface Route {
   [key: string]: unknown;
 }
 export interface Candidate {
+  opening_edit?: OpeningEdit | null;
   networks?: PhysicalNetwork[];
   validation_advisories?: ValidationAdvisory[];
   id: string;
@@ -251,6 +253,7 @@ export interface CheckRecord {
   witness?: Issue["witness"];
 }
 export interface Snapshot {
+  opening_edit?: OpeningEdit | null;
   networks?: PhysicalNetwork[];
   project: Project;
   entities: Entity[];
@@ -264,6 +267,59 @@ export interface Snapshot {
   missing_inputs: unknown[];
   events_seq?: number;
   [key: string]: unknown;
+}
+export interface OpeningRequest {
+  source_sha256: string;
+  host_guid: string;
+  host_step_id: number;
+  host_geometry_root: string;
+  opening_bounds_local_m: Bounds;
+  allowed_opening_bounds_local_m: Bounds;
+  through_axis: 0 | 1 | 2;
+  permission: {
+    mode: "EXPLICIT_USER_GEOMETRIC_EDIT";
+    statement: string;
+    evidence_roots: string[];
+    engineering_scope: "SCENARIO_GEOMETRY_ONLY";
+  };
+}
+export interface OpeningEdit {
+  request: OpeningRequest;
+  host_entity_id: string;
+  source_id: string;
+  base_root: string;
+  manifest_root: string;
+  geometry_artifact: string;
+  original_source_file: string;
+  effective_source_file: string;
+  effective_export_sha256: string;
+  display_policy: string;
+  original_entity_facts_preserved: boolean;
+  invalidation: Record<string, unknown>;
+  scope: string;
+  manifest_scope: string;
+}
+export interface OpeningHostInspection {
+  status: "ELIGIBLE" | "INELIGIBLE" | "UNKNOWN";
+  project_id: string;
+  state_root: string;
+  entity_id: string;
+  source_id: string;
+  source_sha256: string;
+  reason: string;
+  opening_permission: "NOT_INFERRED";
+  requires_explicit_permission: true;
+  engineering_scope: "SCENARIO_GEOMETRY_ONLY";
+  source_to_federation_matrix?: Matrix4;
+  host?: {
+    host_guid: string;
+    host_step_id: number;
+    host_geometry_root: string;
+    source_sha256: string;
+    host_bounds_local_m: [string[], string[]];
+    host_local_to_source_matrix_m: Matrix4;
+    [key: string]: unknown;
+  };
 }
 export interface Health {
   status: string;

@@ -15,6 +15,7 @@ import type {
   Run,
   AssuranceRecord,
   DependencyRecord,
+  OpeningHostInspection,
 } from "./types";
 export class ApiError extends Error {
   constructor(
@@ -99,6 +100,17 @@ export function mutationKey(intent: string) {
   return key;
 }
 export const api = {
+  openingHost: (
+    id: string,
+    entityId: string,
+    revision: number,
+    signal?: AbortSignal,
+  ) =>
+    request<OpeningHostInspection>(
+      `${p(id)}/opening-host?${new URLSearchParams({ entity_id: entityId, revision: String(revision) })}`,
+      undefined,
+      signal,
+    ),
   health: () => request<Health>("/health"),
   projects: async () => {
     const r = await request<Project[] | { projects: Project[] }>("/projects");

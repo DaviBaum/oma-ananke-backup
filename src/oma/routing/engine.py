@@ -14,7 +14,6 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from oma.ifc.export import export_route
 from oma.models import Demand, Mission, Port, Provenance, Route, Section
 from oma.optimization.master import MasterProblem, RouteColumn, solve_master
 from oma.optimization.checker import verify_master_result
@@ -33,6 +32,9 @@ def route_project_run(store: Store, run: dict, control):
     if raw.get("mission_type") == "shared_network":
         from .network_engine import network_project_run
         return network_project_run(store, run, control)
+    if store.get(run["base_root"]).get("derived_artifacts", {}).get("opening_edit"):
+        store.update_run(run["id"], "MISSING_INPUTS", "Existing architectural opening requires an opening-preserving revision contract", "mission")
+        return
     if store.get(run["base_root"]).get("physical_networks"):
         store.update_run(run["id"], "MISSING_INPUTS", "Existing physical network obligations require a network-preserving edit contract", "mission")
         return
@@ -56,6 +58,12 @@ def route_project_run(store: Store, run: dict, control):
     source = next((s for s in sources if s["id"] == scenario.source_id), sources[0] if scenario.source_id is None else None)
     if source is None:
         raise ValueError("Selected route source discipline is not part of this federation")
+    from .opening import opening_context, materialize_route, edit_record
+    try:
+        opening = opening_context(state, scenario, source)
+    except ValueError as exc:
+        store.update_run(run["id"], "MISSING_INPUTS", str(exc), "opening_scope")
+        return
     scenario_data = scenario.model_dump(mode="json")
     scenario_hash = digest(scenario_data)
     section = Section(shape="circular", diameter_m=scenario.diameter_m, insulation_m=scenario.insulation_m)
@@ -68,7 +76,9 @@ def route_project_run(store: Store, run: dict, control):
                     min_slope=scenario.min_slope, clearance_m=scenario.clearance_m, provenance=provenance)
     rule = {"clearance_m": scenario.clearance_m, "zone": scenario.allowed_zone.model_dump(), "numerical_tolerance_m": 1e-6,
             "contact": "explicit local interfaces only", "modality": scenario.target_modality}
-    mission = Mission(id=f"mission:{scenario_hash}", demands=(demand,), protected_ids=tuple(e["id"] for e in state.get("entities", [])),
+    editable_ids = (opening["host_entity_id"],) if opening else ()
+    mission = Mission(id=f"mission:{scenario_hash}", demands=(demand,), protected_ids=tuple(e["id"] for e in state.get("entities", []) if e["id"] not in editable_ids),
+                      editable_ids=editable_ids,
                       allowed_zones=(scenario.allowed_zone,), rule_hash=digest(rule), catalog_hash=digest({"section": section.model_dump(mode="json"), "bend_radius_m": scenario.bend_radius_m, "minimum_straight_m": scenario.minimum_straight_m}),
                       scenario_hash=scenario_hash, objective_weights=scenario.objective_weights, assumptions=tuple(scenario.assumptions))
     obstacles = [e["geometry"]["bounds"]["min"] + e["geometry"]["bounds"]["max"] for e in state.get("entities", []) if e.get("geometry", {}).get("bounds")]
@@ -101,7 +111,7 @@ def route_project_run(store: Store, run: dict, control):
         directory = store.directory / "candidates" / run["id"] / route_id
         directory.mkdir(parents=True, exist_ok=True)
         try:
-            materialized = export_route(store.resolve_path(source["immutable_path"]), directory / "route.ifc", route_spec, fresh_recheck=True)
+            materialized = materialize_route(store.resolve_path(source["immutable_path"]), directory / "route.ifc", route_spec, opening)
         except (ValueError, RuntimeError) as exc:
             artifact = store.put({"route_id": route_id, "proposal": proposal, "route_spec": route_spec, "rejection": str(exc)})
             store.append_event(run["project_id"], run_id=run["id"], state_root=run["base_root"], candidate_id=route_id,
@@ -118,8 +128,11 @@ def route_project_run(store: Store, run: dict, control):
         candidate_state.setdefault("derived_artifacts", {}).update({"routing_scenario": scenario_data, "route_rule": rule,
             "route_materialization": {"root": materialized_root, "source_id": source["id"], "path": str(directory / "route.ifc")},
             "route_exports": [{"source_id": source["id"], "route_spec": route_spec}]})
+        if opening:
+            store.put(materialized["authorized_opening"])
+            candidate_state["derived_artifacts"]["opening_edit"] = edit_record(opening, materialized["authorized_opening"], run["base_root"])
         candidate = store.add_candidate(run["id"], candidate_state, {"kind": "physical_route", "routes": [route.model_dump(mode="json")],
-                   "changed_ids": [route_id], "objective": {}, "rationale": proposal["rationale"], "target_modality": scenario.target_modality})
+                   "changed_ids": [route_id, *editable_ids], "objective": {}, "rationale": proposal["rationale"], "target_modality": scenario.target_modality})
         store.update_run(run["id"], "CHECKING", "Independent checker is reloading physical solids, mission and protected sources", "verification", payload={"candidate_id": candidate["id"]})
         remaining = deadline - time.monotonic()
         if remaining < 1:

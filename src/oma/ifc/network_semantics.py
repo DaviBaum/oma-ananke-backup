@@ -138,6 +138,8 @@ def check_network_semantics(export_path,source_path,manifest):
     added=[e for e in model.by_type("IfcElement") if e.id() not in original_ids]
     if {e.GlobalId for e in added}!=guids:
         errors.append("Actual added physical entities differ from the complete component inventory")
+    from .protected_semantics import added_relationship_effects
+    errors.extend(added_relationship_effects(model, original_ids, {e.id() for e in added if e.GlobalId in guids}))
     native,native_errors=load_cad(export_path,guids=guids)
     errors.extend(f"Native geometry:{error}" for error in native_errors)
     native_map={obj.guid:obj for obj in native}

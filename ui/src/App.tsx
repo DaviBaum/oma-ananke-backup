@@ -51,6 +51,9 @@ import JointMissionFields from "./JointMissionFields";
 import SharedNetworkFields from "./SharedNetworkFields";
 import NetworkDiagram from "./NetworkDiagram";
 import NetworkLineage from "./NetworkLineage";
+import OpeningEvidence from "./OpeningEvidence";
+import OpeningFields from "./OpeningFields";
+import { attachOpening, emptyOpening, openingIsCurrent } from "./opening";
 import {
   prepareNetworkRevision,
   buildNetworkRevision,
@@ -86,6 +89,7 @@ import type {
   RunRequest,
   Snapshot,
   Status,
+  OpeningHostInspection,
 } from "./types";
 
 const statusClass = (value?: string) => {
@@ -301,6 +305,11 @@ export default function App() {
     [scope, setScope] = useState("all"),
     [budget, setBudget] = useState(30),
     [missionForm, setMissionForm] = useState(emptyMission),
+    [openingProbe, setOpeningProbe] = useState<OpeningHostInspection | null>(
+      null,
+    ),
+    [openingForm, setOpeningForm] = useState(emptyOpening),
+    [openingPending, setOpeningPending] = useState(false),
     [missionMode, setMissionMode] = useState<"single" | "joint" | "network">(
       "single",
     ),
@@ -318,6 +327,7 @@ export default function App() {
     [record],
   );
   const cursor = useRef(0),
+    openingAbort = useRef<AbortController | null>(null),
     uploadAbort = useRef<AbortController | null>(null),
     generation = useRef(0),
     refreshRef = useRef<() => Promise<void>>(async () => {}),
@@ -399,6 +409,9 @@ export default function App() {
       disposed = false,
       polling = false;
     cursor.current = 0;
+    openingAbort.current?.abort();
+    setOpeningPending(false);
+    setOpeningProbe(null);
     stateRoot.current = "";
     setEvents([]);
     setSnapshot(null);
@@ -908,6 +921,13 @@ export default function App() {
     if (!projectId) return;
     try {
       if (
+        openingProbe &&
+        !openingIsCurrent(openingProbe, headSnapshot, !!stateSelection)
+      )
+        throw new Error(
+          "The inspected host belongs to an earlier project head. Inspect it again before submitting an opening.",
+        );
+      if (
         stateSelection ||
         (networkRevision &&
           !networkRevisionIsCurrent(
@@ -929,7 +949,13 @@ export default function App() {
               : parseSharedNetwork(sharedNetwork).mission
             : missionMode === "joint"
               ? buildJointMission(jointMission)
-              : buildMission(missionForm);
+              : openingProbe
+                ? attachOpening(
+                    buildMission(missionForm),
+                    openingProbe,
+                    openingForm,
+                  )
+                : buildMission(missionForm);
       const result = await perform("Starting run", () =>
         api.start(projectId, {
           operation,
@@ -957,6 +983,7 @@ export default function App() {
     }
   };
   const showRun = () => {
+    setOpeningProbe(null);
     setNetworkRevision(null);
     setOperation("check");
     setModal("run");
@@ -965,6 +992,7 @@ export default function App() {
     if (!headSnapshot || stateSelection) return;
     try {
       const seed = prepareNetworkRevision(headSnapshot);
+      setOpeningProbe(null);
       setNetworkRevision(seed);
       setRevisionAlternatives(JSON.stringify(seed.alternatives, null, 2));
       setMissionMode("network");
@@ -989,6 +1017,57 @@ export default function App() {
   const revisionStale =
     !!networkRevision &&
     !networkRevisionIsCurrent(networkRevision, headSnapshot, !!stateSelection);
+  const openingStale =
+    !!openingProbe &&
+    !openingIsCurrent(openingProbe, headSnapshot, !!stateSelection);
+  const inspectOpeningHost = async () => {
+    if (!headSnapshot || stateSelection || !selectedEntity) return;
+    const controller = new AbortController(),
+      expected = headSnapshot.project,
+      expectedGeneration = generation.current,
+      entityId = selectedEntity.id;
+    openingAbort.current?.abort();
+    openingAbort.current = controller;
+    setOpeningPending(true);
+    try {
+      const probe = await api.openingHost(
+        expected.id,
+        entityId,
+        expected.revision,
+        controller.signal,
+      );
+      controller.signal.throwIfAborted();
+      if (
+        generation.current !== expectedGeneration ||
+        stateRoot.current !== expected.state_root ||
+        probe.project_id !== expected.id ||
+        probe.state_root !== expected.state_root ||
+        probe.entity_id !== entityId
+      )
+        throw new Error(
+          "The selected project changed during native inspection. Inspect the current host again.",
+        );
+      if (probe.status !== "ELIGIBLE") {
+        inspectRecord(probe);
+        return;
+      }
+      setOpeningProbe(probe);
+      setOpeningForm({ ...emptyOpening });
+      setMissionForm({ ...emptyMission });
+      setNetworkRevision(null);
+      setMissionMode("single");
+      setOperation("route");
+      setScope("all");
+      setModal("run");
+    } catch (e) {
+      if (!controller.signal.aborted) setError((e as Error).message);
+    } finally {
+      if (openingAbort.current === controller) {
+        openingAbort.current = null;
+        setOpeningPending(false);
+      }
+    }
+  };
   const exportModel = async () => {
     if (!projectId) return;
     if (!draft && !currentPassingCheck(exportCandidate)) {
@@ -1551,6 +1630,16 @@ export default function App() {
                       onOpen={inspectRecord}
                     />
                   )}{" "}
+                  {snapshot?.opening_edit && (
+                    <OpeningEvidence
+                      edit={snapshot.opening_edit}
+                      onInspect={inspectRecord}
+                      onSelect={(id) => {
+                        setSelected(id);
+                        setRightTab("properties");
+                      }}
+                    />
+                  )}
                   {revisionOffer && (
                     <div className="network-revision-card">
                       <div className="section-label">
@@ -1718,6 +1807,66 @@ export default function App() {
                         <Code2 size={14} />
                       </button>
                     </div>
+                    {selectedEntity.effective_geometry && (
+                      <OpeningEvidence
+                        edit={selectedEntity.effective_geometry}
+                        onInspect={inspectRecord}
+                      />
+                    )}
+                    {/^(IfcWall|IfcWallStandardCase|IfcSlab)$/.test(
+                      selectedEntity.ifc_type ?? "",
+                    ) &&
+                      !snapshot?.opening_edit && (
+                        <div className="network-revision-card">
+                          <strong>Bounded host opening</strong>
+                          <p>
+                            Inspect the actual native host before specifying
+                            geometric permission and a route.
+                          </p>
+                          <button
+                            className="secondary"
+                            disabled={
+                              !!busy ||
+                              !connected ||
+                              !!stateSelection ||
+                              openingPending
+                            }
+                            onClick={() => void inspectOpeningHost()}
+                          >
+                            {openingPending ? (
+                              <LoaderCircle className="spin" size={14} />
+                            ) : (
+                              <Box size={14} />
+                            )}
+                            {openingPending
+                              ? "Inspecting native host…"
+                              : "Prepare opening in this host"}
+                          </button>
+                          {openingPending && (
+                            <>
+                              <p className="muted">
+                                Fresh read-only native inspection · up to 60
+                                seconds. No opening has been authorized.
+                              </p>
+                              <button
+                                className="secondary"
+                                onClick={() => {
+                                  openingAbort.current?.abort();
+                                  setOpeningPending(false);
+                                }}
+                              >
+                                Stop waiting
+                              </button>
+                            </>
+                          )}
+                          {!!stateSelection && (
+                            <p className="muted">
+                              Return to the current imported head to prepare an
+                              opening.
+                            </p>
+                          )}
+                        </div>
+                      )}
                     <div className="property-section">
                       <div className="section-label">IDENTITY & PROVENANCE</div>
                       <KeyValue
@@ -2638,14 +2787,16 @@ export default function App() {
       {modal === "run" && (
         <Modal
           title={
-            networkRevision
-              ? "Revise the accepted network."
-              : "A new engineering run."
+            openingProbe
+              ? "Route through an explicit opening."
+              : networkRevision
+                ? "Revise the accepted network."
+                : "A new engineering run."
           }
           kicker="EXPLICIT SCOPE · RECORDED EVIDENCE"
           onClose={closeModal}
         >
-          {!networkRevision && (
+          {!networkRevision && !openingProbe && (
             <div className="operation-choices">
               {[
                 {
@@ -2687,7 +2838,7 @@ export default function App() {
               Scope
               <select
                 value={scope}
-                disabled={!!networkRevision}
+                disabled={!!networkRevision || !!openingProbe}
                 onChange={(e) => setScope(e.target.value)}
               >
                 <option value="all">Entire federation</option>
@@ -2714,7 +2865,15 @@ export default function App() {
           </div>
           {operation !== "check" && (
             <>
-              {!networkRevision && (
+              {openingProbe && (
+                <OpeningFields
+                  probe={openingProbe}
+                  value={openingForm}
+                  onChange={setOpeningForm}
+                  stale={openingStale}
+                />
+              )}
+              {!networkRevision && !openingProbe && (
                 <div
                   className="mission-mode"
                   role="group"
@@ -2776,6 +2935,10 @@ export default function App() {
                 !connected ||
                 !!stateSelection ||
                 revisionStale ||
+                openingStale ||
+                (!!openingProbe &&
+                  (!openingForm.confirmed ||
+                    openingForm.statement.trim().length < 10)) ||
                 (operation !== "check" &&
                   missionMode === "network" &&
                   !!snapshot?.constraints.length &&

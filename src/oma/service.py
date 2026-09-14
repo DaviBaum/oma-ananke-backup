@@ -126,6 +126,7 @@ class EngineService:
         return project
 
     def snapshot(self, project_id: str, revision: int | None = None, candidate_id: str | None = None) -> dict:
+        from .geometry_edits import opening_view
         project = self.selected_project(project_id, revision, candidate_id)
         state = self.store.get(project["state_root"])
         candidates = self.store.candidates(project_id)
@@ -162,6 +163,7 @@ class EngineService:
                 candidate["routes"] = [{**route, "request_demand_id": contracts.get(route["id"], {}).get("request_demand_id")}
                     for route in (candidate["routes"] or candidate_state.get("routes", []))]
                 candidate["networks"] = self.network_views(candidate_state)
+                candidate["opening_edit"] = opening_view(self.store, candidate_state)
         sources = state.get("sources", [])
         missing = []
         if not sources:
@@ -175,6 +177,7 @@ class EngineService:
         alignment_status = federation.get("alignment_status", federation.get("status"))
         if alignment_status not in {None, "VERIFIED"}:
             missing.append({"code": "FEDERATION_DATUM_REVIEW", "reason": "Cross-file coordinate agreement requires checked datum evidence", "details": federation})
+        opening = opening_view(self.store, state)
         entities = []
         for entity in state.get("entities", []):
             geometry = entity.get("geometry", {})
@@ -183,6 +186,8 @@ class EngineService:
                              "source_file": next((s.get("name") for s in sources if s.get("id") == provenance.get("source_id")), None),
                              "geometry_status": geometry.get("status"), "bounds": geometry.get("bounds"),
                              "locked": entity.get("protected", True), "system": ", ".join(entity.get("system_ids", []))})
+            if opening and entity["id"] == opening["host_entity_id"]:
+                entities[-1]["effective_geometry"] = opening
         for route in state.get("routes", []):
             entities.append({"id": route["id"], "name": route["id"], "ifc_type": "PhysicalRoute", "discipline": route["service"],
                              "geometry_status": "represented" if route.get("geometry_artifact") else "unresolved", "locked": False,
@@ -210,7 +215,8 @@ class EngineService:
             seq = db.execute("SELECT COALESCE(MAX(seq),0) FROM events WHERE project_id=?", (project_id,)).fetchone()[0]
         return {"project": project, "entities": entities, "sources": sources, "issues": issues, "checks": checks,
                 "candidates": candidates, "runs": self.store.runs(project_id), "history": history,
-                "networks": networks, "constraints": [state["mission"]] if state.get("mission") else [], "missing_inputs": missing, "events_seq": seq}
+                "networks": networks, "opening_edit": opening,
+                "constraints": [state["mission"]] if state.get("mission") else [], "missing_inputs": missing, "events_seq": seq}
 
     def network_views(self, state: dict) -> list[dict]:
         views = []
@@ -240,8 +246,11 @@ class EngineService:
 
     def geometry_at(self, project: dict) -> dict:
         """Render the already selected immutable root, even if the head changes."""
+        from .geometry_edits import opening_binding, effective_host_mesh
         project_id = project["id"]
         state = self.store.get(project["state_root"])
+        opening = opening_binding(self.store, state)
+        replaced_count = 0
         meshes, minimum, maximum = [], None, None
         for source in state.get("sources", []):
             path = source.get("artifacts", {}).get("mesh_json_gz")
@@ -253,12 +262,21 @@ class EngineService:
                 from .ifc.federation import transform_mesh_payload
                 payload = transform_mesh_payload(payload, source["transform_m"])
             for mesh in payload["meshes"]:
+                if opening and mesh["entity_id"] == opening["edit"]["host_entity_id"]:
+                    if source.get("id") != opening["source"]["id"]:
+                        raise IntegrityError("Opening display host mesh belongs to another source")
+                    replaced_count += 1
+                    continue
                 mesh["discipline"] = source.get("discipline", "unclassified")
                 meshes.append(mesh)
             if source.get("bounds"):
                 bounds = source["bounds"]
                 minimum = bounds["min"] if minimum is None else [min(a, b) for a, b in zip(minimum, bounds["min"])]
                 maximum = bounds["max"] if maximum is None else [max(a, b) for a, b in zip(maximum, bounds["max"])]
+        if opening:
+            if replaced_count != 1:
+                raise IntegrityError("Opening display must replace exactly one original host mesh")
+            meshes.append(effective_host_mesh(self.store, opening))
         for route in state.get("routes", []):
             if not route.get("geometry_artifact"):
                 continue

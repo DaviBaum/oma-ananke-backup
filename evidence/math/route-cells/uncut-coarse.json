@@ -1,0 +1,231 @@
+{
+  "problem": {
+    "allowed_bounds": [
+      [
+        3,
+        3,
+        -2
+      ],
+      [
+        7,
+        7,
+        3
+      ]
+    ],
+    "body_radius": "1/4",
+    "clearance": "1/10",
+    "outer_obstacles": [
+      {
+        "id": "host",
+        "bounds": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            10,
+            10,
+            1
+          ]
+        ]
+      }
+    ],
+    "inner_obstacles": [
+      {
+        "id": "host:inner",
+        "bounds": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            10,
+            10,
+            1
+          ]
+        ],
+        "outer_id": "host"
+      }
+    ],
+    "grid_axes": [
+      [
+        "13/4",
+        "27/4"
+      ],
+      [
+        "13/4",
+        "27/4"
+      ],
+      [
+        "-7/4",
+        "11/4"
+      ]
+    ],
+    "start": [
+      5,
+      5,
+      -1
+    ],
+    "goal": [
+      5,
+      5,
+      2
+    ],
+    "context_root": "rational-local-slab-model",
+    "source_roots": {
+      "outer_cover": "original-host-box",
+      "inner_occupancy": "original-host-box",
+      "frame": "identity-local-metres",
+      "body_model": "closed-ball-radius-quarter-metre"
+    }
+  },
+  "certificate": {
+    "schema": "oma.route-cell-certificate/1",
+    "status": "CERTIFIED_INNER_OUTER_BOX_GEOMETRY",
+    "scope": "CONTINUOUS_TRANSLATING_BALL_IN_DECLARED_OBSTACLE_SANDWICH",
+    "root": "2273319ef0bae6faa205cfa3ca802f0d9139e6d4ea3d34d980041a1d055499bd",
+    "manifest": {
+      "schema": "oma.route-cell-input/1",
+      "allowed_bounds": [
+        [
+          "3",
+          "3",
+          "-2"
+        ],
+        [
+          "7",
+          "7",
+          "3"
+        ]
+      ],
+      "body_radius": "1/4",
+      "clearance": "1/10",
+      "grid_axes": [
+        [
+          "13/4",
+          "27/4"
+        ],
+        [
+          "13/4",
+          "27/4"
+        ],
+        [
+          "-7/4",
+          "11/4"
+        ]
+      ],
+      "start": [
+        "5",
+        "5",
+        "-1"
+      ],
+      "goal": [
+        "5",
+        "5",
+        "2"
+      ],
+      "context_root": "rational-local-slab-model",
+      "source_roots": {
+        "outer_cover": "original-host-box",
+        "inner_occupancy": "original-host-box",
+        "frame": "identity-local-metres",
+        "body_model": "closed-ball-radius-quarter-metre"
+      },
+      "outer_obstacles": [
+        {
+          "id": "host",
+          "bounds": [
+            [
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "10",
+              "10",
+              "1"
+            ]
+          ]
+        }
+      ],
+      "inner_obstacles": [
+        {
+          "id": "host:inner",
+          "bounds": [
+            [
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "10",
+              "10",
+              "1"
+            ]
+          ],
+          "outer_id": "host"
+        }
+      ],
+      "obstacle_contract": "UNION_INNER_BOXES_SUBSET_OCCUPIED_SUPPORT_SUBSET_UNION_OUTER_BOXES",
+      "contact_policy": "STRICT_OBSTACLE_CLEARANCE; ALLOWED_REGION_BOUNDARY_CONTACT_PERMITTED",
+      "coordinate_interpretation": "EXACT_RATIONAL; FINITE_FLOATS_MEAN_EXACT_BINARY_VALUES"
+    },
+    "cells": [
+      {
+        "id": "0:0:0",
+        "classification": "MIXED"
+      }
+    ],
+    "outer_connectivity": {
+      "kind": "PATH",
+      "cells": [
+        "0:0:0"
+      ]
+    },
+    "inner_path": null,
+    "geometry_outcome": "UNKNOWN",
+    "length_bounds": {
+      "universal_centreline_length_lower_bound_m": "3",
+      "inner_segment_length_intervals_m": [],
+      "inner_path_length_upper_bound_m": null,
+      "scope": "EUCLIDEAN_CENTRELINE_LENGTH_ONLY; NO_CONTINUOUS_OPTIMUM_CLAIM"
+    },
+    "limitations": {
+      "source_outer_cover_authenticity_checked": false,
+      "source_inner_occupancy_authenticity_checked": false,
+      "frame_and_units_applicability_checked": false,
+      "elbow_fabrication_or_orientation_checked": false,
+      "service_physics_checked": false,
+      "native_IFC_candidate_acceptance_authority": false,
+      "continuous_cost_optimality_claimed": false
+    },
+    "work": 12
+  },
+  "independent_check": {
+    "status": "PASS",
+    "scope": "CONTINUOUS_TRANSLATING_BALL_IN_DECLARED_OBSTACLE_SANDWICH",
+    "root": "2273319ef0bae6faa205cfa3ca802f0d9139e6d4ea3d34d980041a1d055499bd",
+    "geometry_outcome": "UNKNOWN",
+    "verified_cells": 1,
+    "free_cells": 0,
+    "outer_retained_cells": 1,
+    "length_bounds": {
+      "universal_centreline_length_lower_bound_m": "3",
+      "inner_segment_length_intervals_m": [],
+      "inner_path_length_upper_bound_m": null,
+      "scope": "EUCLIDEAN_CENTRELINE_LENGTH_ONLY; NO_CONTINUOUS_OPTIMUM_CLAIM"
+    },
+    "limitations": {
+      "source_outer_cover_authenticity_checked": false,
+      "source_inner_occupancy_authenticity_checked": false,
+      "frame_and_units_applicability_checked": false,
+      "elbow_fabrication_or_orientation_checked": false,
+      "service_physics_checked": false,
+      "native_IFC_candidate_acceptance_authority": false,
+      "continuous_cost_optimality_claimed": false
+    },
+    "work": 1
+  }
+}

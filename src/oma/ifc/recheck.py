@@ -95,10 +95,23 @@ def recheck(manifest_path):
     grouped = {o.GlobalId for r in system.IsGroupedBy for o in r.RelatedObjects}
     if grouped != {p["ifc_guid"] for p in manifest["added_parts"]}:
         raise ValueError("System membership differs from materialized route")
+    opening_report = None
+    if manifest.get("authorized_opening"):
+        from oma.routing.opening import opening_check_arguments
+        from oma.ifc.openings import check_opening_semantics
+        arguments = opening_check_arguments(manifest["export_path"], manifest["source_path"],
+            manifest["authorized_opening"]["request"], manifest["authorized_opening"], manifest["export_sha256"],
+            {p["ifc_guid"] for p in manifest["added_parts"]},
+            terminal_guids=tuple(manifest["route_spec"][k] for k in ("source_port_guid", "sink_port_guid") if manifest["route_spec"].get(k)))
+        opening_report = check_opening_semantics(manifest["export_path"], manifest["source_path"], **arguments)
+        if opening_report["status"] != "PASS":
+            raise ValueError(f"Exported authorized opening failed: {opening_report}")
     manifest["reimport"] = {"status": "PASS", "scope": "Original STEP preservation, new physical geometry, port locations, connectivity and system membership",
                             "fresh_process": True, "original_records_checked": len(list(source)),
                             "parts": findings, "connections_checked": len(relationships),
                             "coordination_status": "NOT_RUN", "common_mode_risk": "IFC parser/tessellator shared with importer; not an engineering coordination certificate"}
+    if opening_report:
+        manifest["reimport"]["authorized_opening"] = opening_report
     atomic_json(path, manifest)
     print(json.dumps({"status": "PASS", "parts": len(findings), "connections": len(relationships)}))
 

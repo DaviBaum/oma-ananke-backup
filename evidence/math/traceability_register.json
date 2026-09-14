@@ -6,6 +6,74 @@
   "full_engine_mathematics_implemented": false,
   "obligations": [
     {
+      "obligation": "CERTIFIED_TRANSLATIONAL_INNER_OUTER_ROUTE_CELLS",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4293,
+          4367,
+          4369,
+          4432
+        ],
+        "objects": [
+          "DEF-RTR12",
+          "DEF-RTR24",
+          "ALG-RTR5",
+          "ALG-RTR6",
+          "ALG-RTR7",
+          "ALG-RTR8",
+          "ALG-RTR9",
+          "ALG-RTR10"
+        ]
+      },
+      "interpretation_and_assumptions": "Exact finite Cartesian cover of the full allowed-box domain eroded by a translating ball. Complete obstacle outer boxes prove free cells by checked separating planes; occupied inner boxes prove blocked cells by convex corner coverage. All MIXED cells remain outer. Independent cell denominator, 26-neighbour path/cut, full capsule embedding, length interval and fixed-model refinement checks establish bounded-model inner/outer inclusions.",
+      "implementations": [
+        "oma.optimization.route_cells.compile_route_cells"
+      ],
+      "independent_checkers": [
+        "oma.optimization.route_cells.verify_route_cells",
+        "oma.optimization.route_cells.verify_route_cell_refinement"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.route_cells.compile_route_cells",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.route_cells.verify_route_cells",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.route_cells.verify_route_cell_refinement",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_route_cells.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Continuous-path conclusion only for the declared translating-ball geometry under authenticated obstacle sandwich and frame assumptions supplied by an adapter. No fabricated-pipe impossibility without a necessary body model, no native IFC equality, orientation/fitting/service physics or continuous optimum. Synthetic 125-cell slab example proves no path before an exact model opening and a three-metre path afterward; fifty tests include thirty analytic random wall oracles.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
       "obligation": "EXACT_RECTILINEAR_AUTHORIZED_OPENING_SUPPORT",
       "source": {
         "document": "oma-integration",
@@ -1538,8 +1606,8 @@
   ],
   "unit_test_run": {
     "path": "evidence\\math\\implemented-obligation-tests.xml",
-    "tests": 268,
+    "tests": 318,
     "failures": 0
   },
-  "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"
+  "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py tests/test_optimization_route_cells.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"
 }

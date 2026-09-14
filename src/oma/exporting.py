@@ -62,6 +62,11 @@ def export_project(store: Store, project_id: str, candidate_id: str | None = Non
             exported_materialization = {**prior, "source_path": str(original), "export_path": str(destination), "export_sha256": sha256_file(destination), "reimport": {"status": "NOT_RUN"}}
             atomic_json(destination.with_suffix(".manifest.json"), exported_materialization)
             manifest["correspondences"].append({"source_id": source["id"], "replacement_path": str(destination), "route_id": spec["route_spec"]["route_id"], "part_guids": [p["ifc_guid"] for p in prior["added_parts"]]})
+            if prior.get("authorized_opening"):
+                opening = prior["authorized_opening"]
+                manifest["correspondences"][-1]["authorized_opening"] = {"host_guid": opening["request"]["host_guid"],
+                    "host_step_id": opening["request"]["host_step_id"], "opening_guid": opening["opening_guid"],
+                    "request_root": opening["request_root"], "scope": opening["scope"]}
         else:
             shutil.copyfile(original, destination)
         manifest["files"].append({"path": str(destination), "source_id": source["id"], "sha256": sha256_file(destination),

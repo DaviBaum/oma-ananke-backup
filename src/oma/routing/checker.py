@@ -14,7 +14,7 @@ import numpy as np
 from oma.ifc.audit import sha256_file
 from oma.ifc.cad import cad_check_routes, load_cad, _has_native_geometry
 from oma.ifc.ports import ownership_ledger, port_facts, connected_pair_errors, circular_owner_radius
-from oma.models import CheckResult, VerificationReport, Verdict
+from oma.models import CheckResult, VerificationReport, Verdict, Section
 from oma.store import Store, digest, utcnow
 from oma.verification import CHECKER_VERSION
 from .scenario import RoutingScenario
@@ -79,8 +79,16 @@ def _semantics(path, source_path, materialization, scenario, known_physical_guid
     expected_guids = {p["ifc_guid"] for p in materialization["added_parts"]}
     new_physical = [e for e in model.by_type("IfcElement") if e.id() not in original_ids]
     errors = []
-    if {e.GlobalId for e in new_physical} != (expected_guids if known_physical_guids is None else set(known_physical_guids)):
+    accounted_guids = expected_guids if known_physical_guids is None else set(known_physical_guids)
+    if materialization.get("authorized_opening"):
+        accounted_guids = accounted_guids | {materialization["authorized_opening"]["opening_guid"]}
+    if len(new_physical) != len(accounted_guids) or {e.GlobalId for e in new_physical} != accounted_guids:
         errors.append("Materialized part accounting differs from actual added IFC physical entities")
+    new_part_ids = {e.id() for e in new_physical if e.GlobalId in (known_physical_guids if known_physical_guids is not None else expected_guids)}
+    permitted_void = (materialization.get("authorized_opening") or {}).get("void_relation_step_id")
+    from oma.ifc.protected_semantics import added_relationship_effects
+    errors.extend(added_relationship_effects(model, original_ids, new_part_ids,
+        checked_void_id=permitted_void, separately_checked_original_ports=True))
     new_physical = [e for e in new_physical if e.GlobalId in expected_guids]
     changed = []
     for before in original:
@@ -232,17 +240,31 @@ def evaluate_route_state(store, state, baseline, requested, scenario, mission, m
     add("fixed-request-assumptions", "PASS" if request_bound else "FAIL", "Scenario, clearance, physical sizes and objective policy match the immutable original run request" if request_bound else "Candidate changed the fixed requested engineering assumptions")
     same_sources = state["sources"] == baseline["sources"]
     protected = {e["id"]: digest(e) for e in baseline.get("entities", [])}
-    after = {e["id"]: digest(e) for e in state.get("entities", [])}
-    preserved = same_sources and all(after.get(k) == v for k, v in protected.items()) and set(mission["protected_ids"]) == set(protected)
+    editable = {f"{requested.authorized_opening.source_sha256}:{requested.authorized_opening.host_step_id}"} if requested.authorized_opening else set()
+    preserved = (same_sources and state.get("entities", []) == baseline.get("entities", [])
+                 and len(protected) == len(baseline.get("entities", []))
+                 and set(mission["protected_ids"]) == set(protected) - editable)
+    preserved &= set(mission.get("editable_ids", [])) == editable
     base_ports = {p["id"]: digest(p) for p in baseline.get("ports", [])}
     after_ports = {p["id"]: digest(p) for p in state.get("ports", [])}
     preserved &= all(after_ports.get(k) == v for k, v in base_ports.items())
+    preserved &= len(base_ports) == len(baseline.get("ports", [])) and len(after_ports) == len(state.get("ports", []))
+    declared_terminal_ids = {p for d in (state.get("mission") or {}).get("demands", []) for p in (d["source_port"], *d["sink_ports"])}
+    preserved &= set(after_ports) <= set(base_ports) | declared_terminal_ids
     preserved &= state.get("explicit_connections", []) == baseline.get("explicit_connections", [])
     preserved &= state.get("inferred_connections", []) == baseline.get("inferred_connections", [])
     add("protected-source-preservation", "PASS" if preserved else "FAIL", "All baseline entity content and source identities preserved" if preserved else "Protected entities or source identities changed")
     hash_match = path.is_file() and sha256_file(path) == materialization["export_sha256"]
     original_match = all(store.resolve_path(s["immutable_path"]).is_file() and sha256_file(store.resolve_path(s["immutable_path"])) == s["sha256"] for s in state["sources"])
     add("materialized-input-integrity", "PASS" if hash_match and original_match else "FAIL", "Persisted IFC hashes rechecked" if hash_match and original_match else "Persisted physical artifact or source hash changed")
+    selected_source = next((s for s in baseline["sources"] if s["id"] == requested.source_id),
+        baseline["sources"][0] if requested.source_id is None and baseline["sources"] else None)
+    declared_source_path = store.resolve_path(materialization["source_path"])
+    source_frame_bound = bool(selected_source and materialization["source_sha256"] == selected_source["sha256"]
+        and declared_source_path.is_file() and sha256_file(declared_source_path) == selected_source["sha256"]
+        and materialization.get("route_spec", {}).get("source_to_federation_matrix") == selected_source.get("transform_m"))
+    add("materialization-source-frame", "PASS" if source_frame_bound else "FAIL",
+        "Route source bytes and source-to-federation frame match the immutable imported source" if source_frame_bound else "Route materialization changed its source identity or coordinate frame")
     correspondence = state.get("derived_artifacts", {}).get("export_correspondence")
     if correspondence:
         matched = len(correspondence["files"]) == len(state["sources"])
@@ -256,19 +278,68 @@ def evaluate_route_state(store, state, baseline, requested, scenario, mission, m
     coverage = len(routes) == 1 and set(routes[0]["demand_ids"]) == demand_ids and len(demand_ids) == 1
     if coverage:
         demand = mission["demands"][0]
-        coverage &= routes[0]["section"] == demand["section"] and routes[0]["service"] == demand["service"]
+        required_section = Section(shape="circular", diameter_m=requested.diameter_m, insulation_m=requested.insulation_m).model_dump(mode="json")
+        coverage &= routes[0]["section"] == demand["section"] == required_section and routes[0]["service"] == demand["service"]
         coverage &= set(routes[0]["port_ids"]) == {demand["source_port"], *demand["sink_ports"]}
         coverage &= demand["section"]["diameter_m"] == requested.diameter_m and demand["section"]["insulation_m"] == requested.insulation_m
         coverage &= demand["clearance_m"] == requested.clearance_m and demand["service"] == requested.system_type
+        coverage &= demand.get("min_slope") == requested.min_slope
     add("fixed-service-obligations", "PASS" if coverage else "FAIL", "All declared terminals, section and insulation obligations preserved" if coverage else "A service/terminal/section obligation changed or lacks coverage")
+    terminal_state = coverage
+    if coverage:
+        indexed_ports = {p["id"]: p for p in state.get("ports", [])}
+        for identity, point, direction in ((demand["source_port"], requested.start, "SOURCE"), (demand["sink_ports"][0], requested.end, "SINK")):
+            port = indexed_ports.get(identity, {})
+            provenance = port.get("provenance", {})
+            terminal_state &= (port.get("position_m") == list(point) and port.get("entity_id") == identity
+                and port.get("coordinate_frame") == "federation" and port.get("position_status") == "KNOWN"
+                and port.get("direction") == direction and port.get("service") == requested.system_type
+                and port.get("section") == required_section and port.get("connection_evidence") == "scenario"
+                and provenance.get("kind") == "scenario" and provenance.get("content_hash") == mission["scenario_hash"]
+                and provenance.get("source_id") == f"scenario:{mission['scenario_hash']}")
+    add("declared-terminal-state", "PASS" if terminal_state else "FAIL", "Persisted scenario terminal positions, service, section and provenance agree with the fixed physical mission" if terminal_state else "Persisted terminal metadata disagrees with the fixed physical mission")
     semantics = None
     if hash_match and original_match:
         semantics = _semantics(path, store.resolve_path(materialization["source_path"]), materialization, scenario, known_physical_guids)
         add("exported-physical-semantics", "PASS" if not semantics["errors"] else "FAIL", "Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree" if not semantics["errors"] else "; ".join(semantics["errors"]), witness={"recomputed": semantics})
         objective = {"length_m": semantics["length_m"], "fitting_count": float(semantics["fitting_count"])}
         guids = {p["ifc_guid"] for p in materialization["added_parts"]}
+        opening_args = None
+        opening_manifest = materialization.get("authorized_opening")
+        opening_edit = state.get("derived_artifacts", {}).get("opening_edit")
+        if requested.authorized_opening is not None:
+            try:
+                from .opening import opening_context, opening_check_arguments, edit_record
+                from oma.ifc.openings import check_opening_semantics
+                source = next(s for s in baseline["sources"] if s["sha256"] == requested.authorized_opening.source_sha256)
+                context = opening_context(baseline, requested, source)
+                if materialization["source_sha256"] != source["sha256"]:
+                    raise ValueError("Route materialization changed the opening's selected source")
+                if opening_edit != edit_record(context, opening_manifest, digest(baseline)):
+                    raise ValueError("Versioned opening edit, permission, source facts or predecessor root changed")
+                if set(route_ids) != {r["id"] for r in state["routes"]} | editable:
+                    raise ValueError("Changed component inventory omits or adds a physical route/host edit")
+                if store.get(opening_edit["manifest_root"]) != opening_manifest:
+                    raise ValueError("Opening materialization differs from its versioned manifest")
+                opening_args = opening_check_arguments(path, store.resolve_path(materialization["source_path"]),
+                    requested.authorized_opening.model_dump(mode="json"), opening_manifest, materialization["export_sha256"], guids,
+                    terminal_guids=tuple(g for g in (requested.source_port_guid, requested.sink_port_guid) if g))
+                opening_report = check_opening_semantics(path, store.resolve_path(materialization["source_path"]), **opening_args)
+                if opening_report["status"] != "PASS":
+                    raise ValueError("; ".join(opening_report.get("errors", [])))
+                add("authorized-host-subtraction", "PASS", "Immutable permission, exact remaining support and actual IFC void/effective host independently agree",
+                    participants=tuple(editable), witness={"artifact": store.put(opening_report)})
+            except (ValueError, KeyError, TypeError, RuntimeError, StopIteration) as exc:
+                add("authorized-host-subtraction", "FAIL", f"Opening edit verification failed: {exc}")
+                add("physical-interference-and-clearance", "NOT_RUN", "No edited host may enter the obstacle inventory without its complete opening check")
+                return results, objective, []
+        elif opening_manifest or opening_edit:
+            add("authorized-host-subtraction", "FAIL", "No opening was authorized by the immutable original request")
+            add("physical-interference-and-clearance", "NOT_RUN", "Unauthorized architectural edit")
+            return results, objective, []
         from .negative_probe import probe_candidate_failure
-        probe = probe_candidate_failure(store, state, materialization, guids, control)
+        probe = ({"status": "NOT_RUN", "reason": "Edited host requires the complete fresh replacement-obstacle check"}
+                 if opening_args else probe_candidate_failure(store, state, materialization, guids, control))
         probe_root = store.put(probe)
         if probe["status"] == "FAIL":
             pair = probe["witness"]["native_pair_result"]
@@ -282,6 +353,7 @@ def evaluate_route_state(store, state, baseline, requested, scenario, mission, m
                                numerical_tolerance_m=1e-6, coordinate_evidence=state.get("derived_artifacts", {}).get("local_coordinate_evidence"),
                                cache_directory=store.directory / "cad-cache",
                                source_representation_policy=scenario.source_representation_policy,
+                               authorized_opening=opening_args,
                                checkpoint=control.checkpoint)
         cad_root = store.put(cad)
         add("physical-interference-and-clearance", cad["coordination_status"], f"Native solids checked: {cad['pairs_accounted']} route/obstacle pairs, {cad['failed_pairs']} forbidden pairs, {cad['unknown_pairs']} ambiguous pairs; datum {cad['coordinate_status']}", witness={"artifact": cad_root, "negative_probe_artifact": probe_root}, scope="New route versus every source physical obstacle; pre-existing building defects remain outside this local repair claim")
@@ -376,7 +448,7 @@ def verify_route_candidate(store: Store, candidate_id: str):
         status = Verdict.PASS
     report = VerificationReport(candidate_root=candidate["state_root"], mission_hash=digest(mission), rule_hash=mission["rule_hash"],
                                 checker_version=CHECKER_VERSION, status=status,
-                                scope=f"{scenario.target_modality}: proposed route only; numerical CAD contract, not whole-building approval",
+                                scope=f"{scenario.target_modality}: proposed route{' and one explicitly authorized host opening' if scenario.authorized_opening else ' only'}; numerical CAD contract, not whole-building approval",
                                 results=tuple(results), objective=objective,
                                 common_mode_risks=("IfcOpenShell source parsing shared with importer", "OCP numerical kernel is not a formally certified interval geometry solver", "Route specification and IFC exporter share parametric conventions; checker separately reads native geometry, topology and volume"), created_at=utcnow())
     store.record_verification(candidate_id, report)

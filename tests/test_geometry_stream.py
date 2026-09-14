@@ -36,5 +36,5 @@ def test_stream_pins_root_transforms_real_vertices_and_requires_completion(tmp_p
     interrupted = compressed_stream(store, latest)
     next(interrupted)
     interrupted.close()
-    assert not (store.directory / "geometry" / "views" / f"stream-v2-{latest['state_root']}.ndjson.gz").exists()
+    assert not (store.directory / "geometry" / "views" / f"stream-v3-{latest['state_root']}.ndjson.gz").exists()
     assert not list((store.directory / "geometry" / "views").glob(".pending-*"))

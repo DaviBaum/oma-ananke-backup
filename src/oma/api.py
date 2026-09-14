@@ -133,7 +133,7 @@ def create_app(directory: str | Path | None = None, *, recover: bool = True) -> 
         import orjson
         import uuid
         project = service.selected_project(project_id, revision, candidate_id)
-        cache = service.store.directory / "geometry" / "views" / f"v3-{project['state_root']}.json.gz"
+        cache = service.store.directory / "geometry" / "views" / f"v4-{project['state_root']}.json.gz"
         if not cache.exists():
             payload = service.geometry_at(project)
             payload.pop("revision", None)  # Geometry belongs to a root; undo may reuse it at a newer revision.
@@ -141,14 +141,14 @@ def create_app(directory: str | Path | None = None, *, recover: bool = True) -> 
             temporary = cache.with_suffix(f".{uuid.uuid4().hex}.pending")
             temporary.write_bytes(gzip.compress(orjson.dumps(payload), compresslevel=2, mtime=0))
             os.replace(temporary, cache)
-        return Response(cache.read_bytes(), media_type="application/json", headers={"Content-Encoding": "gzip", "ETag": f'"geometry-v3-{project["state_root"]}"', "Cache-Control": "private, max-age=3600"})
+        return Response(cache.read_bytes(), media_type="application/json", headers={"Content-Encoding": "gzip", "ETag": f'"geometry-v4-{project["state_root"]}"', "Cache-Control": "private, max-age=3600"})
 
     @app.get("/api/projects/{project_id}/geometry-stream")
     def geometry_stream(project_id: str, revision: int | None = None, candidate_id: str | None = None):
         from .geometry_stream import compressed_stream
         project = service.selected_project(project_id, revision, candidate_id)
         return StreamingResponse(compressed_stream(service.store, project), media_type="application/x-ndjson",
-                                 headers={"Content-Encoding": "gzip", "ETag": f'"geometry-stream-v2-{project["state_root"]}"',
+                                 headers={"Content-Encoding": "gzip", "ETag": f'"geometry-stream-v3-{project["state_root"]}"',
                                           "Cache-Control": "private, max-age=3600", "X-OMA-State-Root": project["state_root"]})
 
     @app.get("/api/projects/{project_id}/ports")
@@ -159,6 +159,12 @@ def create_app(directory: str | Path | None = None, *, recover: bool = True) -> 
         begin, count = max(0, offset), min(max(1, limit), 1000)
         return {"state_root": project["state_root"], "ports": records[begin:begin+count], "total": len(records), "offset": begin,
                 "next_offset": begin+count if begin+count < len(records) else None}
+
+    @app.get("/api/projects/{project_id}/opening-host")
+    def opening_host(project_id: str, entity_id: str, revision: int | None = None, candidate_id: str | None = None):
+        from .opening_inspection import inspect_selected_host
+        project = service.selected_project(project_id, revision, candidate_id)
+        return inspect_selected_host(service.store, project, entity_id)
 
     @app.get("/api/projects/{project_id}/candidates/{candidate_id}/assurance")
     def assurance(project_id: str, candidate_id: str):

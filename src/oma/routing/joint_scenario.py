@@ -22,6 +22,8 @@ class JointRoutingScenario(BaseModel):
             raise ValueError("Joint demand identifiers must be unique")
         weights = self.route_demands[0].alternatives[0].objective_weights
         for demand in self.route_demands:
+            if any(s.authorized_opening is not None for s in demand.alternatives):
+                raise ValueError("An opening requires the single-route imported-baseline edit contract")
             if any(s.objective_weights != weights for s in demand.alternatives):
                 raise ValueError("All simultaneous alternatives must use the same objective policy")
             fixed = ("system_type", "clearance_m", "target_modality", "min_slope", "physics", "source_representation_policy", "scenario_terminals")

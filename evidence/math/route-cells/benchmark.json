@@ -1,0 +1,217 @@
+{
+  "schema": "oma.route-cell-benchmark/1",
+  "scope": "SYNTHETIC_EXACT_RATIONAL_GEOMETRY; NO_NATIVE_IFC_OR_ENGINEERING_APPROVAL",
+  "opening_kernel_independent_check": {
+    "status": "PASS",
+    "scope": "REGULARIZED_LOCAL_RATIONAL_HOST_BOX_DIFFERENCE",
+    "root": "056b29615a229a5969158143afeed3a2ada7ce735ff44bee6b89b5016bcbee72",
+    "verified_cells": 4,
+    "arrangement_strata_checked": 147,
+    "removed_volume_m3": "4",
+    "remaining_volume_m3": "96",
+    "limitations": {
+      "source_geometry_authenticity_checked": false,
+      "frame_and_units_applicability_checked": false,
+      "authorization_authenticity_checked": false,
+      "native_export_geometry_equality_checked": false,
+      "structural_or_fire_approval_checked": false,
+      "candidate_acceptance_authority": false
+    }
+  },
+  "opening_certificate": {
+    "schema": "oma.rectilinear-opening-certificate/1",
+    "status": "EXACT_RECTILINEAR_THROUGH_OPENING",
+    "scope": "REGULARIZED_LOCAL_RATIONAL_HOST_BOX_DIFFERENCE",
+    "root": "056b29615a229a5969158143afeed3a2ada7ce735ff44bee6b89b5016bcbee72",
+    "manifest": {
+      "schema": "oma.rectilinear-opening-input/1",
+      "units": "local_m",
+      "host_bounds_local": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "10",
+          "10",
+          "1"
+        ]
+      ],
+      "opening_bounds_local": [
+        [
+          "4",
+          "4",
+          "-1"
+        ],
+        [
+          "6",
+          "6",
+          "2"
+        ]
+      ],
+      "through_axis": 2,
+      "context_root": "synthetic-authorized-opening-model",
+      "source_roots": {
+        "source": "synthetic-rational-host",
+        "host": "ten-by-ten-by-one-host",
+        "frame": "identity-local-metres",
+        "authorization": "synthetic-proposed-edit-only"
+      },
+      "float_interpretation": "EXACT_BINARY_VALUE; SOURCE_DECIMAL_RATIONALS_SHOULD_USE_STRINGS"
+    },
+    "remaining_cells": [
+      {
+        "id": "remaining:0",
+        "bounds_local": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "4",
+            "10",
+            "1"
+          ]
+        ],
+        "volume_m3": "40"
+      },
+      {
+        "id": "remaining:1",
+        "bounds_local": [
+          [
+            "6",
+            "0",
+            "0"
+          ],
+          [
+            "10",
+            "10",
+            "1"
+          ]
+        ],
+        "volume_m3": "40"
+      },
+      {
+        "id": "remaining:2",
+        "bounds_local": [
+          [
+            "4",
+            "0",
+            "0"
+          ],
+          [
+            "6",
+            "4",
+            "1"
+          ]
+        ],
+        "volume_m3": "8"
+      },
+      {
+        "id": "remaining:3",
+        "bounds_local": [
+          [
+            "4",
+            "6",
+            "0"
+          ],
+          [
+            "6",
+            "10",
+            "1"
+          ]
+        ],
+        "volume_m3": "8"
+      }
+    ],
+    "removed_bounds_local": [
+      [
+        "4",
+        "4",
+        "0"
+      ],
+      [
+        "6",
+        "6",
+        "1"
+      ]
+    ],
+    "host_volume_m3": "100",
+    "removed_volume_m3": "4",
+    "remaining_volume_m3": "96",
+    "set_semantics": "CLOSED_REGULARIZED_DIFFERENCE; REMOVED_AND_REMAINING_BOUNDARIES_MAY_TOUCH",
+    "limitations": {
+      "source_geometry_authenticity_checked": false,
+      "frame_and_units_applicability_checked": false,
+      "authorization_authenticity_checked": false,
+      "native_export_geometry_equality_checked": false,
+      "structural_or_fire_approval_checked": false,
+      "candidate_acceptance_authority": false
+    }
+  },
+  "cases": {
+    "uncut-coarse": {
+      "geometry_outcome": "UNKNOWN",
+      "verified_cells": 1,
+      "free_cells": 0,
+      "outer_retained_cells": 1,
+      "compile_seconds": 0.0003682999958982691,
+      "verify_seconds": 0.0003113999991910532,
+      "length_bounds": {
+        "universal_centreline_length_lower_bound_m": "3",
+        "inner_segment_length_intervals_m": [],
+        "inner_path_length_upper_bound_m": null,
+        "scope": "EUCLIDEAN_CENTRELINE_LENGTH_ONLY; NO_CONTINUOUS_OPTIMUM_CLAIM"
+      },
+      "artifact": "evidence/math/route-cells/uncut-coarse.json"
+    },
+    "uncut-refined": {
+      "geometry_outcome": "OUTER_INFEASIBLE",
+      "verified_cells": 125,
+      "free_cells": 0,
+      "outer_retained_cells": 50,
+      "compile_seconds": 0.00839839999389369,
+      "verify_seconds": 0.009631000008084811,
+      "length_bounds": {
+        "universal_centreline_length_lower_bound_m": "3",
+        "inner_segment_length_intervals_m": [],
+        "inner_path_length_upper_bound_m": null,
+        "scope": "EUCLIDEAN_CENTRELINE_LENGTH_ONLY; NO_CONTINUOUS_OPTIMUM_CLAIM"
+      },
+      "artifact": "evidence/math/route-cells/uncut-refined.json"
+    },
+    "opening-refined": {
+      "geometry_outcome": "INNER_PATH_CHECKED",
+      "verified_cells": 125,
+      "free_cells": 5,
+      "outer_retained_cells": 77,
+      "compile_seconds": 0.0173095999925863,
+      "verify_seconds": 0.008577600005082786,
+      "length_bounds": {
+        "universal_centreline_length_lower_bound_m": "3",
+        "inner_segment_length_intervals_m": [
+          [
+            "3",
+            "3"
+          ]
+        ],
+        "inner_path_length_upper_bound_m": "3",
+        "scope": "EUCLIDEAN_CENTRELINE_LENGTH_ONLY; NO_CONTINUOUS_OPTIMUM_CLAIM"
+      },
+      "artifact": "evidence/math/route-cells/opening-refined.json"
+    }
+  },
+  "fixed_model_refinement": {
+    "status": "PASS",
+    "scope": "FIXED_MODEL_INNER_GROWTH_AND_OUTER_CONTRACTION",
+    "coarse_root": "2273319ef0bae6faa205cfa3ca802f0d9139e6d4ea3d34d980041a1d055499bd",
+    "fine_root": "423ebb842a87423664b0484f4a139a880a1cb9162b7cce2bff4912b889e14908",
+    "work": 1290,
+    "termination_or_boundary_resolution_proved": false
+  },
+  "opening_changes_model_not_refinement": true,
+  "ground_truth": "The uncut slab spans the complete allowed XY cross-section, so every path between opposite Z sides intersects it. The cut opens a 2x2 footprint; the centre line at x=y=5 has one metre gap to each residual side, exceeding ball radius1/4 plus clearance1/10.",
+  "implementation_sha256": "4d6c16d20ae0db7f56a93ac66c83915c2d3a01c32e3f695ab986175546153a6c"
+}

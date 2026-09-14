@@ -734,6 +734,7 @@ def cad_check_routes(original_paths, export_path, route_guids, *, clearance_m=0.
                      authorized_contacts=None, threads=4, output_path=None, coordinate_evidence=None,
                      cache_directory=None, broadphase_backend="auto",
                      source_representation_policy=DEFAULT_SOURCE_REPRESENTATION_POLICY,
+                     authorized_opening=None,
                      checkpoint: Callable[[str], None] | None = None):
     """Fresh read all obstacles and added route solids, retaining complete scope.
 
@@ -764,6 +765,7 @@ def cad_check_routes(original_paths, export_path, route_guids, *, clearance_m=0.
     obstacles, errors = [], list(route_errors)
     cache_reports = []
     sources = []
+    opening_reports = []
     for path in original_paths:
         source_started=time.perf_counter()
         cache_report = {}
@@ -772,6 +774,16 @@ def cad_check_routes(original_paths, export_path, route_guids, *, clearance_m=0.
         cache_reports.append(cache_report)
         source_loaded=time.perf_counter()
         source_root = sha256_file(path)
+        if authorized_opening and authorized_opening["request"]["source_sha256"] == source_root:
+            from .openings import load_checked_effective_host
+            if checkpoint:
+                checkpoint("cad_effective_host_reconstruction")
+            edited, opening_report = load_checked_effective_host(export_path, path, **authorized_opening)
+            matching = [i for i, obj in enumerate(objects) if obj.entity_id == edited.entity_id and obj.guid == edited.guid]
+            if len(matching) != 1:
+                raise ValueError("Edited host does not replace exactly one original physical obstacle")
+            objects[matching[0]] = edited
+            opening_reports.append(opening_report)
         if source_root in transforms:
             transformed_objects=[]
             for obj in objects:
@@ -784,6 +796,8 @@ def cad_check_routes(original_paths, export_path, route_guids, *, clearance_m=0.
         obstacles.extend(objects)
         errors.extend(failures)
         sources.append({"path": str(Path(path).resolve()), "sha256": sha256_file(path)})
+    if authorized_opening and len(opening_reports) != 1:
+        raise ValueError("Authorized opening source is absent or duplicated in the complete obstacle inventory")
     load_seconds = time.perf_counter() - start
     results = []
     candidates,broadphase_report = _candidate_obstacle_pairs(routes,obstacles,clearance_m,numerical_tolerance_m,broadphase_backend,checkpoint)
@@ -847,6 +861,7 @@ def cad_check_routes(original_paths, export_path, route_guids, *, clearance_m=0.
                                  "ocp_version":importlib.metadata.version("cadquery-ocp")},
               "scope": "new_route_vs_all_source_physical_obstacles", "sources": sources,
               "cache_trust": CACHE_TRUST,
+              "effective_host_edits": opening_reports,
               "export_sha256": sha256_file(export_path), "route_guids": sorted(route_guids),
               "route_count": len(routes), "obstacle_count": len(obstacles), "pairs_accounted": pairs,
               "broad_separation_passes": broad_pass, "pair_results": results, "failed_pairs": failed,

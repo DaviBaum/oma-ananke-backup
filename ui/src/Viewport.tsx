@@ -1408,11 +1408,13 @@ export default function Viewport(props: Props) {
               <span>↔</span>
             </div>
             <div className="compare-label before">
-              {props.candidate.networks?.some(
-                (network) => network.network_contract?.revision,
-              )
-                ? "Source context · previous network not loaded"
-                : "Baseline context"}
+              {props.candidate.opening_edit
+                ? "Source context · previous host not loaded"
+                : props.candidate.networks?.some(
+                      (network) => network.network_contract?.revision,
+                    )
+                  ? "Source context · previous network not loaded"
+                  : "Baseline context"}
             </div>
             <div className="compare-label after">Candidate geometry</div>
             <input

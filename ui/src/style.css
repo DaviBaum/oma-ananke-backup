@@ -1058,7 +1058,7 @@ button:hover:not(:disabled) {
   border-radius: 3px;
 }
 .compare-label.before {
-  left: 80px;
+  left: 98px;
 }
 .compare-label.after {
   right: 18px;
@@ -3023,11 +3023,13 @@ button:hover:not(:disabled) {
 
 .navigation-benchmark {
   position: absolute;
-  left: 18px;
+  left: 98px;
   bottom: 47px;
   z-index: 7;
   font-size: 10px;
   max-width: 300px;
+  max-height: calc(100% - 105px);
+  overflow: auto;
 }
 
 .evidence-review {
@@ -4080,4 +4082,33 @@ button:hover:not(:disabled) {
   display: inline-flex;
   gap: 5px;
   align-items: center;
+}
+.opening-evidence .secondary {
+  margin-top: 8px;
+}
+.opening-fields fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.opening-fields pre {
+  max-height: 220px;
+  overflow: auto;
+  font-size: 11px;
+}
+.opening-consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 16px 0;
+}
+.opening-consent input {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  margin-top: 2px;
+  accent-color: var(--accent);
 }

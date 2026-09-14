@@ -3,9 +3,10 @@ from __future__ import annotations
 import math
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, model_validator
+from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, model_validator, model_serializer
 
 from oma.models import Bounds, Vec3
+from .opening_scenario import AuthorizedOpening
 
 
 class RoutingScenario(BaseModel):
@@ -36,6 +37,14 @@ class RoutingScenario(BaseModel):
     objective_weights: dict[str, FiniteFloat] = Field(default_factory=lambda: {"length_m": 1.0, "fitting_count": 0.0})
     search_step_m: FiniteFloat = Field(default=.25, gt=0)
     max_candidates: int = Field(default=12, ge=1, le=100)
+    authorized_opening: AuthorizedOpening | None = None
+
+    @model_serializer(mode="wrap")
+    def preserve_historical_scenario_hashes(self, handler):
+        data = handler(self)
+        if self.authorized_opening is None:
+            data.pop("authorized_opening", None)
+        return data
 
     @property
     def outer_radius(self):
@@ -43,6 +52,8 @@ class RoutingScenario(BaseModel):
 
     @model_validator(mode="after")
     def physical(self):
+        if self.authorized_opening is not None and self.target_modality != "LOCAL_GEOMETRIC_COORDINATION":
+            raise ValueError("This opening contract authorizes geometric coordination only; structural/fire adequacy is separate")
         if self.start == self.end:
             raise ValueError("Start and terminal cannot coincide")
         if not self.scenario_terminals and not (self.source_port_guid and self.sink_port_guid):

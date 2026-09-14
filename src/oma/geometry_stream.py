@@ -56,16 +56,28 @@ def bounds_of_sources(state: dict):
 
 def iter_meshes(store: Store, state: dict):
     from .ifc.federation import transform_mesh_payload
+    from .geometry_edits import opening_binding, effective_host_mesh
+    opening = opening_binding(store, state)
+    replaced_count = 0
     for source in state.get("sources", []):
         path = source.get("artifacts", {}).get("mesh_json_gz")
         if not path:
             continue
         with gzip.open(store.resolve_path(path), "rb") as stream:
             for mesh in ijson.items(stream, "meshes.item", use_float=True):
+                if opening and mesh["entity_id"] == opening["edit"]["host_entity_id"]:
+                    if source.get("id") != opening["source"]["id"]:
+                        raise IntegrityError("Opening display host mesh belongs to another source")
+                    replaced_count += 1
+                    continue
                 mesh["discipline"] = source.get("discipline", "unclassified")
                 if source.get("transform_m"):
                     mesh = transform_mesh_payload({"meshes": [mesh]}, source["transform_m"])["meshes"][0]
                 yield mesh
+    if opening:
+        if replaced_count != 1:
+            raise IntegrityError("Opening display must replace exactly one original host mesh")
+        yield effective_host_mesh(store, opening)
     for route in state.get("routes", []):
         if not route.get("geometry_artifact"):
             continue
@@ -108,7 +120,7 @@ def records(store: Store, project: dict):
 def compressed_stream(store: Store, project: dict):
     """Stream gzip as produced; commit reusable cache only after full completion."""
     directory = store.directory / "geometry" / "views"
-    cache = directory / f"stream-v2-{project['state_root']}.ndjson.gz"
+    cache = directory / f"stream-v3-{project['state_root']}.ndjson.gz"
     if cache.exists():
         with cache.open("rb") as stream:
             yield from iter(lambda: stream.read(512 * 1024), b"")
