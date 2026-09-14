@@ -228,7 +228,7 @@ def main():
             row["automated_tests"].extend(["tests/test_coupled_tree_integration.py", "tests/test_coupled_tree_univalence.py", "tests/test_coupled_tree_pressure.py"])
             row["real_model_benchmark"] = {"status": "ANALYTIC_NATIVE_ACCEPTANCE_AND_FRESH_EXPORTED_IFC_PASS",
                 "evidence": "evidence/math/coupled-native-tree/corrected-integration/",
-                "scope": "Seven physical components, two unequal-loss tees, sixteen ports, three deliveries, seventeen continuity and nineteen head-path identities. Native checks account for seven source pairs and twenty-one self pairs.113 adapter tests plus independent dimensional/algebra/27-attack audit pass. Corrected20 actual integration tests pass; initial746 retains744 passing cases and two corrected UNKNOWN-versus-REJECTED test expectations. Full2467 regression is separately running."}
+                "scope": "Seven physical components, two unequal-loss tees, sixteen ports, three deliveries, seventeen continuity and nineteen head-path identities. Native checks account for seven source pairs and twenty-one self pairs.113 adapter tests plus independent dimensional/algebra/27-attack audit pass. Corrected20 actual integration tests pass; initial746 retains744 passing cases and two corrected UNKNOWN-versus-REJECTED test expectations. All2467 cases pass in both native environments; exact source/input/node identities and six derived outputs are audited."}
             row["consumer_scope"] = {"mission_field": "SharedNetworkScenario.coupled_tree", "default": None,
                 "existing_missions_reinterpreted": False, "same_model_local_and_global_proofs_required": True,
                 "all_physical_port_sections_and_exact_delivery_minima_required": True,
