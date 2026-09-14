@@ -6,6 +6,80 @@
   "full_engine_mathematics_implemented": false,
   "obligations": [
     {
+      "obligation": "UNIFORM_POSITIVE_BOX_COUPLED_TREE_PRESSURE_CERTIFICATE",
+      "source": {
+        "document": "1-10",
+        "sha256": "0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970",
+        "paragraphs": [
+          14530,
+          14546,
+          16081,
+          16114,
+          16118,
+          16135,
+          17645,
+          17681
+        ],
+        "objects": [
+          "THM-PO11",
+          "THM-PO12",
+          "ALG-PO2"
+        ]
+      },
+      "interpretation_and_assumptions": "The declared complete polynomial system has one leaf-flow variable per outlet, named nonnegative coefficient intervals and laminar descendant/applicability sets. Every term contributes a coefficient times its full descendant-flow sum squared to every applicable leaf equation. Unequal tee outlet losses therefore need not give a symmetric Jacobian. For each same parameter tuple the independently reconstructed center residual and full interval Jacobian define T(q)=q-R*F(q), with an exact inverse witness proving R invertible. Full signed interval matrix arithmetic proves strict inclusion of the mean-value image inside the supplied positive box and an induced infinity-norm contraction below one. Banach then proves exactly one positive root inside that box for every admitted tuple. Complete term/equation/matrix/parameter/box inventories and final guards prevent incomplete or stale proof authority.",
+      "implementations": [
+        "oma.optimization.coupled_tree_pressure.compile_coupled_tree_pressure"
+      ],
+      "independent_checkers": [
+        "oma.optimization.coupled_tree_pressure.verify_coupled_tree_pressure"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.coupled_tree_pressure.compile_coupled_tree_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.coupled_tree_pressure.verify_coupled_tree_pressure",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_coupled_tree_pressure.py"
+      ],
+      "real_model_benchmark": {
+        "status": "DECLARED_POLYNOMIAL_MODEL_AND_INDEPENDENT_MATRIX_AUDIT_PASS",
+        "evidence": "evidence/math/coupled-tree-pressure/evidence/independent-kernel-review/68137ae750cb4760b0b50448d29748be/result.json",
+        "scope": "124 kernel tests, an independent exact manufactured-box proof and 4096 supplementary numerical parameter corners, 24 independently reconstructed models/96 exact parameter-root instances and 293 rejected attacks. Combined 427-case compatibility passes. No actual native unequal-tree adapter or service decision is claimed by this module."
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Uniqueness is only inside the supplied nondegenerate positive box. This module does not exclude other equilibria outside it, certify the native tree/component correspondence, justify physical loss or boundary data, or grant service/acceptance authority. Failure to invert, contract or strictly include is UNKNOWN, never infeasibility. Shared parameter identities may be conservatively over-enclosed; no common root for every parameter tuple or tight hull is asserted. Variable/term/matrix/work/bit/input/certificate limits are explicit. Full original source algorithm completion remains false.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ],
+      "documentation": "docs/math/coupled-tree-pressure.md",
+      "evidence": "evidence/math/coupled-tree-pressure/latest.json",
+      "full_source_algorithms_implemented": false,
+      "consumer_scope": {
+        "native_adapter": false,
+        "global_equilibrium_exclusion": false,
+        "unique_root_inside_supplied_box_for_each_parameter_tuple": true,
+        "default_leaves": 16,
+        "default_terms": 128,
+        "default_matrix_entries": 256
+      }
+    },
+    {
       "obligation": "GROUNDED_PASSIVE_RESIDUAL_TO_SOLUTION_ERROR_BOUND",
       "source": {
         "document": "1-10",

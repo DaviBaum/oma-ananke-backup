@@ -1,0 +1,179 @@
+{
+  "schema": "oma.coupled-tree-quadratic-pressure-model/1",
+  "leaves": [
+    "A",
+    "B",
+    "C"
+  ],
+  "coefficients": {
+    "trunk": {
+      "lower": "999/10000",
+      "upper": "1001/10000"
+    },
+    "tee1-straight": {
+      "lower": "999/5000",
+      "upper": "1001/5000"
+    },
+    "tee1-branch": {
+      "lower": "2997/10000",
+      "upper": "3003/10000"
+    },
+    "connector": {
+      "lower": "2997/20000",
+      "upper": "3003/20000"
+    },
+    "tee2-straight": {
+      "lower": "999/4000",
+      "upper": "1001/4000"
+    },
+    "tee2-branch": {
+      "lower": "999/2500",
+      "upper": "1001/2500"
+    },
+    "leaf-A": {
+      "lower": "999/2000",
+      "upper": "1001/2000"
+    },
+    "leaf-B": {
+      "lower": "2997/5000",
+      "upper": "3003/5000"
+    },
+    "leaf-C": {
+      "lower": "6993/10000",
+      "upper": "7007/10000"
+    }
+  },
+  "terms": [
+    {
+      "id": "trunk",
+      "coefficient_id": "trunk",
+      "descendant_leaves": [
+        "A",
+        "B",
+        "C"
+      ],
+      "applies_to_leaves": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "tee1-straight",
+      "coefficient_id": "tee1-straight",
+      "descendant_leaves": [
+        "A",
+        "B",
+        "C"
+      ],
+      "applies_to_leaves": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "tee1-branch",
+      "coefficient_id": "tee1-branch",
+      "descendant_leaves": [
+        "A",
+        "B",
+        "C"
+      ],
+      "applies_to_leaves": [
+        "A"
+      ]
+    },
+    {
+      "id": "connector",
+      "coefficient_id": "connector",
+      "descendant_leaves": [
+        "B",
+        "C"
+      ],
+      "applies_to_leaves": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "tee2-straight",
+      "coefficient_id": "tee2-straight",
+      "descendant_leaves": [
+        "B",
+        "C"
+      ],
+      "applies_to_leaves": [
+        "B"
+      ]
+    },
+    {
+      "id": "tee2-branch",
+      "coefficient_id": "tee2-branch",
+      "descendant_leaves": [
+        "B",
+        "C"
+      ],
+      "applies_to_leaves": [
+        "C"
+      ]
+    },
+    {
+      "id": "leaf-A",
+      "coefficient_id": "leaf-A",
+      "descendant_leaves": [
+        "A"
+      ],
+      "applies_to_leaves": [
+        "A"
+      ]
+    },
+    {
+      "id": "leaf-B",
+      "coefficient_id": "leaf-B",
+      "descendant_leaves": [
+        "B"
+      ],
+      "applies_to_leaves": [
+        "B"
+      ]
+    },
+    {
+      "id": "leaf-C",
+      "coefficient_id": "leaf-C",
+      "descendant_leaves": [
+        "C"
+      ],
+      "applies_to_leaves": [
+        "C"
+      ]
+    }
+  ],
+  "available_heads": {
+    "A": {
+      "lower": "14899/1000",
+      "upper": "14901/1000"
+    },
+    "B": {
+      "lower": "23199/1000",
+      "upper": "23201/1000"
+    },
+    "C": {
+      "lower": "30849/1000",
+      "upper": "30851/1000"
+    }
+  },
+  "context_root": "1111111111111111111111111111111111111111111111111111111111111111",
+  "physical_model_root": "2222222222222222222222222222222222222222222222222222222222222222",
+  "assumptions": {
+    "parameter_domain": "CARTESIAN_BOX_WITH_REUSED_NAMED_COEFFICIENT_IDENTITIES",
+    "equation": "SUM_APPLICABLE_A_TIMES_DESCENDANT_FLOW_SUM_SQUARED_MINUS_AVAILABLE_HEAD",
+    "head_quantity": "AVAILABLE_TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_PA",
+    "regime": "STRICTLY_POSITIVE_LEAF_FLOWS_FIXED_QUADRATIC_LOSS_LAW",
+    "units": {
+      "head": "Pa",
+      "flow": "m^3/s",
+      "coefficient": "Pa*s^2/m^6"
+    },
+    "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+  }
+}

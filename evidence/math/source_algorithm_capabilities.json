@@ -18688,6 +18688,8 @@
       "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
+        "oma.optimization.coupled_tree_pressure.compile_coupled_tree_pressure",
+        "oma.optimization.coupled_tree_pressure.verify_coupled_tree_pressure",
         "oma.optimization.passive_pressure.compile_passive_pressure",
         "oma.optimization.passive_pressure.verify_passive_pressure",
         "oma.optimization.two_sink_pressure.compile_two_sink_pressure",
@@ -18701,6 +18703,14 @@
         "oma.routing.passive_tree_pressure.verify_passive_tree_envelope"
       ],
       "callable_probe": [
+        {
+          "path": "oma.optimization.coupled_tree_pressure.compile_coupled_tree_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.coupled_tree_pressure.verify_coupled_tree_pressure",
+          "callable": true
+        },
         {
           "path": "oma.optimization.passive_pressure.compile_passive_pressure",
           "callable": true
@@ -18748,11 +18758,13 @@
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "UNIFORM_POSITIVE_BOX_COUPLED_TREE_PRESSURE_CERTIFICATE",
         "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE",
         "GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES",
         "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER"
       ],
       "automated_tests": [
+        "tests/test_coupled_tree_pressure.py",
         "tests/test_network_pressure.py",
         "tests/test_network_pressure_integration.py",
         "tests/test_network_pressure_native_section.py",

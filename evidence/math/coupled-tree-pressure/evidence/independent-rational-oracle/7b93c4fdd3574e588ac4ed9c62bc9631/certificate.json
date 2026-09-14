@@ -1,0 +1,572 @@
+{
+  "schema": "oma.coupled-tree-positive-box-certificate/1",
+  "status": "CERTIFIED_BOX",
+  "scope": "ONE_ROOT_INSIDE_SUPPLIED_POSITIVE_BOX_FOR_EACH_SAME_PARAMETER_TUPLE",
+  "rule": "RATIONAL_PRECONDITIONED_INTERVAL_BANACH_V1",
+  "model_root": "30557cbf2cbf00e92fc7af60d3d1059745d962dcced306942e24ce38c0d0384a",
+  "topology_root": "5ce2cbcf6f7c775d64f21ea3277400f43bc1cbc86aefaeef3e48e55f0735e469",
+  "parameter_root": "a23a18467378dad9021523277e193fb2389817dcd99b755151e48d21e3106eb6",
+  "box_root": "e98b460f2d2f9a0bf91929f291fd304131d04344cb990ca078927354cc0384fc",
+  "query_root": "2f850c8776753b451e6402630583e7176d87a7f55d654c8d7a824743f179599a",
+  "context_root": "1111111111111111111111111111111111111111111111111111111111111111",
+  "physical_model_root": "2222222222222222222222222222222222222222222222222222222222222222",
+  "assumptions": {
+    "parameter_domain": "CARTESIAN_BOX_WITH_REUSED_NAMED_COEFFICIENT_IDENTITIES",
+    "equation": "SUM_APPLICABLE_A_TIMES_DESCENDANT_FLOW_SUM_SQUARED_MINUS_AVAILABLE_HEAD",
+    "head_quantity": "AVAILABLE_TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_PA",
+    "regime": "STRICTLY_POSITIVE_LEAF_FLOWS_FIXED_QUADRATIC_LOSS_LAW",
+    "units": {
+      "head": "Pa",
+      "flow": "m^3/s",
+      "coefficient": "Pa*s^2/m^6"
+    },
+    "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+  },
+  "limitations": {
+    "global_uniqueness_outside_supplied_box": false,
+    "other_equilibria_excluded": false,
+    "one_common_solution_for_all_parameter_choices": false,
+    "tight_solution_hull": false,
+    "native_tree_or_complete_physical_component_coverage_proved": false,
+    "physical_model_truth_or_loss_coefficient_applicability_proved": false,
+    "minimum_delivery_velocity_or_native_acceptance_authority": false,
+    "failed_certificate_is_infeasibility": false
+  },
+  "counts": {
+    "variables": 3,
+    "equations": 3,
+    "terms": 9,
+    "coefficients": 9,
+    "entries_per_matrix": 9
+  },
+  "inventories": {
+    "leaves": [
+      "A",
+      "B",
+      "C"
+    ],
+    "terms": [
+      {
+        "id": "connector",
+        "coefficient_id": "connector",
+        "descendant_leaves": [
+          "B",
+          "C"
+        ],
+        "applies_to_leaves": [
+          "B",
+          "C"
+        ]
+      },
+      {
+        "id": "leaf-A",
+        "coefficient_id": "leaf-A",
+        "descendant_leaves": [
+          "A"
+        ],
+        "applies_to_leaves": [
+          "A"
+        ]
+      },
+      {
+        "id": "leaf-B",
+        "coefficient_id": "leaf-B",
+        "descendant_leaves": [
+          "B"
+        ],
+        "applies_to_leaves": [
+          "B"
+        ]
+      },
+      {
+        "id": "leaf-C",
+        "coefficient_id": "leaf-C",
+        "descendant_leaves": [
+          "C"
+        ],
+        "applies_to_leaves": [
+          "C"
+        ]
+      },
+      {
+        "id": "tee1-branch",
+        "coefficient_id": "tee1-branch",
+        "descendant_leaves": [
+          "A",
+          "B",
+          "C"
+        ],
+        "applies_to_leaves": [
+          "A"
+        ]
+      },
+      {
+        "id": "tee1-straight",
+        "coefficient_id": "tee1-straight",
+        "descendant_leaves": [
+          "A",
+          "B",
+          "C"
+        ],
+        "applies_to_leaves": [
+          "B",
+          "C"
+        ]
+      },
+      {
+        "id": "tee2-branch",
+        "coefficient_id": "tee2-branch",
+        "descendant_leaves": [
+          "B",
+          "C"
+        ],
+        "applies_to_leaves": [
+          "C"
+        ]
+      },
+      {
+        "id": "tee2-straight",
+        "coefficient_id": "tee2-straight",
+        "descendant_leaves": [
+          "B",
+          "C"
+        ],
+        "applies_to_leaves": [
+          "B"
+        ]
+      },
+      {
+        "id": "trunk",
+        "coefficient_id": "trunk",
+        "descendant_leaves": [
+          "A",
+          "B",
+          "C"
+        ],
+        "applies_to_leaves": [
+          "A",
+          "B",
+          "C"
+        ]
+      }
+    ],
+    "coefficient_ids": [
+      "connector",
+      "leaf-A",
+      "leaf-B",
+      "leaf-C",
+      "tee1-branch",
+      "tee1-straight",
+      "tee2-branch",
+      "tee2-straight",
+      "trunk"
+    ],
+    "equation_terms": {
+      "A": [
+        "leaf-A",
+        "tee1-branch",
+        "trunk"
+      ],
+      "B": [
+        "connector",
+        "leaf-B",
+        "tee1-straight",
+        "tee2-straight",
+        "trunk"
+      ],
+      "C": [
+        "connector",
+        "leaf-C",
+        "tee1-straight",
+        "tee2-branch",
+        "trunk"
+      ]
+    }
+  },
+  "flow_box": {
+    "A": {
+      "lower": "9/10",
+      "upper": "11/10"
+    },
+    "B": {
+      "lower": "19/10",
+      "upper": "21/10"
+    },
+    "C": {
+      "lower": "29/10",
+      "upper": "31/10"
+    }
+  },
+  "center": {
+    "A": "1",
+    "B": "2",
+    "C": "3"
+  },
+  "term_evidence": [
+    {
+      "id": "connector",
+      "subtree_at_center": "5",
+      "subtree_in_box": {
+        "lower": "24/5",
+        "upper": "26/5"
+      },
+      "loss_at_center": {
+        "lower": "2997/800",
+        "upper": "3003/800"
+      },
+      "derivative_in_box": {
+        "lower": "8991/6250",
+        "upper": "39039/25000"
+      }
+    },
+    {
+      "id": "leaf-A",
+      "subtree_at_center": "1",
+      "subtree_in_box": {
+        "lower": "9/10",
+        "upper": "11/10"
+      },
+      "loss_at_center": {
+        "lower": "999/2000",
+        "upper": "1001/2000"
+      },
+      "derivative_in_box": {
+        "lower": "8991/10000",
+        "upper": "11011/10000"
+      }
+    },
+    {
+      "id": "leaf-B",
+      "subtree_at_center": "2",
+      "subtree_in_box": {
+        "lower": "19/10",
+        "upper": "21/10"
+      },
+      "loss_at_center": {
+        "lower": "2997/1250",
+        "upper": "3003/1250"
+      },
+      "derivative_in_box": {
+        "lower": "56943/25000",
+        "upper": "63063/25000"
+      }
+    },
+    {
+      "id": "leaf-C",
+      "subtree_at_center": "3",
+      "subtree_in_box": {
+        "lower": "29/10",
+        "upper": "31/10"
+      },
+      "loss_at_center": {
+        "lower": "62937/10000",
+        "upper": "63063/10000"
+      },
+      "derivative_in_box": {
+        "lower": "202797/50000",
+        "upper": "217217/50000"
+      }
+    },
+    {
+      "id": "tee1-branch",
+      "subtree_at_center": "6",
+      "subtree_in_box": {
+        "lower": "57/10",
+        "upper": "63/10"
+      },
+      "loss_at_center": {
+        "lower": "26973/2500",
+        "upper": "27027/2500"
+      },
+      "derivative_in_box": {
+        "lower": "170829/50000",
+        "upper": "189189/50000"
+      }
+    },
+    {
+      "id": "tee1-straight",
+      "subtree_at_center": "6",
+      "subtree_in_box": {
+        "lower": "57/10",
+        "upper": "63/10"
+      },
+      "loss_at_center": {
+        "lower": "8991/1250",
+        "upper": "9009/1250"
+      },
+      "derivative_in_box": {
+        "lower": "56943/25000",
+        "upper": "63063/25000"
+      }
+    },
+    {
+      "id": "tee2-branch",
+      "subtree_at_center": "5",
+      "subtree_in_box": {
+        "lower": "24/5",
+        "upper": "26/5"
+      },
+      "loss_at_center": {
+        "lower": "999/100",
+        "upper": "1001/100"
+      },
+      "derivative_in_box": {
+        "lower": "11988/3125",
+        "upper": "13013/3125"
+      }
+    },
+    {
+      "id": "tee2-straight",
+      "subtree_at_center": "5",
+      "subtree_in_box": {
+        "lower": "24/5",
+        "upper": "26/5"
+      },
+      "loss_at_center": {
+        "lower": "999/160",
+        "upper": "1001/160"
+      },
+      "derivative_in_box": {
+        "lower": "2997/1250",
+        "upper": "13013/5000"
+      }
+    },
+    {
+      "id": "trunk",
+      "subtree_at_center": "6",
+      "subtree_in_box": {
+        "lower": "57/10",
+        "upper": "63/10"
+      },
+      "loss_at_center": {
+        "lower": "8991/2500",
+        "upper": "9009/2500"
+      },
+      "derivative_in_box": {
+        "lower": "56943/50000",
+        "upper": "63063/50000"
+      }
+    }
+  ],
+  "center_residual": {
+    "A": {
+      "lower": "-159/10000",
+      "upper": "159/10000"
+    },
+    "B": {
+      "lower": "-121/5000",
+      "upper": "121/5000"
+    },
+    "C": {
+      "lower": "-637/20000",
+      "upper": "637/20000"
+    }
+  },
+  "jacobian": [
+    [
+      {
+        "lower": "272727/50000",
+        "upper": "307307/50000"
+      },
+      {
+        "lower": "56943/12500",
+        "upper": "63063/12500"
+      },
+      {
+        "lower": "56943/12500",
+        "upper": "63063/12500"
+      }
+    ],
+    [
+      {
+        "lower": "170829/50000",
+        "upper": "189189/50000"
+      },
+      {
+        "lower": "476523/50000",
+        "upper": "523523/50000"
+      },
+      {
+        "lower": "362637/50000",
+        "upper": "397397/50000"
+      }
+    ],
+    [
+      {
+        "lower": "170829/50000",
+        "upper": "189189/50000"
+      },
+      {
+        "lower": "86913/10000",
+        "upper": "19019/2000"
+      },
+      {
+        "lower": "318681/25000",
+        "upper": "173173/12500"
+      }
+    ]
+  ],
+  "preconditioner": [
+    [
+      "665/2669",
+      "-210/2669",
+      "-120/2669"
+    ],
+    [
+      "-855/10676",
+      "14965/64056",
+      "-1675/16014"
+    ],
+    [
+      "-135/10676",
+      "-8875/64056",
+      "2545/16014"
+    ]
+  ],
+  "inverse_witness": [
+    [
+      "29/5",
+      "24/5",
+      "24/5"
+    ],
+    [
+      "18/5",
+      "10",
+      "38/5"
+    ],
+    [
+      "18/5",
+      "91/10",
+      "133/10"
+    ]
+  ],
+  "inverse_products": {
+    "left": [
+      [
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1"
+      ]
+    ],
+    "right": [
+      [
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1"
+      ]
+    ]
+  },
+  "derivative_map": [
+    [
+      {
+        "lower": "-2907117/26690000",
+        "upper": "2903783/26690000"
+      },
+      {
+        "lower": "-310599/2669000",
+        "upper": "310569/2669000"
+      },
+      {
+        "lower": "-1511037/13345000",
+        "upper": "1510803/13345000"
+      }
+    ],
+    [
+      {
+        "lower": "-3834261/42704000",
+        "upper": "3834603/42704000"
+      },
+      {
+        "lower": "-110333167/640560000",
+        "upper": "6486689/37680000"
+      },
+      {
+        "lower": "-101650069/640560000",
+        "upper": "101645291/640560000"
+      }
+    ],
+    [
+      {
+        "lower": "-2519037/42704000",
+        "upper": "2519091/42704000"
+      },
+      {
+        "lower": "-5019983/37680000",
+        "upper": "85343809/640560000"
+      },
+      {
+        "lower": "-89181173/640560000",
+        "upper": "89135467/640560000"
+      }
+    ]
+  ],
+  "center_image": {
+    "A": {
+      "lower": "1059809/1067600",
+      "upper": "1075391/1067600"
+    },
+    "B": {
+      "lower": "25490977/12811200",
+      "upper": "25753823/12811200"
+    },
+    "C": {
+      "lower": "191616113/64056000",
+      "upper": "192719887/64056000"
+    }
+  },
+  "root_enclosure": {
+    "A": {
+      "lower": "255917069/266900000",
+      "upper": "277882931/266900000"
+    },
+    "B": {
+      "lower": "4158662073/2135200000",
+      "upper": "4382137927/2135200000"
+    },
+    "C": {
+      "lower": "18949299953/6405600000",
+      "upper": "19484300047/6405600000"
+    }
+  },
+  "inclusion_margins": {
+    "A": {
+      "lower": "15707069/266900000",
+      "upper": "15707069/266900000"
+    },
+    "B": {
+      "lower": "101782073/2135200000",
+      "upper": "101782073/2135200000"
+    },
+    "C": {
+      "lower": "373059953/6405600000",
+      "upper": "373059953/6405600000"
+    }
+  },
+  "row_norm_upper": [
+    "9035181/26690000",
+    "269502281/640560000",
+    "70770449/213520000"
+  ],
+  "contraction_norm_upper": "269502281/640560000",
+  "certificate_root": "45c47abea5fa2865b7f9b6922a6e4849ae482f95b1a87c785b0bf0a3f570a3fb"
+}

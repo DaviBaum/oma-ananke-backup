@@ -15,6 +15,10 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("UNIFORM_POSITIVE_BOX_COUPLED_TREE_PRESSURE_CERTIFICATE", "1-10", [14530, 14546, 16081, 16114, 16118, 16135, 17645, 17681], ["THM-PO11", "THM-PO12", "ALG-PO2"],
+         ["oma.optimization.coupled_tree_pressure.compile_coupled_tree_pressure"], ["oma.optimization.coupled_tree_pressure.verify_coupled_tree_pressure"], "tests/test_coupled_tree_pressure.py",
+         "The declared complete polynomial system has one leaf-flow variable per outlet, named nonnegative coefficient intervals and laminar descendant/applicability sets. Every term contributes a coefficient times its full descendant-flow sum squared to every applicable leaf equation. Unequal tee outlet losses therefore need not give a symmetric Jacobian. For each same parameter tuple the independently reconstructed center residual and full interval Jacobian define T(q)=q-R*F(q), with an exact inverse witness proving R invertible. Full signed interval matrix arithmetic proves strict inclusion of the mean-value image inside the supplied positive box and an induced infinity-norm contraction below one. Banach then proves exactly one positive root inside that box for every admitted tuple. Complete term/equation/matrix/parameter/box inventories and final guards prevent incomplete or stale proof authority.",
+         [], "Uniqueness is only inside the supplied nondegenerate positive box. This module does not exclude other equilibria outside it, certify the native tree/component correspondence, justify physical loss or boundary data, or grant service/acceptance authority. Failure to invert, contract or strictly include is UNKNOWN, never infeasibility. Shared parameter identities may be conservatively over-enclosed; no common root for every parameter tuple or tight hull is asserted. Variable/term/matrix/work/bit/input/certificate limits are explicit. Full original source algorithm completion remains false."),
         ("GROUNDED_PASSIVE_RESIDUAL_TO_SOLUTION_ERROR_BOUND", "1-10", [13753, 13781, 16360, 16397, 16836, 16853, 17130, 17158], ["THM-ER22", "THM-PO14", "ALG-PO7"],
          ["oma.optimization.passive_residual.compile_passive_residual"], ["oma.optimization.passive_residual.verify_passive_residual"], "tests/test_passive_residual.py",
          "On a complete grounded positive-K graph, the supplied exact internal head vector lies in each component's boundary hull and uses the same actual Dirichlet parameter tuple as the equilibrium. Every positive-span edge has a checked positive conductance satisfying 4*c*c*K.upper*span<=1; complete simple grounding paths and weighted Cauchy-Schwarz give sigma=sum_internal(sum_path(1/c)). Independent signed-root incidence and norm bounds prove uniform pressure L2 error at most sigma*R. Constant-span and boundary-only cases have explicit zero-error branches. The parameterized reference-flow family is widened by independently checked sqrt(2*endpoint_error/K.lower), including the essential zero-crossing factor two, then intersected with direct pressure-box images. Full model/query/term/node/path/radical inventories and final mutation guards are independently checked.",
@@ -209,6 +213,16 @@ def main():
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
     coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
     for row in register:
+        if row["obligation"] == "UNIFORM_POSITIVE_BOX_COUPLED_TREE_PRESSURE_CERTIFICATE":
+            row["documentation"] = "docs/math/coupled-tree-pressure.md"
+            row["evidence"] = "evidence/math/coupled-tree-pressure/latest.json"
+            row["full_source_algorithms_implemented"] = False
+            row["real_model_benchmark"] = {"status": "DECLARED_POLYNOMIAL_MODEL_AND_INDEPENDENT_MATRIX_AUDIT_PASS",
+                "evidence": "evidence/math/coupled-tree-pressure/evidence/independent-kernel-review/68137ae750cb4760b0b50448d29748be/result.json",
+                "scope": "124 kernel tests, an independent exact manufactured-box proof and 4096 supplementary numerical parameter corners, 24 independently reconstructed models/96 exact parameter-root instances and 293 rejected attacks. Combined 427-case compatibility passes. No actual native unequal-tree adapter or service decision is claimed by this module."}
+            row["consumer_scope"] = {"native_adapter": False, "global_equilibrium_exclusion": False,
+                "unique_root_inside_supplied_box_for_each_parameter_tuple": True,
+                "default_leaves": 16, "default_terms": 128, "default_matrix_entries": 256}
         if row["obligation"] == "GROUNDED_PASSIVE_RESIDUAL_TO_SOLUTION_ERROR_BOUND":
             row["documentation"] = "docs/math/passive-residual-bound.md"
             row["evidence"] = "evidence/math/passive-residual-bound/latest.json"
