@@ -1,0 +1,331 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P4522; UTF16 153932] synchronization assumptions fail.
+[21-30:P4526; UTF16 153969] 27. Identity Uniqueness and Sybil Failure
+[21-30:P4527; UTF16 154011] THM-SEC22 — Count-Based Byzantine Quorums Fail Without Identity Uniqueness
+[21-30:P4529; UTF16 154099] Suppose three honest physical sensors have distinct accepted identities.
+[21-30:P4530; UTF16 154172] One malicious physical device can create four additional accepted logical identities.
+[21-30:P4531; UTF16 154258] The fusion layer counts:
+[21-30:P4532; UTF16 154283] [ n=7 ]
+[21-30:P4533; UTF16 154291] identities and assumes at most:
+[21-30:P4534; UTF16 154323] [ f=1 ]
+[21-30:P4535; UTF16 154331] Byzantine physical device.
+[21-30:P4536; UTF16 154358] However, the malicious device controls four counted identities and can form a logical majority.
+[21-30:P4537; UTF16 154454] The theorem’s bound is over Byzantine counted identities, not physical boxes.
+[21-30:P4538; UTF16 154532] The assumption:
+[21-30:P4539; UTF16 154548] \text{one accepted voting identity} ]
+[21-30:P4541; UTF16 154596] Therefore the count-based quorum certificate is invalid. ∎
+[21-30:P4542; UTF16 154655] [ \boxed{ \text{authenticated message count} \neq \text{independent principal count}. } ]
+[21-30:P4546; UTF16 154748] 28. Actuator Security
+[21-30:P4547; UTF16 154770] DEF-SEC36 — Actuator Command Envelope
+[21-30:P4549; UTF16 154816] \left( \mathsf{principal}, \mathsf{target}, \mathsf{action}, \mathsf{parameters}, \mathsf{freshness}, \mathsf{authorization}, \mathsf{signature}, \mathsf{statePrecondition} \right). } ]
+[21-30:P4553; UTF16 155005] DEF-SEC37 — Physical Safety Guard
+[21-30:P4554; UTF16 155039] A guard:
+[21-30:P4555; UTF16 155048] [ \boxed{ G(z,c) } ]
+[21-30:P4556; UTF16 155069] indicates whether command (c) is safe to commit from current cyber-physical state (z) under the declared physical theory.
+[21-30:P4560; UTF16 155194] THM-SEC23 — Authenticated and Authorized Actuator Commands Still Require a Physical Safety Guard
+[21-30:P4562; UTF16 155304] Let command (c) be:
+[21-30:P4563; UTF16 155324] [ \mathsf{CloseValve}(V). ]
+[21-30:P4565; UTF16 155360] principal identity authenticates;
+[21-30:P4566; UTF16 155394] signature verifies;
+[21-30:P4567; UTF16 155414] freshness passes;
+[21-30:P4568; UTF16 155432] authorization policy permits the principal to control (V).
+[21-30:P4569; UTF16 155491] Current physical state contains:
+[21-30:P4570; UTF16 155524] [ \mathsf{OnlyCoolingPath}(V)=\mathsf{TRUE}. ]
+[21-30:P4571; UTF16 155571] Closing (V) violates a physical temperature safety invariant.
+[21-30:P4573; UTF16 155639] [ \mathsf{Authenticated}(c)=\mathsf{TRUE}, ]
+[21-30:P4574; UTF16 155684] [ \mathsf{Authorized}(c)=\mathsf{TRUE}, ]
+[21-30:P4576; UTF16 155733] [ G(z,c)=\mathsf{FALSE}. ]
+[21-30:P4577; UTF16 155760] Therefore actuator commitment still requires the physical guard. ∎
+[21-30:P4581; UTF16 155830] 29. Cyber-Physical Invariants
+[21-30:P4582; UTF16 155860] DEF-SEC38 — Cyber-Physical Safety Set
+[21-30:P4584; UTF16 155903] [ \boxed{ S_{\mathrm{safe}} \subseteq \mathcal Z } ]
+[21-30:P4585; UTF16 155956] contain cyber-physical states satisfying the declared safety-security invariant.
+[21-30:P4589; UTF16 156040] DEF-SEC39 — Adversarial Transition Relation
+[21-30:P4590; UTF16 156084] For threat model (A), write:
+[21-30:P4591; UTF16 156113] [ \boxed{ z \rightarrow_A z'. } ]
+[21-30:P4592; UTF16 156147] This relation may include:
+[21-30:P4593; UTF16 156174] normal controls;
+[21-30:P4594; UTF16 156191] authorized administrative actions;
+[21-30:P4595; UTF16 156226] attacker actions;
+[21-30:P4596; UTF16 156244] defensive responses;
+[21-30:P4597; UTF16 156265] physical transitions;
+[21-30:P4598; UTF16 156287] cyber-induced physical transitions.
+[21-30:P4602; UTF16 156326] THM-SEC24 — Invariant Closure Gives Safety Against the Declared Adversary
+[21-30:P4604; UTF16 156412] 1.: [ z_0\in S_{\mathrm{safe}}. ] 2. For every: [ z\in S_{\mathrm{safe}} ] and every covered transition: [ z\rightarrow_A z', ] we have: [ z'\in S_{\mathrm{safe}}. ]
+[21-30:P4606; UTF16 156589] Every finite state reachable from (z_0) under (A) remains in (S_{\mathrm{safe}}).
+[21-30:P4607; UTF16 156671] Proof by induction on trace length
+[21-30:P4609; UTF16 156717] The zero-step reachable state is (z_0), which is safe.
+[21-30:P4611; UTF16 156788] Assume the state after (k) transitions is in (S_{\mathrm{safe}}).
+[21-30:P4612; UTF16 156854] By closure, every covered successor after transition (k+1) is also in (S_{\mathrm{safe}}).
+[21-30:P4613; UTF16 156945] Therefore every finite reachable state is safe. ∎
+[21-30:P4614; UTF16 156995] The result is deterministic and adversary-model scoped.
+[21-30:P4618; UTF16 157054] 30. Safety-Security Independence
+[21-30:P4619; UTF16 157087] THM-SEC25 — Cyber Security and Physical Safety Do Not Determine One Another
+[21-30:P4620; UTF16 157163] Construction A — Cyber secure, physically unsafe
+[21-30:P4621; UTF16 157212] A controller is:
+[21-30:P4622; UTF16 157229] isolated;
+[21-30:P4623; UTF16 157239] authenticated;
+[21-30:P4624; UTF16 157254] running an authorized image;
+[21-30:P4625; UTF16 157283] free of covered cyber compromise.
+[21-30:P4626; UTF16 157317] Its control algorithm contains an engineering logic error that overpressurizes a synthetic duct.
+[21-30:P4627; UTF16 157414] Cyber-security roots hold.
+[21-30:P4628; UTF16 157441] Physical safety fails.
+[21-30:P4629; UTF16 157464] Construction B — Physically safe, cyber insecure
+[21-30:P4630; UTF16 157513] A separate system enforces all physical commands through a hard safety controller.
+[21-30:P4631; UTF16 157596] An unrelated information channel leaks confidential occupancy data.
+[21-30:P4632; UTF16 157664] Physical safety holds.
+[21-30:P4633; UTF16 157687] Confidentiality fails.
+[21-30:P4635; UTF16 157721] [ \boxed{ \text{cyber security} \not\Longrightarrow \text{physical safety}, } ]
+[21-30:P4637; UTF16 157806] [ \boxed{ \text{physical safety} \not\Longrightarrow \text{cyber security}. } ]
+[21-30:P4642; UTF16 157891] PRO-SEC4 — Fail-Safe and Fail-Secure Requirements Can Conflict
+[21-30:P4643; UTF16 157954] Consider a synthetic controlled door.
+[21-30:P4644; UTF16 157992] One security objective requires:
+[21-30:P4645; UTF16 158025] [ \text{remain locked during unauthorized access}. ]
+[21-30:P4646; UTF16 158078] One life-safety objective requires:
+[21-30:P4647; UTF16 158114] [ \text{permit immediate exit during a declared emergency}. ]
+[21-30:P4648; UTF16 158176] An unconditional fallback of “always locked” violates the safety objective.
+[21-30:P4649; UTF16 158252] An unconditional fallback of “always unlocked” violates the security objective.
+[21-30:P4650; UTF16 158332] Therefore no universal fallback state satisfies both objectives without contextual state and priority semantics. ∎
+[21-30:P4654; UTF16 158450] 31. Security-Augmented Operational Twin
+[21-30:P4655; UTF16 158490] DEF-SEC40 — Security-Augmented ODT Knowledge Set
+[21-30:P4657; UTF16 158547] [ \boxed{ \Gamma_t^{\mathrm{ODT,SEC}} \subseteq \mathcal Z_t } ]
+[21-30:P4658; UTF16 158612] as every physical and cyber state consistent with:
+[21-30:P4659; UTF16 158663] operational evidence;
+[21-30:P4660; UTF16 158685] sensor-compromise hypotheses;
+[21-30:P4661; UTF16 158715] identity and credential state;
+[21-30:P4662; UTF16 158746] software and firmware versions;
+[21-30:P4663; UTF16 158778] network trust;
+[21-30:P4666; UTF16 158818] threat-model assumptions;
+[21-30:P4667; UTF16 158844] incident evidence.
+[21-30:P4669; UTF16 158897] [ \boxed{ z_t^\star \in \Gamma_t^{\mathrm{ODT,SEC}}. } ]
+[21-30:P4670; UTF16 158954] A newly suspected sensor compromise may enlarge this set even if no physical component has changed.
+[21-30:P4674; UTF16 159057] THM-SEC26 — Cyber-Sound ODT Containment Transfers Deterministic Reachability Claims
+[21-30:P4677; UTF16 159159] 1.: [ z_t^\star \in \Gamma_t^{\mathrm{ODT,SEC}}; ] 2. every trajectory reachable from every: [ z\in\Gamma_t^{\mathrm{ODT,SEC}} ] under the declared control and adversary theory satisfies claim (C).
+[21-30:P4678; UTF16 159357] Then the actual trajectory satisfies (C).
+[21-30:P4680; UTF16 159405] The actual initial state belongs to the covered set.
+[21-30:P4681; UTF16 159458] The actual covered control/adversary trajectory is therefore one of the trajectories quantified by assumption 2.
+[21-30:P4682; UTF16 159571] Every such trajectory satisfies (C).
+[21-30:P4683; UTF16 159608] Hence the actual trajectory satisfies (C). ∎
+[21-30:P4687; UTF16 159656] 32. Security Assurance Leases
+[21-30:P4688; UTF16 159686] DEF-SEC41 — Security Assurance Lease
+[21-30:P4690; UTF16 159731] \left( t_0, h, \mathsf{artifactVersions}, \mathsf{credentialState}, \mathsf{threatFamily}, \mathsf{trustRoots}, \mathsf{securityClaims}, \mathsf{dependencies} \right). } ]
+[21-30:P4691; UTF16 159903] The lease is active only while:
+[21-30:P4692; UTF16 159935] versions remain covered;
+[21-30:P4693; UTF16 159960] credentials remain valid;
+[21-30:P4694; UTF16 159986] revocation state is current;
+[21-30:P4695; UTF16 160015] roots remain trusted under the threat model;
+[21-30:P4696; UTF16 160060] threat assumptions remain applicable;
+[21-30:P4697; UTF16 160098] evidence has not expired;
+[21-30:P4698; UTF16 160124] no theory-expanding compromise is added.
+[21-30:P4702; UTF16 160168] THM-SEC27 — Security-Lease Soundness
+[21-30:P4704; UTF16 160217] 1.: [ z_{t_0}^\star \in \Gamma_{t_0}^{\mathrm{ODT,SEC}}. ] 2. The actual adversary belongs to the lease’s threat family. 3. Every actual trajectory through horizon (h) is contained in the lease’s certified trajectory family. 4. Every lease claim holds on every trajectory in that family. 5. Every evidence, version, credential, trust-root, and policy premise remains valid through (t_0+h).
+[21-30:P4706; UTF16 160618] Every leased security claim holds for the actual system throughout the lease horizon.
+[21-30:P4708; UTF16 160710] The actual initial state and adversary are covered.
+[21-30:P4709; UTF16 160762] Therefore the actual trajectory belongs to the certified trajectory family.
+[21-30:P4710; UTF16 160838] Every trajectory in that family satisfies the leased claims.
+[21-30:P4711; UTF16 160899] All proof premises remain applicable through the horizon.
+[21-30:P4712; UTF16 160957] Hence the actual trajectory satisfies every leased claim through (t_0+h). ∎
+[21-30:P4713; UTF16 161033] The theorem does not establish security after expiry or against unmodeled capabilities.
+[21-30:P4717; UTF16 161124] 33. Incident Response and Trust Restoration
+[21-30:P4718; UTF16 161168] DEF-SEC42 — Cyber Incident State Machine
+[21-30:P4719; UTF16 161209] A synthetic incident state machine may include:
+[21-30:P4720; UTF16 161257] NORMAL;
+[21-30:P4721; UTF16 161265] SUSPECTED;
+[21-30:P4722; UTF16 161276] CONFIRMED;
+[21-30:P4723; UTF16 161287] CONTAINED;
+[21-30:P4724; UTF16 161298] ERADICATION;
+[21-30:P4725; UTF16 161311] RECOVERY;
+[21-30:P4726; UTF16 161321] REKEY;
+[21-30:P4727; UTF16 161328] REATTESTATION;
+[21-30:P4728; UTF16 161343] RELEASED.
+[21-30:P4729; UTF16 161353] State meanings are project specific.
+[21-30:P4733; UTF16 161393] DEF-SEC43 — Incident-Response Policy
+[21-30:P4734; UTF16 161430] An Incident-Response Policy may authorize:
+[21-30:P4736; UTF16 161484] credential revocation;
+[21-30:P4738; UTF16 161521] software roll-forward;
+[21-30:P4739; UTF16 161544] hardware replacement;
+[21-30:P4740; UTF16 161566] provenance inspection;
+[21-30:P4741; UTF16 161589] safe degraded operation;
+[21-30:P4742; UTF16 161614] restoration;
+[21-30:P4743; UTF16 161627] reattestation.
+[21-30:P4744; UTF16 161642] Physical safety and operational viability remain hard constraints.
+[21-30:P4748; UTF16 161712] THM-SEC28 — Restoring Physical Function Does Not Necessarily Restore Cyber Trust
+[21-30:P4750; UTF16 161806] Suppose credential (K) is compromised.
+[21-30:P4751; UTF16 161845] The cyber-controlled plant stops.
+[21-30:P4752; UTF16 161879] An operator manually restores physical operation without revoking or replacing (K).
+[21-30:P4753; UTF16 161963] Physical service becomes available again.
+[21-30:P4754; UTF16 162005] The attacker can still use (K) under the current credential state.
+[21-30:P4756; UTF16 162083] [ \mathsf{PhysicalFunctionRestored}=\mathsf{TRUE}, ]
+[21-30:P4758; UTF16 162143] [ \mathsf{CyberTrustRestored}=\mathsf{FALSE}. ]
+[21-30:P4759; UTF16 162191] Hence physical recovery does not imply trust recovery. ∎
+[21-30:P4760; UTF16 162248] Trust restoration may require:
+[21-30:P4762; UTF16 162291] rekey;
+[21-30:P4763; UTF16 162298] clean software state;
+[21-30:P4764; UTF16 162320] reattestation;
+[21-30:P4765; UTF16 162335] evidence review;
+[21-30:P4766; UTF16 162352] ODT reconstruction.
+[21-30:P4770; UTF16 162375] 34. Forensic Evidence and Tamper-Evident Logs
+[21-30:P4771; UTF16 162421] DEF-SEC44 — Forensic Evidence Artifact
+[21-30:P4773; UTF16 162468] \left( \mathsf{source}, t, \mathsf{content}, \mathsf{digest}, \mathsf{signature}, \mathsf{chainOfCustody}, \mathsf{collectionMethod}, \mathsf{scope}, \mathsf{version} \right). } ]
+[21-30:P4777; UTF16 162651] DEF-SEC45 — Hash-Chained Event Log
+[21-30:P4779; UTF16 162691] [ h_0 ]
+[21-30:P4780; UTF16 162699] be an initial anchor and:
+[21-30:P4781; UTF16 162725] H \left( h_{i-1} \Vert \mathsf{enc}(e_i) \right). } ]
+[21-30:P4782; UTF16 162779] Selected chain values may be externally anchored.
+[21-30:P4786; UTF16 162832] THM-SEC29 — Hash-Chained Logs Can Support Modification Detection Without Proving Event Completeness
+[21-30:P4787; UTF16 162932] Part A — Modification implication
+[21-30:P4789; UTF16 162974] the original chain: [ h_0,\ldots,h_n ] is externally anchored at (h_n);
+[21-30:P4790; UTF16 163046] a modified recorded sequence differs in at least one encoded event or prior chain value;
+[21-30:P4791; UTF16 163135] the modified chain nevertheless produces the same final anchor (h_n).
+[21-30:P4792; UTF16 163205] Then the modified and original computations contain distinct inputs to (H) producing the same digest at some chain position.
+[21-30:P4794; UTF16 163336] Let the two chains first diverge at index (j).
+[21-30:P4796; UTF16 163387] [ h'_j=h_j, ]
+[21-30:P4797; UTF16 163401] then the inputs to (H) at (j) differ while the outputs agree, yielding a collision.
+[21-30:P4798; UTF16 163485] Otherwise:
+[21-30:P4799; UTF16 163496] [ h'_j\neq h_j. ]
+[21-30:P4800; UTF16 163514] Because the final anchors agree:
+[21-30:P4801; UTF16 163547] [ h'_n=h_n, ]
+[21-30:P4802; UTF16 163561] there exists a first later index (k>j) at which:
+[21-30:P4803; UTF16 163610] [ h'_k=h_k. ]
+[21-30:P4804; UTF16 163624] At (k), the preceding chain values differ:
+[21-30:P4805; UTF16 163667] [ h'{k-1}\neq h{k-1}, ]
+[21-30:P4806; UTF16 163691] so the inputs to (H) differ, while their outputs (h'_k,h_k) agree.
+[21-30:P4807; UTF16 163758] Again there is a collision.
+[21-30:P4808; UTF16 163786] Therefore an undetected modification preserving the anchor yields a hash collision. ∎
+[21-30:P4809; UTF16 163872] Under collision resistance, a covered computational adversary succeeds only with the corresponding bounded probability.
+[21-30:P4810; UTF16 163992] This is not an exact impossibility claim.
+[21-30:P4811; UTF16 164034] Part B — Completeness limitation
+[21-30:P4812; UTF16 164067] Let actual events be:
+[21-30:P4813; UTF16 164089] [ e_1,e_2,e_3. ]
+[21-30:P4814; UTF16 164106] A logger records only:
+[21-30:P4815; UTF16 164129] [ e_1,e_3 ]
+[21-30:P4816; UTF16 164141] and computes a valid chain over those two records.
+[21-30:P4817; UTF16 164192] The resulting chain is internally consistent.
+[21-30:P4818; UTF16 164238] No post-record modification occurred.
+[21-30:P4819; UTF16 164276] Event (e_2) is absent.
+[21-30:P4821; UTF16 164310] [ \boxed{ \text{hash-chain consistency} \not\Longrightarrow \text{event completeness}. } ]
+[21-30:P4826; UTF16 164406] 35. Trusted Computing Base
+[21-30:P4827; UTF16 164433] DEF-SEC46 — Trusted Computing Base
+[21-30:P4828; UTF16 164468] The Trusted Computing Base is:
+[21-30:P4829; UTF16 164499] [ \boxed{ \mathcal T_{\mathrm{CB}}, } ]
+[21-30:P4830; UTF16 164539] the set of components whose correctness or integrity is assumed directly rather than established by lower-level components inside the same assurance chain.
+[21-30:P4832; UTF16 164711] physical roots;
+[21-30:P4833; UTF16 164727] boot roots;
+[21-30:P4834; UTF16 164739] cryptographic implementations;
+[21-30:P4835; UTF16 164770] reference monitors;
+[21-30:P4836; UTF16 164790] proof checkers;
+[21-30:P4837; UTF16 164806] key-management components.
+[21-30:P4841; UTF16 164836] PRO-SEC5 — Circular Trust Does Not Create an Independent Trust Root
+[21-30:P4843; UTF16 164913] [ A\text{ is trusted because }B\text{ attests }A, ]
+[21-30:P4845; UTF16 164970] [ B\text{ is trusted because }A\text{ attests }B. ]
+[21-30:P4846; UTF16 165022] Without an external premise establishing at least one attester, the cycle contains no independent foundation.
+[21-30:P4847; UTF16 165132] A circular derivation cannot supply its own missing base assumption.
+[21-30:P4848; UTF16 165201] Therefore every accepted trust chain must terminate in:
+[21-30:P4849; UTF16 165257] a declared assumption;
+[21-30:P4850; UTF16 165280] external evidence;
+[21-30:P4851; UTF16 165299] a physically protected root;
+[21-30:P4857; UTF16 165345] 36. Security Dependency Graph
+[21-30:P4858; UTF16 165375] DEF-SEC47 — Security Dependency Graph
+[21-30:P4860; UTF16 165432] principal identity;
+[21-30:P4861; UTF16 165452] credential;
+[21-30:P4862; UTF16 165464] key;
+[21-30:P4863; UTF16 165469] revocation state;
+[21-30:P4864; UTF16 165487] authorization rule;
+[21-30:P4870; UTF16 165566] signed artifact;
+[21-30:P4871; UTF16 165583] SBOM;
+[21-30:P4872; UTF16 165589] boot measurement;
+[21-30:P4874; UTF16 165620] sensor;
+[21-30:P4875; UTF16 165628] actuator;
+[21-30:P4876; UTF16 165638] network path;
+[21-30:P4877; UTF16 165652] threat assumption;
+[21-30:P4878; UTF16 165671] incident state;
+[21-30:P4879; UTF16 165687] security invariant;
+[21-30:P4882; UTF16 165730] [ u\rightarrow v ]
+[21-30:P4883; UTF16 165749] means changing, invalidating, or compromising (u) may alter (v).
+[21-30:P4884; UTF16 165814] Cross-layer edges may connect:
+[21-30:P4885; UTF16 165845] software version to regulatory evidence;
+[21-30:P4886; UTF16 165886] credential state to permit submission authority;
+[21-30:P4887; UTF16 165935] sensor trust to ODT state;
+[21-30:P4888; UTF16 165962] actuator authorization to physical safety;
+[21-30:P4889; UTF16 166005] product firmware to Prompt-13 materialization identity.
+[21-30:P4893; UTF16 166064] 37. Security Conflicts and Repairs
+[21-30:P4894; UTF16 166099] DEF-SEC48 — Security Conflict Core
+[21-30:P4895; UTF16 166134] A set of security, safety, availability, authority, or configuration constraints is a conflict core when no system configuration in the current project domain satisfies them jointly.
+[21-30:P4896; UTF16 166317] A synthetic example is:
+[21-30:P4897; UTF16 166341] door must remain locked under threat state (T);
+[21-30:P4898; UTF16 166389] door must remain unlocked under the same state (T);
+[21-30:P4899; UTF16 166441] no contextual mode distinction is available.
+[21-30:P4903; UTF16 166489] DEF-SEC49 — Security Repair
+[21-30:P4904; UTF16 166517] A repair may include:
+[21-30:P4907; UTF16 166576] privilege reduction;
+[21-30:P4908; UTF16 166597] policy correction;
+[21-30:P4909; UTF16 166616] trust-root replacement;
+[21-30:P4910; UTF16 166640] software patch;
+[21-30:P4911; UTF16 166656] firmware update;
+[21-30:P4913; UTF16 166695] network isolation;
+[21-30:P4914; UTF16 166714] sensor redundancy;
+[21-30:P4915; UTF16 166733] stronger identity binding;
+[21-30:P4916; UTF16 166760] physical safety guard;
+[21-30:P4917; UTF16 166783] updated supply-chain evidence;
+[21-30:P4918; UTF16 166814] architectural or operational change with authority.
+[21-30:P4922; UTF16 166869] DEF-SEC50 — Security Repair Frontier
+[21-30:P4923; UTF16 166906] Let repair consequence be:
+[21-30:P4924; UTF16 166933] \left( \mathsf{security}, \mathsf{safety}, \mathsf{availability}, \mathsf{cost}, \mathsf{downtime}, \mathsf{architecture}, \mathsf{regulatoryImpact}, \mathsf{operationalComplexity} \right). ]
+[21-30:P4925; UTF16 167125] Define the frontier as the nondominated verified repairs.
+[21-30:P4926; UTF16 167183] No universal scalar cyber-risk score is assumed.
+[21-30:P4930; UTF16 167235] 38. Incremental Security Recertification
+[21-30:P4931; UTF16 167276] THM-SEC30 — Dependency-Directed Security Recertification Equals Cold Checking
+[21-30:P4933; UTF16 167366] every changed security root is identified;
+[21-30:P4934; UTF16 167409] the security dependency graph is complete;
+[21-30:P4939; UTF16 167651] cyclic trust, protocol, or fixed-point subsystems are encapsulated by checked solution nodes.
+[21-30:P4941; UTF16 167756] Incremental and cold checking agree on:
+[21-30:P4942; UTF16 167796] identity validity;
+[21-30:P4943; UTF16 167815] credential validity;
+[21-30:P4945; UTF16 167851] capability status;
+[21-30:P4947; UTF16 167882] boot state;
+[21-30:P4948; UTF16 167894] update and rollback state;
+[21-30:P4949; UTF16 167921] SBOM policy;
+[21-30:P4950; UTF16 167934] information-flow status;
+[21-30:P4951; UTF16 167959] sensor trust;
+[21-30:P4952; UTF16 167973] Byzantine-fusion status;
+[21-30:P4953; UTF16 167998] actuator safety guards;
+[21-30:P4954; UTF16 168022] adversary-relative security;
+[21-30:P4956; UTF16 168067] forensic status;
+[21-30:P4957; UTF16 168084] security-lease status.
+[21-30:P4959; UTF16 168113] After encapsulating checked cyclic subsystems, topologically order the dependency graph.
+[21-30:P4960; UTF16 168202] At changed roots, both procedures use the same new authoritative inputs.
+[21-30:P4961; UTF16 168275] Assume every predecessor of node (v) has the same report under incremental and cold checking.
+[21-30:P4962; UTF16 168369] If (v) is reused, its version and applicability certificate establishes that its old report remains valid.
+[21-30:P4964; UTF16 168585] Therefore (v)'s report agrees.
+[21-30:P4965; UTF16 168616] Induction over the topological order proves equality at every release root. ∎
+[21-30:P4969; UTF16 168697] 39. Security Claim Modalities
+[21-30:P4970; UTF16 168727] DEF-SEC51 — Security Claim Modality
+[21-30:P4972; UTF16 168771] \left{ \begin{array}{l} \mathsf{EXACT},\ \mathsf{COMPUTATIONAL},\ \mathsf{ROBUST_THREAT},\ \mathsf{PROBABILISTIC},\ \mathsf{ATTESTED},\ \mathsf{AUTHENTICATED},\ \mathsf{AUTHORIZED},\ \mathsf{INFORMATION_FLOW_CERTIFIED},\ \mathsf{FORENSIC_SUPPORTED},\ \mathsf{HEURISTIC},\ \mathsf{UNKNOWN} \end{array} \right}. } ]
+[21-30:P4974; UTF16 169095] exact authorization-table inclusion may be EXACT;
+[21-30:P4975; UTF16 169145] signature unforgeability is generally COMPUTATIONAL;
+[21-30:P4976; UTF16 169198] majority correctness under a bounded Byzantine model is EXACT relative to its assumptions;
+[21-30:P4977; UTF16 169289] compromise frequency may be PROBABILISTIC;
+[21-30:P4978; UTF16 169332] boot measurement is ATTESTED;
+[21-30:P4979; UTF16 169362] a logged event may be FORENSIC_SUPPORTED;
+[21-30:P4980; UTF16 169404] an anomaly score may remain HEURISTIC.
+[21-30:P4985; UTF16 169484] 40. Cyber-Physical Security Release
+[21-30:P4986; UTF16 169520] DEF-SEC52 — Cyber-Physical Security Release State
+[21-30:P4987; UTF16 169570] A Cyber-Physical Security Release State means the project satisfies the declared security release roots for the current:
+[21-30:P4989; UTF16 169701] software;
+[21-30:P4991; UTF16 169721] identities;
+[21-30:P4995; UTF16 169773] threat model;
+[21-30:P4997; UTF16 169803] physical configuration.
+[21-30:P4998; UTF16 169827] It is version and threat-model specific.
+[21-30:P5002; UTF16 169871] DEF-SEC53 — Cyber-Physical Security Release Fiber
+[21-30:P5004; UTF16 169929] \left{ \pi: \pi \text{ is a checked defensive configuration or policy establishing the release roots under modality }\mu \right}. } ]
+[21-30:P5005; UTF16 170063] Modalities may include:
+[21-30:P5006; UTF16 170087] exact finite-state release;
+[21-30:P5007; UTF16 170115] robust threat-family release;
+[21-30:P5008; UTF16 170145] computational cryptographic release;
+[21-30:P5009; UTF16 170182] attested configuration release;
+[21-30:P5010; UTF16 170214] incident-recovery release.
+[21-30:P5014; UTF16 170244] 41. Proof-Carrying Cyber-Physical Security Assurance Package
+[21-30:P5015; UTF16 170305] DEF-SEC54 — Proof-Carrying Cyber-Physical Security Assurance Package
+[21-30:P5017; UTF16 170382] [ \boxed{ \mathsf{PCSEC}. } ]
+[21-30:P5018; UTF16 170412] A PCSEC contains:

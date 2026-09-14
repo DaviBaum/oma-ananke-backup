@@ -30,6 +30,12 @@ def route_project_run(store: Store, run: dict, control):
     if not raw:
         store.update_run(run["id"], "MISSING_INPUTS", "Explicit routing mission is required", "mission")
         return
+    if raw.get("mission_type") == "shared_network":
+        from .network_engine import network_project_run
+        return network_project_run(store, run, control)
+    if store.get(run["base_root"]).get("physical_networks"):
+        store.update_run(run["id"], "MISSING_INPUTS", "Existing physical network obligations require a network-preserving edit contract", "mission")
+        return
     if "route_demands" in raw or store.get(run["base_root"]).get("routes"):
         from .joint import joint_project_run
         return joint_project_run(store, run, control)

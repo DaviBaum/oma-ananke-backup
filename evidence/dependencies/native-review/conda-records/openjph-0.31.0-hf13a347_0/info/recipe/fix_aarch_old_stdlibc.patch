@@ -1,0 +1,17 @@
+diff --git a/src/core/others/ojph_arch.cpp b/src/core/others/ojph_arch.cpp
+index 018e461..0a98573 100644
+--- a/src/core/others/ojph_arch.cpp
++++ b/src/core/others/ojph_arch.cpp
+@@ -177,6 +177,11 @@ namespace ojph {
+           #include <asm/hwcap.h>
+         #endif
+ 
++        // https://github.com/torvalds/linux/blob/2f87d0916ce0d2925cedbc9e8f5d6291ba2ac7b2/arch/arm64/include/uapi/asm/hwcap.h#L63
++        #ifndef HWCAP2_SVE2
++        #define HWCAP2_SVE2 (1 << 1)
++        #endif
++
+         bool init_cpu_ext_level(int& level) {
+           #ifdef OJPH_OS_LINUX
+             unsigned long hwcaps = getauxval(AT_HWCAP);
+

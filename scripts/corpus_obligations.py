@@ -15,6 +15,26 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("ORIGINAL_FINITE_CAUSAL_BISIMULATION", "1-10", [18648, 18747, 19214, 19264, 19974, 20012], ["DEF-CS5", "LEM-CS3", "THM-CS3", "ALG-CS1", "THM-CS21", "ALG-CS6"],
+         ["oma.optimization.bisimulation.compile_bisimulation"], ["oma.optimization.bisimulation.verify_bisimulation"], "tests/test_optimization_bisimulation.py",
+         "Complete finite typed state/action relations and direct observations under immutable context. Exact successor-block-set refinement gives the coarsest strong bisimulation; missing rows are invalid while explicit empty rows mean disabled actions. Independent verifier checks every relation row and typed acyclic modal characteristic formulas without repeating refinement.",
+         [], "Exact supplied finite relation model only; no physical transition discovery, probability, weak bisimulation or general CSSP release. Modal witnesses retain branching distinctions invisible to linear traces. Eighty random systems match an independent greatest-pair-relation oracle. Full source ports, rewrite, evidence, action footprints and physical applicability remain separate adapter obligations."),
+        ("ORIGINAL_EXACT_LINEAR_PORTS", "1-10", [15903, 16117], ["THM-PO6", "THM-PO14", "THM-PO31", "ALG-PO1", "ALG-PO7"],
+         ["oma.optimization.ports.compile_linear_port", "oma.optimization.ports.compile_kron_network", "oma.optimization.ports.reconstruct_linear_port", "oma.optimization.ports.certify_linear_residual"], ["oma.optimization.ports.verify_linear_port", "oma.optimization.ports.verify_kron_network"], "tests/test_optimization_ports.py",
+         "Explicit finite rational linear model, ordered boundary/interior coordinates, fixed interior loads, model/unit/regime/domain/source bindings. Exact Schur elimination when invertible; certified invertible row operations retain a full projected affine relation when singular. Independent checker uses matrix identities and original edge-incidence energy identity, not repeated elimination.",
+         [], "Exact supplied linear mathematical network only. Synthetic thirteen-motif chain reduces forty coordinates to two boundary coordinates with stiffness 2/65, matching an independent series-compliance oracle. Residual bounds use checked inverse norms and component products; no conditioning-free or physical discrepancy claim. Nonlinear flow, dynamic/hybrid physics, general PDE envelopes and model applicability remain separate."),
+        ("ORIGINAL_BOOLEAN_SYMBOLIC_QUOTIENT", "1-10", [10006, 12808], ["ALG-AB1", "ALG-AB4", "THM-AB10", "THM-AB22", "DEF-AB35"],
+         ["oma.optimization.symbolic.compile_symbolic"], ["oma.optimization.symbolic.verify_symbolic"], "tests/test_optimization_symbolic.py",
+         "Explicit Boolean circuit DAG, 1 to 128 named variables, exact domain, complete disjoint terminal fibers and simultaneous total context maps under an immutable root. A reduced ordered Boolean diagram kernel supplies exact set operations and preimages; context closure and final partition are checked without carrier enumeration.",
+         ["OMA-MATH-A030", "OMA-MATH-A031"], "Corrected synthetic 40-module XOR/cardinality model represents 2**40 assignments in five exact blocks, three accepted splits and ten replayed distinguishing contexts. Actual full diagram contains 31,569 nodes. Independent checker verifies diagram structure, all universal set obligations, exact block counts, representatives and concrete context replay. No real-building symbolic completeness, unrestricted SAT/SMT efficiency or physical append semantics are claimed."),
+        ("ORIGINAL_FINITE_SEPARATOR_DP", "1-10", [7423, 10166], ["ALG-DS1", "ALG-DS3", "THM-DS19.1", "THM-DS20.1", "THM-DS13A"],
+         ["oma.optimization.separator.compile_separator", "oma.optimization.separator.reconstruct_separator_choices", "oma.optimization.separator.substitute_labeled_menu"], ["oma.optimization.separator.verify_separator"], "tests/test_optimization_separator.py",
+         "Supplied tree, complete finite regional carriers and local choice merge tables, full terminal profiles, explicit immutable model/theory scope. FDQA generates all parent/sibling contexts. Counted quotient recurrence retains every labeled source choice and independently replays original-table witnesses.",
+         ["OMA-MATH-A025", "OMA-MATH-A026", "OMA-MATH-A027"], "Synthetic projected hotel floor: 1,358,954,496 labeled assignments, 650 root messages and 1,224 stored messages including root, independently checked complete recurrence and small exhaustive ground truth. All unknown/failure states remain represented. Root memory and exact label multiplicity are explicit. Does not infer missing interactions, discover an optimal decomposition, prove nonempty physical fibers or eliminate provisional table construction."),
+        ("ORIGINAL_TYPED_FDQA_COMPILER", "1-10", [4767, 7422], ["ALG-MN0", "ALG-MN1", "THM-MN14", "DEF-MN21", "DEF-MN22"],
+         ["oma.optimization.fdqa.compile_fdqa", "oma.optimization.fdqa.evaluate_compiled_term"], ["oma.optimization.fdqa.verify_fdqa"], "tests/test_optimization_fdqa.py",
+         "Complete explicit typed operation tables and canonically serialized complete terminal reports under an immutable experiment/model/scenario/evidence/intent scope. Generate every primitive argument context, compute the stable coarsest congruence, ground source representatives and produce distinct-block context witnesses.",
+         [], "Independent checker verifies original-table congruence, primitive coverage, grounded representative DAG, uniform outputs and every distinguishing context. Original synthetic hotel table reproduces 768 typed states to 294 blocks in two strict rounds with 14,259 verified distinguishers. No model-adequacy or large-building compression claim. General source-language extraction and physical application adapter remain separate."),
         ("FINITE_CONTEXTUAL_QUOTIENT", "ananke-canonical", [17949, 18192], ["ALG-AB5", "DEF-AB7"],
          ["oma.optimization.finite.contextual_quotient"], ["oma.optimization.finite.verify_contextual_quotient"], "tests/test_optimization_finite.py",
          "Complete explicit finite state-by-experiment table, typed observations, immutable context. Partition by equality under every experiment; independently replay all state pairs and separating observations.",
@@ -27,7 +47,7 @@ def main():
          ["oma.optimization.finite.finite_chance_constraint", "oma.optimization.finite.finite_risk"], [], "tests/test_optimization_finite.py",
          "Exact finite joint probability law, nonnegative probabilities summing to one, explicit event truth including UNKNOWN, rational losses and confidence alpha in [0,1). Bound violation probability and enumerate all CVaR breakpoints.",
          [], "Expectation, worst listed scenario and finite-law CVaR only. Samples do not certify universal uncertainty coverage, independence, or applicability of supplied probability law."),
-        ("FINITE_QUANTITY_TRANSPORT", "oma-integration", [19531, 19686], ["ALG-DYN11"],
+        ("FINITE_QUANTITY_TRANSPORT", "oma-integration", [3816, 3825], ["ADD-SIR2.2"],
          ["oma.optimization.finite.check_quantity_transport"], [], "tests/test_optimization_finite.py",
          "Explicit source/target quantities and nonnegative finite allocation edges, equal units, complete identities. Exact outgoing and incoming marginal equalities establish conservative split/merge quantity transport.",
          [], "Quantity conservation only. No nonlinear physics, geometry, identity/functorial transport, or inherited certificate is established by these marginals."),
@@ -41,8 +61,8 @@ def main():
          ["OMA-MATH-A002", "OMA-MATH-A007"], "Optimum only over complete declared finite assignments/materializations/routes with disposed or nonimproving unresolved alternatives. BIM sovereignty/materialization and physical route validity require upstream independent checks. No universal Benders cut or continuous design completeness theorem."),
         ("SOURCE_PLANAR_IFC_ENCLOSURE", "oma-integration", [797, 853], ["DEF-SIR25", "DEF-SIR34", "DEF-SIR36", "THM-RTR6", "THM-RTR18"],
          ["oma.ifc.enclosure.ExactIfcEncloser.enclose_product"], [], "tests/test_ifc_enclosure.py",
-         "Complete selected Body face-item traversal from immutable raw STEP rationals; all supported planar faces lie in the hull of their vertices. Unit and placement/mapping transforms use outward rational interval arithmetic.",
-         [], "Enclosure relation only for declared planar IFC subset and local engineering frame; no solid validity or route verdict. Explicit opt-in extends claim to all vertex-hull completions of source faces while retaining nonplanarity evidence. Unknown siblings, map origins and unsupported classes block. Real DigitalHub coverage separately measured."),
+         "Complete selected Body item traversal from immutable raw STEP rationals; supported planar faces, validated positive linear extrusions, and bounded regularized Booleans have closed outer enclosures. Unit and placement/mapping transforms use outward rational interval arithmetic.",
+         [], "Enclosure relation only for declared supported IFC subset and local engineering frame; no solid validity or route verdict. Explicit opt-in extends claim to all vertex-hull completions of source faces while retaining nonplanarity evidence. Unknown siblings, map origins and unsupported classes block. Full architectural DigitalHub probe: 705 represented elements checked, eight records without representations UNKNOWN."),
         ("FINITE_MASTER", "oma-integration", [4688, 4880], ["DEF-RTR62", "DEF-RTR68", "THM-RTR67-86"],
          ["oma.optimization.master.solve_master"], ["oma.optimization.checker.verify_master_result"], "tests/test_optimization_master.py",
          "Finite serialized route columns, one per required net; rational costs, nonnegative rational resource usage, explicit higher-order conflict semantics. Geometry and physical validity are separate obligations.",
@@ -116,7 +136,7 @@ def main():
                          "certificate_and_limitations": limitation,
                          "cache_invalidation": ["source-state", "geometry", "envelope", "net-obligations", "catalog", "rules", "objective", "scenarios", "theory", "checker", "solver-version"]})
     pending = [
-        "Complete source review and cross-document dependency semantic reconciliation",
+        "Complete historical Pages source review and semantic reconciliation with substantially different reconstructed canonical bodies",
         "General 3D solid/mesh uncertainty and complete obstacle-accounting closure",
         "Certified inner graph with continuous fitting/body transitions",
         "Complete outer abstraction and adaptive CEGAR geometry proofs",
@@ -135,7 +155,7 @@ def main():
              "obligations": register, "pending_source_mechanisms": pending,
              "unit_test_run": {"path": str(test_path.relative_to(ROOT)), "tests": int(suite.get("tests")) if suite is not None else None,
                                "failures": int(suite.get("failures")) if suite is not None else None},
-             "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"}
+             "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"}
     destination = ROOT / "evidence/math/traceability_register.json"
     destination.write_text(json.dumps(proof, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"registered_obligations": len(register), "callables_resolved": all(c["callable"] for r in register for c in r["callable_probe"]),

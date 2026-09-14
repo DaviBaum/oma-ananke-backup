@@ -1,0 +1,380 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P14572; UTF16 545088] Requirement:
+[1-10:P14573; UTF16 545101] [ c\ge1000\text{ mm}. ]
+[1-10:P14574; UTF16 545125] Design A
+[1-10:P14575; UTF16 545134] [ c_A\in[1005,1015]\text{ mm}. ]
+[1-10:P14576; UTF16 545167] Every exact value is feasible.
+[1-10:P14577; UTF16 545198] The result is stable. Additional numerical precision cannot alter the compliance decision.
+[1-10:P14578; UTF16 545289] Design B
+[1-10:P14579; UTF16 545298] [ c_B\in[995,1005]\text{ mm}. ]
+[1-10:P14580; UTF16 545330] The enclosure crosses the mandatory boundary.
+[1-10:P14581; UTF16 545376] ANANKE must return unresolved, refine, remeasure, or change the design.
+[1-10:P14582; UTF16 545448] It may not classify B as feasible or infeasible.
+[1-10:P14586; UTF16 545500] 45.2 Other threshold channels
+[1-10:P14587; UTF16 545530] ￼
+ATTACHED TABLE 1736631; native row/column order; 5 rows
+ROW 0: ["Quantity", "Hard condition", "Safe enclosure", "Crossing enclosure"]
+ROW 1: ["Equipment fit", "width (\\le800) mm", "([790,798])", "([796,804])"]
+ROW 2: ["Structural capacity", "demand (\\le500) kN", "([470,490])", "([490,510])"]
+ROW 3: ["Fire clearance", "clearance (\\ge600) mm", "([605,620])", "([595,610])"]
+ROW 4: ["Catalog threshold", "flow (\\le10) units", "([9.1,9.8])", "([9.7,10.3])"]
+[1-10:P14588; UTF16 545532] Small absolute error is irrelevant when far from the boundary and decisive when crossing it.
+[1-10:P14592; UTF16 545628] 46. Worked Example 2 — Quantitative Butterfly Effect
+[1-10:P14593; UTF16 545681] Let elevator displacement be:
+[1-10:P14594; UTF16 545711] [ x\in\mathbb R. ]
+[1-10:P14595; UTF16 545730] A route topology transition occurs at:
+[1-10:P14596; UTF16 545769] [ x_c=5.00\text{ ft}. ]
+[1-10:P14597; UTF16 545793] Define pipe length:
+[1-10:P14598; UTF16 545813] \begin{cases} 150\text{ ft},&x<x_c,\ 95\text{ ft},&x\ge x_c. \end{cases} ]
+[1-10:P14599; UTF16 545888] Plenum becomes free when:
+[1-10:P14600; UTF16 545914] [ L<100\text{ ft}. ]
+[1-10:P14601; UTF16 545935] A beam becomes removable exactly when the plenum is free.
+[1-10:P14605; UTF16 545996] 46.1 Stable right-side enclosure
+[1-10:P14606; UTF16 546029] [ x\in[5.05,5.15]. ]
+[1-10:P14607; UTF16 546050] The interval lies wholly above (x_c).
+[1-10:P14609; UTF16 546099] [ L=95\text{ ft}, ]
+[1-10:P14610; UTF16 546119] plenum is free, and the beam-removal decision is stable.
+[1-10:P14614; UTF16 546179] 46.2 Threshold-crossing enclosure
+[1-10:P14615; UTF16 546213] [ x\in[4.93,5.03]. ]
+[1-10:P14616; UTF16 546234] The interval contains both route topologies.
+[1-10:P14617; UTF16 546279] The induced pipe-length set is:
+[1-10:P14618; UTF16 546311] [ {95,150}\text{ ft}. ]
+[1-10:P14619; UTF16 546335] The beam status is:
+[1-10:P14620; UTF16 546355] [ { \mathsf{required}, \mathsf{removable} }. ]
+[1-10:P14621; UTF16 546402] Refinement or symbolic splitting is mandatory.
+[1-10:P14625; UTF16 546452] 46.3 Why a local tolerance is misleading
+[1-10:P14626; UTF16 546493] The elevator uncertainty is only:
+[1-10:P14627; UTF16 546527] [ 0.05\text{ ft}. ]
+[1-10:P14628; UTF16 546547] The downstream pipe change is:
+[1-10:P14629; UTF16 546578] [ 55\text{ ft}. ]
+[1-10:P14630; UTF16 546596] The topology map has no finite Lipschitz constant at (x_c).
+[1-10:P14631; UTF16 546656] No local statement such as “5% is small” can justify merging across the discontinuity.
+[1-10:P14632; UTF16 546743] Prompt 4’s symbolic butterfly theorem detects the exact topology distinction; Prompt 5’s mandatory-boundary theorem prevents numerical uncertainty from hiding it.
+[1-10:P14636; UTF16 546909] 47. Worked Example 3 — Menu-Sensitive Hotel Decision
+[1-10:P14637; UTF16 546962] All figures are synthetic.
+[1-10:P14638; UTF16 546989] Three hotel design classes have capital-cost enclosures:
+[1-10:P14639; UTF16 547046] [ C_A\in[80.9,81.4]\text{ M}, ]
+[1-10:P14640; UTF16 547078] [ C_B\in[81.1,81.8]\text{ M}, ]
+[1-10:P14641; UTF16 547110] [ C_C\in[84.0,85.0]\text{ M}. ]
+[1-10:P14642; UTF16 547142] The stakeholder rule is:
+[1-10:P14643; UTF16 547167] retain every design within (1%) of minimum capital cost;
+[1-10:P14644; UTF16 547224] among retained designs, minimize maintenance outage.
+[1-10:P14648; UTF16 547280] 47.1 Design A
+[1-10:P14649; UTF16 547294] A is always within (1%) of the minimum.
+[1-10:P14650; UTF16 547334] The worst case for A is:
+[1-10:P14651; UTF16 547359] [ C_A=81.4, \qquad C_B=81.1. ]
+[1-10:P14653; UTF16 547396] [ \frac{81.4}{81.1} \approx1.00370 < 1.01. ]
+[1-10:P14654; UTF16 547441] A’s eligibility is stable.
+[1-10:P14658; UTF16 547471] 47.2 Design B
+[1-10:P14659; UTF16 547485] B’s status is unresolved.
+[1-10:P14660; UTF16 547511] Worst case:
+[1-10:P14661; UTF16 547523] [ C_B=81.8, \qquad C_A=80.9. ]
+[1-10:P14663; UTF16 547560] [ \frac{81.8}{80.9} \approx1.01112
+[1-10:P14664; UTF16 547595] 1.01. ]
+[1-10:P14665; UTF16 547603] B is outside the threshold.
+[1-10:P14666; UTF16 547631] But for:
+[1-10:P14667; UTF16 547640] [ C_B=81.1, \qquad C_A=81.4, ]
+[1-10:P14668; UTF16 547671] B is the minimum and is retained.
+[1-10:P14669; UTF16 547705] If B has better outage behavior, the final report depends on its unresolved cost eligibility.
+[1-10:P14670; UTF16 547799] Further refinement has positive decision influence.
+[1-10:P14674; UTF16 547854] 47.3 Design C
+[1-10:P14675; UTF16 547868] The largest possible (1%) threshold generated by A or B is:
+[1-10:P14676; UTF16 547928] [ 1.01(81.4)=82.214\text{ M}. ]
+[1-10:P14678; UTF16 547967] [ 84.0>82.214, ]
+[1-10:P14679; UTF16 547984] C is never retained on capital cost.
+[1-10:P14680; UTF16 548021] If C has no separate qualitative, resilience, evidence, or sovereignty relevance, its cost simulation may stop and the family may be pruned.
+[1-10:P14684; UTF16 548165] 47.4 Refined certification
+[1-10:P14685; UTF16 548192] Suppose refinement yields:
+[1-10:P14686; UTF16 548219] [ C_A\in[80.95,81.00]\text{ M}, ]
+[1-10:P14687; UTF16 548253] [ C_B\in[81.85,81.90]\text{ M}. ]
+[1-10:P14688; UTF16 548287] The largest threshold based on A is:
+[1-10:P14689; UTF16 548324] [ 1.01(81.00)=81.81\text{ M}. ]
+[1-10:P14690; UTF16 548356] Thus B is definitely outside the cost band.
+[1-10:P14691; UTF16 548400] A is the only retained design, independently of outage.
+[1-10:P14692; UTF16 548456] The decision is now stable.
+[1-10:P14696; UTF16 548487] 48. Worked Example 4 — Approximate Separator Cover
+[1-10:P14697; UTF16 548538] Let five safe regional states have scalar contextual coordinates:
+[1-10:P14698; UTF16 548604] [ 0,\quad0.4,\quad0.8,\quad1.2,\quad2.0. ]
+[1-10:P14699; UTF16 548647] Add one unsafe state (u) with a different mandatory status.
+[1-10:P14700; UTF16 548707] Mandatory disagreement has infinite distance, so (u) requires its own representative for every finite tolerance.
+[1-10:P14704; UTF16 548823] 48.1 Zero tolerance
+[1-10:P14705; UTF16 548843] Each safe value is distinct and (u) is distinct:
+[1-10:P14706; UTF16 548892] [ \mathcal N_0=6. ]
+[1-10:P14710; UTF16 548915] 48.2 Radius (\varepsilon=0.5)
+[1-10:P14711; UTF16 548945] Choose safe representatives:
+[1-10:P14712; UTF16 548974] [ 0.4,\quad1.2,\quad2.0. ]
+[1-10:P14713; UTF16 549001] Their balls cover all five safe states.
+[1-10:P14714; UTF16 549041] Add (u).
+[1-10:P14716; UTF16 549056] [ \mathcal N_{0.5}=4. ]
+[1-10:P14720; UTF16 549083] 48.3 Radius (\varepsilon=0.8)
+[1-10:P14722; UTF16 549121] [ 0.4,\quad2.0 ]
+[1-10:P14723; UTF16 549138] for the safe states, plus (u):
+[1-10:P14724; UTF16 549169] [ \mathcal N_{0.8}=3. ]
+[1-10:P14728; UTF16 549196] 48.4 Radius (\varepsilon=1.2)
+[1-10:P14729; UTF16 549226] Representative:
+[1-10:P14730; UTF16 549242] [ 0.8 ]
+[1-10:P14731; UTF16 549250] covers every safe state, but not (u).
+[1-10:P14733; UTF16 549299] [ \mathcal N_{1.2}=2. ]
+[1-10:P14734; UTF16 549323] The width curve is:
+[1-10:P14735; UTF16 549343] [ W_D^0=\log_2 6, ]
+[1-10:P14736; UTF16 549363] [ W_D^{0.5}=2, ]
+[1-10:P14737; UTF16 549380] [ W_D^{0.8}=\log_2 3, ]
+[1-10:P14738; UTF16 549404] [ W_D^{1.2}=1. ]
+[1-10:P14739; UTF16 549421] Mandatory exactness prevents collapse below two states.
+[1-10:P14743; UTF16 549480] 49. Worked Example 5 — Repeated Operator Error
+[1-10:P14744; UTF16 549527] Suppose repeated motif composition obeys:
+[1-10:P14745; UTF16 549569] [ e_{n+1} \le Le_n+b, \qquad e_0=0. ]
+[1-10:P14749; UTF16 549610] 49.1 Stable regime
+[1-10:P14751; UTF16 549634] [ L=0.5, \qquad b=0.1. ]
+[1-10:P14753; UTF16 549665] 0.2(1-0.5^n) < 0.2. ]
+[1-10:P14754; UTF16 549687] Error remains bounded.
+[1-10:P14758; UTF16 549713] 49.2 Linear-growth regime
+[1-10:P14760; UTF16 549744] [ L=1, \qquad b=0.1. ]
+[1-10:P14762; UTF16 549773] [ e_n\le0.1n. ]
+[1-10:P14763; UTF16 549789] Repeated local error accumulates linearly.
+[1-10:P14767; UTF16 549835] 49.3 Explosive regime
+[1-10:P14769; UTF16 549862] [ L=1.2, \qquad b=0.1. ]
+[1-10:P14771; UTF16 549893] 0.5(1.2^n-1). ]
+[1-10:P14772; UTF16 549909] Local approximations become exponentially amplified.
+[1-10:P14773; UTF16 549962] A repeated-motif quotient may remain semantically small while numerical certification becomes infeasible.
+[1-10:P14777; UTF16 550071] 50. Worked Example 6 — Model-Discrepancy Floor
+[1-10:P14778; UTF16 550118] Suppose a CFD routine predicts pressure:
+[1-10:P14779; UTF16 550159] [ \widehat p=510.000\text{ Pa}. ]
+[1-10:P14780; UTF16 550193] Numerical refinement produces:
+[1-10:P14781; UTF16 550224] [509.9,510.1], ]
+[1-10:P14783; UTF16 550247] [509.999,510.001]. ]
+[1-10:P14784; UTF16 550268] The validated turbulence-model discrepancy remains:
+[1-10:P14785; UTF16 550320] [-20,20]\text{ Pa}. ]
+[1-10:P14786; UTF16 550342] Physical claim enclosures are approximately:
+[1-10:P14787; UTF16 550387] [ [489.9,530.1] ]
+[1-10:P14789; UTF16 550410] [ [489.999,530.001]. ]
+[1-10:P14790; UTF16 550433] Numerical precision improved by (100\times). Physical uncertainty barely changed.
+[1-10:P14791; UTF16 550515] If a decision threshold is 520 Pa, numerical refinement alone cannot certify the physical claim.
+[1-10:P14795; UTF16 550615] 51. Permanent Approximation Counterexamples
+[1-10:P14796; UTF16 550659] A. Nontransitive (\varepsilon)-closeness
+[1-10:P14797; UTF16 550700] THM-ER2.
+[1-10:P14798; UTF16 550709] B. Tiny numeric distance crossing a hard boundary
+[1-10:P14799; UTF16 550759] Clearance:
+[1-10:P14800; UTF16 550770] [ 999.9\text{ mm} ]
+[1-10:P14801; UTF16 550790] versus:
+[1-10:P14802; UTF16 550798] [ 1000.1\text{ mm}. ]
+[1-10:P14803; UTF16 550820] Distance is (0.2) mm; mandatory status differs.
+[1-10:P14804; UTF16 550868] C. Context amplification
+[1-10:P14805; UTF16 550893] With (20) contexts of Lipschitz constant (2):
+[1-10:P14806; UTF16 550939] [ 10^{-3} ]
+[1-10:P14807; UTF16 550951] local error may amplify to:
+[1-10:P14808; UTF16 550979] 1048.576. ]
+[1-10:P14809; UTF16 550991] D. Large state error but irrelevant decision
+[1-10:P14810; UTF16 551036] A full-field norm error may be (100) units while a certified quantity-of-interest error is (0.1) and the nearest decision boundary is (10) units away.
+[1-10:P14811; UTF16 551187] The decision is stable.
+[1-10:P14812; UTF16 551211] E. Correlation loss
+[1-10:P14814; UTF16 551239] with (x\in[0,1]) gives naive interval ([-1,1]) instead of exact (0).
+[1-10:P14815; UTF16 551308] F. Numerical convergence with model discrepancy
+[1-10:P14816; UTF16 551356] Worked Example 6.
+[1-10:P14817; UTF16 551374] G. Numerically close but menu-distinct
+[1-10:P14818; UTF16 551413] Prompt 2’s third-alternative threshold example.
+[1-10:P14819; UTF16 551461] H. Zero-margin tie
+[1-10:P14820; UTF16 551480] THM-ER8.
+[1-10:P14821; UTF16 551489] These examples form regression tests for later implementations.
+[1-10:P14825; UTF16 551556] 52. Cover Construction Hardness
+[1-10:P14826; UTF16 551588] PRO-ER3 — Minimum Approximate Separator Cover Is NP-Hard in General
+[1-10:P14827; UTF16 551656] Even for a finite metric taking values in ({0,1,2}), computing a minimum radius-one representative cover is NP-hard.
+[1-10:P14829; UTF16 551779] Given graph:
+[1-10:P14830; UTF16 551792] [ G=(V,E), ]
+[1-10:P14831; UTF16 551805] define metric:
+[1-10:P14832; UTF16 551820] \begin{cases} 0,&u=v,\ 1,&{u,v}\in E,\ 2,&\text{otherwise}. \end{cases} ]
+[1-10:P14833; UTF16 551894] The triangle inequality holds because the only nontrivial case is:
+[1-10:P14834; UTF16 551961] [ d(u,v)=2, ]
+[1-10:P14835; UTF16 551975] and every two-edge path has length at least (2).
+[1-10:P14836; UTF16 552024] A radius-one representative centered at (u) covers exactly the closed neighborhood of (u).
+[1-10:P14837; UTF16 552115] A minimum radius-one cover is therefore a minimum dominating set of (G).
+[1-10:P14838; UTF16 552188] Minimum dominating set is NP-hard. ∎
+[1-10:P14839; UTF16 552225] ALG-ER4 returns a certified cover, not necessarily an optimal one.
+[1-10:P14843; UTF16 552295] 53. Complexity Profile
+[1-10:P14844; UTF16 552318] DEF-ER24 — Prompt-5 Complexity Profile
+[1-10:P14846; UTF16 552365] \left( W_D, W_D^{\varepsilon}, W_P, S^\star, K_{\mathcal F}, C_{\mathrm{oracle}}, \kappa_{\mathrm{num}}, m_{\mathrm{decision}}, R_Q, R_A, R_N \right), ]
+[1-10:P14848; UTF16 552525] (W_D): exact semantic width;
+[1-10:P14849; UTF16 552554] (W_D^\varepsilon): approximate cover width;
+[1-10:P14852; UTF16 552679] (K_{\mathcal F}): exact predicate-description complexity;
+[1-10:P14853; UTF16 552737] (C_{\mathrm{oracle}}): symbolic SAT/preimage/canonicalization cost;
+[1-10:P14854; UTF16 552805] (\kappa_{\mathrm{num}}): numerical conditioning parameters;
+[1-10:P14855; UTF16 552865] (m_{\mathrm{decision}}): live decision margins;
+[1-10:P14856; UTF16 552913] (R_Q): symbolic quotient splits;
+[1-10:P14857; UTF16 552946] (R_A): abstract-domain refinements;
+[1-10:P14858; UTF16 552982] (R_N): numerical-fidelity refinements.
+[1-10:P14859; UTF16 553021] Decision width is only one source of difficulty.
+[1-10:P14860; UTF16 553070] A tiny quotient with:
+[1-10:P14861; UTF16 553092] [ \kappa_{\mathrm{num}}\gg1 ]
+[1-10:P14863; UTF16 553126] [ m_{\mathrm{decision}}\approx0 ]
+[1-10:P14864; UTF16 553160] may remain computationally difficult.
+[1-10:P14868; UTF16 553201] 54. Conditional Mature Scaling Law
+[1-10:P14869; UTF16 553236] COR-ER14A — Precompiled Approximate-DP Scaling
+[1-10:P14870; UTF16 553283] For bounded branching (b), bounded local choice width, and maximum approximate separator width:
+[1-10:P14871; UTF16 553379] \max_v \log_2q_v^{\varepsilon_v}, ]
+[1-10:P14872; UTF16 553415] THM-ER14 gives:
+[1-10:P14873; UTF16 553431] \operatorname{poly}(n) 2^{O(W_D^\varepsilon)} C_{\mathrm{local}}(\varepsilon). ]
+[1-10:P14874; UTF16 553512] End-to-end conditional law
+[1-10:P14875; UTF16 553539] Under:
+[1-10:P14876; UTF16 553546] symbolic accessibility;
+[1-10:P14877; UTF16 553570] tractable cover construction or a supplied cover;
+[1-10:P14878; UTF16 553620] bounded error amplification;
+[1-10:P14879; UTF16 553649] positive required decision margins;
+[1-10:P14880; UTF16 553685] certified numerical models;
+[1-10:P14881; UTF16 553713] manageable discrepancy;
+[1-10:P14882; UTF16 553737] valid evidence;
+[1-10:P14883; UTF16 553753] one obtains:
+[1-10:P14884; UTF16 553766] \operatorname{poly}(n) 2^{O(W_D^\varepsilon)} C_{\mathrm{cert}}(\varepsilon). } ]
+[1-10:P14885; UTF16 553848] This is a conditional theorem schema, not a universal performance law.
+[1-10:P14886; UTF16 553919] The real-world conjecture is that useful building problems possess:
+[1-10:P14887; UTF16 553987] slowly growing (W_D^\varepsilon);
+[1-10:P14888; UTF16 554021] tractable (C_{\mathrm{cert}});
+[1-10:P14889; UTF16 554052] sufficient decision margin;
+[1-10:P14890; UTF16 554080] manageable model discrepancy.
+[1-10:P14894; UTF16 554113] 55. Memory and Join Calculations
+[1-10:P14896; UTF16 554151] [ q^0=65,!536, ]
+[1-10:P14897; UTF16 554168] [ q^{\varepsilon_1}=4,!096, ]
+[1-10:P14898; UTF16 554198] [ q^{\varepsilon_2}=256. ]
+[1-10:P14899; UTF16 554225] At 256 bytes per state:
+[1-10:P14900; UTF16 554249] ￼
+ATTACHED TABLE 1736647; native row/column order; 4 rows
+ROW 0: ["State count", "Memory"]
+ROW 1: ["(65,!536)", "16 MiB"]
+ROW 2: ["(4,!096)", "1 MiB"]
+ROW 3: ["-256", "64 KiB"]
+[1-10:P14901; UTF16 554251] For a dense binary join:
+[1-10:P14902; UTF16 554276] ￼
+ATTACHED TABLE 1736663; native row/column order; 4 rows
+ROW 0: ["State count", "Pair count"]
+ROW 1: ["(65,!536)", "(4,!294,!967,!296)"]
+ROW 2: ["(4,!096)", "(16,!777,!216)"]
+ROW 3: ["-256", "(65,!536)"]
+[1-10:P14903; UTF16 554278] The first tolerance change reduces:
+[1-10:P14904; UTF16 554314] state memory by (16\times);
+[1-10:P14905; UTF16 554342] dense pair count by (256\times).
+[1-10:P14906; UTF16 554375] The full change reduces:
+[1-10:P14907; UTF16 554400] state memory by (256\times);
+[1-10:P14908; UTF16 554429] dense pair count by (65,!536\times).
+[1-10:P14909; UTF16 554466] These are state and join reductions, not guaranteed wall-clock speedups.
+[1-10:P14910; UTF16 554539] Numerical certification cost may increase while semantic state count decreases.
+[1-10:P14914; UTF16 554622] 56. Approximate Theory Reuse and Evidence Dependencies
+[1-10:P14915; UTF16 554677] An old approximate cover remains safe only while:
+[1-10:P14916; UTF16 554727] its theory fingerprint covers the new theory;
+[1-10:P14917; UTF16 554773] its error tolerance is at least as precise as required;
+[1-10:P14918; UTF16 554829] its model validity domains remain applicable;
+[1-10:P14919; UTF16 554875] its evidence dependencies remain active;
+[1-10:P14920; UTF16 554916] its discrepancy assumptions remain valid.
+[1-10:P14921; UTF16 554958] A topology rewrite, model update, new code requirement, new stakeholder menu, or tighter tolerance may invalidate only part of the artifact.
+[1-10:P14922; UTF16 555099] Dependency-directed invalidation should trigger targeted refinement rather than global recomputation.
+[1-10:P14926; UTF16 555204] 57. Relation to Rate-Distortion and Metric Entropy
+[1-10:P14927; UTF16 555255] The exact identities are:
+[1-10:P14928; UTF16 555281] representative separator compression is a worst-case covering problem;
+[1-10:P14929; UTF16 555352] its logarithm is metric entropy;
+[1-10:P14930; UTF16 555385] representative communication cost equals the covering number.
+[1-10:P14931; UTF16 555447] Shannon rate-distortion theory usually concerns:
+[1-10:P14932; UTF16 555496] a probability distribution;
+[1-10:P14933; UTF16 555524] expected distortion;
+[1-10:P14934; UTF16 555545] asymptotic block coding;
+[1-10:P14935; UTF16 555570] average code length.
+[1-10:P14936; UTF16 555591] ANANKE’s core problem is:
+[1-10:P14937; UTF16 555617] worst case;
+[1-10:P14938; UTF16 555629] deterministic;
+[1-10:P14940; UTF16 555659] mandatory-status preserving;
+[1-10:P14941; UTF16 555688] evidence aware.
+[1-10:P14942; UTF16 555704] Therefore Shannon rate-distortion is an analogy unless a declared probabilistic source and expected-distortion objective are added.
+[1-10:P14943; UTF16 555836] Worst-case contextual covering numbers are the exact object in Prompt 5.
+[1-10:P14947; UTF16 555912] 58. Falsification Experiments
+[1-10:P14948; UTF16 555942] F1 — Approximate false-merge test
+[1-10:P14949; UTF16 555976] Use a chain:
+[1-10:P14950; UTF16 555989] [ 0,;0.75\varepsilon,;1.5\varepsilon. ]
+[1-10:P14951; UTF16 556029] Verify that the implementation refuses to quotient by transitive (\varepsilon)-closeness.
+[1-10:P14952; UTF16 556119] F2 — Hard-boundary crossing
+[1-10:P14953; UTF16 556147] Use a 1000 mm requirement and enclosure:
+[1-10:P14954; UTF16 556188] [ [995,1005]. ]
+[1-10:P14955; UTF16 556204] The checker must refuse a resolved classification.
+[1-10:P14956; UTF16 556255] F3 — Error propagation
+[1-10:P14957; UTF16 556278] Generate a finite exact DAG with known transfer matrices.
+[1-10:P14958; UTF16 556336] Compare THM-ER21’s propagated bounds against exhaustive evaluation.
+[1-10:P14959; UTF16 556404] Every exact error must lie inside the predicted enclosure.
+[1-10:P14960; UTF16 556463] F4 — Positive-margin certification
+[1-10:P14961; UTF16 556498] Generate nested enclosures around a point with positive decision margin.
+[1-10:P14962; UTF16 556571] Verify eventual STABLE status.
+[1-10:P14963; UTF16 556602] F5 — Zero-margin tie
+[1-10:P14966; UTF16 556648] Verify no false unique decision is certified.
+[1-10:P14967; UTF16 556694] F6 — Reduced-model certificate
+[1-10:P14968; UTF16 556725] Compare a reduced port operator against full-order finite solves across its validity domain.
+[1-10:P14969; UTF16 556818] Record every bound violation.
+[1-10:P14970; UTF16 556848] F7 — Correlation failure
+[1-10:P14971; UTF16 556873] Use the correlated and anticorrelated hazard distributions in §30.
+[1-10:P14972; UTF16 556940] Verify marginal-only reasoning produces an incorrect robust decision.
+[1-10:P14973; UTF16 557010] F8 — Model-discrepancy floor
+[1-10:P14974; UTF16 557039] Reduce numerical error over several orders of magnitude while holding discrepancy fixed.
+[1-10:P14975; UTF16 557128] Verify physical uncertainty plateaus.
+[1-10:P14976; UTF16 557166] F9 — Approximate-width curve
+[1-10:P14977; UTF16 557195] For a benchmark region, compute or bound:
+[1-10:P14978; UTF16 557237] [ W_D^\varepsilon ]
+[1-10:P14979; UTF16 557257] over a preregistered tolerance grid.
+[1-10:P14980; UTF16 557294] F10 — Adaptive-fidelity ablation
+[1-10:P14982; UTF16 557336] uniform high fidelity;
+[1-10:P14983; UTF16 557359] generic uncertainty-driven refinement;
+[1-10:P14984; UTF16 557398] decision-boundary-driven refinement.
+[1-10:P14985; UTF16 557435] Require identical final exact decisions and mandatory reports before comparing computation.
+[1-10:P14989; UTF16 557530] 59. Proof-Assistant Formalization
+[1-10:P14990; UTF16 557564] 59.1 Mixed outcome
+[1-10:P14991; UTF16 557583] structure MixedOutcome where
+[1-10:P14992; UTF16 557612]   mandatory : MandatoryOutcome
+[1-10:P14993; UTF16 557643]   quantitative : (j : Channel) → QuantitySpace j
+[1-10:P14997; UTF16 557695] 59.2 Error vector
+[1-10:P14998; UTF16 557713] def ErrorVec :=
+[1-10:P14999; UTF16 557729]   (j : ErrorChannel) → ENNReal
+[1-10:P15000; UTF16 557760] Mandatory mismatch:
+[1-10:P15001; UTF16 557780] def mandatoryDist
+[1-10:P15002; UTF16 557798]     (h₁ h₂ : MandatoryOutcome) : ENNReal :=
+[1-10:P15003; UTF16 557842]   if h₁ = h₂ then 0 else ⊤
+[1-10:P15007; UTF16 557872] 59.3 Vector pseudometric
+[1-10:P15008; UTF16 557897] structure VectorPseudoMetric (X : Type) where
+[1-10:P15009; UTF16 557943]   dist : X → X → ErrorVec
+[1-10:P15010; UTF16 557969]   refl : ∀ x, dist x x = 0
+[1-10:P15011; UTF16 557996]   symm : ∀ x y, dist x y = dist y x
+[1-10:P15012; UTF16 558032]   triangle :
+[1-10:P15013; UTF16 558045]     ∀ x y z,
+[1-10:P15014; UTF16 558058]       dist x z ≤
+[1-10:P15015; UTF16 558075]       dist x y + dist y z
+[1-10:P15019; UTF16 558104] 59.4 Contextual residual distance
+[1-10:P15020; UTF16 558138] def contextualDist
+[1-10:P15021; UTF16 558157]     (x y : RegionalState L) :
+[1-10:P15022; UTF16 558187]     (e : ExteriorExperiment L) →
+[1-10:P15023; UTF16 558220]       ErrorVec :=
+[1-10:P15024; UTF16 558238]   fun e =>
+[1-10:P15025; UTF16 558249]     outcomeDist
+[1-10:P15026; UTF16 558265]       (runExperiment e x)
+[1-10:P15027; UTF16 558291]       (runExperiment e y)
+[1-10:P15028; UTF16 558317] Zero-kernel theorem:
+[1-10:P15029; UTF16 558338] theorem contextualDist_zero_iff
+[1-10:P15030; UTF16 558370]     (hSep :
+[1-10:P15031; UTF16 558382]       ∀ e o₁ o₂,
+[1-10:P15032; UTF16 558399]         outcomeDist o₁ o₂ = 0 ↔ o₁ = o₂) :
+[1-10:P15033; UTF16 558442]     contextualDist x y = 0 ↔
+[1-10:P15034; UTF16 558471]       RegionalContextualEq x y := by
+[1-10:P15039; UTF16 558517] 59.5 Nontransitivity
+[1-10:P15040; UTF16 558538] theorem epsilon_close_not_transitive
+[1-10:P15041; UTF16 558575]     (ε : ℝ)
+[1-10:P15042; UTF16 558587]     (hε : 0 < ε) :
+[1-10:P15043; UTF16 558606]     ∃ x y z,
+[1-10:P15044; UTF16 558619]       close ε x y ∧
+[1-10:P15045; UTF16 558639]       close ε y z ∧
+[1-10:P15046; UTF16 558659]       ¬ close ε x z := by
+[1-10:P15051; UTF16 558694] 59.6 Covering number
+[1-10:P15052; UTF16 558715] For finite (X):
+[1-10:P15053; UTF16 558731] def IsCover
+[1-10:P15054; UTF16 558743]     (ε : ErrorVec)
+[1-10:P15055; UTF16 558762]     (C : Finset X) : Prop :=
+[1-10:P15056; UTF16 558791]   ∀ x, ∃ c ∈ C,
+[1-10:P15057; UTF16 558807]     dist x c ≤ ε
+[1-10:P15059; UTF16 558825] def coveringNumber :=
+[1-10:P15060; UTF16 558847]   Nat.find ...
+[1-10:P15064; UTF16 558865] 59.7 Decision margin
+[1-10:P15065; UTF16 558886] def reportCell
+[1-10:P15066; UTF16 558901]     (q : DecisionObligation)
+[1-10:P15067; UTF16 558930]     (r : Report q) : Set (Profile q) :=
+[1-10:P15068; UTF16 558970]   {z | report q z = r}

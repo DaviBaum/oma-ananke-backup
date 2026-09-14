@@ -1,0 +1,305 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P21836; UTF16 787768] each computation (c) deterministically closes fixed subset (S_c\subseteq U);
+[1-10:P21837; UTF16 787845] computations have no interactions;
+[1-10:P21838; UTF16 787880] every obligation (q) has weight (w_q\ge0).
+[1-10:P21840; UTF16 787931] \sum_{q\in\cup_{c\in C}S_c} w_q. ]
+[1-10:P21844; UTF16 787969] THM-RC11 — Coverage Closure Is Monotone Submodular
+[1-10:P21845; UTF16 788020] (F) is normalized, monotone, and submodular.
+[1-10:P21848; UTF16 788086] [ F(\varnothing)=0. ]
+[1-10:P21849; UTF16 788108] Monotonicity follows because adding computations can only enlarge the covered-obligation union.
+[1-10:P21850; UTF16 788204] For (A\subseteq B) and computation (c\notin B), the marginal gain is the weight of obligations in:
+[1-10:P21851; UTF16 788303] [ S_c \setminus \bigcup_{a\in A}S_a ]
+[1-10:P21852; UTF16 788341] for (A), and in:
+[1-10:P21853; UTF16 788358] [ S_c \setminus \bigcup_{b\in B}S_b ]
+[1-10:P21854; UTF16 788396] for (B).
+[1-10:P21855; UTF16 788405] The second set is contained in the first, so the marginal gain under (B) is no larger. ∎
+[1-10:P21859; UTF16 788497] 25.1 Greedy (1-1/e) bound
+[1-10:P21860; UTF16 788523] Let (O) be an optimal set of at most (k) computations.
+[1-10:P21861; UTF16 788578] Let (G_i) be the greedy set after (i) selections.
+[1-10:P21862; UTF16 788628] By submodularity,
+[1-10:P21863; UTF16 788646] [ F(O)-F(G_i) \le \sum_{c\in O\setminus G_i} \left[ F(G_i\cup{c})-F(G_i) \right]. ]
+[1-10:P21864; UTF16 788730] There are at most (k) terms, so one computation has marginal gain at least:
+[1-10:P21865; UTF16 788806] [ \frac{ F(O)-F(G_i) }{k}. ]
+[1-10:P21866; UTF16 788835] Greedy selects a computation with at least this gain:
+[1-10:P21867; UTF16 788889] [ F(G_{i+1})-F(G_i) \ge \frac{ F(O)-F(G_i) }{k}. ]
+[1-10:P21868; UTF16 788940] Therefore the residual satisfies:
+[1-10:P21869; UTF16 788974] [ F(O)-F(G_{i+1}) \le \left( 1-\frac1k \right) \left[ F(O)-F(G_i) \right]. ]
+[1-10:P21870; UTF16 789051] After (k) rounds:
+[1-10:P21871; UTF16 789069] [ F(O)-F(G_k) \le \left( 1-\frac1k \right)^kF(O) \le e^{-1}F(O). ]
+[1-10:P21873; UTF16 789143] [ \boxed{ F(G_k) \ge \left( 1-\frac1e \right) F(O). } ]
+[1-10:P21874; UTF16 789199] This guarantee applies only to the restricted deterministic coverage model.
+[1-10:P21878; UTF16 789278] 26. Hardness of Complete Computation Planning
+[1-10:P21879; UTF16 789324] THM-RC12 — Minimum Complete Computation Plan Is NP-Hard
+[1-10:P21880; UTF16 789380] Even when:
+[1-10:P21881; UTF16 789391] computation outcomes are deterministic;
+[1-10:P21882; UTF16 789431] every computation simply closes a fixed obligation subset;
+[1-10:P21883; UTF16 789490] there are no numerical solvers;
+[1-10:P21884; UTF16 789522] there is no adaptive branching;
+[1-10:P21885; UTF16 789554] finding the minimum-cost computation set that closes every required obligation is NP-hard.
+[1-10:P21887; UTF16 789651] Take a weighted Set Cover instance:
+[1-10:P21888; UTF16 789687] universe (U);
+[1-10:P21889; UTF16 789701] subsets (S_1,\ldots,S_m);
+[1-10:P21890; UTF16 789727] costs (w_i).
+[1-10:P21891; UTF16 789740] Create one required obligation for each element of (U).
+[1-10:P21892; UTF16 789796] Create computation (c_i) of cost (w_i) closing exactly obligations in (S_i).
+[1-10:P21893; UTF16 789873] A computation set reaches closure exactly when its subsets cover (U).
+[1-10:P21894; UTF16 789943] Minimum closure cost is therefore minimum weighted set cover. ∎
+[1-10:P21895; UTF16 790007] Optimal adaptive metareasoning is at least NP-hard because this static problem is a special case.
+[1-10:P21896; UTF16 790105] No PSPACE-hardness claim is made.
+[1-10:P21900; UTF16 790142] 27. Computation Prerequisites and Enablement
+[1-10:P21901; UTF16 790187] DEF-RC30 — Computation Prerequisite Graph
+[1-10:P21902; UTF16 790229] A computation prerequisite structure is a directed graph or conditional hypergraph
+[1-10:P21903; UTF16 790312] [ P_{\mathrm{comp}}. ]
+[1-10:P21904; UTF16 790335] An edge or hyperedge states that a computation becomes available only after:
+[1-10:P21905; UTF16 790412] specified computations have completed;
+[1-10:P21906; UTF16 790451] specified outcome predicates hold;
+[1-10:P21907; UTF16 790486] required artifacts exist.
+[1-10:P21909; UTF16 790522] PCPE enrichment requires a full-order training sample;
+[1-10:P21910; UTF16 790577] macro closure checking requires a compiled action relation;
+[1-10:P21911; UTF16 790637] structural update requires instantiated post-rewrite geometry.
+[1-10:P21912; UTF16 790700] A computation may have strategic value by changing:
+[1-10:P21913; UTF16 790752] [ \mathsf{Avail}(K). ]
+[1-10:P21914; UTF16 790775] This effect is explicitly excluded from the zero-value theorem THM-RC4.
+[1-10:P21918; UTF16 790850] 28. Computation Dominance
+[1-10:P21919; UTF16 790876] DEF-RC31 — Information Dominance
+[1-10:P21920; UTF16 790909] Computation (c_1) information-dominates (c_2) in state (K) when:
+[1-10:P21921; UTF16 790974] there exists a deterministic garbling map [ g:\mathcal O_{c_1}\to\mathcal O_{c_2}; ]
+[1-10:P21922; UTF16 791059] meta-beliefs are consistent: \sum_{o_1(o_1)=o_2} \mu_{c_1}(o_1\mid K); ]
+[1-10:P21923; UTF16 791132] for every (o_1), [ U_{c_1}(K,o_1) ] contains at least all certified information available in [ U_{c_2}(K,g(o_1)); ]
+[1-10:P21924; UTF16 791248] downstream computation availability after (c_1) includes that after (c_2);
+[1-10:P21925; UTF16 791323] (c_1) has no adverse side effect absent from (c_2);
+[1-10:P21926; UTF16 791375] cost satisfies: [ C(c_1,K)\le C(c_2,K). ]
+[1-10:P21930; UTF16 791420] THM-RC13 — Dominated Computations Need Not Appear in an Optimal Policy
+[1-10:P21931; UTF16 791491] Under DEF-RC31, there exists an optimal policy that never chooses (c_2) when (c_1) is available.
+[1-10:P21933; UTF16 791594] Take any policy choosing (c_2).
+[1-10:P21934; UTF16 791626] Replace that action by (c_1).
+[1-10:P21935; UTF16 791656] After receiving (o_1), compute:
+[1-10:P21936; UTF16 791688] [ o_2=g(o_1) ]
+[1-10:P21937; UTF16 791703] and emulate the original continuation policy for (o_2).
+[1-10:P21938; UTF16 791759] The replaced policy has:
+[1-10:P21939; UTF16 791784] no greater cost;
+[1-10:P21940; UTF16 791801] at least the same available downstream actions;
+[1-10:P21941; UTF16 791849] at least the information used by the original continuation;
+[1-10:P21942; UTF16 791909] the same induced distribution over garbled (o_2).
+[1-10:P21943; UTF16 791959] It may use additional (c_1) information or ignore it.
+[1-10:P21944; UTF16 792013] Therefore its expected terminal loss is no greater. ∎
+[1-10:P21948; UTF16 792070] COR-RC13A — Valid Cache Reuse Dominates Recalculation
+[1-10:P21949; UTF16 792124] If a valid cached artifact supplies the same certified information as recomputation and:
+[1-10:P21950; UTF16 792213] [ C_{\mathrm{reuse}} + C_{\mathrm{fingerprint\ check}} < C_{\mathrm{recompute}}, ]
+[1-10:P21951; UTF16 792296] then reuse dominates recomputation.
+[1-10:P21952; UTF16 792332] If the artifact fingerprint is invalid, the dominance premise fails.
+[1-10:P21956; UTF16 792404] 29. Commuting Computations and Partial-Order Reduction
+[1-10:P21957; UTF16 792459] DEF-RC32 — Commuting Certified Computations
+[1-10:P21958; UTF16 792503] Computations (c_1,c_2) commute in (K) when:
+[1-10:P21959; UTF16 792547] both remain enabled after the other;
+[1-10:P21960; UTF16 792584] neither invalidates the other’s result;
+[1-10:P21961; UTF16 792624] for every compatible outcome pair: [ U_{c_2} \left( U_{c_1}(K,o_1), o_2 \right) \cong U_{c_1} \left( U_{c_2}(K,o_2), o_1 \right); ]
+[1-10:P21962; UTF16 792756] joint outcome semantics is order independent.
+[1-10:P21963; UTF16 792802] The equivalence (\cong) preserves:
+[1-10:P21964; UTF16 792837] concretization;
+[1-10:P21965; UTF16 792853] portfolio;
+[1-10:P21966; UTF16 792864] closure deficit;
+[1-10:P21967; UTF16 792881] artifacts;
+[1-10:P21968; UTF16 792892] future computation availability.
+[1-10:P21972; UTF16 792928] THM-RC14 — Commuting Computation Order Invariance
+[1-10:P21973; UTF16 792978] For commuting computations, either serial order yields equivalent final metaknowledge.
+[1-10:P21974; UTF16 793065] Therefore contingent-policy search may quotient the two permutations when neither intermediate observation changes whether the other is executed.
+[1-10:P21976; UTF16 793217] The final-state equivalence is the defining commutation law.
+[1-10:P21977; UTF16 793278] If both computations are unconditionally scheduled, their order produces equivalent terminal knowledge.
+[1-10:P21978; UTF16 793382] When one result may suppress the other, the policies are not the same and permutation reduction is invalid. ∎
+[1-10:P21982; UTF16 793495] THM-RC24 — Parallel Batch Soundness
+[1-10:P21983; UTF16 793531] Suppose computations in batch (B):
+[1-10:P21984; UTF16 793566] commute pairwise;
+[1-10:P21985; UTF16 793584] use independent nonconflicting resources;
+[1-10:P21986; UTF16 793626] do not condition each other’s execution;
+[1-10:P21987; UTF16 793667] retain all certified outcomes.
+[1-10:P21988; UTF16 793698] Joining their concurrent results yields a metaknowledge state equivalent to some serial execution order.
+[1-10:P21990; UTF16 793809] Pairwise commutation permits adjacent swaps of any serial order without changing final state.
+[1-10:P21991; UTF16 793903] A concurrent batch semantically collects the same outcome set and applies the same commuting updates.
+[1-10:P21992; UTF16 794005] Thus it equals every serial topological order up to (\cong). ∎
+[1-10:P21993; UTF16 794068] Parallelism may reduce latency without reducing total work.
+[1-10:P21997; UTF16 794131] 30. Mandatory Fairness
+[1-10:P21998; UTF16 794154] DEF-RC33 — Mandatory Fairness Policy
+[1-10:P21999; UTF16 794191] Every unresolved release-blocking obligation must remain on the agenda until it is:
+[1-10:P22000; UTF16 794275] certified closed;
+[1-10:P22001; UTF16 794293] certified failed;
+[1-10:P22002; UTF16 794311] proved unresolvable under the declared resources;
+[1-10:P22003; UTF16 794361] or explicitly retained as a release blocker.
+[1-10:P22004; UTF16 794406] A scheduling policy is fair when no continuously enabled required resolution chain is postponed forever.
+[1-10:P22008; UTF16 794514] THM-RC15 — Eventual Closure Under Finite Resolvability and Fair Scheduling
+[1-10:P22010; UTF16 794597] fixed theory;
+[1-10:P22011; UTF16 794611] finitely many required obligations;
+[1-10:P22012; UTF16 794647] every blocker has a finite chain of terminating certified computations;
+[1-10:P22013; UTF16 794719] each required chain step strictly decreases a natural-number resolution rank;
+[1-10:P22014; UTF16 794797] every continuously enabled required step is eventually scheduled;
+[1-10:P22015; UTF16 794863] computations do not introduce new blockers;
+[1-10:P22016; UTF16 794907] no required computation remains UNKNOWN forever.
+[1-10:P22017; UTF16 794956] Then ANANKE eventually reaches certified closure.
+[1-10:P22019; UTF16 795012] Assign each blocker a finite rank equal to the remaining length of one resolving chain.
+[1-10:P22020; UTF16 795100] Let total rank be the sum over blockers.
+[1-10:P22021; UTF16 795141] Fairness eventually schedules a required step for every nonzero-rank blocker.
+[1-10:P22022; UTF16 795219] Each such step strictly decreases total rank.
+[1-10:P22023; UTF16 795265] The rank is a nonnegative integer and cannot decrease infinitely.
+[1-10:P22024; UTF16 795331] Therefore all blocker ranks eventually reach zero.
+[1-10:P22025; UTF16 795382] By assumption 6, none are reintroduced.
+[1-10:P22026; UTF16 795422] Quantitative chains similarly reduce every positive regret gap to zero.
+[1-10:P22027; UTF16 795494] Hence (G(K)=\mathbf0). ∎
+[1-10:P22028; UTF16 795519] The theorem fails for:
+[1-10:P22029; UTF16 795542] zero-margin decisions;
+[1-10:P22030; UTF16 795565] irreducible discrepancy;
+[1-10:P22031; UTF16 795590] permanent UNKNOWN;
+[1-10:P22032; UTF16 795609] physically unidentifiable obligations.
+[1-10:P22036; UTF16 795651] 30.1 Starvation counterexample
+[1-10:P22037; UTF16 795682] Suppose quantitative regret admits an infinite sequence of refinements with gains:
+[1-10:P22038; UTF16 795765] [ 1,\frac12,\frac14,\ldots ]
+[1-10:P22039; UTF16 795794] while one mandatory fire-evidence check remains unresolved.
+[1-10:P22040; UTF16 795854] A scheduler always choosing the largest immediate quantitative gain can keep selecting quantitative refinements.
+[1-10:P22041; UTF16 795967] Quantitative regret tends to zero, but:
+[1-10:P22042; UTF16 796007] [ B_{\mathrm{ev}}(K) \ne\varnothing ]
+[1-10:P22043; UTF16 796045] forever.
+[1-10:P22044; UTF16 796054] Release closure is never reached.
+[1-10:P22048; UTF16 796091] 31. Causal Macro Relevance
+[1-10:P22049; UTF16 796118] Prompt 8 supplies:
+[1-10:P22051; UTF16 796156] exact update dependencies;
+[1-10:P22053; UTF16 796202] causal frontier certificates.
+[1-10:P22054; UTF16 796232] A computation refining macro coordinate (z_j) can affect a live obligation only if (z_j) lies in its dependency ancestry.
+[1-10:P22058; UTF16 796357] THM-RC16 — Exact Causal Macro Computation Relevance
+[1-10:P22060; UTF16 796417] the CSSP dependency graph is complete;
+[1-10:P22061; UTF16 796456] every effect of computation (c) is confined to macro coordinates outside the ancestor set of every live obligation;
+[1-10:P22062; UTF16 796572] computation availability and theory are unchanged.
+[1-10:P22063; UTF16 796623] Then (c) has zero strategic closure value.
+[1-10:P22065; UTF16 796672] Prompt-8 macro sufficiency guarantees that all downstream effects factor through certified macro dependencies.
+[1-10:P22066; UTF16 796783] No changed coordinate reaches a live obligation.
+[1-10:P22067; UTF16 796832] Therefore the closure deficit is unchanged.
+[1-10:P22068; UTF16 796876] The availability and theory conditions exclude strategic side effects. ∎
+[1-10:P22069; UTF16 796949] This is Prompt-8 causal compression feeding directly into computation pruning.
+[1-10:P22073; UTF16 797031] 32. Decision-Regret Branch Closure
+[1-10:P22074; UTF16 797066] Let (\mathcal B_K) be unresolved candidate families outside the retained portfolio.
+[1-10:P22075; UTF16 797150] For maximization decision (d), let:
+[1-10:P22076; UTF16 797186] [ U_{d,u}(B,K) ]
+[1-10:P22077; UTF16 797203] be a certified upper bound on utility attainable by any design in family (B).
+[1-10:P22081; UTF16 797284] THM-RC17 — Decision-Regret Branch Closure
+[1-10:P22083; UTF16 797334] for every quantitative decision (d), utility (u\in\mathcal U_d), and unresolved family (B), [ U_{d,u}(B,K) \le L_{d,u,A}(K)+\varepsilon_d; ]
+[1-10:P22084; UTF16 797475] every design not in (A_K) belongs to one such family;
+[1-10:P22085; UTF16 797529] no unresolved family can alter:
+[1-10:P22086; UTF16 797561] a mandatory status;
+[1-10:P22087; UTF16 797581] a qualitative marked-menu report;
+[1-10:P22088; UTF16 797615] a required evidence obligation.
+[1-10:P22089; UTF16 797647] Then (A_K) is an (\boldsymbol\varepsilon)-choice-complete portfolio.
+[1-10:P22090; UTF16 797716] Further search or refinement confined to those families is decision irrelevant.
+[1-10:P22092; UTF16 797802] For every exact database (\omega), every feasible design outside (A_K) lies in some family (B).
+[1-10:P22093; UTF16 797898] Its utility is at most:
+[1-10:P22094; UTF16 797922] [ U_{d,u}(B,K) \le L_{d,u,A}(K)+\varepsilon_d. ]
+[1-10:P22095; UTF16 797971] The exact portfolio utility is at least:
+[1-10:P22096; UTF16 798012] [ L_{d,u,A}(K). ]
+[1-10:P22097; UTF16 798030] Thus no outside design improves the portfolio by more than (\varepsilon_d).
+[1-10:P22098; UTF16 798106] Taking the supremum over utilities yields the regret guarantee.
+[1-10:P22099; UTF16 798170] Assumption 3 discharges all nonquantitative requirements. ∎
+[1-10:P22100; UTF16 798230] This is branch-and-bound expressed directly in decision-regret semantics.
+[1-10:P22104; UTF16 798307] 33. Search Versus Verification
+[1-10:P22105; UTF16 798338] Regret uncertainty can be decomposed schematically as:
+[1-10:P22106; UTF16 798393] [ U^\star(K)-L_A(K). ]
+[1-10:P22107; UTF16 798416] A verification computation tends to reduce:
+[1-10:P22108; UTF16 798460] [ U^\star(K). ]
+[1-10:P22109; UTF16 798476] A search computation tends to increase:
+[1-10:P22110; UTF16 798516] [ L_A(K) ]
+[1-10:P22111; UTF16 798527] by discovering a stronger certified witness.
+[1-10:P22112; UTF16 798572] Both close regret.
+[1-10:P22116; UTF16 798594] DEF-RC34 — Search and Elimination Contributions
+[1-10:P22117; UTF16 798642] For outcome (o):
+[1-10:P22118; UTF16 798659] U^\star(K)-U^\star(K_{c,o}), ]
+[1-10:P22119; UTF16 798690] L_A(K_{c,o})-L_A(K). ]
+[1-10:P22120; UTF16 798713] A computation may contribute to either or both.
+[1-10:P22121; UTF16 798761] Its scheduling value depends on expected or guaranteed reduction of the total gap, not on whether it is labeled “search” or “analysis.”
+[1-10:P22125; UTF16 798900] 34. Thaw and Fidelity Escalation
+[1-10:P22126; UTF16 798933] THM-RC20 — Zero Current Value of Thawing a Closed-Irrelevant Macro Family
+[1-10:P22127; UTF16 799007] Suppose macro family (B):
+[1-10:P22128; UTF16 799033] is already certified irrelevant to every live mandatory, qualitative, evidence, and quantitative obligation;
+[1-10:P22129; UTF16 799142] is not a prerequisite for any live computation;
+[1-10:P22130; UTF16 799190] has no required witness-materialization obligation.
+[1-10:P22131; UTF16 799242] Then thawing its hidden microstate has zero current decision value.
+[1-10:P22133; UTF16 799316] Thaw changes only information internal to (B).
+[1-10:P22134; UTF16 799363] By assumptions 1 and 2, no live decision or future live computation depends on that information.
+[1-10:P22135; UTF16 799460] Assumption 3 excludes independent witness value.
+[1-10:P22136; UTF16 799509] THM-RC4 therefore applies. ∎
+[1-10:P22137; UTF16 799538] A theory change can make the same thaw valuable later.
+[1-10:P22141; UTF16 799596] THM-RC21 — Decision-Directed Escalation Stopping
+[1-10:P22142; UTF16 799645] Let fidelity stages produce nested certified enclosures:
+[1-10:P22143; UTF16 799702] [ E_{j+1}\subseteq E_j. ]
+[1-10:P22144; UTF16 799728] If at stage (j):
+[1-10:P22145; UTF16 799745] [ \mathcal I(E_j)=\varnothing ]
+[1-10:P22146; UTF16 799777] for all live obligations and mandatory statuses are exact, then every later stage preserves the current fixed decision.
+[1-10:P22148; UTF16 799903] Prompt-5 decision-invariant stopping states that every exact result in (E_j) gives the same report.
+[1-10:P22149; UTF16 800003] Every later exact result lies in the subset (E_{j+1}\subseteq E_j).
+[1-10:P22150; UTF16 800071] Therefore the report cannot change. ∎
+[1-10:P22151; UTF16 800109] The scheduler should not climb the fidelity ladder after decision influence has vanished.
+[1-10:P22155; UTF16 800202] 35. Local and Factored Metareasoning
+[1-10:P22156; UTF16 800239] THM-RC22 — Exact Local Metareasoning Factorization
+[1-10:P22158; UTF16 800299] metaknowledge factors as [ K=(K_1,\ldots,K_n); ]
+[1-10:P22159; UTF16 800348] terminal scalar loss is additive: [ L(K)=\sum_iL_i(K_i); ]
+[1-10:P22160; UTF16 800407] budgets are componentwise independent: [ B=(B_1,\ldots,B_n); ]
+[1-10:P22161; UTF16 800470] each computation acts on exactly one factor;
+[1-10:P22162; UTF16 800515] outcome kernels, costs, and availability depend only on that factor;
+[1-10:P22163; UTF16 800584] no cross-factor evidence or obligation exists.
+[1-10:P22165; UTF16 800637] \sum_i V^i_{B_i}(K_i). } ]
+[1-10:P22166; UTF16 800664] An optimal global policy is any interleaving of the local optimal policies.
+[1-10:P22168; UTF16 800746] Every admissible global policy decomposes into local policies because computations and outcomes do not cross factors.
+[1-10:P22169; UTF16 800864] Expected terminal loss is the sum of local expected losses.
+[1-10:P22170; UTF16 800924] Independent budgets prevent resource coupling.
+[1-10:P22171; UTF16 800971] Minimizing the sum therefore minimizes each term independently.
+[1-10:P22172; UTF16 801035] Conversely, combining local optimal policies attains the sum of local optima. ∎
+[1-10:P22173; UTF16 801115] With one shared compute budget, factors are coupled by budget allocation and the theorem no longer applies directly.
+[1-10:P22177; UTF16 801235] THM-RC23 — Metareasoning Frontier Stopping
+[1-10:P22178; UTF16 801278] If every live obligation reachable from a computation region is closed, and computations confined to that region cannot alter external availability, theory, or candidate promotion, then every such computation has zero current closure value.
+[1-10:P22180; UTF16 801525] The region lies outside the backward live cone.
+[1-10:P22181; UTF16 801573] Apply THM-RC4. ∎
+[1-10:P22185; UTF16 801593] 36. Computation-Selection Margin
+[1-10:P22186; UTF16 801626] Suppose each candidate computation has a certified score interval:
+[1-10:P22187; UTF16 801693] [ v_c\in[\ell_c,u_c]. ]
+[1-10:P22188; UTF16 801717] The score may be expected net value, guaranteed closure value, or another declared scalar.
+[1-10:P22192; UTF16 801811] THM-RC25 — Scheduler Decision-Margin Theorem
+[1-10:P22193; UTF16 801856] If there exists (c^\star) such that:
+[1-10:P22194; UTF16 801893] [ \ell_{c^\star}
+[1-10:P22195; UTF16 801910] \max_{c\ne c^\star}u_c, ]
+[1-10:P22196; UTF16 801936] then (c^\star) is the unique highest-score computation for every exact score assignment consistent with the intervals.
+[1-10:P22197; UTF16 802055] Further metareasoning that only narrows these intervals cannot change the selected computation.
+[1-10:P22199; UTF16 802157] For every competitor (c),
+[1-10:P22200; UTF16 802183] [ v_{c^\star} \ge \ell_{c^\star}
+[1-10:P22201; UTF16 802216] u_c \ge v_c. ]
+[1-10:P22202; UTF16 802231] Thus (c^\star) is uniquely best.
+[1-10:P22203; UTF16 802264] Nested interval refinement preserves the strict separation. ∎
+[1-10:P22204; UTF16 802326] This terminates one level of the meta-metareasoning regress.
+[1-10:P22208; UTF16 802390] 37. Scheduler Proposal Independence and Release Safety
+[1-10:P22209; UTF16 802445] THM-RC18 — Scheduler Proposal Independence
+[1-10:P22210; UTF16 802488] Replacing the computation-ranking mechanism by:
+[1-10:P22211; UTF16 802536] an LLM;
+[1-10:P22212; UTF16 802544] a neural model;
+[1-10:P22213; UTF16 802560] reinforcement learning;
+[1-10:P22214; UTF16 802584] random exploration;
+[1-10:P22215; UTF16 802604] a human heuristic
+[1-10:P22216; UTF16 802622] does not compromise engineering soundness when:
+[1-10:P22217; UTF16 802670] accepted engineering results remain independently certified;
+[1-10:P22218; UTF16 802731] UNKNOWN and failure remain unresolved;
+[1-10:P22219; UTF16 802770] closure is independently checked;
+[1-10:P22220; UTF16 802804] release requires the same release gate.
+[1-10:P22222; UTF16 802850] The ranking mechanism changes only which computation is attempted.
+[1-10:P22223; UTF16 802917] It does not alter the certificate predicates admitting facts into (K) or the release predicate.
+[1-10:P22224; UTF16 803013] Therefore it affects efficiency, not accepted truth. ∎
+[1-10:P22228; UTF16 803071] DEF-RC35 — Certified Release Gate
+[1-10:P22229; UTF16 803105] Release is permitted exactly when an independent checker verifies:
+[1-10:P22230; UTF16 803172] (G(K)=\mathbf0);
+[1-10:P22231; UTF16 803189] portfolio witnesses remain valid;
+[1-10:P22232; UTF16 803223] every model and artifact is in domain;
+[1-10:P22233; UTF16 803262] evidence dependencies are active;
+[1-10:P22234; UTF16 803296] the theory fingerprint matches the release request.
+[1-10:P22238; UTF16 803351] THM-RC19 — Release Soundness Is Independent of Scheduler Quality
+[1-10:P22239; UTF16 803416] If release is controlled by DEF-RC35, no scheduler—optimal, greedy, random, learned, or adversarially poor—can cause an unresolved project to pass the release gate.
+[1-10:P22241; UTF16 803587] The gate evaluates certified closure and artifact validity, not scheduler identity or predicted RCVOC.
+[1-10:P22242; UTF16 803690] A poor scheduler may fail to produce required certificates, in which case the gate rejects or returns UNKNOWN. ∎
+[1-10:P22246; UTF16 803806] 38. Human Judgment and Measurement
+[1-10:P22247; UTF16 803841] Human judgment
+[1-10:P22248; UTF16 803856] A human or professional response is a computation outcome only within its declared authority.
+[1-10:P22249; UTF16 803950] It may:
+[1-10:P22250; UTF16 803958] approve a negotiable architectural change;
+[1-10:P22251; UTF16 804001] issue a professional judgment;

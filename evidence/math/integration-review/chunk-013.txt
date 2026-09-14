@@ -1,0 +1,753 @@
+[14801] THM-JCD94 — PCROUTE alternatives may be merged exactly iff active JCD computations factor through the merger
+[14802] Proof. This is the quotient factorization criterion specialized to router alternatives. If one active computation distinguishes them, merger is unsound. ∎
+[14803] THM-JCD95 — Incremental JCD recertification equals cold checking
+[14805] complete cross-layer dependencies;
+[14806] valid rewrite transport;
+[14807] exact cut and cache invalidation;
+[14808] deterministic materialization/checkers;
+[14809] candidate-rooted PCROUTE reuse;
+[14810] branch-state reconstruction;
+[14811] unchanged semantics for reused artifacts.
+[14812] Then incremental and cold JCD checking agree.
+[14813] Proof. Condense checked cycles, topologically order the global dependency DAG, and induct. Reused nodes have equal complete roots; invalidated nodes are recomputed on cold-equal predecessors. Therefore every candidate, route result, cut, bound, archive status, and root verdict agrees. ∎
+[14949] 64. Proof artifacts
+[14950] DEF-JCD139 — JCD proof artifact
+[14951] \[ \eta= ( \mathsf{id}, \mathsf{proposition}, \mathsf{witness}, \mathsf{checker}, \mathsf{arithmetic}, D_\eta, \mathsf{dependencies}, \mathsf{versions} ). \]
+[14955] Checker
+[14957] Invalidation
+[14959] Baseline PCSIR applicability
+[14960] Baseline applies
+[14963] baseline root
+[14965] Rewrite authorization
+[14966] Actor may perform rewrite
+[14967] authority checker
+[14968] logic/time
+[14969] authority/version
+[14971] Rewrite precondition
+[14972] Rewrite applies
+[14973] transaction checker
+[14974] typed logic
+[14975] source state
+[14978] Old/new identities map correctly
+[14979] RT checker
+[14980] finite relation
+[14981] rewrite
+[14983] Master assignment
+[14984] Assignment is typed/legal
+[14986] finite/discrete
+[14987] schema
+[14989] Materialization
+[14990] Candidate follows from assignment
+[14991] materializer checker
+[14993] assignment/rewrite
+[14995] Candidate PCSIR
+[14996] Candidate satisfies Prompt 1
+[14999] candidate roots
+[15001] PCROUTE applicability
+[15002] Route request matches candidate
+[15003] RTR checker
+[15004] types/hashes
+[15005] candidate/request
+[15007] PCROUTE result
+[15008] Routed proposition holds
+[15011] route roots
+[15013] Route upper bound
+[15014] Disposed witness cost
+[15015] objective checker
+[15017] route/objective
+[15019] Route lower bound
+[15020] Valid relaxation bound
+[15021] dual/pricing checker
+[15023] column universe
+[15025] No-good cut
+[15026] Excludes exact assignment
+[15027] Boolean checker
+[15028] integer
+[15031] Partial no-good
+[15032] Every extension infeasible
+[15033] logic checker
+[15034] SAT/SMT
+[15035] core/domain
+[15037] Core sufficiency
+[15038] Core literals imply conflict
+[15039] theorem checker
+[15041] conflict/mapping
+[15043] Logic cut
+[15044] Literal cut is valid
+[15045] logic-Benders checker
+[15047] core
+[15049] Capacity cut
+[15050] Mandatory demand exceeds capacity
+[15053] resources/topology
+[15055] Geometric cut
+[15056] Preserved separator blocks route
+[15059] geometry/envelope
+[15061] Classical optimality cut
+[15062] Dual underestimates route LP
+[15063] rational LP checker
+[15065] \(W,c,T\)
+[15067] Benders feasibility cut
+[15068] Farkas inequality necessary
+[15071] \(W,T\)
+[15073] Generalized-Benders cut
+[15074] Lagrangian envelope lower-bounds
+[15077] model/domain
+[15079] Dual scope
+[15080] Multiplier bound to exact primal
+[15081] scope checker
+[15083] primal roots
+[15085] Cut lift
+[15086] Point cut valid over region
+[15087] theorem/SMT checker
+[15089] region roots
+[15091] Cut dominance
+[15092] One cut subsumes another
+[15094] logic/rational
+[15095] both cuts
+[15097] Cut applicability
+[15098] Active roots match domain
+[15101] any cut root
+[15103] Master lower bound
+[15104] Node objective lower bound
+[15107] node/cuts
+[15109] Candidate upper bound
+[15110] Joint witness objective
+[15111] joint checker
+[15113] candidate
+[15115] Outer branch
+[15121] Pareto dominance
+[15122] Candidate dominates another
+[15127] Pareto nondominance
+[15128] No feasible covered state dominates
+[15129] coverage checker
+[15131] archive/search
+[15133] Interval objective
+[15134] Exact value enclosed
+[15135] interval checker
+[15137] analyses
+[15140] Merged states indistinguishable
+[15141] experiment checker
+[15142] finite functions
+[15143] experiments
+[15145] Master CEGAR
+[15146] Refinement preserves/constricts domain
+[15148] set/logic
+[15149] partition
+[15151] AI proposal disposal
+[15152] Proposal passed typed gates
+[15154] logic
+[15155] proposal/authority
+[15157] Sovereignty
+[15158] Protected roots preserved/authorized
+[15159] sovereignty checker
+[15161] protected state
+[15163] Scheduler provenance
+[15164] Computation order recorded
+[15165] provenance checker
+[15166] hashes
+[15167] scheduler
+[15170] Incremental equals current semantics
+[15176] Resume state complete
+[15179] all transition roots
+[15181] PCJCD root
+[15182] Final JCD mode valid
+[15183] PCJCD checker
+[15185] entire package
+[15188] 65. Exact classical Benders numerical example
+[15189] Let master variables
+[15190] \[ x_1,x_2\in\{0,1\}. \]
+[15191] Master architecture cost:
+[15192] \[ F_A(x)=x_1+\frac35x_2. \]
+[15193] Routing subproblem:
+[15194] \[ \begin{aligned} \varphi(x) = \min_{y\ge0}\quad &y\\ \text{s.t.}\quad &y\ge2-x_1-x_2,\\ &-y\ge-x_1. \end{aligned} \]
+[15196] \[ W= \begin{bmatrix} 1\\-1 \end{bmatrix}, \qquad h-Tx= \begin{bmatrix} 2-x_1-x_2\\ -x_1 \end{bmatrix}. \]
+[15198] \[ \begin{aligned} \max_{\pi_1,\pi_2}\quad & \pi_1(2-x_1-x_2)-\pi_2x_1\\ \text{s.t.}\quad & \pi_1-\pi_2\le1,\\ &\pi_1,\pi_2\ge0. \end{aligned} \]
+[15199] Iteration 1
+[15200] Initial master has \(\eta\ge0\) and selects
+[15201] \[ x=(0,0). \]
+[15202] Subproblem requires
+[15203] \[ y\ge2,\qquad y\le0, \]
+[15204] so it is infeasible.
+[15205] Farkas ray:
+[15206] \[ \pi=(1,1). \]
+[15207] Check:
+[15208] \[ W^\top\pi=1-1=0\le0, \]\[ \pi^\top(h-Tx) = 2-2x_1-x_2. \]
+[15209] Feasibility cut:
+[15210] \[ \boxed{ 2-2x_1-x_2\le0 } \]
+[15211] or
+[15212] \[ \boxed{ 2x_1+x_2\ge2. } \]
+[15213] Iteration 2
+[15214] The master now chooses
+[15215] \[ x=(1,0), \]
+[15216] because its architecture cost \(1\) is below \(8/5\) at \((1,1)\).
+[15217] Subproblem:
+[15218] \[ y\ge1,\qquad y\le1. \]
+[15220] \[ y^\star=1, \qquad \varphi(1,0)=1. \]
+[15221] Dual optimum:
+[15222] \[ \pi=(1,0). \]
+[15223] Optimality cut:
+[15224] \[ \boxed{ \eta\ge2-x_1-x_2. } \]
+[15225] It is tight at \((1,0)\).
+[15226] Iteration 3
+[15227] Candidate \((1,0)\) has total lower/master value
+[15228] \[ 1+1=2. \]
+[15229] Candidate \((1,1)\) has
+[15230] \[ \eta\ge0, \qquad F_A=\frac85. \]
+[15231] The master selects
+[15232] \[ x^\star=(1,1). \]
+[15233] Subproblem optimum:
+[15234] \[ y^\star=0. \]
+[15235] Final exact objective:
+[15236] \[ \boxed{ z^\star=\frac85. } \]
+[15237] The four binary assignments confirm completeness:
+[15238] \(x_1\)
+[15239] \(x_2\)
+[15240] Feasible?
+[15241] Route value
+[15242] Total
+[15245] No
+[15246] \(+\infty\)
+[15247] —
+[15262] \(8/5\)
+[15265] 66. Logic-based Benders example
+[15266] Master literals:
+[15267] \(y_{E1,A}=1\): equipment E1 is in zone A;
+[15268] \(h_{S1}=0\): shaft S1 is inactive;
+[15269] \(z_{T1}=1\): topology T1 is selected.
+[15270] The checked routing theorem states:
+[15271] Under topology T1, equipment E1 in zone A must connect through shaft S1; no other permitted route class exists.
+[15272] Therefore every design satisfying
+[15273] \[ y_{E1,A}=1, \quad h_{S1}=0, \quad z_{T1}=1 \]
+[15274] is infeasible.
+[15275] The exact logic cut is
+[15276] \[ \boxed{ (1-y_{E1,A}) + h_{S1} + (1-z_{T1}) \ge1. } \]
+[15277] At least one core literal must change.
+[15278] Suppose one drops the topology literal and adds
+[15279] \[ (1-y_{E1,A})+h_{S1}\ge1. \]
+[15280] This is unsound if topology \(T2\) permits E1 to reach a different active shaft while \(y_{E1,A}=1\) and \(h_{S1}=0\). The omitted literal was load-bearing.
+[15282] 67. Generalized-Benders example
+[15283] Let corridor width
+[15284] \[ w\in[0,3]. \]
+[15285] Continuous route-relaxation subproblem:
+[15286] \[ \begin{aligned} \varphi_1(w) = \min_{q\ge0}\quad &q^2\\ \text{s.t.}\quad &q\ge3-w. \end{aligned} \]
+[15287] Equivalently,
+[15288] \[ g(w,q)=3-w-q\le0. \]
+[15289] At
+[15290] \[ w_0=1, \]
+[15291] the optimum is
+[15292] \[ q^\star=2, \qquad \varphi_1(1)=4. \]
+[15293] Lagrangian:
+[15294] \[ L(w,q,\lambda) = q^2+\lambda(3-w-q). \]
+[15295] Stationarity at \(q=2\) gives
+[15296] \[ 2q-\lambda=0 \Longrightarrow \lambda^\star=4. \]
+[15297] The lower envelope is
+[15298] \[ \begin{aligned} \Theta_4(w) &= \inf_{q\ge0} \left[q^2+4(3-w-q)\right]\\ &= \inf_{q\ge0} \left[(q-2)^2+8-4w\right]\\ &= 8-4w. \end{aligned} \]
+[15299] Hence the exact valid cut for this class is
+[15300] \[ \boxed{ \eta\ge8-4w. } \]
+[15301] At \(w=1\), it is tight.
+[15302] Now add a discrete alternate route class with cost
+[15303] \[ \varphi_2(w)=1+0.1w. \]
+[15304] The true routing value becomes
+[15305] \[ \varphi(w) = \min\{\varphi_1(w),\varphi_2(w)\}. \]
+[15306] At \(w=0\),
+[15307] \[ \varphi(0)=1, \]
+[15308] while the old class-specific cut gives
+[15309] \[ 8-4(0)=8. \]
+[15310] The cut is not valid for the expanded route universe. It remains valid only for route class 1 or a branch that forces that class.
+[15312] 68. Parametric dual counterexample
+[15313] Original route LP:
+[15314] \[ \begin{aligned} \min\quad &2y_1\\ \text{s.t.}\quad &y_1\ge1,\\ &y_1\ge0. \end{aligned} \]
+[15315] Dual:
+[15316] \[ \max\pi \quad \text{s.t.}\quad 0\le\pi\le2. \]
+[15317] The dual vector
+[15318] \[ \pi=2 \]
+[15319] gives exact value and cut
+[15320] \[ \eta\ge2. \]
+[15321] A geometry rewrite creates a new valid route column \(y_2\) with cost \(1/2\):
+[15322] \[ \begin{aligned} \min\quad &2y_1+\frac12y_2\\ \text{s.t.}\quad &y_1+y_2\ge1,\\ &y_1,y_2\ge0. \end{aligned} \]
+[15323] The new dual requires
+[15324] \[ \pi\le2, \qquad \pi\le\frac12. \]
+[15325] The old dual \(\pi=2\) is infeasible. The new optimum is \(1/2\). Reusing the old cut would overestimate the route value by a factor of four.
+[15327] 69. Pareto example
+[15328] Exact feasible vectors:
+[15329] \[ A=(0,2), \qquad B=(1,1.1), \qquad C=(2,0). \]
+[15330] All are nondominated.
+[15331] As proved in THM-JCD73, no positive weighted sum selects \(B\).
+[15332] An epsilon-constraint subproblem
+[15333] \[ \min J_1 \quad\text{s.t.}\quad J_2\le1.1 \]
+[15334] excludes \(A\), admits \(B,C\), and selects \(B\).
+[15335] Interval form
+[15337] \[ \widehat J(B) = ([0.9,1.1],[1.0,1.2]), \]\[ \widehat J(D) = ([0.95,1.05],[1.05,1.15]). \]
+[15338] Neither certified interval-dominates the other because both coordinates overlap. Their Pareto relation is UNKNOWN until bounds refine.
+[15340] 70. Synthetic co-design benchmark
+[15341] 70.1 Variables
+[15342] Four binary strategic decisions:
+[15343] \[ e=\text{move equipment}, \quad h=\text{activate alternate shaft}, \]\[ t=\text{split system topology}, \quad w=\text{widen service corridor}. \]
+[15344] Architecture cost:
+[15345] \[ J_A=2e+3h+t+2w. \]
+[15346] Mandatory cut demand:
+[15347] \[ d=10-3t. \]
+[15348] Capacity:
+[15349] \[ b=7+4h+2w. \]
+[15350] Exact capacity feasibility:
+[15351] \[ 10-3t\le7+4h+2w. \]
+[15352] Equivalent cut:
+[15353] \[ \boxed{ 4h+2w+3t\ge3. } \]
+[15354] A separately proved logic conflict says:
+[15355] \[ e=0,\ h=0,\ t=0 \]
+[15356] is infeasible, producing
+[15357] \[ \boxed{ e+h+t\ge1. } \]
+[15358] For feasible candidates, synthetic route cost is
+[15359] \[ J_R=12-4e-3h-2t-w. \]
+[15360] Energy proxy:
+[15361] \[ J_E=100-12e-8h-10t-3w. \]
+[15362] Area loss:
+[15363] \[ J_{\mathrm{area}}=2h+3w. \]
+[15364] All expressions are exact synthetic arithmetic.
+[15365] 70.2 Baselines
+[15366] Architecture-first
+[15367] The lowest architecture-cost feasible assignment is
+[15368] \[ (e,h,t,w)=(0,0,1,0), \]
+[15370] \[ J_A=1, \quad J_R=10, \quad J_{\mathrm{joint}}=11. \]
+[15371] Router-first
+[15372] The minimum isolated route cost occurs at
+[15373] \[ (1,1,1,1), \]
+[15375] \[ J_R=2, \quad J_A=8, \quad J_{\mathrm{joint}}=10. \]
+[15376] Joint scalar optimum
+[15377] Two assignments attain total \(9\):
+[15378] \[ (1,0,1,0): \quad J_A=3,\ J_R=6,\ J_E=78,\ J_{\mathrm{area}}=0, \]\[ (1,1,1,0): \quad J_A=6,\ J_R=3,\ J_E=70,\ J_{\mathrm{area}}=2. \]
+[15379] They differ in energy and area and remain distinct under the Pareto policy.
+[15380] Additional Pareto alternative
+[15381] \[ (1,1,1,1): \quad J_{\mathrm{joint}}=10,\ J_E=67,\ J_{\mathrm{area}}=5. \]
+[15382] This remains nondominated because it has the best energy.
+[15383] 70.3 PCROUTE conflict and cuts
+[15384] The baseline \((0,0,0,0)\) fails:
+[15385] the logic core;
+[15386] the capacity cut \(10>7\).
+[15387] The JCD system adds both checked cuts.
+[15388] 70.4 Benders route-value cut
+[15389] Within this synthetic fixed route model, the exact route-value expression is
+[15390] \[ \eta\ge12-4e-3h-2t-w \]
+[15391] over the feasible route domain.
+[15392] A geometry rewrite that adds a new route class invalidates this cut unless the new class is included in the parametric derivation.
+[15393] 70.5 Invalid dual signal
+[15394] A branch-local dual generated with \(h=0\) is intentionally proposed as global. CheckCutValidity rejects it because the active route-column universe changes when \(h=1\).
+[15395] 70.6 Exact benchmark disposition
+[15396] The complete sixteen-point binary universe is finite and exactly enumerable. The benchmark’s scalar optimum is \(9\). Its three-coordinate Pareto archive contains the three candidates identified above.
+[15397] This is an exact synthetic benchmark, not a measured building result.
+[15399] 71. Synthetic 190-room hotel co-design
+[15400] 71.1 Baseline variables
+[15401] Editable variables:
+[15402] mechanical equipment alternative \(m_{\mathrm{AHU}}\);
+[15403] equipment placement within a declared plant-room region;
+[15404] alternate shaft activation \(h_{S2}\);
+[15405] main shaft width class;
+[15406] selected floor service-spine widths;
+[15407] supply/return topology;
+[15408] hydronic zoning;
+[15409] electrical topology;
+[15410] rack consolidation;
+[15411] penetration-family reservation.
+[15412] Protected:
+[15413] guest-room count;
+[15414] room-module geometry;
+[15415] stairs;
+[15416] main egress;
+[15417] façade concept;
+[15418] selected structural grid;
+[15419] fire compartments;
+[15420] property boundary.
+[15421] 71.2 Baseline candidate
+[15422] Baseline master assignment:
+[15423] original AHU;
+[15424] west plant-room placement;
+[15425] shaft S1 only;
+[15426] \(1.50\) m service spine;
+[15427] centralized hydronic topology;
+[15428] shared corridor rack;
+[15429] original penetration family.
+[15430] The candidate PCSIR is accepted.
+[15431] 71.3 Baseline PCROUTE results
+[15432] Three conflicts occur.
+[15433] Rack conflict
+[15434] Required exact packed width:
+[15435] \[ 0.72+0.34+0.30+0.24 = 1.60\ \mathrm m. \]
+[15436] Available:
+[15437] \[ 1.50\ \mathrm m. \]
+[15438] Shortfall:
+[15439] \[ 0.10\ \mathrm m. \]
+[15440] Shaft cut conflict
+[15441] Mandatory synthetic demand:
+[15442] \[ 11\ \text{units}. \]
+[15443] S1 portal capacity:
+[15444] \[ 9\ \text{units}. \]
+[15445] Physical-fiber conflict
+[15446] One sanitary branch has an empty gravity-elevation interval under the original source/shaft assignment.
+[15447] 71.4 Conflict-to-master mapping
+[15448] A checked core states:
+[15449] west equipment placement;
+[15450] S2 inactive;
+[15451] centralized topology
+[15452] jointly force the over-capacity S1 portal.
+[15453] Logic cut:
+[15454] \[ \boxed{ (1-y_{\mathrm{AHU,west}}) + h_{S2} + (1-z_{\mathrm{central}}) \ge1. } \]
+[15455] Capacity cut:
+[15456] \[ \boxed{ 9+4h_{S2}+2\Delta w_{\mathrm{spine}} \ge11. } \]
+[15457] Here \(\Delta w_{\mathrm{spine}}\in\{0,1\}\) denotes the approved width-class increase.
+[15458] 71.5 Exact lower-bound cut
+[15459] Under the fixed baseline route relaxation and objective policy, a checked dual gives
+[15460] \[ \eta_R \ge 2100 - 300h_{S2} - 100\Delta w_{\mathrm{spine}} - 220z_{\mathrm{split}} \]
+[15461] in synthetic cost units.
+[15462] The cut is stored with:
+[15463] baseline route-column universe;
+[15464] baseline resource semantics;
+[15465] exact scalar route policy;
+[15466] candidate-family domain.
+[15467] 71.6 Invalid dual cut rejected
+[15468] Moving the AHU creates a new direct route column through S2. The old dual violates the new column’s dual inequality. The former cut is invalidated instead of reused.
+[15469] 71.7 Candidate H1
+[15470] Rewrites:
+[15471] activate S2;
+[15472] move AHU \(6\) m east within the authorized plant region;
+[15473] split hydronic zoning;
+[15474] widen floor-7 service spine to \(1.65\) m;
+[15475] split the shared rack.
+[15477] PCROUTE returns a feasible route family.
+[15478] Synthetic objective vector:
+[15479] \[ \begin{aligned} J(H1)=( &31.8\text{ M capex},\\ &1.42\text{ M route cost},\\ &642\text{ MWh annual distribution energy},\\ &9.6\text{ kt carbon proxy},\\ &12410\text{ m}^2\text{ usable area},\\ &14\text{ assembly families} ). \end{aligned} \]
+[15480] 71.8 Candidate H2
+[15482] retain AHU location;
+[15483] enlarge S1;
+[15484] widen the service spine;
+[15485] retain centralized hydronics;
+[15486] use separated racks.
+[15487] \[ \begin{aligned} J(H2)=( &31.6\text{ M},\\ &1.56\text{ M},\\ &655\text{ MWh},\\ &9.5\text{ kt},\\ &12402\text{ m}^2,\\ &11\text{ assembly families} ). \end{aligned} \]
+[15488] H1 and H2 are nondominated:
+[15489] H2 has lower capex, carbon proxy, and complexity;
+[15490] H1 has lower route cost, lower energy, and more usable area.
+[15491] 71.9 Candidate H3
+[15492] A partial equipment move without shaft or topology change remains routing-infeasible.
+[15493] 71.10 Candidate H4
+[15494] \[ \begin{aligned} J(H4)=( &32.2\text{ M},\\ &1.65\text{ M},\\ &670\text{ MWh},\\ &9.8\text{ kt},\\ &12390\text{ m}^2,\\ &16\text{ assembly families} ). \end{aligned} \]
+[15495] H4 is dominated by H1.
+[15496] 71.11 Bounded scalar status
+[15497] For one explicitly authorized synthetic scalar policy:
+[15498] \[ U=33050 \]
+[15500] \[ L=32640 \]
+[15501] in thousands of synthetic monetary-equivalent units.
+[15502] Gap:
+[15503] \[ \frac{33050-32640}{33050} = \frac{410}{33050} \approx1.2405\%. \]
+[15504] Final status:
+[15505] \[ \boxed{ \mathsf{JCD\_BOUNDED\_GAP} } \]
+[15506] with a partial Pareto archive containing H1 and H2.
+[15507] No runtime, real savings, or real hotel certification is claimed.
+[15509] 72. Falsification and regression suite
+[15512] Required typed result
+[15514] Import superseded DS19
+[15515] SUPERSEDED_IMPORT_REJECTED
+[15517] Import RTR dual without candidate root
+[15518] DUAL_SCOPE_INCOMPLETE
+[15520] Reuse RTR pricing closure at changed geometry
+[15521] STALE_ROUTING_BOUND
+[15523] Treat MW convex load map as affine
+[15524] ADD_RTR3_1_VIOLATION
+[15526] Accepted Prompt-2 exact feasible package
+[15527] RTR_IMPORT_VALID
+[15529] Prompt-2 UNKNOWN promoted to infeasible
+[15532] Prompt-2 branch-local price called global
+[15535] Prompt-2 repair price with empty dual support
+[15538] Master variable missing unit
+[15539] MASTER_TYPE_FAILURE
+[15541] Two owners claim same variable
+[15542] MASTER_OWNERSHIP_CONFLICT
+[15544] Router-local variable inserted in global master
+[15545] OWNERSHIP_VIOLATION
+[15547] Viewer coordinate optimized
+[15548] NONAUTHORITATIVE_VARIABLE
+[15550] Continuous geometry variable outside bounds
+[15551] MASTER_DOMAIN_FAILURE
+[15553] Binary topology value fractional in exact assignment
+[15554] MASTER_ASSIGNMENT_INVALID
+[15556] Derived variable independently assigned
+[15557] DERIVATION_CONFLICT
+[15559] Protected root absent from registry
+[15560] SOVEREIGNTY_INCOMPLETE
+[15562] Rewrite touches protected wall without authorization
+[15563] SOVEREIGNTY_VIOLATION
+[15565] Authorization expired
+[15566] AUTHORITY_EXPIRED
+[15568] Route savings offered as authorization
+[15569] AUTHORITY_NONCREATION
+[15571] Valid authority witness
+[15572] REWRITE_AUTHORIZED
+[15574] Master assignment references nonexistent shaft
+[15575] empty materialization fiber
+[15577] Assignment has two permitted equipment orientations
+[15578] MATERIALIZATION_NONUNIQUE
+[15580] Nonunique materialization assigned one exact route value
+[15581] MATERIALIZATION_REFINEMENT_REQUIRED
+[15583] Candidate compiler emits malformed port
+[15584] candidate PCSIR REJECT
+[15586] Candidate compiler emits approximate mesh only
+[15587] APPROX_MATERIALIZATION
+[15589] Exact candidate PCSIR accepted
+[15590] CANDIDATE_PCSIR_VALID
+[15592] Candidate root differs from PCROUTE root
+[15593] PCROUTE_INAPPLICABLE
+[15595] Materialization UNKNOWN passed to exact PCROUTE
+[15596] blocked
+[15598] Candidate versions all match
+[15599] applicability PASS
+[15601] Child state fails rewrite postcondition
+[15602] rewrite REJECT
+[15604] Disjoint wall-color and equipment-route rewrites
+[15605] commute if dependencies disjoint
+[15607] Equipment move and alignment rewrite overlap
+[15608] noncommuting
+[15610] Rewrite correspondence maps two objects to one without merge type
+[15611] correspondence REJECT
+[15613] Rollback reconstructs exact parent hash
+[15616] Rollback parent hash differs
+[15617] rollback REJECT
+[15619] Rewrite omits invalidation of route graph
+[15620] DEPENDENCY_INCOMPLETE
+[15622] Equipment catalog option incompatible with port medium
+[15625] Equipment option exceeds room access opening
+[15626] materialization REJECT
+[15628] Equipment placement inside eligible region
+[15629] placement PASS
+[15631] Equipment placement intersects maintenance zone
+[15634] Source assignment changes net identity correctly
+[15635] topology candidate PASS
+[15637] Source assignment changes without net update
+[15638] NET_IDENTITY_FAILURE
+[15640] Loop topology used where radial required
+[15641] topology REJECT
+[15643] Manifold insertion updates aggregate flows
+[15644] topology PASS
+[15646] Topology rewrite leaves old route columns
+[15647] stale-column rejection
+[15649] Shaft activated without geometry materialization
+[15650] candidate REJECT
+[15652] Shaft capacity lower than mandatory cut demand
+[15653] capacity cut
+[15655] Shaft widening violates usable-area floor
+[15656] master hard FAIL
+[15658] Riser moved across protected fire compartment
+[15659] sovereignty FAIL
+[15661] Corridor reservation exceeds editable zone
+[15662] master FAIL
+[15664] Corridor width interval straddles route feasibility
+[15665] abstract MIXED
+[15667] Wider corridor gives valid exact candidate
+[15668] PCSIR check
+[15670] Penetration selected outside candidate family
+[15673] Penetration conflicts with structure
+[15674] candidate PCSIR FAIL
+[15676] Authorized structural opening passes structural checker
+[15677] candidate eligible
+[15679] PCROUTE called on exact candidate
+[15680] route evaluation proceeds
+[15682] PCROUTE feasible witness
+[15683] routing upper bound
+[15685] PCROUTE pricing-closed LP
+[15686] routing lower bound
+[15688] PCROUTE bounded gap
+[15689] interval route value
+[15691] PCROUTE UNKNOWN
+[15692] route value UNKNOWN
+[15694] PCROUTE exact infeasibility
+[15695] route value \(+\infty\)
+[15697] No inner path only
+[15698] not infeasible
+[15700] Candidate route objective policy differs
+[15701] route cache miss
+[15703] Route witness cost 100
+[15704] upper bound 100
+[15706] LP lower bound 90
+[15707] lower bound 90
+[15709] Upper 100 lower 90
+[15710] route interval [90,100]
+[15712] Lower exceeds upper
+[15713] certificate inconsistency
+[15715] UNKNOWN represented as 1e12 penalty
+[15718] Infeasible candidate omitted from scalar arithmetic
+[15721] Classical Benders primal matrix matches cut
+[15722] continue
+[15724] Dual feasible vector
+[15725] lower-bound cut
+[15727] Dual violates one column inequality
+[15728] cut REJECT
+[15730] Benders cut sign reversed
+[15733] Exact example first Farkas ray
+[15734] feasibility cut \(2x_1+x_2\ge2\)
+[15736] Exact example optimality dual
+[15737] \(\eta\ge2-x_1-x_2\)
+[15739] Exact final solution
+[15740] \(x=(1,1),z=8/5\)
+[15742] \(W\) changes after geometry rewrite
+[15743] old cut stale
+[15745] \(c\) changes after objective update
+[15746] old dual stale
+[15748] New route column violates old dual
+[15749] COLUMN_UNIVERSE_CHANGED
+[15751] Resource renamed but numeric coefficients equal
+[15752] semantic mismatch
+[15754] Branch-local dual exported to root
+[15755] CUT_SCOPE_INVALID
+[15757] Incomplete pricing dual proposed
+[15760] Full pricing closure certified
+[15761] dual eligible for scoped cut
+[15763] Restricted Farkas ray without Farkas pricing
+[15764] not global infeasibility
+[15766] Full Farkas closure
+[15767] feasibility cut eligible
+[15769] Convex GBD subproblem with Slater
+[15770] multiplier cut accepted
+[15772] Discrete route class hidden in continuous model
+[15773] GBD precondition FAIL
+[15775] Local nonlinear multiplier
+[15776] heuristic only
+[15778] GBD cut \(\eta\ge8-4w\) on original class
+[15781] Same cut after cheap alternate class
+[15782] invalid
+[15784] Lagrangian envelope computed with unsafe local minimum
+[15787] Exact no-good at one assignment
+[15788] excludes exactly one
+[15790] Partial no-good without extension proof
+[15793] Partial core all extensions infeasible
+[15794] logic cut accepted
+[15796] Core contains unentailed route class
+[15799] E1-A/S1-off/T1 core
+[15800] three-literal cut accepted
+[15802] Drop T1 from that proof
+[15803] counterexample found
+[15805] Stronger core cut excludes superset
+[15806] dominance certificate
+[15808] Core theorem version changes
+[15809] cut stale
+[15811] Capacity cut ignores shared-trunk reduction
+[15814] Capacity map monotone and complete
+[15815] cut accepted
+[15817] Geometric separator preserved over interval
+[15818] lifted cut accepted
+[15820] Tiny wall move opens bypass
+[15821] lift rejected
+[15823] Portal set changes inside lifted domain
+[15824] cut lift UNKNOWN
+[15826] Cut \(\kappa_1\) stronger everywhere
+[15827] remove dominated \(\kappa_2\)
+[15829] Cut comparison domains differ
+[15830] dominance unresolved
+[15832] Old cut aged but roots unchanged
+[15833] remains valid
+[15835] Route-envelope version changes
+[15836] dependent cuts invalidated
+[15838] Objective policy changes
+[15839] lower-bound cuts invalidated
+[15841] Checker version changes
+[15842] cuts require recertification
+[15844] Branch-local cut installed globally
+[15845] MODAL_STRENGTHENING
+[15847] Exact global cut installed in child
+[15850] Dual scope includes candidate and node
+[15851] explanation accepted
+[15853] Dual field omits pricing-closure status
+[15854] explanation incomplete
+[15856] Interpolated field labeled exact
+[15859] Repair price interpreted as construction cost
+[15860] rejected
+[15862] Exact route dual reused after new column
+[15865] Conflict suggests shaft activation
+[15866] proposal only
+[15868] Repair proposal passes authority and checks
+[15869] candidate generated
+[15871] Repair proposal violates protected room
+[15874] Two-step repair outside declared radius
+[15875] neighborhood exclusion
+[15877] Repair distance called cost without semantics
+[15878] labeling failure
+[15880] Viewer-identical states with different hidden shaft capacity
+[15881] quotient separates
+[15883] Equal route cost but different carbon
+[15886] Experiment family adds reliability objective
+[15887] quotient refines
+[15889] Quotient merger preserves every active function
+[15890] accepted
+[15892] Abstract cell contains feasible/infeasible placements
+[15893] MIXED
+[15895] Abstract feasible claim from one witness only
+[15896] overclaim
+[15898] Counterexample splits geometry box
+[15899] CEGAR refinement accepted
+[15901] Refinement child leaves parent concretization
+[15902] refinement invalid
+[15904] Finite atom refinement repeats split
+[15905] no-progress failure
+[15907] Exact objective vector A dominates D
+[15908] dominance PASS
+[15910] Unsupported point B under weighted sums
+[15911] remains Pareto
+[15913] Positive weighted optimum dominated
+[15914] impossible/check failure
+[15916] Interval dominance strict in all coordinates
+[15917] certified dominance
+[15919] Interval overlap
+[15920] dominance UNKNOWN
+[15922] Pareto archive omits unexamined region
+[15923] partial only
+[15925] Complete finite archive and dominance proofs
+[15926] Pareto certified
+[15928] Epsilon threshold 1.1 recovers B
+[15931] Coarse epsilon grid skips attainable value
+[15932] no completeness
+[15934] Lexicographic first stage unresolved
+[15935] later exact stage blocked
+[15937] Scalarization weights unauthorized
+[15938] policy failure
+[15940] Outer branch children overlap
+[15941] branch invalid
+[15943] Outer branch children miss assignment
+[15946] Node lower bound uses valid additive bounds
+[15949] Nonadditive max objective uses summed bounds
+[15950] bound invalid
+[15952] Incumbent lacks accepted PCROUTE
+[15953] upper bound invalid
+[15955] All nodes closed with valid bounds
+[15956] exact optimum
+[15958] One candidate route UNKNOWN
+[15959] node remains open
+[15961] Timeout with incumbent and lower bound
+[15964] Timeout called exact
+[15967] AI proposes valid equipment move
+[15968] remains proposal until checked
+[15970] AI invents nonexisting shaft
+[15971] schema rejection
+[15973] AI proposes protected wall move
+[15974] sovereignty rejection
+[15976] AI writes a cut without proof
+[15977] heuristic cut only
+[15979] AI explanation enlarges core domain
+[15980] projection rejection
+[15982] AI ranks Pareto alternatives
+[15983] ranking only under policy
+[15985] AI proposal source changes, proof identical
+[15986] verdict unchanged
+[15988] VOC selects PCROUTE refinement
+[15989] scheduling action only
+[15991] VOC score wrong
+[15992] may waste compute, no false proof
+[15994] Checkpoint baseline root differs
+[16000] Compatible checkpoint
+[16001] deterministic resume
+[16003] Geometry rewrite leaves route cache active
+[16004] stale-cache detection
+[16006] Cut invalidation edge removed
+[16007] incremental/cold mismatch detected
+[16009] Complete dependencies
+[16010] incremental equals cold
+[16012] Synthetic benchmark capacity cut
+[16013] \(4h+2w+3t\ge3\)
+[16015] Synthetic benchmark logic cut
+[16016] \(e+h+t\ge1\)
+[16017] 169

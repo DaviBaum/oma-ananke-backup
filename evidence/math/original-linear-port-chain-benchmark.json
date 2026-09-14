@@ -1,0 +1,56 @@
+{
+  "schema": "oma.original-linear-port-benchmark/1",
+  "scope": "SYNTHETIC_EXACT_LINEAR_NETWORK",
+  "original_source": {
+    "archive": "1-10",
+    "sha256": "0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970",
+    "paragraphs": [
+      15949,
+      16027
+    ],
+    "objects": [
+      "THM-PO6",
+      "THM-PO31",
+      "ALG-PO1",
+      "ALG-PO7"
+    ]
+  },
+  "repeated_motifs": 13,
+  "full_coordinates": 40,
+  "full_internal_coordinates": 38,
+  "composed_coordinates": 14,
+  "retained_boundary_coordinates": 2,
+  "exact_effective_stiffness": "2/65",
+  "all_boundary_inputs_covered_by_matrix_identity": true,
+  "independent_checks": [
+    "positive edge-incidence energy identity",
+    "two-sided interior inverse identity",
+    "original matrix reconstruction identity",
+    "independent series compliance sum",
+    "every full state compared to independent cumulative compliance oracle"
+  ],
+  "exact_model_physical_applicability_verified": false,
+  "limitations": [
+    "Synthetic linear springs/conductances, no actual building simulation or measured physical calibration.",
+    "No nonlinear flow, dynamics, buckling, thermal radiation, model discrepancy or general PCPE library.",
+    "Every public reconstruction rechecks the certificate; this timing includes that conservative cost.",
+    "These measurements do not claim universal reduction speedup or cheaper online certification."
+  ],
+  "timings_seconds": {
+    "full_compile": 0.08649129999685101,
+    "full_independent_check": 0.15530439999565715,
+    "composed_compile": 0.003387800003110897,
+    "composed_independent_check": 0.007072099993820302,
+    "full_witness_with_recheck": 0.09143749999930151
+  },
+  "artifact": {
+    "path": "evidence\\math\\original-linear-port-chain-certificate.json",
+    "bytes": 30665,
+    "sha256": "e04801c73e6236f9e46cc7b6d101b0dd70ab8d383ceec314aead4fab1176283d"
+  },
+  "implementation": {
+    "path": "src/oma/optimization/ports.py",
+    "sha256": "e50f4aa98a71f219b01b98aebe27113250879939c39353ae24288b4dd3fed811"
+  },
+  "verdict": "ALL_DECLARED_EXACT_COMPARISONS_PASS"
+}

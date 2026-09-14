@@ -1,0 +1,330 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P813; UTF16 31807] UNDER_REVIEW;
+[21-30:P814; UTF16 31821] INFORMATION_REQUIRED;
+[21-30:P815; UTF16 31843] CORRECTION_REQUIRED;
+[21-30:P816; UTF16 31864] APPROVED_CONDITIONAL;
+[21-30:P817; UTF16 31886] PERMIT_ISSUED;
+[21-30:P818; UTF16 31901] SUSPENDED;
+[21-30:P819; UTF16 31912] EXPIRED;
+[21-30:P820; UTF16 31921] DENIED;
+[21-30:P821; UTF16 31929] APPEAL_PENDING;
+[21-30:P822; UTF16 31945] CLOSED.
+[21-30:P823; UTF16 31953] Actual state vocabularies are jurisdiction specific.
+[21-30:P827; UTF16 32009] DEF-REG22 — Permit Condition
+[21-30:P828; UTF16 32038] A permit condition is:
+[21-30:P829; UTF16 32061] \left( \mathsf{authority}, \mathsf{trigger}, \mathsf{requirement}, \mathsf{deadline}, \mathsf{evidence}, \mathsf{scope}, \mathsf{version} \right). } ]
+[21-30:P830; UTF16 32212] A valid condition becomes a regulatory dependency for the project where the formal authority state gives it that effect.
+[21-30:P834; UTF16 32336] THM-REG14 — Permit Issuance Does Not Establish Future As-Built Compliance
+[21-30:P836; UTF16 32423] At permit issuance, approved design is:
+[21-30:P837; UTF16 32463] [ b_0. ]
+[21-30:P839; UTF16 32480] [ b_0\in\mathcal A_{\mathrm{reg}}(L). ]
+[21-30:P840; UTF16 32520] During construction, an unauthorized field deviation produces:
+[21-30:P841; UTF16 32583] [ b_1. ]
+[21-30:P842; UTF16 32592] Suppose (b_1) violates effective requirement (r).
+[21-30:P843; UTF16 32642] The permit remains historically issued for (b_0).
+[21-30:P845; UTF16 32697] [ b_1\notin\mathcal A_{\mathrm{reg}}(L). ]
+[21-30:P847; UTF16 32751] [ \boxed{ \mathsf{PERMIT_ISSUED} \not\Longrightarrow \mathsf{AS_BUILT_COMPLIANT}. } ]
+[21-30:P849; UTF16 32839] Prompt-14 physical execution evidence is required.
+[21-30:P853; UTF16 32893] THM-REG15 — Formal Rule Compliance Does Not Imply Permit Issuance
+[21-30:P855; UTF16 32972] Let design (b) satisfy every effective design rule:
+[21-30:P856; UTF16 33024] [ \mathsf{Compliant}_L(b;J_t). ]
+[21-30:P857; UTF16 33057] The synthetic permit state machine requires:
+[21-30:P858; UTF16 33102] complete application;
+[21-30:P859; UTF16 33124] mandatory ownership authorization;
+[21-30:P860; UTF16 33159] prescribed filing artifact;
+[21-30:P861; UTF16 33187] fee evidence.
+[21-30:P862; UTF16 33201] Suppose the filing artifact is absent.
+[21-30:P863; UTF16 33240] Then the permit state remains:
+[21-30:P864; UTF16 33271] [ \mathsf{INFORMATION_REQUIRED} ]
+[21-30:P866; UTF16 33309] [ \mathsf{NOT_ISSUABLE}. ]
+[21-30:P867; UTF16 33336] Thus the design is formally compliant while no permit has been issued. ∎
+[21-30:P871; UTF16 33412] 23. Inspections
+[21-30:P872; UTF16 33428] DEF-REG23 — Inspection Event
+[21-30:P874; UTF16 33465] \left( \mathsf{authority}, t, \mathsf{scope}, \mathsf{artifactVersion}, \mathsf{observations}, \mathsf{tests}, \mathsf{result}, \mathsf{evidence} \right). } ]
+[21-30:P878; UTF16 33627] DEF-REG24 — Inspection-Scope Predicate
+[21-30:P880; UTF16 33671] [ \boxed{ \mathcal R_I \subseteq \mathcal R_{\mathrm{eff}} } ]
+[21-30:P881; UTF16 33734] be the requirements actually evaluated by inspection (I).
+[21-30:P885; UTF16 33795] THM-REG16 — Passing a Scoped Inspection Does Not Establish Universal Compliance
+[21-30:P887; UTF16 33888] Let active requirements be:
+[21-30:P888; UTF16 33916] [ r_1, \qquad r_2. ]
+[21-30:P889; UTF16 33937] Inspection (I) checks only:
+[21-30:P890; UTF16 33965] [ \mathcal R_I={r_1}. ]
+[21-30:P892; UTF16 33998] [ \mathsf{Sat}(b,r_1)=\mathsf{TRUE}, ]
+[21-30:P894; UTF16 34042] [ \mathsf{Sat}(b,r_2)=\mathsf{FALSE}. ]
+[21-30:P895; UTF16 34082] The scoped inspection passes.
+[21-30:P896; UTF16 34112] Universal compliance fails because (r_2) is violated.
+[21-30:P898; UTF16 34177] [ \boxed{ \text{scoped inspection pass} \not\Longrightarrow \text{universal regulatory compliance}. } ]
+[21-30:P903; UTF16 34286] 24. Regulatory Release
+[21-30:P904; UTF16 34309] DEF-REG25 — Regulatory Release State
+[21-30:P905; UTF16 34346] A Regulatory Release State is a formally defined process state such as:
+[21-30:P906; UTF16 34418] permit effective;
+[21-30:P907; UTF16 34436] final inspection accepted;
+[21-30:P908; UTF16 34463] occupancy/release authorized;
+[21-30:P909; UTF16 34493] project-specific regulatory closure.
+[21-30:P910; UTF16 34530] Prompt 21 does not assume one universal real-world release artifact.
+[21-30:P914; UTF16 34602] DEF-REG26 — Regulatory Release Policy
+[21-30:P915; UTF16 34640] A Regulatory Release Policy maps available regulatory history to actions such as:
+[21-30:P916; UTF16 34722] submit;
+[21-30:P917; UTF16 34730] answer information requests;
+[21-30:P918; UTF16 34759] revise documents;
+[21-30:P919; UTF16 34777] request alternative compliance;
+[21-30:P920; UTF16 34809] request an authority-granted deviation;
+[21-30:P922; UTF16 34857] schedule inspection;
+[21-30:P923; UTF16 34878] remediate.
+[21-30:P924; UTF16 34889] The policy must be nonanticipative with respect to the formal regulatory history.
+[21-30:P928; UTF16 34974] DEF-REG27 — Regulatory Release Fiber
+[21-30:P929; UTF16 35011] Let modality (\mu) be one of:
+[21-30:P930; UTF16 35041] (\mathsf{RECORDED_TRACE}): a completed authority-confirmed historical process;
+[21-30:P931; UTF16 35120] (\mathsf{EXISTENTIAL_PATH}): at least one allowed future process path reaches release;
+[21-30:P932; UTF16 35207] (\mathsf{ROBUST_POLICY}): one applicant policy reaches release for every covered process response and authority state;
+[21-30:P933; UTF16 35326] (\mathsf{AUTHORITY_CONFIRMED}): a declared authority artifact directly confirms release.
+[21-30:P935; UTF16 35423] \left{ \pi: \pi \text{ is a valid regulatory process reaching the declared release state under }\mu \right}. } ]
+[21-30:P936; UTF16 35536] The modality is part of the claim.
+[21-30:P940; UTF16 35574] THM-REG17 — A Checked Regulatory Release Witness Establishes a Nonempty Regulatory Release Fiber
+[21-30:P941; UTF16 35671] If an independent checker accepts policy or process witness (\pi) for (b,J_t,\mu), then:
+[21-30:P942; UTF16 35760] [ \boxed{ \gamma_{\mathrm{reg}}^\mu(b,J_t)\neq\varnothing. } ]
+[21-30:P944; UTF16 35829] Checker acceptance establishes:
+[21-30:P945; UTF16 35861] [ \pi\in\gamma_{\mathrm{reg}}^\mu(b,J_t). ]
+[21-30:P946; UTF16 35905] Therefore the set contains at least (\pi) and is nonempty. ∎
+[21-30:P947; UTF16 35966] The theorem does not upgrade:
+[21-30:P948; UTF16 35996] an existential path to robust release;
+[21-30:P949; UTF16 36035] a possible future approval to actual authority issuance;
+[21-30:P950; UTF16 36092] a formal process model to real-world legal entitlement.
+[21-30:P954; UTF16 36151] 25. Appeals
+[21-30:P955; UTF16 36163] DEF-REG28 — Regulatory Appeal Action
+[21-30:P956; UTF16 36200] An Appeal Action records:
+[21-30:P957; UTF16 36226] \left( \mathsf{decisionAppealed}, \mathsf{eligibleAppellant}, \mathsf{filingWindow}, \mathsf{reviewAuthority}, \mathsf{allowedEvidence}, \mathsf{reviewScope}, \mathsf{possibleDispositions} \right). } ]
+[21-30:P961; UTF16 36431] THM-REG18 — Availability of an Appeal Does Not Imply Reversal
+[21-30:P963; UTF16 36506] A project receives formal denial (D).
+[21-30:P964; UTF16 36544] The process theory permits appeal action (a_{\mathrm{appeal}}).
+[21-30:P965; UTF16 36608] The appeal is filed validly.
+[21-30:P966; UTF16 36637] The reviewing authority affirms (D).
+[21-30:P968; UTF16 36680] [ \mathsf{AppealAvailable}=\mathsf{TRUE}, ]
+[21-30:P970; UTF16 36731] [ \mathsf{DecisionReversed}=\mathsf{FALSE}. ]
+[21-30:P971; UTF16 36777] Therefore appeal availability does not imply reversal. ∎
+[21-30:P975; UTF16 36837] 26. Professional Attestations
+[21-30:P976; UTF16 36867] DEF-REG29 — Professional Attestation
+[21-30:P978; UTF16 36912] \left( \mathsf{professional}, \mathsf{credentialScope}, \mathsf{artifact}, \mathsf{claim}, \mathsf{version}, \mathsf{evidence} \right). } ]
+[21-30:P979; UTF16 37052] Prompt 21 does not infer real scope-of-practice law without an authoritative source.
+[21-30:P983; UTF16 37140] THM-REG19 — Professional Attestation and Authority Approval Are Logically Independent
+[21-30:P984; UTF16 37226] Construction A: attestation without approval
+[21-30:P985; UTF16 37271] A professional attests claim (C) for artifact (b).
+[21-30:P986; UTF16 37322] No authority approval has yet been issued.
+[21-30:P988; UTF16 37371] [ \mathsf{Attested}(C)=\mathsf{TRUE}, ]
+[21-30:P990; UTF16 37418] [ \mathsf{AuthorityApproved}(C)=\mathsf{FALSE}. ]
+[21-30:P991; UTF16 37468] Construction B: approval without the modeled attestation
+[21-30:P992; UTF16 37525] A synthetic authority process approves a minor project action based on an authority inspection and does not require the particular professional attestation represented in the model.
+[21-30:P994; UTF16 37713] [ \mathsf{AuthorityApproved}(C)=\mathsf{TRUE}, ]
+[21-30:P996; UTF16 37769] [ \mathsf{Attested}(C)=\mathsf{FALSE}. ]
+[21-30:P997; UTF16 37810] Therefore neither proposition generically implies the other. ∎
+[21-30:P1001; UTF16 37876] 27. Compliance Versus Engineering Safety
+[21-30:P1002; UTF16 37917] THM-REG20 — Formal Regulatory Compliance Does Not Imply Universal Engineering Safety
+[21-30:P1004; UTF16 38015] Let the formal regulatory theory contain finite rule set:
+[21-30:P1005; UTF16 38073] [ R={r_1,\ldots,r_m}. ]
+[21-30:P1006; UTF16 38097] Choose project (b) satisfying:
+[21-30:P1007; UTF16 38128] [ \forall r\in R,\quad \mathsf{Sat}(b,r). ]
+[21-30:P1008; UTF16 38172] Introduce physical hazard (h^\star) absent from every rule, model, and verification relation in the regulatory theory.
+[21-30:P1009; UTF16 38291] Suppose (h^\star) causes physical failure of (b).
+[21-30:P1011; UTF16 38347] [ b\in\mathcal A_{\mathrm{reg}}, ]
+[21-30:P1013; UTF16 38389] [ \neg\mathsf{UniversallySafe}(b). ]
+[21-30:P1014; UTF16 38426] Therefore formal regulatory compliance does not imply universal engineering safety. ∎
+[21-30:P1018; UTF16 38515] THM-REG21 — Engineering Safety Does Not Generically Imply Formal Regulatory Compliance
+[21-30:P1020; UTF16 38615] Let the engineering safety claim be:
+[21-30:P1021; UTF16 38652] [ C_{\mathrm{safe}}(b). ]
+[21-30:P1022; UTF16 38678] Choose (b) for which this physical predicate is true.
+[21-30:P1023; UTF16 38732] Let the formal regulatory theory also require administrative artifact (d), such as a synthetic required filing declaration.
+[21-30:P1024; UTF16 38856] Assume (d) is absent.
+[21-30:P1026; UTF16 38884] [ C_{\mathrm{safe}}(b)=\mathsf{TRUE}, ]
+[21-30:P1028; UTF16 38929] [ \mathsf{Compliant}(b)=\mathsf{FALSE}. ]
+[21-30:P1029; UTF16 38971] Thus engineering safety does not generically imply formal regulatory compliance. ∎
+[21-30:P1033; UTF16 39057] 28. Regulatory Source Provenance
+[21-30:P1034; UTF16 39090] DEF-REG30 — Regulatory Source Provenance Chain
+[21-30:P1035; UTF16 39137] For each effective formal rule, preserve:
+[21-30:P1036; UTF16 39179] [ \boxed{ \mathsf{Source} \to \mathsf{Authority} \to \mathsf{Adoption} \to \mathsf{Edition} \to \mathsf{Amendment} \to \mathsf{Incorporation} \to \mathsf{Applicability} \to \mathsf{Rule}. } ]
+[21-30:P1037; UTF16 39371] A rule with a broken required provenance edge is not promoted to an exact effective obligation.
+[21-30:P1038; UTF16 39467] Provenance establishes where the rule came from.
+[21-30:P1039; UTF16 39516] It does not itself establish the correctness of the rule’s interpretation.
+[21-30:P1043; UTF16 39594] 29. Regulatory Conflict Cores
+[21-30:P1044; UTF16 39624] DEF-REG31 — Regulatory Conflict Core
+[21-30:P1046; UTF16 39666] [ \mathcal C \subseteq \mathcal R_{\mathrm{eff}} ]
+[21-30:P1047; UTF16 39717] be active regulatory constraints and (X) the current design family.
+[21-30:P1048; UTF16 39785] It is a conflict core when:
+[21-30:P1050; UTF16 39830] It is inclusion minimal when every proper subset admits at least one design.
+[21-30:P1051; UTF16 39907] A conflict core proves incompatibility.
+[21-30:P1052; UTF16 39947] It does not determine which rule, design commitment, or project objective should change.
+[21-30:P1056; UTF16 40039] 30. Regulatory Repairs
+[21-30:P1057; UTF16 40062] DEF-REG32 — Regulatory Repair
+[21-30:P1058; UTF16 40092] A regulatory repair may alter:
+[21-30:P1059; UTF16 40123] physical design;
+[21-30:P1061; UTF16 40149] document;
+[21-30:P1063; UTF16 40169] permit submission;
+[21-30:P1065; UTF16 40217] alternative-method package;
+[21-30:P1066; UTF16 40245] project scope where legitimately variable;
+[21-30:P1068; UTF16 40298] classification when the underlying project facts truly change.
+[21-30:P1069; UTF16 40361] A classifier label may not be changed merely to evade a rule.
+[21-30:P1073; UTF16 40426] DEF-REG33 — Regulatory Repair Frontier
+[21-30:P1074; UTF16 40465] Let a repair have vector consequence:
+[21-30:P1075; UTF16 40503] \left( \mathsf{architecturalImpact}, \mathsf{cost}, \mathsf{schedule}, \mathsf{safety}, \mathsf{carbon}, \mathsf{evidenceBurden}, \mathsf{authorityBurden}, \mathsf{uncertainty} \right). ]
+[21-30:P1077; UTF16 40699] \operatorname{ParetoMin} \left( \mathsf{FeasibleRepairs}, \mathbf c \right). } ]
+[21-30:P1078; UTF16 40780] No scalar repair score is imposed automatically.
+[21-30:P1082; UTF16 40832] THM-REG22 — Minimum-Cost Regulatory Repair Is NP-Hard
+[21-30:P1083; UTF16 40886] Problem definition
+[21-30:P1084; UTF16 40905] A synthetic repair instance contains:
+[21-30:P1085; UTF16 40943] candidate actions:
+[21-30:P1086; UTF16 40962] [ A={a_1,\ldots,a_n}; ]
+[21-30:P1087; UTF16 40986] positive costs:
+[21-30:P1088; UTF16 41002] [ c_j; ]
+[21-30:P1089; UTF16 41011] conflict obligations:
+[21-30:P1090; UTF16 41033] [ C_1,\ldots,C_m, \qquad C_i\subseteq A; ]
+[21-30:P1091; UTF16 41076] a repair set (H\subseteq A) is valid exactly when:
+[21-30:P1092; UTF16 41127] [ H\cap C_i\neq\varnothing \qquad \forall i. ]
+[21-30:P1093; UTF16 41174] The objective is to minimize:
+[21-30:P1094; UTF16 41204] [ \sum_{a_j\in H}c_j. ]
+[21-30:P1095; UTF16 41228] Reduction from Weighted Hitting Set
+[21-30:P1096; UTF16 41264] Take an arbitrary Weighted Hitting Set instance:
+[21-30:P1097; UTF16 41313] universe (A);
+[21-30:P1098; UTF16 41327] family (C_1,\ldots,C_m);
+[21-30:P1099; UTF16 41352] element costs (c_j).
+[21-30:P1100; UTF16 41373] Construct the regulatory repair instance exactly as above.
+[21-30:P1101; UTF16 41432] Interpret each (C_i) as the set of candidate regulatory repairs capable of resolving synthetic conflict (i).
+[21-30:P1102; UTF16 41541] A selected action set (H) resolves every conflict iff:
+[21-30:P1103; UTF16 41596] [ H\cap C_i\neq\varnothing \quad \forall i, ]
+[21-30:P1104; UTF16 41642] which is exactly the hitting-set condition.
+[21-30:P1105; UTF16 41686] The repair cost equals the hitting-set cost.
+[21-30:P1106; UTF16 41731] The transformation copies the instance and is polynomial.
+[21-30:P1107; UTF16 41789] Therefore an optimal regulatory repair solver would solve Weighted Hitting Set.
+[21-30:P1108; UTF16 41869] Hence minimum-cost regulatory repair is NP-hard. ∎
+[21-30:P1109; UTF16 41920] This theorem concerns the abstract repair-selection problem. It does not say every compliance check is NP-hard.
+[21-30:P1113; UTF16 42035] 31. Regulatory Theory Changes
+[21-30:P1114; UTF16 42065] A change in any of the following may reopen compliance:
+[21-30:P1115; UTF16 42121] source edition;
+[21-30:P1116; UTF16 42137] adoption instrument;
+[21-30:P1118; UTF16 42175] authority interpretation;
+[21-30:P1122; UTF16 42269] alternative-method approval;
+[21-30:P1123; UTF16 42298] deviation;
+[21-30:P1124; UTF16 42309] appeal decision;
+[21-30:P1125; UTF16 42326] field artifact.
+[21-30:P1126; UTF16 42342] A new authority rule can alter:
+[21-30:P1132; UTF16 42427] option timing;
+[21-30:P1133; UTF16 42442] strategic allocation;
+[21-30:P1134; UTF16 42464] release status.
+[21-30:P1135; UTF16 42480] Regulatory updates therefore enter the same dependency-directed recertification architecture established in Prompts 7, 11, and 13–20.
+[21-30:P1139; UTF16 42617] 32. Incremental Regulatory Recertification
+[21-30:P1140; UTF16 42660] THM-REG23 — Dependency-Directed Regulatory Recertification Equals Cold Checking
+[21-30:P1142; UTF16 42748] every changed project or regulatory root is identified;
+[21-30:P1143; UTF16 42804] the regulatory dependency graph is complete;
+[21-30:P1146; UTF16 42947] recomputed nodes use the same deterministic semantics as cold checking;
+[21-30:P1148; UTF16 43045] cyclic interpretation systems are encapsulated as checked resolution nodes.
+[21-30:P1150; UTF16 43166] effective sources;
+[21-30:P1151; UTF16 43185] adopted editions;
+[21-30:P1152; UTF16 43203] applicable rules;
+[21-30:P1153; UTF16 43221] effective rules;
+[21-30:P1154; UTF16 43238] compliance;
+[21-30:P1155; UTF16 43250] exceptions;
+[21-30:P1158; UTF16 43315] permit state;
+[21-30:P1159; UTF16 43329] inspection state;
+[21-30:P1161; UTF16 43361] release status;
+[21-30:P1162; UTF16 43377] unresolved conflicts.
+[21-30:P1164; UTF16 43405] After encapsulating checked cyclic submodels, topologically order the dependency graph.
+[21-30:P1165; UTF16 43493] At root nodes, both procedures use the same updated authoritative inputs.
+[21-30:P1167; UTF16 43610] If (v) is reused, its version and applicability certificate establishes that its previous report remains valid.
+[21-30:P1169; UTF16 43831] Therefore (v)’s report agrees.
+[21-30:P1170; UTF16 43862] Induction over the topological order establishes equality at every regulatory root. ∎
+[21-30:P1174; UTF16 43951] 33. Regulatory Claim Modalities
+[21-30:P1175; UTF16 43983] DEF-REG34 — Regulatory Claim Modality
+[21-30:P1177; UTF16 44029] \left{ \begin{array}{l} \mathsf{SOURCE_AUTHENTIC},\ \mathsf{FORMAL_APPLICABLE},\ \mathsf{FORMAL_COMPLIANT},\ \mathsf{ROBUST_COMPLIANT},\ \mathsf{POSSIBLY_COMPLIANT},\ \mathsf{AUTHORITY_CONFIRMED},\ \mathsf{ALTERNATIVE_APPROVED},\ \mathsf{DEVIATION_GRANTED},\ \mathsf{PERMIT_ISSUED},\ \mathsf{INSPECTION_SCOPED_PASS},\ \mathsf{RELEASE_CONFIRMED},\ \mathsf{INTERPRETIVE},\ \mathsf{LEGAL_UNRESOLVED} \end{array} \right}. } ]
+[21-30:P1180; UTF16 44502] [ \mathsf{POSSIBLY_COMPLIANT} \not\Longrightarrow \mathsf{FORMAL_COMPLIANT}. ]
+[21-30:P1184; UTF16 44584] 34. Proof-Carrying Regulatory and Jurisdictional Package
+[21-30:P1185; UTF16 44641] DEF-REG35 — Proof-Carrying Regulatory and Jurisdictional Package
+[21-30:P1187; UTF16 44714] [ \boxed{ \mathsf{PCRJ}. } ]
+[21-30:P1188; UTF16 44743] A PCRJ contains:
+[21-30:P1190; UTF16 44785] lower-layer package references;
+[21-30:P1191; UTF16 44817] concrete artifact version;
+[21-30:P1192; UTF16 44844] regulatory context;
+[21-30:P1193; UTF16 44864] authority identities;
+[21-30:P1194; UTF16 44886] source inventory;
+[21-30:P1195; UTF16 44904] source hashes;
+[21-30:P1196; UTF16 44919] source provenance;
+[21-30:P1198; UTF16 44961] effective dates;
+[21-30:P1200; UTF16 44996] amendment graph;
+[21-30:P1201; UTF16 45013] incorporation graph;
+[21-30:P1202; UTF16 45034] authority graph;
+[21-30:P1203; UTF16 45051] applicability certificates;
+[21-30:P1204; UTF16 45079] nonapplicability certificates;
+[21-30:P1205; UTF16 45110] effective-rule sets;
+[21-30:P1206; UTF16 45131] formal rule predicates;
+[21-30:P1207; UTF16 45155] precedence decisions;
+[21-30:P1208; UTF16 45177] unresolved authority conflicts;
+[21-30:P1209; UTF16 45209] exception certificates;
+[21-30:P1210; UTF16 45233] alternative-method packages;
+[21-30:P1213; UTF16 45319] permit state and history;
+[21-30:P1215; UTF16 45364] submissions and corrections;
+[21-30:P1217; UTF16 45413] appeal history;
+[21-30:P1218; UTF16 45429] authority-state family;
+[21-30:P1219; UTF16 45453] robust and possible compliance sets;
+[21-30:P1222; UTF16 45534] regulatory release fiber;
+[21-30:P1223; UTF16 45560] current release state;
+[21-30:P1224; UTF16 45583] unresolved legal questions;
+[21-30:P1230; UTF16 45661] 35. Regulatory Dependency Graph
+[21-30:P1231; UTF16 45693] DEF-REG36 — Regulatory Dependency Graph
+[21-30:P1238; UTF16 45801] incorporation edge;
+[21-30:P1239; UTF16 45821] rule;
+[21-30:P1242; UTF16 45876] design entity;
+[21-30:P1244; UTF16 45900] exception;
+[21-30:P1245; UTF16 45911] alternative method;
+[21-30:P1252; UTF16 46014] release root.
+[21-30:P1259; UTF16 46086] 36. Whole-Project Regulatory Theorem
+[21-30:P1260; UTF16 46123] THM-REG24 — Whole-Project Proof-Carrying Regulatory and Jurisdictional Compliance and Release
+[21-30:P1263; UTF16 46259] (b) be the active checked concrete artifact;
+[21-30:P1264; UTF16 46304] (J_t) be the declared regulatory context;
+[21-30:P1265; UTF16 46346] (\mathfrak L_{J_t}) be the maintained nonempty regulatory authority-state family;
+[21-30:P1266; UTF16 46428] (\mathsf{PCRJ}) be the candidate package.
+[21-30:P1268; UTF16 46478] 1. Project identity
+[21-30:P1269; UTF16 46498] The target project and artifact versions are correct.
+[21-30:P1270; UTF16 46552] 2. Jurisdiction identity
+[21-30:P1271; UTF16 46577] Every mandatory jurisdiction and reviewing authority is represented.
+[21-30:P1272; UTF16 46646] 3. Source authenticity
+[21-30:P1273; UTF16 46669] Every source relied upon is authentic and versioned.
+[21-30:P1274; UTF16 46722] 4. Adoption correctness
+[21-30:P1275; UTF16 46746] Every adopted source, edition, amendment, and effective date is represented correctly.
+[21-30:P1276; UTF16 46833] 5. Incorporation correctness
+[21-30:P1277; UTF16 46862] Referenced standards enter the formal theory only through valid scoped incorporation relations.
+[21-30:P1278; UTF16 46958] 6. Applicability completeness
+[21-30:P1279; UTF16 46988] Every requirement capable of changing a mandatory compliance root has been considered or marked unresolved.
+[21-30:P1280; UTF16 47096] 7. Rule formalization
+[21-30:P1281; UTF16 47118] Every effective obligation has a checked formal predicate or explicit unresolved status.
+[21-30:P1282; UTF16 47207] 8. Precedence
+[21-30:P1283; UTF16 47221] Every resolved conflict uses a valid declared authority rule.
+[21-30:P1284; UTF16 47283] 9. Exceptions
+[21-30:P1285; UTF16 47297] Every rule-internal exception satisfies its exact predicate.
+[21-30:P1286; UTF16 47358] 10. Alternatives and deviations
+[21-30:P1287; UTF16 47390] Every alternative method or authority-granted deviation has the required:
+[21-30:P1293; UTF16 47513] 11. Regulatory-state coverage
+[21-30:P1294; UTF16 47543] The actual authority state satisfies:
+[21-30:P1295; UTF16 47581] [ L^\star\in\mathfrak L_{J_t}. ]
+[21-30:P1296; UTF16 47614] 12. Permit state
+[21-30:P1297; UTF16 47631] Permit history, conditions, and current state are represented correctly.
+[21-30:P1298; UTF16 47704] 13. Inspection state
+[21-30:P1299; UTF16 47725] Inspection reports are tied to the actual artifact version and inspected requirement set.
+[21-30:P1300; UTF16 47815] 14. Appeals
+[21-30:P1301; UTF16 47827] Appeal availability and outcomes are represented without treating availability as success.
+[21-30:P1302; UTF16 47918] 15. Professional attestations
+[21-30:P1303; UTF16 47948] Attestations retain their exact credential, artifact, claim, and version scope.
+[21-30:P1305; UTF16 48058] Where several regulatory solutions remain admissible, the regulatory system does not choose among protected architectural alternatives without authority.
+[21-30:P1306; UTF16 48212] 17. Physical and as-built state
+[21-30:P1307; UTF16 48244] Design and as-built claims refer to the correct Prompt-13 or Prompt-14 artifact.
+[21-30:P1308; UTF16 48325] 18. Economic execution
+[21-30:P1309; UTF16 48348] Required regulatory actions, tests, submissions, and repairs remain economically executable where claimed.
+[21-30:P1310; UTF16 48455] 19. Commitment timing
+[21-30:P1311; UTF16 48477] Regulatory submissions, appeals, and approvals occur within applicable Prompt-19 windows where the claim requires them.
+[21-30:P1312; UTF16 48597] 20. Governance authority
+[21-30:P1313; UTF16 48622] The party exercising each regulatory right or obligation has the authority established by Prompt 20 and the regulatory theory.
+[21-30:P1314; UTF16 48749] 21. Legal-scope discipline
+[21-30:P1315; UTF16 48776] No formal regulatory conclusion is converted to judicial liability, enforceability, or legal advice without an external authoritative bridge.
+[21-30:P1316; UTF16 48918] 22. UNKNOWN discipline
+[21-30:P1317; UTF16 48941] No unresolved source, authority, applicability, precedence, permit, or interpretation claim is promoted.
+[21-30:P1318; UTF16 49046] 23. Independent checking
+[21-30:P1319; UTF16 49071] The PCRJ checker accepts the package.
+[21-30:P1321; UTF16 49146] Source conclusion
+[21-30:P1322; UTF16 49164] Every accepted regulatory rule has a checked provenance path through:

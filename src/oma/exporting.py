@@ -32,6 +32,9 @@ def export_project(store: Store, project_id: str, candidate_id: str | None = Non
         report = store.get(candidate["report_root"])
         if report["status"] != "PASS" or report["candidate_root"] != root or report["checker_version"] != checker_version():
             raise IntegrityError("Candidate does not have a passing root-matched report")
+    if state.get("physical_networks"):
+        from .routing.network_export import export_network_project
+        return export_network_project(store, project, state, candidate, draft, report if not draft else None)
     if state.get("derived_artifacts", {}).get("routing_contracts"):
         from .routing.joint_export import export_joint_project
         return export_joint_project(store, project, state, candidate, draft, report if not draft else None)

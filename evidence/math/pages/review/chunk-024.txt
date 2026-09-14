@@ -1,0 +1,373 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P9275; UTF16 354307] preserve all remaining ties.
+[1-10:P9276; UTF16 354336] The selected quotient classes are:
+[1-10:P9277; UTF16 354371] (0,0,1,0,r) ]
+[1-10:P9278; UTF16 354385] for
+[1-10:P9279; UTF16 354389] [ r\in{0,1,2}. ]
+[1-10:P9280; UTF16 354406] The DP reconstructs one concrete 32-room witness for each of these three root classes.
+[1-10:P9281; UTF16 354493] Explicit enumeration produces the same quotient portfolio by THM-DS15.
+[1-10:P9285; UTF16 354567] 36. Scaling Calculations
+[1-10:P9286; UTF16 354592] 36.1 Symbolic repeated-floor scaling
+[1-10:P9287; UTF16 354629] For (n) floors, each with four Prompt-2 bays:
+[1-10:P9288; UTF16 354675] \Theta(192^{4n}). ]
+[1-10:P9289; UTF16 354695] After floor-quotient compilation, the vertical aggregate saturates at:
+[1-10:P9290; UTF16 354766] [ |\Sigma_n| \le 2,!970 ]
+[1-10:P9291; UTF16 354792] for (n\ge4) under the declared stack theory.
+[1-10:P9294; UTF16 354856] Sequential online stack evaluation has:
+[1-10:P9295; UTF16 354896] O(n\cdot2,!970\cdot650), ]
+[1-10:P9296; UTF16 354923] which is linear in (n) with a large but fixed transition constant.
+[1-10:P9300; UTF16 354993] 36.2 Illustrative (65,!536)-versus-(96) table
+[1-10:P9301; UTF16 355039] Suppose a raw floor interface has:
+[1-10:P9302; UTF16 355074] [ 65,!536=2^{16} ]
+[1-10:P9303; UTF16 355093] states, while its exact separator quotient has:
+[1-10:P9306; UTF16 355156] A dense binary raw join has:
+[1-10:P9307; UTF16 355185] 4,!294,!967,!296 ]
+[1-10:P9308; UTF16 355204] input pairs.
+[1-10:P9309; UTF16 355217] The semantic join has:
+[1-10:P9310; UTF16 355240] 9,!216 ]
+[1-10:P9312; UTF16 355262] For 20 joins:
+[1-10:P9313; UTF16 355276] 85,!899,!345,!920 ]
+[1-10:P9314; UTF16 355296] raw pairs,
+[1-10:P9316; UTF16 355314] 184,!320 ]
+[1-10:P9317; UTF16 355325] semantic pairs.
+[1-10:P9318; UTF16 355341] The avoided pair-table entries are:
+[1-10:P9319; UTF16 355377] [ 85,!899,!161,!600. ]
+[1-10:P9320; UTF16 355400] The table-size ratio is approximately:
+[1-10:P9321; UTF16 355439] [ 466,!033.78. ]
+[1-10:P9322; UTF16 355456] This is not automatically a (466,!034\times) wall-clock speedup because:
+[1-10:P9323; UTF16 355529] transition evaluation costs may differ;
+[1-10:P9324; UTF16 355569] quotient lookup has overhead;
+[1-10:P9325; UTF16 355599] memory locality differs;
+[1-10:P9326; UTF16 355624] compilation cost may dominate;
+[1-10:P9327; UTF16 355655] many raw algorithms would exploit other structure.
+[1-10:P9331; UTF16 355709] 37. Five Distinct Compression Metrics
+[1-10:P9332; UTF16 355747] DEF-DS18 — Compression metrics
+[1-10:P9333; UTF16 355778] A. Raw realization compression
+[1-10:P9334; UTF16 355809] \frac{ |\Omega| }{ |\mathsf{Rep}_{\mathrm{semantic}}| }. ]
+[1-10:P9335; UTF16 355868] This compares denoted raw realizations with semantic representation size.
+[1-10:P9339; UTF16 355945] B. Separator-state compression
+[1-10:P9340; UTF16 355976] \frac{ |\mathsf{Raw}_L| }{ |\Sigma_L| }. ]
+[1-10:P9341; UTF16 356019] This measures exact boundary-state reduction.
+[1-10:P9345; UTF16 356068] C. Materialization reduction
+[1-10:P9346; UTF16 356097] \frac{ \text{baseline materialized realizations} }{ \text{ANANKE materialized realizations} }. ]
+[1-10:P9347; UTF16 356194] This depends on algorithm behavior, not merely quotient cardinality.
+[1-10:P9351; UTF16 356266] D. Physics-evaluation reduction
+[1-10:P9352; UTF16 356298] \frac{ \text{baseline expensive physics evaluations} }{ \text{ANANKE expensive physics evaluations} }. ]
+[1-10:P9353; UTF16 356403] This requires accounting for model fidelity and reuse.
+[1-10:P9357; UTF16 356461] E. Wall-clock speedup
+[1-10:P9358; UTF16 356483] \frac{ T_{\mathrm{baseline}} }{ T_{\mathrm{ANANKE}} }. ]
+[1-10:P9359; UTF16 356540] This includes:
+[1-10:P9360; UTF16 356555] quotient compilation;
+[1-10:P9361; UTF16 356577] scheduling;
+[1-10:P9362; UTF16 356589] I/O;
+[1-10:P9363; UTF16 356594] proof checking;
+[1-10:P9364; UTF16 356610] numerical kernels;
+[1-10:P9365; UTF16 356629] memory effects;
+[1-10:P9366; UTF16 356645] witness generation.
+[1-10:P9370; UTF16 356668] 37.1 Why the ratios differ
+[1-10:P9371; UTF16 356695] An enormous (C_{\mathrm{raw}}) may coexist with a modest (C_{\mathrm{time}}) because one symbolic state can denote astronomically many realizations while:
+[1-10:P9372; UTF16 356850] the baseline also uses compression;
+[1-10:P9373; UTF16 356886] quotient discovery is expensive;
+[1-10:P9374; UTF16 356919] high-fidelity finalist analyses remain costly;
+[1-10:P9375; UTF16 356966] proof and evidence management add overhead;
+[1-10:P9376; UTF16 357010] only part of runtime is candidate enumeration.
+[1-10:P9378; UTF16 357068] [ C_{\mathrm{raw}} \not= C_{\mathrm{time}}. ]
+[1-10:P9379; UTF16 357114] A credible empirical claim must report all five quantities separately.
+[1-10:P9383; UTF16 357188] 38. Formal Meaning of “(10^{12}\times) More Design Space”
+[1-10:P9384; UTF16 357246] DEF-DS19 — Certified decision-complete coverage
+[1-10:P9385; UTF16 357294] For an algorithm (\mathcal A) under compute budget (B), define
+[1-10:P9386; UTF16 357357] [ \operatorname{Coverage}_{\mathcal T} (\mathcal A,B) ]
+[1-10:P9387; UTF16 357413] as the number of raw realizations (x\in\Omega_G) for which (\mathcal A) produces, within (B):
+[1-10:P9388; UTF16 357507] a certified semantic state containing (x);
+[1-10:P9389; UTF16 357550] complete experiment recovery under (\mathcal T);
+[1-10:P9390; UTF16 357599] no missing mandatory distinction;
+[1-10:P9391; UTF16 357633] a valid concretization or counting certificate.
+[1-10:P9392; UTF16 357681] A legitimate claim of (10^{12}\times) coverage requires:
+[1-10:P9393; UTF16 357738] [ \frac{ \operatorname{Coverage}{\mathcal T} (\mathcal A{\mathrm{ANANKE}},B) }{ \operatorname{Coverage}{\mathcal T} (\mathcal A{\mathrm{baseline}},B) } \ge 10^{12}, ]
+[1-10:P9394; UTF16 357905] under identical:
+[1-10:P9395; UTF16 357922] source grammar;
+[1-10:P9396; UTF16 357938] engineering models;
+[1-10:P9397; UTF16 357958] decision theory;
+[1-10:P9398; UTF16 357975] correctness standard;
+[1-10:P9401; UTF16 358029] wall-clock budget.
+[1-10:P9402; UTF16 358048] Raw coverage must be established by exact symbolic counting or independent enumeration certificates.
+[1-10:P9403; UTF16 358149] Prompt 3 does not claim this ratio has been achieved.
+[1-10:P9407; UTF16 358206] 39. Practical Workstation Width Limits
+[1-10:P9409; UTF16 358250] (B_{\mathrm{RAM}}) be the memory assigned to one active message table;
+[1-10:P9410; UTF16 358321] (b_Q) be bytes per state.
+[1-10:P9412; UTF16 358353] b_Q2^{W_D}. ]
+[1-10:P9414; UTF16 358373] [ W_D \le \left\lfloor \log_2 \left( \frac{B_{\mathrm{RAM}}}{b_Q} \right) \right\rfloor. ]
+[1-10:P9415; UTF16 358464] Using GiB:
+[1-10:P9416; UTF16 358475] ￼
+ATTACHED TABLE 1736327; native row/column order; 5 rows
+ROW 0: ["Table budget", "64 B/state", "256 B/state", "1 KiB/state"]
+ROW 1: ["32 GiB", "(W_D\\le29)", "(W_D\\le27)", "(W_D\\le25)"]
+ROW 2: ["64 GiB", "(W_D\\le30)", "(W_D\\le28)", "(W_D\\le26)"]
+ROW 3: ["96 GiB", "(W_D\\le30)", "(W_D\\le28)", "(W_D\\le26)"]
+ROW 4: ["120 GiB", "(W_D\\le30)", "(W_D\\le28)", "(W_D\\le26)"]
+[1-10:P9417; UTF16 358477] The power-of-two steps explain why raising a table budget from 64 GiB to 96 GiB may not permit one additional full width bit.
+[1-10:P9418; UTF16 358603] If (t) equally large tables must be resident simultaneously:
+[1-10:P9419; UTF16 358664] [ W_D \le \left\lfloor \log_2 \left( \frac{B_{\mathrm{RAM}}}{t,b_Q} \right) \right\rfloor. ]
+[1-10:P9423; UTF16 358760] 39.1 Exact 256-byte examples
+[1-10:P9425; UTF16 358793] [ b_Q=256\text{ bytes}, ]
+[1-10:P9426; UTF16 358819] [ 2^{20} ]
+[1-10:P9427; UTF16 358830] states require:
+[1-10:P9428; UTF16 358846] [ 256\text{ MiB}. ]
+[1-10:P9429; UTF16 358866] [ 2^{24} ]
+[1-10:P9431; UTF16 358893] [ 4\text{ GiB}. ]
+[1-10:P9432; UTF16 358911] [ 2^{28} ]
+[1-10:P9434; UTF16 358938] [ 64\text{ GiB}. ]
+[1-10:P9435; UTF16 358957] Reducing width by five bits reduces table size by:
+[1-10:P9436; UTF16 359008] [ 2^5=32. ]
+[1-10:P9437; UTF16 359020] Reducing width by ten bits reduces table size by:
+[1-10:P9438; UTF16 359070] [ 2^{10}=1,!024. ]
+[1-10:P9439; UTF16 359089] This gives a direct computational meaning to successful abstraction discovery.
+[1-10:P9443; UTF16 359171] 39.2 Theoretical versus practical tractability
+[1-10:P9444; UTF16 359218] A problem can be FPT in (W_D) and still be impractical when:
+[1-10:P9445; UTF16 359279] (W_D=28);
+[1-10:P9446; UTF16 359289] state records are large;
+[1-10:P9447; UTF16 359314] multiple joins require (2W_D) pair enumeration;
+[1-10:P9448; UTF16 359362] quotient compilation uses (W_P\gg W_D);
+[1-10:P9449; UTF16 359402] high-fidelity operations dominate (c_v).
+[1-10:P9450; UTF16 359443] Workstation feasibility depends on the full width and cost profile, not the FPT label alone.
+[1-10:P9454; UTF16 359539] 40. Counterexamples to Bad Width Intuitions
+[1-10:P9455; UTF16 359583] False claim 1 — Small geometric boundary implies small decision width
+[1-10:P9456; UTF16 359653] A single small equipment port may carry a catalog identifier with:
+[1-10:P9457; UTF16 359720] thousands of product alternatives;
+[1-10:P9458; UTF16 359755] distinct code approvals;
+[1-10:P9459; UTF16 359780] distinct evidence states;
+[1-10:P9460; UTF16 359806] distinct replacement constraints.
+[1-10:P9461; UTF16 359840] One physical port can therefore have large (|\Sigma|).
+[1-10:P9465; UTF16 359898] False claim 2 — Large geometric boundary implies large decision width
+[1-10:P9466; UTF16 359968] The saturated-count family of THM-DS3 has an (n)-variable raw interface but only (B+1) semantic messages.
+[1-10:P9470; UTF16 360077] False claim 3 — Low numerical sensitivity implies low decision width
+[1-10:P9471; UTF16 360146] Two dimensions may differ by 1 mm and have negligible continuous effect, yet lie on opposite sides of:
+[1-10:P9472; UTF16 360249] a code clearance;
+[1-10:P9473; UTF16 360267] a catalog fit threshold;
+[1-10:P9474; UTF16 360292] an access requirement;
+[1-10:P9475; UTF16 360315] a fire-separation rule.
+[1-10:P9476; UTF16 360339] Decision width is discrete and semantic.
+[1-10:P9480; UTF16 360383] False claim 4 — Strong numerical coupling implies high decision width
+[1-10:P9481; UTF16 360453] A highly nonlinear internal subsystem may expose only:
+[1-10:P9482; UTF16 360508] pass/fail;
+[1-10:P9483; UTF16 360519] one saturated load class;
+[1-10:P9484; UTF16 360545] one bounded transfer operator.
+[1-10:P9485; UTF16 360576] Strong internal coupling can coexist with a tiny exterior residual alphabet.
+[1-10:P9489; UTF16 360656] False claim 5 — Independent port compression is always sufficient
+[1-10:P9490; UTF16 360722] The correlated two-port example in §21 has correct marginals but an incorrect product relation.
+[1-10:P9494; UTF16 360821] False claim 6 — Repetition always reduces width
+[1-10:P9495; UTF16 360869] If every repeated room has an independently queryable failure bit, then:
+[1-10:P9496; UTF16 360942] [ |\Sigma_n|=2^n. ]
+[1-10:P9500; UTF16 360965] False claim 7 — More detailed models always improve compression
+[1-10:P9501; UTF16 361029] THM-DS13 shows that adding valid distinctions can only preserve or increase width.
+[1-10:P9505; UTF16 361115] False claim 8 — A low-width quotient is automatically cheap to construct
+[1-10:P9506; UTF16 361188] THM-DS23 gives a quotient with at most two states whose exact discovery is coNP-hard from a compact formula representation.
+[1-10:P9507; UTF16 361312] This is the decisive counterexample to equating semantic compactness with compilation tractability.
+[1-10:P9511; UTF16 361415] 41. Real-World Moderate-Width Conjecture
+[1-10:P9512; UTF16 361456] CONJ-DS2 — Moderate Decision Width of Repetitive Buildings
+[1-10:P9514; UTF16 361519] [ \mathfrak P_n ]
+[1-10:P9515; UTF16 361537] be a family of bounded-grammar building problems with (n) repeated physical modules and a fixed class of schematic or design-development experiment theories.
+[1-10:P9516; UTF16 361695] There exist useful legal decompositions (\mathcal D_n) for which:
+[1-10:P9517; UTF16 361761] o(n). ]
+[1-10:P9518; UTF16 361769] Stronger possible forms are:
+[1-10:P9519; UTF16 361798] [ W_D(\mathcal D_n)=O(1), ]
+[1-10:P9520; UTF16 361826] or
+[1-10:P9521; UTF16 361829] [ W_D(\mathcal D_n)=O(\log n). ]
+[1-10:P9522; UTF16 361862] A useful but weaker form is:
+[1-10:P9523; UTF16 361891] O(n^\alpha), \qquad 0<\alpha<1. ]
+[1-10:P9524; UTF16 361925] Failure occurs when:
+[1-10:P9529; UTF16 361962] 41.1 Falsification conditions
+[1-10:P9530; UTF16 361992] The conjecture is falsified for a benchmark family if, after accounting for every mandatory experiment:
+[1-10:P9531; UTF16 362096] separator quotient cardinality remains within a constant factor of raw cardinality;
+[1-10:P9532; UTF16 362180] the compression exponent [ \Gamma_S ] approaches one;
+[1-10:P9533; UTF16 362234] new repeated modules add approximately one independent decision bit each;
+[1-10:P9534; UTF16 362308] provisional and semantic widths both grow linearly;
+[1-10:P9535; UTF16 362360] no alternative legal decomposition changes the asymptotic trend.
+[1-10:P9539; UTF16 362428] 41.2 Revolutionary scaling
+[1-10:P9540; UTF16 362455] Strong evidence for ANANKE would be:
+[1-10:P9541; UTF16 362492] [ W_D(n)=O(\log n) ]
+[1-10:P9543; UTF16 362517] [ W_P(n)=O(\log n) ]
+[1-10:P9544; UTF16 362538] or modestly larger.
+[1-10:P9545; UTF16 362558] Small (W_D) with linear (W_P) would demonstrate semantic compressibility but not practical compilability.
+[1-10:P9549; UTF16 362667] 42. Falsification Benchmark
+[1-10:P9550; UTF16 362695] Use repeated module counts:
+[1-10:P9551; UTF16 362723] [ n\in{1,2,4,8,16,32}. ]
+[1-10:P9552; UTF16 362748] For every (n), record:
+[1-10:P9553; UTF16 362771] raw realization count;
+[1-10:P9554; UTF16 362794] raw separator-state count;
+[1-10:P9555; UTF16 362821] provisional regional carrier count;
+[1-10:P9556; UTF16 362857] canonical separator-state count;
+[1-10:P9557; UTF16 362890] (W_P(n));
+[1-10:P9558; UTF16 362900] (W_D(n));
+[1-10:P9559; UTF16 362910] discovery gap [ \Delta_W(n); ]
+[1-10:P9560; UTF16 362941] quotient construction time;
+[1-10:P9561; UTF16 362969] online DP time;
+[1-10:P9562; UTF16 362985] peak RAM;
+[1-10:P9563; UTF16 362995] number of materialized witnesses;
+[1-10:P9564; UTF16 363029] choice-cover equality against brute force where brute force is possible;
+[1-10:P9565; UTF16 363102] certificate-checking time.
+[1-10:P9566; UTF16 363129] Pre-register outcomes:
+[1-10:P9567; UTF16 363152] Strong success
+[1-10:P9568; UTF16 363167] [ W_D(n)=O(\log n), \qquad W_P(n)=O(\log n) ]
+[1-10:P9569; UTF16 363213] or another demonstrably low-degree polylogarithmic law.
+[1-10:P9570; UTF16 363269] Semantic-only success
+[1-10:P9571; UTF16 363291] [ W_D(n)=O(\log n), \qquad W_P(n)=\Theta(n). ]
+[1-10:P9572; UTF16 363338] This validates the representation but not the compiler.
+[1-10:P9573; UTF16 363394] Useful intermediate result
+[1-10:P9574; UTF16 363421] [ W_D(n)=O(n^\alpha), \qquad W_P(n)=O(n^\beta), ]
+[1-10:P9576; UTF16 363476] [ 0<\alpha\le\beta<1. ]
+[1-10:P9578; UTF16 363508] [ W_D(n)=\Theta(n) ]
+[1-10:P9579; UTF16 363529] or a quotient ratio approaching one.
+[1-10:P9580; UTF16 363566] These thresholds must be declared before running the benchmark.
+[1-10:P9584; UTF16 363633] 43. Proof-Assistant Formalization
+[1-10:P9585; UTF16 363667] 43.1 Factorization
+[1-10:P9586; UTF16 363686] A Lean-style structure is:
+[1-10:P9587; UTF16 363713] structure FactorProblem where
+[1-10:P9588; UTF16 363743]   Var : Type
+[1-10:P9589; UTF16 363756]   [varFintype : Fintype Var]
+[1-10:P9591; UTF16 363786]   Factor : Type
+[1-10:P9592; UTF16 363802]   [factorFintype : Fintype Factor]
+[1-10:P9594; UTF16 363838]   Domain : Var → Type
+[1-10:P9595; UTF16 363860]   [domainFintype : ∀ v, Fintype (Domain v)]
+[1-10:P9597; UTF16 363905]   scope : Factor → Finset Var
+[1-10:P9598; UTF16 363935]   role : Var → VarRole
+[1-10:P9600; UTF16 363959]   rootSort : ProgSort
+[1-10:P9601; UTF16 363981]   assemble :
+[1-10:P9602; UTF16 363994]     DesignAssignment Domain role →
+[1-10:P9603; UTF16 364029]     SemanticCarrier rootSort
+[1-10:P9607; UTF16 364061] 43.2 Region
+[1-10:P9608; UTF16 364073] structure Region (P : FactorProblem) where
+[1-10:P9609; UTF16 364116]   factors : Finset P.Factor
+[1-10:P9610; UTF16 364144] Raw cut variables:
+[1-10:P9611; UTF16 364163] def cutVars (L : Region P) : Finset P.Var :=
+[1-10:P9612; UTF16 364208]   ...
+[1-10:P9616; UTF16 364217] 43.3 Regional semantic carrier
+[1-10:P9617; UTF16 364248] structure RegionalSemantics
+[1-10:P9618; UTF16 364276]     (P : FactorProblem)
+[1-10:P9619; UTF16 364300]     (L : Region P) where
+[1-10:P9620; UTF16 364325]   interfaceSort : ProgSort
+[1-10:P9621; UTF16 364352]   LocalAssignment : Type
+[1-10:P9622; UTF16 364377]   [localFintype : Fintype LocalAssignment]
+[1-10:P9623; UTF16 364420]   assembleLocal :
+[1-10:P9624; UTF16 364438]     LocalAssignment →
+[1-10:P9625; UTF16 364460]     SemanticCarrier interfaceSort
+[1-10:P9626; UTF16 364494]   reachable :
+[1-10:P9627; UTF16 364508]     Finset (SemanticCarrier interfaceSort)
+[1-10:P9631; UTF16 364554] 43.4 Exterior experiments
+[1-10:P9632; UTF16 364580] structure ExteriorTheory
+[1-10:P9634; UTF16 364629]     (L : Region P)
+[1-10:P9635; UTF16 364648]     (R : RegionalSemantics P L) where
+[1-10:P9636; UTF16 364686]   Experiment : Type
+[1-10:P9637; UTF16 364706]   [experimentFintype : Fintype Experiment]
+[1-10:P9638; UTF16 364749]   run :
+[1-10:P9639; UTF16 364757]     Experiment →
+[1-10:P9640; UTF16 364774]     SemanticCarrier R.interfaceSort →
+[1-10:P9641; UTF16 364812]     Outcome
+[1-10:P9645; UTF16 364827] 43.5 Regional equivalence
+[1-10:P9646; UTF16 364853] def RegionalEq
+[1-10:P9647; UTF16 364868]     (x y : SemanticCarrier R.interfaceSort) : Prop :=
+[1-10:P9648; UTF16 364922]   ∀ e : E.Experiment,
+[1-10:P9649; UTF16 364944]     E.run e x = E.run e y
+[1-10:P9653; UTF16 364973] 43.6 Separator quotient
+[1-10:P9655; UTF16 365018] def SeparatorSetoid :
+[1-10:P9656; UTF16 365040]     Setoid (SemanticCarrier R.interfaceSort)
+[1-10:P9658; UTF16 365086] def SeparatorQuotient :=
+[1-10:P9659; UTF16 365111]     Quotient SeparatorSetoid
+[1-10:P9660; UTF16 365140] For executable computation:
+[1-10:P9661; UTF16 365168] structure SeparatorPartition where
+[1-10:P9662; UTF16 365203]   blockCount : Nat
+[1-10:P9663; UTF16 365222]   block :
+[1-10:P9665; UTF16 365270]     Fin blockCount
+[1-10:P9666; UTF16 365289]   exact :
+[1-10:P9667; UTF16 365299]     ∀ x y,
+[1-10:P9668; UTF16 365310]       block x = block y ↔ RegionalEq E x y
+[1-10:P9672; UTF16 365356] 43.7 Decomposition
+[1-10:P9673; UTF16 365375] inductive DecompTree
+[1-10:P9674; UTF16 365396] | leaf : Region P → DecompTree
+[1-10:P9675; UTF16 365427] | node :
+[1-10:P9676; UTF16 365436]     Fin k →
+[1-10:P9677; UTF16 365448]     (Fin k → DecompTree) →
+[1-10:P9678; UTF16 365475]     LocalFactorData →
+[1-10:P9679; UTF16 365497]     DecompTree
+[1-10:P9680; UTF16 365512] A legality record must prove:
+[1-10:P9681; UTF16 365542] factor coverage;
+[1-10:P9682; UTF16 365559] no illegal duplication;
+[1-10:P9683; UTF16 365583] separator completeness;
+[1-10:P9684; UTF16 365607] exact merge commutation.
+[1-10:P9688; UTF16 365635] 43.8 DP correctness skeleton
+[1-10:P9689; UTF16 365664] theorem dqdp_correct
+[1-10:P9690; UTF16 365685]     (D : LegalSemanticDecomposition P)
+[1-10:P9691; UTF16 365724]     (Q : ExactSeparatorTables D) :
+[1-10:P9692; UTF16 365759]     RootMessage (DecisionQuotientDP D Q)
+[1-10:P9693; UTF16 365800]       =
+[1-10:P9694; UTF16 365808]     ExplicitRootQuotient P := by
+[1-10:P9695; UTF16 365841]   induction D using DecompTree.rec with
+[1-10:P9696; UTF16 365881]   | leaf =>
+[1-10:P9697; UTF16 365893]       ...
+[1-10:P9698; UTF16 365903]   | node children ih =>
+[1-10:P9703; UTF16 365940] 43.9 Communication theorem
+[1-10:P9704; UTF16 365967] Define a finite communication matrix and prove:
+[1-10:P9705; UTF16 366015] theorem message_count_eq_quotient :
+[1-10:P9706; UTF16 366051]   minimumDeterministicMessages game
+[1-10:P9707; UTF16 366087]     =
+[1-10:P9708; UTF16 366093]   Fintype.card SeparatorQuotient
+[1-10:P9712; UTF16 366129] 43.10 Formal cost model
+[1-10:P9713; UTF16 366153] Use a unit-cost RAM model over finite IDs with explicit parameters:
+[1-10:P9714; UTF16 366221] combineCost v;
+[1-10:P9715; UTF16 366236] localChoiceCount v;
+[1-10:P9716; UTF16 366256] messageCount v;
+[1-10:P9717; UTF16 366272] recordBytes v.
+[1-10:P9718; UTF16 366287] Define algorithmic work as the sum of candidate-combination costs.
+[1-10:P9719; UTF16 366354] The exponential width bound then reduces to cardinal arithmetic over finite products.
+[1-10:P9723; UTF16 366443] 43.11 Mechanization difficulty
+[1-10:P9724; UTF16 366474] ￼
+ATTACHED TABLE 1736343; native row/column order; 18 rows
+ROW 0: ["Result", "Difficulty"]
+ROW 1: ["Factor hypergraph and region definitions", "Straightforward"]
+ROW 2: ["Separator-completeness predicate", "Moderate"]
+ROW 3: ["Regional residual equivalence", "Straightforward"]
+ROW 4: ["THM-DS1 — Sufficiency", "Straightforward"]
+ROW 5: ["THM-DS2 — Minimality", "Moderate"]
+ROW 6: ["THM-DS3–DS4 — Example families", "Moderate"]
+ROW 7: ["THM-DS5 — Separator Myhill–Nerode", "Straightforward"]
+ROW 8: ["LEM-DS1 — Quotient transition", "Moderate"]
+ROW 9: ["THM-DS7 — DP correctness", "Difficult"]
+ROW 10: ["THM-DS8 — Cost theorem", "Moderate with formal cost model"]
+ROW 11: ["THM-DS11 — Communication equality", "Moderate"]
+ROW 12: ["THM-DS12–DS13 — Monotonicity", "Straightforward"]
+ROW 13: ["THM-DS14 — Witness reconstruction", "Moderate"]
+ROW 14: ["THM-DS17 — Repetition monoid", "Straightforward"]
+ROW 15: ["THM-DS22 — Local compilation", "Difficult"]
+ROW 16: ["THM-DS23 — coNP-hard discovery", "Moderate"]
+ROW 17: ["Separator-complete physical decomposition in full ANANKE", "Research-level"]
+[1-10:P9728; UTF16 366479] 44. Permanent Definition and Theorem Registry
+[1-10:P9729; UTF16 366525] 44.1 Definitions
+[1-10:P9730; UTF16 366542] ￼
+ATTACHED TABLE 1736359; native row/column order; 25 rows
+ROW 0: ["ID", "Exact object", "Assumptions and dependencies", "Status", "Formalization"]
+ROW 1: ["DEF-DS0.1", "Separator-complete interface", "DEF-F17–F23, DEF-MN5", "Defined", "Moderate"]
+ROW 2: ["DEF-DS0.2", "Exterior regional test theory", "DEF-F46.1, DEF-MN13", "Defined", "Moderate"]
+ROW 3: ["DEF-DS0.3", "Legal semantic merge condition", "DEF-MN2–MN5", "Defined", "Difficult"]
+ROW 4: ["DEF-DS1", "Finite engineering factorization (\\mathfrak P)", "Prompt 1–2 semantics", "Defined", "Moderate"]
+ROW 5: ["DEF-DS1A", "Global finite engineering relation (R_{\\mathfrak P})", "DEF-DS1", "Defined", "Straightforward"]
+ROW 6: ["DEF-DS2", "Region (L)", "DEF-DS1", "Defined", "Straightforward"]
+ROW 7: ["DEF-DS3", "Raw separator record (\\mathsf{Raw}_L)", "DEF-DS0.1", "Defined", "Moderate"]
+ROW 8: ["DEF-DS4", "External regional residual and equivalence", "DEF-DS0.2, DEF-MN15", "Defined", "Straightforward"]
+ROW 9: ["DEF-DS5", "Canonical separator quotient (\\Sigma_L)", "DEF-DS4", "Defined", "Straightforward"]
+ROW 10: ["DEF-DS6", "Decision-separator width (w_D)", "DEF-DS5", "Defined", "Straightforward"]
+ROW 11: ["DEF-DS7", "Legal decomposition and decomposition width", "DEF-DS0.3", "Defined", "Difficult"]
+ROW 12: ["DEF-DS7A", "Decomposition maximum message width", "DEF-DS7", "Defined", "Straightforward"]
+ROW 13: ["DEF-DS8", "Project decision width (W_D^\\star)", "DEF-DS7A", "Defined", "Straightforward"]
+ROW 14: ["DEF-DS9", "Join-width profile", "DEF-DS7", "Defined", "Straightforward"]
+ROW 15: ["DEF-DS10", "Quotient DP message", "DEF-DS5", "Defined", "Straightforward"]
+ROW 16: ["DEF-DS11", "One-way regional decision game", "DEF-DS4", "Defined", "Moderate"]
+ROW 17: ["DEF-DS12", "Joint multiway separator quotient", "DEF-DS4", "Defined", "Moderate"]
+ROW 18: ["DEF-DS13", "Conditional separator quotient", "DEF-DS5", "Defined", "Straightforward"]
+ROW 19: ["DEF-DS14", "Semantic repetition monoid", "DEF-DS5", "Defined", "Straightforward"]
+ROW 20: ["DEF-DS15", "Choice-complete portfolio", "DEF-MN14, DEF-DS5", "Defined", "Moderate"]
+ROW 21: ["DEF-DS16", "Provisional width (W_P)", "ALG-DS3", "Defined", "Straightforward"]
+ROW 22: ["DEF-DS17", "Discovery gap (\\Delta_W)", "DEF-DS6, DEF-DS16", "Defined", "Straightforward"]
+ROW 23: ["DEF-DS18", "Five compression metrics", "DEF-DS5", "Defined", "Straightforward"]
+ROW 24: ["DEF-DS19", "Certified decision-complete coverage", "DEF-MN21, DEF-DS5", "Defined", "Moderate"]
+[1-10:P9734; UTF16 366547] 44.2 Lemmas

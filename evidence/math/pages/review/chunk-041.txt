@@ -1,0 +1,335 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P16166; UTF16 600168] Let \(\mathcal D\) be any sound downstream relational enclosure operator monotone under set inclusion.
+[1-10:P16168; UTF16 600276] \[ \mathcal D(\mathcal P_S) \subseteq \mathcal D(\widehat{\mathcal P}_S). \]
+[1-10:P16169; UTF16 600353] Thus replacing the detailed subsystem by the PCPE cannot omit a true downstream behavior.
+[1-10:P16171; UTF16 600449] The assumed relation inclusion and monotonicity of \(\mathcal D\) imply the result directly.
+[1-10:P16172; UTF16 600542] Natural join, exact wiring, existential hiding, finite union over uncertainty, and sound numerical enclosure are all inclusion monotone. ∎
+[1-10:P16173; UTF16 600681] This theorem proves outer soundness, not tightness.
+[1-10:P16177; UTF16 600736] 21. Composition of Outer Envelopes
+[1-10:P16178; UTF16 600771] THM-PO8 — Outer Composition Soundness
+[1-10:P16181; UTF16 600814] RARA,RBRB.
+[1-10:P16183; UTF16 600830] \[ \boxed{ R_B\circ R_A \subseteq \widehat R_B\circ\widehat R_A. } \]
+[1-10:P16187; UTF16 600912] (x,y)RBRA.
+[1-10:P16188; UTF16 600923] Then there exists z such that
+[1-10:P16190; UTF16 600954] (x,z)RA,(z,y)RB.
+[1-10:P16191; UTF16 600971] By the two inclusions,
+[1-10:P16198; UTF16 601036] The same proof applies to:
+[1-10:P16199; UTF16 601063] multiport natural joins;
+[1-10:P16200; UTF16 601088] correlated parameter relations;
+[1-10:P16201; UTF16 601120] exact mandatory-status conjunction;
+[1-10:P16202; UTF16 601156] evidence-graph composition;
+[1-10:P16203; UTF16 601184] existentially hidden internal ports.
+[1-10:P16207; UTF16 601224] 22. Quantitative Port-Error Composition
+[1-10:P16208; UTF16 601264] For nonempty sets A,B in metric space Y, define directed excess
+[1-10:P16209; UTF16 601328] \[ \operatorname{ex}(A,B) = \sup_{a\in A} \inf_{b\in B} d(a,b). \]
+[1-10:P16210; UTF16 601395] Let exact and approximate port maps be set valued:
+[1-10:P16211; UTF16 601446] \[ \mathcal P_A:X\rightrightarrows Y, \qquad \widetilde{\mathcal P}_A:X\rightrightarrows Y, \]\[ \mathcal P_B:Y\rightrightarrows Z, \qquad \widetilde{\mathcal P}_B:Y\rightrightarrows Z. \]
+[1-10:P16213; UTF16 601642] \[ \operatorname{ex} \left( \mathcal P_A(x), \widetilde{\mathcal P}_A(x) \right) \le \varepsilon_A \]
+[1-10:P16215; UTF16 601748] \[ \operatorname{ex} \left( \mathcal P_B(y), \widetilde{\mathcal P}_B(y) \right) \le \varepsilon_B. \]
+[1-10:P16216; UTF16 601851] Assume the exact downstream relation has modulus
+[1-10:P16217; UTF16 601900] \[ \operatorname{ex} \left( \mathcal P_B(y), \mathcal P_B(y') \right) \le \omega_B(d(y,y')). \]
+[1-10:P16220; UTF16 601998] THM-PO9 — Quantitative Port-Error Composition
+[1-10:P16221; UTF16 602044] Under the assumptions above,
+[1-10:P16222; UTF16 602073] \[ \operatorname{ex} \left( (\mathcal P_B\circ\mathcal P_A)(x), (\widetilde{\mathcal P}_B\circ\widetilde{\mathcal P}_A)(x) \right) \le \omega_B(\varepsilon_A)+\varepsilon_B. \]
+[1-10:P16224; UTF16 602256] Take any exact composite output z.
+[1-10:P16225; UTF16 602291] Then there exists
+[1-10:P16226; UTF16 602309] \[ y\in\mathcal P_A(x) \]
+[1-10:P16228; UTF16 602340] \[ z\in\mathcal P_B(y). \]
+[1-10:P16229; UTF16 602367] By the A-approximation, choose
+[1-10:P16230; UTF16 602398] \[ \widehat y\in\widetilde{\mathcal P}_A(x) \]
+[1-10:P16232; UTF16 602455] \[ d(y,\widehat y)\le\varepsilon_A \]
+[1-10:P16233; UTF16 602493] up to arbitrary limiting slack.
+[1-10:P16234; UTF16 602525] The modulus gives a response
+[1-10:P16235; UTF16 602554] \[ z'\in\mathcal P_B(\widehat y) \]
+[1-10:P16236; UTF16 602590] within B(A) of z.
+[1-10:P16237; UTF16 602608] The B-approximation gives
+[1-10:P16238; UTF16 602634] \[ \widehat z \in \widetilde{\mathcal P}_B(\widehat y) \]
+[1-10:P16239; UTF16 602692] within B of z'.
+[1-10:P16240; UTF16 602708] The triangle inequality gives
+[1-10:P16241; UTF16 602738] \[ d(z,\widehat z) \le \omega_B(\varepsilon_A)+\varepsilon_B. \]
+[1-10:P16242; UTF16 602803] Take the supremum over exact outputs. ∎
+[1-10:P16243; UTF16 602843] For vector errors, replace addition by Prompt 5’s typed .
+[1-10:P16247; UTF16 602904] 23. Contractive and Amplifying Composition
+[1-10:P16248; UTF16 602947] Suppose repeated motif error satisfies
+[1-10:P16249; UTF16 602986] \[ e_{n+1} \le Le_n+b. \]
+[1-10:P16250; UTF16 603012] THM-PO10 — Repeated Port-Error Bound
+[1-10:P16251; UTF16 603049] For \(n\ge0\),
+[1-10:P16254; UTF16 603120] If \(0\le L<1\)
+[1-10:P16255; UTF16 603136] \[ e_n \le L^ne_0 + b\frac{1-L^n}{1-L}, \]
+[1-10:P16257; UTF16 603183] \[ \limsup_{n\to\infty}e_n \le \frac b{1-L}. \]
+[1-10:P16258; UTF16 603231] If L=1
+[1-10:P16259; UTF16 603238] \[ e_n\le e_0+nb. \]
+[1-10:P16260; UTF16 603259] If L>1
+[1-10:P16261; UTF16 603266] \[ e_n \le L^ne_0 + b\frac{L^n-1}{L-1}. \]
+[1-10:P16263; UTF16 603315] Inductively unroll the recurrence. The geometric-series formulas give the three cases. ∎
+[1-10:P16264; UTF16 603404] Repeated hotel floors are favorable only when their composed operator gains and local error defects remain controlled.
+[1-10:P16268; UTF16 603526] 24. Port-Space Approximation
+[1-10:P16269; UTF16 603555] Let Hp be a Hilbert space containing admissible boundary-response fields.
+[1-10:P16271; UTF16 603633] \[ \mathcal M_S = \left\{ r: r\in\mathcal P_S(b,\theta,\xi) \text{ for admitted }b,\theta,\xi \right\} \subseteq H_p. \]
+[1-10:P16272; UTF16 603754] Assume \(\mathcal M_S\) is compact.
+[1-10:P16276; UTF16 603793] DEF-PO12 — Physical Port Rank
+[1-10:P16277; UTF16 603823] The physical -port rank is
+[1-10:P16278; UTF16 603850] \[ r_{\mathrm{port}}^\varepsilon(S) = \min \left\{ n: d_n(\mathcal M_S;H_p)\le\varepsilon \right\}, \]
+[1-10:P16279; UTF16 603953] where dn is the Kolmogorov n-width.
+[1-10:P16280; UTF16 603989] This measures linear approximation dimension, not semantic decision information.
+[1-10:P16284; UTF16 604073] 25. Kolmogorov n-Width
+[1-10:P16285; UTF16 604096] DEF-PO13 — Kolmogorov n-Width
+[1-10:P16286; UTF16 604126] \[ d_n(\mathcal M;H) = \inf_{\substack{V\subseteq H\\\dim V=n}} \sup_{u\in\mathcal M} \inf_{v\in V} \|u-v\|_H. \]
+[1-10:P16287; UTF16 604240] Rapid decay of dn indicates that one low-dimensional linear space approximates the entire response manifold well.
+[1-10:P16288; UTF16 604354] Slow decay means that linear reduction requires many modes.
+[1-10:P16289; UTF16 604414] Prompt-3 decision width and Kolmogorov width answer different questions:
+[1-10:P16290; UTF16 604487] ￼
+ATTACHED TABLE 1736807; native row/column order; 3 rows
+ROW 0: ["Quantity", "Measures"]
+ROW 1: ["dn or rport", "Functional/numerical approximability"]
+ROW 2: ["WD", "Decision-relevant semantic message count"]
+[1-10:P16291; UTF16 604489] Neither universally bounds the other.
+[1-10:P16295; UTF16 604530] 26. Decision-Weighted Port Reduction
+[1-10:P16297; UTF16 604571] \[ \mathfrak R \]
+[1-10:P16298; UTF16 604589] map a physical response to its complete admitted quantitative residual report.
+[1-10:P16299; UTF16 604668] Define a decision pseudometric
+[1-10:P16300; UTF16 604699] \[ d_{\mathrm{dec}}(u,v) = d_{\mathrm{res}} \left( \mathfrak R(u), \mathfrak R(v) \right), \]
+[1-10:P16301; UTF16 604793] with mandatory disagreement assigned infinite distance.
+[1-10:P16302; UTF16 604849] DEF-PO14 — Decision Port Rank
+[1-10:P16303; UTF16 604879] \[ r_{\mathrm{dec}}^\varepsilon(S) = \min \left\{ n: \inf_{\dim V=n} \sup_{u\in\mathcal M_S} \inf_{v\in V} d_{\mathrm{dec}}(u,v) \le \varepsilon \right\}. \]
+[1-10:P16306; UTF16 605039] THM-PO33 — Physical-to-Decision Rank Bound
+[1-10:P16308; UTF16 605085] \[ d_{\mathrm{dec}}(u,v) \le L\|u-v\|_H \]
+[1-10:P16309; UTF16 605128] throughout \(\mathcal M_S\), then
+[1-10:P16310; UTF16 605162] \[ d_n^{\mathrm{dec}} \le L\,d_n(\mathcal M_S;H). \]
+[1-10:P16312; UTF16 605229] \[ r_{\mathrm{dec}}^\varepsilon \le r_{\mathrm{port}}^{\varepsilon/L}. \]
+[1-10:P16314; UTF16 605309] For every n-dimensional V,
+[1-10:P16315; UTF16 605336] \[ \inf_{v\in V} d_{\mathrm{dec}}(u,v) \le L \inf_{v\in V} \|u-v\|_H. \]
+[1-10:P16316; UTF16 605409] Take the supremum over u and the infimum over V. ∎
+[1-10:P16317; UTF16 605460] The converse is false: decision error may ignore a large physical nullspace.
+[1-10:P16321; UTF16 605540] THM-PO13 — Decision-Sufficient Port Reduction
+[1-10:P16322; UTF16 605586] Let encoder and reconstruction maps be
+[1-10:P16323; UTF16 605625] \[ \phi:\mathcal M_S\to Z, \qquad \rho:Z\to H_p. \]
+[1-10:P16324; UTF16 605677] Suppose for every \(u\in\mathcal M_S\),
+[1-10:P16325; UTF16 605717] \[ d_{\mathrm{dec}} \left( u,\rho(\phi(u)) \right) \le \varepsilon, \]
+[1-10:P16326; UTF16 605788] mandatory statuses agree exactly, and every current decision margin exceeds the propagated error.
+[1-10:P16327; UTF16 605886] Then the reduced representation is decision sufficient within tolerance .
+[1-10:P16328; UTF16 605960] For =0, it factors through the exact contextual port quotient.
+[1-10:P16330; UTF16 606029] The error condition gives an approximate residual cover.
+[1-10:P16331; UTF16 606086] Prompt-5 THM-ER6 converts the certified residual bound and positive decision margin into exact report preservation.
+[1-10:P16332; UTF16 606202] At zero error, Prompt-5 THM-ER1 identifies zero residual distance with exact contextual equivalence. THM-PO3 supplies the factorization. ∎
+[1-10:P16336; UTF16 606344] 27. Certified Reduced Bases
+[1-10:P16337; UTF16 606372] DEF-PO15 — Certified Reduced-Basis Port Model
+[1-10:P16338; UTF16 606418] A reduced-basis model contains:
+[1-10:P16339; UTF16 606450] a trial basis  
+[1-10:P16340; UTF16 606466] Vr=[v1,,vr];
+[1-10:P16342; UTF16 606480] optionally a test basis Wr;
+[1-10:P16343; UTF16 606508] a reduced solver for coefficients a;
+[1-10:P16344; UTF16 606545] reconstruction  
+[1-10:P16345; UTF16 606562] ur=Vra;
+[1-10:P16348; UTF16 606590] a residual evaluator;
+[1-10:P16349; UTF16 606612] a stability lower bound;
+[1-10:P16350; UTF16 606637] an a posteriori estimator  
+[1-10:P16351; UTF16 606665] r(b,,);
+[1-10:P16353; UTF16 606674] output and mandatory-status certificates.
+[1-10:P16354; UTF16 606716] Its trusted contract is
+[1-10:P16355; UTF16 606740] \[ \|u-\widehat u_r\| \le \Delta_r. \]
+[1-10:P16356; UTF16 606779] The construction method may be Galerkin, Petrov–Galerkin, projection, or hyper-reduction. The certificate contract is authoritative.
+[1-10:P16360; UTF16 606915] 28. Residual-Based Reduced-Model Certificates
+[1-10:P16361; UTF16 606961] THM-PO14 — Residual-Based Reduced-Basis Error Bound
+[1-10:P16362; UTF16 607013] Coercive linear form
+[1-10:P16363; UTF16 607034] Let V be a Hilbert space.
+[1-10:P16365; UTF16 607064] \[ a_\mu:V\times V\to\mathbb R \]
+[1-10:P16366; UTF16 607098] be continuous and coercive:
+[1-10:P16367; UTF16 607126] \[ a_\mu(v,v) \ge \alpha_\mu\|v\|_V^2, \qquad \alpha_\mu>0. \]
+[1-10:P16368; UTF16 607189] Let exact u satisfy
+[1-10:P16370; UTF16 607210] a(u,v)=f(v)vV.
+[1-10:P16371; UTF16 607225] Let reduced ur have residual
+[1-10:P16373; UTF16 607255] r(v)=f(v)-a(ur,v).
+[1-10:P16375; UTF16 607279] \[ \boxed{ \|u-\widehat u_r\|_V \le \frac{\|r_\mu\|_{V'}}{\alpha_\mu}. } \]
+[1-10:P16379; UTF16 607366] e=u-ur.
+[1-10:P16382; UTF16 607380] a(e,v)=r(v).
+[1-10:P16383; UTF16 607393] Set v=e:
+[1-10:P16384; UTF16 607402] \[ \alpha_\mu\|e\|^2 \le a_\mu(e,e) = r_\mu(e) \le \|r_\mu\|_{V'}\|e\|. \]
+[1-10:P16385; UTF16 607477] Divide when e0. ∎
+[1-10:P16389; UTF16 607498] Inf-sup variant
+[1-10:P16390; UTF16 607514] If the operator \(A_\mu:V\to W'\) satisfies
+[1-10:P16391; UTF16 607558] \[ \inf_{v\ne0} \frac{\|A_\mu v\|_{W'}}{\|v\|_V} \ge \beta_\mu>0, \]
+[1-10:P16393; UTF16 607632] \[ \|u-\widehat u_r\|_V \le \frac{\|r_\mu\|_{W'}}{\beta_\mu}. \]
+[1-10:P16394; UTF16 607697] The proof is the definition of the lower operator bound.
+[1-10:P16395; UTF16 607754] Nonlinear variant
+[1-10:P16396; UTF16 607772] Strong monotonicity gives Prompt-5 THM-ER22.
+[1-10:P16397; UTF16 607817] A residual without , , or another stability certificate is not an error bound.
+[1-10:P16401; UTF16 607899] 29. Adaptive Enrichment
+[1-10:P16402; UTF16 607923] ALG-PO4 — AdaptivePortEnrich
+[1-10:P16404; UTF16 607958]     current PCPE
+[1-10:P16405; UTF16 607975]     query or counterexample state
+[1-10:P16406; UTF16 608009]     decision obligations
+[1-10:P16407; UTF16 608034]     enrichment budget
+[1-10:P16409; UTF16 608057] 1. Verify query lies inside the current validity domain.
+[1-10:P16411; UTF16 608115] 2. Evaluate the reduced operator and its certificate.
+[1-10:P16413; UTF16 608170] 3. If:
+[1-10:P16414; UTF16 608177]        mandatory status is uniform,
+[1-10:P16415; UTF16 608213]        error fits the decision budget,
+[1-10:P16416; UTF16 608252]        no global-mode alarm exists,
+[1-10:P16417; UTF16 608288]    return the current result.
+[1-10:P16419; UTF16 608319] 4. Otherwise run a full-order solve at the failing state.
+[1-10:P16421; UTF16 608378] 5. Extract one or more:
+[1-10:P16422; UTF16 608402]        state snapshots,
+[1-10:P16423; UTF16 608426]        interface traces,
+[1-10:P16424; UTF16 608451]        sensitivities,
+[1-10:P16425; UTF16 608473]        residual modes,
+[1-10:P16426; UTF16 608496]        constraint modes.
+[1-10:P16428; UTF16 608522] 6. Orthogonalize against the current basis.
+[1-10:P16430; UTF16 608567] 7. If a nonzero independent mode remains:
+[1-10:P16431; UTF16 608609]        add it to the basis.
+[1-10:P16433; UTF16 608638] 8. Rebuild or update:
+[1-10:P16434; UTF16 608660]        reduced operators,
+[1-10:P16435; UTF16 608686]        error estimators,
+[1-10:P16436; UTF16 608711]        validity domain,
+[1-10:P16437; UTF16 608735]        certificates.
+[1-10:P16439; UTF16 608757] 9. Verify the new envelope is sound and preferably nested.
+[1-10:P16441; UTF16 608817] 10. If enrichment fails repeatedly:
+[1-10:P16442; UTF16 608853]        split the parameter domain,
+[1-10:P16443; UTF16 608888]        expand the region,
+[1-10:P16444; UTF16 608914]        or use full-order fallback.
+[1-10:P16448; UTF16 608952] THM-PO15 — Adaptive Enrichment Convergence
+[1-10:P16449; UTF16 608995] Finite-dimensional version
+[1-10:P16450; UTF16 609022] Let the full-order internal space have dimension N.
+[1-10:P16451; UTF16 609074] Suppose every failed enrichment adds a linearly independent vector to the current reduced space.
+[1-10:P16452; UTF16 609171] Then after at most N-r0 successful enrichments,
+[1-10:P16454; UTF16 609220] Vr=Vfull,
+[1-10:P16455; UTF16 609230] and the reduced model becomes full order, so its reduction error is zero.
+[1-10:P16456; UTF16 609304] Infinite-dimensional version
+[1-10:P16458; UTF16 609337] the spaces are nested;
+[1-10:P16459; UTF16 609360] their union is dense in V;
+[1-10:P16460; UTF16 609387] the reduced method is uniformly quasi-optimal;
+[1-10:P16461; UTF16 609434] the estimator is reliable;
+[1-10:P16462; UTF16 609461] then the reduced approximation error tends to zero.
+[1-10:P16464; UTF16 609519] The finite-dimensional statement follows from dimension increase.
+[1-10:P16465; UTF16 609585] For the infinite-dimensional statement, density makes best-approximation error tend to zero. Uniform quasi-optimality bounds reduced error by a fixed multiple of best approximation. ∎
+[1-10:P16466; UTF16 609769] No universal exponential convergence rate is claimed.
+[1-10:P16470; UTF16 609826] 30. Parametric Port Operators
+[1-10:P16471; UTF16 609856] A parametric relation is
+[1-10:P16472; UTF16 609881] \[ \mathcal P_S(b,\theta,\xi). \]
+[1-10:P16473; UTF16 609915] It may be represented through:
+[1-10:P16474; UTF16 609946] affine decompositions;
+[1-10:P16475; UTF16 609969] piecewise polynomials;
+[1-10:P16476; UTF16 609992] tensor decompositions;
+[1-10:P16477; UTF16 610015] interpolation;
+[1-10:P16478; UTF16 610030] symbolic finite-domain formulas;
+[1-10:P16480; UTF16 610078] local surrogates with certified envelopes.
+[1-10:P16481; UTF16 610121] Global smoothness is not assumed.
+[1-10:P16485; UTF16 610158] 31. Parameter-Domain Splitting
+[1-10:P16488; UTF16 610194] =j=1mj.
+[1-10:P16489; UTF16 610202] Suppose envelope \(\widehat{\mathcal P}_j\) is sound on j.
+[1-10:P16490; UTF16 610261] THM-PO16 — Parameter-Domain Splitting Soundness
+[1-10:P16492; UTF16 610316] \[ \widehat{\mathcal P}(b,\theta) = \bigcup_{j:\theta\in\Theta_j} \widehat{\mathcal P}_j(b,\theta). \]
+[1-10:P16494; UTF16 610424] \[ \mathcal P(b,\theta) \subseteq \widehat{\mathcal P}(b,\theta) \]
+[1-10:P16495; UTF16 610492] for every .
+[1-10:P16497; UTF16 610510] Choose j with j.
+[1-10:P16498; UTF16 610527] The local certificate gives
+[1-10:P16499; UTF16 610555] \[ \mathcal P(b,\theta) \subseteq \widehat{\mathcal P}_j(b,\theta). \]
+[1-10:P16500; UTF16 610626] That local envelope is included in the union. ∎
+[1-10:P16501; UTF16 610674] Counterexample-guided refinement may split validity domains without changing exact design semantics.
+[1-10:P16505; UTF16 610778] 32. Regime Partitioning and Threshold Preservation
+[1-10:P16506; UTF16 610829] DEF-PO16 — Regime-Partitioned Port Operator
+[1-10:P16507; UTF16 610873] Let Q be an exact finite regime set.
+[1-10:P16508; UTF16 610910] A piecewise operator is
+[1-10:P16509; UTF16 610934] \[ \mathcal P = \bigcup_{q\in Q} \{q\}\times\mathcal P_q. \]
+[1-10:P16510; UTF16 610995] Each \(\mathcal P_q\) may be smooth or reducible inside its validity domain.
+[1-10:P16511; UTF16 611072] The regime identity remains exact.
+[1-10:P16515; UTF16 611110] THM-PO17 — Mandatory Regime Preservation
+[1-10:P16516; UTF16 611151] Suppose two regimes q1q2 differ in any mandatory status or admit an exterior experiment with different complete outcomes.
+[1-10:P16517; UTF16 611273] No resolved PCPE state may merge them.
+[1-10:P16518; UTF16 611312] An enclosure spanning both regimes must:
+[1-10:P16520; UTF16 611360] refine;
+[1-10:P16521; UTF16 611368] or return unresolved.
+[1-10:P16523; UTF16 611396] Regime distinction produces infinite mandatory distance or nonzero contextual residual distance.
+[1-10:P16524; UTF16 611493] Prompt-5 THM-ER3 prohibits a unique mandatory classification across the enclosure.
+[1-10:P16525; UTF16 611576] Prompt-5 THM-ER1 prohibits exact contextual merging. ∎
+[1-10:P16529; UTF16 611634] 32.1 Catalog threshold counterexample
+[1-10:P16530; UTF16 611672] Equipment A is valid for
+[1-10:P16531; UTF16 611697] \[ Q\le100. \]
+[1-10:P16532; UTF16 611712] Equipment B is required for
+[1-10:P16534; UTF16 611741] Q>100.
+[1-10:P16535; UTF16 611748] A smooth surrogate returning an average equipment response around Q=100 represents no real catalog product.
+[1-10:P16536; UTF16 611856] The exact regime variable
+[1-10:P16538; UTF16 611883] qequip{A,B}
+[1-10:P16539; UTF16 611895] must be retained. Approximation is allowed only inside each regime.
+[1-10:P16543; UTF16 611966] 33. Joint Multiport Correlation
+[1-10:P16544; UTF16 611998] Let a two-port subsystem satisfy
+[1-10:P16546; UTF16 612032] q1+q2=1,q1,q2[0,1].
+[1-10:P16547; UTF16 612052] The exact relation is
+[1-10:P16549; UTF16 612075] R={(q1,q2):q1+q2=1}.
+[1-10:P16550; UTF16 612096] The independent marginals are
+[1-10:P16552; UTF16 612127] q1[0,1],q2[0,1],
+[1-10:P16553; UTF16 612144] whose product incorrectly admits
+[1-10:P16555; UTF16 612178] (1,1).
+[1-10:P16559; UTF16 612188] THM-PO18 — Independent Marginal Port Envelopes Can Be Unsound
+[1-10:P16560; UTF16 612250] Replacing a joint port relation by the Cartesian product of its marginal projections is sound if and only if the exact joint relation is contained in that product—which is always true for outer containment—but it is exact only if the joint relation factorizes.
+[1-10:P16561; UTF16 612511] Moreover, any downstream claim relying on a relation absent from the marginals cannot be certified from marginals alone.
+[1-10:P16563; UTF16 612638] Outer containment:
+[1-10:P16565; UTF16 612658] R1(R)2(R)
+[1-10:P16566; UTF16 612668] always holds.
+[1-10:P16567; UTF16 612682] Equality holds exactly when every combination of marginally reachable values is jointly reachable.
+[1-10:P16568; UTF16 612781] For the example, (1,1) belongs to the product but not R. A downstream conservation query distinguishes them. ∎
+[1-10:P16569; UTF16 612892] Product envelopes may be sound but uselessly broad. Treating them as exact is unsound.
+[1-10:P16570; UTF16 612979] Certified separability or conditional independence is required for exact factorization.
+[1-10:P16574; UTF16 613070] 34. Conservation Structure
+[1-10:P16575; UTF16 613097] DEF-PO17 — Conservation Certificate
+[1-10:P16576; UTF16 613133] Let each port p contribute
+[1-10:P16578; UTF16 613161] p(bp)G
+[1-10:P16579; UTF16 613168] to an abelian balance group G.
+[1-10:P16580; UTF16 613199] A subsystem relation carries source/storage term sS and satisfies
+[1-10:P16582; UTF16 613266] pPSp(bp)=sS.
+[1-10:P16583; UTF16 613279] A connected port pair satisfies
+[1-10:P16585; UTF16 613312] p(bp)+q(bq)=0.
+[1-10:P16589; UTF16 613330] THM-PO19 — Conservation-Preserving Composition
+[1-10:P16590; UTF16 613377] If every constituent subsystem satisfies its conservation certificate and every internal wiring pair cancels exactly, then the composite satisfies
+[1-10:P16592; UTF16 613525] pPexternalp(bp)=SsS.
+[1-10:P16594; UTF16 613552] Sum the conservation equations of all subsystems.
+[1-10:P16595; UTF16 613602] Every internal connected pair contributes terms summing to zero.
+[1-10:P16596; UTF16 613667] Only external-port contributions and subsystem sources remain. ∎
+[1-10:P16597; UTF16 613732] This covers:
+[1-10:P16598; UTF16 613745] force and moment balance;
+[1-10:P16599; UTF16 613771] mass flow;
+[1-10:P16601; UTF16 613790] Kirchhoff current balance.
+[1-10:P16602; UTF16 613817] A learned operator with small average prediction error may still be rejected if it violates exact conservation.
+[1-10:P16606; UTF16 613932] 35. Passivity and Monotonicity
+[1-10:P16607; UTF16 613963] THM-PO27 — Passivity Under Power-Conserving Interconnection
+[1-10:P16608; UTF16 614023] Suppose subsystem i has storage Vi, dissipation \(d_i\ge0\), and port supply rate eifi, satisfying
+[1-10:P16609; UTF16 614122] \[ \dot V_i \le e_i^\top f_i-d_i. \]
+[1-10:P16610; UTF16 614159] Interconnect two subsystems by
+[1-10:P16612; UTF16 614191] eA=eB,fA+fB=0.
+[1-10:P16613; UTF16 614206] Then the composite satisfies
+[1-10:P16614; UTF16 614235] \[ \frac d{dt}(V_A+V_B) \le -(d_A+d_B). \]
+[1-10:P16616; UTF16 614284] Add the two inequalities.
+[1-10:P16617; UTF16 614310] The supply terms cancel:
+[1-10:P16619; UTF16 614336] eAfA+eBfB=eA(fA+fB)=0.
+[1-10:P16621; UTF16 614361] Passivity can improve stability under composition, but not every building process is passive.
+[1-10:P16625; UTF16 614458] THM-PO20 — Monotone Port-Envelope Extremum Bound
+[1-10:P16627; UTF16 614511] \[ f:[\ell,u]\to\mathbb R^m \]
+[1-10:P16628; UTF16 614542] be componentwise order preserving:
+[1-10:P16629; UTF16 614577] \[ x\le y \Longrightarrow f(x)\le f(y). \]
+[1-10:P16631; UTF16 614625] \[ f([\ell,u]) \subseteq [f(\ell),f(u)]. \]
+[1-10:P16633; UTF16 614675] For every \(x\in[\ell,u]\),
+[1-10:P16634; UTF16 614703] \[ \ell\le x\le u. \]
+[1-10:P16635; UTF16 614725] Monotonicity gives
+[1-10:P16636; UTF16 614744] \[ f(\ell)\le f(x)\le f(u). \]
+[1-10:P16638; UTF16 614777] For mixed monotonicity with known coordinate signs, appropriate corner evaluations give the bound.
+[1-10:P16642; UTF16 614879] 35.1 Nonmonotone counterexample
+[1-10:P16644; UTF16 614912] f(x)=x(1-x),x[0,1].
+[1-10:P16645; UTF16 614932] Endpoints give
+[1-10:P16647; UTF16 614948] f(0)=f(1)=0,
+[1-10:P16648; UTF16 614961] but the interior maximum is
+[1-10:P16650; UTF16 614990] f(1/2)=1/4.
+[1-10:P16651; UTF16 615002] Endpoint sampling without a monotonicity proof is unsound.
+[1-10:P16655; UTF16 615064] 36. Dynamic Port Operators
+[1-10:P16656; UTF16 615091] DEF-PO18 — Finite-Horizon Dynamic Port Behavior
+[1-10:P16657; UTF16 615139] For horizon T, a dynamic subsystem has behavior relation
+[1-10:P16658; UTF16 615196] \[ \mathcal B_S^T \subseteq X_0 \times U^{0:T-1} \times Y^{0:T} \times H \times E. \]
+[1-10:P16659; UTF16 615282] It records:
+[1-10:P16660; UTF16 615294] initial state;
+[1-10:P16661; UTF16 615309] input history;
+[1-10:P16662; UTF16 615324] output history;
+[1-10:P16665; UTF16 615370] For linear state space:
+[1-10:P16667; UTF16 615395] xt+1=Axt+But,
+[1-10:P16669; UTF16 615410] yt=Cxt+Dut.
+[1-10:P16670; UTF16 615422] The internal state or reduced state cannot be omitted from the compiled semantics unless its effect on future outputs is represented.
+[1-10:P16674; UTF16 615559] THM-PO21 — Finite-Horizon Dynamic Port Equivalence

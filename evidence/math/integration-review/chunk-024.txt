@@ -1,0 +1,623 @@
+[22676] ASSUMP-CMP61 — Checkpoint closure. A resumable checkpoint references a complete compatible state.
+[22677] ASSUMP-CMP62 — Randomness recording. Search seeds and relevant nondeterministic inputs are recorded.
+[22678] ASSUMP-CMP63 — Crash-detectable manifests. Partial root manifests cannot pass closure validation.
+[22679] ASSUMP-CMP64 — Garbage-collection reachability. Objects reachable from retained roots, proofs, events, releases, and checkpoints are retained.
+[22680] ASSUMP-CMP65 — Migration nonmutation. Historical released objects are not rewritten in place during schema migration.
+[22681] ASSUMP-CMP66 — Import loss visibility. Unmapped or approximated source semantics remain explicit.
+[22682] ASSUMP-CMP67 — Export scope visibility. Every export records represented and omitted semantics.
+[22683] ASSUMP-CMP68 — Viewer nonauthority. Viewer artifacts are disposable projections.
+[22684] ASSUMP-CMP69 — Viewer-root identity. Every viewer scene is tied to the exact root from which it was built.
+[22685] ASSUMP-CMP70 — Viewer semantic index. Selectable render primitives map through a checked index to semantic objects.
+[22686] ASSUMP-CMP71 — Animation nonproof. Intermediate animation frames are not engineering states unless separately certified.
+[22687] ASSUMP-CMP72 — Local-authority persistence. The canonical state remains locally owned and inspectable.
+[22688] ASSUMP-CMP73 — Worker isolation. Untrusted workers cannot directly mutate branch heads.
+[22689] ASSUMP-CMP74 — GPU nonauthority. GPU results are proposals until disposed.
+[22690] ASSUMP-CMP75 — Resource-exhaustion discipline. Resource exhaustion yields a typed bounded result or UNKNOWN.
+[22691] ASSUMP-CMP76 — Proof-DAG integrity. Every proof reference resolves to immutable checked content.
+[22692] ASSUMP-CMP77 — Kernel minimization. Search and presentation systems are excluded from the semantic trusted base where possible.
+[22693] ASSUMP-CMP78 — Release-policy identity. Final release uses an explicit versioned policy.
+[22694] ASSUMP-CMP79 — Independent PCOMA acceptance. The final package is independently checked.
+[22695] ASSUMP-CMP80 — Open-world discipline. No theorem infers absence of unmodeled release-relevant facts.
+[22697] 13. Final Canonical Oma State
+[22698] DEF-CMP1 — Project identifier
+[22699] \[ \mathsf{ProjectId} \]
+[22700] is an immutable opaque identifier for one project, distinct from project name and path.
+[22701] DEF-CMP2 — Lineage identifier
+[22702] \[ \mathsf{LineageId} \]
+[22703] identifies a branch-and-merge family descended from one project genesis event.
+[22704] DEF-CMP3 — Semantic identifier
+[22705] A semantic identifier is
+[22706] \[ s= (\mathsf{lineage},\mathsf{namespace},\mathsf{localKey},\mathsf{generation}). \]
+[22707] DEF-CMP4 — Version vector
+[22708] \[ \nu= (\nu_{\mathrm{schema}}, \nu_{\mathrm{theory}}, \nu_{\mathrm{checker}}, \nu_{\mathrm{experiment}}, \nu_{\mathrm{tool}}, \nu_{\mathrm{environment}}). \]
+[22709] DEF-CMP5 — Canonical Oma state
+[22710] \[ \boxed{ \Xi_t^{\mathrm{OMA}} = \left( R_t,\mathcal I_t,\mathcal A_t,\mathcal T_t,\mathcal G_t, \mathcal P_t,\mathcal C_t,\mathcal V_t,\mathcal U_t, \mathcal X_t,\mathcal Q_t,\mathcal K_t,\mathcal Z_t \right). } \]
+[22711] Coordinates are:
+[22712] \(R_t\): committed root and branches;
+[22713] \(\mathcal I_t\): identities and source correspondences;
+[22714] \(\mathcal A_t\): immutable artifacts and blobs;
+[22715] \(\mathcal T_t\): transactions and events;
+[22716] \(\mathcal G_t\): dependency, lineage, and proof graphs;
+[22717] \(\mathcal P_t\): PCSIR/PCROUTE/PCJCD/PCDYN/PCOMA package state;
+[22718] \(\mathcal C_t\): claims, contradictions, waivers, release order;
+[22719] \(\mathcal V_t\): viewer and export projections;
+[22720] \(\mathcal U_t\): MCP tools, capabilities, and invocation history;
+[22721] \(\mathcal X_t\): AI proposal state;
+[22722] \(\mathcal Q_t\): queues, checkpoints, caches, runtime state;
+[22723] \(\mathcal K_t\): trusted kernel manifest;
+[22724] \(\mathcal Z_t\): UNKNOWN, limitations, and open-world boundaries.
+[22725] DEF-CMP6 — Canonical project state
+[22726] \[ \mathcal S_{\mathrm{OMA}} = (\mathsf{manifest},\mathsf{reachableObjects},\mathsf{versions}). \]
+[22727] DEF-CMP7 — Authoritative state equality
+[22728] \[ S_1 =_{\mathrm{auth}} S_2 \iff \operatorname{CanonBytes}(S_1)=\operatorname{CanonBytes}(S_2). \]
+[22729] DEF-CMP8 — Semantic compatibility
+[22730] \[ S_1\asymp_{\mathrm{sem}}S_2 \]
+[22731] means every shared semantic object and declared relation agrees under a checked translation.
+[22732] DEF-CMP9 — Applicability
+[22733] Artifact \(a\) is applicable to target \(t\) when every root in its applicability predicate equals or transports to the active target roots.
+[22734] DEF-CMP10 — Project snapshot
+[22735] A snapshot is a closed immutable manifest and all objects reachable from it.
+[22736] DEF-CMP11 — Authoritative branch head
+[22737] A branch head maps a branch name to exactly one committed root.
+[22738] DEF-CMP12 — Proposal state
+[22739] A proposal state contains nonauthoritative artifacts not reachable from a committed engineering root.
+[22989] 28. Requirements and Intent
+[22990] DEF-CMP117 — Natural-language intent
+[22991] Untrusted source text describing desired project behavior.
+[22992] DEF-CMP118 — Typed requirement
+[22993] \[ r= (\mathsf{id},\mathsf{proposition},\mathsf{kind}, \mathsf{scope},\mathsf{modality},\mathsf{authority}, \mathsf{source},\mathsf{priority},\mathsf{version}). \]
+[22994] DEF-CMP119 — Requirement kind
+[22995] \[ \{ \mathsf{HARD},\mathsf{PREFERRED},\mathsf{INFORMATIONAL}, \mathsf{PROTECTED},\mathsf{REGULATORY}, \mathsf{UNCERTAIN},\mathsf{UNRESOLVED} \}. \]
+[22996] DEF-CMP120 — Requirement proposal
+[22997] An uncommitted AI- or human-generated typed interpretation.
+[22998] DEF-CMP121 — Requirement graph
+[22999] A graph of requirements, dependencies, conflicts, authorities, and source spans.
+[23000] DEF-CMP122 — Ambiguity fiber
+[23001] \[ \mathcal I(q) = \{r_1,\ldots,r_k\} \]
+[23002] for plausible interpretations of source \(q\).
+[23003] DEF-CMP123 — Requirement resolution
+[23004] An authorized selection, rejection, or maintained ambiguity.
+[23005] DEF-CMP124 — Requirement root
+[23006] The committed canonical manifest of authoritative requirements.
+[23007] DEF-CMP125 — Provenance span
+[23008] A precise source byte, page, entity, or message range supporting an interpretation.
+[23010] 29. AI Semantic Compiler
+[23011] DEF-CMP126 — AI semantic compilation
+[23012] \[ \mathsf{NLIntent} \xrightarrow{\mathsf{AI}} \widetilde{\mathsf{RequirementGraph}}. \]
+[23013] DEF-CMP127 — AI proposal
+[23014] \[ p= (\mathsf{model},\mathsf{inputs},\mathsf{candidate}, \mathsf{uncertainties},\mathsf{provenance}, \mathsf{version}). \]
+[23015] DEF-CMP128 — Proposal disposition
+[23016] \[ \{\mathsf{UNREVIEWED},\mathsf{VALIDATED}, \mathsf{REJECTED},\mathsf{UNKNOWN}\}. \]
+[23017] DEF-CMP129 — AI confidence
+[23018] A proposal metadata value with no proof modality unless calibrated under a declared model.
+[23019] DEF-CMP130 — High-impact ambiguity
+[23020] An ambiguity capable of changing a protected, safety, regulatory, or release root.
+[23022] 30. AI Orchestration
+[23023] DEF-CMP131 — AI orchestration state
+[23024] \[ \mathcal A_t^{\mathrm{AI}} = (\mathsf{model},\mathsf{contextView}, \mathsf{availableTools},\mathsf{proposals}, \mathsf{toolCalls},\mathsf{explanations},\mathsf{version}). \]
+[23025] DEF-CMP132 — Context view
+[23026] A bounded projection of authoritative state exposed to the model.
+[23027] DEF-CMP133 — Tool plan
+[23028] An untrusted partial order of intended tool calls.
+[23029] DEF-CMP134 — Computation proposal
+[23030] A suggestion to run one compiler pass or checker.
+[23031] DEF-CMP135 — AI explanation
+[23032] A human-facing projection of proof artifacts and limitations.
+[23033] DEF-CMP136 — Model identity
+[23034] The provider, model, version, settings, and context policy producing a proposal.
+[23036] 31. AI Trust Boundary
+[23037] DEF-CMP137 — External content
+[23038] Source-provided text or metadata classified as data.
+[23039] DEF-CMP138 — Instruction-class token
+[23040] A trusted control-plane instruction issued by the application or authorized user.
+[23041] DEF-CMP139 — Data-class token
+[23042] A source payload that cannot invoke tools or grant authority directly.
+[23043] DEF-CMP140 — Prompt-injection candidate
+[23044] External content containing language that resembles control instructions.
+[23045] DEF-CMP141 — AI trust boundary
+[23046] The rule that AI output may influence proposals and scheduling but not checker truth or commit authority.
+[23047] DEF-CMP142 — Proposal-source independence
+[23048] Certificate semantics depend on normalized artifact and checker premises, not proposer identity.
+[23050] 32. Architecture MCP
+[23051] DEF-CMP143 — Tool name
+[23052] A case-sensitive server-scoped identifier conforming to the active MCP naming constraints.
+[23053] DEF-CMP144 — Tool descriptor
+[23054] \[ d= (\mathsf{name},\mathsf{title},\mathsf{description}, \mathsf{inputSchema},\mathsf{outputSchema}, \mathsf{effect},\mathsf{trust},\mathsf{capability}, \mathsf{version}). \]
+[23055] DEF-CMP145 — MCP tool registry
+[23056] The deterministic, capability-filtered catalog of descriptors exposed by the Oma server.
+[23057] DEF-CMP146 — Server-discovery record
+[23058] The supported protocol versions, tool capabilities, server identity, and cache hints.
+[23059] DEF-CMP147 — Protocol request envelope
+[23060] A JSON-RPC request plus MCP protocol metadata and routing headers.
+[23061] DEF-CMP148 — Explicit project handle
+[23062] The project root or transaction ID passed as a normal tool argument.
+[23064] 33. MCP Effect System
+[23065] DEF-CMP149 — Tool effect
+[23066] \[ \boxed{ \mathsf{Effect} = \{ \mathsf{PURE},\mathsf{READ},\mathsf{PROPOSE}, \mathsf{CHECK},\mathsf{TRANSACTIONAL\_WRITE}, \mathsf{COMMIT},\mathsf{EXPORT}, \mathsf{EXTERNAL\_SIDE\_EFFECT} \}. } \]
+[23067] DEF-CMP150 — Effect trace
+[23068] The immutable record of all effects actually performed by one invocation.
+[23069] DEF-CMP151 — Effect refinement
+[23070] \[ e_1\sqsubseteq e_2 \]
+[23071] when every effect allowed by \(e_1\) is allowed by \(e_2\).
+[23072] DEF-CMP152 — Undeclared effect
+[23073] An observed state or external change absent from the descriptor.
+[23074] DEF-CMP153 — Effect composition
+[23075] Sequential composition of declared effects with authority and transaction constraints.
+[23076] DEF-CMP154 — Pure execution
+[23077] Execution that creates no persistent artifact, proof, proposal, event, or external effect.
+[23079] 34. MCP Tool Trust
+[23080] DEF-CMP155 — Tool trust class
+[23081] \[ \mathsf{ToolTrust} = \{ \mathsf{UNTRUSTED\_PROPOSER}, \mathsf{DERIVED\_VIEW}, \mathsf{VALIDATOR}, \mathsf{TRUSTED\_KERNEL} \}. \]
+[23082] DEF-CMP156 — Validator tool
+[23083] A tool whose accepted result is backed by a trusted checker.
+[23084] DEF-CMP157 — Derived-view tool
+[23085] A tool producing nonauthoritative projections.
+[23086] DEF-CMP158 — Kernel tool
+[23087] A minimal tool directly invoking trusted kernel functions.
+[23089] 35. MCP Capability System
+[23090] DEF-CMP159 — Tool capability
+[23091] A capability restricted to one tool family, project, object scope, effect class, expiry, and delegation depth.
+[23092] DEF-CMP160 — Capability check
+[23093] \[ \mathsf{CapAllows}(c,q) \]
+[23094] verifies actor, tool, effect, project, root, object scope, expiry, and delegation.
+[23095] DEF-CMP161 — Capability attenuation
+[23096] Producing \(c'\sqsubseteq c\).
+[23097] DEF-CMP162 — Commit capability
+[23098] A capability that permits branch-head mutation but not necessarily protected-root mutation.
+[23099] DEF-CMP163 — Export capability
+[23100] Authority to produce an external artifact from an exact root.
+[23101] DEF-CMP164 — External-effect capability
+[23102] Authority for an action outside the local canonical store.
+[23104] 36. MCP Invocation Semantics
+[23105] DEF-CMP165 — Tool invocation
+[23106] \[ q= (\mathsf{requestId},\mathsf{toolName},\mathsf{toolVersion}, R_{\mathrm{base}},\mathsf{actor},\mathsf{capability}, \mathsf{arguments},\mathsf{deadline},\mathsf{idempotencyKey}). \]
+[23107] DEF-CMP166 — Tool result
+[23108] \[ r= (\mathsf{requestId},\mathsf{status},\mathsf{result}, \mathsf{artifacts},\mathsf{proofRefs},\mathsf{newRoot}, \mathsf{warnings},\mathsf{unknowns},\mathsf{auditRef}). \]
+[23109] DEF-CMP167 — Tool status
+[23110] \[ \{\mathsf{SUCCESS},\mathsf{FAIL},\mathsf{UNKNOWN}, \mathsf{TIMEOUT},\mathsf{INPUT\_REQUIRED}, \mathsf{UNAUTHORIZED},\mathsf{CONFLICT}\}. \]
+[23111] DEF-CMP168 — Idempotency key
+[23112] A caller-chosen operation identity evaluated together with canonical arguments, actor, tool version, and base root.
+[23113] DEF-CMP169 — Input-required state
+[23114] A resumable tool result requesting missing confirmation or input without claiming success.
+[23115] DEF-CMP170 — Audit reference
+[23116] A pointer to the immutable invocation and effect record.
+[23118] 37. Complete MCP Tool Catalog
+[23119] All tools inherit the common invocation contract of DEF-CMP165–170. RootRef, TxRef, ArtifactRef, and ProofRef are immutable typed references.
+[23120] Project and root tools
+[23121] Tool
+[23124] Transaction
+[23125] Capability
+[23126] Typed input
+[23127] Typed output
+[23128] Idempotence / failure
+[23129] project.create
+[23130] COMMIT
+[23131] VALIDATOR
+[23132] genesis
+[23133] project:create
+[23134] CreateProjectInput{name,lineagePolicy,sourceRefs}
+[23135] CommitResult<ProjectRoot>
+[23136] idempotent by key; PROJECT_EXISTS, UNKNOWN
+[23137] project.open
+[23138] READ
+[23139] DERIVED_VIEW
+[23140] no
+[23141] project:read
+[23142] ProjectId
+[23143] ProjectSnapshotSummary
+[23144] deterministic
+[23145] project.checkout
+[23150] RootRef
+[23151] ProjectSnapshot
+[23152] deterministic; ROOT_NOT_CLOSED
+[23153] project.branch
+[23156] yes
+[23157] branch:create
+[23158] {baseRoot,branchName}
+[23159] CommitResult<BranchRef>
+[23160] keyed; NAME_CONFLICT
+[23161] project.merge
+[23162] TRANSACTIONAL_WRITE
+[23163] UNTRUSTED_PROPOSER
+[23165] branch:merge
+[23166] {ancestor,left,right,policy}
+[23167] MergeProposal
+[23168] may return MERGE_CONFLICT
+[23169] project.root
+[23171] KERNEL
+[23174] BranchRef
+[23175] ProjectRoot
+[23177] project.history
+[23182] {lineage,cursor}
+[23183] Page<RootEvent>
+[23184] deterministic pagination
+[23185] project.diff
+[23186] PURE
+[23190] {leftRoot,rightRoot,scope}
+[23191] SemanticDiff
+[23192] no mutation
+[23194] Source ingestion tools
+[23200] Input
+[23201] Output
+[23202] Failure
+[23203] source.ingest_ifc
+[23204] PROPOSE
+[23206] proposal
+[23207] source:ingest
+[23208] SourcePackage<IFC>
+[23209] ImportProposal
+[23210] FORMAT_ERROR, UNKNOWN
+[23211] source.ingest_cad
+[23216] SourcePackage<CAD>
+[23218] unmapped layers explicit
+[23219] source.ingest_mesh
+[23224] SourcePackage<Mesh>
+[23225] GeometryEvidenceProposal
+[23226] unit/frame UNKNOWN blocks semantic promotion
+[23227] source.ingest_point_cloud
+[23232] SourcePackage<PointCloud>
+[23233] ObservationProposal
+[23234] bounded only
+[23235] source.ingest_requirements
+[23239] requirement:propose
+[23240] SourcePackage<Text>
+[23241] RequirementGraphProposal
+[23242] ambiguities retained
+[23243] source.ingest_catalog
+[23247] catalog:propose
+[23248] CatalogSource
+[23249] CatalogProposal
+[23250] unsupported fields explicit
+[23251] source.ingest_evidence
+[23255] evidence:propose
+[23256] EvidenceSource
+[23257] EvidenceProposal
+[23258] authenticity UNKNOWN unless checked
+[23259] source.status
+[23263] source:read
+[23264] SourceRef
+[23265] SourceStatus
+[23268] Semantic query tools
+[23274] state.query_objects
+[23277] ObjectQuery
+[23278] Page<SemanticObjectSummary>
+[23279] state.get_object
+[23282] {root,semanticId}
+[23283] SemanticObject
+[23284] state.query_spaces
+[23287] SpaceQuery
+[23288] Page<Space>
+[23289] state.query_equipment
+[23292] EquipmentQuery
+[23293] Page<Equipment>
+[23294] state.query_ports
+[23297] PortQuery
+[23298] Page<Port>
+[23299] state.query_nets
+[23302] NetQuery
+[23303] Page<SystemNet>
+[23304] state.query_routes
+[23307] RouteQuery
+[23308] Page<RouteRef>
+[23309] state.query_constraints
+[23312] ConstraintQuery
+[23313] Page<Constraint>
+[23314] state.query_claims
+[23317] ClaimQuery
+[23318] Page<Claim>
+[23319] state.query_unknowns
+[23322] UnknownQuery
+[23323] Page<UnknownState>
+[23324] state.query_dependencies
+[23327] {root,target,direction}
+[23328] DependencySlice
+[23330] All query tools are deterministic for an immutable root, perform no canonical mutation, and return ROOT_MISMATCH or UNKNOWN when projection applicability fails.
+[23331] Transaction tools
+[23338] transaction.begin
+[23341] tx:begin
+[23342] {baseRoot,declaredPurpose}
+[23343] TxRef
+[23344] transaction.propose_rewrite
+[23347] rewrite:propose
+[23348] {tx,rewrite}
+[23349] RewriteProposalRef
+[23350] transaction.apply_patch
+[23353] scoped write
+[23354] {tx,patch}
+[23355] StagedSnapshotRef
+[23356] transaction.validate
+[23357] CHECK
+[23359] tx:validate
+[23361] TransactionValidation
+[23362] transaction.affected_cone
+[23365] read
+[23367] InvalidationCone
+[23368] transaction.prepare
+[23371] tx:prepare
+[23373] PreparedTxRef
+[23374] transaction.commit
+[23376] TRUSTED_KERNEL
+[23377] tx:commit
+[23378] {preparedTx,expectedRoot,branch}
+[23379] CommitResult
+[23380] transaction.abort
+[23383] actor/owner
+[23385] AbortResult
+[23386] transaction.rollback
+[23389] branch:rollback
+[23390] {branch,targetRoot}
+[23393] transaction.commit is idempotent on the prepared transaction ID. It alone may return a new authoritative root.
+[23394] SIR tools
+[23400] sir.compile
+[23403] {root,sourceSelection,compilerVersion}
+[23404] PCSIRProposal
+[23405] sir.check
+[23408] PCSIRProposalRef
+[23409] PCSIRCheckResult
+[23410] sir.explain_failure
+[23413] PCSIRFailureRef
+[23414] BoundedExplanation
+[23416] Routing tools
+[23422] route.solve
+[23425] RouterRequest
+[23426] PCROUTEProposal
+[23427] route.solve_joint
+[23430] JointRouterRequest
+[23431] JointRouteProposal
+[23432] route.alternative
+[23435] {request,exclusionSet}
+[23436] RouteAlternative
+[23437] route.homotopy_alternative
+[23440] {request,classConstraint}
+[23442] route.check
+[23445] RouteProposalRef
+[23446] RouteDisposal
+[23447] route.conflict_core
+[23450] RouteFailureRef
+[23451] ConflictCore
+[23452] route.infeasibility_certificate
+[23456] `RoutingInfeasibilityProof
+[23457] route.repair_frontier
+[23460] ConflictCoreRef
+[23461] RepairFrontierProposal
+[23462] route.resource_prices
+[23465] PCROUTERef
+[23466] ScopedResourcePriceSet
+[23468] Co-design tools
+[23474] jcd.evaluate
+[23477] JCDCandidateRef
+[23478] JointCandidateEvaluation
+[23479] jcd.solve
+[23482] JCDRequest
+[23483] PCJCDProposal
+[23484] jcd.propose_rewrite
+[23487] {conflict,repairPolicy}
+[23488] RewriteProposalSet
+[23489] jcd.pareto_archive
+[23492] PCJCDRef
+[23493] ParetoArchive
+[23494] jcd.compare
+[23497] {candidateA,candidateB,policy}
+[23498] `ComparisonCertificate
+[23499] jcd.explain_cut
+[23502] CutRef
+[23503] CutExplanation
+[23504] jcd.global_bound
+[23508] ScopedGlobalBound
+[23510] Dynamic/lifecycle tools
+[23516] dyn.solve_policy
+[23519] DYNRequest
+[23520] PCDYNProposal
+[23521] dyn.evaluate_policy
+[23524] PolicyRef
+[23525] DynamicEvaluation
+[23526] dyn.check_robustness
+[23529] RobustnessRequest
+[23530] `RobustnessCertificate
+[23531] dyn.add_scenario
+[23534] ScenarioWrite
+[23535] StagedScenarioRoot
+[23536] dyn.generate_adversary
+[23539] AdversarialRequest
+[23540] ScenarioProposal
+[23541] dyn.inspect_lifecycle
+[23544] LifecycleQuery
+[23545] LifecycleSlice
+[23546] dyn.trigger_retrofit
+[23549] RetrofitTrigger
+[23550] JCDTransactionProposal
+[23552] Proof tools
+[23558] proof.check
+[23561] ProofObjectRef
+[23562] ProofVerdict
+[23563] proof.get
+[23566] ProofRef
+[23567] ProofObject
+[23568] proof.dependencies
+[23572] DependencyClosure
+[23573] proof.explain
+[23577] HumanReport
+[23578] proof.recertify
+[23581] {proof,targetRoot}
+[23582] RecertificationResult
+[23583] proof.release_status
+[23586] {root,target}
+[23587] ReleaseStatus
+[23589] Claim tools
+[23595] claim.get
+[23598] ClaimId
+[23599] Claim
+[23600] claim.compare
+[23603] {claimA,claimB}
+[23604] ClaimRelation
+[23605] claim.assumptions
+[23609] AssumptionClosure
+[23610] claim.modality
+[23614] ReleaseToken
+[23615] claim.waive
+[23618] WaiverProposal
+[23619] StagedWaiver
+[23621] Viewer tools
+[23622] All viewer tools are READ or PURE, have DERIVED_VIEW trust, never mutate canonical engineering state, and require a root.
+[23626] viewer.scene
+[23627] SceneRequest
+[23628] ViewerScene
+[23629] viewer.layer
+[23630] LayerRequest
+[23631] LayerProjection
+[23632] viewer.focus
+[23633] FocusRequest
+[23634] CameraProjection
+[23635] viewer.transition
+[23636] TransitionRequest
+[23637] ModelTransition
+[23638] viewer.show_conflict
+[23639] ConflictRef
+[23640] ConflictOverlay
+[23641] viewer.show_proof
+[23643] ProofOverlay
+[23644] viewer.show_uncertainty
+[23645] UncertaintyQuery
+[23646] UncertaintyOverlay
+[23647] viewer.show_scarcity
+[23648] PriceFieldRef
+[23649] HeuristicScarcityOverlay
+[23650] viewer.show_scenario
+[23651] ScenarioNodeRef
+[23652] ScenarioScene
+[23654] Export tools
+[23660] export.ifc
+[23661] EXPORT
+[23663] IFCExportRequest
+[23664] ExportManifest<IFC>
+[23665] export.glb
+[23668] GLBExportRequest
+[23669] ExportManifest<GLB>
+[23670] export.schedule
+[23673] ScheduleExportRequest
+[23674] ExportManifest<Schedule>
+[23675] export.bill_of_materials
+[23678] BOMExportRequest
+[23679] ExportManifest<BOM>
+[23680] export.proof_bundle
+[23683] ProofBundleRequest
+[23684] ExportManifest<ProofBundle>
+[23685] export.release_package
+[23688] ReleaseExportRequest
+[23689] ExportManifest<PCOMA>
+[23692] 38. Package References
+[23693] DEF-CMP171 — PCSIR reference
+[23694] \[ \mathsf{PCSIRRef} = (\mathsf{root},\mathsf{packageHash},\mathsf{checker},\mathsf{modality}). \]
+[23695] DEF-CMP172 — PCROUTE reference
+[23696] The corresponding routed-service package reference.
+[23697] DEF-CMP173 — PCJCD reference
+[23698] The corresponding joint-design package reference.
+[23699] DEF-CMP174 — PCDYN reference
+[23700] The corresponding dynamic-policy package reference.
+[23701] DEF-CMP175 — Package interface projection
+[23702] The shared semantic coordinates exposed by one package for gluing.
+[23703] DEF-CMP176 — Package applicability
+[23704] A predicate binding package root, theory, checker, scope, and target.
+[23706] 39. Cross-Package Composition
+[23707] DEF-CMP177 — Cross-package compatibility object
+[23708] \[ \mathcal G_{\mathrm{cross}} = (\mathsf{sharedObjects},\mathsf{translations}, \mathsf{assumptions},\mathsf{scopes}, \mathsf{modalities},\mathsf{versions}). \]
+[23709] DEF-CMP178 — Package compatibility
+[23710] \[ \mathsf{Compatible}(P_1,\ldots,P_k) \]
+[23711] holds when every shared coordinate agrees and no mandatory contradiction remains.
+[23712] DEF-CMP179 — Compatibility separator
+[23713] A shared interface set on which two package witnesses must agree.
+[23714] DEF-CMP180 — Package conflict
+[23715] A minimal incompatible package claim or shared assignment set.
+[23716] DEF-CMP181 — Transported package
+[23717] A package moved to a new root through a checked rewrite-transport proof.
+[23719] 40. Global Witness Gluing
+[23720] DEF-CMP182 — Component witnesses
+[23721] \[ W_{\mathrm{SIR}},W_{\mathrm{RTR}},W_{\mathrm{JCD}},W_{\mathrm{DYN}}. \]
+[23722] DEF-CMP183 — Compiler witness
+[23723] The persistence, transaction, authority, cache, and release witness \(W_{\mathrm{CMP}}\).
+[23724] DEF-CMP184 — Global witness
+[23725] \[ \boxed{ W_{\mathrm{OMA}} = W_{\mathrm{SIR}} \bowtie W_{\mathrm{RTR}} \bowtie W_{\mathrm{JCD}} \bowtie W_{\mathrm{DYN}} \bowtie W_{\mathrm{CMP}}. } \]
+[23726] DEF-CMP185 — Witness join
+[23727] The relational join over shared semantic coordinates.
+[23728] DEF-CMP186 — Witness separator agreement
+[23729] Equality under the checked shared-interface translations.
+[23730] DEF-CMP187 — Witness-gluing certificate
+[23731] A proof that all separator agreements imply one global assignment.
+[23733] 41. Claims
+[23734] DEF-CMP188 — Claim token
+[23735] \[ c= (\mathsf{id},\varphi,\mu,\mathsf{scope}, \mathsf{assumptions},\mathsf{evidence}, \mathsf{checker},\mathsf{dependencies}, \mathsf{waiver},\mathsf{versions}). \]
+[23736] DEF-CMP189 — Proof status
+[23737] \[ \{\mathsf{PROVED},\mathsf{REFUTED},\mathsf{UNKNOWN}\}. \]
+[23738] DEF-CMP190 — Release disposition
+[23739] \[ \{\mathsf{MANDATORY},\mathsf{CONDITIONAL}, \mathsf{WAIVED},\mathsf{NOT\_APPLICABLE}\}. \]
+[23740] DEF-CMP191 — Assumption closure
+[23741] The transitive assumption set reachable from a claim.
+[23742] DEF-CMP192 — Claim applicability
+[23743] Scope, theory, evidence, checker, and version compatibility.
+[23745] 42. Waivers
+[23746] DEF-CMP193 — Waiver
+[23747] \[ w= (\mathsf{requirement},\mathsf{authority},\mathsf{reason}, \mathsf{scope},\mathsf{expiry}, \mathsf{conditions},\mathsf{version}). \]
+[23748] DEF-CMP194 — Active waiver
+[23749] A waiver that is authorized, applicable, and unexpired.
+[23750] DEF-CMP195 — Waiver residual truth
+[23751] The original proof status after waiver application.
+[23752] DEF-CMP196 — Conditional release obligation
+[23753] The explicit condition carried into release because a waiver or unresolved premise remains.
+[23755] 43. Contradictions
+[23756] DEF-CMP197 — Contradiction object
+[23757] \[ \bot_c=(c_1,c_2,\eta_\bot). \]
+[23758] DEF-CMP198 — Scope-compatible contradiction
+[23759] Claims prove \(\varphi\) and \(\neg\varphi\) over the same semantic scope.
+[23760] DEF-CMP199 — Version conflict
+[23761] Claims refer incompatibly to one semantic object version.
+[23762] DEF-CMP200 — Authority conflict
+[23763] Two decisions require mutually incompatible authority states.
+[23764] DEF-CMP201 — Contradiction core
+[23765] An inclusion-minimal incompatible set of active claims.
+[23767] 44. Release Lattice
+[23768] DEF-CMP202 — Release context
+[23769] \[ \kappa= (\mathsf{propositionFamily},\mathsf{scope}, \mathsf{theory},\mathsf{versions}). \]
+[23770] DEF-CMP203 — Release token
+[23771] \[ \mu= (\mathsf{claimClass},\mathsf{strength}, \mathsf{uncertainty},\mathsf{time},\kappa). \]
+[23772] DEF-CMP204 — Semantic token equivalence
+[23773] \[ \mu_1\equiv\mu_2 \]
+[23774] when they mutually entail each other in one context.
+[23775] DEF-CMP205 — Release order
+[23776] On equivalence classes:
+[23777] \[ [\mu_1]\preceq[\mu_2] \iff \mu_2\Rightarrow\mu_1. \]
+[23778] DEF-CMP206 — Release fiber lattice
+[23779] For one compatible context \(\kappa\), the set of proposition-equivalence classes closed under licensed conjunction and disjunction.
+[23780] DEF-CMP207 — Partial global release lattice
+[23781] \[ \mathcal L_{\mathrm{release}} = \bigsqcup_\kappa \mathcal L_\kappa \]
+[23782] with partial cross-context operations.
+[23783] DEF-CMP208 — Release meet
+[23784] The strongest licensed conjunction implied by both compatible tokens.
+[23785] DEF-CMP209 — Release join
+[23786] The weakest licensed disjunction implying both, when representable in one compatible context.
+[23787] DEF-CMP210 — Release incompatibility
+[23788] The absence of a licensed common context or operation.
+[23789] DEF-CMP211 — Authority axis
+[23790] A separate disposition order not conflated with truth strength.
+[23792] 45. Trusted Kernel
+[23793] DEF-CMP212 — Oma trusted microkernel
+[23794] \[ K_{\mathrm{OMA}}^{0} = ( \mathsf{decoder}, \mathsf{logic}, \mathsf{typeUnitVersion}, \mathsf{manifestClosure}, \mathsf{authorityCapability}, \mathsf{dependency}, \mathsf{releaseOrder} ). \]
+[23795] DEF-CMP213 — Trusted domain checker set
+[23796] \[ K_{\mathrm{OMA}}^{D} = \{ K_{\mathrm{geometry}},K_{\mathrm{route}},K_{\mathrm{LP}}, K_{\mathrm{branch}},K_{\mathrm{package}},K_{\mathrm{dynamic}} \}. \]
+[23797] DEF-CMP214 — Full trusted base
+[23798] \[ K_{\mathrm{OMA}} = K_{\mathrm{OMA}}^{0} \cup K_{\mathrm{OMA}}^{D}. \]
+[23799] DEF-CMP215 — Untrusted producer set
+[23800] AI, importers, optimizers, route search, GPU, viewer, report generator, and heuristic repair.
+[23801] DEF-CMP216 — Kernel verdict
+[23802] \[ \{\mathsf{ACCEPT},\mathsf{REJECT},\mathsf{UNKNOWN}\}. \]
+[23803] DEF-CMP217 — Proof interpreter
+[23804] A small checker for one proof-object language.
+[24039] 66. AI Response Semantics
+[24040] DEF-CMP314 — Certified response statement
+[24041] A natural-language sentence linked to claim IDs and proof references.
+[24042] DEF-CMP315 — Comparison statement
+[24043] A statement carrying candidate roots, objective policy, units, bounds, and modality.
+[24044] DEF-CMP316 — Optimality statement
+[24045] A statement carrying the exact represented search universe, objective, proof, and gap.
+[24046] DEF-CMP317 — Unresolved statement
+[24047] A statement that explicitly reports UNKNOWN or incomplete search.
+[24048] DEF-CMP318 — Response contract

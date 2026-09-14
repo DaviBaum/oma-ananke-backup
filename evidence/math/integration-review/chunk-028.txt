@@ -1,0 +1,550 @@
+[25687] Exporter version changed → reproducibility root changes.
+[25688] Workstation and trust
+[25689] RAM budget exceeded → RESOURCE_BUDGET_EXCEEDED.
+[25690] VRAM budget exceeded → batch smaller or UNKNOWN.
+[25691] SSD near limit → GC/checkpoint policy, no false acceptance.
+[25692] GPU wrong route → CPU rejects.
+[25693] CPU checker wrong only if trusted implementation defect → outside theorem assumption.
+[25694] Hosted AI offline → local compiler remains available.
+[25695] Router worker compromised → proposals may be bad; commit still checked.
+[25696] Viewer compromised → misleading view possible; canonical state unchanged.
+[25697] MCP gateway compromised with no kernel capability → cannot forge kernel proof.
+[25698] Daemon capability store compromised → trusted-base failure, explicitly reported.
+[25699] Current source regression and hotel
+[25700] Current service-bay run replays recorded candidate IDs under frozen versions → expected.
+[25701] Current deterministic A* route checked only at legacy modality → no exact PCROUTE promotion.
+[25702] Current event log treated as authoritative transaction log → reject.
+[25703] Current sealed bundle read through validated store → accepted projection.
+[25704] Current cost/carbon proxy called verified real cost → reject.
+[25705] Hotel AI move produces dependency cone → expected affected descendants.
+[25706] Hotel old route cache reused → stale reject.
+[25707] Hotel conditional UNKNOWN hidden → release reject.
+[25708] Hotel crash before commit → old root.
+[25709] Add hidden real obstruction to otherwise identical PCOMA → formal result unchanged, real acceptability differs; open-world theorem preserved.
+[25711] 88. Proof-Assistant Formalization
+[25712] The following are Lean-style signatures; compilation against exact library APIs has not been tested.
+[25713] abbrev ProjectId := String
+[25714] abbrev LineageId := String
+[25715] abbrev SemanticId := String
+[25716] abbrev ArtifactHash := String
+[25717] abbrev RequestId := String
+[25718] abbrev Version := String
+[25720] structure VersionVector where
+[25721]   schema : Version
+[25722]   theory : Finmap String Version
+[25723]   checker : Finmap String Version
+[25724]   experiment : Finmap String Version
+[25725]   tool : Finmap String Version
+[25726]   environment : ArtifactHash
+[25728] structure ArtifactRef where
+[25729]   hash : ArtifactHash
+[25731]   schemaVersion : Version
+[25733] structure ProjectRoot where
+[25735]   lineage : LineageId
+[25736]   manifest : ArtifactRef
+[25737]   canonicalizationVersion : Version
+[25738]   closureProof : ArtifactRef
+[25740] structure ProjectSnapshot where
+[25741]   root : ProjectRoot
+[25742]   artifacts : Finset ArtifactRef
+[25744] inductive TransactionStatus
+[25745]   | proposed | prepared | validated | committed | rejected | aborted
+[25747] structure Capability where
+[25748]   actor : String
+[25749]   operations : Finset String
+[25750]   objectScopes : Finset SemanticId
+[25752]   expiry : Nat
+[25757]   targets : Finset SemanticId
+[25758]   payload : ByteArray
+[25761] structure Transaction where
+[25762]   baseRoot : ProjectRoot
+[25764]   capabilities : Finset Capability
+[25765]   readSet : Finset SemanticId
+[25766]   writeSet : Finset SemanticId
+[25767]   rewrites : List Rewrite
+[25768]   status : TransactionStatus
+[25771] inductive ToolEffect
+[25772]   | pure | read | propose | check | transactionalWrite
+[25773]   | commit | export | externalSideEffect
+[25775] inductive ToolTrust
+[25776]   | untrustedProposer | derivedView | validator | trustedKernel
+[25778] structure ToolDescriptor where
+[25779]   name : String
+[25781]   effect : ToolEffect
+[25782]   trust : ToolTrust
+[25783]   inputSchema : ByteArray
+[25784]   outputSchema : ByteArray
+[25786] structure ToolInvocation where
+[25787]   requestId : RequestId
+[25788]   tool : String
+[25790]   baseRoot : Option ProjectRoot
+[25792]   capability : Capability
+[25793]   arguments : ByteArray
+[25794]   idempotencyKey : String
+[25796] structure ToolResult where
+[25798]   status : String
+[25799]   artifacts : List ArtifactRef
+[25800]   newRoot : Option ProjectRoot
+[25801]   proofs : List ArtifactRef
+[25803] structure CompilerPass where
+[25804]   sourceSchema : Version
+[25805]   targetSchema : Version
+[25806]   producer : String
+[25807]   validator : String
+[25810] structure PassCertificate where
+[25811]   pass : CompilerPass
+[25812]   source : ArtifactRef
+[25813]   target : ArtifactRef
+[25814]   proof : ArtifactRef
+[25816] structure DependencyEdge where
+[25817]   source : ArtifactHash
+[25818]   target : ArtifactHash
+[25821] abbrev DependencyGraph := Finset DependencyEdge
+[25823] structure CacheKey where
+[25824]   semanticInputs : List ArtifactHash
+[25825]   artifactInputs : List ArtifactHash
+[25826]   theory : ArtifactHash
+[25827]   objective : ArtifactHash
+[25828]   experiment : ArtifactHash
+[25829]   checker : ArtifactHash
+[25831]   toolVersion : Version
+[25833] structure Requirement where
+[25835]   proposition : String
+[25837]   sourceRefs : List ArtifactRef
+[25838]   authority : String
+[25841] structure Claim where
+[25844]   modality : String
+[25845]   assumptions : List String
+[25846]   proof : Option ArtifactRef
+[25849] structure Waiver where
+[25850]   requirement : String
+[25853]   conditions : List String
+[25856] structure Contradiction where
+[25857]   left : Claim
+[25858]   right : Claim
+[25861] structure ReleaseToken where
+[25862]   claimClass : String
+[25863]   strength : String
+[25864]   uncertainty : String
+[25865]   scope : String
+[25868] structure PCSIRRef where
+[25870]   package : ArtifactRef
+[25872] structure PCROUTERef where
+[25876] structure PCJCDRef where
+[25880] structure PCDYNRef where
+[25884] structure PackageCompatibility where
+[25885]   sir : PCSIRRef
+[25886]   route : PCROUTERef
+[25887]   jcd : PCJCDRef
+[25888]   dyn : PCDYNRef
+[25891] structure ViewerObject where
+[25892]   renderId : Nat
+[25893]   semanticId : SemanticId
+[25894]   sourceRoot : ProjectRoot
+[25895]   firstIndex : Nat
+[25896]   indexCount : Nat
+[25898] structure ViewerScene where
+[25900]   glb : ArtifactRef
+[25901]   semanticIndex : ArtifactRef
+[25903] structure ExportManifest where
+[25905]   format : String
+[25906]   bytes : ArtifactRef
+[25907]   omissions : List String
+[25910] structure Checkpoint where
+[25912]   passState : ArtifactRef
+[25913]   solverState : ArtifactRef
+[25914]   proofState : ArtifactRef
+[25918] structure PCOMA where
+[25921]   routes : List PCROUTERef
+[25924]   dependencyGraph : ArtifactRef
+[25925]   proofDag : ArtifactRef
+[25926]   releaseManifest : ArtifactRef
+[25927]   globalWitness : ArtifactRef
+[25929] structure OMAWitness where
+[25930]   package : PCOMA
+[25931]   releaseToken : ReleaseToken
+[25934] def Canonical (x : ByteArray) : ByteArray := sorry
+[25936] theorem normalization_idempotent (x : ByteArray) :
+[25937]     Canonical (Canonical x) = Canonical x := by
+[25940] def authorized (c : Capability) (t : Transaction) : Prop := sorry
+[25941] def validated (t : Transaction) : Prop := sorry
+[25942] def commit (r : ProjectRoot) (t : Transaction) : Option ProjectRoot := sorry
+[25944] theorem unauthorized_no_commit
+[25945]     (r : ProjectRoot) (t : Transaction)
+[25946]     (h : ¬ ∃ c ∈ t.capabilities, authorized c t) :
+[25947]     commit r t = none := by
+[25950] theorem stale_cas_rejected
+[25951]     (current expected next : ProjectRoot)
+[25952]     (h : current ≠ expected) :
+[25953]     cas current expected next = none := by
+[25956] def Commute (r : ProjectRoot) (a b : Transaction) : Prop :=
+[25957]   commitAfter r a b = commitAfter r b a
+[25959] theorem commuting_transactions_order_independent
+[25960]     (r : ProjectRoot) (a b : Transaction)
+[25961]     (h : Commute r a b) :
+[25962]     commitAfter r a b = commitAfter r b a := h
+[25964] def passValid (p : CompilerPass) (x y : ArtifactRef) : Prop := sorry
+[25966] theorem translation_validation_composition
+[25967]     (p q : CompilerPass) (x y z : ArtifactRef)
+[25968]     (hp : passValid p x y) (hq : passValid q y z) :
+[25969]     ∃ mid, passValid p x mid ∧ passValid q mid z := by
+[25970]   exact ⟨y, hp, hq⟩
+[25972] def cacheApplicable (k : CacheKey) (state : ProjectSnapshot) : Prop := sorry
+[25974] theorem exact_cache_sound
+[25975]     (k : CacheKey) (s : ProjectSnapshot)
+[25976]     (h : cacheApplicable k s) :
+[25977]     reusable k s := by
+[25980] def incrementalCompile (r : ProjectRoot) (d : Finset SemanticId) : ProjectRoot := sorry
+[25981] def coldCompile (r : ProjectRoot) : ProjectRoot := sorry
+[25983] theorem incremental_eq_cold
+[25984]     (r r' : ProjectRoot) (d : Finset SemanticId)
+[25985]     (hdep : dependencyComplete r d)
+[25986]     (hdet : deterministicDerivations r')
+[25987]     (hinv : transactionResult r d = r') :
+[25988]     incrementalCompile r d = coldCompile r' := by
+[25991] def compatiblePackages (p : PCOMA) : Prop := sorry
+[25992] def accepted (a : ArtifactRef) : Prop := sorry
+[25994] theorem package_witness_gluing
+[25995]     (p : PCOMA)
+[25996]     (hcompat : compatiblePackages p)
+[25997]     (hlocal : allLocalWitnessesAccepted p) :
+[25998]     ∃ w : OMAWitness, w.package = p := by
+[26001] def releaseLe (a b : ReleaseToken) : Prop := sorry
+[26003] theorem release_modal_nonstrengthening
+[26004]     (premises : List ReleaseToken) (out : ReleaseToken)
+[26005]     (h : validReleaseDerivation premises out) :
+[26006]     ∀ p ∈ requiredPremises premises out, releaseLe out p := by
+[26009] def viewerProjection (s : ProjectSnapshot) : ViewerScene := sorry
+[26011] theorem viewer_noninjective :
+[26012]     ∃ x y, x ≠ y ∧ viewerProjection x = viewerProjection y := by
+[26015] def resume (c : Checkpoint) : CompilerState := sorry
+[26016] def uninterrupted (c : Checkpoint) : CompilerState := sorry
+[26018] theorem checkpoint_resume_eq
+[26019]     (c : Checkpoint)
+[26020]     (h : checkpointCompatible c)
+[26021]     (hdet : deterministicFromCheckpoint c) :
+[26022]     resume c = uninterrupted c := by
+[26025] theorem garbage_collection_preserves_release
+[26026]     (p : PCOMA) (live : Finset ArtifactRef)
+[26027]     (h : allReachableFrom p live) :
+[26028]     checkerResult p = checkerResult (collectOutside live p) := by
+[26031] theorem crash_recovery
+[26032]     (s : StoreState)
+[26033]     (horder : blobsDurableBeforeRoot s)
+[26034]     (hatomic : rootCommitAtomic s) :
+[26035]     ∃ r, recoveredHead s = r ∧ rootClosed r := by
+[26038] theorem tool_effect_preservation
+[26039]     (t : ToolDescriptor) (q : ToolInvocation)
+[26040]     (h : executionConforms t q) :
+[26041]     actualEffects t q ⊆ declaredEffects t := by
+[26044] def omaCompilerValid
+[26045]     (mode : ReleaseToken) (state : ProjectSnapshot) (w : OMAWitness) : Prop := sorry
+[26047] theorem final_oma_theorem
+[26048]     (mode : ReleaseToken) (state : ProjectSnapshot) (w : OMAWitness)
+[26049]     (h : omaCompilerValid mode state w) :
+[26050]     w ∈ omaReleaseFiber mode state := h
+[26052] theorem open_world_nonclosure :
+[26053]     ∃ W₀ W₁,
+[26054]       formalArtifacts W₀ = formalArtifacts W₁ ∧
+[26055]       realAcceptable W₀ ≠ realAcceptable W₁ := by
+[26061] Canonical schemas
+[26062] straightforward
+[26063] Content closure
+[26066] moderate
+[26067] Transaction CAS
+[26069] Authority/capabilities
+[26072] difficult
+[26073] Exact dependency completeness
+[26074] research-level
+[26075] Translation validation
+[26076] moderate–difficult
+[26077] Exact geometry checker
+[26079] PCROUTE proof checking
+[26081] JCD cut checking
+[26083] PCDYN policy checking
+[26085] Package gluing
+[26087] Release partial lattice
+[26089] Crash model
+[26093] IFC round trip
+[26095] Viewer semantic index
+[26100] not attainable without bounded assumptions
+[26103] 90. Exact, Bounded, and Heuristic Table
+[26109] Canonical store
+[26110] exact bytes/roots
+[26113] root kernel
+[26114] Importer
+[26115] exact source bytes
+[26116] geometry enclosure
+[26117] semantic inference
+[26121] confidence metadata
+[26122] proposals/orchestration
+[26123] proposal disposal
+[26124] Router
+[26125] disposed route
+[26126] route/cost bounds
+[26127] path search
+[26129] JCD
+[26130] exact finite proof
+[26131] global gap
+[26132] candidate generation
+[26134] DYN
+[26135] exact finite policy proof
+[26136] risk/robust bounds
+[26137] scenario search
+[26140] root identity/index
+[26141] uncertainty view
+[26142] animation/scarcity
+[26145] exact bytes/scope
+[26146] declared loss
+[26149] Cache
+[26150] exact root reuse
+[26152] approximate prefetch only
+[26153] applicability checker
+[26154] MCP
+[26155] exact schema/effect envelope
+[26156] timeout/partial
+[26157] model scheduling
+[26158] capability/effect checker
+[26161] 91. Trusted-Kernel Table
+[26162] Kernel component
+[26163] Trusted proposition
+[26164] Excluded untrusted work
+[26165] Canonical decoder
+[26166] bytes decode uniquely
+[26167] source parser inference
+[26168] Identity resolver
+[26169] semantic refs consistent
+[26170] AI naming
+[26171] Type/unit checker
+[26172] dimensions compatible
+[26173] numerical model selection
+[26175] active roots match
+[26176] migration proposal
+[26177] Manifest checker
+[26178] root closed
+[26179] blob generation
+[26180] Capability checker
+[26181] actor permitted
+[26182] policy suggestion
+[26183] Transaction checker
+[26184] pre/postconditions hold
+[26185] rewrite generation
+[26187] represented cone/reuse proof
+[26188] dependency discovery heuristic
+[26189] Exact arithmetic
+[26190] proof arithmetic valid
+[26191] optimizer floating state
+[26193] declared predicates hold
+[26194] route search
+[26195] LP/Farkas checker
+[26196] certificate inequalities hold
+[26197] solver
+[26198] Branch-proof checker
+[26199] finite proof tree closes
+[26202] shared coordinates agree
+[26203] package generation
+[26204] Release checker
+[26205] modality/waiver/UNKNOWN correct
+[26206] report phrasing
+[26207] Serialization checker
+[26208] canonical output
+[26209] exporter implementation
+[26212] 92. Release-Lattice Table
+[26213] Relation
+[26214] Defined when
+[26215] Result
+[26216] \(\mu_1\preceq\mu_2\)
+[26217] common compatible context and entailment
+[26218] \(\mu_2\) is at least as strong
+[26219] meet
+[26220] compatible conjunction expressible
+[26221] conjunction token
+[26222] join
+[26223] compatible disjunction expressible
+[26224] disjunction token
+[26225] incompatibility
+[26226] scope/version/theory conflict
+[26227] no join
+[26228] waiver
+[26229] authority axis only
+[26230] disposition change
+[26232] insufficient proof
+[26233] incomparable to proved truth
+[26234] bounded \(\to\) exact
+[26235] never implicit
+[26236] requires exact proof
+[26237] probabilistic \(\to\) robust
+[26239] requires support theorem
+[26240] local \(\to\) global
+[26242] requires gluing/optimization theorem
+[26246] \[ \boxed{ \mathcal C_{\mathrm{CMP}} = \left( N_A,N_D,N_R,N_T,N_C,N_P,N_W,N_M, K_{\mathrm{canon}},K_{\mathrm{merge}},K_{\mathrm{glue}}, K_{\mathrm{release}}, C_{\mathrm{store}},C_{\mathrm{tx}},C_{\mathrm{check}}, C_{\mathrm{incremental}},C_{\mathrm{cold}}, R_{\mathrm{change}},R_{\mathrm{recert}}, B_{\mathrm{unknown}} \right). } \]
+[26248] \(N_A\): artifact nodes;
+[26249] \(N_D\): dependency edges;
+[26250] \(N_R\): retained roots;
+[26251] \(N_T\): transactions;
+[26252] \(N_C\): claims;
+[26253] \(N_P\): proof nodes;
+[26254] \(N_W\): workers/tool calls;
+[26255] \(N_M\): package and module count;
+[26256] \(K_{\mathrm{canon}}\): normalization complexity;
+[26257] \(K_{\mathrm{merge}}\): semantic merge complexity;
+[26258] \(K_{\mathrm{glue}}\): package compatibility complexity;
+[26259] \(K_{\mathrm{release}}\): release-logic complexity;
+[26260] \(R_{\mathrm{change}}\): changed semantic roots;
+[26261] \(R_{\mathrm{recert}}\): recertified closure;
+[26263] Defensible bounds:
+[26264] \[ C_{\mathrm{rootCheck}} = O(N_A+N_D+\text{hash bytes}), \]\[ C_{\mathrm{InvCone}} = O(N_A+N_D), \]\[ C_{\mathrm{incremental}} = O(|\operatorname{InvCone}|+ \sum_{v\in\operatorname{InvCone}}C_v), \]\[ C_{\mathrm{cold}} = O(N_A+N_D+\sum_v C_v). \]
+[26265] Semantic merge, routing, JCD, and dynamic policy search may be NP-hard or worse in finite restrictions. Exact persistence does not make synthesis easy.
+[26267] 94. PCOMA
+[26268] \[ \boxed{ \begin{aligned} \mathsf{PCOMA} = (&\mathsf{projectIdentity}, \mathsf{canonicalRoot}, \mathsf{lineageGraph}, \mathsf{sourceRegistry}, \mathsf{semanticRegistry}, \mathsf{authorityRegistry}, \mathsf{requirementRegistry}, \mathsf{evidenceRegistry},\\ &\mathsf{artifactGraph}, \mathsf{dependencyGraph}, \mathsf{transactionLog}, \mathsf{branchGraph}, \mathsf{canonicalizationVersion}, \mathsf{schemaVersion}, \mathsf{toolVersions}, \mathsf{checkerVersions},\\ &\mathsf{passVersions}, \mathsf{PCSIRRef}, \mathsf{PCROUTERefs}, \mathsf{PCJCDRef}, \mathsf{PCDYNRef}, \mathsf{installedRoot}, \mathsf{lifecycleRoot}, \mathsf{openTransactions}, \mathsf{committedTransactions},\\ &\mathsf{rewriteCorrespondences}, \mathsf{invalidationCones}, \mathsf{cacheManifest}, \mathsf{checkpointManifest}, \mathsf{importMappings}, \mathsf{exportMappings}, \mathsf{MCPRegistry}, \mathsf{capabilityRegistry},\\ &\mathsf{AIProposalLedger}, \mathsf{AIModelProvenance}, \mathsf{humanApprovals}, \mathsf{objectStoreManifest}, \mathsf{blobManifest}, \mathsf{geometryRoots}, \mathsf{routeRoots}, \mathsf{candidateArchive},\\ &\mathsf{ParetoArchive}, \mathsf{dynamicPolicyArchive}, \mathsf{proofDAG}, \mathsf{proofCheckerManifest}, \mathsf{contradictions}, \mathsf{unresolvedClaims}, \mathsf{unknownClaims}, \mathsf{waivers},\\ &\mathsf{exceptions}, \mathsf{releaseLattice}, \mathsf{releaseClaims}, \mathsf{viewerManifest}, \mathsf{viewerSemanticIndex}, \mathsf{exportArtifacts}, \mathsf{releaseManifest}, \mathsf{hardwareManifest},\\ &\mathsf{runtimeManifest}, \mathsf{deterministicReplayState}, \mathsf{buildProvenance}, \mathsf{sourceProvenance}, \mathsf{externalResearch}, \mathsf{trustedKernel}, \mathsf{securityManifest},\\ &\mathsf{performanceLedger}, \mathsf{limitations}, \mathsf{openWorldBoundary}, \mathsf{finalWitness}, \mathsf{independentCheckerResult}). \end{aligned} } \]
+[26270] 95. Final Release Fiber
+[26271] The witness type is:
+[26272] \[ \mathcal W_{\mathrm{OMA}} = \mathcal W_{\mathrm{root}} \times \mathcal W_{\mathrm{transaction}} \times \mathcal W_{\mathrm{SIR}} \times \mathcal W_{\mathrm{RTR}} \times \mathcal W_{\mathrm{JCD}} \times \mathcal W_{\mathrm{DYN}} \times \mathcal W_{\mathrm{compat}} \times \mathcal W_{\mathrm{release}}. \]
+[26274] \[ \boxed{ \gamma_{\mathrm{OMA}}^\mu (y,\Xi_t^{\mathrm{OMA}}) = \left\{ W\in\mathcal W_{\mathrm{OMA}}: \mathsf{OmaCompilerValid}_{\mu} (y,\Xi_t^{\mathrm{OMA}},W) \right\}. } \]
+[26276] 96. Whole Compiler Input Theorem
+[26277] THM-CMP120, restated operationally:
+[26278] If every source is byte-identified, typed, framed, unit-checked, provenance-bound, and translation-validated into the semantic-source graph, then the resulting root is a valid input to semantic compilation at modality:
+[26279] \[ \mathsf{SOURCE\_INGESTED}. \]
+[26280] It does not yet establish PCSIR validity.
+[26282] 97. Whole Transaction Theorem
+[26283] THM-CMP121, expanded:
+[26284] Let \(R\) be closed and \(\tau\) be authorized, current, validated, fully staged, and closure-preserving. Then CAS either:
+[26285] commits exactly one closed \(R'\), producing one event and idempotency record; or
+[26286] returns a typed conflict/rejection and leaves \(R\) authoritative.
+[26288] 98. Whole Package-Composition Theorem
+[26289] Let package interaction bags satisfy running intersection, and let all local witnesses agree on separators. Then THM-CMP65 constructs one global witness. If any mandatory separator differs, THM-CMP66 gives an empty global fiber.
+[26291] 99. Whole Incremental-Equivalence Theorem
+[26292] \[ \boxed{ \operatorname{CompileIncremental}(R,\Delta) = _{\mathrm{release}} \operatorname{CompileCold}(R') } \]
+[26293] under:
+[26294] exact transaction result \(R'\);
+[26295] complete dependency graph;
+[26296] complete invalidation;
+[26297] applicable reused artifacts;
+[26298] deterministic derivations or identical disposed verdicts;
+[26299] equal theory, checker, experiment, objective, and environment roots;
+[26300] certified closure of compilation cycles.
+[26301] The proof is THM-CMP85.
+[26303] 100. Whole Crash-Recovery Theorem
+[26304] Under the storage assumptions:
+[26305] staged blobs precede root commit;
+[26306] branch heads update atomically;
+[26307] manifests are closure checked;
+[26308] checkpoints are immutable and compatible;
+[26309] recovery yields the old or new closed root, never a semantically accepted partial root.
+[26311] 101. Whole Model-Independence Theorem
+[26312] For models \(M_1,M_2\), normalized artifact \(A\), state \(S\), and checker \(K\):
+[26313] \[ A_{M_1}=A_{M_2}=A \Longrightarrow K(S,A_{M_1})=K(S,A_{M_2}). \]
+[26314] The models may differ in search quality, latency, and explanation.
+[26316] \[ \boxed{ \text{correctness-semantic interchangeability} \neq \text{search-performance interchangeability}. } \]
+[26318] 102. Whole Feasible-Building Theorem
+[26319] If one global witness exists and every mandatory represented feasibility root is proved at the required modality with no blocking contradiction, then the project is feasible inside the represented compiler theory.
+[26321] 103. Whole Bounded-Release Theorem
+[26323] \[ L\le z^\star\le U, \]
+[26324] where \(L\) and \(U\) use the same objective, scope, and candidate universe, then PCOMA may issue:
+[26325] \[ \mathsf{BOUNDED\_RELEASE} \]
+[26326] with recorded gap, unresolved nodes, and assumptions.
+[26328] 104. Whole Represented-Optimal Theorem
+[26330] the represented search universe is complete;
+[26331] every branch closes;
+[26332] every route/JCD/DYN subproblem closes at the exact required modality;
+[26333] lower and upper bounds meet;
+[26334] then:
+[26335] \[ z^\star=L=U. \]
+[26336] The result is:
+[26337] \[ \mathsf{EXACT\_REPRESENTED\_OPTIMAL}, \]
+[26338] not universal optimum over unmodeled reality.
+[26340] 105. Whole Pareto Theorem
+[26341] If every represented feasible candidate is evaluated exactly or excluded by a valid proof, the returned nondominated archive is the complete represented Pareto set.
+[26342] An incomplete search yields only:
+[26343] \[ \mathsf{PARETO\_PARTIAL}. \]
+[26345] 106. Whole Infeasibility Theorem
+[26346] PCOMA may issue represented infeasibility only from a complete proof covering the represented universe. A route failure, candidate failure, timeout, or missing source establishes only its local status or UNKNOWN.
+[26348] 107. THM-CMP-OMA-WHOLE — Final End-to-End Oma Building-Compiler Theorem
+[26350] \(R_0\): accepted initial root;
+[26351] \(R_f\): final committed root;
+[26352] \(\Xi_f^{\mathrm{OMA}}\): final canonical compiler state;
+[26353] \(y\): target release outcome;
+[26354] \(\mu\): requested exact release modality;
+[26355] \(P=\mathsf{PCOMA}\): candidate package;
+[26356] \(W_{\mathrm{OMA}}\): proposed global witness.
+[26358] every source artifact is identified;
+[26359] canonical normalization is valid;
+[26360] semantic identities are consistent;
+[26361] units and frames are valid;
+[26362] authority roots are applicable;
+[26363] every committed transaction is authorized;
+[26364] every committed transaction passed validation;
+[26365] transaction lineage is closed;
+[26366] stale writes were rejected;
+[26367] the required PCSIR is accepted;
+[26368] every required PCROUTE is accepted;
+[26369] PCJCD is accepted;
+[26370] PCDYN is accepted at its declared dynamic modality;
+[26371] all packages refer to compatible project roots;
+[26372] shared semantic identities agree;
+[26373] shared versions agree or have checked transport;
+[26374] mandatory assumptions close transitively;
+[26375] mandatory proof objects are current;
+[26376] mandatory UNKNOWN states are handled exactly by release policy;
+[26377] waivers are authority-valid and remain distinct from truth;
+[26378] contradiction checking has no blocking result;
+[26379] the dependency graph is complete for incremental claims;
+[26380] every reused cache artifact is applicable;
+[26381] incremental compilation agrees with cold semantics where used;
+[26382] release-order operations are valid;
+[26383] no modality was silently strengthened;
+[26384] viewer and export artifacts are projections;
+[26385] the trusted kernel is sound;
+[26386] the independent PCOMA checker accepts \(P,W_{\mathrm{OMA}}\).
+[26388] Step 1 — Establish root identity.
+Assumptions 1–4 and the root-closure certificate identify one exact committed manifest \(R_f\).
+[26389] Step 2 — Establish transaction lineage.
+Assumptions 5–9 and THM-CMP121 show every authoritative transition from \(R_0\) to \(R_f\) was authorized, validated, closed, and nonstale.
+[26390] Step 3 — Import local package witnesses.
+Assumptions 10–13 provide:
+[26391] \[ W_{\mathrm{SIR}}, W_{\mathrm{RTR}}, W_{\mathrm{JCD}}, W_{\mathrm{DYN}}. \]
+[26392] Each retains its local scope and modality.
+[26393] Step 4 — Check shared identities and versions.
+Assumptions 14–16 establish separator equality or valid transport for every shared object.
+[26394] Step 5 — Establish assumption closure.
+Assumptions 17–20 preserve assumptions, UNKNOWN, and waivers without converting disposition into truth.
+[26395] Step 6 — Exclude contradiction.
+Assumption 21 ensures no mandatory common-scope \(\varphi,\neg\varphi\) pair remains.
+[26396] Step 7 — Establish reuse correctness.
+Assumptions 22–24 and THM-CMP85 make the incrementally produced release state equal to cold semantics.
+[26397] Step 8 — Establish modal correctness.
+Assumptions 25–26 and THM-CMP78 prohibit illegal strengthening.
+[26398] Step 9 — Exclude projection authority.
+Assumption 27 ensures viewer and export artifacts cannot alter the authoritative state or witness.
+[26399] Step 10 — Glue witnesses.
+By assumptions 14–17 and the applicable gluing certificate:
+[26400] \[ W_{\mathrm{OMA}} = W_{\mathrm{SIR}} \bowtie W_{\mathrm{RTR}} \bowtie W_{\mathrm{JCD}} \bowtie W_{\mathrm{DYN}} \bowtie W_{\mathrm{CMP}} \]
+[26401] exists.
+[26402] Step 11 — Apply the trusted checker.
+Assumptions 28–29 imply:
+[26403] \[ \mathsf{OmaCompilerValid}_\mu (y,\Xi_f^{\mathrm{OMA}},W_{\mathrm{OMA}}). \]
+[26404] Step 12 — Conclude fiber membership.
+[26405] By DEF-CMP184 and the release-fiber definition:
+[26406] \[ \boxed{ W_{\mathrm{OMA}} \in \gamma_{\mathrm{OMA}}^\mu (y,\Xi_f^{\mathrm{OMA}}). } \]
+[26407] No step proves that the represented theory contains every real-world fact. ∎
+[26409] 108. Final Open-World Theorem
+[26410] THM-CMP140 — No finite closed Oma compiler proves absence of every unmodeled release-relevant fact
+[26412] PCOMA bytes;
+[26413] project root;
+[26418] sources;
+[26421] transactions;
+[26422] checker results;
+[26423] release manifest.
+[26424] In \(W_1\), add one unmodeled obstruction \(z^\star\) behind a wall. Let \(z^\star\) invalidate a routed service while every formal artifact remains unchanged.
+[26425] The compiler receives identical formal input in both worlds, so it produces the same formal verdict. Yet real acceptability differs.
+[26427] \[ \boxed{ \textbf{ No finite closed compiler can prove that no release-relevant fact exists outside its represented theory. } } \]
+[26428] The exact positive conclusion is:
+[26429] \boxed{ \begin{minipage}{0.91\linewidth} PCOMA proves that one globally compatible project witness satisfies every represented mandatory Oma obligation under the active theories, assumptions, evidence, scopes, modalities, versions, policies, transactions, and trusted checkers. \end{minipage} }
+[26430] It does not prove omniscience. ∎
+[26432] 109. Permanent Registries
+[26433] 109.1 Assumptions
+[26434] \[ \boxed{\text{ASSUMP-CMP1–80 are ACTIVE and NEW\_CMP\_CONSTRUCTION.}} \]
+[26435] Dependencies and scopes are given in Section 12.
+[26436] 109.2 Definitions
+[26437] \[ \boxed{\text{DEF-CMP1–318 are ACTIVE.}} \]
+[26438] They span canonical state, identities, artifacts, transactions, tools, packages, release, cache, import/export, viewer, and AI response semantics.

@@ -1,0 +1,282 @@
+[14496] If two materializations of \(x\) have different exact route values, no single exact \(\varphi(x)\) is defined until a concrete candidate or aggregation semantics is selected.
+[14497] Proof. A function must assign one value. The same \(x\) would require two different values. The correct output is set-valued, interval-bounded, refined, or UNKNOWN. ∎
+[14498] THM-JCD6 — PCROUTE applicability requires an accepted candidate PCSIR
+[14499] An exact PCROUTE call cannot be accepted against an unresolved abstract or rejected candidate.
+[14500] Proof. Prompt-2 ASSUMP-RTR1 requires an accepted applicable PCSIR root. ∎
+[14501] THM-JCD7 — Candidate-materialization proposal-source independence
+[14502] Replacing the candidate compiler while preserving the exact candidate PCSIR and materialization proof leaves candidate validity unchanged.
+[14503] Proof. The proposer is not a premise of either checker. ∎
+[14505] B. Sequential and router-first limitations
+[14506] THM-JCD8 — Architecture-first sequential optimization has unbounded regret
+[14507] For the family in Section 44, architecture-first regret is unbounded.
+[14508] Proof. Architecture-first selects \(a_0\) because \(0<1\). Its joint value is \(M\). The joint optimum selects \(a_1\) with value \(2\). The ratio \(M/2\) diverges. ∎
+[14509] THM-JCD9 — Router-first optimization has unbounded regret
+[14510] For the family in Section 45, router-first regret is unbounded.
+[14511] Proof. Router-first selects route cost \(0\), inducing architecture cost \(M\). Joint optimization selects total cost \(1\). ∎
+[14512] THM-JCD10 — A locally shortest route need not occur in a globally best design
+[14513] Use Section 46.
+[14514] Proof. Placement \(A\) has the shorter route \(1<2\), but joint values are \(101\) and \(2\). ∎
+[14515] THM-JCD11 — Exact alternating optimization can converge to a nonglobal coordinate optimum
+[14516] Use the four-value function in Section 48.
+[14517] Proof. At \((0,0)\), neither one-coordinate update improves the value, so the point is coordinatewise optimal. Yet \(F(1,1)=0<1\). ∎
+[14518] THM-JCD12 — Full JCD contains NP-hard subproblems
+[14519] Proof. Fix all master variables and physical sizing choices so that only a finite multi-terminal route remains. The resulting problem is graph Steiner Tree, which is NP-hard. Therefore JCD is NP-hard by restriction. ∎
+[14521] C. Routing value function
+[14522] THM-JCD13 — PCROUTE feasibility defines the routing-feasible master subset
+[14523] \[ x\in\mathcal X_R \iff \exists\text{ accepted candidate materialization and feasible PCROUTE witness}. \]
+[14524] Proof. This is the expanded definition of \(\mathcal X_R\). ∎
+[14525] THM-JCD14 — The routing value can be discontinuous
+[14526] Construction. Let port position \(p\in\mathbb R\). For \(p<0\), a short portal is compatible and route cost is \(1\). At \(p\ge0\), that portal is blocked and the only route costs \(10\). Then
+[14527] \[ \varphi(p)= \begin{cases} 1,&p<0,\\ 10,&p\ge0. \end{cases} \]
+[14529] THM-JCD15 — The routing value can be nonconvex
+[14530] Take master states \(x\in\{-1,0,1\}\) with values
+[14531] \[ \varphi(-1)=0,\quad \varphi(0)=10,\quad \varphi(1)=0. \]
+[14532] The midpoint inequality for convexity fails. ∎
+[14533] THM-JCD16 — Route class can switch discontinuously
+[14534] In THM-JCD14, the minimizing route class switches from the short portal class to the long bypass class at \(p=0\). ∎
+[14535] THM-JCD17 — A disposed feasible route gives an upper bound
+[14536] If route \(r\in\Gamma_{\mathrm{RTR}}(x)\) has certified cost \(U\), then
+[14537] \[ \varphi(x)\le U. \]
+[14538] Proof. The infimum over a set is no greater than the value at one member. ∎
+[14539] THM-JCD18 — A pricing-closed route LP gives a lower bound
+[14540] If PCROUTE proves the full represented LP optimum \(L\), then
+[14541] \[ L\le\varphi_{\mathrm{IP}}(x). \]
+[14542] Proof. Prompt-2 THM-RTR68. ∎
+[14543] THM-JCD19 — A route lower bound need not be a subgradient of the integer value
+[14544] Counterexample. Let
+[14545] \[ \varphi_{\mathrm{IP}}(x) = \begin{cases} 0,&x=0,\\ 10,&x=1. \end{cases} \]
+[14546] The constant lower bound \(L(x)=0\) is valid but carries no information about the discrete jump and is not a derivative of the integer value. ∎
+[14547] THM-JCD20 — UNKNOWN cannot be replaced by \(+\infty\)
+[14548] Proof. An UNKNOWN state may contain a feasible route not yet found. Assigning \(+\infty\) would assert certified infeasibility and could wrongly prune the global optimum. ∎
+[14549] THM-JCD21 — Infeasibility and unresolved routing are semantically distinct
+[14550] Proof. Certified infeasibility contains a proof that no witness exists. UNKNOWN contains no such proof. Their proof obligations and valid master actions differ. ∎
+[14552] D. Classical Benders and route duals
+[14553] THM-JCD22 — Dual-feasible classical vector yields a global lower-bound cut
+[14554] Assume fixed \(W,c\), \(x\)-independent dual domain, and exact RHS \(h-Tx\). Then for every dual-feasible \(\pi\),
+[14555] \[ \eta\ge\pi^\top(h-Tx) \]
+[14556] is valid over the declared domain.
+[14557] Proof. LEM-JCD2 holds for every \(x\) because dual feasibility is unchanged. ∎
+[14558] THM-JCD23 — Exact classical Benders optimality cut
+[14559] If \(\pi^k\) is dual-optimal at \(x^k\), the cut is tight there:
+[14560] \[ \varphi_{\mathrm{LP}}(x^k) = (\pi^k)^\top(h-Tx^k). \]
+[14561] Proof. Strong LP duality at \(x^k\), combined with THM-JCD22. ∎
+[14562] THM-JCD24 — Exact Farkas feasibility cut
+[14563] Under fixed \(W\), a ray satisfying DEF-JCD79 yields
+[14564] \[ \pi^\top(h-Tx)\le0 \]
+[14565] as a necessary condition for subproblem feasibility.
+[14566] Proof. LEM-JCD3. At \(x^\star\), the inequality is violated, so \(x^\star\) is excluded. ∎
+[14567] THM-JCD25 — Changing \(W\) can invalidate a Benders cut
+[14568] Counterexample. Original subproblem:
+[14569] \[ y\ge1,\quad c=2. \]
+[14570] Dual allows \(\pi\le2\), so \(\pi=2\) yields \(\eta\ge2\).
+[14571] After geometry adds a new route variable \(z\) with coefficient \(1\) and cost \(1/2\),
+[14572] \[ y+z\ge1. \]
+[14573] The new dual requires \(\pi\le1/2\). The old vector is infeasible and its cut overstates the true value \(1/2\). ∎
+[14574] THM-JCD26 — Changing \(c\) can invalidate a Benders cut
+[14575] Use the same one-row subproblem. Lower the route cost from \(2\) to \(1/2\). The old dual \(\pi=2\) violates \(W^\top\pi\le c\). ∎
+[14576] THM-JCD27 — Changing the route-column universe can invalidate dual feasibility
+[14577] Proof. Each new column creates a new dual inequality. An old dual need not satisfy it, as THM-JCD25 demonstrates. ∎
+[14578] THM-JCD28 — Equal numeric duals under different resource semantics are not the same cut
+[14579] Proof. A multiplier of \(1\) on “square metres of plenum” and \(1\) on “number of penetrations” multiplies different right-hand-side functions and units. Numeric equality does not create semantic equality. ∎
+[14580] THM-JCD29 — A full route-LP cut lower-bounds integer routing value
+[14582] \[ L(x)\le\varphi_{\mathrm{LP}}(x) \le\varphi_{\mathrm{IP}}(x). \]
+[14584] THM-JCD30 — An incomplete-pricing dual cannot license a global Benders cut
+[14585] Proof. Incomplete pricing means some full-LP dual inequalities are unchecked. A missing negative reduced-cost column can make the proposed dual infeasible for the actual route relaxation. THM-JCD25 supplies an explicit example. ∎
+[14587] E. Generalized Benders
+[14588] THM-JCD31 — Weak Lagrangian lower bound
+[14589] For any \(\lambda\ge0\),
+[14590] \[ \Theta_\lambda(x)\le\varphi(x). \]
+[14591] Proof. For any feasible \(y\),
+[14592] \[ g_i(x,y)\le0, \]
+[14593] so
+[14594] \[ f(x,y)+\lambda^\top g(x,y)\le f(x,y). \]
+[14595] Taking the infimum over all \(y\in Y\) on the left and feasible \(y\) on the right gives the claim. ∎
+[14596] THM-JCD32 — Generalized-Benders cut validity
+[14597] Under a common domain \(Y\) and exact computation or safe underestimation of \(\Theta_{\lambda^k}\),
+[14598] \[ \eta\ge\Theta_{\lambda^k}(x) \]
+[14599] is a valid lower-bound cut.
+[14600] Proof. THM-JCD31 for every \(x\). ∎
+[14601] THM-JCD33 — Strong duality identifies a tight generalized-Benders cut under qualification
+[14602] If the fixed-\(x^k\) subproblem is convex and satisfies Slater’s condition, optimal multipliers satisfy
+[14603] \[ \Theta_{\lambda^k}(x^k)=\varphi(x^k). \]
+[14604] Proof. Convex strong duality, as established by Prompt-2 THM-RTR58 for the corresponding physical-fiber form. ∎
+[14605] THM-JCD34 — Integer route selection breaks direct generalized-Benders assumptions
+[14606] Proof. The domain of route-class or catalog decisions is nonconvex. A Lagrangian multiplier from one fixed discrete class lower-bounds that class, not automatically the minimum over an expanded class universe. ∎
+[14607] THM-JCD35 — A local nonlinear multiplier does not license a global cut
+[14608] Counterexample. A local multiplier at a nonglobal local optimum may produce a supporting expression above the true global value elsewhere. Without convexity and global dual validity, the cut can remove feasible better designs. ∎
+[14610] F. Logic-based Benders and exact conflict cuts
+[14611] THM-JCD36 — Exact no-good cut excludes exactly one binary assignment
+[14612] Proof. By LEM-JCD4, the left side is zero exactly at \(x^\star\) and at least one at every other binary point. ∎
+[14613] THM-JCD37 — Partial no-good cut is sound under extension-infeasibility
+[14614] If every extension of a partial literal set \(K\) is infeasible, the corresponding literal-disjunction cut is valid.
+[14615] Proof. The cut excludes precisely assignments satisfying all literals in \(K\), all of which are infeasible by hypothesis. ∎
+[14616] THM-JCD38 — Conflict-core cut soundness
+[14617] If \(\mathsf{CoreSufficient}(K)\), the logic-based cut preserves every routed-feasible design.
+[14618] Proof. Any excluded design satisfies every core literal and is therefore routing-infeasible. ∎
+[14619] THM-JCD39 — A core containing an unentailed router-local fact is insufficient
+[14620] Counterexample. A PCROUTE conflict uses router-local route class \(r_A\). The same master assignment also permits route class \(r_B\), which is feasible. A master cut based on the fact “\(r_A\) was chosen” excludes a feasible master design because the master did not require \(r_A\). ∎
+[14621] THM-JCD40 — A sufficient partial core dominates an exact-assignment no-good
+[14622] If \(K\) is a strict subset of the full assignment literals and is sufficient, its cut excludes every extension of \(K\), including \(x^\star\), and therefore eliminates a superset.
+[14623] THM-JCD41 — Conflict cuts are version-relative
+[14624] Proof. Change in topology, route envelope, conflict semantics, or master-literal meaning can produce a feasible extension of the former core. Without recertification, the universal implication is lost. ∎
+[14625] THM-JCD42 — Geometric separator cut soundness
+[14626] Suppose every design in \(D\) preserves:
+[14627] endpoint sides;
+[14628] separator geometry;
+[14629] route envelope lower bound;
+[14630] blocked separator state.
+[14631] Then the separator infeasibility cut is valid on \(D\).
+[14632] Proof. Every continuous route must cross the preserved separator, and every crossing configuration remains blocked. ∎
+[14633] THM-JCD43 — Monotone capacity cut soundness
+[14634] If every design satisfying literals \(K\) has mandatory demand at least \(d\) and cut capacity at most \(b<d\), then the corresponding logic/capacity cut is valid.
+[14635] Proof. Prompt-2 THM-RTR94 applies to every such design. ∎
+[14636] THM-JCD44 — Cut lifting requires universal validity over the lifted domain
+[14637] Proof. A cut used over \(D\) asserts a universal proposition over \(D\). A proof at one point supplies only a singleton proposition. The missing universal implication must be established separately. ∎
+[14639] G. Cut validity, dominance, and lower bounds
+[14640] THM-JCD45 — Adding a valid infeasibility cut preserves every feasible joint design
+[14641] Proof. LEM-JCD5. ∎
+[14642] THM-JCD46 — Adding a valid lower-bound cut cannot overestimate the true route value
+[14643] If \(\eta\) is constrained by
+[14644] \[ \eta\ge L_\kappa(x) \]
+[14645] and every active \(L_\kappa(x)\le\varphi(x)\), then the master lower envelope
+[14646] \[ \max_\kappa L_\kappa(x) \le\varphi(x). \]
+[14647] Proof. LEM-JCD10. ∎
+[14648] THM-JCD47 — An invalid cut can remove the global optimum
+[14649] Counterexample. Feasible designs \(x=0,1\) have objectives \(0,1\). Add invalid cut \(x\ge1\). The true optimum \(x=0\) is removed. ∎
+[14650] THM-JCD48 — Valid cut dominance permits safe deletion of the weaker cut
+[14651] If \(\kappa_1\) dominates \(\kappa_2\) on every domain where \(\kappa_2\) is active, then deleting \(\kappa_2\) does not weaken the represented master.
+[14652] Proof. Every exclusion or lower bound supplied by \(\kappa_2\) is supplied at least as strongly by \(\kappa_1\). ∎
+[14653] THM-JCD49 — Cut reuse is sound under unchanged complete dependencies
+[14654] Proof. Equal dependency roots reproduce the cut proposition and its validity domain under deterministic checking. ∎
+[14655] THM-JCD50 — A stale cut can prune a newly feasible design
+[14656] Counterexample. A cut says “shaft S1 inactive implies infeasible” because no bypass existed. Add shaft S2 or a new topology route while retaining the old cut. The new feasible design is wrongly excluded. ∎
+[14657] THM-JCD51 — A branch-local cut is not automatically global
+[14658] Proof. A branch-local cut may rely on branch assumptions absent elsewhere. A sibling branch can contain a counterexample. ∎
+[14659] THM-JCD52 — Architecture and route lower bounds compose under additive objective
+[14661] \[ F(x,r)=F_A(x)+F_R(x,r), \]\[ L_A\le F_A(x), \qquad L_R\le F_R(x,r) \]
+[14662] for every state in the node, then
+[14663] \[ L_A+L_R\le F(x,r). \]
+[14665] THM-JCD53 — Vector or nonadditive objectives require separate bound semantics
+[14666] Counterexample. For objective \(\max\{F_A,F_R\}\), the sum \(L_A+L_R\) need not be a lower bound. If both exact values are \(1\), the objective is \(1\) while the sum is \(2\). ∎
+[14668] H. Rewrite semantics and sovereignty
+[14669] THM-JCD54 — Authorized rewrite composition
+[14670] If \(r_1\) is authorized and valid on \(X\), and \(r_2\) is authorized and valid on \(r_1(X)\), their composition is an authorized candidate transaction.
+[14671] Proof. Compose authorization scopes, preconditions, postconditions, and correspondences. ∎
+[14672] THM-JCD55 — Disjoint independent rewrites commute
+[14674] disjoint supports;
+[14675] no dependency path from either support to the other rewrite’s precondition or effect;
+[14676] deterministic local semantics;
+[14677] compatible versions.
+[14679] \[ r_2\circ r_1 = r_1\circ r_2. \]
+[14680] Proof. Each rewrite reads and writes coordinates untouched by the other. Coordinatewise evaluation therefore agrees. ∎
+[14681] THM-JCD56 — Overlapping rewrites need not commute
+[14682] Counterexample. \(r_1\) moves equipment east by \(2\) m; \(r_2\) replaces it by a larger model and aligns its west face with the current room center. Applying movement before replacement yields a different final center from applying replacement before movement. ∎
+[14683] THM-JCD57 — Rewrite effects propagate only through represented descendants under complete dependencies
+[14684] Proof. Nodes outside the descendant closure have no represented dependency path from the changed roots. Deterministic derivations receive equal inputs and remain equal. ∎
+[14685] THM-JCD58 — Equipment movement can create or destroy route classes
+[14686] Construction. Moving a port across a wall/obstacle alignment can open or close a portal and thereby create or remove a homotopy class. ∎
+[14687] THM-JCD59 — Topology changes can create or destroy route fibers
+[14688] Construction. Changing from separate branches to a shared trunk changes aggregate flow and junction requirements. One topology may have a nonempty physical fiber while the other does not. ∎
+[14689] THM-JCD60 — Corridor widening need not improve every objective
+[14690] Counterexample. Widening a corridor increases route capacity and reduces route cost while reducing usable/rentable area and potentially increasing structure and envelope cost. ∎
+[14691] THM-JCD61 — Protected roots cannot be changed by objective improvement alone
+[14692] Proof. Authorization is a hard admissibility predicate. Objective comparison does not prove that predicate. ∎
+[14694] I. Contextual quotient and CEGAR
+[14695] THM-JCD62 — JCD contextual equivalence is an equivalence relation
+[14697] reflexive: \(f(x)=f(x)\);
+[14698] symmetric: equality is symmetric;
+[14699] transitive: equality is transitive for every \(f\). ∎
+[14700] THM-JCD63 — Every admitted JCD computation factors through the canonical quotient
+[14701] Let \(q(x)=[x]\). Define
+[14702] \[ \bar f([x])=f(x). \]
+[14703] Proof. Equivalent representatives have equal \(f\)-values by definition, so \(\bar f\) is well-defined and \(f=\bar f\circ q\). ∎
+[14704] THM-JCD64 — The JCD quotient is the coarsest exact sufficient master interface
+[14705] If representation \(a(x)\) preserves every \(f\in\mathcal F_{\mathrm{JCD}}\), then
+[14706] \[ a(x_1)=a(x_2) \Longrightarrow x_1\equiv_{\mathrm{JCD}}x_2. \]
+[14707] Thus the canonical quotient factors through every exact sufficient representation. ∎
+[14708] THM-JCD65 — Adding a new objective can refine the quotient
+[14709] Proof. Two formerly equivalent states may have distinct values under the new objective. The expanded experiment family separates them. ∎
+[14710] THM-JCD66 — Adding a new routing constraint can refine the quotient
+[14711] Same proof, using a new route-feasibility or resource computation. ∎
+[14712] THM-JCD67 — An abstract candidate may alias feasible and infeasible concretizations
+[14713] Construction. Let an abstract placement box straddle a wall-opening threshold. One concrete port location is routable; another is blocked. ∎
+[14714] THM-JCD68 — Exact refinement eliminates a spurious abstract witness
+[14715] If a spurious witness belongs to concretization atom \(a\), splitting \(a\) by the distinguishing predicate separates the witness from the exact-feasible child.
+[14716] Proof. The new children are defined by opposite values of the predicate. ∎
+[14717] THM-JCD69 — Finite exact master CEGAR terminates
+[14718] Assume a finite atom universe and every refinement permanently separates at least one unresolved pair. Only finitely many separations are possible. ∎
+[14720] J. Pareto mathematics
+[14721] THM-JCD70 — Exact dominance is a partial order on objective-equivalence classes
+[14722] Reflexivity and transitivity hold for weak componentwise order; antisymmetry holds after quotienting equal objective vectors. ∎
+[14723] THM-JCD71 — Certified interval dominance is sound
+[14725] \[ \overline J_i(x)\le\underline J_i(y) \]
+[14726] for all \(i\), then every exact realization of \(x\) is no worse than every exact realization of \(y\) coordinatewise. A strict coordinate gives strict dominance. ∎
+[14727] THM-JCD72 — Overlapping objective intervals may leave dominance UNKNOWN
+[14728] Counterexample. Intervals \([0,2]\) and \([1,3]\) permit either exact ordering. ∎
+[14729] THM-JCD73 — Positive weighted sums may miss unsupported Pareto points
+[14731] \[ A=(0,2),\quad B=(1,1.1),\quad C=(2,0), \]
+[14732] all three are Pareto efficient.
+[14733] For \(B\) to beat \(A\):
+[14734] \[ w_1+1.1w_2\le2w_2 \Longrightarrow w_1\le0.9w_2. \]
+[14735] For \(B\) to beat \(C\):
+[14736] \[ w_1+1.1w_2\le2w_1 \Longrightarrow w_1\ge1.1w_2. \]
+[14737] No positive weights satisfy both. ∎
+[14738] THM-JCD74 — Finite epsilon enumeration can recover a finite Pareto frontier
+[14740] finite feasible objective set;
+[14741] exact subproblem solves;
+[14742] thresholds include every attainable value of the constrained coordinates;
+[14743] ties are handled to retain nondominated optima.
+[14744] For any Pareto point \(x^\star\), choose thresholds equal to its constrained objective coordinates. No feasible point can improve the primary objective without dominating \(x^\star\). Therefore \(x^\star\) is recovered. ∎
+[14745] THM-JCD75 — Scalar optimality does not imply Pareto completeness
+[14746] One scalar solve returns at most its minimizer set. THM-JCD73 exhibits another Pareto point unsupported by all positive weighted sums. ∎
+[14747] THM-JCD76 — Strictly positive weighted-sum minima are Pareto efficient
+[14748] Suppose \(w_i>0\) and \(x^\star\) minimizes \(w^\top J(x)\). If \(y\) dominated \(x^\star\), then
+[14749] \[ w^\top J(y)<w^\top J(x^\star), \]
+[14750] contradiction. ∎
+[14751] THM-JCD77 — Complete Pareto release requires complete coverage or dominance proof
+[14752] Proof. An unexamined feasible design may be nondominated. Without examination or a region-wide dominance certificate, completeness is unproved. ∎
+[14754] K. Outer search, bounds, and caching
+[14755] THM-JCD78 — Valid outer branch partition covers the master domain
+[14756] If child domains are pairwise disjoint and their union is the parent domain, every master assignment belongs to exactly one child. ∎
+[14757] THM-JCD79 — Valid cuts preserve the global optimum
+[14758] Proof. A valid infeasibility cut removes no feasible design; a valid lower-bound cut changes only the relaxation epigraph and not candidate feasibility. ∎
+[14759] THM-JCD80 — Accepted candidate PCSIR plus accepted PCROUTE gives a valid incumbent upper bound
+[14760] Proof. Their combined witness lies in the joint feasible fiber once all global factors pass. Its exact or upper-bounded objective gives an upper bound. ∎
+[14761] THM-JCD81 — Node lower-bound theorem
+[14762] If every assignment in node domain \(D_\nu\) has architecture objective at least \(L_A\) and routing objective at least \(L_R\), then
+[14763] \[ L_\nu=L_A+L_R \]
+[14764] is a valid scalar lower bound under additive objective semantics. ∎
+[14765] THM-JCD82 — Exact branch-and-Benders optimality
+[14767] finite exact master partition;
+[14768] valid branch partitions;
+[14769] every active cut is valid and applicable;
+[14770] every open region has a valid lower bound;
+[14771] every candidate upper bound is disposed;
+[14772] all nodes are closed or bounded by the incumbent;
+[14773] no unresolved materialization or PCROUTE state is used as proof.
+[14774] Then the incumbent is the exact represented scalar optimum.
+[14775] Proof. Every feasible assignment lies in one leaf. Every leaf is either infeasible, explicitly evaluated, or has lower bound no better than the incumbent. Hence no better feasible assignment exists. ∎
+[14776] THM-JCD83 — Incomplete router calls prevent exact node closure
+[14777] Proof. An unresolved candidate may contain a feasible design with objective below the current bound. Without a valid region-wide lower or infeasibility proof, the node cannot be fathomed exactly. ∎
+[14778] THM-JCD84 — Timeout yields only partial or bounded modality
+[14779] Proof. A timeout leaves unclosed nodes or route states unless exact closure was reached before interruption. Therefore only incumbent, valid bounds, partial Pareto, and UNKNOWN records are licensed. ∎
+[14780] THM-JCD85 — Cache reuse under complete root equality is sound
+[14781] Proof. Equal cache roots reproduce the exact candidate, request, theory, policy, experiments, and checker semantics. Deterministic computation and checking return the same result. ∎
+[14782] THM-JCD86 — Incompatible cache reuse is unsound
+[14783] Counterexample. Reuse a PCROUTE result after increasing a duct envelope. The old path may collide, yet a cache keyed only by master assignment returns it. ∎
+[14785] L. AI, feedback, and scheduling
+[14786] THM-JCD87 — AI proposal source does not alter certificate semantics
+[14787] Equal checked transactions and proofs receive equal verdicts regardless of proposal source. ∎
+[14788] THM-JCD88 — AI conflict explanation is sound only as a projection
+[14789] If explanation map \(p\) is applied to conflict \(K\), it proves only properties preserved by \(p\). It cannot prove a stronger conflict or larger validity domain. ∎
+[14790] THM-JCD89 — An AI-generated cut requires independent proof
+[14791] Proof. AI generation is not one of the trusted cut-inference rules. Until CheckCutValidity accepts the universal proposition, the object remains heuristic. ∎
+[14792] THM-JCD90 — VOC scheduling cannot invalidate correctness under proposal/check separation
+[14793] Proof. VOC changes the order of computations, not the acceptance predicates. Any released claim still passes the same independent checker. ∎
+[14794] THM-JCD91 — Feedback modality cannot be silently strengthened
+[14795] A feedback object containing a branch-local dual and a global conflict cannot be collapsed into one undifferentiated “routing severity” with global-cut modality.
+[14796] Proof. The coordinates have different propositions and scopes. No trusted coercion combines them into the stronger proposition. ∎
+[14797] THM-JCD92 — A projected dual field is not a global architecture gradient without factorization
+[14798] Proof. The field may interpolate multipliers from one route LP. Architecture changes can alter columns, topology, and objective. Without a theorem connecting architecture perturbations to that fixed primal, the chain-rule premise is absent. ∎
+[14799] THM-JCD93 — Conflict-directed repair generation proves no repaired feasibility
+[14800] Proof. \(\Psi(K)\) returns proposals. Each proposal still requires authority, materialization, PCSIR checking, PCROUTE, and joint checking. ∎

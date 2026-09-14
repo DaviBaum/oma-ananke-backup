@@ -1,0 +1,739 @@
+[16018] Synthetic benchmark scalar optimum
+[16019] objective 9
+[16020] 170
+[16021] Synthetic benchmark Pareto archive
+[16022] three declared points
+[16023] 171
+[16024] Hotel baseline rack width 1.60 > 1.50
+[16025] rack conflict
+[16026] 172
+[16027] Hotel shaft demand 11 > 9
+[16028] capacity conflict
+[16029] 173
+[16030] Hotel logic core cut
+[16032] 174
+[16033] Hotel old dual after S2 route appears
+[16034] invalidated
+[16035] 175
+[16036] Hotel H1 and H2
+[16037] interval/exact incomparable
+[16038] 176
+[16039] Hotel H4
+[16040] dominated by H1
+[16041] 177
+[16042] Hotel scalar gap
+[16043] approximately 1.2405%
+[16044] 178
+[16045] Hidden structural restriction added to real world
+[16046] open-world limitation preserved
+[16047] 179
+[16048] Final PCJCD witness missing sovereignty proof
+[16049] root REJECT
+[16050] 180
+[16051] Final PCJCD all roots accepted
+[16052] exact declared modality
+[16055] 73. Proof-assistant formalization
+[16056] The signatures are Lean-style mathematical sketches; library APIs are not claimed to have been compilation-tested.
+[16057] structure JCDRequest where
+[16058]   baselinePCSIR : PCSIRRef
+[16059]   protectedRoots : Finset ProtectedRootId
+[16060]   rewriteLibrary : RewriteLibrary
+[16061]   objectivePolicy : JCDPolicy
+[16062]   routeConfig : RTRConfig
+[16064] inductive MasterVariableKind
+[16065] | globalStrategic
+[16066] | localStrategic
+[16067] | routerLocal
+[16068] | derived
+[16069] | protected
+[16070] | heuristicLatent
+[16071] structure MasterVariable where
+[16072]   id : VariableId
+[16073]   kind : MasterVariableKind
+[16074]   domain : VariableDomain
+[16075]   owner : OwnerId
+[16077] structure MasterAssignment where
+[16078]   values : VariableId → Option VariableValue
+[16079]   typed : AssignmentTyped values
+[16080] structure ProtectedRoot where
+[16081]   id : ProtectedRootId
+[16082]   proposition : PropositionId
+[16083]   authority : AuthorityId
+[16086]   id : RewriteId
+[16087]   precondition : SIRState → Prop
+[16088]   apply : SIRState → Option SIRState
+[16089]   support : Finset SemanticObjectId
+[16091] structure RewriteAuthorization where
+[16092]   rewrite : RewriteId
+[16093]   actor : ActorId
+[16094]   targets : Finset ProtectedRootId
+[16095]   validAt : TimeInterval
+[16096] structure RewriteFootprint where
+[16097]   changed inserted deleted : Finset SemanticObjectId
+[16098]   invalidated : Finset AnalysisId
+[16099] def MaterializationRelation
+[16100]     (x : MasterAssignment)
+[16101]     (sir : SIRState) : Prop :=
+[16102]   ∃ η : MaterializationCertificate,
+[16103]     η.assignment = x ∧
+[16104]     η.candidate = sir ∧
+[16105]     CheckMaterialization η = .accept
+[16106] structure CandidatePCSIR where
+[16107]   assignment : MasterAssignment
+[16109]   materializes : MaterializationRelation assignment state
+[16110]   accepted : CheckPCSIR state = .accept
+[16111] def RoutingFiber
+[16112]     (c : CandidatePCSIR) :
+[16113]     Set RTRWitness :=
+[16114]   {w | RoutedServiceValid c.state w}
+[16115] inductive RoutingValue
+[16116] | exact : ℚ → RoutingValue
+[16117] | interval : ℚ → ℚ → RoutingValue
+[16120] structure RoutingBound where
+[16121]   lower upper : ExtendedRational
+[16122]   ordered : lower ≤ upper
+[16124] structure JCDCut where
+[16125]   predicate : MasterAssignment → Prop
+[16126]   domain : Set MasterAssignment
+[16127]   conclusion : CutConclusion
+[16128]   proof : CutProof
+[16129]   modality : JCDMode
+[16131] structure CutValidityDomain where
+[16132]   carrier : Set MasterAssignment
+[16133]   rootVersions : VersionVector
+[16134] def NoGoodCut
+[16135]     (xstar x : Fin n → Bool) : Prop :=
+[16136]   ∑ i, if x i = xstar i then 0 else 1 ≥ 1
+[16137] structure ConflictCoreCut where
+[16138]   literals : Finset MasterLiteral
+[16140]     ∀ x, SatisfiesAll x literals →
+[16141]       RoutingFiberEmpty x
+[16142] structure CapacityCut where
+[16143]   demand : MasterAssignment → ℚ
+[16144]   capacity : MasterAssignment → ℚ
+[16146]   proof :
+[16147]     ∀ x ∈ domain,
+[16148]       demand x > capacity x →
+[16150] structure BendersPrimal where
+[16151]   W : Matrix RowId ColId ℚ
+[16152]   c : ColId → ℚ
+[16153]   h : RowId → ℚ
+[16154]   T : Matrix RowId MasterVarId ℚ
+[16155] structure BendersDual where
+[16156]   pi : RowId → ℚ
+[16157]   nonnegative : ∀ i, 0 ≤ pi i
+[16158]   feasible : transpose primal.W *ᵥ pi ≤ primal.c
+[16159] def BendersOptimalityCut
+[16160]     (p : BendersPrimal)
+[16161]     (d : BendersDual p)
+[16162]     (x : MasterVector) : ℚ :=
+[16163]   dotProduct d.pi (p.h - p.T *ᵥ x)
+[16164] structure BendersFeasibilityCut where
+[16167]   ray : transpose primal.W *ᵥ pi ≤ 0
+[16168] structure GeneralizedBendersCut where
+[16169]   lambda : ConstraintId → ℚ
+[16170]   nonnegative : ∀ i, 0 ≤ lambda i
+[16171]   envelope : MasterAssignment → ExtendedRational
+[16172]   lowerBound :
+[16173]     ∀ x, envelope x ≤ RoutingObjective x
+[16174] structure DualScope where
+[16175]   candidateRoot : Hash
+[16176]   primalHash : Hash
+[16177]   columnUniverseHash : Hash
+[16178]   branchNode : NodeId
+[16179]   objectiveVersion : Version
+[16180] structure RepairProposal where
+[16181]   sourceConflict : ConflictId
+[16182]   rewrites : List RewriteId
+[16184] structure MasterAbstraction where
+[16185]   abstractState : Type
+[16186]   alpha : ConcreteMasterState → abstractState
+[16187]   gamma : abstractState → Set ConcreteMasterState
+[16188] def ContextualMasterEquivalent
+[16189]     (F : Set (MasterAssignment → JCDReport))
+[16190]     (x y : MasterAssignment) : Prop :=
+[16191]   ∀ f ∈ F, f x = f y
+[16192] structure ParetoVector where
+[16193]   values : Fin m → ℚ
+[16194] structure IntervalObjectiveVector where
+[16195]   lower upper : Fin m → ℚ
+[16196]   ordered : ∀ i, lower i ≤ upper i
+[16197] def IntervalDominates
+[16198]     (x y : IntervalObjectiveVector) : Prop :=
+[16199]   (∀ i, x.upper i ≤ y.lower i) ∧
+[16200]   (∃ i, x.upper i < y.lower i)
+[16201] structure ParetoArchive where
+[16202]   exact : Finset CandidateId
+[16203]   possible : Finset CandidateId
+[16204]   dominated : Finset CandidateId
+[16205]   coverage : CoverageScope
+[16206] structure OuterBranchNode where
+[16208]   cuts : Finset JCDCut
+[16209]   lowerBound : ExtendedRational
+[16210]   proofState : NodeProofState
+[16211] structure JCDCheckpoint where
+[16213]   branchTreeHash : Hash
+[16214]   cutSetHash : Hash
+[16215]   candidateCacheHash : Hash
+[16217] structure PCJCD where
+[16218]   request : JCDRequest
+[16219]   candidates : Finset CandidatePCSIR
+[16220]   routes : CandidateId → Option PCROUTE
+[16222]   pareto : ParetoArchive
+[16223]   finalMode : JCDMode
+[16224]   rootProof : PCJCDRootProof
+[16225] structure JCDWitness where
+[16227]   candidate : CandidatePCSIR
+[16228]   route : RTRWitness
+[16229]   jointProof : JointFactorsValid assignment candidate route
+[16230] theorem materialization_sound
+[16232]     MaterializationRelation c.assignment c.state :=
+[16233]   c.materializes
+[16234] theorem fixed_candidate_route_applicable
+[16235]     (c : CandidatePCSIR)
+[16236]     (req : RouterRequest)
+[16237]     (hroot : req.pcsirRoot = Hash.of c.state) :
+[16238]     PCROUTEApplicable c req := by
+[16240] theorem sequential_regret_unbounded :
+[16241]     ∀ B : ℚ, ∃ instance,
+[16242]       SequentialRegret instance > B := by
+[16244] theorem route_witness_upper_bound
+[16245]     (w : RTRWitness)
+[16246]     (hw : w ∈ RoutingFiber c) :
+[16247]     RoutingOptimum c ≤ RouteCost w := by
+[16248]   exact inf_le ⟨w, hw⟩
+[16249] theorem route_lp_lower_bound
+[16250]     (h : PricingClosed lp)
+[16251]     (d : FeasibleDual lp) :
+[16252]     d.objective ≤ IntegerRoutingOptimum candidate := by
+[16254] theorem classical_benders_valid
+[16255]     (d : BendersDual primal) :
+[16256]     ∀ x, BendersOptimalityCut primal d x
+[16257]       ≤ SubproblemValue primal x := by
+[16259] theorem farkas_cut_valid
+[16260]     (f : BendersFeasibilityCut primal) :
+[16261]     ∀ x, SubproblemFeasible primal x →
+[16262]       dotProduct f.pi (primal.h - primal.T *ᵥ x) ≤ 0 := by
+[16264] theorem conflict_cut_valid
+[16265]     (c : ConflictCoreCut) :
+[16266]     ∀ x, SatisfiesAll x c.literals →
+[16267]       ¬ JointFeasible x := by
+[16268]   exact c.sufficient
+[16269] theorem valid_cut_preserves_optimum
+[16270]     (k : JCDCut)
+[16271]     (hvalid : CutValid k) :
+[16272]     OptimalValue original =
+[16273]     OptimalValue (original.withCut k) := by
+[16275] theorem generalized_benders_lower
+[16276]     (c : GeneralizedBendersCut) :
+[16277]     ∀ x, c.envelope x ≤ RoutingObjective x :=
+[16278]   c.lowerBound
+[16279] theorem dual_scope_no_transport
+[16280]     (hchange : old.columnUniverseHash ≠ new.columnUniverseHash)
+[16281]     (hno : ¬ HasTransportProof old new) :
+[16282]     ¬ ReusableDual old.dual new := by
+[16284] theorem disjoint_rewrites_commute
+[16285]     (hdisjoint : Disjoint r₁.support r₂.support)
+[16286]     (hindependent : RewriteIndependent r₁ r₂) :
+[16287]     Compose r₂ r₁ state =
+[16288]     Compose r₁ r₂ state := by
+[16290] theorem quotient_factorization
+[16291]     (f : MasterAssignment → Report)
+[16292]     (hconst : ConstantOnJCDClasses f) :
+[16293]     ∃ fbar, f = fbar ∘ jcdQuotient := by
+[16295] theorem master_cegar_sound
+[16296]     (r : ValidMasterRefinement parent children) :
+[16297]     (⋃ c ∈ children, gamma c) = gamma parent := by
+[16299] theorem interval_dominance_sound
+[16300]     (h : IntervalDominates x y) :
+[16301]     ∀ x' ∈ concretize x, ∀ y' ∈ concretize y,
+[16302]       ParetoDominates x' y' := by
+[16304] theorem weighted_sum_incomplete :
+[16305]     ∃ finiteImage,
+[16306]       ∃ p ∈ ParetoSet finiteImage,
+[16307]         ∀ w, StrictlyPositive w →
+[16308]           p ∉ WeightedSumMinimizers finiteImage w := by
+[16310] theorem branch_benders_optimal
+[16311]     (hfinite : Finite representedDesigns)
+[16312]     (hbranches : EveryBranchValid tree)
+[16313]     (hcuts : EveryCutValid tree)
+[16315]     ExactGlobalOptimal incumbent := by
+[16317] theorem incremental_eq_cold_jcd
+[16318]     (hdep : DependencyComplete state)
+[16319]     (hdet : DeterministicCheckers state)
+[16320]     (htransport : ValidRewriteTransport old new) :
+[16321]     IncrementalJCD old new = ColdJCD new := by
+[16323] theorem ai_proposal_independence
+[16324]     (a₁ a₂ : ProposalSource)
+[16325]     (artifact : CheckedArtifact) :
+[16326]     Check artifact = Check artifact := by
+[16328] theorem whole_jcd_feasible
+[16329]     (h : CheckPCJCD pkg = .jointFeasible) :
+[16330]     ∃ w, w ∈ JCDReleaseFiber target state .jointFeasible := by
+[16332] theorem whole_jcd_optimal
+[16333]     (h : CheckPCJCD pkg = .exactGlobalOptimal) :
+[16334]     ExactRepresentedOptimal pkg := by
+[16336] theorem whole_jcd_pareto
+[16337]     (h : ParetoCoverageComplete pkg) :
+[16338]     Archive pkg = RepresentedParetoSet pkg := by
+[16340] theorem jcd_open_world :
+[16341]     ∃ world₀ world₁,
+[16342]       FormalArtifacts world₀ = FormalArtifacts world₁ ∧
+[16343]       RealAcceptable world₀ ≠ RealAcceptable world₁ := by
+[16346] 74. Mechanization difficulty
+[16350] Master schemas
+[16352] Finite typed records
+[16353] Variable ownership
+[16355] Cross-layer authority
+[16356] Rewrite algebra
+[16358] Partial transformations
+[16361] Identity across topology change
+[16364] Hard authorization predicates
+[16367] Geometry/topology derivation
+[16368] Candidate PCSIR checking
+[16370] Imports Prompt-1 checker
+[16371] Abstract master
+[16373] Galois-style semantics
+[16376] Large experiment family
+[16377] PCROUTE invocation
+[16379] Typed package call
+[16380] Routing value
+[16382] Extended, nonsmooth, set-valued
+[16385] Rational LP certificates
+[16386] Farkas Benders
+[16388] Ray and full-domain closure
+[16391] Convexity and lower envelopes
+[16394] Inference sufficiency
+[16395] Conflict lifting
+[16397] Universal parametric validity
+[16398] Parametric geometry cuts
+[16400] Continuous geometry proof
+[16401] Cut validity
+[16403] Heterogeneous proof classes
+[16406] Domain implication
+[16407] Route-dual transport
+[16409] Changing column universe
+[16410] Scarcity fields
+[16411] Moderate as visualization; difficult as theorem
+[16412] Factorization needed
+[16413] Equipment placement
+[16414] NP-hard in general
+[16415] Facility/location structure
+[16416] System topology
+[16418] Network-design structure
+[16419] Shaft synthesis
+[16421] Geometry, capacity, structure
+[16422] Continuous architecture
+[16424] Nonconvex geometry
+[16425] Pareto archive
+[16426] Moderate for finite exact set
+[16427] Coverage is hard
+[16428] Interval dominance
+[16430] Outward bounds
+[16431] Epsilon enumeration
+[16432] Moderate finite; hard large scale
+[16433] Many exact solves
+[16434] Branch-and-Benders
+[16436] Nested exact decomposition
+[16437] AI proposal checking
+[16439] Typed disposal
+[16440] VOC scheduling
+[16442] Decision-model fidelity
+[16445] Global dependencies
+[16446] Hotel-scale co-design
+[16448] Nested combinatorics
+[16451] Cannot be closed finitely
+[16454] 75. Exact-versus-heuristic table
+[16460] Main failure
+[16461] Master candidate generation
+[16462] Exhaustive finite branch
+[16463] Relaxed domain
+[16464] AI/solver ordering
+[16466] missing candidate
+[16468] Exact PCSIR construction
+[16469] Set/interval candidate
+[16470] preview geometry
+[16472] aliasing
+[16474] Exact finite catalog/region
+[16475] placement boxes
+[16476] AI suggestion
+[16477] geometry/authority checker
+[16478] collision/access
+[16479] Topology generation
+[16480] Exact finite relation
+[16481] coarse topology classes
+[16482] learned ranking
+[16483] netlist checker
+[16484] omitted topology
+[16486] Exact feasible/optimal/infeasible
+[16487] certified gap/bounds
+[16488] route proposals
+[16492] Pricing-closed LP
+[16494] proxy route estimate
+[16496] stale universe
+[16497] Classical Benders cut
+[16498] Global/domain exact
+[16499] interval coefficients
+[16501] rational cut checker
+[16502] changed matrix
+[16504] Domain exact
+[16505] bounded core region
+[16506] conflict suggestion
+[16507] core-sufficiency checker
+[16508] unentailed fact
+[16510] Convex lower envelope
+[16511] interval envelope
+[16512] local multiplier
+[16514] nonconvexity
+[16516] Universal proof
+[16517] interval geometry proof
+[16518] similarity heuristic
+[16519] lift checker
+[16521] Dual field
+[16522] Exact resource record
+[16523] bounded multiplier
+[16524] spatial interpolation
+[16526] gradient overclaim
+[16528] Exact proved repair
+[16529] bounded repair envelope
+[16530] AI/core suggestion
+[16531] candidate checker
+[16532] no restored feasibility
+[16533] AI proposal
+[16536] search proposal
+[16537] transaction/checker chain
+[16538] garbage proposal
+[16539] Pareto ranking
+[16540] Exact finite dominance
+[16541] interval dominance
+[16542] preference ranking
+[16544] incomplete coverage
+[16546] exact only under full decision model
+[16547] bounded estimate
+[16548] heuristic scheduling
+[16549] no engineering checker needed
+[16550] wasted compute
+[16551] Final PCJCD release
+[16552] Exact represented mode
+[16553] bounded-gap/partial
+[16556] missing root
+[16559] 76. Cut-type table
+[16560] Cut type
+[16563] Proof source
+[16565] Principal invalidation roots
+[16566] Exact no-good
+[16567] \(x\neq x^\star\)
+[16568] Global current schema
+[16569] Hamming theorem
+[16571] variable semantics
+[16573] Not all core literals
+[16574] Domain/global
+[16575] extension infeasibility
+[16578] Logic conflict
+[16579] Core literals imply route empty
+[16581] inference proof
+[16582] LBBD checker
+[16583] conflict/topology
+[16584] Capacity
+[16585] mandatory demand \(>\) capacity
+[16586] Domain
+[16587] cut theorem
+[16588] capacity checker
+[16589] demand/capacity/topology
+[16591] preserved separator blocks routes
+[16593] geometry/topology
+[16594] exact geometry checker
+[16596] Portal capacity
+[16597] portal cut insufficient
+[16599] resource cut
+[16601] portal set
+[16602] Shaft capacity
+[16603] shaft demand exceeds capacity
+[16606] shaft checker
+[16607] shaft/topology
+[16609] selected set cannot pack
+[16611] packing proof
+[16615] required crossing unavailable
+[16617] geometry/core
+[16619] opening/route classes
+[16620] Source assignment
+[16621] source literal creates impossible connection
+[16623] topology/route proof
+[16624] net checker
+[16625] assignment/topology
+[16626] Topology
+[16627] topology family infeasible
+[16629] logic/physical proof
+[16631] topology semantics
+[16632] Classical optimality
+[16633] affine dual lower bound
+[16634] Global/domain
+[16635] LP dual
+[16636] rational checker
+[16637] \(W,c,T\), columns
+[16638] Classical feasibility
+[16639] Farkas necessary condition
+[16641] Farkas ray
+[16643] \(W,T\), closure
+[16645] Lagrangian lower envelope
+[16647] convex duality
+[16649] domain/model
+[16650] Convex physical fiber
+[16651] physical value lower bound
+[16652] Candidate/domain
+[16653] fiber dual
+[16655] fiber model
+[16656] Route-relaxation LB
+[16657] route LP lower bound
+[16659] pricing closure
+[16661] route universe
+[16662] Branch-node-local
+[16663] node-specific proposition
+[16664] Branch only
+[16665] node proof
+[16667] branch state
+[16668] Pareto objective
+[16669] objective-space exclusion/bound
+[16670] Policy domain
+[16671] exact objectives
+[16672] Pareto checker
+[16673] objective policy
+[16674] Epsilon constraint
+[16675] \(J_i\le\epsilon_i\)
+[16676] Search subproblem
+[16677] policy
+[16679] thresholds
+[16680] Heuristic surrogate
+[16681] none guaranteed
+[16682] Heuristic only
+[16683] predictor
+[16684] independent disposal
+[16685] model/data
+[16688] 77. Complexity profile
+[16689] DEF-JCD140 — JCD complexity profile
+[16690] \[ \boxed{ \mathcal C_{\mathrm{JCD}} = ( N_X, N_G, N_E, N_K, N_T, N_H, N_C, N_P, N_R, N_{\mathrm{cut}}, N_{\mathrm{cand}}, N_{\mathrm{route}}, N_{\mathrm{Pareto}}, N_{\mathrm{branch}}, K_{\mathrm{materialize}}, K_{\mathrm{router}}, K_{\mathrm{cut}}, K_{\mathrm{Pareto}}, C_{\mathrm{master}}, C_{\mathrm{materialize}}, C_{\mathrm{PCROUTE}}, C_{\mathrm{cutcheck}}, C_{\mathrm{Benders}}, C_{\mathrm{Pareto}}, C_{\mathrm{recert}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unknown}} ). } \]
+[16692] \(N_X\): master variables;
+[16693] \(N_G\): rewrite templates;
+[16694] \(N_E\): equipment candidates;
+[16695] \(N_K\): placement candidates;
+[16696] \(N_T\): topology choices;
+[16697] \(N_H\): shaft/riser choices;
+[16698] \(N_C\): corridor/service-zone variables;
+[16699] \(N_P\): penetration variables;
+[16700] \(N_R\): rack/assembly choices;
+[16701] \(N_{\mathrm{cut}}\): active cuts;
+[16702] \(N_{\mathrm{cand}}\): materialized candidates;
+[16703] \(N_{\mathrm{route}}\): PCROUTE packages;
+[16704] \(N_{\mathrm{Pareto}}\): archive size;
+[16705] \(N_{\mathrm{branch}}\): outer nodes;
+[16706] \(K_{\mathrm{materialize}}\): materialization complexity;
+[16707] \(K_{\mathrm{router}}\): PCROUTE complexity;
+[16708] \(K_{\mathrm{cut}}\): cut-proof complexity;
+[16709] \(K_{\mathrm{Pareto}}\): archive-coverage complexity;
+[16714] \[ C_{\mathrm{explicit\ candidate\ enumeration}} = O\left(\prod_i|\operatorname{Dom}(x_i)|\right). \]\[ C_{\mathrm{Pareto\ update}} = O(mN_{\mathrm{Pareto}}) \]
+[16715] per exact candidate under naive archive comparison.
+[16716] \[ C_{\mathrm{dependency\ invalidation}} = O(|V_D|+|E_D|). \]\[ C_{\mathrm{PCJCD\ check}} = O\left( N_{\mathrm{artifacts}} + N_{\mathrm{dependencies}} + N_{\mathrm{branch}} + N_{\mathrm{cut}} + \sum_i c_i \right). \]
+[16717] Exact co-design is NP-hard because it contains Steiner routing and facility-location restrictions. Nested branch-and-Benders can be exponential even when every local checker is polynomial.
+[16719] 78. Single-workstation execution
+[16720] DEF-JCD141 — JCD hardware envelope
+[16721] \[ H_\star^{JCD} = ( C_{\mathrm{CPU}}, M_{\mathrm{RAM}}, M_{\mathrm{VRAM}}, M_{\mathrm{SSD}} ) \]
+[16722] with target:
+[16723] Ryzen 9 7900X3D;
+[16724] 128 GB RAM;
+[16725] RTX 3090, 24 GB VRAM;
+[16726] approximately 2 TB SSD.
+[16727] 78.1 Authoritative storage
+[16728] The authoritative state remains local and content-addressed.
+[16729] Immutable baseline
+[16730] One baseline PCSIR.
+[16731] Candidate representation
+[16732] Each candidate stores:
+[16733] rewrite delta;
+[16734] correspondence;
+[16735] derived candidate root;
+[16736] affected geometry shards;
+[16738] proof references.
+[16739] It does not store one complete project copy.
+[16740] PCROUTE cache
+[16741] Keyed by DEF-JCD136.
+[16742] Cut cache
+[16743] Keyed by:
+[16744] cut proposition;
+[16745] validity domain;
+[16746] proof roots;
+[16747] theory/checker versions.
+[16748] Branch nodes
+[16749] Copy-on-write:
+[16750] master-domain delta;
+[16751] local cut activation;
+[16752] bound state;
+[16753] candidate queue;
+[16755] 78.2 RAM
+[16756] Long-lived RAM:
+[16757] master matrix and branch frontier;
+[16758] active cuts;
+[16759] dependency indexes;
+[16761] candidate metadata;
+[16762] current proof queues.
+[16763] Large geometry, route graphs, and inactive proof objects are memory mapped.
+[16764] 78.3 GPU
+[16765] The single GPU queue is explicit. Only selected PCROUTE tasks use VRAM.
+[16766] The outer master, cut checking, PCSIR checking, and most exact proof replay remain CPU/RAM tasks.
+[16767] AI generation cannot monopolize the canonical GPU queue unless the scheduler explicitly allocates it, and no AI computation becomes a proof premise.
+[16768] 78.4 Parallelism
+[16769] Parallel work may include:
+[16770] candidate delta materialization;
+[16771] independent candidate PCSIR checks;
+[16772] selected PCROUTE calls;
+[16773] exact cut checking;
+[16774] Pareto comparisons;
+[16776] Shared candidate roots and proof artifacts are deduplicated.
+[16777] No throughput or wall-time claim is made without measurement.
+[16779] 79. PCJCD
+[16780] DEF-JCD142 — PCJCD package
+[16781] A PCJCD contains:
+[16783] baseline PCSIR;
+[16784] baseline theory;
+[16785] protected architectural state;
+[16787] master-variable schema;
+[16788] master-domain bounds;
+[16789] rewrite library;
+[16790] rewrite-authority map;
+[16791] global master;
+[16792] master relaxations;
+[16793] abstraction state;
+[16794] contextual quotient;
+[16795] outer branch tree;
+[16796] candidate assignments;
+[16797] materialization records;
+[16798] accepted candidate PCSIRs;
+[16799] rejected materializations;
+[16800] PCROUTE requests;
+[16801] PCROUTE packages;
+[16802] route-feasible-domain evidence;
+[16803] route upper bounds;
+[16804] route lower bounds;
+[16805] route UNKNOWN states;
+[16806] exact no-good cuts;
+[16807] conflict-core cuts;
+[16809] geometric cuts;
+[16810] classical Benders cuts;
+[16811] generalized-Benders cuts;
+[16812] heuristic feedback;
+[16813] cut validity domains;
+[16814] cut proof objects;
+[16815] cut version roots;
+[16816] cut dominance;
+[16817] cut invalidation;
+[16818] resource duals;
+[16819] dual-scope records;
+[16820] scarcity fields;
+[16821] repair-price records;
+[16823] modifiable-root mappings;
+[16824] repair neighborhoods;
+[16825] AI proposals;
+[16826] AI disposal results;
+[16827] sovereignty checks;
+[16828] exact objective vectors;
+[16829] interval objective vectors;
+[16830] candidate modalities;
+[16832] dominance proofs;
+[16833] epsilon search states;
+[16834] lexicographic states;
+[16835] scalarization states;
+[16836] global lower bounds;
+[16837] global upper bounds;
+[16838] scalar gaps;
+[16839] Pareto completion status;
+[16840] unresolved master nodes;
+[16841] unresolved router states;
+[16845] reuse records;
+[16846] scheduler state;
+[16848] restart lineage;
+[16850] external-research ledger;
+[16852] trusted-kernel manifest;
+[16854] theory versions;
+[16856] final co-design status;
+[16857] PCJCD witness;
+[16858] independent checker result;
+[16859] open-world limitations.
+[16861] 80. JCD release fibers
+[16862] DEF-JCD143 — JCD modality family
+[16863] \[ \boxed{ \mathsf{JCDMode} = \left\{ \begin{array}{l} \mathsf{MASTER\_ASSIGNMENT},\\ \mathsf{CANDIDATE\_MATERIALIZED},\\ \mathsf{CANDIDATE\_PCSIR\_VALID},\\ \mathsf{ROUTING\_FEASIBLE},\\ \mathsf{JOINT\_FEASIBLE},\\ \mathsf{ROUTING\_VALUE\_LOWER\_BOUND},\\ \mathsf{GLOBAL\_LOWER\_BOUND},\\ \mathsf{CUT\_GLOBAL\_EXACT},\\ \mathsf{CUT\_DOMAIN\_EXACT},\\ \mathsf{CUT\_BRANCH\_LOCAL},\\ \mathsf{CUT\_HEURISTIC},\\ \mathsf{PARETO\_CERTIFIED},\\ \mathsf{PARETO\_PARTIAL},\\ \mathsf{BOUNDED\_GLOBAL\_GAP},\\ \mathsf{EXACT\_GLOBAL\_OPTIMAL},\\ \mathsf{JOINT\_INFEASIBLE},\\ \mathsf{AI\_PROPOSED},\\ \mathsf{HEURISTIC},\\ \mathsf{UNKNOWN} \end{array} \right\}. } \]
+[16864] No implicit coercions exist from:
+[16865] \[ \mathsf{MASTER\_ASSIGNMENT} \to \mathsf{CANDIDATE\_PCSIR\_VALID}, \]\[ \mathsf{CUT\_BRANCH\_LOCAL} \to \mathsf{CUT\_GLOBAL\_EXACT}, \]\[ \mathsf{AI\_PROPOSED} \to \mathsf{JOINT\_FEASIBLE}, \]\[ \mathsf{PARETO\_PARTIAL} \to \mathsf{PARETO\_CERTIFIED}, \]\[ \mathsf{BOUNDED\_GLOBAL\_GAP} \to \mathsf{EXACT\_GLOBAL\_OPTIMAL}. \]
+[16866] DEF-JCD144 — JCD infeasibility proof set
+[16867] \[ \mathcal I_{\mathrm{JCD}} = \left\{ \eta: \mathsf{JointCoDesignInfeasible}(\Xi^{JCD},\eta) \right\}. \]
+[16868] Infeasibility is not represented as a feasible witness.
+[16870] 81. Whole feasible theorem
+[16871] THM-JCD96 — THM-JCD-WHOLE-FEASIBLE
+[16873] accepted baseline PCSIR;
+[16874] valid master assignment;
+[16875] every rewrite is authorized;
+[16876] rewrite preconditions and correspondences pass;
+[16877] one exact candidate materialization is selected;
+[16878] candidate PCSIR is accepted;
+[16879] PCROUTE is applicable and accepted;
+[16880] route and architecture identities agree;
+[16881] all global hard factors pass;
+[16882] objective values are correctly typed and bounded;
+[16883] dependencies and versions are complete;
+[16884] UNKNOWN has not been promoted;
+[16885] independent PCJCD checking accepts.
+[16887] \[ W \in \gamma_{\mathrm{JCD}}^{\mathsf{JOINT\_FEASIBLE}} (y,\Xi^{JCD}). \]
+[16889] The master-assignment certificate establishes legal strategic decisions.
+[16890] Sovereignty and authorization certificates establish admissible rewrites.
+[16891] Materialization binds the assignment to one concrete candidate.
+[16892] Candidate PCSIR acceptance establishes Prompt-1 semantic and spatial validity.
+[16893] PCROUTE acceptance establishes routed-service validity for that same candidate root.
+[16894] Joint-factor checks establish cross-layer architecture/routing compatibility.
+[16895] Objective and evidence checks establish the declared candidate report.
+[16896] Complete dependencies and versions establish applicability.
+[16897] Independent PCJCD acceptance proves the root predicate.
+[16898] Therefore the complete witness satisfies JointCoDesignValid. ∎
+[16900] 82. Whole bounded-gap theorem
+[16901] THM-JCD97 — THM-JCD-WHOLE-BOUNDED
+[16902] Assume THM-JCD96 plus:
+[16903] incumbent objective upper bound \(U\);
+[16904] every unresolved node has a valid lower bound;
+[16905] the global lower bound is
+\[ L=\min_{\nu\in\mathcal O}L_\nu; \]
+[16906] bound composition matches the exact scalar policy;
+[16907] no stale cut or route bound contributes to \(L\).
+[16909] \[ \boxed{ L\le z^\star\le U. } \]
+[16911] The incumbent is feasible, so \(z^\star\le U\). Every feasible design belongs to one open or closed node. Closed infeasible nodes contain no feasible state; evaluated incumbent nodes are covered by \(U\); each unresolved node has objective at least its valid \(L_\nu\). Hence every feasible design has objective at least \(L\). ∎
+[16912] The reported relative gap is
+[16913] \[ \frac{U-L}{\max\{1,|U|\}}. \]
+[16915] 83. Whole exact-optimal theorem
+[16916] THM-JCD98 — THM-JCD-WHOLE-OPTIMAL
+[16917] Add to THM-JCD97:
+[16918] finite represented design universe or complete finite exact partition;
+[16919] every outer branch partition is exhaustive and disjoint;
+[16920] every active cut is exact and applicable;
+[16921] every candidate materialization used in closure is exact;
+[16922] every required PCROUTE call is exact or supplies a sufficient exact node proof;
+[16923] all nodes are closed;
+[16924] no unresolved materialization, pricing, route, cut, or branch state remains;
+[16925] global lower bound equals incumbent objective.
+[16926] Then the incumbent is the exact global optimum of the represented JCD scalar problem.
+[16928] Every represented feasible design belongs to one closed leaf. By exact node closure, no leaf contains a design better than the incumbent. Since the incumbent itself is feasible, it attains the represented minimum. ∎
+[16929] This is optimality inside the represented design universe and policy, not universal building optimality.
+[16931] 84. Whole Pareto theorem
+[16932] THM-JCD99 — THM-JCD-WHOLE-PARETO
+[16934] complete represented feasible design coverage;
+[16935] complete active objective vector;
+[16936] exact or certified interval objective values;
+[16937] every excluded design has an accepted dominance certificate;
+[16938] interval-incomparable designs remain in the possible archive;
+[16939] no unresolved feasible region remains outside the archive or dominance cover.
+[16940] Then:
+[16941] the exact archive equals the exact represented Pareto set;
+[16942] the certified interval archive contains every possibly nondominated represented design.
+[16944] Every represented feasible design is either retained or excluded. Exclusion is allowed only by a valid dominance certificate. Therefore no excluded design is Pareto efficient. Every retained exact point lacks a dominating represented point by the checked comparisons and complete coverage. The interval claim follows from retaining every unresolved comparison. ∎
+[16946] 85. Whole infeasibility theorem
+[16947] THM-JCD100 — THM-JCD-WHOLE-INFEASIBLE
+[16948] A complete represented JCD infeasibility proof may be established through:
+[16949] Case A — Master infeasibility
+[16950] The full represented master domain is empty under exact hard constraints.
+[16951] Case B — Materialization infeasibility
+[16952] Every master assignment has an empty exact materialization fiber.

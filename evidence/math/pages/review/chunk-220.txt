@@ -1,0 +1,284 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P37450; UTF16 1249809] if (\mathsf{Block}), return NO_RELEASE;
+[21-30:P37451; UTF16 1249849] else if (\mathsf{UnconditionalEligible}), return UNCONDITIONAL_RELEASE;
+[21-30:P37452; UTF16 1249921] else if (\mathsf{ConditionalEligible}), return CONDITIONAL_RELEASE;
+[21-30:P37453; UTF16 1249989] else return UNKNOWN.
+[21-30:P37457; UTF16 1250013] 28. Global Dependency Graph
+[21-30:P37458; UTF16 1250041] DEF-INT39 — Global ANANKE Dependency Graph
+[21-30:P37459; UTF16 1250084] The global dependency graph contains:
+[21-30:P37460; UTF16 1250122] every Prompt-1–29 package root;
+[21-30:P37461; UTF16 1250154] every shared object;
+[21-30:P37462; UTF16 1250175] every theory version;
+[21-30:P37463; UTF16 1250197] every experiment-family version;
+[21-30:P37464; UTF16 1250230] every assumption;
+[21-30:P37465; UTF16 1250248] every modality coercion;
+[21-30:P37466; UTF16 1250273] every waiver;
+[21-30:P37467; UTF16 1250287] every checker version;
+[21-30:P37468; UTF16 1250310] every constitutional rule;
+[21-30:P37469; UTF16 1250337] every final release root.
+[21-30:P37472; UTF16 1250383] means a change in (u) may alter validity, applicability, scope, modality, or release status of (v).
+[21-30:P37476; UTF16 1250486] 29. Recursive Incremental Recertification
+[21-30:P37477; UTF16 1250528] THM-INT21 — End-to-End Dependency-Directed Recertification Equals Full Cold Rechecking
+[21-30:P37479; UTF16 1250627] Every changed global root is identified.
+[21-30:P37480; UTF16 1250668] The global dependency graph is complete.
+[21-30:P37481; UTF16 1250709] Every descendant of every changed root is invalidated.
+[21-30:P37482; UTF16 1250764] Reused lower-layer packages pass exact checks for:
+[21-30:P37487; UTF16 1250869] experiment family;
+[21-30:P37490; UTF16 1250915] Changed lower-layer packages use sound local incremental or cold-equivalent recertification.
+[21-30:P37491; UTF16 1251008] Shared-object checks use the same semantics as cold checking.
+[21-30:P37492; UTF16 1251070] Local and global verification procedures are deterministic.
+[21-30:P37493; UTF16 1251130] Trusted checker semantics are sound.
+[21-30:P37494; UTF16 1251167] Cyclic assurance components are replaced by checked fixed-point, reachability, or other certified nodes.
+[21-30:P37495; UTF16 1251272] Waiver and release-policy versions belong to the dependency graph.
+[21-30:P37497; UTF16 1251350] End-to-end incremental and cold checking agree on every final release root.
+[21-30:P37499; UTF16 1251432] Condense every certified cyclic subsystem into one checked node. The resulting quotient dependency graph is acyclic.
+[21-30:P37500; UTF16 1251549] Take topological order:
+[21-30:P37502; UTF16 1251593] We prove equality of incremental and cold values by induction.
+[21-30:P37503; UTF16 1251656] Base
+[21-30:P37504; UTF16 1251661] For a changed root, both procedures use the same current canonical input.
+[21-30:P37505; UTF16 1251735] For an unchanged root, incremental reuse is permitted only after every applicability and version check succeeds. Therefore the reused root equals the cold root.
+[21-30:P37508; UTF16 1251959] If (v_k) is invalidated, both procedures run the same deterministic checker on equal predecessor values, so they produce equal output.
+[21-30:P37509; UTF16 1252094] If (v_k) is reused, dependency completeness guarantees no changed root can affect it, and applicability checks establish semantic identity with the cold node.
+[21-30:P37510; UTF16 1252253] Thus values agree at (v_k).
+[21-30:P37511; UTF16 1252281] By induction, every node agrees, including every final release root.
+[21-30:P37512; UTF16 1252350] \mathsf{ColdFinalCheck}(\Xi_t). } ]
+[21-30:P37517; UTF16 1252391] 30. Constitutional RCVOC
+[21-30:P37519; UTF16 1252460] ALG-INT1 — ConstitutionalRCVOCInterface
+[21-30:P37521; UTF16 1252506]     global release roots
+[21-30:P37522; UTF16 1252531]     assumption debt
+[21-30:P37524; UTF16 1252565]     stale packages
+[21-30:P37525; UTF16 1252584]     modality gaps
+[21-30:P37526; UTF16 1252602]     theory changes
+[21-30:P37527; UTF16 1252621]     cyclic assurance state
+[21-30:P37529; UTF16 1252649] GENERATE candidate computations such as
+[21-30:P37530; UTF16 1252689]     inspect one unresolved assumption
+[21-30:P37531; UTF16 1252727]     cold-check one disputed package
+[21-30:P37532; UTF16 1252763]     resolve one shared-object mismatch
+[21-30:P37533; UTF16 1252802]     test one modality coercion
+[21-30:P37534; UTF16 1252833]     determine whether two scopes overlap
+[21-30:P37535; UTF16 1252874]     refine one experiment family
+[21-30:P37536; UTF16 1252907]     resolve one cross-layer witness conflict
+[21-30:P37537; UTF16 1252952]     verify one waiver authority
+[21-30:P37538; UTF16 1252984]     inspect one assurance cycle
+[21-30:P37539; UTF16 1253016]     recertify one stale checker
+[21-30:P37540; UTF16 1253048]     expand one open-world boundary
+[21-30:P37543; UTF16 1253093]     final roots affected
+[21-30:P37544; UTF16 1253118]     expected assumption-debt reduction
+[21-30:P37545; UTF16 1253157]     expected conflict reduction
+[21-30:P37546; UTF16 1253189]     possible release-mode change
+[21-30:P37547; UTF16 1253222]     computation cost
+[21-30:P37548; UTF16 1253243]     field cost
+[21-30:P37550; UTF16 1253277]     delay
+[21-30:P37552; UTF16 1253303]     authority requirement
+[21-30:P37553; UTF16 1253329]     information value
+[21-30:P37556; UTF16 1253359]     ranked computation candidates under Prompt-9 semantics
+[21-30:P37557; UTF16 1253418] Prompt 30 does not replace Prompt-9 metareasoning. It supplies global computations for Prompt 9 to value.
+[21-30:P37561; UTF16 1253527] 31. Global ANANKE Release Fiber
+[21-30:P37562; UTF16 1253559] DEF-INT40 — Global ANANKE Release Fiber
+[21-30:P37563; UTF16 1253599] \left{ W: \mathsf{EndToEndANANKEValid}_{\boldsymbol\mu} (y,\Xi_t,W) \right}. } ]
+[21-30:P37564; UTF16 1253680] A witness (W) contains at minimum:
+[21-30:P37565; UTF16 1253715] every consumed lower-layer witness;
+[21-30:P37566; UTF16 1253751] exact package versions;
+[21-30:P37567; UTF16 1253775] one shared-object assignment;
+[21-30:P37568; UTF16 1253805] cross-layer gluing proofs;
+[21-30:P37569; UTF16 1253832] assumption closures;
+[21-30:P37570; UTF16 1253853] modality derivation paths;
+[21-30:P37571; UTF16 1253880] active waiver and exception state;
+[21-30:P37573; UTF16 1253946] final release-policy state;
+[21-30:P37574; UTF16 1253974] final checker result.
+[21-30:P37578; UTF16 1253999] 32. Proof-Carrying Final ANANKE Release Package
+[21-30:P37579; UTF16 1254047] DEF-INT41 — Proof-Carrying Final ANANKE Release Package
+[21-30:P37580; UTF16 1254103] [ \boxed{ \mathsf{PCFAR}. } ]
+[21-30:P37581; UTF16 1254133] A PCFAR contains at minimum:
+[21-30:P37583; UTF16 1254180] final project-state identifier;
+[21-30:P37584; UTF16 1254212] Prompt-1 package reference;
+[21-30:P37585; UTF16 1254240] Prompt-2 package reference;
+[21-30:P37586; UTF16 1254268] Prompt-3 package reference;
+[21-30:P37587; UTF16 1254296] Prompt-4 package reference;
+[21-30:P37588; UTF16 1254324] Prompt-5 package reference;
+[21-30:P37589; UTF16 1254352] Prompt-6 package reference;
+[21-30:P37590; UTF16 1254380] Prompt-7 package reference;
+[21-30:P37591; UTF16 1254408] Prompt-8 package reference;
+[21-30:P37592; UTF16 1254436] Prompt-9 metareasoning state;
+[21-30:P37593; UTF16 1254466] Prompt-10 breaker state;
+[21-30:P37594; UTF16 1254491] Prompt-11 assurance package;
+[21-30:P37595; UTF16 1254520] Prompt-12 sovereignty state;
+[21-30:P37596; UTF16 1254549] Prompt-13 materialization package;
+[21-30:P37597; UTF16 1254584] Prompt-14 physical-execution package;
+[21-30:P37598; UTF16 1254622] Prompt-15 ODT state;
+[21-30:P37599; UTF16 1254643] Prompt-16 transfer and learning state;
+[21-30:P37600; UTF16 1254682] Prompt-17 reliability state;
+[21-30:P37601; UTF16 1254711] Prompt-18 economic-execution package;
+[21-30:P37602; UTF16 1254749] Prompt-19 commitment package;
+[21-30:P37603; UTF16 1254779] Prompt-20 governance package;
+[21-30:P37604; UTF16 1254809] Prompt-21 regulatory package;
+[21-30:P37605; UTF16 1254839] Prompt-22 security package;
+[21-30:P37606; UTF16 1254867] Prompt-23 privacy package;
+[21-30:P37607; UTF16 1254894] Prompt-24 human-operational package;
+[21-30:P37608; UTF16 1254931] Prompt-25 commissioning and handover package;
+[21-30:P37609; UTF16 1254977] Prompt-26 lifecycle package;
+[21-30:P37610; UTF16 1255006] Prompt-27 environmental package;
+[21-30:P37611; UTF16 1255039] Prompt-28 system-of-systems package;
+[21-30:P37612; UTF16 1255076] Prompt-29 societal package;
+[21-30:P37613; UTF16 1255104] constitutional-rule registry;
+[21-30:P37614; UTF16 1255134] shared-object registry;
+[21-30:P37615; UTF16 1255158] global claim registry;
+[21-30:P37616; UTF16 1255181] global assumption graph;
+[21-30:P37618; UTF16 1255239] assumption-debt state;
+[21-30:P37619; UTF16 1255262] modality-coercion graph;
+[21-30:P37620; UTF16 1255287] modality-derivation certificates;
+[21-30:P37621; UTF16 1255321] global scope registry;
+[21-30:P37622; UTF16 1255344] cross-layer compatibility matrix;
+[21-30:P37623; UTF16 1255378] join-tree or other gluing certificates;
+[21-30:P37624; UTF16 1255418] contradiction registry;
+[21-30:P37625; UTF16 1255442] global conflict cores;
+[21-30:P37626; UTF16 1255465] theory-version registry;
+[21-30:P37627; UTF16 1255490] experiment-family registry;
+[21-30:P37628; UTF16 1255518] waiver and exception ledger;
+[21-30:P37629; UTF16 1255547] conditional-release obligations;
+[21-30:P37631; UTF16 1255611] global dependency graph;
+[21-30:P37632; UTF16 1255636] trusted-kernel manifest;
+[21-30:P37633; UTF16 1255661] checker-version registry;
+[21-30:P37634; UTF16 1255687] proof-DAG manifest;
+[21-30:P37635; UTF16 1255707] unresolved open-world claims;
+[21-30:P37636; UTF16 1255737] final release mode;
+[21-30:P37637; UTF16 1255757] final release-fiber witness;
+[21-30:P37638; UTF16 1255786] independent final-checker result.
+[21-30:P37642; UTF16 1255823] 33. Whole-Program Final Theorem
+[21-30:P37643; UTF16 1255855] THM-INT22 — Final End-to-End ANANKE Constitutional Release Theorem
+[21-30:P37646; UTF16 1255954] (\Xi_t): current integrated constitutional state;
+[21-30:P37647; UTF16 1256004] (y): target final release state;
+[21-30:P37648; UTF16 1256037] (\mathsf{PCFAR}): candidate final package;
+[21-30:P37649; UTF16 1256080] (\boldsymbol\mu): exact vector of required lower-layer modalities.
+[21-30:P37651; UTF16 1256155] Project identity Every lower-layer package refers to one canonical project lineage.
+[21-30:P37652; UTF16 1256239] Current artifact identity Every active claim is bound to the correct current artifact and configuration version.
+[21-30:P37653; UTF16 1256352] Lower-layer package validity Every consumed Prompt-1–29 package is accepted by its applicable independent checker under its exact theory version.
+[21-30:P37654; UTF16 1256498] Source-body integrity Every imported theorem has an actual supporting body proof, machine proof, or explicit axiomatic or conditional status.
+[21-30:P37655; UTF16 1256640] Scope coherence Every cross-layer inference uses scope-compatible claims.
+[21-30:P37656; UTF16 1256714] Shared-object identity Every shared object has one canonical identity or an explicit checked translation.
+[21-30:P37657; UTF16 1256820] Cross-layer witness compatibility Every selected local witness agrees with every other selected witness on shared objects.
+[21-30:P37658; UTF16 1256943] Global witness gluing The local witness family is glued by:
+[21-30:P37659; UTF16 1257003] direct global construction;
+[21-30:P37660; UTF16 1257031] THM-INT9;
+[21-30:P37661; UTF16 1257041] or another independently proved compatibility theorem.
+[21-30:P37662; UTF16 1257096] No unresolved global contradiction No scope-compatible mandatory claim pair proves both (\varphi) and (\neg\varphi).
+[21-30:P37663; UTF16 1257213] Assumption closure Every mandatory final root has a complete transitive assumption graph.
+[21-30:P37664; UTF16 1257303] Mandatory assumption discharge For unconditional release: [ \operatorname{Debt}(c)=\varnothing ] for every mandatory root (c).
+[21-30:P37665; UTF16 1257430] Modality preservation Every modality conversion follows the trusted coercion graph.
+[21-30:P37666; UTF16 1257514] No approximation promotion Approximate, bounded, heuristic, forecast, empirical, scenario, or probabilistic claims retain their exact modalities.
+[21-30:P37667; UTF16 1257660] UNKNOWN discipline No lower-layer or global UNKNOWN claim is converted into PROVED.
+[21-30:P37668; UTF16 1257744] Waiver truth separation Every waiver modifies release disposition only.
+[21-30:P37669; UTF16 1257816] Waiver authority Every active waiver has the required Prompt-20/21 authority.
+[21-30:P37670; UTF16 1257894] Conditional-release typing Any release-permissible waiver, retained uncertainty, or open condition forces explicit conditional mode.
+[21-30:P37671; UTF16 1258027] Constitutional compliance Every active rule satisfies (\mathfrak C_{\mathrm{AN}}).
+[21-30:P37672; UTF16 1258110] No silent scalarization No vector-valued conflict is resolved through an unauthorized scalarization.
+[21-30:P37673; UTF16 1258211] Architectural sovereignty Prompt-12 protected architecture and human authority remain respected.
+[21-30:P37674; UTF16 1258308] Theory-version correctness Every consumed claim uses the active theory or a valid transport theorem.
+[21-30:P37675; UTF16 1258409] Experiment-family correctness Every reused contextual quotient remains sufficient for the active experiment family.
+[21-30:P37676; UTF16 1258525] Dependency completeness Every cross-layer dependency capable of changing a final release root is represented.
+[21-30:P37677; UTF16 1258635] Incremental-recertification correctness If the package was produced incrementally, THM-INT21 applies.
+[21-30:P37678; UTF16 1258737] Cyclic-assurance closure Every assurance cycle has a checked fixed-point, reachability, or other sound cyclic proof object.
+[21-30:P37679; UTF16 1258861] Prompt-1 through Prompt-10 integrity Typed semantics, contextual abstraction, approximation, reduced physics, rewrite reuse, causal state, RCVOC, and Claim Breakers remain valid at their exact modalities.
+[21-30:P37680; UTF16 1259066] Prompt-11 assurance integrity Evidence applicability and assurance composition remain valid.
+[21-30:P37681; UTF16 1259159] Prompt-12 sovereignty integrity Protected decisions and human authority remain valid.
+[21-30:P37682; UTF16 1259245] Prompt-13 materialization integrity A valid materialization witness exists where required.
+[21-30:P37683; UTF16 1259336] Prompt-14 execution integrity Physical and as-built claims refer to the current delivered state.
+[21-30:P37684; UTF16 1259433] Prompt-15 operational-twin integrity The ODT remains contained and applicable to current operation.
+[21-30:P37685; UTF16 1259533] Prompt-16 transfer integrity Cross-project evidence retains its target and population modality.
+[21-30:P37686; UTF16 1259629] Prompt-17 reliability integrity Reliability, dependence, hazard, and probability claims retain their stochastic theory.
+[21-30:P37687; UTF16 1259749] Prompt-18 economic integrity Every required execution path remains economically executable where claimed.
+[21-30:P37688; UTF16 1259855] Prompt-19 commitment integrity Every active option, freeze, commitment, and deadline remains valid.
+[21-30:P37689; UTF16 1259955] Prompt-20 governance integrity Organizational, contractual, strategic, and decision authority remains valid.
+[21-30:P37690; UTF16 1260064] Prompt-21 regulatory integrity Regulatory claims are consumed only at their certified modality.
+[21-30:P37691; UTF16 1260160] Prompt-22 cyber integrity Identity, provenance, software, telemetry, and digital evidence retain their security assumptions.
+[21-30:P37692; UTF16 1260285] Prompt-23 privacy integrity Every required data use remains privacy permitted.
+[21-30:P37693; UTF16 1260364] Prompt-24 human-operational integrity Required people, information, workload, procedures, delegation, and emergency actions remain executable.
+[21-30:P37694; UTF16 1260507] Prompt-25 acceptance integrity Current calibration, tests, defect closure, readiness, and handover state remain valid.
+[21-30:P37695; UTF16 1260626] Prompt-26 lifecycle integrity Current condition, maintenance, support, retrofit, configuration, and retirement state remain valid.
+[21-30:P37696; UTF16 1260757] Prompt-27 environmental integrity Environmental claims retain functional-unit, boundary, inventory, scenario, and accounting semantics.
+[21-30:P37697; UTF16 1260893] Prompt-28 system-of-systems integrity Infrastructure, dependencies, externalities, recovery, and regional feasibility remain valid.
+[21-30:P37698; UTF16 1261025] Prompt-29 societal integrity Stakeholder, allocation, rights, fairness, coalition, choice, and procedural claims remain valid under their declared theories.
+[21-30:P37699; UTF16 1261182] Open-world boundaries Every lower-layer open-world limitation remains visible.
+[21-30:P37700; UTF16 1261261] Trusted-kernel soundness The final kernel is sound for every inference rule it accepts.
+[21-30:P37701; UTF16 1261349] Checker identity Deployed checker versions match certificate references.
+[21-30:P37702; UTF16 1261422] Proposal independence No proposal source is treated as a semantic premise.
+[21-30:P37703; UTF16 1261497] Independent final checking The independent PCFAR checker accepts.
+[21-30:P37706; UTF16 1261606] Step 1 — Bind all layers to one project lineage
+[21-30:P37707; UTF16 1261654] Assumptions 1–3 establish one project lineage and valid lower-layer packages.
+[21-30:P37708; UTF16 1261732] No package referring to a different project, stale branch, or incompatible artifact participates in the final witness.
+[21-30:P37709; UTF16 1261851] Step 2 — Bind every claim to exact scope
+[21-30:P37710; UTF16 1261892] Assumption 5 applies DEF-INT5–6.
+[21-30:P37711; UTF16 1261925] THM-INT1 prevents claims about different times, versions, scenarios, populations, purposes, or artifacts from being misclassified as direct contradictions.
+[21-30:P37712; UTF16 1262081] Step 3 — Establish shared-object coherence
+[21-30:P37713; UTF16 1262124] Assumption 6 supplies one canonical identity or trusted translation for every shared object.
+[21-30:P37714; UTF16 1262217] Therefore a cost, product, wall, model, stakeholder, hazard, resource, scenario, or requirement cannot silently denote different objects in different layers.
+[21-30:P37715; UTF16 1262375] Step 4 — Establish local witness validity
+[21-30:P37716; UTF16 1262417] By assumption 3, every selected local witness satisfies:
+[21-30:P37717; UTF16 1262474] [ w_i\in\gamma_i^{\mu_i}. ]
+[21-30:P37718; UTF16 1262502] THM-INT7 prevents those local nonemptiness results from being mistaken for global nonemptiness.
+[21-30:P37719; UTF16 1262598] Step 5 — Establish global witness compatibility
+[21-30:P37720; UTF16 1262646] Assumptions 7–8 provide compatibility on every shared object and an applicable gluing theorem.
+[21-30:P37721; UTF16 1262741] Where a join tree is used, THM-INT9 constructs the global assignment.
+[21-30:P37722; UTF16 1262811] Where the interaction graph is not a join tree, another explicit global compatibility proof is required.
+[21-30:P37723; UTF16 1262916] THM-INT8 prevents pairwise checks from being treated as generally sufficient.
+[21-30:P37724; UTF16 1262994] Step 6 — Exclude direct contradiction
+[21-30:P37725; UTF16 1263032] Assumption 9 and THM-INT10 exclude every mandatory scope-compatible pair:
+[21-30:P37726; UTF16 1263106] [ \varphi, \qquad \neg\varphi. ]
+[21-30:P37727; UTF16 1263139] Therefore the selected global witness is not required to satisfy a classical contradiction.
+[21-30:P37728; UTF16 1263231] Step 7 — Establish assumption closure
+[21-30:P37729; UTF16 1263269] Assumption 10 provides complete transitive assumption graphs.
+[21-30:P37730; UTF16 1263331] Assumption 11 discharges mandatory debt for unconditional release.
+[21-30:P37731; UTF16 1263398] THM-INT2 establishes every mandatory root from valid leaves through sound inferences.
+[21-30:P37732; UTF16 1263484] THM-INT3 blocks unconditional release if mandatory debt remains.
+[21-30:P37733; UTF16 1263549] Step 8 — Establish modality correctness
+[21-30:P37734; UTF16 1263589] Assumptions 12–14 and THM-INT4 ensure every consumed claim follows a trusted modality path.
+[21-30:P37736; UTF16 1263692] forecasts remain forecasts;
+[21-30:P37737; UTF16 1263720] probabilities remain probabilities;
+[21-30:P37738; UTF16 1263756] approximations remain approximations;
+[21-30:P37739; UTF16 1263794] pseudonymization remains weaker than anonymity;
+[21-30:P37740; UTF16 1263842] Shapley allocation remains distinct from core stability;
+[21-30:P37741; UTF16 1263899] cyber authorization remains distinct from privacy permission.
+[21-30:P37742; UTF16 1263961] Step 9 — Separate truth from release policy
+[21-30:P37743; UTF16 1264005] Assumptions 15–17 apply THM-INT5–6.
+[21-30:P37744; UTF16 1264041] A waiver can alter the permitted release mode.
+[21-30:P37745; UTF16 1264088] It cannot change:
+[21-30:P37746; UTF16 1264106] [ \mathsf{REFUTED}\to\mathsf{PROVED} ]
+[21-30:P37748; UTF16 1264149] [ \mathsf{UNKNOWN}\to\mathsf{PROVED}. ]
+[21-30:P37749; UTF16 1264189] Any release depending on an active exception remains conditional.
+[21-30:P37750; UTF16 1264255] Step 10 — Enforce the ANANKE constitution
+[21-30:P37751; UTF16 1264297] Assumptions 18–20 apply every rule in:
+[21-30:P37752; UTF16 1264336] [ \mathfrak C_{\mathrm{AN}}. ]
+[21-30:P37753; UTF16 1264367] Protected architecture, rights, governance, and human authority are not traded away merely to simplify global optimization.
+[21-30:P37754; UTF16 1264491] Step 11 — Establish theory and quotient applicability
+[21-30:P37755; UTF16 1264545] Assumptions 21–22 bind every claim to active theory and experiment versions.
+[21-30:P37756; UTF16 1264622] THM-INT13 proves that constraint strengthening may remove formerly feasible states.
+[21-30:P37757; UTF16 1264706] THM-INT14 proves that experiment expansion may split old quotient classes.
+[21-30:P37758; UTF16 1264781] THM-INT15 invalidates stale certificates lacking a transport theorem.
+[21-30:P37759; UTF16 1264851] Step 12 — Establish dependency coherence
+[21-30:P37760; UTF16 1264892] Assumptions 23–24 establish complete dependency propagation.
+[21-30:P37761; UTF16 1264953] If incremental checking was used, THM-INT21 proves equality with cold checking.
+[21-30:P37762; UTF16 1265033] Step 13 — Establish cyclic-assurance closure
+[21-30:P37763; UTF16 1265078] Assumption 25 requires a valid cyclic proof object.
+[21-30:P37764; UTF16 1265130] Where the finite monotone model applies, THM-INT17 supplies the least fixed point.
+[21-30:P37765; UTF16 1265213] THM-INT18 prevents convergence from being promoted to model completeness.
+[21-30:P37766; UTF16 1265287] Step 14 — Preserve Prompts 1–10
+[21-30:P37767; UTF16 1265319] Assumption 26 preserves:
+[21-30:P37770; UTF16 1265382] separator semantics;
+[21-30:P37772; UTF16 1265427] certified uncertainty;
+[21-30:P37773; UTF16 1265450] reduced multiphysics;
+[21-30:P37774; UTF16 1265472] rewrite-aware reuse;
+[21-30:P37775; UTF16 1265493] causal executable state;
+[21-30:P37776; UTF16 1265518] value-of-computation reasoning;
+[21-30:P37777; UTF16 1265550] adversarial Claim Breakers.
+[21-30:P37778; UTF16 1265578] A contradiction with those foundations reopens every dependent claim.
+[21-30:P37779; UTF16 1265648] Step 15 — Preserve Prompt-11 assurance semantics
+[21-30:P37780; UTF16 1265697] Assumption 27 ensures evidence is consumed only through valid applicability relations.
+[21-30:P37781; UTF16 1265784] Authentic evidence that is semantically irrelevant remains irrelevant.
+[21-30:P37782; UTF16 1265855] Step 16 — Preserve Prompt-12 sovereignty
+[21-30:P37783; UTF16 1265896] Assumption 28 blocks metalevel optimization from overriding protected architecture, rights, or human authority.
+[21-30:P37784; UTF16 1266008] Step 17 — Preserve materialization and execution
+[21-30:P37785; UTF16 1266057] Assumptions 29–30 establish that the project exists as a materialized and as-built artifact at the versions used by the final proof.
+[21-30:P37786; UTF16 1266190] Step 18 — Preserve operational containment
+[21-30:P37787; UTF16 1266233] Assumption 31 ensures operational claims apply to the current ODT state and uncertainty envelope.
+[21-30:P37788; UTF16 1266331] Step 19 — Preserve transfer semantics

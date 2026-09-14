@@ -1,0 +1,295 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P10882; UTF16 410786]             or block predicates
+[1-10:P10883; UTF16 410818]             to exclude the spurious path
+[1-10:P10885; UTF16 410860]         UNKNOWN:
+[1-10:P10886; UTF16 410877]             record unresolved obligation
+[1-10:P10887; UTF16 410918]             do not prune
+[1-10:P10888; UTF16 410943]             do not merge
+[1-10:P10889; UTF16 410968]             do not certify safety
+[1-10:P10890; UTF16 411002]             try a different domain or stop unresolved
+[1-10:P10894; UTF16 411059] 19. Real, Spurious, and Unknown Counterexamples
+[1-10:P10895; UTF16 411107] 19.1 Concrete feasibility formula
+[1-10:P10896; UTF16 411141] For abstract path:
+[1-10:P10897; UTF16 411160] (a_0,K_1,a_1,\ldots,K_m,a_m,\chi), ]
+[1-10:P10898; UTF16 411197] define:
+[1-10:P10899; UTF16 411205] [ \begin{aligned} \Phi_{\mathrm{cex}} ={}& \phi_{a_0}(x_0) \land \bigwedge_{i=1}^m \left[ x_i=K_i(x_{i-1}) \land \phi_{a_i}(x_i) \right]\ &\land \chi(x_m). \end{aligned} ]
+[1-10:P10900; UTF16 411377] For a proposed quotient merge of block (B), a distinguishing-pair formula is:
+[1-10:P10901; UTF16 411455] [ \begin{aligned} \Phi_{\mathrm{dist}} ={}& B(x)\land B(y)\ &\land \mathsf{Out}_e(x)\ne \mathsf{Out}_e(y). \end{aligned} ]
+[1-10:P10905; UTF16 411581] DEF-AB34 — Solver Result
+[1-10:P10906; UTF16 411606] { \mathsf{SAT}(w), \mathsf{UNSAT}(\pi), \mathsf{UNKNOWN} }. ]
+[1-10:P10907; UTF16 411668] (w) is a concrete witness.
+[1-10:P10908; UTF16 411695] (\pi) is an independently checkable unsatisfiability certificate where available.
+[1-10:P10909; UTF16 411777] (\mathsf{UNKNOWN}) carries no proof of satisfiability or unsatisfiability.
+[1-10:P10913; UTF16 411855] THM-AB6 — UNKNOWN-Safe Operation
+[1-10:P10914; UTF16 411888] Any execution that treats (\mathsf{UNKNOWN}) as unresolved and does not use it to justify:
+[1-10:P10915; UTF16 411979] pruning;
+[1-10:P10916; UTF16 411988] merging;
+[1-10:P10919; UTF16 412020] transition exactness;
+[1-10:P10920; UTF16 412042] quotient convergence
+[1-10:P10921; UTF16 412063] preserves the soundness of every certified conclusion.
+[1-10:P10923; UTF16 412124] Every certified conclusion is then derived solely from:
+[1-10:P10924; UTF16 412180] independently checked concrete witnesses;
+[1-10:P10925; UTF16 412222] checked UNSAT certificates;
+[1-10:P10926; UTF16 412250] checked abstract transformer certificates;
+[1-10:P10927; UTF16 412293] exact symbolic identities;
+[1-10:P10928; UTF16 412320] previously proved theorems.
+[1-10:P10929; UTF16 412348] An (\mathsf{UNKNOWN}) result contributes no premise to any certified inference.
+[1-10:P10930; UTF16 412428] Therefore replacing an unresolved query by (\mathsf{UNKNOWN}) can prevent progress or completeness, but it cannot invalidate a proof that does not use it. ∎
+[1-10:P10931; UTF16 412585] Treating (\mathsf{UNKNOWN}) as (\mathsf{UNSAT}) can produce false pruning and false equivalence. Treating it as (\mathsf{SAT}) can create false counterexamples.
+[1-10:P10935; UTF16 412749] 20. Refinement Progress
+[1-10:P10936; UTF16 412773] THM-AB7 — Strict Refinement Progress
+[1-10:P10937; UTF16 412810] If a symbolic partition block (B) is replaced by two certified nonempty blocks:
+[1-10:P10938; UTF16 412890] [ B_1, \qquad B_2, ]
+[1-10:P10939; UTF16 412911] such that:
+[1-10:P10940; UTF16 412922] [ B=B_1\uplus B_2, ]
+[1-10:P10941; UTF16 412943] then the new partition is strictly finer and its block count increases by exactly one.
+[1-10:P10943; UTF16 413036] Every old block other than (B) remains unchanged. One block is removed and two nonempty disjoint blocks are inserted.
+[1-10:P10944; UTF16 413154] Thus the block count changes by:
+[1-10:P10945; UTF16 413187] [ -1+2=1. ]
+[1-10:P10946; UTF16 413199] Since (B_1) and (B_2) are proper subsets of (B), the new partition is strictly finer. ∎
+[1-10:P10950; UTF16 413290] 21. Finite CEGAR Termination
+[1-10:P10951; UTF16 413319] There are two distinct refinement processes.
+[1-10:P10952; UTF16 413364] 21.1 Semantic quotient refinement
+[1-10:P10953; UTF16 413398] Semantic refinement changes the candidate quotient partition.
+[1-10:P10954; UTF16 413460] 21.2 Analysis-domain refinement
+[1-10:P10955; UTF16 413492] Analysis refinement may introduce:
+[1-10:P10956; UTF16 413527] additional predicates;
+[1-10:P10957; UTF16 413550] stronger abstract transformers;
+[1-10:P10958; UTF16 413582] path guards;
+[1-10:P10959; UTF16 413595] interpolants;
+[1-10:P10960; UTF16 413609] relational constraints
+[1-10:P10961; UTF16 413632] without necessarily splitting a concrete quotient candidate block.
+[1-10:P10962; UTF16 413699] The two have different termination guarantees.
+[1-10:P10966; UTF16 413749] THM-AB8 — Finite CEGAR Termination
+[1-10:P10967; UTF16 413784] Part A — Quotient-respecting semantic refinement
+[1-10:P10969; UTF16 413842] the concrete carrier is finite;
+[1-10:P10970; UTF16 413874] the initial partition has (b_0) direct-output blocks;
+[1-10:P10971; UTF16 413928] every accepted semantic split is nontrivial and quotient respecting;
+[1-10:P10972; UTF16 413997] exact solver queries eventually resolve every real instability;
+[1-10:P10973; UTF16 414061] the strategy is fair.
+[1-10:P10974; UTF16 414083] Then semantic quotient refinement terminates after at most:
+[1-10:P10975; UTF16 414143] [ |\Sigma_L|-b_0 ]
+[1-10:P10976; UTF16 414162] accepted splits and yields the exact quotient.
+[1-10:P10977; UTF16 414209] Part B — Arbitrary extensional partition refinement
+[1-10:P10978; UTF16 414261] If arbitrary predicates may split contextual-equivalent states, but every accepted refinement strictly splits a concrete block, termination occurs after at most:
+[1-10:P10979; UTF16 414423] [ |X|-b_0 ]
+[1-10:P10980; UTF16 414435] splits.
+[1-10:P10981; UTF16 414443] The result may be finer than the canonical quotient and requires minimization.
+[1-10:P10982; UTF16 414522] Part C — General abstract-domain refinement
+[1-10:P10983; UTF16 414566] If refinements may change syntax or transformers without strictly refining a finite concrete partition or removing an edge from a finite abstract transition graph, finite termination is not guaranteed.
+[1-10:P10985; UTF16 414774] For Part A, every current block is a union of exact quotient classes. Therefore block count cannot exceed (|\Sigma_L|). THM-AB7 increases block count by one per accepted split. Fairness and exact resolution eventually process every instability. At stability, THM-AB5 gives the exact quotient.
+[1-10:P10986; UTF16 415067] For Part B, a partition of finite set (X) has at most (|X|) nonempty blocks. Strict progress gives the bound.
+[1-10:P10987; UTF16 415177] Part C lacks a finite descending measure. A sequence may indefinitely enlarge formulas, strengthen transformers, or cycle among syntactic representations without a strict finite semantic progress metric. ∎
+[1-10:P10988; UTF16 415383] Finite-state CEGAR does not automatically mean practically fast CEGAR.
+[1-10:P10992; UTF16 415457] 22. Quotient-Respecting Refinement
+[1-10:P10993; UTF16 415492] DEF-AB20 — Quotient-Respecting Refinement
+[1-10:P10994; UTF16 415534] A split predicate (P\subseteq X) is quotient respecting when it is a union of complete contextual-equivalence classes:
+[1-10:P10995; UTF16 415653] [ x\equiv_{\partial L}y \Longrightarrow \left( x\in P \iff y\in P \right). ]
+[1-10:P10996; UTF16 415730] A refinement is quotient respecting when every split predicate has this property.
+[1-10:P11000; UTF16 415815] THM-AB9 — Distinguishing-Context Refinement Is Quotient Respecting
+[1-10:P11001; UTF16 415882] Suppose current target block (C) is a union of contextual-equivalence classes, and (K) is a primitive context.
+[1-10:P11003; UTF16 415999] [ K^{-1}(C) ]
+[1-10:P11004; UTF16 416013] is also a union of contextual-equivalence classes.
+[1-10:P11006; UTF16 416078] exact direct-output fibers are quotient respecting;
+[1-10:P11007; UTF16 416130] primitive-context preimages of quotient-respecting blocks are quotient respecting;
+[1-10:P11008; UTF16 416213] ALG-AB1 never separates contextually equivalent states.
+[1-10:P11012; UTF16 416307] Prompt 2 operation congruence gives:
+[1-10:P11013; UTF16 416344] [ K(x)\equiv K(y). ]
+[1-10:P11014; UTF16 416365] Because (C) is a union of equivalence classes:
+[1-10:P11015; UTF16 416412] [ K(x)\in C \iff K(y)\in C. ]
+[1-10:P11017; UTF16 416453] [ x\in K^{-1}(C) \iff y\in K^{-1}(C). ]
+[1-10:P11018; UTF16 416493] Direct-output fibers are quotient respecting because contextual equivalence includes equality under all direct experiments.
+[1-10:P11019; UTF16 416617] Induction over refinement steps proves that every generated block remains a union of quotient classes. ∎
+[1-10:P11020; UTF16 416722] This theorem is the reason exact context-derived CEGAR converges to exactly (|\Sigma_L|) blocks rather than an arbitrary overrefinement.
+[1-10:P11021; UTF16 416859] Interpolants and heuristic predicates do not automatically satisfy this theorem. They may refine the analysis domain without being used as final quotient boundaries.
+[1-10:P11025; UTF16 417028] 23. Abstract-Domain Completeness
+[1-10:P11026; UTF16 417061] Soundness means no concrete behavior is omitted.
+[1-10:P11027; UTF16 417110] Completeness means a selected abstraction step loses no information relevant to a selected operation.
+[1-10:P11028; UTF16 417212] DEF-AB22 — Forward Completeness
+[1-10:P11030; UTF16 417249] [ K_*:\mathcal P(X_\tau)\to\mathcal P(X_\sigma) ]
+[1-10:P11031; UTF16 417299] and let:
+[1-10:P11032; UTF16 417308] \alpha_\sigma K_*\gamma_\tau ]
+[1-10:P11033; UTF16 417339] be the best correct approximation.
+[1-10:P11034; UTF16 417374] The domain is forward complete for (K) when, for every (S\subseteq X_\tau),
+[1-10:P11035; UTF16 417450] K^{#\star}(\alpha_\tau(S)). } ]
+[1-10:P11036; UTF16 417482] Equivalently:
+[1-10:P11037; UTF16 417496] \alpha_\sigma K_*\gamma_\tau\alpha_\tau. ]
+[1-10:P11038; UTF16 417539] Abstracting before applying (K) then loses no abstractly expressible output information.
+[1-10:P11042; UTF16 417631] DEF-AB23 — Backward Completeness
+[1-10:P11044; UTF16 417669] [ K^{-1}: \mathcal P(X_\sigma)\to\mathcal P(X_\tau). ]
+[1-10:P11045; UTF16 417724] The domain is backward complete for (K) when, for every (T\subseteq X_\sigma),
+[1-10:P11046; UTF16 417803] \alpha_\tau \left( K^{-1} \left( \gamma_\sigma(\alpha_\sigma(T)) \right) \right). } ]
+[1-10:P11047; UTF16 417889] Backward completeness is the relevant property for exact symbolic preimage refinement.
+[1-10:P11051; UTF16 417979] DEF-AB24 — Experiment Completeness
+[1-10:P11052; UTF16 418014] An abstract domain is experiment complete for the direct experiment map (\lambda) when every direct fiber is exactly representable:
+[1-10:P11053; UTF16 418146] F_o ]
+[1-10:P11054; UTF16 418152] for every direct outcome (o).
+[1-10:P11055; UTF16 418182] It is experiment complete for the full generated context language when every context-outcome fiber:
+[1-10:P11056; UTF16 418282] [ {x:\lambda(C[x])=o} ]
+[1-10:P11057; UTF16 418306] is exactly representable.
+[1-10:P11061; UTF16 418335] 23.1 Which property is needed where
+[1-10:P11062; UTF16 418371] ￼
+ATTACHED TABLE 1736455; native row/column order; 7 rows
+ROW 0: ["Task", "Required property"]
+ROW 1: ["Sound pruning", "Sound overapproximation only"]
+ROW 2: ["Exact forward reachable-set analysis", "Forward completeness"]
+ROW 3: ["Exact preimage splitting", "Backward completeness or exact symbolic preimage"]
+ROW 4: ["Direct partition initialization", "Direct experiment completeness"]
+ROW 5: ["Exact quotient discovery", "Direct completeness plus closure under primitive preimages and Boolean splitting"]
+ROW 6: ["Safe quotient merge", "Quotient homogeneity, stronger than transformer soundness"]
+[1-10:P11066; UTF16 418376] 24. Quotient-Complete Domains
+[1-10:P11067; UTF16 418406] DEF-AB25 — Quotient-Complete Abstract Domain
+[1-10:P11068; UTF16 418451] An abstract domain is quotient complete for region (L) when, for every canonical separator class:
+[1-10:P11069; UTF16 418549] [ S\in\Sigma_L, ]
+[1-10:P11070; UTF16 418567] there exists:
+[1-10:P11071; UTF16 418581] [ a_S\in A ]
+[1-10:P11073; UTF16 418605] [ \gamma(a_S)=S. ]
+[1-10:P11074; UTF16 418624] For algorithmic reachability, additionally require that the domain can represent:
+[1-10:P11075; UTF16 418706] direct fibers;
+[1-10:P11076; UTF16 418721] exact primitive preimages;
+[1-10:P11077; UTF16 418748] finite intersections;
+[1-10:P11078; UTF16 418770] finite differences.
+[1-10:P11082; UTF16 418793] THM-AB14 — Quotient-Complete Domain Sufficiency
+[1-10:P11083; UTF16 418841] If an abstract domain is quotient complete and the exact refinement operations above are available, then the final separator quotient can be represented exactly without enumerating concrete states.
+[1-10:P11085; UTF16 419045] By quotient completeness, every exact class has a representing abstract element.
+[1-10:P11086; UTF16 419126] The family of these elements is an exact symbolic partition of (X).
+[1-10:P11087; UTF16 419194] The available exact operations permit ALG-AB1 to refine from direct fibers until stability.
+[1-10:P11088; UTF16 419286] THM-AB5 identifies the stable quotient-respecting partition with (\Sigma_L).
+[1-10:P11089; UTF16 419363] No concrete-state enumeration is required for representability or correctness. ∎
+[1-10:P11090; UTF16 419444] This theorem establishes representability, not compactness or efficient discovery.
+[1-10:P11094; UTF16 419530] 25. Minimal Complete-Shell Investigation
+[1-10:P11095; UTF16 419571] 25.1 Experiment-generated Boolean algebra
+[1-10:P11096; UTF16 419613] For each sort (\tau), let:
+[1-10:P11097; UTF16 419640] [ \mathcal G_\tau ]
+[1-10:P11098; UTF16 419660] be the family of direct-output fibers.
+[1-10:P11100; UTF16 419707] [ \mathcal B_\tau^\star ]
+[1-10:P11101; UTF16 419733] to be the smallest Boolean subalgebra of (\mathcal P(X_\tau)) satisfying:
+[1-10:P11102; UTF16 419807] (\mathcal G_\tau\subseteq\mathcal B_\tau^\star);
+[1-10:P11103; UTF16 419856] for every primitive context [ K:X_\tau\to X_\sigma ] and every [ C\in\mathcal B_\sigma^\star, ] [ K^{-1}(C)\in\mathcal B_\tau^\star. ]
+[1-10:P11104; UTF16 419991] Because all carriers are finite, this least family exists.
+[1-10:P11108; UTF16 420053] THM-AB15 — Canonical Quotient as Minimal Experiment-Complete Shell
+[1-10:P11109; UTF16 420120] The atoms of:
+[1-10:P11111; UTF16 420160] are exactly the contextual-equivalence classes of (X_\tau).
+[1-10:P11113; UTF16 420234] \left{ \bigcup\mathcal S: \mathcal S\subseteq X_\tau/\equiv_{\mathcal T,\tau} \right}. ]
+[1-10:P11114; UTF16 420323] Thus the Boolean algebra of unions of canonical quotient classes is the unique smallest Boolean abstract domain containing all direct fibers and closed under primitive-context preimages.
+[1-10:P11116; UTF16 420516] Every generated set is a union of contextual classes
+[1-10:P11117; UTF16 420569] Proceed by induction over the construction of (\mathcal B_\tau^\star).
+[1-10:P11118; UTF16 420640] Direct fibers are unions of contextual classes because equivalent states have equal direct outputs.
+[1-10:P11119; UTF16 420740] Finite unions and complements preserve the property of being a union of classes.
+[1-10:P11120; UTF16 420821] If (C) is a union of target contextual classes, THM-AB9 proves that:
+[1-10:P11122; UTF16 420904] is a union of source contextual classes.
+[1-10:P11123; UTF16 420945] Therefore every set in (\mathcal B_\tau^\star) is a union of quotient classes.
+[1-10:P11124; UTF16 421024] Hence one atom cannot split a quotient class.
+[1-10:P11125; UTF16 421070] Every inequivalent pair is separated by a generated set
+[1-10:P11127; UTF16 421131] [ x\not\equiv_{\mathcal T,\tau}y. ]
+[1-10:P11128; UTF16 421167] Prompt 2’s distinguishing-context theorem gives a finite context:
+[1-10:P11129; UTF16 421233] [ C=K_m\diamond\cdots\diamond K_1 ]
+[1-10:P11130; UTF16 421269] and direct outcome (o) such that exactly one of (C[x],C[y]) belongs to direct fiber (F_o).
+[1-10:P11132; UTF16 421366] K_1^{-1} K_2^{-1} \cdots K_m^{-1}(F_o) ]
+[1-10:P11133; UTF16 421407] belongs to (\mathcal B_\tau^\star) and separates (x,y).
+[1-10:P11134; UTF16 421463] Therefore distinct quotient classes lie in distinct atoms.
+[1-10:P11135; UTF16 421522] Combining both directions, the atoms are exactly the quotient classes.
+[1-10:P11136; UTF16 421593] A finite Boolean algebra is exactly the family of unions of its atoms, yielding the displayed equality.
+[1-10:P11137; UTF16 421697] Minimality follows from construction: any Boolean family containing direct fibers and closed under primitive preimages must contain (\mathcal B_\tau^\star). ∎
+[1-10:P11138; UTF16 421856] This theorem is the exact bridge between abstract interpretation and Engineering Myhill–Nerode theory.
+[1-10:P11142; UTF16 421962] 26. Symbolic Representation Complexity
+[1-10:P11143; UTF16 422001] DEF-AB21 — Symbolic Discovery Size
+[1-10:P11144; UTF16 422036] For a symbolic formula (\phi), let:
+[1-10:P11145; UTF16 422072] [ |\phi| ]
+[1-10:P11146; UTF16 422083] be its representation size under a declared encoding, such as:
+[1-10:P11147; UTF16 422146] AST nodes;
+[1-10:P11148; UTF16 422157] BDD nodes;
+[1-10:P11149; UTF16 422168] automaton states;
+[1-10:P11150; UTF16 422186] serialized bytes.
+[1-10:P11151; UTF16 422204] For partition:
+[1-10:P11152; UTF16 422219] {\phi_1,\ldots,\phi_k}, ]
+[1-10:P11154; UTF16 422253] \sum_{i=1}^k|\phi_i|. ]
+[1-10:P11155; UTF16 422277] Define peak symbolic discovery size:
+[1-10:P11156; UTF16 422314] \max_t S(\Pi_t). ]
+[1-10:P11157; UTF16 422333] An optional logarithmic symbolic-size width is:
+[1-10:P11158; UTF16 422381] \log_2(1+S_L^\star). ]
+[1-10:P11159; UTF16 422404] Unlike (W_D), (W_S) is representation-language dependent and is not an irreducible semantic information measure.
+[1-10:P11163; UTF16 422520] 27. Symbolic Oracle Complexity
+[1-10:P11165; UTF16 422556] [ C_{\mathrm{sat}}(s) ]
+[1-10:P11166; UTF16 422580] be the maximum cost of exact satisfiability for formula size (s).
+[1-10:P11168; UTF16 422651] [ C_{\mathrm{pre}}(s) ]
+[1-10:P11169; UTF16 422675] be the maximum cost of exact primitive preimage construction.
+[1-10:P11171; UTF16 422742] [ C_{\land}(s), \qquad C_{\setminus}(s), \qquad C_{\mathrm{canon}}(s) ]
+[1-10:P11172; UTF16 422814] be the corresponding symbolic operation costs.
+[1-10:P11174; UTF16 422869] C_{\mathrm{pre}}(s) + C_{\land}(s) + C_{\setminus}(s) + 2C_{\mathrm{sat}}(s) + C_{\mathrm{canon}}(s). ]
+[1-10:P11175; UTF16 422973] Solver and proof-certificate checking costs are included explicitly.
+[1-10:P11176; UTF16 423042] A SAT call is not treated as unit cost unless the selected symbolic family justifies that assumption.
+[1-10:P11180; UTF16 423147] 28. Symbolic Compilation Complexity Theorem
+[1-10:P11182; UTF16 423196] (Q) be the total number of final quotient blocks over all relevant sorts;
+[1-10:P11183; UTF16 423270] (K) be the number of primitive context templates;
+[1-10:P11184; UTF16 423320] (b_0) be the number of direct-output blocks;
+[1-10:P11185; UTF16 423365] (s^\star) be a bound on every formula and intermediate formula;
+[1-10:P11186; UTF16 423429] (C(s^\star)) bound one exact preimage/split/check sequence.
+[1-10:P11190; UTF16 423492] THM-AB11 — Symbolic Quotient Compilation Complexity
+[1-10:P11191; UTF16 423544] A simple exact worklist implementation of ALG-AB1 performs at most:
+[1-10:P11192; UTF16 423612] [ O(KQ^2) ]
+[1-10:P11193; UTF16 423624] source-block/splitter checks and has running time:
+[1-10:P11194; UTF16 423675] O!\left( KQ^2C(s^\star) \right) } ]
+[1-10:P11195; UTF16 423711] in addition to direct-fiber construction.
+[1-10:P11196; UTF16 423753] Without preimage caching, working symbolic space is:
+[1-10:P11197; UTF16 423806] [ O(Qs^\star+KQ). ]
+[1-10:P11198; UTF16 423826] With every splitter preimage cached, space is:
+[1-10:P11199; UTF16 423873] [ O(KQs^\star). ]
+[1-10:P11200; UTF16 423891] Certificate size is polynomial in:
+[1-10:P11201; UTF16 423926] the number of accepted splits;
+[1-10:P11202; UTF16 423957] formula sizes;
+[1-10:P11203; UTF16 423972] proof-object sizes;
+[1-10:P11204; UTF16 423992] distinguishing-context DAG size.
+[1-10:P11206; UTF16 424031] A quotient-respecting run creates at most (Q) current final blocks and at most:
+[1-10:P11207; UTF16 424111] [ 2Q-b_0 ]
+[1-10:P11208; UTF16 424122] block objects over its entire binary split history.
+[1-10:P11209; UTF16 424174] Each created target block can become a splitter for at most (K) primitive context templates.
+[1-10:P11210; UTF16 424267] For each splitter, a naïve implementation scans at most (Q) current source blocks.
+[1-10:P11211; UTF16 424350] Thus the number of splitter/source-block checks is:
+[1-10:P11212; UTF16 424402] [ O(KQ^2). ]
+[1-10:P11213; UTF16 424415] Each check costs at most (C(s^\star)).
+[1-10:P11214; UTF16 424454] The space bounds follow from storing (Q) current formulas, (KQ) worklist entries, and optionally (KQ) preimage formulas. ∎
+[1-10:P11215; UTF16 424577] The concrete carrier cardinality (|X|) does not appear directly.
+[1-10:P11216; UTF16 424642] Formula size and oracle cost may nevertheless encode exponential difficulty.
+[1-10:P11220; UTF16 424722] 29. Structured Discovery-Gap Closure Theorem
+[1-10:P11221; UTF16 424767] DEF-AB36 — Symbolically Accessible Separator Family
+[1-10:P11222; UTF16 424819] A family of regions is symbolically accessible in language (\mathcal F) when there exist polynomials (p_1,\ldots,p_5) such that, for problem description size (n) and quotient cardinality (Q):
+[1-10:P11223; UTF16 425011] direct-output fibers have representations of size at most: [ p_1(n,Q); ]
+[1-10:P11224; UTF16 425084] every intermediate quotient-respecting block and preimage has size at most: [ p_2(n,Q); ]
+[1-10:P11225; UTF16 425174] the number of primitive context templates is at most: [ p_3(n,Q); ]
+[1-10:P11226; UTF16 425242] exact satisfiability, preimage, Boolean operations, and canonicalization run in time at most: [ p_4(n,Q); ]
+[1-10:P11227; UTF16 425350] proof certificates have total size at most: [ p_5(n,Q). ]
+[1-10:P11231; UTF16 425411] THM-AB12 — Structured Discovery-Gap Closure
+[1-10:P11232; UTF16 425455] For a symbolically accessible family with:
+[1-10:P11233; UTF16 425498] |\Sigma_L|
+[1-10:P11234; UTF16 425509] 2^{W_D}, ]
+[1-10:P11235; UTF16 425520] the exact separator quotient can be discovered without materializing (X) in time and space:
+[1-10:P11236; UTF16 425612] [ \operatorname{poly}(n,Q). ]
+[1-10:P11238; UTF16 425656] \operatorname{poly} \left( n, 2^{W_D} \right). } ]
+[1-10:P11240; UTF16 425713] Apply THM-AB11.
+[1-10:P11241; UTF16 425729] By symbolic accessibility:
+[1-10:P11242; UTF16 425756] [ K=\operatorname{poly}(n,Q), ]
+[1-10:P11243; UTF16 425788] [ s^\star=\operatorname{poly}(n,Q), ]
+[1-10:P11245; UTF16 425831] [ C(s^\star)=\operatorname{poly}(n,Q). ]
+[1-10:P11247; UTF16 425883] \operatorname{poly}(n,Q). ]
+[1-10:P11248; UTF16 425911] The symbolic space and certificate size are polynomial by the remaining assumptions.
+[1-10:P11249; UTF16 425996] ALG-AB1 never loops over the concrete carrier, so no factor (2^{W_P}) appears. ∎
+[1-10:P11250; UTF16 426077] This is the precise successful regime sought by Prompt 4.
+[1-10:P11251; UTF16 426135] Small (W_D) is necessary for a small quotient table, but symbolic accessibility is what makes that quotient discoverable.
+[1-10:P11255; UTF16 426260] 30. No Universal Efficient Compiler Theorem
+[1-10:P11256; UTF16 426304] THM-AB13 — No Universal Efficient Abstract Compiler
+[1-10:P11257; UTF16 426356] Unless:
+[1-10:P11258; UTF16 426364] [ \mathsf P=\mathsf{coNP}, ]
+[1-10:P11259; UTF16 426393] there is no generic exact quotient compiler for all compactly represented ANANKE-F regions with running time:
+[1-10:P11260; UTF16 426503] [ f(W_D)\operatorname{poly}(n) ]
+[1-10:P11261; UTF16 426536] for an arbitrary computable function (f).
+[1-10:P11263; UTF16 426584] Prompt 3 THM-DS23 constructs compact regions with:
+[1-10:P11264; UTF16 426635] [ W_D\le1 ]
+[1-10:P11265; UTF16 426647] such that deciding whether the quotient has one state is coNP-hard.
+[1-10:P11266; UTF16 426715] If the proposed compiler existed, then on those instances:
+[1-10:P11267; UTF16 426774] [ f(W_D) \le \max(f(0),f(1)), ]
+[1-10:P11268; UTF16 426806] a constant independent of input size.
+[1-10:P11269; UTF16 426844] The compiler would decide the one-state quotient question in polynomial time, placing a coNP-hard problem in (\mathsf P).
+[1-10:P11271; UTF16 426972] [ \mathsf{coNP}\subseteq\mathsf P. ]
+[1-10:P11272; UTF16 427009] Since (\mathsf P\subseteq\mathsf{coNP}), this implies:

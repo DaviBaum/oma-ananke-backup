@@ -1,0 +1,338 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P16181; UTF16 534643] structure RuntimeShield where
+[11-20:P16183; UTF16 534684]     OperationalKnowledge →
+[11-20:P16184; UTF16 534711]     ProposedControl →
+[11-20:P16185; UTF16 534733]     ControlCommand
+[11-20:P16188; UTF16 534763]     ∀ Γ proposal,
+[11-20:P16189; UTF16 534781]       SafeControl
+[11-20:P16190; UTF16 534799]         Γ
+[11-20:P16191; UTF16 534809]         (choose Γ proposal)
+[11-20:P16192; UTF16 534837]         OperationalSafeSet
+[11-20:P16193; UTF16 534864] 73.11 Failure time
+[11-20:P16194; UTF16 534883] def failureTime
+[11-20:P16195; UTF16 534899]     (τ : Nat → OperationalState)
+[11-20:P16196; UTF16 534932]     (Fail : Set OperationalState) :
+[11-20:P16199; UTF16 534990]     {k : ENNReal |
+[11-20:P16200; UTF16 535009]       τ k.toNat ∈ Fail}
+[11-20:P16201; UTF16 535033] A production formalization would handle the empty set explicitly and distinguish discrete from continuous time.
+[11-20:P16202; UTF16 535145] 73.12 Assurance lease
+[11-20:P16203; UTF16 535167] structure AssuranceLease where
+[11-20:P16204; UTF16 535198]   startTime : Time
+[11-20:P16205; UTF16 535217]   endTime : Time
+[11-20:P16206; UTF16 535234]   claim : OperationalClaim
+[11-20:P16207; UTF16 535261]   reachableCoverage : ReachCertificate
+[11-20:P16208; UTF16 535300]   evidenceValidity : EvidenceValidityCertificate
+[11-20:P16209; UTF16 535349] 73.13 PCOT
+[11-20:P16210; UTF16 535360] structure PCOT where
+[11-20:P16211; UTF16 535381]   prior : PCAB
+[11-20:P16212; UTF16 535396]   knowledge : Set OperationalState
+[11-20:P16213; UTF16 535431]   modelSet : ModelSet
+[11-20:P16214; UTF16 535453]   faultSet : Set FaultMode
+[11-20:P16215; UTF16 535480]   sensorSet : SensorHealthSet
+[11-20:P16216; UTF16 535510]   actuatorSet : ActuatorHealthSet
+[11-20:P16217; UTF16 535544]   maintenanceState : MaintenanceState
+[11-20:P16218; UTF16 535582]   leases : Finset AssuranceLease
+[11-20:P16219; UTF16 535615]   dependencies : DependencyGraph
+[11-20:P16221; UTF16 535668] 73.14 Whole-lifecycle theorem skeleton
+[11-20:P16222; UTF16 535707] theorem continuous_operational_assurance
+[11-20:P16223; UTF16 535748]     (pkg : PCOT)
+[11-20:P16224; UTF16 535765]     (actual : Time → OperationalState)
+[11-20:P16225; UTF16 535804]     (hInitial : actual 0 ∈ pkg.knowledge)
+[11-20:P16226; UTF16 535846]     (hTransitions : ActualTransitionsCovered pkg actual)
+[11-20:P16227; UTF16 535903]     (hObservations : ObservationsSound pkg actual)
+[11-20:P16228; UTF16 535954]     (hActionsSafe : RuntimeActionsCertified pkg)
+[11-20:P16229; UTF16 536003]     (hClaimsClosed : OperationalClaimsClosed pkg) :
+[11-20:P16230; UTF16 536055]     ∀ t,
+[11-20:P16231; UTF16 536064]       ActiveOperationalClaimsHold
+[11-20:P16232; UTF16 536098]         pkg
+[11-20:P16233; UTF16 536110]         actual t := by
+[11-20:P16239; UTF16 536171] ￼
+ATTACHED TABLE 1736324; native row/column order; 32 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Augmented operational state", "Moderate"]
+ROW 2: ["Operational transition relation", "Moderate"]
+ROW 3: ["Set-membership filtering", "Straightforward"]
+ROW 4: ["Sensor-health semantics", "Moderate"]
+ROW 5: ["Actuator-health semantics", "Moderate"]
+ROW 6: ["Model-family semantics", "Moderate"]
+ROW 7: ["Parameter-set identification", "Moderate"]
+ROW 8: ["Model-validity monitoring", "Moderate"]
+ROW 9: ["Anomaly semantics", "Straightforward"]
+ROW 10: ["Fault hypothesis projection", "Straightforward"]
+ROW 11: ["Exact fault classification", "Moderate"]
+ROW 12: ["Diagnostic contextual equivalence", "Moderate"]
+ROW 13: ["Safe active diagnosis", "Difficult"]
+ROW 14: ["Diagnostic planning", "Hard"]
+ROW 15: ["Change-point history semantics", "Difficult"]
+ROW 16: ["Degradation relations", "Moderate"]
+ROW 17: ["Failure-time intervals", "Moderate"]
+ROW 18: ["Nonlinear prognosis", "Research-level"]
+ROW 19: ["Reachable tubes", "Difficult"]
+ROW 20: ["Hybrid reachability", "Research-level"]
+ROW 21: ["Information-state viability", "Difficult"]
+ROW 22: ["Runtime safety shield", "Moderate"]
+ROW 23: ["Maintenance transition semantics", "Moderate"]
+ROW 24: ["Predictive maintenance planning", "Hard"]
+ROW 25: ["Evidence-expiration semantics", "Moderate"]
+ROW 26: ["Operational assurance leases", "Difficult"]
+ROW 27: ["Incremental lifecycle recertification", "Difficult"]
+ROW 28: ["Online model-adaptation certificates", "Research-level"]
+ROW 29: ["Whole-building PCOT checker", "Research-level"]
+ROW 30: ["Infinite-horizon guarantee", "Requires an invariant theorem"]
+ROW 31: ["Complete future fault theory", "Open-world impossible without assumptions"]
+[11-20:P16244; UTF16 536210] ￼
+ATTACHED TABLE 1736340; native row/column order; 17 rows
+ROW 0: ["ID", "Assumption", "Status", "Used by"]
+ROW 1: ["ASSUMP-ODT1", "Accepted operational seed contains the actual initial augmented state", "Explicit", "THM-ODT1, ODT20"]
+ROW 2: ["ASSUMP-ODT2", "Actual state belongs to modeled augmented universe", "Explicit", "All physical conclusions"]
+ROW 3: ["ASSUMP-ODT3", "Operational transitions cover actual transitions", "Explicit", "THM-ODT1, ODT12, ODT14, ODT20"]
+ROW 4: ["ASSUMP-ODT4", "Active disturbance domains cover actual disturbances", "Explicit", "THM-ODT12, ODT14, ODT17, ODT20"]
+ROW 5: ["ASSUMP-ODT5", "Observation relations are sound", "Explicit", "THM-ODT1, ODT6, ODT20"]
+ROW 6: ["ASSUMP-ODT6", "Sensor and calibration theory cover actual observation process", "Explicit", "THM-ODT1, ODT7, ODT20"]
+ROW 7: ["ASSUMP-ODT7", "Actuator theory covers actual command-to-actuation behavior", "Explicit", "THM-ODT4, ODT14, ODT19, ODT20"]
+ROW 8: ["ASSUMP-ODT8", "Models and discrepancy relations are valid where used", "Explicit", "THM-ODT5, ODT12, ODT17, ODT20"]
+ROW 9: ["ASSUMP-ODT9", "Dependency graph is complete for incremental claims", "Explicit", "THM-ODT16, ODT18, ODT20"]
+ROW 10: ["ASSUMP-ODT10", "Evidence expiration and versions are correctly tracked", "Explicit", "THM-ODT16–18, ODT20"]
+ROW 11: ["ASSUMP-ODT11", "Safety, maintenance, and package checkers are sound", "Explicit", "THM-ODT14, ODT20, ODT22–23"]
+ROW 12: ["ASSUMP-ODT12", "UNKNOWN is never promoted", "Explicit", "THM-ODT20"]
+ROW 13: ["ASSUMP-ODT13", "Sovereignty and authority are correctly represented", "Explicit", "THM-ODT20"]
+ROW 14: ["ASSUMP-ODT14", "Knowledge state is Markov sufficient where dynamic programming is used", "Explicit", "THM-ODT15"]
+ROW 15: ["ASSUMP-ODT15", "Timing and ordering evidence are valid where used", "Explicit", "Change-point and lease claims"]
+ROW 16: ["ASSUMP-ODT16", "Maintenance evidence contains actual maintenance transition", "Explicit", "Maintenance and ODT20"]
+[11-20:P16249; UTF16 536249] ￼
+ATTACHED TABLE 1736356; native row/column order; 37 rows
+ROW 0: ["ID", "Exact object", "Dependencies", "Status", "Formalization difficulty"]
+ROW 1: ["DEF-ODT1", "Augmented Operational State", "Prompt-14 physical state", "Defined", "Moderate"]
+ROW 2: ["DEF-ODT2", "Proof-Carrying Operational Twin State", "DEF-ODT1", "Defined", "Difficult"]
+ROW 3: ["DEF-ODT3", "Operational Transition Relation", "DEF-ODT1, ODT6", "Defined", "Moderate"]
+ROW 4: ["DEF-ODT4", "Claim-Synchronized Twin", "Prompt-2 reports", "Defined", "Straightforward"]
+ROW 5: ["DEF-ODT5", "Sensor Health State", "Prompt-14 measurement", "Defined", "Moderate"]
+ROW 6: ["DEF-ODT6", "Actuator Execution Relation", "DEF-ODT1", "Defined", "Moderate"]
+ROW 7: ["DEF-ODT7", "Operational Model Family", "Prompt-5 discrepancy", "Defined", "Moderate"]
+ROW 8: ["DEF-ODT8", "Online Model-Validity Status", "DEF-ODT7", "Defined", "Straightforward"]
+ROW 9: ["DEF-ODT9", "Certified Parameter Set", "DEF-ODT7", "Defined", "Moderate"]
+ROW 10: ["DEF-ODT10", "Healthy Operational Hypothesis", "DEF-ODT1", "Defined", "Straightforward"]
+ROW 11: ["DEF-ODT11", "Certified Anomaly", "DEF-ODT10", "Defined", "Straightforward"]
+ROW 12: ["DEF-ODT12", "Fault Hypothesis Projection", "DEF-ODT1", "Defined", "Straightforward"]
+ROW 13: ["DEF-ODT13", "Maintenance-Decision Cell", "Prompt-2 choice reports", "Defined", "Moderate"]
+ROW 14: ["DEF-ODT14", "Change-Free History Set", "DEF-ODT3", "Defined", "Difficult"]
+ROW 15: ["DEF-ODT15", "Certified Change Detection", "DEF-ODT14", "Defined", "Moderate"]
+ROW 16: ["DEF-ODT16", "Safe Diagnostic Experiment", "DEF-ODT3, safety theory", "Defined", "Difficult"]
+ROW 17: ["DEF-ODT17", "Diagnostic Equivalence", "Prompt-2 equivalence", "Defined", "Moderate"]
+ROW 18: ["DEF-ODT18", "Degradation State", "DEF-ODT1", "Defined", "Moderate"]
+ROW 19: ["DEF-ODT19", "Operational Failure Set", "DEF-ODT1", "Defined", "Moderate"]
+ROW 20: ["DEF-ODT20", "Certified Operational Reach Tube", "DEF-ODT3", "Defined", "Difficult"]
+ROW 21: ["DEF-ODT21", "Trajectory Failure Time", "DEF-ODT19", "Defined", "Moderate"]
+ROW 22: ["DEF-ODT22", "Certified Failure-Time Interval", "DEF-ODT20–21", "Defined", "Moderate"]
+ROW 23: ["DEF-ODT23", "Maintenance Action", "DEF-ODT3", "Defined", "Moderate"]
+ROW 24: ["DEF-ODT24", "Maintenance Decision Report", "Prompt-2 report theory", "Defined", "Moderate"]
+ROW 25: ["DEF-ODT25", "Robust One-Step Safe Control Set", "DEF-ODT3, ODT6", "Defined", "Moderate"]
+ROW 26: ["DEF-ODT26", "Certified Runtime Safety Shield", "DEF-ODT25", "Defined", "Moderate"]
+ROW 27: ["DEF-ODT27", "Time-Scoped Evidence Applicability", "Prompt-11 evidence", "Defined", "Moderate"]
+ROW 28: ["DEF-ODT28", "Operational Assurance Lease", "DEF-ODT20, ODT27", "Defined", "Difficult"]
+ROW 29: ["DEF-ODT29", "Claim Desynchronization", "DEF-ODT4", "Defined", "Straightforward"]
+ROW 30: ["DEF-ODT30", "Runtime Assumption Monitor", "Prompt-11 assumptions", "Defined", "Moderate"]
+ROW 31: ["DEF-ODT31", "Proof-Carrying Operational Twin Package", "All ODT objects", "Defined", "Research-level"]
+ROW 32: ["DEF-ODT32", "Prompt-15 Complexity Profile", "Prompt-15 objects", "Defined", "Straightforward"]
+ROW 33: ["DEF-ODT33", "Information-State Viability Kernel", "DEF-ODT25", "Defined", "Difficult"]
+ROW 34: ["DEF-ODT34", "Operational Twin Ledger", "DEF-ODT31", "Defined", "Moderate"]
+ROW 35: ["DEF-ODT35", "Operational Assurance Manifest", "Prompt-11 manifest", "Defined", "Moderate"]
+ROW 36: ["DEF-ODT36", "Operational Claim Closure", "DEF-ODT4, ODT20, ODT28", "Defined", "Moderate"]
+[11-20:P16253; UTF16 536254] 77. Lemma, Proposition, and Corollary Registry
+[11-20:P16254; UTF16 536301] ￼
+ATTACHED TABLE 1736372; native row/column order; 11 rows
+ROW 0: ["ID", "Statement", "Dependencies", "Proof status"]
+ROW 1: ["LEM-ODT1", "Actual failure time lies in the trajectory-family failure-time interval", "DEF-ODT21–22", "Proved"]
+ROW 2: ["PRO-ODT1", "Sensor agreement does not establish independence", "DEF-ODT5", "Proved"]
+ROW 3: ["PRO-ODT2", "Finite predictive fit does not establish a universal physical enclosure", "DEF-ODT7", "Proved"]
+ROW 4: ["PRO-ODT3", "Certified change detection does not imply unique change localization", "DEF-ODT14–15", "Proved"]
+ROW 5: ["PRO-ODT4", "Maintenance completion before earliest possible failure excludes pre-completion failure", "DEF-ODT22–23", "Proved"]
+ROW 6: ["PRO-ODT5", "The robust safe-control set may be empty", "DEF-ODT25", "Proved"]
+ROW 7: ["PRO-ODT6", "Lifecycle assurance may close, reopen, and close again", "DEF-ODT27", "Proved"]
+ROW 8: ["PRO-ODT7", "Passive nondiagnosability does not imply active nondiagnosability", "DEF-ODT16–17", "Proved"]
+ROW 9: ["COR-ODT1", "Multi-step operational updates preserve actual-state containment", "THM-ODT1", "Proved"]
+ROW 10: ["COR-ODT2", "Conjunctive assurance horizon is at least the minimum component horizon", "THM-ODT17", "Proved"]
+[11-20:P16258; UTF16 536306] 78. Permanent Theorem Registry
+[11-20:P16259; UTF16 536337] ￼
+ATTACHED TABLE 1736388; native row/column order; 24 rows
+ROW 0: ["ID", "Exact theorem", "Dependencies", "Proof status"]
+ROW 1: ["THM-ODT1", "Augmented operational update preserves the actual state", "DEF-ODT1–3", "Proved"]
+ROW 2: ["THM-ODT2", "Prediction uncertainty can expand without observation", "DEF-ODT3", "Proved"]
+ROW 3: ["THM-ODT3", "Claim synchronization does not require microstate identification", "DEF-ODT4", "Proved"]
+ROW 4: ["THM-ODT4", "Equal commands do not imply equal physical actuation under unknown actuator health", "DEF-ODT6", "Proved"]
+ROW 5: ["THM-ODT5", "A mixed in-domain/out-of-domain state family cannot receive one unconditional model report without additional reasoning", "DEF-ODT7–8", "Proved"]
+ROW 6: ["THM-ODT6", "Set-membership parameter identification preserves the true parameter", "DEF-ODT9", "Proved"]
+ROW 7: ["THM-ODT7", "Anomaly detection does not uniquely identify plant fault", "DEF-ODT10–11", "Proved"]
+ROW 8: ["THM-ODT8", "Unique fault isolation is unnecessary under decision-isolated intervention", "DEF-ODT12–13", "Proved"]
+ROW 9: ["THM-ODT9", "Diagnostic-equivalent fault states cannot be isolated by the current diagnostic theory", "DEF-ODT17", "Proved"]
+ROW 10: ["THM-ODT10", "Disjoint diagnostic outcome sets guarantee one-experiment discrimination", "DEF-ODT16–17", "Proved"]
+ROW 11: ["THM-ODT11", "Minimum healthy-versus-fault distinguishing experiment selection is NP-hard", "DEF-ODT16", "Proved"]
+ROW 12: ["THM-ODT12", "Reach-tube inclusion certifies finite-horizon safety", "DEF-ODT20", "Proved"]
+ROW 13: ["THM-ODT13", "Minimum-cost maintenance-closure planning is NP-hard", "DEF-ODT23–24", "Proved"]
+ROW 14: ["THM-ODT14", "Certified runtime safety shield preserves safety invariant", "DEF-ODT25–26", "Proved"]
+ROW 15: ["THM-ODT15", "Information-state viability equals existence of a safe nonanticipative policy", "DEF-ODT33", "Proved"]
+ROW 16: ["THM-ODT16", "Expiration of a necessary evidence premise reopens dependent claims", "DEF-ODT27", "Proved"]
+ROW 17: ["THM-ODT17", "Reachability and evidence validity yield a finite assurance lease", "DEF-ODT20, ODT28", "Proved"]
+ROW 18: ["THM-ODT18", "Runtime assumption violation invalidates dependent proof paths", "DEF-ODT30", "Proved"]
+ROW 19: ["THM-ODT19", "A common robustly safe action may execute under unresolved fault identity", "DEF-ODT25", "Proved"]
+ROW 20: ["THM-ODT20", "Whole-Project Proof-Carrying Operational Twin Safety and Continuous Assurance", "All principal ODT definitions", "Proved"]
+ROW 21: ["THM-ODT21", "Closed operational theory cannot prove absence of unmodeled future faults", "DEF-ODT3", "Proved"]
+ROW 22: ["THM-ODT22", "Certificate soundness is independent of proposal-source intelligence", "DEF-ODT31", "Proved"]
+ROW 23: ["THM-ODT23", "Explicit PCOT checking is linear in DAG size plus local checker costs", "DEF-ODT31", "Proved"]
+[11-20:P16263; UTF16 536342] 79. Algorithm Registry
+[11-20:P16264; UTF16 536365] ￼
+ATTACHED TABLE 1736404; native row/column order; 19 rows
+ROW 0: ["ID", "Algorithm", "Correctness basis"]
+ROW 1: ["ALG-ODT1", "UpdateOperationalTwin", "THM-ODT1"]
+ROW 2: ["ALG-ODT2", "DiagnoseOperationalFaults", "DEF-ODT12–13, THM-ODT7–8"]
+ROW 3: ["ALG-ODT3", "PlanSafeActiveDiagnosis", "THM-ODT9–11"]
+ROW 4: ["ALG-ODT4", "CertifiedChangePointDetect", "DEF-ODT14–15"]
+ROW 5: ["ALG-ODT5", "CertifyDegradationAndFailureHorizon", "DEF-ODT18–22, LEM-ODT1"]
+ROW 6: ["ALG-ODT6", "RuntimeSafetyShield", "THM-ODT14"]
+ROW 7: ["ALG-ODT7", "PlanCertifiedMaintenance", "DEF-ODT23–24"]
+ROW 8: ["ALG-ODT8", "RecertifyAfterMaintenance", "Prompts 11–14 dependency theorems"]
+ROW 9: ["ALG-ODT9", "RefreshOperationalEvidence", "THM-ODT16, ODT18"]
+ROW 10: ["ALG-ODT10", "ComputeOperationalAssuranceLease", "THM-ODT17"]
+ROW 11: ["ALG-ODT11", "OperationalRCVOCInterface", "Prompt-9 metareasoning"]
+ROW 12: ["ALG-ODT12", "RedTeamOperationalTwin", "Prompt-10 breaker soundness"]
+ROW 13: ["ALG-ODT13", "CheckOperationalTwin", "THM-ODT20, ODT22"]
+ROW 14: ["ALG-ODT14", "BuildPCOT", "THM-ODT22–23"]
+ROW 15: ["ALG-ODT15", "UpdateModelSet", "THM-ODT5–6"]
+ROW 16: ["ALG-ODT16", "PlanClaimDirectedOperationalMeasurements", "Prompt-14 sufficiency, THM-ODT11"]
+ROW 17: ["ALG-ODT17", "VerifyControlUpdate", "THM-ODT14–15"]
+ROW 18: ["ALG-ODT18", "MaintainAssetLineage", "Prompts 13–14 identity semantics"]
+[11-20:P16268; UTF16 536370] 80. Conjecture Registry
+[11-20:P16269; UTF16 536394] ￼
+ATTACHED TABLE 1736420; native row/column order; 11 rows
+ROW 0: ["ID", "Exact conjecture", "Falsification condition"]
+ROW 1: ["CONJ-ODT1", "Whole-building augmented knowledge sets remain compact during normal operation", "Fault/sensor/model hypotheses grow near-exponentially with time"]
+ROW 2: ["CONJ-ODT2", "Claim-directed monitoring requires much less information than full hidden-state reconstruction", "Most claims require near-complete state identification"]
+ROW 3: ["CONJ-ODT3", "Joint sensor and actuator health models remain tractable in real time", "Correlation structures become near-explicit"]
+ROW 4: ["CONJ-ODT4", "Operational faults often become decision isolated before physically isolated", "Safe action usually requires exact fault identity"]
+ROW 5: ["CONJ-ODT5", "Safe active diagnosis materially shortens unresolved fault periods", "Safe probes rarely separate realistic fault classes"]
+ROW 6: ["CONJ-ODT6", "Certified reachability horizons are long enough to avoid constant expensive recomputation", "Uncertainty reaches decision boundaries almost immediately"]
+ROW 7: ["CONJ-ODT7", "Ordinary maintenance actions admit reusable recertification templates", "Most maintenance causes bespoke large rematerialization"]
+ROW 8: ["CONJ-ODT8", "Assurance leases materially reduce unnecessary monitoring", "Evidence and model validity expire too quickly"]
+ROW 9: ["CONJ-ODT9", "Runtime shielding permits aggressive learned optimization with infrequent intervention", "Proposed controls often fall outside safe sets"]
+ROW 10: ["CONJ-ODT10", "A 190-room hotel PCOT can remain continuously certified on the target workstation", "Filtering, reachability, diagnosis, or checking exceeds practical resources"]
+[11-20:P16273; UTF16 536399] 81. Dependency DAG — Prompts 1–15
+[11-20:P16301; UTF16 536794] compositional physics
+[11-20:P16316; UTF16 537012] metareasoning
+[11-20:P16326; UTF16 537135] evidence calculus
+[11-20:P16331; UTF16 537209] authority and consent
+[11-20:P16335; UTF16 537261] materialization
+[11-20:P16336; UTF16 537277] concrete witness
+[11-20:P16339; UTF16 537314] PROMPT 14
+[11-20:P16340; UTF16 537324] physical execution
+[11-20:P16341; UTF16 537343] field-state estimation
+[11-20:P16345; UTF16 537391] DEF-ODT1–ODT3
+[11-20:P16346; UTF16 537405] augmented operational state
+[11-20:P16347; UTF16 537433] proof-carrying twin state
+[11-20:P16348; UTF16 537459] operational transitions
+[11-20:P16350; UTF16 537493]         ├──────────────────────────────┐
+[11-20:P16351; UTF16 537534]         ▼                              ▼
+[11-20:P16352; UTF16 537575] THM-ODT1                        THM-ODT2
+[11-20:P16353; UTF16 537616] actual-state containment        uncertainty expansion
+[11-20:P16356; UTF16 537690] COR-ODT1
+[11-20:P16357; UTF16 537699] multi-step containment
+[11-20:P16360; UTF16 537742] DEF-ODT4
+[11-20:P16361; UTF16 537751] claim synchronization
+[11-20:P16364; UTF16 537793] THM-ODT3
+[11-20:P16365; UTF16 537802] microstate identification
+[11-20:P16366; UTF16 537828] not required
+[11-20:P16368; UTF16 537842] sensor and actuator semantics
+[11-20:P16372; UTF16 537948] DEF-ODT5                 DEF-ODT6
+[11-20:P16373; UTF16 537982] sensor health            actuator relation
+[11-20:P16376; UTF16 538091] PRO-ODT1              THM-ODT4
+[11-20:P16377; UTF16 538122] common cause           command ≠ actuation
+[11-20:P16379; UTF16 538166] model semantics
+[11-20:P16383; UTF16 538258] DEF-ODT7–ODT8          DEF-ODT9
+[11-20:P16384; UTF16 538290] model family            parameter set
+[11-20:P16385; UTF16 538328] validity status               │
+[11-20:P16386; UTF16 538360]         │                     ▼
+[11-20:P16387; UTF16 538392]         ▼                 THM-ODT6
+[11-20:P16388; UTF16 538427] THM-ODT5
+[11-20:P16389; UTF16 538436] mixed-domain limitation
+[11-20:P16391; UTF16 538461] healthy/fault semantics
+[11-20:P16394; UTF16 538505] DEF-ODT10–ODT12
+[11-20:P16395; UTF16 538521] healthy hypothesis
+[11-20:P16396; UTF16 538540] anomaly
+[11-20:P16397; UTF16 538548] fault projection
+[11-20:P16399; UTF16 538575]         ├─────────────────────┐
+[11-20:P16400; UTF16 538607]         ▼                     ▼
+[11-20:P16401; UTF16 538639] THM-ODT7              DEF-ODT13
+[11-20:P16402; UTF16 538671] anomaly ≠ fault        decision isolation
+[11-20:P16403; UTF16 538713]                               │
+[11-20:P16404; UTF16 538745]                               ▼
+[11-20:P16405; UTF16 538777]                          THM-ODT8
+[11-20:P16407; UTF16 538812] change detection
+[11-20:P16410; UTF16 538849] DEF-ODT14–ODT15
+[11-20:P16411; UTF16 538865] change-free histories
+[11-20:P16412; UTF16 538887] certified change
+[11-20:P16415; UTF16 538924] PRO-ODT3
+[11-20:P16416; UTF16 538933] change ≠ localization
+[11-20:P16418; UTF16 538956] diagnostic theory
+[11-20:P16421; UTF16 538994] DEF-ODT16–ODT17
+[11-20:P16422; UTF16 539010] safe experiment
+[11-20:P16423; UTF16 539026] diagnostic equivalence
+[11-20:P16427; UTF16 539145] THM-ODT9        THM-ODT10         THM-ODT11
+[11-20:P16428; UTF16 539189] nondiagnosable  separating test    selection hardness
+[11-20:P16430; UTF16 539244] degradation and prognosis
+[11-20:P16433; UTF16 539290] DEF-ODT18–ODT22
+[11-20:P16434; UTF16 539306] degradation
+[11-20:P16435; UTF16 539318] failure set
+[11-20:P16436; UTF16 539330] reach tube
+[11-20:P16437; UTF16 539341] failure time
+[11-20:P16441; UTF16 539428] THM-ODT12              LEM-ODT1
+[11-20:P16442; UTF16 539460] predictive safety       failure-time interval
+[11-20:P16444; UTF16 539507] maintenance
+[11-20:P16447; UTF16 539539] DEF-ODT23–ODT24
+[11-20:P16448; UTF16 539555] maintenance relations
+[11-20:P16449; UTF16 539577] decision reports
+[11-20:P16453; UTF16 539668] PRO-ODT4              THM-ODT13
+[11-20:P16454; UTF16 539700] timing guarantee       planning hardness
+[11-20:P16456; UTF16 539742] runtime control
+[11-20:P16459; UTF16 539778] DEF-ODT25–ODT26
+[11-20:P16460; UTF16 539794] safe command set
+[11-20:P16461; UTF16 539811] runtime shield
+[11-20:P16465; UTF16 539900] THM-ODT14             DEF-ODT33
+[11-20:P16466; UTF16 539932] one-step invariant     viability kernel
+[11-20:P16469; UTF16 540036]                          THM-ODT15
+[11-20:P16471; UTF16 540072] time-varying evidence
+[11-20:P16475; UTF16 540170] DEF-ODT27              DEF-ODT28
+[11-20:P16476; UTF16 540203] applicability           assurance lease
+[11-20:P16479; UTF16 540309] THM-ODT16             THM-ODT17
+[11-20:P16480; UTF16 540341] expiry reopens          finite horizon
+[11-20:P16482; UTF16 540413]         └───────────┬──────────┘
+[11-20:P16484; UTF16 540468]                DEF-ODT30
+[11-20:P16485; UTF16 540493]                assumption monitor
+[11-20:P16488; UTF16 540571]                THM-ODT18
+[11-20:P16490; UTF16 540597] fault-tolerant operation
+[11-20:P16493; UTF16 540642] THM-ODT19
+[11-20:P16494; UTF16 540652] common safe action under
+[11-20:P16495; UTF16 540677] fault ambiguity
+[11-20:P16497; UTF16 540694] maintenance and replacement
+[11-20:P16501; UTF16 540812] PROMPT 13 rematerialization     PROMPT 14 reconciliation
+[11-20:P16505; UTF16 540974]                   ALG-ODT8
+[11-20:P16507; UTF16 541002] all operational evidence
+[11-20:P16510; UTF16 541047] DEF-ODT31
+[11-20:P16511; UTF16 541057] PCOT
+[11-20:P16514; UTF16 541082] ALG-ODT13
+[11-20:P16518; UTF16 541132] THM-ODT20
+[11-20:P16520; UTF16 541156] Proof-Carrying
+[11-20:P16521; UTF16 541171] Operational Twin
+[11-20:P16525; UTF16 541264] THM-ODT21              THM-ODT22
+[11-20:P16526; UTF16 541297] open-world limit       proposer independence
+[11-20:P16529; UTF16 541362] THM-ODT23
+[11-20:P16533; UTF16 541412] PROMPT 16
+[11-20:P16534; UTF16 541422] cross-project and fleet-level
+[11-20:P16535; UTF16 541452] empirical knowledge transfer
+[11-20:P16539; UTF16 541484] 82. What Has Now Been Proven
+[11-20:P16540; UTF16 541513] Operational twin semantics
+[11-20:P16541; UTF16 541540] The operational twin state is a set of augmented physical possibilities, not one preferred estimate.
+[11-20:P16542; UTF16 541641] The actual augmented state includes physical, degradation, fault, sensor, actuator, controller, maintenance, and evidence components.
+[11-20:P16543; UTF16 541775] The primary lifecycle invariant is [ z_t^\star \in \Gamma_t^{\mathrm{ODT}}. ]
+[11-20:P16544; UTF16 541853] Online set-membership filtering
+[11-20:P16545; UTF16 541885] Sound prediction and augmented observation updates preserve the actual operational state.
+[11-20:P16546; UTF16 541975] Multi-step soundness follows by induction.

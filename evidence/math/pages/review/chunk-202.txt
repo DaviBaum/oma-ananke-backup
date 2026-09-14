@@ -1,0 +1,339 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P26428; UTF16 864905] network outages;
+[21-30:P26429; UTF16 864922] climate hazards;
+[21-30:P26430; UTF16 864939] construction activity;
+[21-30:P26432; UTF16 864979] emergency incidents;
+[21-30:P26433; UTF16 865000] communication availability;
+[21-30:P26434; UTF16 865028] mutual-aid availability.
+[21-30:P26435; UTF16 865053] DEF-SOS27 — Regional Scenario Family
+[21-30:P26437; UTF16 865118] [ \boxed{ \Omega_{\mathrm{SOS}}\neq\varnothing. } ]
+[21-30:P26438; UTF16 865170] DEF-SOS28 — Robust Regional Feasible Set
+[21-30:P26439; UTF16 865211] \bigcap_{\omega\in\Omega_{\mathrm{SOS}}} \mathcal A_{\mathrm{SOS}}(\omega). } ]
+[21-30:P26440; UTF16 865291] Possible feasibility:
+[21-30:P26441; UTF16 865313] \bigcup_{\omega\in\Omega_{\mathrm{SOS}}} \mathcal A_{\mathrm{SOS}}(\omega). } ]
+[21-30:P26442; UTF16 865393] THM-SOS17 — Enlarging the Regional Scenario Family Cannot Enlarge the Robust Feasible Set
+[21-30:P26447; UTF16 865534] [ \boxed{ \mathcal A_{\mathrm{SOS}}^\forall(\Omega_2) \subseteq \mathcal A_{\mathrm{SOS}}^\forall(\Omega_1), } ]
+[21-30:P26449; UTF16 865652] [ \boxed{ \mathcal A_{\mathrm{SOS}}^\exists(\Omega_1) \subseteq \mathcal A_{\mathrm{SOS}}^\exists(\Omega_2). } ]
+[21-30:P26452; UTF16 865777] [ x\in\mathcal A_{\mathrm{SOS}}^\forall(\Omega_2). ]
+[21-30:P26453; UTF16 865830] Then (x) is feasible for every scenario in (\Omega_2), hence for every scenario in the subset (\Omega_1). Therefore:
+[21-30:P26454; UTF16 865947] [ x\in\mathcal A_{\mathrm{SOS}}^\forall(\Omega_1). ]
+[21-30:P26455; UTF16 866000] For possible feasibility, if (x) is feasible in some scenario in (\Omega_1), that scenario is also in (\Omega_2). Therefore it remains possible under (\Omega_2). ∎
+[21-30:P26456; UTF16 866164] THM-SOS18 — Robust Regional Feasibility Applies to the Actual Covered Scenario
+[21-30:P26458; UTF16 866247] [ \omega^\star\in\Omega_{\mathrm{SOS}} ]
+[21-30:P26460; UTF16 866293] [ x\in\mathcal A_{\mathrm{SOS}}^\forall, ]
+[21-30:P26461; UTF16 866336] then (x) belongs to every scenario-specific feasible set in the family, including:
+[21-30:P26462; UTF16 866419] [ \mathcal A_{\mathrm{SOS}}(\omega^\star). ]
+[21-30:P26464; UTF16 866470] [ \boxed{ x\in\mathcal A_{\mathrm{SOS}}(\omega^\star). } ]
+[21-30:P26469; UTF16 866534] 23. Dynamic Reachability and Cyclic Startup Dependencies
+[21-30:P26470; UTF16 866591] DEF-SOS29 — Infrastructure Service State
+[21-30:P26472; UTF16 866637] [ \boxed{ x\in{0,1}^n } ]
+[21-30:P26473; UTF16 866663] or a richer state encode service availability.
+[21-30:P26474; UTF16 866710] DEF-SOS30 — Recovery Transition Relation
+[21-30:P26475; UTF16 866751] [ \boxed{ x\xrightarrow{a}x' } ]
+[21-30:P26476; UTF16 866784] represents a permitted recovery action.
+[21-30:P26477; UTF16 866824] THM-SOS19 — A Static Jointly Feasible Service State Need Not Be Reachable From the Current State
+[21-30:P26479; UTF16 866934] Two services (A,B) have states:
+[21-30:P26480; UTF16 866966] [ 0=\text{off}, \qquad 1=\text{on}. ]
+[21-30:P26481; UTF16 867004] The steady state:
+[21-30:P26482; UTF16 867022] [ (A,B)=(1,1) ]
+[21-30:P26483; UTF16 867038] is physically valid.
+[21-30:P26484; UTF16 867059] The only startup transitions are:
+[21-30:P26485; UTF16 867093] (A:0\to1) requires (B=1);
+[21-30:P26486; UTF16 867119] (B:0\to1) requires (A=1).
+[21-30:P26488; UTF16 867160] [ (A,B)=(0,0). ]
+[21-30:P26489; UTF16 867177] From ((0,0)):
+[21-30:P26490; UTF16 867191] (A) cannot start because (B=0);
+[21-30:P26491; UTF16 867223] (B) cannot start because (A=0).
+[21-30:P26492; UTF16 867255] No transition is enabled.
+[21-30:P26493; UTF16 867281] Therefore ((1,1)) is statically feasible but unreachable from the current state without a new bootstrap transition.
+[21-30:P26495; UTF16 867404] [ \boxed{ \text{static feasibility} \not\Longrightarrow \text{dynamic recovery reachability}. } ]
+[21-30:P26500; UTF16 867507] 24. Mutual Aid
+[21-30:P26501; UTF16 867522] DEF-SOS31 — Mutual-Aid Resource
+[21-30:P26502; UTF16 867554] \left( \mathsf{owner}, \mathsf{capabilities}, \mathsf{location}, \mathsf{availability}, \mathsf{travelTime}, \mathsf{authority}, \mathsf{commitments}, \mathsf{version} \right). } ]
+[21-30:P26503; UTF16 867735] DEF-SOS32 — Mutual-Aid Task
+[21-30:P26504; UTF16 867763] A mutual-aid task contains:
+[21-30:P26505; UTF16 867791] required capability;
+[21-30:P26509; UTF16 867842] priority;
+[21-30:P26513; UTF16 867882] DEF-SOS33 — Mutual-Aid Assignment Graph
+[21-30:P26515; UTF16 867933] [ \boxed{ G_A=(T,R,E) } ]
+[21-30:P26517; UTF16 867965] [ (t,r)\in E ]
+[21-30:P26518; UTF16 867980] iff resource (r):
+[21-30:P26519; UTF16 867998] has the required capability;
+[21-30:P26520; UTF16 868027] is available;
+[21-30:P26521; UTF16 868041] can reach the task before the deadline;
+[21-30:P26522; UTF16 868081] is authorized;
+[21-30:P26523; UTF16 868096] is not committed incompatibly elsewhere.
+[21-30:P26524; UTF16 868137] COR-SOS1 — Unit-Capacity Mutual-Aid Assignment Is Feasible Exactly Under Hall’s Condition
+[21-30:P26526; UTF16 868235] finite task set (T);
+[21-30:P26527; UTF16 868256] finite resource set (R);
+[21-30:P26528; UTF16 868281] every task requires one resource;
+[21-30:P26529; UTF16 868315] every resource can serve at most one simultaneous task.
+[21-30:P26530; UTF16 868371] This is exactly the bipartite unit-capacity assignment model of Prompt-24 THM-HUM5.
+[21-30:P26531; UTF16 868455] Therefore a complete mutual-aid assignment exists iff:
+[21-30:P26532; UTF16 868510] [ \boxed{ |N(S)|\ge|S| \qquad \forall S\subseteq T. } ]
+[21-30:P26533; UTF16 868566] A violating set (S) is a Hall-deficiency certificate. ∎
+[21-30:P26534; UTF16 868622] THM-SOS20 — A Mutual-Aid Agreement Does Not Imply Executable Mutual Aid
+[21-30:P26536; UTF16 868707] Two regions possess a valid reciprocal aid agreement.
+[21-30:P26537; UTF16 868761] One specialized mobile unit is contractually shareable.
+[21-30:P26538; UTF16 868817] A regional event creates two simultaneous mandatory tasks:
+[21-30:P26539; UTF16 868876] [ t_A, \qquad t_B. ]
+[21-30:P26540; UTF16 868897] Both require the specialized unit before the same deadline.
+[21-30:P26541; UTF16 868957] The assignment graph has:
+[21-30:P26542; UTF16 868983] two task vertices;
+[21-30:P26543; UTF16 869002] one compatible resource vertex.
+[21-30:P26545; UTF16 869039] [ S={t_A,t_B}, ]
+[21-30:P26546; UTF16 869056] [ |N(S)|=1<2=|S|. ]
+[21-30:P26547; UTF16 869076] By COR-SOS1, no complete assignment exists.
+[21-30:P26548; UTF16 869120] The agreement remains valid, but executable aid does not exist.
+[21-30:P26550; UTF16 869195] [ \boxed{ \text{mutual-aid agreement} \not\Longrightarrow \text{mutual-aid executability}. } ]
+[21-30:P26552; UTF16 869292] THM-SOS21 — Scenario-Wise Mutual-Aid Plans Need Not Form One Nonanticipative Prepositioning Policy
+[21-30:P26554; UTF16 869404] One specialized resource must be prepositioned before hazard location is revealed.
+[21-30:P26555; UTF16 869487] Two scenarios are possible:
+[21-30:P26556; UTF16 869515] [ \omega_A, \qquad \omega_B. ]
+[21-30:P26557; UTF16 869546] At the prepositioning time, the scenarios produce identical information.
+[21-30:P26558; UTF16 869619] In (\omega_A), success requires prepositioning to region (A).
+[21-30:P26559; UTF16 869681] In (\omega_B), success requires prepositioning to region (B).
+[21-30:P26560; UTF16 869743] A clairvoyant plan exists for each completed scenario.
+[21-30:P26561; UTF16 869798] A nonanticipative policy must choose the same initial action in both because the information histories are identical.
+[21-30:P26562; UTF16 869916] If it chooses (A), it fails in (\omega_B).
+[21-30:P26563; UTF16 869959] If it chooses (B), it fails in (\omega_A).
+[21-30:P26564; UTF16 870002] Any third location is assumed too distant for either deadline.
+[21-30:P26571; UTF16 870185] 25. Emergency-Service Capacity
+[21-30:P26572; UTF16 870216] DEF-SOS34 — Regional Emergency-Service Demand
+[21-30:P26573; UTF16 870262] For emergency task (j), let:
+[21-30:P26574; UTF16 870291] [ d_j>0 ]
+[21-30:P26575; UTF16 870301] be its mandatory compatible service demand inside a deadline interval.
+[21-30:P26577; UTF16 870377] [ C(t)\ge0 ]
+[21-30:P26578; UTF16 870390] be total compatible service capacity.
+[21-30:P26579; UTF16 870428] COR-SOS2 — Emergency Demand Above Compatible Service Capacity Proves Deadline Infeasibility
+[21-30:P26581; UTF16 870530] If every mandatory task must finish in ([0,T]) and:
+[21-30:P26582; UTF16 870582] [ \boxed{ \sum_jd_j
+[21-30:P26583; UTF16 870602] \int_0^TC(t),dt, } ]
+[21-30:P26584; UTF16 870623] then no schedule completes all tasks by (T).
+[21-30:P26586; UTF16 870674] Any schedule can deliver at most:
+[21-30:P26587; UTF16 870708] [ \int_0^TC(t),dt ]
+[21-30:P26588; UTF16 870728] compatible service over the interval.
+[21-30:P26589; UTF16 870766] The tasks require:
+[21-30:P26590; UTF16 870785] [ \sum_jd_j. ]
+[21-30:P26591; UTF16 870800] If required demand exceeds available service, at least one task remains incomplete.
+[21-30:P26592; UTF16 870884] This is the same capacity-cut argument used in Prompt 24 and PRO-LIFE1. ∎
+[21-30:P26594; UTF16 870964] Travel, geography, skill compatibility, and resource setup can make the true feasible set smaller.
+[21-30:P26598; UTF16 871066] 26. Regional Environmental Budgets
+[21-30:P26599; UTF16 871101] DEF-SOS35 — Regional Environmental Budget
+[21-30:P26600; UTF16 871143] Let project gross burdens be:
+[21-30:P26601; UTF16 871173] [ E_i(t)\ge0. ]
+[21-30:P26602; UTF16 871189] Define regional gross burden:
+[21-30:P26603; UTF16 871219] E_{\mathrm{background}}(t) + \sum_iE_i(t) + E_{\mathrm{interaction}}(t). } ]
+[21-30:P26604; UTF16 871296] The underlying quantities must use compatible:
+[21-30:P26605; UTF16 871343] environmental coordinates;
+[21-30:P26606; UTF16 871370] horizons;
+[21-30:P26608; UTF16 871399] event identities.
+[21-30:P26609; UTF16 871417] Environmental intensities with different functional units are not directly summed.
+[21-30:P26610; UTF16 871500] THM-SOS22 — Individual Environmental-Budget Compliance Does Not Imply Regional Budget Compliance
+[21-30:P26612; UTF16 871610] Let regional cap be:
+[21-30:P26615; UTF16 871646] [ E_{\mathrm{background}}=0, \qquad E_{\mathrm{interaction}}=0. ]
+[21-30:P26616; UTF16 871712] Two projects each contribute:
+[21-30:P26617; UTF16 871742] [ E_1=6, \qquad E_2=6. ]
+[21-30:P26618; UTF16 871767] Each individually satisfies:
+[21-30:P26619; UTF16 871796] [ E_i\le B. ]
+[21-30:P26620; UTF16 871810] Regional burden is:
+[21-30:P26621; UTF16 871830] [ E_R=6+6=12>B. ]
+[21-30:P26623; UTF16 871859] [ \boxed{ \text{individual environmental compliance} \not\Longrightarrow \text{regional budget compliance}. } ]
+[21-30:P26628; UTF16 871976] 27. Cumulative Externality Interaction
+[21-30:P26629; UTF16 872015] DEF-SOS36 — Externality Decomposition
+[21-30:P26630; UTF16 872053] Represent receptor exposure as:
+[21-30:P26631; UTF16 872085] \sum_iX_i + \Phi_{\mathrm{int}}(X_1,\ldots,X_n). } ]
+[21-30:P26632; UTF16 872138] THM-SOS23 — Project Externalities Add Exactly Only When the Declared Interaction Term Vanishes
+[21-30:P26634; UTF16 872243] At a given portfolio state:
+[21-30:P26635; UTF16 872271] [ X_R=\sum_iX_i ]
+[21-30:P26637; UTF16 872294] [ \Phi_{\mathrm{int}}(X_1,\ldots,X_n)=0. ]
+[21-30:P26639; UTF16 872343] From DEF-SOS36:
+[21-30:P26640; UTF16 872359] \Phi_{\mathrm{int}}. ]
+[21-30:P26643; UTF16 872411] exactly when:
+[21-30:P26644; UTF16 872425] [ \Phi_{\mathrm{int}}=0. ]
+[21-30:P26647; UTF16 872469] Additive cumulative accounting requires an additive cumulative model. Pairwise measurements do not establish that the interaction term vanishes.
+[21-30:P26651; UTF16 872617] 28. Regional Scarcity and Cut Slack
+[21-30:P26652; UTF16 872653] DEF-SOS37 — Cut Slack
+[21-30:P26653; UTF16 872675] For an outward-service cut (S):
+[21-30:P26654; UTF16 872707] C^+(S)
+[21-30:P26655; UTF16 872714] \sum_{v\in S}b_v. } ]
+[21-30:P26657; UTF16 872747] (\Delta(S)<0): exact cut infeasibility;
+[21-30:P26658; UTF16 872787] (\Delta(S)=0): saturated cut;
+[21-30:P26659; UTF16 872817] (\Delta(S)>0): remaining modeled cut capacity.
+[21-30:P26660; UTF16 872864] For an import-demand region, use the symmetric incoming slack:
+[21-30:P26661; UTF16 872927] C^-(S) + \sum_{v\in S}b_v. } ]
+[21-30:P26662; UTF16 872958] PRO-SOS1 — Negative Cut Slack Certifies Network Infeasibility
+[21-30:P26663; UTF16 873020] By THM-SOS3, every feasible flow satisfies:
+[21-30:P26664; UTF16 873064] [ \sum_{v\in S}b_v\le C^+(S). ]
+[21-30:P26666; UTF16 873110] [ \Delta(S)\ge0. ]
+[21-30:P26668; UTF16 873140] [ \Delta(S)<0 ]
+[21-30:P26669; UTF16 873156] contradicts feasibility.
+[21-30:P26670; UTF16 873181] The same argument applies to negative incoming slack. ∎
+[21-30:P26671; UTF16 873237] Cut slack is a structural capacity quantity, not automatically an economic shadow price.
+[21-30:P26675; UTF16 873329] 29. System-of-Systems Conflict Cores and Repairs
+[21-30:P26676; UTF16 873378] DEF-SOS38 — System-of-Systems Conflict Core
+[21-30:P26677; UTF16 873422] A system-of-systems conflict core is a jointly infeasible collection of:
+[21-30:P26679; UTF16 873512] network capacities;
+[21-30:P26681; UTF16 873555] externality limits;
+[21-30:P26684; UTF16 873612] authority constraints;
+[21-30:P26686; UTF16 873654] timing requirements.
+[21-30:P26688; UTF16 873737] DEF-SOS39 — System-of-Systems Repair
+[21-30:P26690; UTF16 873788] reduce or shift demand;
+[21-30:P26691; UTF16 873812] add capacity;
+[21-30:P26692; UTF16 873826] alter topology;
+[21-30:P26693; UTF16 873842] add storage;
+[21-30:P26694; UTF16 873855] diversify dependencies;
+[21-30:P26695; UTF16 873879] change project timing;
+[21-30:P26696; UTF16 873902] reserve emergency resources;
+[21-30:P26697; UTF16 873931] expand mutual aid;
+[21-30:P26698; UTF16 873950] add bootstrap capability;
+[21-30:P26699; UTF16 873976] modify an interface;
+[21-30:P26700; UTF16 873997] alter environmental strategy;
+[21-30:P26702; UTF16 874073] DEF-SOS40 — System-of-Systems Repair Frontier
+[21-30:P26704; UTF16 874153] [ \left( \mathsf{service}, \mathsf{capacity}, \mathsf{reliability}, \mathsf{recovery}, \mathsf{environment}, \mathsf{cost}, \mathsf{schedule}, \mathsf{architecture}, \mathsf{externality}, \mathsf{futureFlexibility} \right). ]
+[21-30:P26705; UTF16 874379] THM-SOS24 — Minimum-Cost Regional Constraint Repair Is NP-Hard in a Finite Coverage Abstraction
+[21-30:P26707; UTF16 874511] A Weighted Hitting Set instance consists of:
+[21-30:P26708; UTF16 874556] candidate elements: [ A={a_1,\ldots,a_n}; ]
+[21-30:P26711; UTF16 874665] The objective is a minimum-cost set (H\subseteq A) satisfying:
+[21-30:P26713; UTF16 874775] Construct a regional-repair instance:
+[21-30:P26714; UTF16 874813] every (a_j) is a candidate infrastructure or coordination intervention;
+[21-30:P26715; UTF16 874885] every (C_i) is a regional violation;
+[21-30:P26716; UTF16 874922] violation (i) is resolved iff at least one intervention in (C_i) is selected;
+[21-30:P26717; UTF16 875000] intervention (a_j) has cost (c_j).
+[21-30:P26718; UTF16 875035] A repair portfolio is feasible iff it hits every (C_i).
+[21-30:P26719; UTF16 875091] Its cost is exactly the hitting-set cost.
+[21-30:P26721; UTF16 875165] Therefore a polynomial minimum-cost solver for the declared regional-repair abstraction would solve Weighted Hitting Set.
+[21-30:P26724; UTF16 875325] This theorem concerns the finite coverage abstraction. It does not imply that every network-flow or regional-certification problem is NP-hard.
+[21-30:P26728; UTF16 875471] 30. Claim Modalities and Dependency Graph
+[21-30:P26729; UTF16 875513] DEF-SOS41 — System-of-Systems Claim Modality
+[21-30:P26730; UTF16 875558] \left{ \begin{array}{l} \mathsf{EXACT_INTERFACE},\ \mathsf{NETWORK_FEASIBLE},\ \mathsf{CUT_BOUNDED},\ \mathsf{PORTFOLIO_FEASIBLE},\ \mathsf{ROBUST_SCENARIO},\ \mathsf{EXTERNALITY_ACCOUNTED},\ \mathsf{CUMULATIVE_IMPACT_CERTIFIED},\ \mathsf{CASCADE_BOUNDED},\ \mathsf{COMMON_CAUSE_PROBABILISTIC},\ \mathsf{MUTUAL_AID_EXECUTABLE},\ \mathsf{RECOVERY_POLICY_CERTIFIED},\ \mathsf{EXTRA_PROJECT_RELEASE},\ \mathsf{HEURISTIC},\ \mathsf{UNKNOWN} \end{array} \right}. } ]
+[21-30:P26732; UTF16 876058] DEF-SOS42 — System-of-Systems Dependency Graph
+[21-30:P26735; UTF16 876133] project interface;
+[21-30:P26736; UTF16 876152] utility connection;
+[21-30:P26737; UTF16 876172] infrastructure node;
+[21-30:P26738; UTF16 876193] infrastructure edge;
+[21-30:P26740; UTF16 876224] demand trace;
+[21-30:P26741; UTF16 876238] coincident peak;
+[21-30:P26742; UTF16 876255] externality;
+[21-30:P26743; UTF16 876268] receptor;
+[21-30:P26745; UTF16 876286] common-cause variable;
+[21-30:P26746; UTF16 876309] recovery resource;
+[21-30:P26747; UTF16 876328] mutual-aid agreement;
+[21-30:P26748; UTF16 876350] environmental budget;
+[21-30:P26749; UTF16 876372] emergency obligation;
+[21-30:P26753; UTF16 876428] means changing (u) may change claim (v).
+[21-30:P26757; UTF16 876472] 31. Incremental System-of-Systems Recertification
+[21-30:P26758; UTF16 876522] THM-SOS25 — Dependency-Directed System-of-Systems Recertification Equals Cold Checking
+[21-30:P26760; UTF16 876621] Every changed regional root is identified.
+[21-30:P26762; UTF16 876698] Every descendant certificate is invalidated.
+[21-30:P26763; UTF16 876743] Reused project interfaces pass version and contextual-equivalence checks.
+[21-30:P26764; UTF16 876817] Reused network evidence passes topology and capacity checks.
+[21-30:P26765; UTF16 876878] Recomputed nodes use identical semantics to cold checking.
+[21-30:P26767; UTF16 876963] Cyclic infrastructure models are encapsulated by checked fixed-point or reachability nodes.
+[21-30:P26771; UTF16 877118] network feasibility;
+[21-30:P26773; UTF16 877156] cut capacities;
+[21-30:P26774; UTF16 877172] cumulative impacts;
+[21-30:P26776; UTF16 877207] cascade closure;
+[21-30:P26778; UTF16 877245] mutual-aid feasibility;
+[21-30:P26779; UTF16 877269] recovery reachability;
+[21-30:P26780; UTF16 877292] regional environmental budget;
+[21-30:P26781; UTF16 877323] extra-project release.
+[21-30:P26783; UTF16 877352] Encapsulate every certified cyclic subsystem as one checked node. The remaining proof graph is acyclic.
+[21-30:P26784; UTF16 877456] Choose a topological ordering:
+[21-30:P26786; UTF16 877507] We prove by induction that incremental and cold evaluation agree at every node.
+[21-30:P26788; UTF16 877597] A root has no predecessors.
+[21-30:P26789; UTF16 877625] If changed, both methods recompute it using identical semantics and current evidence.
+[21-30:P26790; UTF16 877711] If unchanged, incremental reuse is permitted only after version and applicability checks establish that its value remains equal to the cold value.
+[21-30:P26792; UTF16 877873] Assume equality for all predecessors of (v_k).
+[21-30:P26793; UTF16 877920] If (v_k) lies outside the invalidated descendant set, dependency completeness implies no changed root can affect it. Its reused value equals the cold value.
+[21-30:P26794; UTF16 878077] If (v_k) is invalidated, both procedures apply the same deterministic local checker to predecessor values equal by the induction hypothesis. The outputs are therefore equal.
+[21-30:P26796; UTF16 878282] By induction, all nodes and release roots agree. ∎
+[21-30:P26800; UTF16 878336] 32. Release Fiber and PCSOS
+[21-30:P26801; UTF16 878364] DEF-SOS43 — System-of-Systems Release Fiber
+[21-30:P26802; UTF16 878408] \left{ (\rho,\pi,\sigma,\eta): \mathsf{SoSValid}_\mu (y,s_t,\rho,\pi,\sigma,\eta) \right}. } ]
+[21-30:P26803; UTF16 878503] DEF-SOS44 — Proof-Carrying System-of-Systems Infrastructure and Externality Package
+[21-30:P26805; UTF16 878595] [ \boxed{ \mathsf{PCSOS}. } ]
+[21-30:P26806; UTF16 878625] A PCSOS contains:
+[21-30:P26807; UTF16 878643] regional boundary;
+[21-30:P26808; UTF16 878662] participating project identities;
+[21-30:P26809; UTF16 878696] Prompt-1–27 package references;
+[21-30:P26810; UTF16 878728] project external interfaces;
+[21-30:P26811; UTF16 878757] external-quotient certificates;
+[21-30:P26812; UTF16 878789] infrastructure inventories;
+[21-30:P26813; UTF16 878817] network topologies;
+[21-30:P26814; UTF16 878837] node identities;
+[21-30:P26815; UTF16 878854] edge identities;
+[21-30:P26816; UTF16 878871] capacity states;
+[21-30:P26817; UTF16 878888] capacity validity intervals;
+[21-30:P26818; UTF16 878917] project demand and injection traces;
+[21-30:P26819; UTF16 878954] time bases;
+[21-30:P26820; UTF16 878966] flow witnesses;
+[21-30:P26821; UTF16 878982] cut certificates;
+[21-30:P26822; UTF16 879000] portfolio peaks;
+[21-30:P26823; UTF16 879017] coincidence assumptions;
+[21-30:P26824; UTF16 879042] shared-capacity regions;
+[21-30:P26825; UTF16 879067] isolated-feasibility reports;
+[21-30:P26826; UTF16 879097] joint-feasibility reports;
+[21-30:P26827; UTF16 879124] externality inventory;
+[21-30:P26828; UTF16 879147] receptor inventory;
+[21-30:P26829; UTF16 879167] cumulative-exposure models;
+[21-30:P26830; UTF16 879195] interaction terms;
+[21-30:P26831; UTF16 879214] environmental event ledger;
+[21-30:P26832; UTF16 879242] regional Prompt-27 aggregation;
+[21-30:P26833; UTF16 879274] interdependency graph;
+[21-30:P26834; UTF16 879297] initial failure state;
+[21-30:P26835; UTF16 879320] cascade operator;
+[21-30:P26838; UTF16 879379] regional probability law;
+[21-30:P26839; UTF16 879405] regional scenario family;
+[21-30:P26840; UTF16 879431] robust feasible set;
+[21-30:P26841; UTF16 879452] current recovery state;
+[21-30:P26842; UTF16 879476] startup and recovery graph;
+[21-30:P26843; UTF16 879504] mutual-aid agreements;
+[21-30:P26844; UTF16 879527] mutual-aid resources;
+[21-30:P26845; UTF16 879549] compatibility relations;
+[21-30:P26846; UTF16 879574] travel and deadline state;
+[21-30:P26847; UTF16 879601] mutual-aid assignment;
+[21-30:P26848; UTF16 879624] emergency-service capacities;
+[21-30:P26849; UTF16 879654] nonanticipative recovery policies;
+[21-30:P26850; UTF16 879689] bootstrap resources;
+[21-30:P26851; UTF16 879710] regional conflict cores;
+[21-30:P26861; UTF16 879848] 33. Whole-System Extra-Project Theorem
+[21-30:P26862; UTF16 879887] THM-SOS26 — Whole-Project Proof-Carrying System-of-Systems Infrastructure, Externality, Regional Resilience, and Extra-Project Release
+[21-30:P26864; UTF16 880027] (\mathcal P_\star): target project or portfolio;
+[21-30:P26865; UTF16 880076] (s_t): current extra-project state;
+[21-30:P26866; UTF16 880112] (y): target release outcome;
+[21-30:P26867; UTF16 880141] (\mathsf{PCSOS}): candidate package.
+[21-30:P26869; UTF16 880186] Regional boundary identity.
+[21-30:P26870; UTF16 880214] Project-set coverage.
+[21-30:P26871; UTF16 880236] Project-state correctness.
+[21-30:P26872; UTF16 880263] Interface completeness.
+[21-30:P26873; UTF16 880287] Network-topology correctness.
+[21-30:P26874; UTF16 880317] Capacity validity.
+[21-30:P26875; UTF16 880336] Demand and injection identity.
+[21-30:P26876; UTF16 880367] Temporal alignment.
+[21-30:P26877; UTF16 880387] Conservation correctness.
+[21-30:P26878; UTF16 880413] Network-feasibility evidence.
+[21-30:P26879; UTF16 880443] Shared-resource completeness.
+[21-30:P26880; UTF16 880473] Interdependency completeness.
+[21-30:P26881; UTF16 880503] Common-cause discipline.
+[21-30:P26882; UTF16 880528] Scenario coverage.
+[21-30:P26883; UTF16 880547] Externality completeness.
+[21-30:P26884; UTF16 880573] Prompt-27 environmental integration.
+[21-30:P26885; UTF16 880610] Mutual-aid validity.
+[21-30:P26886; UTF16 880631] Recovery nonanticipativity.
+[21-30:P26887; UTF16 880659] Emergency-service capacity completeness.
+[21-30:P26888; UTF16 880700] Dynamic reachability.
+[21-30:P26889; UTF16 880722] Prompt-18 economic execution.
+[21-30:P26890; UTF16 880752] Prompt-20/21 governance and regulatory authority.
+[21-30:P26891; UTF16 880802] Prompt-22 cyber trust.
+[21-30:P26893; UTF16 880844] Prompt-24 human execution.
+[21-30:P26894; UTF16 880871] Prompt-26 lifecycle consistency.
+[21-30:P26895; UTF16 880904] UNKNOWN discipline.
+[21-30:P26896; UTF16 880924] Dependency completeness.
+[21-30:P26897; UTF16 880949] Checker soundness.
+[21-30:P26898; UTF16 880968] Independent package acceptance.
+[21-30:P26901; UTF16 881049] Step 1 — Bind every project to its current certified state
+[21-30:P26902; UTF16 881108] Hypothesis 3 connects every participating project interface to its active Prompt-1–27 state.
+[21-30:P26903; UTF16 881201] Therefore the regional theory does not combine stale project versions.
+[21-30:P26904; UTF16 881272] Step 2 — Establish exact external interfaces

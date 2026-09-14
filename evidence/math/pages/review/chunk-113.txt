@@ -1,0 +1,337 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P20570; UTF16 688343] Thus exact reliability evaluation is #P-hard. ∎
+[11-20:P20571; UTF16 688391] This theorem concerns arbitrary compact Boolean failure logic. It does not claim the same reduction for every restricted coherent formalism.
+[11-20:P20575; UTF16 688535] THM-REL14 — Minimum Component Hardening Against a Declared Cut-Set Family Is NP-Hard
+[11-20:P20576; UTF16 688620] Proof by reduction from Hitting Set
+[11-20:P20577; UTF16 688656] Take a Hitting Set instance:
+[11-20:P20578; UTF16 688685] universe of components (V);
+[11-20:P20579; UTF16 688713] family of subsets {C_1,\ldots,C_m}; ]
+[11-20:P20580; UTF16 688751] integer (k).
+[11-20:P20581; UTF16 688764] Interpret each (C_j) as a minimal cut set.
+[11-20:P20582; UTF16 688807] A hardening set (H\subseteq V) prevents every declared cut iff
+[11-20:P20583; UTF16 688870] [ H\cap C_j \neq \varnothing \qquad \forall j. ]
+[11-20:P20584; UTF16 688919] Therefore a hardening set of size at most (k) exists exactly when a hitting set of size at most (k) exists.
+[11-20:P20585; UTF16 689027] The reduction is polynomial.
+[11-20:P20586; UTF16 689056] Thus minimum hardening is NP-hard. ∎
+[11-20:P20587; UTF16 689093] A hardening optimizer may propose a minimum set only when its optimization certificate is checked.
+[11-20:P20591; UTF16 689195] 21. Reliability Versus Adversarial Robustness
+[11-20:P20592; UTF16 689241] Prompt 10 defined the robustness radius
+[11-20:P20593; UTF16 689281] [ \rho_C^\star ]
+[11-20:P20594; UTF16 689298] as the minimum adversarial perturbation cost needed to break claim (C).
+[11-20:P20595; UTF16 689370] Prompt 17 defines probability under a stochastic law.
+[11-20:P20599; UTF16 689427] THM-REL15 — No Generic Monotone Relationship Exists Between Robustness Radius and Reliability
+[11-20:P20601; UTF16 689534] System A
+[11-20:P20602; UTF16 689543] The minimum breaker cost is
+[11-20:P20603; UTF16 689571] [ \rho_A^\star=1. ]
+[11-20:P20604; UTF16 689591] The stochastic law assigns the breaker probability
+[11-20:P20605; UTF16 689642] [ 10^{-9}. ]
+[11-20:P20607; UTF16 689660] 1-10^{-9}. ]
+[11-20:P20608; UTF16 689673] System B
+[11-20:P20609; UTF16 689682] Every breaker has cost at least
+[11-20:P20610; UTF16 689714] [ \rho_B^\star=100. ]
+[11-20:P20611; UTF16 689736] The stochastic law assigns probability
+[11-20:P20612; UTF16 689775] [ 0.5 ]
+[11-20:P20613; UTF16 689783] to such a breaker.
+[11-20:P20615; UTF16 689807] [ R_B=0.5. ]
+[11-20:P20617; UTF16 689830] [ \rho_A^\star < \rho_B^\star ]
+[11-20:P20619; UTF16 689868] [ R_A>R_B. ]
+[11-20:P20620; UTF16 689881] No monotone relationship follows without a theorem linking perturbation cost and probability. ∎
+[11-20:P20621; UTF16 689977] [ \boxed{ \text{adversarial closeness} \neq \text{probability}. } ]
+[11-20:P20625; UTF16 690048] 22. Zero Observed Failures
+[11-20:P20626; UTF16 690075] THM-REL16 — Zero Observed Failures Do Not Prove Zero Failure Probability
+[11-20:P20627; UTF16 690148] Assume (n\ge1) independent identical trials with failure probability (p).
+[11-20:P20629; UTF16 690226] [ K \sim \operatorname{Binomial}(n,p). ]
+[11-20:P20631; UTF16 690272] (1-p)^n. ]
+[11-20:P20632; UTF16 690283] For (0<\delta<1), define
+[11-20:P20633; UTF16 690308] 1-\delta^{1/n}. } ]
+[11-20:P20635; UTF16 690338] [ p>p_\delta, ]
+[11-20:P20637; UTF16 690362] [ \boxed{ P_p(K=0)<\delta. } ]
+[11-20:P20639; UTF16 690399] If (p>p_\delta), then
+[11-20:P20640; UTF16 690421] \delta^{1/n}. ]
+[11-20:P20641; UTF16 690437] Raise both sides to power (n):
+[11-20:P20642; UTF16 690468] [ (1-p)^n < \delta. ]
+[11-20:P20643; UTF16 690490] But
+[11-20:P20646; UTF16 690507] Thus observing zero failures yields a one-sided finite-sample exclusion of sufficiently large (p) under IID Bernoulli assumptions.
+[11-20:P20647; UTF16 690638] It does not prove
+[11-20:P20648; UTF16 690656] [ p=0. ]
+[11-20:P20649; UTF16 690665] Repeated dependent trials require another model.
+[11-20:P20653; UTF16 690717] 23. Rare-Event Monte Carlo
+[11-20:P20654; UTF16 690744] DEF-REL16 — Rare Failure Probability and Naïve Monte Carlo Estimator
+[11-20:P20655; UTF16 690813] Let (F) be a failure event under target model law (P).
+[11-20:P20657; UTF16 690875] [ p=P(F). ]
+[11-20:P20659; UTF16 690891] [ X_1,\ldots,X_N \overset{\mathrm{IID}}{\sim} P ]
+[11-20:P20660; UTF16 690941] on a computational sampling space.
+[11-20:P20662; UTF16 690983] \frac1N \sum_{j=1}^{N} \mathbf1_F(X_j). } ]
+[11-20:P20666; UTF16 691030] THM-REL17 — Naïve Monte Carlo Relative Variance Scales as (1/(Np))
+[11-20:P20667; UTF16 691097] For (p>0),
+[11-20:P20668; UTF16 691108] [ \boxed{ \mathbb E[\widehat p_N]=p, } ]
+[11-20:P20669; UTF16 691149] \frac{p(1-p)}N, } ]
+[11-20:P20671; UTF16 691173] \frac{1-p}{Np}. } ]
+[11-20:P20673; UTF16 691199] Each indicator
+[11-20:P20674; UTF16 691214] [ I_j=\mathbf1_F(X_j) ]
+[11-20:P20675; UTF16 691238] is Bernoulli((p)).
+[11-20:P20677; UTF16 691267] [ \mathbb E[I_j]=p, \qquad \operatorname{Var}(I_j)=p(1-p). ]
+[11-20:P20678; UTF16 691328] Linearity gives
+[11-20:P20679; UTF16 691344] [ \mathbb E[\widehat p_N]=p. ]
+[11-20:P20680; UTF16 691375] Independence gives
+[11-20:P20681; UTF16 691394] \frac{p(1-p)}N. ]
+[11-20:P20682; UTF16 691412] Divide by (p^2). ∎
+[11-20:P20683; UTF16 691431] For rare (p), fixed relative precision requires (N) of order (1/p).
+[11-20:P20687; UTF16 691502] DEF-REL40 — Reliability Estimation Certificate
+[11-20:P20688; UTF16 691549] A Reliability Estimation Certificate records:
+[11-20:P20689; UTF16 691595] [ \left( P, F, p, \widehat p, \mathbb P_{\mathrm{MC}}, N, \mathsf{Estimator}, \mathsf{ConfidenceStatement}, \mathsf{RandomSeedProvenance}, \mathsf{Checker} \right). ]
+[11-20:P20690; UTF16 691762] The target-model quantity (p) and the computational estimator (\widehat p) are distinct objects.
+[11-20:P20694; UTF16 691862] COR-REL3 — Monte Carlo Hoeffding Confidence Concerns Estimation Error
+[11-20:P20695; UTF16 691932] For IID Bernoulli simulation indicators and (0<\delta<1),
+[11-20:P20696; UTF16 691990] [ \boxed{ \mathbb P_{\mathrm{MC}} \left( |\widehat p_N-p| \le \sqrt{ \frac{ \log(2/\delta) }{ 2N } } \right) \ge 1-\delta. } ]
+[11-20:P20698; UTF16 692123] Apply Prompt-16 LEM-XFER2 to the singleton hypothesis class and Bernoulli loss. ∎
+[11-20:P20699; UTF16 692205] The probability in this statement is over Monte Carlo sampling.
+[11-20:P20700; UTF16 692269] It is not the probability that the actual physical mission succeeds.
+[11-20:P20704; UTF16 692341] PRO-REL5 — Monte Carlo Confidence Does Not Change the Realized Target Event
+[11-20:P20705; UTF16 692417] Let (\omega_{\mathrm{phys}}) be a target trajectory and (\omega_{\mathrm{MC}}) a computational sample outcome.
+[11-20:P20706; UTF16 692528] Whether
+[11-20:P20707; UTF16 692536] [ \omega_{\mathrm{phys}}\in F ]
+[11-20:P20708; UTF16 692568] depends on the physical trajectory.
+[11-20:P20710; UTF16 692612] [ |\widehat p_N-p|\le\varepsilon ]
+[11-20:P20711; UTF16 692647] depends on the Monte Carlo sample.
+[11-20:P20712; UTF16 692682] Changing the simulation seed can change the second event without changing the physical trajectory.
+[11-20:P20713; UTF16 692781] Therefore estimator confidence and realized physical success are semantically different. ∎
+[11-20:P20717; UTF16 692875] 24. Importance Sampling
+[11-20:P20718; UTF16 692899] DEF-REL17 — Importance-Sampling Reliability Estimator
+[11-20:P20720; UTF16 692957] P(A\cap F) ]
+[11-20:P20721; UTF16 692970] be the failure-restricted target measure.
+[11-20:P20722; UTF16 693012] Let (Q) be a proposal law satisfying
+[11-20:P20723; UTF16 693049] [ \mu_F\ll Q. ]
+[11-20:P20725; UTF16 693072] \frac{d\mu_F}{dQ}. ]
+[11-20:P20727; UTF16 693097] [ X_1,\ldots,X_N \overset{\mathrm{IID}}{\sim}Q, ]
+[11-20:P20729; UTF16 693154] \frac1N \sum_{j=1}^{N} L_F(X_j). } ]
+[11-20:P20730; UTF16 693191] If (P\ll Q) globally with likelihood ratio (L=dP/dQ), then
+[11-20:P20731; UTF16 693250] [ L_F=L\mathbf1_F ]
+[11-20:P20732; UTF16 693270] (Q)-almost surely.
+[11-20:P20736; UTF16 693292] THM-REL18 — Importance-Sampling Estimator Is Unbiased Under Support Coverage
+[11-20:P20737; UTF16 693369] Under DEF-REL17,
+[11-20:P20738; UTF16 693386] P(F). } ]
+[11-20:P20739; UTF16 693396] If (L_F\in L^2(Q)), then
+[11-20:P20740; UTF16 693421] p^2 \right). } ]
+[11-20:P20742; UTF16 693444] By the Radon–Nikodym property,
+[11-20:P20743; UTF16 693475] \mu_F(\Omega)
+[11-20:P20744; UTF16 693489] P(F)
+[11-20:P20745; UTF16 693494] p. ]
+[11-20:P20746; UTF16 693499] Averaging (N) IID copies preserves the expectation.
+[11-20:P20747; UTF16 693551] For the variance,
+[11-20:P20748; UTF16 693569] \frac1N \operatorname{Var}_Q(L_F). ]
+[11-20:P20750; UTF16 693611] \mathbb E_Q[L_F^2]
+[11-20:P20751; UTF16 693630] p^2. ]
+[11-20:P20753; UTF16 693639] Unbiasedness does not imply useful variance.
+[11-20:P20757; UTF16 693687] 25. Formal Zero-Variance Proposal
+[11-20:P20758; UTF16 693721] THM-REL19 — Conditional-Failure Proposal Is the Formal Zero-Variance Importance Law
+[11-20:P20760; UTF16 693812] [ p=P(F)>0. ]
+[11-20:P20762; UTF16 693833] P(A\mid F)
+[11-20:P20763; UTF16 693844] \frac{P(A\cap F)}p. ]
+[11-20:P20765; UTF16 693871] pQ^\star. ]
+[11-20:P20767; UTF16 693889] p ]
+[11-20:P20768; UTF16 693893] (Q^\star)-almost surely.
+[11-20:P20769; UTF16 693918] Every sample contributes exactly (p), so the estimator variance is zero.
+[11-20:P20771; UTF16 693997] For every measurable (A),
+[11-20:P20772; UTF16 694023] P(A\cap F)
+[11-20:P20773; UTF16 694034] pQ^\star(A). ]
+[11-20:P20774; UTF16 694049] Therefore the Radon–Nikodym derivative is the constant (p).
+[11-20:P20775; UTF16 694109] The estimator is the average of the constant (p), hence equals (p) exactly. ∎
+[11-20:P20776; UTF16 694187] This theorem is not a direct algorithm because:
+[11-20:P20777; UTF16 694235] exact sampling from (P(\cdot\mid F)) may require knowing the failure region;
+[11-20:P20778; UTF16 694312] the likelihood ratio contains the unknown (p).
+[11-20:P20779; UTF16 694359] It characterizes the ideal importance distribution.
+[11-20:P20783; UTF16 694414] 26. Missing Proposal Support
+[11-20:P20784; UTF16 694443] THM-REL20 — Missing Failure Support Invalidates Ordinary Importance-Sampling Reliability Estimation
+[11-20:P20785; UTF16 694543] Suppose there exists
+[11-20:P20786; UTF16 694564] [ A\subseteq F ]
+[11-20:P20788; UTF16 694591] [ P(A)>0 ]
+[11-20:P20790; UTF16 694606] [ Q(A)=0. ]
+[11-20:P20792; UTF16 694623] [ \mu_F\not\ll Q. ]
+[11-20:P20793; UTF16 694643] No ordinary likelihood-ratio estimator based only on (Q)-samples can represent the probability mass of (A).
+[11-20:P20795; UTF16 694757] Absolute continuity would require
+[11-20:P20796; UTF16 694791] [ Q(A)=0 \Longrightarrow \mu_F(A)=0. ]
+[11-20:P20799; UTF16 694845] P(A)>0. ]
+[11-20:P20800; UTF16 694855] Thus (\mu_F\not\ll Q), so the required Radon–Nikodym derivative does not exist.
+[11-20:P20801; UTF16 694935] For nonidentifiability, construct two target laws that agree on the support of (Q) but assign different positive masses to (A).
+[11-20:P20802; UTF16 695063] Every sample generated from (Q) has the same law under both target models, while the true failure probabilities differ.
+[11-20:P20803; UTF16 695183] Therefore (Q)-sampling evidence cannot determine the omitted contribution. ∎
+[11-20:P20804; UTF16 695260] Support coverage is a soundness condition, not merely an efficiency condition.
+[11-20:P20808; UTF16 695342] 27. Fragility and Hazard
+[11-20:P20809; UTF16 695367] DEF-REL18 — Fragility Surface
+[11-20:P20811; UTF16 695402] (H): hazard intensity or state;
+[11-20:P20812; UTF16 695434] (X): target context;
+[11-20:P20813; UTF16 695455] (F): failure event.
+[11-20:P20814; UTF16 695475] Define a regular conditional failure probability:
+[11-20:P20815; UTF16 695525] P(F\mid H=h,X=x). } ]
+[11-20:P20816; UTF16 695547] Fragility is not hazard frequency.
+[11-20:P20820; UTF16 695585] THM-REL21 — Hazard–Fragility Integration
+[11-20:P20821; UTF16 695626] For fixed target context (x),
+[11-20:P20822; UTF16 695656] \int \phi(h,x) P_H(dh\mid X=x). } ]
+[11-20:P20824; UTF16 695698] By the law of total probability using the regular conditional law,
+[11-20:P20825; UTF16 695765] [ \begin{aligned} P(F\mid X=x) &= \int P(F\mid H=h,X=x) P_H(dh\mid X=x)\ &= \int \phi(h,x) P_H(dh\mid X=x). \end{aligned} ]
+[11-20:P20827; UTF16 695891] A fragility curve without a hazard law does not determine target failure probability.
+[11-20:P20831; UTF16 695980] 28. Extreme Hazards and Return Periods
+[11-20:P20832; UTF16 696019] DEF-REL19 — IID Annual Exceedance Model
+[11-20:P20834; UTF16 696063] [ I_1,I_2,\ldots ]
+[11-20:P20835; UTF16 696082] be IID Bernoulli((p)) annual exceedance indicators.
+[11-20:P20836; UTF16 696134] Define waiting time
+[11-20:P20837; UTF16 696154] \min{k\ge1=1}. ]
+[11-20:P20841; UTF16 696174] THM-REL22 — Mean Return Time Equals (1/p) Only Under the Declared Geometric Model
+[11-20:P20842; UTF16 696256] Under DEF-REL19,
+[11-20:P20843; UTF16 696273] (1-p)^{k-1}p } ]
+[11-20:P20845; UTF16 696294] \frac1p. } ]
+[11-20:P20847; UTF16 696313] The event (W=k) means:
+[11-20:P20848; UTF16 696336] no exceedance in years (1,\ldots,k-1);
+[11-20:P20849; UTF16 696375] exceedance in year (k).
+[11-20:P20851; UTF16 696418] (1-p)^{k-1}p. ]
+[11-20:P20853; UTF16 696439] [ \begin{aligned} \mathbb E[W] &= \sum_{k=1}^{\infty} k(1-p)^{k-1}p\ &= p \frac{d}{dq} \left. \left( \sum_{k=0}^{\infty}q^k \right) \right|_{q=1-p}\ &= p \frac1{(1-(1-p))^2}\ &= \frac1p. \end{aligned} ]
+[11-20:P20855; UTF16 696644] Dependence limitation
+[11-20:P20857; UTF16 696670] [ Z\sim\operatorname{Bernoulli}(p) ]
+[11-20:P20858; UTF16 696707] and set
+[11-20:P20859; UTF16 696715] [ I_k=Z \qquad \forall k. ]
+[11-20:P20860; UTF16 696743] Then every year has marginal exceedance probability (p).
+[11-20:P20862; UTF16 696805] if (Z=1), (W=1);
+[11-20:P20863; UTF16 696822] if (Z=0), (W=\infty).
+[11-20:P20864; UTF16 696844] The waiting-time law is not geometric.
+[11-20:P20865; UTF16 696883] Therefore annual exceedance probability alone does not determine a return-time process.
+[11-20:P20866; UTF16 696971] A “100-year event” under (p=0.01) is not scheduled once per century.
+[11-20:P20870; UTF16 697043] DEF-REL32 — Hazard Process
+[11-20:P20871; UTF16 697070] A Hazard Process is a versioned stochastic process
+[11-20:P20872; UTF16 697121] [ H_t ]
+[11-20:P20873; UTF16 697129] representing a declared hazard family.
+[11-20:P20875; UTF16 697180] time horizon;
+[11-20:P20876; UTF16 697194] stationarity or nonstationarity;
+[11-20:P20877; UTF16 697227] spatial dependence;
+[11-20:P20878; UTF16 697247] common event structure;
+[11-20:P20884; UTF16 697306] DEF-REL33 — Extreme-Hazard Tail Claim
+[11-20:P20885; UTF16 697344] A tail claim may have form
+[11-20:P20886; UTF16 697371] [ \boxed{ P \left( \sup_{t\in[0,T]} H_t>h \right) \le p. } ]
+[11-20:P20887; UTF16 697432] The statement is only as valid as the tail model and horizon.
+[11-20:P20891; UTF16 697497] PRO-REL4 — Finite Observations Do Not Identify an Unrestricted Far Tail
+[11-20:P20892; UTF16 697569] Given any finite observed values
+[11-20:P20893; UTF16 697602] [ x_1,\ldots,x_n, ]
+[11-20:P20894; UTF16 697622] there exist two probability laws assigning positive probability to that exact dataset while having arbitrarily different upper-tail probabilities beyond a sufficiently large threshold.
+[11-20:P20896; UTF16 697820] Choose (M>\max_ix_i).
+[11-20:P20897; UTF16 697842] Let (P_1) place all probability on the observed values.
+[11-20:P20898; UTF16 697898] Let (P_2) assign probability (1-\varepsilon) to the same observed-value distribution and probability (\varepsilon) to a point (H\gg M).
+[11-20:P20899; UTF16 698034] The observed finite sequence has positive probability under both laws.
+[11-20:P20900; UTF16 698105] Yet
+[11-20:P20901; UTF16 698109] [ P_1(X>M)=0 ]
+[11-20:P20903; UTF16 698128] [ P_2(X>M)=\varepsilon. ]
+[11-20:P20904; UTF16 698154] Thus finite passing observations do not logically identify an unrestricted extreme tail. ∎
+[11-20:P20905; UTF16 698245] Rare-event extrapolation asks the model to speak most strongly where direct data may be sparsest.
+[11-20:P20909; UTF16 698346] 29. Tail Loss
+[11-20:P20910; UTF16 698360] DEF-REL20 — Loss Variable
+[11-20:P20912; UTF16 698390] [ L\ge0 ]
+[11-20:P20913; UTF16 698400] be a governed loss variable.
+[11-20:P20914; UTF16 698429] Possible loss dimensions include:
+[11-20:P20916; UTF16 698480] repair cost;
+[11-20:P20917; UTF16 698493] service deficit;
+[11-20:P20918; UTF16 698510] physical damage;
+[11-20:P20919; UTF16 698527] safety consequence under an explicitly governed metric.
+[11-20:P20920; UTF16 698583] Incommensurate losses remain vector valued unless governance supplies a valid scalarization.
+[11-20:P20924; UTF16 698679] DEF-REL21 — Value at Risk
+[11-20:P20925; UTF16 698705] For (0<\alpha<1),
+[11-20:P20926; UTF16 698723] \inf \left{ x: P(L\le x)\ge\alpha \right}. } ]
+[11-20:P20930; UTF16 698773] DEF-REL22 — Conditional Value at Risk
+[11-20:P20931; UTF16 698811] For integrable (L),
+[11-20:P20932; UTF16 698831] \inf_{t\in\mathbb R} \left[ t + \frac1{1-\alpha} \mathbb E[(L-t)_+] \right]. } ]
+[11-20:P20936; UTF16 698915] THM-REL23 — CVaR Is Monotone Under Almost-Sure Loss Ordering
+[11-20:P20938; UTF16 698979] [ L_1\le L_2 \qquad \text{almost surely}, ]
+[11-20:P20940; UTF16 699028] [ \boxed{ \operatorname{CVaR}\alpha(L_1) \le \operatorname{CVaR}\alpha(L_2). } ]
+[11-20:P20942; UTF16 699115] For every (t),
+[11-20:P20943; UTF16 699130] [ (L_1-t)+ \le (L_2-t)+ ]
+[11-20:P20946; UTF16 699181] [ t+ \frac1{1-\alpha} \mathbb E[(L_1-t)+] \le t+ \frac1{1-\alpha} \mathbb E[(L_2-t)+]. ]
+[11-20:P20947; UTF16 699270] Take the infimum over (t) on both sides. ∎
+[11-20:P20948; UTF16 699313] CVaR is a tail-loss functional, not a deterministic safety theorem.
+[11-20:P20952; UTF16 699384] PRO-REL1 — Equal Expected Loss Does Not Determine Tail Risk
+[11-20:P20954; UTF16 699448] [ L_1=1 \qquad \text{almost surely}. ]
+[11-20:P20956; UTF16 699491] \begin{cases} 0,&\text{with probability }0.99,\ 100,&\text{with probability }0.01. \end{cases} ]
+[11-20:P20958; UTF16 699593] \mathbb E[L_2]
+[11-20:P20960; UTF16 699610] The first loss is bounded at one.
+[11-20:P20961; UTF16 699644] The second has a 100-unit tail event.
+[11-20:P20962; UTF16 699682] Equal expectation does not determine tail severity. ∎
+[11-20:P20966; UTF16 699739] PRO-REL6 — VaR Can Ignore Tail Severity Beyond the Quantile
+[11-20:P20968; UTF16 699803] \begin{cases} 0,&0.99,\ 1,&0.01, \end{cases} ]
+[11-20:P20970; UTF16 699854] \begin{cases} 0,&0.99,\ 10^9,&0.01. \end{cases} ]
+[11-20:P20972; UTF16 699909] \operatorname{VaR}_{0.99}(L_B)
+[11-20:P20974; UTF16 699942] The losses beyond the quantile differ by nine orders of magnitude.
+[11-20:P20975; UTF16 700009] Thus VaR alone does not encode tail severity. ∎
+[11-20:P20979; UTF16 700060] 30. Reliability Under Law Ambiguity
+[11-20:P20980; UTF16 700096] DEF-REL23 — Robust Reliability Envelope
+[11-20:P20981; UTF16 700136] For law set (\mathfrak P_{\mathrm{REL}}), define
+[11-20:P20982; UTF16 700185] \inf_{P\in\mathfrak P_{\mathrm{REL}}} P(T_F>T), } ]
+[11-20:P20983; UTF16 700237] \sup_{P\in\mathfrak P_{\mathrm{REL}}} P(T_F>T). } ]
+[11-20:P20984; UTF16 700289] Define worst-case failure probability:
+[11-20:P20985; UTF16 700328] \sup_{P\in\mathfrak P_{\mathrm{REL}}} P(T_F\le T). } ]
+[11-20:P20989; UTF16 700386] THM-REL24 — Robust Reliability Envelope Contains the True-Law Reliability
+[11-20:P20991; UTF16 700463] [ P^\star \in \mathfrak P_{\mathrm{REL}}, ]
+[11-20:P20993; UTF16 700512] [ \boxed{ \underline R(T) \le R_{P^\star}(T) \le \overline R(T). } ]
+[11-20:P20995; UTF16 700587] The true law is one member of the infimum and supremum domain.
+[11-20:P20996; UTF16 700650] Therefore its value lies between the infimum and supremum. ∎
+[11-20:P21000; UTF16 700714] THM-REL25 — Shrinking a Reliability-Law Ambiguity Set Tightens the Envelope
+[11-20:P21002; UTF16 700793] [ \mathfrak P_2 \subseteq \mathfrak P_1, ]
+[11-20:P21004; UTF16 700841] [ \boxed{ \underline R_2(T) \ge \underline R_1(T) } ]
+[11-20:P21006; UTF16 700899] [ \boxed{ \overline R_2(T) \le \overline R_1(T). } ]
+[11-20:P21008; UTF16 700958] Taking an infimum over a smaller set cannot produce a smaller value.
+[11-20:P21009; UTF16 701027] Taking a supremum over a smaller set cannot produce a larger value. ∎
+[11-20:P21010; UTF16 701097] This is fixed-theory refinement.
+[11-20:P21014; UTF16 701133] PRO-REL3 — Theory Expansion Can Lower the Certified Reliability Bound
+[11-20:P21016; UTF16 701207] {P_1} ]
+[11-20:P21018; UTF16 701220] [ R_{P_1}(T)=0.99. ]
+[11-20:P21019; UTF16 701241] Add an applicable newly discovered law (P_2) with
+[11-20:P21020; UTF16 701291] [ R_{P_2}(T)=0.5. ]
+[11-20:P21022; UTF16 701316] {P_1,P_2} ]
+[11-20:P21024; UTF16 701332] [ \underline R_1(T)=0.99, ]
+[11-20:P21026; UTF16 701366] [ \underline R_2(T)=0.5. ]
+[11-20:P21027; UTF16 701393] More evidence lowered the bound by revealing a previously omitted possibility. ∎
+[11-20:P21031; UTF16 701477] 31. Graceful Degradation
+[11-20:P21032; UTF16 701502] DEF-REL24 — Service-Level Functional
+[11-20:P21034; UTF16 701543] [ s: \mathcal Z \to [0,1] ]
+[11-20:P21035; UTF16 701571] measure one declared service channel.
+[11-20:P21036; UTF16 701609] For several services, use
+[11-20:P21037; UTF16 701635] [ \mathbf s: \mathcal Z \to [0,1]^m. ]
+[11-20:P21038; UTF16 701674] No automatic scalarization is assumed.
+[11-20:P21042; UTF16 701716] DEF-REL25 — Threshold Service Reliability
+[11-20:P21043; UTF16 701758] For threshold (\eta),
+[11-20:P21044; UTF16 701780] P \left( \inf_{0\le t\le T} s(Z_t)\ge\eta \right). } ]
+[11-20:P21048; UTF16 701838] THM-REL26 — Service Reliability Is Monotone in the Required Threshold
+[11-20:P21050; UTF16 701911] [ \eta_1\le\eta_2, ]
+[11-20:P21052; UTF16 701937] [ \boxed{ R_{\eta_1}(T) \ge R_{\eta_2}(T). } ]
+[11-20:P21054; UTF16 701990] The event
+[11-20:P21055; UTF16 702000] [ \left{ \inf_{0\le t\le T}s(Z_t)\ge\eta_2 \right} ]
+[11-20:P21056; UTF16 702053] is a subset of
+[11-20:P21057; UTF16 702068] [ \left{ \inf_{0\le t\le T}s(Z_t)\ge\eta_1 \right}. ]
+[11-20:P21058; UTF16 702122] Take probabilities. ∎
+[11-20:P21059; UTF16 702144] This supports degraded but acceptable operating states.
+[11-20:P21063; UTF16 702203] 32. Resilience
+[11-20:P21064; UTF16 702218] DEF-REL26 — Resilience Episode
+[11-20:P21065; UTF16 702249] Let a disruption begin at (t_0).
+[11-20:P21066; UTF16 702282] For service trajectory (s(t)), declare:
+[11-20:P21067; UTF16 702322] minimum acceptable service (s_{\min}^{\mathrm{req}});
+[11-20:P21068; UTF16 702376] recovery target (s_{\mathrm{rec}});
+[11-20:P21069; UTF16 702412] required recovery dwell (\Delta_{\mathrm{dwell}});
+[11-20:P21070; UTF16 702463] analysis horizon (T).
+[11-20:P21071; UTF16 702485] Define realized minimum service:
+[11-20:P21072; UTF16 702518] \inf_{t\in[t_0,t_0+T]} s(t). } ]
+[11-20:P21073; UTF16 702551] Define sustained recovery time:
+[11-20:P21074; UTF16 702583] \inf \left{ \tau\ge0: s(t)\ge s_{\mathrm{rec}} \quad \forall t\in [t_0+\tau,t_0+\tau+\Delta_{\mathrm{dwell}}] \right}, } ]
+[11-20:P21075; UTF16 702706] with (T_{\mathrm{rec}}=\infty) when recovery does not occur.
+[11-20:P21076; UTF16 702767] Define cumulative service deficit:
+[11-20:P21077; UTF16 702802] \int_{t_0}^{t_0+T} \left( s_{\mathrm{rec}}-s(t) \right)_+ ,dt. } ]
+[11-20:P21081; UTF16 702872] DEF-REL27 — Resilience Profile
+[11-20:P21083; UTF16 702910] \left( S_{\min}, T_{\mathrm{rec}}, D_T, \ldots \right). } ]
+[11-20:P21084; UTF16 702970] There is no universal scalar resilience score.
+[11-20:P21088; UTF16 703020] DEF-REL28 — Probabilistic Resilience Event
+[11-20:P21089; UTF16 703063] For declared bounds (a,b,c),
+[11-20:P21090; UTF16 703092] \left{ S_{\min}\ge a, ; T_{\mathrm{rec}}\le b, ; D_T\le c \right}. } ]
+[11-20:P21092; UTF16 703170] P(E_{\mathrm{res}}). } ]
+[11-20:P21093; UTF16 703195] This remains probabilistic.
+[11-20:P21097; UTF16 703226] 33. Deterministic Reach-Tube Resilience
+[11-20:P21098; UTF16 703266] THM-REL27 — Universal Reach-Tube Resilience Bounds Apply to the Actual Trajectory
+[11-20:P21100; UTF16 703357] current ODT containment holds: [ z_{t_0}^\star \in \Gamma_{t_0}; ]
+[11-20:P21101; UTF16 703424] a certified trajectory family [ \mathcal T_{\mathrm{reach}} ] contains the actual target trajectory;
+[11-20:P21102; UTF16 703525] every trajectory (\tau\in\mathcal T_{\mathrm{reach}}) satisfies [ S_{\min}(\tau)\ge a, ] [ T_{\mathrm{rec}}(\tau)\le b, ] [ D_T(\tau)\le c. ]
+[11-20:P21103; UTF16 703667] Then the actual target trajectory satisfies the same resilience bounds.

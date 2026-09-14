@@ -1,0 +1,339 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P9478; UTF16 305566]   restrict v.assignment S
+[11-20:P9479; UTF16 305592] 64.10 Fixed robust realization
+[11-20:P9480; UTF16 305623] def FixedRobust
+[11-20:P9481; UTF16 305639]     (P :
+[11-20:P9482; UTF16 305648]       Design →
+[11-20:P9483; UTF16 305663]       Tolerance →
+[11-20:P9484; UTF16 305681]       Prop) : Prop :=
+[11-20:P9485; UTF16 305703]   ∃ b,
+[11-20:P9486; UTF16 305710]     ∀ δ,
+[11-20:P9487; UTF16 305719]       AdmissibleTolerance δ →
+[11-20:P9488; UTF16 305749]       P b δ
+[11-20:P9489; UTF16 305761] 64.11 Adjustable robust realization
+[11-20:P9490; UTF16 305797] def AdjustableRobust
+[11-20:P9493; UTF16 305842]       Recourse →
+[11-20:P9499; UTF16 305945]       ∃ r,
+[11-20:P9500; UTF16 305956]         AllowedRecourse b δ r ∧
+[11-20:P9501; UTF16 305988]         P b r δ
+[11-20:P9502; UTF16 306004] 64.12 Construction witness
+[11-20:P9503; UTF16 306031] structure ConstructionWitness where
+[11-20:P9504; UTF16 306067]   states : List BuildState
+[11-20:P9505; UTF16 306094]   actions : List BuildAction
+[11-20:P9508; UTF16 306136]     actions.length + 1 =
+[11-20:P9509; UTF16 306161]     states.length
+[11-20:P9511; UTF16 306180]   transitionsValid :
+[11-20:P9512; UTF16 306201]     EveryTransitionValid states actions
+[11-20:P9514; UTF16 306242]   temporarySafety :
+[11-20:P9515; UTF16 306262]     EveryIntermediateSafe states
+[11-20:P9517; UTF16 306296]   finalMatches :
+[11-20:P9518; UTF16 306313]     FinalStateRealizesArtifact states
+[11-20:P9519; UTF16 306351] 64.13 Document coherence
+[11-20:P9520; UTF16 306376] def CoherentWith
+[11-20:P9521; UTF16 306393]     (b : ConcreteArtifact)
+[11-20:P9522; UTF16 306420]     (docs : DocumentFamily) : Prop :=
+[11-20:P9523; UTF16 306458]   ∀ i,
+[11-20:P9524; UTF16 306465]     docs.get i =
+[11-20:P9525; UTF16 306482]     project i b
+[11-20:P9526; UTF16 306498] 64.14 Accepted materialization
+[11-20:P9527; UTF16 306529] theorem accepted_materialization_sound
+[11-20:P9528; UTF16 306568]     (q : Q)
+[11-20:P9529; UTF16 306580]     (pkg : PCMP)
+[11-20:P9531; UTF16 306606]       CheckMaterialization q pkg =
+[11-20:P9532; UTF16 306641]         .valid) :
+[11-20:P9533; UTF16 306659]     Realizes q pkg.artifact := by
+[11-20:P9535; UTF16 306699] 64.15 Concrete optimality
+[11-20:P9536; UTF16 306725] theorem concrete_epsilon_optimal
+[11-20:P9537; UTF16 306758]     (hLower :
+[11-20:P9538; UTF16 306772]       lowerBound ≤ concreteOptimum)
+[11-20:P9539; UTF16 306808]     (hUpper :
+[11-20:P9540; UTF16 306822]       objective incumbent = upperBound)
+[11-20:P9541; UTF16 306862]     (hGap :
+[11-20:P9542; UTF16 306874]       upperBound - lowerBound ≤ ε) :
+[11-20:P9543; UTF16 306911]     objective incumbent
+[11-20:P9545; UTF16 306943]     concreteOptimum + ε := by
+[11-20:P9546; UTF16 306973]   linarith
+[11-20:P9550; UTF16 306987] 65. Mechanization Difficulty
+[11-20:P9551; UTF16 307016] ￼
+ATTACHED TABLE 1736036; native row/column order; 28 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Materialization relation", "Moderate"]
+ROW 2: ["Witness fibers", "Straightforward"]
+ROW 3: ["Finite section theorem", "Straightforward"]
+ROW 4: ["Symmetry obstruction", "Moderate"]
+ROW 5: ["Fiber-invariant proof transport", "Straightforward"]
+ROW 6: ["Refinement towers", "Moderate"]
+ROW 7: ["Tree witness gluing", "Moderate"]
+ROW 8: ["Acyclic semijoin extension", "Difficult"]
+ROW 9: ["Cyclic counterexample", "Straightforward"]
+ROW 10: ["Separator-DP witness extraction", "Difficult"]
+ROW 11: ["Finite self-reduction", "Moderate"]
+ROW 12: ["Exact geometric topology", "Difficult"]
+ROW 13: ["Certified geometric predicates", "Difficult"]
+ROW 14: ["General curved CAD geometry", "Research-level"]
+ROW 15: ["Product instantiation", "Moderate"]
+ROW 16: ["Joint tolerance semantics", "Difficult"]
+ROW 17: ["Adjustable robust materialization", "Difficult"]
+ROW 18: ["Nonanticipative recourse", "Difficult"]
+ROW 19: ["Construction-sequence checking", "Moderate"]
+ROW 20: ["Construction-sequence synthesis", "Hard"]
+ROW 21: ["Document coherence", "Moderate"]
+ROW 22: ["Serialization fidelity", "Difficult"]
+ROW 23: ["Materialization CEGAR", "Difficult"]
+ROW 24: ["Concrete optimality certificate", "Moderate"]
+ROW 25: ["Incremental rematerialization", "Difficult"]
+ROW 26: ["Whole-project PCMP checker", "Research-level"]
+ROW 27: ["Physical as-built conformance", "Outside Prompt-13 core"]
+[11-20:P9555; UTF16 307021] 66. Permanent Assumption Registry
+[11-20:P9556; UTF16 307055] ￼
+ATTACHED TABLE 1736052; native row/column order; 8 rows
+ROW 0: ["ID", "Assumption", "Used by"]
+ROW 1: ["ASSUMP-MAT1", "Theory fingerprints are immutable within one checked claim", "All exact theorems"]
+ROW 2: ["ASSUMP-MAT2", "Typed identity, units, and interface normalization are canonical", "Gluing and document theorems"]
+ROW 3: ["ASSUMP-MAT3", "Trusted local checkers are sound for their declared claims", "THM-MAT4, MAT19, MAT29"]
+ROW 4: ["ASSUMP-MAT4", "Dependency graphs are complete where exact incremental claims are made", "THM-MAT28"]
+ROW 5: ["ASSUMP-MAT5", "Global lower bounds cover every admitted concrete artifact", "THM-MAT23, MAT29"]
+ROW 6: ["ASSUMP-MAT6", "UNKNOWN produces neither proof nor exclusion", "CEGAR theorems"]
+ROW 7: ["ASSUMP-MAT7", "Active architectural-intent theory is included in witness selection", "THM-MAT27, MAT29"]
+[11-20:P9560; UTF16 307060] 67. Permanent Definition Registry
+[11-20:P9561; UTF16 307094] ￼
+ATTACHED TABLE 1736068; native row/column order; 36 rows
+ROW 0: ["ID", "Exact object", "Dependencies", "Status", "Formalization difficulty"]
+ROW 1: ["DEF-MAT1", "Semantic Design Specification", "Prompts 1–12", "Defined", "Moderate"]
+ROW 2: ["DEF-MAT2", "Concrete Build Artifact", "DEF-MAT1", "Defined", "Difficult"]
+ROW 3: ["DEF-MAT3", "Exact Materialization Relation", "DEF-MAT1–2", "Defined", "Difficult"]
+ROW 4: ["DEF-MAT4", "Materialization Fiber", "DEF-MAT3", "Defined", "Straightforward"]
+ROW 5: ["DEF-MAT5", "Exact Realizability and Status", "DEF-MAT4", "Defined", "Straightforward"]
+ROW 6: ["DEF-MAT6", "Constructive Materializer", "DEF-MAT3", "Defined", "Moderate"]
+ROW 7: ["DEF-MAT7", "Materialization Certificate", "DEF-MAT3", "Defined", "Moderate"]
+ROW 8: ["DEF-MAT8", "Fiber-Invariant Claim", "Exact abstraction map", "Defined", "Straightforward"]
+ROW 9: ["DEF-MAT9", "Materialization Experiment Theory", "Prompt-2 semantics", "Defined", "Difficult"]
+ROW 10: ["DEF-MAT10", "Realization-Complete Interface", "DEF-MAT9", "Defined", "Difficult"]
+ROW 11: ["DEF-MAT11", "Finite Refinement Tower", "DEF-MAT3", "Defined", "Moderate"]
+ROW 12: ["DEF-MAT12", "Compatible Local Witness Family", "DEF-MAT10", "Defined", "Moderate"]
+ROW 13: ["DEF-MAT13", "Constructive Separator Message", "Prompt-3 DP", "Defined", "Difficult"]
+ROW 14: ["DEF-MAT14", "Certified Geometry State", "Prompt-5 enclosures", "Defined", "Difficult"]
+ROW 15: ["DEF-MAT15", "Topological Embedding Witness", "DEF-MAT14", "Defined", "Difficult"]
+ROW 16: ["DEF-MAT16", "Semantic-to-Concrete Lineage", "DEF-MAT1–2", "Defined", "Difficult"]
+ROW 17: ["DEF-MAT17", "Product Instantiation Relation", "DEF-MAT2", "Defined", "Moderate"]
+ROW 18: ["DEF-MAT18", "Joint Tolerance Model", "Prompt-5 correlation", "Defined", "Difficult"]
+ROW 19: ["DEF-MAT19", "Nominal Realizability", "DEF-MAT18", "Defined", "Straightforward"]
+ROW 20: ["DEF-MAT20", "Fixed Robust Realizability", "DEF-MAT18", "Defined", "Moderate"]
+ROW 21: ["DEF-MAT21", "Adjustable Robust Realizability", "DEF-MAT18", "Defined", "Difficult"]
+ROW 22: ["DEF-MAT22", "Scenario-Specific Realizability", "DEF-MAT18", "Defined", "Moderate"]
+ROW 23: ["DEF-MAT23", "Construction State", "DEF-MAT2", "Defined", "Moderate"]
+ROW 24: ["DEF-MAT24", "Construction Action", "DEF-MAT23", "Defined", "Moderate"]
+ROW 25: ["DEF-MAT25", "Construction Sequence Witness", "DEF-MAT23–24", "Defined", "Moderate"]
+ROW 26: ["DEF-MAT26", "Document Projection", "DEF-MAT2", "Defined", "Moderate"]
+ROW 27: ["DEF-MAT27", "Document Coherence", "DEF-MAT26", "Defined", "Moderate"]
+ROW 28: ["DEF-MAT28", "Artifact Serialization", "DEF-MAT2", "Defined", "Moderate"]
+ROW 29: ["DEF-MAT29", "Materialization Gap", "Objective bounds", "Defined", "Moderate"]
+ROW 30: ["DEF-MAT30", "Certified Realizability Cut", "DEF-MAT4", "Defined", "Moderate"]
+ROW 31: ["DEF-MAT31", "Concrete Witness Portfolio", "Prompt-12 portfolio", "Defined", "Difficult"]
+ROW 32: ["DEF-MAT32", "Proof-Transport Ledger", "DEF-MAT8", "Defined", "Moderate"]
+ROW 33: ["DEF-MAT33", "Materialization Dependency Graph", "Prompt-11 dependencies", "Defined", "Difficult"]
+ROW 34: ["DEF-MAT34", "Proof-Carrying Materialization Package", "All materialization objects", "Defined", "Research-level"]
+ROW 35: ["DEF-MAT35", "Prompt-13 Complexity Profile", "Prompt-13 objects", "Defined", "Straightforward"]
+[11-20:P9565; UTF16 307099] 68. Lemma Registry
+[11-20:P9566; UTF16 307118] ￼
+ATTACHED TABLE 1736084; native row/column order; 9 rows
+ROW 0: ["ID", "Exact statement", "Dependencies", "Proof status"]
+ROW 1: ["LEM-MAT1", "Fiber invariance makes quotient claims well defined", "DEF-MAT8", "Proved"]
+ROW 2: ["LEM-MAT2", "Running intersection plus separator equality gives global variable consistency", "DEF-MAT12", "Proved"]
+ROW 3: ["LEM-MAT3", "Fully semijoin-consistent acyclic relations extend to global tuples", "THM-MAT11", "Proved"]
+ROW 4: ["LEM-MAT4", "Certified empty-fiber cuts preserve coverage of every concrete artifact", "DEF-MAT30", "Proved"]
+ROW 5: ["LEM-MAT5", "A valid global lower bound remains valid after cuts that remove only empty fibers", "DEF-MAT30", "Proved below"]
+ROW 6: ["LEM-MAT6", "A checked local geometric predicate inside one mandatory report cell has that exact report", "Prompt-5 boundary theorem", "Inherited"]
+ROW 7: ["LEM-MAT7", "A legal checked construction path is an existential reachability witness", "DEF-MAT25", "Used in THM-MAT19"]
+ROW 8: ["LEM-MAT8", "Label-preserving contextual representatives preserve menu identities", "Prompt-2/12", "Inherited"]
+[11-20:P9567; UTF16 307120] LEM-MAT5 — Lower-Bound Preservation Under Empty-Fiber Cuts
+[11-20:P9568; UTF16 307179] Suppose (L) is a lower bound over every admitted concrete artifact represented by the current semantic family.
+[11-20:P9569; UTF16 307290] Removing only semantic states with empty materialization fibers leaves (L) a valid lower bound over all admitted concrete artifacts.
+[11-20:P9571; UTF16 307429] An empty-fiber state represents no concrete artifact.
+[11-20:P9572; UTF16 307483] Removing it changes neither the admitted concrete universe nor its objective infimum.
+[11-20:P9573; UTF16 307569] Therefore any lower bound valid before removal remains valid afterward. ∎
+[11-20:P9577; UTF16 307646] 69. Theorem Registry
+[11-20:P9578; UTF16 307667] ￼
+ATTACHED TABLE 1736100; native row/column order; 32 rows
+ROW 0: ["ID", "Exact statement", "Dependencies", "Proof status"]
+ROW 1: ["THM-MAT1", "Canonical quotient classes are inhabited; recombined abstractions may be spurious", "Prompt-2 quotient", "Proved"]
+ROW 2: ["THM-MAT2", "Finite surjective abstraction maps admit sections", "DEF-MAT6", "Proved"]
+ROW 3: ["THM-MAT3", "Symmetry can obstruct equivariant deterministic materialization", "THM-MAT2", "Proved"]
+ROW 4: ["THM-MAT4", "Checked witnesses lie in the exact materialization fiber", "DEF-MAT3–4", "Proved"]
+ROW 5: ["THM-MAT5", "Fiber-invariant claims transport to concrete witnesses", "DEF-MAT8", "Proved"]
+ROW 6: ["THM-MAT6", "Fiber-varying claims cannot be inferred from the semantic state alone", "DEF-MAT8", "Proved"]
+ROW 7: ["THM-MAT7", "Materialization theory refines decision theory and can increase width", "DEF-MAT9", "Proved"]
+ROW 8: ["THM-MAT8", "Hidden cross-boundary dependencies make substitution unsound", "DEF-MAT10", "Proved"]
+ROW 9: ["THM-MAT9", "Compatible refinement towers compose", "DEF-MAT11", "Proved"]
+ROW 10: ["THM-MAT10", "Finite surjective refinement stages admit lifts", "DEF-MAT11", "Proved"]
+ROW 11: ["THM-MAT11", "Compatible local witnesses glue over a realization-complete join tree", "DEF-MAT12", "Proved"]
+ROW 12: ["THM-MAT12", "Pairwise consistency need not imply global realizability on cycles", "DEF-MAT12", "Proved"]
+ROW 13: ["THM-MAT13", "Exact separator-DP backpointers reconstruct a global witness", "DEF-MAT13", "Proved"]
+ROW 14: ["THM-MAT14", "Finite self-reduction extracts a witness from extension queries", "DEF-MAT5", "Proved"]
+ROW 15: ["THM-MAT15", "Complete materialization contextual equivalence justifies product substitution", "DEF-MAT9, MAT17", "Proved"]
+ROW 16: ["THM-MAT16", "Nominal, fixed, adjustable, and scenario-specific realizability are distinct", "DEF-MAT19–22", "Proved"]
+ROW 17: ["THM-MAT17", "Relative-displacement bounds certify robust clearance", "DEF-MAT18", "Proved"]
+ROW 18: ["THM-MAT18", "Static final-state feasibility does not imply constructibility", "DEF-MAT23–25", "Proved"]
+ROW 19: ["THM-MAT19", "A checked construction sequence proves scoped constructibility", "DEF-MAT25", "Proved"]
+ROW 20: ["THM-MAT20", "Single-source document projections agree on shared authoritative data", "DEF-MAT26–27", "Proved"]
+ROW 21: ["THM-MAT21", "Round-trip equivalence preserves only the declared export theory", "DEF-MAT28", "Proved"]
+ROW 22: ["THM-MAT22", "Semantic lower bounds need not be concretely attainable", "DEF-MAT29", "Proved"]
+ROW 23: ["THM-MAT23", "(U-L\\le\\varepsilon) certifies concrete (\\varepsilon)-optimality", "DEF-MAT29", "Proved"]
+ROW 24: ["THM-MAT24", "Materialization CEGAR is sound under checked cuts and witnesses", "ALG-MAT1", "Proved"]
+ROW 25: ["THM-MAT25", "Finite exact materialization CEGAR terminates under strict progress", "ALG-MAT1", "Proved"]
+ROW 26: ["THM-MAT26", "Heuristic materializer failure is not an unrealizability proof", "DEF-MAT5", "Proved"]
+ROW 27: ["THM-MAT27", "Arbitrary choice from a sovereignty-nonhomogeneous fiber can eliminate a human option", "DEF-MAT31, Prompt-12", "Proved"]
+ROW 28: ["THM-MAT28", "Incremental rematerialization equals cold checking under complete dependencies", "ALG-MAT2", "Proved"]
+ROW 29: ["THM-MAT29", "Whole-project Proof-Carrying Materialization theorem", "DEF-MAT34", "Proved"]
+ROW 30: ["THM-MAT30", "Restricted finite materialization realizability is NP-complete", "DEF-MAT3–5", "Proved"]
+ROW 31: ["THM-MAT31", "Minimum-cost product-family materialization is NP-hard", "DEF-MAT17", "Proved"]
+[11-20:P9582; UTF16 307672] 70. Proposition and Corollary Registry
+[11-20:P9583; UTF16 307711] ￼
+ATTACHED TABLE 1736116; native row/column order; 10 rows
+ROW 0: ["ID", "Statement", "Dependencies", "Proof status"]
+ROW 1: ["PRO-MAT1", "Separate nonempty refinement relations need not form one compatible chain", "DEF-MAT11", "Proved"]
+ROW 2: ["PRO-MAT2", "Clairvoyant scenario plans need not form a nonanticipative policy", "DEF-MAT21", "Proved"]
+ROW 3: ["PRO-MAT3", "Explicit acyclic PCMP checking has (O(N+E+\\sum c_i)) cost", "DEF-MAT34", "Proved"]
+ROW 4: ["COR-MAT1", "Independent absolute displacement bounds give (\\eta\\le a+b)", "THM-MAT17", "Proved"]
+ROW 5: ["COR-MAT2", "Shared exact translation cancels from relative displacement", "THM-MAT17", "Proved"]
+ROW 6: ["COR-MAT3", "Materialization contextual width is an upper information bound for decision width", "THM-MAT7", "Proved"]
+ROW 7: ["COR-MAT4", "A DP storing only class IDs is nonconstructive unless accompanied by extraction data", "THM-MAT13", "Immediate"]
+ROW 8: ["COR-MAT5", "A valid concrete witness gives an objective upper bound", "DEF-MAT29", "Immediate"]
+ROW 9: ["COR-MAT6", "A checked unrealizability proof permits a no-good cut", "DEF-MAT30", "Immediate"]
+[11-20:P9587; UTF16 307716] 71. Algorithm Registry
+[11-20:P9588; UTF16 307739] ￼
+ATTACHED TABLE 1736132; native row/column order; 16 rows
+ROW 0: ["ID", "Algorithm", "Correctness theorem or status"]
+ROW 1: ["ALG-MAT1", "MaterializationCEGAR", "THM-MAT24–25"]
+ROW 2: ["ALG-MAT2", "IncrementalRematerialize", "THM-MAT28"]
+ROW 3: ["ALG-MAT3", "CheckMaterialization", "THM-MAT4, MAT29"]
+ROW 4: ["ALG-MAT4", "RealizationAwareOptimize", "THM-MAT23–24, MAT29"]
+ROW 5: ["ALG-MAT5", "MaterializationRCVOCInterface", "Prompt-9 scheduling semantics"]
+ROW 6: ["ALG-MAT6", "RedTeamMaterialization", "Prompt-10 Claim Breaker soundness"]
+ROW 7: ["ALG-MAT7", "ExtractWitnessBySelfReduction", "THM-MAT14"]
+ROW 8: ["ALG-MAT8", "GlueLocalWitnesses", "THM-MAT11"]
+ROW 9: ["ALG-MAT9", "InstantiateProducts", "THM-MAT15; exact checker required"]
+ROW 10: ["ALG-MAT10", "CertifyToleranceRobustness", "THM-MAT16–17"]
+ROW 11: ["ALG-MAT11", "SynthesizeConstructionSequence", "THM-MAT19 after checking"]
+ROW 12: ["ALG-MAT12", "CompileProjectDocuments", "THM-MAT20"]
+ROW 13: ["ALG-MAT13", "BuildPCMP", "THM-MAT29"]
+ROW 14: ["ALG-MAT14", "TransportOrRecheckProofs", "THM-MAT5–6"]
+ROW 15: ["ALG-MAT15", "MaintainConcreteWitnessPortfolio", "THM-MAT27"]
+[11-20:P9592; UTF16 307744] 72. Conjecture Registry
+[11-20:P9593; UTF16 307768] ￼
+ATTACHED TABLE 1736148; native row/column order; 11 rows
+ROW 0: ["ID", "Exact conjecture", "Falsification condition"]
+ROW 1: ["CONJ-MAT1", "Most retained semantic states admit materialization without extensive backtracking", "A large fraction of high-quality states prove unrealizable"]
+ROW 2: ["CONJ-MAT2", "Realization-complete interfaces remain moderate in repetitive buildings", "Exact gluing requires nearly all internal detail"]
+ROW 3: ["CONJ-MAT3", "Tree or near-tree decompositions capture most constructive structure", "Cyclic global constraints dominate materialization"]
+ROW 4: ["CONJ-MAT4", "Product discretization produces manageable materialization gaps", "Catalog constraints routinely destroy semantic quality"]
+ROW 5: ["CONJ-MAT5", "Joint tolerance models remain compact enough for certified detailing", "Correlation requires near-explicit scenario enumeration"]
+ROW 6: ["CONJ-MAT6", "Most static artifacts admit practical legal construction sequences after materialization-aware optimization", "Sequence infeasibility repeatedly forces major redesign"]
+ROW 7: ["CONJ-MAT7", "Project documents can be generated from one authoritative artifact with little manual divergence", "Manual untracked edits remain structurally necessary"]
+ROW 8: ["CONJ-MAT8", "Concrete witness checking is substantially cheaper than witness discovery", "Checking repeatedly requires rerunning full synthesis"]
+ROW 9: ["CONJ-MAT9", "Incremental rematerialization touches a small artifact slice after ordinary changes", "Minor edits invalidate most geometry, products, and documents"]
+ROW 10: ["CONJ-MAT10", "A 190-room hotel can be materialized and checked on the target workstation", "Witness search, gluing, product solving, or checking exceeds practical resources"]
+[11-20:P9597; UTF16 307773] 73. Dependency DAG: Prompts 1–13
+[11-20:P9600; UTF16 307849] partial designs
+[11-20:P9601; UTF16 307865] evidence types
+[11-20:P9606; UTF16 307930] marked-menu decisions
+[11-20:P9608; UTF16 307975] canonical quotient
+[11-20:P9614; UTF16 308058] separator dynamic programming
+[11-20:P9619; UTF16 308138] exact CEGAR
+[11-20:P9620; UTF16 308150] proof-carrying symbolic refinement
+[11-20:P9624; UTF16 308214] certified numerical enclosures
+[11-20:P9627; UTF16 308289] joint uncertainty semantics
+[11-20:P9631; UTF16 308346] proof-carrying port envelopes
+[11-20:P9632; UTF16 308376] local physical elimination
+[11-20:P9633; UTF16 308403] relational composition
+[11-20:P9638; UTF16 308499] lineage
+[11-20:P9639; UTF16 308507] artifact invalidation
+[11-20:P9644; UTF16 308588] macro fibers
+[11-20:P9645; UTF16 308601] action closure
+[11-20:P9646; UTF16 308616] freeze / thaw
+[11-20:P9651; UTF16 308665] live computation agenda
+[11-20:P9652; UTF16 308689] search versus verification
+[11-20:P9658; UTF16 308781] adversarial domain semantics
+[11-20:P9662; UTF16 308840] Proof-Carrying Release
+[11-20:P9663; UTF16 308863] evidence dependencies
+[11-20:P9664; UTF16 308885] assurance checking
+[11-20:P9667; UTF16 308924] PROMPT 12
+[11-20:P9668; UTF16 308934] Architectural Sovereignty
+[11-20:P9669; UTF16 308960] human options
+[11-20:P9670; UTF16 308974] authority, consent,
+[11-20:P9671; UTF16 308994] trace and provenance
+[11-20:P9674; UTF16 309035] DEF-MAT1–MAT5
+[11-20:P9675; UTF16 309049] semantic specification
+[11-20:P9676; UTF16 309072] concrete artifact
+[11-20:P9677; UTF16 309090] materialization relation
+[11-20:P9678; UTF16 309115] fiber
+[11-20:P9679; UTF16 309121] realizability
+[11-20:P9681; UTF16 309145]         ├──────────────────────────────────┐
+[11-20:P9682; UTF16 309190]         ▼                                  ▼
+[11-20:P9683; UTF16 309235] THM-MAT1                            DEF-MAT6–MAT7
+[11-20:P9684; UTF16 309285] inhabited quotient                  materializer
+[11-20:P9685; UTF16 309334] versus spurious abstraction         and certificate
+[11-20:P9687; UTF16 309431]                               ┌────────────┼────────────┐
+[11-20:P9688; UTF16 309489]                               ▼            ▼            ▼
+[11-20:P9689; UTF16 309547]                          THM-MAT2      THM-MAT3     THM-MAT4
+[11-20:P9690; UTF16 309608]                          finite        symmetry      checked
+[11-20:P9691; UTF16 309669]                          section       obstruction   witness
+[11-20:P9692; UTF16 309730]                                                       soundness
+[11-20:P9693; UTF16 309794] DEF-MAT8
+[11-20:P9694; UTF16 309803] fiber-invariant claims
+[11-20:P9698; UTF16 309904] THM-MAT5                  THM-MAT6
+[11-20:P9699; UTF16 309939] proof transport            recheck limitation
+[11-20:P9702; UTF16 310005] DEF-MAT32
+[11-20:P9703; UTF16 310015] proof-transport ledger
+[11-20:P9706; UTF16 310058] PROMPT-11 assurance graph
+[11-20:P9708; UTF16 310085] DEF-MAT9–MAT10
+[11-20:P9709; UTF16 310100] materialization theory
+[11-20:P9710; UTF16 310123] realization-complete interfaces
+[11-20:P9714; UTF16 310233] THM-MAT7                  THM-MAT8
+[11-20:P9715; UTF16 310268] decision/materialization   hidden dependency
+[11-20:P9716; UTF16 310313] width relation             failure
+[11-20:P9719; UTF16 310416] materialization        separator refinement
+[11-20:P9720; UTF16 310460] separator states
+[11-20:P9722; UTF16 310478] DEF-MAT11
+[11-20:P9723; UTF16 310488] refinement tower
+[11-20:P9727; UTF16 310583] THM-MAT9                  THM-MAT10
+[11-20:P9728; UTF16 310619] tower composition          finite lifting
+[11-20:P9731; UTF16 310681] complete refinement chain
+[11-20:P9733; UTF16 310708] DEF-MAT12
+[11-20:P9734; UTF16 310718] compatible local witnesses
+[11-20:P9738; UTF16 310845] LEM-MAT2          THM-MAT12           LEM-MAT3
+[11-20:P9739; UTF16 310892] running           cyclic pairwise     acyclic semijoin
+[11-20:P9740; UTF16 310947] intersection      failure              extension
+[11-20:P9741; UTF16 310996]         │                                  │
+[11-20:P9742; UTF16 311041]         └────────────────┬─────────────────┘
+[11-20:P9744; UTF16 311113]                     THM-MAT11
+[11-20:P9745; UTF16 311143]                     global gluing
+[11-20:P9748; UTF16 311231]                     ALG-MAT8
+[11-20:P9750; UTF16 311261] PROMPT-3 separator DP
+[11-20:P9753; UTF16 311303] DEF-MAT13
+[11-20:P9754; UTF16 311313] constructive messages
+[11-20:P9758; UTF16 311413] THM-MAT13                 THM-MAT14
+[11-20:P9759; UTF16 311449] backpointer               finite self-reduction
+[11-20:P9760; UTF16 311497] reconstruction                  │
+[11-20:P9761; UTF16 311531]         │                       ▼
+[11-20:P9762; UTF16 311565]         └────────────────── ALG-MAT7
+[11-20:P9764; UTF16 311603] DEF-MAT14–MAT16
+[11-20:P9765; UTF16 311619] certified geometry
+[11-20:P9766; UTF16 311638] topology embedding
+[11-20:P9767; UTF16 311657] entity lineage
+[11-20:P9770; UTF16 311692] geometric and topological
+[11-20:P9771; UTF16 311718] materialization checks
+[11-20:P9774; UTF16 311761] DEF-MAT3 materialization relation
+[11-20:P9776; UTF16 311796] DEF-MAT17
+[11-20:P9777; UTF16 311806] product instantiation
+[11-20:P9781; UTF16 311906] THM-MAT15                 THM-MAT31
+[11-20:P9782; UTF16 311942] safe substitution          configuration hardness
+[11-20:P9785; UTF16 312012] ALG-MAT9
+[11-20:P9787; UTF16 312022] DEF-MAT18–MAT22
+[11-20:P9788; UTF16 312038] joint tolerance
+[11-20:P9789; UTF16 312054] nominal / fixed /
+[11-20:P9790; UTF16 312072] adjustable / scenario-specific
+[11-20:P9792; UTF16 312113]         ├──────────────┬─────────────────┐
+[11-20:P9793; UTF16 312156]         ▼              ▼                 ▼
+[11-20:P9794; UTF16 312199] THM-MAT16         THM-MAT17         PRO-MAT2

@@ -1,0 +1,359 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P14618; UTF16 489738] (\mathsf{Upd}(\Gamma,u,y)) be the sound knowledge update;
+[11-20:P14619; UTF16 489796] (Y(\Gamma,u)) be every observation possible after command (u).
+[11-20:P14620; UTF16 489859] Define backward:
+[11-20:P14621; UTF16 489876] \mathcal K_H^{\mathrm{goal}}, ]
+[11-20:P14623; UTF16 489912] \left{ \Gamma \in \mathcal K_t^{\mathrm{safe}} : \exists u \in U_{\mathrm{authorized}}(\Gamma) ; \forall y \in Y(\Gamma,u), ; \mathsf{Upd}(\Gamma,u,y) \in \mathcal V_{t+1} \right}. ]
+[11-20:P14624; UTF16 490095] The action is selected before the future observation (y).
+[11-20:P14625; UTF16 490153] Thus the recursion is nonanticipative.
+[11-20:P14629; UTF16 490195] THM-ODT15 — Viability-Kernel Membership Is Equivalent to Existence of a Horizon-Safe Nonanticipative Policy
+[11-20:P14630; UTF16 490303] For finite horizon (H),
+[11-20:P14631; UTF16 490327] [ \Gamma_t \in \mathcal V_t ]
+[11-20:P14632; UTF16 490357] if and only if there exists a history/knowledge-state policy that:
+[11-20:P14633; UTF16 490424] selects authorized actions using current information only;
+[11-20:P14634; UTF16 490483] keeps every possible knowledge state inside the safety family;
+[11-20:P14635; UTF16 490546] reaches (\mathcal K_H^{\mathrm{goal}}).
+[11-20:P14637; UTF16 490592] Proceed by backward induction.
+[11-20:P14638; UTF16 490623] Base (t=H)
+[11-20:P14639; UTF16 490634] By definition,
+[11-20:P14640; UTF16 490649] [ \Gamma_H\in\mathcal V_H ]
+[11-20:P14641; UTF16 490677] exactly when it is an accepted terminal knowledge state.
+[11-20:P14642; UTF16 490734] The zero-step policy satisfies the claim.
+[11-20:P14644; UTF16 490791] Assume the theorem holds at (t+1).
+[11-20:P14647; UTF16 490848] [ \Gamma_t \in \mathcal V_t. ]
+[11-20:P14648; UTF16 490879] By definition, there exists authorized (u_t) such that for every possible observation (y),
+[11-20:P14649; UTF16 490970] \mathsf{Upd}(\Gamma_t,u_t,y) \in \mathcal V_{t+1}. ]
+[11-20:P14650; UTF16 491023] By the induction hypothesis, from each possible (\Gamma_{t+1}) there exists a safe nonanticipative continuation policy.
+[11-20:P14651; UTF16 491143] Choose (u_t) now and then apply the corresponding continuation after the observation is received.
+[11-20:P14652; UTF16 491241] This forms a nonanticipative horizon-safe policy.
+[11-20:P14654; UTF16 491309] Suppose a nonanticipative horizon-safe policy exists from (\Gamma_t).
+[11-20:P14655; UTF16 491379] Its first action (u_t) is authorized and depends only on current information.
+[11-20:P14656; UTF16 491457] For every possible observation (y), the resulting knowledge state must permit a safe continuation to the goal.
+[11-20:P14658; UTF16 491597] [ \mathsf{Upd}(\Gamma_t,u_t,y) \in \mathcal V_{t+1}. ]
+[11-20:P14659; UTF16 491652] Thus (\Gamma_t) satisfies the defining condition of (\mathcal V_t).
+[11-20:P14661; UTF16 491722] One-step safe control is weaker than viability.
+[11-20:P14662; UTF16 491770] A one-step-safe action can enter a knowledge state outside (\mathcal V_{t+1}).
+[11-20:P14666; UTF16 491852] 40. Safe Online Performance Optimization
+[11-20:P14667; UTF16 491893] Operational optimization may minimize:
+[11-20:P14669; UTF16 491940] demand cost;
+[11-20:P14672; UTF16 491967] discomfort;
+[11-20:P14673; UTF16 491979] maintenance burden.
+[11-20:P14674; UTF16 491999] The admissible command set is
+[11-20:P14675; UTF16 492029] U_{\mathrm{safe}}(\Gamma_t) \cap U_{\mathrm{authorized}}(\Gamma_t) \cap U_{\mathrm{sov}}(\Gamma_t). ]
+[11-20:P14676; UTF16 492131] The performance optimizer may solve
+[11-20:P14677; UTF16 492167] [ \min_{u\in U_{\mathrm{adm}}(\Gamma_t)} J_t(u). ]
+[11-20:P14678; UTF16 492218] The optimizer may be untrusted.
+[11-20:P14679; UTF16 492250] The shield and authority checker remain authoritative.
+[11-20:P14683; UTF16 492308] 41. Operational Architectural Sovereignty
+[11-20:P14684; UTF16 492350] Prompt-12 sovereignty remains active during operation.
+[11-20:P14685; UTF16 492405] Operational actions may affect protected architecture through:
+[11-20:P14686; UTF16 492468] lighting scenes;
+[11-20:P14687; UTF16 492485] façade devices;
+[11-20:P14688; UTF16 492501] movable partitions;
+[11-20:P14689; UTF16 492521] public-space controls;
+[11-20:P14690; UTF16 492544] replacement finishes;
+[11-20:P14692; UTF16 492586] permanent overrides.
+[11-20:P14693; UTF16 492607] Operational actions remain classified as:
+[11-20:P14695; UTF16 492655] CONSENT_REQUIRED;
+[11-20:P14697; UTF16 492684] “Operations” does not imply authority to alter protected architecture.
+[11-20:P14701; UTF16 492758] 42. Time-Scoped Evidence Applicability
+[11-20:P14702; UTF16 492797] DEF-ODT27 — Time-Scoped Evidence Applicability
+[11-20:P14703; UTF16 492844] For evidence atom (e), define
+[11-20:P14704; UTF16 492874] [ \mathsf{App}_e(t,z) \in {\mathsf{true},\mathsf{false}}. ]
+[11-20:P14705; UTF16 492934] Applicability may depend on:
+[11-20:P14707; UTF16 492969] accumulated operation;
+[11-20:P14708; UTF16 492992] calibration interval;
+[11-20:P14710; UTF16 493032] maintenance event;
+[11-20:P14711; UTF16 493051] control version;
+[11-20:P14713; UTF16 493083] environmental regime;
+[11-20:P14714; UTF16 493105] degradation state.
+[11-20:P14715; UTF16 493124] Historical bytes may remain authentic after current applicability expires.
+[11-20:P14719; UTF16 493202] 43. Evidence Expiration
+[11-20:P14720; UTF16 493226] THM-ODT16 — Expiration of a Necessary Evidence Premise Reopens Every Claim Whose Remaining Proof Routes Depend on It
+[11-20:P14721; UTF16 493343] Let (\mathcal D_t(C)) be the currently valid derivations of claim (C).
+[11-20:P14722; UTF16 493414] Suppose every derivation
+[11-20:P14723; UTF16 493439] [ D \in \mathcal D_t(C) ]
+[11-20:P14724; UTF16 493465] uses evidence (e).
+[11-20:P14726; UTF16 493487] \mathsf{false} ]
+[11-20:P14727; UTF16 493504] throughout the current knowledge set and no replacement proof route exists, then (C) is no longer assurance closed at (t').
+[11-20:P14729; UTF16 493634] Every old derivation contains (e) as a required applicable premise.
+[11-20:P14730; UTF16 493702] At (t'), that premise fails.
+[11-20:P14731; UTF16 493731] By Prompt-11 derivation semantics, each such derivation becomes invalid.
+[11-20:P14732; UTF16 493804] By hypothesis, no alternative valid derivation remains.
+[11-20:P14733; UTF16 493860] Therefore (C) has no active proof and reopens. ∎
+[11-20:P14734; UTF16 493909] Raw historical evidence remains authentic.
+[11-20:P14735; UTF16 493952] Its current use changed.
+[11-20:P14739; UTF16 493980] 44. Lifecycle Assurance Is Nonmonotone
+[11-20:P14740; UTF16 494019] PRO-ODT6 — Operational Assurance Can Close, Reopen, and Close Again
+[11-20:P14742; UTF16 494100] At (t_0), airflow sensor calibration is valid. The airflow claim is closed.
+[11-20:P14743; UTF16 494176] At (t_1), calibration expires. Every active proof route uses that calibration. The claim reopens.
+[11-20:P14744; UTF16 494274] At (t_2), the sensor is recalibrated or an independent applicable measurement is acquired. A new proof route closes the claim.
+[11-20:P14745; UTF16 494401] Thus closure is not monotone over lifecycle time. ∎
+[11-20:P14746; UTF16 494453] No contradiction exists because evidence applicability changed.
+[11-20:P14750; UTF16 494520] 45. Operational Assurance Leases
+[11-20:P14751; UTF16 494553] DEF-ODT28 — Operational Assurance Lease
+[11-20:P14752; UTF16 494593] For claim (C), an Operational Assurance Lease
+[11-20:P14753; UTF16 494639] \left( t, h, \mathsf{ReachCert}, \mathsf{ClaimCell}, \mathsf{Premises}, \mathsf{Version} \right) ]
+[11-20:P14754; UTF16 494738] certifies (C) over
+[11-20:P14755; UTF16 494757] [ [t,t+h] ]
+[11-20:P14756; UTF16 494769] provided all declared premises remain valid.
+[11-20:P14757; UTF16 494814] The premises may include:
+[11-20:P14758; UTF16 494840] reachable-state enclosure;
+[11-20:P14759; UTF16 494867] disturbance domain;
+[11-20:P14760; UTF16 494887] fault domain;
+[11-20:P14763; UTF16 494940] sensor calibration;
+[11-20:P14765; UTF16 494976] maintenance state.
+[11-20:P14769; UTF16 494998] THM-ODT17 — Reachability and Evidence Validity Yield a Finite Operational Assurance Lease
+[11-20:P14772; UTF16 495151] every actual trajectory over ([t,t+h]) belongs to a certified reach set [ \mathcal R_{t+h}; ]
+[11-20:P14773; UTF16 495245] every trajectory/state in the reach set satisfies accepted claim report (r);
+[11-20:P14774; UTF16 495322] every model, evidence, calibration, controller, disturbance, and authority premise used by the proof remains valid through (t+h).
+[11-20:P14775; UTF16 495452] Then claim (C) has report (r) throughout ([t,t+h]).
+[11-20:P14777; UTF16 495510] The actual trajectory lies in (\mathcal R_{t+h}).
+[11-20:P14778; UTF16 495560] Every state in every trajectory of (\mathcal R_{t+h}) has report (r).
+[11-20:P14779; UTF16 495630] All proof premises remain applicable through the interval.
+[11-20:P14780; UTF16 495689] Therefore the actual trajectory has report (r) throughout the interval. ∎
+[11-20:P14781; UTF16 495763] At lease expiry, ANANKE must:
+[11-20:P14782; UTF16 495793] renew;
+[11-20:P14783; UTF16 495800] observe;
+[11-20:P14784; UTF16 495809] recertify;
+[11-20:P14785; UTF16 495820] or reopen the claim.
+[11-20:P14789; UTF16 495844] COR-ODT2 — Conjunctive Assurance Horizon
+[11-20:P14790; UTF16 495885] Suppose whole operational release requires
+[11-20:P14791; UTF16 495928] [ C_1\land\cdots\land C_m ]
+[11-20:P14792; UTF16 495956] and each (C_i) has a guaranteed lease horizon (h_i).
+[11-20:P14793; UTF16 496009] Then the conjunction is guaranteed for at least
+[11-20:P14794; UTF16 496057] \min_i h_i. } ]
+[11-20:P14796; UTF16 496079] Every claim is valid throughout the shortest interval.
+[11-20:P14797; UTF16 496134] Therefore their conjunction is valid throughout that interval. ∎
+[11-20:P14798; UTF16 496199] The actual conjunction may remain valid longer through later renewal or alternative proof routes.
+[11-20:P14802; UTF16 496300] 46. Twin Drift and Claim Desynchronization
+[11-20:P14803; UTF16 496343] Prompt 15 permanently distinguishes:
+[11-20:P14804; UTF16 496380] Physical drift
+[11-20:P14805; UTF16 496395] The building changes physically.
+[11-20:P14806; UTF16 496428] Parameter drift
+[11-20:P14807; UTF16 496444] Model parameters change.
+[11-20:P14808; UTF16 496469] Sensor drift
+[11-20:P14809; UTF16 496482] The observation relation changes.
+[11-20:P14810; UTF16 496516] Model drift
+[11-20:P14811; UTF16 496528] The model no longer encloses observed physical behavior.
+[11-20:P14812; UTF16 496585] Evidence drift
+[11-20:P14813; UTF16 496600] Evidence becomes stale or inapplicable.
+[11-20:P14814; UTF16 496640] Epistemic drift
+[11-20:P14815; UTF16 496656] (\Gamma_t) broadens.
+[11-20:P14816; UTF16 496677] Decision drift
+[11-20:P14817; UTF16 496692] (\Gamma_t) crosses an operational report boundary.
+[11-20:P14821; UTF16 496746] DEF-ODT29 — Claim Desynchronization
+[11-20:P14822; UTF16 496782] For claim (C), the twin is desynchronized when
+[11-20:P14823; UTF16 496829] [ \exists z_1,z_2 \in \Gamma_t ]
+[11-20:P14825; UTF16 496872] [ r_C(z_1) \neq r_C(z_2). ]
+[11-20:P14826; UTF16 496900] A large state uncertainty can remain claim synchronized.
+[11-20:P14827; UTF16 496957] A tiny new uncertainty can destroy synchronization if it crosses a mandatory boundary.
+[11-20:P14831; UTF16 497047] 47. Runtime Assumption Monitoring
+[11-20:P14832; UTF16 497081] DEF-ODT30 — Runtime Assumption Monitor
+[11-20:P14833; UTF16 497120] For proof assumption (A), maintain
+[11-20:P14834; UTF16 497155] [ \mathsf{Status}_A(t) \in { \mathsf{VALID}, \mathsf{VIOLATED}, \mathsf{UNRESOLVED}, \mathsf{EXPIRED} }. ]
+[11-20:P14835; UTF16 497262] Monitored assumptions may include:
+[11-20:P14836; UTF16 497297] occupancy bounds;
+[11-20:P14837; UTF16 497315] weather bounds;
+[11-20:P14840; UTF16 497371] maintenance state;
+[11-20:P14843; UTF16 497424] actuator availability.
+[11-20:P14844; UTF16 497447] A proof is active only while every required assumption remains valid.
+[11-20:P14848; UTF16 497520] THM-ODT18 — Runtime Assumption Violation Invalidates Every Dependent Operational Proof Path
+[11-20:P14849; UTF16 497612] Let assumption (A) be a premise in operational derivation (D) of claim (C).
+[11-20:P14850; UTF16 497688] If (A) becomes violated, unresolved, or expired, then (D) is no longer an active valid derivation.
+[11-20:P14851; UTF16 497787] Every dependent proof path is invalidated.
+[11-20:P14852; UTF16 497830] Alternative proof routes not depending on (A) may survive.
+[11-20:P14854; UTF16 497895] Prompt-11 assurance soundness requires every derivation premise to be valid and applicable.
+[11-20:P14855; UTF16 497987] A violated, unresolved, or expired premise fails that condition.
+[11-20:P14856; UTF16 498052] Therefore every derivation containing it is invalid.
+[11-20:P14857; UTF16 498105] Dependency completeness identifies every affected path.
+[11-20:P14858; UTF16 498161] Unaffected alternative derivations remain valid when all their premises remain valid. ∎
+[11-20:P14862; UTF16 498252] 48. Fault-Tolerant Operation Under Ambiguity
+[11-20:P14863; UTF16 498297] A fault-specific safe set may be written
+[11-20:P14864; UTF16 498338] [ \mathcal S_f. ]
+[11-20:P14865; UTF16 498356] When several modes remain possible, a command must be safe for every possible state and mode unless the action theory permits mode-dependent observations before execution.
+[11-20:P14869; UTF16 498531] THM-ODT19 — A Common Robustly Safe Action Can Be Executed Without Unique Fault Isolation
+[11-20:P14872; UTF16 498656] Let command (u) satisfy
+[11-20:P14873; UTF16 498680] [ \forall z\in\Gamma_t, \forall u^{\mathrm{phys}} \in \mathsf{ActRel}(u,a(z)), \forall w\in W_t, \forall z' \in \widetilde T^{\mathrm{op}}(z,u^{\mathrm{phys}},w), \qquad z'\in\mathcal S. ]
+[11-20:P14874; UTF16 498869] Then the actual successor lies in (\mathcal S), regardless of which fault mode in (\mathcal F_t) is actual.
+[11-20:P14877; UTF16 499023] The actual actuator realization and disturbance are included in the universal quantifiers.
+[11-20:P14878; UTF16 499114] Therefore the actual successor belongs to (\mathcal S). ∎
+[11-20:P14879; UTF16 499172] Unique fault identity is unnecessary when one common safe action exists.
+[11-20:P14880; UTF16 499245] If different possible modes require conflicting actions, further diagnosis or a conservative fallback is required.
+[11-20:P14884; UTF16 499363] 49. Passive Monitoring Versus Active Diagnosis
+[11-20:P14885; UTF16 499410] PRO-ODT7 — Passive Nondiagnosability Does Not Imply Active Nondiagnosability
+[11-20:P14887; UTF16 499500] Let two fault modes (F_1,F_2) produce the same output under normal input (u=0):
+[11-20:P14888; UTF16 499580] Y_0(F_2)
+[11-20:P14890; UTF16 499596] Let one safe test input (u=1) produce:
+[11-20:P14891; UTF16 499635] {1}, ]
+[11-20:P14892; UTF16 499642] {2}. ]
+[11-20:P14893; UTF16 499649] Passive observations cannot distinguish the modes.
+[11-20:P14894; UTF16 499700] The safe active input does.
+[11-20:P14896; UTF16 499730] Active diagnosis remains subject to:
+[11-20:P14901; UTF16 499808] equipment limits.
+[11-20:P14905; UTF16 499829] 50. Maintenance Replacement as Materialization Rewrite
+[11-20:P14906; UTF16 499884] A component replacement may alter:
+[11-20:P14907; UTF16 499919] physical asset identity;
+[11-20:P14909; UTF16 499962] PCPE applicability;
+[11-20:P14910; UTF16 499982] control interface;
+[11-20:P14911; UTF16 500001] electrical demand;
+[11-20:P14914; UTF16 500050] architectural appearance;
+[11-20:P14915; UTF16 500076] warranty state.
+[11-20:P14916; UTF16 500092] Therefore replacement is not generally equivalent to
+[11-20:P14917; UTF16 500145] [ d\mapsto0. ]
+[11-20:P14918; UTF16 500160] It may require:
+[11-20:P14919; UTF16 500176] Prompt-13 rematerialization;
+[11-20:P14920; UTF16 500205] Prompt-14 physical reconciliation;
+[11-20:P14921; UTF16 500240] Prompt-12 sovereignty checking;
+[11-20:P14922; UTF16 500272] Prompt-11 assurance recertification.
+[11-20:P14926; UTF16 500312] 51. Operational Algorithms
+[11-20:P14927; UTF16 500339] ALG-ODT1 — UpdateOperationalTwin
+[11-20:P14929; UTF16 500378]     prior PCOT state
+[11-20:P14930; UTF16 500399]     commanded controls
+[11-20:P14931; UTF16 500422]     actuator evidence
+[11-20:P14932; UTF16 500444]     disturbances
+[11-20:P14933; UTF16 500461]     maintenance actions
+[11-20:P14934; UTF16 500485]     observations
+[11-20:P14936; UTF16 500525]     operational model family
+[11-20:P14938; UTF16 500555] 1. Predict the complete augmented state set
+[11-20:P14939; UTF16 500599]    through:
+[11-20:P14940; UTF16 500611]        plant transitions
+[11-20:P14941; UTF16 500636]        degradation
+[11-20:P14942; UTF16 500655]        fault transitions
+[11-20:P14943; UTF16 500680]        sensor-health transitions
+[11-20:P14944; UTF16 500713]        actuator-health transitions
+[11-20:P14945; UTF16 500748]        control-version transitions
+[11-20:P14946; UTF16 500783]        maintenance relations
+[11-20:P14947; UTF16 500812]        evidence-state transitions.
+[11-20:P14949; UTF16 500848] 2. Intersect with the complete joint
+[11-20:P14950; UTF16 500885]    observation relation.
+[11-20:P14952; UTF16 500911] 3. Preserve:
+[11-20:P14953; UTF16 500924]        shared disturbances
+[11-20:P14954; UTF16 500951]        common sensor failures
+[11-20:P14955; UTF16 500981]        common calibration
+[11-20:P14956; UTF16 501007]        actuator-mode alternatives
+[11-20:P14957; UTF16 501041]        model-mode alternatives.
+[11-20:P14959; UTF16 501074] 4. Remove a hypothesis only through a
+[11-20:P14960; UTF16 501112]    checked inconsistency proof.
+[11-20:P14962; UTF16 501145] 5. If the resulting knowledge set is empty:
+[11-20:P14963; UTF16 501189]        return EVIDENCE_OR_MODEL_CONFLICT.
+[11-20:P14966; UTF16 501246]        claim synchronization
+[11-20:P14967; UTF16 501275]        fault hypotheses
+[11-20:P14968; UTF16 501299]        degradation bounds
+[11-20:P14969; UTF16 501325]        safe controls
+[11-20:P14970; UTF16 501346]        viability
+[11-20:P14971; UTF16 501363]        maintenance obligations
+[11-20:P14972; UTF16 501394]        model validity
+[11-20:P14973; UTF16 501416]        assumption status
+[11-20:P14974; UTF16 501441]        assurance leases.
+[11-20:P14977; UTF16 501474]     updated proof-carrying operational twin
+[11-20:P14978; UTF16 501518] Correctness follows THM-ODT1.
+[11-20:P14982; UTF16 501551] ALG-ODT2 — DiagnoseOperationalFaults
+[11-20:P14984; UTF16 501594]     augmented knowledge set
+[11-20:P14985; UTF16 501622]     fault taxonomy
+[11-20:P14986; UTF16 501641]     plant, sensor, and actuator models
+[11-20:P14987; UTF16 501680]     accepted evidence
+[11-20:P14989; UTF16 501703] PROJECT
+[11-20:P14990; UTF16 501711]     current possible fault modes
+[11-20:P14993; UTF16 501755]     CERTIFIED_HEALTHY
+[11-20:P14994; UTF16 501777]     FAULT_PRESENT
+[11-20:P14995; UTF16 501795]     FAULT_ISOLATED
+[11-20:P14996; UTF16 501814]     MULTIPLE_FAULTS_POSSIBLE
+[11-20:P14999; UTF16 501859] CHECK whether every remaining state has
+[11-20:P15000; UTF16 501899] the same maintenance/control report
+[11-20:P15002; UTF16 501936] IF yes:
+[11-20:P15003; UTF16 501944]     return DECISION_ISOLATED
+[11-20:P15006; UTF16 501980]     expose safe diagnostic experiments
+[11-20:P15007; UTF16 502019]     to Prompt 9
+[11-20:P15009; UTF16 502036] NEVER
+[11-20:P15010; UTF16 502042]     promote a high-probability mode
+[11-20:P15011; UTF16 502078]     into exact isolation without an
+[11-20:P15012; UTF16 502114]     authorized probabilistic decision rule
+[11-20:P15016; UTF16 502160] ALG-ODT3 — PlanSafeActiveDiagnosis
+[11-20:P15018; UTF16 502201]     current augmented knowledge set
+[11-20:P15019; UTF16 502237]     fault hypotheses
+[11-20:P15020; UTF16 502258]     diagnostic experiment library
+[11-20:P15021; UTF16 502292]     safety and comfort constraints
+[11-20:P15022; UTF16 502327]     sovereignty and authority constraints
+[11-20:P15024; UTF16 502370] FOR every diagnostic experiment:
+[11-20:P15026; UTF16 502404]     compute certified reachable set
+[11-20:P15028; UTF16 502441]     reject if the experiment may violate:
+[11-20:P15030; UTF16 502498]         equipment limits
+[11-20:P15031; UTF16 502523]         sovereignty
+[11-20:P15033; UTF16 502561]         required comfort policy
+[11-20:P15035; UTF16 502594]     compute outcome set for each
+[11-20:P15036; UTF16 502627]     remaining hypothesis
+[11-20:P15038; UTF16 502653]     record:
+[11-20:P15039; UTF16 502665]         guaranteed separations
+[11-20:P15040; UTF16 502696]         possible separations
+[11-20:P15041; UTF16 502725]         cost
+[11-20:P15042; UTF16 502738]         downtime
+[11-20:P15043; UTF16 502755]         physical disturbance
+[11-20:P15044; UTF16 502784]         claim-closure effect
+[11-20:P15047; UTF16 502821]     safe diagnostic actions and
+[11-20:P15048; UTF16 502853]     computation metadata to Prompt 9
+[11-20:P15052; UTF16 502893] ALG-ODT4 — CertifiedChangePointDetect
+[11-20:P15054; UTF16 502937]     operational evidence history
+[11-20:P15055; UTF16 502970]     no-change trajectory model
+[11-20:P15056; UTF16 503001]     changed/fault model family
+[11-20:P15059; UTF16 503041]     every no-change trajectory still
+[11-20:P15060; UTF16 503078]     compatible with the evidence
+[11-20:P15062; UTF16 503112] IF no no-change trajectory remains
+[11-20:P15063; UTF16 503147] and the complete model remains consistent:
+[11-20:P15064; UTF16 503190]     return CERTIFIED_CHANGE
+[11-20:P15065; UTF16 503218]     with earliest/latest possible
+[11-20:P15066; UTF16 503252]     change-time interval
+[11-20:P15068; UTF16 503278] IF changed and unchanged trajectories remain:
+[11-20:P15069; UTF16 503324]     return UNRESOLVED
+[11-20:P15071; UTF16 503347] IF no trajectory under any admitted
+[11-20:P15072; UTF16 503383] model remains:
+[11-20:P15073; UTF16 503398]     return EVIDENCE_OR_MODEL_CONFLICT
+[11-20:P15077; UTF16 503439] ALG-ODT5 — CertifyDegradationAndFailureHorizon
+[11-20:P15079; UTF16 503492]     current degradation set
+[11-20:P15080; UTF16 503520]     degradation transition relation
+[11-20:P15081; UTF16 503556]     operational policy
+[11-20:P15082; UTF16 503579]     disturbance domain
+[11-20:P15083; UTF16 503602]     failure claims
+[11-20:P15086; UTF16 503630]     certified reachable degradation tube
+[11-20:P15088; UTF16 503672] FOR every failure claim:
+[11-20:P15090; UTF16 503710]         earliest possible failure
+[11-20:P15091; UTF16 503744]         latest possible failure
+[11-20:P15092; UTF16 503776]         guaranteed safe horizon
+[11-20:P15095; UTF16 503816]     interval prognosis
+[11-20:P15096; UTF16 503839]     claim-relative horizons
+[11-20:P15101; UTF16 503886] ALG-ODT6 — RuntimeSafetyShield
+[11-20:P15103; UTF16 503923]     proposed command
+[11-20:P15105; UTF16 503972]     safe operating set
+[11-20:P15106; UTF16 503995]     actuator-health relation
+[11-20:P15108; UTF16 504047]     fallback policy
+[11-20:P15110; UTF16 504068] CHECK proposed command over every:
+[11-20:P15111; UTF16 504103]     physical state
+[11-20:P15112; UTF16 504122]     fault mode
+[11-20:P15113; UTF16 504137]     sensor-independent plant state
+[11-20:P15114; UTF16 504172]     actuator mode
+[11-20:P15115; UTF16 504190]     disturbance
+[11-20:P15116; UTF16 504206]     transition successor
+[11-20:P15118; UTF16 504232] IF robustly safe:
+[11-20:P15119; UTF16 504250]     authorize proposal
+[11-20:P15122; UTF16 504280]     search for another certified safe command
+[11-20:P15124; UTF16 504327] IF no certified safe command exists:
+[11-20:P15125; UTF16 504364]     invoke governed fallback:
+[11-20:P15126; UTF16 504394]         shutdown
+[11-20:P15127; UTF16 504411]         derate
+[11-20:P15128; UTF16 504426]         maintenance
+[11-20:P15129; UTF16 504446]         emergency policy
+[11-20:P15132; UTF16 504479]     committed action
+[11-20:P15133; UTF16 504500]     safety certificate
+[11-20:P15134; UTF16 504523] Correctness is THM-ODT14.
+[11-20:P15138; UTF16 504552] ALG-ODT7 — PlanCertifiedMaintenance
+[11-20:P15140; UTF16 504594]     fault/degradation knowledge
+[11-20:P15141; UTF16 504626]     failure-time bounds
+[11-20:P15142; UTF16 504650]     maintenance action library
+[11-20:P15143; UTF16 504681]     action durations
+[11-20:P15144; UTF16 504702]     downtime constraints
+[11-20:P15145; UTF16 504727]     safety constraints
+[11-20:P15146; UTF16 504750]     product and evidence dependencies
+[11-20:P15148; UTF16 504789] GENERATE maintenance plans
+[11-20:P15150; UTF16 504817] FOR every plan:
+[11-20:P15152; UTF16 504844]         nonanticipativity

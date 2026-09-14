@@ -1,0 +1,382 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P35288; UTF16 1157141] def RightsFeasible
+[21-30:P35289; UTF16 1157160]     (rights : Set (Allocation → Prop))
+[21-30:P35290; UTF16 1157199]     (x : Allocation) : Prop :=
+[21-30:P35291; UTF16 1157230]   ∀ R ∈ rights, R x
+[21-30:P35292; UTF16 1157250] Societal release fiber
+[21-30:P35293; UTF16 1157273] def SocietalReleaseFiber
+[21-30:P35294; UTF16 1157298]     (target : SocietalOutcome)
+[21-30:P35295; UTF16 1157329]     (state : SocietalState)
+[21-30:P35296; UTF16 1157357]     (mode : SocietalMode) :
+[21-30:P35297; UTF16 1157385]     Set SocietalWitness :=
+[21-30:P35299; UTF16 1157419]     SocietalValid target state mode w}
+[21-30:P35300; UTF16 1157458] PCSAR
+[21-30:P35301; UTF16 1157464] structure PCSAR where
+[21-30:P35303; UTF16 1157508]   stakeholders : StakeholderStore
+[21-30:P35304; UTF16 1157542]   incidence : IncidenceStore
+[21-30:P35305; UTF16 1157571]   resources : ResourceAllocationStore
+[21-30:P35306; UTF16 1157609]   access : AccessibilityStore
+[21-30:P35307; UTF16 1157639]   affordability : AffordabilityStore
+[21-30:P35308; UTF16 1157676]   fairness : FairnessTheoryStore
+[21-30:P35309; UTF16 1157709]   preferences : PreferenceStore
+[21-30:P35310; UTF16 1157741]   publicGoods : PublicGoodStore
+[21-30:P35311; UTF16 1157773]   costGames : CostGameStore
+[21-30:P35312; UTF16 1157801]   collectiveChoice : SocialChoiceStore
+[21-30:P35314; UTF16 1157870]   rights : RightsStore
+[21-30:P35320; UTF16 1157949] 44. Mechanization Difficulty
+[21-30:P35321; UTF16 1157978] ￼
+ATTACHED TABLE 1737043; native row/column order; 29 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Stakeholder typing", "Moderate"]
+ROW 2: ["Incidence-event ledger", "Moderate"]
+ROW 3: ["Stakeholder coverage", "Research-level"]
+ROW 4: ["Societal contextual quotient", "Moderate"]
+ROW 5: ["Quotient coarseness", "Moderate"]
+ROW 6: ["Bounded single-resource allocation", "Straightforward"]
+ROW 7: ["Multi-resource allocation", "Difficult"]
+ROW 8: ["Accessibility", "Difficult"]
+ROW 9: ["Affordability", "Moderate"]
+ROW 10: ["Pareto dominance", "Straightforward"]
+ROW 11: ["Envy-freeness", "Moderate"]
+ROW 12: ["Weighted max-min allocation", "Moderate"]
+ROW 13: ["Proportional fairness", "Moderate"]
+ROW 14: ["Utility comparability", "Difficult"]
+ROW 15: ["Public-good equilibrium", "Moderate"]
+ROW 16: ["Externality-transfer alignment", "Straightforward"]
+ROW 17: ["Cooperative cost games", "Moderate"]
+ROW 18: ["Core feasibility", "Difficult"]
+ROW 19: ["Shapley allocation", "Moderate"]
+ROW 20: ["Submodular-core theorem", "Difficult"]
+ROW 21: ["Majority cycles", "Straightforward"]
+ROW 22: ["General social-choice analysis", "Difficult"]
+ROW 23: ["Procedural automata", "Difficult"]
+ROW 24: ["Rights-constrained optimization", "Moderate"]
+ROW 25: ["Societal repair", "NP-hard in the declared abstraction"]
+ROW 26: ["Incremental recertification", "Difficult"]
+ROW 27: ["PCSAR checker", "Research-level"]
+ROW 28: ["Complete normative or social closure", "Impossible without bounded assumptions"]
+[21-30:P35325; UTF16 1157983] 45. Prompt-29 Complexity Profile
+[21-30:P35326; UTF16 1158016] DEF-SOC40 — Prompt-29 Complexity Profile
+[21-30:P35327; UTF16 1158057] \[ \boxed{ \mathcal C^{(29)} = \left( N_S, N_E, K_{\mathrm{inc}}, K_{\mathrm{resource}}, K_{\mathrm{access}}, K_{\mathrm{afford}}, K_{\mathrm{rights}}, K_{\mathrm{fair}}, K_{\mathrm{pref}}, K_{\mathrm{utility}}, K_{\mathrm{public}}, K_{\mathrm{externality}}, K_{\mathrm{coalition}}, K_{\mathrm{core}}, K_{\mathrm{shapley}}, K_{\mathrm{choice}}, K_{\mathrm{procedure}}, C_{\mathrm{inc}}, C_{\mathrm{allocation}}, C_{\mathrm{fair}}, C_{\mathrm{coalition}}, C_{\mathrm{choice}}, C_{\mathrm{procedure}}, C_{\mathrm{repair}}, C_{\mathrm{check}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unresolved}} \right). } \]
+[21-30:P35329; UTF16 1158685] NS: stakeholder count;
+[21-30:P35330; UTF16 1158708] NE: incidence-event count;
+[21-30:P35331; UTF16 1158735] Kinc: incidence complexity;
+[21-30:P35332; UTF16 1158763] Kresource: allocation complexity;
+[21-30:P35333; UTF16 1158797] Kaccess: accessibility complexity;
+[21-30:P35334; UTF16 1158832] Kafford: affordability complexity;
+[21-30:P35335; UTF16 1158867] Krights: rights-constraint complexity;
+[21-30:P35336; UTF16 1158906] Kfair: fairness-theory complexity;
+[21-30:P35337; UTF16 1158941] Kpref: preference-profile complexity;
+[21-30:P35338; UTF16 1158979] Kutility: utility and comparability complexity;
+[21-30:P35339; UTF16 1159027] Kpublic: public-good game complexity;
+[21-30:P35340; UTF16 1159065] Kexternality: transfer-mechanism complexity;
+[21-30:P35341; UTF16 1159110] Kcoalition: coalition complexity;
+[21-30:P35342; UTF16 1159144] Kcore: core-constraint complexity;
+[21-30:P35343; UTF16 1159179] Kshapley: Shapley computation complexity;
+[21-30:P35344; UTF16 1159221] Kchoice: collective-choice complexity;
+[21-30:P35345; UTF16 1159260] Kprocedure: procedural-state complexity;
+[21-30:P35346; UTF16 1159301] Cinc: incidence-checking cost;
+[21-30:P35347; UTF16 1159332] Callocation: allocation cost;
+[21-30:P35348; UTF16 1159362] Cfair: fairness-checking cost;
+[21-30:P35349; UTF16 1159393] Ccoalition: cooperative-game cost;
+[21-30:P35350; UTF16 1159428] Cchoice: social-choice cost;
+[21-30:P35351; UTF16 1159457] Cprocedure: procedural-checking cost;
+[21-30:P35352; UTF16 1159495] Crepair: societal-repair cost;
+[21-30:P35353; UTF16 1159526] Ccheck: independent PCSAR checking cost;
+[21-30:P35354; UTF16 1159567] Rchange: changed societal roots;
+[21-30:P35355; UTF16 1159600] Rrecert: recertified dependency slice;
+[21-30:P35356; UTF16 1159639] Bunresolved: unresolved societal blockers.
+[21-30:P35357; UTF16 1159682] No universal scalar:
+[21-30:P35358; UTF16 1159703] equity score;
+[21-30:P35359; UTF16 1159717] fairness score;
+[21-30:P35360; UTF16 1159733] societal-value score;
+[21-30:P35361; UTF16 1159755] legitimacy score
+[21-30:P35362; UTF16 1159772] is introduced.
+[21-30:P35366; UTF16 1159790] 46. Permanent Assumption Registry
+[21-30:P35367; UTF16 1159824] ￼
+ATTACHED TABLE 1737059; native row/column order; 32 rows
+ROW 0: ["ID", "Assumption"]
+ROW 1: ["ASSUMP-SOC1", "Stakeholder-Set Identity"]
+ROW 2: ["ASSUMP-SOC2", "Stakeholder Coverage"]
+ROW 3: ["ASSUMP-SOC3", "Outcome Identity"]
+ROW 4: ["ASSUMP-SOC4", "Unit and Horizon Compatibility"]
+ROW 5: ["ASSUMP-SOC5", "Incidence Completeness"]
+ROW 6: ["ASSUMP-SOC6", "Shared-Resource Feasibility"]
+ROW 7: ["ASSUMP-SOC7", "Rights and Service Floors"]
+ROW 8: ["ASSUMP-SOC8", "Accessibility Semantics"]
+ROW 9: ["ASSUMP-SOC9", "Affordability Semantics"]
+ROW 10: ["ASSUMP-SOC10", "Fairness-Theory Identity"]
+ROW 11: ["ASSUMP-SOC11", "Weight Identity"]
+ROW 12: ["ASSUMP-SOC12", "Preference Identity"]
+ROW 13: ["ASSUMP-SOC13", "Ordinal/Cardinal Discipline"]
+ROW 14: ["ASSUMP-SOC14", "Utility-Model Fidelity"]
+ROW 15: ["ASSUMP-SOC15", "Public-Good Game Fidelity"]
+ROW 16: ["ASSUMP-SOC16", "Externality-Transfer Fidelity"]
+ROW 17: ["ASSUMP-SOC17", "Cooperative-Cost Completeness"]
+ROW 18: ["ASSUMP-SOC18", "Coalition Identity"]
+ROW 19: ["ASSUMP-SOC19", "Cost-Allocation Conservation"]
+ROW 20: ["ASSUMP-SOC20", "Social-Choice Domain"]
+ROW 21: ["ASSUMP-SOC21", "Procedural Fidelity"]
+ROW 22: ["ASSUMP-SOC22", "Procedural Authority"]
+ROW 23: ["ASSUMP-SOC23", "Economic Executability"]
+ROW 24: ["ASSUMP-SOC24", "Cyber and Evidence Integrity"]
+ROW 25: ["ASSUMP-SOC25", "Privacy"]
+ROW 26: ["ASSUMP-SOC26", "Human Executability"]
+ROW 27: ["ASSUMP-SOC27", "No Silent Interpersonal Comparability"]
+ROW 28: ["ASSUMP-SOC28", "UNKNOWN Discipline"]
+ROW 29: ["ASSUMP-SOC29", "Checker Soundness"]
+ROW 30: ["ASSUMP-SOC30", "Dependency Completeness"]
+ROW 31: ["ASSUMP-SOC31", "Formalization Fidelity"]
+[21-30:P35371; UTF16 1159829] 47. Permanent Definition Registry
+[21-30:P35372; UTF16 1159863] ￼
+ATTACHED TABLE 1737075; native row/column order; 41 rows
+ROW 0: ["ID", "Definition"]
+ROW 1: ["DEF-SOC1", "Societal Distribution and Collective-Decision State"]
+ROW 2: ["DEF-SOC2", "Stakeholder"]
+ROW 3: ["DEF-SOC3", "Incidence Event"]
+ROW 4: ["DEF-SOC4", "Stakeholder Outcome Vector"]
+ROW 5: ["DEF-SOC5", "Societal Experiment Family"]
+ROW 6: ["DEF-SOC6", "Societal Contextual Equivalence"]
+ROW 7: ["DEF-SOC7", "Canonical Societal Quotient"]
+ROW 8: ["DEF-SOC8", "Shared-Resource Allocation"]
+ROW 9: ["DEF-SOC9", "Stakeholder Resource Bounds"]
+ROW 10: ["DEF-SOC10", "Accessibility Predicate"]
+ROW 11: ["DEF-SOC11", "Affordability Predicate"]
+ROW 12: ["DEF-SOC12", "Declared Fairness Theory"]
+ROW 13: ["DEF-SOC13", "Pareto Dominance"]
+ROW 14: ["DEF-SOC14", "Pareto Efficiency"]
+ROW 15: ["DEF-SOC15", "Envy Relation"]
+ROW 16: ["DEF-SOC16", "Weighted Max-Min Objective"]
+ROW 17: ["DEF-SOC17", "Weighted Proportional Fairness"]
+ROW 18: ["DEF-SOC18", "Ordinal Preference Representation"]
+ROW 19: ["DEF-SOC19", "Binary Public-Good Contribution Game"]
+ROW 20: ["DEF-SOC20", "Externality Transfer"]
+ROW 21: ["DEF-SOC21", "Cooperative Cost Game"]
+ROW 22: ["DEF-SOC22", "Cost Allocation"]
+ROW 23: ["DEF-SOC23", "Cost Core"]
+ROW 24: ["DEF-SOC24", "Shapley Cost Allocation"]
+ROW 25: ["DEF-SOC25", "Submodular Cost Game"]
+ROW 26: ["DEF-SOC26", "Stakeholder Preference Profile"]
+ROW 27: ["DEF-SOC27", "Pairwise Majority Relation"]
+ROW 28: ["DEF-SOC28", "Collective Decision Rule"]
+ROW 29: ["DEF-SOC29", "Collective Decision Procedure"]
+ROW 30: ["DEF-SOC30", "Procedural Validity"]
+ROW 31: ["DEF-SOC31", "Societal Rights Constraint"]
+ROW 32: ["DEF-SOC32", "Stakeholder Outcome Dominance"]
+ROW 33: ["DEF-SOC33", "Societal Conflict Core"]
+ROW 34: ["DEF-SOC34", "Societal Repair"]
+ROW 35: ["DEF-SOC35", "Societal Repair Frontier"]
+ROW 36: ["DEF-SOC36", "Societal Claim Modality"]
+ROW 37: ["DEF-SOC37", "Societal Dependency Graph"]
+ROW 38: ["DEF-SOC38", "Societal Release Fiber"]
+ROW 39: ["DEF-SOC39", "PCSAR"]
+ROW 40: ["DEF-SOC40", "Prompt-29 Complexity Profile"]
+[21-30:P35376; UTF16 1159868] 48. Permanent Theorem Registry
+[21-30:P35377; UTF16 1159899] ￼
+ATTACHED TABLE 1737091; native row/column order; 32 rows
+ROW 0: ["ID", "Theorem", "Status"]
+ROW 1: ["THM-SOC1", "Positive aggregate benefit does not imply universal benefit", "Proved"]
+ROW 2: ["THM-SOC2", "Equal aggregate and mean do not determine distribution", "Proved"]
+ROW 3: ["THM-SOC3", "Societal computations factor through canonical quotient", "Proved"]
+ROW 4: ["THM-SOC4", "Societal quotient is coarsest exact representation", "Proved"]
+ROW 5: ["THM-SOC5", "Exact bounded-resource feasibility", "Proved"]
+ROW 6: ["THM-SOC6", "Accessibility and affordability are independent", "Proved"]
+ROW 7: ["THM-SOC7", "Pareto efficiency does not imply envy-freeness", "Proved"]
+ROW 8: ["THM-SOC8", "Envy-freeness does not imply Pareto efficiency", "Proved"]
+ROW 9: ["THM-SOC9", "Weighted max-min simplex allocation", "Proved"]
+ROW 10: ["THM-SOC10", "Proportional fairness/log-optimum equivalence", "Proved under explicit domain assumptions"]
+ROW 11: ["THM-SOC11", "Utilitarian and max-min rankings may differ", "Proved"]
+ROW 12: ["THM-SOC12", "Ordinal utilities do not define invariant interpersonal sums", "Proved"]
+ROW 13: ["THM-SOC13", "Public-good surplus can coexist with no-contribution equilibrium", "Proved"]
+ROW 14: ["THM-SOC14", "Exact externality transfer aligns modeled objectives", "Proved"]
+ROW 15: ["THM-SOC15", "Cooperative cost core may be empty", "Proved"]
+ROW 16: ["THM-SOC16", "Shapley allocation is budget balanced", "Proved"]
+ROW 17: ["THM-SOC17", "Shapley allocation need not lie in core", "Proved"]
+ROW 18: ["THM-SOC18", "Submodular cost game puts permutation marginals and Shapley in core", "Proved"]
+ROW 19: ["THM-SOC19", "Pairwise majority may cycle", "Proved"]
+ROW 20: ["THM-SOC20", "Exact majority reproduction cannot guarantee transitivity on cycle-containing domain", "Proved"]
+ROW 21: ["THM-SOC21", "Same outcome may have different procedural validity", "Proved"]
+ROW 22: ["THM-SOC22", "Procedural validity and Pareto efficiency are independent", "Proved"]
+ROW 23: ["THM-SOC23", "Hard rights constraints shrink feasible set", "Proved"]
+ROW 24: ["THM-SOC24", "Scalar optimum may violate a hard right", "Proved"]
+ROW 25: ["THM-SOC25", "Stakeholder Pareto order is not total", "Proved"]
+ROW 26: ["THM-SOC26", "Minimum-cost societal repair is NP-hard", "Proved"]
+ROW 27: ["THM-SOC27", "Incremental societal recertification equals cold checking", "Proved under explicit assumptions"]
+ROW 28: ["THM-SOC28", "Whole-project societal-release theorem", "Proved under 32 hypotheses"]
+ROW 29: ["THM-SOC29", "Open-world societal limitation", "Proved"]
+ROW 30: ["THM-SOC30", "Proposal-source independence", "Proved"]
+ROW 31: ["THM-SOC31", "Explicit PCSAR checking complexity", "Proved"]
+[21-30:P35378; UTF16 1159901] No full Arrow, Gibbard–Satterthwaite, or other stronger impossibility theorem has been asserted.
+[21-30:P35382; UTF16 1160001] 49. Algorithm Registry
+[21-30:P35383; UTF16 1160024] ￼
+ATTACHED TABLE 1737107; native row/column order; 34 rows
+ROW 0: ["ID", "Algorithm"]
+ROW 1: ["ALG-SOC1", "AuditSocietalState"]
+ROW 2: ["ALG-SOC2", "BuildStakeholderRegistry"]
+ROW 3: ["ALG-SOC3", "BuildIncidenceLedger"]
+ROW 4: ["ALG-SOC4", "BuildSocietalQuotient"]
+ROW 5: ["ALG-SOC5", "CheckResourceAllocationFeasibility"]
+ROW 6: ["ALG-SOC6", "AuditAccessibility"]
+ROW 7: ["ALG-SOC7", "AuditAffordability"]
+ROW 8: ["ALG-SOC8", "ComputeWeightedMaxMinAllocation"]
+ROW 9: ["ALG-SOC9", "ComputeProportionalFairAllocation"]
+ROW 10: ["ALG-SOC10", "AuditParetoEfficiency"]
+ROW 11: ["ALG-SOC11", "AuditEnvy"]
+ROW 12: ["ALG-SOC12", "CompareFairnessTheories"]
+ROW 13: ["ALG-SOC13", "AuditOrdinalComparability"]
+ROW 14: ["ALG-SOC14", "AnalyzePublicGoodGame"]
+ROW 15: ["ALG-SOC15", "DesignExternalityTransfer"]
+ROW 16: ["ALG-SOC16", "BuildCooperativeCostGame"]
+ROW 17: ["ALG-SOC17", "CheckBudgetBalance"]
+ROW 18: ["ALG-SOC18", "CheckCoreMembership"]
+ROW 19: ["ALG-SOC19", "ComputeShapleyAllocation"]
+ROW 20: ["ALG-SOC20", "AuditSubmodularity"]
+ROW 21: ["ALG-SOC21", "DetectMajorityCycle"]
+ROW 22: ["ALG-SOC22", "AuditSocialChoiceRule"]
+ROW 23: ["ALG-SOC23", "CompileCollectiveProcedure"]
+ROW 24: ["ALG-SOC24", "CheckProceduralLegitimacy"]
+ROW 25: ["ALG-SOC25", "CheckRightsConstraints"]
+ROW 26: ["ALG-SOC26", "BuildStakeholderParetoFrontier"]
+ROW 27: ["ALG-SOC27", "FindSocietalConflictCore"]
+ROW 28: ["ALG-SOC28", "GenerateSocietalRepairFrontier"]
+ROW 29: ["ALG-SOC29", "SocietalRCVOCInterface"]
+ROW 30: ["ALG-SOC30", "RedTeamSocietalTheory"]
+ROW 31: ["ALG-SOC31", "IncrementalSocietalRecertification"]
+ROW 32: ["ALG-SOC32", "CheckPCSAR"]
+ROW 33: ["ALG-SOC33", "BuildPCSAR"]
+[21-30:P35387; UTF16 1160029] 50. Conjecture Registry
+[21-30:P35388; UTF16 1160053] CONJ-SOC1 — Compact Stakeholder Incidence Interfaces
+[21-30:P35389; UTF16 1160106] Most large engineering projects admit stakeholder-facing summaries substantially smaller than the complete physical state.
+[21-30:P35390; UTF16 1160229] Falsification: most internal project distinctions materially alter stakeholder outcomes.
+[21-30:P35391; UTF16 1160318] CONJ-SOC2 — Distributional Conflict Is Sparse
+[21-30:P35392; UTF16 1160364] Many societal disputes are driven by a small number of stakeholder-outcome coordinates.
+[21-30:P35393; UTF16 1160452] Falsification: nearly every project variable remains distributionally relevant.
+[21-30:P35394; UTF16 1160532] CONJ-SOC3 — Service Floors Expose Hidden Physical Infeasibility
+[21-30:P35395; UTF16 1160596] Explicit stakeholder service floors reveal allocation infeasibilities hidden by aggregate feasibility.
+[21-30:P35396; UTF16 1160699] Falsification: floor constraints almost never change the feasible set.
+[21-30:P35397; UTF16 1160770] CONJ-SOC4 — Fairness Theories Frequently Disagree
+[21-30:P35398; UTF16 1160820] Max-min, proportional, Pareto, envy, affordability, and cost-sharing theories frequently select different nondominated states.
+[21-30:P35399; UTF16 1160947] Falsification: practical candidate sets nearly always have one alternative dominating under every declared theory.
+[21-30:P35400; UTF16 1161062] CONJ-SOC5 — Coalition Analysis Changes Cost Sharing
+[21-30:P35401; UTF16 1161114] Explicit coalition costs materially change which infrastructure-cost allocations remain stable.
+[21-30:P35402; UTF16 1161210] Falsification: ordinary equal or proportional shares almost always lie in the core.
+[21-30:P35403; UTF16 1161294] CONJ-SOC6 — Public-Good Structure Explains Some Regional Underinvestment
+[21-30:P35404; UTF16 1161367] Some useful shared infrastructure remains underprovided despite positive aggregate modeled value.
+[21-30:P35405; UTF16 1161465] Falsification: decentralized incentives already provide most aggregate-beneficial shared investments.
+[21-30:P35406; UTF16 1161567] CONJ-SOC7 — Procedural State Matters Independently of Outcome
+[21-30:P35407; UTF16 1161629] Formal process auditing detects consequential failures missed by outcome-only evaluation.
+[21-30:P35408; UTF16 1161719] Falsification: procedural distinctions rarely change release status.
+[21-30:P35409; UTF16 1161788] CONJ-SOC8 — Societal Pareto Frontiers Remain Manageable
+[21-30:P35410; UTF16 1161844] Most candidate strategies collapse to a moderate stakeholder Pareto frontier.
+[21-30:P35411; UTF16 1161922] Falsification: nearly all feasible strategies remain incomparable.
+[21-30:P35412; UTF16 1161989] CONJ-SOC9 — Incremental Societal Recertification Is Sparse
+[21-30:P35413; UTF16 1162048] Routine project changes affect only a limited stakeholder and fairness dependency slice.
+[21-30:P35414; UTF16 1162137] Falsification: ordinary changes repeatedly require complete societal reconstruction.
+[21-30:P35415; UTF16 1162222] CONJ-SOC10 — Practical Hotel-District PCSAR
+[21-30:P35416; UTF16 1162266] The synthetic 190-room hotel district admits a practical integrated PCSAR.
+[21-30:P35417; UTF16 1162341] Falsification: stakeholder, coalition, preference, or procedural complexity becomes prohibitive.
+[21-30:P35421; UTF16 1162441] 51. Dependency DAG — Prompts 1–29
+[21-30:P35531; UTF16 1163910] externalities
+[21-30:P35537; UTF16 1163985] coalitions,
+[21-30:P35538; UTF16 1163997] collective choice,
+[21-30:P35540; UTF16 1164033] Prompt 29 expands as:
+[21-30:P35541; UTF16 1164055] DEF-SOC1–7
+[21-30:P35542; UTF16 1164066] societal state,
+[21-30:P35543; UTF16 1164082] stakeholders,
+[21-30:P35544; UTF16 1164096] incidence,
+[21-30:P35545; UTF16 1164107] societal quotient
+[21-30:P35549; UTF16 1164185] SOC1–2 SOC3          SOC4
+[21-30:P35550; UTF16 1164211] incidence factor     coarsest
+[21-30:P35553; UTF16 1164261] DEF-SOC8–12
+[21-30:P35554; UTF16 1164273] resource,
+[21-30:P35555; UTF16 1164283] access,
+[21-30:P35556; UTF16 1164291] affordability,
+[21-30:P35557; UTF16 1164306] fairness theory
+[21-30:P35561; UTF16 1164382] SOC5                 SOC6
+[21-30:P35562; UTF16 1164408] resource feasibility access/afford
+[21-30:P35565; UTF16 1164463] DEF-SOC13–17
+[21-30:P35566; UTF16 1164476] Pareto,
+[21-30:P35567; UTF16 1164484] envy,
+[21-30:P35568; UTF16 1164490] max-min,
+[21-30:P35569; UTF16 1164499] proportional fairness
+[21-30:P35571; UTF16 1164531]    ┌────┼────────┬────────┬─────────┐
+[21-30:P35572; UTF16 1164569]    ▼    ▼        ▼        ▼         ▼
+[21-30:P35573; UTF16 1164607] SOC7 SOC8      SOC9     SOC10     SOC11
+[21-30:P35576; UTF16 1164667] DEF-SOC18
+[21-30:P35577; UTF16 1164677] ordinal preferences
+[21-30:P35580; UTF16 1164717] SOC12
+[21-30:P35581; UTF16 1164723] interpersonal
+[21-30:P35582; UTF16 1164737] comparability limit
+[21-30:P35585; UTF16 1164777] DEF-SOC19–20
+[21-30:P35587; UTF16 1164804] externality transfer
+[21-30:P35591; UTF16 1164885] SOC13                SOC14
+[21-30:P35594; UTF16 1164932] DEF-SOC21–25
+[21-30:P35595; UTF16 1164945] cost games,
+[21-30:P35596; UTF16 1164957] core,
+[21-30:P35597; UTF16 1164963] Shapley,
+[21-30:P35598; UTF16 1164972] submodularity
+[21-30:P35600; UTF16 1164996]    ┌────┼────────┬──────────┐
+[21-30:P35601; UTF16 1165026]    ▼    ▼        ▼          ▼
+[21-30:P35602; UTF16 1165056] SOC15 SOC16   SOC17      SOC18
+[21-30:P35605; UTF16 1165107] DEF-SOC26–28
+[21-30:P35606; UTF16 1165120] preference profiles,
+[21-30:P35607; UTF16 1165141] majority,
+[21-30:P35608; UTF16 1165151] collective rules
+[21-30:P35612; UTF16 1165228] SOC19                SOC20
+[21-30:P35613; UTF16 1165255] cycle                 restricted impossibility
+[21-30:P35616; UTF16 1165322] DEF-SOC29–31
+[21-30:P35617; UTF16 1165335] procedure,
+[21-30:P35618; UTF16 1165346] validity,
+[21-30:P35623; UTF16 1165423] SOC21 SOC22        SOC23–24
+[21-30:P35626; UTF16 1165471] DEF-SOC32–39
+[21-30:P35627; UTF16 1165484] Pareto frontiers,
+[21-30:P35637; UTF16 1165625] SOC25                SOC26
+[21-30:P35638; UTF16 1165652] partial order         repair hardness
+[21-30:P35641; UTF16 1165710] SOC27
+[21-30:P35645; UTF16 1165755] SOC28
+[21-30:P35646; UTF16 1165761] whole-project
+[21-30:P35651; UTF16 1165852] SOC29 SOC30         SOC31
+[21-30:P35656; UTF16 1165960] PROMPT 30
+[21-30:P35657; UTF16 1165970] constitutional integration,
+[21-30:P35658; UTF16 1165998] cross-theory closure,
+[21-30:P35659; UTF16 1166020] final ANANKE release
+[21-30:P35660; UTF16 1166041] Explicit dependencies on Prompts 1–28
+[21-30:P35661; UTF16 1166079] Prompt 1: stakeholder, burden, benefit, cost, service, and transfer types.
+[21-30:P35662; UTF16 1166154] Prompt 2: societal contextual equivalence.
+[21-30:P35663; UTF16 1166197] Prompt 3: decision separators for stakeholder-facing outcomes.
+[21-30:P35664; UTF16 1166260] Prompt 4: refinement after stakeholder or fairness counterexamples.
+[21-30:P35665; UTF16 1166328] Prompt 5: uncertainty in incidence, preference, and affordability.
+[21-30:P35666; UTF16 1166395] Prompt 6: reduced physical models supporting access and service.
+[21-30:P35667; UTF16 1166460] Prompt 7: rewrite-aware stakeholder impact propagation.
+[21-30:P35668; UTF16 1166516] Prompt 8: causal collective-decision state.
+[21-30:P35669; UTF16 1166560] Prompt 9: value of preference, incidence, and coalition investigations.
+[21-30:P35670; UTF16 1166632] Prompt 10: omitted-stakeholder and hidden-burden Claim Breakers.
+[21-30:P35672; UTF16 1166732] Prompt 12: architectural sovereignty.
+[21-30:P35673; UTF16 1166770] Prompt 13: materializability of accessibility and service repairs.
+[21-30:P35674; UTF16 1166837] Prompt 14: as-built incidence and access.
+[21-30:P35675; UTF16 1166879] Prompt 15: operational service distribution.
+[21-30:P35676; UTF16 1166924] Prompt 16: cross-project evidence remains population scoped.
+[21-30:P35677; UTF16 1166985] Prompt 17: probabilistic burden and benefit incidence.
+[21-30:P35678; UTF16 1167040] Prompt 18: affordability and transfer executability.
+[21-30:P35679; UTF16 1167093] Prompt 19: funding, commitment, and option timing.
+[21-30:P35680; UTF16 1167144] Prompt 20: contractual and governance authority.
+[21-30:P35682; UTF16 1167237] Prompt 22: identity, voting, transfer, and evidence trust.
+[21-30:P35683; UTF16 1167296] Prompt 23: preference and stakeholder privacy.
+[21-30:P35684; UTF16 1167343] Prompt 24: participatory and procedural executability.
+[21-30:P35685; UTF16 1167398] Prompt 25: measurement of access, service, and incidence.
+[21-30:P35686; UTF16 1167456] Prompt 26: lifecycle distributional effects.
+[21-30:P35687; UTF16 1167501] Prompt 27: environmental burden incidence.
+[21-30:P35688; UTF16 1167544] Prompt 28: physically feasible regional allocations and externalities.
+[21-30:P35692; UTF16 1167618] 52. What Has Now Been Proven
+[21-30:P35693; UTF16 1167647] Societal-state semantics
+[21-30:P35694; UTF16 1167672] EXACT_INCIDENCE: Societal state is stakeholder-, outcome-, fairness-, preference-, coalition-, procedure-, and version-specific.
+[21-30:P35695; UTF16 1167801] Exact structural: Societal admissibility may be a strict subset of physical system-of-systems feasibility.
+[21-30:P35696; UTF16 1167908] Exact limitation: Formal societal release remains theory scoped.
+[21-30:P35697; UTF16 1167973] Stakeholder identity and coverage
+[21-30:P35698; UTF16 1168007] Exact structural: Every represented outcome must attach to an identified stakeholder.
+[21-30:P35699; UTF16 1168093] UNKNOWN: Omitted mandatory stakeholders block stakeholder-complete release.
+[21-30:P35700; UTF16 1168169] Exact limitation: Stakeholder omission does not prove irrelevance.
+[21-30:P35701; UTF16 1168236] Benefit and burden incidence
+[21-30:P35702; UTF16 1168265] EXACT_INCIDENCE: Incidence events carry source, recipient, quantity, type, time, identity, and version.
+[21-30:P35703; UTF16 1168369] Exact theorem: Positive aggregate benefit does not imply universal benefit.

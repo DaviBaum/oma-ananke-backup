@@ -1,0 +1,564 @@
+[24397] An applicable accepted PCROUTE package glued to the same PCSIR root establishes the corresponding routed-service modality, not global optimality. ∎
+[24398] THM-CMP124 — Whole compiler co-design theorem
+[24399] An accepted PCJCD package with valid materialization and PCROUTE compatibility establishes its exact joint-design modality. ∎
+[24400] THM-CMP125 — Whole compiler dynamic-policy theorem
+[24401] An accepted PCDYN package compatible with the installed-state root establishes only its exact trajectory, probabilistic, robust, lifecycle, or risk modality. ∎
+[24402] THM-CMP126 — Whole compiler incremental-equivalence theorem
+[24403] THM-CMP85 applies at the complete compiler release root. ∎
+[24404] THM-CMP127 — Whole compiler reproducibility theorem
+[24405] Under byte-deterministic producers, captured versions/environment/seeds, and deterministic canonicalization, equal build inputs produce byte-identical release artifacts. If producers differ but validators are deterministic, only verdict reproducibility follows. ∎
+[24406] THM-CMP128 — Whole compiler branch/transaction theorem
+[24407] Every branch head denotes one closed root; branch creation and merge create events without copying shared artifacts; conflicting merges remain uncommitted. ∎
+[24408] THM-CMP129 — Whole compiler release-lattice theorem
+[24409] Within each compatible context, release entailment classes form a partial order with licensed meets and joins; cross-context operations are partial; UNKNOWN and waiver remain separate axes. ∎
+[24410] THM-CMP130 — Whole compiler package-composition theorem
+[24411] If component packages are accepted, applicable, separator-compatible, assumption-consistent, version-compatible, and satisfy a valid gluing structure, their witnesses join to one global witness. ∎
+[24412] THM-CMP131 — Whole compiler feasible-building theorem
+[24413] If THM-CMP130 holds and every mandatory hard claim is proved at a feasibility-supporting modality with no blocking contradiction, the represented building is compiler-feasible at that exact scope. ∎
+[24414] THM-CMP132 — Whole compiler bounded-release theorem
+[24415] If a feasible global witness gives upper bound \(U\), a valid lower-bound package gives \(L\), and both use one objective scope,
+[24417] The release modality is bounded, not exact. ∎
+[24418] THM-CMP133 — Whole compiler represented-optimal theorem
+[24419] Add complete represented search closure and \(L=U\). Then the global witness is optimal in the represented universe under the exact objective policy. ∎
+[24420] THM-CMP134 — Whole compiler dynamic-policy theorem
+[24421] A globally glued PCDYN witness proves the selected policy’s exact dynamic modality; it does not imply robustness when only probability or sampling was proved. ∎
+[24422] THM-CMP135 — Whole compiler Pareto theorem
+[24423] If the represented feasible universe is finite and every feasible candidate is evaluated exactly or excluded by valid dominance/infeasibility proofs, the returned nondominated archive is the complete represented Pareto set. ∎
+[24424] THM-CMP136 — Whole compiler infeasibility theorem
+[24425] If a complete branch, proof, or exact finite enumeration eliminates every represented candidate, the represented compiler problem is infeasible. Local route failure or timeout is insufficient. ∎
+[24426] THM-CMP137 — Whole compiler crash-recovery theorem
+[24427] Under durable-object-before-root ordering, atomic root commit, closure validation, and compatible checkpoints, a crash recovers either the old or new closed root and can replay a compatible deterministic computation. ∎
+[24428] THM-CMP138 — Whole compiler model-independence theorem
+[24429] For AI models \(M_1,M_2\) producing the same normalized artifact \(A\),
+[24430] \[ \operatorname{Check}(S,A,M_1) = \operatorname{Check}(S,A,M_2) = \operatorname{Check}(S,A), \]
+[24431] because model identity is absent from the proof predicate. Different proposals may change search performance. ∎
+[24432] THM-CMP139 — Final end-to-end Oma compiler theorem
+[24433] This is expanded as THM-CMP-OMA-WHOLE in Section 107.
+[24434] THM-CMP140 — Final open-world limitation
+[24435] Expanded in Section 108. ∎
+[24437] 68. Algorithms
+[24438] Every algorithm below uses the contract:
+[24439] \[ (\mathsf{Input},\mathsf{Output},\mathsf{Mutation}, \mathsf{Trust},\mathsf{Mode},\mathsf{Determinism}, \mathsf{Certificate},\mathsf{Failures}, \mathsf{Complexity},\mathsf{Cache},\mathsf{Checkpoint}, \mathsf{Process},\mathsf{Effect}). \]
+[24440] ALG-CMP1 — AuditPrompt4ForCompilerUse
+[24441] Input: inherited DYN registry and package references.
+Output: classified dependency table.
+Steps: resolve identifiers; verify body/proof reference; classify status; record missing source.
+Mutation: audit artifact only. Trust: validator. Complexity: \(O(n+e)\).
+Failures: UNVERIFIED_SOURCE_BODY, BROKEN_REFERENCE, UNKNOWN.
+[24442] ALG-CMP2 — AuditANANKEConstitutionalLayer
+[24443] Traverse canonical Prompt-30 objects, source provenance, active/superseded state, and final theorem premises; emit ConstitutionalImportCertificate.
+[24444] ALG-CMP3 — AuditCurrentRepositories
+[24445] Enumerate repository files and versions; inspect source bodies; classify each file retain/adapt/rewrite/reference/unavailable; no implementation inference from names.
+[24446] ALG-CMP4 — BuildCanonicalProjectSchema
+[24447] Compile DEF-CMP1–318 into versioned schemas; reject duplicate field semantics and missing type/version fields.
+[24448] ALG-CMP5 — BuildSemanticIdentityRegistry
+[24449] For each imported or derived object, create or resolve stable semantic ID; detect collisions; emit identity certificate.
+[24450] ALG-CMP6 — CanonicalizeArtifact
+[24451] Normalize, encode, hash, store blob, and emit serialization certificate. Reject nonfinite or unsupported values.
+[24452] ALG-CMP7 — BuildContentAddressedArtifactGraph
+[24453] Create immutable artifact nodes and dependency edges; verify all referenced content; emit graph root.
+[24454] ALG-CMP8 — BuildProjectRoot
+[24455] Assemble sorted root manifest; verify closure; canonicalize; store; return proposed ProjectRoot.
+[24456] ALG-CMP9 — VerifyProjectRootClosure
+[24457] Depth-first or breadth-first traverse authoritative references, recompute hashes, detect cycles where disallowed, and return closure certificate.
+[24458] ALG-CMP10 — CreateProjectBranch
+[24459] Validate branch capability and base root; insert new branch pointer atomically; no artifact copy.
+[24460] ALG-CMP11 — ComputeSemanticDiff
+[24461] Align semantic IDs and correspondences; classify insert/delete/change/split/merge/reroute; output typed diff.
+[24462] ALG-CMP12 — BeginTransaction
+[24463] Pin base root; mint transaction ID; record actor, capability, purpose, and initial empty sets.
+[24464] ALG-CMP13 — ValidateTransactionCapabilities
+[24465] Check every proposed effect against active capability and protected-root policy.
+[24466] ALG-CMP14 — ApplySemanticRewriteProposal
+[24467] Run untrusted rewrite producer against transaction snapshot; stage immutable candidate; never update branch head.
+[24468] ALG-CMP15 — ComputeTransactionDependencyCone
+[24469] Compute reachability from changed semantic, theory, requirement, authority, and checker roots.
+[24470] ALG-CMP16 — ValidateTransaction
+[24471] Check schema, identity, authority, preconditions, write/read sets, postconditions, package implications, and closure.
+[24472] ALG-CMP17 — PrepareTransactionCommit
+[24473] Write candidate blobs, fsync according to storage policy, assemble closed manifest, and produce prepared transaction.
+[24474] ALG-CMP18 — CommitTransactionCAS
+[24475] Within one SQLite transaction, check current head, insert root/event/idempotency, update branch head, commit. Return old result on retry.
+[24476] ALG-CMP19 — AbortTransaction
+[24477] Mark transaction aborted; retain or collect proposal blobs according to policy; no root change.
+[24478] ALG-CMP20 — RollbackToRoot
+[24479] Validate target retained root and authority; commit branch-head transition with rollback event.
+[24480] ALG-CMP21 — ThreeWaySemanticMerge
+[24481] Compute ancestor-relative diffs; compose compatible edits; return merge proposal and conflict set.
+[24482] ALG-CMP22 — DetectMergeConflict
+[24483] Search identity, delete-modify, authority, topology, version, proof, and dependency conflicts.
+[24484] ALG-CMP23 — CompileSourceIFC
+[24485] Parse IFC through untrusted importer; preserve GUIDs, units, frames, entities, ports, systems, losses, and source hashes; output import proposal.
+[24486] ALG-CMP24 — CompileSourceCAD
+[24487] Map layers/blocks/entities with units and frame; unresolved semantics remain geometric evidence.
+[24488] ALG-CMP25 — CompileSourceMesh
+[24489] Validate mesh bytes and frame metadata; output geometric evidence only unless semantic mappings are supplied.
+[24490] ALG-CMP26 — CompileRequirements
+[24491] AI or parser proposes typed requirements with provenance and ambiguity fibers.
+[24492] ALG-CMP27 — ValidateImportMapping
+[24493] Replay source-to-target mappings; check units, frames, preserved properties, losses, and UNKNOWN.
+[24494] ALG-CMP28 — BuildPCSIRPass
+[24495] Invoke SIR producer on committed source/requirement roots; output PCSIR proposal.
+[24496] ALG-CMP29 — ValidatePCSIRPass
+[24497] Invoke independent PCSIR checker; bind package to exact root.
+[24498] ALG-CMP30 — BuildPCROUTEPass
+[24499] Invoke route producer on accepted PCSIR and request; output PCROUTE proposal.
+[24500] ALG-CMP31 — ValidatePCROUTEPass
+[24501] Dispose route geometry, physical fibers, capacities, bounds, and proof objects.
+[24502] ALG-CMP32 — BuildPCJCDPass
+[24503] Run untrusted JCD search; emit candidate roots, route packages, cuts, and archive.
+[24504] ALG-CMP33 — ValidatePCJCDPass
+[24505] Check every selected candidate, cut, bound, package root, and objective scope.
+[24506] ALG-CMP34 — BuildPCDYNPass
+[24507] Run dynamic policy producer against accepted installed-state lineage.
+[24508] ALG-CMP35 — ValidatePCDYNPass
+[24509] Check information history, nonanticipativity, transitions, risk modality, lifecycle, and installed-root compatibility.
+[24510] ALG-CMP36 — ComposeCrossLayerPackages
+[24511] Load applicable lower packages, construct compatibility separators, and produce join candidate.
+[24512] ALG-CMP37 — CheckCrossLayerCompatibility
+[24513] Check project, lineage, semantic IDs, versions, assumptions, scopes, installed state, and modalities.
+[24514] ALG-CMP38 — BuildGlobalWitness
+[24515] Join component witnesses over shared coordinates using explicit gluing structure.
+[24516] ALG-CMP39 — CheckGlobalWitness
+[24517] Replay all restrictions, package checkers, shared equalities, assumption closure, and final claims.
+[24518] ALG-CMP40 — BuildReleaseLattice
+[24519] Partition tokens by compatible context; quotient by mutual entailment; construct licensed partial order and operations.
+[24520] ALG-CMP41 — ComputeReleaseMeet
+[24521] Check compatibility; return conjunction token and proof.
+[24522] ALG-CMP42 — ComputeReleaseJoin
+[24523] Check context and licensed disjunction; otherwise return RELEASE_INCOMPATIBLE.
+[24524] ALG-CMP43 — DetectReleaseIncompatibility
+[24525] Find version, scope, theory, uncertainty, assumption, or proposition conflict.
+[24526] ALG-CMP44 — ApplyWaiver
+[24527] Validate waiver artifact and change disposition only; preserve proof status.
+[24528] ALG-CMP45 — CheckWaiverAuthority
+[24529] Check authority, target, scope, expiry, conditions, and policy version.
+[24530] ALG-CMP46 — DetectClaimContradiction
+[24531] Normalize compatible-scope propositions; invoke logical/domain checkers; return contradiction core.
+[24532] ALG-CMP47 — BuildCompilerDependencyGraph
+[24533] Merge source, semantic, package, proof, cache, viewer, export, theory, checker, and authority dependencies.
+[24534] ALG-CMP48 — ComputeCompilerInvalidationCone
+[24535] Compute all descendants of changed roots and classify required recomputation.
+[24536] ALG-CMP49 — BuildExactCacheKey
+[24537] Canonicalize every applicability root in DEF-CMP228.
+[24538] ALG-CMP50 — LookupApplicableCacheArtifact
+[24539] Match key; validate closure and applicability; return artifact or miss/stale.
+[24540] ALG-CMP51 — IncrementalCompile
+[24541] Invalidate cone; preserve only applicable outside artifacts; recompute topologically; close certified SCCs; check release root.
+[24542] ALG-CMP52 — ColdCompile
+[24543] Rebuild all required targets from active canonical source roots.
+[24544] ALG-CMP53 — CompareIncrementalAndCold
+[24545] Canonicalize both release roots; compare bytes, claims, modalities, UNKNOWN, and checker verdict.
+[24546] ALG-CMP54 — BuildCompilerCheckpoint
+[24547] Serialize pass, branch, solver, proposal, proof, queue, seed, and version state; store blobs; atomically commit checkpoint manifest.
+[24548] ALG-CMP55 — ResumeCompilerCheckpoint
+[24549] Check compatibility; restore deterministic queues and state; reject terminal or stale checkpoint.
+[24550] ALG-CMP56 — VerifyCrashClosure
+[24551] Enumerate branch heads and checkpoints after recovery; validate closure; classify orphans.
+[24552] ALG-CMP57 — GarbageCollectArtifacts
+[24553] Mark from retention roots; verify mark closure; delete unmarked objects; emit GC certificate.
+[24554] ALG-CMP58 — CheckArtifactReachability
+[24555] Return all root-to-artifact paths or UNREACHABLE.
+[24556] ALG-CMP59 — BuildMCPRegistry
+[24557] Compile descriptors, schemas, effects, trust, capabilities, versions, and deterministic order.
+[24558] ALG-CMP60 — ValidateMCPToolSchema
+[24559] Validate JSON Schema, names, output schemas, effect annotations, and semantic extension fields.
+[24560] ALG-CMP61 — CheckToolCapability
+[24561] Apply DEF-CMP160 to invocation.
+[24562] ALG-CMP62 — ExecutePureTool
+[24563] Validate root and args; execute; confirm no persistent effect; return result.
+[24564] ALG-CMP63 — ExecuteProposalTool
+[24565] Execute untrusted producer; store proposal artifact; emit audit event; no branch mutation.
+[24566] ALG-CMP64 — ExecuteCheckingTool
+[24567] Resolve proof inputs; invoke validator; store proof and verdict.
+[24568] ALG-CMP65 — ExecuteTransactionalTool
+[24569] Require transaction; stage effects; update transaction read/write sets; do not commit.
+[24570] ALG-CMP66 — DeduplicateIdempotentCall
+[24571] Look up exact operation identity; return recorded result or reserve key.
+[24572] ALG-CMP67 — CompileAIIntentProposal
+[24573] Give AI bounded context; parse intent into proposal graph with source spans and ambiguities.
+[24574] ALG-CMP68 — ValidateAIRequirementGraph
+[24575] Check type, source, authority, contradiction, ambiguity, and protected status.
+[24576] ALG-CMP69 — GenerateAIRewriteCandidates
+[24577] Expose bounded conflict and state projection; store ranked rewrite proposals.
+[24578] ALG-CMP70 — DisposeAIProposal
+[24579] Check capability, sovereignty, schema, materialization, dependencies, and engineering validators.
+[24580] ALG-CMP71 — BuildViewerScene
+[24581] Project root into GLB/buffers/layers; attach root and semantic index.
+[24582] ALG-CMP72 — BuildViewerSemanticIndex
+[24583] Map rendered primitive ranges to semantic IDs and source root.
+[24584] ALG-CMP73 — BuildTopologyAwareTransition
+[24585] Use semantic correspondences to classify transitions and generate explanatory animation.
+[24586] ALG-CMP74 — CheckViewerRootApplicability
+[24587] Verify every overlay and semantic index refers to the scene root.
+[24588] ALG-CMP75 — ExportIFC
+[24589] Map represented semantic subset, attach stable IDs where supported, emit omissions and proof sidecar.
+[24590] ALG-CMP76 — ExportGLB
+[24591] Produce a render-only glTF/GLB projection with semantic sidecar and root metadata.
+[24592] ALG-CMP77 — ExportProofBundle
+[24593] Package claims, proofs, assumptions, waivers, UNKNOWN, versions, and release manifest.
+[24594] ALG-CMP78 — ValidateExportManifest
+[24595] Recompute checksums, confirm root, scope, omissions, and references.
+[24596] ALG-CMP79 — ScheduleLocalCompilerWork
+[24597] Allocate CPU, RAM, VRAM, SSD, GPU queue, and proof workers; return bounded/UNKNOWN on budget exhaustion.
+[24598] ALG-CMP80 — CheckPCOMA
+[24599] Validate complete PCOMA closure, compatibility, claims, release token, and global witness.
+[24600] ALG-CMP81 — BuildPCOMA
+[24601] Assemble all fields in Section 94, canonicalize, invoke CheckPCOMA, and return accepted package or core.
+[24603] 69. Proof Artifacts
+[24608] Root closure
+[24609] all authoritative refs resolve
+[24610] manifest kernel
+[24611] manifest, blobs, canon version
+[24612] Semantic-ID
+[24613] identity registry consistent
+[24614] identity kernel
+[24615] source/lineage changes
+[24616] Serialization
+[24617] bytes are canonical
+[24618] canon kernel
+[24619] canon/schema version
+[24620] Artifact dependency
+[24621] declared edges complete in scope
+[24623] dependency theory
+[24624] Tx capability
+[24625] actor may perform effects
+[24626] capability checker
+[24627] authority/capability root
+[24628] Tx precondition
+[24629] base state meets rewrite preconditions
+[24631] base root
+[24632] Tx write set
+[24633] changed roots are declared
+[24635] rewrite semantics
+[24636] Tx authority
+[24637] organizational permission exists
+[24639] authority root
+[24640] Tx validation
+[24641] candidate preserves invariants
+[24643] all tx inputs
+[24644] Atomic commit
+[24645] branch transition is closed
+[24646] root-store kernel
+[24647] storage semantics
+[24648] Semantic merge
+[24649] merged edits compatible
+[24650] merge checker
+[24651] ancestor/branch roots
+[24652] Compiler pass
+[24653] source-target relation holds
+[24654] pass validator
+[24655] pass theory/versions
+[24656] Import mapping
+[24657] preserved source semantics
+[24658] import checker
+[24659] source bytes/schema
+[24660] Requirement compilation
+[24661] typed requirement follows source
+[24662] requirement checker
+[24663] source/authority
+[24664] Package references
+[24665] lower package accepted/current
+[24666] package checker
+[24667] package roots
+[24668] Cross-package compatibility
+[24669] separators agree
+[24670] gluing checker
+[24671] all shared roots
+[24672] Assumption closure
+[24673] mandatory premises exposed
+[24674] logic kernel
+[24676] Modality compatibility
+[24677] no illegal strengthening
+[24678] release kernel
+[24680] Waiver
+[24681] disposition authorized
+[24683] waiver/authority
+[24684] Contradiction
+[24685] claims incompatible
+[24686] logical/domain checker
+[24687] claim versions
+[24688] Release lattice
+[24689] token relation valid
+[24691] claim language/context
+[24692] Global witness
+[24693] one shared assignment exists
+[24695] all package roots
+[24696] Cache applicability
+[24697] reuse roots unchanged
+[24698] cache checker
+[24699] cache key
+[24701] affected slice recomputed
+[24703] change set
+[24705] replay state complete
+[24706] replay checker
+[24707] environment/seed
+[24709] restart state closed
+[24711] all checkpoint roots
+[24712] Crash closure
+[24713] visible roots resolve
+[24714] storage checker
+[24715] journal/root store
+[24716] GC safety
+[24717] retained roots remain closed
+[24718] reachability checker
+[24719] retention policy
+[24720] MCP schema
+[24721] descriptor valid
+[24722] MCP registry checker
+[24723] protocol/tool version
+[24725] invocation permitted
+[24726] capability kernel
+[24727] actor/token/time
+[24728] Tool effect
+[24729] actual effects within descriptor
+[24730] effect checker
+[24731] tool implementation
+[24733] proposal checked independently
+[24734] proposal validator
+[24735] proposal/base root
+[24736] Viewer index
+[24737] render mapping rooted correctly
+[24738] viewer checker
+[24739] scene/root/index
+[24740] Export manifest
+[24741] export scope and bytes valid
+[24742] export checker
+[24743] root/exporter
+[24744] PCOMA root
+[24745] final package accepted
+[24746] PCOMA checker
+[24747] all final roots
+[24750] 70. MCP Tool Table
+[24751] The complete tool contracts are given in Section 37. The common status and protocol requirements are:
+[24752] all requests identify protocol, tool, root, actor, capability, deadline, and idempotency;
+[24753] all results separate artifacts, proofs, warnings, and UNKNOWN;
+[24754] no mutation returns newRoot absent a committed transaction;
+[24755] tools/list is capability-filtered and deterministic;
+[24756] tool annotations are treated as untrusted metadata until server trust is established;
+[24757] long-running operations use explicit task/checkpoint handles rather than hidden project state.
+[24759] 71. Data Contracts
+[24760] Language-neutral algebraic schemas:
+[24761] ProjectRoot {
+[24762]   project_id: ProjectId
+[24763]   lineage_id: LineageId
+[24764]   root_schema: SemVer
+[24765]   canonicalization_version: SemVer
+[24766]   manifest: BlobRef
+[24767]   parent_roots: List<ProjectRootRef>
+[24768]   closure_proof: ProofRef
+[24769] }
+[24771] SemanticObject {
+[24772]   semantic_id: SemanticId
+[24773]   kind: SemanticKind
+[24774]   lineage: LineageId
+[24775]   version: VersionVector
+[24776]   source_refs: List<SourceRef>
+[24777]   payload: BlobRef
+[24778]   scope: Scope
+[24781] ArtifactRef {
+[24782]   artifact_id: ArtifactId
+[24783]   kind: ArtifactKind
+[24784]   content: BlobRef
+[24785]   semantic_refs: List<SemanticId>
+[24786]   theory_version: Version
+[24787]   checker_version: Option<Version>
+[24791] VersionVector {
+[24792]   schema: Version
+[24793]   theory: Map<TheoryId, Version>
+[24794]   checker: Map<CheckerId, Version>
+[24795]   experiment: Map<ExperimentFamilyId, Version>
+[24796]   tool: Map<ToolName, Version>
+[24797]   environment: EnvironmentRoot
+[24800] Requirement {
+[24801]   id: RequirementId
+[24802]   proposition: Proposition
+[24803]   kind: RequirementKind
+[24805]   modality: ReleaseToken
+[24806]   authority: AuthorityRef
+[24807]   source_spans: List<SourceSpan>
+[24808]   priority: Priority
+[24809]   version: Version
+[24812] Claim {
+[24813]   id: ClaimId
+[24817]   assumptions: List<AssumptionRef>
+[24818]   evidence: List<EvidenceRef>
+[24819]   proof: Option<ProofRef>
+[24820]   dependencies: List<DependencyRef>
+[24821]   waiver: Option<WaiverRef>
+[24822]   versions: VersionVector
+[24825] ProofRef {
+[24826]   proof_id: ProofId
+[24827]   language: ProofLanguage
+[24828]   bytes: BlobRef
+[24829]   checker: CheckerRef
+[24830]   proposition_hash: ContentToken
+[24834] Capability {
+[24835]   id: CapabilityId
+[24836]   actor: ActorId
+[24837]   operations: Set<Operation>
+[24838]   object_scopes: Set<ObjectScope>
+[24839]   project_scope: ProjectId
+[24840]   expiry: Timestamp
+[24841]   delegation_parent: Option<CapabilityId>
+[24845] Transaction {
+[24846]   id: TransactionId
+[24847]   base_root: ProjectRootRef
+[24849]   capabilities: List<CapabilityRef>
+[24850]   read_set: Set<DependencyRoot>
+[24851]   write_set: Set<SemanticId>
+[24852]   operations: List<Rewrite>
+[24853]   preconditions: List<Predicate>
+[24854]   proof_obligations: List<Obligation>
+[24855]   status: TransactionStatus
+[24859] Rewrite {
+[24860]   id: RewriteId
+[24861]   kind: RewriteKind
+[24862]   targets: List<SemanticId>
+[24863]   parameters: CanonicalValue
+[24865]   correspondence: Correspondence
+[24866]   authority_required: AuthorityClass
+[24870] CommitResult {
+[24871]   status: CommitStatus
+[24872]   old_root: ProjectRootRef
+[24873]   new_root: Option<ProjectRootRef>
+[24874]   commit_event: Option<EventRef>
+[24876]   conflict: Option<Conflict>
+[24879] DependencyEdge {
+[24880]   source: DependencyRoot
+[24881]   target: DependencyRoot
+[24882]   kind: DependencyKind
+[24883]   applicability: Predicate
+[24887] CacheKey {
+[24888]   semantic_inputs: List<ContentToken>
+[24889]   artifact_inputs: List<ContentToken>
+[24890]   theory: VersionRoot
+[24891]   objective: ObjectiveRoot
+[24892]   experiment_family: ExperimentRoot
+[24893]   checker: CheckerRoot
+[24895]   tool_version: Version
+[24898] CompilerPass {
+[24899]   id: PassId
+[24900]   source_type: SchemaRef
+[24901]   target_type: SchemaRef
+[24902]   relation: PropositionSchema
+[24903]   producer: ProducerRef
+[24904]   validator: ValidatorRef
+[24905]   effects: Set<ToolEffect>
+[24906]   dependencies: List<DependencyRoot>
+[24910] PassResult {
+[24911]   status: Verdict
+[24912]   source: ArtifactRef
+[24913]   target: Option<ArtifactRef>
+[24914]   certificate: Option<PassCertificate>
+[24915]   core: Option<FailureCore>
+[24918] ToolDescriptor {
+[24919]   name: ToolName
+[24920]   title: String
+[24921]   description: String
+[24922]   input_schema: JsonSchema2020_12
+[24923]   output_schema: JsonSchema2020_12
+[24924]   effect: ToolEffect
+[24925]   trust: ToolTrust
+[24926]   capability: CapabilityPattern
+[24930] ToolInvocation {
+[24931]   request_id: RequestId
+[24932]   tool_name: ToolName
+[24934]   base_root: Option<ProjectRootRef>
+[24936]   capability: CapabilityRef
+[24937]   arguments: CanonicalValue
+[24938]   deadline: Timestamp
+[24939]   idempotency_key: IdempotencyKey
+[24942] ToolResult {
+[24944]   status: ToolStatus
+[24945]   result: Option<CanonicalValue>
+[24946]   artifacts: List<ArtifactRef>
+[24947]   proof_refs: List<ProofRef>
+[24949]   warnings: List<Warning>
+[24950]   unknowns: List<UnknownState>
+[24951]   audit_ref: EventRef
+[24954] PCSIRRef    { root: ProjectRootRef, package: ArtifactRef, checker: CheckerRef }
+[24955] PCROUTERef  { root: ProjectRootRef, package: ArtifactRef, checker: CheckerRef }
+[24956] PCJCDRef    { root: ProjectRootRef, package: ArtifactRef, checker: CheckerRef }
+[24957] PCDYNRef    { root: ProjectRootRef, package: ArtifactRef, checker: CheckerRef }
+[24959] ReleaseToken {
+[24960]   context: ReleaseContext
+[24961]   claim_class: ClaimClass
+[24962]   strength: Strength
+[24963]   uncertainty: UncertaintyModality
+[24964]   time_scope: TimeScope
+[24967] Waiver {
+[24968]   requirement: RequirementId
+[24970]   reason: String
+[24973]   conditions: List<Predicate>
+[24977] Contradiction {
+[24978]   left: ClaimId
+[24979]   right: ClaimId
+[24980]   common_scope: Scope
+[24981]   proof: ProofRef
+[24984] ViewerObject {
+[24985]   render_id: RenderId
+[24987]   source_root: ProjectRootRef
+[24988]   primitive_range: Range<u32>
+[24989]   projection_version: Version
+[24992] ViewerScene {
+[24994]   glb: BlobRef
+[24995]   semantic_index: BlobRef
+[24996]   layers: List<LayerDescriptor>
+[24997]   overlays: List<OverlayRef>
+[25000] ModelTransition {
+[25001]   before_root: ProjectRootRef
+[25002]   after_root: ProjectRootRef
+[25003]   correspondences: List<TransitionCorrespondence>
+[25004]   animation: BlobRef
+[25005]   intermediate_state_modality: VIEW_ONLY
+[25008] ExportManifest {
+[25010]   format: ExportFormat
+[25011]   exporter_version: Version
+[25013]   represented_scope: Scope
+[25014]   omissions: List<SemanticOmission>
+[25018] PCOMA {
+[25019]   root: ProjectRootRef
+[25020]   lineage: LineageGraphRef
+[25021]   package_refs: PackageSet
+[25022]   artifact_graph: ArtifactGraphRef
+[25023]   dependency_graph: DependencyGraphRef
+[25024]   proof_dag: ProofDagRef
+[25025]   claims: List<ClaimRef>
+[25026]   release_manifest: ReleaseManifest
+[25027]   global_witness: ProofRef
+[25028]   checker_result: ProofVerdict
+[25031] 72. Source-to-Module Map
+[25036] crates/oma-canon plus Python adapter
+[25037] adapt
+[25039] packages/oma-schema
+[25040] extend
+[25042] crates/oma-units
+[25043] migrate
+[25045] packages/oma-sir-schema
+[25048] benchmarks/service-bay
+[25049] benchmark only
+[25051] packages/oma-router-legacy
+[25052] adapter; release path rewritten
+[25054] packages/oma-rewrites-legacy
+[25057] crates/oma-depgraph
+[25059] optimization/*
+[25060] packages/oma-jcd-prototype
+[25061] retain behind compiler pass
+[25063] packages/oma-check-legacy
+[25064] retain as bounded checker
+[25066] packages/oma-run-projection
+[25067] retain
+[25069] packages/oma-import-ifc
+[25072] apps/oma-viewer
+[25074] Loom gitlinks
+[25076] unavailable
+[25078] research/loom-notes
+[25079] reference only
+[25082] 73. Final Repository Architecture
+[25083] oma/
+[25084] ├── Cargo.toml
+[25085] ├── crates/
+[25086] │   ├── oma-canon/              # Rust: canonical bytes, hashes
+[25087] │   ├── oma-identity/           # Rust: semantic IDs, correspondence
+[25088] │   ├── oma-units/              # Rust: dimensions and units

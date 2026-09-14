@@ -1,0 +1,370 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P4428; UTF16 144718] ANANKE may not silently relax a protected predicate to force feasibility.
+[11-20:P4432; UTF16 144795] 34. Minimal Intent Conflict Cores
+[11-20:P4433; UTF16 144829] DEF-SOV25 — Minimal Intent Conflict Core
+[11-20:P4435; UTF16 144875] {H_1,\ldots,H_m} ]
+[11-20:P4436; UTF16 144894] be active protected commitments.
+[11-20:P4437; UTF16 144927] A set:
+[11-20:P4438; UTF16 144934] [ U\subseteq\mathcal H ]
+[11-20:P4439; UTF16 144959] is an Intent Conflict Core when:
+[11-20:P4442; UTF16 145037] [ \forall U'\subsetneq U, \qquad X_{\mathrm{eng}} \cap \bigcap_{H\in U'}X_H \ne\varnothing. ]
+[11-20:P4443; UTF16 145131] A core explains which commitments are jointly impossible.
+[11-20:P4444; UTF16 145189] It does not rank them.
+[11-20:P4448; UTF16 145215] 35. Intent Relaxation Sets
+[11-20:P4449; UTF16 145242] DEF-SOV26 — Intent Relaxation Set
+[11-20:P4451; UTF16 145283] [ R\subseteq\mathcal H ]
+[11-20:P4452; UTF16 145308] is an Intent Relaxation Set when:
+[11-20:P4453; UTF16 145342] [ X_{\mathrm{eng}} \cap \bigcap_{H\in\mathcal H\setminus R}X_H \ne\varnothing. ]
+[11-20:P4454; UTF16 145423] Minimum-cardinality and minimum-cost relaxations are different.
+[11-20:P4455; UTF16 145487] A computed relaxation is a proposal.
+[11-20:P4456; UTF16 145524] It is not authorization.
+[11-20:P4460; UTF16 145552] 36. Minimum Intent Relaxation Is NP-Hard
+[11-20:P4461; UTF16 145593] THM-SOV12 — Minimum Protected-Intent Relaxation Is NP-Hard
+[11-20:P4462; UTF16 145652] Computing a minimum-cardinality Intent Relaxation Set is NP-hard, even for finite Boolean design spaces with conjunctive engineering constraints.
+[11-20:P4463; UTF16 145798] Proof by reduction from Minimum Vertex Cover
+[11-20:P4464; UTF16 145843] Take graph:
+[11-20:P4465; UTF16 145855] [ G=(V,E). ]
+[11-20:P4466; UTF16 145868] For every vertex:
+[11-20:P4467; UTF16 145886] [ v\in V, ]
+[11-20:P4468; UTF16 145898] create Boolean design variable:
+[11-20:P4469; UTF16 145930] [ x_v\in{0,1}. ]
+[11-20:P4470; UTF16 145947] For every edge:
+[11-20:P4471; UTF16 145963] [ (u,v)\in E, ]
+[11-20:P4472; UTF16 145979] add engineering constraint:
+[11-20:P4473; UTF16 146007] [ x_u\lor x_v=1. ]
+[11-20:P4474; UTF16 146026] For every vertex (v), create protected intent constraint:
+[11-20:P4475; UTF16 146084] [ H_v: x_v=0. ]
+[11-20:P4476; UTF16 146100] A relaxation set (R\subseteq{H_v\in V}) removes the constraints corresponding to selected vertices.
+[11-20:P4477; UTF16 146200] Every unrelaxed vertex remains forced to (0).
+[11-20:P4478; UTF16 146246] The engineering edge constraint can be satisfied only if at least one endpoint’s intent constraint is relaxed.
+[11-20:P4479; UTF16 146357] Therefore a relaxation set is feasible exactly when its corresponding vertex set intersects every edge.
+[11-20:P4480; UTF16 146461] That is exactly a vertex cover.
+[11-20:P4481; UTF16 146493] The smallest Intent Relaxation Set therefore has the same cardinality as a minimum vertex cover.
+[11-20:P4482; UTF16 146590] Minimum Vertex Cover is NP-hard. ∎
+[11-20:P4483; UTF16 146625] The optimizer may compute a minimum relaxation proposal.
+[11-20:P4484; UTF16 146682] Only an authorized role may approve it.
+[11-20:P4488; UTF16 146725] 37. Intent Relaxation Frontiers
+[11-20:P4489; UTF16 146757] When relaxation consequences are vector valued:
+[11-20:P4490; UTF16 146805] \left( \text{architectural significance}, \text{authorship significance}, \text{client impact}, \text{program impact}, \ldots \right), ]
+[11-20:P4491; UTF16 146942] ANANKE returns Pareto-minimal relaxation sets.
+[11-20:P4492; UTF16 146989] No scalar “least architectural harm” is invented unless governance defines one.
+[11-20:P4496; UTF16 147072] 38. Intent Waivers and Amendments
+[11-20:P4497; UTF16 147106] Prompt-11 waiver semantics remains authoritative.
+[11-20:P4498; UTF16 147156] THM-SOV13 — An Authorized Intent Waiver Changes the Active Intent Contract Rather Than Retroactively Proving Preservation
+[11-20:P4500; UTF16 147283] [ \mathfrak I ]
+[11-20:P4501; UTF16 147299] contain protected invariant (H).
+[11-20:P4502; UTF16 147332] Let an authorized waiver create:
+[11-20:P4503; UTF16 147365] \mathfrak I\setminus{H} ]
+[11-20:P4504; UTF16 147391] or otherwise modify (H).
+[11-20:P4505; UTF16 147416] Then a post-waiver design may be evaluated under (\mathfrak I').
+[11-20:P4506; UTF16 147481] The waiver does not establish that a design violating (H) satisfied (\mathfrak I).
+[11-20:P4508; UTF16 147570] By Prompt-11 THM-ASS22, a waiver changes the governing obligation theory.
+[11-20:P4509; UTF16 147644] No inference rule derives:
+[11-20:P4510; UTF16 147671] [ H(x) ]
+[11-20:P4511; UTF16 147680] from the existence of the waiver.
+[11-20:P4512; UTF16 147714] Therefore the old contract was amended, not preserved. ∎
+[11-20:P4513; UTF16 147771] Intent history must retain both versions.
+[11-20:P4517; UTF16 147816] 39. Conditional Intent
+[11-20:P4518; UTF16 147839] A protected rule may have form:
+[11-20:P4519; UTF16 147871] [ P(x)\Longrightarrow H(x). ]
+[11-20:P4521; UTF16 147910] If the public stair remains in the atrium, preserve its visual connection to the entrance.
+[11-20:P4522; UTF16 148001] The implication is a hard scoped predicate.
+[11-20:P4523; UTF16 148045] If (P) becomes false through an authorized redesign, (H) may become inactive.
+[11-20:P4524; UTF16 148123] The activation condition is explicit.
+[11-20:P4528; UTF16 148164] 40. Sequence and Procession Constraints
+[11-20:P4529; UTF16 148204] DEF-SOV27 — Architectural Sequence Constraint
+[11-20:P4530; UTF16 148250] Let the circulation model of design (x) be a finite labeled graph:
+[11-20:P4531; UTF16 148317] (V_x,E_x,\lambda_x). ]
+[11-20:P4533; UTF16 148345] [ \mathcal L_I \subseteq \Sigma^\star ]
+[11-20:P4534; UTF16 148385] be an accepted language of spatial episodes.
+[11-20:P4535; UTF16 148430] A sequence obligation contains:
+[11-20:P4536; UTF16 148462] origin and destination;
+[11-20:P4537; UTF16 148486] path selector;
+[11-20:P4538; UTF16 148501] quantifier:
+[11-20:P4539; UTF16 148513] designated;
+[11-20:P4540; UTF16 148525] existential;
+[11-20:P4541; UTF16 148538] universal;
+[11-20:P4542; UTF16 148549] accepted language.
+[11-20:P4543; UTF16 148568] For a designated primary path (p_x), satisfaction is:
+[11-20:P4544; UTF16 148622] [ \lambda_x(p_x)\in\mathcal L_I. ]
+[11-20:P4545; UTF16 148657] For an existential rule:
+[11-20:P4546; UTF16 148682] [ \exists p\in\mathsf{Paths}_x(s,t), \quad \lambda_x(p)\in\mathcal L_I. ]
+[11-20:P4547; UTF16 148756] For a universal rule:
+[11-20:P4548; UTF16 148778] [ \forall p\in\mathsf{RequiredPaths}_x(s,t), \quad \lambda_x(p)\in\mathcal L_I. ]
+[11-20:P4549; UTF16 148860] This can formalize finite versions of:
+[11-20:P4551; UTF16 148911] threshold order;
+[11-20:P4552; UTF16 148928] privacy gradient;
+[11-20:P4553; UTF16 148946] view sequence;
+[11-20:P4554; UTF16 148961] service/public separation.
+[11-20:P4555; UTF16 148988] It does not claim to exhaust the phenomenology of movement.
+[11-20:P4559; UTF16 149051] 41. Relational Intent
+[11-20:P4560; UTF16 149073] Architectural commitments may be predicates:
+[11-20:P4561; UTF16 149118] [ R_i(o_1,\ldots,o_k). ]
+[11-20:P4563; UTF16 149153] courtyard centered on an axis;
+[11-20:P4564; UTF16 149184] visible columns aligned with façade bays;
+[11-20:P4565; UTF16 149226] roof hierarchy related to program hierarchy;
+[11-20:P4566; UTF16 149271] public circulation separated from service circulation;
+[11-20:P4567; UTF16 149326] opening rhythm related to structural rhythm.
+[11-20:P4568; UTF16 149371] Independent coordinate bounds are insufficient when meaning lies in the relation.
+[11-20:P4572; UTF16 149456] 42. Symmetry and Architectural Equivalence
+[11-20:P4573; UTF16 149499] Let group:
+[11-20:P4574; UTF16 149510] [ G \curvearrowright X ]
+[11-20:P4575; UTF16 149535] act on designs.
+[11-20:P4582; UTF16 149632] THM-SOV14 — Protected-Observation-Invariant Symmetries Preserve Endpoint Intent
+[11-20:P4584; UTF16 149720] [ \pi_P(gx)=\pi_P(x) \qquad \forall g\in G,\forall x\in X. ]
+[11-20:P4585; UTF16 149781] Then every endpoint intent claim factoring through (\pi_P) is preserved by every group transformation.
+[11-20:P4587; UTF16 149890] Let protected claim be:
+[11-20:P4588; UTF16 149914] [ C(x)=\widehat C(\pi_P(x)). ]
+[11-20:P4589; UTF16 149945] For every (g):
+[11-20:P4590; UTF16 149960] \widehat C(\pi_P(gx))
+[11-20:P4591; UTF16 149982] \widehat C(\pi_P(x))
+[11-20:P4592; UTF16 150003] C(x). ]
+[11-20:P4594; UTF16 150013] Trace, consent, and authorship claims require separate checking.
+[11-20:P4595; UTF16 150078] A symmetry of final observations is not automatically an authorized action.
+[11-20:P4599; UTF16 150157] 43. Style Programs and Sovereignty
+[11-20:P4600; UTF16 150192] A project may import from an Architectural Style Program:
+[11-20:P4601; UTF16 150250] invariants;
+[11-20:P4602; UTF16 150262] transformation rules;
+[11-20:P4603; UTF16 150284] forbidden shortcuts;
+[11-20:P4604; UTF16 150305] soft priors;
+[11-20:P4605; UTF16 150318] relational grammars.
+[11-20:P4606; UTF16 150339] These become candidate components of (\mathfrak I) only after project governance adopts them.
+[11-20:P4607; UTF16 150433] Architectural sovereignty is project specific.
+[11-20:P4608; UTF16 150480] It is not dependent on a style label.
+[11-20:P4609; UTF16 150518] A design may:
+[11-20:P4610; UTF16 150532] satisfy a style critic;
+[11-20:P4611; UTF16 150556] violate project-specific protected intent.
+[11-20:P4612; UTF16 150599] A design may also:
+[11-20:P4613; UTF16 150618] depart from a style prior through authorized authorship;
+[11-20:P4614; UTF16 150675] remain sovereignty valid.
+[11-20:P4615; UTF16 150701] Style fidelity and sovereignty are distinct claims.
+[11-20:P4619; UTF16 150756] 44. AI Proposal and Preference-Learning Boundary
+[11-20:P4621; UTF16 150821] design changes;
+[11-20:P4622; UTF16 150837] protected invariant candidates;
+[11-20:P4623; UTF16 150869] preference hypotheses;
+[11-20:P4624; UTF16 150892] relaxation proposals;
+[11-20:P4625; UTF16 150914] conflict explanations;
+[11-20:P4626; UTF16 150937] alternative intent encodings.
+[11-20:P4627; UTF16 150967] It may not silently modify:
+[11-20:P4628; UTF16 150995] hard intent;
+[11-20:P4629; UTF16 151008] vetoes;
+[11-20:P4632; UTF16 151049] the admissible preference family.
+[11-20:P4634; UTF16 151088] [ \widehat{\succeq}_A ]
+[11-20:P4635; UTF16 151112] be an inferred preference model.
+[11-20:P4636; UTF16 151145] It is a hypothesis unless governance explicitly adopts it.
+[11-20:P4640; UTF16 151207] 45. Preference Evidence and Refinement
+[11-20:P4641; UTF16 151246] Suppose new human judgment (J) is received.
+[11-20:P4642; UTF16 151290] Define updated preference family:
+[11-20:P4643; UTF16 151324] \left{ P\in\mathfrak P_A: P\text{ is consistent with }J \right}. ]
+[11-20:P4645; UTF16 151395] [ \mathfrak P_A'=\varnothing, ]
+[11-20:P4646; UTF16 151427] ANANKE reports preference inconsistency or context mismatch.
+[11-20:P4647; UTF16 151488] It does not fabricate a compromise utility.
+[11-20:P4651; UTF16 151535] THM-SOV15 — Preference Refinement Can Only Shrink the Human Option Set Under a Fixed Design Universe
+[11-20:P4653; UTF16 151644] [ \mathfrak P_A' \subseteq \mathfrak P_A, ]
+[11-20:P4654; UTF16 151688] while candidate universe and admissible menu family remain fixed.
+[11-20:P4656; UTF16 151760] [ \mathcal O_H(K') \subseteq \mathcal O_H(K). ]
+[11-20:P4658; UTF16 151814] Take:
+[11-20:P4659; UTF16 151820] [ x\in\mathcal O_H(K'). ]
+[11-20:P4660; UTF16 151846] There exist:
+[11-20:P4661; UTF16 151859] [ P\in\mathfrak P_A' ]
+[11-20:P4662; UTF16 151882] and admissible menu (M) such that (x) is selected.
+[11-20:P4664; UTF16 151942] [ \mathfrak P_A'\subseteq\mathfrak P_A, ]
+[11-20:P4665; UTF16 151984] the same (P) is admitted before refinement.
+[11-20:P4669; UTF16 152066] Design-universe expansion may enlarge the option set.
+[11-20:P4670; UTF16 152120] Preference refinement and design search are distinct updates.
+[11-20:P4674; UTF16 152185] 46. Declared Design Descriptors
+[11-20:P4675; UTF16 152217] DEF-SOV28 — Declared Design Descriptor
+[11-20:P4676; UTF16 152256] A descriptor is:
+[11-20:P4677; UTF16 152273] [ \beta\to B. ]
+[11-20:P4678; UTF16 152289] It may encode:
+[11-20:P4679; UTF16 152304] massing family;
+[11-20:P4680; UTF16 152320] courtyard topology;
+[11-20:P4681; UTF16 152340] circulation strategy;
+[11-20:P4682; UTF16 152362] structural rhythm;
+[11-20:P4683; UTF16 152381] daylight strategy;
+[11-20:P4684; UTF16 152400] material logic;
+[11-20:P4685; UTF16 152416] façade organization.
+[11-20:P4686; UTF16 152437] Descriptors can support:
+[11-20:P4687; UTF16 152462] portfolio coverage;
+[11-20:P4688; UTF16 152482] diversity constraints;
+[11-20:P4689; UTF16 152505] explanation.
+[11-20:P4690; UTF16 152518] They do not themselves prove architectural quality.
+[11-20:P4691; UTF16 152570] A generic embedding distance is not assumed to be an architectural diversity metric.
+[11-20:P4695; UTF16 152658] 47. Sovereign Design Portfolios
+[11-20:P4696; UTF16 152690] DEF-SOV29 — Sovereign Design Portfolio
+[11-20:P4697; UTF16 152729] A portfolio:
+[11-20:P4698; UTF16 152742] [ A\subseteq X ]
+[11-20:P4699; UTF16 152759] is an exact Sovereign Design Portfolio for represented universe (U) when:
+[11-20:P4700; UTF16 152833] every (a\in A) satisfies hard intent and veto rules;
+[11-20:P4701; UTF16 152886] there is a label-preserving representative map: [ \eta\to A; ]
+[11-20:P4702; UTF16 152949] for every admitted sovereignty experiment, replacing each (x) by (\eta(x)) preserves the complete Prompt-2 report;
+[11-20:P4703; UTF16 153064] preference incomparability is preserved;
+[11-20:P4704; UTF16 153105] consent and deferral reports are preserved;
+[11-20:P4705; UTF16 153149] required descriptor coverage is preserved;
+[11-20:P4706; UTF16 153192] vetoed states are not represented as admissible.
+[11-20:P4707; UTF16 153241] Approximate portfolios use Prompt-5 certified decision tolerances and exact mandatory channels.
+[11-20:P4711; UTF16 153340] THM-SOV22 — A Contextually Complete Representative Portfolio Preserves Every Admitted Sovereignty Choice Report
+[11-20:P4712; UTF16 153452] Assume that for every:
+[11-20:P4713; UTF16 153475] [ x\in U, ]
+[11-20:P4714; UTF16 153487] the portfolio map satisfies:
+[11-20:P4715; UTF16 153516] [ x \equiv_{\mathcal T_{\mathrm{sov}}} \eta(x), ]
+[11-20:P4716; UTF16 153566] and that labels and multiplicities are retained through representative metadata.
+[11-20:P4717; UTF16 153647] Then every admitted complete sovereignty decision experiment on (U) can be reconstructed exactly from the portfolio (A).
+[11-20:P4719; UTF16 153774] Take any finite labeled menu:
+[11-20:P4720; UTF16 153804] [ M={x_1,\ldots,x_n} \subseteq U. ]
+[11-20:P4721; UTF16 153840] Replace (x_1) by (\eta(x_1)).
+[11-20:P4722; UTF16 153870] Context congruence from Prompt 2 preserves the complete report.
+[11-20:P4723; UTF16 153934] Repeat for each (x_i).
+[11-20:P4724; UTF16 153957] By transitivity of contextual equivalence, the final representative menu has the same normalized report as (M).
+[11-20:P4725; UTF16 154069] The label-preserving metadata reconstructs which original options are represented by each portfolio state.
+[11-20:P4732; UTF16 154264] diversity reports
+[11-20:P4733; UTF16 154282] are preserved. ∎
+[11-20:P4734; UTF16 154299] The hard task is discovering and certifying the equivalence relation.
+[11-20:P4735; UTF16 154369] The theorem does not assume geometric equality.
+[11-20:P4739; UTF16 154420] 48. Sovereignty Does Not Mean Freezing the Building
+[11-20:P4740; UTF16 154472] Suppose protected intent consists of:
+[11-20:P4741; UTF16 154510] courtyard relation;
+[11-20:P4742; UTF16 154530] public procession;
+[11-20:P4744; UTF16 154564] visible structural alignment.
+[11-20:P4745; UTF16 154594] ANANKE may still optimize:
+[11-20:P4746; UTF16 154621] duct routes;
+[11-20:P4747; UTF16 154634] pipe routes;
+[11-20:P4749; UTF16 154658] member sizes;
+[11-20:P4750; UTF16 154672] hidden connections;
+[11-20:P4751; UTF16 154692] control parameters;
+[11-20:P4752; UTF16 154712] electrical topology;
+[11-20:P4753; UTF16 154733] insulation;
+[11-20:P4754; UTF16 154745] repetitive guestroom details;
+[11-20:P4756; UTF16 154788] construction sequence
+[11-20:P4757; UTF16 154810] when the protected reports remain invariant and authority rules are satisfied.
+[11-20:P4758; UTF16 154889] The purpose of sovereignty is to protect meaning while enlarging safe optimization freedom.
+[11-20:P4762; UTF16 154984] 49. Overprotection and Underprotection
+[11-20:P4763; UTF16 155023] Overprotection
+[11-20:P4764; UTF16 155038] If every coordinate is hard protected:
+[11-20:P4765; UTF16 155077] [ X_{\mathfrak I}={x_0}, ]
+[11-20:P4766; UTF16 155104] no design optimization remains.
+[11-20:P4767; UTF16 155136] This may protect accidental implementation details rather than intent.
+[11-20:P4768; UTF16 155207] Underprotection
+[11-20:P4769; UTF16 155223] If the only intent rule is:
+[11-20:P4770; UTF16 155251] Mediterranean-looking,
+[11-20:P4771; UTF16 155274] an optimizer may preserve surface motifs while destroying:
+[11-20:P4773; UTF16 155345] hierarchy;
+[11-20:P4774; UTF16 155356] section;
+[11-20:P4776; UTF16 155385] material logic.
+[11-20:P4777; UTF16 155401] No theorem can infer complete artistic intention from one geometry or one label.
+[11-20:P4778; UTF16 155482] Intent modeling remains a human-governed task.
+[11-20:P4782; UTF16 155532] 50. Intent-Program Open-World Limitation
+[11-20:P4783; UTF16 155573] THM-SOV17 — Sovereignty Completeness Is Relative to the Declared Intent Program
+[11-20:P4786; UTF16 155674] be the active intent program.
+[11-20:P4787; UTF16 155704] There may exist an unencoded architectural commitment:
+[11-20:P4788; UTF16 155759] [ H^\star. ]
+[11-20:P4789; UTF16 155772] Satisfaction of every rule in (\mathfrak I) does not imply:
+[11-20:P4792; UTF16 155851] Construct two designs (x,y) satisfying every encoded predicate in (\mathfrak I).
+[11-20:P4794; UTF16 155937] [ H^\star(x)=\mathsf{true}, \qquad H^\star(y)=\mathsf{false}. ]
+[11-20:P4795; UTF16 156001] Because (H^\star) is absent from the active theory, the encoded sovereignty checker accepts both.
+[11-20:P4796; UTF16 156099] Therefore encoded sovereignty does not entail the omitted commitment. ∎
+[11-20:P4797; UTF16 156171] This is the architectural analogue of:
+[11-20:P4798; UTF16 156210] Prompt-10 unmodeled hazards;
+[11-20:P4799; UTF16 156239] Prompt-11 omitted release obligations.
+[11-20:P4803; UTF16 156281] 51. Intent Versioning
+[11-20:P4804; UTF16 156303] DEF-SOV31 — Intent Version
+[11-20:P4805; UTF16 156330] \left( \mathsf{intentHash}, \mathsf{designVersion}, \mathsf{authorityMap}, \mathsf{timestamp}, \mathsf{approvers} \right). ]
+[11-20:P4806; UTF16 156455] An amendment creates:
+[11-20:P4807; UTF16 156477] [ I_{v+1}. ]
+[11-20:P4808; UTF16 156490] History is not rewritten to pretend that the old contract was preserved.
+[11-20:P4809; UTF16 156563] An Intent Change Log records:
+[11-20:P4810; UTF16 156593] old rule;
+[11-20:P4811; UTF16 156603] new rule;
+[11-20:P4812; UTF16 156613] reason;
+[11-20:P4813; UTF16 156621] authorizing role;
+[11-20:P4814; UTF16 156639] engineering conflict;
+[11-20:P4815; UTF16 156661] alternatives considered;
+[11-20:P4816; UTF16 156686] affected proof roots.
+[11-20:P4820; UTF16 156711] 52. Intent Conflicts and Explanations
+[11-20:P4821; UTF16 156749] DEF-SOV32 — Intent Conflict Artifact
+[11-20:P4822; UTF16 156786] An Intent Conflict Artifact contains:
+[11-20:P4823; UTF16 156824] engineering infeasibility certificate;
+[11-20:P4824; UTF16 156863] protected-intent conflict core;
+[11-20:P4825; UTF16 156895] causal explanation graph;
+[11-20:P4826; UTF16 156921] candidate engineering repairs;
+[11-20:P4827; UTF16 156952] candidate intent relaxations;
+[11-20:P4828; UTF16 156982] affected protected claims;
+[11-20:P4829; UTF16 157009] quantitative consequences;
+[11-20:P4830; UTF16 157036] required authority;
+[11-20:P4831; UTF16 157056] current intent version;
+[11-20:P4833; UTF16 157096] It does not contain an automatically committed relaxation unless authorization exists.
+[11-20:P4837; UTF16 157186] 53. Lobby Conflict Example
+[11-20:P4839; UTF16 157239] Protected intent:
+[11-20:P4840; UTF16 157257] [ H_1: h_{\mathrm{clear}}\ge4.2\text{ m}. ]
+[11-20:P4841; UTF16 157301] Engineering requirements:
+[11-20:P4842; UTF16 157327] [ H_2: b\ge0.4\text{ m}, ]
+[11-20:P4843; UTF16 157354] [ H_3: d\ge0.3\text{ m}, ]
+[11-20:P4844; UTF16 157381] [ H_4: c\ge0.2\text{ m}, ]
+[11-20:P4846; UTF16 157415] (b): structural zone;
+[11-20:P4847; UTF16 157437] (d): service zone;
+[11-20:P4848; UTF16 157456] (c): clearance and ceiling build-up.
+[11-20:P4849; UTF16 157493] Floor-to-floor limit:
+[11-20:P4850; UTF16 157515] [ H_5: F\le5.0\text{ m}. ]
+[11-20:P4851; UTF16 157542] Geometric composition:
+[11-20:P4852; UTF16 157565] [ H_6: h_{\mathrm{clear}}+b+d+c\le F. ]
+[11-20:P4853; UTF16 157605] The lower bounds imply:
+[11-20:P4854; UTF16 157629] 5.1
+[11-20:P4855; UTF16 157633] 5.0. ]
+[11-20:P4857; UTF16 157646] [ H_1\land\cdots\land H_6 ]
+[11-20:P4858; UTF16 157674] is infeasible.
+[11-20:P4859; UTF16 157689] Each bound is essential to this numerical contradiction: removing one permits a mathematical assignment satisfying the remaining inequalities.
+[11-20:P4860; UTF16 157832] A verified conflict core is:
+[11-20:P4861; UTF16 157861] {H_1,H_2,H_3,H_4,H_5,H_6}. ]
+[11-20:P4863; UTF16 157910] reroute the duct outside the protected lobby zone;
+[11-20:P4864; UTF16 157961] use a shallower structural system;
+[11-20:P4865; UTF16 157996] increase floor-to-floor height;
+[11-20:P4866; UTF16 158028] accept a localized service strategy;
+[11-20:P4867; UTF16 158065] relax the protected clear height.
+[11-20:P4868; UTF16 158099] It may not select the last option without authorization.
+[11-20:P4872; UTF16 158159] 54. Conflict-Core and Repair Algorithms
+[11-20:P4873; UTF16 158199] ALG-SOV7 — FindIntentConflictCore
+[11-20:P4875; UTF16 158239]     engineering constraints
+[11-20:P4876; UTF16 158267]     protected intent constraints
+[11-20:P4878; UTF16 158301] IF the joint system is feasible:
+[11-20:P4879; UTF16 158334]     RETURN NO CONFLICT
+[11-20:P4881; UTF16 158358] OBTAIN
+[11-20:P4882; UTF16 158365]     checked UNSAT proof
+[11-20:P4884; UTF16 158390] EXTRACT
+[11-20:P4885; UTF16 158398]     candidate unsatisfiable core
+[11-20:P4887; UTF16 158432] MINIMIZE
+[11-20:P4888; UTF16 158441]     by deletion, SAT/SMT calls,
+[11-20:P4889; UTF16 158473]     or an exact MUS procedure
+[11-20:P4892; UTF16 158511]     core infeasibility
+[11-20:P4893; UTF16 158534]     and any claimed minimality
+[11-20:P4896; UTF16 158573]     verified conflict core
+[11-20:P4898; UTF16 158622]     explanation inputs
+[11-20:P4902; UTF16 158648] ALG-SOV8 — ProposeIntentRepairs
+[11-20:P4904; UTF16 158686]     verified intent conflict
+[11-20:P4905; UTF16 158715]     engineering transformation library
+[11-20:P4906; UTF16 158754]     authority map
+[11-20:P4908; UTF16 158773] GENERATE engineering-side repairs:
+[11-20:P4909; UTF16 158808]     reroute
+[11-20:P4910; UTF16 158820]     resize
+[11-20:P4911; UTF16 158831]     alternate structural system
+[11-20:P4912; UTF16 158863]     alternate equipment
+[11-20:P4913; UTF16 158887]     topology change
+[11-20:P4914; UTF16 158907]     local region expansion
+[11-20:P4916; UTF16 158935] GENERATE intent-relaxation proposals
+[11-20:P4917; UTF16 158972] only where engineering-side repair
+[11-20:P4918; UTF16 159007] does not close the conflict
+[11-20:P4920; UTF16 159036] FOR every proposal:
+[11-20:P4921; UTF16 159056]     verify engineering feasibility
+[11-20:P4922; UTF16 159091]     identify protected claims changed
+[11-20:P4923; UTF16 159129]     compute performance consequences
+[11-20:P4924; UTF16 159166]     identify authorship consequences
+[11-20:P4925; UTF16 159203]     identify required authority
+[11-20:P4927; UTF16 159236] DO NOT APPLY
+[11-20:P4928; UTF16 159249]     protected relaxation without consent
+[11-20:P4931; UTF16 159298]     verified repair frontier
+[11-20:P4932; UTF16 159327]     and required human decisions
+[11-20:P4936; UTF16 159363] 55. Sequence and Relational Examples
+[11-20:P4937; UTF16 159400] Courtyard procession
+[11-20:P4938; UTF16 159421] Protected language:
+[11-20:P4939; UTF16 159441] { \text{street} \to \text{compressed threshold} \to \text{courtyard edge} \to \text{lobby} }. ]
+[11-20:P4940; UTF16 159537] A direct interior corridor may reduce walking distance.

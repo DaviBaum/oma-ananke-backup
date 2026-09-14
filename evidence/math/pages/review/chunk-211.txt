@@ -1,0 +1,307 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P33764; UTF16 1115801] \[ \boxed{ \mathsf{SocMode} = \left\{ \begin{array}{l} \mathsf{EXACT\_INCIDENCE},\\ \mathsf{RESOURCE\_FEASIBLE},\\ \mathsf{ACCESSIBILITY\_CERTIFIED},\\ \mathsf{AFFORDABILITY\_CERTIFIED},\\ \mathsf{RIGHTS\_CONSTRAINED},\\ \mathsf{PARETO\_EFFICIENT},\\ \mathsf{ENVY\_FREE},\\ \mathsf{MAXMIN\_FAIR},\\ \mathsf{PROPORTIONALLY\_FAIR},\\ \mathsf{FAIR\_UNDER\_DECLARED\_THEORY},\\ \mathsf{PUBLIC\_GOOD\_GAME\_CERTIFIED},\\ \mathsf{EXTERNALITY\_INTERNALIZED},\\ \mathsf{BUDGET\_BALANCED},\\ \mathsf{CORE\_STABLE},\\ \mathsf{SHAPLEY\_ALLOCATED},\\ \mathsf{SOCIAL\_CHOICE\_CERTIFIED},\\ \mathsf{PROCEDURALLY\_VALID},\\ \mathsf{SOCIETAL\_RELEASE},\\ \mathsf{HEURISTIC},\\ \mathsf{UNKNOWN} \end{array} \right\}. } \]
+[21-30:P33767; UTF16 1116559] \[ \mathsf{SHAPLEY\_ALLOCATED} \not\Longrightarrow \mathsf{CORE\_STABLE}, \]\[ \mathsf{PARETO\_EFFICIENT} \not\Longrightarrow \mathsf{ENVY\_FREE}, \]
+[21-30:P33769; UTF16 1116714] \[ \mathsf{PROCEDURALLY\_VALID} \not\Longrightarrow \mathsf{PARETO\_EFFICIENT}. \]
+[21-30:P33772; UTF16 1116799] 30. Societal Dependency Graph
+[21-30:P33773; UTF16 1116829] DEF-SOC37 — Societal Dependency Graph
+[21-30:P33775; UTF16 1116886] stakeholder;
+[21-30:P33776; UTF16 1116899] incidence event;
+[21-30:P33778; UTF16 1116926] service floor;
+[21-30:P33779; UTF16 1116941] accessibility state;
+[21-30:P33780; UTF16 1116962] affordability state;
+[21-30:P33781; UTF16 1116983] preference;
+[21-30:P33782; UTF16 1116995] utility representation;
+[21-30:P33783; UTF16 1117019] fairness theory;
+[21-30:P33784; UTF16 1117036] fairness weight;
+[21-30:P33785; UTF16 1117053] public good;
+[21-30:P33789; UTF16 1117100] coalition cost;
+[21-30:P33790; UTF16 1117116] Shapley allocation;
+[21-30:P33791; UTF16 1117136] core constraint;
+[21-30:P33792; UTF16 1117153] voting profile;
+[21-30:P33793; UTF16 1117169] collective rule;
+[21-30:P33794; UTF16 1117186] procedure state;
+[21-30:P33795; UTF16 1117203] rights constraint;
+[21-30:P33796; UTF16 1117222] societal release root.
+[21-30:P33798; UTF16 1117254] \[ u\to v \]
+[21-30:P33799; UTF16 1117267] means changing u may change claim v.
+[21-30:P33800; UTF16 1117304] The following are dependency roots:
+[21-30:P33801; UTF16 1117340] stakeholder-set identity;
+[21-30:P33802; UTF16 1117366] societal experiment family;
+[21-30:P33803; UTF16 1117394] fairness-theory version;
+[21-30:P33804; UTF16 1117419] fairness weights;
+[21-30:P33805; UTF16 1117437] preference domain;
+[21-30:P33806; UTF16 1117456] coalition universe;
+[21-30:P33807; UTF16 1117476] procedural rule version.
+[21-30:P33811; UTF16 1117504] 31. Incremental Societal Recertification
+[21-30:P33812; UTF16 1117545] THM-SOC27 — Dependency-Directed Societal Recertification Equals Cold Checking
+[21-30:P33814; UTF16 1117635] Every changed societal root is identified.
+[21-30:P33817; UTF16 1117757] Reused stakeholder and incidence artifacts pass identity and applicability checks.
+[21-30:P33818; UTF16 1117840] Reused fairness certificates retain the same theory and weights.
+[21-30:P33819; UTF16 1117905] Reused preference results retain the same profile and domain assumptions.
+[21-30:P33820; UTF16 1117979] Recomputed nodes use cold-equivalent deterministic semantics.
+[21-30:P33822; UTF16 1118067] Cyclic cooperative or collective-decision submodels are encapsulated by checked solution nodes.
+[21-30:P33826; UTF16 1118220] resource feasibility;
+[21-30:P33830; UTF16 1118280] Pareto status;
+[21-30:P33834; UTF16 1118342] public-good results;
+[21-30:P33835; UTF16 1118363] externality transfers;
+[21-30:P33836; UTF16 1118386] cost sharing;
+[21-30:P33838; UTF16 1118420] core membership;
+[21-30:P33839; UTF16 1118437] social-choice results;
+[21-30:P33843; UTF16 1118505] Encapsulate every certified cyclic subsystem as one checked node. The remaining dependency graph is acyclic.
+[21-30:P33844; UTF16 1118614] Choose a topological order:
+[21-30:P33846; UTF16 1118643] v1,,vN.
+[21-30:P33850; UTF16 1118769] If changed, both methods recompute it using identical semantics.
+[21-30:P33851; UTF16 1118834] If unchanged, reuse is permitted only after identity, version, and applicability checks establish that its value equals the cold value.
+[21-30:P33853; UTF16 1118985] Assume equality for every predecessor of vk.
+[21-30:P33854; UTF16 1119030] If vk is outside the invalidated descendant set, dependency completeness implies no changed root can affect it. Its reused value equals the cold value.
+[21-30:P33855; UTF16 1119182] If vk is invalidated, both methods apply the same local checker to predecessor values equal by the induction hypothesis. The outputs are equal.
+[21-30:P33856; UTF16 1119326] Thus equality holds at vk.
+[21-30:P33861; UTF16 1119407] 32. Societal Release Fiber
+[21-30:P33862; UTF16 1119434] DEF-SOC38 — Societal Release Fiber
+[21-30:P33863; UTF16 1119469] \[ \boxed{ \gamma_{\mathrm{soc}}^\mu (y,g_t) = \left\{ (x,\kappa,\pi,\eta): \mathsf{SocietalValid}_\mu (y,g_t,x,\kappa,\pi,\eta) \right\}. } \]
+[21-30:P33864; UTF16 1119613] The witness contains:
+[21-30:P33865; UTF16 1119635] a physically feasible allocation x;
+[21-30:P33866; UTF16 1119671] a transfer or cost-sharing mechanism ;
+[21-30:P33867; UTF16 1119710] an authorized collective procedure ;
+[21-30:P33868; UTF16 1119747] a release certificate .
+[21-30:P33872; UTF16 1119774] 33. Proof-Carrying Societal Allocation and Release Package
+[21-30:P33873; UTF16 1119833] DEF-SOC39 — Proof-Carrying Societal Allocation and Release Package
+[21-30:P33875; UTF16 1119908] \[ \boxed{ \mathsf{PCSAR}. } \]
+[21-30:P33876; UTF16 1119940] A PCSAR contains at minimum:
+[21-30:P33877; UTF16 1119969] project or portfolio identity;
+[21-30:P33878; UTF16 1120000] Prompt-1–28 package references;
+[21-30:P33879; UTF16 1120032] societal state;
+[21-30:P33880; UTF16 1120048] stakeholder registry;
+[21-30:P33881; UTF16 1120070] stakeholder-coverage status;
+[21-30:P33882; UTF16 1120099] incidence-event ledger;
+[21-30:P33883; UTF16 1120123] burden vectors;
+[21-30:P33884; UTF16 1120139] benefit vectors;
+[21-30:P33885; UTF16 1120156] service vectors;
+[21-30:P33886; UTF16 1120173] shared-resource state;
+[21-30:P33887; UTF16 1120196] resource-allocation witness;
+[21-30:P33890; UTF16 1120261] accessibility model;
+[21-30:P33891; UTF16 1120282] accessibility results;
+[21-30:P33892; UTF16 1120305] affordability model;
+[21-30:P33893; UTF16 1120326] affordability results;
+[21-30:P33896; UTF16 1120384] Pareto analysis;
+[21-30:P33897; UTF16 1120401] envy analysis;
+[21-30:P33898; UTF16 1120416] max-min allocation;
+[21-30:P33899; UTF16 1120436] proportional-fairness analysis;
+[21-30:P33900; UTF16 1120468] preference profile;
+[21-30:P33901; UTF16 1120488] utility modality;
+[21-30:P33902; UTF16 1120506] interpersonal-comparability status;
+[21-30:P33903; UTF16 1120542] public-good game;
+[21-30:P33904; UTF16 1120560] equilibrium state;
+[21-30:P33905; UTF16 1120579] externality ledger;
+[21-30:P33906; UTF16 1120599] transfer or internalization mechanism;
+[21-30:P33907; UTF16 1120638] cooperative cost game;
+[21-30:P33908; UTF16 1120661] coalition costs;
+[21-30:P33909; UTF16 1120678] budget-balanced allocation;
+[21-30:P33910; UTF16 1120706] core status;
+[21-30:P33912; UTF16 1120739] submodularity status;
+[21-30:P33913; UTF16 1120761] social-choice rule;
+[21-30:P33914; UTF16 1120781] majority relation;
+[21-30:P33915; UTF16 1120800] collective outcome;
+[21-30:P33916; UTF16 1120820] procedural state machine;
+[21-30:P33917; UTF16 1120846] procedural trace;
+[21-30:P33918; UTF16 1120864] procedural-validity certificate;
+[21-30:P33920; UTF16 1120919] unresolved stakeholders;
+[21-30:P33921; UTF16 1120944] unresolved preferences;
+[21-30:P33922; UTF16 1120968] unresolved incidence pathways;
+[21-30:P33923; UTF16 1120999] societal conflict cores;
+[21-30:P33931; UTF16 1121096] 34. Whole-Project Societal Theorem
+[21-30:P33932; UTF16 1121131] THM-SOC28 — Whole-Project Proof-Carrying Distributional, Fair-Allocation, Collective-Decision, and Societal Release
+[21-30:P33934; UTF16 1121252] B: target project or portfolio;
+[21-30:P33935; UTF16 1121284] gt: active societal state;
+[21-30:P33936; UTF16 1121311] y: target societal release;
+[21-30:P33937; UTF16 1121339] \(\mathsf{PCSAR}\): candidate package.
+[21-30:P33939; UTF16 1121386] Prompt-28 project and extra-project state is correct.
+[21-30:P33940; UTF16 1121440] Every represented stakeholder is correctly identified.
+[21-30:P33941; UTF16 1121495] Every stakeholder capable of changing a mandatory root is represented or unresolved.
+[21-30:P33942; UTF16 1121580] Every mandatory burden and benefit pathway is represented.
+[21-30:P33943; UTF16 1121639] Incidence events are not double counted.
+[21-30:P33944; UTF16 1121680] Every allocation lies inside Prompt-28 physical feasibility.
+[21-30:P33945; UTF16 1121741] Every mandatory right and service floor is represented.
+[21-30:P33946; UTF16 1121797] Accessibility certificates use the correct physical and temporal model.
+[21-30:P33947; UTF16 1121869] Affordability certificates use the declared cost, budget, horizon, and financing semantics.
+[21-30:P33948; UTF16 1121961] Every fairness result names its exact fairness theory.
+[21-30:P33949; UTF16 1122016] Every fairness or bargaining weight is explicit.
+[21-30:P33950; UTF16 1122065] Social-choice claims use the correct preference profile.
+[21-30:P33951; UTF16 1122122] No interpersonal sum is constructed from ordinal representations alone.
+[21-30:P33952; UTF16 1122194] Pareto and envy predicates use valid utility and bundle semantics.
+[21-30:P33953; UTF16 1122261] Max-min claims use the declared weights and feasible set.
+[21-30:P33954; UTF16 1122319] Proportional-fairness claims satisfy the theorem’s convex positive-domain assumptions.
+[21-30:P33955; UTF16 1122406] Public-good action, benefit, and cost semantics are correct.
+[21-30:P33956; UTF16 1122467] Any externality transfer matches the exact modeled externality.
+[21-30:P33957; UTF16 1122531] Required coalition costs are represented.
+[21-30:P33958; UTF16 1122573] Budget balance and coalition constraints use the correct cost game.
+[21-30:P33959; UTF16 1122641] Shapley and core modalities remain distinct.
+[21-30:P33960; UTF16 1122686] Voters, alternatives, domains, and collective rules are correct.
+[21-30:P33961; UTF16 1122751] The recorded collective-decision trace matches the formal procedure.
+[21-30:P33962; UTF16 1122820] The procedure and outcome remain within Prompts 20–21 authority.
+[21-30:P33963; UTF16 1122885] Transfers, subsidies, contributions, and costs remain Prompt-18 executable.
+[21-30:P33964; UTF16 1122961] Evidence retains Prompts 11 and 22 modalities.
+[21-30:P33965; UTF16 1123008] Preference and stakeholder data satisfy Prompt 23.
+[21-30:P33966; UTF16 1123059] Human collective processes satisfy Prompt 24.
+[21-30:P33967; UTF16 1123105] No unresolved societal claim is promoted.
+[21-30:P33968; UTF16 1123147] The societal dependency graph is complete.
+[21-30:P33970; UTF16 1123227] The independent PCSAR checker accepts.
+[21-30:P33973; UTF16 1123315] Step 1 — Establish the underlying physical feasible set
+[21-30:P33974; UTF16 1123371] Hypotheses 1 and 6 bind the societal allocation to the active Prompt-28 system-of-systems state.
+[21-30:P33976; UTF16 1123479] \[ x\in\mathcal F_{\mathrm{SoS}}. \]
+[21-30:P33977; UTF16 1123516] No societal theorem allocates nonexistent resource or bypasses network feasibility.
+[21-30:P33978; UTF16 1123600] Step 2 — Establish stakeholder identity and coverage
+[21-30:P33979; UTF16 1123653] Hypotheses 2 and 3 bind every represented outcome to an identified stakeholder and preserve omitted stakeholders as unresolved.
+[21-30:P33980; UTF16 1123781] Thus the package cannot claim stakeholder-complete societal release while a mandatory affected stakeholder remains unknown.
+[21-30:P33981; UTF16 1123905] Step 3 — Establish incidence integrity
+[21-30:P33982; UTF16 1123944] Hypotheses 4 and 5 establish complete represented pathways and event identity.
+[21-30:P33983; UTF16 1124023] THM-SOC1 prevents positive aggregate benefit from becoming universal benefit.
+[21-30:P33984; UTF16 1124101] THM-SOC2 prevents aggregate or mean equality from becoming distributional equality.
+[21-30:P33985; UTF16 1124185] Therefore every accepted incidence claim remains stakeholder specific.
+[21-30:P33986; UTF16 1124256] Step 4 — Establish the societal quotient
+[21-30:P33987; UTF16 1124297] THM-SOC3 proves that every admitted societal computation factors through Qsoc.
+[21-30:P33988; UTF16 1124376] THM-SOC4 proves that Qsoc is the coarsest exact representation preserving those computations.
+[21-30:P33989; UTF16 1124470] Hence societal release uses no fewer distinctions than required for correctness and no more distinctions merely because the complete project state exists.
+[21-30:P33990; UTF16 1124625] Step 5 — Establish bounded-resource feasibility
+[21-30:P33991; UTF16 1124673] Under the one-resource bound model, THM-SOC5 proves feasibility iff:
+[21-30:P33992; UTF16 1124742] \[ \sum_i\ell_i \le C \le \sum_i u_i. \]
+[21-30:P33993; UTF16 1124783] Hypothesis 7 ensures the relevant floors and bounds are present.
+[21-30:P33994; UTF16 1124848] Hypothesis 6 additionally requires consistency with Prompt-28 physical feasibility.
+[21-30:P33995; UTF16 1124932] Step 6 — Separate accessibility and affordability
+[21-30:P33996; UTF16 1124982] Hypotheses 8 and 9 independently validate the access and affordability models.
+[21-30:P33997; UTF16 1125061] THM-SOC6 proves that neither property implies the other.
+[21-30:P33998; UTF16 1125118] Therefore no accessibility certificate is upgraded to affordability and no affordability certificate is upgraded to accessibility.
+[21-30:P33999; UTF16 1125249] Step 7 — Preserve fairness-theory identity
+[21-30:P34000; UTF16 1125292] Hypotheses 10 and 11 bind every fairness result to:
+[21-30:P34001; UTF16 1125344] its theory;
+[21-30:P34002; UTF16 1125356] stakeholder set;
+[21-30:P34003; UTF16 1125373] weights;
+[21-30:P34006; UTF16 1125402] The package may certify:
+[21-30:P34007; UTF16 1125427] \[ \mathsf{FAIR\_UNDER\_DECLARED\_THEORY}, \]
+[21-30:P34008; UTF16 1125473] but not universal moral fairness.
+[21-30:P34009; UTF16 1125507] Step 8 — Preserve Pareto and envy modalities
+[21-30:P34010; UTF16 1125552] Hypothesis 14 validates the utility and bundle semantics.
+[21-30:P34011; UTF16 1125610] THM-SOC7 proves Pareto efficiency does not imply envy-freeness.
+[21-30:P34012; UTF16 1125674] THM-SOC8 proves envy-freeness does not imply Pareto efficiency.
+[21-30:P34013; UTF16 1125738] Thus the two certificates remain independent.
+[21-30:P34014; UTF16 1125784] Step 9 — Establish weighted max-min results
+[21-30:P34015; UTF16 1125828] Hypothesis 15 supplies the correct weights and feasible domain.
+[21-30:P34016; UTF16 1125892] Where THM-SOC9’s simplex assumptions hold, the unique weighted max-min allocation is:
+[21-30:P34019; UTF16 1125990] No theorem supplies normative authority for the weights themselves.
+[21-30:P34020; UTF16 1126058] Step 10 — Establish proportional-fairness results
+[21-30:P34021; UTF16 1126108] Hypothesis 16 supplies a positive convex feasible set.
+[21-30:P34022; UTF16 1126163] THM-SOC10 proves equivalence between:
+[21-30:P34023; UTF16 1126201] \[ \sum_i w_i \frac{x_i-x_i^\star}{x_i^\star} \le0 \]
+[21-30:P34024; UTF16 1126255] for every feasible x, and maximization of:
+[21-30:P34026; UTF16 1126299] iwixi.
+[21-30:P34027; UTF16 1126306] The conclusion remains:
+[21-30:P34028; UTF16 1126330] \[ \mathsf{PROPORTIONALLY\_FAIR}, \]
+[21-30:P34029; UTF16 1126367] not universal fairness.
+[21-30:P34030; UTF16 1126391] Step 11 — Preserve disagreement among fairness theories
+[21-30:P34031; UTF16 1126447] THM-SOC11 proves that utilitarian and max-min criteria may rank the same alternatives differently.
+[21-30:P34032; UTF16 1126546] Therefore ANANKE preserves a declared fairness conflict rather than silently averaging incompatible criteria.
+[21-30:P34033; UTF16 1126656] Step 12 — Enforce ordinal/cardinal discipline
+[21-30:P34034; UTF16 1126702] Hypotheses 12–13 bind the preference profile and its admissible utility transformations.
+[21-30:P34035; UTF16 1126791] THM-SOC12 proves that sums of ordinal representations are not invariant under admissible individual transformations.
+[21-30:P34036; UTF16 1126908] Therefore interpersonal welfare sums are rejected unless an additional comparability theory is certified.
+[21-30:P34037; UTF16 1127014] Step 13 — Establish public-good game results
+[21-30:P34038; UTF16 1127059] Hypothesis 17 validates the public-good game.
+[21-30:P34039; UTF16 1127105] THM-SOC13 proves that a positive aggregate surplus may coexist with a no-contribution Nash equilibrium.
+[21-30:P34041; UTF16 1127215] \[ \mathsf{PUBLIC\_GOOD\_GAME\_CERTIFIED} \]
+[21-30:P34042; UTF16 1127260] does not imply that decentralized voluntary action provides the public good.
+[21-30:P34043; UTF16 1127337] Step 14 — Establish modeled externality internalization
+[21-30:P34044; UTF16 1127393] Hypothesis 18 identifies the exact externality.
+[21-30:P34045; UTF16 1127441] THM-SOC14 proves that:
+[21-30:P34047; UTF16 1127465] T(a)=E(a)+k
+[21-30:P34048; UTF16 1127477] aligns the private and declared system objective.
+[21-30:P34049; UTF16 1127527] The conclusion is:
+[21-30:P34050; UTF16 1127546] \[ \mathsf{EXTERNALITY\_INTERNALIZED} \]
+[21-30:P34051; UTF16 1127587] under that model.
+[21-30:P34052; UTF16 1127605] No authority, legitimacy, or fairness conclusion follows solely from alignment.
+[21-30:P34053; UTF16 1127685] Step 15 — Establish cooperative cost semantics
+[21-30:P34054; UTF16 1127732] Hypotheses 19–20 supply coalition costs and the correct allocation.
+[21-30:P34055; UTF16 1127800] THM-SOC15 proves the cost core may be empty.
+[21-30:P34056; UTF16 1127845] Therefore ANANKE does not fabricate a coalition-stable budget-balanced allocation when none exists.
+[21-30:P34057; UTF16 1127945] Step 16 — Establish Shapley budget balance
+[21-30:P34058; UTF16 1127988] THM-SOC16 proves:
+[21-30:P34060; UTF16 1128007] ii(C)=C(N).
+[21-30:P34061; UTF16 1128019] Thus a valid Shapley certificate establishes:
+[21-30:P34062; UTF16 1128065] \[ \mathsf{BUDGET\_BALANCED} \]
+[21-30:P34064; UTF16 1128102] \[ \mathsf{SHAPLEY\_ALLOCATED}. \]
+[21-30:P34065; UTF16 1128137] Step 17 — Preserve Shapley/core separation
+[21-30:P34066; UTF16 1128180] THM-SOC17 proves that a Shapley allocation may lie outside the core.
+[21-30:P34067; UTF16 1128249] Hypothesis 21 prohibits modality substitution.
+[21-30:P34069; UTF16 1128307] \[ \mathsf{SHAPLEY\_ALLOCATED} \]
+[21-30:P34070; UTF16 1128341] is not promoted to:
+[21-30:P34071; UTF16 1128361] \[ \mathsf{CORE\_STABLE}. \]
+[21-30:P34072; UTF16 1128390] Step 18 — Establish the submodular bridge
+[21-30:P34073; UTF16 1128432] Where the cost game is certified submodular, THM-SOC18 proves:
+[21-30:P34074; UTF16 1128495] every permutation marginal vector lies in the core;
+[21-30:P34075; UTF16 1128547] the Shapley average lies in the core.
+[21-30:P34076; UTF16 1128585] Only under that additional theorem may both modalities be certified.
+[21-30:P34077; UTF16 1128654] Step 19 — Establish majority-cycle semantics
+[21-30:P34078; UTF16 1128699] Hypothesis 22 supplies the voter set, alternatives, preference domain, and rule.
+[21-30:P34079; UTF16 1128780] THM-SOC19 proves pairwise majority can cycle.
+[21-30:P34080; UTF16 1128826] THM-SOC20 proves exact pairwise-majority reproduction cannot guarantee a transitive social ordering on a domain containing that profile.
+[21-30:P34081; UTF16 1128963] No stronger social-choice impossibility theorem is inferred.
+[21-30:P34082; UTF16 1129024] Step 20 — Establish procedural validity
+[21-30:P34083; UTF16 1129064] Hypothesis 23 binds the observed decision trace to the formal procedure.
+[21-30:P34084; UTF16 1129137] THM-SOC21 proves identical outcomes may have different procedural validity.
+[21-30:P34085; UTF16 1129213] THM-SOC22 proves procedural validity and Pareto efficiency do not imply one another.
+[21-30:P34086; UTF16 1129298] Thus societal release records both outcome and process modalities.
+[21-30:P34087; UTF16 1129365] Step 21 — Enforce governance and regulatory authority
+[21-30:P34088; UTF16 1129419] Hypothesis 24 binds the procedure and outcome to Prompts 20–21.
+[21-30:P34089; UTF16 1129483] A mathematically feasible or formally fair allocation does not create authority to impose itself.
+[21-30:P34090; UTF16 1129581] Step 22 — Establish rights-constrained feasibility
+[21-30:P34091; UTF16 1129632] Hypothesis 7 supplies the rights constraints.
+[21-30:P34092; UTF16 1129678] THM-SOC23 proves:
+[21-30:P34093; UTF16 1129696] \[ \mathcal X_R\subseteq\mathcal X. \]
+[21-30:P34094; UTF16 1129735] THM-SOC24 proves a scalar-welfare optimum may violate an omitted hard right.
+[21-30:P34095; UTF16 1129812] Therefore rights are enforced through the admissible set rather than silently traded away.
+[21-30:P34096; UTF16 1129903] Step 23 — Preserve stakeholder incomparability
+[21-30:P34097; UTF16 1129950] THM-SOC25 proves stakeholder dominance is not total.
+[21-30:P34098; UTF16 1130003] Where one strategy benefits one stakeholder more and another benefits a different stakeholder more, the alternatives remain incomparable until an authorized collective rule resolves them.
+[21-30:P34099; UTF16 1130191] Step 24 — Enforce economic executability
+[21-30:P34100; UTF16 1130232] Hypothesis 25 prevents a mathematically defined transfer, subsidy, contribution, or cost share from becoming operationally valid when it cannot be funded or executed.
+[21-30:P34101; UTF16 1130399] Step 25 — Preserve evidence, security, privacy, and human validity
+[21-30:P34102; UTF16 1130466] Hypotheses 26–28 preserve:
+[21-30:P34103; UTF16 1130493] evidence scope;
+[21-30:P34104; UTF16 1130509] cyber authenticity;
+[21-30:P34105; UTF16 1130529] privacy authority;
+[21-30:P34106; UTF16 1130548] human-operational execution.
+[21-30:P34107; UTF16 1130577] Authenticated preference data do not prove preference truth, informed participation, or procedural legitimacy by themselves.
+[21-30:P34109; UTF16 1130728] Hypothesis 29 prevents unresolved:
+[21-30:P34110; UTF16 1130763] stakeholders;
+[21-30:P34111; UTF16 1130777] preferences;
+[21-30:P34113; UTF16 1130798] incidence pathways;
+[21-30:P34115; UTF16 1130835] affordability states;
+[21-30:P34116; UTF16 1130857] procedures
+[21-30:P34118; UTF16 1130889] Step 27 — Establish repair semantics
+[21-30:P34119; UTF16 1130926] THM-SOC26 proves NP-hardness of the finite repair abstraction.
+[21-30:P34120; UTF16 1130989] This limits synthesis, not verification. Any supplied repair remains independently checkable.
+[21-30:P34121; UTF16 1131083] Step 28 — Establish incremental equality
+[21-30:P34122; UTF16 1131124] Hypothesis 30 supplies dependency completeness.
+[21-30:P34123; UTF16 1131172] Hypothesis 31 supplies checker soundness.
+[21-30:P34124; UTF16 1131214] Under THM-SOC27’s remaining hypotheses, incremental and cold societal checking agree.
+[21-30:P34125; UTF16 1131300] Step 29 — Establish witness membership
+[21-30:P34126; UTF16 1131339] Hypothesis 32 states that the independent PCSAR checker accepts.
+[21-30:P34127; UTF16 1131404] By hypothesis 31, the checker is sound.
+[21-30:P34129; UTF16 1131455] \[ \mathsf{SocietalValid}_\mu (y,g_t,x,\kappa,\pi,\eta) \]
+[21-30:P34133; UTF16 1131529] (x,,,)soc(y,gt).
+[21-30:P34137; UTF16 1131663] Prompt 11 may consume every PCSAR claim only at its exact DEF-SOC36 modality.
+[21-30:P34138; UTF16 1131741] This proves THM-SOC28. ∎
+[21-30:P34142; UTF16 1131769] 35. What THM-SOC28 Does Not Prove
+[21-30:P34143; UTF16 1131803] THM-SOC28 does not prove:
+[21-30:P34144; UTF16 1131829] every affected stakeholder is known;
+[21-30:P34145; UTF16 1131866] every future stakeholder is represented;
+[21-30:P34146; UTF16 1131907] every stakeholder agrees with the fairness theory;
+[21-30:P34147; UTF16 1131958] all stakeholders value outcomes on a common scale;
+[21-30:P34148; UTF16 1132009] preferences remain stable;
+[21-30:P34149; UTF16 1132036] utilities are interpersonally comparable;
+[21-30:P34150; UTF16 1132078] fairness weights are morally correct;
+[21-30:P34151; UTF16 1132116] equal shares are universally fair;
+[21-30:P34152; UTF16 1132151] max-min fairness is universally fair;
+[21-30:P34153; UTF16 1132189] proportional fairness is universally fair;
+[21-30:P34154; UTF16 1132232] envy-freeness is sufficient for justice;
+[21-30:P34155; UTF16 1132273] Pareto efficiency is sufficient for justice;

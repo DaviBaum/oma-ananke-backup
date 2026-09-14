@@ -160,6 +160,17 @@ class NumericalPolicy(Model):
     mesh_clearance_requires_error_bound: bool = True
 
 
+class PhysicalNetwork(Model):
+    id: str
+    demand_ids: tuple[str, ...]
+    component_ids: tuple[str, ...]
+    port_ids: tuple[str, ...]
+    service: str
+    section: Section
+    geometry_artifact: str
+    status: Literal["MATERIALIZED", "CHECKED"] = "MATERIALIZED"
+
+
 class Mission(Model):
     id: str
     demands: tuple[Demand, ...]
@@ -181,6 +192,7 @@ class EngineeringState(Model):
     entities: tuple[Entity, ...] = ()
     ports: tuple[Port, ...] = ()
     routes: tuple[Route, ...] = ()
+    physical_networks: tuple[PhysicalNetwork, ...] = ()
     explicit_connections: tuple[tuple[str, str], ...] = ()
     inferred_connections: tuple[dict[str, Any], ...] = ()
     mission: Mission | None = None

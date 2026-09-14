@@ -1,0 +1,360 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P17194; UTF16 630783] tighten reduced solve;
+[1-10:P17195; UTF16 630806] improve certification;
+[1-10:P17196; UTF16 630829] enrich the port basis;
+[1-10:P17197; UTF16 630852] split parameter or regime domain;
+[1-10:P17198; UTF16 630886] run a full local solve;
+[1-10:P17199; UTF16 630910] expand the coupled region;
+[1-10:P17200; UTF16 630937] run a full global solve.
+[1-10:P17201; UTF16 630962] Every step must preserve or replace the prior outer enclosure with another certified enclosure.
+[1-10:P17205; UTF16 631061] 55. Region Expansion
+[1-10:P17206; UTF16 631082] DEF-PO21 — Region Expansion
+[1-10:P17207; UTF16 631110] For subsystem region S with neighborhood N(S),
+[1-10:P17208; UTF16 631157] \[ \mathsf{Expand}(S)=S\cup N(S). \]
+[1-10:P17209; UTF16 631194] Expansion replaces several local port interfaces with a larger internal coupled model and a new exterior boundary.
+[1-10:P17210; UTF16 631309] Triggers include:
+[1-10:P17211; UTF16 631327] excessive interface dimension;
+[1-10:P17212; UTF16 631358] large composition gain;
+[1-10:P17213; UTF16 631382] slow reduced-basis convergence;
+[1-10:P17214; UTF16 631414] repeated global-mode alarms;
+[1-10:P17215; UTF16 631443] unmodeled cross-boundary control;
+[1-10:P17216; UTF16 631477] decision-influence remaining unresolved;
+[1-10:P17217; UTF16 631518] port incompleteness.
+[1-10:P17218; UTF16 631539] Region expansion trades larger local solves for smaller or more stable exterior interfaces.
+[1-10:P17222; UTF16 631634] 56. Global Modes and Full-Order Fallback
+[1-10:P17223; UTF16 631675] DEF-PO22 — Hidden Global Mode
+[1-10:P17224; UTF16 631705] Given local reduced spaces Vi, a hidden global mode is a composite exact state or history uG such that:
+[1-10:P17225; UTF16 631809] it is admissible in the exact composed relation;
+[1-10:P17226; UTF16 631858] it materially affects an admitted outcome;
+[1-10:P17227; UTF16 631901] its local traces are not represented within the certified local reduced spaces or validity domains;
+[1-10:P17228; UTF16 632001] the composed reduced model omits or severely misrepresents it.
+[1-10:P17229; UTF16 632064] A sound PCPE cannot silently omit such a mode. Its existence implies:
+[1-10:P17230; UTF16 632134] invalid local coverage;
+[1-10:P17231; UTF16 632158] invalid validity-domain assumption;
+[1-10:P17232; UTF16 632194] an inadequate interface basis;
+[1-10:P17233; UTF16 632225] or a failed certificate.
+[1-10:P17237; UTF16 632253] THM-PO29 — Global-Mode Alarm from Residual and Stability
+[1-10:P17238; UTF16 632310] Let a composed reduced model produce uG with full-order residual rG.
+[1-10:P17239; UTF16 632379] Suppose the full global operator has certified lower stability bound G>0.
+[1-10:P17241; UTF16 632458] \[ \|u_G-\widehat u_G\| \le \frac{\|r_G\|}{\beta_G}. \]
+[1-10:P17242; UTF16 632514] If this bound exceeds the decision budget, the local reductions are not adequate for the composed query and escalation is mandatory.
+[1-10:P17244; UTF16 632653] This is the global inf-sup residual theorem, applied after composition. ∎
+[1-10:P17245; UTF16 632727] If G is zero or unresolved, the certificate cannot bound the error.
+[1-10:P17249; UTF16 632798] THM-PO25 — Full-Order Fallback Preserves Correctness
+[1-10:P17250; UTF16 632851] Replacing a reduced envelope by:
+[1-10:P17251; UTF16 632884] a tighter certified envelope;
+[1-10:P17252; UTF16 632914] or the exact full-order port relation
+[1-10:P17253; UTF16 632952] preserves every previous sound outer-containment claim.
+[1-10:P17254; UTF16 633008] If the exact full-order relation is used, reduction error for that subsystem becomes zero.
+[1-10:P17257; UTF16 633108] \[ \mathcal P_S \subseteq \widehat{\mathcal P}_S' \subseteq \widehat{\mathcal P}_S, \]
+[1-10:P17258; UTF16 633195] substitution of the tighter envelope preserves inclusion.
+[1-10:P17259; UTF16 633253] Taking
+[1-10:P17260; UTF16 633260] \[ \widehat{\mathcal P}_S'=\mathcal P_S \]
+[1-10:P17261; UTF16 633303] is the exact special case.
+[1-10:P17262; UTF16 633330] Composition is monotone by THM-PO8. ∎
+[1-10:P17263; UTF16 633368] Port compression is an acceleration layer, not a correctness prerequisite.
+[1-10:P17267; UTF16 633446] 57. Complexity Theory
+[1-10:P17268; UTF16 633468] For subsystem S, define:
+[1-10:P17269; UTF16 633493] nS: full internal degrees of freedom;
+[1-10:P17270; UTF16 633531] pS: raw numerical boundary dimension;
+[1-10:P17271; UTF16 633569] rS: certified reduced port dimension;
+[1-10:P17272; UTF16 633607] qS: approximate semantic separator-state count;
+[1-10:P17273; UTF16 633655] Cfull,S: one certified full-order query cost;
+[1-10:P17274; UTF16 633701] Cred,S: reduced query cost;
+[1-10:P17275; UTF16 633729] Ccert,S: online certificate cost;
+[1-10:P17276; UTF16 633763] Ccompile,S: one-time compilation cost;
+[1-10:P17277; UTF16 633802] Renrich,S: enrichment count;
+[1-10:P17278; UTF16 633831] Nreuse,S: query count.
+[1-10:P17279; UTF16 633854] A typical compilation cost is
+[1-10:P17281; UTF16 633885] Ccompile,S=Ntrain,SCfull,S+Cbasis,S+Coperator,S+Cproof,S.
+[1-10:P17282; UTF16 633943] Per query:
+[1-10:P17284; UTF16 633955] Cquery,S=Cred,S+Ccert,S.
+[1-10:P17288; UTF16 633983] 58. Amortization
+[1-10:P17289; UTF16 634000] THM-PO36 — Port-Compilation Break-Even
+[1-10:P17292; UTF16 634044] CF
+[1-10:P17293; UTF16 634047] be the total certified full-order cost per query and
+[1-10:P17295; UTF16 634101] CR=Cred+Ccert
+[1-10:P17296; UTF16 634115] the certified reduced query cost.
+[1-10:P17299; UTF16 634153] CR<CF,
+[1-10:P17300; UTF16 634160] port compilation becomes cheaper after
+[1-10:P17301; UTF16 634199] \[ \boxed{ N^\star = \left\lceil \frac{ C_{\mathrm{compile}} }{ C_F-C_R } \right\rceil } \]
+[1-10:P17302; UTF16 634291] queries.
+[1-10:P17304; UTF16 634303] \[ C_R\ge C_F, \]
+[1-10:P17305; UTF16 634321] no positive query count amortizes the compilation cost.
+[1-10:P17307; UTF16 634383] Reduced total cost is
+[1-10:P17309; UTF16 634406] Ccompile+NCR.
+[1-10:P17310; UTF16 634420] Full-order total cost is
+[1-10:P17312; UTF16 634446] NCF.
+[1-10:P17313; UTF16 634451] Solve
+[1-10:P17314; UTF16 634457] \[ C_{\mathrm{compile}}+NC_R \le NC_F. \]
+[1-10:P17316; UTF16 634501] If certification requires a full solve every query, CR may approach or exceed CF, eliminating online acceleration.
+[1-10:P17320; UTF16 634619] 59. Synthetic 190-Room Reuse Example
+[1-10:P17321; UTF16 634656] All operation counts are synthetic.
+[1-10:P17323; UTF16 634700] 160 standard rooms;
+[1-10:P17324; UTF16 634720] 20 corner variants;
+[1-10:P17325; UTF16 634740] 10 accessible or suite variants.
+[1-10:P17326; UTF16 634773] Let one certified full-room solve cost
+[1-10:P17328; UTF16 634813] CF=109
+[1-10:P17329; UTF16 634820] normalized operations.
+[1-10:P17330; UTF16 634843] Let one reduced query cost
+[1-10:P17332; UTF16 634871] Cred=2106,
+[1-10:P17333; UTF16 634882] and online certification cost
+[1-10:P17335; UTF16 634913] Ccert=106.
+[1-10:P17338; UTF16 634931] CR=3106.
+[1-10:P17339; UTF16 634940] Suppose compilation requires:
+[1-10:P17340; UTF16 634970] 30 full solves for standard room family;
+[1-10:P17341; UTF16 635011] 12 for corners;
+[1-10:P17342; UTF16 635027] 10 for exception family.
+[1-10:P17345; UTF16 635058] Ccompile=52109
+[1-10:P17346; UTF16 635073] operations, ignoring smaller basis-construction terms.
+[1-10:P17350; UTF16 635131] 59.1 First project
+[1-10:P17351; UTF16 635150] Full-order cost:
+[1-10:P17353; UTF16 635168] 190109.
+[1-10:P17354; UTF16 635176] Port-library cost:
+[1-10:P17356; UTF16 635196] 52109+190(3106)=52.57109.
+[1-10:P17357; UTF16 635222] Synthetic first-project ratio:
+[1-10:P17359; UTF16 635254] 19052.573.61.
+[1-10:P17363; UTF16 635271] 59.2 Ten-project reuse
+[1-10:P17364; UTF16 635294] Full-order:
+[1-10:P17366; UTF16 635307] 10(190109)=1.91012.
+[1-10:P17367; UTF16 635327] Port library:
+[1-10:P17369; UTF16 635342] 52109+10(190)(3106)=57.7109.
+[1-10:P17370; UTF16 635371] Synthetic ratio:
+[1-10:P17372; UTF16 635389] 190057.732.9.
+[1-10:P17373; UTF16 635403] These are normalized operation-count ratios, not measured wall-clock claims.
+[1-10:P17377; UTF16 635483] 60. Global-Mode Counterexample
+[1-10:P17378; UTF16 635514] Each free bar element has exact stiffness
+[1-10:P17379; UTF16 635556] \[ K_e = k \begin{bmatrix} 1&-1\\ -1&1 \end{bmatrix}. \]
+[1-10:P17380; UTF16 635613] Its rigid translation vector
+[1-10:P17381; UTF16 635642] \[ r= \begin{bmatrix} 1\\1 \end{bmatrix} \]
+[1-10:P17382; UTF16 635686] lies in the kernel.
+[1-10:P17383; UTF16 635706] Suppose local training uses only self-equilibrated loads and a port basis retaining only the differential mode
+[1-10:P17384; UTF16 635817] \[ d= \begin{bmatrix} 1\\-1 \end{bmatrix}. \]
+[1-10:P17385; UTF16 635863] The local reduced model is exact on that training subspace.
+[1-10:P17386; UTF16 635923] Connect two elements into a free three-node chain.
+[1-10:P17387; UTF16 635974] The exact global stiffness is
+[1-10:P17388; UTF16 636004] \[ K_G = k \begin{bmatrix} 1&-1&0\\ -1&2&-1\\ 0&-1&1 \end{bmatrix}. \]
+[1-10:P17389; UTF16 636075] It has global rigid mode
+[1-10:P17390; UTF16 636100] \[ \begin{bmatrix} 1\\1\\1 \end{bmatrix} \]
+[1-10:P17391; UTF16 636144] with zero stiffness.
+[1-10:P17392; UTF16 636165] A local basis that discarded common translation cannot represent this mode.
+[1-10:P17393; UTF16 636241] If a weak support of stiffness  is added, the mode becomes a very low-frequency global sway mode. A reduction trained only on differential local loads may predict a first mode of order k while the true mode is of order .
+[1-10:P17394; UTF16 636462] A correct PCPE must declare its boundary validity subspace. The assembled rigid mode lies outside it, causing:
+[1-10:P17395; UTF16 636573] basis-coverage failure;
+[1-10:P17396; UTF16 636597] unresolved stability constant;
+[1-10:P17397; UTF16 636628] or large global residual.
+[1-10:P17398; UTF16 636654] The global-mode detector must escalate.
+[1-10:P17402; UTF16 636697] 61. Decision-Rank Example
+[1-10:P17403; UTF16 636723] The two examples in §47 establish:
+[1-10:P17405; UTF16 636759] rphysicalrdecision
+[1-10:P17406; UTF16 636778] and the reverse semantic situation:
+[1-10:P17408; UTF16 636815] pphysicalsmall,WDlarge.
+[1-10:P17409; UTF16 636839] Therefore a mature compiler must track both:
+[1-10:P17411; UTF16 636885] rport
+[1-10:P17414; UTF16 636896] WD.
+[1-10:P17415; UTF16 636900] One cannot be substituted for the other.
+[1-10:P17419; UTF16 636944] 62. Repeated-Hotel Operator Example
+[1-10:P17420; UTF16 636980] All quantities are synthetic.
+[1-10:P17421; UTF16 637010] Suppose each standard room exposes a certified thermal/HVAC port state
+[1-10:P17423; UTF16 637082] zi=(Qi,pi,Oi,Hi,Ei)
+[1-10:P17425; UTF16 637108] cooling demand Qi;
+[1-10:P17426; UTF16 637127] branch pressure drop pi;
+[1-10:P17427; UTF16 637152] outage class Oi;
+[1-10:P17428; UTF16 637169] exact mandatory status Hi;
+[1-10:P17429; UTF16 637196] evidence Ei.
+[1-10:P17430; UTF16 637209] Assume one standard-room PCPE has reduced dimension
+[1-10:P17432; UTF16 637262] rroom=8
+[1-10:P17433; UTF16 637270] and certified error:
+[1-10:P17435; UTF16 637292] Q=0.08kW,
+[1-10:P17437; UTF16 637303] p=2Pa.
+[1-10:P17438; UTF16 637310] Corner rooms use a separate operator with r=12.
+[1-10:P17439; UTF16 637358] Accessible rooms use an exact exception regime.
+[1-10:P17443; UTF16 637409] 62.1 Floor aggregation
+[1-10:P17444; UTF16 637432] For a floor with 20 rooms:
+[1-10:P17446; UTF16 637460] Qfloor=iQi.
+[1-10:P17447; UTF16 637472] If errors are conservatively independent-unknown additive,
+[1-10:P17448; UTF16 637531] \[ \varepsilon_{Q,\mathrm{floor}} \le 20(0.08) = 1.6\text{ kW}. \]
+[1-10:P17449; UTF16 637598] If shared error symbols prove common correlation, a tighter affine bound may result.
+[1-10:P17450; UTF16 637683] Pressure does not necessarily add over parallel branches; the network PCPE performs the exact relational aggregation.
+[1-10:P17454; UTF16 637804] 62.2 Vertical stack
+[1-10:P17455; UTF16 637824] Suppose the riser response has modulus L=0.7 and local approximation defect b=0.5 kPa per floor.
+[1-10:P17456; UTF16 637921] Then repeated stack error satisfies
+[1-10:P17457; UTF16 637957] \[ e_{n+1}\le0.7e_n+0.5. \]
+[1-10:P17458; UTF16 637985] Its limiting bound is
+[1-10:P17459; UTF16 638007] \[ e_\infty \le \frac{0.5}{1-0.7} = 1.667\text{ kPa}. \]
+[1-10:P17460; UTF16 638064] If the equipment-selection margin is 8 kPa, additional riser refinement has no decision influence.
+[1-10:P17461; UTF16 638163] If the margin is 1 kPa, escalation is required.
+[1-10:P17465; UTF16 638214] 62.3 Calls avoided
+[1-10:P17466; UTF16 638233] Without reuse, 190 room interiors are resolved for every design branch.
+[1-10:P17467; UTF16 638305] With the port library:
+[1-10:P17468; UTF16 638328] standard room physics is compiled once;
+[1-10:P17469; UTF16 638368] corner and accessible exceptions remain explicit;
+[1-10:P17470; UTF16 638418] each branch evaluates reduced room operators and the network composition;
+[1-10:P17471; UTF16 638492] only validity failures or decision-boundary cases trigger full solves.
+[1-10:P17472; UTF16 638563] The exact number of avoided simulations depends on:
+[1-10:P17473; UTF16 638615] branch count;
+[1-10:P17474; UTF16 638629] cache hit rate;
+[1-10:P17475; UTF16 638645] enrichment rate;
+[1-10:P17476; UTF16 638662] parameter coverage;
+[1-10:P17477; UTF16 638682] certification cost.
+[1-10:P17481; UTF16 638705] 63. Negative Results
+[1-10:P17482; UTF16 638726] N1 — Small internal dimension does not imply small port dimension
+[1-10:P17483; UTF16 638792] A subsystem with no internal state can expose a boundary vector in \(\mathbb R^n\).
+[1-10:P17486; UTF16 638883] nS=0,pS=n.
+[1-10:P17490; UTF16 638897] N2 — Small port dimension does not imply small decision width
+[1-10:P17491; UTF16 638959] Two scalar ports may carry 32 exact evidence regimes:
+[1-10:P17493; UTF16 639014] WD=5.
+[1-10:P17497; UTF16 639023] N3 — Small decision width does not imply low-rank physics
+[1-10:P17498; UTF16 639081] A high-dimensional field may be mapped to one binary safety report while still requiring high-dimensional computation to certify that report.
+[1-10:P17502; UTF16 639226] N4 — Low-rank nominal physics may fail under rare scenarios
+[1-10:P17503; UTF16 639286] A basis trained on ordinary wind directions may omit a rare torsional mode activated by one extreme direction.
+[1-10:P17507; UTF16 639400] N5 — Local reduced models may miss global modes
+[1-10:P17508; UTF16 639448] The free-bar regression in §60.
+[1-10:P17512; UTF16 639483] N6 — Independent port intervals destroy correlation
+[1-10:P17513; UTF16 639535] The relation q1+q2=1 is broadened to a square.
+[1-10:P17517; UTF16 639585] N7 — Reduced models can cross mandatory thresholds
+[1-10:P17518; UTF16 639636] A stress estimate
+[1-10:P17520; UTF16 639655] [0.98,1.02]allow
+[1-10:P17521; UTF16 639672] cannot certify either regime.
+[1-10:P17525; UTF16 639705] N8 — Surrogate uncertainty is not a proof
+[1-10:P17526; UTF16 639747] A neural predictive variance is not an outer enclosure unless independently calibrated and certified under declared assumptions.
+[1-10:P17530; UTF16 639879] N9 — Error can amplify
+[1-10:P17531; UTF16 639902] If every component has gain L>1, THM-PO10 gives exponential growth.
+[1-10:P17535; UTF16 639973] N10 — Full-order fallback can be unavoidable
+[1-10:P17536; UTF16 640018] A response manifold with slowly decaying Kolmogorov widths may require
+[1-10:P17538; UTF16 640090] rportnS.
+[1-10:P17539; UTF16 640099] Compression must then fail safely.
+[1-10:P17543; UTF16 640137] 64. Prompt-6 Complexity Profile
+[1-10:P17544; UTF16 640169] DEF-PO23 — Port-Reduction Complexity Profile
+[1-10:P17545; UTF16 640214] \[ \mathcal C_L^{(6)} = \left( W_D, W_D^\varepsilon, r_{\mathrm{port}}^\varepsilon, r_{\mathrm{dec}}^\varepsilon, K_{\mathrm{port}}, D_{\mathrm{op}}, \kappa_{\mathrm{comp}}, C_{\mathrm{compile}}, C_{\mathrm{query}}, C_{\mathrm{cert}}, R_{\mathrm{enrich}}, N_{\mathrm{fallback}}, m_{\mathrm{decision}} \right). \]
+[1-10:P17546; UTF16 640527] Where:
+[1-10:P17547; UTF16 640534] WD: exact semantic separator width;
+[1-10:P17548; UTF16 640570] WD: approximate decision-cover width;
+[1-10:P17549; UTF16 640608] rport: physical reduced port dimension;
+[1-10:P17550; UTF16 640648] rdec: decision-weighted reduced dimension;
+[1-10:P17551; UTF16 640691] Kport: parametric/symbolic operator description size;
+[1-10:P17552; UTF16 640745] Dop: operator elimination dimension;
+[1-10:P17553; UTF16 640782] comp: composition error-amplification profile;
+[1-10:P17554; UTF16 640829] Ccompile: offline compilation cost;
+[1-10:P17555; UTF16 640865] Cquery: reduced evaluation cost;
+[1-10:P17556; UTF16 640898] Ccert: online certification cost;
+[1-10:P17557; UTF16 640932] Renrich: enrichment count;
+[1-10:P17558; UTF16 640959] Nfallback: full-order escalations;
+[1-10:P17559; UTF16 640994] mdecision: live decision margins.
+[1-10:P17560; UTF16 641028] Every component has a distinct operational meaning.
+[1-10:P17564; UTF16 641083] 65. Whole-Building Compositional Port Reduction Theorem
+[1-10:P17565; UTF16 641139] THM-PO26 — Whole-Building Compositional Port Reduction
+[1-10:P17566; UTF16 641194] Consider a finite operator graph \(\mathcal G_{\mathrm{op}}\).
+[1-10:P17568; UTF16 641265] every subsystem interface is port complete;
+[1-10:P17569; UTF16 641309] every exact subsystem relation is valid on the queried parameter/scenario domain;
+[1-10:P17570; UTF16 641391] every PCPE satisfies \[ \mathcal P_i \subseteq \widehat{\mathcal P}_i; \]
+[1-10:P17571; UTF16 641465] exact discrete regime identities are preserved;
+[1-10:P17572; UTF16 641513] joint uncertainty and multiport correlation are preserved;
+[1-10:P17573; UTF16 641572] all wiring relations are typed and conservation correct;
+[1-10:P17574; UTF16 641629] every local numerical error certificate and transfer modulus is valid;
+[1-10:P17575; UTF16 641700] evidence and model-discrepancy dependencies are active;
+[1-10:P17576; UTF16 641756] all internal ports are eliminated only by exact relational hiding.
+[1-10:P17578; UTF16 641827] \[ \mathcal P_G \]
+[1-10:P17579; UTF16 641846] be the exact whole-building mathematical relation and
+[1-10:P17580; UTF16 641900] \[ \widehat{\mathcal P}_G \]
+[1-10:P17581; UTF16 641929] the relation obtained by composing the PCPEs.
+[1-10:P17583; UTF16 641981] \[ \boxed{ \mathcal P_G \subseteq \widehat{\mathcal P}_G. } \]
+[1-10:P17584; UTF16 642044] Moreover, if the final global enclosure:
+[1-10:P17585; UTF16 642085] has one exact mandatory status;
+[1-10:P17586; UTF16 642117] lies inside one complete qualitative decision-report cell;
+[1-10:P17587; UTF16 642176] satisfies every declared quantitative regret bound;
+[1-10:P17588; UTF16 642228] then the certified decision from \(\widehat{\mathcal P}_G\) equals the decision produced by the full-order mathematical model.
+[1-10:P17590; UTF16 642361] For every node,
+[1-10:P17591; UTF16 642377] \[ \mathcal P_i \subseteq \widehat{\mathcal P}_i. \]
+[1-10:P17592; UTF16 642430] Natural join with wiring relations is monotone in every subsystem relation.
+[1-10:P17593; UTF16 642506] Repeated application of THM-PO8 gives containment of the joined exact graph relation inside the joined PCPE relation.
+[1-10:P17594; UTF16 642624] THM-PO19 preserves conservation.
+[1-10:P17595; UTF16 642657] Exact relational hiding is monotone and correct by THM-PO5.
+[1-10:P17597; UTF16 642728] \[ \mathcal P_G \subseteq \widehat{\mathcal P}_G. \]
+[1-10:P17598; UTF16 642781] The quantitative error and validity metadata propagated through the graph are sound by THM-PO9, THM-PO10, THM-PO22, and Prompt-5 THM-ER21.
+[1-10:P17599; UTF16 642920] Prompt-5 THM-ER3 gives exact mandatory classification.
+[1-10:P17600; UTF16 642975] Prompt-5 THM-ER6 gives qualitative decision stability.
+[1-10:P17601; UTF16 643030] Prompt-5 THM-ER11 gives bounded-regret portfolio sufficiency.
+[1-10:P17602; UTF16 643092] Thus every certified final decision agrees with the exact full-order mathematical-model decision. ∎
+[1-10:P17605; UTF16 643244] that the mathematical model equals reality;
+[1-10:P17606; UTF16 643288] that every PCPE is small;
+[1-10:P17607; UTF16 643314] that every composition is contractive;
+[1-10:P17608; UTF16 643353] that global modes never force fallback;
+[1-10:P17609; UTF16 643393] that compilation is cheaper than repeated full solves;
+[1-10:P17610; UTF16 643448] that physical discrepancy is negligible.
+[1-10:P17614; UTF16 643492] 66. Algorithms
+[1-10:P17615; UTF16 643507] ALG-PO1 — CompileExactPortRelation
+[1-10:P17617; UTF16 643548]     exact subsystem theory
+[1-10:P17618; UTF16 643575]     typed port signature
+[1-10:P17619; UTF16 643600]     finite/discrete regimes
+[1-10:P17620; UTF16 643628]     internal variables
+[1-10:P17621; UTF16 643651]     parameter and uncertainty domains
+[1-10:P17623; UTF16 643690] IF linear and block eliminable:
+[1-10:P17624; UTF16 643722]     compute exact Schur/Kron relation
+[1-10:P17626; UTF16 643761] ELSE IF finite symbolic:
+[1-10:P17627; UTF16 643786]     existentially eliminate internal variables
+[1-10:P17628; UTF16 643833]     with exact symbolic projection
+[1-10:P17630; UTF16 643869] ELSE:
+[1-10:P17631; UTF16 643875]     retain an exact implicit relation
+[1-10:P17632; UTF16 643913]     with certified membership and witness procedures
+[1-10:P17635; UTF16 643974]     port completeness
+[1-10:P17636; UTF16 643996]     mandatory regime semantics
+[1-10:P17637; UTF16 644027]     conservation
+[1-10:P17641; UTF16 644078]     exact port relation
+[1-10:P17645; UTF16 644105] ALG-PO2 — CompileCertifiedPortEnvelope
+[1-10:P17647; UTF16 644150]     full-order subsystem
+[1-10:P17648; UTF16 644175]     port signature
+[1-10:P17649; UTF16 644194]     parameter/scenario domain
+[1-10:P17650; UTF16 644224]     target decision budgets
+[1-10:P17652; UTF16 644253] 1. Partition exact discrete regimes.
+[1-10:P17654; UTF16 644291] 2. Generate training or enrichment boundary states.
+[1-10:P17656; UTF16 644344] 3. Run certified full-order solves.
+[1-10:P17658; UTF16 644381] 4. Build:
+[1-10:P17659; UTF16 644391]        reduced basis,
+[1-10:P17660; UTF16 644413]        parametric operator,
+[1-10:P17661; UTF16 644441]        or symbolic relation.
+[1-10:P17663; UTF16 644471] 5. Construct:
+[1-10:P17664; UTF16 644485]        residual estimator,
+[1-10:P17665; UTF16 644512]        stability bound,
+[1-10:P17667; UTF16 644560]        discrepancy metadata.
+[1-10:P17669; UTF16 644590] 6. Verify exact mandatory outputs.
+[1-10:P17671; UTF16 644626] 7. Build outer port relation.
+[1-10:P17673; UTF16 644657] 8. Check conservation and correlation.
+[1-10:P17675; UTF16 644697] 9. Emit PCPE and proof objects.
+[1-10:P17677; UTF16 644730] 10. If certification fails:
+[1-10:P17678; UTF16 644758]         split domain,
+[1-10:P17679; UTF16 644780]         enrich,
+[1-10:P17680; UTF16 644796]         expand region,
+[1-10:P17681; UTF16 644819]         or return locality failure.
+[1-10:P17685; UTF16 644858] ALG-PO3 — ComposePortEnvelopes
+[1-10:P17687; UTF16 644895]     PCPEs A1,...,Ak
+[1-10:P17688; UTF16 644915]     typed wiring relation
+[1-10:P17689; UTF16 644941]     joint parameter/scenario relation
+[1-10:P17692; UTF16 644987]     types
+[1-10:P17693; UTF16 644997]     units
+[1-10:P17694; UTF16 645007]     orientation
+[1-10:P17695; UTF16 645023]     validity-domain intersection
+[1-10:P17696; UTF16 645056]     regime compatibility
+[1-10:P17700; UTF16 645123] JOIN
+[1-10:P17701; UTF16 645128]     outer relations
+[1-10:P17702; UTF16 645148]     wiring
+[1-10:P17703; UTF16 645159]     joint uncertainty
+[1-10:P17707; UTF16 645218]     error through transfer moduli
+[1-10:P17708; UTF16 645252]     mandatory status exactly
+[1-10:P17709; UTF16 645281]     discrepancy and validity metadata
+[1-10:P17711; UTF16 645320] HIDE
+[1-10:P17712; UTF16 645325]     internal ports existentially
+[1-10:P17715; UTF16 645366]     composite PCPE
+[1-10:P17716; UTF16 645385]     composition certificate
+[1-10:P17721; UTF16 645445] Defined in §29.
+[1-10:P17725; UTF16 645464] ALG-PO5 — DetectGlobalModeFailure
+[1-10:P17727; UTF16 645504]     composed reduced model
+[1-10:P17728; UTF16 645531]     candidate state or frequency
+[1-10:P17729; UTF16 645564]     full-order residual evaluator
+[1-10:P17730; UTF16 645598]     global stability estimator
+[1-10:P17731; UTF16 645629]     decision budget
+[1-10:P17733; UTF16 645650] COMPUTE
+[1-10:P17734; UTF16 645658]     interface compatibility residual
+[1-10:P17735; UTF16 645695]     conservation residual
+[1-10:P17736; UTF16 645721]     full-model residual

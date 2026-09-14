@@ -1,0 +1,2268 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-14T08:35:43.510143+00:00",
+  "public_redistribution_status": "NOT_READY",
+  "local_personal_offline_qa": "AVAILABLE; no public distribution performed",
+  "core": [
+    {
+      "name": "IfcOpenShell",
+      "version": "0.8.5",
+      "commit": "1c5b825d8ef05ab9d14a15dac12e9eae2f5a37c2",
+      "source": "ifc-source.tar.gz",
+      "license": "LGPL-3.0-or-later for core; distributed binary additionally includes CGAL GPL-3.0-or-later/commercial components",
+      "evidence": [
+        "ifc-binary-embedded-provenance.json",
+        "ifc-native-imports.json",
+        "cgal-Nef_polyhedron_3.h"
+      ]
+    },
+    {
+      "name": "OCP bindings",
+      "version": "8.0.1.0",
+      "wheel_version": "8.0.1.0.0",
+      "commit": "b0495a71d10168b96cef8043ac39020a3fa45372",
+      "source": "ocp-source.tar.gz",
+      "generated_windows_source": "OCP_src_stubs_Windows.zip",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "OCP wheel build and proxy",
+      "version": "8.0.1.0.0",
+      "commit": "9d9bbaa37f088667c902c6e41ca0d2d4707cba83",
+      "source": "ocp-build-source.tar.gz",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "Open CASCADE in OCP",
+      "version": "8.0.1",
+      "commit": "b8f597c677811d1f9f4d8a97f5ae2825c0353a42",
+      "source": "occt-source-8.0.1.tar.gz",
+      "license": "LGPL-2.1-only WITH OCCT-exception-1.0",
+      "patch": "ocp-build-files/patches/occt-8.0.1/switch-vtk-freetype-cmake-order.patch"
+    },
+    {
+      "name": "Open CASCADE in IfcOpenShell",
+      "version": "7.8.1",
+      "source": "occt-source-7.8.1.tar.gz",
+      "license": "LGPL-2.1-only WITH OCCT-exception-1.0",
+      "patch": "ifc-build-files/win/patches/V7_8_1.patch",
+      "correspondence": "Pinned recipe plus embedded native build paths; independent rebuild not performed"
+    },
+    {
+      "name": "CGAL in IfcOpenShell",
+      "version": "5.5.5",
+      "source": "cgal-source-5.5.5.tar.gz",
+      "license": "Per-header GPL-3.0-or-later OR commercial; some packages LGPL-3.0-or-later",
+      "correspondence": "Pinned Windows recipe and embedded Nef header paths; GPL header captured; private dependency cache has no retained binary build attestation"
+    }
+  ],
+  "ifc_static_and_submodules": [
+    {
+      "name": "Boost",
+      "recipe_version": "1.86.0",
+      "source_url": "https://archives.boost.io/release/1.86.0/source/boost_1_86_0.tar.gz",
+      "notice": "ifc-boost-LICENSE",
+      "scope": "Embedded versioned build paths; full source archive not downloaded"
+    },
+    {
+      "name": "Eigen",
+      "recipe_version": "3.3.9",
+      "source_url": "https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.gz",
+      "notice": "ifc-eigen-LICENSE",
+      "scope": "Required by IfcGeom CMake; full source archive not downloaded"
+    },
+    {
+      "name": "MPIR",
+      "recipe_version": null,
+      "source": "mpir-candidate-source.tar.gz",
+      "candidate_commit": "365957bc3f3c49908d07ec942a7019844a16daea",
+      "scope": "Current head of unpinned upstream recipe; NOT proven corresponding binary source"
+    },
+    {
+      "name": "MPFR",
+      "recipe_commit": "2ebbe10fd029a480cf6e8a64c493afa9f3654251",
+      "source": "mpfr-source.tar.gz"
+    },
+    {
+      "name": "HDF5",
+      "recipe_version": "1.13.1",
+      "source": "ifc-hdf5-source.tar.gz",
+      "scope": "Embedded versioned build paths"
+    },
+    {
+      "name": "nlohmann/json",
+      "recipe_version": "3.6.1",
+      "source": "ifc-json-source.tar.gz"
+    },
+    {
+      "name": "RocksDB",
+      "recipe_version": "9.11.2",
+      "source": "ifc-rocksdb-source.tar.gz",
+      "scope": "Pinned recipe; embedded RocksDB paths do not independently prove version"
+    },
+    {
+      "name": "PROJ",
+      "recipe_version": "9.4.1",
+      "source": "ifc-proj-source.tar.gz",
+      "scope": "Recipe dependency, actual linked contribution not established"
+    },
+    {
+      "name": "OpenCOLLADA with bundled PCRE/libxml2",
+      "recipe_commit": "064a60b65c2c31b94f013820856bc84fb1937cc6",
+      "source": "ifc-opencollada-source.tar.gz",
+      "scope": "Pinned recipe; embedded PCRE diagnostics; component linkage needs original build manifest"
+    },
+    {
+      "name": "zstd",
+      "recipe_version": "1.5.7",
+      "source": "upstream-v1.5.7.tar.gz",
+      "scope": "Recipe dependency; compression optional"
+    },
+    {
+      "name": "svgpp",
+      "recipe_commit": "5f1870aa7b757718ff5f86bdfb55966fa4f217f9",
+      "source": "ifc-svgpp-source.tar.gz"
+    },
+    {
+      "name": "python-mvdxml",
+      "recipe_commit": "83c12fa494b9d6a5a370d8525dc1f76aa5c89d8d",
+      "source": "ifc-mvd-source.tar.gz"
+    },
+    {
+      "name": "step-file-parser",
+      "recipe_commit": "30317826f8f743860ecff9e183699296593e42cb",
+      "source": "ifc-step-parser-source.tar.gz"
+    }
+  ],
+  "ocp_dll_count": 72,
+  "occt_dll_count": 48,
+  "other_dll_count": 24,
+  "other_dll_correspondence": [
+    {
+      "bundled_dll": "deflate-6dd36dd208f18c6b44b3a78ae2c9462f.dll",
+      "sections": {
+        ".text": {
+          "sha256": "fee6f0146f1f4453c7402c5410878ea58915ba98b546495b4fc4bc37a4e0fd7f",
+          "bytes": 108032
+        },
+        ".rdata": {
+          "sha256": "b21500ce6191644aefc09358c7baa9912054ca8dfe6637f0b0de4eab67aaadb8",
+          "bytes": 57344
+        },
+        ".data": {
+          "sha256": "f51426bb97d2e91054bf8179fe851d43f937585de8b000b41d9a9fe08d2b5fc1",
+          "bytes": 3072
+        },
+        ".pdata": {
+          "sha256": "808eb5b84bf0fe8e72b6870294c22410123764489077ef2fd06b2e80948a04f1",
+          "bytes": 5120
+        },
+        ".fptable": {
+          "sha256": "076a27c79e5ace2a3d47f9dd2e83e4ff6ea8872b3c2218f66c92b89b55f36560",
+          "bytes": 512
+        },
+        ".rsrc": {
+          "sha256": "3bfb34dcd2fb66598930be1301b134869ddec4a6f3fb27bceee3b6ee815afede",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "a67f3eca43abfb730f327136053e799217c606279c8d45275edf3f57ed994577",
+          "bytes": 2048
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/libdeflate-1.25-h1a1d4e4_1.conda",
+          "version": "1.25",
+          "source_dll": "Library/bin/deflate.dll",
+          "original_sha256": "6dd36dd208f18c6b44b3a78ae2c9462f28430e39b7e5bdb00faaec22b495021b",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".fptable",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "FreeImage-d29ea2cf5b0ce825297d9e1a6e13ac84.dll",
+      "sections": {
+        ".text": {
+          "sha256": "311424372a1c15a19fcba86eb21c38c8ef57f34d1641e3594e49228031b71b3c",
+          "bytes": 877056
+        },
+        ".rdata": {
+          "sha256": "3ba302a0bde89278ce74e0572b1e564b02d7f748913509acb672e15f0963f630",
+          "bytes": 147968
+        },
+        ".data": {
+          "sha256": "3155eba35c3474cfbb3fd2ce7fa0398d0c78430b5c71d3e303320a8f71684f97",
+          "bytes": 69120
+        },
+        ".pdata": {
+          "sha256": "7963e803d7cd0491e28fe3b4a80d539f4465f2a0673f8ebd64970ba394988d4d",
+          "bytes": 24064
+        },
+        ".rsrc": {
+          "sha256": "906920b48480e145fb6984037b5f9e20e562599fff264b33107393664a97b26a",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "f59258f2259eda8ea0b0daf9a336c27ebc10eafc8665bf9e843b83338e920864",
+          "bytes": 6144
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/freeimage-3.18.0-h81f0cfa_25.conda",
+          "version": "3.18.0",
+          "source_dll": "Library/bin/FreeImage.dll",
+          "original_sha256": "03c7ed9975bb874441452bb8c7c103b1c3459899a034a79d40b91c276faad423",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "freetype-8a5d2cbc4e7903be079780c3d8a94112.dll",
+      "sections": {
+        ".text": {
+          "sha256": "88773e221ec5dd5f8ffa1652558752caf9501fa175a6cc0920d147b8d23c6cc2",
+          "bytes": 477184
+        },
+        ".rdata": {
+          "sha256": "1a94701d3ba22c4626217127e5d70349283871d520911a84f1d38a399bb4a2bf",
+          "bytes": 159232
+        },
+        ".data": {
+          "sha256": "051b7188043bf4db23c88fbe0e5cf705ecf7e2943b77ac2e94fbec1227618f0b",
+          "bytes": 512
+        },
+        ".pdata": {
+          "sha256": "5089f32d06b997b252d80a9fcc5de7a861f1c2666fb33394949359aad3b9dc9c",
+          "bytes": 28160
+        },
+        ".rsrc": {
+          "sha256": "2dd4f36e8a8e4b4407d05d38e4d469eee586d903c82220b48b11e828319b9e24",
+          "bytes": 1536
+        },
+        ".reloc": {
+          "sha256": "ca11acd0e83e01d1019dec17301d7d556e9c33c9a16aef7756925017eef9fe3c",
+          "bytes": 3072
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/freetype-2.12.1-hdaf720e_2.conda",
+          "version": "2.12.1",
+          "source_dll": "Library/bin/freetype.dll",
+          "original_sha256": "f878121d560f43c398671bc1d0d7a61bf719fa7894eac5a1db665414bcd4096f",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "Iex-138f449be55261c046328ae64c124a9d.dll",
+      "sections": {
+        ".text": {
+          "sha256": "de2802b9a420290d1556102945b61a957d8c0500e5d2c2aaceb63216fa48dc0a",
+          "bytes": 96256
+        },
+        ".rdata": {
+          "sha256": "7cfd7558e1fe3dfeccd5c9351d9cc944cc68e4297175b59bd1c81e3ebce286c4",
+          "bytes": 169472
+        },
+        ".data": {
+          "sha256": "02203416f7bfd07e0928dc50c0bf930717f938d8b1433ff2d65a551fcf58477e",
+          "bytes": 8192
+        },
+        ".pdata": {
+          "sha256": "5678229dfc17c00541ee0c575bd0b1d6128ce1e5ee013920b8bcc3fc0c040383",
+          "bytes": 15872
+        },
+        ".rsrc": {
+          "sha256": "e8b3338eb33664a4099f9af8649b33b9a4cfc3176de9117b04a55d9d0226b2e2",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "2cc74e759b318cb7dcc0e9ce16b9a2964309c52db710552463e8a9ec66ad4a8f",
+          "bytes": 1536
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/openexr-3.4.15-hea798b2_0.conda",
+          "version": "3.4.15",
+          "source_dll": "Library/bin/Iex.dll",
+          "original_sha256": "450a69d3505f6184172d5412855ce2f9c03d4d2f8ad2d415b16d2e5ac7270c9d",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "IlmThread-5c7f108988d2554433bb26a9785ab0e5.dll",
+      "sections": {
+        ".text": {
+          "sha256": "570e200ffaa5264b7e32484254c50ea6deab571346cf7fe0908b9068853856be",
+          "bytes": 20480
+        },
+        ".rdata": {
+          "sha256": "95f468af0b7f27c3beeca27ec1e92d94f34abd4e8f82101cd4ae9600a578e71a",
+          "bytes": 18432
+        },
+        ".data": {
+          "sha256": "662538ac2de6268f63738b98b3364a193d1a0ca643d5833bd71f6b39766c9b96",
+          "bytes": 2048
+        },
+        ".pdata": {
+          "sha256": "ca19a5df1a14f1a68c351293a9af3ce411e357e3814bc8c469ee09f84af94117",
+          "bytes": 2560
+        },
+        ".rsrc": {
+          "sha256": "cd71377860d0cc6f032f17d4a76231faac8506731d4eff2fcc37bed483286ab4",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "dc2fea6c5fbf204a24219eb09facb39e4d52c4be297631956edacc4b7aca35b5",
+          "bytes": 512
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/openexr-3.4.15-hea798b2_0.conda",
+          "version": "3.4.15",
+          "source_dll": "Library/bin/IlmThread.dll",
+          "original_sha256": "78a49bc010029b53e143ade9736d5d527c6af5ec5310a5c092aa3449526d6dd1",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "Imath-9b9c82f00ed9c45a0954774404023a2f.dll",
+      "sections": {
+        ".text": {
+          "sha256": "46e5ca8613d8ea51101997fbe1b74130d90b1803b743beee8d86665049d6e7bd",
+          "bytes": 59904
+        },
+        ".rdata": {
+          "sha256": "c02249e3952a90f1f548ba851e0cf223c78da511e56b4ff8f20f13ed8ce45550",
+          "bytes": 272896
+        },
+        ".data": {
+          "sha256": "646aa22b64042ffd43dd3f4fd2c209cf04b9d35fdaa8d69ebd18940fa21279fb",
+          "bytes": 1024
+        },
+        ".pdata": {
+          "sha256": "502067f2657a4f75754b137f3d856ef80bee6167a77c95224e3bbf6cb711156d",
+          "bytes": 2560
+        },
+        ".rsrc": {
+          "sha256": "095b22f3a21fc45d9d0ea40d10d1866c6e3ab41aab1daa3be86f9c46d84bb071",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "1a85a9d2bef0e8aed396936b2abf2213362259ad8ec8a1349d41fb3abc8a3484",
+          "bytes": 512
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/imath-3.2.3-h1608b31_1.conda",
+          "version": "3.2.3",
+          "source_dll": "Library/bin/Imath.dll",
+          "original_sha256": "d1432f0d326f1f3b2d0a69a2c6514a53ed188eb0cd5306591d6d26066f0ac86f",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "jpeg8-c8ae4649b8bcf41ec8bfd359bd6239ff.dll",
+      "sections": {
+        ".text": {
+          "sha256": "cc12ca3b0094e5a245604c3e8487fbc23fff4522d9a05b5d29a65b77facfff37",
+          "bytes": 503296
+        },
+        ".rdata": {
+          "sha256": "b27ce927bb99e47e12084557d3bc957485b6d02fa37b61ddd71b41e2ebcfe9bf",
+          "bytes": 171008
+        },
+        ".data": {
+          "sha256": "ae53c07f76531788d3b17d055ae549c8a6735dd859889e18e988b69a2d2b0c4b",
+          "bytes": 512
+        },
+        ".pdata": {
+          "sha256": "119fd954171a7323707f8df29af78a84ed6925870d3c78df2070d833e44407e2",
+          "bytes": 16896
+        },
+        ".rsrc": {
+          "sha256": "38b2ad403d2ef2df7ec325bdeaf6c1e5dd33c08e6841a939da373c6277fb6253",
+          "bytes": 1536
+        },
+        ".reloc": {
+          "sha256": "92e363cff8f307b0ecfbb3200992065b6c0061a023e957e0a85aded3f8110cf7",
+          "bytes": 512
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/libjpeg-turbo-3.2.0-hfd05255_1.conda",
+          "version": "3.2.0",
+          "source_dll": "Library/bin/jpeg8.dll",
+          "original_sha256": "c8ae4649b8bcf41ec8bfd359bd6239ff7622e2041554cee3e99f740698db848f",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "lcms2-0ec39745e13d62ee647a5fe32509cd48.dll",
+      "sections": {
+        ".text": {
+          "sha256": "90734748892a43418bc86c9944ab3a27bcb32561caa6a1d178923fb0d19f7c2c",
+          "bytes": 404992
+        },
+        ".rdata": {
+          "sha256": "359c81a0aaf7425e9815f40d217c980aab77efe7ea384bae084fa991dcdc7cd2",
+          "bytes": 133120
+        },
+        ".data": {
+          "sha256": "86db43e9762f4bdcf8fd81957618557c106f5d7e8ce291635d6272ae73471a09",
+          "bytes": 14848
+        },
+        ".pdata": {
+          "sha256": "6f8efb40612d91ef71ee8bd3e7bef8d7b6b74c095ecfb0b3d323cc94c350fc8b",
+          "bytes": 22528
+        },
+        ".fptable": {
+          "sha256": "076a27c79e5ace2a3d47f9dd2e83e4ff6ea8872b3c2218f66c92b89b55f36560",
+          "bytes": 512
+        },
+        ".rsrc": {
+          "sha256": "0ddd0c9095f02319b7234c662e8198c84d7047aac3c47a7115bb8c864f6d13a4",
+          "bytes": 1536
+        },
+        ".reloc": {
+          "sha256": "e2b23e8b4c188876a7ba428d672827695d67af15b93c4202226c5ca8885086d4",
+          "bytes": 3072
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/lcms2-2.19.1-hf2c6c5f_2.conda",
+          "version": "2.19.1",
+          "source_dll": "Library/bin/lcms2.dll",
+          "original_sha256": "0ec39745e13d62ee647a5fe32509cd48185b524daf0926d71212b02be03229d0",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".fptable",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "Lerc-22a85a36f4a6a0a5b34eede8d466ade1.dll",
+      "sections": {
+        ".text": {
+          "sha256": "c7989f0a4af6a88bb162fea914d1b28dc599e70c7b42a7ea4669f09df53664c7",
+          "bytes": 498176
+        },
+        ".rdata": {
+          "sha256": "3f795ee700aca81d3477c70a0df3865d2ae77eeaa7ce2a99304a7960de408b30",
+          "bytes": 36352
+        },
+        ".data": {
+          "sha256": "b7dff1635c59bff74170054bf831ab8b5dd75dc9032e4fe4f686193d236fcb88",
+          "bytes": 1024
+        },
+        ".pdata": {
+          "sha256": "e75b81e754dd14071dfdb4e92fe6992542aa52a0ebca987063b748dda056fc71",
+          "bytes": 11264
+        },
+        ".rsrc": {
+          "sha256": "68b814902c14b723e58941ef221e8cc4549168c9b987635f9082ffbcc68774f7",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "270db04346f6c7f1e8d95bda7bb09debee454a258aad44497f042cf561f77209",
+          "bytes": 512
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/lerc-4.2.0-hd936e49_0.conda",
+          "version": "4.2.0",
+          "source_dll": "Library/bin/Lerc.dll",
+          "original_sha256": "451cd3d0eaede32c199886717ec7484b8ca7effda47ee89febea957540058975",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "liblzma-8439ed3564a8dbbf6355e29c92e88fdf.dll",
+      "sections": {
+        ".text": {
+          "sha256": "9281f139e750cce411a3cab5db6555af68b0f1cf30b2e1e58d762c36d7959b45",
+          "bytes": 133632
+        },
+        ".rdata": {
+          "sha256": "a4ecd8380937b80ccbb2efd2c625565868905f30c966bb678fe53ced9879526b",
+          "bytes": 44032
+        },
+        ".data": {
+          "sha256": "59fe5ae7a4af3a3ff550b2d897e23b9f1a5a18173295b5ac7f65a35087a91720",
+          "bytes": 512
+        },
+        ".pdata": {
+          "sha256": "48ae4a554bbaf270174e0d92b89b351b8e846a53589bebcb4a160f0b81a8f5ee",
+          "bytes": 7168
+        },
+        ".rsrc": {
+          "sha256": "d955f8cfd203f1e94e3d667a30a2e74b6a8cd1c934dbe12ed8d5c83a7fb1fa67",
+          "bytes": 1536
+        },
+        ".reloc": {
+          "sha256": "c7edcd006ea702e6fa50c179936de81cf0af46bd917cbe4574f48c33f4785f2d",
+          "bytes": 512
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/liblzma-5.8.3-hfd05255_1.conda",
+          "version": "5.8.3",
+          "source_dll": "Library/bin/liblzma.dll",
+          "original_sha256": "8439ed3564a8dbbf6355e29c92e88fdf1f6dee096504149fc051104155c868a9",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "libpng16-e73ff83a2b29630137d35777129668c2.dll",
+      "sections": {
+        ".text": {
+          "sha256": "1384b0a59b8de911cfb47aec1238bcd778fdac3c274de8b94582ef609d43c2ca",
+          "bytes": 146432
+        },
+        ".rdata": {
+          "sha256": "eacb1a2cd324dd85a25f2db8afd7a2f958e5ecca04a89ee022922c64e733be88",
+          "bytes": 40960
+        },
+        ".data": {
+          "sha256": "48111c50d3fd1ebcf7a36d46a8724a726dad233e1a523fa02d9295a41fd7849c",
+          "bytes": 512
+        },
+        ".pdata": {
+          "sha256": "4e4905bad37945b0a9ccca7772145597e7a1f0ce4ce677d16bfe2a293edefd3a",
+          "bytes": 8704
+        },
+        ".rsrc": {
+          "sha256": "30a55b16adce9dee994b7419a8639f70a154959e499b421e087a6c3c5eac6f78",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "4af4e9a0882ae860d2c26ef6b5a3b0bf6557f155f2d68044501b089f31a3abbb",
+          "bytes": 512
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/libpng-1.6.58-hdc8cecf_1.conda",
+          "version": "1.6.58",
+          "source_dll": "Library/bin/libpng16.dll",
+          "original_sha256": "fd80ce925fc2bdce591c3f74ac0bbb2b36d72e5f55a0b686aa66453a1e388ff3",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "libsharpyuv-09e089c9ad5da983f04e98ccc8f41de1.dll",
+      "sections": {
+        ".text": {
+          "sha256": "82c0d3a27e4900d8beed76473fb51070c4809c44271ac78ece120cf9acdd8939",
+          "bytes": 16384
+        },
+        ".rdata": {
+          "sha256": "531a8f6f5b2b8b305dde13205372889376b5f5b7987eaf9b1a7e8cdfb8ae76f1",
+          "bytes": 5632
+        },
+        ".data": {
+          "sha256": "98da2cf7ab280b60776f66379701d87f4caf18b2a30fbaa67307893678c02b41",
+          "bytes": 512
+        },
+        ".pdata": {
+          "sha256": "8a5e762dbabde504b525ed71775eab495d3e9d1919326741ab05eea48a23e5c2",
+          "bytes": 1024
+        },
+        ".rsrc": {
+          "sha256": "c504b73fc2c1d150720c0f08e5fda89204778169d4b30b5dafdcd6052f091394",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "9582b4adfa5ee174e8f395ae4882f2d0307bdd79d7573efb9e2f57da72a2114b",
+          "bytes": 512
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/libwebp-base-1.6.0-h4d5522a_1.conda",
+          "version": "1.6.0",
+          "source_dll": "Library/bin/libsharpyuv.dll",
+          "original_sha256": "09e089c9ad5da983f04e98ccc8f41de1750b0a351370a4d42b9080c3e68eac50",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "libwebp-d3840055b4660e579d94d60722c712b7.dll",
+      "sections": {
+        ".text": {
+          "sha256": "37a8415c567187db90786acf0d28963decab2091c0f2a8b559c8fae7eff33a9e",
+          "bytes": 300032
+        },
+        ".rdata": {
+          "sha256": "64019e949e718b832ad98a7beaa88796d11979ea9ca81f93ec6d59c062b3a69b",
+          "bytes": 65536
+        },
+        ".data": {
+          "sha256": "a8c8a202e20d3e62b681523aeec4a052235d0702314bd790d4a42989458f928a",
+          "bytes": 512
+        },
+        ".pdata": {
+          "sha256": "44b1defdbc92a208e8ac0c06570374a3f69a2f6397e0a8a0063ce3905546de52",
+          "bytes": 14848
+        },
+        ".rsrc": {
+          "sha256": "6b4bc8a4c8f015c5b2230fb2e2a39e77bb14be9f361b84d39067fb0de32e6791",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "71f4483ad031da2f2d6e19ad6bd6165403581a9bd8b1b805091f41118d7e7c36",
+          "bytes": 512
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/libwebp-base-1.6.0-h4d5522a_1.conda",
+          "version": "1.6.0",
+          "source_dll": "Library/bin/libwebp.dll",
+          "original_sha256": "9e13857e99f7fa275aa7870393322d3d54dc55d0a9293098f60f199ae070d235",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "libwebpmux-e5dee9448ea8f8f080bb950f4004014d.dll",
+      "sections": {
+        ".text": {
+          "sha256": "342be4020e50cb3779221d0ed30f34a0add6d79b0415dbab3c52956f5effd1ba",
+          "bytes": 29184
+        },
+        ".rdata": {
+          "sha256": "92718f184798b48f35b61e270aeb4682997120b1eb707f949edd681dc9975eaf",
+          "bytes": 9216
+        },
+        ".data": {
+          "sha256": "f805b3bd5c2b9f63ecb3eaac422ee7fa51445d66e5964f7e1ef61ec33101bd29",
+          "bytes": 512
+        },
+        ".pdata": {
+          "sha256": "8cea2c86f739ea5729ba85b7cfb8cf87a5258f0465c5bac386ab8fcfdc3d8261",
+          "bytes": 2048
+        },
+        ".rsrc": {
+          "sha256": "d1a44094721aa3a230487e069cc78d1b24c89a239d40535a495d15d3877d760b",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "4ec22fe5f1e6ca40706fbdafa42fa6b6bb7fb05ebbfe51233d65212289352c68",
+          "bytes": 512
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/libwebp-base-1.6.0-h4d5522a_1.conda",
+          "version": "1.6.0",
+          "source_dll": "Library/bin/libwebpmux.dll",
+          "original_sha256": "dfa99a3245a78c0ea006907a52705aa07413200c38a190a6ad6e3839455705f3",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "msvcp140-7c26614e1d733892c2deac7e245ce115.dll",
+      "sections": {
+        ".text": {
+          "sha256": "c962aac47d3fce1253d28b5a7bfbb67312b3e0d40a1ab8813d8afbd1f90f9428",
+          "bytes": 401408
+        },
+        ".rdata": {
+          "sha256": "b35e8fa80b3e306332e7613c465ec92bcd38de3cd0e6ef46758ff3ab4ef4c75f",
+          "bytes": 192000
+        },
+        ".data": {
+          "sha256": "06de667187863cbe2cee43b4cdec8f573df64998074141bf4f067c1e4792ec16",
+          "bytes": 8192
+        },
+        ".pdata": {
+          "sha256": "b1b783f275c166b85808b82380338573a1c53b9fc8dd60c2fec7447056116940",
+          "bytes": 16896
+        },
+        ".rsrc": {
+          "sha256": "46daeb923e4df7ba8fddd98db97566a1669893e635decfc11775f470dea58dbe",
+          "bytes": 1024
+        },
+        ".reloc": {
+          "sha256": "fd9d490ff9be9c255031042d9fcd20acaae475ba1e720c8439c1e1d878093fee",
+          "bytes": 2560
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/vc14_runtime-14.51.36247-habf1de7_41.conda",
+          "version": "14.51.36247",
+          "source_dll": "Library/bin/msvcp140.dll",
+          "original_sha256": "7c26614e1d733892c2deac7e245ce115504b1d80592dd0a01b08e3e5a55f89ca",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        },
+        {
+          "package": "win-64/vc14_runtime-14.51.36247-habf1de7_41.conda",
+          "version": "14.51.36247",
+          "source_dll": "msvcp140.dll",
+          "original_sha256": "7c26614e1d733892c2deac7e245ce115504b1d80592dd0a01b08e3e5a55f89ca",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "OpenEXR-210cc62a9c46faa0d7e864fbe1130f16.dll",
+      "sections": {
+        ".text": {
+          "sha256": "9c5b04b5e90466aca220b30727dea5ee4b324efdd3caaaeb015a1959f6b683f6",
+          "bytes": 503808
+        },
+        ".rdata": {
+          "sha256": "c897c4018288a2d243325a50f1f70fd31cff0c3fc5268d868ea516cf5f5d28e3",
+          "bytes": 302592
+        },
+        ".data": {
+          "sha256": "e55d42ca9e6c81deae24c8b1e0d78179b0ca7ceeb59b52b4d35dbf204bb5b2ce",
+          "bytes": 11264
+        },
+        ".pdata": {
+          "sha256": "a126ee05c05461e15d656e147f47fbc91a1b7d3cc1e43adbff9956ea71ad053c",
+          "bytes": 30720
+        },
+        ".rsrc": {
+          "sha256": "0766318b12d59536bf3220d8a31b3f3d9caa73e9409c80200b90e3c713835116",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "2aeae5152db390c3340bbf1be051178e07038bda91f1884e712e3148090ff0fd",
+          "bytes": 2048
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/openexr-3.4.15-hea798b2_0.conda",
+          "version": "3.4.15",
+          "source_dll": "Library/bin/OpenEXR.dll",
+          "original_sha256": "60bba322d0e3a830242e180e8df567b57eafdaa43c13e3c18735234b73fc83c6",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "OpenEXRCore-68c33f2c309d9810ec2942109eb9ec80.dll",
+      "sections": {
+        ".text": {
+          "sha256": "b8f42cd02669375d01f20c3232ee1bf01cf8a55be8030739fc3b1de87ac86d60",
+          "bytes": 228864
+        },
+        ".rdata": {
+          "sha256": "2cf1a3d3bf9cfeecf18c80d2255532851418997e89111bdab730bd29c083329a",
+          "bytes": 66048
+        },
+        ".data": {
+          "sha256": "8c1ab767ef28615ca379e010c432ed5a192cb99fcf5be006dc664a39a8d512f2",
+          "bytes": 3584
+        },
+        ".pdata": {
+          "sha256": "be17631bf233aa4c9881b01462f4ced85614605e3e2d653620f7be25b48527bc",
+          "bytes": 13312
+        },
+        ".rsrc": {
+          "sha256": "5639749d1b9292f3241be34c8820f8bc829f808cbdb2faf2709406057abce751",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "e3fa4be879836543bc3ba9dea04a2945c21240a7d292da3a103255ecd05574ab",
+          "bytes": 1024
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/openexr-3.4.15-hea798b2_0.conda",
+          "version": "3.4.15",
+          "source_dll": "Library/bin/OpenEXRCore.dll",
+          "original_sha256": "a2a2f3eada0adb22f0362394cde917f14be3de2b32ff47593a7babe407ec7640",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "openjp2-5d11a0abfa2b679c22f0d91df66bd2ab.dll",
+      "sections": {
+        ".text": {
+          "sha256": "421156cf8c6790ecb5b7e2a7cbc053d6634734ef1336ac471e1da2c01d91e932",
+          "bytes": 287744
+        },
+        ".rdata": {
+          "sha256": "9468dcc18f35f81ac12040774634a12d3b55e5c58a1ec0aeb57ccb8ca20e39e2",
+          "bytes": 60416
+        },
+        ".data": {
+          "sha256": "db1eb381d7129cd22884c0d2dc03c3503dfbf72e74ac2e6683eb84ccafed8327",
+          "bytes": 512
+        },
+        ".pdata": {
+          "sha256": "6637e84cf78487c1c39a85c25a6d23ac07e6bc5b3d2786bcad4ee5c55e60ca17",
+          "bytes": 9216
+        },
+        ".rsrc": {
+          "sha256": "8f9900fd350713714de588dc262ab3cf250d9a5937ac4668b5d863ea3ed8d353",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "87487d541ac2751ca5443d0148393820b219c13aa9c0f4f7ec1abfa4dc901457",
+          "bytes": 1024
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/openjpeg-2.5.4-h90fa87c_2.conda",
+          "version": "2.5.4",
+          "source_dll": "Library/bin/openjp2.dll",
+          "original_sha256": "5d11a0abfa2b679c22f0d91df66bd2abc83acb6988b050ad9e75ea0b0025e2b0",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "openjph-77a805c39a4057939dfa655d77639be9.dll",
+      "sections": {
+        ".text": {
+          "sha256": "b866df9fdd958b607b92955e7bf1b8115c5d2eb7bdd54c7f0abc5054106c957c",
+          "bytes": 269824
+        },
+        ".rdata": {
+          "sha256": "7241cb4760abe93224a6b75d8dd7dd58f73480b65e2ed408a6bf30b2748b9597",
+          "bytes": 74752
+        },
+        ".data": {
+          "sha256": "0f4438ead2e7cb2df31ea0eef5030a6f88025b0876f86ba2cbde1fe056c50849",
+          "bytes": 1024
+        },
+        ".pdata": {
+          "sha256": "ca7da57d78ff8f258f430d2ed2f274837d9727f7f56ce1d0a9b25172bd5746ac",
+          "bytes": 8704
+        },
+        ".rsrc": {
+          "sha256": "eeaf1710df13cdb1ef669027908e88112a06ea7c7b50912f825aec8ba6a207cf",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "11353587a8ce9b674fe8d5b9c5e4d1aa8e502f89d014629ffe77630c423b76de",
+          "bytes": 512
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/openjph-0.31.0-hf13a347_0.conda",
+          "version": "0.31.0",
+          "source_dll": "Library/bin/openjph.dll",
+          "original_sha256": "77a805c39a4057939dfa655d77639be9a30465373b9ada4e70d56e98eb95eebf",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "raw-4922a1eb017795c37b091efe3b3de8f6.dll",
+      "sections": {
+        ".text": {
+          "sha256": "6f5e8511d906d97e3eeb2ff60e33e87775ddebcb541e411d5da204e30b172e4e",
+          "bytes": 640512
+        },
+        ".rdata": {
+          "sha256": "d69c50402fa567a9f082d32a3284592775158c1e9a2499d4c5750ca176067f10",
+          "bytes": 227328
+        },
+        ".data": {
+          "sha256": "9bb8907349bb154e1175db93e891e059467be2d7ddd0d0e1dbb7521619ec911b",
+          "bytes": 279040
+        },
+        ".pdata": {
+          "sha256": "961eb4cc26c06b1a62267c818ae236fdd8ed43cfc98a0b229f9799d8034c331d",
+          "bytes": 17920
+        },
+        ".rsrc": {
+          "sha256": "b3b51e87c64abd7d1ddca9171d079ceaec081c18a692a7c0ede1e31db81eee6a",
+          "bytes": 512
+        },
+        ".reloc": {
+          "sha256": "da6adaa91ff371c4038b017e43eefb38bdb42938cea69843431fece5639a591c",
+          "bytes": 5632
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/libraw-0.22.2-h345c428_0.conda",
+          "version": "0.22.2",
+          "source_dll": "Library/bin/raw.dll",
+          "original_sha256": "258c384c3cb5c32240826c6bc5f95ad7e7b248f6bcd24b20675dc8fb4b8bb493",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "tiff-c9f1d4bd42b46208492c347254c25d5c.dll",
+      "sections": {
+        ".text": {
+          "sha256": "b575c77abee34a99ce3a94af1f6d9f80498ec0b2e5865c27618d015b5ac398c4",
+          "bytes": 294912
+        },
+        ".rdata": {
+          "sha256": "8582d58fc7453efdb164867c735b3c38f7320c29a7fa9a74d06c3205278e7803",
+          "bytes": 192000
+        },
+        ".data": {
+          "sha256": "c1b5e2d340842f36df09be79f598f87141ce86eacbf43e0bdf02ec0cff255edf",
+          "bytes": 512
+        },
+        ".pdata": {
+          "sha256": "9e075ef62e2c7fd1e9b35319580c13d6f7a76b8787314ccc9cd8dc5a7da030b3",
+          "bytes": 13312
+        },
+        ".rsrc": {
+          "sha256": "48764ac726f3f351fae6401696a26e32e9ac8dfaa1778ef91e59182762d4a94e",
+          "bytes": 1536
+        },
+        ".reloc": {
+          "sha256": "591a1c42891d02bd1a297e032f0b53cac66f19bc1d27025b56ec10bc3c6098f7",
+          "bytes": 1024
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/libtiff-4.7.2-h8f73337_1.conda",
+          "version": "4.7.2",
+          "source_dll": "Library/bin/libtiff.dll",
+          "original_sha256": "e5555ff9f826a47885c87d9a648f9823d8bf6967b7c848e4d4824abcf518e356",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        },
+        {
+          "package": "win-64/libtiff-4.7.2-h8f73337_1.conda",
+          "version": "4.7.2",
+          "source_dll": "Library/bin/tiff.dll",
+          "original_sha256": "e5555ff9f826a47885c87d9a648f9823d8bf6967b7c848e4d4824abcf518e356",
+          "matching_sections": [
+            ".text",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "vcomp140-95d4ce4a6802d1e18b5e0e1722cc30ea.dll",
+      "sections": {
+        ".text": {
+          "sha256": "7ede08a23580067098134c96056482799abc4a2481011b9ca47afb4a1db4c93e",
+          "bytes": 118784
+        },
+        ".rdata": {
+          "sha256": "9e0cfa7d980ba96510d2cd6fcb230296976918f4a369b3917966a9d09b98e76e",
+          "bytes": 54784
+        },
+        ".data": {
+          "sha256": "7b355a4cc352fbe6cd8710cac4d27eba26b8e48a6b82e169ed4bc266bc92c36f",
+          "bytes": 3072
+        },
+        ".pdata": {
+          "sha256": "a7d9b6e5f3bcd5fe8cf111ccaec3cb5239fdbde031f8528e00bfb6b621fbfe5d",
+          "bytes": 7168
+        },
+        ".fptable": {
+          "sha256": "076a27c79e5ace2a3d47f9dd2e83e4ff6ea8872b3c2218f66c92b89b55f36560",
+          "bytes": 512
+        },
+        ".rsrc": {
+          "sha256": "751e5b99eb6348d8daf040cc69e7e1af9e50f536e92b77576a5f013e512585ac",
+          "bytes": 5120
+        },
+        ".reloc": {
+          "sha256": "e37a3ed9c03f93e4b100fa62da0fdfc0f338895965f5c029a5a626fcfcd50ba7",
+          "bytes": 2048
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/vcomp14-14.51.36247-habf1de7_41.conda",
+          "version": "14.51.36247",
+          "source_dll": "Library/bin/vcomp140.dll",
+          "original_sha256": "95d4ce4a6802d1e18b5e0e1722cc30ea72ca7e033f83828f05c0b7b993fe7cbf",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".fptable",
+            ".rsrc",
+            ".reloc"
+          ]
+        },
+        {
+          "package": "win-64/vcomp14-14.51.36247-habf1de7_41.conda",
+          "version": "14.51.36247",
+          "source_dll": "vcomp140.dll",
+          "original_sha256": "95d4ce4a6802d1e18b5e0e1722cc30ea72ca7e033f83828f05c0b7b993fe7cbf",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".fptable",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "zlib-f4f26ea6300c8449daad4650915e01ac.dll",
+      "sections": {
+        ".text": {
+          "sha256": "57db7196efe2f25309d2ef469d618f5e8f1ad3cbba0f7e499fed7df87fccbfeb",
+          "bytes": 57856
+        },
+        ".rdata": {
+          "sha256": "f3a9cd105b8ed3a9da9bc7ca3a51986eec051cc84dcc392ff5ea05929b2b6b92",
+          "bytes": 26112
+        },
+        ".data": {
+          "sha256": "bb3b36cfed04653810abd799b29aaeff6045ab2995b21b6e0d3dd5388423b783",
+          "bytes": 512
+        },
+        ".pdata": {
+          "sha256": "7b74fc9c6de641cd9239c02aa3fa7c1c02fb1aa49dd9ad2f48fc7f39d21ce4ee",
+          "bytes": 3072
+        },
+        ".rsrc": {
+          "sha256": "8dfe422bcace2d46c9927129d608fc255521a4cd7966501fb74072c37fb5992e",
+          "bytes": 1536
+        },
+        ".reloc": {
+          "sha256": "138e7dc28aa174acc2e4ee4e1cfb618be0bbc5f058ff911a48f8c465a5d4bd88",
+          "bytes": 512
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/libzlib-1.3.2-hfd05255_3.conda",
+          "version": "1.3.2",
+          "source_dll": "Library/bin/zlib.dll",
+          "original_sha256": "f4f26ea6300c8449daad4650915e01ac80aafc6ca8b73a50be450f1fb66cdd63",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        },
+        {
+          "package": "win-64/libzlib-1.3.2-hfd05255_3.conda",
+          "version": "1.3.2",
+          "source_dll": "zlib.dll",
+          "original_sha256": "f4f26ea6300c8449daad4650915e01ac80aafc6ca8b73a50be450f1fb66cdd63",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    },
+    {
+      "bundled_dll": "zstd-fcc1dc71b7df5489e37a78abab9c31d7.dll",
+      "sections": {
+        ".text": {
+          "sha256": "1d82c2c1f5dd15589a7e67fce33d861de98b7b117783861fef9e6106cb48e64d",
+          "bytes": 569344
+        },
+        ".rdata": {
+          "sha256": "c5643cdbfc5261020e8ca5c20da50f158ecedbcca2636eb786ca9e53fabfbe64",
+          "bytes": 70656
+        },
+        ".data": {
+          "sha256": "d4b416cb5a4ed0cc9815b3d8a125e18e99f6f4b486a63de12b209d49014c1c6a",
+          "bytes": 1024
+        },
+        ".pdata": {
+          "sha256": "ded0e77c615f50bccf9033f69f663519cb8f7d88af4bda9b928dc923eb107a23",
+          "bytes": 13312
+        },
+        ".rsrc": {
+          "sha256": "05498877177e040f7675c27b83c9758145b70ad4c823432e74f1d1460913806e",
+          "bytes": 1536
+        },
+        ".reloc": {
+          "sha256": "8e5b590b7689b5d85ec9d285d2414d8442bca9f68592cec8b912c04d74d2e096",
+          "bytes": 512
+        }
+      },
+      "matches_by_exact_text_section": [
+        {
+          "package": "win-64/zstd-1.5.7-h534d264_7.conda",
+          "version": "1.5.7",
+          "source_dll": "Library/bin/libzstd.dll",
+          "original_sha256": "fcc1dc71b7df5489e37a78abab9c31d763570d55e93c67f388058c41c0d7b8df",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        },
+        {
+          "package": "win-64/zstd-1.5.7-h534d264_7.conda",
+          "version": "1.5.7",
+          "source_dll": "Library/bin/zstd.dll",
+          "original_sha256": "fcc1dc71b7df5489e37a78abab9c31d763570d55e93c67f388058c41c0d7b8df",
+          "matching_sections": [
+            ".text",
+            ".rdata",
+            ".data",
+            ".pdata",
+            ".rsrc",
+            ".reloc"
+          ]
+        }
+      ]
+    }
+  ],
+  "transitive_sources": [
+    {
+      "package": "win-64/freeimage-3.18.0-h81f0cfa_25.conda",
+      "version": "3.18.0",
+      "source": [
+        {
+          "url": "http://downloads.sourceforge.net/freeimage/FreeImage3180.zip",
+          "sha256": "f41379682f9ada94ea7b34fe86bf9ee00935a3147be41b6569c9605a53e438fd",
+          "patches": [
+            "fix_libraw_0_20.patch",
+            "fix_libraw_0_21.patch",
+            "libtiff44.patch"
+          ]
+        },
+        {
+          "path": "D:\\a\\1\\s\\recipe\\CMakeLists.txt"
+        },
+        {
+          "path": "D:\\a\\1\\s\\recipe\\FreeImageConfig-dynamic.h"
+        },
+        {
+          "path": "D:\\a\\1\\s\\recipe\\FreeImageConfig-static.h"
+        }
+      ],
+      "license": "GPL-2.0-or-later OR GPL-3.0-or-later OR FreeImage",
+      "recipe": "conda-records\\freeimage-3.18.0-h81f0cfa_25\\info\\recipe\\meta.yaml",
+      "notices": [
+        "source-notices\\upstream-FreeImage3180.zip\\license-fi.txt",
+        "source-notices\\upstream-FreeImage3180.zip\\license-gplv2.txt",
+        "source-notices\\upstream-FreeImage3180.zip\\license-gplv3.txt",
+        "source-notices\\upstream-FreeImage3180.zip\\Source\\LibOpenJPEG\\LICENSE",
+        "source-notices\\upstream-FreeImage3180.zip\\Source\\LibPNG\\LICENSE",
+        "source-notices\\upstream-FreeImage3180.zip\\Source\\LibRawLite\\LICENSE.CDDL",
+        "source-notices\\upstream-FreeImage3180.zip\\Source\\LibRawLite\\LICENSE.LGPL",
+        "source-notices\\upstream-FreeImage3180.zip\\Source\\LibWebP\\COPYING",
+        "source-notices\\upstream-FreeImage3180.zip\\Source\\OpenEXR\\Copyrights\\ilmbase\\COPYING",
+        "source-notices\\upstream-FreeImage3180.zip\\Source\\OpenEXR\\Copyrights\\ilmbase\\LICENSE",
+        "source-notices\\upstream-FreeImage3180.zip\\Source\\OpenEXR\\Copyrights\\openexr\\COPYING",
+        "source-notices\\upstream-FreeImage3180.zip\\Source\\OpenEXR\\Copyrights\\openexr\\LICENSE",
+        "source-notices\\upstream-FreeImage3180.zip\\Wrapper\\Delphi\\license.txt"
+      ],
+      "notice_provenance": "Missing from conda package; recovered from exact hash-matched upstream source archive."
+    },
+    {
+      "package": "win-64/freetype-2.12.1-hdaf720e_2.conda",
+      "version": "2.12.1",
+      "source": [
+        {
+          "patches": [
+            "CVE-2022-37434.patch"
+          ],
+          "sha256": "efe71fd4b8246f1b0b1b9bfca13cfff1c9ad85930340c27df469733bbb620938",
+          "url": "https://download.savannah.gnu.org/releases/freetype/freetype-2.12.1.tar.gz"
+        }
+      ],
+      "license": "GPL-2.0-only OR FTL",
+      "recipe": "conda-records\\freetype-2.12.1-hdaf720e_2\\info\\recipe\\meta.yaml",
+      "notices": [
+        "source-notices\\upstream-freetype-2.12.1.tar.gz\\docs\\GPLv2.TXT",
+        "source-notices\\upstream-freetype-2.12.1.tar.gz\\docs\\FTL.TXT",
+        "source-notices\\upstream-freetype-2.12.1.tar.gz\\LICENSE.TXT"
+      ],
+      "notice_provenance": "Missing from conda package; recovered from exact hash-matched upstream source archive."
+    },
+    {
+      "package": "win-64/imath-3.2.3-h1608b31_1.conda",
+      "version": "3.2.3",
+      "source": [
+        {
+          "url": "https://github.com/AcademySoftwareFoundation/Imath/archive/v3.2.3.tar.gz",
+          "sha256": "e10c12b3f21f45bf08e09d4215d9c7691368d747beebd840de0b6fefed2df9f8",
+          "patches": null
+        }
+      ],
+      "license": "BSD-3-Clause",
+      "recipe": "conda-records\\imath-3.2.3-h1608b31_1\\info\\recipe\\meta.yaml",
+      "notices": [
+        "conda-records\\imath-3.2.3-h1608b31_1\\info\\licenses\\LICENSE.md"
+      ]
+    },
+    {
+      "package": "win-64/lcms2-2.19.1-hf2c6c5f_2.conda",
+      "version": "2.19.1",
+      "source": [
+        {
+          "url": "https://github.com/mm2/Little-CMS/releases/download/lcms2.19.1/lcms2-2.19.1.tar.gz",
+          "sha256": "bfc54f7bab59fbc921012014a8032e4cba4abd46db47d46b76416a8c0b2815c8",
+          "patches": [
+            "win_jpegturbo.patch"
+          ]
+        }
+      ],
+      "license": "MIT",
+      "recipe": "conda-records\\lcms2-2.19.1-hf2c6c5f_2\\info\\recipe\\meta.yaml",
+      "notices": [
+        "conda-records\\lcms2-2.19.1-hf2c6c5f_2\\info\\licenses\\LICENSE"
+      ]
+    },
+    {
+      "package": "win-64/lerc-4.2.0-hd936e49_0.conda",
+      "version": "4.2.0",
+      "source": [
+        {
+          "url": "https://github.com/Esri/lerc/archive/v4.2.0.tar.gz",
+          "sha256": "a1fb593ed1fcb5b38800caf3c4454f872745202e961d00d745e53d81447e17c9"
+        }
+      ],
+      "license": "Apache-2.0",
+      "recipe": "conda-records\\lerc-4.2.0-hd936e49_0\\info\\recipe\\meta.yaml",
+      "notices": [
+        "conda-records\\lerc-4.2.0-hd936e49_0\\info\\licenses\\LICENSE"
+      ]
+    },
+    {
+      "package": "win-64/libdeflate-1.25-h1a1d4e4_1.conda",
+      "version": "1.25",
+      "source": [
+        {
+          "url": "https://github.com/ebiggers/libdeflate/archive/v1.25.tar.gz",
+          "sha256": "d11473c1ad4c57d874695e8026865e38b47116bbcb872bfc622ec8f37a86017d"
+        }
+      ],
+      "license": "MIT",
+      "recipe": "conda-records\\libdeflate-1.25-h1a1d4e4_1\\info\\recipe\\meta.yaml",
+      "notices": [
+        "conda-records\\libdeflate-1.25-h1a1d4e4_1\\info\\licenses\\COPYING"
+      ]
+    },
+    {
+      "package": "win-64/libjpeg-turbo-3.2.0-hfd05255_1.conda",
+      "version": "3.2.0",
+      "source": [
+        {
+          "url": "https://github.com/libjpeg-turbo/libjpeg-turbo/archive/3.2.0.tar.gz",
+          "sha256": "980dd81f425082aa6d7c9e47fef27554ce7a9ffc8e2f6e863b97d263c5c50858"
+        }
+      ],
+      "license": "IJG AND BSD-3-Clause AND Zlib",
+      "recipe": "conda-records\\libjpeg-turbo-3.2.0-hfd05255_1\\info\\recipe\\meta.yaml",
+      "notices": [
+        "conda-records\\libjpeg-turbo-3.2.0-hfd05255_1\\info\\licenses\\LICENSE.md"
+      ]
+    },
+    {
+      "package": "win-64/liblzma-5.8.3-hfd05255_1.conda",
+      "version": "5.8.3",
+      "source": [
+        {
+          "url": "https://github.com/tukaani-project/xz/releases/download/v5.8.3/xz-5.8.3.tar.gz",
+          "sha256": "3d3a1b973af218114f4f889bbaa2f4c037deaae0c8e815eec381c3d546b974a0"
+        }
+      ],
+      "license": "0BSD",
+      "recipe": "conda-records\\liblzma-5.8.3-hfd05255_1\\info\\recipe\\meta.yaml",
+      "notices": [
+        "conda-records\\liblzma-5.8.3-hfd05255_1\\info\\licenses\\COPYING",
+        "conda-records\\liblzma-5.8.3-hfd05255_1\\info\\licenses\\COPYING.0BSD"
+      ]
+    },
+    {
+      "package": "win-64/libpng-1.6.58-hdc8cecf_1.conda",
+      "version": "1.6.58",
+      "source": [
+        {
+          "url": "https://downloads.sourceforge.net/project/libpng/libpng16/1.6.58/libpng-1.6.58.tar.gz",
+          "sha256": "8c9b05b675ca7301a458df2c2e46f26e1d41ff36b8863f8c33530bc58c2e6225",
+          "patches": [
+            "patches/0001-Include-pkg-config-files-in-the-Windows-packages-too.patch",
+            "patches/0002-Ensure-that-lm-is-not-included-in-Windows-pkg-config.patch"
+          ]
+        }
+      ],
+      "license": "zlib-acknowledgement",
+      "recipe": "conda-records\\libpng-1.6.58-hdc8cecf_1\\info\\recipe\\rendered_recipe.yaml",
+      "notices": [
+        "conda-records\\libpng-1.6.58-hdc8cecf_1\\info\\licenses\\LICENSE"
+      ]
+    },
+    {
+      "package": "win-64/libraw-0.22.2-h345c428_0.conda",
+      "version": "0.22.2",
+      "source": [
+        {
+          "url": "https://github.com/LibRaw/LibRaw/archive/0.22.2.tar.gz",
+          "sha256": "627928088300ecde6ca91ffd202e189203f04ad61ad12f0fe9dc57b9a7a0fb3c",
+          "target_directory": "libraw"
+        },
+        {
+          "url": "https://github.com/LibRaw/LibRaw-cmake/archive/eb98e4325aef2ce85d2eb031c2ff18640ca616d3.tar.gz",
+          "sha256": "3cd218bf6d1254de86e27269541277fbfc5bae57a9002ce0b46fbe2a97088b43",
+          "target_directory": "cmake"
+        }
+      ],
+      "license": "LGPL-2.1-only",
+      "recipe": "conda-records\\libraw-0.22.2-h345c428_0\\info\\recipe\\rendered_recipe.yaml",
+      "notices": [
+        "conda-records\\libraw-0.22.2-h345c428_0\\info\\licenses\\libraw\\LICENSE.LGPL"
+      ]
+    },
+    {
+      "package": "win-64/libtiff-4.7.2-h8f73337_1.conda",
+      "version": "4.7.2",
+      "source": [
+        {
+          "url": "https://download.osgeo.org/libtiff/tiff-4.7.2.tar.gz",
+          "sha256": "672bd7d10aee4606171afb864f3570b83340f6a33e2c186dc0512f7145ffdf6a",
+          "patches": [
+            "patches/use_unix_io.patch"
+          ]
+        }
+      ],
+      "license": "HPND",
+      "recipe": "conda-records\\libtiff-4.7.2-h8f73337_1\\info\\recipe\\meta.yaml",
+      "notices": [
+        "conda-records\\libtiff-4.7.2-h8f73337_1\\info\\licenses\\LICENSE.md"
+      ]
+    },
+    {
+      "package": "win-64/libwebp-base-1.6.0-h4d5522a_1.conda",
+      "version": "1.6.0",
+      "source": [
+        {
+          "url": "http://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-1.6.0.tar.gz",
+          "sha256": "e4ab7009bf0629fd11982d4c2aa83964cf244cffba7347ecd39019a9e38c4564"
+        }
+      ],
+      "license": "BSD-3-Clause",
+      "recipe": "conda-records\\libwebp-base-1.6.0-h4d5522a_1\\info\\recipe\\meta.yaml",
+      "notices": [
+        "conda-records\\libwebp-base-1.6.0-h4d5522a_1\\info\\licenses\\COPYING"
+      ]
+    },
+    {
+      "package": "win-64/libzlib-1.3.2-hfd05255_3.conda",
+      "version": "1.3.2",
+      "source": [
+        {
+          "url": [
+            "http://zlib.net/zlib-1.3.2.tar.gz",
+            "https://gnupg.org/ftp/gcrypt/zlib/zlib-1.3.2.tar.gz"
+          ],
+          "sha256": "bb329a0a2cd0274d05519d61c667c062e06990d72e125ee2dfa8de64f0119d16"
+        }
+      ],
+      "license": "Zlib",
+      "recipe": "conda-records\\libzlib-1.3.2-hfd05255_3\\info\\recipe\\meta.yaml",
+      "notices": [
+        "conda-records\\libzlib-1.3.2-hfd05255_3\\info\\licenses\\LICENSE"
+      ]
+    },
+    {
+      "package": "win-64/openexr-3.4.15-hea798b2_0.conda",
+      "version": "3.4.15",
+      "source": [
+        {
+          "url": "https://github.com/AcademySoftwareFoundation/openexr/archive/v3.4.15.tar.gz",
+          "sha256": "445ed5b0ea4d9cf98be3a4f219e419628b123b61dec65ccb743ab9b07fbebdaa"
+        }
+      ],
+      "license": "BSD-3-Clause",
+      "recipe": "conda-records\\openexr-3.4.15-hea798b2_0\\info\\recipe\\rendered_recipe.yaml",
+      "notices": [
+        "conda-records\\openexr-3.4.15-hea798b2_0\\info\\licenses\\LICENSE.md"
+      ]
+    },
+    {
+      "package": "win-64/openjpeg-2.5.4-h90fa87c_2.conda",
+      "version": "2.5.4",
+      "source": [
+        {
+          "url": "https://github.com/uclouvain/openjpeg/archive/v2.5.4.tar.gz",
+          "sha256": "a695fbe19c0165f295a8531b1e4e855cd94d0875d2f88ec4b61080677e27188a"
+        }
+      ],
+      "license": "BSD-2-Clause",
+      "recipe": "conda-records\\openjpeg-2.5.4-h90fa87c_2\\info\\recipe\\rendered_recipe.yaml",
+      "notices": [
+        "conda-records\\openjpeg-2.5.4-h90fa87c_2\\info\\licenses\\LICENSE"
+      ]
+    },
+    {
+      "package": "win-64/openjph-0.31.0-hf13a347_0.conda",
+      "version": "0.31.0",
+      "source": [
+        {
+          "url": "https://github.com/aous72/OpenJPH/archive/0.31.0.tar.gz",
+          "sha256": "fe169dbbaae71a169a0a6a68dccb346616193252c1ca044217afa0d5d1dc436f",
+          "patches": [
+            "windows_lib_so_name.patch",
+            "fix_aarch_old_stdlibc.patch"
+          ]
+        }
+      ],
+      "license": "BSD-2-Clause",
+      "recipe": "conda-records\\openjph-0.31.0-hf13a347_0\\info\\recipe\\rendered_recipe.yaml",
+      "notices": [
+        "conda-records\\openjph-0.31.0-hf13a347_0\\info\\licenses\\LICENSE"
+      ]
+    },
+    {
+      "package": "win-64/vc14_runtime-14.51.36247-habf1de7_41.conda",
+      "version": "14.51.36247",
+      "source": [
+        {
+          "url": "https://download.visualstudio.microsoft.com/download/pr/ebdab8e5-1d7b-4d9f-a11b-cbb1720c3b12/843068991DAAA1F73AD9F6239BCE4D0F6A07A51F18C37EA2A867E9BECA71295C/vc_redist.x64.exe",
+          "sha256": "843068991daaa1f73ad9f6239bce4d0f6a07a51f18c37ea2a867e9beca71295c"
+        }
+      ],
+      "license": "LicenseRef-MicrosoftVisualCpp2015-2022Runtime",
+      "recipe": "conda-records\\vc14_runtime-14.51.36247-habf1de7_41\\info\\recipe\\meta.yaml",
+      "notices": [
+        "conda-records\\vc14_runtime-14.51.36247-habf1de7_41\\info\\licenses\\LICENSE.DOCX",
+        "conda-records\\vc14_runtime-14.51.36247-habf1de7_41\\info\\licenses\\LICENSE.RTF",
+        "conda-records\\vc14_runtime-14.51.36247-habf1de7_41\\info\\licenses\\LICENSE.TXT"
+      ]
+    },
+    {
+      "package": "win-64/vcomp14-14.51.36247-habf1de7_41.conda",
+      "version": "14.51.36247",
+      "source": [
+        {
+          "url": "https://download.visualstudio.microsoft.com/download/pr/ebdab8e5-1d7b-4d9f-a11b-cbb1720c3b12/843068991DAAA1F73AD9F6239BCE4D0F6A07A51F18C37EA2A867E9BECA71295C/vc_redist.x64.exe",
+          "sha256": "843068991daaa1f73ad9f6239bce4d0f6a07a51f18c37ea2a867e9beca71295c"
+        }
+      ],
+      "license": "LicenseRef-MicrosoftVisualCpp2015-2022Runtime",
+      "recipe": "conda-records\\vcomp14-14.51.36247-habf1de7_41\\info\\recipe\\meta.yaml",
+      "notices": [
+        "conda-records\\vcomp14-14.51.36247-habf1de7_41\\info\\licenses\\LICENSE.DOCX",
+        "conda-records\\vcomp14-14.51.36247-habf1de7_41\\info\\licenses\\LICENSE.RTF",
+        "conda-records\\vcomp14-14.51.36247-habf1de7_41\\info\\licenses\\LICENSE.TXT"
+      ]
+    },
+    {
+      "package": "win-64/zstd-1.5.7-h534d264_7.conda",
+      "version": "1.5.7",
+      "source": [
+        {
+          "url": "https://github.com/facebook/zstd/archive/v1.5.7.tar.gz",
+          "sha256": "37d7284556b20954e56e1ca85b80226768902e2edabd3b649e9e72c0c9012ee3"
+        }
+      ],
+      "license": "BSD-3-Clause",
+      "recipe": "conda-records\\zstd-1.5.7-h534d264_7\\info\\recipe\\rendered_recipe.yaml",
+      "notices": [
+        "conda-records\\zstd-1.5.7-h534d264_7\\info\\licenses\\LICENSE"
+      ]
+    }
+  ],
+  "downloads": [
+    {
+      "file": "ifc-COPYING",
+      "url": "https://raw.githubusercontent.com/IfcOpenShell/IfcOpenShell/1c5b825d8ef05ab9d14a15dac12e9eae2f5a37c2/COPYING",
+      "sha256": "1b3782ccad7b8614100cda30d3faf42fc39f2e97932908c543005053b654ca68",
+      "bytes": 32473
+    },
+    {
+      "file": "ifc-COPYING.LESSER",
+      "url": "https://raw.githubusercontent.com/IfcOpenShell/IfcOpenShell/1c5b825d8ef05ab9d14a15dac12e9eae2f5a37c2/COPYING.LESSER",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+      "bytes": 7652
+    },
+    {
+      "file": "ifc-README.md",
+      "url": "https://raw.githubusercontent.com/IfcOpenShell/IfcOpenShell/1c5b825d8ef05ab9d14a15dac12e9eae2f5a37c2/README.md",
+      "sha256": "3dc54b1b1fd7e9aacbb5557931475fa2eb0cfdab497b0917a4eb279aa1f774d0",
+      "bytes": 11455
+    },
+    {
+      "file": "ifc-win_build-all-win.py",
+      "url": "https://raw.githubusercontent.com/IfcOpenShell/IfcOpenShell/1c5b825d8ef05ab9d14a15dac12e9eae2f5a37c2/win/build-all-win.py",
+      "sha256": "7dc18b2a19148d796bc9e92a3b6c658f78890b3278d536b769bb4194a6b8c901",
+      "bytes": 4028
+    },
+    {
+      "file": "ifc-win_build-deps.cmd",
+      "url": "https://raw.githubusercontent.com/IfcOpenShell/IfcOpenShell/1c5b825d8ef05ab9d14a15dac12e9eae2f5a37c2/win/build-deps.cmd",
+      "sha256": "108461311fb374b6bd411fb18c2b83e479cf032fd747e4b1c1eb1b9910b07863",
+      "bytes": 40235
+    },
+    {
+      "file": "ifc-win_build-deps.sh",
+      "url": "https://raw.githubusercontent.com/IfcOpenShell/IfcOpenShell/1c5b825d8ef05ab9d14a15dac12e9eae2f5a37c2/win/build-deps.sh",
+      "sha256": "98803d52a680a569d3d081d759e5c147718e5fd4c7e7b95caebb5698635602e8",
+      "bytes": 3630
+    },
+    {
+      "file": "ifc-.github_workflows_build_win.yml",
+      "url": "https://raw.githubusercontent.com/IfcOpenShell/IfcOpenShell/1c5b825d8ef05ab9d14a15dac12e9eae2f5a37c2/.github/workflows/build_win.yml",
+      "sha256": "dfdd14ba5c28600993fd3cfb47efad6be2f35c00bcfb7a7b7e3365880d5a61e5",
+      "bytes": 2836
+    },
+    {
+      "file": "ifc-nix_build-all.py",
+      "url": "https://raw.githubusercontent.com/IfcOpenShell/IfcOpenShell/1c5b825d8ef05ab9d14a15dac12e9eae2f5a37c2/nix/build-all.py",
+      "sha256": "db100b778ecfa35068652a5f157fad15ede177a0bec7a0d64dcec46e149c9c6e",
+      "bytes": 62167
+    },
+    {
+      "file": "ocp-build-tree.json",
+      "url": "https://api.github.com/repos/CadQuery/ocp-build-system/git/trees/9d9bbaa37f088667c902c6e41ca0d2d4707cba83?recursive=1",
+      "sha256": "daa0fb0c47e2fcfe691f58e66571b2ee51fbf94b633b9e625b15eb65fa267b7b",
+      "bytes": 22987
+    },
+    {
+      "file": "ocp-build-config.py",
+      "url": "https://raw.githubusercontent.com/CadQuery/ocp-build-system/9d9bbaa37f088667c902c6e41ca0d2d4707cba83/get-config.py",
+      "sha256": "e5ca0af3bb16565530991054e90fbc47fec2fb1e8bc95c21485cb00169205de9",
+      "bytes": 1588
+    },
+    {
+      "file": "ocp-build-environment.yml",
+      "url": "https://raw.githubusercontent.com/CadQuery/ocp-build-system/9d9bbaa37f088667c902c6e41ca0d2d4707cba83/environment.yml",
+      "sha256": "bd8c068f89dd5666a63e12c85e85a745b4ec99b9d01e823ab573b00e5f320733",
+      "bytes": 196
+    },
+    {
+      "file": "occt-tag-object.json",
+      "url": "https://api.github.com/repos/Open-Cascade-SAS/OCCT/git/tags/c5605924864829ce8c1e1477f976ffb3880538a8",
+      "sha256": "cd3f8f413e36882f93c740d1f4903937f029f4b999778ace80f85043a86413c0",
+      "bytes": 657
+    },
+    {
+      "file": "liblzma-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/liblzma",
+      "sha256": "f225675c8864762666ec7476d99033c29cd67089aed375dcb0bb703fa3f349a8",
+      "bytes": 78668
+    },
+    {
+      "file": "libzlib-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/libzlib",
+      "sha256": "7f58cf57abfa5e779af953c1b920e0b770d6e9a97fd7e94ab04731cd0ff12ab1",
+      "bytes": 169901
+    },
+    {
+      "file": "vcomp14-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/vcomp14",
+      "sha256": "dbc0f40ba9787d694f21677a0f665873acb918bceaa603bbf5ea62f3389b844c",
+      "bytes": 71337
+    },
+    {
+      "file": "upstream-FreeImage3180.zip",
+      "url": "https://downloads.sourceforge.net/freeimage/FreeImage3180.zip",
+      "sha256": "f41379682f9ada94ea7b34fe86bf9ee00935a3147be41b6569c9605a53e438fd",
+      "bytes": 7415716,
+      "package": "win-64/freeimage-3.18.0-h81f0cfa_25.conda",
+      "expected_sha256": "f41379682f9ada94ea7b34fe86bf9ee00935a3147be41b6569c9605a53e438fd",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-freetype-2.12.1.tar.gz",
+      "url": "https://download.savannah.gnu.org/releases/freetype/freetype-2.12.1.tar.gz",
+      "sha256": "efe71fd4b8246f1b0b1b9bfca13cfff1c9ad85930340c27df469733bbb620938",
+      "bytes": 3789426,
+      "package": "win-64/freetype-2.12.1-hdaf720e_2.conda",
+      "expected_sha256": "efe71fd4b8246f1b0b1b9bfca13cfff1c9ad85930340c27df469733bbb620938",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-v3.2.3.tar.gz",
+      "url": "https://github.com/AcademySoftwareFoundation/Imath/archive/v3.2.3.tar.gz",
+      "sha256": "e10c12b3f21f45bf08e09d4215d9c7691368d747beebd840de0b6fefed2df9f8",
+      "bytes": 695800,
+      "package": "win-64/imath-3.2.3-h1608b31_1.conda",
+      "expected_sha256": "e10c12b3f21f45bf08e09d4215d9c7691368d747beebd840de0b6fefed2df9f8",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-lcms2-2.19.1.tar.gz",
+      "url": "https://github.com/mm2/Little-CMS/releases/download/lcms2.19.1/lcms2-2.19.1.tar.gz",
+      "sha256": "bfc54f7bab59fbc921012014a8032e4cba4abd46db47d46b76416a8c0b2815c8",
+      "bytes": 5728743,
+      "package": "win-64/lcms2-2.19.1-hf2c6c5f_2.conda",
+      "expected_sha256": "bfc54f7bab59fbc921012014a8032e4cba4abd46db47d46b76416a8c0b2815c8",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-v4.2.0.tar.gz",
+      "url": "https://github.com/Esri/lerc/archive/v4.2.0.tar.gz",
+      "sha256": "a1fb593ed1fcb5b38800caf3c4454f872745202e961d00d745e53d81447e17c9",
+      "bytes": 4059752,
+      "package": "win-64/lerc-4.2.0-hd936e49_0.conda",
+      "expected_sha256": "a1fb593ed1fcb5b38800caf3c4454f872745202e961d00d745e53d81447e17c9",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-v1.25.tar.gz",
+      "url": "https://github.com/ebiggers/libdeflate/archive/v1.25.tar.gz",
+      "sha256": "d11473c1ad4c57d874695e8026865e38b47116bbcb872bfc622ec8f37a86017d",
+      "bytes": 197494,
+      "package": "win-64/libdeflate-1.25-h1a1d4e4_1.conda",
+      "expected_sha256": "d11473c1ad4c57d874695e8026865e38b47116bbcb872bfc622ec8f37a86017d",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-3.2.0.tar.gz",
+      "url": "https://github.com/libjpeg-turbo/libjpeg-turbo/archive/3.2.0.tar.gz",
+      "sha256": "980dd81f425082aa6d7c9e47fef27554ce7a9ffc8e2f6e863b97d263c5c50858",
+      "bytes": 2537858,
+      "package": "win-64/libjpeg-turbo-3.2.0-hfd05255_1.conda",
+      "expected_sha256": "980dd81f425082aa6d7c9e47fef27554ce7a9ffc8e2f6e863b97d263c5c50858",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-xz-5.8.3.tar.gz",
+      "url": "https://github.com/tukaani-project/xz/releases/download/v5.8.3/xz-5.8.3.tar.gz",
+      "sha256": "3d3a1b973af218114f4f889bbaa2f4c037deaae0c8e815eec381c3d546b974a0",
+      "bytes": 2771455,
+      "package": "win-64/liblzma-5.8.3-hfd05255_1.conda",
+      "expected_sha256": "3d3a1b973af218114f4f889bbaa2f4c037deaae0c8e815eec381c3d546b974a0",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-libpng-1.6.58.tar.gz",
+      "url": "https://downloads.sourceforge.net/project/libpng/libpng16/1.6.58/libpng-1.6.58.tar.gz",
+      "sha256": "8c9b05b675ca7301a458df2c2e46f26e1d41ff36b8863f8c33530bc58c2e6225",
+      "bytes": 1582074,
+      "package": "win-64/libpng-1.6.58-hdc8cecf_1.conda",
+      "expected_sha256": "8c9b05b675ca7301a458df2c2e46f26e1d41ff36b8863f8c33530bc58c2e6225",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-0.22.2.tar.gz",
+      "url": "https://github.com/LibRaw/LibRaw/archive/0.22.2.tar.gz",
+      "sha256": "627928088300ecde6ca91ffd202e189203f04ad61ad12f0fe9dc57b9a7a0fb3c",
+      "bytes": 610162,
+      "package": "win-64/libraw-0.22.2-h345c428_0.conda",
+      "expected_sha256": "627928088300ecde6ca91ffd202e189203f04ad61ad12f0fe9dc57b9a7a0fb3c",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-eb98e4325aef2ce85d2eb031c2ff18640ca616d3.tar.gz",
+      "url": "https://github.com/LibRaw/LibRaw-cmake/archive/eb98e4325aef2ce85d2eb031c2ff18640ca616d3.tar.gz",
+      "sha256": "3cd218bf6d1254de86e27269541277fbfc5bae57a9002ce0b46fbe2a97088b43",
+      "bytes": 14063,
+      "package": "win-64/libraw-0.22.2-h345c428_0.conda",
+      "expected_sha256": "3cd218bf6d1254de86e27269541277fbfc5bae57a9002ce0b46fbe2a97088b43",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-tiff-4.7.2.tar.gz",
+      "url": "https://download.osgeo.org/libtiff/tiff-4.7.2.tar.gz",
+      "sha256": "672bd7d10aee4606171afb864f3570b83340f6a33e2c186dc0512f7145ffdf6a",
+      "bytes": 4083368,
+      "package": "win-64/libtiff-4.7.2-h8f73337_1.conda",
+      "expected_sha256": "672bd7d10aee4606171afb864f3570b83340f6a33e2c186dc0512f7145ffdf6a",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-libwebp-1.6.0.tar.gz",
+      "url": "https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-1.6.0.tar.gz",
+      "sha256": "e4ab7009bf0629fd11982d4c2aa83964cf244cffba7347ecd39019a9e38c4564",
+      "bytes": 4296070,
+      "package": "win-64/libwebp-base-1.6.0-h4d5522a_1.conda",
+      "expected_sha256": "e4ab7009bf0629fd11982d4c2aa83964cf244cffba7347ecd39019a9e38c4564",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-zlib-1.3.2.tar.gz",
+      "url": "https://zlib.net/zlib-1.3.2.tar.gz",
+      "sha256": "bb329a0a2cd0274d05519d61c667c062e06990d72e125ee2dfa8de64f0119d16",
+      "bytes": 1502830,
+      "package": "win-64/libzlib-1.3.2-hfd05255_3.conda",
+      "expected_sha256": "bb329a0a2cd0274d05519d61c667c062e06990d72e125ee2dfa8de64f0119d16",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-v3.4.15.tar.gz",
+      "url": "https://github.com/AcademySoftwareFoundation/openexr/archive/v3.4.15.tar.gz",
+      "sha256": "445ed5b0ea4d9cf98be3a4f219e419628b123b61dec65ccb743ab9b07fbebdaa",
+      "bytes": 25838055,
+      "package": "win-64/openexr-3.4.15-hea798b2_0.conda",
+      "expected_sha256": "445ed5b0ea4d9cf98be3a4f219e419628b123b61dec65ccb743ab9b07fbebdaa",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-v2.5.4.tar.gz",
+      "url": "https://github.com/uclouvain/openjpeg/archive/v2.5.4.tar.gz",
+      "sha256": "a695fbe19c0165f295a8531b1e4e855cd94d0875d2f88ec4b61080677e27188a",
+      "bytes": 2157028,
+      "package": "win-64/openjpeg-2.5.4-h90fa87c_2.conda",
+      "expected_sha256": "a695fbe19c0165f295a8531b1e4e855cd94d0875d2f88ec4b61080677e27188a",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-0.31.0.tar.gz",
+      "url": "https://github.com/aous72/OpenJPH/archive/0.31.0.tar.gz",
+      "sha256": "fe169dbbaae71a169a0a6a68dccb346616193252c1ca044217afa0d5d1dc436f",
+      "bytes": 534814,
+      "package": "win-64/openjph-0.31.0-hf13a347_0.conda",
+      "expected_sha256": "fe169dbbaae71a169a0a6a68dccb346616193252c1ca044217afa0d5d1dc436f",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-vc_redist.x64.exe",
+      "url": "https://download.visualstudio.microsoft.com/download/pr/ebdab8e5-1d7b-4d9f-a11b-cbb1720c3b12/843068991DAAA1F73AD9F6239BCE4D0F6A07A51F18C37EA2A867E9BECA71295C/vc_redist.x64.exe",
+      "sha256": "843068991daaa1f73ad9f6239bce4d0f6a07a51f18c37ea2a867e9beca71295c",
+      "bytes": 18731856,
+      "package": "win-64/vc14_runtime-14.51.36247-habf1de7_41.conda",
+      "expected_sha256": "843068991daaa1f73ad9f6239bce4d0f6a07a51f18c37ea2a867e9beca71295c",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-vc_redist.x64.exe",
+      "url": "https://download.visualstudio.microsoft.com/download/pr/ebdab8e5-1d7b-4d9f-a11b-cbb1720c3b12/843068991DAAA1F73AD9F6239BCE4D0F6A07A51F18C37EA2A867E9BECA71295C/vc_redist.x64.exe",
+      "sha256": "843068991daaa1f73ad9f6239bce4d0f6a07a51f18c37ea2a867e9beca71295c",
+      "bytes": 18731856,
+      "package": "win-64/vcomp14-14.51.36247-habf1de7_41.conda",
+      "expected_sha256": "843068991daaa1f73ad9f6239bce4d0f6a07a51f18c37ea2a867e9beca71295c",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "upstream-v1.5.7.tar.gz",
+      "url": "https://github.com/facebook/zstd/archive/v1.5.7.tar.gz",
+      "sha256": "37d7284556b20954e56e1ca85b80226768902e2edabd3b649e9e72c0c9012ee3",
+      "bytes": 2451884,
+      "package": "win-64/zstd-1.5.7-h534d264_7.conda",
+      "expected_sha256": "37d7284556b20954e56e1ca85b80226768902e2edabd3b649e9e72c0c9012ee3",
+      "hash_matches_recipe": true
+    },
+    {
+      "file": "libdeflate-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/libdeflate",
+      "sha256": "fa46ccb2b4dd3a451f4f15b741902d8754f93f51d425125799497b5c7e405088",
+      "bytes": 197214
+    },
+    {
+      "file": "freeimage-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/freeimage",
+      "sha256": "b4aa7b6d3fafa5311fcc6c3123e09ecb8d8f4dccb07b0e3c81da8adabb1dbe94",
+      "bytes": 374900
+    },
+    {
+      "file": "freetype-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/freetype",
+      "sha256": "b7a48c4f1b131b9841a2e648e231d45940178ccf39ab697adb2dd86d0e4f72c0",
+      "bytes": 357544
+    },
+    {
+      "file": "libpng-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/libpng",
+      "sha256": "e8a305485c11722b7ea912fa3de37820de2ec42c82122a0a00099459d89313d4",
+      "bytes": 357810
+    },
+    {
+      "file": "libwebp-base-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/libwebp-base",
+      "sha256": "e30c312b78028378decfc721c8f568b3fb1c0259d751496d72480305ff1f86dd",
+      "bytes": 178340
+    },
+    {
+      "file": "openjpeg-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/openjpeg",
+      "sha256": "0711fc9f7f56fa3e9ec00237b42337cf89f51a5f62e60a6f12984c557b7dc016",
+      "bytes": 375857
+    },
+    {
+      "file": "libraw-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/libraw",
+      "sha256": "a60d4cfc6a465319b504289a6b4d790b179a70dcd9db113dc2ebebc356c25bc5",
+      "bytes": 171541
+    },
+    {
+      "file": "openjph-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/openjph",
+      "sha256": "81566360088530359d172367640bc4dd4f47220e113830a121a20f9d7abe64ab",
+      "bytes": 252679
+    },
+    {
+      "file": "openexr-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/openexr",
+      "sha256": "eef08c58ae84bad7b39a53d4cb95d7bff5e4bea79801505d31ead096542d0bb8",
+      "bytes": 570570
+    },
+    {
+      "file": "imath-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/imath",
+      "sha256": "b60f2463ce6d3fe340630e2984b8a210b5a3410500ea15b359a38639d236c968",
+      "bytes": 139597
+    },
+    {
+      "file": "lerc-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/lerc",
+      "sha256": "60ab437ebb37ce2b3300f6c2ef262bcac3b4fd31c41d19d1cf13e5893869cdd1",
+      "bytes": 82840
+    },
+    {
+      "file": "libjpeg-turbo-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/libjpeg-turbo",
+      "sha256": "4909aaea00ecee7500957c8e5efa3971cd911b464b7d6bfd495c023fad7ddc82",
+      "bytes": 205222
+    },
+    {
+      "file": "lcms2-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/lcms2",
+      "sha256": "9544c1b027fd544d519fc694b6a3a4c9a54f19ac998acd3fe6fcab9a04fccff6",
+      "bytes": 176936
+    },
+    {
+      "file": "libtiff-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/libtiff",
+      "sha256": "e6a7bb3cc52324580b3387ea38eb6f428be7b6148a1464fa5e2b5026a76edfe9",
+      "bytes": 786361
+    },
+    {
+      "file": "xz-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/xz",
+      "sha256": "954ec21bde53c60572ffaabbe1f00ec24f638b04cefe6e57b40495e540f0838d",
+      "bytes": 153819
+    },
+    {
+      "file": "zlib-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/zlib",
+      "sha256": "cd6a53c635f4fee5f45b9644ba0db05a10da43e22a361f7e8e06bd90362705d0",
+      "bytes": 291545
+    },
+    {
+      "file": "zstd-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/zstd",
+      "sha256": "272f6a4053ef5c2035ae7c37be1a32edcf6b79a643cc386f46db5734d94b9468",
+      "bytes": 459916
+    },
+    {
+      "file": "vc14_runtime-conda.json",
+      "url": "https://api.anaconda.org/package/conda-forge/vc14_runtime",
+      "sha256": "d79bb24435208733ab4f18b65a8f37c34e4a18f2f8b4e8520aafaaaa2266caef",
+      "bytes": 244775
+    },
+    {
+      "file": "ocp-.github_workflows_build-ocp.yml",
+      "url": "https://raw.githubusercontent.com/CadQuery/ocp-build-system/9d9bbaa37f088667c902c6e41ca0d2d4707cba83/.github/workflows/build-ocp.yml",
+      "sha256": "1524962b0e770c0486d5bc99b3ee7c98f337b6ef8c32b1f84259c7a71070fbdd",
+      "bytes": 12825
+    },
+    {
+      "file": "ocp-.github_actions_build-occt-sdk_action.yml",
+      "url": "https://raw.githubusercontent.com/CadQuery/ocp-build-system/9d9bbaa37f088667c902c6e41ca0d2d4707cba83/.github/actions/build-occt-sdk/action.yml",
+      "sha256": "ae392c79f7db64493228eaf400c4fcac3d7c6c924c8341d237048f907db3907e",
+      "bytes": 15143
+    },
+    {
+      "file": "ocp-.github_actions_build-ocp-source_action.yml",
+      "url": "https://raw.githubusercontent.com/CadQuery/ocp-build-system/9d9bbaa37f088667c902c6e41ca0d2d4707cba83/.github/actions/build-ocp-source/action.yml",
+      "sha256": "33cc89e22de58ea2e3a59a060c208ff5b54e45c2a3e900a4b4924da3f5fb7f1f",
+      "bytes": 7756
+    },
+    {
+      "file": "ocp-.github_actions_build-ocp_action.yml",
+      "url": "https://raw.githubusercontent.com/CadQuery/ocp-build-system/9d9bbaa37f088667c902c6e41ca0d2d4707cba83/.github/actions/build-ocp/action.yml",
+      "sha256": "5082fdee3ad3e7288789f60f1ad66855b76ea7cdcd4c94062ddf3129d26a40cb",
+      "bytes": 24884
+    },
+    {
+      "file": "ocp-LICENSE",
+      "url": "https://raw.githubusercontent.com/CadQuery/ocp-build-system/9d9bbaa37f088667c902c6e41ca0d2d4707cba83/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357
+    },
+    {
+      "file": "ocp-release.json",
+      "url": "https://api.github.com/repos/CadQuery/OCP/releases/tags/8.0.1.0",
+      "sha256": "bbbf0daacf67de0f05519a93501f60b0755521334688d06ce63129351806f8e3",
+      "bytes": 6657
+    },
+    {
+      "file": "ifc-source.tar.gz",
+      "url": "https://codeload.github.com/IfcOpenShell/IfcOpenShell/tar.gz/1c5b825d8ef05ab9d14a15dac12e9eae2f5a37c2",
+      "sha256": "6d24345ad08936f68ffcb947e5cedbc674e8c04db6a5a25432462883ecfcf886",
+      "bytes": 148910906
+    },
+    {
+      "file": "ocp-build-source.tar.gz",
+      "url": "https://codeload.github.com/CadQuery/ocp-build-system/tar.gz/9d9bbaa37f088667c902c6e41ca0d2d4707cba83",
+      "sha256": "97451ab1d472c4c32cbc2e81204fb2aefe7bf79cc404a1133ef750020f23f48e",
+      "bytes": 1405962
+    },
+    {
+      "file": "occt-source-8.0.1.tar.gz",
+      "url": "https://codeload.github.com/Open-Cascade-SAS/OCCT/tar.gz/b8f597c677811d1f9f4d8a97f5ae2825c0353a42",
+      "sha256": "dba62b81078dd43cec23feba89432be301582341001edad1b93342ad8bda35ea",
+      "bytes": 45131814
+    },
+    {
+      "file": "ocp-source.tar.gz",
+      "url": "https://codeload.github.com/CadQuery/OCP/tar.gz/b0495a71d10168b96cef8043ac39020a3fa45372",
+      "sha256": "0538011c26988dd144f6e111db3858eeba3c429c2caf416fe1c4e93423b0794c",
+      "bytes": 4108591
+    },
+    {
+      "file": "OCP_src_stubs_Windows.zip",
+      "url": "https://github.com/CadQuery/OCP/releases/download/8.0.1.0/OCP_src_stubs_Windows.zip",
+      "sha256": "4e95455ec20e414e303948d419fdf562ed2127cbfbe0dc348ffce737ea199794",
+      "bytes": 5993668
+    },
+    {
+      "file": "mpir-candidate-source.tar.gz",
+      "url": "https://codeload.github.com/Andrej730/mpir-vs2026/tar.gz/365957bc3f3c49908d07ec942a7019844a16daea",
+      "sha256": "d5631498394c9fbbb5622f87148e1e3199bab0643f1b38e97f6f664f4eec128d",
+      "bytes": 3999804
+    },
+    {
+      "file": "ifc-opencollada-source.tar.gz",
+      "url": "https://codeload.github.com/KhronosGroup/OpenCOLLADA/tar.gz/064a60b65c2c31b94f013820856bc84fb1937cc6",
+      "sha256": "bc15d4512bf9126279e320301c54f7105e0f9959220273b8cc1f364bfc569e7b",
+      "bytes": 11804293
+    },
+    {
+      "file": "ifc-hdf5-source.tar.gz",
+      "url": "https://codeload.github.com/HDFGroup/hdf5/tar.gz/hdf5-1_13_1",
+      "sha256": "92552458f35c7e58128ce1bfc2831abf901cc142ea0fdd2b056311e4452db7bf",
+      "bytes": 14385241
+    },
+    {
+      "file": "ifc-json-source.tar.gz",
+      "url": "https://codeload.github.com/nlohmann/json/tar.gz/v3.6.1",
+      "sha256": "80c45b090e40bf3d7a7f2a6e9f36206d3ff710acfa8d8cc1f8c763bb3075e22e",
+      "bytes": 118862808
+    },
+    {
+      "file": "ifc-rocksdb-source.tar.gz",
+      "url": "https://codeload.github.com/facebook/rocksdb/tar.gz/v9.11.2",
+      "sha256": "0466a3c220464410687c45930f3fa944052229c894274fddb7d821397f2b8fba",
+      "bytes": 13713041
+    },
+    {
+      "file": "ifc-proj-source.tar.gz",
+      "url": "https://download.osgeo.org/proj/proj-9.4.1.tar.gz",
+      "sha256": "ffe20170ee2b952207adf8a195e2141eab12cda181e49fdeb54425d98c7171d7",
+      "bytes": 5665272
+    },
+    {
+      "file": "ifc-eigen-LICENSE",
+      "url": "https://gitlab.com/libeigen/eigen/-/raw/3.3.9/COPYING.MPL2",
+      "sha256": "fab3dd6bdab226f1c08630b1dd917e11fcb4ec5e1e020e2c16f83a0a13863e85",
+      "bytes": 16726
+    },
+    {
+      "file": "ifc-boost-LICENSE",
+      "url": "https://raw.githubusercontent.com/boostorg/boost/boost-1.86.0/LICENSE_1_0.txt",
+      "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+      "bytes": 1338
+    },
+    {
+      "file": "ifc-mvd-source.tar.gz",
+      "url": "https://codeload.github.com/opensourceBIM/python-mvdxml/tar.gz/83c12fa494b9d6a5a370d8525dc1f76aa5c89d8d",
+      "sha256": "3a332aae707967e609dcab44a118a88ec270c551e7222eb53fc8ba809e9e7a0d",
+      "bytes": 132652
+    },
+    {
+      "file": "ifc-step-parser-source.tar.gz",
+      "url": "https://codeload.github.com/IfcOpenShell/step-file-parser/tar.gz/30317826f8f743860ecff9e183699296593e42cb",
+      "sha256": "c7a09ca65179759a268db3d14ad1a6b2fd409f9843aedea799642ca27a209652",
+      "bytes": 22689
+    },
+    {
+      "file": "ifc-svgpp-source.tar.gz",
+      "url": "https://codeload.github.com/svgpp/svgpp/tar.gz/5f1870aa7b757718ff5f86bdfb55966fa4f217f9",
+      "sha256": "8e2c501019a7a89d6227cd769f944807f52b03a2c681a9a0cc094b2cccdaf6af",
+      "bytes": 3084432
+    },
+    {
+      "file": "ifc-occt-tag.json",
+      "url": "https://api.github.com/repos/Open-Cascade-SAS/OCCT/git/ref/tags/V7_8_1",
+      "sha256": "14ffee98295dc32c0f7875b02bd8f7b4254d129397c400a837a9c461c3590a66",
+      "bytes": 351
+    },
+    {
+      "file": "cgal-tag.json",
+      "url": "https://api.github.com/repos/CGAL/cgal/git/ref/tags/v5.5.5",
+      "sha256": "9bae28fe9a40a7348db13f22e32ccff25b38023b1dcf6a228118f67db670f463",
+      "bytes": 321
+    },
+    {
+      "file": "occt-source-7.8.1.tar.gz",
+      "url": "https://codeload.github.com/Open-Cascade-SAS/OCCT/tar.gz/V7_8_1",
+      "sha256": "7321af48c34dc253bf8aae3f0430e8cb10976961d534d8509e72516978aa82f5",
+      "bytes": 48432051
+    },
+    {
+      "file": "cgal-source-5.5.5.tar.gz",
+      "url": "https://codeload.github.com/CGAL/cgal/tar.gz/v5.5.5",
+      "sha256": "f0111bae01633f5386e2b731fb48d559c85522adb7b55db6bbe72d1fbc463363",
+      "bytes": 132404477
+    },
+    {
+      "file": "mpfr-source.tar.gz",
+      "url": "https://codeload.github.com/aothms/mpfr/tar.gz/2ebbe10fd029a480cf6e8a64c493afa9f3654251",
+      "sha256": "742ee5f1f67d94dffc8761a733dcb9364d3b26794db24e08785862adbea78f35",
+      "bytes": 3348329
+    },
+    {
+      "file": "mpir-upstream-metadata.json",
+      "url": "https://api.github.com/repos/Andrej730/mpir-vs2026/commits?per_page=1",
+      "sha256": "6781657fc5fa6b44061bcbfbc637f3b0b4029c5d1fa30ea901c39454b4c5df0a",
+      "bytes": 3286
+    },
+    {
+      "file": "microsoft-vs2026-redistribution.html",
+      "url": "https://learn.microsoft.com/en-us/visualstudio/releases/2026/redistribution",
+      "sha256": "768414126161a2d24fbd861261ac6da59192d2dc8a78595fd71d7ff6f6546e3e",
+      "bytes": 48818
+    },
+    {
+      "file": "cgal-Nef_polyhedron_3.h",
+      "url": "https://raw.githubusercontent.com/CGAL/cgal/v5.5.5/Nef_3/include/CGAL/Nef_polyhedron_3.h",
+      "sha256": "6afd4ebb5565b61b82673440760ab64aa4a1ac154183b5d7dcc7ee86ebf7fc0d",
+      "bytes": 77230
+    },
+    {
+      "file": "cgal-LICENSE",
+      "url": "https://raw.githubusercontent.com/CGAL/cgal/v5.5.5/Installation/LICENSE",
+      "sha256": "2a4bbec98717c715c48b5e2fad5ad051b8e33c2b074e01547439f11410bd2adc",
+      "bytes": 2169
+    },
+    {
+      "file": "ocp-build-tags.json",
+      "url": "https://api.github.com/repos/CadQuery/ocp-build-system/tags?per_page=20",
+      "sha256": "bf42b6e06e97e5314ab32e7ea4ff0e3fbcc27d11517dc87337eeed4c68ca2126",
+      "bytes": 8536
+    },
+    {
+      "file": "ocp-tags.json",
+      "url": "https://api.github.com/repos/CadQuery/OCP/tags?per_page=15",
+      "sha256": "09cad09e3834eb301ff9d3e343116e42acd75b592aca8cc5f4e81b8cd648eb1d",
+      "bytes": 6069
+    },
+    {
+      "file": "ifc-tree.json",
+      "url": "https://api.github.com/repos/IfcOpenShell/IfcOpenShell/git/trees/1c5b825d8ef05ab9d14a15dac12e9eae2f5a37c2?recursive=1",
+      "sha256": "34e534b8a5a4236a9810fb4651acb2d30382b58dc4780ee869c319bf31ce1b61",
+      "bytes": 1050619
+    },
+    {
+      "file": "occt-tag.json",
+      "url": "https://api.github.com/repos/Open-Cascade-SAS/OCCT/git/ref/tags/V8_0_1",
+      "sha256": "30ff53059caddef8d07bda723d0e0b512dbc3b988b1e05136ed685c1724f4d26",
+      "bytes": 345
+    },
+    {
+      "file": "ifc-pypi.json",
+      "url": "https://pypi.org/pypi/ifcopenshell/0.8.5/json",
+      "sha256": "3ed8933559b6421774bbff73e75f9ff8d08d88b0424f2149b4d75b02c852fbe8",
+      "bytes": 35541
+    },
+    {
+      "file": "ocp-pypi.json",
+      "url": "https://pypi.org/pypi/cadquery-ocp/8.0.1.0.0/json",
+      "sha256": "3f8c7e1d70c19d0a8ddd2bb6217d2513758886e29bb6d9018d47857311530e81",
+      "bytes": 19110
+    }
+  ],
+  "gates": [
+    {
+      "id": "IFC_CGAL_DISTRIBUTION_TERMS",
+      "status": "OPEN",
+      "reason": "The installed IfcOpenShell native binary contains GPL/commercial CGAL code. LGPL wheel metadata is insufficient. No app license was changed and no commercial license was inferred. A CGAL-disabled replacement must be built and revalidated before an LGPL/permissive-only claim."
+    },
+    {
+      "id": "IFC_CORRESPONDING_BUILD",
+      "status": "OPEN",
+      "reason": "Pinned source and recipes retained, but upstream Windows job restores a mutable private build-outputs dependency cache, and MPIR is unpinned. Exact original dependency build correspondence and relink/rebuild completeness have not been proven."
+    },
+    {
+      "id": "MICROSOFT_REDISTRIBUTION_AUTHORITY",
+      "status": "OPEN",
+      "reason": "Exact 14.51.36247 runtime binaries/package notices and original Microsoft redistributable retained. Its runtime-use license is not itself redistribution permission. VS2026 REDIST permits listed unmodified code subject to a valid corresponding Visual Studio license. Local installed Build Tools is VS2022; no entitlement to redistribute these VS2026 binaries was inferred."
+    },
+    {
+      "id": "OCP_NATIVE_NOTICES_AND_SOURCES",
+      "status": "INVENTORIED",
+      "reason": "All 48 OCCT DLLs carry 8.0.1 resources; all 24 other DLLs match retained package executable sections. Complete generated Windows binding sources, OCCT sources/patch, 19 unique package upstream downloads and each notice/recipe retained. Exact rebuilt binary equivalence has not been tested."
+    },
+    {
+      "id": "WHOLE_APPLICATION_RELEASE",
+      "status": "OUT_OF_SCOPE",
+      "reason": "This bounded audit does not close VTK, Python, CUDA, all other wheels, data licenses, signing, installer, or application license decisions. Existing SBOM/release gates remain authoritative."
+    }
+  ],
+  "validation": "All retained retrieval SHA256 values checked; every transitive package download matched its published SHA256 and every extracted DLL matched info/paths.json. Machine code .text sections match installed DLLs, while delvewheel relocation changes import metadata. These comparisons do not assert whole-file identity."
+}

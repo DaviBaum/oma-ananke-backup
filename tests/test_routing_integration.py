@@ -20,6 +20,9 @@ def test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_ro
     route_project_run(store, run, WorkerControl(store, run["id"]))
     candidates = store.candidates(project["id"])
     assert candidates[0]["status"] == "REJECTED"
+    rejected = store.get(candidates[0]["report_root"])
+    assert next(r["status"] for r in rejected["results"] if r["id"] == "native-forbidden-volume-counterexample") == "FAIL"
+    assert next(r["status"] for r in rejected["results"] if r["id"] == "physical-interference-and-clearance") == "NOT_RUN"
     checked = [c for c in candidates if c["status"] == "CHECKED"]
     assert checked, [(c["status"], store.get(c["report_root"])["results"] if c["report_root"] else None) for c in candidates]
     from oma.verification import CHECKER_VERSION

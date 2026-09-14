@@ -1,0 +1,349 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P3992; UTF16 138179] By induction, every executed stage (B_0,\ldots,B_n) is authorized. ∎
+[21-30:P3993; UTF16 138248] This theorem proves authorization of booted images under the declared trust root.
+[21-30:P3994; UTF16 138330] It does not prove the images correct.
+[21-30:P3998; UTF16 138371] THM-SEC9 — Secure Boot Does Not Establish Secure Runtime Behavior
+[21-30:P4000; UTF16 138450] Let image (B_2) be:
+[21-30:P4001; UTF16 138470] signed by an accepted key;
+[21-30:P4002; UTF16 138497] present on the boot allowlist;
+[21-30:P4003; UTF16 138528] correctly verified;
+[21-30:P4004; UTF16 138548] free of boot-chain tampering.
+[21-30:P4005; UTF16 138578] Suppose (B_2) contains a runtime logic defect that permits a protected variable to be overwritten after a valid input sequence.
+[21-30:P4006; UTF16 138706] The boot chain accepts (B_2).
+[21-30:P4007; UTF16 138736] The runtime security property later fails.
+[21-30:P4009; UTF16 138790] [ \boxed{ \text{secure boot} \not\Longrightarrow \text{secure runtime}. } ]
+[21-30:P4014; UTF16 138871] 13. Measured Boot and Attestation
+[21-30:P4015; UTF16 138905] DEF-SEC16 — Measurement Record
+[21-30:P4016; UTF16 138936] A Measurement Record contains:
+[21-30:P4017; UTF16 138967] [ \boxed{ \left( \mathsf{platform}, \mathsf{component}, \mathsf{digest}, \mathsf{stage}, \mathsf{version}, \mathsf{sequence}, \mathsf{evidence} \right). } ]
+[21-30:P4021; UTF16 139127] DEF-SEC17 — Remote Attestation Claim
+[21-30:P4022; UTF16 139164] A Remote Attestation Claim states that:
+[21-30:P4023; UTF16 139204] a declared platform identity;
+[21-30:P4024; UTF16 139234] under a declared attestation root;
+[21-30:P4025; UTF16 139269] produced a declared measurement state;
+[21-30:P4026; UTF16 139308] with declared freshness and protocol evidence.
+[21-30:P4030; UTF16 139358] THM-SEC10 — Remote Attestation Does Not Establish Application Correctness or Physical Safety
+[21-30:P4032; UTF16 139464] Let an authorized software image (I) be accurately measured.
+[21-30:P4033; UTF16 139525] The attestation protocol correctly reports:
+[21-30:P4034; UTF16 139569] [ \mathsf{Digest}(I)=h_I. ]
+[21-30:P4035; UTF16 139597] Suppose (I) contains a control-logic defect causing an unsafe command under one physical state.
+[21-30:P4036; UTF16 139693] The attestation remains correct: the platform is running (I).
+[21-30:P4037; UTF16 139755] Application correctness and physical safety fail.
+[21-30:P4038; UTF16 139805] Therefore remote attestation establishes measured state, not software correctness or physical safety. ∎
+[21-30:P4039; UTF16 139909] Attestation can also become stale after runtime compromise unless its temporal semantics cover that possibility.
+[21-30:P4043; UTF16 140025] 14. Secure Updates and Rollback Resistance
+[21-30:P4044; UTF16 140068] DEF-SEC18 — Security Update Package
+[21-30:P4046; UTF16 140112] \left( \mathsf{target}, \mathsf{image}, \mathsf{version}, \mathsf{signature}, \mathsf{compatibility}, \mathsf{migration}, \mathsf{rollbackPolicy}, \mathsf{evidence} \right). } ]
+[21-30:P4050; UTF16 140293] DEF-SEC19 — Monotonic Version Counter
+[21-30:P4051; UTF16 140331] A trusted counter (c_t) records the minimum version accepted after committed update state.
+[21-30:P4055; UTF16 140425] THM-SEC11 — Monotonic Version Enforcement Prevents Declared Rollback
+[21-30:P4057; UTF16 140506] At each update step:
+[21-30:P4058; UTF16 140527] candidate version (v_t) is accepted only if: [ v_t\ge c_t; ]
+[21-30:P4059; UTF16 140588] after successful installation: [ c_{t+1}=v_t; ]
+[21-30:P4060; UTF16 140636] the counter cannot decrease inside the declared threat model.
+[21-30:P4061; UTF16 140698] Claim
+[21-30:P4062; UTF16 140704] If version (v^\star) is successfully installed, then no later accepted version is less than (v^\star).
+[21-30:P4064; UTF16 140813] Immediately after installing (v^\star):
+[21-30:P4065; UTF16 140853] [ c=v^\star. ]
+[21-30:P4066; UTF16 140868] At every later accepted update (v_j):
+[21-30:P4067; UTF16 140906] [ v_j\ge c_j. ]
+[21-30:P4068; UTF16 140922] Because the counter cannot decrease:
+[21-30:P4069; UTF16 140959] [ c_j\ge v^\star. ]
+[21-30:P4071; UTF16 140990] [ v_j\ge v^\star. ]
+[21-30:P4072; UTF16 141010] Thus no later accepted version is below (v^\star). ∎
+[21-30:P4074; UTF16 141091] the higher version is safer;
+[21-30:P4075; UTF16 141120] version labels are honest;
+[21-30:P4076; UTF16 141147] migration is correct;
+[21-30:P4077; UTF16 141169] the counter cannot be physically reset outside the threat model.
+[21-30:P4081; UTF16 141237] 15. Software Bills of Materials
+[21-30:P4082; UTF16 141269] DEF-SEC20 — Software Bill of Materials
+[21-30:P4083; UTF16 141308] An SBOM is a typed dependency graph:
+[21-30:P4084; UTF16 141345] (V,E,\mathsf{id},\mathsf{version},\mathsf{provenance}). } ]
+[21-30:P4086; UTF16 141424] packages;
+[21-30:P4087; UTF16 141434] libraries;
+[21-30:P4088; UTF16 141445] firmware components;
+[21-30:P4089; UTF16 141466] generated code;
+[21-30:P4090; UTF16 141482] build tools;
+[21-30:P4091; UTF16 141495] configuration artifacts.
+[21-30:P4095; UTF16 141523] DEF-SEC21 — SBOM Completeness
+[21-30:P4096; UTF16 141553] For artifact (a) and dependency theory (\Theta_D), define:
+[21-30:P4097; UTF16 141612] [ \boxed{ \mathsf{ActualDeps}{\Theta_D}(a) \subseteq \mathsf{ListedDeps}(G{\mathrm{SBOM}}). } ]
+[21-30:P4098; UTF16 141708] An SBOM may contain false-positive entries and still be complete. Exactness is a stronger property.
+[21-30:P4102; UTF16 141811] THM-SEC12 — Absence From an Incomplete SBOM Does Not Establish Absence From the Artifact
+[21-30:P4104; UTF16 141913] Let two artifacts (a_1,a_2) have the same listed SBOM:
+[21-30:P4107; UTF16 141988] [ \mathsf{ActualDeps}(a_1)={A,B}, ]
+[21-30:P4109; UTF16 142031] [ \mathsf{ActualDeps}(a_2)={A,B,C}. ]
+[21-30:P4110; UTF16 142069] The SBOM omits (C) for (a_2).
+[21-30:P4111; UTF16 142099] The listed SBOM is identical.
+[21-30:P4113; UTF16 142140] [ C\notin\mathsf{ListedDeps} ]
+[21-30:P4114; UTF16 142171] does not determine whether (C) is absent from the actual artifact.
+[21-30:P4115; UTF16 142238] Thus absence from an incomplete SBOM does not establish artifact absence. ∎
+[21-30:P4119; UTF16 142317] THM-SEC13 — Complete Dependency Verification Establishes Only the Declared Dependency Policy
+[21-30:P4122; UTF16 142428] SBOM completeness: [ \mathsf{ActualDeps}(a) \subseteq \mathsf{ListedDeps}(G); ]
+[21-30:P4123; UTF16 142508] every listed dependency satisfies policy (P): [ \forall d\in\mathsf{ListedDeps}(G), \quad P(d). ]
+[21-30:P4125; UTF16 142612] [ \boxed{ \forall d\in\mathsf{ActualDeps}(a), \quad P(d). } ]
+[21-30:P4128; UTF16 142686] [ d\in\mathsf{ActualDeps}(a). ]
+[21-30:P4129; UTF16 142718] By completeness:
+[21-30:P4130; UTF16 142735] [ d\in\mathsf{ListedDeps}(G). ]
+[21-30:P4131; UTF16 142767] By assumption 2:
+[21-30:P4132; UTF16 142784] [ P(d). ]
+[21-30:P4133; UTF16 142794] Therefore every actual dependency satisfies (P). ∎
+[21-30:P4134; UTF16 142845] This proves only (P).
+[21-30:P4136; UTF16 142880] [ P(d)= \text{“dependency has an approved provenance record”} ]
+[21-30:P4138; UTF16 142960] [ \text{“dependency has no unknown vulnerability.”} ]
+[21-30:P4142; UTF16 143017] 16. Build Provenance and Reproducibility
+[21-30:P4143; UTF16 143058] DEF-SEC22 — Build Function
+[21-30:P4144; UTF16 143085] For deterministic build semantics, define:
+[21-30:P4145; UTF16 143128] [ \boxed{ B: (S,T,C) \mapsto A, } ]
+[21-30:P4147; UTF16 143171] (S): source state;
+[21-30:P4148; UTF16 143190] (T): toolchain state;
+[21-30:P4149; UTF16 143212] (C): build configuration and environment;
+[21-30:P4150; UTF16 143254] (A): produced artifact.
+[21-30:P4154; UTF16 143281] THM-SEC14 — Deterministic Build Reproducibility
+[21-30:P4156; UTF16 143333] (S_2,T_2,C_2), ]
+[21-30:P4157; UTF16 143350] and (B) is deterministic, then:
+[21-30:P4158; UTF16 143382] B(S_2,T_2,C_2). } ]
+[21-30:P4160; UTF16 143408] Equal ordered input triples are the same input to the function (B).
+[21-30:P4161; UTF16 143476] A function produces one output for one input.
+[21-30:P4162; UTF16 143522] Therefore the outputs are equal. ∎
+[21-30:P4166; UTF16 143560] PRO-SEC3 — Reproducible Builds Do Not Establish a Benign Toolchain
+[21-30:P4167; UTF16 143627] Let compromised deterministic toolchain (T^\star) transform benign source (S) into malicious artifact (A^\star).
+[21-30:P4168; UTF16 143740] Two builds using identical:
+[21-30:P4169; UTF16 143768] [ (S,T^\star,C) ]
+[21-30:P4170; UTF16 143786] produce the same (A^\star).
+[21-30:P4171; UTF16 143814] Reproducibility holds.
+[21-30:P4172; UTF16 143837] Benignity fails.
+[21-30:P4174; UTF16 143865] [ \boxed{ \text{reproducible build} \not\Longrightarrow \text{benign source, toolchain, or artifact}. } ]
+[21-30:P4179; UTF16 143976] 17. Software and Hardware Supply-Chain Provenance
+[21-30:P4180; UTF16 144026] DEF-SEC23 — Supply-Chain Provenance DAG
+[21-30:P4182; UTF16 144074] (V,E), } ]
+[21-30:P4183; UTF16 144085] where nodes may include:
+[21-30:P4184; UTF16 144110] source revision;
+[21-30:P4185; UTF16 144127] build tool;
+[21-30:P4186; UTF16 144139] compiler;
+[21-30:P4188; UTF16 144159] binary;
+[21-30:P4189; UTF16 144167] hardware module;
+[21-30:P4190; UTF16 144184] manufacturer;
+[21-30:P4191; UTF16 144198] signing key;
+[21-30:P4192; UTF16 144211] packaging step;
+[21-30:P4193; UTF16 144227] deployment event;
+[21-30:P4194; UTF16 144245] device identity.
+[21-30:P4195; UTF16 144262] Edges carry typed production or evidence semantics.
+[21-30:P4199; UTF16 144317] DEF-SEC24 — Trust Dependency
+[21-30:P4201; UTF16 144353] [ \boxed{ u \rightarrow_{\mathrm{trust}} v } ]
+[21-30:P4202; UTF16 144400] when trust in claim (v) depends on claim (u).
+[21-30:P4203; UTF16 144446] The trust dependency graph need not equal the physical production graph.
+[21-30:P4204; UTF16 144519] For example, a binary may be produced by compiler (C), while trust in the binary also depends on:
+[21-30:P4205; UTF16 144617] source review;
+[21-30:P4206; UTF16 144632] build isolation;
+[21-30:P4207; UTF16 144649] signing-key state;
+[21-30:P4208; UTF16 144668] deployment verification.
+[21-30:P4212; UTF16 144696] 18. Information-Flow Security
+[21-30:P4213; UTF16 144726] DEF-SEC25 — Security Domain
+[21-30:P4214; UTF16 144754] Let information domains form a declared set or lattice.
+[21-30:P4215; UTF16 144810] A minimal example uses:
+[21-30:P4216; UTF16 144834] [ \mathsf{HIGH}, \qquad \mathsf{LOW}. ]
+[21-30:P4220; UTF16 144877] DEF-SEC26 — Low Equivalence
+[21-30:P4221; UTF16 144905] For states (s,t), define:
+[21-30:P4222; UTF16 144931] [ \boxed{ s\sim_L t } ]
+[21-30:P4223; UTF16 144955] when they are indistinguishable to the declared low observer.
+[21-30:P4224; UTF16 145017] Assume (\sim_L) is an equivalence relation.
+[21-30:P4228; UTF16 145064] DEF-SEC27 — Deterministic Noninterference
+[21-30:P4229; UTF16 145106] Consider deterministic transition system:
+[21-30:P4230; UTF16 145148] [ (S,A_L\uplus A_H,\delta,\mathsf{obs}_L). ]
+[21-30:P4232; UTF16 145198] [ \mathsf{purge}_L(\alpha) ]
+[21-30:P4233; UTF16 145227] remove high-only actions from action word (\alpha).
+[21-30:P4234; UTF16 145279] The system satisfies deterministic low noninterference when:
+[21-30:P4235; UTF16 145340] \mathsf{obs}_L \left( \delta^\star \left( t, \mathsf{purge}_L(\alpha) \right) \right) } ]
+[21-30:P4236; UTF16 145430] for every action word (\alpha).
+[21-30:P4237; UTF16 145462] This form says high-only actions do not alter allowed low observations.
+[21-30:P4241; UTF16 145537] 19. Unwinding Theorem
+[21-30:P4243; UTF16 145567] Output Consistency
+[21-30:P4244; UTF16 145586] [ s\sim_L t \Longrightarrow \mathsf{obs}_L(s)=\mathsf{obs}_L(t). ]
+[21-30:P4245; UTF16 145653] Low-Step Consistency
+[21-30:P4246; UTF16 145674] For low action (a\in A_L):
+[21-30:P4247; UTF16 145701] [ s\sim_L t \Longrightarrow \delta(s,a)\sim_L\delta(t,a). ]
+[21-30:P4248; UTF16 145761] Local Respect
+[21-30:P4249; UTF16 145775] For high-only action (h\in A_H):
+[21-30:P4250; UTF16 145808] [ \delta(s,h)\sim_L s. ]
+[21-30:P4254; UTF16 145836] THM-SEC15 — Deterministic Unwinding Conditions Imply Low Noninterference
+[21-30:P4255; UTF16 145909] Stronger inductive claim
+[21-30:P4257; UTF16 145945] [ s\sim_L t ]
+[21-30:P4258; UTF16 145959] and action word (\alpha):
+[21-30:P4259; UTF16 145985] [ \boxed{ \delta^\star(s,\alpha) \sim_L \delta^\star \left( t, \mathsf{purge}_L(\alpha) \right). } ]
+[21-30:P4260; UTF16 146086] Proof by induction on (\alpha)
+[21-30:P4262; UTF16 146127] For the empty word (\epsilon):
+[21-30:P4263; UTF16 146158] [ \delta^\star(s,\epsilon)=s, ]
+[21-30:P4264; UTF16 146190] [ \delta^\star(t,\mathsf{purge}_L(\epsilon))=t. ]
+[21-30:P4265; UTF16 146240] Because (s\sim_L t), the claim holds.
+[21-30:P4268; UTF16 146298] [ \alpha=a\beta. ]
+[21-30:P4269; UTF16 146317] Case 1: (a\in A_L)
+[21-30:P4270; UTF16 146336] Low-step consistency gives:
+[21-30:P4271; UTF16 146364] [ \delta(s,a)\sim_L\delta(t,a). ]
+[21-30:P4272; UTF16 146398] Apply the induction hypothesis to states:
+[21-30:P4273; UTF16 146440] [ \delta(s,a), \qquad \delta(t,a) ]
+[21-30:P4274; UTF16 146476] and suffix (\beta):
+[21-30:P4275; UTF16 146496] [ \delta^\star(\delta(s,a),\beta) \sim_L \delta^\star \left( \delta(t,a), \mathsf{purge}_L(\beta) \right). ]
+[21-30:P4276; UTF16 146605] Because (a) is low:
+[21-30:P4277; UTF16 146625] a,\mathsf{purge}_L(\beta). ]
+[21-30:P4278; UTF16 146654] Therefore the required relation holds.
+[21-30:P4279; UTF16 146693] Case 2: (a\in A_H)
+[21-30:P4280; UTF16 146712] Local respect gives:
+[21-30:P4281; UTF16 146733] [ \delta(s,a)\sim_L s. ]
+[21-30:P4283; UTF16 146767] [ s\sim_L t, ]
+[21-30:P4284; UTF16 146782] transitivity yields:
+[21-30:P4285; UTF16 146803] [ \delta(s,a)\sim_L t. ]
+[21-30:P4286; UTF16 146828] Apply the induction hypothesis to:
+[21-30:P4287; UTF16 146863] [ \delta(s,a), \qquad t ]
+[21-30:P4289; UTF16 146909] [ \delta^\star(\delta(s,a),\beta) \sim_L \delta^\star \left( t, \mathsf{purge}_L(\beta) \right). ]
+[21-30:P4290; UTF16 147008] Because (a) is high:
+[21-30:P4291; UTF16 147029] \mathsf{purge}_L(\beta). ]
+[21-30:P4292; UTF16 147056] Thus the claim holds.
+[21-30:P4293; UTF16 147078] By induction, the stronger relation holds for every word.
+[21-30:P4294; UTF16 147136] Output consistency then gives equality of final low observations.
+[21-30:P4295; UTF16 147202] Therefore deterministic low noninterference holds. ∎
+[21-30:P4296; UTF16 147255] The theorem does not cover unless modeled:
+[21-30:P4297; UTF16 147298] timing channels;
+[21-30:P4298; UTF16 147315] termination channels;
+[21-30:P4299; UTF16 147337] resource-contention channels;
+[21-30:P4300; UTF16 147367] probabilistic observations;
+[21-30:P4301; UTF16 147395] declassification;
+[21-30:P4302; UTF16 147413] scheduler leakage.
+[21-30:P4306; UTF16 147435] 20. Governed Declassification
+[21-30:P4307; UTF16 147465] DEF-SEC28 — Governed Declassification
+[21-30:P4308; UTF16 147503] A declassification rule explicitly permits release:
+[21-30:P4309; UTF16 147555] [ D(h) ]
+[21-30:P4310; UTF16 147564] from a protected domain to a lower domain under declared:
+[21-30:P4312; UTF16 147633] purpose;
+[21-30:P4313; UTF16 147642] transformation;
+[21-30:P4318; UTF16 147690] Noninterference is then checked modulo those permitted releases.
+[21-30:P4319; UTF16 147755] A programmer printing a secret is not “declassification” merely because the program produced output. The release must satisfy the governed rule.
+[21-30:P4323; UTF16 147903] 21. Threat Models and Robust Security
+[21-30:P4324; UTF16 147941] DEF-SEC29 — Adversary Model
+[21-30:P4326; UTF16 147977] \left( \mathcal C, \mathcal O, \mathcal I, \mathcal W, \mathcal B \right), } ]
+[21-30:P4328; UTF16 148063] (\mathcal C): attacker capabilities;
+[21-30:P4329; UTF16 148100] (\mathcal O): observations;
+[21-30:P4330; UTF16 148128] (\mathcal I): influence and injection relations;
+[21-30:P4331; UTF16 148177] (\mathcal W): compromised components;
+[21-30:P4332; UTF16 148215] (\mathcal B): resource, time, corruption, or behavior bounds.
+[21-30:P4336; UTF16 148280] DEF-SEC30 — Adversary Family
+[21-30:P4337; UTF16 148309] A nonempty adversary family is:
+[21-30:P4338; UTF16 148341] [ \boxed{ \mathfrak A_{\mathrm{SEC}}. } ]
+[21-30:P4339; UTF16 148383] For security claim (C):
+[21-30:P4340; UTF16 148407] \left{ z: \forall\tau\in\mathsf{Exec}_A(z), ; C(\tau) \right}. ]
+[21-30:P4342; UTF16 148480] \bigcap_{A\in\mathfrak A_{\mathrm{SEC}}} \mathcal S_{\mathrm{SEC}}(A;C) } ]
+[21-30:P4348; UTF16 148641] THM-SEC16 — Enlarging the Adversary Family Cannot Enlarge the Robustly Secure Set
+[21-30:P4350; UTF16 148727] [ \mathfrak A_1 \subseteq \mathfrak A_2, ]
+[21-30:P4352; UTF16 148776] [ \boxed{ \mathcal S_{\mathrm{SEC}}^\forall (\mathfrak A_2;C) \subseteq \mathcal S_{\mathrm{SEC}}^\forall (\mathfrak A_1;C). } ]
+[21-30:P4355; UTF16 148917] [ z\in \mathcal S_{\mathrm{SEC}}^\forall (\mathfrak A_2;C). ]
+[21-30:P4356; UTF16 148979] Then (z) satisfies (C) against every adversary in (\mathfrak A_2).
+[21-30:P4358; UTF16 149055] [ \mathfrak A_1\subseteq\mathfrak A_2, ]
+[21-30:P4359; UTF16 149096] (z) satisfies (C) against every adversary in (\mathfrak A_1).
+[21-30:P4361; UTF16 149169] [ z\in \mathcal S_{\mathrm{SEC}}^\forall (\mathfrak A_1;C). ]
+[21-30:P4363; UTF16 149233] A stronger attacker model may invalidate a certificate without changing the deployed system.
+[21-30:P4367; UTF16 149329] 22. Dynamic Compromise
+[21-30:P4368; UTF16 149352] DEF-SEC31 — Security Event Trace
+[21-30:P4370; UTF16 149393] (z_0,e_1,z_1,\ldots,e_k,z_k). } ]
+[21-30:P4371; UTF16 149427] Events may include:
+[21-30:P4374; UTF16 149478] credential compromise;
+[21-30:P4376; UTF16 149513] key rotation;
+[21-30:P4377; UTF16 149527] update;
+[21-30:P4378; UTF16 149535] boot;
+[21-30:P4379; UTF16 149541] attestation;
+[21-30:P4380; UTF16 149554] sensor corruption;
+[21-30:P4381; UTF16 149573] actuator command;
+[21-30:P4383; UTF16 149602] recovery.
+[21-30:P4387; UTF16 149615] THM-SEC17 — Terminal Compromise Sets Do Not Encode Every Security Claim
+[21-30:P4389; UTF16 149700] Let old key be (K_0), new key (K_1).
+[21-30:P4390; UTF16 149737] Both traces end with:
+[21-30:P4391; UTF16 149759] (K_1) active;
+[21-30:P4392; UTF16 149773] (K_0) known to be compromised.
+[21-30:P4393; UTF16 149804] Trace 1
+[21-30:P4394; UTF16 149812] (K_0) is compromised.
+[21-30:P4395; UTF16 149834] A forged command authenticated under (K_0) is accepted.
+[21-30:P4396; UTF16 149890] The command changes a protected project state.
+[21-30:P4397; UTF16 149937] The system rotates to (K_1).
+[21-30:P4398; UTF16 149966] Trace 2
+[21-30:P4400; UTF16 150003] (K_0) is compromised afterward.
+[21-30:P4401; UTF16 150035] A command under (K_0) is rejected as stale or unauthorized.
+[21-30:P4402; UTF16 150095] The terminal compromised-key set is identical:
+[21-30:P4403; UTF16 150142] [ {K_0}. ]
+[21-30:P4404; UTF16 150153] The security report differs because one trace contains an accepted unauthorized transition.
+[21-30:P4405; UTF16 150245] Therefore terminal compromise sets do not represent every dynamic security claim. ∎
+[21-30:P4409; UTF16 150332] 23. Abstract Attack Sets
+[21-30:P4410; UTF16 150357] DEF-SEC32 — Finite Monotone Attack System
+[21-30:P4413; UTF16 150420] indicate whether abstract attacker capability (i) has been achieved.
+[21-30:P4415; UTF16 150494] [ \phi: {0,1}^n \rightarrow {0,1} ]
+[21-30:P4417; UTF16 150543] [ x\le y \Longrightarrow \phi(x)\le\phi(y). ]
+[21-30:P4418; UTF16 150589] No operational exploitation procedure is encoded. The variables represent defensive reachability facts.
+[21-30:P4422; UTF16 150696] DEF-SEC33 — Minimal Attack Set
+[21-30:P4424; UTF16 150734] [ C\subseteq{1,\ldots,n} ]
+[21-30:P4425; UTF16 150761] is an attack set when:
+[21-30:P4426; UTF16 150784] [ \phi(\mathbf 1_C)=1. ]
+[21-30:P4427; UTF16 150809] It is minimal when no proper subset succeeds.
+[21-30:P4431; UTF16 150858] THM-SEC18 — Every Successful Finite Monotone Attack Contains a Minimal Attack Set
+[21-30:P4433; UTF16 150946] Let successful assignment (x) have support:
+[21-30:P4434; UTF16 150990] [ S={i=1}. ]
+[21-30:P4435; UTF16 151003] Because (\phi(x)=1), the family:
+[21-30:P4436; UTF16 151036] \left{ C\subseteq S: \phi(\mathbf 1_C)=1 \right} ]
+[21-30:P4437; UTF16 151087] is nonempty: (S\in\mathcal F).
+[21-30:P4438; UTF16 151118] Because (S) is finite, (\mathcal F) has an inclusion-minimal member (C^\star).
+[21-30:P4440; UTF16 151203] [ \phi(\mathbf 1_{C^\star})=1, ]
+[21-30:P4441; UTF16 151236] and no proper subset of (C^\star) succeeds.
+[21-30:P4442; UTF16 151280] Thus (C^\star) is a minimal attack set contained in the original successful capability set. ∎
+[21-30:P4446; UTF16 151377] 24. Defensive Hardening Complexity
+[21-30:P4447; UTF16 151412] THM-SEC19 — Minimum Hardening Against a Declared Attack-Set Family Is NP-Hard
+[21-30:P4448; UTF16 151490] Abstract hardening problem
+[21-30:P4449; UTF16 151517] Input:
+[21-30:P4450; UTF16 151524] attacker capabilities: [ U={u_1,\ldots,u_n}; ]
+[21-30:P4451; UTF16 151571] minimal attack sets: [ C_1,\ldots,C_m \subseteq U; ]
+[21-30:P4452; UTF16 151624] defensive hardening cost: [ c(u_j)>0. ]
+[21-30:P4453; UTF16 151664] Hardening capability (u_j) prevents the attacker from using that capability.
+[21-30:P4454; UTF16 151741] A hardening set (H\subseteq U) blocks every attack set iff:
+[21-30:P4456; UTF16 151848] Reduction
+[21-30:P4457; UTF16 151858] Take any Weighted Hitting Set instance with:
+[21-30:P4460; UTF16 151942] costs (c).
+[21-30:P4461; UTF16 151953] Use the same objects as the security-hardening instance.
+[21-30:P4462; UTF16 152010] A defensive set blocks all declared attacks exactly when it hits every (C_i).
+[21-30:P4463; UTF16 152088] Costs are unchanged.
+[21-30:P4465; UTF16 152143] Therefore an optimal security-hardening algorithm solves Weighted Hitting Set.
+[21-30:P4466; UTF16 152222] Hence minimum-cost hardening is NP-hard. ∎
+[21-30:P4467; UTF16 152265] The theorem concerns this finite static abstraction. It does not classify every security synthesis problem.
+[21-30:P4471; UTF16 152376] 25. Sensor Authenticity and Physical Truth
+[21-30:P4472; UTF16 152419] DEF-SEC34 — Sensor Message
+[21-30:P4473; UTF16 152446] A Sensor Message is:
+[21-30:P4474; UTF16 152467] \left( \mathsf{sensorId}, t, v, \mathsf{sequence}, \mathsf{signature}, \mathsf{provenance} \right). } ]
+[21-30:P4478; UTF16 152574] THM-SEC20 — Authenticated Sensor Data Need Not Be Physically Correct
+[21-30:P4480; UTF16 152656] Let physical quantity be:
+[21-30:P4481; UTF16 152682] [ q=20. ]
+[21-30:P4482; UTF16 152692] Sensor (s) possesses a currently valid credential.
+[21-30:P4483; UTF16 152743] Its internal sensing logic is compromised and emits:
+[21-30:P4484; UTF16 152796] [ v=75. ]
+[21-30:P4485; UTF16 152806] The message is signed correctly with (s)'s valid key.
+[21-30:P4486; UTF16 152860] Authentication verifies the sensor identity and message integrity.
+[21-30:P4487; UTF16 152927] The physical report is false because:
+[21-30:P4488; UTF16 152965] [ 75\neq20. ]
+[21-30:P4489; UTF16 152979] Therefore authenticated sensor data need not be physically correct. ∎
+[21-30:P4490; UTF16 153049] Prompt-14 calibration and measurement relations remain necessary.
+[21-30:P4494; UTF16 153118] 26. Byzantine Sensor Fusion
+[21-30:P4495; UTF16 153146] DEF-SEC35 — Binary Byzantine Measurement Model
+[21-30:P4497; UTF16 153201] (n) authenticated, unique sensor identities;
+[21-30:P4498; UTF16 153246] at most (f) are Byzantine;
+[21-30:P4499; UTF16 153273] every honest sensor reports the same true bit: [ b\in{0,1}; ]
+[21-30:P4500; UTF16 153335] Byzantine sensors may report either bit.
+[21-30:P4504; UTF16 153379] THM-SEC21 — Strict Majority Recovers the True Bit When (n\ge2f+1)
+[21-30:P4506; UTF16 153451] At most (f) sensors are Byzantine.
+[21-30:P4507; UTF16 153486] Therefore at least:
+[21-30:P4508; UTF16 153506] [ n-f ]
+[21-30:P4509; UTF16 153514] are honest.
+[21-30:P4511; UTF16 153530] [ n\ge2f+1, ]
+[21-30:P4513; UTF16 153550] [ n-f \ge f+1. ]
+[21-30:P4514; UTF16 153567] Every honest sensor reports (b), so at least (f+1) reports equal (b).
+[21-30:P4515; UTF16 153637] At most (f) reports can oppose (b).
+[21-30:P4516; UTF16 153673] Therefore (b) has a strict majority and majority voting returns (b). ∎
+[21-30:P4517; UTF16 153744] The theorem does not apply if:
+[21-30:P4518; UTF16 153775] honest sensors disagree;
+[21-30:P4519; UTF16 153800] identities are not unique;
+[21-30:P4520; UTF16 153827] more than (f) identities are Byzantine;
+[21-30:P4521; UTF16 153867] measurements are continuous without a declared aggregation rule;

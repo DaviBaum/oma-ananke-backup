@@ -1,0 +1,388 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P18064; UTF16 603746] [ F_i \Longrightarrow P_i. ]
+[11-20:P18065; UTF16 603775] Suppose a sound aggregation rule proves
+[11-20:P18066; UTF16 603815] [ P_1 \land \cdots \land P_n \Longrightarrow Q. ]
+[11-20:P18067; UTF16 603865] Then accepted packets establish (Q).
+[11-20:P18069; UTF16 603908] Accepting every packet establishes every (P_i).
+[11-20:P18070; UTF16 603956] Their conjunction holds.
+[11-20:P18071; UTF16 603981] Apply the sound aggregation rule. ∎
+[11-20:P18072; UTF16 604017] This is evidence composition.
+[11-20:P18073; UTF16 604047] It is not a privacy theorem.
+[11-20:P18077; UTF16 604079] PRO-XFER2 — Federated Computation Alone Does Not Establish Privacy
+[11-20:P18079; UTF16 604159] Define a “federated” protocol in which each project retains data locally until the update step and then sends its entire raw dataset as the update.
+[11-20:P18080; UTF16 604307] The protocol is federated in deployment topology.
+[11-20:P18081; UTF16 604357] It reveals all raw data.
+[11-20:P18082; UTF16 604382] Therefore federation alone implies no privacy guarantee. ∎
+[11-20:P18083; UTF16 604441] Privacy requires a separately defined and proved mechanism.
+[11-20:P18087; UTF16 604504] 39. Transfer Dependency Graph
+[11-20:P18088; UTF16 604534] DEF-XFER26 — Transfer Dependency Graph
+[11-20:P18089; UTF16 604573] A Transfer Dependency Graph contains nodes for:
+[11-20:P18090; UTF16 604621] source projects;
+[11-20:P18091; UTF16 604638] target projects;
+[11-20:P18092; UTF16 604655] source evidence;
+[11-20:P18094; UTF16 604694] dependence assumptions;
+[11-20:P18095; UTF16 604718] population models;
+[11-20:P18096; UTF16 604737] transport bridges;
+[11-20:P18097; UTF16 604756] support claims;
+[11-20:P18098; UTF16 604772] PAC certificates;
+[11-20:P18099; UTF16 604790] conformal certificates;
+[11-20:P18100; UTF16 604814] ambiguity sets;
+[11-20:P18102; UTF16 604837] fault mechanisms;
+[11-20:P18104; UTF16 604875] target assurance roots.
+[11-20:P18107; UTF16 604918] means validity of (v) depends on (u).
+[11-20:P18109; UTF16 604976] source invalidation;
+[11-20:P18110; UTF16 604997] target-version updates;
+[11-20:P18111; UTF16 605021] theory expansion;
+[11-20:P18113; UTF16 605068] target proof slicing.
+[11-20:P18117; UTF16 605093] 40. Target Transfer Gate
+[11-20:P18118; UTF16 605118] DEF-XFER27 — Target Transfer Gate
+[11-20:P18119; UTF16 605152] Before a transferred object acquires target authority, the gate checks:
+[11-20:P18120; UTF16 605224] target identity;
+[11-20:P18121; UTF16 605241] target context;
+[11-20:P18123; UTF16 605277] product and model versions;
+[11-20:P18124; UTF16 605305] source evidence validity;
+[11-20:P18125; UTF16 605331] sampling semantics;
+[11-20:P18127; UTF16 605375] support overlap;
+[11-20:P18128; UTF16 605392] transport bridge;
+[11-20:P18130; UTF16 605426] discrepancy;
+[11-20:P18131; UTF16 605439] claim modality;
+[11-20:P18132; UTF16 605455] target-specific evidence;
+[11-20:P18134; UTF16 605494] unresolved conditions.
+[11-20:P18135; UTF16 605517] Possible results include:
+[11-20:P18136; UTF16 605543] [ { \mathsf{EXACT_TARGET}, \mathsf{EXACT_TRANSPORT}, \mathsf{SET_VALUED_TARGET}, \mathsf{VALID_STATISTICAL}, \mathsf{HEURISTIC_ONLY}, \mathsf{OUTSIDE_DOMAIN}, \mathsf{UNRESOLVED} }. ]
+[11-20:P18140; UTF16 605730] 41. Claim-Modality Non-Escalation
+[11-20:P18141; UTF16 605764] THM-XFER21 — Weaker Claim Modalities Cannot Be Soundly Upgraded Without a Valid Conversion Rule
+[11-20:P18142; UTF16 605860] There is no generic sound conversion for any of the following:
+[11-20:P18143; UTF16 605923] population PAC guarantee (\Rightarrow) exact fixed-target truth;
+[11-20:P18144; UTF16 605988] conformal marginal coverage (\Rightarrow) exact target inclusion;
+[11-20:P18145; UTF16 606054] heuristic source fit (\Rightarrow) probabilistic coverage;
+[11-20:P18146; UTF16 606113] exact source truth (\Rightarrow) exact target truth.
+[11-20:P18149; UTF16 606179] THM-XFER6 constructs a population guarantee with a failing fixed target.
+[11-20:P18151; UTF16 606259] Let prediction coverage probability be (1-\alpha<1).
+[11-20:P18152; UTF16 606312] There is positive probability (\alpha) of noncoverage.
+[11-20:P18153; UTF16 606367] Choose a fixed target outcome in that noncovered event.
+[11-20:P18154; UTF16 606423] Marginal coverage remains true; exact target inclusion is false.
+[11-20:P18155; UTF16 606488] Case 3
+[11-20:P18156; UTF16 606495] PRO-XFER3 constructs perfect source fit with arbitrarily poor target error.
+[11-20:P18157; UTF16 606571] No probability statement follows from fit alone.
+[11-20:P18158; UTF16 606620] Case 4
+[11-20:P18159; UTF16 606627] THM-XFER1 constructs identical source facts with differing target truth.
+[11-20:P18160; UTF16 606700] Therefore none of these conversions is logically valid in general. ∎
+[11-20:P18161; UTF16 606769] A gate may perform a stronger conversion only through a separate theorem, such as COR-XFER3.
+[11-20:P18165; UTF16 606865] 42. Minimum Transfer-Evidence Selection Hardness
+[11-20:P18166; UTF16 606914] THM-XFER22 — Minimum-Cost Transfer-Evidence Selection Is NP-Hard in a Restricted Deterministic Model
+[11-20:P18169; UTF16 607094] obligation universe [ U; ]
+[11-20:P18170; UTF16 607121] subsets [ S_1,\ldots,S_n; ]
+[11-20:P18171; UTF16 607149] costs [ c_1,\ldots,c_n. ]
+[11-20:P18172; UTF16 607175] Create one target transfer obligation for each element of (U).
+[11-20:P18173; UTF16 607238] Create one source evidence packet (e_j) with verification cost (c_j), certifiably discharging exactly the obligations in (S_j).
+[11-20:P18174; UTF16 607366] A selected packet set closes all transfer obligations exactly when its associated subsets cover (U).
+[11-20:P18175; UTF16 607467] The total evidence cost equals the set-cover cost.
+[11-20:P18176; UTF16 607518] Therefore minimum-cost transfer-evidence selection is exactly Weighted Set Cover in this subclass.
+[11-20:P18177; UTF16 607617] Hence it is NP-hard. ∎
+[11-20:P18181; UTF16 607643] 43. Fleet Theory Can Shrink or Expand Target Uncertainty
+[11-20:P18182; UTF16 607700] Under a fixed mechanism theory, additional sound source constraints shrink (H_S) by THM-XFER14.
+[11-20:P18183; UTF16 607796] When a new mechanism is discovered, the theory expands.
+[11-20:P18185; UTF16 607858] [ \boxed{ \text{more fleet evidence} \not\Longrightarrow \text{monotone target assurance}. } ]
+[11-20:P18186; UTF16 607953] Two different processes are occurring:
+[11-20:P18187; UTF16 607992] Parameter refinement
+[11-20:P18188; UTF16 608013] [ H_{n+1} \subseteq H_n. ]
+[11-20:P18190; UTF16 608057] [ \mathcal M_{n+1} \supsetneq \mathcal M_n. ]
+[11-20:P18191; UTF16 608103] The first can narrow uncertainty.
+[11-20:P18192; UTF16 608137] The second can add new possibilities and reopen claims.
+[11-20:P18196; UTF16 608196] 44. Statistical Claims Inside Assurance
+[11-20:P18197; UTF16 608236] A statistical certificate may become a Prompt-11 Evidence Atom.
+[11-20:P18198; UTF16 608300] Its proposition must remain statistical.
+[11-20:P18200; UTF16 608354] [ P_{\text{sample}} \left( R(\widehat h) \le \widehat R(\widehat h)+\varepsilon \right) \ge 1-\delta. ]
+[11-20:P18201; UTF16 608458] This does not become:
+[11-20:P18202; UTF16 608480] [ \ell \left( \widehat h, B_\star \right) \le \varepsilon. ]
+[11-20:P18203; UTF16 608541] The release manifest may explicitly include probabilistic obligations.
+[11-20:P18204; UTF16 608612] Prompt 16 does not silently replace exact obligations with statistical ones.
+[11-20:P18208; UTF16 608692] 45. Zero-Tolerance Channels
+[11-20:P18209; UTF16 608720] Prompt-5 mandatory channels remain exact.
+[11-20:P18210; UTF16 608762] A fleet reliability estimate cannot automatically discharge:
+[11-20:P18211; UTF16 608823] installed target product identity;
+[11-20:P18212; UTF16 608858] exact target safety status;
+[11-20:P18213; UTF16 608886] target evidence validity;
+[11-20:P18215; UTF16 608939] exact release blockers.
+[11-20:P18216; UTF16 608963] A probabilistic obligation may replace an exact one only through explicit governance and release-theory change.
+[11-20:P18220; UTF16 609078] 46. Proof-Carrying Transfer Package
+[11-20:P18221; UTF16 609114] DEF-XFER28 — Proof-Carrying Transfer Package
+[11-20:P18223; UTF16 609166] [ \boxed{ \mathsf{PCTP}. } ]
+[11-20:P18224; UTF16 609195] A PCTP contains:
+[11-20:P18225; UTF16 609212] source project identities;
+[11-20:P18226; UTF16 609239] source theory fingerprints;
+[11-20:P18227; UTF16 609267] source contexts;
+[11-20:P18228; UTF16 609284] sampling units;
+[11-20:P18229; UTF16 609300] source sampling or selection design;
+[11-20:P18230; UTF16 609337] source evidence atoms;
+[11-20:P18231; UTF16 609360] dependence and clustering;
+[11-20:P18232; UTF16 609387] cohort definition;
+[11-20:P18233; UTF16 609406] population model where used;
+[11-20:P18234; UTF16 609435] claim modalities;
+[11-20:P18235; UTF16 609453] exact transport bridges;
+[11-20:P18239; UTF16 609549] shift classification;
+[11-20:P18240; UTF16 609571] support-overlap analysis;
+[11-20:P18241; UTF16 609597] covariate-shift weights;
+[11-20:P18242; UTF16 609622] mechanism-invariance claims;
+[11-20:P18243; UTF16 609651] fleet hyperparameter sets;
+[11-20:P18244; UTF16 609678] target parameter sets;
+[11-20:P18246; UTF16 609717] robust risk bounds;
+[11-20:P18247; UTF16 609737] transferred PCPEs;
+[11-20:P18248; UTF16 609756] transferred fault and degradation models;
+[11-20:P18249; UTF16 609798] transfer-error ledger;
+[11-20:P18250; UTF16 609821] federated evidence packets;
+[11-20:P18251; UTF16 609849] source breaker discoveries;
+[11-20:P18252; UTF16 609877] target applicability;
+[11-20:P18253; UTF16 609899] target recertification result;
+[11-20:P18255; UTF16 609948] unresolved assumptions;
+[11-20:P18258; UTF16 610006] A PCTP is one evidence object for target assurance.
+[11-20:P18259; UTF16 610058] It is not itself the target’s final release package.
+[11-20:P18263; UTF16 610114] 47. Independent Transfer Checker
+[11-20:P18264; UTF16 610147] ALG-XFER1 — CheckTransferPackage
+[11-20:P18266; UTF16 610186]     candidate PCTP
+[11-20:P18267; UTF16 610205]     source projects
+[11-20:P18268; UTF16 610225]     target project
+[11-20:P18269; UTF16 610244]     transfer theory
+[11-20:P18272; UTF16 610271]     source identities
+[11-20:P18273; UTF16 610293]     source evidence and versions
+[11-20:P18274; UTF16 610326]     source contexts
+[11-20:P18275; UTF16 610346]     sampling units
+[11-20:P18276; UTF16 610365]     clustering and dependence
+[11-20:P18277; UTF16 610395]     sampling and selection design
+[11-20:P18278; UTF16 610429]     claim modality
+[11-20:P18279; UTF16 610448]     exact bridges
+[11-20:P18280; UTF16 610466]     support overlap
+[11-20:P18281; UTF16 610486]     exchangeability where used
+[11-20:P18282; UTF16 610517]     PAC and conformal proof objects
+[11-20:P18283; UTF16 610553]     shift assumptions
+[11-20:P18284; UTF16 610575]     causal or mechanism assumptions
+[11-20:P18285; UTF16 610611]     hierarchical set transfer
+[11-20:P18286; UTF16 610641]     ambiguity-set membership claims
+[11-20:P18287; UTF16 610677]     robust-risk calculations
+[11-20:P18288; UTF16 610706]     approximate error ledger
+[11-20:P18289; UTF16 610735]     PCPE transfer
+[11-20:P18290; UTF16 610753]     target context and versions
+[11-20:P18291; UTF16 610785]     target evidence
+[11-20:P18293; UTF16 610821]     unresolved assumptions
+[11-20:P18296; UTF16 610856]     EXACT_TARGET_TRANSFER
+[11-20:P18297; UTF16 610882]     VALID_STATISTICAL_TRANSFER
+[11-20:P18298; UTF16 610913]     SET_VALUED_TARGET_TRANSFER
+[11-20:P18299; UTF16 610944]     HEURISTIC_ONLY
+[11-20:P18300; UTF16 610963]     OUTSIDE_DOMAIN
+[11-20:P18306; UTF16 611009] 48. Incremental Transfer Recertification
+[11-20:P18307; UTF16 611050] THM-XFER27 — Dependency-Directed Transfer Recertification Equals Cold Transfer Checking Under Complete Dependencies
+[11-20:P18309; UTF16 611174] every changed source or target root is identified;
+[11-20:P18310; UTF16 611225] the transfer dependency graph is complete;
+[11-20:P18311; UTF16 611268] every descendant artifact is invalidated;
+[11-20:P18312; UTF16 611310] every reused object passes version and applicability checks;
+[11-20:P18313; UTF16 611371] every affected transfer rule is recomputed using the same semantics as cold checking;
+[11-20:P18314; UTF16 611457] local checkers are deterministic and sound.
+[11-20:P18315; UTF16 611501] Then incremental and cold checking return identical:
+[11-20:P18318; UTF16 611595] statistical certificate statuses;
+[11-20:P18319; UTF16 611629] bridge-validity reports;
+[11-20:P18320; UTF16 611654] transferred-PCPE status;
+[11-20:P18321; UTF16 611679] target assurance inputs.
+[11-20:P18323; UTF16 611710] Order the dependency graph topologically.
+[11-20:P18324; UTF16 611752] Proceed by induction over nodes.
+[11-20:P18325; UTF16 611785] For a root node:
+[11-20:P18326; UTF16 611802] if changed, both cold and incremental procedures use the new value;
+[11-20:P18327; UTF16 611870] if unchanged and reusable, both use the same valid value.
+[11-20:P18328; UTF16 611928] Assume equality of all predecessor-node results for node (v).
+[11-20:P18329; UTF16 611990] If (v) is unaffected and reused, applicability checks establish that its semantics equal cold reconstruction.
+[11-20:P18330; UTF16 612100] If affected, both procedures invoke the same deterministic local checker on equal predecessor values.
+[11-20:P18331; UTF16 612202] Therefore the outputs agree at (v).
+[11-20:P18332; UTF16 612238] Induction yields equality at every node, including target transfer roots. ∎
+[11-20:P18336; UTF16 612317] 49. Transfer Algorithms
+[11-20:P18337; UTF16 612341] ALG-XFER2 — AuditSourceFleet
+[11-20:P18339; UTF16 612376]     source project set
+[11-20:P18340; UTF16 612399]     source evidence
+[11-20:P18341; UTF16 612419]     intended target claim
+[11-20:P18343; UTF16 612446] FOR every source project:
+[11-20:P18344; UTF16 612472]     verify project identity
+[11-20:P18345; UTF16 612500]     verify context
+[11-20:P18346; UTF16 612519]     verify theory version
+[11-20:P18347; UTF16 612545]     verify evidence applicability
+[11-20:P18348; UTF16 612579]     identify statistical unit
+[11-20:P18349; UTF16 612609]     identify cluster membership
+[11-20:P18350; UTF16 612641]     identify selection mechanism
+[11-20:P18351; UTF16 612674]     verify calibration where relevant
+[11-20:P18353; UTF16 612713] DETECT:
+[11-20:P18354; UTF16 612721]     duplicate projects
+[11-20:P18355; UTF16 612744]     duplicate events
+[11-20:P18356; UTF16 612765]     repeated measurements
+[11-20:P18357; UTF16 612791]     common-cause dependence
+[11-20:P18358; UTF16 612819]     missing contexts
+[11-20:P18359; UTF16 612840]     selection-bias risks
+[11-20:P18360; UTF16 612865]     version mismatch
+[11-20:P18363; UTF16 612894]     certified source cohort
+[11-20:P18364; UTF16 612922]     dependence specification
+[11-20:P18365; UTF16 612951]     unresolved fleet assumptions
+[11-20:P18369; UTF16 612987] ALG-XFER3 — BuildHierarchicalFleetSet
+[11-20:P18373; UTF16 613071]     fleet hyperparameter theory
+[11-20:P18376; UTF16 613115]     H ← H0
+[11-20:P18378; UTF16 613127] FOR each source project:
+[11-20:P18379; UTF16 613152]     retain every η for which there exists
+[11-20:P18380; UTF16 613194]     a compatible project-local parameter
+[11-20:P18382; UTF16 613236] IF H becomes empty:
+[11-20:P18385; UTF16 613295] INDUCE
+[11-20:P18386; UTF16 613302]     target parameter set through
+[11-20:P18387; UTF16 613335]     the checked target bridge
+[11-20:P18390; UTF16 613373]     fleet hyperparameter set
+[11-20:P18391; UTF16 613402]     target parameter set
+[11-20:P18393; UTF16 613444] Correctness follows THM-XFER13–14.
+[11-20:P18397; UTF16 613482] ALG-XFER4 — CertifyFiniteClassPAC
+[11-20:P18399; UTF16 613522]     declared population
+[11-20:P18400; UTF16 613546]     IID sample certificate
+[11-20:P18401; UTF16 613573]     finite hypothesis class
+[11-20:P18402; UTF16 613601]     bounded loss
+[11-20:P18403; UTF16 613618]     delta
+[11-20:P18406; UTF16 613637]     empirical risk for every h
+[11-20:P18407; UTF16 613668]     epsilon =
+[11-20:P18408; UTF16 613682]       sqrt(log(2|H|/delta)/(2n))
+[11-20:P18411; UTF16 613723]     simultaneous population-risk
+[11-20:P18412; UTF16 613756]     certificate for every h
+[11-20:P18413; UTF16 613784] Correctness follows THM-XFER5.
+[11-20:P18417; UTF16 613818] ALG-XFER5 — BuildConformalTransferCertificate
+[11-20:P18419; UTF16 613870]     exchangeable calibration units
+[11-20:P18420; UTF16 613905]     nonconformity score
+[11-20:P18421; UTF16 613929]     alpha
+[11-20:P18422; UTF16 613939]     target sampling statement
+[11-20:P18425; UTF16 613977]     exchangeability premise
+[11-20:P18426; UTF16 614005]     unit identities
+[11-20:P18427; UTF16 614025]     dependence assumptions
+[11-20:P18428; UTF16 614052]     score construction
+[11-20:P18429; UTF16 614075]     target random-unit interpretation
+[11-20:P18432; UTF16 614122]     finite-sample threshold
+[11-20:P18435; UTF16 614158]     marginal prediction certificate
+[11-20:P18436; UTF16 614194]     explicit modality
+[11-20:P18437; UTF16 614216]     subgroup limitations
+[11-20:P18438; UTF16 614241] Correctness follows THM-XFER7.
+[11-20:P18442; UTF16 614275] ALG-XFER6 — CheckDomainShift
+[11-20:P18444; UTF16 614310]     source context and evidence
+[11-20:P18445; UTF16 614342]     target context and evidence
+[11-20:P18446; UTF16 614374]     claimed shift model
+[11-20:P18448; UTF16 614399] CHECK separately:
+[11-20:P18450; UTF16 614437]     covariate shift
+[11-20:P18451; UTF16 614457]     conditional shift
+[11-20:P18452; UTF16 614479]     mechanism invariance
+[11-20:P18453; UTF16 614504]     selection effects
+[11-20:P18454; UTF16 614526]     product and model versions
+[11-20:P18457; UTF16 614565]     SUPPORTED_SHIFT_MODEL
+[11-20:P18458; UTF16 614591]     SUPPORT_GAP
+[11-20:P18459; UTF16 614607]     CONCEPT_SHIFT
+[11-20:P18460; UTF16 614625]     SELECTION_UNRESOLVED
+[11-20:P18462; UTF16 614662] A shift classifier is a proposal unless independently certified.
+[11-20:P18466; UTF16 614730] ALG-XFER7 — TransportUnderCovariateShift
+[11-20:P18469; UTF16 614797]     target covariate law
+[11-20:P18470; UTF16 614822]     conditional-invariance certificate
+[11-20:P18471; UTF16 614861]     support-overlap certificate
+[11-20:P18472; UTF16 614893]     loss
+[11-20:P18475; UTF16 614911]     density ratio or exact finite analogue
+[11-20:P18476; UTF16 614954]     weighted source expectation
+[11-20:P18479; UTF16 614994]     target population-risk statement
+[11-20:P18480; UTF16 615031]     with statistical modality
+[11-20:P18481; UTF16 615061] Correctness follows THM-XFER9.
+[11-20:P18485; UTF16 615095] ALG-XFER8 — BuildDistributionallyRobustTransfer
+[11-20:P18487; UTF16 615149]     target ambiguity-set construction
+[11-20:P18488; UTF16 615187]     source and target evidence
+[11-20:P18490; UTF16 615240]     loss function
+[11-20:P18493; UTF16 615266]     ambiguity-set certificate
+[11-20:P18494; UTF16 615296]     true-law membership claim where used
+[11-20:P18497; UTF16 615346]     worst-case expected loss
+[11-20:P18498; UTF16 615375]     over admissible target laws
+[11-20:P18501; UTF16 615415]     robust-distributional certificate
+[11-20:P18502; UTF16 615453] Correctness follows THM-XFER17.
+[11-20:P18506; UTF16 615488] ALG-XFER9 — TransferPCPE
+[11-20:P18508; UTF16 615519]     source PCPE
+[11-20:P18509; UTF16 615535]     source validity domain
+[11-20:P18510; UTF16 615562]     target subsystem
+[11-20:P18511; UTF16 615583]     verified set-transport map
+[11-20:P18512; UTF16 615614]     transfer discrepancy
+[11-20:P18513; UTF16 615639]     target theory
+[11-20:P18516; UTF16 615664]     source certificate
+[11-20:P18517; UTF16 615687]     target bridge
+[11-20:P18518; UTF16 615705]     map monotonicity
+[11-20:P18520; UTF16 615754]     product and context compatibility
+[11-20:P18521; UTF16 615792]     target model domain
+[11-20:P18522; UTF16 615816]     discrepancy scope
+[11-20:P18524; UTF16 615839] CONSTRUCT
+[11-20:P18525; UTF16 615849]     transferred target outer envelope
+[11-20:P18528; UTF16 615895]     TARGET_PCPE
+[11-20:P18532; UTF16 615961] Correctness follows THM-XFER19.
+[11-20:P18536; UTF16 615996] ALG-XFER10 — FederatedEvidenceAggregate
+[11-20:P18538; UTF16 616042]     locally checked evidence packets
+[11-20:P18539; UTF16 616079]     declared aggregation rule
+[11-20:P18541; UTF16 616110] VERIFY every local packet
+[11-20:P18542; UTF16 616136] VERIFY aggregation-rule soundness
+[11-20:P18543; UTF16 616170] APPLY only the checked aggregation rule
+[11-20:P18546; UTF16 616218]     fleet or population claim
+[11-20:P18547; UTF16 616248]     exact modality
+[11-20:P18548; UTF16 616267]     provenance graph
+[11-20:P18549; UTF16 616288] No privacy claim follows automatically.
+[11-20:P18553; UTF16 616331] ALG-XFER11 — DiscoverFleetFailure
+[11-20:P18555; UTF16 616371]     source PCOT, PCAB, and PCR histories
+[11-20:P18556; UTF16 616412]     failure-search theory
+[11-20:P18557; UTF16 616438]     target applicability contexts
+[11-20:P18560; UTF16 616485]     repeated novel failure
+[11-20:P18561; UTF16 616512]     common-cause mechanism
+[11-20:P18562; UTF16 616539]     PCPE breaker
+[11-20:P18563; UTF16 616556]     degradation outside model
+[11-20:P18564; UTF16 616586]     control failure
+[11-20:P18565; UTF16 616606]     product defect
+[11-20:P18567; UTF16 616626] VALIDATE each candidate through
+[11-20:P18570; UTF16 616693] FOR every target class:
+[11-20:P18571; UTF16 616717]     test source-target applicability bridge
+[11-20:P18573; UTF16 616762] IF an applicable new mechanism exists:
+[11-20:P18574; UTF16 616801]     create THEORY_EXPANSION event
+[11-20:P18575; UTF16 616835]     invalidate dependent target claims
+[11-20:P18578; UTF16 616882]     validated fleet breaker
+[11-20:P18579; UTF16 616910]     target applicability map
+[11-20:P18580; UTF16 616939]     recertification agenda
+[11-20:P18584; UTF16 616969] ALG-XFER12 — TargetRecertificationGate
+[11-20:P18586; UTF16 617014]     PCTP
+[11-20:P18587; UTF16 617023]     fixed target project
+[11-20:P18589; UTF16 617068]     target assurance case
+[11-20:P18592; UTF16 617101]     target context
+[11-20:P18593; UTF16 617120]     source-target bridge
+[11-20:P18595; UTF16 617164]     support
+[11-20:P18596; UTF16 617176]     target-specific evidence
+[11-20:P18598; UTF16 617224]     product versions
+[11-20:P18600; UTF16 617261]     unresolved premises
+[11-20:P18602; UTF16 617286] CLASSIFY each transferred object:
+[11-20:P18603; UTF16 617320]     EXACT_TARGET
+[11-20:P18604; UTF16 617337]     EXACT_TRANSPORT
+[11-20:P18605; UTF16 617357]     SET_VALUED_TARGET
+[11-20:P18606; UTF16 617379]     VALID_STATISTICAL
+[11-20:P18611; UTF16 617455] SEND accepted evidence into
+[11-20:P18612; UTF16 617483] Prompt-11 assurance calculus
+[11-20:P18616; UTF16 617515] ALG-XFER13 — CrossProjectRCVOCInterface
+[11-20:P18617; UTF16 617555] EXPOSE computations such as:
+[11-20:P18618; UTF16 617584]     acquire another source project
+[11-20:P18619; UTF16 617619]     inspect one source failure
+[11-20:P18620; UTF16 617650]     validate one transport bridge
+[11-20:P18621; UTF16 617684]     obtain one target measurement
+[11-20:P18622; UTF16 617718]     check one support gap
+[11-20:P18623; UTF16 617744]     run one cross-project full-order solve
+[11-20:P18624; UTF16 617787]     test one mechanism-invariance hypothesis
+[11-20:P18625; UTF16 617832]     verify one PCPE transfer
+[11-20:P18626; UTF16 617861]     expand one target fault theory
+[11-20:P18627; UTF16 617896]     build one target discrepancy bound
+[11-20:P18630; UTF16 617946]     source projects touched
+[11-20:P18631; UTF16 617974]     target claims touched
+[11-20:P18632; UTF16 618000]     expected target-set reduction
+[11-20:P18633; UTF16 618034]     theory-expansion potential
+[11-20:P18635; UTF16 618074]     governance constraints
+[11-20:P18644; UTF16 618195] ALG-XFER14 — RedTeamTransfer
+[11-20:P18645; UTF16 618224] ATTACK:
+[11-20:P18646; UTF16 618232]     sampling assumptions
+[11-20:P18647; UTF16 618257]     exchangeability
+[11-20:P18648; UTF16 618277]     source selection
+[11-20:P18652; UTF16 618362]     product equivalence
+[11-20:P18654; UTF16 618404]     subgroup coverage
+[11-20:P18655; UTF16 618426]     independence claims
+[11-20:P18658; UTF16 618487]     target recertification
+[11-20:P18660; UTF16 618515] SEARCH specifically for a target world
+[11-20:P18661; UTF16 618554] where source performance remains strong
+[11-20:P18662; UTF16 618594] but the transferred target claim fails

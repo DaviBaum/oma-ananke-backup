@@ -1,0 +1,402 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P33145; UTF16 1078209]   Event : Type
+[11-20:P33146; UTF16 1078224]   initial : State
+[11-20:P33148; UTF16 1078251]     State →
+[11-20:P33149; UTF16 1078263]     Event →
+[11-20:P33150; UTF16 1078275]     Set State
+[11-20:P33151; UTF16 1078289]   obligations :
+[11-20:P33153; UTF16 1078317]     Set Obligation
+[11-20:P33154; UTF16 1078336]   rights :
+[11-20:P33156; UTF16 1078359]     Set Right
+[11-20:P33158; UTF16 1078393] Dispute fiber
+[11-20:P33159; UTF16 1078407] def DisputeFiber
+[11-20:P33160; UTF16 1078424]     (C : ContractMachine)
+[11-20:P33161; UTF16 1078450]     (E : EvidenceState) :
+[11-20:P33162; UTF16 1078476]     Set ProjectWorld :=
+[11-20:P33163; UTF16 1078500]   {w |
+[11-20:P33164; UTF16 1078507]     ContractConsistent C w ∧
+[11-20:P33165; UTF16 1078536]     EvidenceConsistent E w}
+[11-20:P33166; UTF16 1078564] Responsibility closure
+[11-20:P33167; UTF16 1078587] def ResponsibilityClosed
+[11-20:P33168; UTF16 1078612]     (fiber : Set ProjectWorld)
+[11-20:P33169; UTF16 1078643]     (i : AgentId) : Prop :=
+[11-20:P33170; UTF16 1078671]   ∀ w ∈ fiber,
+[11-20:P33171; UTF16 1078686]     responsibility w = i
+[11-20:P33172; UTF16 1078711] Proof-Carrying Governance and Contract Package
+[11-20:P33173; UTF16 1078758] structure PCGC where
+[11-20:P33175; UTF16 1078801]   agents : AgentStore
+[11-20:P33176; UTF16 1078823]   mechanism : MechanismArtifact
+[11-20:P33177; UTF16 1078855]   contracts : ContractStore
+[11-20:P33178; UTF16 1078883]   incentiveCerts :
+[11-20:P33179; UTF16 1078902]     IncentiveCertificateStore
+[11-20:P33180; UTF16 1078932]   participationCerts :
+[11-20:P33181; UTF16 1078955]     ParticipationCertificateStore
+[11-20:P33182; UTF16 1078989]   monitoring :
+[11-20:P33183; UTF16 1079004]     MonitoringModel
+[11-20:P33184; UTF16 1079024]   responsibility :
+[11-20:P33185; UTF16 1079043]     ResponsibilityModel
+[11-20:P33186; UTF16 1079067]   disputes :
+[11-20:P33187; UTF16 1079080]     DisputeStore
+[11-20:P33189; UTF16 1079114]     DependencyGraph
+[11-20:P33191; UTF16 1079154] DSIC implies BIC skeleton
+[11-20:P33192; UTF16 1079180] theorem dsic_implies_bic
+[11-20:P33193; UTF16 1079205]     (hDSIC : DSIC M)
+[11-20:P33194; UTF16 1079226]     (prior : FinitePrior Ty) :
+[11-20:P33195; UTF16 1079257]     BIC M prior := by
+[11-20:P33196; UTF16 1079279]   intro i θ θ'
+[11-20:P33197; UTF16 1079294]   apply conditionalExpectation_mono
+[11-20:P33198; UTF16 1079330]   intro θminus
+[11-20:P33199; UTF16 1079345]   exact hDSIC i θ θ' θminus
+[11-20:P33200; UTF16 1079373] Responsibility closure soundness skeleton
+[11-20:P33201; UTF16 1079415] theorem closed_responsibility_sound
+[11-20:P33202; UTF16 1079451]     (actual : ProjectWorld)
+[11-20:P33203; UTF16 1079479]     (hActual :
+[11-20:P33204; UTF16 1079494]       actual ∈ DisputeFiber C E)
+[11-20:P33206; UTF16 1079542]       ResponsibilityClosed
+[11-20:P33207; UTF16 1079569]         (DisputeFiber C E)
+[11-20:P33208; UTF16 1079596]         i) :
+[11-20:P33209; UTF16 1079609]     responsibility actual = i := by
+[11-20:P33210; UTF16 1079645]   exact hClosed actual hActual
+[11-20:P33214; UTF16 1079679] 58. Mechanization Difficulty
+[11-20:P33215; UTF16 1079708] ￼
+ATTACHED TABLE 1737028; native row/column order; 26 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Finite DSIC", "Straightforward"]
+ROW 2: ["Finite BIC", "Moderate"]
+ROW 3: ["Revelation principle", "Moderate"]
+ROW 4: ["IR hierarchy", "Straightforward"]
+ROW 5: ["Reverse second-price procurement", "Moderate"]
+ROW 6: ["Single-parameter monotonicity", "Moderate"]
+ROW 7: ["Finite VCG", "Moderate"]
+ROW 8: ["Bilateral-trade impossibility", "Moderate"]
+ROW 9: ["Screening menus", "Difficult"]
+ROW 10: ["Binary moral hazard", "Moderate"]
+ROW 11: ["Multi-signal monitoring", "Difficult"]
+ROW 12: ["Hold-up", "Moderate"]
+ROW 13: ["Bargaining", "Moderate"]
+ROW 14: ["Finite normal-form equilibria", "Moderate"]
+ROW 15: ["Extensive-form games", "Difficult"]
+ROW 16: ["Subgame perfection", "Difficult"]
+ROW 17: ["Coalition checking", "Exponential"]
+ROW 18: ["Contract automata", "Moderate"]
+ROW 19: ["Natural-language contract compilation", "Research-level"]
+ROW 20: ["Change-order semantics", "Difficult"]
+ROW 21: ["Responsibility fibers", "Difficult"]
+ROW 22: ["Causal attribution", "Difficult"]
+ROW 23: ["Legal enforceability", "Outside unrestricted formal theory"]
+ROW 24: ["Incremental governance recertification", "Difficult"]
+ROW 25: ["Whole-project PCGC checker", "Research-level"]
+[11-20:P33219; UTF16 1079713] 59. Prompt-20 Complexity Profile
+[11-20:P33220; UTF16 1079746] DEF-GOV43 — Prompt-20 Complexity Profile
+[11-20:P33222; UTF16 1079795] \left( N_{\mathrm{agent}}, K_{\mathrm{type}}, K_{\mathrm{msg}}, K_{\mathrm{action}}, K_{\mathrm{info}}, K_{\mathrm{utility}}, K_{\mathrm{mechanism}}, K_{\mathrm{equil}}, K_{\mathrm{coal}}, K_{\mathrm{monitor}}, K_{\mathrm{contract}}, K_{\mathrm{change}}, K_{\mathrm{resp}}, K_{\mathrm{dispute}}, C_{\mathrm{IC}}, C_{\mathrm{equil}}, C_{\mathrm{coal}}, C_{\mathrm{contract}}, C_{\mathrm{check}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unresolved}} \right). } ]
+[11-20:P33224; UTF16 1080276] (N_{\mathrm{agent}}): agent count;
+[11-20:P33225; UTF16 1080311] (K_{\mathrm{type}}): type-space representation complexity;
+[11-20:P33226; UTF16 1080370] (K_{\mathrm{msg}}): message-space complexity;
+[11-20:P33227; UTF16 1080416] (K_{\mathrm{action}}): strategic action-space complexity;
+[11-20:P33228; UTF16 1080474] (K_{\mathrm{info}}): information-partition or prior complexity;
+[11-20:P33229; UTF16 1080538] (K_{\mathrm{utility}}): preference-model complexity;
+[11-20:P33230; UTF16 1080591] (K_{\mathrm{mechanism}}): allocation and transfer-rule complexity;
+[11-20:P33231; UTF16 1080658] (K_{\mathrm{equil}}): equilibrium-certificate complexity;
+[11-20:P33232; UTF16 1080716] (K_{\mathrm{coal}}): coalition-family complexity;
+[11-20:P33233; UTF16 1080766] (K_{\mathrm{monitor}}): observability and verifiability complexity;
+[11-20:P33234; UTF16 1080834] (K_{\mathrm{contract}}): contract-state-machine complexity;
+[11-20:P33235; UTF16 1080894] (K_{\mathrm{change}}): change-order representation complexity;
+[11-20:P33236; UTF16 1080957] (K_{\mathrm{resp}}): responsibility-model complexity;
+[11-20:P33237; UTF16 1081011] (K_{\mathrm{dispute}}): dispute-fiber complexity;
+[11-20:P33238; UTF16 1081061] (C_{\mathrm{IC}}): incentive-checking cost;
+[11-20:P33239; UTF16 1081105] (C_{\mathrm{equil}}): equilibrium-checking or discovery cost;
+[11-20:P33240; UTF16 1081167] (C_{\mathrm{coal}}): coalition analysis cost;
+[11-20:P33241; UTF16 1081213] (C_{\mathrm{contract}}): contract-trace checking cost;
+[11-20:P33242; UTF16 1081268] (C_{\mathrm{check}}): independent PCGC verification cost;
+[11-20:P33243; UTF16 1081326] (R_{\mathrm{change}}): changed governance roots;
+[11-20:P33244; UTF16 1081375] (R_{\mathrm{recert}}): recertified nodes;
+[11-20:P33245; UTF16 1081417] (B_{\mathrm{unresolved}}): unresolved governance blockers.
+[11-20:P33246; UTF16 1081476] No scalar governance-quality score is introduced.
+[11-20:P33250; UTF16 1081529] 60. Permanent Assumption Registry
+[11-20:P33251; UTF16 1081563] ￼
+ATTACHED TABLE 1737044; native row/column order; 25 rows
+ROW 0: ["ID", "Assumption"]
+ROW 1: ["ASSUMP-GOV1", "Agent identities are correct"]
+ROW 2: ["ASSUMP-GOV2", "Declared type spaces contain the modeled private information"]
+ROW 3: ["ASSUMP-GOV3", "Utility or preference models are correct for the theorem"]
+ROW 4: ["ASSUMP-GOV4", "Information partitions and priors are correct"]
+ROW 5: ["ASSUMP-GOV5", "Rationality assumptions are explicitly scoped"]
+ROW 6: ["ASSUMP-GOV6", "Message semantics are correct"]
+ROW 7: ["ASSUMP-GOV7", "Strategy actions are feasible and authorized"]
+ROW 8: ["ASSUMP-GOV8", "Mechanism transfers are financially executable"]
+ROW 9: ["ASSUMP-GOV9", "Outside options are correct"]
+ROW 10: ["ASSUMP-GOV10", "Monitored variables are genuinely observable"]
+ROW 11: ["ASSUMP-GOV11", "Contract triggers are verifiable"]
+ROW 12: ["ASSUMP-GOV12", "Contract version identity is correct"]
+ROW 13: ["ASSUMP-GOV13", "Authority is represented correctly"]
+ROW 14: ["ASSUMP-GOV14", "Dynamic strategies are nonanticipative"]
+ROW 15: ["ASSUMP-GOV15", "Coalition and side-payment scope is explicit"]
+ROW 16: ["ASSUMP-GOV16", "Outcomes remain physically and economically executable"]
+ROW 17: ["ASSUMP-GOV17", "Commitment deadlines and options remain valid"]
+ROW 18: ["ASSUMP-GOV18", "Evidence is authentic and applicable"]
+ROW 19: ["ASSUMP-GOV19", "Legal conclusions require an external legal bridge"]
+ROW 20: ["ASSUMP-GOV20", "UNKNOWN is never promoted"]
+ROW 21: ["ASSUMP-GOV21", "Trusted checkers are sound"]
+ROW 22: ["ASSUMP-GOV22", "Governance dependencies are complete"]
+ROW 23: ["ASSUMP-GOV23", "Expected utilities are finite or integrable"]
+ROW 24: ["ASSUMP-GOV24", "Equilibrium certificates match the actual mechanism"]
+[11-20:P33255; UTF16 1081568] 61. Permanent Definition Registry
+[11-20:P33256; UTF16 1081602] ￼
+ATTACHED TABLE 1737060; native row/column order; 44 rows
+ROW 0: ["ID", "Definition"]
+ROW 1: ["DEF-GOV1", "Strategic Project State"]
+ROW 2: ["DEF-GOV2", "Project Agent"]
+ROW 3: ["DEF-GOV3", "Private Type"]
+ROW 4: ["DEF-GOV4", "Project Mechanism"]
+ROW 5: ["DEF-GOV5", "Direct Revelation Mechanism"]
+ROW 6: ["DEF-GOV6", "Equilibrium Mode"]
+ROW 7: ["DEF-GOV7", "Strategic Implementation Fiber"]
+ROW 8: ["DEF-GOV8", "Strategic Implementability"]
+ROW 9: ["DEF-GOV9", "DSIC"]
+ROW 10: ["DEF-GOV10", "BIC"]
+ROW 11: ["DEF-GOV11", "Ex Post IR"]
+ROW 12: ["DEF-GOV12", "Interim IR"]
+ROW 13: ["DEF-GOV13", "Ex Ante IR"]
+ROW 14: ["DEF-GOV14", "Reverse Second-Price Procurement Auction"]
+ROW 15: ["DEF-GOV15", "Finite Quasilinear Social-Choice Environment"]
+ROW 16: ["DEF-GOV16", "Strong Budget Balance"]
+ROW 17: ["DEF-GOV17", "Weak Budget Balance"]
+ROW 18: ["DEF-GOV18", "Adverse-Selection Model"]
+ROW 19: ["DEF-GOV19", "Screening Menu"]
+ROW 20: ["DEF-GOV20", "Hidden-Action Principal–Agent Model"]
+ROW 21: ["DEF-GOV21", "Observable Signal"]
+ROW 22: ["DEF-GOV22", "Contract-Verifiable Signal"]
+ROW 23: ["DEF-GOV23", "Specific Investment Game"]
+ROW 24: ["DEF-GOV24", "Two-Party Bargaining Problem"]
+ROW 25: ["DEF-GOV25", "Weak Implementation"]
+ROW 26: ["DEF-GOV26", "Full Implementation"]
+ROW 27: ["DEF-GOV27", "Extensive-Form Project Game"]
+ROW 28: ["DEF-GOV28", "Coalition Deviation"]
+ROW 29: ["DEF-GOV29", "Typed Contract State Machine"]
+ROW 30: ["DEF-GOV30", "Contract Obligation"]
+ROW 31: ["DEF-GOV31", "Contract Right"]
+ROW 32: ["DEF-GOV32", "Proof-Carrying Change Order"]
+ROW 33: ["DEF-GOV33", "Causal Responsibility"]
+ROW 34: ["DEF-GOV34", "Contractual Responsibility"]
+ROW 35: ["DEF-GOV35", "Evidentiary Attribution"]
+ROW 36: ["DEF-GOV36", "Legal Liability Status"]
+ROW 37: ["DEF-GOV37", "Dispute Evidence State"]
+ROW 38: ["DEF-GOV38", "Dispute Fiber"]
+ROW 39: ["DEF-GOV39", "Responsibility Closure"]
+ROW 40: ["DEF-GOV40", "Governance Claim Modality"]
+ROW 41: ["DEF-GOV41", "Proof-Carrying Governance and Contract Package"]
+ROW 42: ["DEF-GOV42", "Governance Dependency Graph"]
+ROW 43: ["DEF-GOV43", "Prompt-20 Complexity Profile"]
+[11-20:P33260; UTF16 1081607] 62. Proposition Registry
+[11-20:P33261; UTF16 1081632] ￼
+ATTACHED TABLE 1737076; native row/column order; 6 rows
+ROW 0: ["ID", "Proposition", "Status"]
+ROW 1: ["PRO-GOV1", "Positive total surplus does not guarantee voluntary participation", "Proved"]
+ROW 2: ["PRO-GOV2", "Explicit coalition checking may require (2^n-1) coalitions", "Proved"]
+ROW 3: ["PRO-GOV3", "Mechanism budget balance does not imply cash-flow feasibility", "Proved"]
+ROW 4: ["PRO-GOV4", "DSIC does not imply individual rationality", "Proved"]
+ROW 5: ["PRO-GOV5", "Formal contract outcome need not equal social optimum", "Proved"]
+[11-20:P33262; UTF16 1081634] No standalone Prompt-20 lemmas are required; all intermediate arguments appear inside theorem proofs.
+[11-20:P33266; UTF16 1081739] 63. Permanent Theorem Registry
+[11-20:P33267; UTF16 1081770] ￼
+ATTACHED TABLE 1737092; native row/column order; 34 rows
+ROW 0: ["ID", "Theorem", "Status"]
+ROW 1: ["THM-GOV1", "Central feasibility does not imply equilibrium implementation", "Proved"]
+ROW 2: ["THM-GOV2", "DSIC implies BIC", "Proved"]
+ROW 3: ["THM-GOV3", "BIC does not imply DSIC", "Proved"]
+ROW 4: ["THM-GOV4", "Finite Bayesian revelation principle", "Proved"]
+ROW 5: ["THM-GOV5", "DSIC does not prove realized truthfulness", "Proved"]
+ROW 6: ["THM-GOV6", "Ex post IR implies interim IR implies ex ante IR", "Proved"]
+ROW 7: ["THM-GOV7", "IR converses fail", "Proved"]
+ROW 8: ["THM-GOV8", "DSIC procurement requires monotone allocation", "Proved"]
+ROW 9: ["THM-GOV9", "Reverse second-price procurement truthfulness", "Proved"]
+ROW 10: ["THM-GOV10", "VCG/Groves truthfulness", "Proved"]
+ROW 11: ["THM-GOV11", "Finite bilateral-trade impossibility", "Proved"]
+ROW 12: ["THM-GOV12", "Binary moral-hazard incentive constraint", "Proved"]
+ROW 13: ["THM-GOV13", "Uninformative outcome cannot induce costly hidden effort", "Proved"]
+ROW 14: ["THM-GOV14", "Limited-liability minimum bonus", "Proved"]
+ROW 15: ["THM-GOV15", "Observability does not imply verifiability", "Proved"]
+ROW 16: ["THM-GOV16", "Hold-up can produce underinvestment", "Proved"]
+ROW 17: ["THM-GOV17", "Symmetric transferable-surplus Nash bargaining split", "Proved"]
+ROW 18: ["THM-GOV18", "Desired equilibrium existence does not imply full implementation", "Proved"]
+ROW 19: ["THM-GOV19", "Nash equilibrium can rely on a noncredible threat", "Proved"]
+ROW 20: ["THM-GOV20", "Individual strategyproofness does not imply coalition-proofness", "Proved"]
+ROW 21: ["THM-GOV21", "Formal contract satisfaction does not prove legal enforceability", "Proved"]
+ROW 22: ["THM-GOV22", "Obligation does not imply physical performance", "Proved"]
+ROW 23: ["THM-GOV23", "Physical performance does not imply contractual authorization", "Proved"]
+ROW 24: ["THM-GOV24", "Valid change order updates the formal contract baseline", "Proved"]
+ROW 25: ["THM-GOV25", "Causal contribution does not determine contractual responsibility", "Proved"]
+ROW 26: ["THM-GOV26", "Responsibility closure is sound relative to the dispute theory", "Proved"]
+ROW 27: ["THM-GOV27", "Incomplete evidence can leave responsibility unresolved", "Proved"]
+ROW 28: ["THM-GOV28", "Incremental governance recertification equals cold checking", "Proved under complete dependencies"]
+ROW 29: ["THM-GOV29", "Explicit finite DSIC-checking complexity", "Proved"]
+ROW 30: ["THM-GOV30", "Whole-project strategic governance and contractual implementation", "Proved under explicit assumptions"]
+ROW 31: ["THM-GOV31", "Open-world strategic limitation", "Proved"]
+ROW 32: ["THM-GOV32", "Proposal-source independence", "Proved"]
+ROW 33: ["THM-GOV33", "Explicit PCGC checking complexity", "Proved"]
+[11-20:P33271; UTF16 1081775] 64. Algorithm Registry
+[11-20:P33272; UTF16 1081798] ￼
+ATTACHED TABLE 1737108; native row/column order; 29 rows
+ROW 0: ["ID", "Algorithm"]
+ROW 1: ["ALG-GOV1", "AuditAgentModel"]
+ROW 2: ["ALG-GOV2", "CompileStrategicProjectGame"]
+ROW 3: ["ALG-GOV3", "CheckDSIC"]
+ROW 4: ["ALG-GOV4", "CheckBIC"]
+ROW 5: ["ALG-GOV5", "BuildDirectMechanism"]
+ROW 6: ["ALG-GOV6", "CheckIndividualRationality"]
+ROW 7: ["ALG-GOV7", "RunQualifiedReverseAuction"]
+ROW 8: ["ALG-GOV8", "CheckSingleParameterMonotonicity"]
+ROW 9: ["ALG-GOV9", "BuildVCGMechanism"]
+ROW 10: ["ALG-GOV10", "AuditMechanismTradeoffs"]
+ROW 11: ["ALG-GOV11", "DesignScreeningMenu"]
+ROW 12: ["ALG-GOV12", "DesignMoralHazardContract"]
+ROW 13: ["ALG-GOV13", "AuditMonitoringSignal"]
+ROW 14: ["ALG-GOV14", "AnalyzeHoldUp"]
+ROW 15: ["ALG-GOV15", "ComputeBargainingSolution"]
+ROW 16: ["ALG-GOV16", "EnumerateEquilibria"]
+ROW 17: ["ALG-GOV17", "CheckSubgamePerfection"]
+ROW 18: ["ALG-GOV18", "SearchCoalitionDeviations"]
+ROW 19: ["ALG-GOV19", "CompileContractAutomaton"]
+ROW 20: ["ALG-GOV20", "CheckContractTrace"]
+ROW 21: ["ALG-GOV21", "ProcessChangeOrder"]
+ROW 22: ["ALG-GOV22", "BuildDisputeFiber"]
+ROW 23: ["ALG-GOV23", "CheckResponsibilityClosure"]
+ROW 24: ["ALG-GOV24", "GovernanceRCVOCInterface"]
+ROW 25: ["ALG-GOV25", "RedTeamMechanism"]
+ROW 26: ["ALG-GOV26", "IncrementalGovernanceRecertification"]
+ROW 27: ["ALG-GOV27", "CheckGovernancePackage"]
+ROW 28: ["ALG-GOV28", "BuildPCGC"]
+[11-20:P33276; UTF16 1081803] 65. Conjecture Registry
+[11-20:P33277; UTF16 1081827] ￼
+ATTACHED TABLE 1737124; native row/column order; 11 rows
+ROW 0: ["ID", "Conjecture", "Falsification condition"]
+ROW 1: ["CONJ-GOV1", "Major procurement problems often admit useful low-dimensional private-type models", "Relevant supplier behavior consistently requires high-dimensional latent state"]
+ROW 2: ["CONJ-GOV2", "Independently checkable IC mechanisms reduce meaningful procurement misalignment", "Dominant failures arise from model misspecification or uncontractible dimensions"]
+ROW 3: ["CONJ-GOV3", "Outcome-based incentives improve coordination effort in useful project classes", "Monitoring is too weak or incentive cost dominates"]
+ROW 4: ["CONJ-GOV4", "Proof-carrying change orders reduce version and scope disputes", "Disputes remain dominated by ambiguous informal interpretation"]
+ROW 5: ["CONJ-GOV5", "Responsibility fibers are often small enough for useful attribution", "Typical disputes retain very large narrative ambiguity"]
+ROW 6: ["CONJ-GOV6", "Coalition risk concentrates in a moderate set of plausible coalitions", "Relevant deviations require near-exhaustive coalition search"]
+ROW 7: ["CONJ-GOV7", "Contract automata can formalize a meaningful subset of project administration", "Most important clauses resist operational formalization"]
+ROW 8: ["CONJ-GOV8", "Governance recertification is substantially local", "Ordinary changes reopen most strategic and contractual claims"]
+ROW 9: ["CONJ-GOV9", "Fleet evidence improves mechanism design without falsely identifying individual types", "Transferred models have little or misleading strategic value"]
+ROW 10: ["CONJ-GOV10", "A 190-room hotel admits a practical PCGC", "Type, equilibrium, contract, or dispute complexity is prohibitive"]
+[11-20:P33281; UTF16 1081832] 66. Dependency DAG — Prompts 1–20
+[11-20:P33291; UTF16 1081990] PROMPTS 3–4
+[11-20:P33292; UTF16 1082002] separators,
+[11-20:P33293; UTF16 1082014] symbolic abstraction,
+[11-20:P33303; UTF16 1082141] PCPEs and
+[11-20:P33313; UTF16 1082273] causal executable states
+[11-20:P33319; UTF16 1082347] computation scheduling
+[11-20:P33338; UTF16 1082617] physical option enabling
+[11-20:P33343; UTF16 1082691] actual event evidence
+[11-20:P33348; UTF16 1082760] state/fault/maintenance
+[11-20:P33353; UTF16 1082837] population versus target
+[11-20:P33362; UTF16 1082968] procurement and cash flow
+[11-20:P33366; UTF16 1083024] staged commitment
+[11-20:P33367; UTF16 1083042] option timing and viability
+[11-20:P33371; UTF16 1083100] multi-agent implementation
+[11-20:P33373; UTF16 1083128] DEF-GOV1–3
+[11-20:P33374; UTF16 1083139] strategic state,
+[11-20:P33375; UTF16 1083156] agents,
+[11-20:P33376; UTF16 1083164] private types
+[11-20:P33379; UTF16 1083198] DEF-GOV4–8
+[11-20:P33380; UTF16 1083209] mechanisms,
+[11-20:P33381; UTF16 1083221] equilibrium modes,
+[11-20:P33382; UTF16 1083240] implementation fiber
+[11-20:P33385; UTF16 1083281] THM-GOV1
+[11-20:P33386; UTF16 1083290] central optimum
+[11-20:P33387; UTF16 1083306] need not be equilibrium
+[11-20:P33389; UTF16 1083331] incentive branch
+[11-20:P33393; UTF16 1083438] DEF-GOV9                       DEF-GOV10
+[11-20:P33394; UTF16 1083479] DSIC                           BIC
+[11-20:P33396; UTF16 1083554]         ├──────────────┬──────────────┘
+[11-20:P33398; UTF16 1083619] THM-GOV2        THM-GOV3
+[11-20:P33399; UTF16 1083644] DSIC ⇒ BIC      BIC ≠ DSIC
+[11-20:P33402; UTF16 1083691] THM-GOV4
+[11-20:P33403; UTF16 1083700] revelation principle
+[11-20:P33406; UTF16 1083741] THM-GOV5
+[11-20:P33407; UTF16 1083750] IC report ≠ evidence
+[11-20:P33409; UTF16 1083772] participation branch
+[11-20:P33412; UTF16 1083813] DEF-GOV11–13
+[11-20:P33413; UTF16 1083826] IR modalities
+[11-20:P33417; UTF16 1083916] THM-GOV6                 THM-GOV7
+[11-20:P33418; UTF16 1083950] IR hierarchy             converse failures
+[11-20:P33420; UTF16 1083994] procurement branch
+[11-20:P33423; UTF16 1084033] single-parameter model
+[11-20:P33427; UTF16 1084132] THM-GOV8               DEF-GOV14
+[11-20:P33428; UTF16 1084165] monotonicity            reverse auction
+[11-20:P33431; UTF16 1084271]                           THM-GOV9
+[11-20:P33433; UTF16 1084307] quasilinear mechanism branch
+[11-20:P33436; UTF16 1084356] DEF-GOV15
+[11-20:P33439; UTF16 1084386] THM-GOV10
+[11-20:P33440; UTF16 1084396] VCG truthfulness
+[11-20:P33443; UTF16 1084433] DEF-GOV16–17
+[11-20:P33444; UTF16 1084446] budget balance
+[11-20:P33447; UTF16 1084481] THM-GOV11
+[11-20:P33448; UTF16 1084491] bilateral-trade
+[11-20:P33449; UTF16 1084507] impossibility
+[11-20:P33451; UTF16 1084522] private-information branch
+[11-20:P33455; UTF16 1084625] DEF-GOV18–19            DEF-GOV20
+[11-20:P33456; UTF16 1084659] adverse selection       moral hazard
+[11-20:P33458; UTF16 1084729]                     ┌──────────┼───────────┐
+[11-20:P33459; UTF16 1084774]                     ▼          ▼           ▼
+[11-20:P33460; UTF16 1084819]                THM-GOV12  THM-GOV13  THM-GOV14
+[11-20:P33462; UTF16 1084867] monitoring
+[11-20:P33465; UTF16 1084898] DEF-GOV21–22
+[11-20:P33468; UTF16 1084931] THM-GOV15
+[11-20:P33470; UTF16 1084942] hold-up / bargaining
+[11-20:P33474; UTF16 1085039] DEF-GOV23               DEF-GOV24
+[11-20:P33477; UTF16 1085139] THM-GOV16              THM-GOV17
+[11-20:P33479; UTF16 1085173] equilibrium credibility
+[11-20:P33483; UTF16 1085273] DEF-GOV25–26            DEF-GOV27
+[11-20:P33484; UTF16 1085307] weak/full               extensive game
+[11-20:P33487; UTF16 1085412] THM-GOV18              THM-GOV19
+[11-20:P33489; UTF16 1085446] coalitions
+[11-20:P33492; UTF16 1085477] DEF-GOV28
+[11-20:P33496; UTF16 1085563] THM-GOV20              PRO-GOV2
+[11-20:P33498; UTF16 1085596] contract semantics
+[11-20:P33501; UTF16 1085635] DEF-GOV29–31
+[11-20:P33502; UTF16 1085648] contract machine,
+[11-20:P33503; UTF16 1085666] obligations,
+[11-20:P33504; UTF16 1085679] rights
+[11-20:P33508; UTF16 1085748] GOV21 GOV22          GOV23
+[11-20:P33509; UTF16 1085775] legal  obligation    execution
+[11-20:P33510; UTF16 1085806] limit  ≠ execution   ≠ authorization
+[11-20:P33513; UTF16 1085863] DEF-GOV32
+[11-20:P33514; UTF16 1085873] change order
+[11-20:P33517; UTF16 1085906] THM-GOV24
+[11-20:P33519; UTF16 1085917] responsibility
+[11-20:P33522; UTF16 1085952] DEF-GOV33–39
+[11-20:P33523; UTF16 1085965] causal,
+[11-20:P33524; UTF16 1085973] contractual,
+[11-20:P33525; UTF16 1085986] evidentiary,
+[11-20:P33526; UTF16 1085999] legal,
+[11-20:P33527; UTF16 1086006] dispute fiber,
+[11-20:P33528; UTF16 1086021] closure
+[11-20:P33532; UTF16 1086089] GOV25 GOV26         GOV27
+[11-20:P33534; UTF16 1086116] all strategic artifacts
+[11-20:P33537; UTF16 1086160] DEF-GOV40
+[11-20:P33541; UTF16 1086207] DEF-GOV41–42
+[11-20:P33542; UTF16 1086220] PCGC and
+[11-20:P33546; UTF16 1086266] THM-GOV28
+[11-20:P33550; UTF16 1086315] THM-GOV29
+[11-20:P33551; UTF16 1086325] finite DSIC
+[11-20:P33552; UTF16 1086337] checking bound
+[11-20:P33555; UTF16 1086372] THM-GOV30
+[11-20:P33557; UTF16 1086396] Strategic Governance
+[11-20:P33561; UTF16 1086477] GOV31 GOV32         GOV33
+[11-20:P33562; UTF16 1086503] open  proposer      checking
+[11-20:P33563; UTF16 1086532] world independence  complexity
+[11-20:P33566; UTF16 1086583] PROMPT 21
+[11-20:P33567; UTF16 1086593] regulatory and
+[11-20:P33568; UTF16 1086608] jurisdictional compliance
+[11-20:P33573; UTF16 1086666] Strategic implementation
+[11-20:P33574; UTF16 1086691] A centrally feasible outcome need not be an equilibrium.
+[11-20:P33575; UTF16 1086748] A centralized social optimum need not be implemented by the fixed governance mechanism.
+[11-20:P33576; UTF16 1086836] Strategic implementability is relative to a mechanism, strategy profile, and equilibrium mode.
+[11-20:P33577; UTF16 1086931] Weak implementation and full implementation are distinct.
+[11-20:P33578; UTF16 1086989] Existence of one good equilibrium does not guarantee the desired outcome in every equilibrium.
+[11-20:P33579; UTF16 1087084] Agent and type semantics
+[11-20:P33580; UTF16 1087109] Strategic claims require explicit agents, types, actions, messages, utilities, information, and authority.
+[11-20:P33581; UTF16 1087216] A type report is not itself evidence of the underlying physical fact.

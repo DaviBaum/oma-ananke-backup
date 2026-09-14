@@ -1,0 +1,299 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P13215; UTF16 497076] \varepsilon. ]
+[1-10:P13218; UTF16 497105] ANANKE may not construct an approximate quotient by taking the transitive closure of pairwise (\varepsilon)-closeness.
+[1-10:P13219; UTF16 497224] Such a closure can merge states whose total error exceeds the declared tolerance.
+[1-10:P13223; UTF16 497309] 9. Approximate Covers Replace Approximate Quotients
+[1-10:P13224; UTF16 497361] DEF-ER9 — Contextual (\boldsymbol\varepsilon)-Cover
+[1-10:P13225; UTF16 497413] Let (\boldsymbol\varepsilon) be a finite tolerance vector whose mandatory coordinates are zero.
+[1-10:P13226; UTF16 497509] A representative set:
+[1-10:P13227; UTF16 497531] [ C\subseteq X ]
+[1-10:P13228; UTF16 497548] is a contextual (\boldsymbol\varepsilon)-cover when:
+[1-10:P13229; UTF16 497601] [ \forall x\in X, \exists c\in C: \boldsymbol\delta_L(x,c) \preceq \boldsymbol\varepsilon. ]
+[1-10:P13230; UTF16 497694] Define the minimum covering number:
+[1-10:P13231; UTF16 497730] \min \left{ |C|: C\text{ is a contextual }\boldsymbol\varepsilon\text{-cover} \right}. ]
+[1-10:P13232; UTF16 497819] Because (X) is finite, the minimum exists.
+[1-10:P13236; UTF16 497865] DEF-ER10 — Approximate Decision Width
+[1-10:P13239; UTF16 497981] Its fixed-width encoding requirement is:
+[1-10:P13240; UTF16 498022] \left\lceil \log_2 \mathcal N_{\boldsymbol\varepsilon} (X,\boldsymbol\delta_L) \right\rceil. ]
+[1-10:P13241; UTF16 498117] This is an approximate cover width, not the logarithm of an equivalence-class count.
+[1-10:P13245; UTF16 498205] 9.1 Metric-safe clusters
+[1-10:P13246; UTF16 498230] For (B\subseteq X), define:
+[1-10:P13247; UTF16 498258] \bigvee_{x,y\in B} \boldsymbol\delta_L(x,y). ]
+[1-10:P13249; UTF16 498309] [ \operatorname{diam}(B) \preceq \boldsymbol\varepsilon, ]
+[1-10:P13250; UTF16 498368] then every representative (c\in B) approximates every (x\in B) within (\boldsymbol\varepsilon).
+[1-10:P13251; UTF16 498464] A cover ball with radius (\boldsymbol\varepsilon) may have diameter as large as (2\boldsymbol\varepsilon) under additive scalar metrics.
+[1-10:P13255; UTF16 498604] THM-ER24 — Safe Approximate Representative Use
+[1-10:P13256; UTF16 498651] Suppose a cluster (B\subseteq X) has representative (c\in X) and certificate:
+[1-10:P13257; UTF16 498729] [ \forall x\in B, \quad \boldsymbol\delta_L(x,c) \preceq \boldsymbol\varepsilon. ]
+[1-10:P13258; UTF16 498812] Then replacing (x\in B) by (c) changes every admitted exterior experiment outcome by no more than (\boldsymbol\varepsilon), and changes no mandatory exact channel.
+[1-10:P13260; UTF16 498982] The contextual residual distance contains every experiment-channel distance.
+[1-10:P13262; UTF16 499070] [ \boldsymbol\delta_L(x,c) \preceq \boldsymbol\varepsilon ]
+[1-10:P13263; UTF16 499130] implies every experiment coordinate satisfies its tolerance.
+[1-10:P13264; UTF16 499191] Mandatory disagreement would produce (\infty), which cannot be bounded by the finite zero mandatory tolerance. Thus all mandatory fields agree. ∎
+[1-10:P13265; UTF16 499337] This theorem gives metric safety, not necessarily exact decision safety.
+[1-10:P13269; UTF16 499413] 10. Approximate Communication Theorem
+[1-10:P13270; UTF16 499451] 10.1 Representative-decoder model
+[1-10:P13271; UTF16 499485] Alice receives (x\in X).
+[1-10:P13272; UTF16 499510] Bob receives (e\in\mathfrak E_L^{\mathrm{out}}).
+[1-10:P13273; UTF16 499559] Alice sends a message naming representative (c\in C).
+[1-10:P13274; UTF16 499613] Bob returns:
+[1-10:P13275; UTF16 499626] [ \mathsf{Out}_e(c). ]
+[1-10:P13276; UTF16 499649] The protocol is (\boldsymbol\varepsilon)-correct when:
+[1-10:P13277; UTF16 499704] [ \mathbf d_e \left( \mathsf{Out}_e(x), \mathsf{Out}_e(c) \right) \preceq \boldsymbol\varepsilon_e ]
+[1-10:P13278; UTF16 499805] for every (x,e).
+[1-10:P13282; UTF16 499825] THM-ER12 — Approximate Representative Communication Theorem
+[1-10:P13283; UTF16 499885] In the representative-decoder model, the minimum number of deterministic messages required for (\boldsymbol\varepsilon)-correct communication is:
+[1-10:P13284; UTF16 500031] [ \boxed{ \mathcal N_{\boldsymbol\varepsilon} (X,\boldsymbol\delta_L). } ]
+[1-10:P13286; UTF16 500112] Every message names one representative (c).
+[1-10:P13287; UTF16 500156] The states encoded by that message must all lie in the contextual (\boldsymbol\varepsilon)-ball around (c).
+[1-10:P13288; UTF16 500264] Therefore the representatives used by any valid protocol form an (\boldsymbol\varepsilon)-cover.
+[1-10:P13289; UTF16 500361] Conversely, an (\boldsymbol\varepsilon)-cover gives a valid protocol: Alice sends the identifier of a covering representative.
+[1-10:P13290; UTF16 500488] Thus the minimum message count equals the minimum representative-cover size. ∎
+[1-10:P13294; UTF16 500570] 10.2 Arbitrary decoders
+[1-10:P13295; UTF16 500594] If Bob may associate each message (m) with an arbitrary residual function:
+[1-10:P13296; UTF16 500669] [ r_m: e\mapsto\widehat o_{m,e} ]
+[1-10:P13297; UTF16 500703] not realized by any (c\in X), the minimum message count is the covering number of the residual set by balls centered anywhere in the ambient residual space.
+[1-10:P13298; UTF16 500860] This may be smaller.
+[1-10:P13299; UTF16 500881] Example
+[1-10:P13300; UTF16 500889] For residual values:
+[1-10:P13301; UTF16 500910] [ X={0,2} ]
+[1-10:P13302; UTF16 500922] with tolerance (1):
+[1-10:P13303; UTF16 500942] representative centers require two messages;
+[1-10:P13304; UTF16 500987] arbitrary center (1) covers both values with one message.
+[1-10:P13305; UTF16 501045] Therefore THM-ER12 is exact for representative-decoder schemes. Arbitrary synthetic decoders require a separate ambient-center covering number.
+[1-10:P13309; UTF16 501192] 11. Monotonicity and the Zero-Error Limit
+[1-10:P13310; UTF16 501234] THM-ER13 — Approximate Width Monotonicity
+[1-10:P13312; UTF16 501280] [ \boldsymbol\varepsilon_1 \preceq \boldsymbol\varepsilon_2, ]
+[1-10:P13314; UTF16 501349] [ \mathcal N_{\boldsymbol\varepsilon_2} \le \mathcal N_{\boldsymbol\varepsilon_1}, ]
+[1-10:P13316; UTF16 501439] [ W_D^{\boldsymbol\varepsilon_2} \le W_D^{\boldsymbol\varepsilon_1}. ]
+[1-10:P13318; UTF16 501516] Every (\boldsymbol\varepsilon_1)-cover is also an (\boldsymbol\varepsilon_2)-cover because the latter allows weakly larger error.
+[1-10:P13319; UTF16 501646] Minimizing over a larger feasible cover family cannot increase the optimum cardinality. ∎
+[1-10:P13323; UTF16 501739] COR-ER13A — Zero-Tolerance Width
+[1-10:P13324; UTF16 501772] Under THM-ER1’s separation hypothesis:
+[1-10:P13325; UTF16 501811] |\Sigma_L|. ]
+[1-10:P13327; UTF16 501836] W_D. ]
+[1-10:P13329; UTF16 501849] A zero-radius representative can cover exactly one zero-distance class.
+[1-10:P13330; UTF16 501921] THM-ER1 identifies zero-distance classes with exact contextual-equivalence classes. ∎
+[1-10:P13334; UTF16 502010] THM-ER20 — Zero-Error Recovery of Exact ANANKE Semantics
+[1-10:P13336; UTF16 502075] (X) and the extensional experiment family are finite;
+[1-10:P13337; UTF16 502129] outcome metrics separate exact outcomes;
+[1-10:P13338; UTF16 502170] numerical enclosures are nested and converge to exact model outcomes;
+[1-10:P13339; UTF16 502240] all mandatory fields are evaluated exactly;
+[1-10:P13340; UTF16 502284] model validity remains satisfied;
+[1-10:P13341; UTF16 502318] model discrepancy either:
+[1-10:P13342; UTF16 502344] is excluded because the claim is model-level; or
+[1-10:P13343; UTF16 502393] converges to the identity relation for a physical-level claim.
+[1-10:P13345; UTF16 502462] for sufficiently small positive scalar tolerance (\varepsilon), |\Sigma_L|; ]
+[1-10:P13346; UTF16 502540] numerical experiment reports converge to exact Prompt-2 reports whenever the exact report has positive decision margin;
+[1-10:P13347; UTF16 502660] ANANKE-(\varepsilon) recovers the exact Prompt-2/3 model-level semantics as every computational error tends to zero.
+[1-10:P13349; UTF16 502783] Because (X/\equiv_{\partial L}) is finite, the set of positive scalar distances between distinct exact classes has a positive minimum:
+[1-10:P13350; UTF16 502918] [ d_{\min}>0. ]
+[1-10:P13352; UTF16 502939] [ 0\le\varepsilon<d_{\min}, ]
+[1-10:P13353; UTF16 502969] no representative ball can contain states from two distinct classes. Exact classes themselves have zero diameter. Therefore the covering number equals the exact class count.
+[1-10:P13354; UTF16 503143] Nested numerical enclosures converging to the exact outcome eventually lie inside every positive-radius neighborhood of that outcome.
+[1-10:P13355; UTF16 503277] If the decision margin is positive, THM-ER7 below gives eventual report certification.
+[1-10:P13356; UTF16 503364] The model-level limit follows from enclosure convergence.
+[1-10:P13357; UTF16 503422] A physical-level limit additionally requires discrepancy collapse; otherwise THM-ER16 supplies a nonzero uncertainty floor. ∎
+[1-10:P13358; UTF16 503548] Infinite-space limitation
+[1-10:P13359; UTF16 503574] In an infinite or continuous residual space, distinct states may have distances approaching zero. A positive (d_{\min}) need not exist, so no finite-width plateau near (\varepsilon=0) is guaranteed.
+[1-10:P13363; UTF16 503776] 12. Context Error Amplification
+[1-10:P13364; UTF16 503808] The contextual metric already includes every downstream experiment. Under generated-context closure, a primitive context is nonexpansive in the full contextual metric.
+[1-10:P13365; UTF16 503976] For computable local propagation, however, ANANKE uses typed local metrics and certified transfer moduli.
+[1-10:P13366; UTF16 504082] DEF-ER11 — Certified Error-Transfer Modulus
+[1-10:P13367; UTF16 504126] For primitive context:
+[1-10:P13368; UTF16 504149] [ K:X_\tau\to X_\sigma, ]
+[1-10:P13369; UTF16 504175] a transfer modulus is a monotone function:
+[1-10:P13370; UTF16 504218] [ \omega_K: \mathbb E_\tau\to\mathbb E_\sigma ]
+[1-10:P13372; UTF16 504278] [ \omega_K(\mathbf 0)=\mathbf 0 ]
+[1-10:P13374; UTF16 504317] [ \mathbf d_\sigma(Kx,Ky) \preceq \omega_K \left( \mathbf d_\tau(x,y) \right) ]
+[1-10:P13375; UTF16 504397] for every (x,y) in the certified validity domain.
+[1-10:P13376; UTF16 504447] A scalar Lipschitz constant is the special case:
+[1-10:P13377; UTF16 504496] [ \omega_K(t)=L_Kt. ]
+[1-10:P13381; UTF16 504521] THM-ER4 — Primitive Context Error Transfer
+[1-10:P13383; UTF16 504568] [ \mathbf d_\tau(x,\widehat x) \preceq \mathbf e, ]
+[1-10:P13385; UTF16 504626] [ \mathbf d_\sigma \left( Kx,K\widehat x \right) \preceq \omega_K(\mathbf e). ]
+[1-10:P13386; UTF16 504706] If an approximate implementation (\widehat K) has certified local defect:
+[1-10:P13387; UTF16 504780] [ \mathbf d_\sigma \left( Kz,\widehat Kz \right) \preceq \mathbf b_K ]
+[1-10:P13388; UTF16 504851] for every relevant (z), then:
+[1-10:P13389; UTF16 504881] [ \boxed{ \mathbf d_\sigma \left( Kx,\widehat K\widehat x \right) \preceq \omega_K(\mathbf e) \oplus \mathbf b_K. } ]
+[1-10:P13391; UTF16 505005] The first inequality is the modulus contract.
+[1-10:P13392; UTF16 505051] For the second, apply the triangle law:
+[1-10:P13393; UTF16 505091] [ \begin{aligned} \mathbf d_\sigma \left( Kx,\widehat K\widehat x \right) \preceq{}& \mathbf d_\sigma \left( Kx,K\widehat x \right)\ &\oplus \mathbf d_\sigma \left( K\widehat x,\widehat K\widehat x \right). \end{aligned} ]
+[1-10:P13394; UTF16 505314] Apply the modulus to the first term and the local-defect certificate to the second. ∎
+[1-10:P13398; UTF16 505403] 12.1 Contextual nonexpansiveness
+[1-10:P13399; UTF16 505436] COR-ER4A — Contextual Metric Already Contains Amplification
+[1-10:P13400; UTF16 505496] If every exterior experiment after (K) is admitted as an experiment before (K), then:
+[1-10:P13401; UTF16 505582] [ \boldsymbol\delta_\sigma(Kx,Ky) \preceq \boldsymbol\delta_\tau(x,y) ]
+[1-10:P13402; UTF16 505654] after the natural experiment-coordinate embedding.
+[1-10:P13403; UTF16 505705] The full contextual residual distance has already taken the supremum over downstream amplification.
+[1-10:P13407; UTF16 505808] 13. Context-Chain Error Composition
+[1-10:P13409; UTF16 505849] K_m\diamond\cdots\diamond K_1. ]
+[1-10:P13411; UTF16 505890] \omega_{K_m} \circ\cdots\circ \omega_{K_1}. ]
+[1-10:P13415; UTF16 505939] THM-ER5 — Context-Chain Error Theorem
+[1-10:P13416; UTF16 505977] For every (x,y) inside the certified validity domains:
+[1-10:P13417; UTF16 506032] [ \mathbf d(C[x],C[y]) \preceq \omega_C \left( \mathbf d(x,y) \right). ]
+[1-10:P13418; UTF16 506105] If every context is scalar Lipschitz:
+[1-10:P13419; UTF16 506143] [ d(K_i x,K_i y) \le L_i d(x,y), ]
+[1-10:P13421; UTF16 506184] [ d(C[x],C[y]) \le \left( \prod_{i=1}^mL_i \right) d(x,y). ]
+[1-10:P13423; UTF16 506251] Induct on (m).
+[1-10:P13424; UTF16 506266] The case (m=1) is THM-ER4.
+[1-10:P13425; UTF16 506293] Suppose the result holds for:
+[1-10:P13426; UTF16 506323] K_{m-1}\diamond\cdots\diamond K_1. ]
+[1-10:P13428; UTF16 506366] [ \begin{aligned} d(K_m C_{m-1}[x],K_m C_{m-1}[y]) &\preceq \omega_{K_m} \left( d(C_{m-1}[x],C_{m-1}[y]) \right)\ &\preceq \omega_{K_m} \left( \omega_{C_{m-1}}(d(x,y)) \right), \end{aligned} ]
+[1-10:P13429; UTF16 506559] using monotonicity.
+[1-10:P13430; UTF16 506579] This is:
+[1-10:P13431; UTF16 506588] [ \omega_C(d(x,y)). ]
+[1-10:P13432; UTF16 506610] The Lipschitz formula follows by composing scalar multiplications. ∎
+[1-10:P13433; UTF16 506679] Dangerous regime
+[1-10:P13435; UTF16 506700] [ \prod_iL_i\gg1, ]
+[1-10:P13436; UTF16 506720] a locally tiny error can become globally decisive.
+[1-10:P13437; UTF16 506771] Approximation must be budgeted at the root, not only at the local component.
+[1-10:P13441; UTF16 506851] 14. Decision-Influence Error Calculus
+[1-10:P13442; UTF16 506889] Let (\mathfrak Q) be the finite set of live project obligations, including:
+[1-10:P13443; UTF16 506965] mandatory classifications;
+[1-10:P13444; UTF16 506992] qualitative marked-menu decisions;
+[1-10:P13445; UTF16 507027] quantitative decisions;
+[1-10:P13446; UTF16 507051] evidence-release decisions;
+[1-10:P13447; UTF16 507079] human approval requests.
+[1-10:P13448; UTF16 507104] For each (q\in\mathfrak Q), let:
+[1-10:P13449; UTF16 507137] [ R_q: Z_q\to\mathsf{Report}_q ]
+[1-10:P13450; UTF16 507170] be the exact report map on the complete joint profile space relevant to (q).
+[1-10:P13451; UTF16 507247] DEF-ER12 — Decision-Influence Set
+[1-10:P13452; UTF16 507281] For certified enclosure:
+[1-10:P13453; UTF16 507306] [ E_q\subseteq Z_q, ]
+[1-10:P13455; UTF16 507336] \begin{cases} \varnothing, & |R_q(E_q)|=1,\ {q}, & |R_q(E_q)|>1. \end{cases} ]
+[1-10:P13456; UTF16 507415] For a whole-project enclosure (E), define:
+[1-10:P13457; UTF16 507458] \left{ q\in\mathfrak Q: |R_q(\pi_q(E))|>1 \right}. } ]
+[1-10:P13458; UTF16 507513] Mandatory classifiers are included as report maps.
+[1-10:P13459; UTF16 507564] A sound computational implementation may return:
+[1-10:P13460; UTF16 507613] [ \mathcal I^#(E) \supseteq \mathcal I(E). ]
+[1-10:P13461; UTF16 507658] It may overstate possible influence. It may not omit a genuinely affected decision.
+[1-10:P13465; UTF16 507745] 14.1 Meaning
+[1-10:P13466; UTF16 507758] [ q\notin\mathcal I(E) ]
+[1-10:P13467; UTF16 507783] means that every exact outcome still allowed by (E) gives the same report for obligation (q).
+[1-10:P13468; UTF16 507877] The object:
+[1-10:P13469; UTF16 507889] [ (E,\mathcal I^#(E)) ]
+[1-10:P13470; UTF16 507913] is the exact mathematical form of ANANKE’s original Decision-Influence Error idea.
+[1-10:P13474; UTF16 507999] 15. Decision Cells, Boundaries, and Margins
+[1-10:P13475; UTF16 508043] Fix one decision obligation (q=(d,M)).
+[1-10:P13476; UTF16 508082] The joint profile space (Z_q) includes:
+[1-10:P13477; UTF16 508122] marked-candidate profile;
+[1-10:P13478; UTF16 508148] all competitor profiles;
+[1-10:P13479; UTF16 508173] correlations among uncertain competitors;
+[1-10:P13480; UTF16 508215] exact evidence and mandatory fields relevant to the rule.
+[1-10:P13481; UTF16 508273] Assume a declared pseudometric:
+[1-10:P13482; UTF16 508305] [ \rho_q ]
+[1-10:P13483; UTF16 508316] on the quantitative portion of (Z_q).
+[1-10:P13484; UTF16 508354] DEF-ER13 — Decision Cell
+[1-10:P13485; UTF16 508379] For report (r), define:
+[1-10:P13486; UTF16 508403] {z\in Z_q(z)=r}. ]
+[1-10:P13487; UTF16 508422] The decision boundary of that report cell is:
+[1-10:P13488; UTF16 508468] \overline{D_{q,r}} \cap \overline{Z_q\setminus D_{q,r}}. ]
+[1-10:P13489; UTF16 508527] DEF-ER14 — Decision-Stability Margin
+[1-10:P13490; UTF16 508564] For (z\in Z_q), with (r=R_q(z)), define:
+[1-10:P13491; UTF16 508605] \operatorname{dist}{\rho_q} \left( z, Z_q\setminus D{q,r} \right). ]
+[1-10:P13492; UTF16 508674] If the complement is empty:
+[1-10:P13493; UTF16 508702] [ m_q(z)=\infty. ]
+[1-10:P13494; UTF16 508721] For vector-valued tolerances, define the downward-closed stability budget set:
+[1-10:P13495; UTF16 508800] \left{ \boldsymbol\varepsilon: B_{\boldsymbol\varepsilon}(z) \subseteq D_{q,R_q(z)} \right}. ]
+[1-10:P13496; UTF16 508895] A scalar margin exists only after a metric or faithful gauge is declared.
+[1-10:P13497; UTF16 508969] For an arbitrary menu-sensitive correspondence, (m_q(z)) may be zero everywhere.
+[1-10:P13501; UTF16 509053] 16. Decision-Stability Theorem
+[1-10:P13502; UTF16 509084] THM-ER6 — Decision Stability Within a Certified Margin
+[1-10:P13504; UTF16 509144] [ z^\star\in E \subseteq B_{\boldsymbol\varepsilon}(\widehat z) \subseteq Z_q. ]
+[1-10:P13506; UTF16 509233] mandatory fields are constant throughout (E);
+[1-10:P13507; UTF16 509279] (\boldsymbol\varepsilon\in\mathfrak M_q(\widehat z)).
+[1-10:P13509; UTF16 509339] R_q(\widehat z) ]
+[1-10:P13510; UTF16 509357] for every (z\in E), including the exact profile (z^\star).
+[1-10:P13511; UTF16 509416] In scalar form, it is sufficient that:
+[1-10:P13512; UTF16 509455] [ \sup_{z\in E}\rho_q(z,\widehat z) < m_q(\widehat z). ]
+[1-10:P13514; UTF16 509518] By definition of the stability budget:
+[1-10:P13515; UTF16 509557] [ B_{\boldsymbol\varepsilon}(\widehat z) \subseteq D_{q,R_q(\widehat z)}. ]
+[1-10:P13517; UTF16 509640] [ E \subseteq B_{\boldsymbol\varepsilon}(\widehat z), ]
+[1-10:P13518; UTF16 509696] every (z\in E) belongs to the same decision cell.
+[1-10:P13520; UTF16 509757] [ R_q(z)=R_q(\widehat z). ]
+[1-10:P13521; UTF16 509785] The scalar form follows from the definition of distance to the complement. ∎
+[1-10:P13522; UTF16 509862] Removed hypothesis counterexample
+[1-10:P13523; UTF16 509896] If the enclosure intersects the complement of the decision cell, two admissible exact values may produce different reports.
+[1-10:P13527; UTF16 510023] 17. Decision-Invariant Numerical Stopping
+[1-10:P13528; UTF16 510065] DEF-ER15 — Stable Enclosure
+[1-10:P13529; UTF16 510093] A certified project enclosure (E) is stable for obligation set (\mathfrak Q_0) when:
+[1-10:P13530; UTF16 510178] every mandatory projection is a singleton;
+[1-10:P13531; UTF16 510221] for every (q\in\mathfrak Q_0), [ |R_q(\pi_q(E))|=1. ]
+[1-10:P13537; UTF16 510307] THM-ER9 — Decision-Invariant Stopping
+[1-10:P13538; UTF16 510345] If (E) is stable for all currently required obligations, then every sound refinement:
+[1-10:P13539; UTF16 510431] [ E'\subseteq E ]
+[1-10:P13540; UTF16 510449] produces the same mandatory statuses and decision reports.
+[1-10:P13541; UTF16 510508] Further numerical refinement cannot change the current decision under the fixed theory.
+[1-10:P13543; UTF16 510602] For each obligation (q), (R_q) is constant on (E).
+[1-10:P13545; UTF16 510660] [ E'\subseteq E, ]
+[1-10:P13546; UTF16 510679] (R_q) is also constant on (E'), with the same value.
+[1-10:P13547; UTF16 510732] The same argument holds for mandatory projections. ∎
+[1-10:P13548; UTF16 510785] Qualification
+[1-10:P13549; UTF16 510799] Further computation may still have value for:
+[1-10:P13550; UTF16 510845] future theory expansion;
+[1-10:P13551; UTF16 510870] reusable model validation;
+[1-10:P13552; UTF16 510897] tighter evidence;
+[1-10:P13553; UTF16 510915] operational monitoring;
+[1-10:P13554; UTF16 510939] a different stakeholder decision.
+[1-10:P13555; UTF16 510973] The theorem concerns the current fixed decision theory.
+[1-10:P13559; UTF16 511032] THM-ER15 — Stable Decision Preservation Under Adaptive Refinement
+[1-10:P13560; UTF16 511098] If a decision has been certified from enclosure (E), any later refinement (E'\subseteq E) preserving the same theory and validity assumptions cannot invalidate that decision certificate.
+[1-10:P13562; UTF16 511291] Immediate from THM-ER9. ∎
+[1-10:P13566; UTF16 511320] 18. Positive and Zero Decision Margins
+[1-10:P13567; UTF16 511359] THM-ER7 — Positive-Margin Eventual Certification
+[1-10:P13569; UTF16 511413] [ E_0\supseteq E_1\supseteq\cdots ]
+[1-10:P13570; UTF16 511449] be nested certified enclosures containing exact profile (z^\star), with:
+[1-10:P13571; UTF16 511522] [ \operatorname{diam}(E_n)\to0. ]
+[1-10:P13573; UTF16 511560] [ m_q(z^\star)>0, ]
+[1-10:P13574; UTF16 511580] then there exists (N) such that for every (n\ge N):
+[1-10:P13575; UTF16 511632] [ E_n \subseteq D_{q,R_q(z^\star)}. ]
+[1-10:P13576; UTF16 511670] Thus sufficiently fine refinement certifies the exact report.
+[1-10:P13578; UTF16 511738] Choose:
+[1-10:P13579; UTF16 511746] [ 0<r<m_q(z^\star). ]
+[1-10:P13580; UTF16 511768] By diameter convergence and containment of (z^\star), there exists (N) such that:
+[1-10:P13581; UTF16 511850] [ E_n\subseteq B_r(z^\star) ]
+[1-10:P13582; UTF16 511880] for every (n\ge N).
+[1-10:P13583; UTF16 511900] The definition of (m_q) gives:
+[1-10:P13584; UTF16 511931] [ B_r(z^\star) \subseteq D_{q,R_q(z^\star)}. ]
+[1-10:P13585; UTF16 511978] Therefore the report is uniform on (E_n). ∎
+[1-10:P13589; UTF16 512025] THM-ER8 — Zero-Margin Decisions May Remain Permanently Unresolved
+[1-10:P13590; UTF16 512091] There exist convergent nested enclosures with:
+[1-10:P13591; UTF16 512138] [ \operatorname{diam}(E_n)\to0 ]
+[1-10:P13592; UTF16 512171] for which no finite stage certifies a unique report.
+[1-10:P13595; UTF16 512235] [ Z=\mathbb R, ]
+[1-10:P13596; UTF16 512252] and define:
+[1-10:P13597; UTF16 512264] \begin{cases} \mathsf{negative},&z<0,\ \mathsf{tie},&z=0,\ \mathsf{positive},&z>0. \end{cases} ]
+[1-10:P13598; UTF16 512361] Take exact value:
+[1-10:P13599; UTF16 512379] [ z^\star=0 ]
+[1-10:P13600; UTF16 512393] and enclosures:
+[1-10:P13601; UTF16 512409] [ E_n=[-1/n,1/n]. ]
+[1-10:P13602; UTF16 512429] Every enclosure contains negative, zero, and positive points, so the report is never uniform.
+[1-10:P13603; UTF16 512523] Yet:
+[1-10:P13604; UTF16 512528] [ \operatorname{diam}(E_n)=2/n\to0. ]
+[1-10:P13605; UTF16 512566] The exact point has zero decision margin. ∎
+[1-10:P13606; UTF16 512610] The correct output is a tie or unresolved status, not fabricated uniqueness.
+[1-10:P13610; UTF16 512690] 19. No Quantitative Regret Without Decision Geometry
+[1-10:P13611; UTF16 512743] THM-ER10 — No Canonical Regret from an Arbitrary Choice Correspondence
+[1-10:P13612; UTF16 512814] An arbitrary Prompt-2 choice correspondence does not determine a canonical nontrivial numerical regret scale.
+[1-10:P13614; UTF16 512930] Consider menu:
+[1-10:P13615; UTF16 512945] [ M={a,b} ]
+[1-10:P13616; UTF16 512957] with choice report selecting (a).
+[1-10:P13617; UTF16 512991] The same choice report is compatible with utility:
+[1-10:P13618; UTF16 513042] [ u_1(a)=1, \qquad u_1(b)=0, ]
+[1-10:P13619; UTF16 513073] and utility:
+[1-10:P13620; UTF16 513086] [ u_2(a)=10^6, \qquad u_2(b)=0. ]
+[1-10:P13621; UTF16 513120] Both utilities induce the same selected alternative, but the regret of choosing (b) is respectively:
+[1-10:P13622; UTF16 513221] [ 1 ]
+[1-10:P13624; UTF16 513232] [ 10^6. ]
+[1-10:P13625; UTF16 513242] More generally, any strictly increasing transformation of an ordinal utility preserves choices while changing cardinal gaps.
+[1-10:P13626; UTF16 513367] Therefore the choice correspondence alone supplies no canonical numerical regret. ∎
+[1-10:P13627; UTF16 513451] Required additional structure
+[1-10:P13628; UTF16 513481] Bounded regret requires one of:
+[1-10:P13629; UTF16 513513] a declared utility;
+[1-10:P13630; UTF16 513533] a loss function;
+[1-10:P13631; UTF16 513550] a quantitative preorder with slack;
+[1-10:P13632; UTF16 513586] a distance-to-acceptance function;
+[1-10:P13633; UTF16 513621] stakeholder-specific cardinal tradeoff data.
+[1-10:P13634; UTF16 513666] Qualitative decisions retain exact report semantics.

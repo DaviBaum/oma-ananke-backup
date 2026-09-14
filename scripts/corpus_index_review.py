@@ -8,6 +8,8 @@ from pathlib import Path
 import json
 import xml.etree.ElementTree as ET
 from collections import Counter
+import argparse
+from datetime import datetime, timezone
 from corpus_audit import NS, paragraph_text, digest, save_json
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,6 +17,22 @@ OUT = ROOT / "evidence/math"
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--acknowledge", action="store_true")
+    parser.add_argument("--notes")
+    args = parser.parse_args()
+    if args.acknowledge:
+        if not args.notes:
+            raise ValueError("Substantive review notes required")
+        directory = OUT / "index-review"
+        save_json(directory / "read_review.json", {
+            "status":"NOVEL_PROSE_AND_EXACT_TABLE_CORRESPONDENCE_REVIEWED",
+            "reviewer":"math-audit-agent", "utc":datetime.now(timezone.utc).isoformat(),
+            "audit_sha256":digest((directory / "audit.json").read_bytes()),
+            "novel_sha256":digest((directory / "novel.txt").read_bytes()), "notes":args.notes,
+            "notice":"Row equality is an exhaustive structural check, not independent validation of source assertions. Template body referents require their own completed reading. No full-corpus or engineering release claim."})
+        print("Index review acknowledged with immutable report hashes")
+        return
     manifest = json.loads(next((ROOT / "math1/math1").glob("*Manifest*.json")).read_text(encoding="utf8"))
     records = [json.loads(line) for line in (OUT / "extracted/ananke-canonical.jsonl").read_text(encoding="utf8").splitlines()]
     native = (OUT / "native/ananke-canonical/document.xml").read_bytes()
@@ -40,7 +58,7 @@ def main():
         if header == ["Historical result","Prompt","Historical status","Active replacement"]:
             return [[p["id"],p["prompt"],p["status"],", ".join(p["superseded_by"])] for p in objects if p["superseded_by"]]
         if header == ["Active result","Prompt","Supersedes"]:
-            return [[p["id"],p["prompt"],", ".join(p["supersedes"])] for p in objects if p["supersedes"]]
+            return [[p["id"],p["prompt"],", ".join(p["supersedes"])] for p in objects if p["status"] == "ACTIVE — REPAIRED"]
         return None
     tables, checked_paragraphs = [], set()
     for table in root.findall(".//w:tbl", NS):

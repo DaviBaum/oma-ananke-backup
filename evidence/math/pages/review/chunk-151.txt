@@ -1,0 +1,310 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P3554; UTF16 121729] Every claim relying on cryptographic or probabilistic randomness uses an applicable randomness model.
+[21-30:P3555; UTF16 121831] ASSUMP-SEC6 — Authorization Completeness
+[21-30:P3556; UTF16 121872] Every permission or prohibition capable of changing an authorization root is represented or explicitly unresolved.
+[21-30:P3557; UTF16 121987] ASSUMP-SEC7 — Freshness Correctness
+[21-30:P3558; UTF16 122023] Replay-sensitive claims contain sufficient nonce, counter, epoch, sequence, timestamp, or equivalent state.
+[21-30:P3559; UTF16 122131] ASSUMP-SEC8 — Trust-Root Integrity
+[21-30:P3560; UTF16 122166] Boot, attestation, credential, and signature chains remain conditional on the declared roots of trust.
+[21-30:P3561; UTF16 122269] ASSUMP-SEC9 — Provenance Completeness
+[21-30:P3562; UTF16 122307] Every dependency required by a claimed supply-chain theorem appears in the declared provenance graph.
+[21-30:P3563; UTF16 122409] ASSUMP-SEC10 — Software and Hardware Identity
+[21-30:P3564; UTF16 122455] Security artifacts bind to the exact deployed hardware, software, firmware, model, configuration, and version.
+[21-30:P3565; UTF16 122566] ASSUMP-SEC11 — Sensor Semantics
+[21-30:P3566; UTF16 122598] Sensor-message authenticity is kept distinct from physical-measurement correctness.
+[21-30:P3567; UTF16 122682] ASSUMP-SEC12 — Actuator Semantics
+[21-30:P3568; UTF16 122716] Actuator commands are checked relative to authentication, authorization, freshness, current physical state, and safety constraints.
+[21-30:P3569; UTF16 122848] ASSUMP-SEC13 — Byzantine Bound
+[21-30:P3570; UTF16 122879] Any Byzantine theorem uses a declared maximum number (f) of Byzantine identities and the required identity-uniqueness and honest-behavior assumptions.
+[21-30:P3571; UTF16 123030] ASSUMP-SEC14 — Noninterference Scope
+[21-30:P3572; UTF16 123067] Information-flow claims identify:
+[21-30:P3573; UTF16 123101] security domains;
+[21-30:P3575; UTF16 123133] transition semantics;
+[21-30:P3576; UTF16 123155] allowed declassification;
+[21-30:P3577; UTF16 123181] excluded timing or covert channels.
+[21-30:P3578; UTF16 123217] ASSUMP-SEC15 — Incident-State Correctness
+[21-30:P3579; UTF16 123259] Incident-response claims use the actual maintained compromise-state family or a sound enclosure.
+[21-30:P3580; UTF16 123356] ASSUMP-SEC16 — Physical and Operational State
+[21-30:P3581; UTF16 123402] Cyber-physical claims bind to the correct Prompt-14 and Prompt-15 physical and operational state.
+[21-30:P3582; UTF16 123500] ASSUMP-SEC17 — Reliability Modality
+[21-30:P3583; UTF16 123536] Probabilities of compromise or security failure retain Prompt-17 semantics.
+[21-30:P3584; UTF16 123612] ASSUMP-SEC18 — Governance and Regulatory Authority
+[21-30:P3585; UTF16 123663] Digital authentication and authorization do not create governance or regulatory authority absent Prompts 20 and 21.
+[21-30:P3586; UTF16 123779] ASSUMP-SEC19 — UNKNOWN Discipline
+[21-30:P3587; UTF16 123813] Unknown compromise, provenance, dependency, key, identity, or threat state remains UNKNOWN.
+[21-30:P3588; UTF16 123905] ASSUMP-SEC20 — Checker Soundness
+[21-30:P3589; UTF16 123938] Trusted security proof checkers are sound.
+[21-30:P3590; UTF16 123981] ASSUMP-SEC21 — Dependency Completeness
+[21-30:P3591; UTF16 124020] Every dependency required for exact incremental security recertification is represented.
+[21-30:P3592; UTF16 124109] ASSUMP-SEC22 — Actual-Adversary Coverage
+[21-30:P3593; UTF16 124150] Whenever robust security is claimed, the actual attacker behavior belongs to the declared adversary family.
+[21-30:P3594; UTF16 124258] ASSUMP-SEC23 — Complete Mediation
+[21-30:P3595; UTF16 124292] Every security-relevant protected action passes through the declared authorization and policy-enforcement point.
+[21-30:P3596; UTF16 124405] ASSUMP-SEC24 — Cryptographic Implementation Fidelity
+[21-30:P3597; UTF16 124458] The implemented cryptographic primitive and protocol correspond to the primitive and protocol modeled by the active certificate.
+[21-30:P3598; UTF16 124587] ASSUMP-SEC25 — Security-Claim Formalization Fidelity
+[21-30:P3599; UTF16 124640] Each machine-checked security predicate expresses the security proposition claimed by the package.
+[21-30:P3603; UTF16 124742] 4. Cyber-Physical Security State
+[21-30:P3604; UTF16 124775] DEF-SEC1 — Cyber-Physical Security State
+[21-30:P3606; UTF16 124824] \left( x_t^{\mathrm{phys}}, x_t^{\mathrm{cyber}}, \mathcal I_t, \mathcal K_t, \mathcal A_t, \mathcal P_t, \mathcal M_t, \mathcal V_t \right). } ]
+[21-30:P3608; UTF16 124977] (x_t^{\mathrm{phys}}): physical and operational building state;
+[21-30:P3609; UTF16 125041] (x_t^{\mathrm{cyber}}): software, firmware, network, runtime, and computation state;
+[21-30:P3610; UTF16 125126] (\mathcal I_t): principals, identities, credentials, and revocation;
+[21-30:P3611; UTF16 125195] (\mathcal K_t): key material, trust anchors, epochs, and cryptographic state;
+[21-30:P3612; UTF16 125273] (\mathcal A_t): authorization, roles, capabilities, and delegated rights;
+[21-30:P3613; UTF16 125347] (\mathcal P_t): source, build, software, hardware, and deployment provenance;
+[21-30:P3614; UTF16 125425] (\mathcal M_t): security monitoring, incident, recovery, and forensic state;
+[21-30:P3615; UTF16 125502] (\mathcal V_t): version identities and current trust roots.
+[21-30:P3616; UTF16 125562] Two systems with identical physical geometry may have different security states because they run different firmware, trust different roots, or carry different credentials.
+[21-30:P3620; UTF16 125737] 5. Principals, Identities, Credentials, and Capabilities
+[21-30:P3621; UTF16 125794] DEF-SEC2 — Principal
+[21-30:P3622; UTF16 125815] A Principal is an entity to which:
+[21-30:P3625; UTF16 125867] credentials;
+[21-30:P3629; UTF16 125918] may be attributed.
+[21-30:P3630; UTF16 125937] Principals may include:
+[21-30:P3631; UTF16 125961] people;
+[21-30:P3632; UTF16 125969] organizations;
+[21-30:P3633; UTF16 125984] services;
+[21-30:P3634; UTF16 125994] software processes;
+[21-30:P3635; UTF16 126014] devices;
+[21-30:P3636; UTF16 126023] hardware roots;
+[21-30:P3637; UTF16 126039] automation agents.
+[21-30:P3641; UTF16 126061] DEF-SEC3 — Digital Identity
+[21-30:P3642; UTF16 126089] A Digital Identity is:
+[21-30:P3643; UTF16 126112] \left( \mathsf{principal}, \mathsf{namespace}, \mathsf{identifier}, \mathsf{issuer}, \mathsf{validity}, \mathsf{version} \right). } ]
+[21-30:P3644; UTF16 126246] An identifier string is an index into an identity theory. It is not, by itself, proof of the principal.
+[21-30:P3648; UTF16 126353] DEF-SEC4 — Credential
+[21-30:P3649; UTF16 126375] A Credential is:
+[21-30:P3650; UTF16 126392] \left( \mathsf{subject}, \mathsf{issuer}, \mathsf{authenticator}, \mathsf{claims}, \mathsf{validity}, \mathsf{revocationState}, \mathsf{evidence} \right). } ]
+[21-30:P3651; UTF16 126551] The abstract authenticator may be:
+[21-30:P3652; UTF16 126586] a secret;
+[21-30:P3653; UTF16 126596] a public-key relation;
+[21-30:P3654; UTF16 126619] a certificate;
+[21-30:P3655; UTF16 126634] a hardware attestation;
+[21-30:P3656; UTF16 126658] a token;
+[21-30:P3657; UTF16 126667] another formally declared mechanism.
+[21-30:P3658; UTF16 126704] No one credential technology is assumed universally correct.
+[21-30:P3662; UTF16 126768] 6. Authentication, Authorization, and Capability Safety
+[21-30:P3663; UTF16 126824] DEF-SEC5 — Authentication Claim
+[21-30:P3664; UTF16 126856] [ \boxed{ \mathsf{Authenticated}(p,c,t) } ]
+[21-30:P3665; UTF16 126900] means the authentication checker accepts that credential (c) authenticates principal (p) at time (t), under the active identity, credential, revocation, and cryptographic theory.
+[21-30:P3666; UTF16 127079] This is a scoped claim. It does not imply:
+[21-30:P3668; UTF16 127133] honesty;
+[21-30:P3669; UTF16 127142] competence;
+[21-30:P3670; UTF16 127154] physical presence;
+[21-30:P3671; UTF16 127173] semantic truth.
+[21-30:P3675; UTF16 127192] DEF-SEC6 — Authorization Relation
+[21-30:P3677; UTF16 127234] [ \boxed{ \mathsf{May}(p,a,r,z_t) } ]
+[21-30:P3679; UTF16 127277] principal (p);
+[21-30:P3680; UTF16 127292] action (a);
+[21-30:P3681; UTF16 127304] resource (r);
+[21-30:P3682; UTF16 127318] current state (z_t).
+[21-30:P3683; UTF16 127339] Authorization may depend on:
+[21-30:P3684; UTF16 127368] authenticated identity;
+[21-30:P3690; UTF16 127449] governance authority;
+[21-30:P3691; UTF16 127471] regulatory authority;
+[21-30:P3692; UTF16 127493] separation-of-duty requirements;
+[21-30:P3693; UTF16 127526] revocation.
+[21-30:P3694; UTF16 127538] Capability object
+[21-30:P3695; UTF16 127556] A capability may be represented as:
+[21-30:P3696; UTF16 127592] \left( \mathsf{issuer}, \mathsf{holder}, \mathsf{rights}, \mathsf{resource}, \mathsf{context}, \mathsf{delegation}, \mathsf{validity}, \mathsf{revocation} \right). ]
+[21-30:P3697; UTF16 127758] Possessing bytes that encode a capability does not establish its validity. The capability must still satisfy its issuer, authenticity, context, version, and revocation conditions.
+[21-30:P3701; UTF16 127941] THM-SEC1 — Authentication Does Not Imply Authorization
+[21-30:P3703; UTF16 128006] There exists a finite security system containing a principal (p), credential (c), action (a), resource (r), and state (z) such that:
+[21-30:P3704; UTF16 128139] [ \mathsf{Authenticated}(p,c,t)=\mathsf{TRUE}, ]
+[21-30:P3706; UTF16 128193] [ \mathsf{May}(p,a,r,z)=\mathsf{FALSE}. ]
+[21-30:P3708; UTF16 128241] Let (p) be an authenticated maintenance technician.
+[21-30:P3709; UTF16 128293] Let (r) be the synthetic elevator-control configuration.
+[21-30:P3710; UTF16 128350] Let (a) be:
+[21-30:P3711; UTF16 128362] [ \mathsf{RewriteElevatorControlLogic}. ]
+[21-30:P3712; UTF16 128404] The authentication relation accepts (p)'s current credential.
+[21-30:P3713; UTF16 128466] The authorization policy permits (p) to inspect elevator status but denies software modification.
+[21-30:P3718; UTF16 128671] Hence authentication does not imply authorization. ∎
+[21-30:P3722; UTF16 128727] THM-SEC2 — Authorization Does Not Establish Physical Safety
+[21-30:P3724; UTF16 128797] There exists an authorized action whose execution violates a physical safety predicate.
+[21-30:P3726; UTF16 128891] Let principal (p) be an authorized plant operator.
+[21-30:P3727; UTF16 128942] Let action (a) be:
+[21-30:P3728; UTF16 128961] [ \mathsf{TurnPumpOff}. ]
+[21-30:P3729; UTF16 128987] Suppose the active authorization policy allows (p) to control the pump:
+[21-30:P3730; UTF16 129059] [ \mathsf{May}(p,a,r,z)=\mathsf{TRUE}. ]
+[21-30:P3731; UTF16 129100] Let the physical state contain:
+[21-30:P3732; UTF16 129132] [ \mathsf{PressureSupportRequired}=\mathsf{TRUE}. ]
+[21-30:P3733; UTF16 129184] The safety predicate requires the pump to remain on until a backup path is active.
+[21-30:P3734; UTF16 129267] Executing (a) before that transition violates the safety predicate.
+[21-30:P3736; UTF16 129341] [ \mathsf{Authorized}(a)=\mathsf{TRUE}, ]
+[21-30:P3738; UTF16 129390] [ \mathsf{Safe}(a,z)=\mathsf{FALSE}. ]
+[21-30:P3739; UTF16 129429] Therefore authorization does not imply physical safety. ∎
+[21-30:P3743; UTF16 129490] DEF-SEC7 — Authorization Policy
+[21-30:P3744; UTF16 129522] An Authorization Policy is a function or relation:
+[21-30:P3745; UTF16 129573] [ \boxed{ P(p,a,r,z) \in { \mathsf{ALLOW}, \mathsf{DENY}, \mathsf{UNKNOWN} }. } ]
+[21-30:P3746; UTF16 129655] A policy may be role based, capability based, attribute based, state based, or hybrid.
+[21-30:P3750; UTF16 129745] DEF-SEC8 — Authorized Trace Set
+[21-30:P3751; UTF16 129777] For policy (P), define:
+[21-30:P3752; UTF16 129801] [ \boxed{ \mathcal T_{\mathrm{auth}}(P) } ]
+[21-30:P3753; UTF16 129845] as all finite traces whose protected actions are allowed by (P) at the state in which each action is attempted.
+[21-30:P3757; UTF16 129960] THM-SEC3 — Permission Reduction Cannot Enlarge the Authorized Trace Set
+[21-30:P3759; UTF16 130042] Suppose policies (P_1,P_2) satisfy:
+[21-30:P3760; UTF16 130078] [ P_1(p,a,r,z)=\mathsf{ALLOW} \Longrightarrow P_2(p,a,r,z)=\mathsf{ALLOW} ]
+[21-30:P3761; UTF16 130154] for every (p,a,r,z).
+[21-30:P3763; UTF16 130181] [ \boxed{ \mathcal T_{\mathrm{auth}}(P_1) \subseteq \mathcal T_{\mathrm{auth}}(P_2). } ]
+[21-30:P3766; UTF16 130286] [ \tau\in\mathcal T_{\mathrm{auth}}(P_1). ]
+[21-30:P3767; UTF16 130330] Every protected action appearing in (\tau) is allowed by (P_1) at its execution state.
+[21-30:P3768; UTF16 130417] By the pointwise inclusion hypothesis, every such action is also allowed by (P_2).
+[21-30:P3770; UTF16 130511] [ \tau\in\mathcal T_{\mathrm{auth}}(P_2). ]
+[21-30:P3772; UTF16 130562] [ \mathcal T_{\mathrm{auth}}(P_1) \subseteq \mathcal T_{\mathrm{auth}}(P_2). ]
+[21-30:P3774; UTF16 130643] This is the precise monotonic fact behind least privilege.
+[21-30:P3778; UTF16 130705] PRO-SEC1 — Capability Attenuation Is Authorization-Monotone Under Complete Mediation
+[21-30:P3779; UTF16 130790] Suppose capability (\kappa') is derived from (\kappa) with:
+[21-30:P3780; UTF16 130850] [ \mathsf{rights}(\kappa') \subseteq \mathsf{rights}(\kappa), ]
+[21-30:P3781; UTF16 130914] and every capability-mediated action is completely mediated by the exact authorization policy.
+[21-30:P3782; UTF16 131009] Then every action authorized solely by (\kappa') is also within the rights represented by (\kappa).
+[21-30:P3784; UTF16 131115] If action (a) is authorized by (\kappa'), then:
+[21-30:P3785; UTF16 131163] [ a\in\mathsf{rights}(\kappa'). ]
+[21-30:P3786; UTF16 131197] By set inclusion:
+[21-30:P3787; UTF16 131215] [ a\in\mathsf{rights}(\kappa). ]
+[21-30:P3789; UTF16 131250] This proposition does not establish that either capability is authentic, current, nonrevoked, or safe.
+[21-30:P3793; UTF16 131356] THM-SEC4 — Less Privilege Does Not Generically Mean Greater Overall Cyber-Physical Safety
+[21-30:P3794; UTF16 131446] Proof by counterexample
+[21-30:P3795; UTF16 131470] Let system states be:
+[21-30:P3796; UTF16 131492] [ \mathsf{NORMAL}, \qquad \mathsf{EMERGENCY}, \qquad \mathsf{SAFE_SHUTDOWN}, \qquad \mathsf{FAILURE}. ]
+[21-30:P3797; UTF16 131596] An emergency operator privilege (q) permits action:
+[21-30:P3798; UTF16 131648] [ \mathsf{EmergencyShutdown}. ]
+[21-30:P3799; UTF16 131680] With (q), an emergency transition can reach:
+[21-30:P3800; UTF16 131725] [ \mathsf{EMERGENCY} \rightarrow \mathsf{SAFE_SHUTDOWN}. ]
+[21-30:P3801; UTF16 131784] Remove (q).
+[21-30:P3802; UTF16 131796] The smaller privilege set reduces the number of authorized traces, by THM-SEC3.
+[21-30:P3803; UTF16 131876] However, once the system reaches (\mathsf{EMERGENCY}), no remaining authorized action prevents transition to (\mathsf{FAILURE}).
+[21-30:P3804; UTF16 132005] Thus reducing privilege removes both:
+[21-30:P3805; UTF16 132043] possible misuse;
+[21-30:P3806; UTF16 132060] a necessary safe emergency response.
+[21-30:P3807; UTF16 132097] Therefore smaller authorization does not generically imply greater total cyber-physical safety. ∎
+[21-30:P3808; UTF16 132195] Least privilege must be checked together with task viability and emergency safety.
+[21-30:P3812; UTF16 132281] 7. Cryptographic Claim Modalities
+[21-30:P3813; UTF16 132315] DEF-SEC9 — Cryptographic Claim Modality
+[21-30:P3815; UTF16 132363] { \mathsf{EXACT}, \mathsf{IDEALIZED}, \mathsf{COMPUTATIONAL}, \mathsf{HEURISTIC}, \mathsf{UNKNOWN} }. } ]
+[21-30:P3816; UTF16 132469] Exact
+[21-30:P3817; UTF16 132475] A mathematical proposition such as:
+[21-30:P3818; UTF16 132511] [ m_1=m_2 ]
+[21-30:P3819; UTF16 132523] after exact byte comparison.
+[21-30:P3820; UTF16 132552] Idealized
+[21-30:P3821; UTF16 132562] A proposition proved in a symbolic model that treats a primitive as perfect, such as an idealized authenticated channel.
+[21-30:P3822; UTF16 132683] Computational
+[21-30:P3823; UTF16 132697] For security parameter (\lambda), adversary class (\mathcal A_\lambda), and security game (\mathsf{Game}):
+[21-30:P3824; UTF16 132804] [ \boxed{ \Pr \left[ \mathsf{Game}_{\Pi,A}(1^\lambda)=1 \right] \le \varepsilon(\lambda) } ]
+[21-30:P3825; UTF16 132897] for every covered adversary (A), where (\varepsilon) may be negligible or otherwise explicitly bounded.
+[21-30:P3826; UTF16 133001] Heuristic
+[21-30:P3827; UTF16 133011] Empirical confidence or informal evidence without a proved bound.
+[21-30:P3828; UTF16 133077] Unknown
+[21-30:P3829; UTF16 133085] The claim cannot currently be classified.
+[21-30:P3833; UTF16 133130] PRO-SEC2 — Computational Security Does Not Establish Mathematical Impossibility
+[21-30:P3836; UTF16 133240] construct a two-outcome security experiment whose break event has probability (\varepsilon).
+[21-30:P3837; UTF16 133333] The security bound:
+[21-30:P3838; UTF16 133353] [ \Pr[\mathsf{Break}]\le\varepsilon ]
+[21-30:P3839; UTF16 133391] holds, but the break event remains possible.
+[21-30:P3841; UTF16 133447] [ \boxed{ \text{small computational break probability} \not\Longrightarrow \text{logical impossibility of break}. } ]
+[21-30:P3846; UTF16 133570] 8. Hashes and Content Identity
+[21-30:P3847; UTF16 133601] DEF-SEC10 — Digest Artifact
+[21-30:P3848; UTF16 133629] For hash function:
+[21-30:P3849; UTF16 133648] [ H: \mathcal M \rightarrow {0,1}^k, ]
+[21-30:P3850; UTF16 133687] a digest artifact records:
+[21-30:P3851; UTF16 133714] [ \boxed{ \left( \mathsf{algorithm}, \mathsf{algorithmVersion}, m, H(m) \right). } ]
+[21-30:P3852; UTF16 133799] The message (m) may be referenced by exact bytes rather than duplicated inside the certificate.
+[21-30:P3856; UTF16 133898] THM-SEC5 — A Fixed-Length Hash Cannot Be Injective on an Arbitrarily Larger Message Space
+[21-30:P3859; UTF16 134002] [ |\mathcal M|>2^k, ]
+[21-30:P3860; UTF16 134024] then there exist distinct:
+[21-30:P3861; UTF16 134051] [ m_1\neq m_2 ]
+[21-30:P3863; UTF16 134078] [ H(m_1)=H(m_2). ]
+[21-30:P3865; UTF16 134103] The codomain contains exactly:
+[21-30:P3867; UTF16 134142] digest values.
+[21-30:P3868; UTF16 134157] The domain contains more than (2^k) messages.
+[21-30:P3869; UTF16 134203] If (H) were injective, every message would require a distinct digest, which is impossible because the codomain has fewer elements than the domain.
+[21-30:P3870; UTF16 134350] By the pigeonhole principle, two distinct messages share one digest. ∎
+[21-30:P3872; UTF16 134432] [ \boxed{ \text{equal finite digest} \not\Longrightarrow \text{mathematically proved byte equality} } ]
+[21-30:P3873; UTF16 134536] over an unrestricted larger message universe.
+[21-30:P3874; UTF16 134582] Collision resistance can make finding such a pair computationally difficult. It does not make collisions mathematically nonexistent.
+[21-30:P3878; UTF16 134718] 9. Digital Signatures
+[21-30:P3879; UTF16 134740] DEF-SEC11 — Signature Verification Claim
+[21-30:P3880; UTF16 134781] Define abstract verification:
+[21-30:P3881; UTF16 134811] [ \boxed{ \mathsf{Verify}(pk,m,\sigma)=\mathsf{TRUE}. } ]
+[21-30:P3882; UTF16 134869] The resulting claim depends on:
+[21-30:P3883; UTF16 134901] the public-key binding;
+[21-30:P3884; UTF16 134925] algorithm;
+[21-30:P3887; UTF16 134967] key-compromise state;
+[21-30:P3888; UTF16 134989] signature security assumption;
+[21-30:P3889; UTF16 135020] message bytes;
+[21-30:P3890; UTF16 135035] context and purpose.
+[21-30:P3894; UTF16 135059] THM-SEC6 — Signature Validity Does Not Establish Semantic Truth
+[21-30:P3896; UTF16 135145] Let principal (p) possess a valid signing credential.
+[21-30:P3897; UTF16 135199] Let message (m) assert:
+[21-30:P3898; UTF16 135223] [ \text{“The physical temperature is }20^\circ\text{.”} ]
+[21-30:P3899; UTF16 135281] Suppose the true physical temperature is:
+[21-30:P3900; UTF16 135323] [ 30^\circ. ]
+[21-30:P3901; UTF16 135337] Principal (p) signs (m) using the valid key.
+[21-30:P3902; UTF16 135382] The signature verifies:
+[21-30:P3903; UTF16 135406] [ \mathsf{Verify}(pk,m,\sigma)=\mathsf{TRUE}. ]
+[21-30:P3904; UTF16 135454] The proposition represented by (m) is false.
+[21-30:P3905; UTF16 135499] Therefore signature validity does not establish semantic truth. ∎
+[21-30:P3906; UTF16 135565] A signature may support:
+[21-30:P3907; UTF16 135590] message integrity;
+[21-30:P3908; UTF16 135609] attribution;
+[21-30:P3909; UTF16 135622] protocol-state evidence
+[21-30:P3910; UTF16 135646] under its assumptions.
+[21-30:P3911; UTF16 135669] It does not prove the signer is:
+[21-30:P3912; UTF16 135702] correct;
+[21-30:P3913; UTF16 135711] honest;
+[21-30:P3914; UTF16 135719] competent;
+[21-30:P3915; UTF16 135730] authorized for the proposition;
+[21-30:P3916; UTF16 135762] physically observing the claimed fact.
+[21-30:P3920; UTF16 135804] 10. Freshness and Replay Protection
+[21-30:P3921; UTF16 135840] DEF-SEC12 — Freshness State
+[21-30:P3922; UTF16 135868] Freshness state may contain:
+[21-30:P3923; UTF16 135897] nonce sets;
+[21-30:P3924; UTF16 135909] monotonic counters;
+[21-30:P3925; UTF16 135929] sequence numbers;
+[21-30:P3926; UTF16 135947] epochs;
+[21-30:P3927; UTF16 135955] trusted timestamps;
+[21-30:P3928; UTF16 135975] acceptance windows.
+[21-30:P3929; UTF16 135995] The mechanism and trust assumptions must be explicit.
+[21-30:P3933; UTF16 136052] THM-SEC7 — Authentication and Integrity Without Freshness Do Not Prevent Replay
+[21-30:P3935; UTF16 136145] Let message:
+[21-30:P3936; UTF16 136158] [ m=\mathsf{OPEN} ]
+[21-30:P3937; UTF16 136178] be validly authenticated and integrity protected.
+[21-30:P3938; UTF16 136228] At time (t_1), the receiver verifies (m) and executes it.
+[21-30:P3939; UTF16 136286] At later time (t_2), an adversary resends the identical bytes:
+[21-30:P3940; UTF16 136349] [ m. ]
+[21-30:P3941; UTF16 136356] The receiver:
+[21-30:P3942; UTF16 136370] verifies the same valid authentication;
+[21-30:P3943; UTF16 136410] verifies unchanged integrity;
+[21-30:P3944; UTF16 136440] stores no nonce, counter, timestamp, or prior-use state.
+[21-30:P3945; UTF16 136497] The receiver executes the command again.
+[21-30:P3946; UTF16 136538] Therefore authentication and integrity alone do not prevent replay. ∎
+[21-30:P3950; UTF16 136611] 11. Revocation
+[21-30:P3951; UTF16 136626] DEF-SEC13 — Credential Revocation State
+[21-30:P3952; UTF16 136666] For credential (c), define:
+[21-30:P3953; UTF16 136694] [ \boxed{ \mathsf{Revoked}(c,t) } ]
+[21-30:P3954; UTF16 136730] and, where relevant:
+[21-30:P3955; UTF16 136751] [ \mathsf{RevocationEffectiveTime}(c). ]
+[21-30:P3956; UTF16 136792] A later revocation may invalidate current use without retroactively erasing an independently timestamped historical signature claim.
+[21-30:P3957; UTF16 136925] Current authorization and historical provenance are separate reports.
+[21-30:P3961; UTF16 136998] 12. Verified Boot
+[21-30:P3962; UTF16 137016] DEF-SEC14 — Authorized Boot Image
+[21-30:P3963; UTF16 137050] [ \boxed{ \mathsf{AuthorizedImage}(v,h,P_{\mathrm{boot}}) } ]
+[21-30:P3964; UTF16 137112] means image version (v), digest (h), is accepted by boot policy (P_{\mathrm{boot}}).
+[21-30:P3968; UTF16 137200] DEF-SEC15 — Verified Boot Chain
+[21-30:P3969; UTF16 137232] A boot chain is:
+[21-30:P3970; UTF16 137249] [ B_0 \rightarrow B_1 \rightarrow \cdots \rightarrow B_n, ]
+[21-30:P3971; UTF16 137309] where each stage transfers control to the next only after validation under the declared boot theory.
+[21-30:P3975; UTF16 137413] THM-SEC8 — Verified Boot-Chain Authorization by Induction
+[21-30:P3976; UTF16 137471] Assumptions
+[21-30:P3977; UTF16 137483] (B_0) belongs to the declared trusted computing base.
+[21-30:P3978; UTF16 137537] If stage (B_i) executes, it transfers control to (B_{i+1}) only after verification.
+[21-30:P3979; UTF16 137621] Accepted verification implies: [ \mathsf{AuthorizedImage}(B_{i+1}). ]
+[21-30:P3980; UTF16 137691] No alternative transfer bypasses verification within the model.
+[21-30:P3982; UTF16 137766] Every executed boot stage belongs to the authorized boot chain.
+[21-30:P3985; UTF16 137847] [ B_0 ]
+[21-30:P3986; UTF16 137855] is trusted by assumption.
+[21-30:P3988; UTF16 137897] Assume executing stage (B_i) belongs to the authorized chain.
+[21-30:P3989; UTF16 137959] By assumption 2, it transfers control to (B_{i+1}) only after successful verification.
+[21-30:P3990; UTF16 138046] By assumption 3, successful verification establishes that (B_{i+1}) is authorized.
+[21-30:P3991; UTF16 138129] Therefore the next executing stage is authorized.

@@ -1,0 +1,400 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P10211; UTF16 334330] def DifferentiallyPrivate
+[21-30:P10212; UTF16 334356]     (M : FiniteMechanism)
+[21-30:P10214; UTF16 334407]     (eps delta : ℝ) : Prop :=
+[21-30:P10215; UTF16 334437]   ∀ D D',
+[21-30:P10216; UTF16 334447]     Neighbor N D D' →
+[21-30:P10217; UTF16 334469]     ∀ S : Finset M.Output,
+[21-30:P10218; UTF16 334496]       ProbEvent M D S
+[21-30:P10219; UTF16 334518]         ≤
+[21-30:P10220; UTF16 334528]       Real.exp eps *
+[21-30:P10221; UTF16 334549]         ProbEvent M D' S
+[21-30:P10222; UTF16 334574]         + delta
+[21-30:P10223; UTF16 334590] Positive-part finite checker
+[21-30:P10224; UTF16 334619] def HockeyStick
+[21-30:P10226; UTF16 334661]     (D D' : Dataset)
+[21-30:P10227; UTF16 334682]     (eps : ℝ) : ℝ :=
+[21-30:P10228; UTF16 334703]   ∑ y,
+[21-30:P10229; UTF16 334710]     max
+[21-30:P10230; UTF16 334718]       ((M.prob D y : ℝ)
+[21-30:P10231; UTF16 334742]         -
+[21-30:P10232; UTF16 334752]        Real.exp eps *
+[21-30:P10233; UTF16 334774]        (M.prob D' y : ℝ))
+[21-30:P10234; UTF16 334800]       0
+[21-30:P10235; UTF16 334808] Privacy budget
+[21-30:P10236; UTF16 334823] structure PrivacyBudget where
+[21-30:P10237; UTF16 334853]   epsUsed : ℝ
+[21-30:P10238; UTF16 334867]   epsMax : ℝ
+[21-30:P10239; UTF16 334880]   deltaUsed : ℝ
+[21-30:P10240; UTF16 334896]   deltaMax : ℝ
+[21-30:P10241; UTF16 334911]   accountingVersion : Version
+[21-30:P10242; UTF16 334941] Exact unlearning
+[21-30:P10243; UTF16 334958] def ExactUnlearning
+[21-30:P10244; UTF16 334978]     (train : Dataset → Config → Model)
+[21-30:P10245; UTF16 335017]     (unlearn :
+[21-30:P10246; UTF16 335032]       Model →
+[21-30:P10247; UTF16 335046]       Record →
+[21-30:P10248; UTF16 335061]       Config →
+[21-30:P10249; UTF16 335076]       Model)
+[21-30:P10250; UTF16 335089]     (D : Dataset)
+[21-30:P10251; UTF16 335107]     (x : Record)
+[21-30:P10252; UTF16 335124]     (cfg : Config) : Prop :=
+[21-30:P10253; UTF16 335153]   unlearn
+[21-30:P10254; UTF16 335163]       (train D cfg)
+[21-30:P10256; UTF16 335191]       cfg
+[21-30:P10258; UTF16 335207]   train
+[21-30:P10259; UTF16 335215]       (D.erase x)
+[21-30:P10261; UTF16 335243] Deletion closure
+[21-30:P10262; UTF16 335260] def DeletionClosed
+[21-30:P10263; UTF16 335279]     (lineage : DataLineage)
+[21-30:P10264; UTF16 335307]     (policy : DeletionPolicy)
+[21-30:P10265; UTF16 335337]     (targets : Set DataArtifact)
+[21-30:P10266; UTF16 335370]     (state : DataArtifact → RetentionState) :
+[21-30:P10268; UTF16 335428]   ∀ v,
+[21-30:P10269; UTF16 335435]     PolicyRelevantDescendant
+[21-30:P10270; UTF16 335464]       lineage
+[21-30:P10271; UTF16 335478]       policy
+[21-30:P10272; UTF16 335491]       targets
+[21-30:P10273; UTF16 335505]       v →
+[21-30:P10274; UTF16 335515]     RequiredTerminalState
+[21-30:P10276; UTF16 335554]       v
+[21-30:P10277; UTF16 335562]       (state v)
+[21-30:P10278; UTF16 335578] PCPDG
+[21-30:P10279; UTF16 335584] structure PCPDG where
+[21-30:P10281; UTF16 335628]   datasets : DataInventory
+[21-30:P10282; UTF16 335655]   purposes : PurposeStore
+[21-30:P10283; UTF16 335681]   permissions : PrivacyAuthorityStore
+[21-30:P10284; UTF16 335719]   lineage : DataLineage
+[21-30:P10285; UTF16 335743]   retention : RetentionStore
+[21-30:P10286; UTF16 335772]   deletion : DeletionCertificateStore
+[21-30:P10287; UTF16 335810]   unlearning : UnlearningCertificateStore
+[21-30:P10288; UTF16 335852]   privacyMechanisms :
+[21-30:P10289; UTF16 335874]     PrivacyMechanismStore
+[21-30:P10290; UTF16 335900]   budgets : PrivacyBudgetStore
+[21-30:P10291; UTF16 335931]   odt : PrivacyODTState
+[21-30:P10298; UTF16 336040] ￼
+ATTACHED TABLE 1736083; native row/column order; 31 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Data and purpose typing", "Moderate"]
+ROW 2: ["Purpose-bound authorization", "Moderate"]
+ROW 3: ["Consent-scope checking", "Moderate"]
+ROW 4: ["Retention state", "Moderate"]
+ROW 5: ["Versioned data lineage", "Difficult"]
+ROW 6: ["Deletion closure", "Difficult"]
+ROW 7: ["Exact unlearning for bounded deterministic models", "Moderate"]
+ROW 8: ["Exact unlearning for large learned models", "Research-level"]
+ROW 9: ["Purpose-contextual quotient", "Difficult"]
+ROW 10: ["Quotient factorization", "Moderate"]
+ROW 11: ["Constructing a compact purpose quotient", "Difficult"]
+ROW 12: ["Selective disclosure", "Moderate"]
+ROW 13: ["Pseudonymization", "Moderate"]
+ROW 14: ["Linkage modeling", "Difficult"]
+ROW 15: ["(k)-anonymity", "Moderate"]
+ROW 16: ["Auxiliary-information families", "Research-level"]
+ROW 17: ["Secure aggregation semantics", "Moderate"]
+ROW 18: ["Differential-privacy definition", "Moderate"]
+ROW 19: ["Post-processing", "Moderate"]
+ROW 20: ["Basic adaptive composition", "Moderate"]
+ROW 21: ["Parallel composition", "Moderate"]
+ROW 22: ["Group privacy", "Moderate"]
+ROW 23: ["Exact finite DP checking", "Moderate"]
+ROW 24: ["Privacy accounting", "Difficult"]
+ROW 25: ["Privacy-aware ODT", "Research-level"]
+ROW 26: ["Private fleet learning", "Research-level"]
+ROW 27: ["Privacy repair", "NP-hard in the declared abstraction"]
+ROW 28: ["Incremental privacy recertification", "Difficult"]
+ROW 29: ["PCPDG checker", "Research-level"]
+ROW 30: ["Open-world anonymity", "Impossible without auxiliary-information assumptions"]
+[21-30:P10302; UTF16 336045] 53. Prompt-23 Complexity Profile
+[21-30:P10303; UTF16 336078] DEF-PRIV40 — Prompt-23 Complexity Profile
+[21-30:P10305; UTF16 336128] \left( N_D, N_P, N_U, K_{\mathrm{authority}}, K_{\mathrm{consent}}, K_{\mathrm{lineage}}, K_{\mathrm{retention}}, K_{\mathrm{deletion}}, K_{\mathrm{quotient}}, K_{\mathrm{aux}}, K_{\mathrm{link}}, K_{\mathrm{DP}}, K_{\mathrm{budget}}, K_{\mathrm{model}}, K_{\mathrm{ODT}}, K_{\mathrm{fleet}}, C_{\mathrm{purpose}}, C_{\mathrm{lineage}}, C_{\mathrm{unlearn}}, C_{\mathrm{DP}}, C_{\mathrm{inference}}, C_{\mathrm{check}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unresolved}} \right). } ]
+[21-30:P10307; UTF16 336634] (N_D): data and model artifact count;
+[21-30:P10308; UTF16 336672] (N_P): purpose count;
+[21-30:P10309; UTF16 336694] (N_U): use, transformation, and disclosure event count;
+[21-30:P10310; UTF16 336750] (K_{\mathrm{authority}}): privacy-authority complexity;
+[21-30:P10311; UTF16 336806] (K_{\mathrm{consent}}): consent and permission-scope complexity;
+[21-30:P10312; UTF16 336871] (K_{\mathrm{lineage}}): data/model lineage complexity;
+[21-30:P10313; UTF16 336926] (K_{\mathrm{retention}}): retention-state complexity;
+[21-30:P10314; UTF16 336980] (K_{\mathrm{deletion}}): deletion-closure complexity;
+[21-30:P10315; UTF16 337034] (K_{\mathrm{quotient}}): purpose-quotient representation complexity;
+[21-30:P10316; UTF16 337103] (K_{\mathrm{aux}}): auxiliary-information family complexity;
+[21-30:P10317; UTF16 337164] (K_{\mathrm{link}}): linkage and inference complexity;
+[21-30:P10318; UTF16 337219] (K_{\mathrm{DP}}): randomized-mechanism and neighbor-relation complexity;
+[21-30:P10319; UTF16 337293] (K_{\mathrm{budget}}): privacy-accountant complexity;
+[21-30:P10320; UTF16 337347] (K_{\mathrm{model}}): model and checkpoint lineage complexity;
+[21-30:P10321; UTF16 337410] (K_{\mathrm{ODT}}): privacy-aware ODT complexity;
+[21-30:P10322; UTF16 337460] (K_{\mathrm{fleet}}): private fleet-learning complexity;
+[21-30:P10323; UTF16 337517] (C_{\mathrm{purpose}}): purpose-checking cost;
+[21-30:P10324; UTF16 337564] (C_{\mathrm{lineage}}): lineage-verification cost;
+[21-30:P10325; UTF16 337615] (C_{\mathrm{unlearn}}): unlearning-verification cost;
+[21-30:P10326; UTF16 337669] (C_{\mathrm{DP}}): DP verification and accounting cost;
+[21-30:P10327; UTF16 337725] (C_{\mathrm{inference}}): linkage-analysis cost;
+[21-30:P10328; UTF16 337774] (C_{\mathrm{check}}): independent PCPDG verification cost;
+[21-30:P10329; UTF16 337833] (R_{\mathrm{change}}): changed privacy roots;
+[21-30:P10331; UTF16 337932] (B_{\mathrm{unresolved}}): unresolved privacy blockers.
+[21-30:P10332; UTF16 337988] No scalar privacy score is defined.
+[21-30:P10337; UTF16 338061] ￼
+ATTACHED TABLE 1736099; native row/column order; 25 rows
+ROW 0: ["ID", "Assumption"]
+ROW 1: ["ASSUMP-PRIV1", "Exact data and model identities are correct"]
+ROW 2: ["ASSUMP-PRIV2", "The protected privacy unit is explicit and correct"]
+ROW 3: ["ASSUMP-PRIV3", "Every operation carries an exact purpose identity"]
+ROW 4: ["ASSUMP-PRIV4", "Purpose vocabulary is complete for the claim"]
+ROW 5: ["ASSUMP-PRIV5", "Privacy authority is valid"]
+ROW 6: ["ASSUMP-PRIV6", "Consent is used only within scope"]
+ROW 7: ["ASSUMP-PRIV7", "Lineage is complete for the claimed operation"]
+ROW 8: ["ASSUMP-PRIV8", "Retention clocks, holds, and expiry semantics are correct"]
+ROW 9: ["ASSUMP-PRIV9", "Auxiliary-information scope is explicit"]
+ROW 10: ["ASSUMP-PRIV10", "The DP neighbor relation is correct"]
+ROW 11: ["ASSUMP-PRIV11", "Randomization semantics are correct"]
+ROW 12: ["ASSUMP-PRIV12", "Deployed and certified privacy mechanisms are identical"]
+ROW 13: ["ASSUMP-PRIV13", "Privacy accounting includes all relevant releases"]
+ROW 14: ["ASSUMP-PRIV14", "Secure aggregation is not confused with output privacy"]
+ROW 15: ["ASSUMP-PRIV15", "Training and model lineage is correct"]
+ROW 16: ["ASSUMP-PRIV16", "ODT data remain inside admitted purposes"]
+ROW 17: ["ASSUMP-PRIV17", "Cross-project transfer preserves Prompt-16 modality"]
+ROW 18: ["ASSUMP-PRIV18", "Cyber-security dependencies retain Prompt-22 scope"]
+ROW 19: ["ASSUMP-PRIV19", "Formal privacy does not automatically equal legal compliance"]
+ROW 20: ["ASSUMP-PRIV20", "UNKNOWN is never promoted"]
+ROW 21: ["ASSUMP-PRIV21", "Trusted privacy checkers are sound"]
+ROW 22: ["ASSUMP-PRIV22", "Privacy dependency graphs are complete"]
+ROW 23: ["ASSUMP-PRIV23", "Output semantics match the certificate"]
+ROW 24: ["ASSUMP-PRIV24", "Governed data operations are mediated or explicitly outside scope"]
+[21-30:P10342; UTF16 338100] ￼
+ATTACHED TABLE 1736115; native row/column order; 41 rows
+ROW 0: ["ID", "Definition"]
+ROW 1: ["DEF-PRIV1", "Privacy and Data-Governance State"]
+ROW 2: ["DEF-PRIV2", "Data Principal"]
+ROW 3: ["DEF-PRIV3", "Data Asset"]
+ROW 4: ["DEF-PRIV4", "Data Operation"]
+ROW 5: ["DEF-PRIV5", "Purpose"]
+ROW 6: ["DEF-PRIV6", "Purpose-Bound Use Authorization"]
+ROW 7: ["DEF-PRIV7", "Purpose Drift"]
+ROW 8: ["DEF-PRIV8", "Consent Artifact"]
+ROW 9: ["DEF-PRIV9", "Revocation Event"]
+ROW 10: ["DEF-PRIV10", "Retention Policy"]
+ROW 11: ["DEF-PRIV11", "Retention State"]
+ROW 12: ["DEF-PRIV12", "Data Lineage DAG"]
+ROW 13: ["DEF-PRIV13", "Deletion Closure"]
+ROW 14: ["DEF-PRIV14", "Training Function"]
+ROW 15: ["DEF-PRIV15", "Exact Machine-Unlearning Certificate"]
+ROW 16: ["DEF-PRIV16", "Purpose-Contextual Data Equivalence"]
+ROW 17: ["DEF-PRIV17", "Purpose-Sufficient Privacy Quotient"]
+ROW 18: ["DEF-PRIV18", "Selective Disclosure Map"]
+ROW 19: ["DEF-PRIV19", "Pseudonymization Transform"]
+ROW 20: ["DEF-PRIV20", "(k)-Anonymity"]
+ROW 21: ["DEF-PRIV21", "Auxiliary-Information State"]
+ROW 22: ["DEF-PRIV22", "Auxiliary-Information Family"]
+ROW 23: ["DEF-PRIV23", "Reidentification Candidate Set"]
+ROW 24: ["DEF-PRIV24", "Exact Aggregate Release"]
+ROW 25: ["DEF-PRIV25", "Privacy Unit"]
+ROW 26: ["DEF-PRIV26", "Neighbor Relation"]
+ROW 27: ["DEF-PRIV27", "((\\varepsilon,\\delta))-Differential Privacy"]
+ROW 28: ["DEF-PRIV28", "Privacy-Budget State"]
+ROW 29: ["DEF-PRIV29", "Privacy-Aware ODT View"]
+ROW 30: ["DEF-PRIV30", "Fleet Privacy Unit"]
+ROW 31: ["DEF-PRIV31", "Data-Governance State Machine"]
+ROW 32: ["DEF-PRIV32", "Privacy Conflict Core"]
+ROW 33: ["DEF-PRIV33", "Privacy Repair"]
+ROW 34: ["DEF-PRIV34", "Privacy Repair Frontier"]
+ROW 35: ["DEF-PRIV35", "Privacy Dependency Graph"]
+ROW 36: ["DEF-PRIV36", "Privacy Claim Modality"]
+ROW 37: ["DEF-PRIV37", "Privacy Release State"]
+ROW 38: ["DEF-PRIV38", "Privacy Release Fiber"]
+ROW 39: ["DEF-PRIV39", "Proof-Carrying Privacy and Data-Governance Package"]
+ROW 40: ["DEF-PRIV40", "Prompt-23 Complexity Profile"]
+[21-30:P10347; UTF16 338136] ￼
+ATTACHED TABLE 1736131; native row/column order; 31 rows
+ROW 0: ["ID", "Theorem", "Modality and status"]
+ROW 1: ["THM-PRIV1", "Cyber authorization does not imply privacy-permitted use", "Exact counterexample; proved"]
+ROW 2: ["THM-PRIV2", "Purpose (P_1) authorization does not imply (P_2)", "Exact; proved"]
+ROW 3: ["THM-PRIV3", "Consent is neither generically necessary nor sufficient", "Exact constructions; proved"]
+ROW 4: ["THM-PRIV4", "Revocation does not undo completed disclosure", "Exact trace result; proved"]
+ROW 5: ["THM-PRIV5", "Source deletion does not delete descendants", "Exact counterexample; proved"]
+ROW 6: ["THM-PRIV6", "Complete lineage plus descendant deletion gives modeled closure", "Exact under completeness; proved"]
+ROW 7: ["THM-PRIV7", "Source deletion does not imply model forgetting", "Exact; proved"]
+ROW 8: ["THM-PRIV8", "Exact unlearning gives retraining equivalence", "Exact under equality premise; proved"]
+ROW 9: ["THM-PRIV9", "Every purpose computation factors through the quotient", "Exact; proved"]
+ROW 10: ["THM-PRIV10", "Purpose quotient is the coarsest exact sufficient representation", "Exact; proved"]
+ROW 11: ["THM-PRIV11", "Selective disclosure distinguishes no more raw states than raw disclosure", "Exact partition result; proved"]
+ROW 12: ["THM-PRIV12", "Pseudonymization does not imply anonymity", "Exact counterexample; proved"]
+ROW 13: ["THM-PRIV13", "(k)-anonymity does not prevent homogeneous attribute disclosure", "Exact counterexample; proved"]
+ROW 14: ["THM-PRIV14", "Stronger auxiliary information can destroy anonymity", "Exact construction; proved"]
+ROW 15: ["THM-PRIV15", "Secure aggregation does not imply private output", "Exact algebraic result; proved"]
+ROW 16: ["THM-PRIV16", "Deterministic post-processing preserves DP", "Probabilistic theorem; proved"]
+ROW 17: ["THM-PRIV17", "Adaptive pure-DP composition adds (\\varepsilon)", "Finite probabilistic theorem; proved"]
+ROW 18: ["THM-PRIV18", "Disjoint parallel composition uses maximum (\\varepsilon)", "Proved under product-form randomness"]
+ROW 19: ["THM-PRIV19", "Pure-DP group privacy scales to (k\\varepsilon)", "Probabilistic theorem; proved"]
+ROW 20: ["THM-PRIV20", "DP does not imply zero disclosure", "Randomized-response construction; proved"]
+ROW 21: ["THM-PRIV21", "Finite DP reduces to positive-part inequalities", "Exact finite probability theorem; proved"]
+ROW 22: ["THM-PRIV22", "Basic pure-DP privacy accounting is monotone", "Exact arithmetic theorem; proved"]
+ROW 23: ["THM-PRIV23", "Purpose-sufficient ODT compression preserves admitted outputs", "Exact factorization theorem; proved"]
+ROW 24: ["THM-PRIV24", "Governance state does not imply physical deletion or nondisclosure", "Exact counterexamples; proved"]
+ROW 25: ["THM-PRIV25", "Minimum privacy repair is NP-hard", "Exact reduction; proved"]
+ROW 26: ["THM-PRIV26", "Incremental privacy recertification equals cold checking", "Exact under complete dependencies; proved"]
+ROW 27: ["THM-PRIV27", "Whole-project privacy theorem", "Proved under explicit assumptions"]
+ROW 28: ["THM-PRIV28", "Open-world auxiliary-information limitation", "Exact indistinguishability construction; proved"]
+ROW 29: ["THM-PRIV29", "Proposal-source independence", "Exact; proved"]
+ROW 30: ["THM-PRIV30", "Explicit PCPDG checking complexity", "Exact asymptotic bound; proved"]
+[21-30:P10351; UTF16 338141] 57. Lemma, Corollary, and Proposition Registry
+[21-30:P10352; UTF16 338188] Lemma
+[21-30:P10353; UTF16 338194] ￼
+ATTACHED TABLE 1736147; native row/column order; 2 rows
+ROW 0: ["ID", "Result"]
+ROW 1: ["LEM-PRIV1", "Finite hockey-stick event maximum"]
+[21-30:P10354; UTF16 338196] Corollaries
+[21-30:P10355; UTF16 338208] ￼
+ATTACHED TABLE 1736163; native row/column order; 3 rows
+ROW 0: ["ID", "Result"]
+ROW 1: ["COR-PRIV1", "Raw distinctions are unnecessary for the declared purpose after exact quotienting"]
+ROW 2: ["COR-PRIV2", "Explicit finite DP checking complexity"]
+[21-30:P10357; UTF16 338223] ￼
+ATTACHED TABLE 1736179; native row/column order; 5 rows
+ROW 0: ["ID", "Result"]
+ROW 1: ["PRO-PRIV1", "Retention expiry does not prove physical deletion"]
+ROW 2: ["PRO-PRIV2", "Federated data location alone does not establish output privacy"]
+ROW 3: ["PRO-PRIV3", "DP parameters are not privacy-breach probabilities"]
+ROW 4: ["PRO-PRIV4", "Project-, person-, and event-level privacy are distinct"]
+[21-30:P10362; UTF16 338251] ￼
+ATTACHED TABLE 1736195; native row/column order; 29 rows
+ROW 0: ["ID", "Algorithm"]
+ROW 1: ["ALG-PRIV1", "AuditDataInventory"]
+ROW 2: ["ALG-PRIV2", "CheckPurposeAuthorization"]
+ROW 3: ["ALG-PRIV3", "AuditConsentScope"]
+ROW 4: ["ALG-PRIV4", "DetectPurposeDrift"]
+ROW 5: ["ALG-PRIV5", "CheckRetentionState"]
+ROW 6: ["ALG-PRIV6", "BuildDataLineageGraph"]
+ROW 7: ["ALG-PRIV7", "CheckDeletionClosure"]
+ROW 8: ["ALG-PRIV8", "VerifyExactUnlearning"]
+ROW 9: ["ALG-PRIV9", "BuildPurposeQuotient"]
+ROW 10: ["ALG-PRIV10", "CheckDataMinimization"]
+ROW 11: ["ALG-PRIV11", "BuildSelectiveDisclosure"]
+ROW 12: ["ALG-PRIV12", "AuditPseudonymization"]
+ROW 13: ["ALG-PRIV13", "CheckKAnonymity"]
+ROW 14: ["ALG-PRIV14", "BuildAuxiliaryInformationFamily"]
+ROW 15: ["ALG-PRIV15", "AnalyzeLinkageRisk"]
+ROW 16: ["ALG-PRIV16", "CheckSecureAggregationOutput"]
+ROW 17: ["ALG-PRIV17", "CompileNeighborRelation"]
+ROW 18: ["ALG-PRIV18", "CheckFiniteDifferentialPrivacy"]
+ROW 19: ["ALG-PRIV19", "AccountPrivacyBudget"]
+ROW 20: ["ALG-PRIV20", "BuildPrivacyAwareODT"]
+ROW 21: ["ALG-PRIV21", "PlanPrivateFleetLearning"]
+ROW 22: ["ALG-PRIV22", "FindPrivacyConflictCore"]
+ROW 23: ["ALG-PRIV23", "GeneratePrivacyRepairFrontier"]
+ROW 24: ["ALG-PRIV24", "PrivacyRCVOCInterface"]
+ROW 25: ["ALG-PRIV25", "RedTeamPrivacyTheory"]
+ROW 26: ["ALG-PRIV26", "IncrementalPrivacyRecertification"]
+ROW 27: ["ALG-PRIV27", "CheckPCPDG"]
+ROW 28: ["ALG-PRIV28", "BuildPCPDG"]
+[21-30:P10367; UTF16 338280] ￼
+ATTACHED TABLE 1736211; native row/column order; 11 rows
+ROW 0: ["ID", "Conjecture", "Falsification condition"]
+ROW 1: ["CONJ-PRIV1", "Building-control datasets admit purpose quotients much smaller than raw telemetry", "Most raw distinctions remain necessary for admitted operations"]
+ROW 2: ["CONJ-PRIV2", "Privacy-aware ODTs can preserve control utility without identity-level trajectory retention", "Useful control repeatedly requires identity history"]
+ROW 3: ["CONJ-PRIV3", "Project data lineage remains sparse enough for practical deletion closure", "Ordinary data propagate into poorly tracked global descendants"]
+ROW 4: ["CONJ-PRIV4", "Exact or strongly certified unlearning is practical for a meaningful model subset", "Retraining-equivalent unlearning is consistently impractical"]
+ROW 5: ["CONJ-PRIV5", "Most project analytics can use selective disclosure or aggregation", "Raw identity attributes remain necessary for most admitted tasks"]
+ROW 6: ["CONJ-PRIV6", "Useful DP budgets can survive long-lived telemetry through quotienting and query design", "Operational queries consume utility-preserving budgets too rapidly"]
+ROW 7: ["CONJ-PRIV7", "Secure aggregation plus explicit output privacy is practical for fleet learning", "Aggregate inference or utility loss dominates"]
+ROW 8: ["CONJ-PRIV8", "Privacy dependencies are sparse enough for incremental recertification", "Ordinary data changes reopen most privacy claims"]
+ROW 9: ["CONJ-PRIV9", "ANANKE’s quotient machinery provides a practical exact minimization method", "Useful purpose families resist compact factorization"]
+ROW 10: ["CONJ-PRIV10", "A 190-room hotel admits a practical integrated PCPDG", "Lineage, ODT, inference, or accounting complexity becomes prohibitive"]
+[21-30:P10371; UTF16 338285] 60. Dependency DAG — Prompts 1–23
+[21-30:P10381; UTF16 338434] separator width,
+[21-30:P10411; UTF16 338778] evidence and assurance
+[21-30:P10415; UTF16 338831] authority and sovereignty
+[21-30:P10423; UTF16 338933] as-built execution
+[21-30:P10443; UTF16 339173] commitment
+[21-30:P10447; UTF16 339214] multi-party governance
+[21-30:P10459; UTF16 339369] privacy and data governance
+[21-30:P10461; UTF16 339398] DEF-PRIV1–6
+[21-30:P10462; UTF16 339410] privacy state,
+[21-30:P10463; UTF16 339425] data assets,
+[21-30:P10464; UTF16 339438] operations,
+[21-30:P10465; UTF16 339450] purposes,
+[21-30:P10466; UTF16 339460] MayUse
+[21-30:P10468; UTF16 339477]    ┌────┴───────────┐
+[21-30:P10469; UTF16 339499]    ▼                ▼
+[21-30:P10470; UTF16 339521] THM-PRIV1      THM-PRIV2
+[21-30:P10471; UTF16 339546] security       purpose
+[21-30:P10472; UTF16 339569] ≠ privacy      separation
+[21-30:P10474; UTF16 339596] DEF-PRIV7–11
+[21-30:P10475; UTF16 339609] purpose drift,
+[21-30:P10477; UTF16 339633] revocation,
+[21-30:P10478; UTF16 339645] retention
+[21-30:P10482; UTF16 339715] PRIV3 PRIV4        PRO-PRIV1
+[21-30:P10483; UTF16 339744] consent revocation retention
+[21-30:P10484; UTF16 339773] scope   limit      ≠ deletion
+[21-30:P10486; UTF16 339804] DEF-PRIV12–15
+[21-30:P10487; UTF16 339818] lineage,
+[21-30:P10488; UTF16 339827] deletion closure,
+[21-30:P10489; UTF16 339845] training,
+[21-30:P10490; UTF16 339855] unlearning
+[21-30:P10494; UTF16 339940] PRIV5 PRIV6   PRIV7         PRIV8
+[21-30:P10495; UTF16 339974] source closure source       exact
+[21-30:P10496; UTF16 340008] limit sound   deletion      unlearning
+[21-30:P10497; UTF16 340047]               ≠ forgetting
+[21-30:P10503; UTF16 340127] DEF-PRIV16–17
+[21-30:P10504; UTF16 340141] purpose equivalence
+[21-30:P10505; UTF16 340161] and quotient
+[21-30:P10509; UTF16 340234] THM-PRIV9         THM-PRIV10
+[21-30:P10510; UTF16 340263] factorization      coarsest sufficient
+[21-30:P10513; UTF16 340322] COR-PRIV1
+[21-30:P10514; UTF16 340332] purpose-relative
+[21-30:P10515; UTF16 340349] data minimization
+[21-30:P10517; UTF16 340368] DEF-PRIV18–23
+[21-30:P10518; UTF16 340382] selective disclosure,
+[21-30:P10519; UTF16 340404] pseudonymization,
+[21-30:P10520; UTF16 340422] k-anonymity,
+[21-30:P10521; UTF16 340435] auxiliary information
+[21-30:P10523; UTF16 340467]    ┌────┼────────┬───────────┐
+[21-30:P10524; UTF16 340498]    ▼    ▼        ▼           ▼
+[21-30:P10525; UTF16 340529] PRIV11 PRIV12 PRIV13      PRIV14
+[21-30:P10526; UTF16 340562] partition linkage attribute auxiliary
+[21-30:P10527; UTF16 340600] coarsen limit   leakage   relativity
+[21-30:P10530; UTF16 340648] confidential computation
+[21-30:P10533; UTF16 340693] DEF-PRIV24
+[21-30:P10534; UTF16 340704] secure aggregation output
+[21-30:P10538; UTF16 340790] THM-PRIV15        PRO-PRIV2
+[21-30:P10539; UTF16 340818] aggregate          federation
+[21-30:P10540; UTF16 340848] leakage            ≠ privacy
+[21-30:P10542; UTF16 340878] DEF-PRIV25–27
+[21-30:P10543; UTF16 340892] privacy unit,
+[21-30:P10544; UTF16 340906] neighbor relation,
+[21-30:P10545; UTF16 340925] differential privacy
+[21-30:P10547; UTF16 340956]    ┌────┼───────────────┬─────────────┐
+[21-30:P10548; UTF16 340996]    ▼    ▼               ▼             ▼
+[21-30:P10549; UTF16 341036] PRIV16 PRIV17        PRIV18         PRIV19
+[21-30:P10550; UTF16 341079] post-  sequential    parallel       group
+[21-30:P10551; UTF16 341121] process composition  composition    privacy
+[21-30:P10554; UTF16 341185] THM-PRIV20
+[21-30:P10555; UTF16 341196] DP ≠ zero disclosure
+[21-30:P10558; UTF16 341237] LEM-PRIV1
+[21-30:P10559; UTF16 341247] finite hockey-stick maximum
+[21-30:P10562; UTF16 341295] THM-PRIV21
+[21-30:P10563; UTF16 341306] exact finite DP checker
+[21-30:P10566; UTF16 341350] COR-PRIV2
+[21-30:P10569; UTF16 341381] DEF-PRIV28
+[21-30:P10570; UTF16 341392] privacy budgets
+[21-30:P10573; UTF16 341428] THM-PRIV22
+[21-30:P10574; UTF16 341439] monotone basic accounting
+[21-30:P10579; UTF16 341500] DEF-PRIV29
+[21-30:P10580; UTF16 341511] privacy-aware ODT
+[21-30:P10583; UTF16 341549] THM-PRIV23
+[21-30:P10584; UTF16 341560] purpose-sufficient ODT
+[21-30:P10586; UTF16 341584] PROMPT 16 fleet transfer
+[21-30:P10589; UTF16 341629] DEF-PRIV30
+[21-30:P10590; UTF16 341640] fleet privacy unit
+[21-30:P10593; UTF16 341679] PRO-PRIV4
+[21-30:P10594; UTF16 341689] project/person/event distinction
+[21-30:P10596; UTF16 341723] DEF-PRIV31
+[21-30:P10597; UTF16 341734] data-governance machine
+[21-30:P10600; UTF16 341778] THM-PRIV24
+[21-30:P10601; UTF16 341789] governance state
+[21-30:P10602; UTF16 341806] ≠ physical execution
+[21-30:P10604; UTF16 341828] DEF-PRIV32–34
+[21-30:P10605; UTF16 341842] conflicts and repairs
+[21-30:P10608; UTF16 341884] THM-PRIV25
+[21-30:P10611; UTF16 341915] DEF-PRIV35
+[21-30:P10612; UTF16 341926] privacy dependency graph

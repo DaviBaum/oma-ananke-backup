@@ -1,0 +1,327 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P12155; UTF16 457884] 52.5 Symbolic representation size
+[1-10:P12156; UTF16 457918] A shared saturated-count decision diagram uses nodes:
+[1-10:P12157; UTF16 457972] [ (i,c), ]
+[1-10:P12159; UTF16 457990] [ i\in{0,\ldots,40}, \qquad c\in{0,\ldots,4}. ]
+[1-10:P12160; UTF16 458038] This gives at most:
+[1-10:P12161; UTF16 458058] [ 41\cdot5=205 ]
+[1-10:P12162; UTF16 458075] count nodes, plus a linear-size local XOR constraint representation.
+[1-10:P12166; UTF16 458147] 52.6 Symbolic operations
+[1-10:P12167; UTF16 458172] A targeted exact run uses:
+[1-10:P12168; UTF16 458199] 2 initial satisfiability checks;
+[1-10:P12169; UTF16 458232] 4 exact preimage constructions;
+[1-10:P12170; UTF16 458264] 8 nonemptiness checks for four binary splits;
+[1-10:P12171; UTF16 458310] 4 accepted split certificates.
+[1-10:P12172; UTF16 458341] Total selected SAT checks:
+[1-10:P12173; UTF16 458368] [ 10. ]
+[1-10:P12174; UTF16 458376] No concrete state is enumerated.
+[1-10:P12178; UTF16 458412] 52.7 Enumeration avoided
+[1-10:P12179; UTF16 458437] The explicit provisional compiler would face:
+[1-10:P12180; UTF16 458483] [ 1,!099,!511,!627,!776 ]
+[1-10:P12182; UTF16 458517] The final quotient has five blocks.
+[1-10:P12183; UTF16 458553] The concrete-state-to-block ratio is:
+[1-10:P12184; UTF16 458591] 219,!902,!325,!555.2. ]
+[1-10:P12185; UTF16 458615] The concrete-state-to-count-node ratio is approximately:
+[1-10:P12186; UTF16 458672] [ \frac{2^{40}}{205} \approx 5.36\times10^9. ]
+[1-10:P12187; UTF16 458719] These ratios are representational, not automatically wall-clock speedups.
+[1-10:P12191; UTF16 458796] 53. Elevator–Pipe–Beam Butterfly Benchmark
+[1-10:P12192; UTF16 458839] 53.1 Initial abstraction
+[1-10:P12194; UTF16 458869] { e=\mathsf{left}, e=\mathsf{middle}, e=\mathsf{right} }. ]
+[1-10:P12195; UTF16 458929] The direct elevator observation does not distinguish the positions under the selected theory.
+[1-10:P12196; UTF16 459023] Abstract forward propagation gives:
+[1-10:P12197; UTF16 459059] { \mathsf{longPipe}, \mathsf{shortPipe} }, ]
+[1-10:P12198; UTF16 459104] { \mathsf{congested}, \mathsf{free} }, ]
+[1-10:P12199; UTF16 459145] { \mathsf{beamRequired}, \mathsf{beamRemovable} }. ]
+[1-10:P12200; UTF16 459198] The beam query is therefore:
+[1-10:P12201; UTF16 459227] [ \mathsf{Unknown}. ]
+[1-10:P12205; UTF16 459252] 53.2 Concrete distinguishing formula
+[1-10:P12206; UTF16 459289] A_0(e_1) \land A_0(e_2) \land \mathsf{Beam}(e_1) \ne \mathsf{Beam}(e_2). ]
+[1-10:P12207; UTF16 459364] The solver returns witnesses:
+[1-10:P12208; UTF16 459394] [ e_1=\mathsf{right}, ]
+[1-10:P12209; UTF16 459418] [ e_2=\mathsf{left}. ]
+[1-10:P12213; UTF16 459444] 53.3 Exact splitter
+[1-10:P12214; UTF16 459464] The context-derived splitter is:
+[1-10:P12215; UTF16 459497] [ P(e) \iff \mathsf{RouteClass}(e)=\mathsf{shortPipe}. ]
+[1-10:P12216; UTF16 459554] By the finite factors:
+[1-10:P12217; UTF16 459577] [ P(e) \iff e=\mathsf{right}. ]
+[1-10:P12218; UTF16 459609] Refinement yields:
+[1-10:P12219; UTF16 459628] {\mathsf{right}}, ]
+[1-10:P12220; UTF16 459648] {\mathsf{left},\mathsf{middle}}. ]
+[1-10:P12221; UTF16 459683] The first class leads to:
+[1-10:P12222; UTF16 459709] [ \mathsf{shortPipe} \to \mathsf{free} \to \mathsf{beamRemovable}. ]
+[1-10:P12223; UTF16 459778] The second leads to:
+[1-10:P12224; UTF16 459799] [ \mathsf{longPipe} \to \mathsf{congested} \to \mathsf{beamRequired}. ]
+[1-10:P12225; UTF16 459871] The abstraction compresses left and middle because no admitted experiment distinguishes them. It separates right because the downstream beam consequence proves the distinction necessary.
+[1-10:P12229; UTF16 460061] 54. Explicit vs Symbolic Compilation Comparison
+[1-10:P12230; UTF16 460109] 54.1 Forty-module benchmark
+[1-10:P12231; UTF16 460137] ￼
+ATTACHED TABLE 1736487; native row/column order; 8 rows
+ROW 0: ["Quantity", "Explicit provisional compiler", "Symbolic compiler"]
+ROW 1: ["Concrete states", "(2^{40})", "Not enumerated"]
+ROW 2: ["Peak semantic blocks", "Potentially (2^{40})", "5"]
+ROW 3: ["Peak shared count nodes", "Not applicable", "205"]
+ROW 4: ["Preimage operations", "State-transition dependent", "4"]
+ROW 5: ["Selected SAT checks", "State enumeration", "10"]
+ROW 6: ["Final quotient", "5", "5"]
+ROW 7: ["Exactness", "Exact", "Exact"]
+[1-10:P12232; UTF16 460139] Enumeration-gap block ratio:
+[1-10:P12233; UTF16 460168] [ \frac{2^{40}}5 \approx 2.199\times10^{11}. ]
+[1-10:P12237; UTF16 460218] 54.2 Repeated hotel
+[1-10:P12238; UTF16 460238] ￼
+ATTACHED TABLE 1736503; native row/column order; 7 rows
+ROW 0: ["Quantity", "Explicit provisional compiler", "Symbolic aggregate compiler"]
+ROW 1: ["Raw feasible states", "(192^{16}\\approx3.41\\times10^{36})", "Not enumerated"]
+ROW 2: ["Peak root quotient states", "Unknown until enumeration", "2970"]
+ROW 3: ["Total aggregate nodes", "Not applicable", "8958"]
+ROW 4: ["Floor transitions", "Implicit in enormous carrier", "15328"]
+ROW 5: ["Stack transitions", "Implicit in enormous carrier", "3582150"]
+ROW 6: ["Final quotient", "2970", "2970"]
+[1-10:P12239; UTF16 460240] A wall-clock claim requires actual costs for:
+[1-10:P12240; UTF16 460286] symbolic arithmetic;
+[1-10:P12241; UTF16 460307] SAT;
+[1-10:P12242; UTF16 460312] formula construction;
+[1-10:P12243; UTF16 460334] memory management;
+[1-10:P12244; UTF16 460353] certificate checking.
+[1-10:P12245; UTF16 460375] Block reduction alone is not a timing measurement.
+[1-10:P12249; UTF16 460429] 55. New Complexity Profile
+[1-10:P12250; UTF16 460456] Prompt 4’s exact finite discovery profile is:
+[1-10:P12251; UTF16 460502] \left( W_D, W_P, S^\star, K_{\mathcal F}, C_{\mathrm{oracle}}, R_Q, R_A \right). } ]
+[1-10:P12252; UTF16 460587] ￼
+ATTACHED TABLE 1736519; native row/column order; 8 rows
+ROW 0: ["Component", "Meaning"]
+ROW 1: ["(W_D)", "Irreducible exact separator information"]
+ROW 2: ["(W_P)", "Width of explicit provisional enumeration"]
+ROW 3: ["(S^\\star)", "Peak symbolic formula or diagram size"]
+ROW 4: ["(K_{\\mathcal F})", "Minimum exact quotient description size in language (\\mathcal F)"]
+ROW 5: ["(C_{\\mathrm{oracle}})", "SAT, preimage, canonicalization, and proof-checking costs"]
+ROW 6: ["(R_Q)", "Number of semantic quotient splits"]
+ROW 7: ["(R_A)", "Number of analysis-domain refinements"]
+[1-10:P12253; UTF16 460589] A symbolic compression ratio may be reported as:
+[1-10:P12254; UTF16 460638] \frac{|X|}{S^\star} ]
+[1-10:P12255; UTF16 460660] only after declaring the unit used for (S^\star).
+[1-10:P12257; UTF16 460723] concrete states per BDD node;
+[1-10:P12258; UTF16 460753] concrete states per automaton state;
+[1-10:P12259; UTF16 460790] concrete states per serialized byte.
+[1-10:P12260; UTF16 460827] The numerator and denominator otherwise have different physical meanings.
+[1-10:P12264; UTF16 460904] 56. Success and Failure Regimes
+[1-10:P12265; UTF16 460936] 56.1 Successful discovery-gap closure
+[1-10:P12266; UTF16 460974] The favorable regime is:
+[1-10:P12267; UTF16 460999] [ W_D\ll W_P, ]
+[1-10:P12269; UTF16 461022] \operatorname{poly} \left( n,2^{W_D} \right), ]
+[1-10:P12271; UTF16 461118] and every exact symbolic oracle runs in polynomial time in symbolic size.
+[1-10:P12272; UTF16 461192] Then THM-AB12 gives:
+[1-10:P12273; UTF16 461213] \operatorname{poly} \left( n,2^{W_D} \right). ]
+[1-10:P12274; UTF16 461261] The explicit enumeration gap is closed.
+[1-10:P12278; UTF16 461304] 56.2 Semantic compression without symbolic accessibility
+[1-10:P12279; UTF16 461361] A failure regime is:
+[1-10:P12280; UTF16 461382] [ W_D=O(1), ]
+[1-10:P12281; UTF16 461396] but either:
+[1-10:P12282; UTF16 461408] [ K_{\mathcal F}=2^{\Omega(n)} ]
+[1-10:P12285; UTF16 461469] is NP/coNP-hard in the compact input.
+[1-10:P12286; UTF16 461507] Then the quotient is semantically tiny but difficult to express or discover.
+[1-10:P12287; UTF16 461584] Parity in DNF demonstrates the description failure.
+[1-10:P12288; UTF16 461636] THM-DS23 demonstrates the oracle-hardness failure.
+[1-10:P12292; UTF16 461690] 56.3 Symbolic accessibility is the missing structural property
+[1-10:P12293; UTF16 461753] The successful ANANKE condition is not merely:
+[1-10:P12294; UTF16 461800] [ W_D\text{ is small}. ]
+[1-10:P12296; UTF16 461832] [ \boxed{ \begin{aligned} &\text{small decision width}\ &+\text{ compact class predicates}\ &+\text{ preimage closure}\ &+\text{ tractable exact satisfiability}\ &+\text{ bounded symbolic growth}\ &+\text{ quotient-respecting refinement}. \end{aligned} } ]
+[1-10:P12297; UTF16 462089] That conjunction is the exact finite meaning of a symbolically accessible decision quotient.
+[1-10:P12301; UTF16 462185] 57. Counterexamples to Bad Abstraction Intuitions
+[1-10:P12302; UTF16 462235] False claim 1 — Same abstract element means safe merge
+[1-10:P12304; UTF16 462295] [ a=\top_A. ]
+[1-10:P12306; UTF16 462315] [ \gamma(a)=X ]
+[1-10:P12307; UTF16 462331] may contain every separator class. Abstract co-membership proves nothing about equivalence.
+[1-10:P12311; UTF16 462426] False claim 2 — No discovered counterexample proves equivalence
+[1-10:P12312; UTF16 462490] A search testing contexts only through depth (m-1) can miss a distinguishing context of depth (m).
+[1-10:P12313; UTF16 462589] Prompt 2’s finite-depth theorem supplies such examples.
+[1-10:P12317; UTF16 462648] False claim 3 — Smaller abstract domain is always better
+[1-10:P12318; UTF16 462705] The one-element domain:
+[1-10:P12319; UTF16 462729] [ {\top_A} ]
+[1-10:P12320; UTF16 462742] is maximally compact but may generate a spurious failure path for every safety query and prove almost nothing.
+[1-10:P12324; UTF16 462856] False claim 4 — More precise domain is always faster
+[1-10:P12325; UTF16 462909] An exact DNF representation of parity is exponentially larger than a compact XOR representation, despite being semantically precise.
+[1-10:P12329; UTF16 463045] False claim 5 — Small quotient implies compact formula
+[1-10:P12330; UTF16 463100] The parity quotient has:
+[1-10:P12332; UTF16 463135] but exponential DNF description complexity.
+[1-10:P12336; UTF16 463182] False claim 6 — Short formulas imply easy discovery
+[1-10:P12337; UTF16 463234] A short CNF may encode a SAT-hard class-nonemptiness problem.
+[1-10:P12338; UTF16 463296] Prompt 3’s constant-width hardness construction uses this fact.
+[1-10:P12342; UTF16 463363] False claim 7 — Independent subsystem abstractions can always be multiplied
+[1-10:P12343; UTF16 463439] The multiport correlation example has correct marginals but an incorrect Cartesian product.
+[1-10:P12344; UTF16 463531] Reduced products or joint relations are required.
+[1-10:P12348; UTF16 463584] False claim 8 — Marginal scenario envelopes preserve robust decisions
+[1-10:P12349; UTF16 463654] The trace families in §41 have identical marginals but different robust existential behavior.
+[1-10:P12353; UTF16 463751] False claim 9 — Nominal physics is enough
+[1-10:P12354; UTF16 463793] Two valve networks can have identical nominal pressure-flow behavior and different maintenance-isolation failures or evidence status.
+[1-10:P12358; UTF16 463930] False claim 10 — Exact fair CEGAR can lose butterfly effects
+[1-10:P12359; UTF16 463991] THM-AB18 proves the opposite: every finite downstream decision distinction eventually forces a split.
+[1-10:P12363; UTF16 464096] 58. Proof-Assistant Formalization
+[1-10:P12364; UTF16 464130] 58.1 Concrete lattice
+[1-10:P12365; UTF16 464152] Lean-style skeleton:
+[1-10:P12366; UTF16 464173] def ConcreteDomain (X : Type) :=
+[1-10:P12367; UTF16 464206]   Set X
+[1-10:P12368; UTF16 464214] The subset lattice is already available.
+[1-10:P12372; UTF16 464258] 58.2 Abstract domain and Galois connection
+[1-10:P12373; UTF16 464301] structure AbstractDomain (X : Type) where
+[1-10:P12374; UTF16 464343]   A : Type
+[1-10:P12375; UTF16 464354]   instLattice : CompleteLattice A
+[1-10:P12376; UTF16 464388]   alpha : Set X → A
+[1-10:P12377; UTF16 464408]   gamma : A → Set X
+[1-10:P12378; UTF16 464428]   gc :
+[1-10:P12379; UTF16 464435]     ∀ S a,
+[1-10:P12380; UTF16 464446]       alpha S ≤ a ↔ S ⊆ gamma a
+[1-10:P12381; UTF16 464478] Here ≤ is the precision order.
+[1-10:P12385; UTF16 464512] 58.3 Sound transformer
+[1-10:P12386; UTF16 464535] def SoundTransformer
+[1-10:P12387; UTF16 464556]     (K : X → Y)
+[1-10:P12388; UTF16 464572]     (Ksharp : AX.A → AY.A) : Prop :=
+[1-10:P12389; UTF16 464609]   ∀ a,
+[1-10:P12390; UTF16 464616]     K '' AX.gamma a ⊆
+[1-10:P12391; UTF16 464638]       AY.gamma (Ksharp a)
+[1-10:P12392; UTF16 464664] The theorem skeleton is:
+[1-10:P12393; UTF16 464689] theorem best_correct_approximation
+[1-10:P12394; UTF16 464724]     (K : X → Y) :
+[1-10:P12395; UTF16 464742]     SoundTransformer K
+[1-10:P12396; UTF16 464765]       (fun a =>
+[1-10:P12397; UTF16 464781]         AY.alpha (K '' AX.gamma a)) := by
+[1-10:P12402; UTF16 464832] 58.4 Symbolic predicates
+[1-10:P12403; UTF16 464857] structure SymbolicLanguage (X : Type) where
+[1-10:P12404; UTF16 464901]   Formula : Type
+[1-10:P12405; UTF16 464918]   denote : Formula → Set X
+[1-10:P12407; UTF16 464946]   conj : Formula → Formula → Formula
+[1-10:P12408; UTF16 464983]   diff : Formula → Formula → Formula
+[1-10:P12410; UTF16 465021]   conj_correct : ...
+[1-10:P12411; UTF16 465042]   diff_correct : ...
+[1-10:P12413; UTF16 465064]   solve : Formula → SolverResult X
+[1-10:P12414; UTF16 465099]   solve_sound : ...
+[1-10:P12418; UTF16 465122] 58.5 Exact preimage
+[1-10:P12419; UTF16 465142] structure ExactPreimage
+[1-10:P12421; UTF16 465182]     (FX : SymbolicLanguage X)
+[1-10:P12422; UTF16 465212]     (FY : SymbolicLanguage Y) where
+[1-10:P12423; UTF16 465248]   pre : FY.Formula → FX.Formula
+[1-10:P12424; UTF16 465280]   correct :
+[1-10:P12425; UTF16 465292]     ∀ φ,
+[1-10:P12426; UTF16 465301]       FX.denote (pre φ)
+[1-10:P12427; UTF16 465325]         =
+[1-10:P12428; UTF16 465335]       K ⁻¹' FY.denote φ
+[1-10:P12432; UTF16 465362] 58.6 Symbolic partition
+[1-10:P12433; UTF16 465386] structure SymbolicPartition
+[1-10:P12434; UTF16 465414]     (F : SymbolicLanguage X) where
+[1-10:P12435; UTF16 465449]   blocks : Finset F.Formula
+[1-10:P12436; UTF16 465477]   nonempty : ...
+[1-10:P12437; UTF16 465494]   pairwiseDisjoint : ...
+[1-10:P12438; UTF16 465519]   covers : ...
+[1-10:P12442; UTF16 465537] 58.7 Quotient-respecting split
+[1-10:P12443; UTF16 465568] def QuotientRespecting
+[1-10:P12444; UTF16 465591]     (P : Set X)
+[1-10:P12445; UTF16 465607]     (eqv : Setoid X) : Prop :=
+[1-10:P12446; UTF16 465638]   ∀ x y,
+[1-10:P12447; UTF16 465647]     eqv.Rel x y →
+[1-10:P12448; UTF16 465665]       (x ∈ P ↔ y ∈ P)
+[1-10:P12452; UTF16 465690] 58.8 CEGAR state
+[1-10:P12453; UTF16 465707] inductive SolverResult (X : Type)
+[1-10:P12454; UTF16 465741] | sat : X → SolverResult X
+[1-10:P12455; UTF16 465768] | unsat : UnsatCertificate → SolverResult X
+[1-10:P12456; UTF16 465812] | unknown : SolverResult X
+[1-10:P12457; UTF16 465839] structure CEGARState where
+[1-10:P12458; UTF16 465866]   partition : SymbolicPartition F
+[1-10:P12459; UTF16 465900]   mustEq : Relation X
+[1-10:P12460; UTF16 465922]   mayEq : Relation X
+[1-10:P12461; UTF16 465943]   must_sound : mustEq ⊆ contextualEq
+[1-10:P12462; UTF16 465980]   may_sound : contextualEq ⊆ mayEq
+[1-10:P12463; UTF16 466015]   pending : Finset Obligation
+[1-10:P12467; UTF16 466048] 58.9 Major theorem skeletons
+[1-10:P12468; UTF16 466077] theorem symbolic_refinement_sound
+[1-10:P12469; UTF16 466111]     (hPre : ExactPreimage K FX FY)
+[1-10:P12470; UTF16 466146]     (hSat : ExactSolver F) :
+[1-10:P12471; UTF16 466175]     ConcretePartition
+[1-10:P12472; UTF16 466197]       (symbolicSplit B C K)
+[1-10:P12474; UTF16 466233]     exactConcreteSplit B C K := by
+[1-10:P12476; UTF16 466274] theorem symbolic_quotient_exact
+[1-10:P12477; UTF16 466306]     (hFibers : ExactDirectFibers ...)
+[1-10:P12478; UTF16 466344]     (hPre : ExactPrimitivePreimages ...)
+[1-10:P12479; UTF16 466385]     (hFair : FairWorklist ...)
+[1-10:P12480; UTF16 466416]     (hNoUnknown : ...) :
+[1-10:P12481; UTF16 466441]     finalPartition SymbolicDecisionQuotient
+[1-10:P12483; UTF16 466493]     contextualPartition := by
+[1-10:P12485; UTF16 466529] theorem anytime_safety
+[1-10:P12486; UTF16 466552]     (s : CEGARState)
+[1-10:P12487; UTF16 466573]     (hsandwich :
+[1-10:P12488; UTF16 466590]       s.mustEq ⊆ contextualEq ∧
+[1-10:P12489; UTF16 466622]       contextualEq ⊆ s.mayEq) :
+[1-10:P12490; UTF16 466654]     NoFalseCertifiedMerge s := by
+[1-10:P12495; UTF16 466697] 58.10 Mechanization difficulty
+[1-10:P12496; UTF16 466728] ￼
+ATTACHED TABLE 1736535; native row/column order; 17 rows
+ROW 0: ["Result", "Difficulty"]
+ROW 1: ["Galois consequences", "Straightforward"]
+ROW 2: ["Best correct transformer", "Straightforward"]
+ROW 3: ["Abstract pruning", "Moderate"]
+ROW 4: ["Quotient homogeneity", "Straightforward"]
+ROW 5: ["Symbolic split semantics", "Straightforward"]
+ROW 6: ["ALG-AB1 partition invariants", "Difficult"]
+ROW 7: ["THM-AB4 stability completeness", "Moderate"]
+ROW 8: ["THM-AB8 CEGAR termination", "Moderate"]
+ROW 9: ["THM-AB9 quotient-respecting refinement", "Moderate"]
+ROW 10: ["THM-AB10 symbolic Myhill–Nerode", "Difficult"]
+ROW 11: ["THM-AB11 complexity", "Moderate with formal cost model"]
+ROW 12: ["THM-AB15 complete shell", "Moderate"]
+ROW 13: ["Must/may sandwich", "Straightforward"]
+ROW 14: ["CAQC certificate checker", "Difficult"]
+ROW 15: ["Incremental theory refinement", "Difficult"]
+ROW 16: ["Symbolic hotel compilation", "Research-level implementation proof"]
+[1-10:P12500; UTF16 466733] 59. Permanent Definition and Theorem Registry
+[1-10:P12501; UTF16 466779] 59.1 Definitions
+[1-10:P12502; UTF16 466796] ￼
+ATTACHED TABLE 1736551; native row/column order; 39 rows
+ROW 0: ["ID", "Object", "Assumptions and dependencies", "Status", "Formalization"]
+ROW 1: ["DEF-AB1", "Concrete powerset lattice (\\mathcal C_X)", "(X) finite", "Defined", "Straightforward"]
+ROW 2: ["DEF-AB2", "Abstract engineering domain", "Complete lattice", "Defined", "Straightforward"]
+ROW 3: ["DEF-AB3", "Abstraction map (\\alpha)", "DEF-AB2", "Defined", "Straightforward"]
+ROW 4: ["DEF-AB4", "Concretization map (\\gamma)", "DEF-AB2", "Defined", "Straightforward"]
+ROW 5: ["DEF-AB5", "Galois connection", "DEF-AB3–AB4", "Defined", "Straightforward"]
+ROW 6: ["DEF-AB6", "Sound abstract transformer", "DEF-MN6, DEF-AB5", "Defined", "Straightforward"]
+ROW 7: ["DEF-AB7", "Abstract complete outcome", "DEF-MN14", "Defined", "Moderate"]
+ROW 8: ["DEF-AB8", "Mandatory abstract outcome", "DEF-F33, DEF-AB7", "Defined", "Straightforward"]
+ROW 9: ["DEF-AB9", "Abstract decision envelope", "DEF-MN11–MN14", "Defined", "Moderate"]
+ROW 10: ["DEF-AB10", "Quotient-homogeneous element", "DEF-DS4–DS5", "Defined", "Straightforward"]
+ROW 11: ["DEF-AB11", "Symbolic block language", "Exact finite semantics", "Defined", "Moderate"]
+ROW 12: ["DEF-AB12", "Symbolic block", "DEF-AB11", "Defined", "Straightforward"]
+ROW 13: ["DEF-AB13", "Symbolic partition", "DEF-AB12", "Defined", "Straightforward"]
+ROW 14: ["DEF-AB14", "Exact symbolic preimage", "DEF-MN6", "Defined", "Straightforward"]
+ROW 15: ["DEF-AB15", "Direct-outcome fiber", "DEF-MN14", "Defined", "Straightforward"]
+ROW 16: ["DEF-AB16", "Abstract counterexample", "DEF-AB6–AB9", "Defined", "Moderate"]
+ROW 17: ["DEF-AB17", "Concrete counterexample", "DEF-AB16", "Defined", "Straightforward"]
+ROW 18: ["DEF-AB18", "Spurious counterexample", "DEF-AB16–AB17", "Defined", "Straightforward"]
+ROW 19: ["DEF-AB19", "Refinement operator", "DEF-AB16–AB18", "Defined", "Moderate"]
+ROW 20: ["DEF-AB20", "Quotient-respecting refinement", "DEF-DS4", "Defined", "Straightforward"]
+ROW 21: ["DEF-AB21", "Symbolic discovery size", "DEF-AB13", "Defined", "Straightforward"]
+ROW 22: ["DEF-AB22", "Forward completeness", "DEF-AB5–AB6", "Defined", "Moderate"]
+ROW 23: ["DEF-AB23", "Backward completeness", "DEF-AB5, DEF-AB14", "Defined", "Moderate"]
+ROW 24: ["DEF-AB24", "Experiment completeness", "DEF-AB15", "Defined", "Moderate"]
+ROW 25: ["DEF-AB25", "Quotient-complete domain", "DEF-DS5", "Defined", "Straightforward"]
+ROW 26: ["DEF-AB26", "Must-equivalent relation", "DEF-DS4", "Defined", "Straightforward"]
+ROW 27: ["DEF-AB27", "May-equivalent relation", "DEF-DS4", "Defined", "Straightforward"]
+ROW 28: ["DEF-AB28", "Partial quotient certificate state", "DEF-AB26–AB27", "Defined", "Moderate"]
+ROW 29: ["DEF-AB29", "Predicate abstraction", "Finite predicate basis", "Defined", "Straightforward"]
+ROW 30: ["DEF-AB30", "Predicate description complexity", "Symbolic language fixed", "Defined", "Straightforward"]
+ROW 31: ["DEF-AB31", "Product abstract domain", "Multiple Galois domains", "Defined", "Moderate"]
+ROW 32: ["DEF-AB32", "Reduced product", "DEF-AB31", "Defined", "Moderate"]
+ROW 33: ["DEF-AB33", "Abstract transformer certificate", "DEF-AB6", "Defined", "Moderate"]
+ROW 34: ["DEF-AB34", "SAT/UNSAT/UNKNOWN result", "Exact solver interface", "Defined", "Straightforward"]
+ROW 35: ["DEF-AB35", "CAQC artifact", "All symbolic objects", "Defined", "Difficult"]
+ROW 36: ["DEF-AB36", "Symbolically accessible quotient family", "DEF-AB21, AB30", "Defined", "Moderate"]
+ROW 37: ["DEF-AB37", "Quotient-discovery complexity profile", "Prompts 3–4 widths", "Defined", "Straightforward"]
+ROW 38: ["DEF-AB38", "Joint-trace abstract domain", "DEF-F32.1", "Defined", "Moderate"]
+[1-10:P12506; UTF16 466801] 59.2 Lemmas
+[1-10:P12507; UTF16 466813] ￼
+ATTACHED TABLE 1736567; native row/column order; 7 rows
+ROW 0: ["ID", "Statement", "Dependencies", "Status", "Formalization"]
+ROW 1: ["LEM-AB1", "(S\\subseteq\\gamma\\alpha S) and (\\alpha\\gamma a\\sqsubseteq a)", "DEF-AB5", "Proved", "Straightforward"]
+ROW 2: ["LEM-AB2", "(\\alpha,\\gamma) are monotone", "LEM-AB1", "Proved", "Straightforward"]
+ROW 3: ["LEM-AB3", "Best correct approximation is most precise sound transformer", "DEF-AB5–AB6", "Proved", "Straightforward"]
+ROW 4: ["LEM-AB4", "Symbolic split equals exact concrete split", "DEF-AB14", "Proved", "Straightforward"]
+ROW 5: ["LEM-AB5", "Experiment-generated Boolean algebra sets are unions of quotient classes", "THM-AB9", "Proved inside THM-AB15", "Moderate"]
+ROW 6: ["LEM-AB6", "Stable direct-uniform symbolic partition is contextually sound", "THM-AB4", "Proved", "Moderate"]
+[1-10:P12511; UTF16 466818] 59.3 Theorems

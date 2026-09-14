@@ -1,0 +1,313 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P11273; UTF16 427064] [ \mathsf P=\mathsf{coNP}. ]
+[1-10:P11275; UTF16 427095] On the hard family, at least one symbolic-accessibility assumption fails. In the Boolean-formula construction, exact emptiness or class nonemptiness is SAT/UNSAT-hard.
+[1-10:P11279; UTF16 427266] 31. Must/May Equivalence
+[1-10:P11280; UTF16 427291] DEF-AB26 — Must-Equivalent Relation
+[1-10:P11281; UTF16 427327] A relation:
+[1-10:P11282; UTF16 427339] [ E_{\mathrm{must}} \subseteq X\times X ]
+[1-10:P11283; UTF16 427381] is a must-equivalence approximation when every related pair has a checked equivalence certificate.
+[1-10:P11284; UTF16 427480] Required invariant:
+[1-10:P11285; UTF16 427500] [ E_{\mathrm{must}} \subseteq \equiv_{\partial L}. ]
+[1-10:P11286; UTF16 427553] It may initially be equality only.
+[1-10:P11290; UTF16 427591] DEF-AB27 — May-Equivalent Relation
+[1-10:P11292; UTF16 427638] [ E_{\mathrm{may}} \subseteq X\times X ]
+[1-10:P11293; UTF16 427679] is a may-equivalence approximation when every pair not yet excluded as equivalent remains related.
+[1-10:P11295; UTF16 427798] [ \equiv_{\partial L} \subseteq E_{\mathrm{may}}. ]
+[1-10:P11296; UTF16 427850] It may initially relate every same-sort pair.
+[1-10:P11297; UTF16 427896] A convenient implementation represents (E_{\mathrm{may}}) as the equivalence relation induced by the current coarse symbolic partition.
+[1-10:P11301; UTF16 428035] THM-AB16 — Equivalence Sandwich Soundness
+[1-10:P11302; UTF16 428077] Suppose initially:
+[1-10:P11303; UTF16 428096] [ E_{\mathrm{must}} \subseteq \equiv_{\partial L} \subseteq E_{\mathrm{may}}. ]
+[1-10:P11304; UTF16 428176] The invariant is preserved by the following certified updates.
+[1-10:P11305; UTF16 428239] Must update: add pairs only after a quotient-homogeneity certificate.
+[1-10:P11306; UTF16 428309] May update: remove pairs only after a concrete distinguishing experiment or quotient-respecting symbolic split.
+[1-10:P11307; UTF16 428421] Unknown update: make no relational claim.
+[1-10:P11308; UTF16 428463] At convergence, if:
+[1-10:P11309; UTF16 428483] E_{\mathrm{may}}, ]
+[1-10:P11311; UTF16 428509] E_{\mathrm{may}}
+[1-10:P11312; UTF16 428526] \equiv_{\partial L}. ]
+[1-10:P11314; UTF16 428555] A homogeneity certificate establishes that every newly added must pair belongs to exact equivalence.
+[1-10:P11315; UTF16 428656] A distinguishing experiment proves that every removed may pair is not exactly equivalent.
+[1-10:P11316; UTF16 428746] Thus the two inclusions remain true.
+[1-10:P11317; UTF16 428783] If the two approximations become equal, exact equivalence lies between two equal relations and must equal them. ∎
+[1-10:P11321; UTF16 428900] 32. Anytime Certified Quotient Discovery
+[1-10:P11322; UTF16 428941] DEF-AB28 — Partial Quotient Certificate State
+[1-10:P11323; UTF16 428987] At time (t), a partial quotient state contains:
+[1-10:P11324; UTF16 429035] ( \Pi_t, E_{\mathrm{must},t}, E_{\mathrm{may},t}, \mathsf{Pruned}_t, \mathsf{Cex}_t, \mathsf{Pending}_t, \mathsf{Cert}_t ). ]
+[1-10:P11325; UTF16 429161] It reports:
+[1-10:P11326; UTF16 429173] definitely separate symbolic families;
+[1-10:P11327; UTF16 429212] definitely equivalent families;
+[1-10:P11328; UTF16 429244] unresolved possible merges;
+[1-10:P11329; UTF16 429272] safely pruned families;
+[1-10:P11330; UTF16 429296] real counterexamples;
+[1-10:P11331; UTF16 429318] spurious counterexamples;
+[1-10:P11332; UTF16 429344] pending UNKNOWN obligations;
+[1-10:P11333; UTF16 429373] proof certificates.
+[1-10:P11337; UTF16 429396] THM-AB17 — Anytime Safety
+[1-10:P11338; UTF16 429422] Stopping exact abstraction refinement at any time cannot cause a false certified merge or false certified prune, provided:
+[1-10:P11339; UTF16 429545] only (E_{\mathrm{must}}) is used for certified quotient merging;
+[1-10:P11340; UTF16 429610] only universal checked certificates justify pruning;
+[1-10:P11341; UTF16 429663] (E_{\mathrm{may}}\setminus E_{\mathrm{must}}) remains explicitly unresolved;
+[1-10:P11342; UTF16 429740] UNKNOWN results remain unresolved;
+[1-10:P11343; UTF16 429775] no coarse analysis block is advertised as one exact quotient class without a homogeneity certificate.
+[1-10:P11345; UTF16 429883] Every certified merge belongs to (E_{\mathrm{must}}), which is a subset of exact equivalence by THM-AB16.
+[1-10:P11346; UTF16 429989] Every certified prune satisfies THM-AB1.
+[1-10:P11347; UTF16 430030] All other relationships remain unresolved and are not used to assert exactness.
+[1-10:P11348; UTF16 430110] Therefore early termination can reduce completeness and usefulness but cannot make a certified false statement. ∎
+[1-10:P11352; UTF16 430227] 33. Butterfly-Effect Preservation
+[1-10:P11353; UTF16 430261] Consider finite variables:
+[1-10:P11354; UTF16 430288] [ e \in { \mathsf{left}, \mathsf{middle}, \mathsf{right} }, ]
+[1-10:P11355; UTF16 430350] [ r \in { \mathsf{longPipe}, \mathsf{shortPipe} }, ]
+[1-10:P11356; UTF16 430403] [ s \in { \mathsf{congested}, \mathsf{free} }, ]
+[1-10:P11357; UTF16 430452] [ b \in { \mathsf{beamRequired}, \mathsf{beamRemovable} }. ]
+[1-10:P11358; UTF16 430513] Define deterministic factors:
+[1-10:P11359; UTF16 430543] [ e=\mathsf{right} \iff r=\mathsf{shortPipe}, ]
+[1-10:P11360; UTF16 430591] [ e\in{\mathsf{left},\mathsf{middle}} \iff r=\mathsf{longPipe}, ]
+[1-10:P11361; UTF16 430657] [ r=\mathsf{shortPipe} \iff s=\mathsf{free}, ]
+[1-10:P11362; UTF16 430704] [ r=\mathsf{longPipe} \iff s=\mathsf{congested}, ]
+[1-10:P11363; UTF16 430755] [ s=\mathsf{free} \iff b=\mathsf{beamRemovable}, ]
+[1-10:P11364; UTF16 430806] [ s=\mathsf{congested} \iff b=\mathsf{beamRequired}. ]
+[1-10:P11365; UTF16 430861] Interpret the route change as removing 50 feet of pipe.
+[1-10:P11366; UTF16 430917] The context:
+[1-10:P11367; UTF16 430930] K_{\mathrm{beam}} \diamond K_{\mathrm{space}} \diamond K_{\mathrm{route}} ]
+[1-10:P11368; UTF16 431006] produces:
+[1-10:P11369; UTF16 431016] \mathsf{beamRemovable}, ]
+[1-10:P11370; UTF16 431042] while:
+[1-10:P11371; UTF16 431049] \mathsf{BeamOutcome}(\mathsf{middle})
+[1-10:P11372; UTF16 431087] \mathsf{beamRequired}. ]
+[1-10:P11376; UTF16 431115] THM-AB18 — Butterfly Distinction Preservation
+[1-10:P11377; UTF16 431161] Let (x,y\in X). If some finite exterior context (C) and terminal experiment (e_0) satisfy:
+[1-10:P11378; UTF16 431252] [ \mathsf{Out}{(C,e_0)}(x) \ne \mathsf{Out}{(C,e_0)}(y), ]
+[1-10:P11379; UTF16 431311] then every fair exact quotient-respecting refinement eventually separates (x) and (y).
+[1-10:P11381; UTF16 431404] The differing experiment proves:
+[1-10:P11383; UTF16 431468] Prompt 2’s finite-depth characterization gives a finite refinement depth (m) at which the pair separates.
+[1-10:P11384; UTF16 431574] ALG-AB1 symbolically implements the same direct-output and primitive-preimage refinement operator.
+[1-10:P11385; UTF16 431673] Fairness ensures that every necessary splitter of depth at most (m) is eventually processed.
+[1-10:P11386; UTF16 431766] Exact preimage and satisfiability prevent the real split from being discarded as spurious.
+[1-10:P11387; UTF16 431857] Therefore the pair eventually occupies different symbolic blocks. ∎
+[1-10:P11391; UTF16 431928] COR-AB18A — No Lost Finite Domino Effect
+[1-10:P11392; UTF16 431969] Any finite causal domino effect that changes:
+[1-10:P11397; UTF16 432073] joint uncertainty behavior;
+[1-10:P11398; UTF16 432101] marked-menu choice
+[1-10:P11399; UTF16 432120] produces a finite contextual distinction and therefore cannot remain merged in the exact final symbolic quotient.
+[1-10:P11400; UTF16 432234] Compression is maintained only until the downstream consequence becomes decision relevant.
+[1-10:P11404; UTF16 432328] 34. Predicate Discovery
+[1-10:P11405; UTF16 432352] Refinement predicates have different authority levels.
+[1-10:P11406; UTF16 432407] Level 1 — Exact context-derived predicates
+[1-10:P11407; UTF16 432450] [ P(x) \iff K(x)\in C. ]
+[1-10:P11408; UTF16 432475] More generally:
+[1-10:P11409; UTF16 432491] [ P(x) \iff C_{\mathrm{outer}}[x] \text{ has direct outcome }o. ]
+[1-10:P11410; UTF16 432557] These are quotient respecting.
+[1-10:P11411; UTF16 432588] Level 2 — Checked unsat-core predicates
+[1-10:P11412; UTF16 432628] Derived from an independently checked proof that a proposed abstract transition or path is impossible.
+[1-10:P11413; UTF16 432731] They may safely refine the analysis domain.
+[1-10:P11414; UTF16 432775] They are not automatically quotient boundaries.
+[1-10:P11415; UTF16 432823] Level 3 — Checked interpolant-like predicates
+[1-10:P11416; UTF16 432869] A predicate (I) is accepted only after checking:
+[1-10:P11417; UTF16 432918] [ A\Longrightarrow I, ]
+[1-10:P11418; UTF16 432942] [ I\land B \Longrightarrow\bot. ]
+[1-10:P11419; UTF16 432976] It may refine analysis precision. It becomes a quotient boundary only if an admitted contextual distinction certifies it.
+[1-10:P11420; UTF16 433098] Level 4 — Heuristic engineering predicates
+[1-10:P11421; UTF16 433141] Proposed from:
+[1-10:P11422; UTF16 433156] graph analysis;
+[1-10:P11423; UTF16 433172] engineering motifs;
+[1-10:P11424; UTF16 433192] symbolic regression;
+[1-10:P11425; UTF16 433213] machine learning;
+[1-10:P11426; UTF16 433231] AI language models.
+[1-10:P11427; UTF16 433251] They have no authority until checked.
+[1-10:P11429; UTF16 433309] [ \boxed{ \text{predicate proposal} \ne \text{predicate certification}. } ]
+[1-10:P11433; UTF16 433388] 35. Predicate-Abstraction Theory
+[1-10:P11434; UTF16 433421] DEF-AB29 — Predicate Abstraction
+[1-10:P11436; UTF16 433459] {P_1,\ldots,P_k} ]
+[1-10:P11437; UTF16 433478] be Boolean predicates on (X).
+[1-10:P11439; UTF16 433516] (P_1(x),\ldots,P_k(x)) \in {0,1}^k. ]
+[1-10:P11440; UTF16 433554] The induced partition groups states with equal truth vectors.
+[1-10:P11444; UTF16 433619] THM-AB19 — Predicate Basis Sufficiency
+[1-10:P11446; UTF16 433662] \eta_{\mathcal P}(y) \Longrightarrow x\equiv_{\partial L}y, ]
+[1-10:P11447; UTF16 433724] then (\eta_{\mathcal P}) is a sound exact separator summary, possibly finer than the canonical quotient.
+[1-10:P11448; UTF16 433829] If additionally:
+[1-10:P11449; UTF16 433846] \eta_{\mathcal P}(y), ]
+[1-10:P11450; UTF16 433870] then the induced partition is exactly (\Sigma_L).
+[1-10:P11451; UTF16 433920] Every exact injective Boolean encoding of (q=|\Sigma_L|) classes requires:
+[1-10:P11452; UTF16 433995] [ k\ge \left\lceil \log_2 q \right\rceil. ]
+[1-10:P11454; UTF16 434045] The first implication is exactly decision sufficiency under THM-DS21.1.
+[1-10:P11455; UTF16 434117] Both implications make truth-vector equality coincide with contextual equivalence.
+[1-10:P11456; UTF16 434200] The bit lower bound follows because (k) Boolean predicates produce at most (2^k) truth vectors. ∎
+[1-10:P11460; UTF16 434301] 35.1 Minimal predicate basis
+[1-10:P11461; UTF16 434330] For a restricted predicate language (\mathcal F), define:
+[1-10:P11462; UTF16 434388] [ p_{\mathcal F}(\Sigma_L) ]
+[1-10:P11463; UTF16 434417] as the minimum number of predicates from (\mathcal F) whose truth vectors exactly identify quotient classes.
+[1-10:P11464; UTF16 434526] If no finite basis exists:
+[1-10:P11465; UTF16 434553] [ p_{\mathcal F}(\Sigma_L)=\infty. ]
+[1-10:P11466; UTF16 434590] For unrestricted predicates:
+[1-10:P11467; UTF16 434619] \left\lceil \log_2|\Sigma_L| \right\rceil, ]
+[1-10:P11468; UTF16 434664] because arbitrary unions of quotient classes can encode binary class identifiers.
+[1-10:P11469; UTF16 434746] For restricted engineering languages, the minimum may be much larger.
+[1-10:P11470; UTF16 434816] Computing (p_{\mathcal F}) is a finite optimization problem but need not be tractable.
+[1-10:P11474; UTF16 434906] 36. Predicate Description Complexity
+[1-10:P11475; UTF16 434943] DEF-AB30 — Predicate Description Complexity
+[1-10:P11476; UTF16 434987] For symbolic language (\mathcal F), define:
+[1-10:P11477; UTF16 435031] [ K_{\mathcal F}(\Sigma_L) ]
+[1-10:P11478; UTF16 435060] as the minimum total description length of an exact symbolic partition:
+[1-10:P11479; UTF16 435132] [ {\phi_S\in\Sigma_L} ]
+[1-10:P11481; UTF16 435167] [ \llbracket\phi_S\rrbracket=S. ]
+[1-10:P11483; UTF16 435209] \log_2 \left( 1+ K_{\mathcal F}(\Sigma_L) \right). ]
+[1-10:P11484; UTF16 435262] This is language relative. It is not Kolmogorov complexity.
+[1-10:P11488; UTF16 435325] 36.1 Small semantic width, large description width
+[1-10:P11490; UTF16 435381] [ X_n={0,1}^n. ]
+[1-10:P11491; UTF16 435398] Define two quotient classes by parity:
+[1-10:P11492; UTF16 435437] \left{ x: \sum_i x_i \equiv0\pmod2 \right}, ]
+[1-10:P11493; UTF16 435483] X_n\setminus E_n. ]
+[1-10:P11495; UTF16 435509] [ |\Sigma|=2, \qquad W_D=1. ]
+[1-10:P11496; UTF16 435539] Let (\mathcal F_{\mathrm{DNF}}) be DNF over ordinary literals.
+[1-10:P11497; UTF16 435602] Any conjunction implying even parity must fix every variable. If one variable remains free, flipping that variable changes parity while preserving the conjunction.
+[1-10:P11498; UTF16 435766] Therefore each DNF term contained in (E_n) covers at most one assignment.
+[1-10:P11499; UTF16 435840] Since:
+[1-10:P11500; UTF16 435847] [ |E_n|=2^{n-1}, ]
+[1-10:P11501; UTF16 435866] every exact DNF for (E_n) requires at least (2^{n-1}) terms and description length:
+[1-10:P11502; UTF16 435950] [ \Omega(n2^{n-1}). ]
+[1-10:P11504; UTF16 435978] [ W_D=1 ]
+[1-10:P11506; UTF16 435995] 2^{\Omega(n)}. ]
+[1-10:P11507; UTF16 436012] A tiny quotient need not have a compact representation in a chosen language.
+[1-10:P11511; UTF16 436092] 37. Refined Discovery-Gap Metrics
+[1-10:P11512; UTF16 436126] Prompt 3 defined:
+[1-10:P11513; UTF16 436144] [ \Delta_W=W_P-W_D. ]
+[1-10:P11514; UTF16 436166] Prompt 4 separates three distinct obstacles.
+[1-10:P11515; UTF16 436211] Enumeration gap
+[1-10:P11517; UTF16 436238] This measures explicit provisional-state inflation.
+[1-10:P11518; UTF16 436290] Symbolic description gap
+[1-10:P11519; UTF16 436315] W_{\mathcal F}-W_D. ]
+[1-10:P11520; UTF16 436337] This measures the excess description size required by the selected symbolic language.
+[1-10:P11521; UTF16 436423] Oracle gap
+[1-10:P11523; UTF16 436439] ( C_{\mathrm{sat}}, C_{\mathrm{pre}}, C_{\mathrm{canon}}, C_{\mathrm{proof}} ). ]
+[1-10:P11524; UTF16 436521] Short formulas can still require computationally hard exact reasoning.
+[1-10:P11528; UTF16 436595] DEF-AB37 — Quotient-Discovery Complexity Profile
+[1-10:P11530; UTF16 436652] \left( W_D, W_P, S^\star, K_{\mathcal F}, C_{\mathrm{oracle}}, R_Q, R_A \right), ]
+[1-10:P11532; UTF16 436742] (W_D): irreducible semantic width;
+[1-10:P11533; UTF16 436777] (W_P): explicit provisional width;
+[1-10:P11534; UTF16 436812] (S^\star): peak symbolic representation size;
+[1-10:P11535; UTF16 436858] (K_{\mathcal F}): minimum final class-description size;
+[1-10:P11536; UTF16 436914] (C_{\mathrm{oracle}}): exact symbolic operation costs;
+[1-10:P11537; UTF16 436969] (R_Q): number of accepted semantic quotient splits;
+[1-10:P11538; UTF16 437021] (R_A): number of analysis-domain refinements.
+[1-10:P11539; UTF16 437067] This vector is more informative than any one scalar discovery-width number.
+[1-10:P11543; UTF16 437146] 37.1 Four regimes
+[1-10:P11544; UTF16 437164] ￼
+ATTACHED TABLE 1736471; native row/column order; 5 rows
+ROW 0: ["Regime", "(W_D)", "(W_{\\mathcal F}) or (S^\\star)", "Interpretation"]
+ROW 1: ["Ideal", "Small", "Small", "Quotient is both semantically and symbolically compact"]
+ROW 2: ["Semantically simple, symbolically hard", "Small", "Large", "Final state count is tiny, but class descriptions are difficult"]
+ROW 3: ["Semantically large, structurally represented", "Large", "Potentially small transition formulas", "Many exact states, but transition relation may remain concise"]
+ROW 4: ["Worst case", "Large", "Large", "Neither quotient nor symbolic representation compresses"]
+[1-10:P11548; UTF16 437169] 38. Product and Reduced-Product Domains
+[1-10:P11549; UTF16 437209] DEF-AB31 — Product Abstract Domain
+[1-10:P11550; UTF16 437244] Suppose abstract domains:
+[1-10:P11551; UTF16 437270] [ (A_i,\alpha_i,\gamma_i), \qquad 1\le i\le k, ]
+[1-10:P11552; UTF16 437319] all describe the same concrete state set (X).
+[1-10:P11553; UTF16 437365] Define the product:
+[1-10:P11554; UTF16 437385] \prod_{i=1}^kA_i ]
+[1-10:P11555; UTF16 437404] with componentwise precision order.
+[1-10:P11557; UTF16 437448] (\alpha_1(S),\ldots,\alpha_k(S)), ]
+[1-10:P11558; UTF16 437484] \bigcap_{i=1}^k\gamma_i(a_i). ]
+[1-10:P11559; UTF16 437516] This forms a Galois connection because:
+[1-10:P11560; UTF16 437556] [ \alpha_\times(S)\sqsubseteq(a_i)_i ]
+[1-10:P11561; UTF16 437595] iff:
+[1-10:P11562; UTF16 437600] [ \forall i,; S\subseteq\gamma_i(a_i) ]
+[1-10:P11564; UTF16 437645] [ S\subseteq \bigcap_i\gamma_i(a_i). ]
+[1-10:P11568; UTF16 437687] DEF-AB32 — Exact Reduced Product
+[1-10:P11569; UTF16 437720] An exact reduction is a map:
+[1-10:P11570; UTF16 437749] [ \rho:A_\times\to A_\times ]
+[1-10:P11572; UTF16 437791] reductivity: [ \rho(a)\sqsubseteq a; ]
+[1-10:P11573; UTF16 437830] idempotence: [ \rho(\rho(a))=\rho(a); ]
+[1-10:P11574; UTF16 437870] concretization preservation: \gamma_\times(a). ]
+[1-10:P11575; UTF16 437919] The reduction strengthens components using cross-domain information without removing any represented concrete state.
+[1-10:P11579; UTF16 438039] THM-AB27 — Reduced-Product Soundness
+[1-10:P11580; UTF16 438076] An exact reduction preserves every concrete behavior represented by the unreduced product.
+[1-10:P11582; UTF16 438173] Directly from:
+[1-10:P11583; UTF16 438188] \gamma_\times(a). ]
+[1-10:P11584; UTF16 438208] Every concrete state represented before reduction remains represented after reduction, and no new state is introduced. ∎
+[1-10:P11585; UTF16 438329] A sound narrowing relative to a known invariant (I\subseteq X) may instead satisfy:
+[1-10:P11586; UTF16 438413] [ I\cap\gamma(a) \subseteq \gamma(\rho_I(a)) \subseteq \gamma(a). ]
+[1-10:P11587; UTF16 438481] Such a reduction is sound only for states known to lie in (I).
+[1-10:P11591; UTF16 438547] 39. Cross-Disciplinary Constraint Propagation
+[1-10:P11592; UTF16 438593] Let finite variables denote:
+[1-10:P11593; UTF16 438622] [ d=\text{beam depth}, ]
+[1-10:P11594; UTF16 438647] [ p=\text{required plenum depth}, ]
+[1-10:P11595; UTF16 438683] [ h=\text{available floor-to-floor depth}. ]
+[1-10:P11596; UTF16 438728] Suppose separate domains report:
+[1-10:P11597; UTF16 438761] [ d\ge3, ]
+[1-10:P11598; UTF16 438772] [ p\ge3, ]
+[1-10:P11599; UTF16 438783] [ h\le5. ]
+[1-10:P11600; UTF16 438794] The cross-disciplinary compatibility factor is:
+[1-10:P11601; UTF16 438842] [ d+p\le h. ]
+[1-10:P11602; UTF16 438856] Individually, each domain is nonempty.
+[1-10:P11603; UTF16 438895] Together:
+[1-10:P11604; UTF16 438905] [ d+p\ge6>5\ge h, ]
+[1-10:P11605; UTF16 438925] so the reduced product concretization is empty.
+[1-10:P11606; UTF16 438973] No enumeration of every ((d,p,h)) tuple is needed. A finite arithmetic proof derives:
+[1-10:P11608; UTF16 439074] THM-AB1 then permits pruning the entire family.
+[1-10:P11609; UTF16 439122] This is the abstract-interpretation version of multidisciplinary constraint propagation.
+[1-10:P11613; UTF16 439214] 40. Evidence Abstraction
+[1-10:P11614; UTF16 439239] Prompt 2 evidence semantics is not a scalar confidence score.
+[1-10:P11616; UTF16 439306] [ \mathsf{EvState} ]
+[1-10:P11617; UTF16 439327] be the finite semantic evidence-view domain containing:
+[1-10:P11618; UTF16 439383] claim layer;
+[1-10:P11619; UTF16 439396] evidence kind;
+[1-10:P11620; UTF16 439411] active, stale, rejected, or unresolved status;
+[1-10:P11621; UTF16 439458] model and data version;
+[1-10:P11622; UTF16 439482] applicability domain;
+[1-10:P11623; UTF16 439504] dependency validity;
+[1-10:P11624; UTF16 439525] authority or judgment provenance.
+[1-10:P11625; UTF16 439559] An exact evidence abstraction may be:
+[1-10:P11626; UTF16 439597] \mathcal P(\mathsf{EvState}) ]
+[1-10:P11627; UTF16 439628] or a compact symbolic representation of such sets.
+[1-10:P11628; UTF16 439679] Join is set union:
+[1-10:P11629; UTF16 439698] E_1^#\cup E_2^#. ]
+[1-10:P11630; UTF16 439717] Refinement intersects with certified evidence predicates.
+[1-10:P11631; UTF16 439775] A family can be pruned for missing mandatory evidence only when:
+[1-10:P11632; UTF16 439840] [ \gamma(a) \subseteq \mathsf{EvidenceFail}. ]
+[1-10:P11633; UTF16 439887] If the abstract family contains both supported and unsupported states, the result is unresolved and may not justify pruning or merging.
+[1-10:P11634; UTF16 440023] Evidence dependencies remain part of the concretization. Changing a model version invalidates every abstract certificate whose dependency closure reaches that version.
+[1-10:P11638; UTF16 440194] 41. Joint-Scenario Abstraction
+[1-10:P11639; UTF16 440225] 41.1 Marginal unsoundness example
+[1-10:P11640; UTF16 440259] Consider two scenarios:
+[1-10:P11641; UTF16 440283] [ \xi_1,\xi_2. ]
+[1-10:P11642; UTF16 440300] Family (A) contains traces:
+[1-10:P11643; UTF16 440328] [ (\mathsf{good},\mathsf{bad}), ]
+[1-10:P11644; UTF16 440362] [ (\mathsf{bad},\mathsf{good}). ]
+[1-10:P11645; UTF16 440396] Family (B) contains:
+[1-10:P11646; UTF16 440417] [ (\mathsf{good},\mathsf{good}), ]
+[1-10:P11647; UTF16 440452] [ (\mathsf{bad},\mathsf{bad}). ]
+[1-10:P11648; UTF16 440485] The marginal outcome sets are identical:
+[1-10:P11649; UTF16 440526] [ {\mathsf{good},\mathsf{bad}} ]
+[1-10:P11650; UTF16 440559] in each scenario.
+[1-10:P11651; UTF16 440577] But the robust query:
+[1-10:P11652; UTF16 440599] Does there exist one realization that is good in both scenarios?
+[1-10:P11653; UTF16 440664] is false for (A) and true for (B).
+[1-10:P11654; UTF16 440699] Marginal envelopes destroy the correlation needed by the decision.
+[1-10:P11658; UTF16 440769] DEF-AB38 — Abstract Joint-Trace Domain
+[1-10:P11659; UTF16 440808] A joint-trace abstract domain denotes subsets of:
+[1-10:P11660; UTF16 440858] [ \mathcal O^{\mathcal M\times\Xi}. ]
+[1-10:P11661; UTF16 440896] Its concretization is:
+[1-10:P11662; UTF16 440919] [ \gamma_{\mathrm{tr}}(a) \subseteq \mathcal O^{\mathcal M\times\Xi}. ]
+[1-10:P11663; UTF16 440991] It does not replace a set of joint traces by independent coordinate marginals unless the admitted decision theory has proved that all relevant functionals factor through those marginals.
+[1-10:P11667; UTF16 441181] THM-AB21 — Joint-Scenario Abstraction Soundness
+[1-10:P11668; UTF16 441229] A sound abstract joint-trace representation preserves every admitted robust decision when:
+[1-10:P11669; UTF16 441320] every concrete trace is included in the concretization;
+[1-10:P11670; UTF16 441376] universal conclusions are certified over every concretized trace;
+[1-10:P11671; UTF16 441442] existential conclusions have a concrete witness;
+[1-10:P11672; UTF16 441491] exact equivalence is asserted only for quotient-homogeneous trace families.
+[1-10:P11673; UTF16 441567] A marginal abstraction may certify exact equivalence only if every admitted experiment factors through the chosen marginals.
+[1-10:P11675; UTF16 441698] Under conditions 1–3, no concrete joint behavior is omitted and no existential behavior is invented without a witness.
+[1-10:P11676; UTF16 441817] Condition 4 applies THM-AB2 to the complete trace semantics.
+[1-10:P11677; UTF16 441878] If every experiment factors through marginals, equal marginal summaries imply equal outcomes. Without that factorization, the counterexample above demonstrates unsoundness. ∎
+[1-10:P11681; UTF16 442056] 42. Marked-Candidate Menu Abstraction
+[1-10:P11682; UTF16 442094] A candidate’s individual consequence envelope does not determine its behavior in arbitrary menus.
+[1-10:P11683; UTF16 442192] An exact symbolic decision abstraction must preserve, for every admitted competitor valuation:
+[1-10:P11686; UTF16 442348] whether the report is empty;
+[1-10:P11689; UTF16 442423] The Prompt 2 third-alternative construction gives candidates (p,q) with similar or overlapping individual cost/outage envelopes but different outcomes when competitor (r) establishes a threshold.
+[1-10:P11690; UTF16 442619] Therefore an abstract class is decision homogeneous only if:
+[1-10:P11691; UTF16 442680] [ \forall x,y\in\gamma(a), \forall e\in\mathfrak E_L^{\mathrm{out}}, \quad \mathsf{Out}_e(x)=\mathsf{Out}_e(y). ]
+[1-10:P11692; UTF16 442794] Pairwise or scalar envelopes are not sufficient.
+[1-10:P11696; UTF16 442846] 43. Proof-Carrying Abstract Transformers

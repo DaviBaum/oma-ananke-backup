@@ -1,0 +1,391 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P19225; UTF16 624582] Because (d^\star) is absent from the theory, all represented lifecycle artifacts are identical in (W_0) and (W_1).
+[21-30:P19226; UTF16 624697] The future integrity or repairability conclusion differs.
+[21-30:P19227; UTF16 624755] Therefore the current lifecycle package cannot distinguish the two worlds and cannot prove absence of (d^\star).
+[21-30:P19229; UTF16 624875] [ \boxed{ \textbf{No closed lifecycle theory proves the absence of degradation, support loss, or aging mechanisms outside its modeled theory.} } ]
+[21-30:P19234; UTF16 625027] 51. Proposal-Source Independence
+[21-30:P19235; UTF16 625060] THM-LIFE36 — Lifecycle-Certificate Semantics Are Independent of Proposal Source
+[21-30:P19237; UTF16 625150] Inspection plans, maintenance schedules, spare policies, repairs, retrofits, and decommissioning plans may be proposed by any source without changing the semantics of an accepted lifecycle certificate.
+[21-30:P19239; UTF16 625358] Let proposal sources include:
+[21-30:P19241; UTF16 625401] a human engineer;
+[21-30:P19242; UTF16 625419] a facility manager;
+[21-30:P19243; UTF16 625439] a vendor;
+[21-30:P19244; UTF16 625449] a maintenance optimizer;
+[21-30:P19245; UTF16 625474] a random or heuristic search process.
+[21-30:P19246; UTF16 625512] Let two proposal procedures produce identical checked PCLAI artifacts:
+[21-30:P19247; UTF16 625583] \mathsf{PCLAI}_2. ]
+[21-30:P19248; UTF16 625603] The independent lifecycle checker evaluates only:
+[21-30:P19249; UTF16 625653] asset identity;
+[21-30:P19252; UTF16 625711] inspection evidence;
+[21-30:P19253; UTF16 625732] maintenance transition;
+[21-30:P19254; UTF16 625756] spare and support state;
+[21-30:P19258; UTF16 625830] material evidence.
+[21-30:P19259; UTF16 625849] The proposer identity is not a premise of any acceptance rule.
+[21-30:P19260; UTF16 625912] Therefore the checker returns the same lifecycle propositions for both packages.
+[21-30:P19261; UTF16 625993] More generally, replacing the proposer while preserving every checked premise leaves the certificate conclusion invariant.
+[21-30:P19263; UTF16 626122] [ \boxed{ \text{accepted lifecycle semantics} \text{ are independent of proposal source}. } ]
+[21-30:P19265; UTF16 626218] This does not imply that every proposer is equally effective at finding useful policies.
+[21-30:P19269; UTF16 626310] 52. Explicit PCLAI Checking Complexity
+[21-30:P19270; UTF16 626349] THM-LIFE37 — Explicit PCLAI Checking Complexity
+[21-30:P19272; UTF16 626407] Let an explicit acyclic PCLAI proof DAG contain:
+[21-30:P19279; UTF16 626586] A topological traversal of the proof DAG:
+[21-30:P19280; UTF16 626628] visits each node once;
+[21-30:P19281; UTF16 626651] traverses each edge once.
+[21-30:P19282; UTF16 626677] Graph traversal therefore costs:
+[21-30:P19284; UTF16 626722] At node (i), the checker executes the local proof or validation procedure at cost (c_i).
+[21-30:P19285; UTF16 626811] Summing all local costs gives:
+[21-30:P19286; UTF16 626842] [ \sum_{i=1}^{N}c_i. ]
+[21-30:P19287; UTF16 626865] Therefore total explicit checking cost is:
+[21-30:P19290; UTF16 626947] This verification bound does not establish efficient:
+[21-30:P19291; UTF16 627001] degradation-model discovery;
+[21-30:P19292; UTF16 627030] condition inference;
+[21-30:P19293; UTF16 627051] RUL computation;
+[21-30:P19294; UTF16 627068] optimal inspection planning;
+[21-30:P19295; UTF16 627097] maintenance-policy synthesis;
+[21-30:P19296; UTF16 627127] spare optimization;
+[21-30:P19297; UTF16 627147] retrofit synthesis;
+[21-30:P19298; UTF16 627167] decommissioning planning.
+[21-30:P19303; UTF16 627220] ALG-LIFE1 — AuditLifecycleState
+[21-30:P19305; UTF16 627258]     Prompt-25 handover baseline
+[21-30:P19306; UTF16 627290]     current physical configuration
+[21-30:P19307; UTF16 627325]     software and firmware state
+[21-30:P19308; UTF16 627357]     condition state or condition enclosure
+[21-30:P19309; UTF16 627400]     inspection history
+[21-30:P19310; UTF16 627423]     maintenance history
+[21-30:P19311; UTF16 627447]     spare inventory
+[21-30:P19312; UTF16 627467]     support and obsolescence state
+[21-30:P19313; UTF16 627502]     retrofit history
+[21-30:P19314; UTF16 627523]     decommissioning state
+[21-30:P19315; UTF16 627549]     versions and evidence
+[21-30:P19318; UTF16 627582]     target and asset identity
+[21-30:P19319; UTF16 627612]     baseline lineage
+[21-30:P19320; UTF16 627633]     undocumented edits
+[21-30:P19321; UTF16 627656]     missing condition variables
+[21-30:P19322; UTF16 627688]     stale degradation models
+[21-30:P19323; UTF16 627717]     expired calibrations
+[21-30:P19324; UTF16 627742]     unresolved maintenance actions
+[21-30:P19325; UTF16 627777]     support-state validity
+[21-30:P19326; UTF16 627804]     current decommissioning state
+[21-30:P19328; UTF16 627839] IF current configuration differs from all certified baselines:
+[21-30:P19329; UTF16 627902]     return CONFIGURATION_DRIFT
+[21-30:P19331; UTF16 627934] IF mandatory state is absent:
+[21-30:P19332; UTF16 627964]     return INCOMPLETE
+[21-30:P19334; UTF16 627987] IF evidence or models are stale:
+[21-30:P19335; UTF16 628020]     return STALE
+[21-30:P19337; UTF16 628038] IF incompatible lifecycle artifacts exist:
+[21-30:P19338; UTF16 628081]     return CONFLICT
+[21-30:P19340; UTF16 628102] IF all mandatory roots are established:
+[21-30:P19341; UTF16 628142]     return VALID_LIFECYCLE_STATE
+[21-30:P19343; UTF16 628176] RETURN UNKNOWN
+[21-30:P19344; UTF16 628191] Correctness basis: ASSUMP-LIFE1–2, 20, and 25.
+[21-30:P19348; UTF16 628241] ALG-LIFE2 — BuildConditionKnowledgeSet
+[21-30:P19350; UTF16 628286]     prior condition set Γprior
+[21-30:P19351; UTF16 628317]     degradation transition relation F
+[21-30:P19352; UTF16 628355]     elapsed operating history
+[21-30:P19353; UTF16 628385]     maintenance transitions
+[21-30:P19354; UTF16 628413]     inspection evidence sets E1,...,Ek
+[21-30:P19355; UTF16 628452]     monitoring evidence
+[21-30:P19356; UTF16 628476]     cyber-compromise hypotheses
+[21-30:P19360; UTF16 628541]     Γpred := every state reachable from Γprior
+[21-30:P19361; UTF16 628588]              under the covered degradation,
+[21-30:P19362; UTF16 628632]              operation, and maintenance theory
+[21-30:P19364; UTF16 628680] FOR each valid evidence relation Ej:
+[21-30:P19365; UTF16 628717]     Γpred := Γpred ∩ Ej
+[21-30:P19367; UTF16 628742] IF one evidence artifact conflicts with the others:
+[21-30:P19368; UTF16 628794]     return EVIDENCE_CONFLICT
+[21-30:P19370; UTF16 628824] IF exact representation is possible:
+[21-30:P19371; UTF16 628861]     return EXACT_CONDITION_SET Γpred
+[21-30:P19373; UTF16 628899] IF only sound enclosure is possible:
+[21-30:P19374; UTF16 628936]     return SOUND_OUTER_ENCLOSURE Γouter
+[21-30:P19376; UTF16 628977] NEVER remove a state without a checked inconsistency proof
+[21-30:P19379; UTF16 629052] Correctness basis: DEF-LIFE5, DEF-LIFE7–8, THM-LIFE3, and Prompt-15 containment.
+[21-30:P19383; UTF16 629136] ALG-LIFE3 — AuditDegradationModel
+[21-30:P19385; UTF16 629176]     asset identity
+[21-30:P19386; UTF16 629195]     degradation mechanism
+[21-30:P19387; UTF16 629221]     state variables
+[21-30:P19388; UTF16 629241]     load and environmental domain
+[21-30:P19389; UTF16 629275]     parameter evidence
+[21-30:P19390; UTF16 629298]     calibration data
+[21-30:P19391; UTF16 629319]     fleet-transfer evidence
+[21-30:P19392; UTF16 629347]     time horizon
+[21-30:P19393; UTF16 629364]     model version
+[21-30:P19396; UTF16 629389]     target versus population modality
+[21-30:P19397; UTF16 629427]     product and material identity
+[21-30:P19398; UTF16 629461]     load-range applicability
+[21-30:P19399; UTF16 629490]     environmental support
+[21-30:P19400; UTF16 629516]     parameter uncertainty
+[21-30:P19401; UTF16 629542]     maintenance-state applicability
+[21-30:P19403; UTF16 629600]     nonstationarity assumptions
+[21-30:P19406; UTF16 629645] IF only Prompt-16 population evidence exists:
+[21-30:P19407; UTF16 629691]     return POPULATION_EVIDENCE_ONLY
+[21-30:P19409; UTF16 629728] IF target lies outside model domain:
+[21-30:P19410; UTF16 629765]     return OUTSIDE_DOMAIN
+[21-30:P19412; UTF16 629792] IF model or calibration expired:
+[21-30:P19415; UTF16 629843] IF every required applicability claim passes:
+[21-30:P19416; UTF16 629889]     return VALID_MODEL
+[21-30:P19422; UTF16 629931] ALG-LIFE4 — CheckConditionMonitoringSufficiency
+[21-30:P19424; UTF16 629985]     covered condition family X
+[21-30:P19425; UTF16 630016]     observation map H
+[21-30:P19426; UTF16 630038]     required maintenance decision map a*
+[21-30:P19427; UTF16 630079]     optional family of lifecycle reports F
+[21-30:P19429; UTF16 630123] SEARCH for x1,x2 in X such that:
+[21-30:P19432; UTF16 630182]     a*(x1) != a*(x2)
+[21-30:P19435; UTF16 630214]     return CONDITION_ALIASING with witness (x1,x2)
+[21-30:P19437; UTF16 630266] IF every observation fiber is decision homogeneous:
+[21-30:P19438; UTF16 630318]     return DECISION_SUFFICIENT
+[21-30:P19440; UTF16 630350] IF X or H is only partially represented:
+[21-30:P19442; UTF16 630410] Correctness basis: THM-LIFE5–6.
+[21-30:P19446; UTF16 630445] ALG-LIFE5 — BuildMaintenanceDecisionQuotient
+[21-30:P19448; UTF16 630496]     condition family X
+[21-30:P19449; UTF16 630519]     admitted lifecycle computation family Flife
+[21-30:P19452; UTF16 630575]     x1 ~ x2 iff
+[21-30:P19453; UTF16 630591]     every f in Flife returns the same report on x1 and x2
+[21-30:P19456; UTF16 630658]     equivalence classes exactly when finite
+[21-30:P19457; UTF16 630702]     symbolic classes when predicates are available
+[21-30:P19458; UTF16 630753]     a certified refinement when exact quotienting is intractable
+[21-30:P19461; UTF16 630826]     every f factors through the returned representation
+[21-30:P19464; UTF16 630890]     EXACT_QUOTIENT
+[21-30:P19465; UTF16 630909]     SYMBOLIC_QUOTIENT
+[21-30:P19466; UTF16 630931]     CERTIFIED_REFINEMENT
+[21-30:P19468; UTF16 630971] Correctness basis: THM-LIFE7.
+[21-30:P19472; UTF16 631004] ALG-LIFE6 — ComputeRobustInspectionHorizon
+[21-30:P19474; UTF16 631053]     current integrity-margin enclosure M0
+[21-30:P19475; UTF16 631095]     worst covered degradation-rate bound r
+[21-30:P19476; UTF16 631138]     strict or nonstrict integrity requirement
+[21-30:P19477; UTF16 631184]     model validity horizon
+[21-30:P19478; UTF16 631211]     calibration and observation expiry
+[21-30:P19479; UTF16 631250]     support or regulatory deadlines
+[21-30:P19482; UTF16 631295]     worst admissible current margin mmin
+[21-30:P19484; UTF16 631337] IF mmin <= 0:
+[21-30:P19485; UTF16 631351]     return NO_POSITIVE_HORIZON
+[21-30:P19487; UTF16 631383] IF no valid finite degradation-rate bound exists:
+[21-30:P19488; UTF16 631433]     return MODEL_INSUFFICIENT
+[21-30:P19490; UTF16 631464] hmargin := mmin / r
+[21-30:P19492; UTF16 631485] h := minimum of:
+[21-30:P19493; UTF16 631502]     hmargin
+[21-30:P19495; UTF16 631541]     calibration expiry
+[21-30:P19496; UTF16 631564]     support deadline
+[21-30:P19497; UTF16 631585]     other mandatory lifecycle deadlines
+[21-30:P19499; UTF16 631626] IF strict positive margin is required:
+[21-30:P19500; UTF16 631665]     return any certified h' < h
+[21-30:P19502; UTF16 631698] RETURN ROBUST_HORIZON h
+[21-30:P19503; UTF16 631722] Correctness basis: THM-LIFE8. Average rates are rejected under THM-LIFE9.
+[21-30:P19507; UTF16 631799] ALG-LIFE7 — ComputeRULSet
+[21-30:P19509; UTF16 631831]     condition set Γt
+[21-30:P19510; UTF16 631852]     failure set Ffail
+[21-30:P19511; UTF16 631874]     degradation transition family
+[21-30:P19512; UTF16 631908]     future disturbance family Ω
+[21-30:P19516; UTF16 631964] FOR each represented initial state and covered disturbance:
+[21-30:P19517; UTF16 632024]     compute or bound first hitting time of Ffail
+[21-30:P19519; UTF16 632074] AGGREGATE
+[21-30:P19520; UTF16 632084]     all possible hitting times into RRUL
+[21-30:P19522; UTF16 632126] IF every trajectory is exactly analyzable:
+[21-30:P19523; UTF16 632169]     return EXACT_RUL_SET
+[21-30:P19525; UTF16 632195] IF interval bounds are certified:
+[21-30:P19526; UTF16 632229]     return ROBUST_RUL_BOUNDS
+[21-30:P19528; UTF16 632259] IF a declared stochastic law exists:
+[21-30:P19529; UTF16 632296]     return RUL_DISTRIBUTION with probability modality
+[21-30:P19531; UTF16 632351] IF only predictor output exists:
+[21-30:P19532; UTF16 632384]     return RUL_FORECAST
+[21-30:P19538; UTF16 632427] ALG-LIFE8 — AuditRULClaim
+[21-30:P19540; UTF16 632459]     claimed RUL result
+[21-30:P19541; UTF16 632482]     asset
+[21-30:P19542; UTF16 632492]     current condition basis
+[21-30:P19543; UTF16 632520]     failure threshold
+[21-30:P19545; UTF16 632564]     future policy
+[21-30:P19546; UTF16 632582]     uncertainty representation
+[21-30:P19547; UTF16 632613]     probability law, if any
+[21-30:P19548; UTF16 632641]     model version and horizon
+[21-30:P19551; UTF16 632678]     asset and configuration identity
+[21-30:P19552; UTF16 632715]     failure-set identity
+[21-30:P19553; UTF16 632740]     current-state containment
+[21-30:P19554; UTF16 632770]     model applicability
+[21-30:P19555; UTF16 632794]     future operating assumptions
+[21-30:P19556; UTF16 632827]     intervention assumptions
+[21-30:P19557; UTF16 632856]     censoring
+[21-30:P19558; UTF16 632870]     probability versus set-valued modality
+[21-30:P19559; UTF16 632913]     target versus fleet transfer
+[21-30:P19561; UTF16 632947] IF claim is only a point predictor without coverage:
+[21-30:P19562; UTF16 633000]     return POINT_ESTIMATE_ONLY
+[21-30:P19564; UTF16 633032] IF outside model:
+[21-30:P19565; UTF16 633050]     return OUTSIDE_MODEL
+[21-30:P19567; UTF16 633076] IF every dependency is valid:
+[21-30:P19568; UTF16 633106]     return RUL_CLAIM_VALID with exact modality
+[21-30:P19574; UTF16 633172] ALG-LIFE9 — PlanPreventiveMaintenance
+[21-30:P19576; UTF16 633216]     current condition set
+[21-30:P19577; UTF16 633242]     integrity margins
+[21-30:P19579; UTF16 633286]     candidate maintenance actions
+[21-30:P19580; UTF16 633320]     restoration-state relations
+[21-30:P19581; UTF16 633352]     maintenance durations
+[21-30:P19586; UTF16 633426]     support windows
+[21-30:P19587; UTF16 633446]     required horizon
+[21-30:P19589; UTF16 633468] GENERATE candidate maintenance schedules
+[21-30:P19591; UTF16 633510] FOR each schedule:
+[21-30:P19592; UTF16 633529]     verify action executability
+[21-30:P19593; UTF16 633561]     verify post-maintenance restoration
+[21-30:P19594; UTF16 633601]     verify integrity between interventions
+[21-30:P19595; UTF16 633644]     verify resource and spare feasibility
+[21-30:P19596; UTF16 633686]     verify timing before support and integrity frontiers
+[21-30:P19597; UTF16 633743]     compute decision-model value if requested
+[21-30:P19600; UTF16 633797]     VERIFIED_PLAN
+[21-30:P19601; UTF16 633815]     VERIFIED_NONOPTIMAL_PLAN
+[21-30:P19604; UTF16 633874] THM-LIFE12 supplies one correctness certificate for periodic perfect restoration.
+[21-30:P19608; UTF16 633959] ALG-LIFE10 — EvaluateAgeReplacementPolicy
+[21-30:P19610; UTF16 634007]     probability space
+[21-30:P19611; UTF16 634029]     component lifetime law L
+[21-30:P19612; UTF16 634058]     preventive age τ
+[21-30:P19613; UTF16 634079]     preventive cost cp
+[21-30:P19614; UTF16 634102]     failure cost cf
+[21-30:P19617; UTF16 634130]     post-replacement i.i.d. renewal
+[21-30:P19618; UTF16 634166]     positive finite expected cycle length
+[21-30:P19619; UTF16 634208]     integrable cycle cost
+[21-30:P19620; UTF16 634234]     cost charged under declared convention
+[21-30:P19623; UTF16 634286]     EY := E[min(L,τ)]
+[21-30:P19624; UTF16 634308]     EC := cf P(L<=τ) + cp P(L>τ)
+[21-30:P19625; UTF16 634341]     g  := EC / EY
+[21-30:P19628; UTF16 634367]     LONG_RUN_AVERAGE_COST g
+[21-30:P19629; UTF16 634395]     ASSUMPTION_FAILURE
+[21-30:P19631; UTF16 634433] Correctness basis: THM-LIFE13.
+[21-30:P19635; UTF16 634467] ALG-LIFE11 — CheckImperfectRepair
+[21-30:P19637; UTF16 634507]     pre-repair condition
+[21-30:P19638; UTF16 634532]     repair action
+[21-30:P19639; UTF16 634550]     repair model
+[21-30:P19640; UTF16 634567]     virtual-age parameter ρ, if used
+[21-30:P19641; UTF16 634604]     post-repair measurements
+[21-30:P19643; UTF16 634654]     acceptance requirements
+[21-30:P19645; UTF16 634683] COMPUTE or bound post-repair state
+[21-30:P19647; UTF16 634719] IF post-state equals certified renewal state:
+[21-30:P19648; UTF16 634765]     return PERFECT_RENEWAL
+[21-30:P19650; UTF16 634793] IF virtual age is unchanged and local function is restored:
+[21-30:P19651; UTF16 634853]     return MINIMAL_REPAIR
+[21-30:P19653; UTF16 634880] IF 0 < ρ < 1 and post-state satisfies model:
+[21-30:P19654; UTF16 634925]     return IMPERFECT_REPAIR
+[21-30:P19656; UTF16 634954] IF post-condition violates integrity:
+[21-30:P19657; UTF16 634992]     return REPAIR_FAILED
+[21-30:P19663; UTF16 635036] ALG-LIFE12 — CheckMaintenanceExecution
+[21-30:P19665; UTF16 635081]     planned maintenance action
+[21-30:P19666; UTF16 635112]     actual execution evidence
+[21-30:P19667; UTF16 635142]     Prompt-24 human witness
+[21-30:P19668; UTF16 635170]     parts and tools used
+[21-30:P19669; UTF16 635195]     software/configuration edits
+[21-30:P19671; UTF16 635262]     local tests
+[21-30:P19672; UTF16 635278]     lifecycle dependency graph
+[21-30:P19675; UTF16 635316]     task identity
+[21-30:P19676; UTF16 635334]     personnel competence
+[21-30:P19677; UTF16 635359]     actual physical edit
+[21-30:P19678; UTF16 635384]     part identity
+[21-30:P19679; UTF16 635402]     torque/calibration/configuration where applicable
+[21-30:P19680; UTF16 635456]     post-maintenance condition
+[21-30:P19681; UTF16 635487]     newly introduced faults
+[21-30:P19682; UTF16 635515]     complete LifeCone
+[21-30:P19683; UTF16 635537]     required Prompt-25 retests
+[21-30:P19685; UTF16 635569] IF work happened but dependent claims remain open:
+[21-30:P19686; UTF16 635620]     return MAINTENANCE_RECERTIFICATION_REQUIRED
+[21-30:P19688; UTF16 635669] IF new defect is established:
+[21-30:P19689; UTF16 635699]     return DEFECT_INTRODUCED
+[21-30:P19691; UTF16 635729] IF complete cone passes:
+[21-30:P19692; UTF16 635754]     return MAINTENANCE_CLOSED
+[21-30:P19698; UTF16 635803] ALG-LIFE13 — BuildInspectionCoverageMatrix
+[21-30:P19700; UTF16 635852]     modeled degradation and failure modes
+[21-30:P19701; UTF16 635894]     candidate inspection methods
+[21-30:P19702; UTF16 635927]     access states
+[21-30:P19703; UTF16 635945]     detection relations
+[21-30:P19704; UTF16 635969]     uncertainty models
+[21-30:P19706; UTF16 635993] FOR each inspection i and mode f:
+[21-30:P19707; UTF16 636027]     independently check whether i:
+[21-30:P19708; UTF16 636062]         detects f
+[21-30:P19709; UTF16 636080]         bounds f
+[21-30:P19710; UTF16 636097]         or does not cover f
+[21-30:P19712; UTF16 636126] STORE only proved coverage relations
+[21-30:P19715; UTF16 636171]     INSPECTION_COVERAGE_MATRIX
+[21-30:P19716; UTF16 636202]     UNCOVERED_MODES
+[21-30:P19717; UTF16 636222]     UNRESOLVED_RELATIONS
+[21-30:P19721; UTF16 636250] ALG-LIFE14 — SelectInspectionPortfolio
+[21-30:P19723; UTF16 636295]     degradation-mode universe U
+[21-30:P19724; UTF16 636327]     inspection coverage sets CI(i)
+[21-30:P19725; UTF16 636362]     inspection costs
+[21-30:P19729; UTF16 636442]     human resources
+[21-30:P19731; UTF16 636463] SOLVE bounded Weighted Set Cover or constrained extension
+[21-30:P19733; UTF16 636522] VERIFY final portfolio:
+[21-30:P19734; UTF16 636546]     covers every mandatory mode
+[21-30:P19735; UTF16 636578]     is physically executable
+[21-30:P19736; UTF16 636607]     is schedulable
+[21-30:P19737; UTF16 636626]     respects inspection risk
+[21-30:P19740; UTF16 636663]     PROVED_MINIMUM
+[21-30:P19741; UTF16 636682]     VERIFIED_NONMINIMUM
+[21-30:P19742; UTF16 636706]     INCOMPLETE_COVERAGE
+[21-30:P19747; UTF16 636748] ALG-LIFE15 — SolveConditionBasedMaintenance
+[21-30:P19749; UTF16 636798]     finite or symbolic condition state
+[21-30:P19751; UTF16 636861]     action set
+[21-30:P19752; UTF16 636876]     transition relation or stochastic kernel
+[21-30:P19753; UTF16 636921]     integrity obligations
+[21-30:P19754; UTF16 636947]     costs and downtime
+[21-30:P19755; UTF16 636970]     support and spare state
+[21-30:P19757; UTF16 637010]     information partition
+[21-30:P19760; UTF16 637045]     actions depend only on current information history
+[21-30:P19762; UTF16 637101] SOLVE using:
+[21-30:P19763; UTF16 637114]     dynamic programming
+[21-30:P19765; UTF16 637159]     partially observed control
+[21-30:P19766; UTF16 637190]     MIP/CP approximation
+[21-30:P19767; UTF16 637215]     verified heuristic policy
+[21-30:P19769; UTF16 637246] CHECK final policy independently
+[21-30:P19772; UTF16 637287]     VERIFIED_POLICY
+[21-30:P19773; UTF16 637307]     ROBUST_POLICY
+[21-30:P19774; UTF16 637325]     STOCHASTIC_POLICY
+[21-30:P19775; UTF16 637347]     HEURISTIC_POLICY
+[21-30:P19777; UTF16 637383] Scenario-specific clairvoyant plans are rejected under THM-LIFE19.
+[21-30:P19781; UTF16 637453] ALG-LIFE16 — AuditMaintenanceCapacity
+[21-30:P19783; UTF16 637497]     mandatory maintenance tasks
+[21-30:P19784; UTF16 637529]     qualified personnel
+[21-30:P19785; UTF16 637553]     shifts
+[21-30:P19786; UTF16 637564]     outage windows
+[21-30:P19787; UTF16 637583]     lifting equipment
+[21-30:P19790; UTF16 637627]     test equipment
+[21-30:P19791; UTF16 637646]     safety permits
+[21-30:P19795; UTF16 637686]     competence matching
+[21-30:P19796; UTF16 637710]     shared-resource capacities
+[21-30:P19797; UTF16 637741]     service-demand cuts
+[21-30:P19800; UTF16 637794]     physical access
+[21-30:P19802; UTF16 637815] IF a capacity cut is found:
+[21-30:P19803; UTF16 637843]     return CAPACITY_CUT with witness interval and demand set
+[21-30:P19805; UTF16 637905] IF all tasks possess a verified schedule:
+[21-30:P19806; UTF16 637947]     return CAPACITY_FEASIBLE
+[21-30:P19808; UTF16 637977] RETURN SCHEDULE_REQUIRED or UNKNOWN
+[21-30:P19812; UTF16 638016] ALG-LIFE17 — TrackSpareInventory
+[21-30:P19813; UTF16 638049] FOR each spare type p and period t:
+[21-30:P19815; UTF16 638086]     verify accepted opening inventory Ip(t)
+[21-30:P19816; UTF16 638130]     verify replenishment qp(t)
+[21-30:P19817; UTF16 638161]     verify issued quantity up(t)
+[21-30:P19818; UTF16 638194]     verify losses/expiry/quarantine lp(t)
+[21-30:P19821; UTF16 638250]         Ip(t+1) = Ip(t) + qp(t) - up(t) - lp(t)
+[21-30:P19823; UTF16 638299]     reject any negative inventory state
+[21-30:P19826; UTF16 638354]         reservations
+[21-30:P19827; UTF16 638375]         repairable returns
+[21-30:P19828; UTF16 638402]         shelf life
+[21-30:P19829; UTF16 638421]         compatibility
+[21-30:P19830; UTF16 638443]         storage condition
+[21-30:P19832; UTF16 638488] Outputs:
+[21-30:P19833; UTF16 638497] INVENTORY_VALID;
+[21-30:P19834; UTF16 638514] SPARE_SHORTAGE;
+[21-30:P19835; UTF16 638530] EXPIRED_OR_QUARANTINED;
+[21-30:P19840; UTF16 638566] ALG-LIFE18 — CheckRepairExecutability
+[21-30:P19842; UTF16 638610]     degraded asset state
+[21-30:P19843; UTF16 638635]     physical repair topology
+[21-30:P19844; UTF16 638664]     required spares
+[21-30:P19845; UTF16 638684]     current inventory
+[21-30:P19846; UTF16 638706]     supplier and replenishment paths
+[21-30:P19847; UTF16 638743]     qualified labor
+[21-30:P19848; UTF16 638763]     tools
+[21-30:P19849; UTF16 638773]     outage window
+[21-30:P19851; UTF16 638805]     acceptance and regression obligations
+[21-30:P19853; UTF16 638848] ENUMERATE admissible repair witnesses
+[21-30:P19855; UTF16 638887] FOR each witness:
+[21-30:P19856; UTF16 638905]     verify every physical, economic, timing,
+[21-30:P19857; UTF16 638950]     authority, evidence, and recertification prerequisite
+[21-30:P19859; UTF16 639009] IF a witness exists:
+[21-30:P19860; UTF16 639030]     return REPAIR_EXECUTABLE
+[21-30:P19862; UTF16 639060] IF physical topology exists but all execution paths fail:
+[21-30:P19863; UTF16 639118]     return PHYSICALLY_REPAIRABLE_BUT_NOT_EXECUTABLE
+[21-30:P19865; UTF16 639171] IF no physical restoration path exists:
+[21-30:P19866; UTF16 639211]     return NO_REPAIR_PATH

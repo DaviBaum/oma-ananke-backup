@@ -1,0 +1,394 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P15663; UTF16 520313] FOR every model:
+[11-20:P15664; UTF16 520330]     update parameter set
+[11-20:P15665; UTF16 520355]     check domain applicability
+[11-20:P15666; UTF16 520386]     check discrepancy evidence
+[11-20:P15667; UTF16 520417]     preserve model if still possible
+[11-20:P15668; UTF16 520454]     invalidate only through a
+[11-20:P15669; UTF16 520484]     checked inconsistency or
+[11-20:P15670; UTF16 520513]     applicability failure
+[11-20:P15672; UTF16 520540] IF no model remains:
+[11-20:P15673; UTF16 520561]     return MODEL_OR_EVIDENCE_CONFLICT
+[11-20:P15676; UTF16 520607]     updated model family
+[11-20:P15680; UTF16 520635] ALG-ODT16 — PlanClaimDirectedOperationalMeasurements
+[11-20:P15682; UTF16 520694]     current operational knowledge set
+[11-20:P15683; UTF16 520732]     live claim distinctions
+[11-20:P15684; UTF16 520760]     available sensors and tests
+[11-20:P15685; UTF16 520792]     safety and access constraints
+[11-20:P15687; UTF16 520827] IDENTIFY pairs or classes of states with
+[11-20:P15688; UTF16 520868] different live reports
+[11-20:P15690; UTF16 520892] FOR every candidate measurement:
+[11-20:P15691; UTF16 520925]     determine which distinctions it can
+[11-20:P15692; UTF16 520965]     resolve under complete sensor-health
+[11-20:P15693; UTF16 521006]     and calibration semantics
+[11-20:P15695; UTF16 521037] REMOVE:
+[11-20:P15696; UTF16 521045]     unavailable
+[11-20:P15697; UTF16 521061]     unsafe
+[11-20:P15698; UTF16 521072]     dominated
+[11-20:P15699; UTF16 521086]     live-cone-disconnected measurements
+[11-20:P15702; UTF16 521134]     measurement computations to Prompt 9
+[11-20:P15706; UTF16 521178] ALG-ODT17 — VerifyControlUpdate
+[11-20:P15708; UTF16 521216]     old controller
+[11-20:P15709; UTF16 521235]     new controller or firmware
+[11-20:P15710; UTF16 521266]     current knowledge family
+[11-20:P15711; UTF16 521295]     control interface
+[11-20:P15712; UTF16 521317]     safety and sovereignty claims
+[11-20:P15715; UTF16 521358]     version identity
+[11-20:P15716; UTF16 521379]     command semantics
+[11-20:P15717; UTF16 521401]     actuator relation
+[11-20:P15718; UTF16 521423]     reachable-set safety
+[11-20:P15719; UTF16 521448]     fault-mode coverage
+[11-20:P15720; UTF16 521472]     fallback behavior
+[11-20:P15721; UTF16 521494]     evidence and authority
+[11-20:P15724; UTF16 521529]     CERTIFIED_UPDATE
+[11-20:P15725; UTF16 521550]     REQUIRES_RECERTIFICATION
+[11-20:P15731; UTF16 521606] ALG-ODT18 — MaintainAssetLineage
+[11-20:P15733; UTF16 521645]     prior asset lineage
+[11-20:P15734; UTF16 521669]     maintenance and replacement evidence
+[11-20:P15738; UTF16 521757] UPDATE:
+[11-20:P15739; UTF16 521765]     repaired identity
+[11-20:P15740; UTF16 521787]     replaced identity
+[11-20:P15741; UTF16 521809]     serial numbers
+[11-20:P15742; UTF16 521828]     product revisions
+[11-20:P15744; UTF16 521877]     materialization links
+[11-20:P15745; UTF16 521903]     controller and PCPE links
+[11-20:P15747; UTF16 521934] DO NOT merge assets merely because
+[11-20:P15748; UTF16 521969] geometry is unchanged
+[11-20:P15751; UTF16 521999]     updated lifecycle lineage
+[11-20:P15756; UTF16 522061] 61. Prompt-15 Complexity Profile
+[11-20:P15757; UTF16 522094] DEF-ODT32 — Prompt-15 Complexity Profile
+[11-20:P15758; UTF16 522135] \left( K_{\Gamma}, K_{\mathrm{mode}}, K_{\mathrm{sensor}}, K_{\mathrm{act}}, K_{\theta}, K_{\mathrm{model}}, K_{\mathrm{reach}}, K_{\mathrm{diag}}, K_{\mathrm{maint}}, K_{\mathrm{lease}}, C_{\mathrm{observe}}, C_{\mathrm{filter}}, C_{\mathrm{diag}}, C_{\mathrm{reach}}, C_{\mathrm{control}}, C_{\mathrm{maint}}, C_{\mathrm{check}}, R_{\mathrm{reopen}}, R_{\mathrm{recert}}, N_{\mathrm{fault}}, N_{\mathrm{expiry}}, B_{\mathrm{unresolved}} \right). } ]
+[11-20:P15760; UTF16 522594] (K_\Gamma): knowledge-set representation complexity;
+[11-20:P15761; UTF16 522647] (K_{\mathrm{mode}}): discrete mode complexity;
+[11-20:P15762; UTF16 522694] (K_{\mathrm{sensor}}): sensor-health hypothesis complexity;
+[11-20:P15763; UTF16 522754] (K_{\mathrm{act}}): actuator-health complexity;
+[11-20:P15764; UTF16 522802] (K_\theta): parameter-set complexity;
+[11-20:P15765; UTF16 522840] (K_{\mathrm{model}}): model-family size;
+[11-20:P15766; UTF16 522881] (K_{\mathrm{reach}}): reachable-tube complexity;
+[11-20:P15767; UTF16 522930] (K_{\mathrm{diag}}): diagnostic-policy complexity;
+[11-20:P15768; UTF16 522981] (K_{\mathrm{maint}}): maintenance-plan complexity;
+[11-20:P15769; UTF16 523032] (K_{\mathrm{lease}}): assurance-lease complexity;
+[11-20:P15770; UTF16 523082] (C_{\mathrm{observe}}): monitoring and inspection cost;
+[11-20:P15771; UTF16 523138] (C_{\mathrm{filter}}): online update cost;
+[11-20:P15772; UTF16 523181] (C_{\mathrm{diag}}): diagnosis cost;
+[11-20:P15773; UTF16 523218] (C_{\mathrm{reach}}): reachability cost;
+[11-20:P15774; UTF16 523259] (C_{\mathrm{control}}): safety-shield cost;
+[11-20:P15775; UTF16 523303] (C_{\mathrm{maint}}): maintenance-planning cost;
+[11-20:P15777; UTF16 523405] (R_{\mathrm{reopen}}): claims reopened over lifecycle;
+[11-20:P15778; UTF16 523460] (R_{\mathrm{recert}}): recertification work;
+[11-20:P15779; UTF16 523505] (N_{\mathrm{fault}}): active fault hypotheses;
+[11-20:P15780; UTF16 523552] (N_{\mathrm{expiry}}): evidence and calibration expirations;
+[11-20:P15781; UTF16 523613] (B_{\mathrm{unresolved}}): unresolved operational blockers.
+[11-20:P15782; UTF16 523673] These dimensions must not be collapsed into a “twin accuracy” score.
+[11-20:P15786; UTF16 523745] 62. Synthetic Example — Uncertainty Growth and Assurance Horizon
+[11-20:P15789; UTF16 523840] [ x_0=0, ]
+[11-20:P15790; UTF16 523851] x_t+w_t, \qquad w_t \in [-0.5,0.5]. ]
+[11-20:P15791; UTF16 523889] Without observations,
+[11-20:P15792; UTF16 523911] [-0.5t,0.5t]. ]
+[11-20:P15793; UTF16 523927] Suppose safe operation requires
+[11-20:P15794; UTF16 523959] [ |x| \le 3. ]
+[11-20:P15795; UTF16 523974] The reachable set is certified safe while
+[11-20:P15796; UTF16 524016] [ 0.5t \le 3. ]
+[11-20:P15797; UTF16 524032] Thus the current no-observation lease can extend through
+[11-20:P15798; UTF16 524089] [ t=6 ]
+[11-20:P15799; UTF16 524097] steps under this model.
+[11-20:P15800; UTF16 524121] A new measurement may shrink (\Gamma_t) and extend the lease.
+[11-20:P15801; UTF16 524183] The example connects:
+[11-20:P15802; UTF16 524205] prediction expansion;
+[11-20:P15803; UTF16 524227] assurance horizons;
+[11-20:P15804; UTF16 524247] measurement value.
+[11-20:P15808; UTF16 524269] 63. Synthetic Example — Sensor Bias Versus Plant Fault
+[11-20:P15810; UTF16 524350] Predicted physical temperature:
+[11-20:P15811; UTF16 524382] [ 22^\circ\mathrm C. ]
+[11-20:P15812; UTF16 524405] Observed reading:
+[11-20:P15813; UTF16 524423] [ 27^\circ\mathrm C. ]
+[11-20:P15814; UTF16 524446] Two current hypotheses are:
+[11-20:P15815; UTF16 524474] Plant overheating
+[11-20:P15816; UTF16 524492] [ T=27, \qquad b_{\mathrm{sens}}=0. ]
+[11-20:P15817; UTF16 524530] Sensor bias
+[11-20:P15818; UTF16 524542] [ T=22, \qquad b_{\mathrm{sens}}=5. ]
+[11-20:P15819; UTF16 524580] Both satisfy
+[11-20:P15820; UTF16 524593] [ y=T+b_{\mathrm{sens}}=27. ]
+[11-20:P15821; UTF16 524623] The residual proves neither cause.
+[11-20:P15822; UTF16 524658] A second measurement may distinguish the hypotheses only when its sensor-health relation is sufficiently independent.
+[11-20:P15826; UTF16 524779] 64. Synthetic Example — Active Diagnosis
+[11-20:P15828; UTF16 524846] During ordinary operation, fault modes (F_1,F_2) have identical outputs.
+[11-20:P15829; UTF16 524919] A safe test command produces:
+[11-20:P15830; UTF16 524949] [8,9]\text{ kPa}, ]
+[11-20:P15831; UTF16 524969] [12,13]\text{ kPa}. ]
+[11-20:P15832; UTF16 524991] The sets are disjoint.
+[11-20:P15833; UTF16 525014] THM-ODT10 certifies one-test isolation.
+[11-20:P15834; UTF16 525054] If calibration uncertainty expands the sets to
+[11-20:P15835; UTF16 525101] [ [8,12.5] ]
+[11-20:P15837; UTF16 525118] [ [11.5,14], ]
+[11-20:P15838; UTF16 525133] they overlap.
+[11-20:P15839; UTF16 525147] Guaranteed isolation disappears.
+[11-20:P15840; UTF16 525180] The experiment may still be informative, but the exact result is unresolved.
+[11-20:P15844; UTF16 525260] 65. Synthetic Example — Degradation and Failure-Time Interval
+[11-20:P15846; UTF16 525348] Current degradation:
+[11-20:P15847; UTF16 525369] [ d_t \in [60,65]. ]
+[11-20:P15848; UTF16 525390] Failure threshold:
+[11-20:P15850; UTF16 525420] Per-period degradation:
+[11-20:P15851; UTF16 525444] [ r_t \in [2,5]. ]
+[11-20:P15852; UTF16 525463] The earliest possible failure is
+[11-20:P15853; UTF16 525496] 7 ]
+[11-20:P15854; UTF16 525500] periods.
+[11-20:P15855; UTF16 525509] The latest possible failure is
+[11-20:P15856; UTF16 525540] 20 ]
+[11-20:P15858; UTF16 525554] The certified prognosis is:
+[11-20:P15859; UTF16 525582] [ T_{\mathrm{fail}} \in [7,20]. ]
+[11-20:P15860; UTF16 525616] The guaranteed failure-free horizon is six complete periods.
+[11-20:P15861; UTF16 525677] One point estimate cannot replace this interval.
+[11-20:P15865; UTF16 525729] 66. Synthetic Example — Runtime Safety Shield
+[11-20:P15867; UTF16 525801] A learned HVAC controller proposes:
+[11-20:P15868; UTF16 525837] [ u=100%. ]
+[11-20:P15869; UTF16 525849] The current knowledge set contains:
+[11-20:P15870; UTF16 525885] healthy actuator mode;
+[11-20:P15871; UTF16 525908] one biased actuator mode.
+[11-20:P15872; UTF16 525934] Under the biased mode, a (100%) command may overpressurize a duct.
+[11-20:P15873; UTF16 526001] The safe-action checker proves:
+[11-20:P15874; UTF16 526033] [ u \in [40%,70%] ]
+[11-20:P15875; UTF16 526053] is robustly safe.
+[11-20:P15876; UTF16 526071] The shield rejects the learned proposal and selects a safe fallback.
+[11-20:P15877; UTF16 526140] The learned controller remains useful for performance.
+[11-20:P15878; UTF16 526195] It receives no safety authority.
+[11-20:P15882; UTF16 526231] 67. Synthetic Example — Calibration Expiry Reopens a Claim
+[11-20:P15884; UTF16 526316] At (t_0):
+[11-20:P15885; UTF16 526326] airflow sensor calibration is valid;
+[11-20:P15886; UTF16 526363] airflow claim is closed.
+[11-20:P15887; UTF16 526388] At (t_1):
+[11-20:P15888; UTF16 526398] calibration expires;
+[11-20:P15889; UTF16 526419] every active derivation uses it;
+[11-20:P15890; UTF16 526452] airflow claim reopens.
+[11-20:P15891; UTF16 526475] At (t_2):
+[11-20:P15892; UTF16 526485] recalibration or independent measurement supplies a new valid proof;
+[11-20:P15893; UTF16 526554] the claim closes again.
+[11-20:P15894; UTF16 526578] Historical data remains authentic.
+[11-20:P15895; UTF16 526613] Current applicability changed.
+[11-20:P15899; UTF16 526647] 68. Synthetic Example — Common-Cause Sensor Failure
+[11-20:P15901; UTF16 526725] Three temperature sensors share one reference board.
+[11-20:P15902; UTF16 526778] One common reference offset is
+[11-20:P15903; UTF16 526809] [ c=+4^\circ\mathrm C. ]
+[11-20:P15905; UTF16 526853] All are wrong.
+[11-20:P15906; UTF16 526868] A majority vote fails because sensor redundancy is not independence.
+[11-20:P15907; UTF16 526937] The correct augmented state retains the common health variable.
+[11-20:P15911; UTF16 527004] 69. Synthetic Example — Maintenance Replacement Reopens Materialization
+[11-20:P15913; UTF16 527102] A pump is replaced by a geometrically compatible model.
+[11-20:P15914; UTF16 527158] The new pump has:
+[11-20:P15915; UTF16 527176] a different motor;
+[11-20:P15916; UTF16 527195] different current draw;
+[11-20:P15917; UTF16 527219] different control interface;
+[11-20:P15918; UTF16 527248] different evidence;
+[11-20:P15919; UTF16 527268] different maintenance access.
+[11-20:P15920; UTF16 527298] The pipe geometry remains unchanged.
+[11-20:P15921; UTF16 527335] The replacement reopens dependencies for:
+[11-20:P15924; UTF16 527399] PCPE;
+[11-20:P15927; UTF16 527436] possibly sovereignty.
+[11-20:P15928; UTF16 527458] It is not merely a degradation reset.
+[11-20:P15932; UTF16 527499] 70. Synthetic Example — Closed Action Without Unique Fault
+[11-20:P15934; UTF16 527584] Two fault modes remain:
+[11-20:P15935; UTF16 527608] [ F_1, \qquad F_2. ]
+[11-20:P15936; UTF16 527629] Both require:
+[11-20:P15937; UTF16 527643] isolate the affected unit and switch to the redundant unit.
+[11-20:P15938; UTF16 527703] The immediate intervention report is constant over the knowledge set.
+[11-20:P15939; UTF16 527773] ANANKE may close that safe action under THM-ODT8.
+[11-20:P15940; UTF16 527823] Root-cause identity remains unresolved.
+[11-20:P15944; UTF16 527866] 71. Synthetic 190-Room Hotel Operational Twin
+[11-20:P15955; UTF16 528102] fire systems.
+[11-20:P15956; UTF16 528116] Room-level augmented state
+[11-20:P15957; UTF16 528143] A room may expose:
+[11-20:P15959; UTF16 528175] humidity;
+[11-20:P15961; UTF16 528194] terminal state;
+[11-20:P15964; UTF16 528236] filter degradation;
+[11-20:P15965; UTF16 528256] control version.
+[11-20:P15966; UTF16 528273] Shared uncertainty
+[11-20:P15967; UTF16 528292] Rooms may share:
+[11-20:P15968; UTF16 528309] controller hardware;
+[11-20:P15969; UTF16 528330] calibration batch;
+[11-20:P15970; UTF16 528349] network time reference;
+[11-20:P15971; UTF16 528373] outside-air sensor;
+[11-20:P15972; UTF16 528393] occupancy model;
+[11-20:P15973; UTF16 528410] weather source.
+[11-20:P15974; UTF16 528426] Room observations are not independent merely because room IDs differ.
+[11-20:P15975; UTF16 528496] Template reuse
+[11-20:P15976; UTF16 528511] A standard-room twin template may be reused only under matching:
+[11-20:P15979; UTF16 528596] firmware;
+[11-20:P15980; UTF16 528606] control logic;
+[11-20:P15981; UTF16 528621] envelope;
+[11-20:P15982; UTF16 528631] model;
+[11-20:P15983; UTF16 528638] calibration.
+[11-20:P15984; UTF16 528651] Central dependencies
+[11-20:P15985; UTF16 528672] Room-level normality does not prove:
+[11-20:P15986; UTF16 528709] central chiller health;
+[11-20:P15987; UTF16 528733] riser pressure;
+[11-20:P15988; UTF16 528749] electrical-bus health;
+[11-20:P15989; UTF16 528772] global supervisory control;
+[11-20:P15990; UTF16 528800] shared outside-air measurement validity.
+[11-20:P15991; UTF16 528841] Synthetic lifecycle event
+[11-20:P15993; UTF16 528876] most standard-room claims remain synchronized;
+[11-20:P15994; UTF16 528923] one sensor cluster develops a possible common bias;
+[11-20:P15995; UTF16 528975] one riser degradation enclosure widens;
+[11-20:P15996; UTF16 529015] one chiller requires active diagnosis;
+[11-20:P15997; UTF16 529054] unaffected room claims remain reusable because their dependency frontiers are unchanged.
+[11-20:P15998; UTF16 529143] These are logical examples only.
+[11-20:P15999; UTF16 529176] No empirical speedup or reliability claim is made.
+[11-20:P16004; UTF16 529269] F1 — Multi-step true-state containment
+[11-20:P16005; UTF16 529308] Exhaustively verify the actual augmented state remains in every sound update.
+[11-20:P16006; UTF16 529386] F2 — Prediction expansion
+[11-20:P16007; UTF16 529412] Verify uncertainty can widen without observations.
+[11-20:P16008; UTF16 529463] F3 — Claim synchronization
+[11-20:P16009; UTF16 529490] A non-singleton knowledge set with one report must close the claim.
+[11-20:P16010; UTF16 529558] F4 — Sensor-bias ambiguity
+[11-20:P16011; UTF16 529585] One residual must support plant and sensor-fault explanations.
+[11-20:P16012; UTF16 529648] F5 — Common-mode sensor fault
+[11-20:P16013; UTF16 529678] Majority voting must fail.
+[11-20:P16014; UTF16 529705] F6 — Command versus actuation
+[11-20:P16015; UTF16 529735] One command with different actuator-health states must produce different physical actuation.
+[11-20:P16016; UTF16 529828] F7 — Model-validity boundary
+[11-20:P16017; UTF16 529857] A mixed in-domain/out-of-domain knowledge set must not receive an unconditional model claim.
+[11-20:P16018; UTF16 529950] F8 — Parameter-set identification
+[11-20:P16019; UTF16 529984] The true parameter must remain in every sound update.
+[11-20:P16020; UTF16 530038] F9 — Learned-model authority
+[11-20:P16021; UTF16 530067] An accurate but uncertified predictor must not become authoritative.
+[11-20:P16022; UTF16 530136] F10 — Anomaly versus diagnosis
+[11-20:P16023; UTF16 530167] Healthy states are eliminated while several fault explanations remain.
+[11-20:P16024; UTF16 530238] F11 — Fault isolation
+[11-20:P16025; UTF16 530260] A singleton nonhealthy fault set must be recognized.
+[11-20:P16026; UTF16 530313] F12 — Decision isolation
+[11-20:P16027; UTF16 530338] Several faults with one maintenance report must permit intervention closure.
+[11-20:P16028; UTF16 530415] F13 — Passive nondiagnosability
+[11-20:P16029; UTF16 530447] Two faults remain equivalent in normal operation.
+[11-20:P16030; UTF16 530497] F14 — Active diagnosis
+[11-20:P16031; UTF16 530520] One safe probe separates them.
+[11-20:P16032; UTF16 530551] F15 — Unsafe probe
+[11-20:P16033; UTF16 530570] A high-information but unsafe experiment is rejected.
+[11-20:P16034; UTF16 530624] F16 — Experiment-selection hardness
+[11-20:P16036; UTF16 530695] F17 — Change point
+[11-20:P16037; UTF16 530714] No-change histories disappear while several changed modes remain.
+[11-20:P16038; UTF16 530780] F18 — RUL interval
+[11-20:P16039; UTF16 530799] Compare failure-time bounds with exhaustive finite trajectories.
+[11-20:P16040; UTF16 530864] F19 — Maintenance recourse
+[11-20:P16041; UTF16 530891] A certified plan completes before earliest possible failure.
+[11-20:P16042; UTF16 530952] F20 — Maintenance-planning hardness
+[11-20:P16043; UTF16 530988] Recover a known Weighted Set Cover optimum.
+[11-20:P16044; UTF16 531032] F21 — Runtime shield
+[11-20:P16045; UTF16 531053] Reject an unsafe proposed command.
+[11-20:P16046; UTF16 531088] F22 — Empty safe-action set
+[11-20:P16047; UTF16 531116] Return no safe command rather than inventing one.
+[11-20:P16048; UTF16 531166] F23 — Viability
+[11-20:P16049; UTF16 531182] Reject a one-step-safe action leading to an inevitable future dead end.
+[11-20:P16050; UTF16 531254] F24 — Evidence expiration
+[11-20:P16051; UTF16 531280] A claim closes, reopens, and recloses.
+[11-20:P16052; UTF16 531319] F25 — Assurance lease
+[11-20:P16053; UTF16 531341] Verify the claim until the exact certified horizon.
+[11-20:P16054; UTF16 531393] F26 — Lease expiration
+[11-20:P16055; UTF16 531416] No claim remains active automatically afterward.
+[11-20:P16056; UTF16 531465] F27 — Out-of-domain model
+[11-20:P16057; UTF16 531491] The old claim reopens.
+[11-20:P16058; UTF16 531514] F28 — Maintenance replacement
+[11-20:P16059; UTF16 531544] Changed product identity triggers the exact dependency cone.
+[11-20:P16060; UTF16 531605] F29 — Incremental versus cold
+[11-20:P16061; UTF16 531635] Operational claim reports must match.
+[11-20:P16062; UTF16 531673] F30 — Unmodeled fault
+[11-20:P16063; UTF16 531695] Verify open-world limitation.
+[11-20:P16064; UTF16 531725] F31 — Malicious estimator
+[11-20:P16065; UTF16 531751] A point estimate excluding the actual state must fail certificate checking.
+[11-20:P16066; UTF16 531827] F32 — LLM or learned controller
+[11-20:P16067; UTF16 531859] A poor proposal must be filtered by the safety shield.
+[11-20:P16068; UTF16 531914] F33 — Prompt-10 red team
+[11-20:P16069; UTF16 531939] Find one hidden common-cause mode.
+[11-20:P16070; UTF16 531974] F34 — Prompt-11 assurance
+[11-20:P16071; UTF16 532000] Expired evidence invalidates dependent operational proof routes.
+[11-20:P16072; UTF16 532065] F35 — Prompt-12 sovereignty
+[11-20:P16073; UTF16 532093] A maintenance edit violating protected architecture reopens sovereignty.
+[11-20:P16074; UTF16 532166] F36 — Prompt-13 materialization
+[11-20:P16075; UTF16 532198] A replacement outside product equivalence requires rematerialization.
+[11-20:P16076; UTF16 532268] F37 — Prompt-14 lineage
+[11-20:P16077; UTF16 532292] The operational twin seed must preserve accepted as-built uncertainty.
+[11-20:P16078; UTF16 532363] F38 — PCOT independence
+[11-20:P16079; UTF16 532387] The checker verifies lifecycle state without trusting estimator internals.
+[11-20:P16084; UTF16 532499] 73.1 Augmented state
+[11-20:P16085; UTF16 532520] structure OperationalState where
+[11-20:P16086; UTF16 532553]   physical : PhysicalState
+[11-20:P16087; UTF16 532580]   degradation : DegradationState
+[11-20:P16088; UTF16 532613]   fault : FaultMode
+[11-20:P16089; UTF16 532633]   sensorHealth : SensorHealthState
+[11-20:P16090; UTF16 532668]   actuatorHealth : ActuatorHealthState
+[11-20:P16091; UTF16 532707]   controlVersion : ControlVersion
+[11-20:P16092; UTF16 532741]   maintenance : MaintenanceState
+[11-20:P16093; UTF16 532774]   evidence : EvidenceState
+[11-20:P16094; UTF16 532801] 73.2 Transition relation
+[11-20:P16095; UTF16 532826] structure OperationalTransition where
+[11-20:P16096; UTF16 532864]   Command : Type
+[11-20:P16097; UTF16 532881]   Disturbance : Type
+[11-20:P16098; UTF16 532902]   Maintenance : Type
+[11-20:P16101; UTF16 532933]     OperationalState →
+[11-20:P16102; UTF16 532956]     Command →
+[11-20:P16103; UTF16 532970]     Disturbance →
+[11-20:P16104; UTF16 532988]     Maintenance →
+[11-20:P16107; UTF16 533038] 73.3 Operational knowledge
+[11-20:P16108; UTF16 533065] def OperationalKnowledge :=
+[11-20:P16109; UTF16 533093]   Set OperationalState
+[11-20:P16110; UTF16 533116] 73.4 Prediction
+[11-20:P16111; UTF16 533132] def operationalPost
+[11-20:P16112; UTF16 533152]     (T : OperationalTransition)
+[11-20:P16113; UTF16 533184]     (Γ : OperationalKnowledge)
+[11-20:P16114; UTF16 533215]     (U : Set T.Command)
+[11-20:P16115; UTF16 533239]     (W : Set T.Disturbance)
+[11-20:P16116; UTF16 533267]     (R : Set T.Maintenance) :
+[11-20:P16117; UTF16 533297]     OperationalKnowledge :=
+[11-20:P16118; UTF16 533325]   {z' |
+[11-20:P16119; UTF16 533333]     ∃ z ∈ Γ,
+[11-20:P16120; UTF16 533346]     ∃ u ∈ U,
+[11-20:P16121; UTF16 533359]     ∃ w ∈ W,
+[11-20:P16122; UTF16 533372]     ∃ r ∈ R,
+[11-20:P16123; UTF16 533385]       T.step z u w r z'}
+[11-20:P16124; UTF16 533410] 73.5 Observation update
+[11-20:P16125; UTF16 533434] def operationalUpdate
+[11-20:P16126; UTF16 533456]     (Γpred : OperationalKnowledge)
+[11-20:P16127; UTF16 533491]     (ObsRel :
+[11-20:P16128; UTF16 533505]       OperationalState →
+[11-20:P16129; UTF16 533530]       Observation →
+[11-20:P16130; UTF16 533550]       Prop)
+[11-20:P16131; UTF16 533562]     (y : Observation) :
+[11-20:P16133; UTF16 533614]   Γpred ∩
+[11-20:P16134; UTF16 533624]   {z |
+[11-20:P16135; UTF16 533631]     ObsRel z y}
+[11-20:P16136; UTF16 533647] 73.6 True-state preservation
+[11-20:P16137; UTF16 533676] theorem operational_true_state_preserved
+[11-20:P16138; UTF16 533717]     (hz : z ∈ Γ)
+[11-20:P16139; UTF16 533734]     (hstep : T.step z u w r z')
+[11-20:P16140; UTF16 533766]     (hu : u ∈ U)
+[11-20:P16141; UTF16 533783]     (hw : w ∈ W)
+[11-20:P16142; UTF16 533800]     (hr : r ∈ R)
+[11-20:P16143; UTF16 533817]     (hobs : ObsRel z' y) :
+[11-20:P16144; UTF16 533844]     z' ∈
+[11-20:P16145; UTF16 533853]       operationalUpdate
+[11-20:P16146; UTF16 533877]         (operationalPost T Γ U W R)
+[11-20:P16147; UTF16 533913]         ObsRel
+[11-20:P16148; UTF16 533928]         y := by
+[11-20:P16150; UTF16 533958]   · exact ⟨z, hz, u, hu, w, hw, r, hr, hstep⟩
+[11-20:P16152; UTF16 534019] 73.7 Fault hypotheses
+[11-20:P16153; UTF16 534041] def FaultHypotheses
+[11-20:P16154; UTF16 534061]     (Γ : OperationalKnowledge) :
+[11-20:P16155; UTF16 534094]     Set FaultMode :=
+[11-20:P16156; UTF16 534115]   {f |
+[11-20:P16158; UTF16 534135]       z.fault = f}
+[11-20:P16159; UTF16 534154] 73.8 Decision isolation
+[11-20:P16160; UTF16 534178] def DecisionIsolated
+[11-20:P16164; UTF16 534269]       MaintenanceReport) : Prop :=
+[11-20:P16166; UTF16 534311]     ∀ z ∈ Γ,
+[11-20:P16167; UTF16 534324]       report z = r
+[11-20:P16168; UTF16 534343] 73.9 Safe control
+[11-20:P16169; UTF16 534361] def SafeControl
+[11-20:P16171; UTF16 534408]     (u : ControlCommand)
+[11-20:P16172; UTF16 534433]     (Safe : Set OperationalState) : Prop :=
+[11-20:P16173; UTF16 534477]   ∀ z ∈ Γ,
+[11-20:P16174; UTF16 534488]     ∀ uphys,
+[11-20:P16175; UTF16 534501]       ActRel u z.actuatorHealth uphys →
+[11-20:P16176; UTF16 534541]     ∀ w ∈ Disturbances,
+[11-20:P16177; UTF16 534565]     ∀ z',
+[11-20:P16178; UTF16 534575]       PlantStep z uphys w z' →
+[11-20:P16179; UTF16 534606]       z' ∈ Safe
+[11-20:P16180; UTF16 534622] 73.10 Runtime shield

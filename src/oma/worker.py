@@ -102,8 +102,15 @@ def import_sources(store: Store, run: dict, control: WorkerControl):
     federation = federation_manifest(audits, run["project_id"], local_coordinates["transforms"])
     for source in sources:
         transform = local_coordinates["transforms"].get(source["id"], {}).get("matrix")
+        # One source already defines its own metre-valued local frame. It needs
+        # no cross-file anchor to express new geometry in that same frame.
+        # This does not establish site coordinates or resolve a federation.
+        if len(sources) == 1 and source["units"]["status"] == "KNOWN":
+            source["transform_m"] = np.eye(4).tolist()
+            source["coordinate_scope"] = "SINGLE_SOURCE_LOCAL_IDENTITY"
         if transform is not None and local_coordinates["status"] == "VERIFIED":
             source["transform_m"] = transform
+            source["coordinate_scope"] = "VERIFIED_LOCAL_FEDERATION"
             if source["bounds"]:
                 lo, hi = source["bounds"]["min"], source["bounds"]["max"]
                 import itertools

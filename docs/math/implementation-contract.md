@@ -17,9 +17,10 @@ The 12 supplied files were inventoried without modifying originals. The canonica
 DOCX, companion PDF, CSV and repair audit match the canonical manifest's hashes.
 The manifest's source ZIP is absent. All three historical `.pages` archives are
 now present although the canonical reconstruction describes them as unavailable
-in its earlier run. Their IWA bytes have been inventoried but not yet decoded or
-reconciled with the reconstruction. The repaired canonical body remains the
-declared active source; historical fidelity is unresolved.
+in its earlier run. Their native IWA text and attached tables have now been
+decoded; semantic reconciliation with the reconstruction is ongoing. The repaired
+canonical body remains its own declared active version; it does not substitute
+for the distinct mathematics in the recovered historical originals.
 
 The native canonical extraction contains 63,298 paragraphs, 638 tables and all
 1,616 OMML equation nodes. Complete OMML XML is retained, so fractions and other
@@ -125,7 +126,7 @@ The current executable obligation register is
 `evidence/math/traceability_register.json`, rebuilt by
 `.venv\Scripts\python.exe scripts/corpus_obligations.py`. It resolves 19 scoped
 obligations to actual callables and tests. The recorded focused run contains
-72 passing tests, covering finite master selection and pricing, physical path
+191 passing tests, covering finite master selection and pricing, physical path
 models, exact primitive predicates, conservation, gravity, guarded dependency
 recomputation, finite cyclic closure, exact source IFC enclosures, contextual
 quotients, finite nonanticipative policies, quantity transport and candidate-rooted
@@ -133,17 +134,48 @@ co-design. The adapter requirements are in `finite-kernel-integration.md`.
 These tests do not close the real-model
 benchmark, complete routing, or whole-program release requirements.
 
-Full source review is incomplete. The precise read ledger is authoritative;
-remaining canonical bodies, theorem proofs, tables, appendices and dependency
-closures must still be reviewed before their claims are advertised. Registered
+The canonical and five-part integration content reading campaigns are complete
+under explicitly distinguished direct reading, exact duplicate references,
+checked canonical parameter substitutions and full native table correspondence.
+The validator `scripts/corpus_coverage.py` covers 63,298 canonical and 26,737
+integration paragraphs; this does not mean 90,035 separately read paragraphs or
+independently verified proofs. Full corpus review is still incomplete because
+the recovered historical Pages originals introduce substantial different
+mathematics. Registered
 object dependency references all resolve in the manifest, but this does not
 establish that those dependency lists are mathematically complete. Canonical PDF
 pages 100, 155, 156, 209 and 210 were rendered and visually inspected to reconcile the
 finite-search and rewrite-theorem equations. Remaining page review and
-historical Pages reconciliation are pending.
+historical Pages semantic reconciliation are pending.
 
 The five-part document's MCP catalog and compulsory AI compiler concepts are
 excluded by the newer directive. Dynamic/scenario mathematics may support the
 engine's explicit simulation and robust-design capabilities; whole-lifecycle or
 whole-building release theorems require additional evidence beyond an individual
 route or finite optimization result.
+
+## Historical originals are separate mathematical sources
+
+Read-only native IWA decoding has now recovered all three historical archives,
+including 101,153 body paragraphs and all 264 attached native tables (16,811
+cells). Source rationals in numeric table cells retain exact decimal values.
+All table attachment offsets resolve; one original table contains a native
+formula-error cell, preserved as a source defect. No body read is inferred from
+successful extraction. The ongoing 228-chunk reading campaign is bound to
+source, paragraph, UTF-16 attachment position, table rows and hashes under
+`evidence/math/pages/review`; exact duplicate content retains its first referent.
+
+The historical sequence is materially different from the canonical
+reconstruction. Original P3 develops decision-separator width and quotient
+dynamic programming, P4 symbolic quotient discovery, P5 certified approximation,
+P6 reduced physics, P8 causal macrostates, and P9 regret-closure metareasoning.
+Canonical labels and generic bodies cannot replace these mechanisms. Original
+P7's body is absent from the 1–10 archive and is explicitly described as
+unavailable by its Prompt 8; reconstructed P7 and the historical bridge must
+therefore keep distinct provenance. Original Prompt 28 appears twice and is
+preserved, with exact duplicate content references rather than silent deletion.
+
+See `source-amendments.md` for the expanded correction register. The independent
+counterexample script currently runs 24 audit probes, which are mathematical
+negative controls and corrected finite rules, not application or building
+release evidence.

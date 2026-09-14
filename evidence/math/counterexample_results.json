@@ -1,6 +1,6 @@
 {
-  "schema": "oma.math.counterexamples/1",
-  "arithmetic": "Python arbitrary-precision integers; finite exhaustive truth tables",
+  "schema": "oma.math.counterexamples/2",
+  "arithmetic": "Python arbitrary-precision integers/rationals; finite exhaustive truth tables; explicitly stated exact analytic counterexamples",
   "application_implementation_proven": false,
   "checks": [
     {
@@ -60,8 +60,179 @@
       "actual_finite_optimum": 1,
       "source_defect": "THM-DS21.1 requires more than complete finite generation and sound checking: UNKNOWN may hide the best feasible candidate",
       "corrected_obligation": "Dispose every candidate completely, or prove every unresolved candidate cannot improve the incumbent; otherwise accepted-subset optimum only"
+    },
+    {
+      "amendment": "OMA-MATH-A008",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Original part obsolete; a compatible qualified substitute remains available.",
+      "corrected_obligation": "Empty repair fiber requires every compatible repair to be excluded; define a typed obsolescence predicate rather than compare an observation tuple to TRUE."
+    },
+    {
+      "amendment": "OMA-MATH-A009",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Straight centerline, spacing delta(s)=2s: offset length sqrt(2), source formula gives 1.",
+      "corrected_obligation": "For arc-length parametrization use integral sqrt((1-/+delta*kappa/2)^2+(delta_prime/2)^2); source expression applies to constant spacing under its regularity/sign assumptions."
+    },
+    {
+      "amendment": "OMA-MATH-A010",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Target (10,0), x1>=0, x2>=x1+1: earliest (0,1) has squared error 101; projection (4.5,5.5) has 60.5.",
+      "corrected_obligation": "Use the actual convex quadratic projection for ADMM; earliest-position DAG output is only a feasible witness."
+    },
+    {
+      "amendment": "OMA-MATH-A011",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Nested dense vertex samples with an empty edge relation never approximate a continuous path.",
+      "corrected_obligation": "Graph convergence needs a local connectivity/spanner or equivalent transition-coverage hypothesis in addition to vertex/direction density."
+    },
+    {
+      "amendment": "OMA-MATH-A012",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "The sampled order A,B is infeasible but omitted order B,A is feasible.",
+      "corrected_obligation": "Order/layer infeasibility requires exhaustive coverage or another universal obstruction; failure of proposed orders remains UNKNOWN."
+    },
+    {
+      "amendment": "OMA-MATH-A013",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "A checked invalid route witness coexists with another feasible route.",
+      "corrected_obligation": "Reject the proposed witness. Claim empty route fiber only with a domain-covering impossibility certificate."
+    },
+    {
+      "amendment": "OMA-MATH-A014",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Binary x=y, y=z, x!=z have feasible pairwise combinations but no global assignment.",
+      "corrected_obligation": "Glue fixed selected local witnesses that agree on every overlap; include the full scope of every global factor in a bag, or provide a valid decomposition theorem."
+    },
+    {
+      "amendment": "OMA-MATH-A015",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Closed incumbent costs 5; remaining OPEN lower bound is 10. min(OPEN)=10 exceeds the true optimum 5.",
+      "corrected_obligation": "Cover every feasible region, including closed/evaluated incumbents. With exact incumbent U and sound closures use min(U,min OPEN bounds); with cost intervals retain applicable closed-region lower endpoints."
+    },
+    {
+      "amendment": "OMA-MATH-A016",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "An archive containing every state satisfies excluded-state dominance vacuously yet includes dominated states.",
+      "corrected_obligation": "Require internal nondominance as well as coverage of excluded states; specify whether equivalent objective vectors retain multiple contextual states."
+    },
+    {
+      "amendment": "OMA-MATH-A017",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "On an empty concretization both universal TRUE and universal FALSE tests hold vacuously.",
+      "corrected_obligation": "Require nonempty concretizations or give EMPTY a distinct semantic disposition before applying three-valued predicates."
+    },
+    {
+      "amendment": "OMA-MATH-A018",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "With mu1<=mu2 iff mu2 entails mu1, truth-table enumeration makes meet disjunction and join conjunction.",
+      "corrected_obligation": "Use OR for the greatest common consequence (meet) and AND for the least common strengthening (join), within a compatible context and representable licensed operations.",
+      "propositions_exhausted": 16
+    },
+    {
+      "amendment": "OMA-MATH-A019",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "One deterministic validator accepts producer output 2 and rejects producer output 3.",
+      "corrected_obligation": "Verdict reproducibility requires identical checked artifacts and context, or independently established observational equivalence, in addition to validator determinism."
+    },
+    {
+      "amendment": "OMA-MATH-A020",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Two transactions both read/write x but add constants 1 and 2; they commute despite overlapping read/write sets.",
+      "corrected_obligation": "Read/write independence is sufficient, not necessary, for commutativity. Conservative serialization is valid; the converse noncommutativity theorem is not."
+    },
+    {
+      "amendment": "OMA-MATH-A021",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "x'=x+u+w, terminal {0}, nominal u=0 is invariant for w=0 but w=1 leaves the terminal set.",
+      "corrected_obligation": "A robust MPC shift requires disturbance-consistent feedback/tube feasibility and robust terminal invariance for the declared disturbance family; a nominal sequence alone is insufficient."
+    },
+    {
+      "amendment": "OMA-MATH-A022",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "For uniform X on [0,1], P(X>0)=1 although 0 is in the support and violates X>0.",
+      "corrected_obligation": "A probability-one claim does not imply a universal support claim without additional continuity/closed-predicate conditions or a separate universal theorem."
+    },
+    {
+      "amendment": "OMA-MATH-A023",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "The constant lower bound 0 to x^2 has slope 0, valid at x=0 but invalid as a subgradient at x=1.",
+      "corrected_obligation": "Use a point where the bound is not tight to demonstrate that a scalar lower bound need not supply a supporting subgradient; do not reject the actual subgradient at zero."
+    },
+    {
+      "amendment": "OMA-MATH-A024",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "0 degrees Celsius equals 273.15 kelvin; a scale-only conversion maps zero to zero.",
+      "corrected_obligation": "Use affine x*scale+offset conversions for offset units; restrict multiplicative formula to linear unit families."
+    },
+    {
+      "amendment": "OMA-MATH-A025",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "A label-equivariant rule selects every label iff a menu has at least three labels. All identical-profile alternatives are replacement-equivalent, but deleting equivalent labels changes the chosen class set.",
+      "corrected_obligation": "Preserve original labels and multiplicity when substituting quotient profiles, or explicitly restrict decision semantics to duplicate-invariant class menus. Original P3 THM-DS15 does not justify arbitrary menu deduplication."
+    },
+    {
+      "amendment": "OMA-MATH-A026",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "A three-node tree has n messages in each child and n squared distinct root outcomes. Memory divided by node_count times max_nonroot_messages grows with n.",
+      "corrected_obligation": "Retain the exact sum of storage across all nodes including root. A width excluding root needs an additional bound on root output or an explicit streaming/output contract."
+    },
+    {
+      "amendment": "OMA-MATH-A027",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Two feasible hotel assignments with the same projected aggregate signature differ only in sequence c, and native table1736215 gives different cost/schedule pairs (102,30) and (103,32).",
+      "corrected_obligation": "Original P3's all-192-assignment aggregate benchmark needs explicit approved observation projection, or actual fixed-stratum restriction and a fresh count. Conditioning a fixed equivalence relation cannot merge previously distinct retained states."
+    },
+    {
+      "amendment": "OMA-MATH-A028",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Manifest root P entails omitted requirement P OR Q for every Boolean valuation, without any theorem that the manifest is exhaustive.",
+      "corrected_obligation": "Original ASS THM-ASS3 needs explicit non-entailment or independence of the omitted obligation. Arbitrary omitted requirements have no general guarantee, but some follow from listed roots."
+    },
+    {
+      "amendment": "OMA-MATH-A029",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "One deterministic two-node Boolean SCC has no fixed point; another has two. Condensing either into a DAG does not define its internal solution.",
+      "corrected_obligation": "Original ASS14's topological induction needs a defined intra-SCC cold contract. Use verified grounded least-fixed-point semantics under finite monotone assumptions, or explicitly recompute the whole component under another justified deterministic contract."
+    },
+    {
+      "amendment": "OMA-MATH-A030",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Original P4's forty-module example states two initial blocks, four accepted nontrivial binary splits and five final blocks; the first two quantities imply six.",
+      "corrected_obligation": "Use three accepted splits for five final blocks. A fourth preimage or satisfiability probe may be redundant, but must not be counted as an accepted nontrivial split. Report measured operation counts."
+    },
+    {
+      "amendment": "OMA-MATH-A031",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "A length-one Boolean carrier has only counts zero and one, and appending an isolated active motif leaves the fixed-length carrier.",
+      "corrected_obligation": "Original P4 saturating-repetition examples need enough reachable states for B+1 nonempty classes and an explicit typed total interpretation of every append context. A corrected fixed-width activation map is a different declared finite interpretation, not literal physical append."
+    },
+    {
+      "amendment": "OMA-MATH-A032",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Original P5 moves B's cost enclosure from [81.1,81.8] to [81.85,81.90] while calling it refinement; the intervals are disjoint.",
+      "corrected_obligation": "A fixed-model refinement must retain nesting and the true value. Declare a model/input change, or use a genuinely nested example such as A=[80.90,80.95], B=[81.77,81.80], whose separation still certifies exclusion from the one-percent cost band."
+    },
+    {
+      "amendment": "OMA-MATH-A033",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Nested closed E_n={0} union [n,infinity) intersect to {0}, but a discrepancy map equal to {0,1} near zero and {2} away gives union_{y in E_n} Delta(y)={0,1,2} for every n.",
+      "corrected_obligation": "Original P5 THM-ER16's discrepancy floor inclusion remains sound; its asserted exact limiting image needs enclosures eventually contained in the local-constancy neighborhood, for example shrinking diameter or appropriate compact nested closed enclosures. Setwise intersection alone is insufficient.",
+      "proof_kind": "Explicit analytic escaping-tail family; displayed finite probes are illustrations only"
+    },
+    {
+      "amendment": "OMA-MATH-A034",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "On Y={0} union {1+1/n}, exact A={0}, approximate A={1+1/n} have directed excess 1. Exact downstream B is 0 at zero and 1 elsewhere, with valid jump modulus omega(t)=0 for t<=1, 1 otherwise. B is evaluated exactly, but the composite excess is 1>omega(1)=0.",
+      "corrected_obligation": "Original P6 PO9 needs attained nearest points or a right-continuous modulus to remove arbitrary limiting slack. A conservative general formula uses the right limit of the monotone modulus; finite closed sets and explicit Lipschitz gains avoid this gap.",
+      "proof_kind": "Exact nonattainment family; finite probes illustrate the right-limit discontinuity"
+    },
+    {
+      "amendment": "OMA-MATH-A035",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "Original P12's menu example C({A,B})={A,B}, C({A,B,C})={C} is exactly rationalized by fixed utility u(A)=u(B)=0,u(C)=1.",
+      "corrected_obligation": "The example does not establish non-rationalizability or a violation of the usual consistency conditions. A strict reversal C({A,B})={A}, C({A,B,C})={B} demonstrates a fixed-utility contradiction. Keep the broader menu-dependent choice contract; repair its example."
     }
   ],
-  "passed": 7,
+  "passed": 35,
   "failed": 0
 }

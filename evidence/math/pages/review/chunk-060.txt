@@ -1,0 +1,334 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P24396; UTF16 871221] (\alpha) changes only nodes outside (\operatorname{AttackCone}(C));
+[1-10:P24397; UTF16 871289] (\alpha) does not change the theory fingerprint.
+[1-10:P24398; UTF16 871338] Then (C) has the same exact report before and after (\alpha).
+[1-10:P24400; UTF16 871406] By dependency completeness, every node capable of changing (C) lies in its ancestor set.
+[1-10:P24401; UTF16 871495] The perturbation changes no such node.
+[1-10:P24402; UTF16 871534] Therefore every argument of the exact claim-report function remains unchanged, and so does the report. ∎
+[1-10:P24403; UTF16 871639] This can remove enormous portions of the adversarial search space.
+[1-10:P24407; UTF16 871709] 26. Macro-Level Adversarial Search
+[1-10:P24410; UTF16 871763] be an exact executable macro for the adversarial action language.
+[1-10:P24411; UTF16 871829] Assume the claim report factors through (Z):
+[1-10:P24412; UTF16 871874] [ r_C(x)=\overline r_C(\phi(x)). ]
+[1-10:P24416; UTF16 871912] DEF-ADV15 — Adversarial Cost-Sufficient Macro
+[1-10:P24417; UTF16 871958] A macro is cost sufficient when, for every action (\beta), macrostate (z), and target macrostate (z'), the set:
+[1-10:P24418; UTF16 872070] [ \left{ \left( \kappa_C(\beta,x,x'), \phi(x') \right): \phi(x)=z,; xT_\beta x' \right} ]
+[1-10:P24419; UTF16 872160] is independent of the representative (x\in\phi^{-1}(z)).
+[1-10:P24420; UTF16 872217] The macro transition stores the exact achievable cost-successor relation.
+[1-10:P24421; UTF16 872291] This is stronger than reachability sufficiency.
+[1-10:P24425; UTF16 872342] THM-ADV15 — Exact Macro-Level Claim-Breaker Preservation
+[1-10:P24427; UTF16 872407] (\phi) is exact executable for every adversarial action;
+[1-10:P24428; UTF16 872464] the claim report factors through (\phi).
+[1-10:P24430; UTF16 872511] every micro-level breaker trajectory maps to a macro-level breaker trajectory;
+[1-10:P24431; UTF16 872590] every exact macro-level breaker trajectory lifts to at least one micro-level breaker trajectory.
+[1-10:P24432; UTF16 872687] If (\phi) is also cost sufficient and action costs compose identically, then:
+[1-10:P24433; UTF16 872765] \rho_C^\star(\text{macro}). ]
+[1-10:P24435; UTF16 872801] For part 1, Prompt-8 macro execution gives the exact macro image of every micro trajectory. Claim factorization maps a violating micro endpoint to a violating macro endpoint.
+[1-10:P24436; UTF16 872976] For part 2, exact macro action factorization guarantees that every macro transition from a macrostate is realizable from every representative by some micro successor in the target class. Inductively lift the macro path. The endpoint violates the micro claim because the claim factors through the macro.
+[1-10:P24437; UTF16 873279] For cost preservation, cost sufficiency makes the exact achievable cost-successor relation representative independent. Induction preserves the set of attainable total costs for every macro path. Therefore the minimum breaker costs coincide. ∎
+[1-10:P24438; UTF16 873522] A reachability-sufficient macro without cost sufficiency may preserve breaker existence while distorting the minimum breaker cost.
+[1-10:P24442; UTF16 873656] 27. Claim-Specific Quotients
+[1-10:P24443; UTF16 873685] DEF-ADV19 — Claim-Specific Executable Equivalence
+[1-10:P24444; UTF16 873735] Let the only direct observation be the exact claim report:
+[1-10:P24445; UTF16 873794] [ \chi_C(x)=r_C(x). ]
+[1-10:P24447; UTF16 873824] [ x\approx_C y ]
+[1-10:P24448; UTF16 873841] as the coarsest equivalence preserving (\chi_C) and stable under every adversarial action.
+[1-10:P24449; UTF16 873932] Define the claim-specific quotient:
+[1-10:P24450; UTF16 873968] X/!\approx_C. ]
+[1-10:P24454; UTF16 873987] THM-ADV31 — Claim-Quotient Minimality
+[1-10:P24455; UTF16 874025] [ Q_C^{\mathrm{adv}} ]
+[1-10:P24456; UTF16 874048] is the unique smallest reachable exact state system sufficient to:
+[1-10:P24457; UTF16 874115] execute every admitted adversarial action;
+[1-10:P24458; UTF16 874158] determine the final exact claim report.
+[1-10:P24460; UTF16 874204] This is Prompt-8 THM-CS3 instantiated with:
+[1-10:P24461; UTF16 874248] the adversarial action language;
+[1-10:P24462; UTF16 874281] the claim report as the observation theory.
+[1-10:P24463; UTF16 874325] Every exact claim-verification state representation has an observation-preserving, action-stable kernel and therefore refines (\approx_C). ∎
+[1-10:P24464; UTF16 874466] Define the specialized width:
+[1-10:P24465; UTF16 874496] \log_2|Q_C^{\mathrm{adv}}|. ]
+[1-10:P24466; UTF16 874526] This is Prompt-8 causal width under a claim-specific observation theory, not an unrelated new width.
+[1-10:P24470; UTF16 874630] 28. PCPE Adversarial Verification
+[1-10:P24471; UTF16 874664] A PCPE satisfies:
+[1-10:P24472; UTF16 874682] [ \mathcal P_S \subseteq \widehat{\mathcal P}_S ]
+[1-10:P24473; UTF16 874732] inside validity domain (\mathcal V_S).
+[1-10:P24474; UTF16 874771] Adversarial changes may affect:
+[1-10:P24475; UTF16 874803] boundary states;
+[1-10:P24476; UTF16 874820] parameters;
+[1-10:P24478; UTF16 874849] uncertainty relations.
+[1-10:P24482; UTF16 874875] THM-ADV16 — Adversarial PCPE Coverage
+[1-10:P24483; UTF16 874913] Let adversarial domain (A) lie entirely inside (\mathcal V_S).
+[1-10:P24485; UTF16 874984] [ \mathcal P_S(a) \subseteq \widehat{\mathcal P}_S(a) \qquad \forall a\in A. ]
+[1-10:P24486; UTF16 875063] If universal property (P) holds for every state in every envelope:
+[1-10:P24487; UTF16 875130] [ \forall a\in A, \forall y\in\widehat{\mathcal P}_S(a), \qquad P(y), ]
+[1-10:P24489; UTF16 875208] [ \forall a\in A, \forall y\in\mathcal P_S(a), \qquad P(y). ]
+[1-10:P24491; UTF16 875276] For each (a), every exact state lies in the corresponding outer envelope.
+[1-10:P24492; UTF16 875350] The property holds for every member of that envelope, hence for every exact state. ∎
+[1-10:P24496; UTF16 875438] 28.1 PCPE false positives
+[1-10:P24498; UTF16 875468] [ y\in\widehat{\mathcal P}_S(a) ]
+[1-10:P24499; UTF16 875502] violates (P), it need not belong to:
+[1-10:P24500; UTF16 875539] [ \mathcal P_S(a). ]
+[1-10:P24501; UTF16 875560] Therefore an apparent PCPE breaker must be validated by:
+[1-10:P24502; UTF16 875617] tighter enclosure;
+[1-10:P24503; UTF16 875636] exact membership;
+[1-10:P24504; UTF16 875654] full-order solve.
+[1-10:P24505; UTF16 875672] An outer relation is safe for proving universal properties.
+[1-10:P24506; UTF16 875732] It may be conservative for finding existential breakers.
+[1-10:P24510; UTF16 875792] 29. Reduced-Model and Global-Mode Breakers
+[1-10:P24511; UTF16 875835] A reduced-model certificate claims:
+[1-10:P24512; UTF16 875871] [ |u_{\mathrm{full}}-\widehat u| \le \Delta. ]
+[1-10:P24513; UTF16 875918] A checked state satisfying:
+[1-10:P24514; UTF16 875946] [ |u_{\mathrm{full}}-\widehat u|>\Delta ]
+[1-10:P24515; UTF16 875988] breaks the certificate over its stated validity domain.
+[1-10:P24516; UTF16 876044] Adversarial searches should target:
+[1-10:P24517; UTF16 876080] validity-domain boundaries;
+[1-10:P24518; UTF16 876108] near-singular stability constants;
+[1-10:P24519; UTF16 876143] resonances;
+[1-10:P24520; UTF16 876155] global modes;
+[1-10:P24521; UTF16 876169] regime transitions;
+[1-10:P24522; UTF16 876189] correlated boundary conditions.
+[1-10:P24523; UTF16 876221] Ordinary operating-point sampling is insufficient.
+[1-10:P24527; UTF16 876275] 30. Symbolic and Macro Breakers
+[1-10:P24528; UTF16 876307] Quotient-homogeneity breaker
+[1-10:P24529; UTF16 876336] For proposed homogeneous block (B), a breaker is:
+[1-10:P24530; UTF16 876386] [ x,y\in B ]
+[1-10:P24531; UTF16 876399] and experiment (e) such that:
+[1-10:P24532; UTF16 876429] [ \mathsf{Out}_e(x)\ne\mathsf{Out}_e(y). ]
+[1-10:P24533; UTF16 876472] Executable-macro breaker
+[1-10:P24534; UTF16 876497] For macro (\phi), a breaker is:
+[1-10:P24535; UTF16 876529] [ \phi(x)=\phi(y) ]
+[1-10:P24537; UTF16 876554] [ {\phi(x')'} \ne {\phi(y')'}. ]
+[1-10:P24538; UTF16 876587] These are ordinary Claim Breakers under the corresponding claims.
+[1-10:P24542; UTF16 876656] 31. Artifact-Reuse and Rewrite Breakers
+[1-10:P24543; UTF16 876696] A reuse breaker occurs when one of the following fails:
+[1-10:P24544; UTF16 876752] structural fingerprint;
+[1-10:P24546; UTF16 876798] port type;
+[1-10:P24551; UTF16 876888] discrepancy version;
+[1-10:P24552; UTF16 876909] tolerance requirement.
+[1-10:P24553; UTF16 876932] A rewrite-transport breaker is a post-rewrite exact query for which:
+[1-10:P24554; UTF16 877001] [ \text{transported result} ]
+[1-10:P24555; UTF16 877031] differs from:
+[1-10:P24556; UTF16 877045] [ \text{authoritative cold result} ]
+[1-10:P24557; UTF16 877082] beyond the declared error.
+[1-10:P24558; UTF16 877109] The result invalidates the transport claim, not necessarily the underlying engineering design.
+[1-10:P24562; UTF16 877207] 32. Evidence Adversaries
+[1-10:P24563; UTF16 877232] DEF-ADV16 — Evidence Adversary
+[1-10:P24564; UTF16 877263] An evidence adversary acts on:
+[1-10:P24565; UTF16 877294] evidence-node validity;
+[1-10:P24566; UTF16 877318] applicability domains;
+[1-10:P24568; UTF16 877353] product revisions;
+[1-10:P24570; UTF16 877388] calibration dates;
+[1-10:P24571; UTF16 877407] dependency edges;
+[1-10:P24572; UTF16 877425] authority scope.
+[1-10:P24573; UTF16 877442] It may change releaseability without changing physical truth.
+[1-10:P24577; UTF16 877507] THM-ADV17 — Evidence-Breaker Propagation
+[1-10:P24578; UTF16 877548] If evidence node (e) is invalidated and the evidence dependency graph is complete, every proof artifact transitively depending on (e) must become stale.
+[1-10:P24579; UTF16 877701] A release claim remains active only if another valid proof path remains.
+[1-10:P24581; UTF16 877780] Apply THM-ADV1 to the evidence dependency graph.
+[1-10:P24582; UTF16 877829] Physical truth is not changed by this graph operation; only the support for certified release changes. ∎
+[1-10:P24586; UTF16 877937] 33. Minimum Evidence Cuts
+[1-10:P24587; UTF16 877963] Suppose a release claim is supported by alternative proof paths:
+[1-10:P24588; UTF16 878028] \bigvee_{j=1}^{m} \bigwedge_{e_i\in P_j} e_i. ]
+[1-10:P24589; UTF16 878076] A release claim remains supported if at least one complete path (P_j) remains valid.
+[1-10:P24590; UTF16 878161] An evidence breaker must invalidate at least one node in every (P_j).
+[1-10:P24594; UTF16 878234] THM-ADV33 — Minimum Evidence Breaker Is NP-Hard
+[1-10:P24595; UTF16 878282] Finding the smallest set of evidence-node invalidations that makes (F) false is NP-hard.
+[1-10:P24597; UTF16 878377] Take a Hitting Set instance with universe of evidence nodes and family of sets:
+[1-10:P24599; UTF16 878477] A set (H) of invalidated nodes makes every conjunction false exactly when:
+[1-10:P24600; UTF16 878552] [ H\cap P_j\ne\varnothing \qquad \forall j. ]
+[1-10:P24601; UTF16 878598] Thus (H) is an evidence breaker exactly when it is a hitting set.
+[1-10:P24602; UTF16 878664] Minimum evidence breaker equals minimum hitting set. ∎
+[1-10:P24603; UTF16 878719] For a simple serial proof graph, ordinary min-cut may suffice.
+[1-10:P24604; UTF16 878782] General AND/OR proof logic is harder.
+[1-10:P24608; UTF16 878823] 34. Model Discrepancy Adversaries
+[1-10:P24609; UTF16 878857] Prompt 5 defines a physical discrepancy relation:
+[1-10:P24610; UTF16 878907] [ y_{\mathrm{phys}} \in \Delta_M(y_M). ]
+[1-10:P24611; UTF16 878948] A model-level claim is evaluated on (y_M).
+[1-10:P24612; UTF16 878991] A physical-level claim must quantify over every admitted:
+[1-10:P24613; UTF16 879049] [ y_{\mathrm{phys}}\in\Delta_M(y_M). ]
+[1-10:P24614; UTF16 879088] A model-safe result may therefore coexist with a physical breaker.
+[1-10:P24615; UTF16 879155] The adversary may choose only discrepancy admitted by (\Delta_M).
+[1-10:P24616; UTF16 879221] A fabricated discrepancy outside the validated relation does not break the scoped certificate.
+[1-10:P24620; UTF16 879319] 35. Construction and Lifecycle Adversaries
+[1-10:P24621; UTF16 879362] Construction perturbations may include:
+[1-10:P24622; UTF16 879402] shared installation offsets;
+[1-10:P24623; UTF16 879431] temporary supports;
+[1-10:P24624; UTF16 879451] changed sequencing;
+[1-10:P24625; UTF16 879471] access obstruction;
+[1-10:P24626; UTF16 879491] partial completion;
+[1-10:P24627; UTF16 879511] crew-resource conflict;
+[1-10:P24628; UTF16 879535] substituted installation order.
+[1-10:P24629; UTF16 879567] They are process histories, not merely coordinate perturbations.
+[1-10:P24630; UTF16 879632] Lifecycle adversaries may include:
+[1-10:P24631; UTF16 879667] corrosion;
+[1-10:P24632; UTF16 879678] fouling;
+[1-10:P24633; UTF16 879687] seal aging;
+[1-10:P24634; UTF16 879699] degradation;
+[1-10:P24635; UTF16 879712] equipment replacement;
+[1-10:P24636; UTF16 879735] occupancy evolution;
+[1-10:P24637; UTF16 879756] delayed maintenance.
+[1-10:P24638; UTF16 879777] A commissioning claim does not automatically quantify over lifecycle histories.
+[1-10:P24642; UTF16 879860] 36. Dynamic Breakers
+[1-10:P24643; UTF16 879881] For finite horizon (T), a dynamic breaker may consist of:
+[1-10:P24644; UTF16 879939] an initial state;
+[1-10:P24645; UTF16 879957] disturbance history;
+[1-10:P24646; UTF16 879978] failure history;
+[1-10:P24647; UTF16 879995] control history.
+[1-10:P24648; UTF16 880012] The exact relation is:
+[1-10:P24649; UTF16 880035] [ T_\alpha^{\mathrm{adv}} \subseteq X_0\times X_T. ]
+[1-10:P24650; UTF16 880088] A minimum-energy disturbance problem is one special scalar-cost formulation.
+[1-10:P24651; UTF16 880165] Generic dynamic breaker synthesis may be a difficult nonconvex reachability problem.
+[1-10:P24655; UTF16 880253] 37. Adversarial Decision Claims
+[1-10:P24656; UTF16 880285] A claim that candidate (A) remains selected must preserve complete marked-menu semantics.
+[1-10:P24657; UTF16 880375] A breaker may cause:
+[1-10:P24658; UTF16 880396] another candidate to enter the chosen set;
+[1-10:P24659; UTF16 880439] (A) to leave;
+[1-10:P24661; UTF16 880470] rejection;
+[1-10:P24662; UTF16 880481] a changed external competitor selection.
+[1-10:P24663; UTF16 880522] Pairwise scalar ranking is insufficient unless the decision theory is explicitly scalar and menu independent.
+[1-10:P24667; UTF16 880635] 38. Adversarial Dominance
+[1-10:P24668; UTF16 880661] Suppose claim:
+[1-10:P24670; UTF16 880692] A breaker is an admitted combination of:
+[1-10:P24671; UTF16 880733] engineering scenario;
+[1-10:P24672; UTF16 880755] stakeholder utility;
+[1-10:P24673; UTF16 880776] evidence state;
+[1-10:P24674; UTF16 880792] competitor menu
+[1-10:P24675; UTF16 880808] for which (A) becomes decision relevant or preferred.
+[1-10:P24676; UTF16 880862] The adversary may use only contexts admitted by the decision theory.
+[1-10:P24680; UTF16 880934] 39. Release-Claim Red Team
+[1-10:P24681; UTF16 880961] A release claim asserts:
+[1-10:P24684; UTF16 881019] [ \omega\in\Gamma(K) ]
+[1-10:P24685; UTF16 881042] for which at least one claimed singleton report, evidence validity, or regret bound fails.
+[1-10:P24686; UTF16 881133] If Prompt-9 closure certificates and the checker are sound, no such breaker exists.
+[1-10:P24687; UTF16 881217] Release red teaming is therefore primarily:
+[1-10:P24688; UTF16 881261] proof-kernel regression;
+[1-10:P24689; UTF16 881286] certificate validation;
+[1-10:P24690; UTF16 881310] dependency-completeness testing;
+[1-10:P24691; UTF16 881343] implementation assurance.
+[1-10:P24695; UTF16 881372] 40. Adversarial CEGAR
+[1-10:P24696; UTF16 881394] ALG-ADV2 — AdversarialClaimCEGAR
+[1-10:P24698; UTF16 881433]     engineering claim C
+[1-10:P24699; UTF16 881457]     adversarial theory A_C
+[1-10:P24701; UTF16 881514]     exact or symbolic semantics
+[1-10:P24702; UTF16 881546]     robustness target
+[1-10:P24705; UTF16 881580]     sound abstract adversarial domain
+[1-10:P24708; UTF16 881624]     search abstractly for a breaker candidate
+[1-10:P24710; UTF16 881671]     if no abstract breaker exists:
+[1-10:P24711; UTF16 881706]         if abstraction is proved complete for
+[1-10:P24712; UTF16 881752]            the entire declared adversarial domain:
+[1-10:P24713; UTF16 881803]             emit coverage certificate
+[1-10:P24714; UTF16 881841]             STOP
+[1-10:P24715; UTF16 881858]         else:
+[1-10:P24716; UTF16 881872]             refine or return UNRESOLVED
+[1-10:P24718; UTF16 881913]     concretize the abstract candidate
+[1-10:P24720; UTF16 881952]     if exact concrete check returns SAT:
+[1-10:P24721; UTF16 881993]         independently verify:
+[1-10:P24722; UTF16 882023]             baseline
+[1-10:P24723; UTF16 882044]             admissibility
+[1-10:P24724; UTF16 882070]             perturbation execution
+[1-10:P24725; UTF16 882105]             claim violation
+[1-10:P24727; UTF16 882134]         if valid:
+[1-10:P24728; UTF16 882152]             emit Claim Breaker
+[1-10:P24729; UTF16 882183]             optionally continue searching
+[1-10:P24730; UTF16 882225]             for a cheaper breaker
+[1-10:P24732; UTF16 882260]     if exact concrete check returns UNSAT:
+[1-10:P24733; UTF16 882303]         mark candidate spurious
+[1-10:P24734; UTF16 882335]         derive refinement predicate
+[1-10:P24735; UTF16 882371]         refine abstraction
+[1-10:P24738; UTF16 882416]     if concrete check returns UNKNOWN:
+[1-10:P24739; UTF16 882455]         refine numerical fidelity
+[1-10:P24740; UTF16 882489]         change symbolic domain
+[1-10:P24741; UTF16 882520]         invoke full-order fallback
+[1-10:P24742; UTF16 882555]         or return UNRESOLVED
+[1-10:P24746; UTF16 882587] THM-ADV18 — Adversarial CEGAR Soundness
+[1-10:P24748; UTF16 882635] the abstract adversarial semantics overapproximates every exact adversarial behavior;
+[1-10:P24749; UTF16 882721] every symbolic refinement is sound;
+[1-10:P24750; UTF16 882757] numerical enclosures are checked;
+[1-10:P24751; UTF16 882791] mandatory statuses remain exact;
+[1-10:P24752; UTF16 882824] concrete breaker checks are independently certified;
+[1-10:P24753; UTF16 882877] UNKNOWN is never interpreted as SAT, UNSAT, safe, or broken.
+[1-10:P24755; UTF16 882944] every returned breaker is a real Claim Breaker;
+[1-10:P24756; UTF16 882992] every returned coverage certificate covers the declared adversarial domain;
+[1-10:P24757; UTF16 883068] a spurious abstract breaker cannot invalidate the exact claim;
+[1-10:P24758; UTF16 883131] UNKNOWN produces no false conclusion.
+[1-10:P24760; UTF16 883175] A returned breaker passes the conditions of THM-ADV2.
+[1-10:P24761; UTF16 883229] A returned coverage certificate is emitted only when the sound abstraction covers the entire exact domain and every abstract behavior satisfies the claim. THM-ADV4 applies.
+[1-10:P24762; UTF16 883402] A spurious candidate is accompanied by an exact UNSAT proof of its concretization, so it denotes no exact adversarial behavior.
+[1-10:P24763; UTF16 883530] UNKNOWN adds no claim predicate to the authoritative state. ∎
+[1-10:P24767; UTF16 883595] THM-ADV30 — Finite Adversarial CEGAR Termination
+[1-10:P24768; UTF16 883644] Let the exact adversarial carrier be finite with (N) states.
+[1-10:P24770; UTF16 883713] each spurious-counterexample refinement strictly splits at least one nonempty abstract block;
+[1-10:P24771; UTF16 883807] no refinement merges blocks;
+[1-10:P24772; UTF16 883836] the strategy is fair;
+[1-10:P24773; UTF16 883858] exact emptiness is decidable.
+[1-10:P24774; UTF16 883888] Then state-partition CEGAR terminates after at most:
+[1-10:P24775; UTF16 883941] [ N-b_0 ]
+[1-10:P24776; UTF16 883951] strict splits, where (b_0) is the initial block count.
+[1-10:P24778; UTF16 884012] Each strict split increases the number of nonempty blocks by at least one.
+[1-10:P24779; UTF16 884087] The number of blocks cannot exceed (N).
+[1-10:P24780; UTF16 884127] Fairness eventually processes every remaining instability.
+[1-10:P24781; UTF16 884186] Therefore refinement terminates at a stable partition. ∎
+[1-10:P24782; UTF16 884243] This is finite termination, not a practical complexity guarantee.
+[1-10:P24786; UTF16 884312] 41. Minimum-Breaker Search
+[1-10:P24787; UTF16 884339] ALG-ADV3 — MinimumClaimBreaker
+[1-10:P24789; UTF16 884376]     claim C
+[1-10:P24790; UTF16 884388]     scalar-cost adversarial domain
+[1-10:P24791; UTF16 884423]     symbolic region structure
+[1-10:P24792; UTF16 884453]     exact/certified checker
+[1-10:P24795; UTF16 884493]     rhoPlus  ← infinity
+[1-10:P24796; UTF16 884517]     rhoMinus ← 0
+[1-10:P24797; UTF16 884534]     priority queue of adversarial regions,
+[1-10:P24798; UTF16 884577]       ordered by certified lower cost
+[1-10:P24801; UTF16 884621]     remove region B with smallest lower bound
+[1-10:P24803; UTF16 884668]     if lowerCost(B) ≥ rhoPlus:
+[1-10:P24804; UTF16 884699]         prune B
+[1-10:P24807; UTF16 884733]     if B has a universal safe certificate:
+[1-10:P24808; UTF16 884776]         record B as PROVED SAFE
+[1-10:P24809; UTF16 884808]         raise rhoMinus where justified
+[1-10:P24812; UTF16 884865]     search B for a breaker candidate
+[1-10:P24814; UTF16 884903]     if verified breaker alpha found:
+[1-10:P24815; UTF16 884940]         rhoPlus ← min(rhoPlus, cost(alpha))
+[1-10:P24816; UTF16 884984]         record breaker
+[1-10:P24819; UTF16 885025]     if B is unresolved:
+[1-10:P24820; UTF16 885049]         split B
+[1-10:P24821; UTF16 885065]         add child regions
+[1-10:P24824; UTF16 885109]     if UNKNOWN cannot be resolved:
+[1-10:P24825; UTF16 885144]         return current interval and UNRESOLVED
+[1-10:P24827; UTF16 885192] STOP
+[1-10:P24828; UTF16 885197]     when every remaining region has
+[1-10:P24829; UTF16 885233]     lower bound ≥ rhoPlus
+[1-10:P24832; UTF16 885267]     minimum breaker
+[1-10:P24833; UTF16 885287]     or no breaker
+[1-10:P24834; UTF16 885305]     or certified interval [rhoMinus,rhoPlus]
+[1-10:P24838; UTF16 885353] THM-ADV29 — Breaker Branch-and-Bound Correctness
+[1-10:P24839; UTF16 885402] Let (B) be an adversarial region with certified lower cost:
+[1-10:P24840; UTF16 885462] [ \underline\kappa(B) \le \kappa_C(\alpha) \qquad \forall\alpha\in B. ]
+[1-10:P24841; UTF16 885534] If a verified breaker of cost (\rho^+) exists and:
+[1-10:P24842; UTF16 885585] [ \underline\kappa(B)\ge\rho^+, ]
+[1-10:P24843; UTF16 885619] then (B) contains no strictly cheaper breaker.
+[1-10:P24845; UTF16 885672] Every perturbation in (B) has cost at least (\rho^+).
+[1-10:P24846; UTF16 885726] Therefore no breaker in (B) has cost below the current incumbent. ∎
+[1-10:P24850; UTF16 885797] THM-ADV34 — Finite Robustness-Radius Convergence
+[1-10:P24851; UTF16 885846] For a finite adversarial domain, assume ALG-ADV3:
+[1-10:P24852; UTF16 885896] uses exact region lower bounds;
+[1-10:P24853; UTF16 885928] fairly refines every unresolved region;
+[1-10:P24854; UTF16 885968] validates every breaker;
+[1-10:P24855; UTF16 885993] proves every safe terminal region;
+[1-10:P24856; UTF16 886028] never discards a region except by THM-ADV29 or a safe certificate.
+[1-10:P24857; UTF16 886095] Then it eventually returns the exact robustness radius.
+[1-10:P24859; UTF16 886157] The finite domain contains finitely many perturbations.
+[1-10:P24860; UTF16 886213] Fair refinement eventually isolates every unpruned perturbation or finite exact block.
+[1-10:P24861; UTF16 886300] Every true breaker is either verified or pruned only after an equal-or-cheaper verified breaker exists.
+[1-10:P24862; UTF16 886404] Every nonbreaker is eventually proved safe.
+[1-10:P24863; UTF16 886448] The cheapest verified breaker is therefore the global minimum, or no breaker exists. ∎
+[1-10:P24864; UTF16 886535] Continuous convergence requires separate global-optimization assumptions.
+[1-10:P24868; UTF16 886612] 42. Adversarial Coverage Partitions
+[1-10:P24869; UTF16 886648] DEF-ADV21 — Adversarial Coverage Partition
+[1-10:P24870; UTF16 886691] The declared domain is partitioned into:
+[1-10:P24871; UTF16 886732] (\mathsf{PROVED_SAFE});
+[1-10:P24872; UTF16 886756] (\mathsf{VERIFIED_BREAKER});
+[1-10:P24873; UTF16 886785] (\mathsf{UNRESOLVED});
+[1-10:P24874; UTF16 886808] (\mathsf{OUTSIDE_THEORY}).
+[1-10:P24875; UTF16 886835] These labels are semantically distinct.
+[1-10:P24876; UTF16 886875] For a finite adversarial domain:
+[1-10:P24877; UTF16 886908] \frac{ |\mathsf{PROVED_SAFE}\cup\mathsf{VERIFIED_BREAKER}| }{ |\mathfrak A_C| }. ]

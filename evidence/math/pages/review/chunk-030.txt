@@ -1,0 +1,353 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P11697; UTF16 442887] DEF-AB33 — Abstract Transformer Certificate
+[1-10:P11698; UTF16 442931] A transformer certificate for:
+[1-10:P11699; UTF16 442962] [ K^#:A_\tau\to A_\sigma ]
+[1-10:P11700; UTF16 442989] must permit a trusted checker to verify:
+[1-10:P11701; UTF16 443030] [ K_*(\gamma_\tau(a)) \subseteq \gamma_\sigma(K^#(a)) ]
+[1-10:P11702; UTF16 443086] for every certified application (a).
+[1-10:P11703; UTF16 443123] Possible certificate forms include:
+[1-10:P11704; UTF16 443159] canonical BDD identity;
+[1-10:P11705; UTF16 443183] SAT or SMT proof;
+[1-10:P11706; UTF16 443201] finite arithmetic derivation;
+[1-10:P11707; UTF16 443231] theorem-prover proof term;
+[1-10:P11708; UTF16 443258] checked transition-relation inclusion;
+[1-10:P11709; UTF16 443297] trusted deterministic kernel computation.
+[1-10:P11710; UTF16 443339] For an exact preimage, the certificate must verify:
+[1-10:P11711; UTF16 443391] K^{-1} \left( \llbracket\phi\rrbracket \right). ]
+[1-10:P11712; UTF16 443441] For emptiness:
+[1-10:P11713; UTF16 443456] [ \llbracket\phi\rrbracket=\varnothing. ]
+[1-10:P11714; UTF16 443498] A solver’s unverified assertion is not itself a certificate.
+[1-10:P11718; UTF16 443562] 44. CAQC Artifact
+[1-10:P11719; UTF16 443580] DEF-AB35 — Certified Abstract Quotient Compilation
+[1-10:P11720; UTF16 443631] A CAQC artifact contains:
+[1-10:P11722; UTF16 443677] regional interface type;
+[1-10:P11723; UTF16 443702] abstract-domain definitions;
+[1-10:P11724; UTF16 443731] symbolic language and interpreter version;
+[1-10:P11725; UTF16 443774] concretization semantics;
+[1-10:P11726; UTF16 443800] direct-output fibers;
+[1-10:P11727; UTF16 443822] primitive-context symbolic transformers;
+[1-10:P11728; UTF16 443863] symbolic preimage certificates;
+[1-10:P11729; UTF16 443895] current symbolic partition;
+[1-10:P11730; UTF16 443923] must-equivalent relation;
+[1-10:P11731; UTF16 443949] may-equivalent relation;
+[1-10:P11732; UTF16 443974] refinement history;
+[1-10:P11733; UTF16 443994] SAT witnesses;
+[1-10:P11734; UTF16 444009] UNSAT certificates;
+[1-10:P11735; UTF16 444029] UNKNOWN obligations;
+[1-10:P11736; UTF16 444050] safe-pruning certificates;
+[1-10:P11737; UTF16 444077] quotient-homogeneity certificates;
+[1-10:P11738; UTF16 444112] quotient transition tables;
+[1-10:P11739; UTF16 444140] representatives and witness backpointers;
+[1-10:P11740; UTF16 444182] distinguishing-context DAG;
+[1-10:P11741; UTF16 444210] evidence dependencies and provenance;
+[1-10:P11742; UTF16 444248] convergence status:
+[1-10:P11744; UTF16 444275] sound but incomplete;
+[1-10:P11745; UTF16 444297] unresolved.
+[1-10:P11746; UTF16 444309] A nonconverged artifact may not label its may-blocks as exact quotient classes.
+[1-10:P11750; UTF16 444392] 45. Certificate Soundness
+[1-10:P11751; UTF16 444418] ALG-AB4 — CertificateCheckAbstractQuotient
+[1-10:P11752; UTF16 444461] CHECK
+[1-10:P11753; UTF16 444467]     theory and operation fingerprints
+[1-10:P11754; UTF16 444505]     symbolic formula well-formedness
+[1-10:P11755; UTF16 444542]     block coverage and disjointness
+[1-10:P11756; UTF16 444578]     direct-output fiber correctness
+[1-10:P11757; UTF16 444614]     transformer inclusion certificates
+[1-10:P11758; UTF16 444653]     exact preimage certificates
+[1-10:P11759; UTF16 444685]     SAT witness validity
+[1-10:P11760; UTF16 444710]     UNSAT proof validity
+[1-10:P11761; UTF16 444735]     pruning certificates
+[1-10:P11762; UTF16 444760]     quotient-homogeneity certificates
+[1-10:P11763; UTF16 444798]     must/may sandwich invariants
+[1-10:P11764; UTF16 444831]     operation stability
+[1-10:P11765; UTF16 444855]     quotient transition consistency
+[1-10:P11766; UTF16 444891]     representative membership
+[1-10:P11767; UTF16 444921]     distinguishing-context certificates
+[1-10:P11768; UTF16 444961]     unresolved-status honesty
+[1-10:P11770; UTF16 444992] IF artifact claims exact convergence:
+[1-10:P11771; UTF16 445030]     check:
+[1-10:P11772; UTF16 445041]         no UNKNOWN obligation relevant to exactness
+[1-10:P11773; UTF16 445093]         partition stable under every primitive context
+[1-10:P11774; UTF16 445148]         every block direct-output uniform
+[1-10:P11775; UTF16 445190]         every pair of reported blocks distinguishable
+[1-10:P11779; UTF16 445247] THM-AB22 — Abstract Compilation Certificate Soundness
+[1-10:P11780; UTF16 445301] If ALG-AB4 accepts a CAQC artifact, then:
+[1-10:P11781; UTF16 445343] every reported prune is safe;
+[1-10:P11782; UTF16 445373] every reported exact merge contains only contextually equivalent states;
+[1-10:P11783; UTF16 445446] every reported quotient transition preserves complete Prompt-2 experiment semantics;
+[1-10:P11784; UTF16 445531] every unresolved block remains explicitly unresolved;
+[1-10:P11785; UTF16 445585] if exact convergence is claimed, the reported partition equals (\Sigma_L).
+[1-10:P11787; UTF16 445666] Safe prunes satisfy THM-AB1.
+[1-10:P11788; UTF16 445695] Exact merges satisfy THM-AB2.
+[1-10:P11789; UTF16 445725] Transformer and preimage certificates establish exact or sound operation semantics.
+[1-10:P11790; UTF16 445809] Stability, direct-output uniformity, and primitive-context completeness establish same-block contextual equivalence by THM-AB4.
+[1-10:P11791; UTF16 445937] Distinguishing-context certificates establish that different blocks are inequivalent.
+[1-10:P11792; UTF16 446023] Therefore an exact claim satisfies THM-AB5.
+[1-10:P11793; UTF16 446067] The checker separately verifies that no UNKNOWN obligation is hidden behind a resolved label. ∎
+[1-10:P11797; UTF16 446166] 46. Theory-Safe Reuse
+[1-10:P11798; UTF16 446188] Let a symbolic quotient be compiled under theory (\mathcal T_1), and let a new project use (\mathcal T_2).
+[1-10:P11799; UTF16 446295] THM-AB23 — Theory-Safe Symbolic Reuse
+[1-10:P11800; UTF16 446333] Case 1
+[1-10:P11802; UTF16 446344] [ \mathcal T_2\subseteq\mathcal T_1, ]
+[1-10:P11803; UTF16 446383] then every (\mathcal T_1)-quotient class is contained in one (\mathcal T_2)-class.
+[1-10:P11804; UTF16 446466] The old quotient is safe for (\mathcal T_2), though it may be overrefined.
+[1-10:P11805; UTF16 446541] Case 2
+[1-10:P11807; UTF16 446552] [ \mathcal T_2\supseteq\mathcal T_1, ]
+[1-10:P11808; UTF16 446591] the old quotient is safe without splitting if and only if every old block is homogeneous under every newly admitted experiment and stable under every newly admitted primitive context.
+[1-10:P11809; UTF16 446775] Otherwise the old symbolic predicates and certificates may be reused as the starting partition for refinement, but the old quotient may not be treated as exact.
+[1-10:P11811; UTF16 446942] Case 1 follows from Prompt 3 theory monotonicity:
+[1-10:P11812; UTF16 446992] [ \equiv_{\mathcal T_1} \subseteq \equiv_{\mathcal T_2}. ]
+[1-10:P11813; UTF16 447051] Thus equality in the richer old theory implies equality in the smaller new theory.
+[1-10:P11814; UTF16 447134] For Case 2, the stated homogeneity and stability conditions are exactly the conditions of THM-AB4 for the expanded theory.
+[1-10:P11815; UTF16 447257] If either condition fails, a new admitted experiment distinguishes members of an old block, requiring a split. ∎
+[1-10:P11819; UTF16 447373] 47. Incremental Theory Expansion
+[1-10:P11820; UTF16 447406] ALG-AB2 — IncrementalTheoryRefine
+[1-10:P11822; UTF16 447446]     old exact symbolic quotient Πold
+[1-10:P11823; UTF16 447483]     old theory T1
+[1-10:P11824; UTF16 447501]     expanded theory T2
+[1-10:P11825; UTF16 447524]     new terminal experiments
+[1-10:P11826; UTF16 447553]     new primitive contexts
+[1-10:P11827; UTF16 447580]     old formulas, certificates, and transitions
+[1-10:P11829; UTF16 447629] STEP 1
+[1-10:P11830; UTF16 447636]     verify T1 ⊆ T2 and fingerprints
+[1-10:P11832; UTF16 447673] STEP 2
+[1-10:P11833; UTF16 447680]     for each old block B:
+[1-10:P11834; UTF16 447706]         split B by every newly added direct-output fiber
+[1-10:P11835; UTF16 447763]         using exact symbolic operations
+[1-10:P11837; UTF16 447804] STEP 3
+[1-10:P11838; UTF16 447811]     add newly admitted primitive-context splitters
+[1-10:P11840; UTF16 447863] STEP 4
+[1-10:P11841; UTF16 447870]     place:
+[1-10:P11842; UTF16 447881]         newly created blocks
+[1-10:P11843; UTF16 447910]         affected predecessor blocks
+[1-10:P11844; UTF16 447946]         new primitive contexts
+[1-10:P11845; UTF16 447977]     on the refinement worklist
+[1-10:P11847; UTF16 448009] STEP 5
+[1-10:P11848; UTF16 448016]     run SymbolicDecisionQuotient
+[1-10:P11849; UTF16 448049]     until stability for T2
+[1-10:P11851; UTF16 448077] STEP 6
+[1-10:P11852; UTF16 448084]     rebuild only affected quotient transitions
+[1-10:P11853; UTF16 448131]     retain unaffected certificates by dependency analysis
+[1-10:P11857; UTF16 448192] THM-AB24 — Incremental Theory Refinement Correctness
+[1-10:P11859; UTF16 448253] the old partition is exact for (\mathcal T_1);
+[1-10:P11860; UTF16 448300] (\mathcal T_1\subseteq\mathcal T_2);
+[1-10:P11861; UTF16 448337] new direct fibers and preimages are exact;
+[1-10:P11862; UTF16 448380] the incremental worklist is fair;
+[1-10:P11863; UTF16 448414] all exactness queries terminate.
+[1-10:P11864; UTF16 448447] Then ALG-AB2 returns the exact quotient for (\mathcal T_2).
+[1-10:P11866; UTF16 448513] Every (\mathcal T_1)-class is a union of (\mathcal T_2)-classes.
+[1-10:P11867; UTF16 448578] Thus the old partition is a quotient-respecting coarse starting partition for the expanded theory.
+[1-10:P11868; UTF16 448677] New direct fibers separate all new depth-zero distinctions.
+[1-10:P11869; UTF16 448737] Worklist refinement restores stability under every old and new primitive context.
+[1-10:P11870; UTF16 448819] THM-AB5 then identifies the stable partition with the (\mathcal T_2) quotient. ∎
+[1-10:P11874; UTF16 448903] 48. Symbolic Conditioning
+[1-10:P11876; UTF16 448934] [ \chi_{\mathrm{cond}}\in\mathcal F ]
+[1-10:P11877; UTF16 448972] represent a human-approved design-space condition.
+[1-10:P11878; UTF16 449023] For each block:
+[1-10:P11879; UTF16 449039] [ \phi_B, ]
+[1-10:P11880; UTF16 449051] replace it by:
+[1-10:P11881; UTF16 449066] \phi_B\land\chi_{\mathrm{cond}}. ]
+[1-10:P11882; UTF16 449101] Discard UNSAT blocks.
+[1-10:P11886; UTF16 449126] THM-AB25 — Symbolic Conditioning Correctness
+[1-10:P11887; UTF16 449171] Fixed experiment theory
+[1-10:P11888; UTF16 449195] If the exterior experiment theory remains unchanged, the nonempty restricted blocks form exactly the intersections of old quotient classes with the conditioned state set.
+[1-10:P11889; UTF16 449366] No old class splits, and no cross-class merge is required.
+[1-10:P11890; UTF16 449425] Restricted experiment theory
+[1-10:P11891; UTF16 449454] If conditioning also removes exterior contexts, competitors, scenarios, or decision tests, then the old restricted partition remains sound but may be overrefined.
+[1-10:P11892; UTF16 449617] Running exact symbolic minimization under the restricted theory yields the new canonical quotient.
+[1-10:P11894; UTF16 449722] With fixed theory, contextual equivalence is unchanged. Restriction can only delete members or whole classes.
+[1-10:P11895; UTF16 449832] With restricted theory, Prompt 3 theory monotonicity makes equivalence coarser. Therefore old classes remain sound subsets of new classes but may merge. Exact minimization computes those merges. ∎
+[1-10:P11899; UTF16 450032] 49. Heuristic and AI Proposal Boundary
+[1-10:P11900; UTF16 450071] A heuristic system may propose:
+[1-10:P11901; UTF16 450103] a predicate;
+[1-10:P11902; UTF16 450116] an abstract domain;
+[1-10:P11903; UTF16 450136] a decomposition;
+[1-10:P11904; UTF16 450153] a possible invariant;
+[1-10:P11905; UTF16 450175] a possible quotient merge;
+[1-10:P11906; UTF16 450202] a possible causal macro.
+[1-10:P11908; UTF16 450245] elevator displacement class;
+[1-10:P11909; UTF16 450274] wet-service alignment;
+[1-10:P11910; UTF16 450297] replacement-access bottleneck;
+[1-10:P11911; UTF16 450328] structural/MEP phase lock;
+[1-10:P11912; UTF16 450355] failure-domain entropy;
+[1-10:P11913; UTF16 450379] high-value plenum region.
+[1-10:P11914; UTF16 450405] Every proposal becomes a finite mathematical object such as:
+[1-10:P11915; UTF16 450466] [ P\to{0,1} ]
+[1-10:P11916; UTF16 450480] or:
+[1-10:P11917; UTF16 450484] [ z=\phi(X). ]
+[1-10:P11918; UTF16 450499] It receives authority only through the trusted kernel.
+[1-10:P11922; UTF16 450557] THM-AB26 — Proposal-System Independence
+[1-10:P11923; UTF16 450597] The correctness of certified abstract interpretation and quotient compilation is independent of how predicates, domains, or candidate abstractions were proposed, provided every accepted:
+[1-10:P11924; UTF16 450784] prune;
+[1-10:P11925; UTF16 450791] merge;
+[1-10:P11926; UTF16 450798] split;
+[1-10:P11927; UTF16 450805] transformer;
+[1-10:P11928; UTF16 450818] preimage;
+[1-10:P11929; UTF16 450828] SAT witness;
+[1-10:P11930; UTF16 450841] UNSAT claim;
+[1-10:P11931; UTF16 450854] quotient transition
+[1-10:P11932; UTF16 450874] is independently checked against the authoritative finite semantics.
+[1-10:P11934; UTF16 450949] The correctness theorems use only the checked semantic properties of accepted objects.
+[1-10:P11935; UTF16 451036] They do not contain any premise concerning the proposal source.
+[1-10:P11936; UTF16 451100] Therefore replacing a human proposer with:
+[1-10:P11937; UTF16 451143] a heuristic;
+[1-10:P11938; UTF16 451156] an optimizer;
+[1-10:P11939; UTF16 451170] a language model;
+[1-10:P11940; UTF16 451188] random search
+[1-10:P11941; UTF16 451202] does not affect correctness, although it may affect efficiency. ∎
+[1-10:P11942; UTF16 451268] The authority boundary is:
+[1-10:P11943; UTF16 451295] [ \boxed{ \text{AI proposes; the formal kernel disposes.} } ]
+[1-10:P11947; UTF16 451360] 49.1 Abstract-domain selection problem
+[1-10:P11949; UTF16 451404] { \mathcal A^{(1)},\ldots,\mathcal A^{(m)} } ]
+[1-10:P11950; UTF16 451451] be a finite domain portfolio.
+[1-10:P11951; UTF16 451481] The domain-selection problem is:
+[1-10:P11952; UTF16 451514] [ \min_{\mathcal A^{(i)}} \mathsf{DiscoveryCost}(\mathcal A^{(i)}) ]
+[1-10:P11954; UTF16 451595] soundness;
+[1-10:P11955; UTF16 451606] certificate availability;
+[1-10:P11956; UTF16 451632] eventual exact quotient representability.
+[1-10:P11957; UTF16 451674] This optimization is not solved here.
+[1-10:P11961; UTF16 451715] 49.2 Value of a proposed refinement
+[1-10:P11962; UTF16 451751] A nonauthoritative search-order score may be:
+[1-10:P11963; UTF16 451797] \frac{ \mathbb E[ \text{unresolved quotient pairs removed} + \text{safe pruning enabled} ] }{ \text{formula growth} + \text{solver cost} + \text{certificate cost} }. ]
+[1-10:P11964; UTF16 451965] This affects scheduling only. It does not participate in proof validity.
+[1-10:P11968; UTF16 452041] 50. Structured Tractable Family
+[1-10:P11969; UTF16 452073] Consider binary variables:
+[1-10:P11971; UTF16 452127] with local constraints:
+[1-10:P11972; UTF16 452151] [ y_i+y_{i+1}\le1. ]
+[1-10:P11973; UTF16 452172] Fix threshold (B).
+[1-10:P11974; UTF16 452191] Define saturated count:
+[1-10:P11975; UTF16 452215] \min \left( B, \sum_{i=1}^ny_i \right). ]
+[1-10:P11976; UTF16 452257] Admitted exterior contexts may append isolated active motifs, each separated by a mandatory zero so that the no-adjacency condition remains valid.
+[1-10:P11977; UTF16 452404] The direct terminal observation reports only whether saturation has been reached:
+[1-10:P11978; UTF16 452486] [c_B(y)=B]. ]
+[1-10:P11979; UTF16 452500] Repeated isolated-active contexts distinguish distance from saturation.
+[1-10:P11980; UTF16 452572] The exact residual classes are:
+[1-10:P11981; UTF16 452604] \left{ y: \sum_i y_i=j \right}, \qquad 0\le j<B, ]
+[1-10:P11983; UTF16 452660] \left{ y: \sum_i y_i\ge B \right}. ]
+[1-10:P11985; UTF16 452703] [ |\Sigma|=B+1. ]
+[1-10:P11989; UTF16 452724] THM-AB20 — Polynomial Symbolic Discovery for Saturating Repetition
+[1-10:P11990; UTF16 452791] For fixed (B), the exact quotient of the saturated no-adjacent family can be discovered in polynomial time in (n), without enumerating its exponentially many concrete valid strings.
+[1-10:P11991; UTF16 452973] A direct symbolic implementation has:
+[1-10:P11992; UTF16 453011] quotient size (B+1);
+[1-10:P11993; UTF16 453032] symbolic representation size (O(nB)) using a finite counting automaton;
+[1-10:P11994; UTF16 453104] exact satisfiability cost (O(nB));
+[1-10:P11995; UTF16 453139] at most (B-1) nontrivial contextual splits after initialization;
+[1-10:P11996; UTF16 453204] simple worklist time (O(nB^3)).
+[1-10:P11997; UTF16 453236] For fixed (B), this is (O(n)).
+[1-10:P11999; UTF16 453273] Construct a deterministic finite symbolic automaton with state:
+[1-10:P12000; UTF16 453337] [ (i,c,p), ]
+[1-10:P12002; UTF16 453357] (i\in{0,\ldots,n}) is the processed position;
+[1-10:P12003; UTF16 453403] (c\in{0,\ldots,B}) is the saturated count;
+[1-10:P12004; UTF16 453446] (p\in{0,1}) is the previous bit.
+[1-10:P12005; UTF16 453479] There are:
+[1-10:P12006; UTF16 453490] [ O(nB) ]
+[1-10:P12008; UTF16 453508] Transitions enforce:
+[1-10:P12009; UTF16 453529] [ p=1\Longrightarrow y_{i+1}=0 ]
+[1-10:P12010; UTF16 453562] and update:
+[1-10:P12011; UTF16 453574] [ c'=\min(B,c+y_{i+1}). ]
+[1-10:P12012; UTF16 453600] Therefore each class (C_j) is represented by the set of accepting automaton states with final count (j).
+[1-10:P12013; UTF16 453705] Satisfiability and witness extraction are graph reachability in the automaton and run in (O(nB)).
+[1-10:P12014; UTF16 453803] The initial direct partition is:
+[1-10:P12015; UTF16 453836] [ {C_B,;C_0\cup\cdots\cup C_{B-1}}. ]
+[1-10:P12016; UTF16 453874] Preimage under one appended active motif sends:
+[1-10:P12017; UTF16 453922] [ C_{B-1} ]
+[1-10:P12018; UTF16 453934] into (C_B), while lower classes remain nonsaturated. It therefore splits (C_{B-1}).
+[1-10:P12019; UTF16 454018] Repeated preimages separate (C_{B-2},\ldots,C_0).
+[1-10:P12020; UTF16 454068] The final partition is exactly the (B+1) residual classes.
+[1-10:P12021; UTF16 454127] Applying THM-AB11 with (Q=B+1), one primitive template, and (C(s)=O(nB)) gives (O(nB^3)). ∎
+[1-10:P12022; UTF16 454219] This family closes the discovery gap constructively.
+[1-10:P12026; UTF16 454275] 51. Repeated-Hotel Symbolic Compilation
+[1-10:P12027; UTF16 454315] Prompt 3’s repeated-hotel model contains 16 two-room bay motifs, representing 32 guestrooms.
+[1-10:P12028; UTF16 454408] Each feasible bay has:
+[1-10:P12030; UTF16 454439] concrete assignments.
+[1-10:P12031; UTF16 454461] The global feasible assignment count is:
+[1-10:P12033; UTF16 454567] No symbolic algorithm below enumerates those assignments.
+[1-10:P12037; UTF16 454628] 51.1 Symbolic leaf formulas
+[1-10:P12038; UTF16 454656] For bay (i), retain Prompt 2 variables:
+[1-10:P12039; UTF16 454696] [ (s_i,g_i,h_i,e_i,v_i,c_i,b_i,d_i). ]
+[1-10:P12040; UTF16 454735] The local validity formula is:
+[1-10:P12041; UTF16 454766] [ \begin{aligned} \Phi_i ={}& \neg(g_i=O\land h_i=W\land d_i=H)\ &\land \neg(c_i=T\land h_i=C\land d_i=H). \end{aligned} ]
+[1-10:P12042; UTF16 454889] The conditioned floor theory uses bay signature:
+[1-10:P12043; UTF16 454938] [ (\ell_i,f_i,o_i,u_i,r_i) ]
+[1-10:P12045; UTF16 454973] [ \ell_i=[g_i=O], ]
+[1-10:P12046; UTF16 454993] [ f_i=[h_i=C]+[e_i=S], ]
+[1-10:P12047; UTF16 455018] [ o_i=2-v_i, ]
+[1-10:P12048; UTF16 455033] [ u_i=[e_i=S], ]
+[1-10:P12049; UTF16 455050] [ r_i=[s_i=R]. ]
+[1-10:P12050; UTF16 455067] Each one of the 32 reachable bay separator classes is represented by:
+[1-10:P12051; UTF16 455137] [ \Phi_i \land (\ell_i=\ell) \land (f_i=f) \land (o_i=o) \land (u_i=u) \land (r_i=r). ]
+[1-10:P12052; UTF16 455225] Variables (c_i,d_i,b_i) remain symbolic and are existentially hidden.
+[1-10:P12056; UTF16 455298] 51.2 Floor aggregation
+[1-10:P12057; UTF16 455321] For four bays:
+[1-10:P12058; UTF16 455336] [ L=\sum_i\ell_i, ]
+[1-10:P12059; UTF16 455356] [ F=\sum_i f_i, ]
+[1-10:P12060; UTF16 455374] [ O=\max_i o_i, ]
+[1-10:P12061; UTF16 455392] [ U=\max_i u_i, ]
+[1-10:P12062; UTF16 455410] [ R=\sum_i r_i. ]
+[1-10:P12063; UTF16 455428] Prompt 3 proved the prefix state counts:
+[1-10:P12064; UTF16 455469] [ q_1=32, \qquad q_2=126, \qquad q_3=320, \qquad q_4=650. ]
+[1-10:P12065; UTF16 455529] A finite multi-terminal aggregate diagram stores these states directly.
+[1-10:P12066; UTF16 455601] The exact number of candidate quotient transitions used in sequential floor compilation is:
+[1-10:P12067; UTF16 455693] [ 15,!328. ]
+[1-10:P12071; UTF16 455709] 51.3 Four-floor stack
+[1-10:P12072; UTF16 455731] Prompt 3’s saturated vertical aggregate has state counts:
+[1-10:P12073; UTF16 455789] [ 650, \qquad 2,!250, \qquad 2,!610, \qquad 2,!970. ]
+[1-10:P12074; UTF16 455843] The exact sequential stack transition count is:
+[1-10:P12075; UTF16 455891] [ 3,!582,!150. ]
+[1-10:P12076; UTF16 455908] The number of aggregate nodes over all floor and stack levels is:
+[1-10:P12077; UTF16 455974] 8,!958. ]
+[1-10:P12078; UTF16 455984] A symbolic reachability implementation may verify at most one formula per candidate aggregate state, reusing:
+[1-10:P12079; UTF16 456094] one shared bay validity circuit;
+[1-10:P12080; UTF16 456127] one shared bay-signature circuit;
+[1-10:P12081; UTF16 456161] cardinality constraints;
+[1-10:P12082; UTF16 456186] max constraints;
+[1-10:P12083; UTF16 456203] saturation transitions.
+[1-10:P12087; UTF16 456230] 51.4 Symbolic versus explicit carrier
+[1-10:P12088; UTF16 456268] The exact root quotient contains:
+[1-10:P12089; UTF16 456302] [ 2,!970 ]
+[1-10:P12091; UTF16 456321] The raw-to-root-state ratio is:
+[1-10:P12092; UTF16 456353] [ \frac{192^{16}}{2,!970} \approx 1.1483\times10^{33}. ]
+[1-10:P12093; UTF16 456410] The symbolic compiler’s control state is governed by:
+[1-10:P12094; UTF16 456464] 8,958 aggregate nodes;
+[1-10:P12095; UTF16 456487] 3,597,478 quotient-transition evaluations across floor and stack levels;
+[1-10:P12096; UTF16 456560] structured arithmetic and satisfiability checks.
+[1-10:P12097; UTF16 456609] It is not governed by the (3.41\times10^{36}) concrete assignments.
+[1-10:P12098; UTF16 456677] This result depends on the conditioned Prompt 3 exterior theory. Expanding that theory may split aggregate classes.
+[1-10:P12102; UTF16 456796] 52. Exponential-State Symbolic Benchmark
+[1-10:P12103; UTF16 456837] 52.1 Concrete family
+[1-10:P12104; UTF16 456858] Use 40 modules. Module (i) contains two Boolean variables:
+[1-10:P12105; UTF16 456917] [ a_i,b_i ]
+[1-10:P12106; UTF16 456929] with exact local constraint:
+[1-10:P12107; UTF16 456958] [ a_i\oplus b_i=1. ]
+[1-10:P12108; UTF16 456979] Each module therefore has two valid configurations.
+[1-10:P12109; UTF16 457031] The valid concrete state count is:
+[1-10:P12110; UTF16 457066] 1,!099,!511,!627,!776. ]
+[1-10:P12112; UTF16 457099] \min \left( 4, \sum_{i=1}^{40}a_i \right). ]
+[1-10:P12113; UTF16 457144] The direct terminal output reports only:
+[1-10:P12114; UTF16 457185] [ [c(x)=4]. ]
+[1-10:P12115; UTF16 457199] A primitive exterior context appends one active isolated module, mapping:
+[1-10:P12116; UTF16 457273] [ c\mapsto\min(4,c+1). ]
+[1-10:P12120; UTF16 457301] 52.2 Initial symbolic partition
+[1-10:P12121; UTF16 457333] {x(x)=4}, ]
+[1-10:P12122; UTF16 457345] {x(x)<4}. ]
+[1-10:P12123; UTF16 457357] These two blocks are represented by cardinality constraints.
+[1-10:P12127; UTF16 457421] 52.3 First counterexample
+[1-10:P12128; UTF16 457447] States with:
+[1-10:P12129; UTF16 457460] [ c=3 ]
+[1-10:P12131; UTF16 457473] [ c=0 ]
+[1-10:P12132; UTF16 457481] occupy (B_{\mathrm{unsat}}).
+[1-10:P12133; UTF16 457510] After one active-module context:
+[1-10:P12134; UTF16 457543] [ 3\mapsto4, ]
+[1-10:P12135; UTF16 457558] [ 0\mapsto1. ]
+[1-10:P12136; UTF16 457573] The direct output distinguishes them.
+[1-10:P12137; UTF16 457611] The exact splitter is:
+[1-10:P12138; UTF16 457634] [ P_3(x) \iff c(x)=3. ]
+[1-10:P12142; UTF16 457661] 52.4 Later refinements
+[1-10:P12143; UTF16 457684] Repeated preimages produce:
+[1-10:P12144; UTF16 457712] [ P_2(x)\iff c(x)=2, ]
+[1-10:P12145; UTF16 457735] [ P_1(x)\iff c(x)=1, ]
+[1-10:P12146; UTF16 457758] [ P_0(x)\iff c(x)=0. ]
+[1-10:P12147; UTF16 457781] The final quotient is:
+[1-10:P12148; UTF16 457804] {C_0,C_1,C_2,C_3,C_4}. ]
+[1-10:P12150; UTF16 457835] [ |\Sigma|=5, ]
+[1-10:P12151; UTF16 457851] [ W_D=\log_2 5\approx2.322. ]

@@ -1,0 +1,91 @@
+{% set version = "3.18.0" %}
+{% set name = 'freeimage' %}
+
+package:
+    name: {{ name }}
+    version: {{ version }}
+    # note: also update version in CMakeLists and in tests.
+
+source:
+  - url: http://downloads.sourceforge.net/freeimage/FreeImage{{ version.replace('.', '') }}.zip
+    sha256: f41379682f9ada94ea7b34fe86bf9ee00935a3147be41b6569c9605a53e438fd
+    patches:
+      - fix_beta.patch        # [ppc64le]
+      - fix_libraw_0_20.patch
+      # https://github.com/LibRaw/LibRaw/blob/0.21.1/Changelog.txt#L191
+      - fix_libraw_0_21.patch
+      # https://gitlab.com/libtiff/libtiff/-/commit/11f3f279608ae9e68f014717393197f430f9be58
+      - libtiff44.patch
+      # Applied in build script
+      # - patches/Use-system-libs.patch
+      # - patches/Fix-compatibility-with-system-libpng.patch
+      # - patches/CVE-2019-12211-13.patch
+      # https://src.fedoraproject.org/rpms/freeimage/blob/rawhide/f/freeimage-openexr3.patch
+      # - patches/freeimage-openexr3.patch
+      # https://github.com/microsoft/vcpkg/pull/26007
+      # - patches/remove_auto_ptr.patch
+
+  # The below files are taken (and adapted) from VCPKG: https://github.com/microsoft/vcpkg/tree/master/ports/freeimage
+  # The patches have been taken (and modified) from Debian / Fedora / VCPKG
+  - path: CMakeLists.txt
+  - path: FreeImageConfig-dynamic.h
+  - path: FreeImageConfig-static.h
+
+build:
+  number: 25
+  run_exports:
+    - {{ pin_subpackage(name, max_pin='x.x') }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ stdlib("c") }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - pkg-config
+    - m2-dos2unix  # [win]
+    - m2-patch  # [win]
+    - ninja     # [win]
+    - make      # [unix]
+    # need to convert line endings for the patches to work
+    - dos2unix  # [unix]
+  host:
+    - libjpeg-turbo
+    - openjpeg
+    - jxrlib
+    - libtiff
+    - imath
+    - openexr
+    - libpng
+    - zlib
+    - libraw
+    - libwebp-base
+
+test:
+  commands:
+    - test -f $PREFIX/lib/libfreeimage${SHLIB_EXT}  # [linux]
+    - test -f $PREFIX/lib/libfreeimage${SHLIB_EXT}.{{ version.split('.')[0] }}  # [linux]
+    - test -f $PREFIX/lib/libfreeimage.{{ version.split('.')[0] }}${SHLIB_EXT}  # [osx]
+    - test -f $PREFIX/lib/libfreeimage-{{ version }}${SHLIB_EXT}  # [unix]
+    - test -f $PREFIX/include/FreeImage.h  # [unix]
+    # The FreeImage name (camelcase in Windows) is for backward compatibility
+    - if not exist %PREFIX%\\Library\\include\\FreeImage.h (exit 1)  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\FreeImage.lib (exit 1)  # [win]
+    - if not exist %PREFIX%\\Library\\bin\\FreeImage.dll (exit 1)  # [win]
+about:
+  home: http://freeimage.sourceforge.net/
+  license: GPL-2.0-or-later OR GPL-3.0-or-later OR FreeImage
+  license_file:
+      - license-fi.txt
+      - license-gplv2.txt
+      - license-gplv3.txt
+  summary: Helps provide support for many common image formats (PNG, JPEG, TIFF, BMP and others).
+
+extra:
+  recipe-maintainers:
+    - traversaro
+    - almarklein
+    - jakirkham
+    - msarahan
+    - wolfv
+    - seanyen

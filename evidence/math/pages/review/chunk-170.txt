@@ -1,0 +1,340 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P12138; UTF16 403431] Hence transmission of a decision-separating bit is necessary for exact coordination. ∎
+[21-30:P12142; UTF16 403521] 24. Human–AI Delegation
+[21-30:P12143; UTF16 403545] DEF-HUM29 — Human–AI Delegation Contract
+[21-30:P12145; UTF16 403594] \left( \mathsf{AIActionSet}, \mathsf{HumanActionSet}, \mathsf{autonomyLevel}, \mathsf{observation}, \mathsf{approval}, \mathsf{veto}, \mathsf{escalation}, \mathsf{timeouts}, \mathsf{authority}, \mathsf{version} \right). } ]
+[21-30:P12146; UTF16 403818] No universal automation-level taxonomy is assumed.
+[21-30:P12150; UTF16 403872] DEF-HUM30 — Human Review State
+[21-30:P12151; UTF16 403903] A Human Review State includes:
+[21-30:P12152; UTF16 403934] information displayed;
+[21-30:P12153; UTF16 403957] AI recommendation;
+[21-30:P12154; UTF16 403976] supporting evidence;
+[21-30:P12155; UTF16 403997] confidence or uncertainty modality;
+[21-30:P12156; UTF16 404033] time remaining;
+[21-30:P12157; UTF16 404049] available actions;
+[21-30:P12158; UTF16 404068] human authority;
+[21-30:P12159; UTF16 404085] confirmation state.
+[21-30:P12163; UTF16 404108] 25. Human in the Loop
+[21-30:P12164; UTF16 404130] THM-HUM22 — Human Presence in an Approval Loop Does Not Guarantee Safe Decision Making
+[21-30:P12166; UTF16 404230] Let two physical states satisfy:
+[21-30:P12168; UTF16 404282] while safe required actions differ:
+[21-30:P12169; UTF16 404318] [ a^\star(x_1)\neq a^\star(x_2). ]
+[21-30:P12170; UTF16 404353] An AI proposes the same action in both states.
+[21-30:P12171; UTF16 404400] A human reviewer sees only (H(x)) and may approve or reject.
+[21-30:P12172; UTF16 404461] By THM-HUM11, no policy based only on that display can choose the correct state-dependent action in both states.
+[21-30:P12173; UTF16 404574] Therefore adding a human approval step does not repair missing decision information. ∎
+[21-30:P12177; UTF16 404664] 26. Effective Human Override
+[21-30:P12178; UTF16 404693] DEF-HUM31 — Effective Override
+[21-30:P12179; UTF16 404724] For hazard state (x), a human override is effective only if:
+[21-30:P12180; UTF16 404785] the hazard becomes observable;
+[21-30:P12181; UTF16 404816] the human receives a decision-sufficient observation;
+[21-30:P12182; UTF16 404870] the human has authority;
+[21-30:P12183; UTF16 404895] a safe override action exists;
+[21-30:P12184; UTF16 404926] the action is physically executable;
+[21-30:P12185; UTF16 404963] the physical effect occurs before the irreversible hazard transition.
+[21-30:P12186; UTF16 405033] To avoid conflating impossibility and sufficiency, use latency intervals:
+[21-30:P12187; UTF16 405107] [ \tau_k \in [\underline\tau_k,\overline\tau_k] ]
+[21-30:P12190; UTF16 405175] decision;
+[21-30:P12192; UTF16 405200] actuation.
+[21-30:P12193; UTF16 405211] Lower bounds prove impossibility.
+[21-30:P12194; UTF16 405245] Upper bounds prove robust timeliness.
+[21-30:P12198; UTF16 405286] THM-HUM23 — Unavoidable Override Latency Beyond the Hazard Horizon Proves Ineffectiveness
+[21-30:P12200; UTF16 405381] [ T_H ]
+[21-30:P12201; UTF16 405389] be time until the irreversible hazard transition.
+[21-30:P12202; UTF16 405439] Suppose every override execution requires at least:
+[21-30:P12203; UTF16 405491] [ \underline\tau_{\mathrm{obs}}, \quad \underline\tau_{\mathrm{dec}}, \quad \underline\tau_{\mathrm{comm}}, \quad \underline\tau_{\mathrm{act}}. ]
+[21-30:P12205; UTF16 405642] [ \boxed{ \underline\tau_{\mathrm{obs}} + \underline\tau_{\mathrm{dec}} + \underline\tau_{\mathrm{comm}} + \underline\tau_{\mathrm{act}}
+[21-30:P12206; UTF16 405779] T_H, } ]
+[21-30:P12207; UTF16 405788] then no declared human override can prevent the hazard.
+[21-30:P12209; UTF16 405850] The physical effect cannot occur before the sum of the unavoidable minimum stage latencies.
+[21-30:P12210; UTF16 405942] That sum exceeds the irreversible-hazard time.
+[21-30:P12211; UTF16 405989] Therefore every override effect occurs after the hazard transition.
+[21-30:P12212; UTF16 406057] Hence override prevention is impossible under the model. ∎
+[21-30:P12213; UTF16 406116] An upper bound exceeding (T_H) would prove only that robust effectiveness is not certified—not that every actual response is too slow.
+[21-30:P12217; UTF16 406254] THM-HUM24 — Effective Override Soundness Under Maximum-Latency and Safe-Reachability Assumptions
+[21-30:P12219; UTF16 406363] hazard observation occurs within: [ \overline\tau_{\mathrm{obs}}; ]
+[21-30:P12220; UTF16 406431] the HMI is decision sufficient;
+[21-30:P12221; UTF16 406463] decision occurs within: [ \overline\tau_{\mathrm{dec}}; ]
+[21-30:P12222; UTF16 406521] authorized command transmission occurs within: [ \overline\tau_{\mathrm{comm}}; ]
+[21-30:P12223; UTF16 406603] physical actuation completes within: [ \overline\tau_{\mathrm{act}}; ]
+[21-30:P12224; UTF16 406674] under the declared event-order convention: [ \overline\tau_{\mathrm{obs}} + \overline\tau_{\mathrm{dec}} + \overline\tau_{\mathrm{comm}} + \overline\tau_{\mathrm{act}} \le T_H; ]
+[21-30:P12225; UTF16 406853] the override action reaches a declared safe invariant set;
+[21-30:P12226; UTF16 406912] every actual covered state lies inside the model.
+[21-30:P12228; UTF16 406973] The certified override prevents the declared hazard in every covered state.
+[21-30:P12230; UTF16 407055] By assumptions 1–5, physical override effect occurs no later than the sum of the maximum latencies.
+[21-30:P12231; UTF16 407155] By assumption 6, that effect occurs no later than the irreversible hazard boundary.
+[21-30:P12232; UTF16 407239] By assumption 2, the human selects the required override action for every covered observation class.
+[21-30:P12233; UTF16 407340] By assumption 7, execution of that action reaches the safe invariant set.
+[21-30:P12234; UTF16 407414] By assumption 8, the actual state is one of the covered states.
+[21-30:P12235; UTF16 407478] Therefore the actual execution reaches safety before the irreversible transition.
+[21-30:P12236; UTF16 407560] The same reasoning holds for every covered state.
+[21-30:P12237; UTF16 407610] Hence the override is robustly effective over the declared domain. ∎
+[21-30:P12241; UTF16 407682] 27. Automation-Mode Awareness
+[21-30:P12242; UTF16 407712] DEF-HUM32 — Automation Mode State
+[21-30:P12244; UTF16 407751] [ m\in M ]
+[21-30:P12245; UTF16 407762] be the current automation mode.
+[21-30:P12246; UTF16 407794] The operator observes:
+[21-30:P12247; UTF16 407817] [ H(x,m). ]
+[21-30:P12251; UTF16 407832] PRO-HUM1 — Hidden Automation-Mode Differences Can Invalidate Human Control
+[21-30:P12253; UTF16 407916] [ H(x,m_1)=H(x,m_2), ]
+[21-30:P12254; UTF16 407939] while the same human input has different consequences requiring different decisions in modes (m_1,m_2).
+[21-30:P12255; UTF16 408043] The two augmented states are HMI indistinguishable and decision distinct.
+[21-30:P12256; UTF16 408117] By THM-HUM11, exact mode-aware control is impossible from the interface.
+[21-30:P12257; UTF16 408190] Therefore the interface must expose the mode distinction or otherwise make the consequences decision equivalent. ∎
+[21-30:P12261; UTF16 408308] 28. Procedures and Outcomes
+[21-30:P12262; UTF16 408336] THM-HUM25 — Correct Procedure Conformance Does Not Prove Universal Outcome Success
+[21-30:P12264; UTF16 408432] A procedure completely specifies represented actions:
+[21-30:P12265; UTF16 408486] [ a_1,\ldots,a_n. ]
+[21-30:P12266; UTF16 408506] The operator executes every represented action correctly.
+[21-30:P12267; UTF16 408564] Introduce physical disturbance:
+[21-30:P12268; UTF16 408596] [ w^\star ]
+[21-30:P12269; UTF16 408608] outside the procedure and hazard theory.
+[21-30:P12270; UTF16 408649] The disturbance causes system failure.
+[21-30:P12271; UTF16 408688] Procedure conformance remains true because every modeled step was followed.
+[21-30:P12272; UTF16 408764] Outcome success fails.
+[21-30:P12274; UTF16 408798] [ \boxed{ \text{procedure conformance} \not\Longrightarrow \text{universal outcome success}. } ]
+[21-30:P12279; UTF16 408900] THM-HUM26 — Successful Outcome Does Not Prove Procedure Conformance
+[21-30:P12281; UTF16 408981] Two traces reach the same successful terminal physical state.
+[21-30:P12282; UTF16 409043] Trace 1 performs:
+[21-30:P12283; UTF16 409061] required action;
+[21-30:P12284; UTF16 409078] mandatory verification;
+[21-30:P12285; UTF16 409102] required documentation.
+[21-30:P12286; UTF16 409126] Trace 2 performs the physical action but skips verification and documentation.
+[21-30:P12287; UTF16 409205] Both physical outcomes succeed.
+[21-30:P12288; UTF16 409237] Only Trace 1 conforms to the procedure.
+[21-30:P12290; UTF16 409288] [ \boxed{ \text{successful outcome} \not\Longrightarrow \text{procedure conformance}. } ]
+[21-30:P12295; UTF16 409383] 29. Emergency Procedures
+[21-30:P12296; UTF16 409408] DEF-HUM33 — Emergency Procedure
+[21-30:P12297; UTF16 409440] An Emergency Procedure contains:
+[21-30:P12299; UTF16 409482] observation requirements;
+[21-30:P12300; UTF16 409508] decision points;
+[21-30:P12302; UTF16 409532] communications;
+[21-30:P12304; UTF16 409557] fallback actions;
+[21-30:P12307; UTF16 409594] safe-state or termination conditions.
+[21-30:P12311; UTF16 409635] DEF-HUM34 — Robust Human Emergency Policy
+[21-30:P12312; UTF16 409677] A nonanticipative policy (\pi) is robust for emergency family (\Omega_E) when:
+[21-30:P12313; UTF16 409756] [ \boxed{ \forall\omega\in\Omega_E, \quad \mathsf{SafeTerminal}(\pi,\omega). } ]
+[21-30:P12314; UTF16 409837] Actions depend only on information available at the action time.
+[21-30:P12318; UTF16 409905] THM-HUM27 — Scenario-Wise Perfect Emergency Responses Need Not Form One Executable Nonanticipative Policy
+[21-30:P12321; UTF16 410029] [ \Omega_E={\omega_L,\omega_R}. ]
+[21-30:P12322; UTF16 410063] At time zero, both scenarios generate the same observation.
+[21-30:P12323; UTF16 410123] The irreversible first action must be selected immediately.
+[21-30:P12324; UTF16 410183] Success conditions are:
+[21-30:P12325; UTF16 410207] choose (L) in (\omega_L);
+[21-30:P12326; UTF16 410233] choose (R) in (\omega_R).
+[21-30:P12327; UTF16 410259] For each completed scenario, a clairvoyant successful plan exists.
+[21-30:P12328; UTF16 410326] However, nonanticipativity requires the same first action in both scenarios because their information histories are identical.
+[21-30:P12329; UTF16 410453] Choosing (L) fails in (\omega_R).
+[21-30:P12330; UTF16 410487] Choosing (R) fails in (\omega_L).
+[21-30:P12331; UTF16 410521] Therefore no nonanticipative policy succeeds in both.
+[21-30:P12333; UTF16 410582] [ \boxed{ \forall\omega, \exists\pi_\omega \not\Longrightarrow \exists\pi_{\mathrm{NA}}, \forall\omega. } ]
+[21-30:P12338; UTF16 410695] 30. Evacuation Networks
+[21-30:P12339; UTF16 410719] DEF-HUM35 — Evacuation Network
+[21-30:P12341; UTF16 410758] (V,E,c,\tau,\mathcal X), } ]
+[21-30:P12343; UTF16 410794] (V): locations;
+[21-30:P12344; UTF16 410810] (E): movement links;
+[21-30:P12345; UTF16 410831] (c_e(t)): link capacities;
+[21-30:P12346; UTF16 410858] (\tau_e): traversal times;
+[21-30:P12347; UTF16 410885] (\mathcal X): occupant-class accessibility relation.
+[21-30:P12351; UTF16 410941] DEF-HUM36 — Occupant Class
+[21-30:P12352; UTF16 410968] An Occupant Class may encode formal movement requirements such as:
+[21-30:P12353; UTF16 411035] allowed edges;
+[21-30:P12354; UTF16 411050] speed interval;
+[21-30:P12355; UTF16 411066] assisted-evacuation requirement;
+[21-30:P12356; UTF16 411099] refuge compatibility;
+[21-30:P12357; UTF16 411121] communication requirement.
+[21-30:P12358; UTF16 411148] These are formal synthetic categories, not diagnoses.
+[21-30:P12362; UTF16 411205] DEF-HUM37 — Evacuation Flow Witness
+[21-30:P12363; UTF16 411241] An Evacuation Flow Witness assigns:
+[21-30:P12365; UTF16 411285] edge-entry times;
+[21-30:P12366; UTF16 411303] edge occupancy;
+[21-30:P12367; UTF16 411319] assistance;
+[21-30:P12369; UTF16 411344] while satisfying:
+[21-30:P12371; UTF16 411372] traversal;
+[21-30:P12374; UTF16 411406] assistance constraints.
+[21-30:P12378; UTF16 411433] 31. Evacuation Cut Lower Bound
+[21-30:P12379; UTF16 411464] THM-HUM28 — Exit-Cut Capacity Gives a Lower Bound on Evacuation Time
+[21-30:P12381; UTF16 411545] (N) occupants begin on one side of cut (C).
+[21-30:P12382; UTF16 411589] Every acceptable exit lies on the other side.
+[21-30:P12383; UTF16 411635] Total cut capacity is: [ K(C)>0 ] occupants per discrete time unit.
+[21-30:P12385; UTF16 411714] Ignoring additional travel time:
+[21-30:P12386; UTF16 411747] [ \boxed{ T_{\mathrm{evac}} \ge \left\lceil \frac{N}{K(C)} \right\rceil. } ]
+[21-30:P12388; UTF16 411830] Every evacuated occupant must cross (C).
+[21-30:P12389; UTF16 411871] At most (K(C)) occupants cross per time unit.
+[21-30:P12390; UTF16 411917] After (T) time units, at most:
+[21-30:P12391; UTF16 411948] [ TK(C) ]
+[21-30:P12392; UTF16 411958] occupants have crossed.
+[21-30:P12393; UTF16 411982] To evacuate all (N):
+[21-30:P12394; UTF16 412003] [ TK(C)\ge N. ]
+[21-30:P12396; UTF16 412030] [ T\ge\frac{N}{K(C)}. ]
+[21-30:P12397; UTF16 412054] Discrete time gives the ceiling. ∎
+[21-30:P12398; UTF16 412089] Travel-time lower bounds may be added separately.
+[21-30:P12402; UTF16 412142] 32. Shortest Paths and Evacuation Makespan
+[21-30:P12403; UTF16 412185] THM-HUM29 — Individually Shortest Evacuation Routes Need Not Minimize Population Evacuation Time
+[21-30:P12404; UTF16 412282] Synthetic construction
+[21-30:P12405; UTF16 412305] Ten occupants begin at one source.
+[21-30:P12406; UTF16 412340] Two routes reach safety.
+[21-30:P12407; UTF16 412365] Route A
+[21-30:P12408; UTF16 412373] uncongested travel time: [ 1; ]
+[21-30:P12409; UTF16 412405] capacity: [ 1 ] occupant per time unit.
+[21-30:P12410; UTF16 412445] Route B
+[21-30:P12411; UTF16 412453] travel time: [ 3; ]
+[21-30:P12412; UTF16 412473] capacity: [ 10 ] occupants per time unit.
+[21-30:P12413; UTF16 412515] Route A is individually shorter.
+[21-30:P12414; UTF16 412548] If every occupant chooses A, their completion times are:
+[21-30:P12415; UTF16 412605] [ 1,2,\ldots,10. ]
+[21-30:P12416; UTF16 412624] Population makespan is:
+[21-30:P12418; UTF16 412656] If all occupants use B, all ten traverse simultaneously and arrive at:
+[21-30:P12422; UTF16 412765] Therefore assigning every occupant to an individually shortest route can produce a worse population evacuation time. ∎
+[21-30:P12426; UTF16 412887] 33. Accessibility of Evacuation Routes
+[21-30:P12427; UTF16 412926] THM-HUM30 — Existence of an Evacuation Route for One Occupant Class Does Not Establish One for Another
+[21-30:P12429; UTF16 413034] [ E_B\subsetneq E_A ]
+[21-30:P12430; UTF16 413056] be the allowed edge sets for occupant classes (B) and (A).
+[21-30:P12431; UTF16 413115] Construct a network whose only path to an acceptable exit contains edge:
+[21-30:P12432; UTF16 413188] [ e\in E_A\setminus E_B. ]
+[21-30:P12433; UTF16 413215] Class (A) has a route.
+[21-30:P12434; UTF16 413238] Class (B) does not.
+[21-30:P12435; UTF16 413258] Therefore route existence is occupant-class relative. ∎
+[21-30:P12439; UTF16 413317] 34. Human Reliability and Organizational Common Cause
+[21-30:P12440; UTF16 413371] DEF-HUM38 — Organizational Common-Cause Variable
+[21-30:P12441; UTF16 413420] Let latent state:
+[21-30:P12442; UTF16 413438] [ Z ]
+[21-30:P12443; UTF16 413444] influence multiple human actions.
+[21-30:P12444; UTF16 413478] Synthetic examples include:
+[21-30:P12445; UTF16 413506] one incorrect procedure;
+[21-30:P12446; UTF16 413531] one misleading interface;
+[21-30:P12447; UTF16 413557] one shared training defect;
+[21-30:P12448; UTF16 413585] one common supervisor instruction;
+[21-30:P12449; UTF16 413620] one incorrect information source.
+[21-30:P12453; UTF16 413657] THM-HUM31 — Individual Human-Action Marginals Do Not Determine Team Reliability
+[21-30:P12454; UTF16 413737] Let two team members have success events (S_1,S_2) with:
+[21-30:P12456; UTF16 413815] The independent and perfectly correlated constructions from THM-HUM16 have the same individual marginals but yield:
+[21-30:P12457; UTF16 413931] [ P(S_1\cap S_2)=p^2 ]
+[21-30:P12459; UTF16 413959] [ P(S_1\cap S_2)=p, ]
+[21-30:P12460; UTF16 413981] respectively.
+[21-30:P12461; UTF16 413995] Therefore individual success marginals do not determine complete-team success. ∎
+[21-30:P12465; UTF16 414079] THM-HUM32 — Organizational Redundancy Can Fail Under a Shared Incorrect Procedure
+[21-30:P12467; UTF16 414174] Two separately staffed teams use the same procedure revision (P).
+[21-30:P12468; UTF16 414240] Suppose (P) contains a deterministic incorrect instruction for state (x).
+[21-30:P12469; UTF16 414314] Both teams receive (x).
+[21-30:P12470; UTF16 414338] Both follow (P).
+[21-30:P12471; UTF16 414355] Both execute the same wrong action.
+[21-30:P12472; UTF16 414391] Personnel are duplicated.
+[21-30:P12473; UTF16 414417] The procedural cause is shared.
+[21-30:P12474; UTF16 414449] Therefore organizational redundancy fails despite separate staffing. ∎
+[21-30:P12478; UTF16 414523] 35. Human-Operational Execution Fiber
+[21-30:P12479; UTF16 414561] DEF-HUM39 — Human-Operational Execution Fiber
+[21-30:P12480; UTF16 414607] For target outcome (y), define:
+[21-30:P12481; UTF16 414639] \left{ (\rho,\pi,\sigma): \mathsf{HumanOperationalValid}_\mu (y,h_t,\rho,\pi,\sigma) \right}. } ]
+[21-30:P12483; UTF16 414744] (\rho): staffing and role assignment;
+[21-30:P12484; UTF16 414782] (\pi): human or team policy;
+[21-30:P12485; UTF16 414811] (\sigma): procedure and workload schedule.
+[21-30:P12486; UTF16 414854] Validity may include:
+[21-30:P12491; UTF16 414927] observation sufficiency;
+[21-30:P12492; UTF16 414952] alarm feasibility;
+[21-30:P12496; UTF16 415005] emergency obligations;
+[21-30:P12497; UTF16 415028] evacuation obligations.
+[21-30:P12501; UTF16 415055] 36. Human-Operational Claim Modalities
+[21-30:P12502; UTF16 415094] DEF-HUM40 — Human Claim Modality
+[21-30:P12504; UTF16 415135] \left{ \begin{array}{l} \mathsf{EXACT_STRUCTURAL},\ \mathsf{QUALIFICATION_ATTESTED},\ \mathsf{OBSERVED_PERFORMANCE},\ \mathsf{ROBUST_BOUNDED},\ \mathsf{PROBABILISTIC},\ \mathsf{EMPIRICAL},\ \mathsf{FORECAST},\ \mathsf{HEURISTIC},\ \mathsf{UNKNOWN} \end{array} \right}. } ]
+[21-30:P12506; UTF16 415418] Hall staffing feasibility is EXACT_STRUCTURAL;
+[21-30:P12507; UTF16 415465] a qualification record is QUALIFICATION_ATTESTED;
+[21-30:P12508; UTF16 415515] a witnessed drill is OBSERVED_PERFORMANCE;
+[21-30:P12509; UTF16 415558] a latency-bounded override may be ROBUST_BOUNDED;
+[21-30:P12510; UTF16 415608] a human reliability estimate is PROBABILISTIC.
+[21-30:P12515; UTF16 415696] 37. Human-Operational Conflict Cores
+[21-30:P12516; UTF16 415733] DEF-HUM41 — Human-Operational Conflict Core
+[21-30:P12517; UTF16 415777] A set of human-operational constraints is a conflict core when no staffing, procedure, schedule, or policy witness satisfies them jointly.
+[21-30:P12518; UTF16 415916] Possible members include:
+[21-30:P12519; UTF16 415942] one qualified technician;
+[21-30:P12520; UTF16 415968] two simultaneous tasks;
+[21-30:P12521; UTF16 415992] one alarm deadline;
+[21-30:P12522; UTF16 416012] one HMI limitation;
+[21-30:P12523; UTF16 416032] one access restriction;
+[21-30:P12524; UTF16 416056] one emergency horizon.
+[21-30:P12525; UTF16 416079] An inclusion-minimal core has no infeasible proper subset.
+[21-30:P12529; UTF16 416141] 38. Human-Operational Repairs
+[21-30:P12530; UTF16 416171] DEF-HUM42 — Human-Operational Repair
+[21-30:P12531; UTF16 416208] A repair may:
+[21-30:P12532; UTF16 416222] add qualified staff;
+[21-30:P12533; UTF16 416243] cross-train;
+[21-30:P12534; UTF16 416256] alter task allocation;
+[21-30:P12535; UTF16 416279] revise a procedure;
+[21-30:P12536; UTF16 416299] redesign an HMI;
+[21-30:P12537; UTF16 416316] reduce alarm duplication;
+[21-30:P12538; UTF16 416342] add bounded automation;
+[21-30:P12539; UTF16 416366] remove unsafe automation;
+[21-30:P12540; UTF16 416392] change handoff content;
+[21-30:P12541; UTF16 416416] extend schedule;
+[21-30:P12542; UTF16 416433] add an evacuation path;
+[21-30:P12543; UTF16 416457] alter architecture with Prompt-12 authority.
+[21-30:P12547; UTF16 416505] DEF-HUM43 — Human Repair Frontier
+[21-30:P12548; UTF16 416539] Return nondominated repairs over:
+[21-30:P12549; UTF16 416573] [ \left( \mathsf{safety}, \mathsf{workload}, \mathsf{staffingCost}, \mathsf{schedule}, \mathsf{training}, \mathsf{automation}, \mathsf{architecture}, \mathsf{operationalComplexity} \right). ]
+[21-30:P12550; UTF16 416765] No scalar human-factors score is assumed.
+[21-30:P12554; UTF16 416810] 39. Human-Operational Dependency Graph
+[21-30:P12555; UTF16 416849] DEF-HUM44 — Human-Operational Dependency Graph
+[21-30:P12559; UTF16 416929] competency;
+[21-30:P12564; UTF16 416983] alarm;
+[21-30:P12565; UTF16 416990] HMI state;
+[21-30:P12567; UTF16 417011] shift;
+[21-30:P12571; UTF16 417061] override;
+[21-30:P12572; UTF16 417071] emergency procedure;
+[21-30:P12573; UTF16 417092] evacuation route;
+[21-30:P12574; UTF16 417110] occupant class;
+[21-30:P12575; UTF16 417126] human-reliability law;
+[21-30:P12579; UTF16 417191] means changing (u) may change human-operational claim (v).
+[21-30:P12583; UTF16 417253] 40. Incremental Human Recertification
+[21-30:P12584; UTF16 417291] THM-HUM33 — Dependency-Directed Human-Operational Recertification Equals Cold Checking
+[21-30:P12590; UTF16 417560] recomputed nodes use identical semantics;
+[21-30:P12592; UTF16 417628] cyclic team or procedure models are encapsulated by checked solution nodes.
+[21-30:P12596; UTF16 417770] competence applicability;
+[21-30:P12598; UTF16 417806] task fitness;
+[21-30:P12600; UTF16 417830] HMI sufficiency;
+[21-30:P12601; UTF16 417847] alarms;
+[21-30:P12604; UTF16 417877] delegation;
+[21-30:P12605; UTF16 417889] overrides;
+[21-30:P12606; UTF16 417900] emergency feasibility;
+[21-30:P12608; UTF16 417935] release.
+[21-30:P12611; UTF16 418039] At every changed root, incremental and cold checking use the same updated value.
+[21-30:P12612; UTF16 418120] Assume agreement at every predecessor of node (v).
+[21-30:P12613; UTF16 418171] If (v) is reused, its version and applicability checks establish that its prior report remains valid.
+[21-30:P12614; UTF16 418273] If (v) is recomputed, both procedures apply the same checker to identical predecessor values.
+[21-30:P12615; UTF16 418367] Thus the reports agree at (v).
+[21-30:P12616; UTF16 418398] Induction over the topological order yields agreement at every release root. ∎
+[21-30:P12620; UTF16 418480] 41. Proof-Carrying Human and Organizational Operations Package
+[21-30:P12621; UTF16 418543] DEF-HUM45 — Proof-Carrying Human and Organizational Operations Package
+[21-30:P12623; UTF16 418622] [ \boxed{ \mathsf{PCHO}. } ]
+[21-30:P12624; UTF16 418651] A PCHO contains:
+[21-30:P12627; UTF16 418718] human-operational state;
+[21-30:P12628; UTF16 418743] roster;
+[21-30:P12629; UTF16 418751] role definitions;
+[21-30:P12631; UTF16 418784] competence inventory;
+[21-30:P12632; UTF16 418806] qualification artifacts;
+[21-30:P12633; UTF16 418831] training artifacts;
+[21-30:P12634; UTF16 418851] validity intervals;
+[21-30:P12636; UTF16 418893] declared current-fitness state;
+[21-30:P12637; UTF16 418925] task inventory;
+[21-30:P12638; UTF16 418941] task competency requirements;
+[21-30:P12639; UTF16 418971] staffing assignment;
+[21-30:P12640; UTF16 418992] matching certificate;
+[21-30:P12642; UTF16 419040] procedure versions;
+[21-30:P12643; UTF16 419060] workload model;
+[21-30:P12644; UTF16 419076] attention-capacity assumptions;
+[21-30:P12645; UTF16 419108] human task schedule;
+[21-30:P12646; UTF16 419129] HMI observation map;
+[21-30:P12647; UTF16 419150] decision-sufficiency certificates;
+[21-30:P12648; UTF16 419185] human-decision quotient;
+[21-30:P12649; UTF16 419210] alarm inventory;
+[21-30:P12650; UTF16 419227] alarm priorities;
+[21-30:P12651; UTF16 419245] alarm-action quotient;
+[21-30:P12652; UTF16 419268] alarm workload analysis;
+[21-30:P12653; UTF16 419293] human-reliability laws;
+[21-30:P12654; UTF16 419317] dependence and common-cause model;
+[21-30:P12656; UTF16 419374] handoff packets;
+[21-30:P12657; UTF16 419391] handoff-sufficiency certificates;
+[21-30:P12658; UTF16 419425] team communication model;
+[21-30:P12659; UTF16 419451] human–AI delegation contracts;
+[21-30:P12660; UTF16 419482] effective-override certificates;
+[21-30:P12661; UTF16 419515] automation-mode state;

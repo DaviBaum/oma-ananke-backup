@@ -30,8 +30,8 @@ export default function JointMissionFields({
       </div>
       <p className="joint-explanation">
         Each candidate must satisfy every demand. The engine checks complete
-        assignments against the building and against every other route. Shared
-        tees and trunks require a separate supported representation.
+        assignments against the building and against every other route. Use
+        Shared network to declare physical tees and trunks shared by demands.
       </p>
       <div className="demand-table" role="table" aria-label="Route demands">
         <div role="row" className="demand-head">

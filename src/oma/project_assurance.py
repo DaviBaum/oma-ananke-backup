@@ -61,6 +61,8 @@ def build_report_assurance(store, candidate, report_root, *, executable, assessm
     derived = state.get("derived_artifacts", {})
     scenarios = [derived["routing_scenario"]] if derived.get("routing_scenario") else []
     scenarios.extend(contract.get("scenario", {}) for contract in derived.get("routing_contracts", {}).values())
+    if derived.get("network_contract"):
+        scenarios.append(derived["network_contract"]["scenario"])
     for scenario in scenarios:
         declared.extend(scenario.get("assumptions", []))
         if scenario.get("source_representation_policy"):
@@ -69,6 +71,9 @@ def build_report_assurance(store, candidate, report_root, *, executable, assessm
             declared.append("Terminal locations and demand are explicitly supplied scenario inputs, not surveyed/as-built facts")
         if scenario.get("physics"):
             declared.append({"physical_model_inputs": scenario["physics"], "source": scenario.get("provenance", "declared scenario")})
+            if scenario.get("mission_type") == "shared_network":
+                declared.append({"fixed_network_boundary_inputs": {"source_position_m": scenario["start_m"], "sinks": scenario["sinks"]},
+                    "flow_interpretation": "Simultaneous prescribed demands under the explicit external-control assumption; actual operating flows are not established"})
     for kind, values in (("TCB", trusted), ("ASSUMPTION", declared)):
         seen = set()
         for value in values:

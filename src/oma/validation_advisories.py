@@ -3,11 +3,11 @@ from __future__ import annotations
 
 
 def candidate_advisories(store, candidate, state=None):
-    if candidate.get("kind") not in {"physical_route", "physical_route_set"}:
+    if candidate.get("kind") not in {"physical_route", "physical_route_set", "physical_network"}:
         return []
     state = state if state is not None else store.get(candidate["state_root"])
     affected = []
-    for route in state.get("routes", []):
+    for route in [*state.get("routes", []), *state.get("physical_networks", [])]:
         artifact = route.get("geometry_artifact")
         manifest = store.get(artifact) if artifact else {}
         if manifest.get("port_axis_convention") != "IFC_FLOW_AXIS_V1":

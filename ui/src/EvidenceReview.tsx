@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { api, type StateSelection } from "./api";
 import ValidationAdvisories from "./ValidationAdvisories";
+import NetworkServiceEvidence from "./NetworkServiceEvidence";
 import type { AssuranceRecord, Candidate, DependencyRecord } from "./types";
 
 export interface EvidenceTarget {
@@ -289,6 +290,9 @@ function AssuranceView({ data }: { data: AssuranceRecord }) {
               </summary>
               <p>{row.reason}</p>
               <small>Scope: {row.scope}</small>
+              {row.id === "network-demand-conditioned-service" && (
+                <NetworkServiceEvidence witness={row.witness} />
+              )}
               <JsonDetail value={row} title="Numerical and model evidence" />
             </details>
           ))}

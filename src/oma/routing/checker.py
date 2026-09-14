@@ -267,13 +267,24 @@ def evaluate_route_state(store, state, baseline, requested, scenario, mission, m
         add("exported-physical-semantics", "PASS" if not semantics["errors"] else "FAIL", "Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree" if not semantics["errors"] else "; ".join(semantics["errors"]), witness={"recomputed": semantics})
         objective = {"length_m": semantics["length_m"], "fitting_count": float(semantics["fitting_count"])}
         guids = {p["ifc_guid"] for p in materialization["added_parts"]}
+        from .negative_probe import probe_candidate_failure
+        probe = probe_candidate_failure(store, state, materialization, guids, control)
+        probe_root = store.put(probe)
+        if probe["status"] == "FAIL":
+            pair = probe["witness"]["native_pair_result"]
+            add("native-forbidden-volume-counterexample", "FAIL", "One freshly reopened original obstacle intersects a new route solid",
+                participants=pair["participants"], witness={"artifact": probe_root, "point": pair.get("witness", {}).get("p1"), "other_point": pair.get("witness", {}).get("p2")})
+            for identity in ("physical-interference-and-clearance", "physical-self-interference", "physical-port-body-attachment",
+                             "permitted-zone-containment", "independent-objective-recomputation", "engineering-service"):
+                add(identity, "NOT_RUN", "Stopped after one forbidden-volume witness; full denominator and remaining feasibility were not checked", witness={"artifact": probe_root})
+            return results, objective, []
         cad = cad_check_routes([store.resolve_path(s["immutable_path"]) for s in state["sources"]], path, guids, clearance_m=scenario.clearance_m,
                                numerical_tolerance_m=1e-6, coordinate_evidence=state.get("derived_artifacts", {}).get("local_coordinate_evidence"),
                                cache_directory=store.directory / "cad-cache",
                                source_representation_policy=scenario.source_representation_policy,
                                checkpoint=control.checkpoint)
         cad_root = store.put(cad)
-        add("physical-interference-and-clearance", cad["coordination_status"], f"Native solids checked: {cad['pairs_accounted']} route/obstacle pairs, {cad['failed_pairs']} forbidden pairs, {cad['unknown_pairs']} ambiguous pairs; datum {cad['coordinate_status']}", witness={"artifact": cad_root}, scope="New route versus every source physical obstacle; pre-existing building defects remain outside this local repair claim")
+        add("physical-interference-and-clearance", cad["coordination_status"], f"Native solids checked: {cad['pairs_accounted']} route/obstacle pairs, {cad['failed_pairs']} forbidden pairs, {cad['unknown_pairs']} ambiguous pairs; datum {cad['coordinate_status']}", witness={"artifact": cad_root, "negative_probe_artifact": probe_root}, scope="New route versus every source physical obstacle; pre-existing building defects remain outside this local repair claim")
         add("physical-self-interference", cad["self_interference_status"], "All route part pairs checked with local joint-interface authorization", witness={"artifact": cad_root})
         for i, issue in enumerate(cad["pair_results"] + cad.get("self_pair_results", [])):
             if issue["status"] != "PASS":

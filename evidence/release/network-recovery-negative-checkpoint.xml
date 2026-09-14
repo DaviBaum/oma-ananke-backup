@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="7" time="58.726" timestamp="2026-09-14T04:39:19.007695-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_network_integration" name="test_shared_network_import_check_select_accept_export_and_reopen" time="7.905" /><testcase classname="tests.test_network_integration" name="test_shared_network_missing_flow_is_blocked_despite_clear_geometry" time="2.216" /><testcase classname="tests.test_network_integration" name="test_shared_network_native_counterexample_leaves_full_denominator_not_run" time="2.663"><failure message="StopIteration">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-101/test_shared_network_native_cou0')
+
+    def test_shared_network_native_counterexample_leaves_full_denominator_not_run(tmp_path):
+        store, project = imported_project(tmp_path, obstacle_position=[-1, 3, 2])
+        run = store.create_run(project["id"], {"operation": "route", "mission": network_scenario(), "budget_seconds": 60})
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+        candidate = store.candidates(project["id"])[0]
+        report = store.get(candidate["report_root"])
+        assert candidate["status"] == "REJECTED"
+&gt;       witness = next(r for r in report["results"] if r["id"] == "network-native-counterexample")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       StopIteration
+
+tests\test_network_integration.py:126: StopIteration</failure></testcase><testcase classname="tests.test_network_integration" name="test_unresolved_multiple_source_alignment_cannot_use_single_source_identity" time="0.309" /><testcase classname="tests.test_routing_integration" name="test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_route" time="31.857"><failure message="StopIteration">tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-101/test_real_ifc_pipeline_rejects0')
+
+    def test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_route(tmp_path):
+        source = make_fixture(tmp_path / "obstacle.ifc")
+        store = Store(tmp_path / "store")
+        project = store.create_project("Analytic seeded building", {"sources": [], "entities": []})
+        imp = store.create_run(project["id"], {"operation": "import", "paths": [str(source)]})
+        import_sources(store, imp, WorkerControl(store, imp["id"]))
+        scenario = {"start": [-1., 1., 1.], "end": [3., 1., 1.], "system_type": "PRESSURE_PIPE",
+                    "diameter_m": .1, "insulation_m": .02, "bend_radius_m": .3, "minimum_straight_m": .05,
+                    "clearance_m": .1, "allowed_zone": {"min": [-2., -2., -2.], "max": [4., 4., 4.]},
+                    "scenario_terminals": True, "max_candidates": 12}
+        run = store.create_run(project["id"], {"operation": "route", "mission": scenario, "budget_seconds": 90})
+        route_project_run(store, run, WorkerControl(store, run["id"]))
+        candidates = store.candidates(project["id"])
+        assert candidates[0]["status"] == "REJECTED"
+        rejected = store.get(candidates[0]["report_root"])
+&gt;       assert next(r["status"] for r in rejected["results"] if r["id"] == "native-forbidden-volume-counterexample") == "FAIL"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       StopIteration
+
+tests\test_routing_integration.py:24: StopIteration</failure></testcase><testcase classname="tests.test_routing_integration" name="test_missing_mission_is_recorded_not_a_fabricated_route" time="0.087" /><testcase classname="tests.test_joint_routing" name="test_simultaneous_routes_reject_crossing_and_select_authorized_option" time="13.123" /></testsuite></testsuites>

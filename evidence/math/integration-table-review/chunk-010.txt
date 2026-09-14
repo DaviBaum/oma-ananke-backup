@@ -1,0 +1,178 @@
+[table native21785 continued columns] ["Range", "Subject", "Status"]
+[table native21785 row7] {"cells": ["THM-DYN58–66", "Control", "PROVED UNDER DYNAMICS/INVARIANCE ASSUMPTIONS"]}
+[table native21785 row8] {"cells": ["THM-DYN67–77", "Reliability/resilience", "PROVED UNDER DECLARED LAWS"]}
+[table native21785 row9] {"cells": ["THM-DYN78–88", "Twin/observation/fault", "PROVED"]}
+[table native21785 row10] {"cells": ["THM-DYN89–102", "Lifecycle", "PROVED / MODEL-RELATIVE"]}
+[table native21785 row11] {"cells": ["THM-DYN103–110", "Environment", "PROVED"]}
+[table native21785 row12] {"cells": ["THM-DYN111–118", "External systems", "PROVED"]}
+[table native21785 row13] {"cells": ["THM-DYN119–130", "Dynamic decomposition", "PROVED UNDER EXACT METHOD ASSUMPTIONS"]}
+[table native21785 row14] {"cells": ["THM-DYN131–140", "Recertification/workstation", "PROVED"]}
+[table native21785 row15] {"cells": ["THM-DYN141–150", "Whole-package/open-world", "PROVED UNDER EXPLICIT PACKAGE HYPOTHESES"]}
+[table native22431 row0] {"columns": ["Existing source", "Current role", "Evidence", "Future module", "Action"]}
+[table native22431 row1] {"cells": ["kernel/hashing.py", "Canonical JSON and hashes", "Deterministic normalization and stable-ID helpers", "oma_core::canon", "Adapt"]}
+[table native22431 row2] {"cells": ["kernel/models.py", "Immutable evidence/candidate/run schemas", "Frozen Pydantic records, explicit UNKNOWN", "oma_schema", "Extend"]}
+[table native22431 row3] {"cells": ["kernel/units.py", "Small explicit unit registry", "Typed conversion with dimension checks", "oma_units", "Adapt, then replace with full dimensional algebra"]}
+[table native22431 row4] {"cells": ["representation/core_types.py", "Typed semantic prototypes", "Cells, ports, networks, routes, envelopes", "oma_sir", "Adapt"]}
+[table native22431 row5] {"cells": ["representation/service_bay.py", "Synthetic fixture", "Explicitly synthetic service-bay domain", "oma_bench", "Benchmark only"]}
+[table native22431 row6] {"cells": ["routing/channel_graph.py", "Deterministic rectilinear A*", "Floating grid, sequential congestion", "oma_router::legacy", "Retain behind adapter; rewrite release path"]}
+[table native22431 row7] {"cells": ["transformations/service_spine.py", "Immutable bounded transformations", "Preconditions, postconditions, rollback", "oma_tx::legacy_adapter", "Adapt"]}
+[table native22431 row8] {"cells": ["dependencies/graph.py", "Static invalidation and read trace", "Domain-specific transitive cone", "oma_depgraph", "Extend substantially"]}
+[table native22431 row9] {"cells": ["optimization/campaign.py", "Candidate search and run manifests", "Events, hashes, checkpoints, Pareto", "oma_jcd::prototype", "Retain behind adapter"]}
+[table native22431 row10] {"cells": ["verification/independent.py", "Independent duplicate recomputation", "Separate-process verifier", "oma_check::legacy", "Retain as bounded validator"]}
+[table native22431 row11] {"cells": ["api/store.py", "Sealed-run bundle reader", "Fail-closed inventory validation", "oma_projection_api", "Retain; not authoritative store"]}
+[table native22431 row12] {"cells": ["ingest/*", "IFC acquisition and source audit", "Actual source readers and contracts", "oma_import", "Adapt"]}
+[table native22431 row13] {"cells": ["frontend/src/oma/*", "Investor viewer", "React/Three.js projections", "oma_viewer", "Extend, never authorize writes directly"]}
+[table native22431 row14] {"cells": ["Concordia-Lite", "Earlier prototype lineage", "Similar bounded analytical engine", "regression suite", "Benchmark/reference"]}
+[table native22431 row15] {"cells": ["Loom vault", "PCB router design notes", "Inspectable design records", "research reference", "Reference only"]}
+[table native22431 row16] {"cells": ["Loom ceiling-router gitlink", "Unavailable source tree", "No retrievable tree", "none until supplied", "SOURCE_UNAVAILABLE"]}
+[table native22519 row0] {"columns": ["Architecture", "Correctness", "Authority", "Crash/replay", "Incremental proof", "AI boundary", "Workstation fit", "Principal defect"]}
+[table native22519 row1] {"cells": ["A. Monolith", "weak", "weak", "medium", "weak", "weak", "strong", "process memory becomes accidental authority"]}
+[table native22519 row2] {"cells": ["B. Mutable BIM DB", "medium", "medium", "medium", "weak", "weak", "strong", "in-place mutation obscures lineage"]}
+[table native22519 row3] {"cells": ["C. Event sourcing only", "medium", "strong", "strong", "medium", "strong", "strong", "replay cost and event-schema evolution"]}
+[table native22519 row4] {"cells": ["D. Immutable snapshot DAG only", "strong", "strong", "strong", "strong", "strong", "strong", "history and intent need separate audit log"]}
+[table native22519 row5] {"cells": ["E. Blackboard", "weak", "weak", "weak", "weak", "weak", "medium", "proposals and facts become confused"]}
+[table native22519 row6] {"cells": ["F. Microservices", "medium", "strong", "medium", "medium", "strong", "weak-medium", "distributed-system complexity is unnecessary locally"]}
+[table native22519 row7] {"cells": ["G. Typed MCP over immutable state", "strong", "strong", "strong", "strong", "strong", "strong", "insufficient without transaction and proof semantics"]}
+[table native22519 row8] {"cells": ["H. Proof-carrying event compiler", "strong", "strong", "strong", "strong", "strong", "strong", "requires careful authoritative-root definition"]}
+[table native22519 row9] {"cells": ["I. Selected OVSC architecture", "strongest", "strongest", "strongest", "strongest", "strongest", "strongest", "higher initial implementation cost"]}
+[table native23121 row0] {"columns": ["Tool", "Effect", "Trust", "Transaction", "Capability", "Typed input", "Typed output", "Idempotence / failure"]}
+[table native23121 row1] {"cells": ["project.create", "COMMIT", "VALIDATOR", "genesis", "project:create", "CreateProjectInput{name,lineagePolicy,sourceRefs}", "CommitResult<ProjectRoot>", "idempotent by key; PROJECT_EXISTS, UNKNOWN"]}
+[table native23121 row2] {"cells": ["project.open", "READ", "DERIVED_VIEW", "no", "project:read", "ProjectId", "ProjectSnapshotSummary", "deterministic"]}
+[table native23121 row3] {"cells": ["project.checkout", "READ", "DERIVED_VIEW", "no", "project:read", "RootRef", "ProjectSnapshot", "deterministic; ROOT_NOT_CLOSED"]}
+[table native23121 row4] {"cells": ["project.branch", "COMMIT", "VALIDATOR", "yes", "branch:create", "{baseRoot,branchName}", "CommitResult<BranchRef>", "keyed; NAME_CONFLICT"]}
+[table native23121 row5] {"cells": ["project.merge", "TRANSACTIONAL_WRITE", "UNTRUSTED_PROPOSER", "yes", "branch:merge", "{ancestor,left,right,policy}", "MergeProposal", "may return MERGE_CONFLICT"]}
+[table native23121 row6] {"cells": ["project.root", "READ", "KERNEL", "no", "project:read", "BranchRef", "ProjectRoot", "deterministic"]}
+[table native23121 row7] {"cells": ["project.history", "READ", "DERIVED_VIEW", "no", "project:read", "{lineage,cursor}", "Page<RootEvent>", "deterministic pagination"]}
+[table native23121 row8] {"cells": ["project.diff", "PURE", "DERIVED_VIEW", "no", "project:read", "{leftRoot,rightRoot,scope}", "SemanticDiff", "no mutation"]}
+[table native23195 row0] {"columns": ["Tool", "Effect", "Trust", "Transaction", "Capability", "Input", "Output", "Failure"]}
+[table native23195 row1] {"cells": ["source.ingest_ifc", "PROPOSE", "UNTRUSTED_PROPOSER", "proposal", "source:ingest", "SourcePackage<IFC>", "ImportProposal", "FORMAT_ERROR, UNKNOWN"]}
+[table native23195 row2] {"cells": ["source.ingest_cad", "PROPOSE", "UNTRUSTED_PROPOSER", "proposal", "source:ingest", "SourcePackage<CAD>", "ImportProposal", "unmapped layers explicit"]}
+[table native23195 row3] {"cells": ["source.ingest_mesh", "PROPOSE", "UNTRUSTED_PROPOSER", "proposal", "source:ingest", "SourcePackage<Mesh>", "GeometryEvidenceProposal", "unit/frame UNKNOWN blocks semantic promotion"]}
+[table native23195 row4] {"cells": ["source.ingest_point_cloud", "PROPOSE", "UNTRUSTED_PROPOSER", "proposal", "source:ingest", "SourcePackage<PointCloud>", "ObservationProposal", "bounded only"]}
+[table native23195 row5] {"cells": ["source.ingest_requirements", "PROPOSE", "UNTRUSTED_PROPOSER", "proposal", "requirement:propose", "SourcePackage<Text>", "RequirementGraphProposal", "ambiguities retained"]}
+[table native23195 row6] {"cells": ["source.ingest_catalog", "PROPOSE", "UNTRUSTED_PROPOSER", "proposal", "catalog:propose", "CatalogSource", "CatalogProposal", "unsupported fields explicit"]}
+[table native23195 row7] {"cells": ["source.ingest_evidence", "PROPOSE", "UNTRUSTED_PROPOSER", "proposal", "evidence:propose", "EvidenceSource", "EvidenceProposal", "authenticity UNKNOWN unless checked"]}
+[table native23195 row8] {"cells": ["source.status", "READ", "DERIVED_VIEW", "no", "source:read", "SourceRef", "SourceStatus", "deterministic"]}
+[table native23269 row0] {"columns": ["Tool", "Effect", "Trust", "Input", "Output"]}
+[table native23269 row1] {"cells": ["state.query_objects", "READ", "DERIVED_VIEW", "ObjectQuery", "Page<SemanticObjectSummary>"]}
+[table native23269 row2] {"cells": ["state.get_object", "READ", "DERIVED_VIEW", "{root,semanticId}", "SemanticObject"]}
+[table native23269 row3] {"cells": ["state.query_spaces", "READ", "DERIVED_VIEW", "SpaceQuery", "Page<Space>"]}
+[table native23269 row4] {"cells": ["state.query_equipment", "READ", "DERIVED_VIEW", "EquipmentQuery", "Page<Equipment>"]}
+[table native23269 row5] {"cells": ["state.query_ports", "READ", "DERIVED_VIEW", "PortQuery", "Page<Port>"]}
+[table native23269 row6] {"cells": ["state.query_nets", "READ", "DERIVED_VIEW", "NetQuery", "Page<SystemNet>"]}
+[table native23269 row7] {"cells": ["state.query_routes", "READ", "DERIVED_VIEW", "RouteQuery", "Page<RouteRef>"]}
+[table native23269 row8] {"cells": ["state.query_constraints", "READ", "DERIVED_VIEW", "ConstraintQuery", "Page<Constraint>"]}
+[table native23269 row9] {"cells": ["state.query_claims", "READ", "DERIVED_VIEW", "ClaimQuery", "Page<Claim>"]}
+[table native23269 row10] {"cells": ["state.query_unknowns", "READ", "DERIVED_VIEW", "UnknownQuery", "Page<UnknownState>"]}
+[table native23269 row11] {"cells": ["state.query_dependencies", "READ", "DERIVED_VIEW", "{root,target,direction}", "DependencySlice"]}
+[table native23332 row0] {"columns": ["Tool", "Effect", "Trust", "Capability", "Input", "Output"]}
+[table native23332 row1] {"cells": ["transaction.begin", "PROPOSE", "VALIDATOR", "tx:begin", "{baseRoot,declaredPurpose}", "TxRef"]}
+[table native23332 row2] {"cells": ["transaction.propose_rewrite", "PROPOSE", "UNTRUSTED_PROPOSER", "rewrite:propose", "{tx,rewrite}", "RewriteProposalRef"]}
+[table native23332 row3] {"cells": ["transaction.apply_patch", "TRANSACTIONAL_WRITE", "VALIDATOR", "scoped write", "{tx,patch}", "StagedSnapshotRef"]}
+[table native23332 row4] {"cells": ["transaction.validate", "CHECK", "VALIDATOR", "tx:validate", "TxRef", "TransactionValidation"]}
+[table native23332 row5] {"cells": ["transaction.affected_cone", "PURE", "VALIDATOR", "read", "TxRef", "InvalidationCone"]}
+[table native23332 row6] {"cells": ["transaction.prepare", "TRANSACTIONAL_WRITE", "VALIDATOR", "tx:prepare", "TxRef", "PreparedTxRef"]}
+[table native23332 row7] {"cells": ["transaction.commit", "COMMIT", "TRUSTED_KERNEL", "tx:commit", "{preparedTx,expectedRoot,branch}", "CommitResult"]}
+[table native23332 row8] {"cells": ["transaction.abort", "TRANSACTIONAL_WRITE", "VALIDATOR", "actor/owner", "TxRef", "AbortResult"]}
+[table native23332 row9] {"cells": ["transaction.rollback", "COMMIT", "TRUSTED_KERNEL", "branch:rollback", "{branch,targetRoot}", "CommitResult"]}
+[table native23395 row0] {"columns": ["Tool", "Effect", "Trust", "Input", "Output"]}
+[table native23395 row1] {"cells": ["sir.compile", "PROPOSE", "UNTRUSTED_PROPOSER", "{root,sourceSelection,compilerVersion}", "PCSIRProposal"]}
+[table native23395 row2] {"cells": ["sir.check", "CHECK", "VALIDATOR", "PCSIRProposalRef", "PCSIRCheckResult"]}
+[table native23395 row3] {"cells": ["sir.explain_failure", "PURE", "DERIVED_VIEW", "PCSIRFailureRef", "BoundedExplanation"]}
+[table native23417 row0] {"columns": ["Tool", "Effect", "Trust", "Input", "Output"]}
+[table native23417 row1] {"cells": ["route.solve", "PROPOSE", "UNTRUSTED_PROPOSER", "RouterRequest", "PCROUTEProposal"]}
+[table native23417 row2] {"cells": ["route.solve_joint", "PROPOSE", "UNTRUSTED_PROPOSER", "JointRouterRequest", "JointRouteProposal"]}
+[table native23417 row3] {"cells": ["route.alternative", "PROPOSE", "UNTRUSTED_PROPOSER", "{request,exclusionSet}", "RouteAlternative"]}
+[table native23417 row4] {"cells": ["route.homotopy_alternative", "PROPOSE", "UNTRUSTED_PROPOSER", "{request,classConstraint}", "RouteAlternative"]}
+[table native23417 row5] {"cells": ["route.check", "CHECK", "VALIDATOR", "RouteProposalRef", "RouteDisposal"]}
+[table native23417 row6] {"cells": ["route.conflict_core", "CHECK", "VALIDATOR", "RouteFailureRef", "ConflictCore"]}
+[table native23417 row7] {"cells": ["route.infeasibility_certificate", "CHECK", "VALIDATOR", "RouteFailureRef", "`RoutingInfeasibilityProof"]}
+[table native23417 row8] {"cells": ["route.repair_frontier", "PROPOSE", "UNTRUSTED_PROPOSER", "ConflictCoreRef", "RepairFrontierProposal"]}
+[table native23417 row9] {"cells": ["route.resource_prices", "READ", "DERIVED_VIEW", "PCROUTERef", "ScopedResourcePriceSet"]}
+[table native23469 row0] {"columns": ["Tool", "Effect", "Trust", "Input", "Output"]}
+[table native23469 row1] {"cells": ["jcd.evaluate", "CHECK", "VALIDATOR", "JCDCandidateRef", "JointCandidateEvaluation"]}
+[table native23469 row2] {"cells": ["jcd.solve", "PROPOSE", "UNTRUSTED_PROPOSER", "JCDRequest", "PCJCDProposal"]}
+[table native23469 row3] {"cells": ["jcd.propose_rewrite", "PROPOSE", "UNTRUSTED_PROPOSER", "{conflict,repairPolicy}", "RewriteProposalSet"]}
+[table native23469 row4] {"cells": ["jcd.pareto_archive", "READ", "DERIVED_VIEW", "PCJCDRef", "ParetoArchive"]}
+[table native23469 row5] {"cells": ["jcd.compare", "CHECK", "VALIDATOR", "{candidateA,candidateB,policy}", "`ComparisonCertificate"]}
+[table native23469 row6] {"cells": ["jcd.explain_cut", "PURE", "DERIVED_VIEW", "CutRef", "CutExplanation"]}
+[table native23469 row7] {"cells": ["jcd.global_bound", "READ", "VALIDATOR", "PCJCDRef", "ScopedGlobalBound"]}
+[table native23511 row0] {"columns": ["Tool", "Effect", "Trust", "Input", "Output"]}
+[table native23511 row1] {"cells": ["dyn.solve_policy", "PROPOSE", "UNTRUSTED_PROPOSER", "DYNRequest", "PCDYNProposal"]}
+[table native23511 row2] {"cells": ["dyn.evaluate_policy", "CHECK", "VALIDATOR", "PolicyRef", "DynamicEvaluation"]}
+[table native23511 row3] {"cells": ["dyn.check_robustness", "CHECK", "VALIDATOR", "RobustnessRequest", "`RobustnessCertificate"]}
+[table native23511 row4] {"cells": ["dyn.add_scenario", "TRANSACTIONAL_WRITE", "VALIDATOR", "ScenarioWrite", "StagedScenarioRoot"]}
+[table native23511 row5] {"cells": ["dyn.generate_adversary", "PROPOSE", "UNTRUSTED_PROPOSER", "AdversarialRequest", "ScenarioProposal"]}
+[table native23511 row6] {"cells": ["dyn.inspect_lifecycle", "READ", "DERIVED_VIEW", "LifecycleQuery", "LifecycleSlice"]}
+[table native23511 row7] {"cells": ["dyn.trigger_retrofit", "PROPOSE", "VALIDATOR", "RetrofitTrigger", "JCDTransactionProposal"]}
+[table native23553 row0] {"columns": ["Tool", "Effect", "Trust", "Input", "Output"]}
+[table native23553 row1] {"cells": ["proof.check", "CHECK", "TRUSTED_KERNEL", "ProofObjectRef", "ProofVerdict"]}
+[table native23553 row2] {"cells": ["proof.get", "READ", "DERIVED_VIEW", "ProofRef", "ProofObject"]}
+[table native23553 row3] {"cells": ["proof.dependencies", "READ", "VALIDATOR", "ProofRef", "DependencyClosure"]}
+[table native23553 row4] {"cells": ["proof.explain", "PURE", "DERIVED_VIEW", "ProofRef", "HumanReport"]}
+[table native23553 row5] {"cells": ["proof.recertify", "CHECK", "VALIDATOR", "{proof,targetRoot}", "RecertificationResult"]}
+[table native23553 row6] {"cells": ["proof.release_status", "CHECK", "TRUSTED_KERNEL", "{root,target}", "ReleaseStatus"]}
+[table native23590 row0] {"columns": ["Tool", "Effect", "Trust", "Input", "Output"]}
+[table native23590 row1] {"cells": ["claim.get", "READ", "DERIVED_VIEW", "ClaimId", "Claim"]}
+[table native23590 row2] {"cells": ["claim.compare", "CHECK", "VALIDATOR", "{claimA,claimB}", "ClaimRelation"]}
+[table native23590 row3] {"cells": ["claim.assumptions", "READ", "VALIDATOR", "ClaimId", "AssumptionClosure"]}
+[table native23590 row4] {"cells": ["claim.modality", "READ", "TRUSTED_KERNEL", "ClaimId", "ReleaseToken"]}
+[table native23590 row5] {"cells": ["claim.waive", "TRANSACTIONAL_WRITE", "VALIDATOR", "WaiverProposal", "StagedWaiver"]}
+[table native23623 row0] {"columns": ["Tool", "Input", "Output"]}
+[table native23623 row1] {"cells": ["viewer.scene", "SceneRequest", "ViewerScene"]}
+[table native23623 row2] {"cells": ["viewer.layer", "LayerRequest", "LayerProjection"]}
+[table native23623 row3] {"cells": ["viewer.focus", "FocusRequest", "CameraProjection"]}
+[table native23623 row4] {"cells": ["viewer.transition", "TransitionRequest", "ModelTransition"]}
+[table native23623 row5] {"cells": ["viewer.show_conflict", "ConflictRef", "ConflictOverlay"]}
+[table native23623 row6] {"cells": ["viewer.show_proof", "ProofRef", "ProofOverlay"]}
+[table native23623 row7] {"cells": ["viewer.show_uncertainty", "UncertaintyQuery", "UncertaintyOverlay"]}
+[table native23623 row8] {"cells": ["viewer.show_scarcity", "PriceFieldRef", "HeuristicScarcityOverlay"]}
+[table native23623 row9] {"cells": ["viewer.show_scenario", "ScenarioNodeRef", "ScenarioScene"]}
+[table native23655 row0] {"columns": ["Tool", "Effect", "Trust", "Input", "Output"]}
+[table native23655 row1] {"cells": ["export.ifc", "EXPORT", "VALIDATOR", "IFCExportRequest", "ExportManifest<IFC>"]}
+[table native23655 row2] {"cells": ["export.glb", "EXPORT", "DERIVED_VIEW", "GLBExportRequest", "ExportManifest<GLB>"]}
+[table native23655 row3] {"cells": ["export.schedule", "EXPORT", "VALIDATOR", "ScheduleExportRequest", "ExportManifest<Schedule>"]}
+[table native23655 row4] {"cells": ["export.bill_of_materials", "EXPORT", "VALIDATOR", "BOMExportRequest", "ExportManifest<BOM>"]}
+[table native23655 row5] {"cells": ["export.proof_bundle", "EXPORT", "TRUSTED_KERNEL", "ProofBundleRequest", "ExportManifest<ProofBundle>"]}
+[table native23655 row6] {"cells": ["export.release_package", "EXPORT", "TRUSTED_KERNEL", "ReleaseExportRequest", "ExportManifest<PCOMA>"]}
+[table native24604 row0] {"columns": ["Artifact", "Proposition", "Checker", "Main invalidation roots"]}
+[table native24604 row1] {"cells": ["Root closure", "all authoritative refs resolve", "manifest kernel", "manifest, blobs, canon version"]}
+[table native24604 row2] {"cells": ["Semantic-ID", "identity registry consistent", "identity kernel", "source/lineage changes"]}
+[table native24604 row3] {"cells": ["Serialization", "bytes are canonical", "canon kernel", "canon/schema version"]}
+[table native24604 row4] {"cells": ["Artifact dependency", "declared edges complete in scope", "dependency checker", "dependency theory"]}
+[table native24604 row5] {"cells": ["Tx capability", "actor may perform effects", "capability checker", "authority/capability root"]}
+[table native24604 row6] {"cells": ["Tx precondition", "base state meets rewrite preconditions", "transaction checker", "base root"]}
+[table native24604 row7] {"cells": ["Tx write set", "changed roots are declared", "transaction checker", "rewrite semantics"]}
+[table native24604 row8] {"cells": ["Tx authority", "organizational permission exists", "authority checker", "authority root"]}
+[table native24604 row9] {"cells": ["Tx validation", "candidate preserves invariants", "transaction checker", "all tx inputs"]}
+[table native24604 row10] {"cells": ["Atomic commit", "branch transition is closed", "root-store kernel", "storage semantics"]}
+[table native24604 row11] {"cells": ["Semantic merge", "merged edits compatible", "merge checker", "ancestor/branch roots"]}
+[table native24604 row12] {"cells": ["Compiler pass", "source-target relation holds", "pass validator", "pass theory/versions"]}
+[table native24604 row13] {"cells": ["Import mapping", "preserved source semantics", "import checker", "source bytes/schema"]}
+[table native24604 row14] {"cells": ["Requirement compilation", "typed requirement follows source", "requirement checker", "source/authority"]}
+[table native24604 row15] {"cells": ["Package references", "lower package accepted/current", "package checker", "package roots"]}
+[table native24604 row16] {"cells": ["Cross-package compatibility", "separators agree", "gluing checker", "all shared roots"]}
+[table native24604 row17] {"cells": ["Assumption closure", "mandatory premises exposed", "logic kernel", "dependency graph"]}
+[table native24604 row18] {"cells": ["Modality compatibility", "no illegal strengthening", "release kernel", "modality rules"]}
+[table native24604 row19] {"cells": ["Waiver", "disposition authorized", "authority checker", "waiver/authority"]}
+[table native24604 row20] {"cells": ["Contradiction", "claims incompatible", "logical/domain checker", "claim versions"]}
+[table native24604 row21] {"cells": ["Release lattice", "token relation valid", "release kernel", "claim language/context"]}
+[table native24604 row22] {"cells": ["Global witness", "one shared assignment exists", "gluing checker", "all package roots"]}
+[table native24604 row23] {"cells": ["Cache applicability", "reuse roots unchanged", "cache checker", "cache key"]}
+[table native24604 row24] {"cells": ["Incremental recertification", "affected slice recomputed", "dependency checker", "change set"]}
+[table native24604 row25] {"cells": ["Deterministic replay", "replay state complete", "replay checker", "environment/seed"]}
+[table native24604 row26] {"cells": ["Checkpoint", "restart state closed", "checkpoint checker", "all checkpoint roots"]}
+[table native24604 row27] {"cells": ["Crash closure", "visible roots resolve", "storage checker", "journal/root store"]}
+[table native24604 row28] {"cells": ["GC safety", "retained roots remain closed", "reachability checker", "retention policy"]}
+[table native24604 row29] {"cells": ["MCP schema", "descriptor valid", "MCP registry checker", "protocol/tool version"]}
+[table native24604 row30] {"cells": ["Capability", "invocation permitted", "capability kernel", "actor/token/time"]}
+[table native24604 row31] {"cells": ["Tool effect", "actual effects within descriptor", "effect checker", "tool implementation"]}
+[table native24604 row32] {"cells": ["AI proposal disposal", "proposal checked independently", "proposal validator", "proposal/base root"]}
+[table native24604 row33] {"cells": ["Viewer index", "render mapping rooted correctly", "viewer checker", "scene/root/index"]}
+[table native24604 row34] {"cells": ["Export manifest", "export scope and bytes valid", "export checker", "root/exporter"]}
+[table native24604 row35] {"cells": ["PCOMA root", "final package accepted", "PCOMA checker", "all final roots"]}
+[table native25032 row0] {"columns": ["Existing source", "Future module", "Action"]}
+[table native25032 row1] {"cells": ["kernel/hashing.py", "crates/oma-canon plus Python adapter", "adapt"]}
+[table native25032 row2] {"cells": ["kernel/models.py", "packages/oma-schema", "extend"]}
+[table native25032 row3] {"cells": ["kernel/units.py", "crates/oma-units", "migrate"]}
+[table native25032 row4] {"cells": ["representation/core_types.py", "packages/oma-sir-schema", "adapt"]}

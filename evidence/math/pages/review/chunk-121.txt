@@ -1,0 +1,333 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P24163; UTF16 803855] A delivered component may remain in storage, fail inspection, or be incompatible with current work.
+[11-20:P24164; UTF16 803955] Installed does not imply accepted
+[11-20:P24165; UTF16 803989] An installed product may fail commissioning or evidence review.
+[11-20:P24166; UTF16 804053] Therefore none of the statuses may be silently substituted for another. ∎
+[11-20:P24170; UTF16 804130] 21. Lead-Time Semantics
+[11-20:P24171; UTF16 804154] DEF-ECO17 — Supplier Lead-Time Relation
+[11-20:P24172; UTF16 804194] For order state (o), a set-valued lead-time model is:
+[11-20:P24173; UTF16 804248] [ \boxed{ \mathcal L(o) \subseteq \mathbb R_{\ge0}. } ]
+[11-20:P24174; UTF16 804304] A probabilistic lead-time model is:
+[11-20:P24175; UTF16 804340] [ L_o \sim P_o. ]
+[11-20:P24177; UTF16 804387] supplier;
+[11-20:P24178; UTF16 804397] factory;
+[11-20:P24179; UTF16 804406] quantity;
+[11-20:P24180; UTF16 804416] order date;
+[11-20:P24181; UTF16 804428] production queue;
+[11-20:P24183; UTF16 804457] destination;
+[11-20:P24184; UTF16 804470] external conditions.
+[11-20:P24185; UTF16 804491] A historical average is neither an exact delivery time nor a contractual commitment.
+[11-20:P24189; UTF16 804579] DEF-ECO18 — Material-Availability Constraint
+[11-20:P24190; UTF16 804624] If material (j) is required at activity start (s_i), then:
+[11-20:P24191; UTF16 804683] [ \boxed{ t_j^{\mathrm{available}} \le s_i. } ]
+[11-20:P24192; UTF16 804731] The available time may itself be:
+[11-20:P24194; UTF16 804772] contractual;
+[11-20:P24198; UTF16 804824] Its modality must be retained in the schedule claim.
+[11-20:P24202; UTF16 804880] 22. Supply Dependencies and Common Cause
+[11-20:P24203; UTF16 804921] DEF-ECO19 — Supply Dependency Network
+[11-20:P24204; UTF16 804959] A Supply Dependency Network contains typed nodes for:
+[11-20:P24205; UTF16 805013] suppliers;
+[11-20:P24206; UTF16 805024] factories;
+[11-20:P24207; UTF16 805035] raw materials;
+[11-20:P24208; UTF16 805050] subcomponents;
+[11-20:P24209; UTF16 805065] transport carriers;
+[11-20:P24210; UTF16 805085] ports;
+[11-20:P24211; UTF16 805092] warehouses;
+[11-20:P24212; UTF16 805104] jobsite receiving;
+[11-20:P24213; UTF16 805123] quality approval.
+[11-20:P24214; UTF16 805141] Edges record production, transport, control, or evidence dependence.
+[11-20:P24215; UTF16 805210] Two nominal suppliers may share:
+[11-20:P24216; UTF16 805243] one factory;
+[11-20:P24217; UTF16 805256] one upstream subcomponent;
+[11-20:P24218; UTF16 805283] one port;
+[11-20:P24219; UTF16 805293] one carrier;
+[11-20:P24220; UTF16 805306] one certification;
+[11-20:P24221; UTF16 805325] one geopolitical exposure.
+[11-20:P24225; UTF16 805355] THM-ECO12 — Supplier Marginals Do Not Determine Redundant Procurement Reliability
+[11-20:P24226; UTF16 805437] Let supplier-failure events satisfy:
+[11-20:P24228; UTF16 805495] Independent suppliers
+[11-20:P24229; UTF16 805517] If failures are independent:
+[11-20:P24231; UTF16 805570] Perfect common cause
+[11-20:P24232; UTF16 805591] If both suppliers depend on one shared upstream factory and fail together:
+[11-20:P24237; UTF16 805721] A procurement strategy succeeds if at least one supplier delivers.
+[11-20:P24238; UTF16 805788] Its failure probability changes from:
+[11-20:P24242; UTF16 805844] with no change to the supplier marginals.
+[11-20:P24244; UTF16 805888] [ \boxed{ \text{two suppliers} \not\Longrightarrow \text{independent supply redundancy}. } ]
+[11-20:P24248; UTF16 805984] 23. Inventory
+[11-20:P24249; UTF16 805998] DEF-ECO20 — Inventory Balance
+[11-20:P24250; UTF16 806028] For material (j) and discrete stage (t):
+[11-20:P24251; UTF16 806069] U_{j,t}
+[11-20:P24252; UTF16 806077] L_{j,t}, } ]
+[11-20:P24254; UTF16 806097] (I_{j,t}): available accepted inventory;
+[11-20:P24255; UTF16 806138] (D_{j,t}): accepted deliveries;
+[11-20:P24256; UTF16 806170] (U_{j,t}): construction usage;
+[11-20:P24257; UTF16 806201] (L_{j,t}): loss, waste, damage, or rejection.
+[11-20:P24258; UTF16 806247] Material feasibility requires:
+[11-20:P24259; UTF16 806278] [ I_{j,t}\ge0 \qquad \forall j,t. ]
+[11-20:P24263; UTF16 806317] THM-ECO13 — Inventory Nonnegativity Is Necessary for a Material-Feasible Execution Trace
+[11-20:P24265; UTF16 806410] [ U_{j,t}
+[11-20:P24266; UTF16 806420] I_{j,t}+D_{j,t}-L_{j,t}, ]
+[11-20:P24268; UTF16 806453] [ I_{j,t+1}<0. ]
+[11-20:P24269; UTF16 806470] Therefore the trace is infeasible under DEF-ECO20.
+[11-20:P24271; UTF16 806527] Substitute into the balance equation:
+[11-20:P24273; UTF16 806573] L_{j,t}. ]
+[11-20:P24274; UTF16 806584] The assumed strict inequality rearranges to:
+[11-20:P24276; UTF16 806637] L_{j,t} < 0. ]
+[11-20:P24279; UTF16 806675] A negative physical inventory contradicts the material-feasibility requirement. ∎
+[11-20:P24283; UTF16 806760] 24. Procurement Substitution
+[11-20:P24284; UTF16 806789] DEF-ECO21 — Procurement Substitution
+[11-20:P24285; UTF16 806826] A proposed substitution:
+[11-20:P24286; UTF16 806851] [ p \rightsquigarrow p' ]
+[11-20:P24294; UTF16 806956] lead time;
+[11-20:P24298; UTF16 807001] architectural intent.
+[11-20:P24302; UTF16 807026] THM-ECO14 — Complete Materialization-and-Economic Contextual Equivalence Justifies Procurement Substitution
+[11-20:P24304; UTF16 807143] [ p \equiv_{ \mathcal T_{\mathrm{mat}} \cup \mathcal T_{\mathrm{ECO}} } p'. ]
+[11-20:P24305; UTF16 807221] Then replacing (p) by (p') in every admitted materialization and economic context preserves every admitted complete report.
+[11-20:P24307; UTF16 807351] Let (K[-]) be any admitted project context containing the product position.
+[11-20:P24308; UTF16 807427] Contextual equivalence means:
+[11-20:P24309; UTF16 807457] \mathsf{Out}(K[p']). ]
+[11-20:P24310; UTF16 807480] Because the theory includes all admitted materialization and economic experiments, the equality covers:
+[11-20:P24311; UTF16 807584] engineering;
+[11-20:P24318; UTF16 807657] sovereignty
+[11-20:P24319; UTF16 807669] reports represented in that theory.
+[11-20:P24320; UTF16 807705] Therefore substitution preserves every admitted report. ∎
+[11-20:P24321; UTF16 807763] Equal price alone does not establish this equivalence.
+[11-20:P24322; UTF16 807818] Equal geometry alone does not establish it.
+[11-20:P24326; UTF16 807865] 25. Procurement Recourse
+[11-20:P24327; UTF16 807890] DEF-ECO22 — Procurement Recourse Contract
+[11-20:P24328; UTF16 807932] A Procurement Recourse Contract is:
+[11-20:P24329; UTF16 807968] \left( D, \mathsf{Obs}, \Pi, \mathsf{Alternates}, \mathsf{Authority}, \mathsf{CostBounds}, \mathsf{ScheduleBounds}, \mathsf{Materialization}, \mathsf{Carbon}, \mathsf{Escalation} \right). } ]
+[11-20:P24330; UTF16 808160] It specifies:
+[11-20:P24331; UTF16 808174] disruption family (D);
+[11-20:P24332; UTF16 808197] observation history;
+[11-20:P24333; UTF16 808218] nonanticipative policy (\Pi);
+[11-20:P24334; UTF16 808248] alternate suppliers or products;
+[11-20:P24336; UTF16 808292] cost consequences;
+[11-20:P24337; UTF16 808311] schedule consequences;
+[11-20:P24338; UTF16 808334] engineering and materialization conditions;
+[11-20:P24339; UTF16 808378] carbon consequences;
+[11-20:P24340; UTF16 808399] escalation triggers.
+[11-20:P24344; UTF16 808423] THM-ECO15 — Pre-Certified Procurement Recourse Preserves Covered Project Claims
+[11-20:P24345; UTF16 808503] Let (D) be the declared disruption domain.
+[11-20:P24346; UTF16 808546] Let (\Pi) be a nonanticipative procurement policy.
+[11-20:P24348; UTF16 808605] the actual disruption (\delta^\star\in D);
+[11-20:P24349; UTF16 808648] (\Pi) uses only observed history;
+[11-20:P24350; UTF16 808682] every action selected by (\Pi) is authorized;
+[11-20:P24351; UTF16 808728] every substitute is contextually equivalent or recertified;
+[11-20:P24352; UTF16 808788] every possible trace generated by (\Pi) under every (\delta\in D) satisfies the covered budget, schedule, carbon, materialization, and evidence claims;
+[11-20:P24353; UTF16 808940] the actual execution trace belongs to the trace relation generated by ((\delta^\star,\Pi)).
+[11-20:P24354; UTF16 809032] Then every covered claim holds for the actual execution trace.
+[11-20:P24356; UTF16 809101] By assumption 1, the actual disruption lies in the universally certified domain.
+[11-20:P24357; UTF16 809182] By assumption 6, the actual trace is one of the traces generated by the policy under that disruption.
+[11-20:P24358; UTF16 809284] Assumption 5 states that every such trace satisfies each covered claim.
+[11-20:P24359; UTF16 809356] Instantiate the universal statement at the actual disruption and actual trace.
+[11-20:P24360; UTF16 809435] Authorization and substitution validity follow from assumptions 3 and 4.
+[11-20:P24361; UTF16 809508] Therefore every declared covered claim holds. ∎
+[11-20:P24362; UTF16 809556] The theorem says nothing about:
+[11-20:P24363; UTF16 809588] disruptions outside (D);
+[11-20:P24364; UTF16 809613] alternate products outside the contract;
+[11-20:P24365; UTF16 809654] costs or delays beyond its certified bounds;
+[11-20:P24366; UTF16 809699] unrepresented common causes.
+[11-20:P24370; UTF16 809731] 26. Minimum Supplier Coverage
+[11-20:P24371; UTF16 809761] THM-ECO16 — Minimum-Cost Supplier Coverage Is NP-Hard
+[11-20:P24376; UTF16 809934] costs (c_1,\ldots,c_m).
+[11-20:P24377; UTF16 809958] Create one procurement obligation for each element of (U).
+[11-20:P24378; UTF16 810017] Create supplier (j) that can satisfy exactly the obligations in (S_j) at selection cost (c_j).
+[11-20:P24379; UTF16 810112] A supplier set (J) provides complete coverage iff:
+[11-20:P24381; UTF16 810168] Its cost is:
+[11-20:P24382; UTF16 810181] [ \sum_{j\in J}c_j. ]
+[11-20:P24383; UTF16 810203] Therefore a minimum-cost complete supplier set is exactly a minimum weighted set cover.
+[11-20:P24385; UTF16 810325] Thus minimum-cost supplier coverage is NP-hard. ∎
+[11-20:P24386; UTF16 810375] Real procurement adds compatibility, timing, capacity, and common-cause constraints and may be harder.
+[11-20:P24390; UTF16 810481] 27. Project Cash Flow
+[11-20:P24391; UTF16 810503] DEF-ECO23 — Project Cash State
+[11-20:P24392; UTF16 810534] At stage (t), let:
+[11-20:P24393; UTF16 810553] [ B_t ]
+[11-20:P24394; UTF16 810561] be available cash plus usable credit under the declared financing theory.
+[11-20:P24396; UTF16 810640] (R_t): receipts and financing draws;
+[11-20:P24397; UTF16 810677] (O_t): outflows.
+[11-20:P24399; UTF16 810700] B_t+R_t-O_t. } ]
+[11-20:P24403; UTF16 810720] DEF-ECO24 — Cash-Flow Feasibility
+[11-20:P24404; UTF16 810754] A deterministic cash-flow trace is feasible when:
+[11-20:P24405; UTF16 810804] [ \boxed{ B_t\ge0 \qquad \forall t. } ]
+[11-20:P24406; UTF16 810844] Credit limits, borrowing costs, retainage, and financing conditions must be represented inside (B_t,R_t,O_t) where applicable.
+[11-20:P24410; UTF16 810974] LEM-ECO3 — Cash Balance Telescoping Identity
+[11-20:P24411; UTF16 811019] For every (t\ge1):
+[11-20:P24412; UTF16 811038] B_0 + \sum_{\tau=0}^{t-1} (R_\tau-O_\tau). } ]
+[11-20:P24415; UTF16 811105] For (t=1):
+[11-20:P24416; UTF16 811116] [ B_1=B_0+R_0-O_0. ]
+[11-20:P24417; UTF16 811137] Assume the identity holds at (t).
+[11-20:P24419; UTF16 811177] [ \begin{aligned} B_{t+1} &= B_t+R_t-O_t\ &= B_0 + \sum_{\tau=0}^{t-1}(R_\tau-O_\tau) + R_t-O_t\ &= B_0 + \sum_{\tau=0}^{t}(R_\tau-O_\tau). \end{aligned} ]
+[11-20:P24424; UTF16 811338] THM-ECO17 — Nonnegative Prefix Balances Are Necessary and Sufficient for Deterministic Cash-Flow Feasibility
+[11-20:P24425; UTF16 811447] For fixed receipts and outflows:
+[11-20:P24426; UTF16 811480] [ \boxed{ B_t\ge0 \quad \forall t } ]
+[11-20:P24428; UTF16 811523] [ \boxed{ B_0 + \sum_{\tau=0}^{t-1} (R_\tau-O_\tau) \ge0 \quad \forall t. } ]
+[11-20:P24430; UTF16 811607] By LEM-ECO3, the two expressions are equal for every (t).
+[11-20:P24431; UTF16 811665] Therefore the inequalities are equivalent stage by stage. ∎
+[11-20:P24435; UTF16 811728] PRO-ECO1 — Positive Final Net Cash Does Not Guarantee Intermediate Liquidity
+[11-20:P24437; UTF16 811810] [ B_0=0. ]
+[11-20:P24438; UTF16 811821] At stage zero:
+[11-20:P24439; UTF16 811836] [ O_0=100, \qquad R_0=0. ]
+[11-20:P24441; UTF16 811869] [ B_1=-100. ]
+[11-20:P24442; UTF16 811883] At stage one:
+[11-20:P24443; UTF16 811897] [ R_1=200, \qquad O_1=0. ]
+[11-20:P24445; UTF16 811930] [ B_2=100. ]
+[11-20:P24446; UTF16 811943] The final net position is positive.
+[11-20:P24447; UTF16 811979] The project is infeasible without credit because the first-stage balance is negative. ∎
+[11-20:P24451; UTF16 812070] 28. Discounting
+[11-20:P24452; UTF16 812086] DEF-ECO25 — Declared Discounted Cash Functional
+[11-20:P24453; UTF16 812134] For cash flow (x_t) and declared positive discount factors (d_t):
+[11-20:P24454; UTF16 812200] \sum_t d_tx_t. } ]
+[11-20:P24455; UTF16 812219] There is no universal discount curve.
+[11-20:P24456; UTF16 812257] Discounting does not alter:
+[11-20:P24457; UTF16 812285] physical feasibility;
+[11-20:P24458; UTF16 812307] deterministic safety;
+[11-20:P24459; UTF16 812329] carbon quantities;
+[11-20:P24461; UTF16 812375] resource constraints.
+[11-20:P24462; UTF16 812397] It only transforms the declared monetary stream under the chosen financial policy.
+[11-20:P24466; UTF16 812483] 29. Cost, Price, Budget, and Value
+[11-20:P24467; UTF16 812518] Prompt 18 distinguishes:
+[11-20:P24468; UTF16 812543] [ \begin{aligned} &\text{cost},\ &\text{price},\ &\text{budget},\ &\text{expected cost},\ &\text{lifecycle cost},\ &\text{market value},\ &\text{owner utility}. \end{aligned} ]
+[11-20:P24469; UTF16 812720] No theorem establishes:
+[11-20:P24470; UTF16 812744] \text{best}. ]
+[11-20:P24471; UTF16 812759] Prompt-12 incomplete preference and noncompensatory constraints remain authoritative.
+[11-20:P24475; UTF16 812848] PRO-ECO2 — Lower Cost Does Not Imply Lower Embodied Carbon
+[11-20:P24476; UTF16 812907] Let two admissible products have:
+[11-20:P24477; UTF16 812941] [ (C_A,K_A)=(1,10), ]
+[11-20:P24478; UTF16 812963] [ (C_B,K_B)=(2,1). ]
+[11-20:P24480; UTF16 812990] [ C_A<C_B ]
+[11-20:P24482; UTF16 813009] [ K_A>K_B. ]
+[11-20:P24483; UTF16 813022] Therefore monetary cost order does not determine embodied-carbon order. ∎
+[11-20:P24484; UTF16 813096] The converse fails by swapping the coordinates.
+[11-20:P24488; UTF16 813147] 30. Execution Scenarios and Policies
+[11-20:P24489; UTF16 813184] DEF-ECO26 — Execution Scenario
+[11-20:P24490; UTF16 813215] An Execution Scenario (\omega) may contain:
+[11-20:P24492; UTF16 813271] unit prices;
+[11-20:P24493; UTF16 813284] activity durations;
+[11-20:P24494; UTF16 813304] labor availability;
+[11-20:P24495; UTF16 813324] equipment availability;
+[11-20:P24496; UTF16 813348] supplier states;
+[11-20:P24497; UTF16 813365] lead times;
+[11-20:P24499; UTF16 813388] inventory loss;
+[11-20:P24501; UTF16 813415] carbon factors.
+[11-20:P24503; UTF16 813436] [ \Omega_{\mathrm{exec}} ]
+[11-20:P24504; UTF16 813463] be the declared joint scenario family.
+[11-20:P24508; UTF16 813505] DEF-ECO27 — Fixed Robust Execution Plan
+[11-20:P24509; UTF16 813545] A fixed plan (x) is robust when:
+[11-20:P24510; UTF16 813578] [ \boxed{ \forall\omega\in\Omega_{\mathrm{exec}}, \qquad \Phi_{\mathrm{exec}}(b,x,\omega). } ]
+[11-20:P24511; UTF16 813673] The plan is chosen before uncertainty is revealed.
+[11-20:P24515; UTF16 813727] DEF-ECO28 — Adjustable Execution Policy
+[11-20:P24516; UTF16 813767] A policy is:
+[11-20:P24517; UTF16 813780] \pi_t(h_t), } ]
+[11-20:P24518; UTF16 813796] where (h_t) is execution information available at stage (t).
+[11-20:P24519; UTF16 813857] Nonanticipativity requires identical decisions for scenarios with identical current histories.
+[11-20:P24523; UTF16 813955] COR-ECO3 — Robust or Nonanticipative Universal Feasibility Implies Scenario-Wise Feasibility
+[11-20:P24524; UTF16 814048] If one fixed plan or one nonanticipative policy succeeds for every scenario, then every scenario individually has a feasible execution.
+[11-20:P24526; UTF16 814190] Use the same plan or the policy’s realized action sequence for each scenario. ∎
+[11-20:P24527; UTF16 814270] The converse fails.
+[11-20:P24531; UTF16 814293] THM-ECO18 — Scenario-Wise Feasible Execution Plans Need Not Form One Nonanticipative Execution Policy
+[11-20:P24532; UTF16 814395] At time zero, a project must reserve exactly one of two mutually exclusive shipping routes:
+[11-20:P24533; UTF16 814487] [ A \quad \text{or} \quad B. ]
+[11-20:P24534; UTF16 814518] Budget permits only one reservation.
+[11-20:P24535; UTF16 814555] At time one, after the reservation is irreversible, one of two scenarios is revealed:
+[11-20:P24536; UTF16 814641] Scenario (\omega_A)
+[11-20:P24537; UTF16 814661] Route (A) remains open.
+[11-20:P24538; UTF16 814685] Route (B) closes.
+[11-20:P24539; UTF16 814703] Scenario (\omega_B)
+[11-20:P24540; UTF16 814723] Route (B) remains open.
+[11-20:P24541; UTF16 814747] Route (A) closes.
+[11-20:P24542; UTF16 814765] In each completed scenario, a clairvoyant plan exists:
+[11-20:P24543; UTF16 814820] reserve (A) in (\omega_A);
+[11-20:P24544; UTF16 814847] reserve (B) in (\omega_B).
+[11-20:P24546; UTF16 814880] [ \forall\omega \quad \exists x_\omega \quad \Phi_{\mathrm{exec}}(x_\omega,\omega). ]
+[11-20:P24548; UTF16 815045] It must reserve the same route.
+[11-20:P24549; UTF16 815077] Whichever route it selects fails in the scenario where that route closes.
+[11-20:P24551; UTF16 815162] [ \not\exists\pi \quad \forall\omega \quad \Phi_{\mathrm{exec}}(\pi,\omega). ]
+[11-20:P24556; UTF16 815246] PRO-ECO3 — A Probabilistic Execution Claim Does Not Prove Realized Execution Success
+[11-20:P24557; UTF16 815331] For every (r\in(0,1)), construct two execution scenarios:
+[11-20:P24558; UTF16 815389] successful execution with probability (r);
+[11-20:P24559; UTF16 815432] failed delivery or insolvency with probability (1-r).
+[11-20:P24561; UTF16 815492] [ P(\text{execution succeeds})=r, ]
+[11-20:P24562; UTF16 815528] but failure remains an admissible positive-probability outcome.
+[11-20:P24563; UTF16 815592] Thus a chance constraint or probabilistic delivery claim remains probabilistic. ∎
+[11-20:P24567; UTF16 815677] 31. Economic Execution Feasible Sets
+[11-20:P24568; UTF16 815714] DEF-ECO37 — Economic Execution Witness
+[11-20:P24569; UTF16 815753] An Economic Execution Witness contains:
+[11-20:P24570; UTF16 815793] \left( \mathsf{schedule}, \mathsf{resourcePlan}, \mathsf{procurementPlan}, \mathsf{inventoryTrace}, \mathsf{logisticsPlan}, \mathsf{cashTrace}, \mathsf{carbonTrace}, \mathsf{evidence}, \mathsf{modeCertificate} \right). } ]
+[11-20:P24571; UTF16 816016] The witness may be:
+[11-20:P24573; UTF16 816051] robust fixed;
+[11-20:P24574; UTF16 816065] nonanticipative adaptive;
+[11-20:P24575; UTF16 816091] probabilistic.
+[11-20:P24576; UTF16 816106] Its mode is explicit.
+[11-20:P24580; UTF16 816131] DEF-ECO29 — Economic Execution Feasible Set
+[11-20:P24581; UTF16 816175] For concrete artifact (b) and mode (\mu), define:
+[11-20:P24582; UTF16 816225] \left{ x: \mathsf{ExecutionValid}_\mu(b,x) \right}. } ]
+[11-20:P24583; UTF16 816281] Execution validity includes every active:
+[11-20:P24587; UTF16 816356] resource;
+[11-20:P24591; UTF16 816391] materialization;
+[11-20:P24594; UTF16 816428] constraint appropriate to mode (\mu).
+[11-20:P24598; UTF16 816469] DEF-ECO30 — Economic Execution Fiber
+[11-20:P24600; UTF16 816514] \mathcal X_{\mathrm{exec}}^\mu(b). } ]
+[11-20:P24601; UTF16 816553] Economic execution is feasible in mode (\mu) iff:
+[11-20:P24602; UTF16 816603] [ \boxed{ \gamma_{\mathrm{exec}}^\mu(b) \neq \varnothing. } ]
+[11-20:P24603; UTF16 816665] This differs from Prompt-13’s materialization fiber:
+[11-20:P24604; UTF16 816718] [ \gamma_{\mathrm{mat}}(q). ]
+[11-20:P24608; UTF16 816751] THM-ECO19 — A Prompt-13 Buildable Artifact May Have an Empty Economic Execution Fiber
+[11-20:P24609; UTF16 816837] There exists a concrete artifact (b) such that:
+[11-20:P24610; UTF16 816885] [ b\in\gamma_{\mathrm{mat}}(q) ]
+[11-20:P24614; UTF16 816944] Let (b) be a valid materialized design requiring one specialized component (p).
+[11-20:P24616; UTF16 817032] (p) is physically and geometrically valid;
+[11-20:P24617; UTF16 817075] the design evidence for (p) is valid;
+[11-20:P24618; UTF16 817113] no current supplier offers (p);
+[11-20:P24619; UTF16 817145] no fabrication action is admitted;
+[11-20:P24620; UTF16 817180] no alternate product is approved.
+[11-20:P24621; UTF16 817214] Every execution witness must include a procurement path for (p).
+[11-20:P24622; UTF16 817279] No such path exists.
+[11-20:P24623; UTF16 817300] Therefore no deterministic economic execution witness exists:
+[11-20:P24625; UTF16 817377] The materialization relation remains inhabited because (b) is a valid design artifact under its materialization theory.
+[11-20:P24626; UTF16 817497] Thus materializability does not imply current economic executability. ∎
+[11-20:P24627; UTF16 817569] If procurement unavailability invalidates a Prompt-13 availability premise, the artifact must also be rematerialized or reversioned. The theorem’s separation remains: design realizability and current execution feasibility are distinct theories.
+[11-20:P24631; UTF16 817817] 32. Execution Conflict Cores and Repairs
+[11-20:P24632; UTF16 817858] DEF-ECO31 — Execution Conflict Core
+[11-20:P24633; UTF16 817894] Let (\mathcal H_{\mathrm{exec}}) be active economic and execution constraints.
+[11-20:P24635; UTF16 817980] [ U \subseteq \mathcal H_{\mathrm{exec}} ]
+[11-20:P24636; UTF16 818023] is an Execution Conflict Core when:
+[11-20:P24638; UTF16 818074] It is inclusion minimal when every proper subset is feasible.
+[11-20:P24639; UTF16 818136] A core may contain:
+[11-20:P24641; UTF16 818166] one crane;
+[11-20:P24642; UTF16 818177] two lift activities;
+[11-20:P24643; UTF16 818198] supplier date;
+[11-20:P24644; UTF16 818213] cash ceiling;
+[11-20:P24645; UTF16 818227] product requirement;
+[11-20:P24646; UTF16 818248] site-access condition.
+[11-20:P24647; UTF16 818271] The core does not determine which constraint should be relaxed.
+[11-20:P24651; UTF16 818338] DEF-ECO32 — Execution Repair
+[11-20:P24652; UTF16 818367] An Execution Repair may alter:
+[11-20:P24655; UTF16 818417] activity order;
+[11-20:P24656; UTF16 818433] resource capacity;
+[11-20:P24660; UTF16 818484] carbon choice;
+[11-20:P24661; UTF16 818499] physical design.
+[11-20:P24662; UTF16 818516] Repairs have typed consequences.
+[11-20:P24663; UTF16 818549] Where impacts are incomparable, ANANKE returns a Pareto repair frontier.
+[11-20:P24664; UTF16 818622] Prompt-12 authority governs architectural changes.
+[11-20:P24668; UTF16 818676] 33. Economic Lower Bounds and Portfolios
+[11-20:P24669; UTF16 818717] For semantic state (q), a certified execution-cost lower bound satisfies:
+[11-20:P24670; UTF16 818791] [ L_{\mathrm{exec}}(q) \le \inf_{b\in\gamma_{\mathrm{mat}}(q)} \inf_{x\in\gamma_{\mathrm{exec}}(b)} C(x). ]
+[11-20:P24671; UTF16 818899] It may support safe branch closure.
+[11-20:P24672; UTF16 818935] A heuristic cost estimate cannot.
+[11-20:P24673; UTF16 818969] The project may maintain a portfolio over:
+[11-20:P24674; UTF16 819012] [ \left( C, T, K, R_{\mathrm{risk}}, N_{\mathrm{suppliers}}, \mathsf{Maintainability}, \ldots \right). ]
+[11-20:P24675; UTF16 819117] Prompt-12 partial-order and noncompensatory semantics remain authoritative.
+[11-20:P24676; UTF16 819193] No scalarization is assumed.
+[11-20:P24680; UTF16 819225] 34. Economic Execution Cascades
+[11-20:P24681; UTF16 819257] DEF-ECO38 — Economic Execution Cascade
+[11-20:P24682; UTF16 819296] An Economic Execution Cascade is a trace:
+[11-20:P24683; UTF16 819338] (\xi_0,e_1,\xi_1,\ldots,e_k,\xi_k) } ]
+[11-20:P24684; UTF16 819377] in which one execution event changes the conditions governing later execution events.
+[11-20:P24686; UTF16 819472] [ \text{factory failure} \to \text{delivery delay} \to \text{missed weather window} \to \text{enclosure delay} \to \text{interior resequencing} \to \text{delayed financing draw} \to \text{cash shortfall}. ]
+[11-20:P24687; UTF16 819679] A single scalar “supply-chain risk” does not represent this typed path.
+[11-20:P24688; UTF16 819751] Prompt-17 dynamic-failure and cascade mathematics may be reused when probability laws are assigned.
+[11-20:P24692; UTF16 819854] 35. Cross-Project Economic Learning
+[11-20:P24693; UTF16 819890] Prompt-16 remains authoritative.
+[11-20:P24694; UTF16 819923] Fleet evidence may support:

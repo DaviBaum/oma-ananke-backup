@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "source_sha256": "0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970",
+  "source_ranges": [
+    "1-10:P10006-P12808",
+    "1-10:P12104-P12187"
+  ],
+  "source_objects": [
+    "ALG-AB1",
+    "ALG-AB4",
+    "THM-AB10",
+    "THM-AB22",
+    "DEF-AB35"
+  ],
+  "scope": "Synthetic exact Boolean theory: 40 XOR-constrained module pairs; saturated count at four",
+  "context_interpretation": "Activate the first inactive module and preserve each a XOR b = 1; identity if all modules are active. A total fixed-width map, not literal append or a physical design alteration.",
+  "source_amendments": [
+    "A030: three accepted binary splits from two initial blocks to five final blocks",
+    "A031: explicitly total fixed-width activation replaces undefined literal append semantics"
+  ],
+  "not_claimed": [
+    "Physical model adequacy",
+    "Complete real-building symbolic physics",
+    "Arbitrary compact SAT or SMT tractability",
+    "Measured speedup against enumeration of the trillion assignments"
+  ],
+  "variables": 80,
+  "input_circuit_gates": 603,
+  "represented_assignments": 1099511627776,
+  "final_blocks": 5,
+  "block_counts": [
+    1,
+    40,
+    780,
+    9880,
+    1099511617075
+  ],
+  "compiler_metrics": {
+    "initial_blocks": 2,
+    "accepted_binary_splits": 3,
+    "preimage_splitters": 8,
+    "block_split_probes": 31,
+    "diagram_nodes": 31569,
+    "concrete_states_enumerated": 0
+  },
+  "independent_checker": {
+    "status": "PASS",
+    "scope": "COMPLETE_SUPPLIED_BOOLEAN_CONTEXT_THEORY",
+    "root": "08b04cd36fb12646cb8e6032a3a2abe8c4df0308384c275bfff348592aafa46a",
+    "blocks": 5,
+    "domain_count": 1099511627776,
+    "verified_distinguishers": 10,
+    "work": 246457,
+    "checker_basis": "Canonical ordered Boolean diagrams, universal set obligations and concrete context replay"
+  },
+  "timings_seconds": {
+    "input_circuit_construction": 0.00015430000348715112,
+    "symbolic_compilation": 0.1396597999992082,
+    "independent_check": 0.16505069999402622
+  },
+  "implementation_sha256": {
+    "src\\oma\\optimization\\symbolic.py": "26beaba9959042b608aa202c7425268daae6e1c1ed9aa074a9b6afa8c55c7aa0",
+    "src\\oma\\optimization\\fdqa.py": "71622f541c9be26298311cc690fd48c3b236f22f2fe07d7316103f5e67c30dfa",
+    "src\\oma\\optimization\\finite.py": "d0765e4061da5f110c07b4cde4fa7aefe16c6a978727e1c9de9be33c6ab0c816"
+  },
+  "certificate": "evidence\\math\\original-symbolic-forty-module-certificate.json",
+  "certificate_sha256": "b6fde35b6a58bb26b53d3dd69b00f7bdefd419e2748336d7193da43d3194bb18",
+  "certificate_bytes": 484653,
+  "validation": "Focused tests independently enumerate all small XOR assignments and all paired residual behaviors in 18 random three-variable context theories; neither production compiler nor checker enumerates the concrete carrier."
+}

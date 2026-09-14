@@ -1,0 +1,402 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P24596; UTF16 792254]     (b : EnvironmentalBudget) : Prop :=
+[21-30:P24597; UTF16 792294]   b.grossUsed ≤ b.cap
+[21-30:P24598; UTF16 792316] Carbon balance
+[21-30:P24599; UTF16 792331] structure CarbonBalance where
+[21-30:P24600; UTF16 792361]   gross : ℝ
+[21-30:P24601; UTF16 792373]   removals : ℝ
+[21-30:P24602; UTF16 792388]   externalCredits : ℝ
+[21-30:P24603; UTF16 792410]   grossNonnegative : 0 ≤ gross
+[21-30:P24604; UTF16 792441]   removalsNonnegative : 0 ≤ removals
+[21-30:P24605; UTF16 792478]   creditsNonnegative : 0 ≤ externalCredits
+[21-30:P24607; UTF16 792522] def PhysicalNet
+[21-30:P24608; UTF16 792538]     (c : CarbonBalance) : ℝ :=
+[21-30:P24609; UTF16 792569]   c.gross - c.removals
+[21-30:P24611; UTF16 792593] def AccountingNet
+[21-30:P24613; UTF16 792642]   c.gross - c.removals - c.externalCredits
+[21-30:P24614; UTF16 792685] Circular substitution
+[21-30:P24615; UTF16 792707] def CircularNetImpact
+[21-30:P24616; UTF16 792729]     (processing recovered
+[21-30:P24617; UTF16 792755]      substitution virginImpact : ℝ) : ℝ :=
+[21-30:P24618; UTF16 792798]   processing -
+[21-30:P24619; UTF16 792813]     substitution * recovered * virginImpact
+[21-30:P24620; UTF16 792857] Environmental dominance
+[21-30:P24621; UTF16 792881] def EnvDominates
+[21-30:P24622; UTF16 792898]     (x y : ImpactIndex → ℝ) : Prop :=
+[21-30:P24623; UTF16 792936]   ∀ i, x i ≤ y i
+[21-30:P24624; UTF16 792953] Environmental fiber
+[21-30:P24625; UTF16 792973] def EnvironmentalFiber
+[21-30:P24626; UTF16 792996]     (target : EnvironmentalOutcome)
+[21-30:P24627; UTF16 793032]     (state : EnvironmentalState)
+[21-30:P24628; UTF16 793065]     (mode : EnvironmentalMode) :
+[21-30:P24629; UTF16 793098]     Set EnvironmentalWitness :=
+[21-30:P24631; UTF16 793137]     EnvironmentalValid
+[21-30:P24636; UTF16 793205] PCWEP
+[21-30:P24637; UTF16 793211] structure PCWEP where
+[21-30:P24639; UTF16 793255]   lifecycle : PCLAIReference
+[21-30:P24640; UTF16 793284]   functionalUnit : FunctionalUnit
+[21-30:P24641; UTF16 793318]   boundary : EnvironmentalBoundary
+[21-30:P24642; UTF16 793353]   inventory : InventoryStore
+[21-30:P24643; UTF16 793382]   characterization : CharacterizationStore
+[21-30:P24644; UTF16 793425]   allocation : AllocationStore
+[21-30:P24645; UTF16 793456]   operational : OperationalImpactStore
+[21-30:P24646; UTF16 793495]   water : WaterStore
+[21-30:P24647; UTF16 793516]   refrigerants : RefrigerantStore
+[21-30:P24648; UTF16 793550]   climate : ClimateScenarioStore
+[21-30:P24649; UTF16 793583]   adaptation : AdaptationStore
+[21-30:P24650; UTF16 793614]   budgets : EnvironmentalBudgetStore
+[21-30:P24651; UTF16 793651]   carbon : CarbonBalanceStore
+[21-30:P24652; UTF16 793681]   circularity : CircularityStore
+[21-30:P24658; UTF16 793770] 45. Mechanization Difficulty
+[21-30:P24659; UTF16 793799] ￼
+ATTACHED TABLE 1736627; native row/column order; 34 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Functional-unit typing", "Moderate"]
+ROW 2: ["Service-equivalence proof", "Difficult"]
+ROW 3: ["Boundary representation", "Moderate"]
+ROW 4: ["Inventory provenance", "Difficult"]
+ROW 5: ["Inventory completeness", "Research-level"]
+ROW 6: ["Linear characterization", "Moderate"]
+ROW 7: ["Nonlinear characterization", "Difficult"]
+ROW 8: ["Allocation conservation", "Straightforward"]
+ROW 9: ["Attributional accounting", "Moderate"]
+ROW 10: ["Consequential accounting", "Research-level"]
+ROW 11: ["Double-counting detection", "Difficult"]
+ROW 12: ["Whole-life modular sum", "Moderate"]
+ROW 13: ["Replacement counting", "Straightforward"]
+ROW 14: ["Time-resolved operational accounting", "Moderate"]
+ROW 15: ["Covariance theorem", "Moderate"]
+ROW 16: ["Causal retrofit savings", "Research-level"]
+ROW 17: ["Environmental payback", "Moderate"]
+ROW 18: ["Rebound modeling", "Difficult"]
+ROW 19: ["Water balance", "Moderate"]
+ROW 20: ["Refrigerant state", "Moderate"]
+ROW 21: ["Carbon-stock persistence", "Difficult"]
+ROW 22: ["Climate scenario families", "Difficult"]
+ROW 23: ["Climate-tail modeling", "Research-level"]
+ROW 24: ["Robust adaptation", "Difficult"]
+ROW 25: ["Climate-decision quotient", "Moderate"]
+ROW 26: ["Environmental budgets", "Moderate"]
+ROW 27: ["Net-zero semantics", "Moderate"]
+ROW 28: ["Circular substitution", "Difficult"]
+ROW 29: ["Environmental Pareto order", "Straightforward"]
+ROW 30: ["Environmental repair", "NP-hard in the declared abstraction"]
+ROW 31: ["Incremental recertification", "Difficult"]
+ROW 32: ["PCWEP checker", "Research-level"]
+ROW 33: ["Complete open-world environmental assurance", "Impossible without bounded assumptions"]
+[21-30:P24663; UTF16 793804] 46. Prompt-27 Complexity Profile
+[21-30:P24664; UTF16 793837] DEF-ENV47 — Prompt-27 Complexity Profile
+[21-30:P24665; UTF16 793878] \left( N_U, N_B, N_F, K_{\mathrm{inv}}, K_{\mathrm{char}}, K_{\mathrm{alloc}}, K_{\mathrm{time}}, K_{\mathrm{cf}}, K_{\mathrm{replace}}, K_{\mathrm{water}}, K_{\mathrm{ref}}, K_{\mathrm{carbon}}, K_{\mathrm{clim}}, K_{\mathrm{adapt}}, K_{\mathrm{budget}}, K_{\mathrm{circular}}, K_{\mathrm{multi}}, C_{\mathrm{inventory}}, C_{\mathrm{impact}}, C_{\mathrm{counterfactual}}, C_{\mathrm{climate}}, C_{\mathrm{adapt}}, C_{\mathrm{repair}}, C_{\mathrm{check}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unresolved}} \right). } ]
+[21-30:P24667; UTF16 794420] (N_U): functional-unit definitions;
+[21-30:P24668; UTF16 794456] (N_B): boundary representations;
+[21-30:P24669; UTF16 794489] (N_F): inventory-flow count;
+[21-30:P24670; UTF16 794518] (K_{\mathrm{inv}}): inventory complexity;
+[21-30:P24671; UTF16 794560] (K_{\mathrm{char}}): characterization complexity;
+[21-30:P24672; UTF16 794610] (K_{\mathrm{alloc}}): allocation and substitution complexity;
+[21-30:P24673; UTF16 794672] (K_{\mathrm{time}}): temporal-resolution complexity;
+[21-30:P24674; UTF16 794725] (K_{\mathrm{cf}}): counterfactual complexity;
+[21-30:P24675; UTF16 794771] (K_{\mathrm{replace}}): replacement complexity;
+[21-30:P24676; UTF16 794819] (K_{\mathrm{water}}): water-accounting complexity;
+[21-30:P24677; UTF16 794870] (K_{\mathrm{ref}}): refrigerant-state complexity;
+[21-30:P24678; UTF16 794920] (K_{\mathrm{carbon}}): carbon-stock and balance complexity;
+[21-30:P24679; UTF16 794980] (K_{\mathrm{clim}}): climate-scenario complexity;
+[21-30:P24680; UTF16 795030] (K_{\mathrm{adapt}}): adaptation-policy complexity;
+[21-30:P24681; UTF16 795082] (K_{\mathrm{budget}}): budget complexity;
+[21-30:P24682; UTF16 795124] (K_{\mathrm{circular}}): circular-substitution complexity;
+[21-30:P24683; UTF16 795183] (K_{\mathrm{multi}}): multi-impact complexity;
+[21-30:P24684; UTF16 795230] (C_{\mathrm{inventory}}): inventory-checking cost;
+[21-30:P24685; UTF16 795281] (C_{\mathrm{impact}}): characterization cost;
+[21-30:P24686; UTF16 795327] (C_{\mathrm{counterfactual}}): causal-analysis cost;
+[21-30:P24687; UTF16 795380] (C_{\mathrm{climate}}): scenario-checking cost;
+[21-30:P24688; UTF16 795428] (C_{\mathrm{adapt}}): adaptation synthesis/checking cost;
+[21-30:P24689; UTF16 795486] (C_{\mathrm{repair}}): environmental-repair cost;
+[21-30:P24690; UTF16 795536] (C_{\mathrm{check}}): independent PCWEP verification cost;
+[21-30:P24691; UTF16 795595] (R_{\mathrm{change}}): changed environmental roots;
+[21-30:P24692; UTF16 795647] (R_{\mathrm{recert}}): recertified slice;
+[21-30:P24693; UTF16 795689] (B_{\mathrm{unresolved}}): unresolved blockers.
+[21-30:P24694; UTF16 795737] No scalar sustainability score is defined.
+[21-30:P24698; UTF16 795783] 47. Permanent Assumption Registry
+[21-30:P24699; UTF16 795817] ￼
+ATTACHED TABLE 1736643; native row/column order; 33 rows
+ROW 0: ["ID", "Assumption"]
+ROW 1: ["ASSUMP-ENV1", "Project and Lifecycle Identity"]
+ROW 2: ["ASSUMP-ENV2", "Functional-Unit Identity"]
+ROW 3: ["ASSUMP-ENV3", "Functional Equivalence"]
+ROW 4: ["ASSUMP-ENV4", "System-Boundary Identity"]
+ROW 5: ["ASSUMP-ENV5", "Inventory Completeness"]
+ROW 6: ["ASSUMP-ENV6", "Flow Identity and Units"]
+ROW 7: ["ASSUMP-ENV7", "Characterization Validity"]
+ROW 8: ["ASSUMP-ENV8", "Characterization-Version Identity"]
+ROW 9: ["ASSUMP-ENV9", "Allocation Correctness"]
+ROW 10: ["ASSUMP-ENV10", "No Unchecked Double Counting"]
+ROW 11: ["ASSUMP-ENV11", "Attributional/Consequential Identity"]
+ROW 12: ["ASSUMP-ENV12", "Time Alignment"]
+ROW 13: ["ASSUMP-ENV13", "Counterfactual Validity"]
+ROW 14: ["ASSUMP-ENV14", "Operational Measurement Validity"]
+ROW 15: ["ASSUMP-ENV15", "Lifecycle Replacement Validity"]
+ROW 16: ["ASSUMP-ENV16", "Grid and Fuel Scenario Validity"]
+ROW 17: ["ASSUMP-ENV17", "Water-Balance Validity"]
+ROW 18: ["ASSUMP-ENV18", "Refrigerant-State Validity"]
+ROW 19: ["ASSUMP-ENV19", "Carbon-Stock Validity"]
+ROW 20: ["ASSUMP-ENV20", "Climate-Scenario Coverage"]
+ROW 21: ["ASSUMP-ENV21", "Climate-Hazard Formalization"]
+ROW 22: ["ASSUMP-ENV22", "Adaptation Executability"]
+ROW 23: ["ASSUMP-ENV23", "Environmental-Budget Semantics"]
+ROW 24: ["ASSUMP-ENV24", "Net-Zero Semantics"]
+ROW 25: ["ASSUMP-ENV25", "Circular-Substitution Semantics"]
+ROW 26: ["ASSUMP-ENV26", "Environmental Uncertainty"]
+ROW 27: ["ASSUMP-ENV27", "Cross-Project Evidence"]
+ROW 28: ["ASSUMP-ENV28", "Lifecycle Consistency"]
+ROW 29: ["ASSUMP-ENV29", "UNKNOWN Discipline"]
+ROW 30: ["ASSUMP-ENV30", "Checker Soundness"]
+ROW 31: ["ASSUMP-ENV31", "Dependency Completeness"]
+ROW 32: ["ASSUMP-ENV32", "Environmental Formalization Fidelity"]
+[21-30:P24703; UTF16 795822] 48. Permanent Definition Registry
+[21-30:P24704; UTF16 795856] ￼
+ATTACHED TABLE 1736659; native row/column order; 48 rows
+ROW 0: ["ID", "Definition"]
+ROW 1: ["DEF-ENV1", "Whole-Life Environmental State"]
+ROW 2: ["DEF-ENV2", "Functional Unit"]
+ROW 3: ["DEF-ENV3", "Environmental Intensity"]
+ROW 4: ["DEF-ENV4", "Environmental System Boundary"]
+ROW 5: ["DEF-ENV5", "Boundary-Relative Environmental Burden"]
+ROW 6: ["DEF-ENV6", "Environmental Inventory Flow"]
+ROW 7: ["DEF-ENV7", "Life-Cycle Inventory Vector"]
+ROW 8: ["DEF-ENV8", "Environmental Characterization Model"]
+ROW 9: ["DEF-ENV9", "Environmental Impact Vector"]
+ROW 10: ["DEF-ENV10", "Inventory Enclosure"]
+ROW 11: ["DEF-ENV11", "Allocation Rule"]
+ROW 12: ["DEF-ENV12", "Environmental Accounting Ledger"]
+ROW 13: ["DEF-ENV13", "Attributional Environmental Model"]
+ROW 14: ["DEF-ENV14", "Consequential Environmental Model"]
+ROW 15: ["DEF-ENV15", "Whole-Life Environmental Burden"]
+ROW 16: ["DEF-ENV16", "Deterministic Replacement Schedule"]
+ROW 17: ["DEF-ENV17", "Time-Resolved Operational Emissions"]
+ROW 18: ["DEF-ENV18", "Causal Environmental Savings"]
+ROW 19: ["DEF-ENV19", "Environmental Payback Time"]
+ROW 20: ["DEF-ENV20", "Rebound Adjustment"]
+ROW 21: ["DEF-ENV21", "Water Balance"]
+ROW 22: ["DEF-ENV22", "Refrigerant Inventory State"]
+ROW 23: ["DEF-ENV23", "Refrigerant Environmental Characterization"]
+ROW 24: ["DEF-ENV24", "Carbon Stock State"]
+ROW 25: ["DEF-ENV25", "Climate Scenario"]
+ROW 26: ["DEF-ENV26", "Climate Scenario Family"]
+ROW 27: ["DEF-ENV27", "Climate-Admissible Project Set"]
+ROW 28: ["DEF-ENV28", "Adaptation Policy"]
+ROW 29: ["DEF-ENV29", "Robust Adaptation Policy"]
+ROW 30: ["DEF-ENV30", "Climate Observation Map"]
+ROW 31: ["DEF-ENV31", "Gross Environmental Budget"]
+ROW 32: ["DEF-ENV32", "Gross Emissions"]
+ROW 33: ["DEF-ENV33", "Physical Removals"]
+ROW 34: ["DEF-ENV34", "External Balancing Credits"]
+ROW 35: ["DEF-ENV35", "Physical Net Balance"]
+ROW 36: ["DEF-ENV36", "Offset-Balanced Accounting Balance"]
+ROW 37: ["DEF-ENV37", "Substitution Ratio"]
+ROW 38: ["DEF-ENV38", "Net Recovery Effect"]
+ROW 39: ["DEF-ENV39", "Environmental Dominance"]
+ROW 40: ["DEF-ENV40", "Environmental Conflict Core"]
+ROW 41: ["DEF-ENV41", "Environmental Repair"]
+ROW 42: ["DEF-ENV42", "Environmental Repair Frontier"]
+ROW 43: ["DEF-ENV43", "Environmental Claim Modality"]
+ROW 44: ["DEF-ENV44", "Environmental Dependency Graph"]
+ROW 45: ["DEF-ENV45", "Environmental Performance Fiber"]
+ROW 46: ["DEF-ENV46", "PCWEP"]
+ROW 47: ["DEF-ENV47", "Prompt-27 Complexity Profile"]
+[21-30:P24708; UTF16 795861] 49. Permanent Theorem Registry
+[21-30:P24709; UTF16 795892] ￼
+ATTACHED TABLE 1736675; native row/column order; 37 rows
+ROW 0: ["ID", "Theorem", "Status"]
+ROW 1: ["THM-ENV1", "Absolute burden and normalized intensity can rank differently", "Proved"]
+ROW 2: ["THM-ENV2", "Gross nonnegative boundary enlargement is monotone", "Proved"]
+ROW 3: ["THM-ENV3", "Signed credits can break boundary monotonicity", "Proved"]
+ROW 4: ["THM-ENV4", "Fixed linear characterization is additive", "Proved"]
+ROW 5: ["THM-ENV5", "Nonnegative linear interval inventory bound", "Proved under Cartesian-box assumptions"]
+ROW 6: ["THM-ENV6", "Allocation conservation", "Proved"]
+ROW 7: ["THM-ENV7", "Product burden depends on allocation rule", "Proved"]
+ROW 8: ["THM-ENV8", "Attributional and consequential effects may differ in sign", "Proved by construction"]
+ROW 9: ["THM-ENV9", "Whole-life module accounting identity", "Proved under nonoverlap"]
+ROW 10: ["THM-ENV10", "Deterministic replacement-count formula", "Proved"]
+ROW 11: ["THM-ENV11", "Equal energy can yield unequal time-resolved emissions", "Proved"]
+ROW 12: ["THM-ENV12", "Average-factor error equals covariance term", "Proved"]
+ROW 13: ["THM-ENV13", "Before–after difference is not generically causal savings", "Proved"]
+ROW 14: ["THM-ENV14", "Constant-savings environmental payback", "Proved"]
+ROW 15: ["THM-ENV15", "Carbon payback does not imply environmental dominance", "Proved"]
+ROW 16: ["THM-ENV16", "Excess rebound causes backfire", "Proved"]
+ROW 17: ["THM-ENV17", "Withdrawal does not determine consumption", "Proved"]
+ROW 18: ["THM-ENV18", "Fixed-factor refrigerant characterization is additive", "Proved"]
+ROW 19: ["THM-ENV19", "Present carbon storage does not establish permanence", "Proved"]
+ROW 20: ["THM-ENV20", "Scenario expansion shrinks robust climate set", "Proved"]
+ROW 21: ["THM-ENV21", "Robust climate admissibility transfers to covered actual scenario", "Proved"]
+ROW 22: ["THM-ENV22", "Equal mean climate does not determine extreme risk", "Proved"]
+ROW 23: ["THM-ENV23", "Historical performance does not establish future robustness", "Proved"]
+ROW 24: ["THM-ENV24", "Mitigation and adaptation are independent", "Proved"]
+ROW 25: ["THM-ENV25", "Climate decision-sufficiency factorization", "Proved"]
+ROW 26: ["THM-ENV26", "Gross cumulative burden is monotone", "Proved"]
+ROW 27: ["THM-ENV27", "Offset-balanced accounting does not imply physical net zero", "Proved"]
+ROW 28: ["THM-ENV28", "Physical net zero does not imply zero gross emissions", "Proved"]
+ROW 29: ["THM-ENV29", "High recovery does not guarantee environmental benefit", "Proved"]
+ROW 30: ["THM-ENV30", "Environmental dominance is not total", "Proved"]
+ROW 31: ["THM-ENV31", "Minimum-cost environmental repair is NP-hard", "Proved by reduction"]
+ROW 32: ["THM-ENV32", "Incremental recertification equals cold checking", "Proved"]
+ROW 33: ["THM-ENV33", "Whole-project environmental theorem", "Proved under 28 assumptions"]
+ROW 34: ["THM-ENV34", "Open-world environmental limitation", "Proved"]
+ROW 35: ["THM-ENV35", "Proposal-source independence", "Proved"]
+ROW 36: ["THM-ENV36", "Explicit PCWEP checking complexity", "Proved"]
+[21-30:P24713; UTF16 795897] 50. Proposition and Algorithm Registries
+[21-30:P24715; UTF16 795959] ￼
+ATTACHED TABLE 1736691; native row/column order; 2 rows
+ROW 0: ["ID", "Proposition"]
+ROW 1: ["PRO-ENV1", "Crediting one physical environmental reduction twice overstates aggregate reduction"]
+[21-30:P24717; UTF16 795980] ￼
+ATTACHED TABLE 1736707; native row/column order; 36 rows
+ROW 0: ["ID", "Algorithm"]
+ROW 1: ["ALG-ENV1", "AuditEnvironmentalBasis"]
+ROW 2: ["ALG-ENV2", "AuditFunctionalUnit"]
+ROW 3: ["ALG-ENV3", "BuildEnvironmentalBoundary"]
+ROW 4: ["ALG-ENV4", "BuildLifeCycleInventory"]
+ROW 5: ["ALG-ENV5", "AuditDoubleCounting"]
+ROW 6: ["ALG-ENV6", "ApplyCharacterizationModel"]
+ROW 7: ["ALG-ENV7", "PropagateEnvironmentalUncertainty"]
+ROW 8: ["ALG-ENV8", "CheckAllocation"]
+ROW 9: ["ALG-ENV9", "CompareAccountingModels"]
+ROW 10: ["ALG-ENV10", "ComputeWholeLifeImpact"]
+ROW 11: ["ALG-ENV11", "ComputeReplacementBurden"]
+ROW 12: ["ALG-ENV12", "ComputeTimeResolvedOperationalImpact"]
+ROW 13: ["ALG-ENV13", "AuditAverageFactorApproximation"]
+ROW 14: ["ALG-ENV14", "AuditOperationalSavings"]
+ROW 15: ["ALG-ENV15", "ComputeEnvironmentalPayback"]
+ROW 16: ["ALG-ENV16", "AnalyzeRebound"]
+ROW 17: ["ALG-ENV17", "AuditWaterBalance"]
+ROW 18: ["ALG-ENV18", "AuditRefrigerantState"]
+ROW 19: ["ALG-ENV19", "TrackCarbonStock"]
+ROW 20: ["ALG-ENV20", "BuildClimateScenarioFamily"]
+ROW 21: ["ALG-ENV21", "CheckRobustClimatePerformance"]
+ROW 22: ["ALG-ENV22", "CheckClimateDecisionSufficiency"]
+ROW 23: ["ALG-ENV23", "PlanAdaptation"]
+ROW 24: ["ALG-ENV24", "AuditMitigationAdaptationTradeoff"]
+ROW 25: ["ALG-ENV25", "CheckEnvironmentalBudget"]
+ROW 26: ["ALG-ENV26", "AuditNetZeroClaim"]
+ROW 27: ["ALG-ENV27", "AuditCircularSubstitution"]
+ROW 28: ["ALG-ENV28", "BuildEnvironmentalParetoFrontier"]
+ROW 29: ["ALG-ENV29", "FindEnvironmentalConflictCore"]
+ROW 30: ["ALG-ENV30", "GenerateEnvironmentalRepairFrontier"]
+ROW 31: ["ALG-ENV31", "EnvironmentalRCVOCInterface"]
+ROW 32: ["ALG-ENV32", "RedTeamEnvironmentalTheory"]
+ROW 33: ["ALG-ENV33", "IncrementalEnvironmentalRecertification"]
+ROW 34: ["ALG-ENV34", "CheckPCWEP"]
+ROW 35: ["ALG-ENV35", "BuildPCWEP"]
+[21-30:P24721; UTF16 795985] 51. Conjecture Registry
+[21-30:P24722; UTF16 796009] CONJ-ENV1 — Functional-Unit Stability
+[21-30:P24723; UTF16 796047] Useful building alternatives can usually be compared under a small family of decision-relevant functional units.
+[21-30:P24724; UTF16 796160] Falsification: important comparisons routinely require incompatible service definitions.
+[21-30:P24725; UTF16 796249] CONJ-ENV2 — Sparse Environmental Boundary
+[21-30:P24726; UTF16 796291] Most project burden is concentrated in a manageable number of process families.
+[21-30:P24727; UTF16 796371] Falsification: high-impact flows remain extremely diffuse.
+[21-30:P24728; UTF16 796430] CONJ-ENV3 — Time-Resolved Accounting Matters
+[21-30:P24729; UTF16 796475] Time-resolved factors materially change conclusions for flexible building loads.
+[21-30:P24730; UTF16 796556] Falsification: load–factor covariance remains negligible in relevant systems.
+[21-30:P24731; UTF16 796634] CONJ-ENV4 — Lifecycle Replacement Matters
+[21-30:P24732; UTF16 796676] Maintenance and replacement materially alter whole-life environmental performance.
+[21-30:P24733; UTF16 796759] Falsification: recurring burdens are negligible relative to initial production and operation.
+[21-30:P24734; UTF16 796853] CONJ-ENV5 — Counterfactual Savings Differ From Naïve Differences
+[21-30:P24735; UTF16 796918] Counterfactual normalization materially changes retrofit conclusions.
+[21-30:P24736; UTF16 796988] Falsification: naïve before–after differences consistently agree with valid causal models.
+[21-30:P24737; UTF16 797079] CONJ-ENV6 — Climate Robustness Requires Multiple Scenarios
+[21-30:P24738; UTF16 797138] A moderate scenario family reveals adaptation weaknesses missed by historical-weather design.
+[21-30:P24739; UTF16 797232] Falsification: scenario expansion rarely changes environmental or adaptation decisions.
+[21-30:P24740; UTF16 797320] CONJ-ENV7 — Environmental Pareto Frontiers Remain Compact
+[21-30:P24741; UTF16 797378] Most alternatives collapse to a manageable nondominated frontier.
+[21-30:P24742; UTF16 797444] Falsification: nearly every candidate remains incomparable.
+[21-30:P24743; UTF16 797504] CONJ-ENV8 — Circular Substitution Is Often the Missing Variable
+[21-30:P24744; UTF16 797568] Many misleading circularity claims disappear when substitution and processing burdens are represented.
+[21-30:P24745; UTF16 797671] Falsification: substitution modeling rarely changes conclusions.
+[21-30:P24746; UTF16 797736] CONJ-ENV9 — Incremental Environmental Recertification Is Local
+[21-30:P24747; UTF16 797799] Routine maintenance and substitutions reopen only a limited environmental slice.
+[21-30:P24748; UTF16 797880] Falsification: ordinary changes reopen most whole-life accounting.
+[21-30:P24749; UTF16 797947] CONJ-ENV10 — Practical Hotel PCWEP
+[21-30:P24750; UTF16 797982] A 190-room hotel admits a practical integrated PCWEP.
+[21-30:P24751; UTF16 798036] Falsification: inventory, climate, counterfactual, or lifecycle complexity becomes prohibitive.
+[21-30:P24755; UTF16 798135] 52. Dependency DAG — Prompts 1–27
+[21-30:P24851; UTF16 799388] commissioning and handover
+[21-30:P24861; UTF16 799544] Prompt 27 expands as:
+[21-30:P24862; UTF16 799566] DEF-ENV1–3
+[21-30:P24863; UTF16 799577] state,
+[21-30:P24864; UTF16 799584] functional unit,
+[21-30:P24865; UTF16 799601] intensity
+[21-30:P24868; UTF16 799631] THM-ENV1
+[21-30:P24869; UTF16 799640] absolute versus normalized ranking
+[21-30:P24872; UTF16 799695] DEF-ENV4–5
+[21-30:P24873; UTF16 799706] system boundaries
+[21-30:P24877; UTF16 799780] ENV2               ENV3
+[21-30:P24878; UTF16 799804] gross monotonicity  signed-credit limit
+[21-30:P24881; UTF16 799864] DEF-ENV6–10
+[21-30:P24882; UTF16 799876] inventory,
+[21-30:P24883; UTF16 799887] characterization,
+[21-30:P24884; UTF16 799905] impact,
+[21-30:P24889; UTF16 799981] ENV4               ENV5
+[21-30:P24890; UTF16 800005] linearity          bounded inventory
+[21-30:P24893; UTF16 800062] DEF-ENV11–14
+[21-30:P24894; UTF16 800075] allocation,
+[21-30:P24895; UTF16 800087] ledger,
+[21-30:P24896; UTF16 800095] attributional,
+[21-30:P24897; UTF16 800110] consequential
+[21-30:P24901; UTF16 800180] ENV6 ENV7          ENV8
+[21-30:P24904; UTF16 800224] DEF-ENV15–16
+[21-30:P24905; UTF16 800237] whole-life burden,
+[21-30:P24906; UTF16 800256] replacement
+[21-30:P24910; UTF16 800324] ENV9               ENV10
+[21-30:P24913; UTF16 800369] DEF-ENV17
+[21-30:P24914; UTF16 800379] time-resolved operation
+[21-30:P24918; UTF16 800459] ENV11              ENV12
+[21-30:P24921; UTF16 800504] DEF-ENV18–20
+[21-30:P24922; UTF16 800517] counterfactual,
+[21-30:P24923; UTF16 800533] payback,
+[21-30:P24924; UTF16 800542] rebound
+[21-30:P24928; UTF16 800606] ENV13 ENV14–15    ENV16
+[21-30:P24931; UTF16 800650] DEF-ENV21–24
+[21-30:P24932; UTF16 800663] water,
+[21-30:P24933; UTF16 800670] refrigerants,
+[21-30:P24934; UTF16 800684] carbon stocks
+[21-30:P24938; UTF16 800754] ENV17 ENV18       ENV19
+[21-30:P24941; UTF16 800798] DEF-ENV25–30
+[21-30:P24942; UTF16 800811] climate scenarios,
+[21-30:P24943; UTF16 800830] robust sets,
+[21-30:P24944; UTF16 800843] adaptation,
+[21-30:P24945; UTF16 800855] decision sufficiency
+[21-30:P24947; UTF16 800886]    ┌────┼────────┬────────┬──────────┐
+[21-30:P24948; UTF16 800925]    ▼    ▼        ▼        ▼          ▼
+[21-30:P24949; UTF16 800964] ENV20 ENV21    ENV22    ENV23      ENV24–25
+[21-30:P24952; UTF16 801028] DEF-ENV31–36
+[21-30:P24953; UTF16 801041] budgets,
+[21-30:P24954; UTF16 801050] gross,
+[21-30:P24955; UTF16 801057] removals,
+[21-30:P24956; UTF16 801067] credits,
+[21-30:P24957; UTF16 801076] net-zero
+[21-30:P24961; UTF16 801141] ENV26 ENV27        ENV28
+[21-30:P24964; UTF16 801186] DEF-ENV37–39
+[21-30:P24965; UTF16 801199] substitution,
+[21-30:P24966; UTF16 801213] circular impact,
+[21-30:P24967; UTF16 801230] Pareto order
+[21-30:P24971; UTF16 801299] ENV29              ENV30
+[21-30:P24974; UTF16 801344] DEF-ENV40–46
+[21-30:P24983; UTF16 801436] THM-ENV31
+[21-30:P24984; UTF16 801446] repair hardness
+[21-30:P24987; UTF16 801482] THM-ENV32
+[21-30:P24991; UTF16 801531] THM-ENV33
+[21-30:P24992; UTF16 801541] whole-project environmental theorem
+[21-30:P24996; UTF16 801633] ENV34 ENV35       ENV36
+[21-30:P24997; UTF16 801657] open   proposer    checking
+[21-30:P24998; UTF16 801685] world  independence complexity
+[21-30:P25001; UTF16 801736] PROMPT 28
+[21-30:P25002; UTF16 801746] system-of-systems,
+[21-30:P25003; UTF16 801765] regional infrastructure,
+[21-30:P25004; UTF16 801790] externalities,
+[21-30:P25005; UTF16 801805] cumulative impact
+[21-30:P25006; UTF16 801823] Cross-prompt dependency map
+[21-30:P25007; UTF16 801851] Prompt 1: typed units, quantities, and environmental claim semantics.
+[21-30:P25008; UTF16 801921] Prompt 2: environmental contextual equivalence and service-normalized comparison.
+[21-30:P25009; UTF16 802003] Prompt 3: environmental decision separators.
+[21-30:P25010; UTF16 802048] Prompt 4: refinement when omitted environmental distinctions change decisions.
+[21-30:P25011; UTF16 802127] Prompt 5: certified inventory and impact uncertainty.
+[21-30:P25012; UTF16 802181] Prompt 6: reduced energy, climate, water, and flow models.

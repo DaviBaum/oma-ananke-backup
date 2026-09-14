@@ -1,0 +1,104 @@
+[table native25032 continued columns] ["Existing source", "Future module", "Action"]
+[table native25032 row5] {"cells": ["representation/service_bay.py", "benchmarks/service-bay", "benchmark only"]}
+[table native25032 row6] {"cells": ["routing/channel_graph.py", "packages/oma-router-legacy", "adapter; release path rewritten"]}
+[table native25032 row7] {"cells": ["transformations/service_spine.py", "packages/oma-rewrites-legacy", "adapt"]}
+[table native25032 row8] {"cells": ["dependencies/graph.py", "crates/oma-depgraph", "extend"]}
+[table native25032 row9] {"cells": ["optimization/*", "packages/oma-jcd-prototype", "retain behind compiler pass"]}
+[table native25032 row10] {"cells": ["verification/independent.py", "packages/oma-check-legacy", "retain as bounded checker"]}
+[table native25032 row11] {"cells": ["api/store.py", "packages/oma-run-projection", "retain"]}
+[table native25032 row12] {"cells": ["ingest/*", "packages/oma-import-ifc", "adapt"]}
+[table native25032 row13] {"cells": ["frontend/src/oma/*", "apps/oma-viewer", "extend"]}
+[table native25032 row14] {"cells": ["Loom gitlinks", "none", "unavailable"]}
+[table native25032 row15] {"cells": ["Loom vault", "research/loom-notes", "reference only"]}
+[table native25132 row0] {"columns": ["Layer", "Language", "Reason"]}
+[table native25132 row1] {"cells": ["Canonicalization, roots, transactions, capabilities", "Rust", "small reliable core, ownership, deterministic binary handling"]}
+[table native25132 row2] {"cells": ["Exact geometry predicates", "Rust with audited C++/exact library boundary where needed", "performance and precise arithmetic"]}
+[table native25132 row3] {"cells": ["Existing optimization and engineering models", "Python", "preserves current source and scientific ecosystem"]}
+[table native25132 row4] {"cells": ["Router orchestration", "Python initially; native kernels later", "migration without pretending current router is exact"]}
+[table native25132 row5] {"cells": ["MCP gateway", "TypeScript or Rust", "current SDK support and exact JSON-schema contracts"]}
+[table native25132 row6] {"cells": ["Viewer", "TypeScript/React/Three.js", "current source and graphics ecosystem"]}
+[table native25132 row7] {"cells": ["Analytical result querying", "DuckDB/Parquet", "nonauthoritative columnar analytics"]}
+[table native25132 row8] {"cells": ["Authoritative metadata", "SQLite", "local transactions, crash recovery, simple operations"]}
+[table native25132 row9] {"cells": ["Large immutable objects", "filesystem CAS/packfiles", "memory mapping and large blob efficiency"]}
+[table native25206 row0] {"columns": ["Process", "CPU", "Projected RAM", "VRAM", "SSD", "Restart"]}
+[table native25206 row1] {"cells": ["oma-daemon", "1–2 threads", "2–6 GB", "0", "SQLite + manifests", "transaction recovery"]}
+[table native25206 row2] {"cells": ["check worker", "2–8", "8–24 GB", "optional 0", "proof cache", "restart from proof task"]}
+[table native25206 row3] {"cells": ["router worker", "6–12", "20–50 GB", "4–20 GB active batches", "graph/checkpoint store", "route checkpoint"]}
+[table native25206 row4] {"cells": ["optimization worker", "6–12", "20–60 GB", "optional", "branch/candidate store", "solver checkpoint"]}
+[table native25206 row5] {"cells": ["dynamic worker", "4–12", "15–50 GB", "4–20 GB batches", "scenario deltas", "scenario checkpoint"]}
+[table native25206 row6] {"cells": ["viewer", "2–4", "2–8 GB", "2–8 GB", "disposable cache", "rebuild scene"]}
+[table native25206 row7] {"cells": ["MCP/AI gateway", "1–4", "1–4 GB", "0", "audit only", "stateless request retry"]}
+[table native25206 row8] {"cells": ["export worker", "2–8", "4–20 GB", "optional", "export staging", "pass restart"]}
+[table native25277 row0] {"columns": ["Ablation", "Expected loss"]}
+[table native25277 row1] {"cells": ["No immutable roots", "rollback and proof applicability become ambiguous"]}
+[table native25277 row2] {"cells": ["No translation validation", "producer correctness enters trusted base"]}
+[table native25277 row3] {"cells": ["No content addressing", "deduplication and closure weaken"]}
+[table native25277 row4] {"cells": ["No dependency graph", "incremental equivalence is unprovable"]}
+[table native25277 row5] {"cells": ["No exact cache key", "stale reuse risk"]}
+[table native25277 row6] {"cells": ["No authority layer", "optimizer may mutate protected state"]}
+[table native25277 row7] {"cells": ["No MCP effects", "hidden writes become possible"]}
+[table native25277 row8] {"cells": ["No contextual quotient", "excessive cache cardinality or unsafe aliasing"]}
+[table native25277 row9] {"cells": ["No proof DAG", "duplicated evidence and weak traceability"]}
+[table native25277 row10] {"cells": ["No route feedback", "architecture-first suboptimality"]}
+[table native25277 row11] {"cells": ["No dynamic layer", "construction/lifecycle claims disappear"]}
+[table native25277 row12] {"cells": ["No AI", "correctness unchanged; search and usability may degrade"]}
+[table native25277 row13] {"cells": ["No GPU", "correctness unchanged; proposal throughput may degrade"]}
+[table native25277 row14] {"cells": ["No incremental reuse", "correctness can remain; latency rises"]}
+[table native26059 row0] {"columns": ["Object", "Difficulty"]}
+[table native26059 row1] {"cells": ["Canonical schemas", "straightforward"]}
+[table native26059 row2] {"cells": ["Content closure", "straightforward"]}
+[table native26059 row3] {"cells": ["Semantic identity", "moderate"]}
+[table native26059 row4] {"cells": ["Transaction CAS", "moderate"]}
+[table native26059 row5] {"cells": ["Authority/capabilities", "moderate"]}
+[table native26059 row6] {"cells": ["Semantic merge", "difficult"]}
+[table native26059 row7] {"cells": ["Exact dependency completeness", "research-level"]}
+[table native26059 row8] {"cells": ["Translation validation", "moderate–difficult"]}
+[table native26059 row9] {"cells": ["Exact geometry checker", "difficult"]}
+[table native26059 row10] {"cells": ["PCROUTE proof checking", "difficult"]}
+[table native26059 row11] {"cells": ["JCD cut checking", "difficult"]}
+[table native26059 row12] {"cells": ["PCDYN policy checking", "research-level"]}
+[table native26059 row13] {"cells": ["Package gluing", "difficult"]}
+[table native26059 row14] {"cells": ["Release partial lattice", "moderate"]}
+[table native26059 row15] {"cells": ["Crash model", "difficult"]}
+[table native26059 row16] {"cells": ["Import mapping", "difficult"]}
+[table native26059 row17] {"cells": ["IFC round trip", "research-level"]}
+[table native26059 row18] {"cells": ["Viewer semantic index", "moderate"]}
+[table native26059 row19] {"cells": ["Incremental/cold equivalence", "difficult"]}
+[table native26059 row20] {"cells": ["Real-world completeness", "not attainable without bounded assumptions"]}
+[table native26104 row0] {"columns": ["Component", "Exact role", "Bounded role", "Heuristic role", "Trusted checker"]}
+[table native26104 row1] {"cells": ["Canonical store", "exact bytes/roots", "none", "none", "root kernel"]}
+[table native26104 row2] {"cells": ["Importer", "exact source bytes", "geometry enclosure", "semantic inference", "import checker"]}
+[table native26104 row3] {"cells": ["AI", "none", "confidence metadata", "proposals/orchestration", "proposal disposal"]}
+[table native26104 row4] {"cells": ["Router", "disposed route", "route/cost bounds", "path search", "PCROUTE checker"]}
+[table native26104 row5] {"cells": ["JCD", "exact finite proof", "global gap", "candidate generation", "PCJCD checker"]}
+[table native26104 row6] {"cells": ["DYN", "exact finite policy proof", "risk/robust bounds", "scenario search", "PCDYN checker"]}
+[table native26104 row7] {"cells": ["Viewer", "root identity/index", "uncertainty view", "animation/scarcity", "viewer checker"]}
+[table native26104 row8] {"cells": ["Export", "exact bytes/scope", "declared loss", "presentation", "export checker"]}
+[table native26104 row9] {"cells": ["Cache", "exact root reuse", "none", "approximate prefetch only", "applicability checker"]}
+[table native26104 row10] {"cells": ["MCP", "exact schema/effect envelope", "timeout/partial", "model scheduling", "capability/effect checker"]}
+[table native26162 row0] {"columns": ["Kernel component", "Trusted proposition", "Excluded untrusted work"]}
+[table native26162 row1] {"cells": ["Canonical decoder", "bytes decode uniquely", "source parser inference"]}
+[table native26162 row2] {"cells": ["Identity resolver", "semantic refs consistent", "AI naming"]}
+[table native26162 row3] {"cells": ["Type/unit checker", "dimensions compatible", "numerical model selection"]}
+[table native26162 row4] {"cells": ["Version checker", "active roots match", "migration proposal"]}
+[table native26162 row5] {"cells": ["Manifest checker", "root closed", "blob generation"]}
+[table native26162 row6] {"cells": ["Capability checker", "actor permitted", "policy suggestion"]}
+[table native26162 row7] {"cells": ["Transaction checker", "pre/postconditions hold", "rewrite generation"]}
+[table native26162 row8] {"cells": ["Dependency checker", "represented cone/reuse proof", "dependency discovery heuristic"]}
+[table native26162 row9] {"cells": ["Exact arithmetic", "proof arithmetic valid", "optimizer floating state"]}
+[table native26162 row10] {"cells": ["Geometry checker", "declared predicates hold", "route search"]}
+[table native26162 row11] {"cells": ["LP/Farkas checker", "certificate inequalities hold", "solver"]}
+[table native26162 row12] {"cells": ["Branch-proof checker", "finite proof tree closes", "branch search"]}
+[table native26162 row13] {"cells": ["Package gluing", "shared coordinates agree", "package generation"]}
+[table native26162 row14] {"cells": ["Release checker", "modality/waiver/UNKNOWN correct", "report phrasing"]}
+[table native26162 row15] {"cells": ["Serialization checker", "canonical output", "exporter implementation"]}
+[table native26213 row0] {"columns": ["Relation", "Defined when", "Result"]}
+[table native26213 row1] {"cells": ["\\(\\mu_1\\preceq\\mu_2\\)", "common compatible context and entailment", "\\(\\mu_2\\) is at least as strong"]}
+[table native26213 row2] {"cells": ["meet", "compatible conjunction expressible", "conjunction token"]}
+[table native26213 row3] {"cells": ["join", "compatible disjunction expressible", "disjunction token"]}
+[table native26213 row4] {"cells": ["incompatibility", "scope/version/theory conflict", "no join"]}
+[table native26213 row5] {"cells": ["waiver", "authority axis only", "disposition change"]}
+[table native26213 row6] {"cells": ["UNKNOWN", "insufficient proof", "incomparable to proved truth"]}
+[table native26213 row7] {"cells": ["bounded \\(\\to\\) exact", "never implicit", "requires exact proof"]}
+[table native26213 row8] {"cells": ["probabilistic \\(\\to\\) robust", "never implicit", "requires support theorem"]}
+[table native26213 row9] {"cells": ["local \\(\\to\\) global", "never implicit", "requires gluing/optimization theorem"]}

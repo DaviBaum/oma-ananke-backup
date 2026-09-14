@@ -1,0 +1,271 @@
+{
+  "mission_type": "shared_network",
+  "system_type": "PRESSURE_PIPE",
+  "start_m": [
+    19,
+    -5,
+    3
+  ],
+  "sinks": [
+    {
+      "id": "sink-a",
+      "demand_id": "demand-a",
+      "end_m": [
+        21,
+        -5,
+        3
+      ]
+    },
+    {
+      "id": "sink-b",
+      "demand_id": "demand-b",
+      "end_m": [
+        20,
+        -4,
+        3
+      ]
+    }
+  ],
+  "diameter_m": 0.1,
+  "insulation_m": 0.02,
+  "clearance_m": 0.01,
+  "minimum_straight_m": 0.05,
+  "minimum_bend_radius_m": 0.14,
+  "allowed_zone": {
+    "min": [
+      18.75,
+      -6.25,
+      1.75
+    ],
+    "max": [
+      21.25,
+      -3.75,
+      4.25
+    ]
+  },
+  "scenario_terminals": true,
+  "target_modality": "LOCAL_GEOMETRIC_COORDINATION",
+  "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+  "network_alternatives": [
+    {
+      "schema": "oma-physical-network/1",
+      "network_id": "editable-example",
+      "system_type": "PRESSURE_PIPE",
+      "components": [
+        {
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "id": "trunk",
+          "kind": "segment",
+          "geometry": {
+            "start_m": [
+              19,
+              -5,
+              3
+            ],
+            "end_m": [
+              19.8,
+              -5,
+              3
+            ]
+          },
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          }
+        },
+        {
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "id": "junction",
+          "kind": "tee",
+          "geometry": {
+            "frame_m": [
+              [
+                1,
+                0,
+                0,
+                20
+              ],
+              [
+                0,
+                1,
+                0,
+                -5
+              ],
+              [
+                0,
+                0,
+                1,
+                3
+              ],
+              [
+                0,
+                0,
+                0,
+                1
+              ]
+            ],
+            "trunk_takeout_m": 0.2,
+            "branch_takeout_m": 0.2
+          },
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE",
+            "branch": "SOURCE"
+          }
+        },
+        {
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "id": "arm-a",
+          "kind": "segment",
+          "geometry": {
+            "start_m": [
+              20.2,
+              -5,
+              3
+            ],
+            "end_m": [
+              21,
+              -5,
+              3
+            ]
+          },
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          }
+        },
+        {
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "id": "arm-b",
+          "kind": "segment",
+          "geometry": {
+            "start_m": [
+              20,
+              -4.8,
+              3
+            ],
+            "end_m": [
+              20,
+              -4,
+              3
+            ]
+          },
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          }
+        }
+      ],
+      "connections": [
+        {
+          "source": {
+            "component": "trunk",
+            "port": "b"
+          },
+          "sink": {
+            "component": "junction",
+            "port": "a"
+          }
+        },
+        {
+          "source": {
+            "component": "junction",
+            "port": "b"
+          },
+          "sink": {
+            "component": "arm-a",
+            "port": "a"
+          }
+        },
+        {
+          "source": {
+            "component": "junction",
+            "port": "branch"
+          },
+          "sink": {
+            "component": "arm-b",
+            "port": "a"
+          }
+        }
+      ],
+      "source": {
+        "component": "trunk",
+        "port": "a"
+      },
+      "sinks": [
+        {
+          "id": "sink-a",
+          "endpoint": {
+            "component": "arm-a",
+            "port": "b"
+          }
+        },
+        {
+          "id": "sink-b",
+          "endpoint": {
+            "component": "arm-b",
+            "port": "b"
+          }
+        }
+      ],
+      "demand_paths": [
+        {
+          "demand_id": "demand-a",
+          "sink_id": "sink-a",
+          "steps": [
+            {
+              "component": "trunk",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "junction",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "arm-a",
+              "entry_port": "a",
+              "exit_port": "b"
+            }
+          ]
+        },
+        {
+          "demand_id": "demand-b",
+          "sink_id": "sink-b",
+          "steps": [
+            {
+              "component": "trunk",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "junction",
+              "entry_port": "a",
+              "exit_port": "branch"
+            },
+            {
+              "component": "arm-b",
+              "entry_port": "a",
+              "exit_port": "b"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "objective_weights": {
+    "length_m": 1
+  },
+  "assumptions": [
+    "User-created geometric example with explicit scenario terminals. Review all coordinates, section, zone and source policy before running. Flow, pressure and service performance have not been supplied."
+  ]
+}

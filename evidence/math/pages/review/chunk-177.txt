@@ -1,0 +1,346 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P15283; UTF16 504065] \left( \mathsf{id}, \mathsf{subject}, \mathsf{predicate}, \mathsf{conditions}, \mathsf{evidenceType}, \mathsf{tolerance}, \mathsf{authority}, \mathsf{version} \right). } ]
+[21-30:P15284; UTF16 504237] A requirement may concern:
+[21-30:P15286; UTF16 504274] performance;
+[21-30:P15288; UTF16 504295] control behavior;
+[21-30:P15289; UTF16 504313] reliability evidence;
+[21-30:P15290; UTF16 504335] documentation;
+[21-30:P15291; UTF16 504350] interoperability;
+[21-30:P15292; UTF16 504368] commissioning state.
+[21-30:P15296; UTF16 504392] DEF-ACC3 — Acceptance Basis
+[21-30:P15298; UTF16 504428] \left( \mathcal R, \mathsf{artifactVersion}, \mathsf{testTheory}, \mathsf{measurementTheory}, \mathsf{authority}, \mathsf{releaseMode} \right). } ]
+[21-30:P15299; UTF16 504576] Acceptance is always relative to an acceptance basis.
+[21-30:P15303; UTF16 504633] 7. Design Compliance Versus Delivered Acceptance
+[21-30:P15304; UTF16 504682] THM-ACC1 — Design Compliance Does Not Imply Delivered-System Acceptance
+[21-30:P15306; UTF16 504767] Let acceptance requirement (r) be represented by predicate:
+[21-30:P15307; UTF16 504827] [ P_r(b). ]
+[21-30:P15308; UTF16 504839] Let checked design artifact (b_d) satisfy:
+[21-30:P15309; UTF16 504882] [ P_r(b_d)=\mathsf{TRUE}. ]
+[21-30:P15310; UTF16 504910] During physical execution, let the delivered artifact become:
+[21-30:P15311; UTF16 504972] [ b_a\neq b_d ]
+[21-30:P15312; UTF16 504988] and suppose:
+[21-30:P15313; UTF16 505001] [ P_r(b_a)=\mathsf{FALSE}. ]
+[21-30:P15319; UTF16 505089] [ \boxed{ \text{design compliance} \not\Longrightarrow \text{delivered-system acceptance}. } ]
+[21-30:P15321; UTF16 505186] Prompt 13 establishes a concrete design artifact.
+[21-30:P15322; UTF16 505236] Prompt 14 establishes the relationship between planned and physically executed state.
+[21-30:P15323; UTF16 505322] Prompt 25 must bind acceptance evidence to the delivered artifact.
+[21-30:P15327; UTF16 505392] 8. Measurands and Measurement Relations
+[21-30:P15328; UTF16 505432] DEF-ACC4 — Measurand
+[21-30:P15329; UTF16 505453] A Measurand is:
+[21-30:P15330; UTF16 505469] \left( \mathsf{id}, \mathsf{quantity}, \mathsf{location}, \mathsf{stateConditions}, \mathsf{units}, \mathsf{version} \right). } ]
+[21-30:P15334; UTF16 505602] DEF-ACC5 — Measurement Artifact
+[21-30:P15336; UTF16 505642] \left( \mathsf{measurand}, \mathsf{instrument}, \mathsf{value}, \mathsf{time}, \mathsf{conditions}, \mathsf{uncertainty}, \mathsf{calibrationRef}, \mathsf{evidence} \right). } ]
+[21-30:P15340; UTF16 505823] DEF-ACC6 — Measurement Enclosure
+[21-30:P15341; UTF16 505856] For measurement evidence (y), define a certified set:
+[21-30:P15342; UTF16 505910] [ \boxed{ I(y)\subseteq X_m } ]
+[21-30:P15343; UTF16 505942] with direct claim:
+[21-30:P15344; UTF16 505961] [ \boxed{ x_m^\star\in I(y). } ]
+[21-30:P15345; UTF16 505994] The enclosure may be:
+[21-30:P15348; UTF16 506041] polyhedral;
+[21-30:P15349; UTF16 506053] relational;
+[21-30:P15350; UTF16 506065] set-valued;
+[21-30:P15351; UTF16 506077] probabilistic under a separately declared modality.
+[21-30:P15352; UTF16 506129] A point estimate is not the enclosure.
+[21-30:P15356; UTF16 506171] 9. Calibration and Traceability
+[21-30:P15357; UTF16 506203] DEF-ACC7 — Calibration Artifact
+[21-30:P15358; UTF16 506235] A Calibration Artifact records:
+[21-30:P15359; UTF16 506267] instrument identity;
+[21-30:P15360; UTF16 506288] reference identity;
+[21-30:P15361; UTF16 506308] calibration relation;
+[21-30:P15363; UTF16 506336] environmental and operating conditions;
+[21-30:P15365; UTF16 506389] validity horizon;
+[21-30:P15371; UTF16 506429] DEF-ACC8 — Calibration Traceability Chain
+[21-30:P15373; UTF16 506479] [ \boxed{ K_0 \longrightarrow K_1 \longrightarrow \cdots \longrightarrow K_n, } ]
+[21-30:P15374; UTF16 506561] where every relation carries:
+[21-30:P15375; UTF16 506591] calibration error or uncertainty;
+[21-30:P15377; UTF16 506637] validity;
+[21-30:P15380; UTF16 506676] Traceability is an evidence chain.
+[21-30:P15381; UTF16 506711] It is not exact physical truth.
+[21-30:P15385; UTF16 506746] 10. Calibration-Chain Uncertainty
+[21-30:P15386; UTF16 506780] THM-ACC2 — Additive Bounded Calibration Errors Compose by the Triangle Inequality
+[21-30:P15389; UTF16 506881] x_j+e_j, \qquad |e_j|\le u_j, ]
+[21-30:P15391; UTF16 506918] [ j=0,\ldots,n-1. ]
+[21-30:P15393; UTF16 506944] [ \boxed{ |x_n-x_0| \le \sum_{j=0}^{n-1}u_j. } ]
+[21-30:P15395; UTF16 506999] By telescoping:
+[21-30:P15396; UTF16 507015] \sum_{j=0}^{n-1}e_j. ]
+[21-30:P15397; UTF16 507038] Apply the triangle inequality:
+[21-30:P15398; UTF16 507069] \left| \sum_{j=0}^{n-1}e_j \right| \le \sum_{j=0}^{n-1}|e_j|. ]
+[21-30:P15400; UTF16 507142] [ |e_j|\le u_j, ]
+[21-30:P15402; UTF16 507171] [ |x_n-x_0| \le \sum_{j=0}^{n-1}u_j. ]
+[21-30:P15404; UTF16 507212] This theorem concerns an additive bounded-error chain. Arbitrary nonlinear metrology requires its own propagation theorem.
+[21-30:P15408; UTF16 507338] THM-ACC3 — Calibration Traceability Does Not Imply Zero Measurement Error
+[21-30:P15410; UTF16 507418] Take a traceable chain satisfying THM-ACC2 with at least one:
+[21-30:P15411; UTF16 507480] [ u_j>0. ]
+[21-30:P15412; UTF16 507491] The chain proves:
+[21-30:P15413; UTF16 507509] [ |x_n-x_0| \le \sum_j u_j. ]
+[21-30:P15414; UTF16 507539] The right-hand side is positive.
+[21-30:P15415; UTF16 507572] For example, choose admissible errors with:
+[21-30:P15416; UTF16 507616] [ e_j=u_j ]
+[21-30:P15417; UTF16 507628] for one nonzero stage and zero elsewhere.
+[21-30:P15419; UTF16 507676] [ x_n\neq x_0 ]
+[21-30:P15420; UTF16 507692] while every calibration relation remains inside its certified bound.
+[21-30:P15421; UTF16 507761] Therefore traceability and nonzero endpoint error are compatible.
+[21-30:P15423; UTF16 507834] [ \boxed{ \text{traceable} \not\Longrightarrow \text{exact}. } ]
+[21-30:P15428; UTF16 507904] 11. Calibration Leases and Drift
+[21-30:P15429; UTF16 507937] DEF-ACC9 — Calibration Lease
+[21-30:P15431; UTF16 507974] \left( \mathsf{instrument}, t_0, h, \mathsf{calibration}, \mathsf{driftEnvelope}, \mathsf{conditions}, \mathsf{dependencies} \right). } ]
+[21-30:P15435; UTF16 508115] THM-ACC4 — Valid Calibration Plus Bounded Drift Gives a Time-Scoped Measurement Enclosure
+[21-30:P15437; UTF16 508217] Let true value be (x), reported measurement be (y), and suppose:
+[21-30:P15438; UTF16 508282] [ y=x+e_0+d(t)+n, ]
+[21-30:P15440; UTF16 508309] calibration error: [ |e_0|\le u_0; ]
+[21-30:P15441; UTF16 508346] drift: [ |d(t)|\le D(t); ]
+[21-30:P15442; UTF16 508373] measurement noise: [ |n|\le u_n. ]
+[21-30:P15444; UTF16 508419] [ \boxed{ |x-y| \le u_0+D(t)+u_n. } ]
+[21-30:P15447; UTF16 508474] -e_0-d(t)-n. ]
+[21-30:P15449; UTF16 508495] [ |x-y| \le |e_0|+|d(t)|+|n| \le u_0+D(t)+u_n. ]
+[21-30:P15451; UTF16 508546] The corresponding enclosure is:
+[21-30:P15452; UTF16 508578] [ x \in \left[ y-u_0-D(t)-u_n, ; y+u_0+D(t)+u_n \right]. ]
+[21-30:P15456; UTF16 508640] THM-ACC5 — Expired Calibration Without a Valid Drift Bound Does Not Establish Current Measurement Validity
+[21-30:P15458; UTF16 508760] Let an instrument be calibrated at time (t_0) with valid bounded error.
+[21-30:P15459; UTF16 508832] At later time (t_1):
+[21-30:P15460; UTF16 508853] the calibration lease has expired;
+[21-30:P15461; UTF16 508888] no accepted drift envelope covers (t_1).
+[21-30:P15462; UTF16 508929] Construct two physical worlds identical through the lease horizon.
+[21-30:P15463; UTF16 508996] After expiry:
+[21-30:P15464; UTF16 509010] in world (W_1), instrument drift remains zero;
+[21-30:P15465; UTF16 509057] in world (W_2), instrument develops an unbounded or out-of-model offset.
+[21-30:P15466; UTF16 509130] The historic calibration artifact is authentic in both worlds.
+[21-30:P15467; UTF16 509193] The current measurement-error relation differs.
+[21-30:P15468; UTF16 509241] Therefore historic calibration evidence does not entail a current enclosure at (t_1).
+[21-30:P15470; UTF16 509334] [ \boxed{ \text{historically calibrated} \not\Longrightarrow \text{currently measurement valid}. } ]
+[21-30:P15475; UTF16 509440] 12. Acceptance Under Measurement Uncertainty
+[21-30:P15476; UTF16 509485] Suppose the acceptance requirement is:
+[21-30:P15477; UTF16 509524] [ x\le U. ]
+[21-30:P15478; UTF16 509536] Measurement evidence yields a nonempty bounded enclosure:
+[21-30:P15479; UTF16 509594] [ I=[L_I,U_I]. ]
+[21-30:P15480; UTF16 509611] DEF-ACC10 — Three-Way Measurement Decision
+[21-30:P15482; UTF16 509662] \begin{cases} \mathsf{PASS}, & U_I\le U, \[4pt] \mathsf{FAIL}, & L_I>U, \[4pt] \mathsf{UNRESOLVED}, & L_I\le U<U_I. \end{cases} } ]
+[21-30:P15486; UTF16 509797] THM-ACC6 — Three-Way Enclosure Decision Is Sound
+[21-30:P15488; UTF16 509854] [ x^\star\in I. ]
+[21-30:P15489; UTF16 509872] PASS case
+[21-30:P15491; UTF16 509886] [ U_I\le U, ]
+[21-30:P15493; UTF16 509906] [ x^\star\le U_I\le U. ]
+[21-30:P15494; UTF16 509931] Therefore the requirement holds.
+[21-30:P15495; UTF16 509964] FAIL case
+[21-30:P15497; UTF16 509978] [ L_I>U, ]
+[21-30:P15499; UTF16 509995] [ x^\star\ge L_I>U. ]
+[21-30:P15500; UTF16 510017] Therefore the requirement fails.
+[21-30:P15501; UTF16 510050] UNRESOLVED case
+[21-30:P15503; UTF16 510075] [ L_I\le U<U_I. ]
+[21-30:P15504; UTF16 510093] The enclosure contains a value:
+[21-30:P15505; UTF16 510125] [ x_-=L_I\le U ]
+[21-30:P15506; UTF16 510142] satisfying the requirement and a value:
+[21-30:P15507; UTF16 510182] [ x_+=U_I>U ]
+[21-30:P15508; UTF16 510196] violating the requirement.
+[21-30:P15509; UTF16 510223] Containment of (x^\star) in (I) alone does not determine which state is actual.
+[21-30:P15510; UTF16 510303] Therefore neither PASS nor FAIL follows.
+[21-30:P15515; UTF16 510349] 13. Guard Bands
+[21-30:P15516; UTF16 510365] DEF-ACC11 — Guard-Banded Acceptance
+[21-30:P15518; UTF16 510405] [ |x-y|\le u, ]
+[21-30:P15519; UTF16 510421] a conservative upper-limit acceptance rule is:
+[21-30:P15520; UTF16 510468] [ \boxed{ y+u\le U. } ]
+[21-30:P15524; UTF16 510495] THM-ACC7 — Guard-Banded Pass Prevents False Acceptance Under the Declared Error Bound
+[21-30:P15526; UTF16 510589] [ |x-y|\le u ]
+[21-30:P15528; UTF16 510609] [ y+u\le U. ]
+[21-30:P15532; UTF16 510654] [ x-y\le u, ]
+[21-30:P15534; UTF16 510672] [ x\le y+u. ]
+[21-30:P15536; UTF16 510693] [ x\le y+u\le U. ]
+[21-30:P15537; UTF16 510712] Therefore the true value satisfies the requirement. ∎
+[21-30:P15538; UTF16 510766] The result is only as sound as the error bound (u).
+[21-30:P15542; UTF16 510821] 14. Test Cases
+[21-30:P15543; UTF16 510836] DEF-ACC12 — Acceptance Test Case
+[21-30:P15545; UTF16 510877] \left( \mathsf{id}, \mathsf{requirements}, \mathsf{preconditions}, \mathsf{stimulus}, \mathsf{observations}, \mathsf{measurement}, \mathsf{acceptanceCriterion}, \mathsf{recovery}, \mathsf{version} \right). } ]
+[21-30:P15549; UTF16 511090] DEF-ACC13 — Test Execution Artifact
+[21-30:P15550; UTF16 511126] A Test Execution Artifact contains:
+[21-30:P15551; UTF16 511162] exact test version;
+[21-30:P15552; UTF16 511182] exact artifact version;
+[21-30:P15553; UTF16 511206] test conditions;
+[21-30:P15554; UTF16 511223] executor or automation identity;
+[21-30:P15555; UTF16 511256] measurement system;
+[21-30:P15556; UTF16 511276] raw observations;
+[21-30:P15557; UTF16 511294] acceptance result;
+[21-30:P15558; UTF16 511313] anomalies;
+[21-30:P15559; UTF16 511324] timestamps;
+[21-30:P15560; UTF16 511336] restoration state;
+[21-30:P15565; UTF16 511374] 15. Test Plans
+[21-30:P15566; UTF16 511389] DEF-ACC14 — Test Plan
+[21-30:P15567; UTF16 511411] A Test Plan is:
+[21-30:P15568; UTF16 511427] {t_1,\ldots,t_m} } ]
+[21-30:P15570; UTF16 511454] execution ordering;
+[21-30:P15571; UTF16 511474] preconditions;
+[21-30:P15573; UTF16 511507] safe-state requirements;
+[21-30:P15574; UTF16 511532] restoration actions;
+[21-30:P15575; UTF16 511553] test dependencies;
+[21-30:P15576; UTF16 511572] human role requirements.
+[21-30:P15580; UTF16 511600] 16. Acceptance Observation Map
+[21-30:P15581; UTF16 511631] Let (X) be the modeled delivered-system state space.
+[21-30:P15582; UTF16 511684] For selected test suite (\mathcal T), let:
+[21-30:P15583; UTF16 511727] [ \boxed{ T_{\mathcal T}\rightarrow O_{\mathcal T} } ]
+[21-30:P15584; UTF16 511782] be the complete valid test-observation map.
+[21-30:P15585; UTF16 511826] Let acceptance truth be:
+[21-30:P15586; UTF16 511851] [ \boxed{ A^\star\rightarrow {\mathsf{PASS},\mathsf{FAIL}}. } ]
+[21-30:P15587; UTF16 511915] The map (T_{\mathcal T}) includes only observations whose:
+[21-30:P15588; UTF16 511974] instruments;
+[21-30:P15589; UTF16 511987] calibrations;
+[21-30:P15591; UTF16 512013] execution;
+[21-30:P15592; UTF16 512024] evidence
+[21-30:P15593; UTF16 512033] are valid.
+[21-30:P15597; UTF16 512047] 17. Acceptance-Sufficient Test Suites
+[21-30:P15598; UTF16 512085] THM-ACC8 — Exact Acceptance Can Be Decided From Test Outcomes Iff Acceptance Is Constant on Every Test-Outcome Fiber
+[21-30:P15600; UTF16 512212] There exists:
+[21-30:P15601; UTF16 512226] [ \pi: O_{\mathcal T} \rightarrow {\mathsf{PASS},\mathsf{FAIL}} ]
+[21-30:P15603; UTF16 512303] \pi\circ T_{\mathcal T} } ]
+[21-30:P15605; UTF16 512336] A^\star(x_2). } ]
+[21-30:P15608; UTF16 512380] [ A^\star=\pi\circ T_{\mathcal T}. ]
+[21-30:P15610; UTF16 512421] T_{\mathcal T}(x_2), ]
+[21-30:P15612; UTF16 512450] \pi(T_{\mathcal T}(x_1))
+[21-30:P15613; UTF16 512475] \pi(T_{\mathcal T}(x_2))
+[21-30:P15614; UTF16 512500] A^\star(x_2). ]
+[21-30:P15616; UTF16 512534] Assume (A^\star) is constant on every fiber of (T_{\mathcal T}).
+[21-30:P15618; UTF16 512610] [ o\in\operatorname{im}(T_{\mathcal T}), ]
+[21-30:P15619; UTF16 512653] select any (x_o) such that:
+[21-30:P15620; UTF16 512681] [ T_{\mathcal T}(x_o)=o. ]
+[21-30:P15622; UTF16 512716] [ \pi(o)=A^\star(x_o). ]
+[21-30:P15624; UTF16 512782] Extend (\pi) arbitrarily outside the image.
+[21-30:P15626; UTF16 512851] A^\star(x). ]
+[21-30:P15633; UTF16 512918] THM-ACC9 — Test-Indistinguishable Acceptable and Unacceptable States Make Exact Acceptance Impossible
+[21-30:P15637; UTF16 513052] [ A^\star(x_1) \neq A^\star(x_2), ]
+[21-30:P15638; UTF16 513088] the necessary condition in THM-ACC8 fails.
+[21-30:P15639; UTF16 513131] Therefore no acceptance decision based only on the test suite can be correct in both states. ∎
+[21-30:P15640; UTF16 513226] This is an exact acceptance-coverage hole.
+[21-30:P15644; UTF16 513272] 18. Modeled Fault Coverage
+[21-30:P15645; UTF16 513299] DEF-ACC15 — Modeled Fault or Nonconformance Family
+[21-30:P15647; UTF16 513355] {f_1,\ldots,f_k}. } ]
+[21-30:P15648; UTF16 513377] Each (f) corresponds to a declared set of unacceptable system states.
+[21-30:P15652; UTF16 513450] DEF-ACC16 — Test Detects Fault
+[21-30:P15653; UTF16 513481] Test (t) detects fault (f) over covered domain (X_C) when:
+[21-30:P15654; UTF16 513540] [ \boxed{ \forall x\in X_C, \quad f(x) \Longrightarrow \mathsf{Reject}_t(x). } ]
+[21-30:P15655; UTF16 513621] The implication is itself a proof obligation.
+[21-30:P15659; UTF16 513670] DEF-ACC17 — Test-Coverage Set
+[21-30:P15661; UTF16 513708] \left{ f\in\mathcal F_{\mathrm{fault}} : t\text{ detects }f \right}. } ]
+[21-30:P15662; UTF16 513781] A suite covers:
+[21-30:P15663; UTF16 513797] \bigcup_{t\in\mathcal T}C(t). } ]
+[21-30:P15667; UTF16 513834] 19. Complete Modeled Coverage
+[21-30:P15668; UTF16 513864] THM-ACC10 — Adding Tests Cannot Reduce Modeled Fault Coverage
+[21-30:P15670; UTF16 513930] [ \mathcal T_1\subseteq\mathcal T_2, ]
+[21-30:P15671; UTF16 513969] then every test in (\mathcal T_1) is also in (\mathcal T_2).
+[21-30:P15673; UTF16 514041] [ \bigcup_{t\in\mathcal T_1}C(t) \subseteq \bigcup_{t\in\mathcal T_2}C(t). ]
+[21-30:P15675; UTF16 514125] [ \boxed{ C(\mathcal T_1) \subseteq C(\mathcal T_2). } ]
+[21-30:P15677; UTF16 514184] This theorem says nothing about:
+[21-30:P15678; UTF16 514217] test cost;
+[21-30:P15679; UTF16 514228] test-induced risk;
+[21-30:P15680; UTF16 514247] false alarms;
+[21-30:P15681; UTF16 514261] test interactions;
+[21-30:P15682; UTF16 514280] human workload.
+[21-30:P15686; UTF16 514299] THM-ACC11 — Complete Sound Detection of Every Modeled Unacceptable State Makes an All-Pass Suite Sufficient for Modeled Acceptance
+[21-30:P15688; UTF16 514442] Let (\mathcal A\subseteq X_C) be the accepted-state set.
+[21-30:P15690; UTF16 514507] every unacceptable covered state contains at least one modeled fault: [ x\notin\mathcal A \Longrightarrow \exists f\in\mathcal F_{\mathrm{fault}}, \quad f(x); ]
+[21-30:P15691; UTF16 514668] \mathcal F_{\mathrm{fault}}; ]
+[21-30:P15692; UTF16 514699] every declared detection relation is valid;
+[21-30:P15693; UTF16 514743] every selected test passes on actual covered state (x^\star).
+[21-30:P15695; UTF16 514816] [ \boxed{ x^\star\in\mathcal A. } ]
+[21-30:P15697; UTF16 514858] Assume for contradiction:
+[21-30:P15698; UTF16 514884] [ x^\star\notin\mathcal A. ]
+[21-30:P15699; UTF16 514913] By assumption 1, there exists modeled fault (f) such that:
+[21-30:P15700; UTF16 514972] [ f(x^\star). ]
+[21-30:P15701; UTF16 514988] By assumption 2, some selected test (t\in\mathcal T) detects (f).
+[21-30:P15702; UTF16 515054] By DEF-ACC16:
+[21-30:P15703; UTF16 515068] [ f(x^\star) \Longrightarrow \mathsf{Reject}_t(x^\star). ]
+[21-30:P15704; UTF16 515127] Thus test (t) must reject.
+[21-30:P15705; UTF16 515154] This contradicts assumption 4 that every selected test passes.
+[21-30:P15707; UTF16 515228] [ x^\star\in\mathcal A. ]
+[21-30:P15709; UTF16 515256] This is complete only relative to:
+[21-30:P15710; UTF16 515291] (X_C);
+[21-30:P15711; UTF16 515298] (\mathcal F_{\mathrm{fault}});
+[21-30:P15712; UTF16 515329] the detection relations;
+[21-30:P15713; UTF16 515354] the validity of the executed tests.
+[21-30:P15717; UTF16 515393] 20. Minimum-Cost Test Selection
+[21-30:P15718; UTF16 515425] THM-ACC12 — Minimum-Cost Complete Test Selection Is NP-Hard
+[21-30:P15721; UTF16 515562] universe: [ U={u_1,\ldots,u_k}; ]
+[21-30:P15722; UTF16 515596] subsets: [ S_1,\ldots,S_m\subseteq U; ]
+[21-30:P15723; UTF16 515636] costs: [ c_1,\ldots,c_m>0. ]
+[21-30:P15724; UTF16 515665] Construct a test-selection instance.
+[21-30:P15725; UTF16 515702] For every universe element (u_i), create one modeled fault (f_i).
+[21-30:P15726; UTF16 515768] For every set (S_j), create one test (t_j) with:
+[21-30:P15727; UTF16 515817] {f_i\in S_j}, ]
+[21-30:P15728; UTF16 515833] and cost (c_j).
+[21-30:P15729; UTF16 515849] A selected test family (J) has complete fault coverage iff:
+[21-30:P15730; UTF16 515909] \mathcal F_{\mathrm{fault}}, ]
+[21-30:P15731; UTF16 515940] which holds exactly when:
+[21-30:P15733; UTF16 515971] The costs are identical.
+[21-30:P15735; UTF16 516028] Therefore an optimal complete test selector would solve Weighted Set Cover.
+[21-30:P15736; UTF16 516104] Hence minimum-cost complete test selection is NP-hard. ∎
+[21-30:P15740; UTF16 516164] 21. Operating-Point Scope
+[21-30:P15741; UTF16 516190] THM-ACC13 — Passing a Test at One Operating Point Does Not Establish Performance Over an Unchecked Operating Envelope
+[21-30:P15743; UTF16 516321] Let operating variable satisfy:
+[21-30:P15745; UTF16 516368] The acceptance requirement is:
+[21-30:P15746; UTF16 516399] [ p(x)\le1 \qquad \forall x\in[0,1]. ]
+[21-30:P15748; UTF16 516446] [ p(x)=2x. ]
+[21-30:P15749; UTF16 516459] At tested point (x=0):
+[21-30:P15750; UTF16 516482] [ p(0)=0\le1. ]
+[21-30:P15751; UTF16 516498] The test passes.
+[21-30:P15752; UTF16 516515] At (x=1):
+[21-30:P15753; UTF16 516525] [ p(1)=2>1. ]
+[21-30:P15754; UTF16 516539] The operating-envelope requirement fails.
+[21-30:P15756; UTF16 516592] [ \boxed{ \text{one-point test pass} \not\Longrightarrow \text{operating-envelope acceptance}. } ]
+[21-30:P15761; UTF16 516696] 22. Fault Signatures and Diagnosis
+[21-30:P15762; UTF16 516731] DEF-ACC18 — Test Signature
+[21-30:P15763; UTF16 516758] For modeled fault (f), define the complete joint possible test-outcome set:
+[21-30:P15764; UTF16 516834] [ \boxed{ \Sigma(f)\subseteq O_{\mathcal T}. } ]
+[21-30:P15765; UTF16 516883] In a deterministic test theory:
+[21-30:P15766; UTF16 516915] [ \Sigma(f)={s(f)}, ]
+[21-30:P15768; UTF16 516944] \left( o_1(f),\ldots,o_m(f) \right). ]
+[21-30:P15769; UTF16 516983] Using the joint set rather than only marginal outcome sets preserves test-outcome correlations.
+[21-30:P15773; UTF16 517082] DEF-ACC19 — Diagnostic Equivalence
+[21-30:P15775; UTF16 517125] [ \boxed{ f_1 \equiv_{\mathrm{diag}} f_2 \iff \Sigma(f_1)=\Sigma(f_2). } ]
+[21-30:P15779; UTF16 517203] DEF-ACC20 — Diagnostic Quotient
+[21-30:P15781; UTF16 517243] \mathcal F_{\mathrm{fault}} / {\equiv_{\mathrm{diag}}}. } ]
+[21-30:P15785; UTF16 517306] THM-ACC14 — Faults With Identical Complete Test Signatures Cannot Be Guaranteed Exactly Distinguished by the Test Suite
+[21-30:P15788; UTF16 517443] [ f_1\neq f_2, \qquad \Sigma(f_1)=\Sigma(f_2)\neq\varnothing. ]
+[21-30:P15789; UTF16 517507] Let a diagnosis rule use only test outcome:
+[21-30:P15790; UTF16 517551] [ d:O_{\mathcal T}\rightarrow \mathcal F_{\mathrm{fault}}. ]
+[21-30:P15792; UTF16 517623] No such (d) can be guaranteed correct for both faults over all allowed outcomes.
+[21-30:P15795; UTF16 517718] [ o\in\Sigma(f_1)=\Sigma(f_2). ]
+[21-30:P15796; UTF16 517751] Outcome (o) is admissible when (f_1) is actual and when (f_2) is actual.
+[21-30:P15797; UTF16 517824] The diagnosis rule returns one value:
+[21-30:P15798; UTF16 517862] [ d(o). ]
+[21-30:P15800; UTF16 517876] [ d(o)=f_1, ]
+[21-30:P15801; UTF16 517890] it is wrong in the (f_2) world.
+[21-30:P15803; UTF16 517926] [ d(o)=f_2, ]
+[21-30:P15804; UTF16 517940] it is wrong in the (f_1) world.
+[21-30:P15805; UTF16 517972] If it returns another fault or UNKNOWN, it does not exactly identify both.
+[21-30:P15806; UTF16 518047] Therefore exact guaranteed discrimination is impossible from the selected test outcomes. ∎
+[21-30:P15807; UTF16 518138] If the two faults require different corrective actions, exact corrective-action selection is likewise impossible without additional evidence.
+[21-30:P15811; UTF16 518283] 23. Nonconformance
+[21-30:P15812; UTF16 518302] DEF-ACC21 — Nonconformance
+[21-30:P15813; UTF16 518329] A Nonconformance is:
+[21-30:P15814; UTF16 518350] \left( \mathsf{id}, \mathsf{artifact}, \mathsf{requirement}, \mathsf{evidence}, \mathsf{scope}, \mathsf{detectedAt}, \mathsf{status}, \mathsf{version} \right). } ]
+[21-30:P15815; UTF16 518514] Synthetic statuses may include:
+[21-30:P15816; UTF16 518546] OPEN;
+[21-30:P15817; UTF16 518552] UNDER_INVESTIGATION;
+[21-30:P15818; UTF16 518573] CORRECTIVE_ACTION;
+[21-30:P15819; UTF16 518592] RETEST_REQUIRED;
+[21-30:P15820; UTF16 518609] VERIFIED_CORRECTED;
+[21-30:P15821; UTF16 518629] CONDITIONALLY_ACCEPTED;
+[21-30:P15822; UTF16 518653] CLOSED;
+[21-30:P15823; UTF16 518661] UNKNOWN.
+[21-30:P15827; UTF16 518673] 24. Corrective Action
+[21-30:P15828; UTF16 518695] DEF-ACC22 — Corrective Action
+[21-30:P15830; UTF16 518733] \left( \mathsf{targetNonconformance}, \mathsf{artifactEdit}, \mathsf{causeHypothesis}, \mathsf{affectedClaims}, \mathsf{requiredRetests}, \mathsf{authority}, \mathsf{version} \right). } ]
+[21-30:P15834; UTF16 518924] DEF-ACC23 — Corrective-Action Closure
+[21-30:P15835; UTF16 518962] A corrective action is acceptance closed only when:
+[21-30:P15836; UTF16 519014] the physical or digital edit is verified;
+[21-30:P15837; UTF16 519056] the target nonconformance is rechecked;
+[21-30:P15838; UTF16 519096] every invalidated dependent acceptance claim is recertified;
+[21-30:P15839; UTF16 519157] new nonconformances introduced by the edit are resolved or explicit;
+[21-30:P15840; UTF16 519226] artifact and evidence versions are updated.
+[21-30:P15841; UTF16 519270] Physical rework alone is not closure.
+[21-30:P15845; UTF16 519311] 25. Local Retest Limitation
+[21-30:P15846; UTF16 519339] THM-ACC15 — Passing a Local Retest After Correction Does Not Establish Global Acceptance
+[21-30:P15848; UTF16 519441] Let requirements be:
+[21-30:P15850; UTF16 519483] Let artifact state before repair violate (r_1) and satisfy (r_2).
+[21-30:P15851; UTF16 519549] A corrective edit changes the artifact so that (r_1) is satisfied but (r_2) is violated.
+[21-30:P15852; UTF16 519638] The local retest checks only (r_1) and passes.
+[21-30:P15854; UTF16 519696] [ \mathsf{LocalRetestPass}(r_1)=\mathsf{TRUE}, ]
+[21-30:P15858; UTF16 519777] [ \boxed{ \text{local corrective retest pass} \not\Longrightarrow \text{global acceptance}. } ]

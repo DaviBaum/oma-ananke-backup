@@ -239,3 +239,109 @@ def test_difference_does_not_rescue_invalid_or_cyclic_suboperand(tmp_path):
     boolean.SecondOperand=boolean
     result=set_items(path,model,product,[boolean])
     assert result["status"]=="UNKNOWN" and result["reason"]=="CYCLIC_GEOMETRIC_OPERAND"
+
+
+def test_mapped_support_cached_once_with_coverage_replayed_and_detached(tmp_path, monkeypatch):
+    path = tmp_path / "reuse.ifc"
+    model, product = fixture(path, mapped=True, rotated=True, nonplanar=True)
+    rep = product.Representation.Representations[0]
+    original = rep.Items[0]
+    target = model.create_entity("IfcCartesianTransformationOperator3D", LocalOrigin=model.create_entity(
+        "IfcCartesianPoint", Coordinates=(-10., 5., 2.)), Scale=3.)
+    second = model.create_entity("IfcMappedItem", MappingSource=original.MappingSource, MappingTarget=target)
+    rep.Items = (original, second)
+    model.write(str(path))
+    checker = ExactIfcEncloser(path, model, vertex_hull_completion=True)
+    calls = []
+    direct = checker._points
+
+    def counted(item):
+        calls.append(item.id())
+        return direct(item)
+
+    monkeypatch.setattr(checker, "_points", counted)
+    first = checker.enclose_product(product)
+    lo, hi = bounds(first)
+    baseline = ExactIfcEncloser(path, model, vertex_hull_completion=True, memoize_item_support=False).enclose_product(product)
+    blo, bhi = bounds(baseline)
+    assert all(lo[i] <= blo[i] and hi[i] >= bhi[i] for i in range(3))
+    assert first["item_coverage"] == baseline["item_coverage"]
+    assert first["nonplanar_polygon_checks"] == 2
+    assert len(calls) == 1 and checker.support_cache_hits == 1
+    # A consumer cannot corrupt the internal cache by mutating a returned list.
+    first["item_coverage"][0]["source_faces"] = 9999
+    repeated = checker.enclose_product(product)
+    assert bounds(repeated) == (lo, hi)
+    assert repeated["item_coverage"] == baseline["item_coverage"]
+    assert repeated["nonplanar_polygon_checks"] == 2
+    assert len(calls) == 1 and checker.support_cache_hits == 3
+
+
+def test_item_local_box_can_be_conservative_without_claiming_collision(tmp_path):
+    path = tmp_path / "triangle.ifc"
+    model, product = fixture(path, rotated=True)
+    item = product.Representation.Representations[0].Items[0]
+    item.Coordinates.CoordList = ((0., 0., 0.), (2., 0., 0.), (0., 1., 0.))
+    item.Faces[0].CoordIndex = (1, 2, 3)
+    model.write(str(path))
+    cached = ExactIfcEncloser(path, model).enclose_product(product)
+    direct = ExactIfcEncloser(path, model, memoize_item_support=False).enclose_product(product)
+    lo, hi = bounds(cached)
+    blo, bhi = bounds(direct)
+    assert all(lo[i] <= blo[i] and hi[i] >= bhi[i] for i in range(3))
+    assert hi[1] > bhi[1]  # Unoccupied local box corner is deliberately retained.
+    assert cached["whole_product_solid_validity"] == "NOT_ESTABLISHED"
+    assert cached["support_evaluation"] == "COMPLETE_ITEM_LOCAL_BOX_THEN_OUTWARD_AFFINE"
+
+
+def test_failed_item_is_retried_and_valid_cached_sibling_never_hides_it(tmp_path):
+    path = tmp_path / "failed_reuse.ifc"
+    model, product = fixture(path, mixed=True)
+    checker = ExactIfcEncloser(path, model)
+    first = checker.enclose_product(product)
+    second = checker.enclose_product(product)
+    assert first["status"] == second["status"] == "UNKNOWN"
+    assert first["reason"] == second["reason"]
+    assert "bounds_m" not in second
+    assert len(checker._support_cache) == 1
+    assert checker.support_cache_hits == 1 and checker.support_cache_misses == 3
+
+
+def test_boolean_subtree_reuse_retains_nonplanarity_count_and_all_operands(tmp_path):
+    path = tmp_path / "boolean_reuse.ifc"
+    model, product = fixture(path, nonplanar=True)
+    face = product.Representation.Representations[0].Items[0]
+    # The Boolean parser supports declared finite represented operands, including
+    # hull-completion facets; source solid topology remains expressly unproved.
+    solid = extrusion(model)
+    inner = model.create_entity("IfcBooleanResult", Operator="UNION", FirstOperand=solid, SecondOperand=solid)
+    outer = model.create_entity("IfcBooleanResult", Operator="DIFFERENCE", FirstOperand=inner, SecondOperand=solid)
+    product.Representation.Representations[0].Items = (face, outer, face, outer)
+    model.write(str(path))
+    checker = ExactIfcEncloser(path, model, vertex_hull_completion=True)
+    result = checker.enclose_product(product)
+    expected = ExactIfcEncloser(path, model, vertex_hull_completion=True, memoize_item_support=False).enclose_product(product)
+    assert bounds(result) == bounds(expected)
+    assert result["item_coverage"] == expected["item_coverage"]
+    assert result["nonplanar_polygon_checks"] == 2
+    assert len(checker._support_cache) == 4
+    assert checker.enclose_product(product) == result
+
+
+def test_cache_policy_and_source_identity_do_not_cross_scope(tmp_path):
+    path = tmp_path / "policy.ifc"
+    model, product = fixture(path, nonplanar=True)
+    checker = ExactIfcEncloser(path, model, vertex_hull_completion=True)
+    original = checker.enclose_product(product)
+    assert original["status"] == "ENCLOSURE_CHECKED"
+    checker.vertex_hull_completion = False
+    assert checker.enclose_product(product)["status"] == "UNKNOWN"
+    checker.vertex_hull_completion = True
+    assert checker.enclose_product(product) == original
+    # A new immutable source snapshot uses a distinct helper instance and hash.
+    product.ObjectPlacement.RelativePlacement.Location.Coordinates = (100., 2., 3.)
+    model.write(str(path))
+    changed = ExactIfcEncloser(path, model, vertex_hull_completion=True).enclose_product(product)
+    assert changed["source_sha256"] != original["source_sha256"]
+    assert bounds(changed)[0][0] == 100
+    assert checker.enclose_product(product) == original

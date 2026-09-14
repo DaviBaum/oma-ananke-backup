@@ -441,6 +441,7 @@ def _explicit_joints(export_path, route_guids):
     import ifcopenshell.util.placement
     import ifcopenshell.util.unit
     from .ports import ownership_ledger, port_facts, connected_pair_errors
+    from .network_semantics import read_component_geometry
     model = ifcopenshell.open(str(export_path))
     scale = ifcopenshell.util.unit.calculate_unit_scale(model)
     ledger = ownership_ledger(model)
@@ -457,11 +458,18 @@ def _explicit_joints(export_path, route_guids):
         pb = ifcopenshell.util.placement.get_local_placement(rel.RelatedPort.ObjectPlacement)
         fa = port_facts(rel.RelatingPort, ledger[rel.RelatingPort.id()], scale)
         fb = port_facts(rel.RelatedPort, ledger[rel.RelatedPort.id()], scale)
-        solids_a = [i for rep in left.Representation.Representations for i in rep.Items if i.is_a("IfcSweptAreaSolid") and i.SweptArea.is_a("IfcCircleProfileDef")]
-        solids_b = [i for rep in right.Representation.Representations for i in rep.Items if i.is_a("IfcSweptAreaSolid") and i.SweptArea.is_a("IfcCircleProfileDef")]
-        if len(solids_a) != 1 or len(solids_b) != 1:
+        try:
+            geometry_a,geometry_b=read_component_geometry(model,left),read_component_geometry(model,right)
+        except (ValueError,TypeError,AttributeError,RuntimeError):
             continue
-        radius_a, radius_b = solids_a[0].SweptArea.Radius*scale, solids_b[0].SweptArea.Radius*scale
+        radius_a,radius_b=geometry_a["radius_m"],geometry_b["radius_m"]
+        # Port labels alone do not authorize an interior or misplaced interface.
+        def matches_cap(geometry,facts):
+            return any(np.linalg.norm(np.asarray(cap["position_m"])-facts["position_m"])<=1e-7 and
+                       np.linalg.norm(np.asarray(cap["outward_normal"])-facts["physical_outward_normal"])<=1e-7
+                       for cap in geometry["caps"].values())
+        if not matches_cap(geometry_a,fa) or not matches_cap(geometry_b,fb):
+            continue
         joints[frozenset((left.GlobalId, right.GlobalId))] = {
             "point_a": (pa[:3,3]*scale).tolist(), "point_b": (pb[:3,3]*scale).tolist(),
             "axis_a": fa["physical_outward_normal"], "axis_b": fb["physical_outward_normal"], "radius_a": radius_a, "radius_b": radius_b,

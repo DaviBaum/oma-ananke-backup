@@ -1,0 +1,397 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P25855; UTF16 850271] Valid substitute: complete contextual equivalence preserves reports.
+[11-20:P25856; UTF16 850340] Cash prefix violation: positive final balance but negative prefix.
+[11-20:P25857; UTF16 850407] Financing repair: add valid credit and verify feasibility changes.
+[11-20:P25858; UTF16 850474] Procurement recourse inside contract: preserve covered claims.
+[11-20:P25859; UTF16 850537] Procurement recourse outside contract: require recertification.
+[11-20:P25860; UTF16 850601] Buildable but unprocurable artifact: materialization remains while execution fiber is empty.
+[11-20:P25861; UTF16 850694] Conflict core: recover an analytically known minimal core.
+[11-20:P25862; UTF16 850753] Incremental versus cold: require identical economic reports.
+[11-20:P25863; UTF16 850814] Prompt-9 integration: a quote acquisition should outrank an irrelevant schedule refinement when the quote blocks release.
+[11-20:P25864; UTF16 850936] Prompt-10 integration: insert a hidden common supplier dependency and produce a Claim Breaker.
+[11-20:P25865; UTF16 851031] Prompt-11 integration: authentic but inapplicable cost/carbon evidence must not support release.
+[11-20:P25866; UTF16 851128] Prompt-12 integration: a cheaper design change violating protected architecture must not be committed.
+[11-20:P25867; UTF16 851231] Prompt-13 integration: product substitution outside equivalence triggers rematerialization.
+[11-20:P25868; UTF16 851323] Prompt-14 integration: ordered product without field delivery evidence must not be labeled installed.
+[11-20:P25869; UTF16 851425] Prompt-15 integration: lifecycle replacement must update future cost and product identity.
+[11-20:P25870; UTF16 851516] Prompt-16 integration: fleet unit costs remain statistical or set-valued.
+[11-20:P25871; UTF16 851590] Prompt-17 integration: supplier reliability remains probabilistic.
+[11-20:P25872; UTF16 851657] PCEE independence: independent checker verifies the package without optimization history.
+[11-20:P25876; UTF16 851750] 49. Proof-Assistant Formalization
+[11-20:P25877; UTF16 851784] Quantity item
+[11-20:P25878; UTF16 851798] structure QuantityItem (Dim : Type) where
+[11-20:P25879; UTF16 851840]   Entity : Type
+[11-20:P25880; UTF16 851856]   id : QuantityId
+[11-20:P25881; UTF16 851874]   unit : Unit Dim
+[11-20:P25882; UTF16 851892]   value : Set ℝ
+[11-20:P25883; UTF16 851908]   lineage : Set Entity
+[11-20:P25885; UTF16 851951] Quantity partition
+[11-20:P25886; UTF16 851970] def PairwiseDisjoint
+[11-20:P25887; UTF16 851991]     (parts : Finset (Set Entity)) : Prop :=
+[11-20:P25888; UTF16 852035]   ∀ A ∈ parts,
+[11-20:P25889; UTF16 852050]     ∀ B ∈ parts,
+[11-20:P25890; UTF16 852067]       A ≠ B →
+[11-20:P25891; UTF16 852081]       Disjoint A B
+[11-20:P25892; UTF16 852100] Cost atom
+[11-20:P25893; UTF16 852110] inductive CostKind
+[11-20:P25894; UTF16 852129] | quote
+[11-20:P25895; UTF16 852137] | contract
+[11-20:P25896; UTF16 852148] | catalogPrice
+[11-20:P25897; UTF16 852163] | historicalActual
+[11-20:P25898; UTF16 852182] | estimate
+[11-20:P25899; UTF16 852193] | forecast
+[11-20:P25900; UTF16 852204] | allowance
+[11-20:P25901; UTF16 852216] | contingency
+[11-20:P25903; UTF16 852231] structure CostAtom where
+[11-20:P25904; UTF16 852256]   product : ProductId
+[11-20:P25905; UTF16 852278]   kind : CostKind
+[11-20:P25906; UTF16 852296]   currency : Currency
+[11-20:P25907; UTF16 852318]   price : Set ℝ
+[11-20:P25908; UTF16 852334]   quantityBand : Set ℝ
+[11-20:P25909; UTF16 852357]   validFrom : Time
+[11-20:P25910; UTF16 852376]   validUntil : Time
+[11-20:P25912; UTF16 852416] Activity
+[11-20:P25913; UTF16 852425] structure Activity where
+[11-20:P25914; UTF16 852450]   id : ActivityId
+[11-20:P25915; UTF16 852468]   duration : Nat
+[11-20:P25916; UTF16 852485]   demand : Resource → Nat
+[11-20:P25917; UTF16 852511] Precedence feasibility
+[11-20:P25918; UTF16 852534] def PrecedenceFeasible
+[11-20:P25919; UTF16 852557]     (pred : Activity → Activity → Prop)
+[11-20:P25920; UTF16 852597]     (start : Activity → Nat) : Prop :=
+[11-20:P25921; UTF16 852636]   ∀ a b,
+[11-20:P25922; UTF16 852645]     pred a b →
+[11-20:P25923; UTF16 852660]     start b ≥ start a + a.duration
+[11-20:P25924; UTF16 852695] Renewable-resource feasibility
+[11-20:P25925; UTF16 852726] A discrete-time formalization:
+[11-20:P25926; UTF16 852757] def ResourceFeasible
+[11-20:P25927; UTF16 852778]     (activities : Finset Activity)
+[11-20:P25928; UTF16 852813]     (start : Activity → Nat)
+[11-20:P25929; UTF16 852842]     (capacity : Resource → Nat → Nat) : Prop :=
+[11-20:P25930; UTF16 852890]   ∀ r t,
+[11-20:P25931; UTF16 852899]     ∑ a in activities.filter
+[11-20:P25933; UTF16 852944]         start a ≤ t ∧
+[11-20:P25934; UTF16 852966]         t < start a + a.duration),
+[11-20:P25935; UTF16 853001]       a.demand r
+[11-20:P25936; UTF16 853018]     ≤
+[11-20:P25937; UTF16 853024]     capacity r t
+[11-20:P25938; UTF16 853041] Inventory
+[11-20:P25939; UTF16 853051] structure InventoryState where
+[11-20:P25940; UTF16 853082]   amount : Material → ℝ
+[11-20:P25942; UTF16 853107] def inventoryStep
+[11-20:P25943; UTF16 853125]     (I : InventoryState)
+[11-20:P25944; UTF16 853150]     (delivery use loss : Material → ℝ) :
+[11-20:P25945; UTF16 853191]     InventoryState :=
+[11-20:P25946; UTF16 853213]   {
+[11-20:P25947; UTF16 853217]     amount :=
+[11-20:P25948; UTF16 853231]       fun m =>
+[11-20:P25949; UTF16 853246]         I.amount m
+[11-20:P25950; UTF16 853265]         + delivery m
+[11-20:P25951; UTF16 853286]         - use m
+[11-20:P25952; UTF16 853302]         - loss m
+[11-20:P25953; UTF16 853319]   }
+[11-20:P25954; UTF16 853323] Cash
+[11-20:P25955; UTF16 853328] structure CashState where
+[11-20:P25956; UTF16 853354]   balance : ℝ
+[11-20:P25958; UTF16 853369] def cashStep
+[11-20:P25959; UTF16 853382]     (B : CashState)
+[11-20:P25960; UTF16 853402]     (receipt outflow : ℝ) :
+[11-20:P25961; UTF16 853430]     CashState :=
+[11-20:P25963; UTF16 853451]     balance :=
+[11-20:P25964; UTF16 853466]       B.balance + receipt - outflow
+[11-20:P25966; UTF16 853506] Execution witness
+[11-20:P25967; UTF16 853524] structure ExecutionWitness where
+[11-20:P25968; UTF16 853557]   schedule : Schedule
+[11-20:P25969; UTF16 853579]   resources : ResourcePlan
+[11-20:P25970; UTF16 853606]   procurement : ProcurementPlan
+[11-20:P25971; UTF16 853638]   inventory : InventoryTrace
+[11-20:P25972; UTF16 853667]   logistics : LogisticsPlan
+[11-20:P25973; UTF16 853695]   cash : CashTrace
+[11-20:P25974; UTF16 853714]   carbon : CarbonTrace
+[11-20:P25975; UTF16 853737]   mode : EcoMode
+[11-20:P25976; UTF16 853754] Execution fiber
+[11-20:P25977; UTF16 853770] def ExecutionFiber
+[11-20:P25979; UTF16 853816]     (mode : EcoMode) :
+[11-20:P25980; UTF16 853839]     Set ExecutionWitness :=
+[11-20:P25981; UTF16 853867]   {x |
+[11-20:P25982; UTF16 853874]     ExecutionValid b mode x}
+[11-20:P25983; UTF16 853903] Budget closure
+[11-20:P25984; UTF16 853918] def CertifiedUnderBudget
+[11-20:P25985; UTF16 853943]     (costSet : Set ℝ)
+[11-20:P25986; UTF16 853965]     (budget : ℝ) : Prop :=
+[11-20:P25987; UTF16 853992]   ∀ c ∈ costSet,
+[11-20:P25988; UTF16 854009]     c ≤ budget
+[11-20:P25990; UTF16 854025] def CertifiedOverBudget
+[11-20:P25994; UTF16 854115]     budget < c
+[11-20:P25995; UTF16 854130] PCEE
+[11-20:P25996; UTF16 854135] structure PCEE where
+[11-20:P25997; UTF16 854156]   artifact : ConcreteArtifact
+[11-20:P25998; UTF16 854186]   quantities : QuantityLedger
+[11-20:P25999; UTF16 854216]   costs : CostLedger
+[11-20:P26000; UTF16 854237]   carbon : CarbonLedger
+[11-20:P26001; UTF16 854261]   activities : ActivityNetwork
+[11-20:P26002; UTF16 854292]   resources : ResourceModel
+[11-20:P26003; UTF16 854320]   procurement : ProcurementModel
+[11-20:P26004; UTF16 854353]   inventory : InventoryModel
+[11-20:P26005; UTF16 854382]   cash : CashModel
+[11-20:P26008; UTF16 854454] Checker-soundness skeleton
+[11-20:P26009; UTF16 854481] theorem accepted_execution_sound
+[11-20:P26010; UTF16 854514]     (pkg : PCEE)
+[11-20:P26012; UTF16 854540]       CheckEconomicExecution pkg =
+[11-20:P26013; UTF16 854575]         .certifiedExecutable) :
+[11-20:P26014; UTF16 854607]     ∃ x,
+[11-20:P26015; UTF16 854616]       x ∈
+[11-20:P26016; UTF16 854626]       ExecutionFiber
+[11-20:P26017; UTF16 854647]         pkg.artifact
+[11-20:P26018; UTF16 854668]         .robustUniversal := by
+[11-20:P26023; UTF16 854708] 50. Mechanization Difficulty
+[11-20:P26024; UTF16 854737] ￼
+ATTACHED TABLE 1736724; native row/column order; 28 rows
+ROW 0: ["Object", "Difficulty"]
+ROW 1: ["Quantity lineage", "Moderate"]
+ROW 2: ["Exact quantity aggregation", "Straightforward"]
+ROW 3: ["Quantity overlap detection", "Moderate"]
+ROW 4: ["Cost evidence typing", "Moderate"]
+ROW 5: ["Quote applicability", "Moderate"]
+ROW 6: ["Joint cost uncertainty", "Moderate"]
+ROW 7: ["Budget closure", "Straightforward"]
+ROW 8: ["Carbon evidence", "Moderate"]
+ROW 9: ["Functional-unit checking", "Moderate"]
+ROW 10: ["Precedence DAG", "Straightforward"]
+ROW 11: ["Critical-path theorem", "Moderate"]
+ROW 12: ["Resource-constrained scheduling", "Hard"]
+ROW 13: ["Robust scheduling", "Difficult"]
+ROW 14: ["Adjustable nonanticipative scheduling", "Difficult"]
+ROW 15: ["Supplier graph", "Moderate"]
+ROW 16: ["Supply common cause", "Difficult"]
+ROW 17: ["Procurement recourse", "Difficult"]
+ROW 18: ["Inventory balance", "Straightforward"]
+ROW 19: ["Product substitution", "Difficult"]
+ROW 20: ["Cash-flow feasibility", "Moderate"]
+ROW 21: ["RCPSP optimization", "NP-hard"]
+ROW 22: ["Supplier coverage", "NP-hard"]
+ROW 23: ["Execution conflict cores", "Difficult"]
+ROW 24: ["Robust cost/schedule/carbon co-optimization", "Research-level"]
+ROW 25: ["Incremental economic recertification", "Difficult"]
+ROW 26: ["PCEE checker", "Research-level"]
+ROW 27: ["Complete market and supply theory", "Open-world impossible without assumptions"]
+[11-20:P26028; UTF16 854742] 51. Prompt-18 Complexity Profile
+[11-20:P26029; UTF16 854775] DEF-ECO39 — Prompt-18 Complexity Profile
+[11-20:P26031; UTF16 854824] \left( N_Q, K_C, K_K, N_A, K_P, K_R, K_S, K_L, K_I, K_F, K_{\mathrm{corr}}, K_{\mathrm{recourse}}, C_{\mathrm{qty}}, C_{\mathrm{cost}}, C_{\mathrm{sched}}, C_{\mathrm{proc}}, C_{\mathrm{carbon}}, C_{\mathrm{check}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unresolved}} \right). } ]
+[11-20:P26033; UTF16 855126] (N_Q): quantity-ledger item count;
+[11-20:P26034; UTF16 855161] (K_C): cost-model and commercial-evidence complexity;
+[11-20:P26035; UTF16 855215] (K_K): carbon-ledger and accounting-scope complexity;
+[11-20:P26036; UTF16 855269] (N_A): activity count;
+[11-20:P26037; UTF16 855292] (K_P): precedence complexity;
+[11-20:P26038; UTF16 855322] (K_R): resource-calendar and demand complexity;
+[11-20:P26039; UTF16 855370] (K_S): supplier-network complexity;
+[11-20:P26040; UTF16 855406] (K_L): lead-time and logistics complexity;
+[11-20:P26041; UTF16 855449] (K_I): inventory-state complexity;
+[11-20:P26042; UTF16 855484] (K_F): financing and cash-flow complexity;
+[11-20:P26043; UTF16 855527] (K_{\mathrm{corr}}): joint correlation/common-cause complexity;
+[11-20:P26044; UTF16 855591] (K_{\mathrm{recourse}}): adaptive policy complexity;
+[11-20:P26045; UTF16 855644] (C_{\mathrm{qty}}): quantity-compilation cost;
+[11-20:P26046; UTF16 855691] (C_{\mathrm{cost}}): cost-envelope computation cost;
+[11-20:P26047; UTF16 855744] (C_{\mathrm{sched}}): scheduling cost;
+[11-20:P26048; UTF16 855783] (C_{\mathrm{proc}}): procurement-planning cost;
+[11-20:P26049; UTF16 855831] (C_{\mathrm{carbon}}): carbon-accounting cost;
+[11-20:P26051; UTF16 855926] (R_{\mathrm{change}}): changed economic roots;
+[11-20:P26053; UTF16 856018] (B_{\mathrm{unresolved}}): unresolved execution blockers.
+[11-20:P26054; UTF16 856076] There is no justified scalar “project feasibility score.”
+[11-20:P26058; UTF16 856137] 52. Permanent Assumption Registry
+[11-20:P26059; UTF16 856171] ￼
+ATTACHED TABLE 1736740; native row/column order; 23 rows
+ROW 0: ["ID", "Assumption"]
+ROW 1: ["ASSUMP-ECO1", "Quantities and commercial claims bind to the correct artifact version"]
+ROW 2: ["ASSUMP-ECO2", "Quantity enclosures contain true active-design quantities"]
+ROW 3: ["ASSUMP-ECO3", "Units, currencies, and functional units are correctly normalized"]
+ROW 4: ["ASSUMP-ECO4", "Quotes are used only within applicable scope"]
+ROW 5: ["ASSUMP-ECO5", "Schedule-invalidating resources are represented"]
+ROW 6: ["ASSUMP-ECO6", "Construction precedence is complete"]
+ROW 7: ["ASSUMP-ECO7", "Supplier and lead-time models cover the claimed possibilities"]
+ROW 8: ["ASSUMP-ECO8", "Common-cause and dependence structure is represented"]
+ROW 9: ["ASSUMP-ECO9", "Procurement recourse is nonanticipative"]
+ROW 10: ["ASSUMP-ECO10", "Cash and financing semantics are complete where used"]
+ROW 11: ["ASSUMP-ECO11", "Carbon factors are applicable"]
+ROW 12: ["ASSUMP-ECO12", "Non-equivalent substitutions are recertified"]
+ROW 13: ["ASSUMP-ECO13", "Supplier reliability retains Prompt-17 modality"]
+ROW 14: ["ASSUMP-ECO14", "Fleet economic evidence retains Prompt-16 modality"]
+ROW 15: ["ASSUMP-ECO15", "UNKNOWN is never promoted"]
+ROW 16: ["ASSUMP-ECO16", "Trusted local checkers are sound"]
+ROW 17: ["ASSUMP-ECO17", "Actual covered outcome belongs to execution scenario family"]
+ROW 18: ["ASSUMP-ECO18", "Scheduled activities are valid construction actions"]
+ROW 19: ["ASSUMP-ECO19", "Information patterns are represented correctly"]
+ROW 20: ["ASSUMP-ECO20", "Contract and financing semantics are correct"]
+ROW 21: ["ASSUMP-ECO21", "Carbon accounting scope is fixed"]
+ROW 22: ["ASSUMP-ECO22", "Economic dependency graph is complete"]
+[11-20:P26063; UTF16 856176] 53. Permanent Definition Registry
+[11-20:P26064; UTF16 856210] ￼
+ATTACHED TABLE 1736756; native row/column order; 40 rows
+ROW 0: ["ID", "Definition"]
+ROW 1: ["DEF-ECO1", "Project Economic and Execution State"]
+ROW 2: ["DEF-ECO2", "Typed Quantity Item"]
+ROW 3: ["DEF-ECO3", "Proof-Carrying Quantity Ledger"]
+ROW 4: ["DEF-ECO4", "Cost Evidence Atom"]
+ROW 5: ["DEF-ECO5", "Cost Line Item"]
+ROW 6: ["DEF-ECO6", "Project Cost Set"]
+ROW 7: ["DEF-ECO7", "Budget Constraint"]
+ROW 8: ["DEF-ECO8", "Carbon Evidence Atom"]
+ROW 9: ["DEF-ECO9", "Carbon Line Item"]
+ROW 10: ["DEF-ECO10", "Construction Activity"]
+ROW 11: ["DEF-ECO11", "Deterministic Precedence Schedule"]
+ROW 12: ["DEF-ECO12", "Renewable Resource Model"]
+ROW 13: ["DEF-ECO13", "Duration Scenario Relation"]
+ROW 14: ["DEF-ECO14", "Fixed Robust Schedule"]
+ROW 15: ["DEF-ECO15", "Adjustable Schedule Policy"]
+ROW 16: ["DEF-ECO16", "Procurement State"]
+ROW 17: ["DEF-ECO17", "Supplier Lead-Time Relation"]
+ROW 18: ["DEF-ECO18", "Material-Availability Constraint"]
+ROW 19: ["DEF-ECO19", "Supply Dependency Network"]
+ROW 20: ["DEF-ECO20", "Inventory Balance"]
+ROW 21: ["DEF-ECO21", "Procurement Substitution"]
+ROW 22: ["DEF-ECO22", "Procurement Recourse Contract"]
+ROW 23: ["DEF-ECO23", "Project Cash State"]
+ROW 24: ["DEF-ECO24", "Cash-Flow Feasibility"]
+ROW 25: ["DEF-ECO25", "Declared Discounted Cash Functional"]
+ROW 26: ["DEF-ECO26", "Execution Scenario"]
+ROW 27: ["DEF-ECO27", "Fixed Robust Execution Plan"]
+ROW 28: ["DEF-ECO28", "Adjustable Execution Policy"]
+ROW 29: ["DEF-ECO29", "Economic Execution Feasible Set"]
+ROW 30: ["DEF-ECO30", "Economic Execution Fiber"]
+ROW 31: ["DEF-ECO31", "Execution Conflict Core"]
+ROW 32: ["DEF-ECO32", "Execution Repair"]
+ROW 33: ["DEF-ECO33", "Proof-Carrying Economic Execution Package"]
+ROW 34: ["DEF-ECO34", "Economic Execution Dependency Graph"]
+ROW 35: ["DEF-ECO35", "Economic Claim Modality"]
+ROW 36: ["DEF-ECO36", "Project Carbon Set"]
+ROW 37: ["DEF-ECO37", "Economic Execution Witness"]
+ROW 38: ["DEF-ECO38", "Economic Execution Cascade"]
+ROW 39: ["DEF-ECO39", "Prompt-18 Complexity Profile"]
+[11-20:P26068; UTF16 856215] 54. Lemma, Corollary, and Proposition Registry
+[11-20:P26069; UTF16 856262] ￼
+ATTACHED TABLE 1736772; native row/column order; 12 rows
+ROW 0: ["ID", "Result", "Status"]
+ROW 1: ["LEM-ECO1", "Finite additivity over a disjoint family", "Proved"]
+ROW 2: ["LEM-ECO2", "Earliest-start schedule is precedence feasible", "Proved"]
+ROW 3: ["LEM-ECO3", "Cash-balance telescoping identity", "Proved"]
+ROW 4: ["COR-ECO1", "Three-way carbon-budget classification", "Proved"]
+ROW 5: ["COR-ECO2", "Critical path is a lower bound under extra resource constraints", "Proved"]
+ROW 6: ["COR-ECO3", "Robust universal execution implies scenario-wise feasibility", "Proved"]
+ROW 7: ["PRO-ECO1", "Positive final net cash does not imply liquidity feasibility", "Proved"]
+ROW 8: ["PRO-ECO2", "Lower cost does not imply lower embodied carbon", "Proved"]
+ROW 9: ["PRO-ECO3", "Probabilistic execution does not imply realized execution success", "Proved"]
+ROW 10: ["PRO-ECO4", "Ordered, delivered, installed, and accepted are distinct", "Proved"]
+ROW 11: ["PRO-ECO5", "Embodied and operational carbon require a scope rule before combination", "Proved"]
+[11-20:P26073; UTF16 856267] 55. Permanent Theorem Registry
+[11-20:P26074; UTF16 856298] ￼
+ATTACHED TABLE 1736788; native row/column order; 25 rows
+ROW 0: ["ID", "Theorem", "Status"]
+ROW 1: ["THM-ECO1", "Quantity partition completeness", "Proved"]
+ROW 2: ["THM-ECO2", "Sound quantity enclosure summation", "Proved"]
+ROW 3: ["THM-ECO3", "Expired quote limitation", "Proved"]
+ROW 4: ["THM-ECO4", "Joint cost uncertainty limitation", "Proved"]
+ROW 5: ["THM-ECO5", "Sound three-way budget classification", "Proved"]
+ROW 6: ["THM-ECO6", "Carbon functional-unit mismatch", "Proved"]
+ROW 7: ["THM-ECO7", "Critical-path theorem", "Proved"]
+ROW 8: ["THM-ECO8", "Resource constraints break critical-path sufficiency", "Proved"]
+ROW 9: ["THM-ECO9", "Restricted RCPSP makespan is weakly NP-hard", "Proved"]
+ROW 10: ["THM-ECO10", "Expected durations do not determine expected makespan", "Proved"]
+ROW 11: ["THM-ECO11", "Scenario schedules need not admit a nonanticipative policy", "Proved"]
+ROW 12: ["THM-ECO12", "Supplier marginals do not determine redundant procurement reliability", "Proved"]
+ROW 13: ["THM-ECO13", "Inventory nonnegativity is necessary", "Proved"]
+ROW 14: ["THM-ECO14", "Contextual-equivalence procurement substitution", "Proved"]
+ROW 15: ["THM-ECO15", "Procurement-recourse soundness", "Proved"]
+ROW 16: ["THM-ECO16", "Minimum supplier coverage is NP-hard", "Proved"]
+ROW 17: ["THM-ECO17", "Cash-prefix feasibility", "Proved"]
+ROW 18: ["THM-ECO18", "Scenario-wise execution does not imply robust nonanticipative execution", "Proved"]
+ROW 19: ["THM-ECO19", "Materialization does not imply economic execution feasibility", "Proved"]
+ROW 20: ["THM-ECO20", "Incremental economic recertification equals cold checking", "Proved"]
+ROW 21: ["THM-ECO21", "Whole-project economic and execution feasibility", "Proved under explicit assumptions"]
+ROW 22: ["THM-ECO22", "Open-world economic limitation", "Proved"]
+ROW 23: ["THM-ECO23", "Proposal-source independence", "Proved"]
+ROW 24: ["THM-ECO24", "PCEE checking complexity", "Proved"]
+[11-20:P26078; UTF16 856303] 56. Algorithm Registry
+[11-20:P26079; UTF16 856326] ￼
+ATTACHED TABLE 1736804; native row/column order; 22 rows
+ROW 0: ["ID", "Algorithm", "Correctness basis"]
+ROW 1: ["ALG-ECO1", "BuildQuantityLedger", "THM-ECO1–2"]
+ROW 2: ["ALG-ECO2", "CheckCostEvidence", "DEF-ECO4, THM-ECO3"]
+ROW 3: ["ALG-ECO3", "ComputeProjectCostEnvelope", "DEF-ECO5–6, THM-ECO4"]
+ROW 4: ["ALG-ECO4", "CheckBudgetClosure", "THM-ECO5"]
+ROW 5: ["ALG-ECO5", "BuildCarbonLedger", "DEF-ECO8–9, THM-ECO6"]
+ROW 6: ["ALG-ECO6", "CompileConstructionActivityNetwork", "Prompt-13 construction semantics"]
+ROW 7: ["ALG-ECO7", "ComputeCriticalPath", "THM-ECO7"]
+ROW 8: ["ALG-ECO8", "SolveResourceConstrainedSchedule", "Independent schedule checker"]
+ROW 9: ["ALG-ECO9", "CheckRobustSchedule", "DEF-ECO14–15, THM-ECO11"]
+ROW 10: ["ALG-ECO10", "BuildSupplyDependencyGraph", "DEF-ECO19, THM-ECO12"]
+ROW 11: ["ALG-ECO11", "PlanProcurement", "Procurement semantics"]
+ROW 12: ["ALG-ECO12", "CheckProcurementRecourse", "THM-ECO15"]
+ROW 13: ["ALG-ECO13", "TrackInventory", "THM-ECO13"]
+ROW 14: ["ALG-ECO14", "CheckCashFlow", "THM-ECO17"]
+ROW 15: ["ALG-ECO15", "FindExecutionConflictCore", "Exact infeasibility checking"]
+ROW 16: ["ALG-ECO16", "GenerateExecutionRepairFrontier", "Verified proposal checking"]
+ROW 17: ["ALG-ECO17", "EconomicRCVOCInterface", "Prompt-9"]
+ROW 18: ["ALG-ECO18", "RedTeamEconomicExecution", "Prompt-10"]
+ROW 19: ["ALG-ECO19", "IncrementalEconomicRecertification", "THM-ECO20"]
+ROW 20: ["ALG-ECO20", "CheckEconomicExecution", "THM-ECO21"]
+ROW 21: ["ALG-ECO21", "BuildPCEE", "THM-ECO21, THM-ECO24"]
+[11-20:P26083; UTF16 856331] 57. Conjecture Registry
+[11-20:P26084; UTF16 856355] ￼
+ATTACHED TABLE 1736820; native row/column order; 11 rows
+ROW 0: ["ID", "Conjecture", "Falsification condition"]
+ROW 1: ["CONJ-ECO1", "Materialized designs admit compact exact quantity ledgers", "Quantity semantics require near-manual interpretation on most projects"]
+ROW 2: ["CONJ-ECO2", "Most project costs can be tied to versioned evidence with manageable uncertainty", "Large cost fractions remain unauditable allowances"]
+ROW 3: ["CONJ-ECO3", "Resource scheduling remains tractable through decomposition and repeated motifs", "Whole-project coupling destroys useful decomposition"]
+ROW 4: ["CONJ-ECO4", "Supply graphs expose dominant common causes before disruption", "Dominant dependencies remain hidden"]
+ROW 5: ["CONJ-ECO5", "Pre-certified procurement recourse covers a substantial disruption fraction", "Most substitutions require bespoke redesign"]
+ROW 6: ["CONJ-ECO6", "Carbon evidence can be tied to exact product identity", "Generic factors dominate"]
+ROW 7: ["CONJ-ECO7", "Incremental economic recertification is substantially cheaper than cold analysis", "Small changes invalidate most economic artifacts"]
+ROW 8: ["CONJ-ECO8", "Execution conflict cores remain human-comprehensible", "Typical cores contain hundreds of coupled constraints"]
+ROW 9: ["CONJ-ECO9", "Cost, schedule, carbon, and reliability portfolios remain manageable", "Option count becomes intractable"]
+ROW 10: ["CONJ-ECO10", "A 190-room hotel admits a complete PCEE on the target architecture", "Scheduling or procurement exceeds practical resources"]
+[11-20:P26088; UTF16 856360] 58. Dependency DAG — Prompts 1–18
+[11-20:P26107; UTF16 856623] certified uncertainty
+[11-20:P26117; UTF16 856750] rewrite-aware reuse
+[11-20:P26118; UTF16 856770] invalidation
+[11-20:P26143; UTF16 857079] concrete build artifact
+[11-20:P26159; UTF16 857282] reliability and resilience
+[11-20:P26163; UTF16 857339] economic execution
+[11-20:P26165; UTF16 857359] PROMPT 13 ARTIFACT
+[11-20:P26168; UTF16 857398] DEF-ECO1–3
+[11-20:P26169; UTF16 857409] economic state,
+[11-20:P26170; UTF16 857425] quantity items,
+[11-20:P26171; UTF16 857441] quantity ledger
+[11-20:P26175; UTF16 857531] THM-ECO1                THM-ECO2
+[11-20:P26176; UTF16 857564] exact disjoint          enclosure
+[11-20:P26177; UTF16 857598] aggregation             aggregation
+[11-20:P26179; UTF16 857635] commercial evidence
+[11-20:P26182; UTF16 857675] DEF-ECO4–7
+[11-20:P26183; UTF16 857686] cost atoms,
+[11-20:P26184; UTF16 857698] line items,
+[11-20:P26185; UTF16 857710] cost set,
+[11-20:P26186; UTF16 857720] budget
+[11-20:P26188; UTF16 857737]    ┌────┼─────────────┐
+[11-20:P26189; UTF16 857761]    ▼    ▼             ▼
+[11-20:P26190; UTF16 857785] ECO3 ECO4           ECO5
+[11-20:P26191; UTF16 857810] quote joint         budget
+[11-20:P26192; UTF16 857837] scope cost          closure
+[11-20:P26194; UTF16 857866] carbon
+[11-20:P26197; UTF16 857893] DEF-ECO8–9 / ECO36
+[11-20:P26198; UTF16 857912] carbon evidence,
+[11-20:P26200; UTF16 857941] project carbon set
+[11-20:P26204; UTF16 858034] THM-ECO6               COR-ECO1
+[11-20:P26205; UTF16 858066] unit semantics          carbon budget
+[11-20:P26207; UTF16 858105] Prompt-13 construction actions
+[11-20:P26210; UTF16 858156] DEF-ECO10–11
+[11-20:P26211; UTF16 858169] activities and precedence
+[11-20:P26214; UTF16 858215] THM-ECO7
+[11-20:P26215; UTF16 858224] critical-path theorem
+[11-20:P26218; UTF16 858266] DEF-ECO12
+[11-20:P26219; UTF16 858276] finite resources
+[11-20:P26221; UTF16 858303]    ┌────┴───────────────┐
+[11-20:P26222; UTF16 858329]    ▼                    ▼
+[11-20:P26223; UTF16 858355] THM-ECO8           THM-ECO9
+[11-20:P26224; UTF16 858383] critical path      RCPSP hardness
+[11-20:P26225; UTF16 858417] insufficient
+[11-20:P26227; UTF16 858431] duration uncertainty

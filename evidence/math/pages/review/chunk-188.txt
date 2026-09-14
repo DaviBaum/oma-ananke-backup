@@ -1,0 +1,375 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P20920; UTF16 663831]     (scenarios : Set Scenario)
+[21-30:P20921; UTF16 663862]     (rul : ConditionState → Scenario → ENNReal) :
+[21-30:P20922; UTF16 663912]     Set ENNReal :=
+[21-30:P20923; UTF16 663931]   {r | ∃ x ∈ initials, ∃ ω ∈ scenarios, rul x ω = r}
+[21-30:P20924; UTF16 663984] Virtual-age repair
+[21-30:P20925; UTF16 664003] def virtualAgeAfterRepair
+[21-30:P20926; UTF16 664029]     (ρ age : ℝ) : ℝ :=
+[21-30:P20927; UTF16 664052]   ρ * age
+[21-30:P20929; UTF16 664063] def PerfectVirtualAgeRepair
+[21-30:P20930; UTF16 664091]     (ρ : ℝ) : Prop :=
+[21-30:P20931; UTF16 664113]   ρ = 0
+[21-30:P20933; UTF16 664122] def MinimalVirtualAgeRepair
+[21-30:P20935; UTF16 664172]   ρ = 1
+[21-30:P20937; UTF16 664181] def ImperfectVirtualAgeRepair
+[21-30:P20939; UTF16 664233]   0 < ρ ∧ ρ < 1
+[21-30:P20940; UTF16 664249] Spare state
+[21-30:P20941; UTF16 664261] structure SpareState where
+[21-30:P20942; UTF16 664288]   usable : Nat
+[21-30:P20943; UTF16 664303]   reserved : Nat
+[21-30:P20944; UTF16 664320]   quarantined : Nat
+[21-30:P20945; UTF16 664340]   expired : Nat
+[21-30:P20947; UTF16 664376] Inventory transition
+[21-30:P20948; UTF16 664397] def nextUsableInventory
+[21-30:P20949; UTF16 664421]     (current received issued lost : Nat)
+[21-30:P20950; UTF16 664462]     (h : issued + lost ≤ current + received) : Nat :=
+[21-30:P20951; UTF16 664516]   current + received - issued - lost
+[21-30:P20952; UTF16 664553] Repair fiber
+[21-30:P20953; UTF16 664566] def RepairFiber
+[21-30:P20954; UTF16 664582]     (state : LifecycleState)
+[21-30:P20955; UTF16 664611]     (mode : LifecycleMode) :
+[21-30:P20956; UTF16 664640]     Set RepairPolicy :=
+[21-30:P20958; UTF16 664671]     RepairPolicyValid state mode π}
+[21-30:P20959; UTF16 664707] Lifecycle contextual equivalence
+[21-30:P20960; UTF16 664740] def LifecycleEquivalent
+[21-30:P20961; UTF16 664764]     (experiments : Set LifecycleExperiment)
+[21-30:P20962; UTF16 664808]     (b₁ b₂ : ArtifactState) : Prop :=
+[21-30:P20963; UTF16 664846]   ∀ e ∈ experiments,
+[21-30:P20964; UTF16 664867]     e.report b₁ = e.report b₂
+[21-30:P20965; UTF16 664897] Lifecycle lease
+[21-30:P20966; UTF16 664913] structure LifecycleLease where
+[21-30:P20969; UTF16 664980]   conditionSet : Set ConditionState
+[21-30:P20970; UTF16 665016]   model : DegradationModel
+[21-30:P20971; UTF16 665043]   inspectionState : InspectionStore
+[21-30:P20972; UTF16 665079]   configuration : ArtifactState
+[21-30:P20973; UTF16 665111]   supportState : SupportStore
+[21-30:P20974; UTF16 665141]   claims : Set LifecycleClaim
+[21-30:P20976; UTF16 665204] Decommissioning invariant
+[21-30:P20977; UTF16 665230] def DecommissionSafe
+[21-30:P20978; UTF16 665251]     (safeSet : Set DecommissionState)
+[21-30:P20979; UTF16 665289]     (s : DecommissionState) : Prop :=
+[21-30:P20980; UTF16 665327]   s ∈ safeSet
+[21-30:P20982; UTF16 665342] theorem decommission_invariant
+[21-30:P20984; UTF16 665411]     (step : DecommissionState → DecommissionAction →
+[21-30:P20985; UTF16 665464]             DecommissionState → Prop)
+[21-30:P20986; UTF16 665502]     (trace : List (DecommissionAction × DecommissionState))
+[21-30:P20987; UTF16 665562]     (s₀ : DecommissionState)
+[21-30:P20988; UTF16 665591]     (h₀ : s₀ ∈ safeSet)
+[21-30:P20989; UTF16 665615]     (hclosed :
+[21-30:P20990; UTF16 665630]       ∀ s a s',
+[21-30:P20991; UTF16 665646]         s ∈ safeSet →
+[21-30:P20992; UTF16 665668]         step s a s' →
+[21-30:P20993; UTF16 665690]         s' ∈ safeSet)
+[21-30:P20994; UTF16 665712]     (htrace : ValidTrace step s₀ trace) :
+[21-30:P20995; UTF16 665754]     EveryStateIn trace s₀ safeSet := by
+[21-30:P20997; UTF16 665800] Material disposition
+[21-30:P20998; UTF16 665821] structure MaterialDisposition where
+[21-30:P20999; UTF16 665857]   inputMass : ℝ
+[21-30:P21000; UTF16 665873]   reuseMass : ℝ
+[21-30:P21001; UTF16 665889]   recycleMass : ℝ
+[21-30:P21002; UTF16 665907]   recoverMass : ℝ
+[21-30:P21003; UTF16 665925]   wasteMass : ℝ
+[21-30:P21004; UTF16 665941]   lossMass : ℝ
+[21-30:P21006; UTF16 665972]     0 ≤ reuseMass ∧
+[21-30:P21007; UTF16 665992]     0 ≤ recycleMass ∧
+[21-30:P21008; UTF16 666014]     0 ≤ recoverMass ∧
+[21-30:P21009; UTF16 666036]     0 ≤ wasteMass ∧
+[21-30:P21010; UTF16 666056]     0 ≤ lossMass
+[21-30:P21012; UTF16 666074] def MassBalanced
+[21-30:P21013; UTF16 666091]     (m : MaterialDisposition) : Prop :=
+[21-30:P21014; UTF16 666131]   m.inputMass =
+[21-30:P21015; UTF16 666147]     m.reuseMass +
+[21-30:P21016; UTF16 666165]     m.recycleMass +
+[21-30:P21017; UTF16 666185]     m.recoverMass +
+[21-30:P21018; UTF16 666205]     m.wasteMass +
+[21-30:P21019; UTF16 666223]     m.lossMass
+[21-30:P21020; UTF16 666238] Lifecycle fiber
+[21-30:P21021; UTF16 666254] structure LifecycleWitness where
+[21-30:P21022; UTF16 666287]   inspectionPolicy : InspectionPolicy
+[21-30:P21023; UTF16 666325]   maintenancePolicy : MaintenancePolicy
+[21-30:P21024; UTF16 666365]   retrofitPolicy : RetrofitPolicy
+[21-30:P21025; UTF16 666399]   decommissionPolicy : DecommissionPolicy
+[21-30:P21027; UTF16 666442] def LifecycleFiber
+[21-30:P21028; UTF16 666461]     (target : LifecycleOutcome)
+[21-30:P21031; UTF16 666551]     Set LifecycleWitness :=
+[21-30:P21033; UTF16 666586]     LifecycleValid target state mode w}
+[21-30:P21034; UTF16 666626] PCLAI
+[21-30:P21035; UTF16 666632] structure PCLAI where
+[21-30:P21037; UTF16 666676]   baseline : HandoverCertificate
+[21-30:P21038; UTF16 666709]   state : LifecycleState
+[21-30:P21039; UTF16 666734]   condition : ConditionCertificateStore
+[21-30:P21040; UTF16 666774]   degradation : DegradationCertificateStore
+[21-30:P21041; UTF16 666818]   inspections : InspectionCertificateStore
+[21-30:P21042; UTF16 666861]   rul : RULCertificateStore
+[21-30:P21043; UTF16 666889]   maintenance : MaintenanceCertificateStore
+[21-30:P21044; UTF16 666933]   spares : SpareCertificateStore
+[21-30:P21045; UTF16 666966]   support : SupportCertificateStore
+[21-30:P21046; UTF16 667002]   retrofit : RetrofitCertificateStore
+[21-30:P21047; UTF16 667040]   leases : LifecycleLeaseStore
+[21-30:P21048; UTF16 667071]   decommission : DecommissionCertificateStore
+[21-30:P21049; UTF16 667117]   circularity : MaterialDispositionStore
+[21-30:P21052; UTF16 667218]   packageVersion : Version
+[21-30:P21057; UTF16 667277] ￼
+ATTACHED TABLE 1736483; native row/column order; 34 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Asset identity", "Moderate"]
+ROW 2: ["Condition-state typing", "Moderate"]
+ROW 3: ["Set-valued condition state", "Moderate"]
+ROW 4: ["Degradation transitions", "Difficult"]
+ROW 5: ["Nonlinear stochastic degradation", "Research-level"]
+ROW 6: ["Condition-observation sufficiency", "Moderate"]
+ROW 7: ["Maintenance-decision quotient", "Moderate"]
+ROW 8: ["Inspection-horizon theorem", "Moderate"]
+ROW 9: ["RUL definition", "Moderate"]
+ROW 10: ["Exact RUL computation", "Difficult"]
+ROW 11: ["RUL under partial observability", "Research-level"]
+ROW 12: ["Renewal-reward theorem", "Moderate"]
+ROW 13: ["Age-replacement optimization", "Difficult"]
+ROW 14: ["Imperfect repair and virtual age", "Moderate"]
+ROW 15: ["Maintenance-induced-failure semantics", "Moderate"]
+ROW 16: ["Inspection coverage", "Moderate"]
+ROW 17: ["Minimum inspection selection", "NP-hard"]
+ROW 18: ["Nonanticipative maintenance", "Difficult"]
+ROW 19: ["Maintenance scheduling", "NP-hard in useful restrictions"]
+ROW 20: ["Spare inventory", "Moderate"]
+ROW 21: ["Supplier dependence", "Difficult"]
+ROW 22: ["Repair fibers", "Difficult"]
+ROW 23: ["Obsolescence", "Moderate formally; prediction difficult"]
+ROW 24: ["Retrofit recertification", "Research-level"]
+ROW 25: ["Configuration drift", "Difficult"]
+ROW 26: ["Lifecycle leases", "Difficult"]
+ROW 27: ["Decommissioning automata", "Difficult"]
+ROW 28: ["Decommissioning invariant checking", "Difficult"]
+ROW 29: ["Material balance", "Straightforward"]
+ROW 30: ["Functional circularity", "Difficult"]
+ROW 31: ["Incremental lifecycle recertification", "Difficult"]
+ROW 32: ["PCLAI checker", "Research-level"]
+ROW 33: ["Complete open-world degradation assurance", "Impossible without bounded assumptions"]
+[21-30:P21061; UTF16 667282] 59. Prompt-26 Complexity Profile
+[21-30:P21062; UTF16 667315] DEF-LIFE50 — Prompt-26 Complexity Profile
+[21-30:P21064; UTF16 667365] \left( N_A, N_C, K_{\mathrm{deg}}, K_{\Gamma}, K_{\mathrm{inspect}}, K_{\mathrm{obs}}, K_{\mathrm{RUL}}, K_{\mathrm{maint}}, K_{\mathrm{renew}}, K_{\mathrm{repair}}, K_{\mathrm{spare}}, K_{\mathrm{supply}}, K_{\mathrm{support}}, K_{\mathrm{retrofit}}, K_{\mathrm{drift}}, K_{\mathrm{decomm}}, K_{\mathrm{circular}}, C_{\mathrm{state}}, C_{\mathrm{inspect}}, C_{\mathrm{RUL}}, C_{\mathrm{maint}}, C_{\mathrm{schedule}}, C_{\mathrm{repair}}, C_{\mathrm{retrofit}}, C_{\mathrm{decomm}}, C_{\mathrm{check}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unresolved}} \right). } ]
+[21-30:P21065; UTF16 667948] The coordinates mean:
+[21-30:P21066; UTF16 667970] (N_A): asset and component count;
+[21-30:P21067; UTF16 668004] (N_C): condition-variable count;
+[21-30:P21068; UTF16 668037] (K_{\mathrm{deg}}): degradation-model complexity;
+[21-30:P21069; UTF16 668087] (K_{\Gamma}): condition-knowledge-set representation complexity;
+[21-30:P21070; UTF16 668152] (K_{\mathrm{inspect}}): inspection-family complexity;
+[21-30:P21071; UTF16 668206] (K_{\mathrm{obs}}): monitoring-observation complexity;
+[21-30:P21072; UTF16 668261] (K_{\mathrm{RUL}}): prognostic-model complexity;
+[21-30:P21073; UTF16 668310] (K_{\mathrm{maint}}): maintenance-policy complexity;
+[21-30:P21074; UTF16 668363] (K_{\mathrm{renew}}): renewal-process complexity;
+[21-30:P21075; UTF16 668413] (K_{\mathrm{repair}}): repair-transition complexity;
+[21-30:P21076; UTF16 668466] (K_{\mathrm{spare}}): spare-inventory complexity;
+[21-30:P21077; UTF16 668516] (K_{\mathrm{supply}}): spare-supply dependence complexity;
+[21-30:P21078; UTF16 668575] (K_{\mathrm{support}}): support and obsolescence complexity;
+[21-30:P21079; UTF16 668636] (K_{\mathrm{retrofit}}): retrofit-design complexity;
+[21-30:P21080; UTF16 668689] (K_{\mathrm{drift}}): configuration-drift complexity;
+[21-30:P21081; UTF16 668743] (K_{\mathrm{decomm}}): decommissioning-state complexity;
+[21-30:P21082; UTF16 668800] (K_{\mathrm{circular}}): material-disposition complexity;
+[21-30:P21083; UTF16 668858] (C_{\mathrm{state}}): condition-state inference cost;
+[21-30:P21084; UTF16 668912] (C_{\mathrm{inspect}}): inspection-planning cost;
+[21-30:P21085; UTF16 668962] (C_{\mathrm{RUL}}): RUL-analysis cost;
+[21-30:P21086; UTF16 669001] (C_{\mathrm{maint}}): maintenance-policy computation cost;
+[21-30:P21087; UTF16 669060] (C_{\mathrm{schedule}}): maintenance-scheduling cost;
+[21-30:P21088; UTF16 669114] (C_{\mathrm{repair}}): repair-fiber analysis cost;
+[21-30:P21089; UTF16 669165] (C_{\mathrm{retrofit}}): retrofit-recertification cost;
+[21-30:P21090; UTF16 669221] (C_{\mathrm{decomm}}): decommissioning-planning cost;
+[21-30:P21091; UTF16 669275] (C_{\mathrm{check}}): independent PCLAI verification cost;
+[21-30:P21092; UTF16 669334] (R_{\mathrm{change}}): changed lifecycle roots;
+[21-30:P21094; UTF16 669435] (B_{\mathrm{unresolved}}): unresolved lifecycle blockers.
+[21-30:P21095; UTF16 669493] No scalar “asset health score,” “maintenance quality score,” or “RUL confidence score” is introduced.
+[21-30:P21100; UTF16 669632] ￼
+ATTACHED TABLE 1736499; native row/column order; 28 rows
+ROW 0: ["ID", "Assumption"]
+ROW 1: ["ASSUMP-LIFE1", "Asset Identity"]
+ROW 2: ["ASSUMP-LIFE2", "Accepted Baseline Identity"]
+ROW 3: ["ASSUMP-LIFE3", "Condition-State Sufficiency"]
+ROW 4: ["ASSUMP-LIFE4", "Degradation-Model Validity"]
+ROW 5: ["ASSUMP-LIFE5", "Degradation-Mechanism Coverage"]
+ROW 6: ["ASSUMP-LIFE6", "Inspection Validity"]
+ROW 7: ["ASSUMP-LIFE7", "Observation Semantics"]
+ROW 8: ["ASSUMP-LIFE8", "RUL Model Scope"]
+ROW 9: ["ASSUMP-LIFE9", "Maintenance-Action Fidelity"]
+ROW 10: ["ASSUMP-LIFE10", "Repair Semantics"]
+ROW 11: ["ASSUMP-LIFE11", "Maintenance Human Executability"]
+ROW 12: ["ASSUMP-LIFE12", "Maintenance Economic Executability"]
+ROW 13: ["ASSUMP-LIFE13", "Maintenance Timing"]
+ROW 14: ["ASSUMP-LIFE14", "Nonanticipativity"]
+ROW 15: ["ASSUMP-LIFE15", "Dependence Discipline"]
+ROW 16: ["ASSUMP-LIFE16", "Spare Inventory Correctness"]
+ROW 17: ["ASSUMP-LIFE17", "Supplier and Support Correctness"]
+ROW 18: ["ASSUMP-LIFE18", "Obsolescence Identity"]
+ROW 19: ["ASSUMP-LIFE19", "Retrofit Authority"]
+ROW 20: ["ASSUMP-LIFE20", "Configuration Lineage"]
+ROW 21: ["ASSUMP-LIFE21", "Recertification Completeness"]
+ROW 22: ["ASSUMP-LIFE22", "Operational-Twin Coverage"]
+ROW 23: ["ASSUMP-LIFE23", "Decommissioning Hazard Completeness"]
+ROW 24: ["ASSUMP-LIFE24", "End-of-Life Disposition Identity"]
+ROW 25: ["ASSUMP-LIFE25", "UNKNOWN Discipline"]
+ROW 26: ["ASSUMP-LIFE26", "Checker Soundness"]
+ROW 27: ["ASSUMP-LIFE27", "Dependency Completeness"]
+[21-30:P21105; UTF16 669671] ￼
+ATTACHED TABLE 1736515; native row/column order; 51 rows
+ROW 0: ["ID", "Definition"]
+ROW 1: ["DEF-LIFE1", "Lifecycle Asset State"]
+ROW 2: ["DEF-LIFE2", "Condition State"]
+ROW 3: ["DEF-LIFE3", "Integrity Predicate"]
+ROW 4: ["DEF-LIFE4", "Calendar Age"]
+ROW 5: ["DEF-LIFE5", "Degradation Transition"]
+ROW 6: ["DEF-LIFE6", "Integrity Margin"]
+ROW 7: ["DEF-LIFE7", "Condition Knowledge Set"]
+ROW 8: ["DEF-LIFE8", "Valid Inspection Evidence Set"]
+ROW 9: ["DEF-LIFE9", "Condition Observation Map"]
+ROW 10: ["DEF-LIFE10", "Required Maintenance Decision"]
+ROW 11: ["DEF-LIFE11", "Maintenance-Decision Equivalence"]
+ROW 12: ["DEF-LIFE12", "Maintenance-Decision Quotient"]
+ROW 13: ["DEF-LIFE13", "Failure Set"]
+ROW 14: ["DEF-LIFE14", "Remaining Useful Life"]
+ROW 15: ["DEF-LIFE15", "RUL Set"]
+ROW 16: ["DEF-LIFE16", "Maintenance Action"]
+ROW 17: ["DEF-LIFE17", "Maintenance Transition"]
+ROW 18: ["DEF-LIFE18", "Preventive Maintenance Policy"]
+ROW 19: ["DEF-LIFE19", "Condition-Based Maintenance Policy"]
+ROW 20: ["DEF-LIFE20", "Predictive Maintenance Policy"]
+ROW 21: ["DEF-LIFE21", "Age-Replacement Policy"]
+ROW 22: ["DEF-LIFE22", "Virtual Age"]
+ROW 23: ["DEF-LIFE23", "Maintenance Recertification Cone"]
+ROW 24: ["DEF-LIFE24", "Inspection Action"]
+ROW 25: ["DEF-LIFE25", "Inspection Coverage"]
+ROW 26: ["DEF-LIFE26", "Lifecycle Information History"]
+ROW 27: ["DEF-LIFE27", "Lifecycle Policy"]
+ROW 28: ["DEF-LIFE28", "Maintenance Resource Model"]
+ROW 29: ["DEF-LIFE29", "Spare Inventory State"]
+ROW 30: ["DEF-LIFE30", "Inventory Balance"]
+ROW 31: ["DEF-LIFE31", "Support State"]
+ROW 32: ["DEF-LIFE32", "Obsolescence Event"]
+ROW 33: ["DEF-LIFE33", "Repair Fiber"]
+ROW 34: ["DEF-LIFE34", "Lifecycle Decision Model"]
+ROW 35: ["DEF-LIFE35", "Retrofit"]
+ROW 36: ["DEF-LIFE36", "Lifecycle Contextual Equivalence"]
+ROW 37: ["DEF-LIFE37", "Configuration Drift"]
+ROW 38: ["DEF-LIFE38", "Lifecycle Assurance Lease"]
+ROW 39: ["DEF-LIFE39", "Decommissioning State Machine"]
+ROW 40: ["DEF-LIFE40", "Decommissioning Hazard"]
+ROW 41: ["DEF-LIFE41", "Decommissioning Safety Set"]
+ROW 42: ["DEF-LIFE42", "Material Disposition State"]
+ROW 43: ["DEF-LIFE43", "Material Balance"]
+ROW 44: ["DEF-LIFE44", "Lifecycle Claim Modality"]
+ROW 45: ["DEF-LIFE45", "Lifecycle Conflict Core"]
+ROW 46: ["DEF-LIFE46", "Lifecycle Repair"]
+ROW 47: ["DEF-LIFE47", "Lifecycle Repair Frontier"]
+ROW 48: ["DEF-LIFE48", "Lifecycle Dependency Graph"]
+ROW 49: ["DEF-LIFE49", "PCLAI"]
+ROW 50: ["DEF-LIFE50", "Prompt-26 Complexity Profile"]
+[21-30:P21106; UTF16 669673] The Lifecycle Integrity Fiber is the governing witness construction introduced in the Abstract and formalized in Section 47 without consuming a permanent definition number.
+[21-30:P21111; UTF16 669880] ￼
+ATTACHED TABLE 1736531; native row/column order; 38 rows
+ROW 0: ["ID", "Theorem", "Status"]
+ROW 1: ["THM-LIFE1", "Handover acceptance does not imply future integrity", "Proved by finite construction"]
+ROW 2: ["THM-LIFE2", "Equal age does not imply equal condition", "Proved in both directions by construction"]
+ROW 3: ["THM-LIFE3", "Fixed-theory inspection intersection cannot enlarge condition set", "Proved by inclusion"]
+ROW 4: ["THM-LIFE4", "Scoped inspection does not prove no degradation", "Proved by two-coordinate construction"]
+ROW 5: ["THM-LIFE5", "Monitoring-decision factorization theorem", "Proved both directions"]
+ROW 6: ["THM-LIFE6", "Observation aliasing makes exact maintenance impossible", "Proved"]
+ROW 7: ["THM-LIFE7", "Maintenance-decision quotient is coarsest exact representation", "Proved"]
+ROW 8: ["THM-LIFE8", "Bounded degradation yields robust inspection horizon", "Proved by integration"]
+ROW 9: ["THM-LIFE9", "Mean degradation rate does not establish robust horizon", "Proved by trajectories"]
+ROW 10: ["THM-LIFE10", "Maximum damage rate gives RUL lower bound", "Proved by integration"]
+ROW 11: ["THM-LIFE11", "RUL point estimate does not guarantee life", "Proved by two trajectories"]
+ROW 12: ["THM-LIFE12", "Periodic perfect restoration preserves integrity", "Proved cycle by cycle"]
+ROW 13: ["THM-LIFE13", "Renewal-reward age-replacement cost", "Proved by strong laws and squeeze"]
+ROW 14: ["THM-LIFE14", "No model-independent optimal interval", "Proved by decision-model reversal"]
+ROW 15: ["THM-LIFE15", "Imperfect repair is not perfect renewal", "Proved algebraically"]
+ROW 16: ["THM-LIFE16", "Maintenance completion does not imply improvement", "Proved by construction"]
+ROW 17: ["THM-LIFE17", "Acceptance-relevant maintenance requires complete recertification", "Proved"]
+ROW 18: ["THM-LIFE18", "Minimum-cost inspection selection is NP-hard", "Weighted Set Cover reduction"]
+ROW 19: ["THM-LIFE19", "Scenario-wise maintenance plans need not form one policy", "Proved by nonanticipativity counterexample"]
+ROW 20: ["THM-LIFE20", "Physical repairability does not imply executable repair", "Proved by spare-path construction"]
+ROW 21: ["THM-LIFE21", "Supplier marginals do not determine redundancy", "Proved by independent/common-cause worlds"]
+ROW 22: ["THM-LIFE22", "Operability does not imply supportability", "Proved by construction"]
+ROW 23: ["THM-LIFE23", "Obsolescence can empty repair fiber", "Proved by two-time construction"]
+ROW 24: ["THM-LIFE24", "Repair versus replace is model relative", "Proved by utility reversal"]
+ROW 25: ["THM-LIFE25", "Local retrofit improvement does not imply system improvement", "Proved by shared-capacity construction"]
+ROW 26: ["THM-LIFE26", "Lifecycle contextual equivalence preserves included claims", "Proved from definition"]
+ROW 27: ["THM-LIFE27", "Small edits can accumulate into drift", "Proved arithmetically"]
+ROW 28: ["THM-LIFE28", "Lifecycle assurance lease soundness", "Proved by trajectory containment"]
+ROW 29: ["THM-LIFE29", "Shutdown does not establish safe decommissioning", "Proved by residual-hazard construction"]
+ROW 30: ["THM-LIFE30", "Decommissioning invariant closure", "Proved by induction"]
+ROW 31: ["THM-LIFE31", "Recovered mass bounded by input mass", "Proved by nonnegativity"]
+ROW 32: ["THM-LIFE32", "High recovery does not imply closed-loop circularity", "Proved by downcycling construction"]
+ROW 33: ["THM-LIFE33", "Incremental lifecycle recertification equals cold checking", "Proved by topological induction"]
+ROW 34: ["THM-LIFE34", "Whole-project lifecycle theorem", "Proved under 25 explicit assumptions"]
+ROW 35: ["THM-LIFE35", "Open-world lifecycle limitation", "Proved by indistinguishable worlds"]
+ROW 36: ["THM-LIFE36", "Proposal-source independence", "Proved"]
+ROW 37: ["THM-LIFE37", "Explicit PCLAI checking complexity", "Proved"]
+[21-30:P21115; UTF16 669885] 63. Proposition and Algorithm Registries
+[21-30:P21116; UTF16 669926] Proposition Registry
+[21-30:P21117; UTF16 669947] ￼
+ATTACHED TABLE 1736547; native row/column order; 2 rows
+ROW 0: ["ID", "Proposition"]
+ROW 1: ["PRO-LIFE1", "Maintenance demand above available service capacity proves schedule infeasibility under the declared deterministic resource model"]
+[21-30:P21118; UTF16 669949] Algorithm Registry
+[21-30:P21119; UTF16 669968] ￼
+ATTACHED TABLE 1736563; native row/column order; 36 rows
+ROW 0: ["ID", "Algorithm"]
+ROW 1: ["ALG-LIFE1", "AuditLifecycleState"]
+ROW 2: ["ALG-LIFE2", "BuildConditionKnowledgeSet"]
+ROW 3: ["ALG-LIFE3", "AuditDegradationModel"]
+ROW 4: ["ALG-LIFE4", "CheckConditionMonitoringSufficiency"]
+ROW 5: ["ALG-LIFE5", "BuildMaintenanceDecisionQuotient"]
+ROW 6: ["ALG-LIFE6", "ComputeRobustInspectionHorizon"]
+ROW 7: ["ALG-LIFE7", "ComputeRULSet"]
+ROW 8: ["ALG-LIFE8", "AuditRULClaim"]
+ROW 9: ["ALG-LIFE9", "PlanPreventiveMaintenance"]
+ROW 10: ["ALG-LIFE10", "EvaluateAgeReplacementPolicy"]
+ROW 11: ["ALG-LIFE11", "CheckImperfectRepair"]
+ROW 12: ["ALG-LIFE12", "CheckMaintenanceExecution"]
+ROW 13: ["ALG-LIFE13", "BuildInspectionCoverageMatrix"]
+ROW 14: ["ALG-LIFE14", "SelectInspectionPortfolio"]
+ROW 15: ["ALG-LIFE15", "SolveConditionBasedMaintenance"]
+ROW 16: ["ALG-LIFE16", "AuditMaintenanceCapacity"]
+ROW 17: ["ALG-LIFE17", "TrackSpareInventory"]
+ROW 18: ["ALG-LIFE18", "CheckRepairExecutability"]
+ROW 19: ["ALG-LIFE19", "AuditSupplierDependence"]
+ROW 20: ["ALG-LIFE20", "AuditSupportAndObsolescence"]
+ROW 21: ["ALG-LIFE21", "BuildRepairFiber"]
+ROW 22: ["ALG-LIFE22", "CompareRepairReplaceRetrofit"]
+ROW 23: ["ALG-LIFE23", "AuditConfigurationDrift"]
+ROW 24: ["ALG-LIFE24", "ProcessRetrofit"]
+ROW 25: ["ALG-LIFE25", "ComputeLifecycleLease"]
+ROW 26: ["ALG-LIFE26", "RedTeamLifecycle"]
+ROW 27: ["ALG-LIFE27", "CompileDecommissioningStateMachine"]
+ROW 28: ["ALG-LIFE28", "CheckDecommissioningTrace"]
+ROW 29: ["ALG-LIFE29", "BuildCircularDispositionLedger"]
+ROW 30: ["ALG-LIFE30", "FindLifecycleConflictCore"]
+ROW 31: ["ALG-LIFE31", "GenerateLifecycleRepairFrontier"]
+ROW 32: ["ALG-LIFE32", "LifecycleRCVOCInterface"]
+ROW 33: ["ALG-LIFE33", "IncrementalLifecycleRecertification"]
+ROW 34: ["ALG-LIFE34", "CheckPCLAI"]
+ROW 35: ["ALG-LIFE35", "BuildPCLAI"]
+[21-30:P21124; UTF16 669997] CONJ-LIFE1 — Compact Decision-Sufficient Condition State
+[21-30:P21125; UTF16 670054] Most major building assets admit decision-sufficient condition states much smaller than their raw sensor history.
+[21-30:P21126; UTF16 670168] Falsification: most raw telemetry distinctions remain necessary for admitted maintenance decisions.
+[21-30:P21127; UTF16 670268] CONJ-LIFE2 — Monitoring Reduces Inspection Burden
+[21-30:P21128; UTF16 670318] Decision-sufficient monitoring materially reduces physical inspection burden.
+[21-30:P21129; UTF16 670396] Falsification: useful maintenance decisions continue to require near-complete direct inspection.
+[21-30:P21130; UTF16 670493] CONJ-LIFE3 — Useful Robust Degradation Envelopes
+[21-30:P21131; UTF16 670542] Useful bounded-horizon degradation envelopes exist for important asset classes.
+[21-30:P21132; UTF16 670622] Falsification: uncertainty expands so rapidly that no operationally useful positive horizon can be certified.
+[21-30:P21133; UTF16 670732] CONJ-LIFE4 — Routine Maintenance Recertification Is Local
+[21-30:P21134; UTF16 670790] Lifecycle recertification after routine maintenance usually affects a small dependency slice.
+[21-30:P21135; UTF16 670884] Falsification: ordinary maintenance repeatedly reopens most whole-project acceptance roots.
+[21-30:P21136; UTF16 670976] CONJ-LIFE5 — Strategic Spares Are Sparse
+[21-30:P21137; UTF16 671017] A moderate number of strategic spare types covers most high-consequence repair fibers.
+[21-30:P21138; UTF16 671104] Falsification: critical repairs require a very large and rapidly obsolete inventory.
+[21-30:P21139; UTF16 671189] CONJ-LIFE6 — Proactive Obsolescence Analysis Preserves Repair Fibers
+[21-30:P21140; UTF16 671258] Early support and obsolescence analysis materially reduces future empty repair fibers.
+[21-30:P21141; UTF16 671345] Falsification: support loss is too unpredictable or qualification time dominates every intervention.
+[21-30:P21142; UTF16 671446] CONJ-LIFE7 — Retrofit Quotients Keep Search Manageable
+[21-30:P21143; UTF16 671501] Decision-equivalent retrofit classes substantially reduce whole-building upgrade search.
+[21-30:P21144; UTF16 671590] Falsification: almost every retrofit variable remains globally decision relevant.
+[21-30:P21145; UTF16 671672] CONJ-LIFE8 — Version Dependencies Detect Drift
+[21-30:P21146; UTF16 671719] Configuration-drift roots can often be detected through proof-DAG and version dependencies.
+[21-30:P21147; UTF16 671811] Falsification: meaningful drift is dominated by undocumented informal changes outside the recorded graph.

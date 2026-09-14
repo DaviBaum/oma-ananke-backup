@@ -1,0 +1,294 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P18594; UTF16 591291] Exact checked: PASS is sound when the entire enclosure lies inside the requirement.
+[21-30:P18595; UTF16 591375] Exact checked: FAIL is sound when the entire enclosure lies outside the requirement.
+[21-30:P18596; UTF16 591460] Exact checked: A boundary-straddling enclosure is unresolved.
+[21-30:P18597; UTF16 591522] Exact theorem: A conservative guard-band pass prevents false acceptance under the declared bound.
+[21-30:P18598; UTF16 591620] Exact limitation: A point estimate inside a limit does not necessarily justify PASS.
+[21-30:P18599; UTF16 591705] Test cases and execution
+[21-30:P18600; UTF16 591730] Exact structural: Test cases include preconditions, stimulus, observations, measurements, acceptance criteria, and restoration.
+[21-30:P18601; UTF16 591858] Exact structural: A test execution artifact binds test version, artifact version, conditions, instrumentation, and evidence.
+[21-30:P18602; UTF16 591983] Exact structural: Test execution and test validity are different claims.
+[21-30:P18603; UTF16 592056] Exact structural: Human-executed tests inherit Prompt-24 competence and workload requirements.
+[21-30:P18604; UTF16 592151] Acceptance observability
+[21-30:P18605; UTF16 592176] Exact theorem: Acceptance can be computed from test outcomes exactly iff acceptance is constant on every test-outcome fiber.
+[21-30:P18606; UTF16 592301] Exact negative result: Test-indistinguishable acceptable and unacceptable states make exact acceptance impossible.
+[21-30:P18607; UTF16 592416] Exact structural: A coverage hole is a pair of states merged by the suite but separated by the acceptance predicate.
+[21-30:P18609; UTF16 592548] Exact structural: Fault coverage is relative to a declared modeled fault family.
+[21-30:P18610; UTF16 592629] Exact theorem: Adding tests cannot reduce modeled coverage.
+[21-30:P18611; UTF16 592689] Exact theorem: Complete detection of every modeled unacceptable state plus valid all-pass evidence establishes modeled acceptance.
+[21-30:P18612; UTF16 592820] Model scoped: The theorem excludes only modeled covered faults.
+[21-30:P18613; UTF16 592884] Exact limitation: No statement follows about unmodeled defects.
+[21-30:P18614; UTF16 592948] Test-selection hardness
+[21-30:P18615; UTF16 592972] Computational: Minimum-cost complete test selection is NP-hard by Weighted Set Cover.
+[21-30:P18616; UTF16 593058] Exact structural: A verified nonminimum suite may still be correct.
+[21-30:P18617; UTF16 593126] Exact structural: Optimization difficulty does not weaken a verified suite’s coverage certificate.
+[21-30:P18618; UTF16 593225] Operating-envelope coverage
+[21-30:P18619; UTF16 593253] Exact negative result: Passing at one operating point does not establish an unchecked envelope.
+[21-30:P18620; UTF16 593349] Exact structural: Tested domain and required domain must remain explicit.
+[21-30:P18621; UTF16 593423] Exact limitation: Extrapolation requires a separate model-validity theorem.
+[21-30:P18622; UTF16 593499] Fault diagnosis
+[21-30:P18623; UTF16 593515] Exact structural: A fault signature is the complete joint possible test-outcome set.
+[21-30:P18624; UTF16 593600] Exact theorem: Equal signatures prevent guaranteed exact diagnosis.
+[21-30:P18625; UTF16 593668] Exact structural: Diagnostic equivalence classes define the resolution of the current test suite.
+[21-30:P18626; UTF16 593766] Exact limitation: Different repair obligations within one class require additional evidence or a common safe action.
+[21-30:P18627; UTF16 593883] Acceptance sampling
+[21-30:P18628; UTF16 593903] Statistical exact arithmetic: Hypergeometric acceptance probability is exact under uniform sampling without replacement.
+[21-30:P18629; UTF16 594024] Statistical: False acceptance and false rejection are lot-model probabilities.
+[21-30:P18630; UTF16 594103] Exact negative result: A nonexhaustive zero-defect sample can pass a defective lot.
+[21-30:P18631; UTF16 594187] Exact limitation: Statistical acceptance does not establish deterministic lot perfection.
+[21-30:P18632; UTF16 594277] Exact structural: Lot identity and sampling mechanism are part of the claim.
+[21-30:P18633; UTF16 594354] Nonconformance and corrective action
+[21-30:P18634; UTF16 594391] Exact structural: Nonconformance status is versioned and requirement scoped.
+[21-30:P18635; UTF16 594468] Exact structural: Physical rework alone does not close a nonconformance.
+[21-30:P18636; UTF16 594541] Exact negative result: A local retest does not establish global acceptance.
+[21-30:P18637; UTF16 594617] Exact structural: Corrective closure requires physical verification, retest, regression, and version transition.
+[21-30:P18638; UTF16 594730] Regression recertification
+[21-30:P18639; UTF16 594757] Exact structural: Corrective action creates an acceptance regression cone.
+[21-30:P18640; UTF16 594832] Exact theorem: Complete regression recertification restores the same acceptance roots as cold checking.
+[21-30:P18641; UTF16 594936] Exact structural: Unaffected certificates may be reused only through complete dependencies and applicability checks.
+[21-30:P18642; UTF16 595053] Subsystem and integrated-system testing
+[21-30:P18643; UTF16 595093] Exact negative result: Every subsystem may pass while the integrated system fails.
+[21-30:P18644; UTF16 595176] Exact theorem: Complete local guarantees, closed interface assumptions, and global interaction checks establish integrated acceptance.
+[21-30:P18645; UTF16 595311] Exact limitation: Cyclic assume-guarantee reasoning requires a checked invariant or fixed point.
+[21-30:P18646; UTF16 595408] Exact structural: Shared resources, timing, and interactions are system-level acceptance objects.
+[21-30:P18647; UTF16 595506] Latent defects
+[21-30:P18648; UTF16 595521] Exact set-valued: Accepted evidence defines a delivered-state fiber.
+[21-30:P18649; UTF16 595590] Exact theorem: A nonempty defective portion of that fiber blocks exact defect-free status.
+[21-30:P18650; UTF16 595681] Probabilistic: Residual latent-defect risk remains a probability under a declared law.
+[21-30:P18651; UTF16 595768] Exact negative result: Small probability does not mean impossibility.
+[21-30:P18652; UTF16 595838] Open-world: Passing all modeled tests does not exclude defects outside the model.
+[21-30:P18653; UTF16 595920] Test-induced state changes
+[21-30:P18654; UTF16 595947] Exact structural: Commissioning tests are physical and cyber-physical transitions.
+[21-30:P18655; UTF16 596030] Exact negative result: A test result about a temporary state need not apply to the final restored state.
+[21-30:P18656; UTF16 596135] Exact structural: Restoration state and version must be certified.
+[21-30:P18657; UTF16 596202] Commissioning state machines
+[21-30:P18658; UTF16 596231] Exact structural: Commissioning is a stateful transition process.
+[21-30:P18659; UTF16 596297] Exact structural: Test failure, correction, retest, subsystem acceptance, integrated acceptance, readiness, and handover are distinct states.
+[21-30:P18660; UTF16 596439] Exact structural: State transitions require evidence and preconditions.
+[21-30:P18661; UTF16 596511] Punch lists and conditional acceptance
+[21-30:P18662; UTF16 596550] Exact structural: Open items retain requirements, evidence, closure conditions, deadlines, and authority.
+[21-30:P18663; UTF16 596656] Exact negative result: Conditional acceptance does not imply full acceptance.
+[21-30:P18664; UTF16 596734] Authority scoped: Conditional acceptance requires Prompt-20/21 authority.
+[21-30:P18665; UTF16 596808] Exact structural: Conditional obligations remain live after operation begins.
+[21-30:P18666; UTF16 596886] Regulatory and contractual separation
+[21-30:P18667; UTF16 596924] Exact negative result: Engineering acceptance, regulatory approval, and contractual acceptance are not identical.
+[21-30:P18668; UTF16 597038] Modality preserving: Prompt 21 remains authoritative for regulatory status.
+[21-30:P18669; UTF16 597114] Modality preserving: Prompt 20 remains authoritative for contractual acceptance.
+[21-30:P18670; UTF16 597195] Readiness
+[21-30:P18671; UTF16 597205] Exact structural: Readiness is a conjunction of mandatory release roots.
+[21-30:P18672; UTF16 597278] Exact structural: Readiness may include cyber, privacy, human, ODT, documentation, spares, and regulatory state.
+[21-30:P18673; UTF16 597391] Exact structural: An unresolved mandatory root blocks handover readiness.
+[21-30:P18674; UTF16 597465] Handover
+[21-30:P18675; UTF16 597474] Exact structural: Handover transfers custody, authority, baseline, and operational state.
+[21-30:P18676; UTF16 597564] Exact theorem: Handover is decision sufficient iff future operational computations factor through the transferred state.
+[21-30:P18677; UTF16 597685] Exact structural: The operational quotient is the coarsest exact sufficient handover state.
+[21-30:P18678; UTF16 597777] Exact negative result: Document transfer alone does not establish operational-state transfer.
+[21-30:P18679; UTF16 597871] Exact structural: Temporary conditions and open items are part of the baseline when decision relevant.
+[21-30:P18680; UTF16 597974] Acceptance fiber and package
+[21-30:P18681; UTF16 598003] Exact structural: Acceptance readiness is existence of a valid measurement, correction, regression, readiness, and handover witness.
+[21-30:P18682; UTF16 598136] Exact structural: PCCAH preserves measurement, coverage, sampling, correction, latent-risk, readiness, and handover modalities separately.
+[21-30:P18683; UTF16 598275] Exact theorem: A checked witness proves a nonempty acceptance fiber.
+[21-30:P18685; UTF16 598371] Exact structural: Acceptance constraints may be jointly infeasible.
+[21-30:P18686; UTF16 598439] Exact structural: A conflict core identifies an incompatible set.
+[21-30:P18687; UTF16 598505] Exact structural: Repairs may alter artifact, instrumentation, testing, software, documentation, or architecture.
+[21-30:P18688; UTF16 598619] Partial-order: Repair frontiers preserve noncompensatory tradeoffs.
+[21-30:P18690; UTF16 598715] Exact theorem: Dependency-directed acceptance checking equals cold checking under complete dependencies.
+[21-30:P18691; UTF16 598820] Exact structural: Artifact, calibration, test, correction, or handover changes invalidate descendants.
+[21-30:P18692; UTF16 598923] Exact structural: Proposal-source intelligence does not affect accepted certificate semantics.
+[21-30:P18693; UTF16 599018] Verification complexity: Explicit checking is linear in proof-DAG size plus local checker costs.
+[21-30:P18695; UTF16 599134] Prompt 9 schedules measurements, tests, inspections, and retests.
+[21-30:P18696; UTF16 599200] Prompt 10 supplies hidden-precondition, coverage, calibration, and latent-defect breakers.
+[21-30:P18697; UTF16 599291] Prompt 11 supplies evidence applicability and release calculus.
+[21-30:P18698; UTF16 599355] Prompt 12 remains authoritative for architectural acceptance repairs.
+[21-30:P18699; UTF16 599425] Prompt 13 supplies exact materialized artifact identity.
+[21-30:P18700; UTF16 599482] Prompt 14 supplies as-built and field-execution evidence.
+[21-30:P18701; UTF16 599540] Prompt 15 receives the accepted operational baseline and uncertainty state.
+[21-30:P18702; UTF16 599616] Prompt 16 controls fleet transfer of test, defect, and measurement knowledge.
+[21-30:P18703; UTF16 599694] Prompt 17 controls latent-defect and false-acceptance probability modalities.
+[21-30:P18704; UTF16 599772] Prompt 18 verifies economic feasibility of tests, rework, and remaining obligations.
+[21-30:P18705; UTF16 599857] Prompt 19 controls test, procurement, and correction deadlines.
+[21-30:P18706; UTF16 599921] Prompt 20 controls contractual acceptance and authority.
+[21-30:P18707; UTF16 599978] Prompt 21 controls regulatory approval and permit status.
+[21-30:P18708; UTF16 600036] Prompt 22 controls digital evidence integrity without proving semantic truth.
+[21-30:P18709; UTF16 600114] Prompt 23 governs privacy of commissioning evidence.
+[21-30:P18710; UTF16 600167] Prompt 24 establishes human executability of commissioning procedures.
+[21-30:P18711; UTF16 600238] Whole-project acceptance and handover
+[21-30:P18712; UTF16 600276] Exact checked: Measurement-based decisions remain tied to their enclosures.
+[21-30:P18713; UTF16 600352] Model scoped: Acceptance-sufficient suites prove the modeled predicate only over the covered state domain.
+[21-30:P18714; UTF16 600459] Statistical: Sample acceptance remains probabilistic.
+[21-30:P18715; UTF16 600513] Integrated: Integrated acceptance requires checked composition.
+[21-30:P18716; UTF16 600577] Probabilistic latent risk: Residual defect probabilities remain probabilistic.
+[21-30:P18717; UTF16 600656] Handover confirmed: Future operational decisions factor through the transferred state.
+[21-30:P18718; UTF16 600743] Open-world: No PCCAH proves absence of defects outside its theory.
+[21-30:P18723; UTF16 600846] Every acceptance requirement is represented.
+[21-30:P18724; UTF16 600891] Every requirement is correct.
+[21-30:P18725; UTF16 600921] Every acceptance threshold is appropriate.
+[21-30:P18726; UTF16 600964] Every measurand is correctly identified.
+[21-30:P18727; UTF16 601005] Every instrument measures the intended quantity.
+[21-30:P18728; UTF16 601054] Every measurement model is complete.
+[21-30:P18729; UTF16 601091] Every calibration artifact is genuine.
+[21-30:P18730; UTF16 601130] Every calibration chain is complete.
+[21-30:P18731; UTF16 601167] Calibration references are themselves correct.
+[21-30:P18732; UTF16 601214] Every uncertainty contribution is represented.
+[21-30:P18733; UTF16 601261] Error bounds remain valid under actual conditions.
+[21-30:P18734; UTF16 601312] Drift models remain valid.
+[21-30:P18735; UTF16 601339] Calibration intervals are adequate.
+[21-30:P18736; UTF16 601375] No instrument damage occurred.
+[21-30:P18737; UTF16 601406] No measurement fixture materially changes the measurand.
+[21-30:P18738; UTF16 601463] Repeated measurements are independent.
+[21-30:P18739; UTF16 601502] Every test is executed exactly as represented.
+[21-30:P18740; UTF16 601549] Every test precondition is known.
+[21-30:P18741; UTF16 601583] Every tested operating point is representative.
+[21-30:P18742; UTF16 601631] Every future operating condition is covered.
+[21-30:P18743; UTF16 601676] Every defect family is represented.
+[21-30:P18744; UTF16 601712] Every modeled defect produces its assumed test signature.
+[21-30:P18745; UTF16 601770] Every coverage relation is correct.
+[21-30:P18746; UTF16 601806] Every test detector is valid.
+[21-30:P18747; UTF16 601836] Every detector is complete for its claimed state family.
+[21-30:P18748; UTF16 601893] No fault masks another fault.
+[21-30:P18749; UTF16 601923] No interacting faults invalidate single-fault signatures.
+[21-30:P18750; UTF16 601981] Test suites remain compact.
+[21-30:P18751; UTF16 602009] Minimum test selection remains computationally tractable.
+[21-30:P18752; UTF16 602067] Every sample is genuinely uniform where claimed.
+[21-30:P18753; UTF16 602116] Lot composition remains fixed during sampling.
+[21-30:P18754; UTF16 602163] Sample acceptance means lot perfection.
+[21-30:P18755; UTF16 602203] Defect classification is binary in real systems.
+[21-30:P18756; UTF16 602252] Sampling probabilities predict future installed quality.
+[21-30:P18757; UTF16 602309] Every detected nonconformance is recorded.
+[21-30:P18758; UTF16 602352] Every repair addresses the true cause.
+[21-30:P18759; UTF16 602391] Root-cause hypotheses are correct.
+[21-30:P18760; UTF16 602426] Corrective action introduces no new defect.
+[21-30:P18761; UTF16 602470] Regression dependencies are complete.
+[21-30:P18762; UTF16 602508] Local retesting is always sufficient after local changes.
+[21-30:P18763; UTF16 602566] Subsystem models capture all interactions.
+[21-30:P18764; UTF16 602609] Interface contracts are complete.
+[21-30:P18765; UTF16 602643] Integrated tests cover every coupled state.
+[21-30:P18766; UTF16 602687] Commissioning tests create no damage.
+[21-30:P18767; UTF16 602725] Restoration after testing is exact.
+[21-30:P18768; UTF16 602761] Passing commissioning means no latent defect.
+[21-30:P18769; UTF16 602807] Latent-defect probability models are correct.
+[21-30:P18770; UTF16 602853] A small residual probability is practically acceptable.
+[21-30:P18771; UTF16 602909] Punch-list classifications are correct.
+[21-30:P18772; UTF16 602949] Conditional-acceptance authority remains valid.
+[21-30:P18773; UTF16 602997] Conditional items close before expiry.
+[21-30:P18774; UTF16 603036] Readiness obligations are complete.
+[21-30:P18775; UTF16 603072] Handover documents are complete.
+[21-30:P18776; UTF16 603105] Every credential is transferred safely.
+[21-30:P18777; UTF16 603145] Every manual isolation is documented.
+[21-30:P18778; UTF16 603183] Every temporary operating condition is transferred.
+[21-30:P18779; UTF16 603235] The ODT baseline matches physical reality.
+[21-30:P18780; UTF16 603278] Receiving personnel understand every handover artifact.
+[21-30:P18781; UTF16 603334] The handover summary contains every future decision-relevant state.
+[21-30:P18782; UTF16 603402] Future operating procedures remain unchanged.
+[21-30:P18783; UTF16 603448] Warranties and spares are complete.
+[21-30:P18784; UTF16 603484] Every software version is correctly baselined.
+[21-30:P18785; UTF16 603531] Every regulatory state transfers correctly.
+[21-30:P18786; UTF16 603575] Every privacy and security obligation transfers correctly.
+[21-30:P18788; UTF16 603677] PCCAH checking remains cheaper than commissioning synthesis.
+[21-30:P18790; UTF16 603791] Commissioning authorities accept proof-carrying test evidence.
+[21-30:P18791; UTF16 603854] Vendors provide sufficient measurement and test semantics.
+[21-30:P18792; UTF16 603913] A closed test theory can prove no unknown latent defect exists.
+[21-30:P18793; UTF16 603977] Future degradation cannot invalidate acceptance.
+[21-30:P18794; UTF16 604026] Future maintenance preserves the accepted baseline.
+[21-30:P18795; UTF16 604078] Acceptance today implies performance years later.
+[21-30:P18796; UTF16 604128] Every field modification after handover is tracked.
+[21-30:P18797; UTF16 604180] Every hidden defect is discoverable by a practical safe test.
+[21-30:P18799; UTF16 604271] [ \boxed{ \textbf{Prompt 25 cannot prove that an unmodeled defect, interaction, measurement error, test-coverage hole, future degradation mechanism, or hidden handover state does not exist.} } ]
+[21-30:P18803; UTF16 604469] 70. Exact Mathematical Inputs Required by Prompt 26
+[21-30:P18804; UTF16 604521] Prompt 26 may inherit without redefining:
+[21-30:P18805; UTF16 604563] Commissioning and Acceptance State.
+[21-30:P18806; UTF16 604599] Acceptance Requirement.
+[21-30:P18807; UTF16 604623] Acceptance Basis.
+[21-30:P18808; UTF16 604641] Measurand.
+[21-30:P18809; UTF16 604652] Measurement Artifact.
+[21-30:P18810; UTF16 604674] Measurement Enclosure.
+[21-30:P18811; UTF16 604697] Calibration Artifact.
+[21-30:P18812; UTF16 604719] Calibration Traceability Chain.
+[21-30:P18813; UTF16 604751] Calibration Lease.
+[21-30:P18814; UTF16 604770] Bounded Calibration Composition.
+[21-30:P18815; UTF16 604803] Three-Way Measurement Decision.
+[21-30:P18816; UTF16 604835] Guard-Banded Acceptance.
+[21-30:P18817; UTF16 604860] Acceptance Test Case.
+[21-30:P18818; UTF16 604882] Test Execution Artifact.
+[21-30:P18819; UTF16 604907] Test Plan.
+[21-30:P18820; UTF16 604918] Acceptance Observation Map.
+[21-30:P18821; UTF16 604946] Acceptance-Sufficiency Factorization.
+[21-30:P18822; UTF16 604984] Modeled Fault Family.
+[21-30:P18823; UTF16 605006] Fault-Coverage Relation.
+[21-30:P18824; UTF16 605031] Test-Coverage Set.
+[21-30:P18825; UTF16 605050] Test-Selection Hardness.
+[21-30:P18826; UTF16 605075] Operating-Envelope Limitation.
+[21-30:P18827; UTF16 605106] Test Signature.
+[21-30:P18828; UTF16 605122] Diagnostic Equivalence.
+[21-30:P18829; UTF16 605146] Diagnostic Quotient.
+[21-30:P18830; UTF16 605167] Nonconformance.
+[21-30:P18831; UTF16 605183] Corrective Action.
+[21-30:P18832; UTF16 605202] Corrective-Action Closure.
+[21-30:P18833; UTF16 605229] Acceptance Regression Cone.
+[21-30:P18834; UTF16 605257] Integration Interface Contract.
+[21-30:P18835; UTF16 605289] Integrated-System Acceptance theorem.
+[21-30:P18836; UTF16 605327] Finite Lot.
+[21-30:P18837; UTF16 605339] Sampling Plan.
+[21-30:P18838; UTF16 605354] Hypergeometric Acceptance Probability.
+[21-30:P18839; UTF16 605393] False Acceptance Probability.
+[21-30:P18840; UTF16 605423] False Rejection Probability.
+[21-30:P18841; UTF16 605452] Statistical-Acceptance Limitation.
+[21-30:P18842; UTF16 605487] Evidence-Consistent Delivered-State Fiber.
+[21-30:P18843; UTF16 605530] Latent-Defect State Set.
+[21-30:P18844; UTF16 605555] Residual Latent-Defect Probability.
+[21-30:P18845; UTF16 605591] Commissioning Test Transition.
+[21-30:P18846; UTF16 605622] Commissioning State Machine.
+[21-30:P18847; UTF16 605651] Open Acceptance Item.
+[21-30:P18848; UTF16 605673] Conditional Acceptance.
+[21-30:P18849; UTF16 605697] Readiness Obligation.
+[21-30:P18850; UTF16 605719] Handover Readiness State.
+[21-30:P18851; UTF16 605745] Handover Artifact.
+[21-30:P18852; UTF16 605764] Handover Transition.
+[21-30:P18853; UTF16 605785] Handover-Sufficiency Theorem.
+[21-30:P18854; UTF16 605815] Acceptance and Handover Fiber.
+[21-30:P18855; UTF16 605846] Acceptance Claim Modality.
+[21-30:P18856; UTF16 605873] Acceptance Conflict Core.
+[21-30:P18857; UTF16 605899] Acceptance Repair.
+[21-30:P18858; UTF16 605918] Acceptance Repair Frontier.
+[21-30:P18859; UTF16 605946] Acceptance Dependency Graph.
+[21-30:P18860; UTF16 605975] PCCAH.
+[21-30:P18861; UTF16 605982] Incremental Acceptance Recertification.
+[21-30:P18862; UTF16 606022] Whole-Project Acceptance and Handover theorem.
+[21-30:P18863; UTF16 606069] Prompt-25 Complexity Profile.
+[21-30:P18864; UTF16 606099] Every Prompt-25 algorithm.
+[21-30:P18865; UTF16 606126] Every Prompt-25 conjecture.
+[21-30:P18866; UTF16 606154] Prompts 1–24 remain authoritative.
+[21-30:P18867; UTF16 606189] A strong Prompt-26 frontier is:
+[21-30:P18868; UTF16 606221] [ \boxed{ \textbf{proof-carrying lifecycle asset integrity, degradation and aging, inspection planning, preventive and predictive maintenance, imperfect repair, spares and obsolescence, retrofit, configuration drift, recertification, decommissioning, and circular end-of-life execution.} } ]
+[21-30:P18870; UTF16 606529] [ \text{Can humans execute the required procedures?} ]
+[21-30:P18872; UTF16 606600] [ \text{Did the delivered system pass the evidence required for acceptance and handover?} ]
+[21-30:P18873; UTF16 606692] Prompt 26 may ask:
+[21-30:P18874; UTF16 606711] [ \boxed{ \text{How does ANANKE keep that accepted system valid as it ages, degrades, is maintained, repaired, upgraded, becomes obsolete, and is eventually retired?} } ]
+[21-30:P18876; UTF16 606910] degradation processes;
+[21-30:P18877; UTF16 606933] condition state;
+[21-30:P18878; UTF16 606950] inspection intervals;
+[21-30:P18879; UTF16 606972] partial observability;
+[21-30:P18880; UTF16 606995] remaining useful life;
+[21-30:P18881; UTF16 607018] preventive maintenance;
+[21-30:P18883; UTF16 607066] condition-based maintenance;
+[21-30:P18884; UTF16 607095] maintenance opportunity cost;
+[21-30:P18885; UTF16 607125] inspection value;
+[21-30:P18886; UTF16 607143] renewal theory;
+[21-30:P18887; UTF16 607159] imperfect repair;
+[21-30:P18888; UTF16 607177] repair versus replacement;
+[21-30:P18889; UTF16 607204] spare-part availability;
+[21-30:P18890; UTF16 607229] obsolescence;
+[21-30:P18891; UTF16 607243] cannibalization;
+[21-30:P18892; UTF16 607260] software end-of-support;
+[21-30:P18893; UTF16 607285] configuration drift;
+[21-30:P18894; UTF16 607306] retrofit;
+[21-30:P18895; UTF16 607316] recertification;
+[21-30:P18896; UTF16 607333] maintenance-induced failures;
+[21-30:P18897; UTF16 607363] decommissioning;
+[21-30:P18898; UTF16 607380] hazardous removal sequencing;
+[21-30:P18899; UTF16 607410] circular recovery;
+[21-30:P18900; UTF16 607429] proof-carrying lifecycle release.
+[21-30:P18904; UTF16 607466] 71. Final Charge
+[21-30:P18905; UTF16 607483] A calibrated instrument is not an exact instrument.
+[21-30:P18906; UTF16 607535] A traceable measurement is not an uncertainty-free measurement.

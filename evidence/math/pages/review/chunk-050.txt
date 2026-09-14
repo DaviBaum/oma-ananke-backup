@@ -1,0 +1,340 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P20250; UTF16 733713] \left( W_D, W_C, W_D^\varepsilon, W_C^\varepsilon, K_{\mathrm{macro}}, K_{\mathrm{update}}, d_{\mathrm{update}}, \mathbf w_{\mathrm{action}}, C_{\mathrm{synth}}, C_{\mathrm{verify}}, R_{\mathrm{macro}}, k_{\mathrm{innov}}, m_{\mathrm{decision}} \right). ]
+[1-10:P20252; UTF16 733976] (W_D): present decision width;
+[1-10:P20253; UTF16 734007] (W_C): exact executable causal width;
+[1-10:P20254; UTF16 734045] (W_D^\varepsilon): approximate present decision-cover width;
+[1-10:P20255; UTF16 734106] (W_C^\varepsilon): approximate executable-cover width;
+[1-10:P20256; UTF16 734161] (K_{\mathrm{macro}}): macro-expression size;
+[1-10:P20257; UTF16 734206] (K_{\mathrm{update}}): action-transition representation size;
+[1-10:P20258; UTF16 734268] (d_{\mathrm{update}}): maximum update dependency arity;
+[1-10:P20259; UTF16 734324] (\mathbf w_{\mathrm{action}}): action footprint profile;
+[1-10:P20260; UTF16 734381] (C_{\mathrm{synth}}): macro synthesis cost;
+[1-10:P20261; UTF16 734425] (C_{\mathrm{verify}}): checker cost;
+[1-10:P20262; UTF16 734462] (R_{\mathrm{macro}}): refinement count;
+[1-10:P20263; UTF16 734502] (k_{\mathrm{innov}}): representation-dependent innovation;
+[1-10:P20264; UTF16 734561] (m_{\mathrm{decision}}): active Prompt-5 decision margins.
+[1-10:P20268; UTF16 734623] 61.1 Online complexity
+[1-10:P20269; UTF16 734646] For a decomposition with executable macro separator counts
+[1-10:P20270; UTF16 734705] [ q_v^C, ]
+[1-10:P20271; UTF16 734716] a direct macro DP has cost
+[1-10:P20272; UTF16 734743] O!\left( \sum_v c_v^{\mathrm{macro}} \ell_v \prod_{u\in\operatorname{child}(v)} q_u^C \right). ]
+[1-10:P20273; UTF16 734840] Including thaw and fallback:
+[1-10:P20274; UTF16 734869] T_{\mathrm{macro}} + N_{\mathrm{thaw}}C_{\mathrm{micro}} + N_{\mathrm{fallback}}C_{\mathrm{cold}}. } ]
+[1-10:P20275; UTF16 734972] For bounded branching and maximum approximate causal width (W_C^\varepsilon),
+[1-10:P20276; UTF16 735050] \operatorname{poly}(n) 2^{O(W_C^\varepsilon)} C_{\mathrm{macro-update}} + N_{\mathrm{thaw}}C_{\mathrm{micro}} + N_{\mathrm{fallback}}C_{\mathrm{cold}}. } ]
+[1-10:P20277; UTF16 735206] This is conditional on:
+[1-10:P20278; UTF16 735230] a compiled valid macro;
+[1-10:P20279; UTF16 735254] compact transition programs;
+[1-10:P20280; UTF16 735283] manageable certification cost.
+[1-10:P20281; UTF16 735314] No wall-clock speedup follows from width alone.
+[1-10:P20285; UTF16 735365] 62. Algorithms
+[1-10:P20287; UTF16 735419] Defined in §32.
+[1-10:P20289; UTF16 735477] Defined in §33.
+[1-10:P20291; UTF16 735524] Defined in §35.
+[1-10:P20293; UTF16 735573] Defined in §40.
+[1-10:P20295; UTF16 735614] Defined in §41.
+[1-10:P20297; UTF16 735657] Defined in §54.
+[1-10:P20299; UTF16 735713] Defined in §55.
+[1-10:P20301; UTF16 735762] Defined in §56.
+[1-10:P20305; UTF16 735781] ALG-CS9 — SynthesizeMacroCoordinates
+[1-10:P20307; UTF16 735824]     canonical executable quotient Q
+[1-10:P20308; UTF16 735860]     candidate macro grammar G
+[1-10:P20309; UTF16 735890]     exact transition tables
+[1-10:P20310; UTF16 735918]     synthesis bounds
+[1-10:P20312; UTF16 735940] ENUMERATE OR SEARCH
+[1-10:P20313; UTF16 735960]     candidate coordinate programs
+[1-10:P20316; UTF16 736001]     exact quotient-class separation
+[1-10:P20317; UTF16 736037]     observation decoding
+[1-10:P20318; UTF16 736062]     transition factorization
+[1-10:P20319; UTF16 736091]     mandatory and evidence semantics
+[1-10:P20321; UTF16 736129] OPTIMIZE LEXICOGRAPHICALLY
+[1-10:P20322; UTF16 736156]     state exactness
+[1-10:P20323; UTF16 736176]     expression size
+[1-10:P20324; UTF16 736196]     update size
+[1-10:P20325; UTF16 736212]     footprint
+[1-10:P20326; UTF16 736226]     proof cost
+[1-10:P20328; UTF16 736242] IF no compact program is found:
+[1-10:P20329; UTF16 736274]     return categorical quotient IDs
+[1-10:P20333; UTF16 736313] ALG-CS10 — DiscoverSparseMacroFactorization
+[1-10:P20335; UTF16 736363]     canonical quotient
+[1-10:P20336; UTF16 736386]     action transition tables
+[1-10:P20337; UTF16 736415]     candidate coordinate library
+[1-10:P20339; UTF16 736449] 1. Propose coordinate subsets.
+[1-10:P20341; UTF16 736481] 2. Retain the exact joint reachable relation.
+[1-10:P20343; UTF16 736528] 3. Verify class injectivity.
+[1-10:P20345; UTF16 736558] 4. Synthesize each action's coordinate updates.
+[1-10:P20347; UTF16 736607] 5. Prove action footprints and dependency arities.
+[1-10:P20349; UTF16 736659] 6. Reject product representations introducing
+[1-10:P20350; UTF16 736705]    unreachable exact states.
+[1-10:P20352; UTF16 736735] 7. Return a Pareto set over:
+[1-10:P20353; UTF16 736764]        description size
+[1-10:P20354; UTF16 736788]        update size
+[1-10:P20355; UTF16 736807]        action sparsity
+[1-10:P20356; UTF16 736830]        proof cost.
+[1-10:P20360; UTF16 736852] ALG-CS11 — JointSeparatorAndMacroSearch
+[1-10:P20361; UTF16 736892] EXACT BOUNDED MODE
+[1-10:P20362; UTF16 736911]     enumerate legal decompositions
+[1-10:P20363; UTF16 736946]     compute canonical causal separator quotient
+[1-10:P20364; UTF16 736994]     synthesize bounded macro programs
+[1-10:P20365; UTF16 737032]     return the Pareto-optimal verified solutions
+[1-10:P20367; UTF16 737082] SCALABLE HEURISTIC MODE
+[1-10:P20368; UTF16 737106]     propose decompositions and macrovariables
+[1-10:P20369; UTF16 737152]     verify every accepted candidate
+[1-10:P20370; UTF16 737188]     preserve UNKNOWN
+[1-10:P20371; UTF16 737209]     retain cold-recompute fallback
+[1-10:P20372; UTF16 737244] Exact bounded mode is decidable and generally intractable.
+[1-10:P20376; UTF16 737306] 63. Falsification Experiments
+[1-10:P20377; UTF16 737336] F1 — Resistor intervention failure
+[1-10:P20378; UTF16 737371] Verify (R_{\mathrm{eq}}) fails under named resistor replacement.
+[1-10:P20379; UTF16 737436] F2 — Action-theory monotonicity
+[1-10:P20380; UTF16 737468] Add actions incrementally and verify quotient classes only split.
+[1-10:P20381; UTF16 737534] F3 — Executable quotient
+[1-10:P20382; UTF16 737559] Compare every macro action trace against exhaustive micro traces on small systems.
+[1-10:P20383; UTF16 737642] F4 — Trace versus bisimulation
+[1-10:P20384; UTF16 737673] Use the (p,q) nondeterministic example and confirm equal traces but different executable classes.
+[1-10:P20385; UTF16 737771] F5 — Symbolic versus explicit quotient
+[1-10:P20386; UTF16 737810] Compare ALG-CS2 and ALG-CS1 on the same finite action system.
+[1-10:P20387; UTF16 737872] F6 — Macro CEGAR
+[1-10:P20388; UTF16 737889] Start with an intentionally insufficient statistic and verify that a counterexample forces the missing coordinate.
+[1-10:P20389; UTF16 738004] F7 — Relative phase
+[1-10:P20390; UTF16 738024] Permit the grammar to express modular differences and verify recovery of relative rather than absolute phase.
+[1-10:P20391; UTF16 738134] F8 — Histogram symmetry
+[1-10:P20392; UTF16 738158] Anonymous actions must preserve histogram sufficiency. Named actions must split histogram classes.
+[1-10:P20393; UTF16 738257] F9 — Joint correlation
+[1-10:P20394; UTF16 738280] Verify impossible coordinate combinations remain absent from the exact macro relation.
+[1-10:P20395; UTF16 738367] F10 — Sparse footprints
+[1-10:P20396; UTF16 738391] Randomly test every certified unchanged coordinate against exact action execution.
+[1-10:P20397; UTF16 738474] F11 — Macro frontier
+[1-10:P20398; UTF16 738495] Compare stopped incremental propagation against full micro recomputation.
+[1-10:P20399; UTF16 738569] F12 — Thaw
+[1-10:P20400; UTF16 738580] Apply an action outside the macro theory and verify fiber reopening or refinement.
+[1-10:P20401; UTF16 738663] F13 — Action-theory expansion
+[1-10:P20402; UTF16 738693] Add a rewrite and verify only unstable blocks split.
+[1-10:P20403; UTF16 738746] F14 — Approximate macro
+[1-10:P20404; UTF16 738770] Every exact micro trajectory must be matched by a macro trajectory whose terminal envelope contains the exact outcome.
+[1-10:P20405; UTF16 738889] F15 — No-compression family
+[1-10:P20406; UTF16 738917] Parity with targeted reset must produce:
+[1-10:P20407; UTF16 738958] [ W_D=1, \qquad W_C=n. ]
+[1-10:P20411; UTF16 738986] 64. Proof-Assistant Formalization
+[1-10:P20412; UTF16 739020] 64.1 Many-sorted action system
+[1-10:P20413; UTF16 739051] structure ActionSystem where
+[1-10:P20415; UTF16 739094]   State : Sort → Type
+[1-10:P20417; UTF16 739117]   Action : Type
+[1-10:P20418; UTF16 739133]   src : Action → Sort
+[1-10:P20419; UTF16 739155]   tgt : Action → Sort
+[1-10:P20421; UTF16 739178]   step :
+[1-10:P20422; UTF16 739187]     (a : Action) →
+[1-10:P20423; UTF16 739206]     State (src a) →
+[1-10:P20424; UTF16 739226]     State (tgt a) →
+[1-10:P20427; UTF16 739256]   Experiment : Sort → Type
+[1-10:P20428; UTF16 739283]   Outcome : Type
+[1-10:P20430; UTF16 739301]   observe :
+[1-10:P20431; UTF16 739313]     {s : Sort} →
+[1-10:P20432; UTF16 739330]     Experiment s →
+[1-10:P20433; UTF16 739349]     State s →
+[1-10:P20438; UTF16 739378] 64.2 Typed words
+[1-10:P20439; UTF16 739395] inductive ActionWord :
+[1-10:P20440; UTF16 739418]     S.Sort → S.Sort → Type
+[1-10:P20441; UTF16 739445] | nil :
+[1-10:P20442; UTF16 739453]     ActionWord s s
+[1-10:P20443; UTF16 739472] | cons :
+[1-10:P20444; UTF16 739481]     (a : S.Action) →
+[1-10:P20445; UTF16 739502]     ActionWord (S.tgt a) t →
+[1-10:P20446; UTF16 739531]     ActionWord (S.src a) t
+[1-10:P20447; UTF16 739558] Relational execution is defined recursively.
+[1-10:P20451; UTF16 739606] 64.3 Exact executable macro
+[1-10:P20452; UTF16 739634] structure ExecutableMacro
+[1-10:P20453; UTF16 739660]     (S : ActionSystem) where
+[1-10:P20454; UTF16 739689]   Macro : S.Sort → Type
+[1-10:P20457; UTF16 739725]     {s : S.Sort} →
+[1-10:P20458; UTF16 739744]     S.State s →
+[1-10:P20459; UTF16 739760]     Macro s
+[1-10:P20461; UTF16 739773]   macroStep :
+[1-10:P20463; UTF16 739808]     Macro (S.src a) →
+[1-10:P20464; UTF16 739830]     Macro (S.tgt a) →
+[1-10:P20467; UTF16 739862]   decode :
+[1-10:P20469; UTF16 739892]     S.Experiment s →
+[1-10:P20470; UTF16 739913]     Macro s →
+[1-10:P20471; UTF16 739927]     S.Outcome
+[1-10:P20473; UTF16 739942]   observation_exact :
+[1-10:P20474; UTF16 739964]     ∀ e x,
+[1-10:P20475; UTF16 739975]       decode e (encode x)
+[1-10:P20477; UTF16 740011]       S.observe e x
+[1-10:P20479; UTF16 740032]   transition_exact :
+[1-10:P20480; UTF16 740053]     ∀ a x z',
+[1-10:P20481; UTF16 740067]       macroStep a (encode x) z'
+[1-10:P20482; UTF16 740099]         ↔
+[1-10:P20483; UTF16 740109]       ∃ x',
+[1-10:P20484; UTF16 740121]         S.step a x x' ∧
+[1-10:P20485; UTF16 740145]         encode x' = z'
+[1-10:P20489; UTF16 740171] 64.4 Macro word execution theorem
+[1-10:P20490; UTF16 740205] theorem macro_word_execution
+[1-10:P20491; UTF16 740234]     (M : ExecutableMacro S)
+[1-10:P20492; UTF16 740262]     (w : ActionWord S s t)
+[1-10:P20493; UTF16 740289]     (x : S.State s) :
+[1-10:P20494; UTF16 740311]     encodeSet
+[1-10:P20495; UTF16 740325]       (runWord S w x)
+[1-10:P20497; UTF16 740355]     runMacroWord M w (M.encode x) := by
+[1-10:P20498; UTF16 740395]   induction w with
+[1-10:P20499; UTF16 740414]   | nil =>
+[1-10:P20500; UTF16 740425]       simp
+[1-10:P20501; UTF16 740436]   | cons a w ih =>
+[1-10:P20506; UTF16 740468] 64.5 Action-stable partition
+[1-10:P20507; UTF16 740497] def SuccBlocks
+[1-10:P20508; UTF16 740512]     (Π : ∀ s, Partition (S.State s))
+[1-10:P20509; UTF16 740549]     (a : S.Action)
+[1-10:P20510; UTF16 740568]     (x : S.State (S.src a)) :=
+[1-10:P20511; UTF16 740599]   {B |
+[1-10:P20512; UTF16 740606]     ∃ x',
+[1-10:P20513; UTF16 740616]       S.step a x x' ∧
+[1-10:P20514; UTF16 740638]       Π (S.tgt a) x' = B}
+[1-10:P20515; UTF16 740664] A stable partition requires equal observations and equal successor-block sets inside each block.
+[1-10:P20519; UTF16 740764] 64.6 Action-theory monotonicity
+[1-10:P20520; UTF16 740796] theorem action_extension_refines
+[1-10:P20521; UTF16 740829]     (A₁ A₂ : Set S.Action)
+[1-10:P20522; UTF16 740856]     (hsub : A₁ ⊆ A₂) :
+[1-10:P20523; UTF16 740879]     ExecutableEq S A₂
+[1-10:P20524; UTF16 740901]       ≤
+[1-10:P20525; UTF16 740909]     ExecutableEq S A₁ := by
+[1-10:P20530; UTF16 740946] 64.7 Approximate macro cover
+[1-10:P20531; UTF16 740975] structure ApproxExecutableCover
+[1-10:P20534; UTF16 741060]   covers :
+[1-10:P20540; UTF16 741130]   total :
+[1-10:P20541; UTF16 741140]     ∀ x, ∃ z, covers x z
+[1-10:P20543; UTF16 741166]   mandatoryExact : ...
+[1-10:P20544; UTF16 741189]   observationEncloses : ...
+[1-10:P20546; UTF16 741218]   macroStep : ...
+[1-10:P20548; UTF16 741237]   forwardSimulation :
+[1-10:P20549; UTF16 741259]     ∀ a x z x',
+[1-10:P20550; UTF16 741275]       covers x z →
+[1-10:P20551; UTF16 741294]       S.step a x x' →
+[1-10:P20552; UTF16 741316]       ∃ z',
+[1-10:P20553; UTF16 741328]         macroStep a z z' ∧
+[1-10:P20554; UTF16 741355]         covers x' z'
+[1-10:P20558; UTF16 741379] 64.8 Checker theorem
+[1-10:P20559; UTF16 741400] theorem accepted_macro_sound
+[1-10:P20560; UTF16 741429]     (candidate : CSSP S)
+[1-10:P20562; UTF16 741463]       CheckCausalMacro candidate
+[1-10:P20564; UTF16 741506]       .validExact) :
+[1-10:P20565; UTF16 741527]     IsExactExecutableMacro candidate := by
+[1-10:P20570; UTF16 741579] 64.9 Mechanization difficulty
+[1-10:P20571; UTF16 741609] ￼
+ATTACHED TABLE 1736935; native row/column order; 16 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Many-sorted actions and words", "Moderate"]
+ROW 2: ["Trace equivalence", "Straightforward"]
+ROW 3: ["Exact executable macro structure", "Moderate"]
+ROW 4: ["Finite partition refinement", "Moderate"]
+ROW 5: ["Minimality theorem", "Moderate"]
+ROW 6: ["Nondeterministic trace/bisimulation counterexample", "Straightforward"]
+ROW 7: ["Symbolic action preimages", "Moderate"]
+ROW 8: ["Symbolic quotient correctness", "Difficult"]
+ROW 9: ["Causal CEGAR", "Difficult"]
+ROW 10: ["Hierarchical composition", "Moderate"]
+ROW 11: ["Factored joint relation", "Moderate"]
+ROW 12: ["Approximate forward-simulation theorem", "Difficult"]
+ROW 13: ["CSSP checker", "Difficult"]
+ROW 14: ["Rewrite transport with dependent state sorts", "Research-level"]
+ROW 15: ["Joint decomposition/macro search certificates", "Research-level"]
+[1-10:P20575; UTF16 741614] 65. Permanent Definition and Theorem Registry
+[1-10:P20576; UTF16 741660] 65.1 Definitions
+[1-10:P20577; UTF16 741677] ￼
+ATTACHED TABLE 1736951; native row/column order; 32 rows
+ROW 0: ["ID", "Exact object", "Dependencies", "Status", "Formalization difficulty"]
+ROW 1: ["DEF-CS0", "Typed rewrite bridge", "Prompt-7 reference", "Defined", "Moderate"]
+ROW 2: ["DEF-CS0A", "Dependency-complete artifact graph", "Prompt-1 evidence graph", "Defined", "Moderate"]
+ROW 3: ["DEF-CS1", "Many-sorted engineering action relation", "Prompt-7 rewrite state", "Defined", "Moderate"]
+ROW 4: ["DEF-CS2", "Interventional engineering experiment", "Prompt-2 experiment semantics", "Defined", "Straightforward"]
+ROW 5: ["DEF-CS3", "Interventional residual", "DEF-CS2", "Defined", "Straightforward"]
+ROW 6: ["DEF-CS4", "Interventional trace equivalence", "DEF-CS3", "Defined", "Straightforward"]
+ROW 7: ["DEF-CS5", "Observation-preserving action-stable equivalence", "DEF-CS1", "Defined", "Moderate"]
+ROW 8: ["DEF-CS6", "Exact executable macrovariable", "DEF-CS5", "Defined", "Moderate"]
+ROW 9: ["DEF-CS7", "Canonical executable equivalence and quotient", "Finite refinement", "Defined", "Moderate"]
+ROW 10: ["DEF-CS8", "Causal sufficient separator", "DEF-CS6", "Defined", "Moderate"]
+ROW 11: ["DEF-CS9", "Causal separator width", "DEF-CS8", "Defined", "Straightforward"]
+ROW 12: ["DEF-CS10", "Frozen action theory", "THM-CS5", "Defined", "Straightforward"]
+ROW 13: ["DEF-CS11", "Thawed action theory", "THM-CS5", "Defined", "Straightforward"]
+ROW 14: ["DEF-CS12", "Closed macrostate", "DEF-CS6", "Defined", "Straightforward"]
+ROW 15: ["DEF-CS13", "Open macrostate", "DEF-CS12", "Defined", "Straightforward"]
+ROW 16: ["DEF-CS14", "Macro concretization fiber", "DEF-CS6", "Defined", "Straightforward"]
+ROW 17: ["DEF-CS15", "Executable port macrostate", "Prompt-6 port semantics", "Defined", "Moderate"]
+ROW 18: ["DEF-CS16", "Sparse executable macro factorization", "DEF-CS6", "Defined", "Moderate"]
+ROW 19: ["DEF-CS17", "Macro description language", "Prompt-4 symbolic language", "Defined", "Straightforward"]
+ROW 20: ["DEF-CS18", "Exact macro program synthesis", "DEF-CS7, DEF-CS17", "Defined", "Moderate"]
+ROW 21: ["DEF-CS19", "Macro description complexity", "DEF-CS18", "Defined", "Straightforward"]
+ROW 22: ["DEF-CS20", "Macro discovery profile", "Prompt-4 discovery profile", "Defined", "Straightforward"]
+ROW 23: ["DEF-CS21", "Causal macro counterexample", "Partition refinement", "Defined", "Moderate"]
+ROW 24: ["DEF-CS22", "Executable separator statistic", "DEF-CS8", "Defined", "Moderate"]
+ROW 25: ["DEF-CS23", "Action-footprint certificate", "DEF-CS16", "Defined", "Straightforward"]
+ROW 26: ["DEF-CS24", "Semantic macro innovation", "THM-CS5", "Defined", "Straightforward"]
+ROW 27: ["DEF-CS25", "Representation-dependent macro innovation", "DEF-CS24", "Defined", "Straightforward"]
+ROW 28: ["DEF-CS26", "Certified executable macro cover", "Prompt-5 error semantics", "Defined", "Difficult"]
+ROW 29: ["DEF-CS27", "Approximate causal width", "DEF-CS26", "Defined", "Moderate"]
+ROW 30: ["DEF-CS28", "CSSP artifact", "All Prompt-8 semantics", "Defined", "Difficult"]
+ROW 31: ["DEF-CS29", "Prompt-8 complexity profile", "Prompts 3–8", "Defined", "Straightforward"]
+[1-10:P20581; UTF16 741682] 65.2 Lemmas
+[1-10:P20582; UTF16 741694] ￼
+ATTACHED TABLE 1736967; native row/column order; 4 rows
+ROW 0: ["ID", "Exact statement", "Dependencies", "Proof status"]
+ROW 1: ["LEM-CS1", "Typed action-word composition is associative", "DEF-CS1", "Proved"]
+ROW 2: ["LEM-CS2", "Deterministic macro update exists iff the encoder kernel is action stable", "DEF-CS6", "Proved"]
+ROW 3: ["LEM-CS3", "Iterative successor-signature refinement yields the coarsest stable partition", "DEF-CS7", "Proved"]
+[1-10:P20586; UTF16 741699] 65.3 Theorems
+[1-10:P20587; UTF16 741713] ￼
+ATTACHED TABLE 1736983; native row/column order; 31 rows
+ROW 0: ["ID", "Exact statement", "Dependencies", "Proof status"]
+ROW 1: ["THM-CS0A", "Dependency-closure invalidation is sound under dependency completeness", "DEF-CS0A", "Proved"]
+ROW 2: ["THM-CS0B", "Cold post-rewrite recomputation preserves correctness", "Authoritative semantics", "Proved"]
+ROW 3: ["THM-CS1", "Interventional trace equivalence is an equivalence relation", "DEF-CS3–CS4", "Proved"]
+ROW 4: ["THM-CS2", "Predictive sufficiency need not survive intervention", "Resistor construction", "Proved"]
+ROW 5: ["THM-CS3", "Canonical executable quotient is the unique smallest reachable exact macro system", "LEM-CS3", "Proved"]
+ROW 6: ["THM-CS4", "Executable bisimilarity implies interventional trace equivalence", "DEF-CS5", "Proved"]
+ROW 7: ["THM-CS5", "Adding interventions can only refine the executable partition", "DEF-CS7", "Proved"]
+ROW 8: ["THM-CS6", "Finite action sequences execute exactly in macrospace", "DEF-CS6", "Proved"]
+ROW 9: ["THM-CS7", "Exterior outcomes after macro execution equal micro outcomes", "THM-CS6", "Proved"]
+ROW 10: ["THM-CS8", "Typed rewrites commute with an action-complete macro", "DEF-CS6", "Proved"]
+ROW 11: ["THM-CS9", "Composition of executable macro layers is executable", "DEF-CS6", "Proved"]
+ROW 12: ["THM-CS10", "A factored macro is exact iff its joint image, observations, and updates are exact", "DEF-CS16", "Proved"]
+ROW 13: ["THM-CS11", "Minimum optional predicate macro basis is NP-hard", "Set Cover reduction", "Proved"]
+ROW 14: ["THM-CS12", "No generic exact compiler is FPT in causal width alone unless (\\mathsf P=\\mathsf{coNP})", "Prompt-4 hardness", "Proved"]
+ROW 15: ["THM-CS13", "Passive observational equivalence does not prove intervention sufficiency", "Two-model construction", "Proved"]
+ROW 16: ["THM-CS14", "Joint decomposition and causal-separator synthesis is NP-hard", "Prompt-3 treewidth restriction", "Proved"]
+ROW 17: ["THM-CS15", "A closed macro executes certified actions without fiber reopening", "THM-CS6", "Proved"]
+ROW 18: ["THM-CS16", "Certified approximate macro execution encloses exact micro trajectories", "DEF-CS26", "Proved"]
+ROW 19: ["THM-CS17", "Accepted CSSP certificates imply exact or approximate macro soundness", "ALG-CS6", "Proved"]
+ROW 20: ["THM-CS18", "Unchanged exact causal separator macrostate stops downstream propagation", "THM-CS7", "Proved"]
+ROW 21: ["THM-CS19", "Action trace equivalence equals Prompt-2 contextual equivalence under action-context adequacy", "Prompt-2 contexts", "Proved"]
+ROW 22: ["THM-CS20", "Bounded finite macro-program synthesis is decidable", "DEF-CS18", "Proved"]
+ROW 23: ["THM-CS21", "Explicit partition refinement terminates and computes the canonical quotient", "ALG-CS1", "Proved"]
+ROW 24: ["THM-CS22", "Exact symbolic action refinement computes the same quotient without concrete enumeration", "ALG-CS2, Prompt-4 symbolic assumptions", "Proved"]
+ROW 25: ["THM-CS23", "Quotient-respecting causal CEGAR has finite semantic refinement", "ALG-CS3", "Proved"]
+ROW 26: ["THM-CS24", "Incremental addition of one action yields the exact expanded-theory quotient", "ALG-CS7", "Proved"]
+ROW 27: ["THM-CS25", "Histograms form executable macros for anonymous permutation-equivariant module actions", "Symmetry assumptions", "Proved"]
+ROW 28: ["THM-CS26", "Verified action footprints justify exact structural sharing", "DEF-CS23", "Proved"]
+ROW 29: ["THM-CS27", "Parity plus named resets requires the complete bit vector", "Targeted-reset construction", "Proved"]
+ROW 30: ["THM-CS28", "Present decision width is no larger than causal width under theory extension", "DEF-CS8–CS9", "Proved"]
+[1-10:P20591; UTF16 741718] 65.4 Corollaries and propositions
+[1-10:P20592; UTF16 741752] ￼
+ATTACHED TABLE 1736999; native row/column order; 5 rows
+ROW 0: ["ID", "Statement", "Dependencies", "Proof status"]
+ROW 1: ["COR-CS4A", "Deterministic total actions make trace and executable equivalence coincide", "THM-CS4", "Proved"]
+ROW 2: ["COR-CS18A", "Approximate frontier stopping is safe under mandatory equality and Prompt-5 decision stability", "THM-CS18, Prompt-5", "Proved"]
+ROW 3: ["COR-CS23A", "Macro correctness is independent of proposal source", "THM-CS17", "Proved"]
+ROW 4: ["PRO-CS1", "Relative phase is executable under translation-invariant interaction theory", "DEF-CS6", "Proved"]
+[1-10:P20596; UTF16 741757] 65.5 Algorithms
+[1-10:P20597; UTF16 741773] ￼
+ATTACHED TABLE 1737015; native row/column order; 12 rows
+ROW 0: ["ID", "Algorithm", "Correctness theorem"]
+ROW 1: ["ALG-CS1", "ExactExecutableMacroQuotient", "THM-CS21"]
+ROW 2: ["ALG-CS2", "SymbolicExecutableMacroQuotient", "THM-CS22"]
+ROW 3: ["ALG-CS3", "CausalSeparatorCEGAR", "THM-CS23, THM-CS17"]
+ROW 4: ["ALG-CS4", "DiscoverMacroHierarchy", "THM-CS9 plus levelwise checking"]
+ROW 5: ["ALG-CS5", "ThawMacrostate", "THM-CS15 and cold fallback"]
+ROW 6: ["ALG-CS6", "CheckCausalMacro", "THM-CS17"]
+ROW 7: ["ALG-CS7", "IncrementalActionTheoryRefine", "THM-CS24"]
+ROW 8: ["ALG-CS8", "TransportOrRefineMacro", "THM-CS8, THM-CS17, THM-CS0B"]
+ROW 9: ["ALG-CS9", "SynthesizeMacroCoordinates", "Exact checker, THM-CS20"]
+ROW 10: ["ALG-CS10", "DiscoverSparseMacroFactorization", "THM-CS10, THM-CS26"]
+ROW 11: ["ALG-CS11", "JointSeparatorAndMacroSearch", "Exact bounded enumeration; heuristic mode independently checked"]
+[1-10:P20601; UTF16 741778] 65.6 Conjectures

@@ -1,0 +1,370 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P22252; UTF16 804032] choose among incomparable alternatives.
+[1-10:P22253; UTF16 804072] It does not become objective physical truth.
+[1-10:P22254; UTF16 804117] If the response changes the stakeholder decision theory, the theory fingerprint changes.
+[1-10:P22258; UTF16 804209] Measurement
+[1-10:P22259; UTF16 804221] A physical measurement may reduce:
+[1-10:P22260; UTF16 804256] parameter uncertainty;
+[1-10:P22261; UTF16 804279] calibration uncertainty;
+[1-10:P22262; UTF16 804304] model discrepancy.
+[1-10:P22263; UTF16 804323] Its update may be:
+[1-10:P22264; UTF16 804342] set-membership intersection;
+[1-10:P22265; UTF16 804371] Bayesian conditioning;
+[1-10:P22266; UTF16 804394] interval calibration.
+[1-10:P22267; UTF16 804416] The measurement model, noise, and evidence must be explicit.
+[1-10:P22268; UTF16 804477] Numerical refinement and physical evidence remain distinct.
+[1-10:P22272; UTF16 804540] 39. UNKNOWN and Failed Computations
+[1-10:P22273; UTF16 804576] A computation may return:
+[1-10:P22274; UTF16 804602] [ \mathsf{UNKNOWN}. ]
+[1-10:P22275; UTF16 804624] This may update:
+[1-10:P22276; UTF16 804641] solver-success beliefs;
+[1-10:P22277; UTF16 804665] predicted costs;
+[1-10:P22278; UTF16 804682] fallback availability;
+[1-10:P22279; UTF16 804705] resource history.
+[1-10:P22280; UTF16 804723] It does not establish:
+[1-10:P22282; UTF16 804751] UNSAT;
+[1-10:P22284; UTF16 804766] irrelevance;
+[1-10:P22285; UTF16 804779] closure.
+[1-10:P22286; UTF16 804788] A failed computation may still provide meta-information while providing no engineering conclusion.
+[1-10:P22290; UTF16 804890] 40. Resource-Aware and Parallel Scheduling
+[1-10:P22291; UTF16 804933] A schedule must satisfy instantaneous constraints such as:
+[1-10:P22292; UTF16 804992] [ M_{\mathrm{RAM}}(t) \le B_{\mathrm{RAM}}, ]
+[1-10:P22293; UTF16 805038] [ M_{\mathrm{VRAM}}(t) \le B_{\mathrm{VRAM}}. ]
+[1-10:P22294; UTF16 805086] Cumulative resource budgets and peak resource constraints are distinct.
+[1-10:P22295; UTF16 805158] A batch may reduce latency while increasing peak memory.
+[1-10:P22296; UTF16 805215] The semantic scheduler decides what information is valuable; the hardware scheduler decides when and where feasible computations execute.
+[1-10:P22297; UTF16 805353] They interact but are not identical problems.
+[1-10:P22301; UTF16 805402] 41. Exact Finite Metareasoning Complexity
+[1-10:P22303; UTF16 805449] (N_K): explicit metaknowledge-state count;
+[1-10:P22304; UTF16 805492] (C): maximum enabled computation count;
+[1-10:P22305; UTF16 805532] (O): maximum outcome count;
+[1-10:P22306; UTF16 805560] (B): integer budget.
+[1-10:P22307; UTF16 805581] A direct Bellman table requires:
+[1-10:P22308; UTF16 805614] [ O(BN_KCO) ]
+[1-10:P22309; UTF16 805628] time and:
+[1-10:P22310; UTF16 805638] [ O(BN_K) ]
+[1-10:P22311; UTF16 805650] memory, assuming constant-time transition and arithmetic.
+[1-10:P22312; UTF16 805708] This is polynomial in the explicit meta-state graph.
+[1-10:P22313; UTF16 805761] It may be exponential or worse in the compact ANANKE description.
+[1-10:P22317; UTF16 805830] 42. Symbolic Metareasoning
+[1-10:P22318; UTF16 805857] ANANKE may symbolically represent:
+[1-10:P22319; UTF16 805892] blocker sets;
+[1-10:P22320; UTF16 805906] bound intervals;
+[1-10:P22322; UTF16 805943] computation outcome partitions;
+[1-10:P22323; UTF16 805975] prerequisite relations;
+[1-10:P22324; UTF16 805999] live cones;
+[1-10:P22325; UTF16 806011] factored meta-value functions.
+[1-10:P22326; UTF16 806042] Possible representations include:
+[1-10:P22330; UTF16 806107] sparse factor graphs;
+[1-10:P22331; UTF16 806129] algebraic decision diagrams;
+[1-10:P22332; UTF16 806158] factored value functions.
+[1-10:P22333; UTF16 806184] No universal compactness theorem is claimed.
+[1-10:P22334; UTF16 806229] The Prompt-4 discovery gap reappears at the metareasoning level.
+[1-10:P22338; UTF16 806297] 43. Prompt-9 Complexity Profile
+[1-10:P22339; UTF16 806329] DEF-RC36 — Metareasoning Complexity Profile
+[1-10:P22340; UTF16 806373] \left( G(K), N_{\mathrm{live}}, |\mathcal C_{\mathrm{adm}}|, D_{\mathrm{comp}}, H_{\mathrm{meta}}, K_{\mu}, C_{\mathrm{meta}}, C_{\mathrm{exec}}, B_{\mathrm{resource}}, R_{\mathrm{mandatory}}, R_{\mathrm{qual}}, R_{\mathrm{regret}}, N_{\mathrm{thaw}}, N_{\mathrm{fallback}} \right), ]
+[1-10:P22342; UTF16 806665] (G(K)): current closure deficit;
+[1-10:P22343; UTF16 806698] (N_{\mathrm{live}}): live influence-graph size;
+[1-10:P22344; UTF16 806746] (|\mathcal C_{\mathrm{adm}}|): masked computation count;
+[1-10:P22345; UTF16 806803] (D_{\mathrm{comp}}): prerequisite and interaction-graph complexity;
+[1-10:P22346; UTF16 806871] (H_{\mathrm{meta}}): lookahead horizon;
+[1-10:P22347; UTF16 806911] (K_\mu): meta-belief description size;
+[1-10:P22348; UTF16 806950] (C_{\mathrm{meta}}): scheduling-analysis cost;
+[1-10:P22349; UTF16 806997] (C_{\mathrm{exec}}): selected computation cost profile;
+[1-10:P22350; UTF16 807053] (B_{\mathrm{resource}}): scalar or vector resource budget;
+[1-10:P22351; UTF16 807112] (R_{\mathrm{mandatory}}): unresolved hard-obligation count;
+[1-10:P22352; UTF16 807172] (R_{\mathrm{qual}}): unresolved qualitative count;
+[1-10:P22353; UTF16 807223] (R_{\mathrm{regret}}): quantitative gap profile;
+[1-10:P22354; UTF16 807272] (N_{\mathrm{thaw}}): macro thaw count;
+[1-10:P22355; UTF16 807311] (N_{\mathrm{fallback}}): full-order fallback count.
+[1-10:P22356; UTF16 807363] No single coordinate replaces the others.
+[1-10:P22360; UTF16 807408] 44. Computation Agenda and Action Mask
+[1-10:P22361; UTF16 807447] DEF-RC37 — Admissible Computation Mask
+[1-10:P22362; UTF16 807486] [ \mathcal C_{\mathrm{adm}}(K) ]
+[1-10:P22363; UTF16 807519] contains computations that are:
+[1-10:P22364; UTF16 807551] enabled;
+[1-10:P22365; UTF16 807560] inside hard resource limits;
+[1-10:P22366; UTF16 807589] theory compatible;
+[1-10:P22367; UTF16 807608] not invalid;
+[1-10:P22368; UTF16 807621] not dominated by valid reuse;
+[1-10:P22369; UTF16 807651] not proved strategically irrelevant;
+[1-10:P22370; UTF16 807688] not prohibited by governance.
+[1-10:P22371; UTF16 807718] A learned scheduler may rank only this set.
+[1-10:P22372; UTF16 807762] Mandatory-fairness computations may be inserted regardless of low predicted quantitative score.
+[1-10:P22376; UTF16 807861] 45. Computation Upper-Value Bounds
+[1-10:P22377; UTF16 807896] A cheap upper bound
+[1-10:P22378; UTF16 807916] [ \overline V(c\mid K) ]
+[1-10:P22379; UTF16 807941] may be derived from:
+[1-10:P22380; UTF16 807962] maximum active regret gap touched by (c);
+[1-10:P22381; UTF16 808004] maximum number of blockers it can close;
+[1-10:P22382; UTF16 808045] maximum candidate utility in its region;
+[1-10:P22383; UTF16 808086] maximum effect of its macro coordinates.
+[1-10:P22385; UTF16 808131] [ \overline V(c\mid K)=0 ]
+[1-10:P22386; UTF16 808158] and no strategic side effect exists, (c) may be removed without computing a detailed RCVOC estimate.
+[1-10:P22387; UTF16 808259] If one computation has guaranteed net value greater than another computation’s upper value, the latter need not receive expensive meta-analysis first.
+[1-10:P22391; UTF16 808413] 46. Value of Metareasoning
+[1-10:P22392; UTF16 808440] A metacomputation (m) refines estimates of:
+[1-10:P22393; UTF16 808484] [ v(c_1),\ldots,v(c_k). ]
+[1-10:P22394; UTF16 808510] Its value is the expected reduction in terminal loss caused by selecting a better base computation.
+[1-10:P22395; UTF16 808610] The same decision-stability principle applies:
+[1-10:P22396; UTF16 808657] if score intervals overlap in a way that can change the selected computation, meta-analysis may be valuable;
+[1-10:P22397; UTF16 808766] if THM-RC25 certifies one winner, further ranking refinement has zero current scheduling value.
+[1-10:P22398; UTF16 808862] This terminates recursive metareasoning at a certified computation-selection margin.
+[1-10:P22402; UTF16 808950] 47. Worked Example — Decision-Directed Numerics
+[1-10:P22403; UTF16 808998] Lower objective values are better.
+[1-10:P22404; UTF16 809033] Candidate A:
+[1-10:P22405; UTF16 809046] [ J_A\in[99,101]. ]
+[1-10:P22406; UTF16 809066] Candidate B:
+[1-10:P22407; UTF16 809079] [ J_B\in[110,111]. ]
+[1-10:P22409; UTF16 809109] [ 101<110, ]
+[1-10:P22410; UTF16 809122] A is certified better.
+[1-10:P22411; UTF16 809145] Refining A to:
+[1-10:P22412; UTF16 809160] [ [99.9,100.1] ]
+[1-10:P22413; UTF16 809177] cannot change the ranking.
+[1-10:P22414; UTF16 809204] Its ranking closure value is zero.
+[1-10:P22415; UTF16 809239] Now replace B’s interval by:
+[1-10:P22416; UTF16 809268] [ J_B\in[100.2,100.8]. ]
+[1-10:P22417; UTF16 809293] The original A interval overlaps B:
+[1-10:P22418; UTF16 809329] [ [99,101] \cap [100.2,100.8] \ne\varnothing. ]
+[1-10:P22419; UTF16 809377] Ranking remains open.
+[1-10:P22423; UTF16 809438] [ 100.1<100.2. ]
+[1-10:P22424; UTF16 809455] The ranking closes.
+[1-10:P22425; UTF16 809475] The value of computation depends on decision influence, not raw interval width.
+[1-10:P22429; UTF16 809558] 48. Worked Example — PCPE Decision Margin
+[1-10:P22430; UTF16 809600] A riser PCPE has certified pressure-error bound:
+[1-10:P22431; UTF16 809649] [ e=1.667\text{ kPa}. ]
+[1-10:P22432; UTF16 809673] Margin 8 kPa
+[1-10:P22433; UTF16 809686] The nearest equipment-selection boundary is:
+[1-10:P22434; UTF16 809731] [ 8\text{ kPa} ]
+[1-10:P22435; UTF16 809748] away.
+[1-10:P22437; UTF16 809761] [ 1.667<8, ]
+[1-10:P22438; UTF16 809774] the equipment decision is stable.
+[1-10:P22439; UTF16 809808] Enriching the PCPE to:
+[1-10:P22440; UTF16 809831] [ 0.3\text{ kPa} ]
+[1-10:P22441; UTF16 809850] has zero current equipment-selection value.
+[1-10:P22442; UTF16 809894] Margin 1 kPa
+[1-10:P22443; UTF16 809907] Now:
+[1-10:P22444; UTF16 809912] [ 1.667>1. ]
+[1-10:P22445; UTF16 809925] The enclosure crosses the selection boundary.
+[1-10:P22446; UTF16 809971] If enrichment is expected to reduce the error to:
+[1-10:P22447; UTF16 810021] [ 0.3<1, ]
+[1-10:P22448; UTF16 810032] it may close the decision.
+[1-10:P22449; UTF16 810059] The same computation changes value solely because the decision margin changed.
+[1-10:P22453; UTF16 810141] 49. Worked Example — Model Discrepancy
+[1-10:P22454; UTF16 810180] Current numerical error:
+[1-10:P22455; UTF16 810205] [ E_{\mathrm{num}}=\pm0.01. ]
+[1-10:P22456; UTF16 810235] Model discrepancy:
+[1-10:P22457; UTF16 810254] [ E_{\mathrm{model}}=\pm5. ]
+[1-10:P22458; UTF16 810283] A decision boundary lies three units from the model prediction.
+[1-10:P22459; UTF16 810347] Computation A
+[1-10:P22460; UTF16 810361] Refine numerics to:
+[1-10:P22461; UTF16 810381] [ \pm10^{-5}. ]
+[1-10:P22462; UTF16 810397] Total uncertainty remains approximately:
+[1-10:P22463; UTF16 810438] [ \pm5. ]
+[1-10:P22464; UTF16 810448] The decision remains open.
+[1-10:P22465; UTF16 810475] Computation B
+[1-10:P22466; UTF16 810489] Run a validation measurement expected to reduce discrepancy to:
+[1-10:P22467; UTF16 810553] [ \pm2. ]
+[1-10:P22468; UTF16 810563] The resulting total enclosure may lie on one side of the three-unit decision boundary.
+[1-10:P22469; UTF16 810650] A has nearly zero closure value.
+[1-10:P22470; UTF16 810683] B may have high closure value.
+[1-10:P22471; UTF16 810714] Numerical precision is not the dominant uncertainty source.
+[1-10:P22475; UTF16 810777] 50. Worked Example — Evidence Versus Physics
+[1-10:P22477; UTF16 810831] structural safety is closed;
+[1-10:P22478; UTF16 810860] energy choice is closed;
+[1-10:P22479; UTF16 810885] cost regret is within tolerance;
+[1-10:P22480; UTF16 810918] product fire-rating evidence remains unresolved.
+[1-10:P22481; UTF16 810967] Candidate computations:
+[1-10:P22482; UTF16 810991] another FEM solve;
+[1-10:P22483; UTF16 811010] another annual energy simulation;
+[1-10:P22484; UTF16 811044] verify the fire-rating evidence chain.
+[1-10:P22485; UTF16 811083] The live terminal set contains only the evidence node.
+[1-10:P22486; UTF16 811138] The FEM and energy computations lie outside the backward live cone.
+[1-10:P22487; UTF16 811206] Under unchanged availability, THM-RC4 gives them zero closure value.
+[1-10:P22488; UTF16 811275] The evidence verification is the only direct route to certified release.
+[1-10:P22492; UTF16 811351] 51. Worked Example — Elevator, Pipe, Plenum, Beam
+[1-10:P22493; UTF16 811401] Dependency chain:
+[1-10:P22494; UTF16 811419] [ \text{elevator move} \to \text{route class} \to \text{pipe length} \to \text{plenum state} \to \text{beam necessity} \to \text{cost}. ]
+[1-10:P22496; UTF16 811571] (c_1): full structural reoptimization
+[1-10:P22498; UTF16 811615] [ 100. ]
+[1-10:P22499; UTF16 811624] It is meaningful only if the short route frees the plenum.
+[1-10:P22500; UTF16 811683] (c_2): exact route/topology test
+[1-10:P22503; UTF16 811729] Its result determines whether structural reoptimization is necessary.
+[1-10:P22504; UTF16 811799] (c_3): finish rendering
+[1-10:P22506; UTF16 811829] [ 5. ]
+[1-10:P22507; UTF16 811836] It affects no current engineering closure obligation and is not a prerequisite for a live architectural decision.
+[1-10:P22508; UTF16 811950] The influence graph places (c_2) upstream of the conditional enablement of (c_1).
+[1-10:P22510; UTF16 812038] (c_2) has strategic value;
+[1-10:P22511; UTF16 812065] (c_1) should generally wait;
+[1-10:P22512; UTF16 812094] (c_3) has zero value under the current theory.
+[1-10:P22513; UTF16 812141] If (c_2) returns the nonfreeing route class, (c_1) is removed entirely.
+[1-10:P22517; UTF16 812216] 52. Worked Example — Candidate Dominance
+[1-10:P22518; UTF16 812257] All values are synthetic.
+[1-10:P22519; UTF16 812283] Candidate family (C) has optimistic minimum cost:
+[1-10:P22520; UTF16 812333] [ $90\text{M}. ]
+[1-10:P22521; UTF16 812350] Retained candidate (A) has pessimistic cost:
+[1-10:P22522; UTF16 812395] [ $82\text{M}. ]
+[1-10:P22523; UTF16 812412] The stakeholder tolerance is:
+[1-10:P22524; UTF16 812442] [ 1%. ]
+[1-10:P22525; UTF16 812450] The admissible threshold around (A) is at most:
+[1-10:P22526; UTF16 812498] $82.82\text{M}. ]
+[1-10:P22528; UTF16 812523] [ 90>82.82, ]
+[1-10:P22529; UTF16 812537] family (C) cannot enter the tolerance band.
+[1-10:P22530; UTF16 812581] If (C) has no qualitative, mandatory, evidence, resilience, or architectural distinction, further cost simulation of (C) has zero decision value.
+[1-10:P22534; UTF16 812730] 53. Worked Example — Search Versus Verification
+[1-10:P22535; UTF16 812778] Maximize utility.
+[1-10:P22536; UTF16 812796] Current incumbent lower bound:
+[1-10:P22537; UTF16 812827] [ L^\star=90. ]
+[1-10:P22538; UTF16 812843] Unexplored regions:
+[1-10:P22539; UTF16 812863] [ U(R_1)=91, ]
+[1-10:P22540; UTF16 812878] [ U(R_2)=150. ]
+[1-10:P22541; UTF16 812894] Verify (R_1)
+[1-10:P22542; UTF16 812907] May tighten:
+[1-10:P22543; UTF16 812920] [ 91\to89. ]
+[1-10:P22544; UTF16 812933] This removes at most one unit of potential regret.
+[1-10:P22545; UTF16 812984] Search (R_2)
+[1-10:P22546; UTF16 812997] May find a candidate with utility:
+[1-10:P22547; UTF16 813032] [ 140. ]
+[1-10:P22548; UTF16 813041] Under a plausible scheduling belief, searching (R_2) has much greater expected closure value.
+[1-10:P22549; UTF16 813135] Suppose it succeeds:
+[1-10:P22550; UTF16 813156] [ L^\star=140. ]
+[1-10:P22552; UTF16 813178] [ U(R_1)=91<140, ]
+[1-10:P22553; UTF16 813197] so (R_1) closes without verification.
+[1-10:P22554; UTF16 813235] The order of computation changes the future agenda.
+[1-10:P22558; UTF16 813290] 54. Worked Example — Evidence Blocker
+[1-10:P22559; UTF16 813328] All times are synthetic.
+[1-10:P22560; UTF16 813353] Design A is physically superior, but:
+[1-10:P22561; UTF16 813391] [ \mathsf{FireEvidence}(A)=\mathsf{unresolved}. ]
+[1-10:P22562; UTF16 813441] Available computations:
+[1-10:P22563; UTF16 813465] CFD: 20 hours;
+[1-10:P22564; UTF16 813480] structural solve: 4 hours;
+[1-10:P22565; UTF16 813507] evidence-chain check: 10 minutes.
+[1-10:P22566; UTF16 813541] Physics outcomes are already outside the live cone.
+[1-10:P22567; UTF16 813593] The evidence check is the only computation capable of closing the release blocker.
+[1-10:P22568; UTF16 813676] A scheduler ranking by numerical sophistication instead of closure relevance wastes nearly a day.
+[1-10:P22572; UTF16 813777] 55. Worked Example — PCPE Versus Full Solve
+[1-10:P22573; UTF16 813821] Current reduced-operator error:
+[1-10:P22574; UTF16 813853] [ \pm1.5. ]
+[1-10:P22575; UTF16 813865] Decision margin:
+[1-10:P22576; UTF16 813882] [ 0.5. ]
+[1-10:P22577; UTF16 813891] Enrich PCPE
+[1-10:P22580; UTF16 813916] Predicted certified error:
+[1-10:P22581; UTF16 813943] [ \pm0.2. ]
+[1-10:P22582; UTF16 813955] Full solve
+[1-10:P22585; UTF16 813981] Certified error:
+[1-10:P22586; UTF16 813998] [ \pm0.01. ]
+[1-10:P22587; UTF16 814011] If enrichment has high probability of producing the (0.2) bound, it is enough to cross inside the (0.5) decision margin and has much greater RCVOC.
+[1-10:P22589; UTF16 814163] enrichment repeatedly fails;
+[1-10:P22590; UTF16 814192] validity is violated;
+[1-10:P22591; UTF16 814214] a global mode appears;
+[1-10:P22592; UTF16 814237] the meta-belief and available action set change, and the full solve may become preferred.
+[1-10:P22596; UTF16 814330] 56. Worked Example — Macro Thaw
+[1-10:P22597; UTF16 814362] A macro family (B) is already certified dominated.
+[1-10:P22598; UTF16 814413] A proposed engineering action targets hidden microstructure outside the CSSP action language.
+[1-10:P22599; UTF16 814507] Thaw cost:
+[1-10:P22600; UTF16 814518] [ 1000. ]
+[1-10:P22601; UTF16 814528] Because (B) cannot alter any current final decision and no witness obligation requires its internals:
+[1-10:P22602; UTF16 814630] [ \Delta_{\mathrm{thaw}}=0. ]
+[1-10:P22603; UTF16 814660] The thaw is removed by THM-RC20.
+[1-10:P22604; UTF16 814693] Later, a stakeholder changes objectives and (B) becomes competitive.
+[1-10:P22605; UTF16 814762] The theory fingerprint changes.
+[1-10:P22606; UTF16 814794] The same thaw may now enter the live agenda.
+[1-10:P22607; UTF16 814839] Computation value is theory relative.
+[1-10:P22611; UTF16 814880] 57. Worked Example — Two-Step Strategic Value
+[1-10:P22612; UTF16 814926] Hidden uncertainty lies in subsystem (A) or (B), each with probability (1/2).
+[1-10:P22613; UTF16 815004] Diagnostic (D):
+[1-10:P22614; UTF16 815020] cost (1);
+[1-10:P22615; UTF16 815030] reveals which subsystem matters;
+[1-10:P22616; UTF16 815063] immediate closure gain (0).
+[1-10:P22617; UTF16 815091] Solves:
+[1-10:P22618; UTF16 815099] [ S_A,\ S_B ]
+[1-10:P22619; UTF16 815113] each cost:
+[1-10:P22621; UTF16 815133] Without the diagnostic, resolving both possibilities costs:
+[1-10:P22622; UTF16 815193] [ 200. ]
+[1-10:P22623; UTF16 815202] With the diagnostic:
+[1-10:P22624; UTF16 815223] [ 1+100=101. ]
+[1-10:P22625; UTF16 815238] The diagnostic saves:
+[1-10:P22626; UTF16 815260] [ 99 ]
+[1-10:P22627; UTF16 815267] cost units despite zero direct closure value.
+[1-10:P22631; UTF16 815316] 58. Worked Example — Complementary Bounds
+[1-10:P22632; UTF16 815358] Safety requires:
+[1-10:P22634; UTF16 815389] Current:
+[1-10:P22635; UTF16 815398] [ x,y\in[3,8]. ]
+[1-10:P22636; UTF16 815415] (c_x) yields:
+[1-10:P22638; UTF16 815444] (c_y) yields:
+[1-10:P22640; UTF16 815473] Each alone leaves the upper sum at (12).
+[1-10:P22641; UTF16 815514] Together the upper sum is (8).
+[1-10:P22642; UTF16 815545] The safety obligation closes only through complementarity.
+[1-10:P22646; UTF16 815607] 59. Worked Example — Synthetic 190-Room Hotel Agenda
+[1-10:P22647; UTF16 815660] All counts and costs in this section are synthetic.
+[1-10:P22648; UTF16 815712] A 190-room hotel has:
+[1-10:P22650; UTF16 815754] 20 corner rooms;
+[1-10:P22651; UTF16 815771] 10 exception rooms;
+[1-10:P22652; UTF16 815791] structure;
+[1-10:P22653; UTF16 815802] HVAC;
+[1-10:P22654; UTF16 815808] plumbing;
+[1-10:P22655; UTF16 815818] electrical;
+[1-10:P22656; UTF16 815830] façade;
+[1-10:P22657; UTF16 815838] routing;
+[1-10:P22659; UTF16 815857] construction and maintenance obligations.
+[1-10:P22660; UTF16 815899] Suppose the raw computation library offers:
+[1-10:P22661; UTF16 815943] [ 18,!742 ]
+[1-10:P22662; UTF16 815955] currently conceivable operations.
+[1-10:P22663; UTF16 815989] The live-agenda builder removes:
+[1-10:P22664; UTF16 816022] (17,!911) computations outside all live decision cones;
+[1-10:P22665; UTF16 816078] (603) computations confined to certified dominated families;
+[1-10:P22666; UTF16 816139] (141) recomputations dominated by valid PCPE, quotient, or CSSP reuse;
+[1-10:P22667; UTF16 816210] (56) invalid, unavailable, or hard-resource-infeasible computations.
+[1-10:P22668; UTF16 816279] Remaining live computations:
+[1-10:P22669; UTF16 816308] 17,!911
+[1-10:P22670; UTF16 816316] 603
+[1-10:P22671; UTF16 816320] 141
+[1-10:P22672; UTF16 816324] 56
+[1-10:P22674; UTF16 816329] The 31 include:
+[1-10:P22675; UTF16 816345] 4 release-blocking evidence checks;
+[1-10:P22676; UTF16 816381] 7 route/topology tests;
+[1-10:P22677; UTF16 816405] 5 corner-room thermal refinements;
+[1-10:P22678; UTF16 816440] 3 structural cases capable of changing beam layout;
+[1-10:P22679; UTF16 816492] 4 uncertainty-domain splits;
+[1-10:P22680; UTF16 816521] 8 search or verification computations affecting the final portfolio.
+[1-10:P22681; UTF16 816590] The standard-room PCPE is already decision stable for all 160 standard rooms, so no room-by-room thermal solves remain live.
+[1-10:P22682; UTF16 816715] The highest strategic computation is a synthetic:
+[1-10:P22683; UTF16 816765] [ 0.4\text{-second} ]
+[1-10:P22684; UTF16 816787] route-topology test.
+[1-10:P22685; UTF16 816808] Its result determines whether a costly local structural solve is necessary.
+[1-10:P22686; UTF16 816884] If route class A occurs:
+[1-10:P22687; UTF16 816909] the beam decision is already stable;
+[1-10:P22688; UTF16 816946] the structural solve is removed.
+[1-10:P22689; UTF16 816979] If route class B occurs:
+[1-10:P22690; UTF16 817004] exactly one local structural solve becomes live.
+[1-10:P22691; UTF16 817053] The scheduler does not run the largest simulation first.
+[1-10:P22692; UTF16 817110] It runs the computation that determines whether the largest simulation has any value.
+[1-10:P22696; UTF16 817199] 60. Zero-Value Visualization Example
+[1-10:P22697; UTF16 817236] Suppose a material-rendering computation:
+[1-10:P22698; UTF16 817278] affects no current engineering obligation;
+[1-10:P22699; UTF16 817321] is not a prerequisite for current architectural judgment;
+[1-10:P22700; UTF16 817379] changes no computation availability.
+[1-10:P22701; UTF16 817416] Its current engineering RCVOC is zero.
+[1-10:P22702; UTF16 817455] If a later human design review explicitly uses the rendering, the decision theory changes and the rendering may become live.
+[1-10:P22703; UTF16 817580] Zero value is always relative to the declared current theory.
+[1-10:P22707; UTF16 817645] 61. External-Menu Effects at the Meta Level
+[1-10:P22708; UTF16 817689] A computation is not irrelevant merely because it cannot change the current pairwise incumbent ordering.
+[1-10:P22710; UTF16 817802] discover a third alternative;
+[1-10:P22711; UTF16 817832] invalidate one alternative;
+[1-10:P22712; UTF16 817860] change incomparability;
+[1-10:P22713; UTF16 817884] alter the complete marked-menu choice set.
+[1-10:P22714; UTF16 817927] Qualitative closure therefore uses:
+[1-10:P22715; UTF16 817963] [ \mathcal R_q(K) ]
+[1-10:P22716; UTF16 817983] from DEF-RC13 rather than a scalar incumbent rank.
+[1-10:P22720; UTF16 818037] 62. Mandatory Safety Is Not Scalarized
+[1-10:P22721; UTF16 818076] A computation resolving a mandatory safety obligation and one improving cost regret cannot be compared through an arbitrary dollar conversion unless governance explicitly authorizes such a policy.
+[1-10:P22722; UTF16 818273] The closure deficit and release gate retain mandatory blockers as hard conditions.
+[1-10:P22723; UTF16 818356] RCVOC does not permit life-safety obligations to be traded away for compute savings.
+[1-10:P22727; UTF16 818444] 63. Algorithms
+[1-10:P22728; UTF16 818459] ALG-RC1 — CheckRegretClosure
+[1-10:P22730; UTF16 818494]     metaknowledge state K
+[1-10:P22732; UTF16 818543]     current authoritative portfolio
+[1-10:P22733; UTF16 818579]     closure policy
+[1-10:P22736; UTF16 818605]     portfolio witness validity
+[1-10:P22737; UTF16 818636]     robust feasibility

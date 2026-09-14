@@ -1,0 +1,77 @@
+context:
+  name: libraw
+  version: "0.22.2"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - target_directory: libraw
+    url: https://github.com/LibRaw/LibRaw/archive/${{ version }}.tar.gz
+    sha256: 627928088300ecde6ca91ffd202e189203f04ad61ad12f0fe9dc57b9a7a0fb3c
+
+  - target_directory: cmake
+    url: https://github.com/LibRaw/LibRaw-cmake/archive/eb98e4325aef2ce85d2eb031c2ff18640ca616d3.tar.gz
+    sha256: 3cd218bf6d1254de86e27269541277fbfc5bae57a9002ce0b46fbe2a97088b43
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - if: unix
+      then:
+        - automake
+        - libtool
+        - make
+        - pkg-config
+    - if: win
+      then:
+        - cmake
+        - ninja
+  host:
+    - zlib
+    - lcms2
+    - jasper
+    - libjpeg-turbo
+    - ${{ "libgomp" if linux }}
+  run_exports:
+    - ${{ pin_subpackage(name, upper_bound  ='x.x') }}
+
+
+tests:
+  - package_contents:
+      include:
+        - libraw/libraw.h
+      lib:
+        - raw
+      bin:
+        - 4channels
+        - dcraw_emu
+        - raw-identify
+        - simple_dcraw
+  - requirements:
+      run:
+        - curl
+    script:
+      - curl https://www.rawsamples.ch/raws/nikon/d1/RAW_NIKON_D1.NEF -o RAW_NIKON_D1.NEF
+      - raw-identify -u RAW_NIKON_D1.NEF
+      - simple_dcraw -v -T RAW_NIKON_D1.NEF
+
+about:
+  homepage: http://www.libraw.org/
+  license: LGPL-2.1-only
+  license_file: libraw/LICENSE.LGPL
+  description: |
+    LibRaw is a library for reading RAW files from digital photo cameras
+    (CRW/CR2, NEF, RAF, DNG, MOS, KDC, DCR, etc, virtually all RAW formats are supported).
+  summary: Library for reading and processing of RAW digicam images.
+
+extra:
+  recipe-maintainers:
+    - wolfv
+    - traversaro

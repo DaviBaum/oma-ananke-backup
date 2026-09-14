@@ -1,0 +1,760 @@
+[6667] Branch-forbidden portal returned by pricing
+[6668] BRANCH_INCOMPATIBLE_COLUMN
+[6669] 129
+[6670] Portal branch children overlap
+[6671] BRANCH_PARTITION_INVALID
+[6672] 130
+[6673] Portal branch misses a column
+[6675] 131
+[6676] Root LP fractional triangle example
+[6677] lower bound 3
+[6678] 132
+[6679] Both child bounds 4
+[6680] exact optimum 4
+[6681] 133
+[6682] Incomplete pricing used as node bound
+[6683] NODE_BOUND_INVALID
+[6684] 134
+[6685] Full LP infeasible exact Farkas ray
+[6686] LP_INFEASIBLE
+[6687] 135
+[6688] Restricted Farkas ray invalidated by bypass
+[6689] Farkas pricing column
+[6690] 136
+[6691] LP-feasible binary-infeasible model
+[6692] INTEGER_PROOF_REQUIRED
+[6693] 137
+[6694] Complete branch tree closes all leaves
+[6695] INTEGER_INFEASIBLE
+[6696] 138
+[6697] Floating solver says infeasible without proof
+[6699] 139
+[6700] Resource cut ignores alternate corridor
+[6701] RESOURCE_CUT_INVALID
+[6702] 140
+[6703] Valid mandatory cut \(11>9\)
+[6704] ROUTING_INFEASIBLE_CERTIFIED
+[6705] 141
+[6706] Core reproduces infeasibility
+[6707] conflict core accepted
+[6708] 142
+[6709] Claimed minimal core has removable premise
+[6710] minimality rejected
+[6711] 143
+[6712] Empty dual support labeled Farkas price
+[6713] REPAIR_PROVENANCE_INVALID
+[6714] 144
+[6715] Dual price reused at sibling node
+[6716] DUAL_SCOPE_INVALID
+[6717] 145
+[6718] MW average satisfies certified additive bound
+[6720] 146
+[6721] Fractional MW output called unsplittable route
+[6722] modality failure
+[6723] 147
+[6724] GPU integer overflow
+[6725] GPU proposal rejected
+[6726] 148
+[6727] GPU predecessor race changes bytes
+[6728] canonicalization required
+[6729] 149
+[6730] GPU path CPU geometry fails
+[6731] GPU_RESULT_UNTRUSTED
+[6732] 150
+[6733] GPU path and exact potential close gap
+[6734] exact shortest-path certificate
+[6735] 151
+[6736] Checkpoint PCSIR root differs
+[6737] CHECKPOINT_INCOMPATIBLE
+[6738] 152
+[6739] Checkpoint objective policy differs
+[6740] incompatible
+[6741] 153
+[6742] Compatible deterministic checkpoint
+[6743] resumed output equals uninterrupted
+[6744] 154
+[6745] Obstacle movement leaves stale column in basis
+[6746] STALE_COLUMN
+[6747] 155
+[6748] Envelope change leaves stale incumbent
+[6750] 156
+[6751] Pricing graph changes without recertifying closure
+[6752] STALE_BOUND
+[6753] 157
+[6754] Incremental and cold outputs agree
+[6756] 158
+[6757] Dependency edge removed
+[6758] mismatch detected
+[6759] 159
+[6760] AI proposes wall-crossing route
+[6761] CPU rejects
+[6762] 160
+[6763] AI labels heuristic pricing exact
+[6764] modality rejection
+[6765] 161
+[6766] AI fabricates Farkas provenance
+[6767] proof rejection
+[6768] 162
+[6769] Unmodeled support condition in second world
+[6770] open-world theorem retained
+[6771] 163
+[6772] Hotel floor-7 rack \(1.60>1.50\)
+[6773] packing conflict
+[6774] 164
+[6775] Hotel gravity interval empty
+[6776] physical fiber empty
+[6777] 165
+[6778] Hotel portal cut \(11>9\)
+[6779] capacity certificate
+[6780] 166
+[6781] Hotel incumbent fully disposed
+[6782] valid upper bound
+[6783] 167
+[6784] Hotel LP/pricing proof incomplete
+[6785] no exact-optimal status
+[6786] 168
+[6787] Hotel gap \(560/12480\)
+[6788] bounded-gap status
+[6791] 70. Proof-assistant formalization
+[6792] The following are Lean-style signatures. Exact library names have not been represented as compilation-tested.
+[6793] structure RouterRequest where
+[6794]   pcsirRoot : Hash
+[6795]   fixedContext : FixedDesignContext
+[6796]   nets : Finset NetId
+[6797]   modes : Finset ModeId
+[6798]   scenarios : Finset ScenarioId
+[6799]   objective : ObjectivePolicy
+[6801] inductive RouterStatus
+[6802] | exactOptimal
+[6803] | boundedGap
+[6804] | feasible
+[6805] | infeasible
+[6806] | relaxationInfeasible
+[6807] | conflict
+[6808] | pricingIncomplete
+[6809] | unknown
+[6810] inductive CellClassification
+[6811] | free | blocked | mixed | unknown
+[6812] structure ConfigurationCell where
+[6813]   id : CellId
+[6814]   region : Set Configuration
+[6815]   clearanceLo clearanceHi : ℚ
+[6816]   classification : CellClassification
+[6817] structure InnerFreeComplex where
+[6818]   cells : Finset ConfigurationCell
+[6819]   allFree : ∀ c ∈ cells, c.classification = .free
+[6820] structure OuterFreeComplex where
+[6822]   noBlocked : ∀ c ∈ cells, c.classification ≠ .blocked
+[6823]   completeness : Option OuterCompletenessProof
+[6824] structure EmbeddedRouteEdge where
+[6825]   source target : RouteVertex
+[6826]   path : ContinuousMap (Set.Icc (0:ℝ) 1) ConfigurationSpace
+[6827]   freeProof : ∀ t, ConfigurationFree (path t)
+[6829] structure RouteGraph where
+[6830]   vertices : Finset RouteVertex
+[6831]   edges : Finset EmbeddedRouteEdge
+[6832] structure ExactWeight where
+[6834] structure IntervalWeight where
+[6835]   lo hi : ℚ
+[6836]   ordered : lo ≤ hi
+[6837] structure CutSurface where
+[6838]   id : CutId
+[6839]   carrier : Set Configuration
+[6840]   orientation : Orientation
+[6841] structure GroupoidGenerator where
+[6842]   source target : ChamberId
+[6843]   cut : CutId
+[6844]   sign : Bool
+[6845] abbrev RouteWord := List GroupoidGenerator
+[6846] def ReducedWord (w : RouteWord) : Prop :=
+[6847]   ∀ i, ¬ AreAdjacentInverses w i
+[6848] structure LiftedRouteState where
+[6849]   base : RouteVertex
+[6850]   word : RouteWord
+[6851]   fabrication : FabricationState
+[6852]   size : SizeState
+[6853] structure RouteSkeleton where
+[6854]   net : NetId
+[6855]   carrier : EmbeddedOneComplex
+[6856]   terminals : Finset PortId
+[6857]   routeWord : RouteWord
+[6859] structure MultiTerminalSkeleton extends RouteSkeleton where
+[6860]   connected : carrier.Connected
+[6861]   spans : ∀ p ∈ terminals, carrier.ContainsPort p
+[6862] def PhysicalFiber
+[6863]     (n : Net)
+[6864]     (σ : RouteSkeleton)
+[6866]     (ω : Scenario) : Set PhysicalState :=
+[6867]   {x | PhysicalRouteValid n σ m ω x}
+[6868] structure RouteColumn where
+[6869]   skeleton : RouteSkeleton
+[6870]   physical : PhysicalState
+[6871]   physicalMember : physical ∈ PhysicalFiber net skeleton mode scenario
+[6872]   cost : IntervalWeight
+[6873]   resources : ResourceUsage
+[6874]   proof : RouteColumnProof
+[6875] structure ResourceUsage where
+[6876]   value : ResourceId → ℚ
+[6877]   nonnegative : ∀ g, 0 ≤ value g
+[6878] structure RestrictedMaster where
+[6879]   columns : NetId → Finset RouteColumn
+[6880]   capacities : ResourceId → ℚ
+[6881]   primalMatrix : Matrix RowId ColumnId ℚ
+[6882]   rhs : RowId → ℚ
+[6883]   objective : ColumnId → ℚ
+[6884] structure MasterDual where
+[6885]   alpha : NetId → ℚ
+[6886]   capacityPrice : ResourceId → ℚ
+[6887]   nonnegative : ∀ g, 0 ≤ capacityPrice g
+[6888]   feasible : DualFeasible master alpha capacityPrice
+[6889] structure PricingProblem where
+[6891]   branch : BranchState
+[6892]   dual : MasterDual
+[6893]   domain : Set RouteColumn
+[6894] structure ReducedCostCertificate where
+[6895]   column : RouteColumn
+[6896]   reducedCost : ℚ
+[6897]   equationProof : reducedCost = computeReducedCost dual column
+[6898] structure BranchDecision where
+[6899]   predicate : RouteColumn → Prop
+[6900]   decidablePredicate : DecidablePred predicate
+[6901] structure BranchNode where
+[6902]   parent : Option NodeId
+[6903]   state : BranchState
+[6904]   lowerBound : ℚ
+[6905]   pricingClosed : Prop
+[6906] structure FarkasCertificate where
+[6907]   y : RowId → ℚ
+[6908]   nonnegative : ∀ i, 0 ≤ y i
+[6909]   dualCone : transpose A ⬝ᵥ y ≤ 0
+[6910]   contradiction : 0 < dotProduct b y
+[6911] structure ConflictCore where
+[6912]   premises : Finset RoutingPremise
+[6913]   infeasible : RoutingInfeasible premises
+[6914]   minimality : CoreMinimality
+[6915] structure RepairEnvelope where
+[6916]   edits : Set RepairVector
+[6917]   scope : DualScope
+[6918]   certificate : RepairCertificate
+[6919] structure GPUProposal where
+[6920]   inputHash : Hash
+[6921]   distances : Array Int
+[6922]   predecessors : Array NodeId
+[6924] structure CPUDisposalCertificate where
+[6925]   proposal : GPUProposal
+[6926]   acceptedPath : Option RoutePath
+[6927]   exactCost : Option ℚ
+[6928]   verdict : DisposalVerdict
+[6929] structure RoutingCheckpoint where
+[6931]   requestHash : Hash
+[6932]   branchState : BranchState
+[6933]   columnPoolHash : Hash
+[6934]   transitionVersion : Version
+[6935] structure PCROUTE where
+[6936]   request : RouterRequest
+[6937]   routeColumns : NetId → RouteColumn
+[6938]   master : RestrictedMaster
+[6939]   bounds : BoundState
+[6940]   proofs : Finset ProofArtifact
+[6941]   checkerResult : RouterStatus
+[6942] structure RTRWitness where
+[6943]   pcroute : PCROUTE
+[6944]   jointFeasible : JointlyFeasible pcroute.routeColumns
+[6945]   rootAccepted : CheckPCROUTE pcroute = .feasible
+[6946] theorem inner_graph_path_sound
+[6947]     (G : RouteGraph)
+[6948]     (p : GraphPath G)
+[6949]     (h : EveryEdgeCertified p) :
+[6950]     ∃ q : ContinuousConfigurationPath,
+[6951]       ProjectsToGraphPath q p ∧
+[6952]       ∀ t, ConfigurationFree (q t) := by
+[6954] theorem outer_disconnection_infeasible
+[6955]     (G : OuterFreeComplex)
+[6956]     (hc : G.completeness.isSome)
+[6957]     (hd : DisconnectedInOuterGraph start goal) :
+[6958]     ¬ ∃ q, ExactFeasibleRoute q start goal := by
+[6960] theorem cegar_inner_monotone
+[6961]     (r : SoundRefinement old new) :
+[6962]     old.inner ⊆ new.inner := by
+[6963]   exact r.innerMonotone
+[6964] theorem shortest_path_dual_lower_bound
+[6965]     (p : FeasiblePotential G s t)
+[6966]     (q : Path G s t) :
+[6967]     p.value t - p.value s ≤ q.cost := by
+[6969] theorem crossing_word_invariant
+[6970]     (H : EndpointRelativeHomotopy ρ₁ ρ₂)
+[6971]     (hcut : ValidCompleteCutSystem Σ) :
+[6972]     reduce (crossingWord Σ ρ₁) =
+[6973]     reduce (crossingWord Σ ρ₂) := by
+[6975] theorem lifted_path_projection
+[6976]     (p : Path liftedGraph a b) :
+[6977]     ∃ q : Path baseGraph a.base b.base,
+[6978]       q = projectPath p ∧
+[6979]       pathWord p = b.word := by
+[6981] theorem physical_fiber_member_realizes
+[6982]     (h : x ∈ PhysicalFiber n σ m ω) :
+[6983]     RealizesGraph n σ x m ω := by
+[6985] theorem weak_duality_physical
+[6986]     (hp : PrimalFeasible problem x)
+[6987]     (hd : DualFeasible problem y) :
+[6988]     dualObjective problem y ≤
+[6989]     primalObjective problem x := by
+[6991] theorem reduced_cost_correct
+[6992]     (d : MasterDual master)
+[6993]     (r : RouteColumn) :
+[6994]     reducedCost d r =
+[6995]       r.costExact - d.alpha r.net +
+[6996]       resourcePriceTerm d r := by
+[6997]   rfl
+[6998] theorem exact_pricing_closure
+[6999]     (h : ∀ n, pricingMinimum n dual ≥ 0) :
+[7000]     FullLPOptimal restrictedPrimal dual := by
+[7002] theorem branch_partition_correct
+[7003]     (b : BranchDecision) :
+[7004]     ParentColumns =
+[7005]       ChildColumns b true ∪ ChildColumns b false ∧
+[7006]     Disjoint (ChildColumns b true)
+[7007]              (ChildColumns b false) := by
+[7009] theorem branch_and_price_optimal
+[7010]     (hfinite : Finite FullColumnUniverse)
+[7011]     (hpricing : EveryNodePricingClosed tree)
+[7012]     (hbranch : EveryBranchValid tree)
+[7013]     (hclosed : EveryLeafClosed tree) :
+[7014]     ExactIntegerOptimal incumbent := by
+[7016] theorem farkas_sound
+[7017]     (f : FarkasCertificate A b) :
+[7018]     ¬ ∃ x ≥ 0, A.mulVec x ≥ b := by
+[7020] theorem gpu_proposal_independence
+[7021]     (hcheck : Sound CPUChecker)
+[7022]     (p₁ p₂ : ProposalSource)
+[7023]     (a : CandidateArtifact) :
+[7024]     CPUChecker (p₁.propose a) =
+[7025]     CPUChecker (p₂.propose a) := by
+[7027] theorem checkpoint_resume_equal
+[7028]     (hc : Compatible checkpoint request)
+[7029]     (hdet : Deterministic transition) :
+[7030]     Resume checkpoint =
+[7031]     ContinueFromSavedState checkpoint := by
+[7033] theorem incremental_equals_cold_rtr
+[7035]     (hdet : DeterministicCheckers checkers)
+[7036]     (htransport : ValidSIRTransport old new) :
+[7037]     IncrementalRTR old new =
+[7038]     ColdRTR new := by
+[7040] theorem whole_feasible_pcroute
+[7041]     (h : CheckPCROUTE pkg = .feasible) :
+[7042]     ∃ W, W ∈ FeasibleRTRFiber target state := by
+[7044] theorem whole_optimal_pcroute
+[7045]     (h : CheckPCROUTE pkg = .exactOptimal) :
+[7046]     ∃ W, W ∈ OptimalRTRFiber target state := by
+[7048] theorem routed_open_world
+[7049]     (sameArtifacts : artifacts world₀ = artifacts world₁) :
+[7050]     CheckPCROUTE (pkg world₀) =
+[7051]       CheckPCROUTE (pkg world₁) ∧
+[7052]     RealValidity world₀ ≠ RealValidity world₁ →
+[7053]     ModelScoped (pkg world₀) := by
+[7056] 71. Mechanization difficulty
+[7057] Topic
+[7059] Reason
+[7060] Router-request typing
+[7062] Finite records and equality
+[7063] Fixed-design projection
+[7065] Typed coordinate equality
+[7066] Exact route-graph checking
+[7068] Path concatenation and local proofs
+[7069] Exact 3D determinants
+[7071] Big-integer algebra
+[7072] Adaptive exact arithmetic
+[7074] Filters, expansions, proof boundary
+[7075] Exact polyhedron Boolean operations
+[7077] Degeneracy and topology
+[7080] High-dimensional semialgebraic sets
+[7081] Inner/outer cell classification
+[7083] Sound interval geometry
+[7084] Tetrahedralization
+[7086] Robust constrained topology
+[7087] Portal certification
+[7089] Continuous transition proof
+[7090] Homotopy presentation
+[7092] Domain-specific topology
+[7093] Cut-word invariance
+[7095] Intersection and cancellation
+[7096] Signature completeness
+[7098] Arbitrary 3D domains
+[7099] Lifted graph search
+[7101] Finite product semantics
+[7102] Fabrication-state lifting
+[7104] Large state and dominance
+[7105] Multi-terminal trees
+[7107] Connectivity plus fittings
+[7108] Steiner pricing
+[7109] NP-hard
+[7110] Exact combinatorial search
+[7111] Shared-trunk physics
+[7113] Aggregate nonlinear demand
+[7115] NP-hard/difficult
+[7116] 2D nonoverlap and orientation
+[7117] Convex physical certificates
+[7119] Primal/dual replay
+[7120] Nonconvex global certificates
+[7122] Interval/MIP proof trees
+[7123] Route columns
+[7125] Composite proof object
+[7128] Exact pricing closure
+[7129] Exact pricing
+[7131] Topology plus physics
+[7134] Pricing-aware branching and proof
+[7137] Automaton-compatible partition
+[7138] Farkas checking
+[7140] Rational matrix arithmetic
+[7141] Integer proof checking
+[7143] Branch/cut proof logs
+[7144] Core minimality
+[7146] Repeated exact solves
+[7149] Scope and degeneracy
+[7150] GPU proposal checking
+[7152] CPU replay
+[7153] Deterministic replay
+[7155] Complete state serialization
+[7159] Hotel-scale PCROUTE
+[7161] Scale and model breadth
+[7162] Real-world completeness
+[7163] Open-world
+[7164] Unmodeled facts remain possible
+[7167] 72. Exact-versus-heuristic table
+[7169] Exact role
+[7170] Bounded role
+[7171] Heuristic role
+[7173] Failure mode
+[7174] Geometry import
+[7175] Rational/lattice objects
+[7176] Inner/outer enclosures
+[7177] Mesh repair proposal
+[7179] unresolved geometry
+[7180] C-space cells
+[7181] Exact sign cells
+[7182] interval FREE/BLOCKED
+[7183] adaptive split ranking
+[7184] cell checker
+[7185] MIXED/UNKNOWN
+[7186] Inner route graph
+[7187] certified embeddings
+[7188] conservative local paths
+[7189] candidate edge proposal
+[7191] unsound edge
+[7192] Outer graph
+[7193] complete abstraction where proved
+[7194] overapproximate paths
+[7195] coarse search
+[7196] abstraction checker
+[7197] missing completeness
+[7199] exact under presentation
+[7200] sound invariant
+[7201] diversity label
+[7203] incomplete signature
+[7204] Path search
+[7206] gap bound
+[7207] A*/GPU ranking
+[7208] path/potential checker
+[7209] no closure
+[7210] Multi-terminal generation
+[7211] exact DP/MIP proof
+[7212] lower/upper bounds
+[7213] Steiner heuristic
+[7214] skeleton checker
+[7215] incomplete pricing
+[7217] exact catalog/global proof
+[7218] interval bounds
+[7219] local NLP
+[7220] physical checker
+[7221] local-only result
+[7222] Column cost
+[7223] exact rational
+[7224] outward interval
+[7225] surrogate estimate
+[7226] cost checker
+[7227] overlapping intervals
+[7228] Pricing
+[7229] exact global minimum
+[7230] certified lower bound
+[7231] candidate discovery
+[7234] Master LP
+[7235] exact rational primal/dual
+[7236] verified residual bounds
+[7237] floating warm start
+[7239] numeric unresolved
+[7241] complete tree
+[7242] valid global gap
+[7243] node ordering
+[7245] unresolved node
+[7246] MW relaxation
+[7247] exact regret arithmetic
+[7248] additive approximation
+[7249] congestion guide
+[7250] fractional checker
+[7251] no integral route
+[7252] GPU kernel
+[7253] none inherently
+[7254] interval proposal
+[7255] high-throughput search
+[7257] untrusted result
+[7258] Repair generation
+[7259] exact proven repair
+[7260] bounded envelope
+[7261] AI/dual suggestion
+[7262] repair checker
+[7263] invalid provenance
+[7264] Conflict extraction
+[7265] exact checked core
+[7266] local minimality
+[7267] heuristic subset
+[7269] minimality overclaim
+[7270] Checkpoint
+[7271] exact lineage
+[7272] transported compatibility
+[7273] cache hint
+[7275] stale state
+[7276] Final release
+[7277] exact or bounded package
+[7278] explicit modality
+[7279] none
+[7281] rejection/UNKNOWN
+[7284] 73. Complexity profile
+[7285] DEF-RTR92 — Complexity profile
+[7286] \[ \boxed{ \mathcal C_{\mathrm{RTR}} = \left( N_Q, N_{G^-}, N_{G^+}, N_{\widetilde G}, N_N, N_T, N_R, N_C, N_M, N_B, N_P, K_{\mathrm{geom}}, K_{\mathrm{hom}}, K_{\mathrm{phys}}, K_{\mathrm{price}}, K_{\mathrm{branch}}, C_{\mathrm{cspace}}, C_{\mathrm{graph}}, C_{\mathrm{hom}}, C_{\mathrm{single}}, C_{\mathrm{multi}}, C_{\mathrm{phys}}, C_{\mathrm{RMP}}, C_{\mathrm{price}}, C_{\mathrm{B\&P}}, C_{\mathrm{check}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unknown}} \right). } \]
+[7287] Definitions:
+[7288] \(N_Q\): configuration cells;
+[7289] \(N_{G^-},N_{G^+}\): inner/outer graph sizes;
+[7290] \(N_{\widetilde G}\): materialized lifted states;
+[7291] \(N_N\): nets;
+[7292] \(N_T\): terminals;
+[7293] \(N_R\): shared resources;
+[7294] \(N_C\): current columns;
+[7295] \(N_M\): master rows/nonzeros;
+[7296] \(N_B\): branch nodes;
+[7297] \(N_P\): proof objects;
+[7298] \(K_{\mathrm{geom}}\): predicate/Boolean complexity;
+[7299] \(K_{\mathrm{hom}}\): topology-state complexity;
+[7300] \(K_{\mathrm{phys}}\): fiber complexity;
+[7301] \(K_{\mathrm{price}}\): pricing complexity;
+[7302] \(K_{\mathrm{branch}}\): branch-tree complexity;
+[7304] \(R_{\mathrm{recert}}\): invalidated descendants;
+[7307] \[ C_{\mathrm{inner-check}} = O(N_Qc_{\mathrm{cell}}), \]\[ C_{\mathrm{graph-check}} = O(|E|c_{\mathrm{edge}}), \]\[ C_{\mathrm{Dijkstra}} = O((|V|+|E|)\log|V|), \]\[ C_{\mathrm{BellmanFord}} = O(|V||E|), \]\[ C_{\mathrm{DreyfusWagner}} = O\!\left( |V|^2 2^{|T|} + |V|3^{|T|} \right) \]
+[7308] up to shortest-path preprocessing and implementation conventions,
+[7309] \[ C_{\mathrm{explicit\ PCROUTE\ check}} = O\left( N_P+N_M+N_B+\sum_i c_i \right). \]
+[7310] Configuration-space construction, exact multi-terminal pricing, packing, nonconvex physical fibers, and branch-and-price can be exponential.
+[7311] Storage is
+[7312] \[ O( N_Q+N_{G^-}+N_{G^+}+N_{\widetilde G} +N_C+N_M+N_B+N_P ) \]
+[7313] for materialized objects, reduced by lazy lifting, column generation, copy-on-write branches, and proof-DAG deduplication.
+[7315] 74. Single-workstation execution
+[7316] DEF-RTR93 — Workstation execution profile
+[7317] Target:
+[7318] \[ \begin{aligned} &\text{Ryzen 9 7900X3D},\\ &128\ \mathrm{GB\ RAM},\\ &\text{RTX 3090, }24\ \mathrm{GB\ VRAM},\\ &\approx2\ \mathrm{TB\ SSD}. \end{aligned} \]
+[7319] RAM policy
+[7320] A configured working cap of approximately \(96\) GB leaves headroom for the operating system and transient exact arithmetic.
+[7321] Permanent or long-lived RAM objects:
+[7322] identity/version indexes;
+[7323] dependency graph;
+[7324] active branch frontier;
+[7325] master sparse matrix;
+[7326] active column metadata;
+[7327] exact checker queues;
+[7328] frequently used geometry indexes.
+[7329] Memory-mapped objects:
+[7330] exact geometry shards;
+[7331] outer/inner cell complexes;
+[7332] large route graphs;
+[7333] inactive column geometry;
+[7334] proof trees;
+[7335] historical checkpoints.
+[7336] VRAM policy
+[7337] A configured cap of approximately \(20\) GB leaves device and graphics headroom.
+[7338] VRAM contains only:
+[7339] current graph batches;
+[7340] current lifted-label windows;
+[7341] batched commodity requests;
+[7342] dual-price arrays;
+[7343] temporary distance/predecessor buffers.
+[7344] It does not contain the authoritative full project.
+[7345] SSD policy
+[7346] Content-addressed storage contains:
+[7347] immutable PCSIR baseline;
+[7348] geometry shards;
+[7349] graph shards;
+[7350] column bodies;
+[7351] physical-fiber results;
+[7352] branch deltas;
+[7353] proof objects;
+[7354] checkpoints;
+[7355] PCROUTE packages.
+[7356] Branch-state sharing
+[7357] Each branch node stores:
+[7358] parent pointer;
+[7359] branch delta;
+[7360] added/forbidden column predicates;
+[7361] local basis/checkpoint;
+[7362] local bound proof.
+[7363] It does not copy the full project.
+[7364] CPU/GPU overlap
+[7365] While the GPU proposes batch \(k+1\), CPU workers may:
+[7366] dispose batch \(k\);
+[7367] verify exact predicates;
+[7368] solve physical fibers;
+[7369] check duals;
+[7370] write content-addressed artifacts.
+[7371] No speedup number is claimed here. This is a projected execution architecture, not a measured benchmark.
+[7373] 75. PCROUTE
+[7374] DEF-RTR94 — PCROUTE package
+[7375] A PCROUTE contains:
+[7377] PCSIR package reference;
+[7378] fixed master-design context;
+[7379] router-request identity;
+[7380] net family;
+[7381] mode family;
+[7382] scenario family;
+[7383] objective-policy version;
+[7384] route-envelope versions;
+[7385] configuration-space theory version;
+[7386] exact configuration-space artifacts;
+[7387] bounded configuration-space artifacts;
+[7388] inner free-complex artifacts;
+[7389] outer free-relaxation artifacts;
+[7390] inner route graphs;
+[7391] outer route graphs;
+[7392] graph-embedding certificates;
+[7393] portal registry;
+[7394] cut-system registry;
+[7395] group/groupoid presentation;
+[7396] edge-signature registry;
+[7397] homotopy-lifted graphs;
+[7398] fabrication-lifted graphs;
+[7399] size-lifted graphs;
+[7400] route-skeleton pool;
+[7401] route-class registry;
+[7402] multi-terminal topology state;
+[7403] physical-fiber definitions;
+[7404] physical-fiber primal witnesses;
+[7405] physical-fiber dual or bound witnesses;
+[7406] route-column pool;
+[7407] column identity and provenance;
+[7408] route-resource incidence;
+[7409] penetration use;
+[7410] rack assignments;
+[7411] assembly assignments;
+[7412] support assignments;
+[7413] exact conflict relations;
+[7414] restricted-master formulation;
+[7415] LP-relaxation formulation;
+[7416] master primal state;
+[7417] master dual state;
+[7418] pricing problems;
+[7419] pricing results;
+[7420] pricing-completeness state;
+[7421] column-dominance records;
+[7422] branch decisions;
+[7423] branch tree;
+[7424] node lower bounds;
+[7425] incumbent route family;
+[7426] global lower bound;
+[7427] global upper bound;
+[7428] optimality gap;
+[7429] Farkas certificates;
+[7430] integer-infeasibility certificates;
+[7431] geometric infeasibility certificates;
+[7432] resource cuts;
+[7434] repair prices;
+[7435] repair envelopes;
+[7436] GPU proposal artifacts;
+[7437] CPU disposal artifacts;
+[7438] exact-versus-heuristic ledger;
+[7439] checkpoint manifest;
+[7440] restart state;
+[7443] unresolved pricing states;
+[7445] open-world limitations;
+[7447] checker versions;
+[7448] source-provenance ledger;
+[7450] final routing modality;
+[7451] final router status;
+[7452] PCROUTE witness;
+[7453] independent checker result.
+[7455] 76. Routed-service release fiber
+[7456] DEF-RTR95 — RTR witness and release sets
+[7457] A feasible witness is
+[7458] \[ W_F= ( \{r_n\}_{n\in\mathcal N}, \mathsf{jointResourceAssignment}, \mathsf{physicalStates}, \mathsf{CPUDisposals}, \mathsf{versions} ). \]
+[7459] The feasible fiber is
+[7460] \[ \boxed{ \gamma_{\mathrm{RTR}}^{\mathsf{FEASIBLE}} (y,\Xi^{RTR}) = \{W_F:\mathsf{RoutedServiceValid}(y,\Xi^{RTR},W_F)\}. } \]
+[7461] A bounded-gap witness adds
+[7462] \[ (L,U,\eta_L,\eta_U), \]
+[7465] An exact-optimal witness additionally establishes
+[7466] \[ L=U. \]
+[7467] The infeasibility proof set is separate:
+[7468] \[ \boxed{ \mathcal I_{\mathrm{RTR}} = \{ \eta: \mathsf{RoutingInfeasible}(\Xi^{RTR},\eta) \}. } \]
+[7469] Infeasibility is not represented as a feasible route witness.
+[7471] 77. Whole feasible theorem
+[7472] THM-RTR111 — THM-RTR-WHOLE-FEASIBLE
+[7474] applicable accepted PCSIR;
+[7475] fixed master context;
+[7476] exact identity and version binding;
+[7477] sound inner route-graph embeddings;
+[7478] one valid route column for every required net;
+[7479] every selected physical fiber is nonempty;
+[7480] route columns are mutually compatible;
+[7481] capacity, conflict, penetration, support, rack, access, mode, scenario, and physical factors pass;
+[7482] every selected column is branch compatible;
+[7483] exact CPU disposal accepts every selected column;
+[7484] the joint route family passes independent disposal;
+[7485] independent PCROUTE checking accepts the feasible modality.
+[7487] \[ W_F \in \gamma_{\mathrm{RTR}}^{\mathsf{JOINT\_ROUTING\_FEASIBLE}} (y,\Xi^{RTR}). \]
+[7489] PCSIR applicability fixes the authoritative project state.
+[7490] Fixed-context checking excludes silent architectural mutation.
+[7491] Every selected column projects to a repaired Prompt-1 realization witness by THM-RTR3.
+[7492] Physical-fiber membership establishes route-level physical realization by THM-RTR55.
+[7493] Exact master selection assigns one column to each required net.
+[7494] Resource and conflict rows establish joint capacities and exclusions.
+[7495] Rack, penetration, support, access, mode, and scenario certificates discharge nonadditive factors.
+[7496] CPU disposal independently verifies all route and shared-state claims.
+[7497] The joint witness therefore satisfies the definition of RoutedServiceValid.
+[7498] Independent PCROUTE acceptance supplies the package-root proof.
+[7499] Hence the witness belongs to the feasible release fiber. ∎
+[7501] 78. Whole optimality theorem
+[7502] THM-RTR112 — THM-RTR-WHOLE-OPTIMAL
+[7503] Add to THM-RTR111:
+[7504] the full represented route-column universe is finite;
+[7505] the route master exactly represents the declared objective policy;
+[7506] every node LP is solved and disposed exactly;
+[7507] pricing is complete at every open or fathomed node;
+[7508] every branch is exhaustive and disjoint;
+[7509] branch restrictions are enforced inside pricing;
+[7510] all integer incumbents are exactly disposed;
+[7511] every leaf is infeasible, bounded by the incumbent, or completely solved;
+[7512] no unresolved branch, column, pricing, or arithmetic state remains;
+[7513] the global exact lower bound equals incumbent cost.
+[7514] Then the selected joint route family is exactly optimal for the represented fixed-design route master under \(\theta\).
+[7516] Valid branching partitions every integer route family into exactly one root-to-leaf region.
+[7517] Complete pricing gives the exact full LP bound at every node by THM-RTR71.
+[7518] Each node LP lower-bounds every integer solution in that node by THM-RTR81.
+[7519] Every pruned node contains no improving integer solution.
+[7520] Every infeasible leaf contains no integer solution.
+[7521] Every explored integer solution is independently feasible and gives an upper bound.
+[7522] Complete tree coverage excludes any unexamined better integer route family.
+[7523] Equality of global lower and upper bounds establishes exact objective equality.
+[7524] Therefore the incumbent is the exact represented route-master optimum. ∎
+[7526] 79. Whole infeasibility theorem
+[7527] THM-RTR113 — THM-RTR-WHOLE-INFEASIBLE
+[7528] A complete fixed-design routing infeasibility result is valid when one of the following independently checked routes applies to every admissible route family:
+[7529] Case A — Geometric infeasibility
+[7530] For at least one mandatory net, a complete configuration-space separator, outer-complete disconnection, or port incompatibility proves its realization fiber empty.
+[7531] Case B — Full-LP infeasibility
+[7532] An exact Farkas certificate applies to the full route-column LP after Farkas pricing closure.
+[7533] Case C — Integer infeasibility
+[7534] The full LP is feasible or unresolved, but a complete integer proof closes every route-master integer family.
+[7535] Case D — Physical-fiber infeasibility
+[7536] Every geometrically admissible skeleton for one mandatory obligation has an independently certified empty physical fiber, and the skeleton universe is complete.
+[7537] Case E — Combined branch proof
+[7538] A valid exhaustive branch tree closes every leaf by a combination of Cases A–D.
+[7539] Under the applicable case hypotheses,
+[7540] \[ \eta\in\mathcal I_{\mathrm{RTR}}. \]
+[7542] Case A removes a mandatory route obligation directly.
+[7543] Case B removes the LP relaxation and hence every integer route family by THM-RTR88.
+[7544] Case C removes every integer family by THM-RTR92.
+[7545] Case D proves no physical route column exists for a mandatory obligation.
+[7546] Case E partitions all integer families and closes every partition.

@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "source_sha256": "0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970",
+  "source_ranges": [
+    "1-10:P7423-P10005",
+    "1-10:P10074-P10166"
+  ],
+  "source_objects": [
+    "ALG-DS1",
+    "ALG-DS3",
+    "THM-DS19.1",
+    "THM-DS20.1",
+    "THM-DS13A"
+  ],
+  "scope": "Synthetic feasible hotel assignments under explicitly approved aggregate observation projection",
+  "corrections": [
+    "Projection of cost, schedule and facade observations is not conditioning all 192 assignments into a fixed stratum",
+    "Original choice labels and multiplicity are retained; arbitrary menu deduplication is not certified",
+    "Root message memory is included separately from nonroot separator width"
+  ],
+  "not_claimed": [
+    "Physical IFC validity",
+    "Whole building closure",
+    "Automatic compact physics discovery",
+    "Measured speedup against exhaustive 192**4 evaluation"
+  ],
+  "source_label_count_per_bay": 192,
+  "projected_message_counts": [
+    32,
+    126,
+    320,
+    650
+  ],
+  "metrics": {
+    "message_counts": {
+      "bay1": 32,
+      "bay2": 32,
+      "floor2": 126,
+      "bay3": 32,
+      "floor3": 320,
+      "bay4": 32,
+      "floor4": 650
+    },
+    "stored_message_count_including_root": 1224,
+    "root_message_count": 650,
+    "max_nonroot_message_bits": 9,
+    "root_message_bits": 10,
+    "quotient_join_visits": 16064,
+    "largest_child_message_product": 10240,
+    "root_labeled_realization_count": 1358954496,
+    "serialized_message_utf8_bytes_including_root": 190963,
+    "memory_scope": "Canonical serialized messages only; excludes FDQA, input tables, Python objects and peak working memory"
+  },
+  "independent_checker": {
+    "status": "PASS",
+    "scope": "COMPLETE_SUPPLIED_TREE_TABLES",
+    "root": "ab5a4a917bf741c3060bf8a1f00d7460743bbe1d5a277120215c1014b9b3c333",
+    "verified_messages": 1224,
+    "verified_join_rows": 16064,
+    "work": 1301626,
+    "root_labeled_realization_count": 1358954496
+  },
+  "small_exhaustive_assignment_count": 9,
+  "timings_seconds": {
+    "explicit_input_preparation": 0.16865810000308556,
+    "compilation_and_dp": 1.8269445999976597,
+    "independent_check": 4.324930200004019
+  },
+  "implementation_sha256": {
+    "src\\oma\\optimization\\separator.py": "fc4ed186e4f2af871b8cb645655b91ba2476af4b1a488aa53b34884c646772bd",
+    "src\\oma\\optimization\\fdqa.py": "71622f541c9be26298311cc690fd48c3b236f22f2fe07d7316103f5e67c30dfa",
+    "src\\oma\\optimization\\finite.py": "d0765e4061da5f110c07b4cde4fa7aefe16c6a978727e1c9de9be33c6ab0c816"
+  },
+  "certificate": "evidence\\math\\original-separator-hotel-floor-certificate.json.gz",
+  "certificate_uncompressed_sha256": "7749b65ff668a5ea042ac2a6e1bcd770149d0f8e389c1a27b8bb26bf37fce962",
+  "certificate_compressed_sha256": "754e2418a0564c6171220fc64d57ff8563e56cb5fbc7904adb3c8fb78ce0fc31",
+  "certificate_compressed_bytes": 840798
+}

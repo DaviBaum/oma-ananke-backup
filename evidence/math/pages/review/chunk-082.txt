@@ -1,0 +1,373 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P7455; UTF16 245100] [ v\in D_i ]
+[11-20:P7456; UTF16 245113] makes
+[11-20:P7457; UTF16 245119] [ (a_1,\ldots,a_{i-1},v) ]
+[11-20:P7458; UTF16 245146] extendable.
+[11-20:P7459; UTF16 245158] Test values in (D_i) until one succeeds and fix it.
+[11-20:P7460; UTF16 245210] At most (|D_i|) tests are required.
+[11-20:P7461; UTF16 245246] After (n) stages, the full tuple is extendable.
+[11-20:P7462; UTF16 245294] With no remaining coordinates, extendability means the tuple itself belongs to (F).
+[11-20:P7463; UTF16 245378] Summing the per-coordinate query count yields the bound. ∎
+[11-20:P7464; UTF16 245437] This theorem underlies finite:
+[11-20:P7465; UTF16 245468] SAT model extraction;
+[11-20:P7466; UTF16 245490] CSP witness extraction;
+[11-20:P7467; UTF16 245514] product assignment;
+[11-20:P7468; UTF16 245534] discrete geometry selection;
+[11-20:P7469; UTF16 245563] route or topology instantiation.
+[11-20:P7470; UTF16 245596] Continuous extraction needs a finite symbolic representation, constructive solver, or certified numerical procedure.
+[11-20:P7474; UTF16 245716] 19. Certified Geometry
+[11-20:P7475; UTF16 245739] DEF-MAT14 — Certified Geometry State
+[11-20:P7476; UTF16 245776] A Certified Geometry State is
+[11-20:P7477; UTF16 245806] \left( \mathsf{Entities}, \mathsf{Topology}, \mathsf{Coordinates}, \mathsf{Units}, \mathsf{Predicates}, \mathsf{Enclosures}, \mathsf{KernelVersion}, \mathsf{Certificates} \right). ]
+[11-20:P7478; UTF16 245988] The following remain permanently distinct.
+[11-20:P7479; UTF16 246031] Exact identity and topology
+[11-20:P7480; UTF16 246059] entity IDs;
+[11-20:P7481; UTF16 246071] incidence;
+[11-20:P7482; UTF16 246082] adjacency;
+[11-20:P7483; UTF16 246093] connectivity;
+[11-20:P7486; UTF16 246133] split and merge lineage.
+[11-20:P7487; UTF16 246158] Quantitative geometry
+[11-20:P7488; UTF16 246180] coordinates;
+[11-20:P7489; UTF16 246193] curves;
+[11-20:P7490; UTF16 246201] surfaces;
+[11-20:P7492; UTF16 246223] angles;
+[11-20:P7493; UTF16 246231] clearances.
+[11-20:P7494; UTF16 246243] Numerical geometry error
+[11-20:P7495; UTF16 246268] floating-point roundoff;
+[11-20:P7496; UTF16 246293] root-finding error;
+[11-20:P7497; UTF16 246313] tessellation error;
+[11-20:P7498; UTF16 246333] intersection-solver error.
+[11-20:P7499; UTF16 246360] Physical tolerance
+[11-20:P7500; UTF16 246379] fabrication variation;
+[11-20:P7501; UTF16 246402] installation variation;
+[11-20:P7502; UTF16 246426] deformation;
+[11-20:P7503; UTF16 246439] field alignment.
+[11-20:P7504; UTF16 246456] Model discrepancy
+[11-20:P7505; UTF16 246474] difference between geometric model and the physical as-built artifact.
+[11-20:P7506; UTF16 246545] A CAD-kernel modeling tolerance is not a construction tolerance.
+[11-20:P7510; UTF16 246613] Mandatory geometric predicates
+[11-20:P7512; UTF16 246662] intersection;
+[11-20:P7513; UTF16 246676] nonintersection;
+[11-20:P7516; UTF16 246717] distance;
+[11-20:P7518; UTF16 246738] alignment;
+[11-20:P7520; UTF16 246762] manifoldness;
+[11-20:P7521; UTF16 246776] closedness;
+[11-20:P7522; UTF16 246788] connectedness;
+[11-20:P7523; UTF16 246803] contact;
+[11-20:P7525; UTF16 246826] formally modeled visibility.
+[11-20:P7526; UTF16 246855] For a mandatory signed predicate (g\le0), if a certified enclosure is
+[11-20:P7527; UTF16 246925] [ g\in[\underline g,\overline g], ]
+[11-20:P7529; UTF16 246967] (\overline g\le0) certifies satisfaction;
+[11-20:P7530; UTF16 247009] (\underline g>0) certifies violation;
+[11-20:P7531; UTF16 247047] otherwise the report is UNRESOLVED.
+[11-20:P7532; UTF16 247083] An enclosure crossing zero is not “approximately valid.”
+[11-20:P7536; UTF16 247143] 20. Topology Materialization
+[11-20:P7537; UTF16 247172] DEF-MAT15 — Topological Embedding Witness
+[11-20:P7538; UTF16 247214] Let (T_q) be a semantic graph, hypergraph, or cell structure.
+[11-20:P7539; UTF16 247276] A Topological Embedding Witness supplies
+[11-20:P7540; UTF16 247317] [ \iota\to G_b ]
+[11-20:P7541; UTF16 247334] together with proofs that every required:
+[11-20:P7544; UTF16 247398] separation;
+[11-20:P7547; UTF16 247436] typed interface relation
+[11-20:P7548; UTF16 247461] is preserved.
+[11-20:P7549; UTF16 247475] An abstract connectivity graph may fail to embed under:
+[11-20:P7550; UTF16 247531] finite envelopes;
+[11-20:P7551; UTF16 247549] clearances;
+[11-20:P7552; UTF16 247561] bend radii;
+[11-20:P7553; UTF16 247573] access constraints;
+[11-20:P7554; UTF16 247593] exact products;
+[11-20:P7555; UTF16 247609] protected architecture.
+[11-20:P7556; UTF16 247633] A topological solution is not yet a geometric witness.
+[11-20:P7560; UTF16 247691] 21. Semantic-to-Concrete Lineage
+[11-20:P7561; UTF16 247724] DEF-MAT16 — Semantic-to-Concrete Lineage
+[11-20:P7563; UTF16 247769] [ \mathsf{SemEnt}(q) ]
+[11-20:P7564; UTF16 247792] be the semantic entities of (q), and let
+[11-20:P7565; UTF16 247833] [ \mathsf{ConEnt}(b) ]
+[11-20:P7566; UTF16 247856] be the concrete entities of (b).
+[11-20:P7567; UTF16 247889] A lineage relation is
+[11-20:P7568; UTF16 247911] [ \Lambda_b \subseteq \mathsf{SemEnt}(q) \times \mathsf{ConEnt}(b). ]
+[11-20:P7569; UTF16 247981] It may be:
+[11-20:P7570; UTF16 247992] one-to-one;
+[11-20:P7571; UTF16 248004] one-to-many;
+[11-20:P7572; UTF16 248017] many-to-one;
+[11-20:P7573; UTF16 248030] split structured;
+[11-20:P7574; UTF16 248048] merge structured.
+[11-20:P7575; UTF16 248066] Every semantic claim, consent artifact, product role, architectural scope, and evidence dependency must be translated through (\Lambda_b).
+[11-20:P7576; UTF16 248205] A semantic wall may materialize as:
+[11-20:P7577; UTF16 248241] studs;
+[11-20:P7578; UTF16 248248] sheathing;
+[11-20:P7580; UTF16 248271] membranes;
+[11-20:P7581; UTF16 248282] finishes;
+[11-20:P7582; UTF16 248292] fasteners;
+[11-20:P7583; UTF16 248303] firestopping.
+[11-20:P7584; UTF16 248317] The lineage relation determines which concrete family carries the semantic wall’s claims.
+[11-20:P7588; UTF16 248410] 22. Product Instantiation
+[11-20:P7589; UTF16 248436] DEF-MAT17 — Product Instantiation Relation
+[11-20:P7591; UTF16 248483] [ r\in\mathsf{AbstractRole}, \qquad p\in\mathsf{Product}. ]
+[11-20:P7593; UTF16 248550] [ \mathsf{Inst}(r,p,b) ]
+[11-20:P7594; UTF16 248575] when product (p) realizes role (r) in artifact (b).
+[11-20:P7595; UTF16 248627] The check may include:
+[11-20:P7598; UTF16 248672] performance curves;
+[11-20:P7599; UTF16 248692] connection type;
+[11-20:P7600; UTF16 248709] material;
+[11-20:P7601; UTF16 248719] environmental limits;
+[11-20:P7602; UTF16 248741] fire or regulatory evidence;
+[11-20:P7604; UTF16 248790] lifecycle;
+[11-20:P7605; UTF16 248801] revision;
+[11-20:P7606; UTF16 248811] manufacturer data;
+[11-20:P7607; UTF16 248830] lead-time scope;
+[11-20:P7608; UTF16 248847] interface compatibility;
+[11-20:P7609; UTF16 248872] declared procurement status.
+[11-20:P7610; UTF16 248901] Matching one nominal capacity is insufficient.
+[11-20:P7614; UTF16 248951] THM-MAT15 — Product Substitution Under Complete Materialization Contextual Equivalence
+[11-20:P7615; UTF16 249038] Let products (p_1,p_2) have the same typed materialization interface.
+[11-20:P7617; UTF16 249115] [ p_1 \equiv_{\mathcal T_{\mathrm{mat}}} p_2 ]
+[11-20:P7618; UTF16 249162] under every admitted materialization, lifecycle, evidence, sovereignty, and decision context.
+[11-20:P7619; UTF16 249256] Then replacing (p_1) by (p_2) in any admitted concrete artifact preserves every complete report in (\mathcal T_{\mathrm{mat}}).
+[11-20:P7621; UTF16 249390] Prompt-2 contextual equivalence is a congruence under every admitted typed context.
+[11-20:P7622; UTF16 249474] A concrete artifact with one product hole is such a context.
+[11-20:P7623; UTF16 249535] Substituting (p_1) or (p_2) into that hole therefore produces equal complete experiment reports.
+[11-20:P7624; UTF16 249632] Hence all admitted materialization consequences are preserved. ∎
+[11-20:P7625; UTF16 249697] Equal nominal capacity alone does not establish the hypothesis.
+[11-20:P7629; UTF16 249764] 23. Catalog and Discretization Gaps
+[11-20:P7630; UTF16 249800] A continuous semantic optimum may request a component that does not exist.
+[11-20:P7631; UTF16 249875] Synthetic example:
+[11-20:P7632; UTF16 249894] 38\text{ cm}^2. ]
+[11-20:P7633; UTF16 249912] Available certified sections are:
+[11-20:P7634; UTF16 249946] [ 35\text{ cm}^2, \qquad 42\text{ cm}^2. ]
+[11-20:P7635; UTF16 249989] If the (35\text{ cm}^2) product fails capacity, the least valid concrete choice is (42\text{ cm}^2).
+[11-20:P7636; UTF16 250090] The continuous optimum is a lower bound.
+[11-20:P7637; UTF16 250131] It is not a purchased product.
+[11-20:P7638; UTF16 250162] Catalog discretization may affect:
+[11-20:P7639; UTF16 250197] objective value;
+[11-20:P7641; UTF16 250224] connectors;
+[11-20:P7642; UTF16 250236] weight;
+[11-20:P7643; UTF16 250244] support loads;
+[11-20:P7646; UTF16 250282] Rounding a semantic variable is a topology-and-evidence event, not merely arithmetic.
+[11-20:P7650; UTF16 250371] 24. Joint Tolerance Semantics
+[11-20:P7651; UTF16 250401] DEF-MAT18 — Joint Tolerance Model
+[11-20:P7652; UTF16 250435] A Joint Tolerance Model is a relation
+[11-20:P7653; UTF16 250473] [ \Delta \subseteq \Delta_1\times\cdots\times\Delta_k. ]
+[11-20:P7654; UTF16 250530] It may contain:
+[11-20:P7655; UTF16 250546] shared datum shifts;
+[11-20:P7656; UTF16 250567] common rack translation;
+[11-20:P7657; UTF16 250592] fabrication errors;
+[11-20:P7658; UTF16 250612] installation errors;
+[11-20:P7659; UTF16 250633] product variation;
+[11-20:P7661; UTF16 250665] calibration error;
+[11-20:P7662; UTF16 250684] conditional tolerances;
+[11-20:P7663; UTF16 250708] correlated dimensions;
+[11-20:P7664; UTF16 250731] staged observations.
+[11-20:P7665; UTF16 250752] Independent Cartesian intervals may be used only when independence or worst-case independence is part of the declared theory.
+[11-20:P7669; UTF16 250881] 25. Four Realizability Quantifier Structures
+[11-20:P7670; UTF16 250926] Let (\delta_0) denote nominal variation.
+[11-20:P7671; UTF16 250967] DEF-MAT19 — Nominal Realizability
+[11-20:P7672; UTF16 251001] [ \mathsf{NominalRealizable} \iff \exists b,; P(b,\delta_0). ]
+[11-20:P7676; UTF16 251067] DEF-MAT20 — Fixed Robust Realizability
+[11-20:P7677; UTF16 251106] [ \mathsf{FixedRobust} \iff \exists b, \forall\delta\in\Delta, ; P(b,\delta). ]
+[11-20:P7678; UTF16 251186] One fixed design must work for every admitted variation.
+[11-20:P7682; UTF16 251246] DEF-MAT21 — Adjustable Robust Realizability
+[11-20:P7683; UTF16 251290] For allowed recourse set (\mathcal R(b,\delta)),
+[11-20:P7684; UTF16 251339] [ \mathsf{AdjustableRobust} \iff \exists b, \forall\delta\in\Delta, \exists r\in\mathcal R(b,\delta), ; P(b,r,\delta). ]
+[11-20:P7685; UTF16 251460] For staged uncertainty, the recourse must be generated by a nonanticipative policy
+[11-20:P7686; UTF16 251543] \pi_t(\delta_1,\ldots,\delta_t). ]
+[11-20:P7687; UTF16 251578] A clairvoyant policy is not executable.
+[11-20:P7691; UTF16 251621] DEF-MAT22 — Scenario-Specific Realizability
+[11-20:P7692; UTF16 251665] [ \mathsf{ScenarioSpecific} \iff \forall\delta\in\Delta, \exists b_\delta, ; P(b_\delta,\delta). ]
+[11-20:P7693; UTF16 251764] This permits redesigning the artifact after the scenario is known.
+[11-20:P7694; UTF16 251831] It does not provide one precommitted design.
+[11-20:P7698; UTF16 251879] 26. Quantifier Orders Are Not Equivalent
+[11-20:P7699; UTF16 251920] THM-MAT16 — Nominal, Fixed Robust, Adjustable Robust, and Scenario-Specific Realizability Are Distinct
+[11-20:P7700; UTF16 252023] Scenario-specific does not imply fixed robust
+[11-20:P7702; UTF16 252073] [ b,\delta\in{0,1} ]
+[11-20:P7703; UTF16 252094] and define
+[11-20:P7704; UTF16 252105] [ P(b,\delta) \iff b=\delta. ]
+[11-20:P7705; UTF16 252136] For every (\delta), choose (b_\delta=\delta).
+[11-20:P7707; UTF16 252187] [ \forall\delta\exists b,;P(b,\delta) ]
+[11-20:P7708; UTF16 252227] is true.
+[11-20:P7709; UTF16 252236] No one (b) equals both (0) and (1).
+[11-20:P7711; UTF16 252277] [ \exists b\forall\delta,;P(b,\delta) ]
+[11-20:P7712; UTF16 252317] is false.
+[11-20:P7716; UTF16 252330] Adjustable robust does not imply fixed robust
+[11-20:P7717; UTF16 252376] Let the base design set contain one element (\ast).
+[11-20:P7719; UTF16 252432] [ r,\delta\in{0,1}. ]
+[11-20:P7721; UTF16 252461] [ P(\ast,r,\delta) \iff r=\delta. ]
+[11-20:P7722; UTF16 252497] Let fixed no-adjustment operation be (r=0).
+[11-20:P7723; UTF16 252541] Adjustable robustness holds by choosing
+[11-20:P7724; UTF16 252581] [ r=\delta. ]
+[11-20:P7725; UTF16 252595] Fixed robustness fails at (\delta=1).
+[11-20:P7729; UTF16 252636] Nominal does not imply robust
+[11-20:P7731; UTF16 252670] [ P(b,\delta) \iff \delta=0. ]
+[11-20:P7732; UTF16 252701] At nominal variation (\delta_0=0), any (b) works.
+[11-20:P7733; UTF16 252751] For uncertainty set ({0,1}), no fixed or adjustable strategy can satisfy the predicate at (\delta=1).
+[11-20:P7734; UTF16 252853] Thus nominal realizability implies none of the robust forms. ∎
+[11-20:P7738; UTF16 252919] 27. Nonanticipative Construction Recourse
+[11-20:P7739; UTF16 252961] Suppose uncertainty unfolds in stages
+[11-20:P7740; UTF16 252999] [ \delta_1,\ldots,\delta_T. ]
+[11-20:P7741; UTF16 253029] A policy is nonanticipative when
+[11-20:P7743; UTF16 253097] It may not inspect future uncertainty.
+[11-20:P7744; UTF16 253136] PRO-MAT2 — Clairvoyant Scenario Plans Need Not Form a Nonanticipative Policy
+[11-20:P7745; UTF16 253213] Let (\delta_1) be constant and let
+[11-20:P7746; UTF16 253248] [ \delta_2\in{0,1}. ]
+[11-20:P7747; UTF16 253270] An action (r_1\in{0,1}) must be chosen before (\delta_2) is revealed.
+[11-20:P7748; UTF16 253340] Success requires
+[11-20:P7749; UTF16 253357] [ r_1=\delta_2. ]
+[11-20:P7750; UTF16 253375] For each complete scenario there exists a successful plan:
+[11-20:P7752; UTF16 253452] No nonanticipative policy can choose one (r_1) that succeeds for both future values.
+[11-20:P7753; UTF16 253537] Thus a family of clairvoyant scenario plans is not one executable construction strategy.
+[11-20:P7757; UTF16 253629] 28. Robust Clearance
+[11-20:P7758; UTF16 253650] THM-MAT17 — Certified Relative-Displacement Clearance Bound
+[11-20:P7759; UTF16 253710] Let nominal gap be (g_0).
+[11-20:P7760; UTF16 253736] Choose the sign convention so the relative displacement
+[11-20:P7761; UTF16 253792] \delta_B-\delta_A ]
+[11-20:P7762; UTF16 253812] is positive when it closes the gap.
+[11-20:P7764; UTF16 253853] g_0-c(\delta). ]
+[11-20:P7766; UTF16 253873] [ c(\delta)\le\eta \qquad \forall\delta\in\Delta, ]
+[11-20:P7768; UTF16 253930] [ g(\delta)\ge g_0-\eta \qquad \forall\delta\in\Delta. ]
+[11-20:P7769; UTF16 253987] Therefore the required clearance
+[11-20:P7770; UTF16 254020] [ g(\delta)\ge g_{\mathrm{req}} ]
+[11-20:P7771; UTF16 254054] is certified when
+[11-20:P7772; UTF16 254072] [ \boxed{ g_0-\eta \ge g_{\mathrm{req}}. } ]
+[11-20:P7775; UTF16 254128] [ c(\delta)\le\eta, ]
+[11-20:P7776; UTF16 254150] subtracting from (g_0) gives
+[11-20:P7777; UTF16 254179] [ g_0-c(\delta) \ge g_0-\eta. ]
+[11-20:P7778; UTF16 254211] The left side is (g(\delta)).
+[11-20:P7780; UTF16 254244] [ g_0-\eta\ge g_{\mathrm{req}}, ]
+[11-20:P7781; UTF16 254278] then by transitivity
+[11-20:P7782; UTF16 254299] [ g(\delta)\ge g_{\mathrm{req}}. ]
+[11-20:P7787; UTF16 254339] Independent bound corollary
+[11-20:P7789; UTF16 254370] [ |\delta_A|\le a, \qquad |\delta_B|\le b, ]
+[11-20:P7791; UTF16 254420] [ \delta_B-\delta_A \le |\delta_B|+|\delta_A| \le a+b. ]
+[11-20:P7792; UTF16 254477] Thus one may use
+[11-20:P7793; UTF16 254494] [ \eta=a+b. ]
+[11-20:P7797; UTF16 254511] Shared-translation cancellation
+[11-20:P7799; UTF16 254546] [ \delta_A=c+\epsilon_A, ]
+[11-20:P7800; UTF16 254573] [ \delta_B=c+\epsilon_B, ]
+[11-20:P7802; UTF16 254605] \epsilon_B-\epsilon_A. ]
+[11-20:P7803; UTF16 254630] The shared translation (c) cancels exactly.
+[11-20:P7804; UTF16 254674] Duplicating it as two independent errors creates unnecessary conservatism.
+[11-20:P7808; UTF16 254752] 29. Linear Tolerance Propagation
+[11-20:P7810; UTF16 254789] [ z=A\delta ]
+[11-20:P7811; UTF16 254803] and assume the independent symmetric box
+[11-20:P7812; UTF16 254844] [ |\delta_j|\le r_j. ]
+[11-20:P7814; UTF16 254872] \sum_j A_{ij}\delta_j. ]
+[11-20:P7816; UTF16 254925] [ |z_i| \le \sum_j |A_{ij}|,|\delta_j| \le \sum_j|A_{ij}|r_j. ]
+[11-20:P7817; UTF16 254989] For one fixed row (i), the bound is attained by choosing
+[11-20:P7818; UTF16 255046] r_j\operatorname{sign}(A_{ij}) ]
+[11-20:P7819; UTF16 255079] when all such values are admissible.
+[11-20:P7820; UTF16 255116] Simultaneous attainment for every row is not guaranteed.
+[11-20:P7821; UTF16 255173] Shared symbolic noise variables, affine arithmetic, or exact joint relations can be substantially tighter than repeatedly intervalizing one physical error source.
+[11-20:P7825; UTF16 255339] 30. Construction Semantics
+[11-20:P7826; UTF16 255366] DEF-MAT23 — Construction State
+[11-20:P7827; UTF16 255397] A Construction State contains:
+[11-20:P7828; UTF16 255428] installed components;
+[11-20:P7829; UTF16 255450] not-yet-installed components;
+[11-20:P7831; UTF16 255500] access openings;
+[11-20:P7832; UTF16 255517] equipment positions;
+[11-20:P7833; UTF16 255538] unfinished boundaries;
+[11-20:P7834; UTF16 255561] active resources;
+[11-20:P7835; UTF16 255579] temporary loads;
+[11-20:P7836; UTF16 255596] tolerance observations;
+[11-20:P7837; UTF16 255620] safety reports;
+[11-20:P7842; UTF16 255655] DEF-MAT24 — Construction Action
+[11-20:P7843; UTF16 255687] A Construction Action contains:
+[11-20:P7844; UTF16 255719] typed preconditions;
+[11-20:P7845; UTF16 255740] resource requirements;
+[11-20:P7846; UTF16 255763] workspace and swept volume;
+[11-20:P7847; UTF16 255791] temporary-load effects;
+[11-20:P7849; UTF16 255839] permitted recourse;
+[11-20:P7850; UTF16 255859] resulting state;
+[11-20:P7851; UTF16 255876] evidence and authority requirements.
+[11-20:P7855; UTF16 255916] DEF-MAT25 — Construction Sequence Witness
+[11-20:P7856; UTF16 255958] A Construction Sequence Witness is
+[11-20:P7857; UTF16 255993] (s_0,a_1,s_1,\ldots,a_n,s_n) ]
+[11-20:P7859; UTF16 256035] every (a_i) is enabled in (s_{i-1});
+[11-20:P7860; UTF16 256072] (a_i) produces (s_i);
+[11-20:P7861; UTF16 256094] precedence rules hold;
+[11-20:P7862; UTF16 256117] resource limits hold;
+[11-20:P7863; UTF16 256139] access and swept-volume constraints hold;
+[11-20:P7864; UTF16 256181] temporary safety claims hold;
+[11-20:P7865; UTF16 256211] nonanticipative recourse requirements hold;
+[11-20:P7866; UTF16 256255] (s_n) realizes the final concrete artifact.
+[11-20:P7870; UTF16 256302] 31. Static Feasibility Is Not Constructibility
+[11-20:P7871; UTF16 256349] THM-MAT18 — Static Final-State Feasibility Does Not Imply Constructibility
+[11-20:P7872; UTF16 256424] There exists a final artifact that is geometrically clash free but unreachable under the declared construction action theory.
+[11-20:P7874; UTF16 256572] Consider a room containing one assembled equipment unit.
+[11-20:P7875; UTF16 256629] The final room geometry is large enough to contain the unit without clash.
+[11-20:P7876; UTF16 256704] The construction action policy requires:
+[11-20:P7877; UTF16 256745] construct structural frame;
+[11-20:P7878; UTF16 256773] complete the enclosing wall;
+[11-20:P7879; UTF16 256802] install the equipment through the finished opening.
+[11-20:P7880; UTF16 256854] The completed opening is narrower than the assembled equipment.
+[11-20:P7881; UTF16 256918] No allowed action:
+[11-20:P7882; UTF16 256937] disassembles the equipment;
+[11-20:P7883; UTF16 256965] removes the wall;
+[11-20:P7884; UTF16 256983] enlarges the opening;
+[11-20:P7885; UTF16 257005] installs the equipment before enclosure.
+[11-20:P7886; UTF16 257046] Thus the final arrangement is a valid static geometric state.
+[11-20:P7887; UTF16 257108] There is no legal path from the initial state to it.
+[11-20:P7888; UTF16 257161] Therefore static final-state feasibility does not imply constructibility. ∎
+[11-20:P7892; UTF16 257240] THM-MAT19 — Checked Construction Sequence Soundness
+[11-20:P7893; UTF16 257292] If an independent checker validates every transition in a sequence witness (\sigma), verifies all temporary-state obligations, and confirms that its final state realizes artifact (b), then (b) is constructible under the declared construction action theory.
+[11-20:P7895; UTF16 257555] The checked sequence is a finite path from the declared initial state to a state realizing (b).
+[11-20:P7896; UTF16 257651] Every edge is a legal construction action.
+[11-20:P7897; UTF16 257694] Every intermediate state satisfies the required temporary obligations.
+[11-20:P7898; UTF16 257765] Therefore the path is an existential witness to constructibility. ∎
+[11-20:P7899; UTF16 257833] This theorem does not claim that a contractor will follow the sequence.
+[11-20:P7903; UTF16 257908] 32. BIM and Document Semantics
+[11-20:P7904; UTF16 257939] DEF-MAT26 — Document Projection
+[11-20:P7905; UTF16 257971] For each document type (i), define
+[11-20:P7906; UTF16 258006] [ \pi_i:\mathcal B\to\mathcal D_i. ]
+[11-20:P7907; UTF16 258043] A projection declares:
+[11-20:P7909; UTF16 258073] omitted information;
+[11-20:P7911; UTF16 258101] display precision;
+[11-20:P7912; UTF16 258120] source artifact hash;
+[11-20:P7913; UTF16 258142] projection version;
+[11-20:P7916; UTF16 258192] plans;
+[11-20:P7917; UTF16 258199] sections;
+[11-20:P7918; UTF16 258209] details;
+[11-20:P7921; UTF16 258245] fabrication views;
+[11-20:P7922; UTF16 258264] quantity schedules;
+[11-20:P7923; UTF16 258284] product schedules.
+[11-20:P7924; UTF16 258303] A drawing is a projection of the artifact, not the whole artifact.
+[11-20:P7928; UTF16 258373] DEF-MAT27 — Document Coherence
+[11-20:P7929; UTF16 258404] A document family
+[11-20:P7930; UTF16 258422] [ (D_1,\ldots,D_m) ]
+[11-20:P7931; UTF16 258443] is coherent with artifact (b) when every document satisfies
+[11-20:P7932; UTF16 258503] [ D_i=\pi_i(b) ]
+[11-20:P7933; UTF16 258520] or carries a checked semantic-equivalence proof to (\pi_i(b)).
+[11-20:P7937; UTF16 258586] THM-MAT20 — Single-Source Projection Coherence
+[11-20:P7940; UTF16 258658] for every document.
+[11-20:P7941; UTF16 258678] Let exact authoritative datum (h(b)) be reported in documents (i) and (j) through decoders (r_i,r_j), and assume
+[11-20:P7942; UTF16 258791] [ r_i(\pi_i(b))=h(b), ]
+[11-20:P7943; UTF16 258815] [ r_j(\pi_j(b))=h(b). ]
+[11-20:P7945; UTF16 258844] [ r_i(D_i)=r_j(D_j). ]
+[11-20:P7947; UTF16 258873] Substitute the projection equalities:
+[11-20:P7948; UTF16 258911] r_i(\pi_i(b))
+[11-20:P7949; UTF16 258925] h(b), ]
+[11-20:P7951; UTF16 258937] r_j(\pi_j(b))
+[11-20:P7952; UTF16 258951] h(b). ]
+[11-20:P7953; UTF16 258959] Therefore the reported values agree. ∎
+[11-20:P7954; UTF16 258998] The hypotheses fail when:
+[11-20:P7955; UTF16 259024] a document is manually edited;
+[11-20:P7956; UTF16 259055] one document is stale;
+[11-20:P7957; UTF16 259078] documents derive from different artifact versions;
+[11-20:P7958; UTF16 259129] a decoder exposes only rounded display values.
+[11-20:P7962; UTF16 259179] Display rounding
+[11-20:P7963; UTF16 259196] An authoritative value may be
+[11-20:P7964; UTF16 259226] [ 999.6\text{ mm}, ]
+[11-20:P7965; UTF16 259247] while a drawing displays
+[11-20:P7966; UTF16 259272] [ 1000\text{ mm}. ]
+[11-20:P7967; UTF16 259292] The rounded annotation is not the compliance source.
+[11-20:P7968; UTF16 259345] Threshold checks use the authoritative exact value or enclosure.
+[11-20:P7972; UTF16 259413] 33. Serialization Fidelity
+[11-20:P7973; UTF16 259440] DEF-MAT28 — Artifact Serialization
+[11-20:P7974; UTF16 259475] For format (F), define
+[11-20:P7975; UTF16 259498] [ \mathsf{Encode}_F: \mathcal B \to \mathsf{Bytes}_F ]
+[11-20:P7976; UTF16 259553] and a possibly partial or set-valued decoder
+[11-20:P7977; UTF16 259598] [ \mathsf{Decode}_F: \mathsf{Bytes}_F \rightrightarrows \mathcal B_F. ]
+[11-20:P7978; UTF16 259670] Let (\mathcal T_F) be the declared export theory preserved by the format.
+[11-20:P7982; UTF16 259747] THM-MAT21 — Round-Trip Semantic Fidelity
+[11-20:P7984; UTF16 259796] [ b' \in \mathsf{Decode}_F(\mathsf{Encode}_F(b)) ]
+[11-20:P7986; UTF16 259851] [ b' \equiv_{\mathcal T_F}b. ]

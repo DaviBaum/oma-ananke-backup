@@ -47,9 +47,11 @@
         "ui/qa/digital-hub-cancel-timings.json",
         "ui/qa/sixty5-navigation-native-gpu.json",
         "ui/qa/sixty5-assembly-cancellation.json",
-        "ui/qa/duplex-upload-ui-import.json"
+        "ui/qa/duplex-upload-ui-import.json",
+        "ui/qa/wbdg-shared-network-record.json",
+        "ui/qa/wbdg-shared-network-flow-summary.png"
       ],
-      "scope": "Full Digital Hub and Sixty5 geometry, selection, history, candidate comparison, bounded uploads and durable controls; remaining interaction and lifecycle features explicitly tracked"
+      "scope": "Full Digital Hub and Sixty5 geometry, native shared-network components and demand membership, physical before/after comparison, exact service evidence with readable outward-rounded display, bounded uploads and durable controls. Remaining architectural editing and lifecycle features tracked."
     },
     {
       "id": "independent_physical_drc",
@@ -58,9 +60,12 @@
       "evidence": [
         "tests/test_ifc_cad.py",
         "tests/test_route_adversarial.py",
-        "docs/math/outer-obstacle-enclosure.md"
+        "docs/math/outer-obstacle-enclosure.md",
+        "tests/test_ifc_negative_witness.py",
+        "docs/ifc-negative-witness.md",
+        "evidence/math/source-enclosure-plumbing-memoization.json"
       ],
-      "scope": "Fresh native solids, exact bounded source enclosures, ports/body consistency, full obstacle and self-pair accounting; source/model coverage limitations explicit"
+      "scope": "Fresh native solids, source-derived bounded enclosures, physical ports and full obstacle/self-pair checks. Failure-only native early probes retain unexamined denominators as NOT_RUN. Exact item-local enclosure memoization is compared with direct evaluation; source/model/native numerical limits remain explicit."
     },
     {
       "id": "physical_routing_repair",
@@ -69,9 +74,12 @@
       "evidence": [
         "tests/test_routing_integration.py",
         "scripts/ifc_real_repair_campaign.py",
-        "tests/test_joint_routing.py"
+        "tests/test_joint_routing.py",
+        "tests/test_network_integration.py",
+        "docs/shared-networks.md",
+        "evidence/benchmarks/shared-network/office/b36e301376fe49ed90a2525e51f69275/result.json"
       ],
-      "scope": "Real Digital Hub and Dental Clinic accepted/exported/freshly rechecked repair cycles; simultaneous independent routes and explicit finite design options tested; physical shared trunks remain open"
+      "scope": "Real Digital Hub, Dental Clinic, Duplex and Office repair/export cycles plus a native shared-trunk/tee tree with fixed demands, aggregate flow checks and finite alternative selection. Network-preserving edits and unrestricted architectural/topology changes remain open."
     },
     {
       "id": "transactional_revisions_history",
@@ -93,9 +101,11 @@
         "evidence/ifc/duplex-native-export-v4.json",
         "tests/test_joint_routing.py",
         "docs/joint-routing.md",
-        "docs/validation-advisories.md"
+        "docs/validation-advisories.md",
+        "docs/shared-networks.md",
+        "evidence/benchmarks/real-repair/summary.json"
       ],
-      "scope": "Single and composite route replacements preserve source STEP records and freshly check exported IFC; analytic three-route cumulative export passes; full real federation campaign ongoing IFC-PORT-001 discovered after earlier export checks: historical authored-port semantic PASS is superseded. Corrected flow axes, ownership/placement and source-to-sink ordering require fresh regenerated examples; acceptance/checked-export advisory gate remains active for older artifacts."
+      "scope": "Single, composite and shared-network IFC replacements preserve original STEP records and freshly check exported bytes. Five affected real examples have been regenerated with corrected IFC flow axes and owner-relative placements; historical IFC-PORT-001 port-semantic PASS remains superseded. Full federation campaign and final release remain open."
     },
     {
       "id": "oma_ananke_joint_optimization",
@@ -106,9 +116,12 @@
         "tests/test_optimization_certificates.py",
         "docs/math/implementation-contract.md",
         "tests/test_joint_routing.py",
-        "src/oma/routing/joint.py"
+        "src/oma/routing/joint.py",
+        "src/oma/routing/network_engine.py",
+        "tests/test_optimization_bisimulation.py",
+        "docs/math/original-causal-macro-contract.md"
       ],
-      "scope": "Candidate-rooted exact finite co-design selection now integrated with complete physical route assignments and independent replay; continuous, shared-topology and deeper historical mechanisms remain open"
+      "scope": "Candidate-rooted exact finite co-design selection integrates independent routes and complete shared-network alternatives. Source-derived contextual quotient, separator, symbolic, linear-port and nondeterministic bisimulation kernels have independent certificates and measured synthetic benchmarks; full physical adapters and continuous optimization remain incomplete."
     },
     {
       "id": "incremental_dependencies",
@@ -131,9 +144,15 @@
       "milestone": "M5",
       "status": "IN_PROGRESS",
       "evidence": [
-        "tests/test_optimization_physical.py"
+        "tests/test_optimization_physical.py",
+        "src/oma/optimization/ports.py",
+        "tests/test_optimization_ports.py",
+        "evidence/math/original-linear-port-chain-benchmark.json",
+        "src/oma/routing/network_flow.py",
+        "tests/test_network_scenario.py",
+        "docs/shared-networks.md"
       ],
-      "scope": "Rational/interval physical fibers and explicit service inputs; complete source/topology/scenario integration pending"
+      "scope": "Exact rational/interval fibers and independently checked linear Schur/affine/Kron reductions. Shared trees now check aggregate fixed-flow velocities and per-demand static head under explicit Darcy, fitting, kinetic and external-control assumptions. Actual hydraulic operating points, thermal/electrical integration and broader component/scenario families remain open."
     },
     {
       "id": "gpu_compute_3090",
@@ -165,7 +184,7 @@
         "tests/test_worker_control.py",
         "evidence/release/core-reliability-tests.xml"
       ],
-      "scope": "Loopback origin checks, source validation, process limits, durablecontrol, ownership-aware recovery and portablehashchecked backup; expanded fault campaign pending"
+      "scope": "Loopback origin checks, bounded uploads and child processes, durable controls, ownership-aware recovery, full 3.33 GB live-store backup and relocation of all 10 projects with local source/IFC-sidecar resolution; expanded adversarial/crash campaign and corrected full restored-project rechecks remain open"
     },
     {
       "id": "offline_installation_packaging",
@@ -178,7 +197,7 @@
         "requirements.lock",
         "evidence/dependencies/sbom.json"
       ],
-      "scope": "Launcher and pinned installer exist; wheelhouse, redistribution source notices and fresh offline install not complete"
+      "scope": "Offline wheelhouse, bundled Python and user-local portable preview pass actual workflow/relocation tests; final corrected build, native redistribution source/notice closure and clean-install release gates remain incomplete"
     }
   ],
   "updated_at": "2026-09-14"

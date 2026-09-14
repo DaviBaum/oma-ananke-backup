@@ -48,6 +48,9 @@ import Viewport, { disciplineColor } from "./Viewport";
 import MissionFields from "./MissionFields";
 import { buildMission, emptyMission } from "./mission";
 import JointMissionFields from "./JointMissionFields";
+import SharedNetworkFields from "./SharedNetworkFields";
+import NetworkDiagram from "./NetworkDiagram";
+import { parseSharedNetwork } from "./sharedNetwork";
 import { buildJointMission, newJointMission } from "./jointMission";
 import { applicabilityReason, currentPassingCheck } from "./checkApplicability";
 import { isServiceElement } from "./semantics";
@@ -291,8 +294,11 @@ export default function App() {
     [scope, setScope] = useState("all"),
     [budget, setBudget] = useState(30),
     [missionForm, setMissionForm] = useState(emptyMission),
-    [missionMode, setMissionMode] = useState<"single" | "joint">("single"),
+    [missionMode, setMissionMode] = useState<"single" | "joint" | "network">(
+      "single",
+    ),
     [jointMission, setJointMission] = useState(newJointMission),
+    [sharedNetwork, setSharedNetwork] = useState(""),
     [draft, setDraft] = useState(true);
   const [evidenceTarget, setEvidenceTarget] = useState<EvidenceTarget | null>(
     null,
@@ -894,9 +900,11 @@ export default function App() {
       const mission =
         operation === "check"
           ? undefined
-          : missionMode === "joint"
-            ? buildJointMission(jointMission)
-            : buildMission(missionForm);
+          : missionMode === "network"
+            ? parseSharedNetwork(sharedNetwork).mission
+            : missionMode === "joint"
+              ? buildJointMission(jointMission)
+              : buildMission(missionForm);
       const result = await perform("Starting run", () =>
         api.start(projectId, {
           operation,
@@ -1612,6 +1620,22 @@ export default function App() {
                       />
                       <KeyValue label="Storey" value={selectedEntity.storey} />
                       <KeyValue label="System" value={selectedEntity.system} />
+                      {typeof selectedEntity.network_id === "string" && (
+                        <>
+                          <KeyValue
+                            label="Network"
+                            value={selectedEntity.network_id}
+                          />
+                          <KeyValue
+                            label="Physical component"
+                            value={selectedEntity.component_id}
+                          />
+                          <KeyValue
+                            label="Demand membership"
+                            value={selectedEntity.demand_ids}
+                          />
+                        </>
+                      )}
                     </div>
                     {selectedEntity.bounds && (
                       <div className="property-section">
@@ -1635,7 +1659,7 @@ export default function App() {
                       </div>
                     )}
                     <div className="property-section">
-                      <div className="section-label">IMPORTED PROPERTIES</div>
+                      <div className="section-label">COMPONENT PROPERTIES</div>
                       {Object.entries(selectedEntity.properties ?? {})
                         .length ? (
                         Object.entries(selectedEntity.properties ?? {}).map(
@@ -2041,8 +2065,10 @@ export default function App() {
                           <strong>Candidate {short(candidate.id)}</strong>
                           <small>
                             {candidate.changed_ids.length} changed IDs ·{" "}
-                            {candidate.routes.length} routes ·{" "}
-                            {date(candidate.created_at)}
+                            {candidate.routes.length} routes
+                            {!!candidate.networks?.length &&
+                              ` · ${candidate.networks.length} shared network${candidate.networks.length === 1 ? "" : "s"}`}{" "}
+                            · {date(candidate.created_at)}
                           </small>
                         </span>
                         <Badge status={candidate.status} />
@@ -2085,6 +2111,32 @@ export default function App() {
                         advisories={candidate.validation_advisories}
                         compact
                       />
+                      {selectedCandidate?.id === candidate.id &&
+                        candidate.networks?.map((network) => (
+                          <details
+                            className="candidate-network"
+                            key={network.id}
+                            open
+                          >
+                            <summary>
+                              <GitBranch size={14} />
+                              {network.network_spec.network_id} ·{" "}
+                              {network.component_ids.length} unique components ·{" "}
+                              {network.demand_ids.length} demands
+                            </summary>
+                            <NetworkDiagram
+                              spec={network.network_spec}
+                              selected={
+                                selected?.startsWith(`${network.id}:`)
+                                  ? selected.slice(network.id.length + 1)
+                                  : null
+                              }
+                              onSelect={(component) =>
+                                selectEntity(`${network.id}:${component}`)
+                              }
+                            />
+                          </details>
+                        ))}
                       {selectedCandidate?.id === candidate.id &&
                         candidate.routes.length > 0 && (
                           <div
@@ -2541,8 +2593,20 @@ export default function App() {
                 >
                   Simultaneous demands
                 </button>
+                <button
+                  className={missionMode === "network" ? "selected" : ""}
+                  onClick={() => setMissionMode("network")}
+                >
+                  Shared network
+                </button>
               </div>
-              {missionMode === "joint" ? (
+              {missionMode === "network" ? (
+                <SharedNetworkFields
+                  value={sharedNetwork}
+                  onChange={setSharedNetwork}
+                  baselineBlocked={!!snapshot?.constraints.length}
+                />
+              ) : missionMode === "joint" ? (
                 <JointMissionFields
                   value={jointMission}
                   onChange={setJointMission}
@@ -2563,7 +2627,13 @@ export default function App() {
             </button>
             <button
               className="primary"
-              disabled={!!busy || !connected}
+              disabled={
+                !!busy ||
+                !connected ||
+                (operation !== "check" &&
+                  missionMode === "network" &&
+                  !!snapshot?.constraints.length)
+              }
               onClick={() => void doRun()}
             >
               <Play size={14} />

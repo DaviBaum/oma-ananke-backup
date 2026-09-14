@@ -1,0 +1,271 @@
+[24049] The rule that every engineering assertion is traceable to one claim token.
+[24051] 67. Theorem Corpus
+[24052] Preparatory lemmas
+[24053] LEM-CMP1 — Canonical fixed-point lemma
+[24054] If \(N\) maps every valid object to its unique normal form and leaves normal forms unchanged, then \(N(N(x))=N(x)\).
+[24055] Proof. \(N(x)\) is normal by the first premise; applying the second premise yields equality. ∎
+[24056] LEM-CMP2 — Reachability closure lemma
+[24057] If every outgoing reference of every marked artifact is recursively marked, every artifact reachable from a marked root is marked.
+[24058] Proof. Induct on path length. ∎
+[24059] LEM-CMP3 — Root-manifest uniqueness lemma
+[24060] Under deterministic encoding and the collision assumption, one root token resolves to one manifest byte string.
+[24061] Proof. Equal token digest implies equal canonical manifest bytes under the assumption. ∎
+[24062] LEM-CMP4 — Immutable snapshot observation lemma
+[24063] Two reads of the same immutable root by the same deterministic query return equal results.
+[24064] Proof. Neither bytes nor query semantics change. ∎
+[24065] LEM-CMP5 — Commit-last closure lemma
+[24066] When every referenced blob is durable before the root update, a visible committed root cannot reference a blob whose write occurs later.
+[24067] Proof. The ordering relation places all blob durability events before the root commit. ∎
+[24068] LEM-CMP6 — Capability attenuation lemma
+[24069] If \(c_1\sqsubseteq c_2\) and \(c_2\) lacks permission \(p\), then \(c_1\) lacks \(p\).
+[24070] Proof. The allowed set of \(c_1\) is a subset of the allowed set of \(c_2\). ∎
+[24071] LEM-CMP7 — Pass-relation transitivity lemma
+[24072] If \(R_1(x,y)\) and \(R_2(y,z)\), then the composed pass relation is \(\exists y:R_1(x,y)\land R_2(y,z)\).
+[24073] Proof. This is relational composition. ∎
+[24074] LEM-CMP8 — Package-separator lemma
+[24075] A global witness restricts to equal values on every coordinate shared by two component packages.
+[24076] Proof. Both restrictions are taken from the same global assignment. ∎
+[24077] LEM-CMP9 — Cache soundness lemma
+[24078] Exact key equality plus a sound applicability check implies reuse under the declared experiment family.
+[24079] Proof. Every semantic distinction capable of changing the target is equal or checked invariant. ∎
+[24080] LEM-CMP10 — Partial-order quotient lemma
+[24081] Logical entailment is antisymmetric on mutual-entailment equivalence classes.
+[24082] Proof. If both classes entail one another, their representatives are equivalent, hence the classes are equal. ∎
+[24083] Propositions
+[24084] PRO-CMP1 — Filename nonidentity
+[24085] Equal filenames do not imply equal bytes.
+[24086] Proof. Two directories may each contain model.ifc, one with byte 0 and one with byte 1. ∎
+[24087] PRO-CMP2 — Hash-shaped-text nonidentity
+[24088] A string matching the lexical shape sha256:... is not a verified content token until recomputed against bytes.
+[24089] PRO-CMP3 — Viewer incompleteness
+[24090] A viewer scene omitting route insulation cannot distinguish two states differing only in insulation.
+[24091] PRO-CMP4 — Read-set necessity
+[24092] Disjoint write sets do not establish transaction commutativity when one transaction reads a value written by the other.
+[24093] PRO-CMP5 — Waiver truth invariance
+[24094] Applying a waiver leaves the waived proposition’s proof status unchanged.
+[24095] PRO-CMP6 — Root-relative proof status
+[24096] A proof rooted at \(R_1\) is not current at \(R_2\) absent applicability or transport.
+[24097] PRO-CMP7 — Source-text nonauthority
+[24098] A source property string has no capability or commit effect solely by being parsed.
+[24099] PRO-CMP8 — Export incompleteness
+[24100] An IFC or GLB export may be valid while omitting PCOMA proof semantics.
+[24101] PRO-CMP9 — Proposal nondeterminism tolerance
+[24102] Different proposals may yield the same accepted verdict semantics after checking.
+[24103] PRO-CMP10 — Resource exhaustion nonacceptance
+[24104] Failure to finish a computation does not establish its target proposition.
+[24105] Corollaries
+[24106] COR-CMP1 — Rejected transaction immutability
+[24107] From atomic commit semantics, a rejected transaction leaves the branch head unchanged.
+[24108] COR-CMP2 — Viewer-only edit isolation
+[24109] A viewer-camera change cannot invalidate engineering state when no dependency edge leaves the view namespace.
+[24110] COR-CMP3 — Protected-write dual obligation
+[24111] A protected mutation requires both authority validity and engineering validity.
+[24112] COR-CMP4 — Stale cache rejection
+[24113] Any changed key coordinate invalidates exact cache-key equality.
+[24114] COR-CMP5 — Package-local acceptance insufficiency
+[24115] Component checker acceptance does not imply global witness existence.
+[24116] COR-CMP6 — AI replacement safety
+[24117] Replacing the proposal model does not change the checker semantics.
+[24118] COR-CMP7 — GC release preservation
+[24119] A GC pass preserving all release-root reachability preserves all release package bytes.
+[24120] COR-CMP8 — Crash orphan harmlessness
+[24121] An uncommitted blob is not authoritative merely because it exists.
+[24122] COR-CMP9 — Release modal ceiling
+[24123] A composite claim cannot exceed the weakest required premise unless a trusted implication establishes the conversion.
+[24124] COR-CMP10 — Rooted explanation validity
+[24125] A proof explanation is current only when its proof root is applicable to the viewed root.
+[24127] THM-CMP1 — Canonical normalization is idempotent
+[24128] Statement.
+[24129] \[ N(N(x))=N(x). \]
+[24130] Proof. By ASSUMP-CMP2 and the definition of \(N\), the first application yields a normal form. LEM-CMP1 applies. ∎
+[24131] THM-CMP2 — Canonically equal states serialize identically
+[24132] If \(N(x)=N(y)\), deterministic encoding gives
+[24133] \[ \operatorname{CanonBytes}(x)=\operatorname{CanonBytes}(y). \]
+[24135] THM-CMP3 — Identical canonical bytes yield identical content hashes
+[24136] For deterministic \(H\),
+[24137] \[ b_1=b_2\Longrightarrow H(b_1)=H(b_2). \]
+[24138] This is function congruence. ∎
+[24139] THM-CMP4 — Hash equality alone does not prove semantic or physical equality
+[24140] Counterexample. Let two semantic tokens deliberately carry the same unchecked text digest while their source bytes differ. Without recomputation or collision assumptions, the text equality supplies no equality proof. Even equal bytes can describe a physically changed object when the file is stale. ∎
+[24141] THM-CMP5 — Semantic ID equality does not imply artifact-version equality
+[24142] One semantic AHU ID may have firmware versions \(v_1\neq v_2\). Identity is stable while artifact version changes. ∎
+[24143] THM-CMP6 — Artifact equality does not imply current applicability
+[24144] Take unchanged route bytes whose clearance rule changes from \(0.1\) m to \(0.3\) m. The artifact is equal; its applicability predicate fails. ∎
+[24145] THM-CMP7 — A closed project root identifies one exact manifest under the collision assumption
+[24146] By DEF-CMP47, the root carries a canonicalization version and digest. LEM-CMP3 gives uniqueness, and root closure verifies length and references. ∎
+[24147] THM-CMP8 — Viewer objects do not determine canonical state
+[24148] Two roots share one GLB scene but have different proof status. Their viewer projection is equal while their canonical manifests differ. ∎
+[24149] THM-CMP9 — Branch roots may structurally share immutable artifacts
+[24150] Construct roots \(R_A=(B,x)\) and \(R_B=(B,y)\) with common immutable baseline \(B\). Both reference the same \(B\); only deltas differ. ∎
+[24151] THM-CMP10 — Snapshot equality implies equality of every rooted immutable object
+[24152] Equal closed manifests have equal ordered references. By recursive digest verification and the collision assumption, corresponding reachable bytes agree. ∎
+[24153] THM-CMP11 — Equal display labels do not imply semantic equality
+[24154] Two rooms named “101” on different floors have distinct semantic IDs. ∎
+[24156] THM-CMP12 — Validated committed transactions preserve canonical invariants
+[24157] Assume invariant \(I(R)\), checked transaction relation
+[24158] \[ I(R)\land\mathsf{ValidTx}(R,\tau,R') \Longrightarrow I(R'), \]
+[24159] and atomic commit. Since the validator establishes the antecedent before commit, \(I(R')\) holds after commit. ∎
+[24160] THM-CMP13 — A rejected transaction leaves the root unchanged
+[24161] The commit relation is invoked only for VALIDATED/PREPARED status. REJECTED has no transition rule, so the head remains \(R\). ∎
+[24162] THM-CMP14 — Atomic commit produces old or new root, not a partial root
+[24163] The branch-head record is updated in one atomic database transaction after object durability. Recovery observes either the pretransaction head or the committed new head. This theorem inherits the database and filesystem assumptions of ASSUMP-CMP21–23. ∎
+[24164] THM-CMP15 — Stale CAS prevents lost update
+[24165] Let current head be \(R_1\neq R_0\), while transaction \(\tau\) expects \(R_0\). CAS fails, so \(\tau\) cannot overwrite \(R_1\). ∎
+[24166] THM-CMP16 — Disjoint write sets are insufficient for commutativity
+[24167] Let \(\tau_1\) write \(x:=1\). Let \(\tau_2\) write \(y:=x\). Raw write sets \(\{x\}\) and \(\{y\}\) are disjoint. From \(x=0\), order \(\tau_1;\tau_2\) yields \(y=1\), while \(\tau_2;\tau_1\) yields \(y=0\). ∎
+[24168] THM-CMP17 — Dependency-independent disjoint transactions commute
+[24169] Assume disjoint write sets, neither write set reaches the other’s read or proof dependencies, authority states are independent, and semantic rewrite functions commute. Each operation therefore sees identical inputs in either order and writes disjoint outputs. The final manifest and proof state agree. ∎
+[24170] THM-CMP18 — Noncommuting transactions require serialization or semantic merge
+[24171] If \(\tau_1\not\perp\tau_2\), at least one order differs or is invalid. Accepting both without order or merge leaves no unique authoritative result. ∎
+[24172] THM-CMP19 — Root checkout restores a previous authoritative snapshot
+[24173] Because snapshots are immutable and retained, moving a branch head to closed root \(R_0\) makes exactly \(R_0\)’s manifest current. This is a new lineage event, not deletion of subsequent history. ∎
+[24174] THM-CMP20 — Unauthorized transaction cannot validly commit
+[24175] Commit validation requires \(\mathsf{CapAllows}(c,\tau)\). If false, the validator rejects before the commit relation is enabled. ∎
+[24176] THM-CMP21 — Expired capability blocks commit
+[24177] Expiry is checked against commit time. An expired token fails DEF-CMP160. ∎
+[24178] THM-CMP22 — Idempotent retry cannot duplicate a committed transition
+[24179] The first successful call records the operation key and result. A retry with equal actor, tool, base root, version, and canonical arguments returns that result rather than running a second commit. ∎
+[24180] THM-CMP23 — Textual diff equality is insufficient for semantic merge
+[24181] Two branches can each serialize identical display text while one changes a port direction and the other changes its component type in a separate hidden field. Text equality does not prove semantic compatibility. ∎
+[24182] THM-CMP24 — Three-way semantic merge detects incompatible edits
+[24211] PROPOSE may write proposal artifacts but lacks COMMIT effect and branch-head capability. ∎
+[24212] THM-CMP37 — CHECK tool strengthens only to its established modality
+[24213] The check result carries a proof token \(\mu\). Modal nonstrengthening prohibits any stronger output absent a trusted implication. ∎
+[24214] THM-CMP38 — Transactional-write tool cannot commit without valid transaction
+[24215] Its effect permits staged writes, not COMMIT. A separate trusted commit operation is required. ∎
+[24216] THM-CMP39 — Undeclared effects make tool composition unsound
+[24217] If a purported READ tool secretly mutates \(x\), a subsequent tool may observe a state absent from the declared effect trace. Any compositional proof based on the declared trace is invalid. ∎
+[24218] THM-CMP40 — Tool schema safety does not imply engineering validity
+[24219] A JSON object can satisfy {width:number} with width \(-1\). Schema type passes; geometric semantics fail. ∎
+[24220] THM-CMP41 — Tool-version changes may invalidate deterministic replay
+[24221] If version \(v_1\) sorts equal candidates by ID and \(v_2\) sorts by creation time, equal inputs can produce different bytes. ∎
+[24222] THM-CMP42 — Idempotency keys prevent duplicate committed effects under exact conditions
+[24223] This is THM-CMP22 specialized to tool invocations. ∎
+[24224] THM-CMP43 — Equal result text does not imply equal proof state
+[24225] Two calls return “route feasible,” one rooted at \(R_1\), one at \(R_2\), with different proof IDs. Text equality is merely projection equality. ∎
+[24226] THM-CMP44 — Timeout cannot fabricate success
+[24227] The timeout transition is defined to return retained proposals, incumbents, bounds, and UNKNOWN, never SUCCESS without a completed checker verdict. ∎
+[24229] THM-CMP45 — Capability absence prevents authorized mutation
+[24230] Without a capability covering the requested effect, \(\mathsf{CapAllows}\) is false and commit is disabled. ∎
+[24231] THM-CMP46 — Capability possession does not prove engineering validity
+[24232] An authorized user may propose a wall move that blocks egress. Authority is true; engineering validity is false. ∎
+[24233] THM-CMP47 — Authority and correctness are orthogonal
+[24234] The four combinations \((T,T),(T,F),(F,T),(F,F)\) are logically possible, so neither proposition implies the other. ∎
+[24235] THM-CMP48 — Protected-root mutation requires exact authority
+[24236] By ASSUMP-CMP20 and DEF-CMP80, ordinary write capability excludes protected roots. ∎
+[24237] THM-CMP49 — Capability scope is monotone under restriction
+[24238] If \(c'\sqsubseteq c\), every action authorized by \(c'\) is authorized by \(c\). ∎
+[24239] THM-CMP50 — Revoked capability cannot authorize later commit
+[24240] Revocation is part of the authority root. A later commit evaluates the active root and rejects the stale capability. ∎
+[24241] THM-CMP51 — Delegated authority cannot exceed delegator scope
+[24242] Every valid delegation step is an attenuation. Transitivity of subset inclusion proves the result. ∎
+[24243] THM-CMP52 — AI-generated intent cannot manufacture authority
+[24244] AI output changes proposal state only. Authority tokens originate from authority rules and authorized actors. ∎
+[24246] THM-CMP53 — Proposal-source independence at compiler level
+[24247] For normalized artifact \(A\), checker \(K\), and state \(S\),
+[24248] \[ K(S,A) \]
+[24249] contains no proposer parameter. Replacing proposer while holding \(S,A,K\) fixed leaves verdict unchanged. ∎
+[24250] THM-CMP54 — Replacing AI model preserves certificate semantics for equal artifacts
+[24251] Directly from THM-CMP53. ∎
+[24252] THM-CMP55 — AI hallucination cannot create valid proof reference
+[24253] A fabricated proof ID fails immutable-object resolution or proof-DAG closure. ∎
+[24254] THM-CMP56 — Invalid AI rewrite does not compromise soundness under independent checking
+[24255] The rewrite proposal may fail authority, preconditions, geometry, package, or transaction validation. It never becomes authoritative. ∎
+[24256] THM-CMP57 — Prompt-injected source text cannot directly mutate state
+[24257] Imported text is DATA class, carries no capability, and can at most influence a proposal. Commit still requires authority and transaction validation. ∎
+[24258] THM-CMP58 — AI explanation cannot strengthen modality
+[24259] The explanation checker requires every report claim to be entailed by its source token. Stronger language is rejected or downgraded. ∎
+[24260] THM-CMP59 — AI ranking does not alter Pareto dominance absent policy change
+[24261] Pareto dominance is computed from objective vectors. Reordering candidate presentation does not alter those vectors or the dominance relation. ∎
+[24262] THM-CMP60 — AI model unavailability does not invalidate existing proofs
+[24263] Committed proof artifacts and local checkers remain present. Search completeness and convenience may degrade, but existing verdict premises are unchanged. ∎
+[24265] THM-CMP61 — Accepted local packages may be globally incompatible
+[24266] Let PCSIR use equipment \(e@v_1\) and PCDYN require installed equipment \(e@v_2\neq v_1\), each locally accepted. No global witness assigns both versions to one installed object. ∎
+[24267] THM-CMP62 — Shared-version compatibility is necessary for witness gluing
+[24268] A global assignment gives one version per shared coordinate. Conflicting versions violate equality on separators. ∎
+[24269] THM-CMP63 — Shared semantic identity compatibility is necessary
+[24270] The same argument applies to semantic object identity. ∎
+[24271] THM-CMP64 — Shared assumption consistency is necessary
+[24272] If one package requires \(a\) and another proves \(\neg a\) over common scope, no classical global witness exists. ∎
+[24273] THM-CMP65 — Compatible local witnesses glue under complete separator conditions
+[24274] Assume the package interaction structure is a join tree with running intersection and equal restrictions on every separator. Root the tree and extend the assignment bag by bag. Separator equality prevents conflicting reassignment; running intersection ensures each repeated variable remains connected. ∎
+[24275] THM-CMP66 — Conflicting packages have empty global witness fiber
+[24276] Any global witness would satisfy mutually inconsistent shared coordinates or propositions. Contradiction. ∎
+[24277] THM-CMP67 — Stale lower package invalidates dependent upper release
+[24278] A dependent upper proof cites the lower root. If the active lower root changes and no transport theorem exists, the cited premise is no longer current. ∎
+[24279] THM-CMP68 — Unrelated package roots may remain reusable
+[24280] If dependency completeness proves no path from the changed root to package \(P\), and applicability roots remain equal, \(P\) is unaffected. ∎
+[24281] THM-CMP69 — Final compatibility is version-relative
+[24282] Compatibility is evaluated over exact roots and translations; changing versions can change the relation without changing display names. ∎
+[24284] THM-CMP70 — Release entailment is a partial order on compatible token classes
+[24285] Reflexivity and transitivity follow from logical entailment. Antisymmetry follows from LEM-CMP10 on mutual-entailment classes. ∎
+[24286] THM-CMP71 — UNKNOWN is not truth-ordered as PASS
+[24287] UNKNOWN means the theory does not establish \(\varphi\) or \(\neg\varphi\). Treating it as above or below PASS would add an unsupported entailment. ∎
+[24288] THM-CMP72 — Waiver is not proof strengthening
+[24289] PRO-CMP5 applies. ∎
+[24290] THM-CMP73 — Probabilistic and robust claims are not automatically comparable
+[24291] A 99.9% chance guarantee may fail one low-probability supported realization; robust validity may hold without a probability law. Neither generally entails the other. ∎
+[24292] THM-CMP74 — Bounded geometry does not imply exact geometry
+[24293] An enclosure containing several exact geometries does not identify one exact member. ∎
+[24294] THM-CMP75 — Exact local routing does not imply global project optimality
+[24295] A locally shortest route can belong to an architecturally dominated design. ∎
+[24296] THM-CMP76 — Release join may fail for incompatible versions
+[24297] Tokens about \(e@v_1\) and \(e@v_2\) may lack one shared context in which their disjunction has the intended project meaning. ∎
+[24298] THM-CMP77 — Compatible meet exists as conjunction
+[24336] THM-CMP95 — Half-written blob cannot become authoritative when root commit is last
+[24337] A half-written blob either has the wrong digest or lacks durability; no closed committed manifest references it. ∎
+[24338] THM-CMP96 — Compatible checkpoint resume equals uninterrupted deterministic execution
+[24339] Equal immutable roots, versions, queues, branch state, solver state, seeds, and deterministic transition function imply by induction that every subsequent state agrees. ∎
+[24340] THM-CMP97 — Incomplete checkpoint is detectable
+[24341] Manifest closure or hash validation fails for a missing or partial referenced object. ∎
+[24343] THM-CMP98 — Viewer projection is generally noninjective
+[24344] Two canonical states differing only in hidden proof status map to the same geometry. ∎
+[24345] THM-CMP99 — Viewer equality does not establish semantic equality
+[24346] Noninjectivity directly disproves the implication. ∎
+[24347] THM-CMP100 — Triangle picking identifies semantics only through checked index
+[24348] A render triangle number is renderer-local. The semantic ID follows only after validating the scene root and primitive-to-semantic index. ∎
+[24349] THM-CMP101 — Viewer edits are proposals until committed
+[24350] The viewer has no COMMIT effect. ∎
+[24351] THM-CMP102 — Topology-changing designs need not admit vertex-wise morph
+[24352] A one-edge trunk and a two-edge split trunk have different graph topology and vertex counts. No bijective vertex interpolation exists. ∎
+[24353] THM-CMP103 — Fade/regrow animation preserves explanation without asserting physical intermediates
+[24354] The animation is explicitly a view projection and carries no trajectory-validity claim. ∎
+[24355] THM-CMP104 — Proof overlays require current root
+[24356] The overlay proof’s applicability includes source root. A mismatch fails the overlay checker. ∎
+[24357] THM-CMP105 — Interpolated scarcity heatmap is heuristic absent factorization
+[24358] Interpolation introduces values not equal to original dual resources unless a theorem proves the projection preserves the target computation. ∎
+[24360] THM-CMP106 — Import mapping is sound only for represented source semantics
+[24361] A partial mapping establishes claims only over its domain and preserved relations. ∎
+[24362] THM-CMP107 — Unmapped source semantics must remain explicit
+[24363] Suppressing an unmapped source property would falsely imply representation completeness. Import validation therefore records it as loss or UNKNOWN. ∎
+[24364] THM-CMP108 — Typed compatible unit conversion preserves represented quantity
+[24365] If units \(u,v\) have conversion factors \(k_u,k_v\) to the same canonical dimension, converting \(x\) from \(u\) to \(v\) yields \(xk_u/k_v\), whose canonical value is \(xk_u\). ∎
+[24366] THM-CMP109 — Frame errors invalidate dependent geometry
+[24367] A wrong transform changes coordinates and therefore every dependent geometric predicate. ∎
+[24368] THM-CMP110 — Export validity does not prove identical external interpretation
+[24369] The export checker validates bytes and represented mapping; an external program may ignore, approximate, or reinterpret permitted fields. ∎
+[24370] THM-CMP111 — Exact round-trip equality requires representational completeness
+[24371] If target format cannot encode distinction \(d\), two source states differing only in \(d\) export equally and cannot both round-trip exactly. ∎
+[24372] THM-CMP112 — Proof sidecars preserve otherwise inexpressible semantics
+[24373] A sidecar can retain immutable references to proof and release artifacts while the target exchange file contains its supported subset. ∎
+[24375] THM-CMP113 — Structural sharing reduces storage against full copying
+[24376] For \(n\) candidates sharing baseline size \(B\) and unique deltas \(d_i\), full copies require \(nB+\sum d_i\); structural sharing requires \(B+\sum d_i\). The saving is \((n-1)B\). ∎
+[24377] THM-CMP114 — Lazy loading preserves immutable semantics
+[24378] Whether bytes are loaded eagerly or on demand does not change their canonical content. ∎
+[24379] THM-CMP115 — GPU nondeterminism does not affect soundness under CPU disposal
+[24380] The GPU proposes \(a\); acceptance depends only on deterministic checker \(K(a)\). Invalid proposals are rejected. ∎
+[24381] THM-CMP116 — Resource exhaustion yields bounded or UNKNOWN status
+[24382] ASSUMP-CMP75 excludes acceptance without completed proof. ∎
+[24383] THM-CMP117 — Reachability-preserving GC preserves release reproducibility
+[24384] Every byte needed to reconstruct a retained release remains live, so the release package can be replayed. ∎
+[24385] THM-CMP118 — Collecting a reachable artifact invalidates closure
+[24386] A retained manifest reference no longer resolves. ∎
+[24387] THM-CMP119 — Local authoritative storage remains sufficient with hosted AI
+[24388] AI receives projections and returns proposals. Canonical roots, checkers, and commit logic remain local; AI availability is not a storage premise. ∎
+[24390] THM-CMP120 — Whole compiler input theorem
+[24391] If source packages pass identity, format, unit, frame, provenance, and import-mapping validation, the semantic-source graph is a valid compiler input at \(\mathsf{SOURCE\_INGESTED}\), not yet at PCSIR validity. ∎
+[24392] THM-CMP121 — Whole compiler transaction theorem
+[24393] Under ASSUMP-CMP13–24, a validated authorized transaction either commits one closed root or leaves the old root authoritative. ∎
+[24394] THM-CMP122 — Whole compiler PCSIR theorem
+[24395] An accepted PCSIR pass rooted to the committed source and requirement roots establishes \(\mathsf{PCSIR\_VALID}\) for that root and exact modality. ∎
+[24396] THM-CMP123 — Whole compiler routing theorem

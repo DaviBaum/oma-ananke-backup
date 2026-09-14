@@ -1,0 +1,398 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P29515; UTF16 965062] Architectural sovereignty: valuable option lacks authority and is rejected.
+[11-20:P29516; UTF16 965138] Prompt-13 materialization: semantic option without enabling geometry is rejected.
+[11-20:P29517; UTF16 965220] Prompt-18 execution: physically live but economically dead option.
+[11-20:P29518; UTF16 965287] Prompt-17 probability: probabilistic exercise not labeled robust.
+[11-20:P29519; UTF16 965353] Prompt-16 fleet update: transfer changes value but not current physical liveness.
+[11-20:P29520; UTF16 965435] Prompt-9 separation: computation changes knowledge; commitment changes continuation fiber.
+[11-20:P29521; UTF16 965526] Prompt-10 option breaker: hidden supplier common cause invalidates option.
+[11-20:P29522; UTF16 965601] Incremental/cold: exact agreement after one changed commitment root.
+[11-20:P29523; UTF16 965670] Malicious AI policy: invalid clairvoyant policy rejected.
+[11-20:P29524; UTF16 965728] PCCP independence: checker validates package without proposal history.
+[11-20:P29528; UTF16 965802] 56. Proof-Assistant Formalization
+[11-20:P29529; UTF16 965836] Commitment decision node
+[11-20:P29530; UTF16 965861] structure DecisionNode where
+[11-20:P29531; UTF16 965890]   time : Time
+[11-20:P29533; UTF16 965919]   state : State
+[11-20:P29534; UTF16 965935]   History : Type
+[11-20:P29535; UTF16 965952]   history : History
+[11-20:P29536; UTF16 965972]   theoryVersion : Hash
+[11-20:P29537; UTF16 965995] Nonanticipative policy on an information tree
+[11-20:P29538; UTF16 966041] structure InfoNode where
+[11-20:P29539; UTF16 966066]   stage : Nat
+[11-20:P29540; UTF16 966080]   observations : List Observation
+[11-20:P29542; UTF16 966115] structure Policy where
+[11-20:P29543; UTF16 966138]   choose : InfoNode → Action
+[11-20:P29545; UTF16 966182]     ∀ h,
+[11-20:P29546; UTF16 966191]       ActionAdmissible h (choose h)
+[11-20:P29547; UTF16 966227] Policies are defined on information nodes rather than hidden scenario leaves, making nonanticipativity structural.
+[11-20:P29548; UTF16 966342] Continuation fiber
+[11-20:P29549; UTF16 966361] def ContinuationFiber
+[11-20:P29550; UTF16 966383]     (n : DecisionNode) :
+[11-20:P29551; UTF16 966408]     Set Policy :=
+[11-20:P29552; UTF16 966426]   {π |
+[11-20:P29553; UTF16 966433]     AdmissibleFrom n π}
+[11-20:P29554; UTF16 966457] Action-conditioned continuation fiber
+[11-20:P29555; UTF16 966495] def ConditionedFiber
+[11-20:P29556; UTF16 966516]     (n : DecisionNode)
+[11-20:P29557; UTF16 966539]     (a : Action) :
+[11-20:P29560; UTF16 966583]     π ∈ ContinuationFiber n ∧
+[11-20:P29561; UTF16 966613]     FirstAction π n = a}
+[11-20:P29562; UTF16 966638] Subset theorem
+[11-20:P29563; UTF16 966653] theorem conditioned_subset
+[11-20:P29566; UTF16 966722]     ConditionedFiber n a
+[11-20:P29568; UTF16 966755]     ContinuationFiber n := by
+[11-20:P29569; UTF16 966785]   intro π h
+[11-20:P29570; UTF16 966797]   exact h.1
+[11-20:P29571; UTF16 966809] Contextual reversibility
+[11-20:P29572; UTF16 966834] def ContextuallyReversible
+[11-20:P29573; UTF16 966861]     (x : State)
+[11-20:P29574; UTF16 966877]     (a : Action)
+[11-20:P29575; UTF16 966894]     (T : ExperimentTheory) : Prop :=
+[11-20:P29576; UTF16 966931]   ∃ w : ActionWord,
+[11-20:P29577; UTF16 966951]     ContextuallyEquivalent T
+[11-20:P29578; UTF16 966980]       (ExecuteWord w (Execute a x))
+[11-20:P29579; UTF16 967016]       x
+[11-20:P29580; UTF16 967024] Engineering option
+[11-20:P29581; UTF16 967043] structure EngineeringOption where
+[11-20:P29582; UTF16 967077]   exercise : Action
+[11-20:P29583; UTF16 967097]   window : TimeWindow
+[11-20:P29584; UTF16 967119]   precondition : State → Prop
+[11-20:P29585; UTF16 967149]   authority : AuthorityRequirement
+[11-20:P29587; UTF16 967204] Live option
+[11-20:P29588; UTF16 967216] def LiveOption
+[11-20:P29590; UTF16 967254]     (o : EngineeringOption) : Prop :=
+[11-20:P29591; UTF16 967292]   InWindow n.time o.window ∧
+[11-20:P29592; UTF16 967321]   RightsValid n o ∧
+[11-20:P29593; UTF16 967341]   ∃ π,
+[11-20:P29594; UTF16 967348]     OptionExercisePolicy n o π ∧
+[11-20:P29595; UTF16 967381]     Nonanticipative π
+[11-20:P29596; UTF16 967403] Commitment preorder
+[11-20:P29597; UTF16 967423] def MoreCommitted
+[11-20:P29598; UTF16 967441]     (n₁ n₂ : DecisionNode) : Prop :=
+[11-20:P29599; UTF16 967478]   OutcomeImage n₁ ⊆ OutcomeImage n₂
+[11-20:P29600; UTF16 967514] Viability recursion
+[11-20:P29601; UTF16 967534] def viability
+[11-20:P29602; UTF16 967548]     : Nat → Set State
+[11-20:P29603; UTF16 967570] | 0 =>
+[11-20:P29604; UTF16 967577]     terminalAcceptable
+[11-20:P29605; UTF16 967600] | t + 1 =>
+[11-20:P29606; UTF16 967611]     {s |
+[11-20:P29607; UTF16 967620]       ∃ a ∈ allowed s,
+[11-20:P29608; UTF16 967643]         ∀ w ∈ disturbance s a,
+[11-20:P29609; UTF16 967674]           ∀ s',
+[11-20:P29610; UTF16 967690]             step s a w s' →
+[11-20:P29611; UTF16 967718]             s' ∈ viability t}
+[11-20:P29612; UTF16 967748] Robust Bellman skeleton
+[11-20:P29613; UTF16 967772] def robustValue
+[11-20:P29614; UTF16 967788]     : Nat → State → ℝ
+[11-20:P29615; UTF16 967810] | 0, s =>
+[11-20:P29616; UTF16 967820]     terminalReward s
+[11-20:P29617; UTF16 967841] | t + 1, s =>
+[11-20:P29618; UTF16 967855]     Finset.max'
+[11-20:P29619; UTF16 967871]       ((actions s).image
+[11-20:P29620; UTF16 967896]         (fun a =>
+[11-20:P29621; UTF16 967914]           Finset.min'
+[11-20:P29622; UTF16 967936]             ((kernelSet s a).image
+[11-20:P29623; UTF16 967971]               (fun p =>
+[11-20:P29624; UTF16 967995]                 expected p
+[11-20:P29625; UTF16 968022]                   (fun s' =>
+[11-20:P29626; UTF16 968051]                     reward s a s'
+[11-20:P29627; UTF16 968085]                     + robustValue t s')))))
+[11-20:P29629; UTF16 968139] A formal development would require nonempty finite action and kernel sets.
+[11-20:P29630; UTF16 968214] PCCP
+[11-20:P29631; UTF16 968219] structure PCCP where
+[11-20:P29632; UTF16 968240]   project : ProjectId
+[11-20:P29633; UTF16 968262]   currentNode : DecisionNode
+[11-20:P29634; UTF16 968291]   actionTheory : ActionTheory
+[11-20:P29635; UTF16 968321]   commitments : CommitmentLedger
+[11-20:P29636; UTF16 968354]   options : OptionStore
+[11-20:P29637; UTF16 968378]   information : InformationModel
+[11-20:P29638; UTF16 968411]   policy : PolicyCertificate
+[11-20:P29639; UTF16 968440]   viability : ViabilityCertificate
+[11-20:P29645; UTF16 968531] 57. Mechanization Difficulty
+[11-20:P29646; UTF16 968560] ￼
+ATTACHED TABLE 1736852; native row/column order; 28 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Commitment-fiber semantics", "Straightforward"]
+ROW 2: ["Action-conditioned subset", "Straightforward"]
+ROW 3: ["Decision-relevant continuation image", "Moderate"]
+ROW 4: ["Contextual reversibility", "Moderate"]
+ROW 5: ["Reversibility composition", "Moderate"]
+ROW 6: ["Physical/economic reversibility distinction", "Straightforward finite model"]
+ROW 7: ["Option-aware contextual equivalence", "Moderate"]
+ROW 8: ["Causal-width monotonicity", "Moderate"]
+ROW 9: ["Freeze/thaw state sufficiency", "Moderate"]
+ROW 10: ["Live-option checking", "Difficult"]
+ROW 11: ["Option-enabling witness", "Difficult"]
+ROW 12: ["EVPI/EVSI", "Moderate"]
+ROW 13: ["Information-refinement theorem", "Moderate"]
+ROW 14: ["Bellman recursion", "Moderate"]
+ROW 15: ["Hidden commitment-state counterexample", "Straightforward"]
+ROW 16: ["Robust rectangular recursion", "Difficult"]
+ROW 17: ["Nonrectangular counterexample", "Moderate"]
+ROW 18: ["Dynamic risk measures", "Difficult"]
+ROW 19: ["Static-CVaR counterexample", "Moderate"]
+ROW 20: ["Viability kernels", "Difficult"]
+ROW 21: ["Commitment frontiers", "Moderate"]
+ROW 22: ["Latest commitment dates", "Moderate"]
+ROW 23: ["Option-enabling optimization", "NP-hard"]
+ROW 24: ["Sovereignty integration", "Difficult"]
+ROW 25: ["Incremental recertification", "Difficult"]
+ROW 26: ["PCCP checker", "Research-level"]
+ROW 27: ["Complete future-opportunity theory", "Impossible in unrestricted open-world form"]
+[11-20:P29650; UTF16 968565] 58. Prompt-19 Complexity Profile
+[11-20:P29651; UTF16 968598] DEF-COM40 — Prompt-19 Complexity Profile
+[11-20:P29653; UTF16 968647] \left( N_S, N_A, K_H, K_{\mathrm{opt}}, K_{\mathrm{rev}}, K_{\mathrm{scenario}}, K_{\mathrm{ambiguity}}, K_{\mathrm{policy}}, K_{\mathrm{viab}}, K_{\mathrm{freeze}}, K_{\mathrm{value}}, C_{\mathrm{DP}}, C_{\mathrm{robust}}, C_{\mathrm{option}}, C_{\mathrm{check}}, R_{\mathrm{commit}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unresolved}} \right). } ]
+[11-20:P29655; UTF16 969019] (N_S): state count or symbolic state complexity;
+[11-20:P29656; UTF16 969068] (N_A): action count;
+[11-20:P29657; UTF16 969089] (K_H): information-history complexity;
+[11-20:P29658; UTF16 969128] (K_{\mathrm{opt}}): live-option representation complexity;
+[11-20:P29659; UTF16 969187] (K_{\mathrm{rev}}): reversibility-profile complexity;
+[11-20:P29660; UTF16 969241] (K_{\mathrm{scenario}}): scenario-tree complexity;
+[11-20:P29661; UTF16 969292] (K_{\mathrm{ambiguity}}): ambiguity-family complexity;
+[11-20:P29662; UTF16 969347] (K_{\mathrm{policy}}): policy representation complexity;
+[11-20:P29663; UTF16 969404] (K_{\mathrm{viab}}): viability-kernel complexity;
+[11-20:P29664; UTF16 969454] (K_{\mathrm{freeze}}): freeze/thaw state complexity;
+[11-20:P29665; UTF16 969507] (K_{\mathrm{value}}): utility, partial-order, and risk-model complexity;
+[11-20:P29666; UTF16 969580] (C_{\mathrm{DP}}): stochastic dynamic-programming cost;
+[11-20:P29667; UTF16 969636] (C_{\mathrm{robust}}): robust-policy computation cost;
+[11-20:P29668; UTF16 969691] (C_{\mathrm{option}}): option-liveness and enabling analysis cost;
+[11-20:P29670; UTF16 969807] (R_{\mathrm{commit}}): committed action count;
+[11-20:P29671; UTF16 969854] (R_{\mathrm{change}}): changed roots;
+[11-20:P29673; UTF16 969937] (B_{\mathrm{unresolved}}): unresolved commitment blockers.
+[11-20:P29674; UTF16 969996] No scalar “flexibility score” is defined.
+[11-20:P29678; UTF16 970041] 59. Permanent Assumption Registry
+[11-20:P29679; UTF16 970075] ￼
+ATTACHED TABLE 1736868; native row/column order; 21 rows
+ROW 0: ["ID", "Assumption"]
+ROW 1: ["ASSUMP-COM1", "State is sufficient for claimed dynamics and values"]
+ROW 2: ["ASSUMP-COM2", "Information times and histories are correct"]
+ROW 3: ["ASSUMP-COM3", "Relevant future actions are represented"]
+ROW 4: ["ASSUMP-COM4", "Policies are nonanticipative"]
+ROW 5: ["ASSUMP-COM5", "Rights and obligations are valid"]
+ROW 6: ["ASSUMP-COM6", "Option exercise prerequisites are sound"]
+ROW 7: ["ASSUMP-COM7", "Decision model is declared and valid"]
+ROW 8: ["ASSUMP-COM8", "Actual future lies in robust scenario family where claimed"]
+ROW 9: ["ASSUMP-COM9", "Probability modality is preserved"]
+ROW 10: ["ASSUMP-COM10", "Deadlines and lead times are correct"]
+ROW 11: ["ASSUMP-COM11", "Reversal semantics are complete"]
+ROW 12: ["ASSUMP-COM12", "Architectural authority is preserved"]
+ROW 13: ["ASSUMP-COM13", "Economic execution options pass Prompt 18"]
+ROW 14: ["ASSUMP-COM14", "Recursive risk semantics are justified"]
+ROW 15: ["ASSUMP-COM15", "UNKNOWN is never promoted"]
+ROW 16: ["ASSUMP-COM16", "Trusted checkers are sound"]
+ROW 17: ["ASSUMP-COM17", "Dependency graph is complete"]
+ROW 18: ["ASSUMP-COM18", "Compared continuation images use aligned horizons"]
+ROW 19: ["ASSUMP-COM19", "Transition relation covers actual covered transitions"]
+ROW 20: ["ASSUMP-COM20", "Utility and loss variables are integrable"]
+[11-20:P29683; UTF16 970080] 60. Permanent Definition Registry
+[11-20:P29684; UTF16 970114] ￼
+ATTACHED TABLE 1736884; native row/column order; 41 rows
+ROW 0: ["ID", "Definition"]
+ROW 1: ["DEF-COM1", "Commitment Decision Node"]
+ROW 2: ["DEF-COM2", "Information Filtration or Partition"]
+ROW 3: ["DEF-COM3", "Admissible Action Family"]
+ROW 4: ["DEF-COM4", "Nonanticipative Continuation Policy"]
+ROW 5: ["DEF-COM5", "Continuation Fiber"]
+ROW 6: ["DEF-COM6", "Decision-Relevant Continuation Image"]
+ROW 7: ["DEF-COM7", "Action-Conditioned Continuation Fiber"]
+ROW 8: ["DEF-COM8", "Strict Semantic Commitment"]
+ROW 9: ["DEF-COM9", "Exact Physical Reversibility"]
+ROW 10: ["DEF-COM10", "Contextual Reversibility"]
+ROW 11: ["DEF-COM11", "Bounded Reversibility"]
+ROW 12: ["DEF-COM12", "Reversibility Profile"]
+ROW 13: ["DEF-COM13", "Option-Aware Contextual Equivalence"]
+ROW 14: ["DEF-COM14", "Design Freeze"]
+ROW 15: ["DEF-COM15", "Engineering Real Option"]
+ROW 16: ["DEF-COM16", "Live Option"]
+ROW 17: ["DEF-COM17", "Option-Enabling Witness"]
+ROW 18: ["DEF-COM18", "Live Option Set"]
+ROW 19: ["DEF-COM19", "Future Action Opportunity Set"]
+ROW 20: ["DEF-COM20", "Commitment Preorder"]
+ROW 21: ["DEF-COM21", "Declared Decision Model"]
+ROW 22: ["DEF-COM22", "Gross Flexibility Value"]
+ROW 23: ["DEF-COM23", "Net Flexibility Value"]
+ROW 24: ["DEF-COM24", "EVPI"]
+ROW 25: ["DEF-COM25", "EVSI"]
+ROW 26: ["DEF-COM26", "Value of Waiting"]
+ROW 27: ["DEF-COM27", "Staged Commitment Policy"]
+ROW 28: ["DEF-COM28", "Commitment Trace"]
+ROW 29: ["DEF-COM29", "Rectangular Ambiguity Family"]
+ROW 30: ["DEF-COM30", "Commitment Need Date"]
+ROW 31: ["DEF-COM31", "Commitment Viability Kernel"]
+ROW 32: ["DEF-COM32", "Wait Action"]
+ROW 33: ["DEF-COM33", "Commitment Frontier"]
+ROW 34: ["DEF-COM34", "Commitment Closure"]
+ROW 35: ["DEF-COM35", "Proof-Carrying Commitment Package"]
+ROW 36: ["DEF-COM36", "Commitment Dependency Graph"]
+ROW 37: ["DEF-COM37", "Commitment Claim Modality"]
+ROW 38: ["DEF-COM38", "Commitment-Policy Portfolio"]
+ROW 39: ["DEF-COM39", "Just-in-Time Commitment Policy"]
+ROW 40: ["DEF-COM40", "Prompt-19 Complexity Profile"]
+[11-20:P29688; UTF16 970119] 61. Lemma, Proposition, and Corollary Registry
+[11-20:P29689; UTF16 970166] ￼
+ATTACHED TABLE 1736900; native row/column order; 5 rows
+ROW 0: ["ID", "Result", "Status"]
+ROW 1: ["LEM-COM1", "Commitment relation is a preorder", "Proved"]
+ROW 2: ["PRO-COM1", "Option count does not determine flexibility value", "Proved"]
+ROW 3: ["PRO-COM2", "Explicit binary scenario trees can grow as (2^k)", "Proved"]
+ROW 4: ["COR-COM1", "Latest commitment is bounded by option expiry and worst-case lead time", "Proved"]
+[11-20:P29693; UTF16 970171] 62. Permanent Theorem Registry
+[11-20:P29694; UTF16 970202] ￼
+ATTACHED TABLE 1736916; native row/column order; 39 rows
+ROW 0: ["ID", "Theorem", "Status"]
+ROW 1: ["THM-COM1", "Commitment restricts the continuation fiber", "Proved"]
+ROW 2: ["THM-COM2", "Exact recovery implies contextual reversibility", "Proved"]
+ROW 3: ["THM-COM3", "Contextual reversibility composes under compatible congruence", "Proved"]
+ROW 4: ["THM-COM4", "Physical reversibility does not imply project reversibility", "Proved"]
+ROW 5: ["THM-COM5", "Present observational equivalence does not imply equal future flexibility", "Proved"]
+ROW 6: ["THM-COM6", "Action-set restriction coarsens the causal quotient", "Proved"]
+ROW 7: ["THM-COM7", "Exact thaw requires sufficient stored state", "Proved"]
+ROW 8: ["THM-COM8", "Option-enabling witness soundness", "Proved"]
+ROW 9: ["THM-COM9", "Conceptual redesign does not establish a live option", "Proved"]
+ROW 10: ["THM-COM10", "Modularity alone does not establish flexibility", "Proved"]
+ROW 11: ["THM-COM11", "No unique intrinsic scalar option value exists", "Proved"]
+ROW 12: ["THM-COM12", "Additional free flexibility cannot reduce optimal value", "Proved"]
+ROW 13: ["THM-COM13", "Net flexibility value can be negative", "Proved"]
+ROW 14: ["THM-COM14", "EVPI is nonnegative", "Proved"]
+ROW 15: ["THM-COM15", "Free sample information has nonnegative expected value", "Proved"]
+ROW 16: ["THM-COM16", "EVSI is bounded above by EVPI", "Proved"]
+ROW 17: ["THM-COM17", "Information refinement cannot lower expected optimal value", "Proved"]
+ROW 18: ["THM-COM18", "Decision-invariant information has zero value", "Proved"]
+ROW 19: ["THM-COM19", "Waiting can have positive value", "Proved"]
+ROW 20: ["THM-COM20", "Waiting can have negative value", "Proved"]
+ROW 21: ["THM-COM21", "Premature commitment can be arbitrarily suboptimal", "Proved"]
+ROW 22: ["THM-COM22", "Equal final physical states can have different commitment semantics", "Proved"]
+ROW 23: ["THM-COM23", "Finite-horizon Bellman recursion", "Proved"]
+ROW 24: ["THM-COM24", "Physical state alone may be dynamically insufficient", "Proved"]
+ROW 25: ["THM-COM25", "Scenario-wise commitments need not form one nonanticipative policy", "Proved"]
+ROW 26: ["THM-COM26", "Rectangular robust Bellman recursion", "Proved"]
+ROW 27: ["THM-COM27", "Nonrectangular ambiguity can break stagewise recursion", "Proved"]
+ROW 28: ["THM-COM28", "Static CVaR need not be dynamically time consistent", "Proved"]
+ROW 29: ["THM-COM29", "Latest robust commitment time under bounded lead time", "Proved"]
+ROW 30: ["THM-COM30", "Commitment viability-kernel soundness and completeness", "Proved"]
+ROW 31: ["THM-COM31", "Commitment-frontier urgency", "Proved"]
+ROW 32: ["THM-COM32", "Commitment closure bounds pure waiting value", "Proved"]
+ROW 33: ["THM-COM33", "Minimum-cost option enabling is NP-hard", "Proved"]
+ROW 34: ["THM-COM34", "Incremental commitment recertification equals cold checking", "Proved"]
+ROW 35: ["THM-COM35", "Whole-project staged commitment and option preservation", "Proved under explicit assumptions"]
+ROW 36: ["THM-COM36", "Open-world commitment limitation", "Proved"]
+ROW 37: ["THM-COM37", "Proposal-source independence", "Proved"]
+ROW 38: ["THM-COM38", "Explicit PCCP checking complexity", "Proved"]
+[11-20:P29698; UTF16 970207] 63. Algorithm Registry
+[11-20:P29699; UTF16 970230] ￼
+ATTACHED TABLE 1736932; native row/column order; 25 rows
+ROW 0: ["ID", "Algorithm"]
+ROW 1: ["ALG-COM1", "AuditCommitmentState"]
+ROW 2: ["ALG-COM2", "BuildContinuationFiber"]
+ROW 3: ["ALG-COM3", "ClassifyReversibility"]
+ROW 4: ["ALG-COM4", "BuildLiveOptionSet"]
+ROW 5: ["ALG-COM5", "ComputeCommitmentPreorder"]
+ROW 6: ["ALG-COM6", "ComputeEVPI"]
+ROW 7: ["ALG-COM7", "ComputeEVSI"]
+ROW 8: ["ALG-COM8", "EvaluateValueOfWaiting"]
+ROW 9: ["ALG-COM9", "SolveFiniteStagedCommitment"]
+ROW 10: ["ALG-COM10", "SolveRobustStagedCommitment"]
+ROW 11: ["ALG-COM11", "CheckDynamicRiskConsistency"]
+ROW 12: ["ALG-COM12", "ComputeCommitmentViabilityKernel"]
+ROW 13: ["ALG-COM13", "ComputeLatestSafeCommitment"]
+ROW 14: ["ALG-COM14", "DetectCommitmentFrontier"]
+ROW 15: ["ALG-COM15", "CertifyCommitmentClosure"]
+ROW 16: ["ALG-COM16", "PlanJustInTimeCommitments"]
+ROW 17: ["ALG-COM17", "SelectOptionEnablingPortfolio"]
+ROW 18: ["ALG-COM18", "FreezeDesignRegion"]
+ROW 19: ["ALG-COM19", "ThawDesignRegion"]
+ROW 20: ["ALG-COM20", "CommitmentRCVOCInterface"]
+ROW 21: ["ALG-COM21", "RedTeamCommitment"]
+ROW 22: ["ALG-COM22", "IncrementalCommitmentRecertification"]
+ROW 23: ["ALG-COM23", "CheckCommitmentPackage"]
+ROW 24: ["ALG-COM24", "BuildPCCP"]
+[11-20:P29703; UTF16 970235] 64. Conjecture Registry
+[11-20:P29704; UTF16 970259] ￼
+ATTACHED TABLE 1736948; native row/column order; 11 rows
+ROW 0: ["ID", "Conjecture", "Falsification condition"]
+ROW 1: ["CONJ-COM1", "Large projects have small decision-relevant live-option sets relative to raw variables", "Most variables remain option relevant"]
+ROW 2: ["CONJ-COM2", "Legitimate freezes materially reduce causal width", "Width remains nearly unchanged after freezes"]
+ROW 3: ["CONJ-COM3", "A small set of interfaces preserves most valuable future options", "Useful options require near-global overdesign"]
+ROW 4: ["CONJ-COM4", "Just-in-time commitment reduces rework relative to early blanket freeze", "Empirical projects show no reduction or worse outcomes"]
+ROW 5: ["CONJ-COM5", "Selected option-enabling cost is often small relative to model-relative value", "Enabling cost usually dominates future benefit"]
+ROW 6: ["CONJ-COM6", "Viability kernels admit useful hierarchical approximations", "Approximation remains too conservative or too large"]
+ROW 7: ["CONJ-COM7", "Option dependencies are sparse enough for local recertification", "Most changes reopen most options"]
+ROW 8: ["CONJ-COM8", "Prompt-9 scheduling closes decisions before commitment frontiers", "Computation repeatedly finishes too late"]
+ROW 9: ["CONJ-COM9", "Rectangular or near-rectangular ambiguity is useful in meaningful project classes", "Nonrectangular dependence dominates decisions"]
+ROW 10: ["CONJ-COM10", "A 190-room hotel admits practical proof-carrying staged commitment", "State, scenario, policy, or checking complexity is impractical"]
+[11-20:P29708; UTF16 970264] 65. Dependency DAG — Prompts 1–19
+[11-20:P29719; UTF16 970494] current reports                 option-aware future reports
+[11-20:P29721; UTF16 970595]                                        ▼
+[11-20:P29722; UTF16 970636]                                   DEF-COM13
+[11-20:P29728; UTF16 970744] future-choice separators
+[11-20:P29731; UTF16 970789] commitment state compression
+[11-20:P29738; UTF16 970875] option/commitment counterexamples
+[11-20:P29739; UTF16 970909] refine abstract state when
+[11-20:P29740; UTF16 970936] future action distinguishes it
+[11-20:P29744; UTF16 970992] stable approximate decisions
+[11-20:P29747; UTF16 971041] commitment closure
+[11-20:P29750; UTF16 971080] THM-COM32
+[11-20:P29754; UTF16 971106] port completeness
+[11-20:P29757; UTF16 971144] future equipment substitution
+[11-20:P29758; UTF16 971174] option-enabling interfaces
+[11-20:P29765; UTF16 971273] reversal transport
+[11-20:P29766; UTF16 971292] freeze/thaw recertification
+[11-20:P29770; UTF16 971360] action theory
+[11-20:P29772; UTF16 971386] causal width
+[11-20:P29776; UTF16 971489] THM-COM5                       DEF-COM14
+[11-20:P29777; UTF16 971530] future flexibility             design freeze
+[11-20:P29778; UTF16 971575] is causal                             │
+[11-20:P29780; UTF16 971655]                                  THM-COM6
+[11-20:P29781; UTF16 971697]                                  action restriction
+[11-20:P29782; UTF16 971749]                                  coarsens quotient
+[11-20:P29785; UTF16 971880]                                  THM-COM7
+[11-20:P29786; UTF16 971922]                                  thaw state burden
+[11-20:P29794; UTF16 972094] what to compute               commitment closure
+[11-20:P29797; UTF16 972223] ALG-COM20                     THM-COM32
+[11-20:P29801; UTF16 972338]                what to commit
+[11-20:P29807; UTF16 972414] ALG-COM21
+[11-20:P29808; UTF16 972424] option and commitment red team
+[11-20:P29814; UTF16 972511] PCCP as typed evidence
+[11-20:P29818; UTF16 972571] human option set
+[11-20:P29822; UTF16 972630] option preservation
+[11-20:P29823; UTF16 972650] value does not imply authority
+[11-20:P29830; UTF16 972745] DEF-COM17
+[11-20:P29831; UTF16 972755] option-enabling witness
+[11-20:P29834; UTF16 972799] THM-COM8
+[11-20:P29838; UTF16 972838] field deviation
+[11-20:P29841; UTF16 972874] field changes can destroy
+[11-20:P29842; UTF16 972900] planned options
+[11-20:P29846; UTF16 972944] maintenance/upgrade state
+[11-20:P29849; UTF16 972990] live operational options
+[11-20:P29855; UTF16 973069] future information and
+[11-20:P29859; UTF16 973129] option values may change
+[11-20:P29865; UTF16 973212] probabilistic option exercise
+[11-20:P29866; UTF16 973242] retains modality
+[11-20:P29871; UTF16 973310] execution fibers
+[11-20:P29874; UTF16 973347] economic option liveness
+[11-20:P29878; UTF16 973462] DEF-COM15–17                  THM-COM25
+[11-20:P29879; UTF16 973502] real options                  nonanticipativity
+[11-20:P29882; UTF16 973570] DEF-COM18–20
+[11-20:P29883; UTF16 973583] option sets,
+[11-20:P29884; UTF16 973596] opportunity image,
+[11-20:P29885; UTF16 973615] commitment preorder
+[11-20:P29887; UTF16 973636] information
+[11-20:P29890; UTF16 973668] DEF-COM24–25
+[11-20:P29891; UTF16 973681] EVPI / EVSI
+[11-20:P29895; UTF16 973751] COM14 COM15         COM16
+[11-20:P29896; UTF16 973777] EVPI  EVSI          bound
+[11-20:P29899; UTF16 973823] THM-COM17–18
+[11-20:P29900; UTF16 973836] refinement and
+[11-20:P29901; UTF16 973851] zero-value information
+[11-20:P29903; UTF16 973875] waiting
+[11-20:P29906; UTF16 973903] DEF-COM26
+[11-20:P29908; UTF16 973923]    ┌────┴────────────┐
+[11-20:P29909; UTF16 973946]    ▼                 ▼
+[11-20:P29910; UTF16 973969] THM-COM19       THM-COM20
+[11-20:P29911; UTF16 973995] positive         negative
+[11-20:P29914; UTF16 974041] THM-COM21
+[11-20:P29915; UTF16 974051] premature commitment loss
+[11-20:P29917; UTF16 974078] staged policies

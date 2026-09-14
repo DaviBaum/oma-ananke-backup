@@ -1,0 +1,438 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P5440; UTF16 186806] Do not infer authorization.
+[21-30:P5444; UTF16 186837] ALG-SEC4 — CheckAuthorization
+[21-30:P5448; UTF16 186898]     resource
+[21-30:P5449; UTF16 186911]     current security state
+[21-30:P5450; UTF16 186938]     authorization policy
+[21-30:P5451; UTF16 186963]     governance authority
+[21-30:P5452; UTF16 186988]     regulatory authority where required
+[21-30:P5455; UTF16 187035]     authenticated identity
+[21-30:P5456; UTF16 187062]     role/capability
+[21-30:P5458; UTF16 187094]     time
+[21-30:P5460; UTF16 187123]     separation of duty
+[21-30:P5465; UTF16 187183]     AUTHORIZED
+[21-30:P5466; UTF16 187198]     DENIED
+[21-30:P5471; UTF16 187224] ALG-SEC5 — ComputeLeastPrivilegeReduction
+[21-30:P5473; UTF16 187272]     current permission set
+[21-30:P5474; UTF16 187299]     required task traces
+[21-30:P5475; UTF16 187324]     emergency traces
+[21-30:P5476; UTF16 187345]     safety obligations
+[21-30:P5477; UTF16 187368]     delegation graph
+[21-30:P5479; UTF16 187390] GENERATE candidate permission removals
+[21-30:P5482; UTF16 187450]     verify all required task traces remain executable
+[21-30:P5483; UTF16 187504]     verify emergency viability
+[21-30:P5484; UTF16 187535]     verify no protected action becomes newly authorized
+[21-30:P5485; UTF16 187591]     compute operational consequences
+[21-30:P5488; UTF16 187636]     VERIFIED REDUCED POLICY
+[21-30:P5489; UTF16 187664]     VERIFIED NONMINIMAL POLICY
+[21-30:P5490; UTF16 187695]     NO SAFE REDUCTION
+[21-30:P5495; UTF16 187732] ALG-SEC6 — CheckFreshness
+[21-30:P5497; UTF16 187764]     message
+[21-30:P5498; UTF16 187776]     nonce/counter/epoch/timestamp state
+[21-30:P5499; UTF16 187816]     acceptance policy
+[21-30:P5500; UTF16 187838]     prior-message state
+[21-30:P5503; UTF16 187869]     uniqueness
+[21-30:P5504; UTF16 187884]     monotonicity
+[21-30:P5505; UTF16 187901]     allowed time window
+[21-30:P5506; UTF16 187925]     sequence relation
+[21-30:P5507; UTF16 187947]     epoch binding
+[21-30:P5510; UTF16 187973]     FRESH
+[21-30:P5511; UTF16 187983]     REPLAY
+[21-30:P5517; UTF16 188019] ALG-SEC7 — VerifyArtifactCryptography
+[21-30:P5519; UTF16 188063]     artifact bytes
+[21-30:P5520; UTF16 188082]     digest
+[21-30:P5521; UTF16 188093]     signature
+[21-30:P5522; UTF16 188107]     key binding
+[21-30:P5523; UTF16 188123]     algorithm
+[21-30:P5524; UTF16 188137]     security parameter
+[21-30:P5528; UTF16 188188]     exact digest computation
+[21-30:P5529; UTF16 188217]     signature verification
+[21-30:P5530; UTF16 188244]     key validity
+[21-30:P5531; UTF16 188261]     algorithm/version
+[21-30:P5532; UTF16 188283]     cryptographic modality
+[21-30:P5535; UTF16 188318]     EXACT BYTE/DIGEST REPORT
+[21-30:P5536; UTF16 188347]     COMPUTATIONALLY AUTHENTICATED
+[21-30:P5539; UTF16 188405] Never return semantic truth.
+[21-30:P5543; UTF16 188437] ALG-SEC8 — VerifyBootChain
+[21-30:P5545; UTF16 188470]     trust root
+[21-30:P5546; UTF16 188485]     boot stages
+[21-30:P5547; UTF16 188501]     allowlist
+[21-30:P5548; UTF16 188515]     measurements
+[21-30:P5549; UTF16 188532]     verification evidence
+[21-30:P5550; UTF16 188558]     freshness state
+[21-30:P5552; UTF16 188579] FOR each stage:
+[21-30:P5553; UTF16 188595]     verify predecessor identity
+[21-30:P5554; UTF16 188627]     verify next-stage authorization
+[21-30:P5555; UTF16 188663]     verify measurement
+[21-30:P5556; UTF16 188686]     verify no bypass under the modeled chain
+[21-30:P5559; UTF16 188739]     BOOT CHAIN VALID
+[21-30:P5560; UTF16 188760]     UNAUTHORIZED IMAGE
+[21-30:P5561; UTF16 188783]     BROKEN MEASUREMENT
+[21-30:P5566; UTF16 188821] ALG-SEC9 — CheckUpdateAndRollbackPolicy
+[21-30:P5568; UTF16 188867]     update package
+[21-30:P5569; UTF16 188886]     target device
+[21-30:P5570; UTF16 188904]     current version
+[21-30:P5571; UTF16 188924]     monotonic counter
+[21-30:P5573; UTF16 188960]     compatibility evidence
+[21-30:P5574; UTF16 188987]     migration evidence
+[21-30:P5578; UTF16 189037]     package authorization
+[21-30:P5579; UTF16 189063]     version ordering
+[21-30:P5580; UTF16 189084]     rollback rule
+[21-30:P5582; UTF16 189120]     migration preconditions
+[21-30:P5585; UTF16 189156]     UPDATE AUTHORIZED
+[21-30:P5586; UTF16 189178]     ROLLBACK REJECTED
+[21-30:P5587; UTF16 189200]     INCOMPATIBLE
+[21-30:P5593; UTF16 189244] ALG-SEC10 — BuildSBOM
+[21-30:P5595; UTF16 189272]     source tree
+[21-30:P5596; UTF16 189288]     build manifests
+[21-30:P5597; UTF16 189308]     package metadata
+[21-30:P5598; UTF16 189329]     binary analysis
+[21-30:P5599; UTF16 189349]     provenance records
+[21-30:P5600; UTF16 189372]     firmware composition
+[21-30:P5603; UTF16 189404]     dependency nodes
+[21-30:P5605; UTF16 189438]     producer relationships
+[21-30:P5606; UTF16 189465]     build-time and runtime edges
+[21-30:P5609; UTF16 189506]     SBOM
+[21-30:P5610; UTF16 189515]     COMPLETENESS CERTIFIED
+[21-30:P5611; UTF16 189542]     PARTIAL
+[21-30:P5616; UTF16 189569] ALG-SEC11 — CheckSupplyChainProvenance
+[21-30:P5619; UTF16 189627]     provenance DAG
+[21-30:P5620; UTF16 189646]     manufacturers
+[21-30:P5621; UTF16 189664]     build tools
+[21-30:P5622; UTF16 189680]     signers
+[21-30:P5623; UTF16 189692]     deployment records
+[21-30:P5626; UTF16 189723]     node identities
+[21-30:P5628; UTF16 189756]     production edges
+[21-30:P5629; UTF16 189777]     signatures
+[21-30:P5630; UTF16 189792]     source/build bindings
+[21-30:P5631; UTF16 189818]     hardware/software relationships
+[21-30:P5634; UTF16 189862]     PROVENANCE VERIFIED
+[21-30:P5635; UTF16 189886]     BROKEN CHAIN
+[21-30:P5641; UTF16 189933] ALG-SEC12 — CheckReproducibleBuild
+[21-30:P5643; UTF16 189974]     source
+[21-30:P5644; UTF16 189985]     toolchain
+[21-30:P5645; UTF16 189999]     configuration
+[21-30:P5646; UTF16 190017]     declared deterministic environment
+[21-30:P5647; UTF16 190056]     reference artifact
+[21-30:P5650; UTF16 190088] COMPARE exact outputs
+[21-30:P5653; UTF16 190118]     REPRODUCIBLE
+[21-30:P5654; UTF16 190135]     NONREPRODUCIBLE
+[21-30:P5655; UTF16 190155]     ENVIRONMENT MISMATCH
+[21-30:P5657; UTF16 190192] Do not return SAFE.
+[21-30:P5661; UTF16 190215] ALG-SEC13 — CheckInformationFlow
+[21-30:P5663; UTF16 190254]     transition system
+[21-30:P5664; UTF16 190276]     security domains
+[21-30:P5665; UTF16 190297]     low equivalence
+[21-30:P5666; UTF16 190317]     low observations
+[21-30:P5667; UTF16 190338]     action partition
+[21-30:P5668; UTF16 190359]     declassification policy
+[21-30:P5671; UTF16 190394]     output consistency
+[21-30:P5672; UTF16 190417]     low-step consistency
+[21-30:P5673; UTF16 190442]     local respect
+[21-30:P5674; UTF16 190460]     declassification authority and scope
+[21-30:P5677; UTF16 190509]     INFORMATION FLOW CERTIFIED
+[21-30:P5678; UTF16 190540]     COUNTEREXAMPLE TRACE
+[21-30:P5679; UTF16 190565]     OUTSIDE MODEL
+[21-30:P5684; UTF16 190598] ALG-SEC14 — BuildAdversaryFamily
+[21-30:P5686; UTF16 190637]     unresolved key compromises
+[21-30:P5687; UTF16 190668]     sensor compromises
+[21-30:P5688; UTF16 190691]     network influence
+[21-30:P5689; UTF16 190713]     software/hardware compromise
+[21-30:P5690; UTF16 190746]     identity uncertainty
+[21-30:P5691; UTF16 190771]     resource bounds
+[21-30:P5694; UTF16 190802]     every exact threat model consistent with evidence
+[21-30:P5696; UTF16 190857] IF family empty:
+[21-30:P5700; UTF16 190918]     adversary family
+[21-30:P5704; UTF16 190942] ALG-SEC15 — BuildAttackGraph
+[21-30:P5706; UTF16 190977]     protected claims
+[21-30:P5707; UTF16 190998]     abstract attacker capabilities
+[21-30:P5709; UTF16 191051]     system dependencies
+[21-30:P5710; UTF16 191075]     defensive boundaries
+[21-30:P5713; UTF16 191107]     abstract capability and claim-violation graph
+[21-30:P5715; UTF16 191158] DO NOT emit operational exploitation procedures
+[21-30:P5718; UTF16 191214]     defensive attack graph
+[21-30:P5719; UTF16 191241]     unresolved prerequisites
+[21-30:P5723; UTF16 191273] ALG-SEC16 — EnumerateMinimalAttackSets
+[21-30:P5725; UTF16 191318]     finite monotone attack system
+[21-30:P5727; UTF16 191353] GENERATE candidate capability sets
+[21-30:P5729; UTF16 191395]     attack success
+[21-30:P5730; UTF16 191414]     inclusion minimality
+[21-30:P5731; UTF16 191439]     completeness if claimed
+[21-30:P5734; UTF16 191475]     verified minimal attack sets
+[21-30:P5739; UTF16 191535] ALG-SEC17 — PlanSecurityHardening
+[21-30:P5741; UTF16 191575]     attack-set family
+[21-30:P5742; UTF16 191597]     candidate defensive actions
+[21-30:P5744; UTF16 191639]     safety effects
+[21-30:P5745; UTF16 191658]     availability effects
+[21-30:P5749; UTF16 191716]     exact weighted hitting set for bounded instances
+[21-30:P5750; UTF16 191769]     or propose verified nonminimal defenses
+[21-30:P5754; UTF16 191840]     VERIFIED HARDENING
+[21-30:P5760; UTF16 191893] ALG-SEC18 — CheckSensorTrust
+[21-30:P5762; UTF16 191928]     sensor message
+[21-30:P5763; UTF16 191947]     sensor identity
+[21-30:P5767; UTF16 192018]     physical plausibility model
+[21-30:P5768; UTF16 192050]     compromise hypotheses
+[21-30:P5770; UTF16 192077] CHECK separately
+[21-30:P5771; UTF16 192094]     authenticated origin
+[21-30:P5772; UTF16 192119]     message integrity
+[21-30:P5773; UTF16 192141]     freshness
+[21-30:P5775; UTF16 192171]     compromise state
+[21-30:P5776; UTF16 192192]     physical consistency
+[21-30:P5779; UTF16 192225]     AUTHENTICATED MESSAGE
+[21-30:P5780; UTF16 192251]     PHYSICALLY CERTIFIED MEASUREMENT
+[21-30:P5781; UTF16 192288]     SUSPECT SENSOR
+[21-30:P5787; UTF16 192333] ALG-SEC19 — AnalyzeByzantineSensorFusion
+[21-30:P5789; UTF16 192380]     sensor identities
+[21-30:P5790; UTF16 192402]     reports
+[21-30:P5791; UTF16 192414]     n
+[21-30:P5792; UTF16 192420]     Byzantine bound f
+[21-30:P5793; UTF16 192442]     identity-uniqueness evidence
+[21-30:P5794; UTF16 192475]     honest-agreement model
+[21-30:P5795; UTF16 192502]     fusion rule
+[21-30:P5797; UTF16 192519] VERIFY theorem preconditions
+[21-30:P5798; UTF16 192548] APPLY certified fusion rule
+[21-30:P5801; UTF16 192584]     FUSED VALUE CERTIFIED
+[21-30:P5802; UTF16 192610]     PRECONDITION FAILURE
+[21-30:P5807; UTF16 192653] ALG-SEC20 — CheckActuatorCommand
+[21-30:P5809; UTF16 192692]     command
+[21-30:P5814; UTF16 192778]     current physical state
+[21-30:P5815; UTF16 192805]     physical guard
+[21-30:P5818; UTF16 192831]     authentication
+[21-30:P5819; UTF16 192850]     authorization
+[21-30:P5821; UTF16 192882]     target/version
+[21-30:P5822; UTF16 192901]     state precondition
+[21-30:P5823; UTF16 192924]     physical safety
+[21-30:P5826; UTF16 192952]     COMMIT COMMAND
+[21-30:P5827; UTF16 192971]     AUTHENTICATION FAILURE
+[21-30:P5828; UTF16 192998]     AUTHORIZATION DENIED
+[21-30:P5830; UTF16 193034]     PHYSICALLY UNSAFE
+[21-30:P5835; UTF16 193071] ALG-SEC21 — BuildSecurityAugmentedODT
+[21-30:P5837; UTF16 193115]     Prompt-15 ODT state
+[21-30:P5838; UTF16 193139]     credential state
+[21-30:P5839; UTF16 193160]     software/firmware state
+[21-30:P5840; UTF16 193188]     sensor compromise family
+[21-30:P5841; UTF16 193217]     network trust
+[21-30:P5842; UTF16 193235]     threat family
+[21-30:P5843; UTF16 193253]     incident evidence
+[21-30:P5845; UTF16 193276] AUGMENT
+[21-30:P5846; UTF16 193284]     physical states
+[21-30:P5847; UTF16 193304]     cyber states
+[21-30:P5848; UTF16 193321]     sensor-health hypotheses
+[21-30:P5849; UTF16 193350]     attacker influence hypotheses
+[21-30:P5851; UTF16 193385] REMOVE a state only by checked inconsistency
+[21-30:P5854; UTF16 193438]     security-augmented ODT knowledge set
+[21-30:P5858; UTF16 193482] ALG-SEC22 — ComputeSecurityLease
+[21-30:P5860; UTF16 193521]     current security-augmented state
+[21-30:P5866; UTF16 193632]     evidence-validity horizons
+[21-30:P5867; UTF16 193663]     security claims
+[21-30:P5869; UTF16 193684] COMPUTE largest certified horizon for which:
+[21-30:P5870; UTF16 193729]     all reachable states satisfy claims
+[21-30:P5871; UTF16 193769]     all versions remain covered
+[21-30:P5872; UTF16 193801]     all credentials and roots remain valid
+[21-30:P5873; UTF16 193844]     threat assumptions remain applicable
+[21-30:P5876; UTF16 193893]     SECURITY LEASE
+[21-30:P5878; UTF16 193936]     renewal actions
+[21-30:P5882; UTF16 193959] ALG-SEC23 — RunIncidentResponse
+[21-30:P5884; UTF16 193997]     current incident state
+[21-30:P5885; UTF16 194024]     compromise family
+[21-30:P5886; UTF16 194046]     physical safety state
+[21-30:P5887; UTF16 194072]     response authority
+[21-30:P5888; UTF16 194095]     recovery actions
+[21-30:P5890; UTF16 194117] PLAN
+[21-30:P5891; UTF16 194122]     containment
+[21-30:P5892; UTF16 194138]     isolation
+[21-30:P5894; UTF16 194167]     rekey
+[21-30:P5895; UTF16 194177]     clean restoration
+[21-30:P5896; UTF16 194199]     replacement
+[21-30:P5897; UTF16 194215]     reattestation
+[21-30:P5898; UTF16 194233]     ODT reconstruction
+[21-30:P5902; UTF16 194283]     operational viability
+[21-30:P5904; UTF16 194323]     evidence preservation
+[21-30:P5907; UTF16 194357]     UPDATED INCIDENT STATE
+[21-30:P5908; UTF16 194384]     TRUST RESTORED
+[21-30:P5909; UTF16 194403]     PHYSICAL FUNCTION ONLY RESTORED
+[21-30:P5914; UTF16 194454] ALG-SEC24 — AuditForensicEvidence
+[21-30:P5916; UTF16 194494]     forensic artifact
+[21-30:P5918; UTF16 194527]     collection process
+[21-30:P5919; UTF16 194550]     digest/signature
+[21-30:P5920; UTF16 194571]     chain of custody
+[21-30:P5921; UTF16 194592]     timestamps
+[21-30:P5922; UTF16 194607]     external anchors
+[21-30:P5926; UTF16 194657]     integrity
+[21-30:P5927; UTF16 194671]     attribution
+[21-30:P5928; UTF16 194687]     collection scope
+[21-30:P5929; UTF16 194708]     custody
+[21-30:P5930; UTF16 194720]     temporal consistency
+[21-30:P5933; UTF16 194753]     FORENSICALLY SUPPORTED
+[21-30:P5934; UTF16 194780]     TAMPER DETECTED
+[21-30:P5935; UTF16 194800]     SCOPE LIMITED
+[21-30:P5936; UTF16 194818]     COMPLETENESS UNKNOWN
+[21-30:P5941; UTF16 194858] ALG-SEC25 — SecurityRCVOCInterface
+[21-30:P5943; UTF16 194922]     verify key status
+[21-30:P5944; UTF16 194944]     inspect firmware provenance
+[21-30:P5945; UTF16 194976]     validate one SBOM dependency
+[21-30:P5946; UTF16 195009]     remeasure a device
+[21-30:P5947; UTF16 195032]     inspect an anomalous sensor
+[21-30:P5948; UTF16 195064]     check one authorization rule
+[21-30:P5949; UTF16 195097]     refine the threat model
+[21-30:P5950; UTF16 195125]     reattest a controller
+[21-30:P5951; UTF16 195151]     verify one forensic artifact
+[21-30:P5954; UTF16 195194]     live security roots
+[21-30:P5955; UTF16 195218]     expected state-set reduction
+[21-30:P5956; UTF16 195251]     potential theory expansion
+[21-30:P5959; UTF16 195316]     downtime
+[21-30:P5961; UTF16 195347]     lease extension
+[21-30:P5966; UTF16 195402] ALG-SEC26 — RedTeamSecurityTheory
+[21-30:P5967; UTF16 195436] ATTACK assumptions such as:
+[21-30:P5968; UTF16 195464]     authentication without authorization
+[21-30:P5969; UTF16 195505]     replay
+[21-30:P5970; UTF16 195516]     stale or compromised keys
+[21-30:P5971; UTF16 195546]     missing dependencies
+[21-30:P5972; UTF16 195571]     excessive privilege
+[21-30:P5973; UTF16 195595]     sensor compromise
+[21-30:P5974; UTF16 195617]     Sybil identities
+[21-30:P5975; UTF16 195638]     unsafe authorized command
+[21-30:P5976; UTF16 195668]     incomplete logs
+[21-30:P5977; UTF16 195688]     circular trust
+[21-30:P5978; UTF16 195707]     unmodeled threat capability
+[21-30:P5981; UTF16 195747]     VERIFIED SECURITY BREAKER
+[21-30:P5982; UTF16 195777]     BOUNDED COVERAGE
+[21-30:P5987; UTF16 195813] ALG-SEC27 — IncrementalSecurityRecertification
+[21-30:P5988; UTF16 195860] Implements THM-SEC30.
+[21-30:P5992; UTF16 195885] ALG-SEC28 — CheckPCSEC
+[21-30:P5993; UTF16 195908] RETURN one or more exact modalities:
+[21-30:P5994; UTF16 195945]     SECURITY RELEASE CERTIFIED
+[21-30:P5995; UTF16 195976]     ROBUST THREAT SECURITY CERTIFIED
+[21-30:P5996; UTF16 196013]     AUTHENTICATION VALID
+[21-30:P5997; UTF16 196038]     AUTHORIZATION VALID
+[21-30:P6000; UTF16 196114]     UPDATE POLICY VALID
+[21-30:P6001; UTF16 196138]     SUPPLY CHAIN VERIFIED
+[21-30:P6002; UTF16 196164]     SECURITY LEASE ACTIVE
+[21-30:P6003; UTF16 196190]     INCIDENT ACTIVE
+[21-30:P6004; UTF16 196210]     COMPROMISE SUSPECTED
+[21-30:P6011; UTF16 196296] ALG-SEC29 — BuildPCSEC
+[21-30:P6013; UTF16 196325]     project state
+[21-30:P6015; UTF16 196361]     identities
+[21-30:P6020; UTF16 196434]     boot/update state
+[21-30:P6021; UTF16 196456]     information-flow policy
+[21-30:P6024; UTF16 196510]     ODT state
+[21-30:P6025; UTF16 196524]     incident state
+[21-30:P6026; UTF16 196543]     forensics
+[21-30:P6030; UTF16 196588]     all proof objects
+[21-30:P6031; UTF16 196610]     all versions
+[21-30:P6032; UTF16 196627]     all unresolved assumptions
+[21-30:P6035; UTF16 196663]     independent CheckPCSEC
+[21-30:P6038; UTF16 196698]     PCSEC
+[21-30:P6043; UTF16 196730] 48. Synthetic Worked Examples
+[21-30:P6044; UTF16 196760] Every system, value, identity, and event below is synthetic.
+[21-30:P6045; UTF16 196821] Example A — Authentication Without Authorization
+[21-30:P6046; UTF16 196870] Principal Alice authenticates using a valid credential.
+[21-30:P6047; UTF16 196926] Alice is permitted to read plant status.
+[21-30:P6048; UTF16 196967] Alice is not permitted to rewrite elevator-control firmware.
+[21-30:P6049; UTF16 197028] Authentication succeeds.
+[21-30:P6050; UTF16 197053] Authorization denies the firmware action.
+[21-30:P6054; UTF16 197098] Example B — Valid Signature, False Proposition
+[21-30:P6055; UTF16 197145] A credential-valid sensor controller signs:
+[21-30:P6056; UTF16 197189] Valve V is closed.
+[21-30:P6057; UTF16 197208] Physical inspection establishes that (V) is open.
+[21-30:P6058; UTF16 197258] The signature proves the bytes came through the accepted signing path under the key theory.
+[21-30:P6059; UTF16 197350] It does not make the proposition true.
+[21-30:P6063; UTF16 197392] Example C — Replay
+[21-30:P6064; UTF16 197411] A signed command:
+[21-30:P6065; UTF16 197429] [ \mathsf{OPEN} ]
+[21-30:P6066; UTF16 197447] is accepted at sequence (1).
+[21-30:P6067; UTF16 197476] The receiver stores no sequence state.
+[21-30:P6068; UTF16 197515] The same valid bytes are sent again.
+[21-30:P6069; UTF16 197552] The receiver accepts them again.
+[21-30:P6070; UTF16 197585] Adding a monotonic counter permits the second copy to be classified as replay.
+[21-30:P6074; UTF16 197667] Example D — Least Privilege Versus Emergency Safety
+[21-30:P6075; UTF16 197719] An emergency override privilege allows one operator to enter safe shutdown during a hazardous plant state.
+[21-30:P6076; UTF16 197826] Removing the privilege reduces ordinary attack surface.
+[21-30:P6077; UTF16 197882] It also makes emergency safety unreachable.
+[21-30:P6078; UTF16 197926] The correct policy problem is not:
+[21-30:P6079; UTF16 197961] [ \text{minimize permission count}. ]
+[21-30:P6081; UTF16 198006] [ \text{minimize permissions subject to required operational and safety traces}. ]
+[21-30:P6085; UTF16 198092] Example E — Finite Hash Collision
+[21-30:P6086; UTF16 198126] Use toy hash:
+[21-30:P6087; UTF16 198140] [ H: {m_1,m_2,m_3,m_4,m_5} \rightarrow {00,01,10,11}. ]
+[21-30:P6088; UTF16 198196] Five messages map to four outputs.
+[21-30:P6089; UTF16 198231] At least two messages share a digest.
+[21-30:P6093; UTF16 198272] Example F — Secure Boot
+[21-30:P6094; UTF16 198296] Synthetic chain:
+[21-30:P6095; UTF16 198313] [ B_0\rightarrow B_1\rightarrow B_2. ]
+[21-30:P6096; UTF16 198352] Each stage verifies the next against an allowlist.
+[21-30:P6097; UTF16 198403] THM-SEC8 proves all executed stages are authorized.
+[21-30:P6098; UTF16 198455] Image (B_2) nevertheless contains a synthetic logic defect.
+[21-30:P6099; UTF16 198515] Boot authorization remains valid.
+[21-30:P6100; UTF16 198549] Runtime security fails.
+[21-30:P6104; UTF16 198576] Example G — Anti-Rollback
+[21-30:P6105; UTF16 198602] Current version:
+[21-30:P6107; UTF16 198626] Install valid version:
+[21-30:P6109; UTF16 198656] Trusted counter becomes:
+[21-30:P6111; UTF16 198688] Later, signed version:
+[21-30:P6112; UTF16 198711] [ 3 ]
+[21-30:P6113; UTF16 198717] is presented.
+[21-30:P6114; UTF16 198731] Signature passes.
+[21-30:P6115; UTF16 198749] Version policy rejects because:
+[21-30:P6116; UTF16 198781] [ 3<5. ]
+[21-30:P6120; UTF16 198793] Example H — Incomplete SBOM
+[21-30:P6121; UTF16 198821] Actual dependencies:
+[21-30:P6122; UTF16 198842] [ {A,B,C}. ]
+[21-30:P6123; UTF16 198855] SBOM lists:
+[21-30:P6125; UTF16 198878] The absence of (C) from the SBOM is not proof that (C) is absent from the artifact.
+[21-30:P6129; UTF16 198965] Example I — Reproducible but Malicious Build
+[21-30:P6130; UTF16 199010] Two clean build machines use the same compromised deterministic compiler.
+[21-30:P6131; UTF16 199084] Both produce identical malicious artifact (M).
+[21-30:P6132; UTF16 199131] Reproducibility passes.
+[21-30:P6133; UTF16 199155] Toolchain benignity fails.
+[21-30:P6137; UTF16 199185] Example J — Deterministic Noninterference
+[21-30:P6138; UTF16 199227] States contain:
+[21-30:P6139; UTF16 199243] [ (h,\ell), ]
+[21-30:P6140; UTF16 199257] where (h) is high and (\ell) is low.
+[21-30:P6141; UTF16 199294] Low observer sees only (\ell).
+[21-30:P6142; UTF16 199325] High-only action changes (h) and leaves (\ell) unchanged.
+[21-30:P6143; UTF16 199383] Low action updates (\ell) independently of (h).
+[21-30:P6144; UTF16 199431] Output consistency, low-step consistency, and local respect hold.
+[21-30:P6145; UTF16 199497] THM-SEC15 proves high-only actions cannot affect low observations.
+[21-30:P6149; UTF16 199567] Example K — Authenticated Bad Sensor
+[21-30:P6150; UTF16 199604] Physical value:
+[21-30:P6152; UTF16 199628] Compromised but credential-valid sensor reports:
+[21-30:P6153; UTF16 199677] [ 75. ]
+[21-30:P6154; UTF16 199685] The message authenticates.
+[21-30:P6155; UTF16 199712] The physical measurement claim fails.
+[21-30:P6159; UTF16 199753] Example L — Byzantine Majority
+[21-30:P6161; UTF16 199789] [ n=5, \qquad f=2. ]
+[21-30:P6162; UTF16 199810] Three honest unique sensors report bit (1).
+[21-30:P6163; UTF16 199854] Two Byzantine sensors report (0).
+[21-30:P6165; UTF16 199897] [ 5\ge2(2)+1, ]
+[21-30:P6166; UTF16 199913] majority returns (1).
+[21-30:P6170; UTF16 199938] Example M — Sybil Failure
+[21-30:P6171; UTF16 199964] Three honest physical sensors have three identities.
+[21-30:P6172; UTF16 200017] One malicious physical device acquires four accepted logical identities.
+[21-30:P6173; UTF16 200090] The malicious device controls the counted majority.
+[21-30:P6174; UTF16 200142] The identity-uniqueness premise fails.
+[21-30:P6175; UTF16 200181] No majority certificate is valid.
+[21-30:P6179; UTF16 200218] Example N — Authorized but Unsafe Actuation
+[21-30:P6180; UTF16 200262] An authenticated, authorized operator requests:
+[21-30:P6181; UTF16 200310] [ \mathsf{PumpOff}. ]
+[21-30:P6182; UTF16 200332] The current physical state has no active backup pressure path.
+[21-30:P6183; UTF16 200395] Authorization passes.
+[21-30:P6184; UTF16 200417] Physical guard rejects.
+[21-30:P6188; UTF16 200444] Example O — Security and Safety Independence
+[21-30:P6189; UTF16 200489] Safe but insecure
+[21-30:P6190; UTF16 200507] A protected safety controller keeps every physical state safe.
+[21-30:P6191; UTF16 200570] A data channel leaks occupancy records.
+[21-30:P6192; UTF16 200610] Secure but unsafe
+[21-30:P6193; UTF16 200628] An isolated authenticated controller runs defective pressure logic.
+[21-30:P6194; UTF16 200696] No cyber attack occurs.
+[21-30:P6195; UTF16 200720] Physical failure occurs.
+[21-30:P6199; UTF16 200748] Example P — Hash-Chained Log Omission
+[21-30:P6200; UTF16 200786] Actual events:
+[21-30:P6202; UTF16 200818] Logger records only:
+[21-30:P6203; UTF16 200839] [ e_1,e_3. ]
+[21-30:P6204; UTF16 200852] Its chain is valid over those entries.
+[21-30:P6205; UTF16 200891] The log is tamper consistent and incomplete.
+[21-30:P6209; UTF16 200939] Example Q — Physical Recovery Without Trust Recovery
+[21-30:P6210; UTF16 200992] A compromised credential shuts down a synthetic plant.
+[21-30:P6211; UTF16 201047] An operator manually restarts the plant.

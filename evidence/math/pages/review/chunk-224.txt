@@ -1,0 +1,383 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P39188; UTF16 1310116]     (F : α → α) : Prop :=
+[21-30:P39189; UTF16 1310142]   ∀ ⦃x y⦄, x ≤ y → F x ≤ F y
+[21-30:P39190; UTF16 1310171] A Lean theorem may use a finite complete lattice and iterate (F) from ⊥ until stabilization:
+[21-30:P39191; UTF16 1310264] theorem finite_monotone_iter_reaches_lfp
+[21-30:P39192; UTF16 1310305]     [Finite α]
+[21-30:P39193; UTF16 1310320]     [CompleteLattice α]
+[21-30:P39194; UTF16 1310344]     (F : α → α)
+[21-30:P39195; UTF16 1310360]     (hF : Monotone F) :
+[21-30:P39196; UTF16 1310384]     ∃ n,
+[21-30:P39197; UTF16 1310393]       Function.iterate F n ⊥ =
+[21-30:P39198; UTF16 1310424]         sInf {x | F x ≤ x} := by
+[21-30:P39200; UTF16 1310463] The exact library representation may instead use OrderHom and an existing finite fixed-point lemma.
+[21-30:P39201; UTF16 1310563] Incremental and cold final checking
+[21-30:P39202; UTF16 1310599] def IncrementalFinalCheck
+[21-30:P39203; UTF16 1310625]     (changed : Finset NodeId)
+[21-30:P39204; UTF16 1310655]     (state : IntegratedState) :
+[21-30:P39205; UTF16 1310687]     FinalCheckResult :=
+[21-30:P39208; UTF16 1310718] def ColdFinalCheck
+[21-30:P39212; UTF16 1310799] theorem incremental_eq_cold
+[21-30:P39215; UTF16 1310887]     (hComplete : DependencyComplete state.dependencies)
+[21-30:P39216; UTF16 1310943]     (hInvalidate : CorrectInvalidation state changed)
+[21-30:P39217; UTF16 1310997]     (hApplicable : ReuseApplicabilityCorrect state changed)
+[21-30:P39218; UTF16 1311057]     (hDeterministic : CheckerDeterministic state.kernel)
+[21-30:P39219; UTF16 1311114]     (hSound : KernelSound state.kernel)
+[21-30:P39220; UTF16 1311154]     (hCycles : CyclesCertified state) :
+[21-30:P39221; UTF16 1311194]     IncrementalFinalCheck changed state
+[21-30:P39223; UTF16 1311242]     ColdFinalCheck state := by
+[21-30:P39225; UTF16 1311279] PCFAR
+[21-30:P39226; UTF16 1311285] structure PCFAR where
+[21-30:P39228; UTF16 1311329]   layerPackages : LayerId → PackageRef
+[21-30:P39229; UTF16 1311368]   sharedObjects : SharedObjectRegistry
+[21-30:P39230; UTF16 1311407]   claims : GlobalClaimStore
+[21-30:P39231; UTF16 1311435]   assumptions : AssumptionGraph
+[21-30:P39232; UTF16 1311467]   modalities : ModalityGraph
+[21-30:P39233; UTF16 1311496]   scopes : ScopeRegistry
+[21-30:P39234; UTF16 1311521]   waivers : WaiverStore
+[21-30:P39235; UTF16 1311545]   contradictions : ContradictionStore
+[21-30:P39237; UTF16 1311616]   cyclicCertificates : CyclicCertificateStore
+[21-30:P39238; UTF16 1311662]   kernel : TrustedKernelManifest
+[21-30:P39239; UTF16 1311695]   proofDag : ProofDag
+[21-30:P39240; UTF16 1311717]   finalMode : FinalMode
+[21-30:P39241; UTF16 1311741]   finalWitness : Option FinalWitness
+[21-30:P39247; UTF16 1311830] ￼
+ATTACHED TABLE 1737140; native row/column order; 33 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Layer registry", "Straightforward"]
+ROW 2: ["Global claim tokens", "Moderate"]
+ROW 3: ["Scope descriptors", "Moderate"]
+ROW 4: ["Scope compatibility", "Difficult"]
+ROW 5: ["Shared-object identity", "Difficult"]
+ROW 6: ["Trusted cross-representation translations", "Difficult"]
+ROW 7: ["Assumption graphs", "Moderate"]
+ROW 8: ["Assumption closure", "Moderate"]
+ROW 9: ["Assumption debt", "Moderate"]
+ROW 10: ["Modality-coercion graph", "Moderate"]
+ROW 11: ["Modal nonstrengthening", "Moderate"]
+ROW 12: ["Waiver/truth separation", "Straightforward"]
+ROW 13: ["Local/global witness distinction", "Moderate"]
+ROW 14: ["Pairwise/global incompatibility", "Straightforward"]
+ROW 15: ["Join-tree gluing", "Moderate"]
+ROW 16: ["Finding low-width join trees", "Difficult"]
+ROW 17: ["Arbitrary cyclic witness gluing", "Research-level"]
+ROW 18: ["Scope-aware contradiction detection", "Difficult"]
+ROW 19: ["Raw release-envelope lattice", "Straightforward"]
+ROW 20: ["Admissible-envelope characterization", "Difficult"]
+ROW 21: ["Theory-change semantics", "Difficult"]
+ROW 22: ["Quotient refinement", "Moderate"]
+ROW 23: ["Version-aware reuse", "Difficult"]
+ROW 24: ["Global conflict cores", "Difficult"]
+ROW 25: ["Finite monotone fixed points", "Moderate"]
+ROW 26: ["Nonmonotone assurance cycles", "Research-level"]
+ROW 27: ["Trusted-kernel reduction", "Difficult"]
+ROW 28: ["Proof-DAG sharing", "Moderate"]
+ROW 29: ["Global dependency closure", "Difficult"]
+ROW 30: ["End-to-end incremental recertification", "Research-level"]
+ROW 31: ["Final PCFAR checker", "Research-level"]
+ROW 32: ["Complete real-world assurance", "Impossible without bounded assumptions"]
+[21-30:P39251; UTF16 1311835] 44. Prompt-30 Complexity Profile
+[21-30:P39252; UTF16 1311868] DEF-INT42 — Prompt-30 Complexity Profile
+[21-30:P39253; UTF16 1311909] \left( N_L, N_P, N_C, N_A, N_X, N_D, K_{\mathrm{scope}}, K_{\mathrm{mod}}, K_{\mathrm{assump}}, K_{\mathrm{compat}}, K_{\mathrm{glue}}, K_{\mathrm{conflict}}, K_{\mathrm{theory}}, K_{\mathrm{waiver}}, K_{\mathrm{cycle}}, K_{\mathrm{kernel}}, K_{\mathrm{proof}}, C_{\mathrm{local}}, C_{\mathrm{compat}}, C_{\mathrm{assump}}, C_{\mathrm{mod}}, C_{\mathrm{cycle}}, C_{\mathrm{recert}}, C_{\mathrm{final}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unknown}} \right). } ]
+[21-30:P39255; UTF16 1312395] (N_L): lower-layer count;
+[21-30:P39256; UTF16 1312421] (N_P): package count;
+[21-30:P39257; UTF16 1312443] (N_C): global claim count;
+[21-30:P39258; UTF16 1312470] (N_A): assumption-node count;
+[21-30:P39259; UTF16 1312500] (N_X): shared-object count;
+[21-30:P39260; UTF16 1312528] (N_D): dependency-edge count;
+[21-30:P39261; UTF16 1312558] (K_{\mathrm{scope}}): scope-comparison complexity;
+[21-30:P39262; UTF16 1312609] (K_{\mathrm{mod}}): modality-graph complexity;
+[21-30:P39263; UTF16 1312656] (K_{\mathrm{assump}}): assumption-closure complexity;
+[21-30:P39264; UTF16 1312710] (K_{\mathrm{compat}}): cross-layer witness complexity;
+[21-30:P39265; UTF16 1312765] (K_{\mathrm{glue}}): witness-gluing complexity;
+[21-30:P39266; UTF16 1312813] (K_{\mathrm{conflict}}): contradiction and conflict-core complexity;
+[21-30:P39267; UTF16 1312882] (K_{\mathrm{theory}}): theory-change complexity;
+[21-30:P39268; UTF16 1312931] (K_{\mathrm{waiver}}): waiver-policy complexity;
+[21-30:P39269; UTF16 1312980] (K_{\mathrm{cycle}}): cyclic-assurance complexity;
+[21-30:P39270; UTF16 1313031] (K_{\mathrm{kernel}}): trusted-kernel complexity;
+[21-30:P39271; UTF16 1313081] (K_{\mathrm{proof}}): proof-DAG complexity;
+[21-30:P39272; UTF16 1313125] (C_{\mathrm{local}}): lower-layer checking cost;
+[21-30:P39273; UTF16 1313174] (C_{\mathrm{compat}}): compatibility-checking cost;
+[21-30:P39274; UTF16 1313226] (C_{\mathrm{assump}}): assumption-closure checking cost;
+[21-30:P39275; UTF16 1313283] (C_{\mathrm{mod}}): modality-checking cost;
+[21-30:P39276; UTF16 1313327] (C_{\mathrm{cycle}}): cyclic-assurance checking cost;
+[21-30:P39277; UTF16 1313381] (C_{\mathrm{recert}}): recursive-recertification cost;
+[21-30:P39278; UTF16 1313436] (C_{\mathrm{final}}): final-checker cost;
+[21-30:P39279; UTF16 1313478] (R_{\mathrm{change}}): changed global roots;
+[21-30:P39280; UTF16 1313523] (R_{\mathrm{recert}}): recertified global slice;
+[21-30:P39281; UTF16 1313572] (B_{\mathrm{unknown}}): unresolved final blockers.
+[21-30:P39282; UTF16 1313623] No scalar:
+[21-30:P39283; UTF16 1313634] confidence score;
+[21-30:P39284; UTF16 1313652] correctness percentage;
+[21-30:P39285; UTF16 1313676] project truth score;
+[21-30:P39286; UTF16 1313697] universal readiness score
+[21-30:P39287; UTF16 1313723] is defined.
+[21-30:P39292; UTF16 1313772] ￼
+ATTACHED TABLE 1737156; native row/column order; 26 rows
+ROW 0: ["ID", "Assumption"]
+ROW 1: ["ASSUMP-INT1", "Project Identity"]
+ROW 2: ["ASSUMP-INT2", "Layer-Package Validity"]
+ROW 3: ["ASSUMP-INT3", "Shared-Object Identity"]
+ROW 4: ["ASSUMP-INT4", "Scope Correctness"]
+ROW 5: ["ASSUMP-INT5", "Assumption-Graph Completeness"]
+ROW 6: ["ASSUMP-INT6", "Modality-Coercion Soundness"]
+ROW 7: ["ASSUMP-INT7", "Cross-Layer Compatibility"]
+ROW 8: ["ASSUMP-INT8", "Global-Gluing Correctness"]
+ROW 9: ["ASSUMP-INT9", "Contradiction Completeness"]
+ROW 10: ["ASSUMP-INT10", "Version Correctness"]
+ROW 11: ["ASSUMP-INT11", "Theory-Change Classification"]
+ROW 12: ["ASSUMP-INT12", "Experiment-Family Identity"]
+ROW 13: ["ASSUMP-INT13", "Waiver Authority"]
+ROW 14: ["ASSUMP-INT14", "Waiver Semantics"]
+ROW 15: ["ASSUMP-INT15", "Conditional-Release Fidelity"]
+ROW 16: ["ASSUMP-INT16", "Constitutional Fidelity"]
+ROW 17: ["ASSUMP-INT17", "Cyclic-Assurance Correctness"]
+ROW 18: ["ASSUMP-INT18", "Global Dependency Completeness"]
+ROW 19: ["ASSUMP-INT19", "Lower-Layer Checker Soundness"]
+ROW 20: ["ASSUMP-INT20", "Final Kernel Soundness"]
+ROW 21: ["ASSUMP-INT21", "Proposal Independence"]
+ROW 22: ["ASSUMP-INT22", "UNKNOWN Discipline"]
+ROW 23: ["ASSUMP-INT23", "Open-World Preservation"]
+ROW 24: ["ASSUMP-INT24", "Final Checker Identity"]
+ROW 25: ["ASSUMP-INT25", "Final Independent Checking"]
+[21-30:P39297; UTF16 1313811] ￼
+ATTACHED TABLE 1737172; native row/column order; 43 rows
+ROW 0: ["ID", "Definition"]
+ROW 1: ["DEF-INT1", "ANANKE Layer Index Set"]
+ROW 2: ["DEF-INT2", "ANANKE Constitutional Rule Set"]
+ROW 3: ["DEF-INT3", "Integrated ANANKE Constitutional State"]
+ROW 4: ["DEF-INT4", "Global Claim Token"]
+ROW 5: ["DEF-INT5", "Scope Descriptor"]
+ROW 6: ["DEF-INT6", "Scope Compatibility"]
+ROW 7: ["DEF-INT7", "Global Assumption Node"]
+ROW 8: ["DEF-INT8", "Assumption Closure"]
+ROW 9: ["DEF-INT9", "Assumption Debt"]
+ROW 10: ["DEF-INT10", "Trusted Modality-Coercion Relation"]
+ROW 11: ["DEF-INT11", "Modal Derivation Path"]
+ROW 12: ["DEF-INT12", "Proof Status"]
+ROW 13: ["DEF-INT13", "Requirement Disposition"]
+ROW 14: ["DEF-INT14", "Waiver or Exception Artifact"]
+ROW 15: ["DEF-INT15", "Shared Project Object"]
+ROW 16: ["DEF-INT16", "Shared Object Registry"]
+ROW 17: ["DEF-INT17", "Local Witness Family"]
+ROW 18: ["DEF-INT18", "Cross-Layer Witness Compatibility"]
+ROW 19: ["DEF-INT19", "Global Witness"]
+ROW 20: ["DEF-INT20", "Layer Interaction Bags"]
+ROW 21: ["DEF-INT21", "Running-Intersection Property"]
+ROW 22: ["DEF-INT22", "Scope-Aware Contradiction"]
+ROW 23: ["DEF-INT23", "Claim Universe"]
+ROW 24: ["DEF-INT24", "Release Claim Envelope"]
+ROW 25: ["DEF-INT25", "Admissible Release Envelope"]
+ROW 26: ["DEF-INT26", "Theory Version"]
+ROW 27: ["DEF-INT27", "Constraint Strengthening"]
+ROW 28: ["DEF-INT28", "Experiment Family"]
+ROW 29: ["DEF-INT29", "Global Constitutional Conflict Core"]
+ROW 30: ["DEF-INT30", "Constitutional Repair"]
+ROW 31: ["DEF-INT31", "Assurance State Lattice"]
+ROW 32: ["DEF-INT32", "Cyclic Assurance Operator"]
+ROW 33: ["DEF-INT33", "ANANKE Trusted Kernel"]
+ROW 34: ["DEF-INT34", "Global Proof DAG"]
+ROW 35: ["DEF-INT35", "Exact Semantic Content Identity"]
+ROW 36: ["DEF-INT36", "Final ANANKE Release Mode"]
+ROW 37: ["DEF-INT37", "Unconditional Release Predicate"]
+ROW 38: ["DEF-INT38", "Conditional Release Predicate"]
+ROW 39: ["DEF-INT39", "Global ANANKE Dependency Graph"]
+ROW 40: ["DEF-INT40", "Global ANANKE Release Fiber"]
+ROW 41: ["DEF-INT41", "PCFAR"]
+ROW 42: ["DEF-INT42", "Prompt-30 Complexity Profile"]
+[21-30:P39302; UTF16 1313847] ￼
+ATTACHED TABLE 1737188; native row/column order; 26 rows
+ROW 0: ["ID", "Theorem", "Status"]
+ROW 1: ["THM-INT1", "Opposite propositions on disjoint scopes need not conflict", "Proved"]
+ROW 2: ["THM-INT2", "Assumption-closure soundness", "Proved under explicit assumptions"]
+ROW 3: ["THM-INT3", "Mandatory assumption debt blocks unconditional release", "Proved"]
+ROW 4: ["THM-INT4", "Modal nonstrengthening", "Proved"]
+ROW 5: ["THM-INT5", "Waiver does not prove waived proposition", "Proved"]
+ROW 6: ["THM-INT6", "Conditional and unconditional release are distinct", "Proved"]
+ROW 7: ["THM-INT7", "Local-fiber nonemptiness does not imply global nonemptiness", "Proved"]
+ROW 8: ["THM-INT8", "Pairwise satisfiability does not imply global satisfiability", "Proved"]
+ROW 9: ["THM-INT9", "Join-tree witness gluing", "Proved under explicit assumptions"]
+ROW 10: ["THM-INT10", "Scope-compatible contradiction empties global witness set", "Proved"]
+ROW 11: ["THM-INT11", "Raw claim envelopes form a complete lattice", "Proved"]
+ROW 12: ["THM-INT12", "Admissible release envelopes need not be join closed", "Proved"]
+ROW 13: ["THM-INT13", "Constraint strengthening shrinks feasible set", "Proved"]
+ROW 14: ["THM-INT14", "Experiment-family expansion refines contextual equivalence", "Proved"]
+ROW 15: ["THM-INT15", "Changed dependency invalidates stale reuse absent transport theorem", "Proved"]
+ROW 16: ["THM-INT16", "Inconsistent premises require an actual change for repair", "Proved"]
+ROW 17: ["THM-INT17", "Finite monotone assurance iteration reaches the least fixed point", "Proved"]
+ROW 18: ["THM-INT18", "Fixed-point convergence does not establish model completeness", "Proved"]
+ROW 19: ["THM-INT19", "Trusted-kernel soundness is independent of proposal correctness", "Proved under kernel-soundness assumption"]
+ROW 20: ["THM-INT20", "Exact proof-node sharing preserves derivability", "Proved"]
+ROW 21: ["THM-INT21", "End-to-end incremental recertification equals cold checking", "Proved under explicit assumptions"]
+ROW 22: ["THM-INT22", "Final End-to-End ANANKE Constitutional Release Theorem", "Proved under 50 hypotheses"]
+ROW 23: ["THM-INT23", "Global open-world limitation", "Proved"]
+ROW 24: ["THM-INT24", "Final proposal-source independence", "Proved"]
+ROW 25: ["THM-INT25", "Explicit PCFAR checking complexity", "Proved"]
+[21-30:P39306; UTF16 1313852] 48. Algorithm Registry
+[21-30:P39307; UTF16 1313875] ￼
+ATTACHED TABLE 1737204; native row/column order; 32 rows
+ROW 0: ["ID", "Algorithm"]
+ROW 1: ["ALG-INT1", "ConstitutionalRCVOCInterface"]
+ROW 2: ["ALG-INT2", "AuditProgramRegistry"]
+ROW 3: ["ALG-INT3", "BuildGlobalClaimRegistry"]
+ROW 4: ["ALG-INT4", "BuildSharedObjectRegistry"]
+ROW 5: ["ALG-INT5", "CheckScopeCompatibility"]
+ROW 6: ["ALG-INT6", "BuildGlobalAssumptionGraph"]
+ROW 7: ["ALG-INT7", "ComputeAssumptionClosure"]
+ROW 8: ["ALG-INT8", "ComputeAssumptionDebt"]
+ROW 9: ["ALG-INT9", "BuildModalityCoercionGraph"]
+ROW 10: ["ALG-INT10", "CheckModalNonstrengthening"]
+ROW 11: ["ALG-INT11", "FindCrossLayerContradictions"]
+ROW 12: ["ALG-INT12", "CheckGlobalWitnessCompatibility"]
+ROW 13: ["ALG-INT13", "BuildWitnessJoinTree"]
+ROW 14: ["ALG-INT14", "CheckWitnessGluing"]
+ROW 15: ["ALG-INT15", "BuildReleaseEnvelope"]
+ROW 16: ["ALG-INT16", "CheckReleaseEnvelopeAdmissibility"]
+ROW 17: ["ALG-INT17", "AuditWaiver"]
+ROW 18: ["ALG-INT18", "ClassifyFinalReleaseMode"]
+ROW 19: ["ALG-INT19", "ProcessTheoryChange"]
+ROW 20: ["ALG-INT20", "RefineContextualQuotients"]
+ROW 21: ["ALG-INT21", "BuildGlobalDependencyGraph"]
+ROW 22: ["ALG-INT22", "SolveCyclicAssurance"]
+ROW 23: ["ALG-INT23", "AuditTrustedKernel"]
+ROW 24: ["ALG-INT24", "CompressProofDAG"]
+ROW 25: ["ALG-INT25", "FindGlobalConflictCore"]
+ROW 26: ["ALG-INT26", "GenerateConstitutionalRepairFrontier"]
+ROW 27: ["ALG-INT27", "RedTeamANANKEConstitution"]
+ROW 28: ["ALG-INT28", "IncrementalEndToEndRecertification"]
+ROW 29: ["ALG-INT29", "ColdCheckANANKE"]
+ROW 30: ["ALG-INT30", "CheckFinalANANKERelease"]
+ROW 31: ["ALG-INT31", "BuildPCFAR"]
+[21-30:P39312; UTF16 1313904] CONJ-INT1 — Sparse Cross-Layer Coupling
+[21-30:P39313; UTF16 1313944] Most lower-layer packages interact through a small shared-object set.
+[21-30:P39314; UTF16 1314014] Falsification: almost every internal variable becomes globally cross-layer relevant.
+[21-30:P39315; UTF16 1314099] CONJ-INT2 — Global Witness Gluing Is Usually Locally Structured
+[21-30:P39316; UTF16 1314163] Useful projects admit sparse compatibility structures sufficiently close to tree decompositions for practical gluing.
+[21-30:P39317; UTF16 1314281] Falsification: ordinary projects exhibit dense inseparable global compatibility.
+[21-30:P39318; UTF16 1314362] CONJ-INT3 — Assumption Debt Is Concentrated
+[21-30:P39319; UTF16 1314406] A moderate number of unresolved assumptions usually controls final release.
+[21-30:P39320; UTF16 1314482] Falsification: final assurance depends on thousands of equally critical unresolved assumptions.
+[21-30:P39321; UTF16 1314578] CONJ-INT4 — Modal Errors Are Mechanically Detectable
+[21-30:P39322; UTF16 1314631] Most accidental overclaims can be caught by explicit modality typing.
+[21-30:P39323; UTF16 1314701] Falsification: important semantic strengthening routinely escapes the modality registry.
+[21-30:P39324; UTF16 1314790] CONJ-INT5 — Theory Changes Usually Have Sparse Dependency Cones
+[21-30:P39325; UTF16 1314854] Most theory changes reopen only a bounded proof slice.
+[21-30:P39326; UTF16 1314909] Falsification: ordinary changes repeatedly force complete recertification.
+[21-30:P39327; UTF16 1314984] CONJ-INT6 — Cyclic Assurance Components Are Small
+[21-30:P39328; UTF16 1315034] Most assurance cycles can be encapsulated in moderate checked fixed-point or reachability nodes.
+[21-30:P39329; UTF16 1315131] Falsification: one giant inseparable cycle dominates the project.
+[21-30:P39330; UTF16 1315197] CONJ-INT7 — Trusted Kernel Can Remain Small
+[21-30:P39331; UTF16 1315241] A comparatively small kernel can validate artifacts generated by highly sophisticated untrusted synthesis systems.
+[21-30:P39332; UTF16 1315356] Falsification: sound checking requires trusting most solver internals.
+[21-30:P39333; UTF16 1315427] CONJ-INT8 — Proof-DAG Sharing Is Material
+[21-30:P39334; UTF16 1315469] Shared subproofs substantially reduce proof-storage and checking duplication.
+[21-30:P39335; UTF16 1315547] Falsification: nearly every proof node remains semantically unique.
+[21-30:P39336; UTF16 1315615] CONJ-INT9 — Incremental Final Recertification Usually Dominates Cold Checking
+[21-30:P39337; UTF16 1315693] Routine changes can be recertified much faster than full reconstruction.
+[21-30:P39338; UTF16 1315766] Falsification: dependency cones repeatedly approach the entire program.
+[21-30:P39339; UTF16 1315838] CONJ-INT10 — Practical End-to-End Hotel PCFAR
+[21-30:P39340; UTF16 1315884] The synthetic 190-room hotel admits a practical complete PCFAR.
+[21-30:P39341; UTF16 1315948] Falsification: global compatibility, assumption closure, or proof-DAG complexity becomes prohibitive.
+[21-30:P39345; UTF16 1316053] 50. Dependency DAG — Prompts 1–30
+[21-30:P39365; UTF16 1316343] proof-carrying reduced multiphysics
+[21-30:P39385; UTF16 1316591] whole-project assurance
+[21-30:P39463; UTF16 1317623] social choice,
+[21-30:P39471; UTF16 1317756] Prompt 30 expands as:
+[21-30:P39472; UTF16 1317778] DEF-INT1–6
+[21-30:P39473; UTF16 1317789] layers,
+[21-30:P39474; UTF16 1317797] constitution,
+[21-30:P39475; UTF16 1317811] integrated state,
+[21-30:P39476; UTF16 1317829] claims,
+[21-30:P39480; UTF16 1317863] THM-INT1
+[21-30:P39481; UTF16 1317872] scope-aware contradiction
+[21-30:P39484; UTF16 1317918] DEF-INT7–9
+[21-30:P39485; UTF16 1317929] assumptions,
+[21-30:P39486; UTF16 1317942] closure,
+[21-30:P39487; UTF16 1317951] debt
+[21-30:P39491; UTF16 1318016] INT2                  INT3
+[21-30:P39492; UTF16 1318043] closure soundness     debt blocks release
+[21-30:P39495; UTF16 1318105] DEF-INT10–14
+[21-30:P39497; UTF16 1318130] proof status,
+[21-30:P39498; UTF16 1318144] disposition,
+[21-30:P39499; UTF16 1318157] waivers
+[21-30:P39503; UTF16 1318225] INT4 INT5            INT6
+[21-30:P39504; UTF16 1318251] modal waiver          conditional
+[21-30:P39505; UTF16 1318285] law   truth law       release
+[21-30:P39508; UTF16 1318335] DEF-INT15–21
+[21-30:P39509; UTF16 1318348] shared objects,
+[21-30:P39510; UTF16 1318364] witnesses,
+[21-30:P39511; UTF16 1318375] join structure
+[21-30:P39513; UTF16 1318400]    ┌────┼───────────────┬───────────────┐
+[21-30:P39514; UTF16 1318442]    ▼    ▼               ▼               ▼
+[21-30:P39515; UTF16 1318484] INT7 INT8            INT9            INT10
+[21-30:P39516; UTF16 1318527] local pairwise        gluing          contradiction
+[21-30:P39519; UTF16 1318599] DEF-INT23–25
+[21-30:P39520; UTF16 1318612] claim envelopes,
+[21-30:P39521; UTF16 1318629] admissibility
+[21-30:P39525; UTF16 1318703] INT11                INT12
+[21-30:P39526; UTF16 1318730] raw lattice          admissible-join limit
+[21-30:P39529; UTF16 1318793] DEF-INT26–28
+[21-30:P39530; UTF16 1318806] theories,
+[21-30:P39531; UTF16 1318816] constraints,
+[21-30:P39532; UTF16 1318829] experiments
+[21-30:P39536; UTF16 1318901] INT13 INT14         INT15
+[21-30:P39537; UTF16 1318927] constraint quotient   reuse
+[21-30:P39538; UTF16 1318955] monotonicity refinement
+[21-30:P39541; UTF16 1318999] DEF-INT29–32
+[21-30:P39544; UTF16 1319032] cyclic assurance
+[21-30:P39548; UTF16 1319109] INT16 INT17         INT18
+[21-30:P39549; UTF16 1319135] repair fixed point   model limit
+[21-30:P39552; UTF16 1319188] DEF-INT33–35
+[21-30:P39553; UTF16 1319201] trusted kernel,
+[21-30:P39554; UTF16 1319217] proof DAG
+[21-30:P39558; UTF16 1319287] INT19                INT20
+[21-30:P39559; UTF16 1319314] kernel soundness     DAG sharing
+[21-30:P39562; UTF16 1319367] DEF-INT36–39
+[21-30:P39563; UTF16 1319380] final modes,
+[21-30:P39564; UTF16 1319393] global dependencies
+[21-30:P39567; UTF16 1319433] INT21
+[21-30:P39571; UTF16 1319478] DEF-INT40–41
+[21-30:P39572; UTF16 1319491] global fiber,
+[21-30:P39576; UTF16 1319531] INT22
+[21-30:P39577; UTF16 1319537] FINAL END-TO-END
+[21-30:P39578; UTF16 1319554] ANANKE RELEASE THEOREM
+[21-30:P39582; UTF16 1319637] INT23 INT24         INT25
+[21-30:P39585; UTF16 1319725] Explicit final-theorem dependency map
+[21-30:P39586; UTF16 1319763] Prompt 1 supplies type and semantic identity.
+[21-30:P39587; UTF16 1319809] Prompt 2 supplies contextual equivalence and quotient transport.
+[21-30:P39588; UTF16 1319874] Prompt 3 supplies decision-separator structure.
+[21-30:P39589; UTF16 1319922] Prompt 4 supplies refinement after counterexamples.
+[21-30:P39590; UTF16 1319974] Prompt 5 supplies uncertainty modalities.
+[21-30:P39591; UTF16 1320016] Prompt 6 supplies checked reduced physics.
+[21-30:P39592; UTF16 1320059] Prompt 7 supplies rewrite-aware certificate reuse.
+[21-30:P39594; UTF16 1320153] Prompt 9 supplies value-of-computation scheduling.
+[21-30:P39595; UTF16 1320204] Prompt 10 supplies adversarial Claim Breakers.
+[21-30:P39597; UTF16 1320306] Prompt 12 supplies architectural sovereignty.
+[21-30:P39598; UTF16 1320352] Prompt 13 supplies materialization witnesses.
+[21-30:P39599; UTF16 1320398] Prompt 14 supplies physical execution and as-built evidence.
+[21-30:P39600; UTF16 1320459] Prompt 15 supplies operational-twin state.
+[21-30:P39601; UTF16 1320502] Prompt 16 supplies population and transfer modalities.
+[21-30:P39602; UTF16 1320557] Prompt 17 supplies reliability, resilience, and dependence.
+[21-30:P39603; UTF16 1320617] Prompt 18 supplies economic execution.
+[21-30:P39604; UTF16 1320656] Prompt 19 supplies commitment and nonanticipativity.
+[21-30:P39605; UTF16 1320709] Prompt 20 supplies multi-party governance.
+[21-30:P39606; UTF16 1320752] Prompt 21 supplies regulatory authority.
+[21-30:P39607; UTF16 1320793] Prompt 22 supplies cyber-physical trust.
+[21-30:P39608; UTF16 1320834] Prompt 23 supplies privacy and data governance.
+[21-30:P39609; UTF16 1320882] Prompt 24 supplies human-operational execution.
+[21-30:P39610; UTF16 1320930] Prompt 25 supplies commissioning, acceptance, and handover.
+[21-30:P39611; UTF16 1320990] Prompt 26 supplies lifecycle integrity.
+[21-30:P39612; UTF16 1321030] Prompt 27 supplies environmental performance and climate semantics.
+[21-30:P39613; UTF16 1321098] Prompt 28 supplies system-of-systems feasibility and externalities.
+[21-30:P39614; UTF16 1321166] Prompt 29 supplies societal allocation, collective choice, and procedural validity.
+[21-30:P39615; UTF16 1321250] Prompt 30 governs how all preceding outputs may be jointly consumed.
+[21-30:P39620; UTF16 1321351] Constitutional-state semantics
+[21-30:P39621; UTF16 1321382] The constitutional state is a typed tuple rather than one scalar confidence score.
+[21-30:P39622; UTF16 1321465] The constitutional state contains all lower-layer theories.
+[21-30:P39623; UTF16 1321525] The constitutional state contains all lower-layer packages.
+[21-30:P39624; UTF16 1321585] The constitutional state contains a global claim registry.
+[21-30:P39625; UTF16 1321644] The constitutional state contains a global assumption graph.
+[21-30:P39626; UTF16 1321705] The constitutional state contains a modality graph.
+[21-30:P39627; UTF16 1321757] The constitutional state contains a shared-object registry.
+[21-30:P39628; UTF16 1321817] The constitutional state contains a global dependency graph.

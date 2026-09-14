@@ -1,0 +1,326 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P15863; UTF16 519878] 26. Regression Recertification
+[21-30:P15864; UTF16 519909] DEF-ACC24 — Acceptance Regression Cone
+[21-30:P15865; UTF16 519948] For changed roots (\Delta), define:
+[21-30:P15866; UTF16 519984] [ \boxed{ \operatorname{RegCone}(\Delta) } ]
+[21-30:P15867; UTF16 520029] as every acceptance, measurement, test, integration, readiness, or handover claim transitively dependent on (\Delta).
+[21-30:P15871; UTF16 520150] THM-ACC16 — Dependency-Complete Regression Recertification Is Sufficient for Restoring Acceptance Claims
+[21-30:P15873; UTF16 520267] all changed roots (\Delta) are known;
+[21-30:P15875; UTF16 520339] every certificate in (\operatorname{RegCone}(\Delta)) is invalidated;
+[21-30:P15876; UTF16 520409] every invalidated node is recomputed under the updated artifact or validly reused through a checked invariance rule;
+[21-30:P15877; UTF16 520526] every mandatory recomputed root passes.
+[21-30:P15879; UTF16 520577] Every mandatory acceptance root has the same result it would obtain from cold recertification.
+[21-30:P15881; UTF16 520678] Encapsulate checked cyclic subsystems as atomic proof nodes and topologically order the resulting DAG.
+[21-30:P15882; UTF16 520781] At each changed root, both regression checking and cold checking use the same updated value.
+[21-30:P15883; UTF16 520874] Assume both procedures agree on all predecessors of node (v).
+[21-30:P15884; UTF16 520936] If (v) lies outside the regression cone, completeness of dependencies shows no changed root can influence it. Its version and applicability remain valid, so reuse equals cold checking.
+[21-30:P15885; UTF16 521121] If (v) lies inside the cone, both procedures apply the same local checker to identical predecessor values.
+[21-30:P15886; UTF16 521228] Thus both procedures agree at (v).
+[21-30:P15887; UTF16 521263] Induction over the topological order yields agreement at every root.
+[21-30:P15888; UTF16 521332] Because every mandatory root passes, acceptance is restored under the updated theory. ∎
+[21-30:P15892; UTF16 521423] 27. Subsystem Versus Integrated-System Acceptance
+[21-30:P15893; UTF16 521473] THM-ACC17 — Passing Every Subsystem Test Does Not Imply Integrated-System Acceptance
+[21-30:P15895; UTF16 521581] Subsystem (A) requires:
+[21-30:P15897; UTF16 521611] units of shared resource when active.
+[21-30:P15898; UTF16 521649] Subsystem (B) also requires:
+[21-30:P15899; UTF16 521678] [ 6. ]
+[21-30:P15900; UTF16 521685] Each is independently tested against local requirement:
+[21-30:P15901; UTF16 521741] [ \text{resource demand}\le10. ]
+[21-30:P15902; UTF16 521774] Both pass:
+[21-30:P15903; UTF16 521785] [ 6\le10. ]
+[21-30:P15904; UTF16 521797] When integrated and active together, the shared resource has total capacity:
+[21-30:P15906; UTF16 521882] Combined demand is:
+[21-30:P15907; UTF16 521902] [ 6+6=12>10. ]
+[21-30:P15908; UTF16 521917] Therefore each subsystem is individually accepted while the integrated system violates the shared-resource requirement.
+[21-30:P15910; UTF16 522044] [ \boxed{ \text{subsystem acceptance} \not\Longrightarrow \text{integrated-system acceptance}. } ]
+[21-30:P15915; UTF16 522148] 28. Compositional Integrated Acceptance
+[21-30:P15916; UTF16 522188] DEF-ACC25 — Integration Interface Contract
+[21-30:P15917; UTF16 522231] An Integration Interface Contract specifies:
+[21-30:P15918; UTF16 522276] exchanged variables;
+[21-30:P15922; UTF16 522334] guarantees;
+[21-30:P15923; UTF16 522346] interaction constraints;
+[21-30:P15928; UTF16 522383] THM-ACC18 — Subsystem Acceptance Plus Complete Checked Interface Contracts Establishes Integrated Acceptance Under Explicit Compositional Assumptions
+[21-30:P15929; UTF16 522533] Formal setting
+[21-30:P15930; UTF16 522548] Let the integrated-system behavior space be:
+[21-30:P15931; UTF16 522593] [ \mathcal B \subseteq \mathcal B_1 \times\cdots\times \mathcal B_n \times \mathcal I, ]
+[21-30:P15933; UTF16 522689] (\mathcal B_i) is subsystem (i)’s complete covered behavior;
+[21-30:P15934; UTF16 522750] (\mathcal I) is the checked interface and shared-resource behavior.
+[21-30:P15935; UTF16 522818] For each subsystem (i), let:
+[21-30:P15936; UTF16 522847] (A_i(b)): interface assumption;
+[21-30:P15937; UTF16 522879] (G_i(b)): local guarantee.
+[21-30:P15938; UTF16 522906] Let (G_{\mathrm{global}}(b)) be the complete integrated acceptance predicate.
+[21-30:P15940; UTF16 522996] Local assume-guarantee certificates [ \forall b\in\mathcal B, \quad A_i(b)\Longrightarrow G_i(b) \qquad \text{for every }i. ]
+[21-30:P15941; UTF16 523122] Interface-assumption closure [ \forall b\in\mathcal B, \quad \bigwedge_{i=1}^{n}A_i(b). ]
+[21-30:P15942; UTF16 523212] Global completeness [ \forall b\in\mathcal B, \quad \left( \bigwedge_{i=1}^{n}G_i(b) \land I_{\mathrm{global}}(b) \right) \Longrightarrow G_{\mathrm{global}}(b), ] where (I_{\mathrm{global}}) contains every declared system-level interaction constraint not assigned to a local guarantee.
+[21-30:P15943; UTF16 523499] Global interface checker [ \forall b\in\mathcal B, \quad I_{\mathrm{global}}(b). ]
+[21-30:P15944; UTF16 523582] (\mathcal B) contains every actual covered integrated behavior.
+[21-30:P15946; UTF16 523657] [ \boxed{ \forall b\in\mathcal B, \quad G_{\mathrm{global}}(b). } ]
+[21-30:P15948; UTF16 523731] Take arbitrary:
+[21-30:P15951; UTF16 523784] [ A_i(b) ]
+[21-30:P15952; UTF16 523795] holds for every (i).
+[21-30:P15953; UTF16 523816] By assumption 1:
+[21-30:P15954; UTF16 523833] [ G_i(b) ]
+[21-30:P15956; UTF16 523865] By assumption 4:
+[21-30:P15957; UTF16 523882] [ I_{\mathrm{global}}(b) ]
+[21-30:P15959; UTF16 523916] Apply assumption 3:
+[21-30:P15960; UTF16 523936] [ G_{\mathrm{global}}(b). ]
+[21-30:P15961; UTF16 523964] Because (b) was arbitrary, every covered integrated behavior satisfies the global requirement. ∎
+[21-30:P15962; UTF16 524061] Cyclic assumptions
+[21-30:P15963; UTF16 524080] If interface assumptions depend cyclically on subsystem guarantees, assumption 2 must be discharged by:
+[21-30:P15964; UTF16 524184] a separately checked global invariant;
+[21-30:P15965; UTF16 524223] a checked fixed point;
+[21-30:P15966; UTF16 524246] or another sound cyclic assume-guarantee rule.
+[21-30:P15967; UTF16 524293] The theorem does not license circular reasoning from:
+[21-30:P15968; UTF16 524347] [ A_i\Rightarrow G_i ]
+[21-30:P15970; UTF16 524375] [ G_i\Rightarrow A_i ]
+[21-30:P15971; UTF16 524398] without an independent existence and closure certificate.
+[21-30:P15975; UTF16 524459] 29. Statistical Acceptance Sampling
+[21-30:P15976; UTF16 524495] DEF-ACC26 — Finite Lot
+[21-30:P15977; UTF16 524518] A Finite Lot contains:
+[21-30:P15978; UTF16 524541] [ N ]
+[21-30:P15979; UTF16 524547] items, exactly:
+[21-30:P15980; UTF16 524563] [ K ]
+[21-30:P15981; UTF16 524569] of which are nonconforming under a declared binary criterion.
+[21-30:P15985; UTF16 524634] DEF-ACC27 — Sampling Plan
+[21-30:P15986; UTF16 524660] Sample:
+[21-30:P15987; UTF16 524668] [ n ]
+[21-30:P15988; UTF16 524674] distinct items uniformly without replacement.
+[21-30:P15991; UTF16 524731] be the number of nonconforming sampled items.
+[21-30:P15992; UTF16 524777] Accept the lot iff:
+[21-30:P15993; UTF16 524797] [ \boxed{ X\le c. } ]
+[21-30:P15994; UTF16 524819] The sampling mechanism is part of the certificate.
+[21-30:P15998; UTF16 524873] 30. Hypergeometric Acceptance Probability
+[21-30:P15999; UTF16 524915] THM-ACC19 — Exact Finite-Lot Acceptance Probability
+[21-30:P16001; UTF16 524977] Under uniform sampling without replacement:
+[21-30:P16002; UTF16 525021] \sum_{i=0}^{c} \frac{ \binom Ki \binom{N-K}{n-i} }{ \binom Nn }, } ]
+[21-30:P16003; UTF16 525090] with impossible binomial terms interpreted as zero.
+[21-30:P16006; UTF16 525159] [ \binom Nn ]
+[21-30:P16007; UTF16 525173] equally likely (n)-item samples.
+[21-30:P16008; UTF16 525206] For exactly (i) nonconforming sampled items:
+[21-30:P16009; UTF16 525251] choose (i) of the (K) nonconforming items: [ \binom Ki; ]
+[21-30:P16010; UTF16 525309] choose the remaining (n-i) items from the (N-K) conforming items: [ \binom{N-K}{n-i}. ]
+[21-30:P16012; UTF16 525403] \frac{ \binom Ki \binom{N-K}{n-i} }{ \binom Nn }. ]
+[21-30:P16013; UTF16 525455] The lot is accepted when:
+[21-30:P16014; UTF16 525481] [ X\le c. ]
+[21-30:P16015; UTF16 525493] Summing the mutually exclusive probabilities for (i=0,\ldots,c) yields the formula. ∎
+[21-30:P16019; UTF16 525582] 31. Sample Acceptance Does Not Prove Lot Perfection
+[21-30:P16020; UTF16 525634] THM-ACC20 — A Nonexhaustive Zero-Defect Sample Can Pass a Lot Containing a Defect
+[21-30:P16022; UTF16 525721] [ 1\le n<N. ]
+[21-30:P16023; UTF16 525735] Let the lot contain exactly one nonconforming item:
+[21-30:P16024; UTF16 525787] [ K=1. ]
+[21-30:P16025; UTF16 525796] Use acceptance number:
+[21-30:P16026; UTF16 525819] [ c=0. ]
+[21-30:P16027; UTF16 525828] The sample passes iff the unique defect is not sampled.
+[21-30:P16028; UTF16 525884] The number of defect-free (n)-samples is:
+[21-30:P16029; UTF16 525926] [ \binom{N-1}{n}. ]
+[21-30:P16031; UTF16 525957] \frac{ \binom{N-1}{n} }{ \binom Nn }. ]
+[21-30:P16032; UTF16 525997] Using:
+[21-30:P16033; UTF16 526004] \frac{N}{N-n} \binom{N-1}{n}, ]
+[21-30:P16035; UTF16 526047] \frac{N-n}{N}
+[21-30:P16037; UTF16 526065] Thus a defective lot can pass.
+[21-30:P16039; UTF16 526107] [ \boxed{ \text{sample accepted} \not\Longrightarrow \text{lot defect free}. } ]
+[21-30:P16044; UTF16 526193] 32. False Acceptance and False Rejection
+[21-30:P16045; UTF16 526234] DEF-ACC28 — Acceptable Lot Class
+[21-30:P16047; UTF16 526272] [ \mathcal K_A ]
+[21-30:P16048; UTF16 526289] be defect counts classified acceptable by the declared quality theory.
+[21-30:P16050; UTF16 526365] [ \mathcal K_R ]
+[21-30:P16051; UTF16 526382] be defect counts classified rejectable.
+[21-30:P16055; UTF16 526425] DEF-ACC29 — False Acceptance Probability
+[21-30:P16057; UTF16 526471] [ K\in\mathcal K_R, ]
+[21-30:P16059; UTF16 526501] P_{\mathrm{acc}}(K). } ]
+[21-30:P16063; UTF16 526529] DEF-ACC30 — False Rejection Probability
+[21-30:P16065; UTF16 526574] [ K\in\mathcal K_A, ]
+[21-30:P16067; UTF16 526604] 1-P_{\mathrm{acc}}(K). } ]
+[21-30:P16068; UTF16 526631] These are sampling-model probabilities.
+[21-30:P16069; UTF16 526671] They are not deterministic lot-quality claims.
+[21-30:P16073; UTF16 526721] 33. Sampling Modality
+[21-30:P16074; UTF16 526743] THM-ACC21 — Statistical Acceptance Does Not Establish Deterministic Lot Conformance Unless Another Deterministic Theorem Closes the Gap
+[21-30:P16076; UTF16 526890] There exists a rejectable lot state (K\in\mathcal K_R) such that:
+[21-30:P16077; UTF16 526956] [ P_{\mathrm{acc}}(K)>0. ]
+[21-30:P16079; UTF16 526994] An observed accepted sample does not logically imply that the lot belongs to (\mathcal K_A).
+[21-30:P16082; UTF16 527102] [ P_{\mathrm{acc}}(K)>0, ]
+[21-30:P16083; UTF16 527129] there exists at least one sample outcome that:
+[21-30:P16084; UTF16 527176] is possible under rejectable lot state (K);
+[21-30:P16085; UTF16 527220] causes the plan to accept.
+[21-30:P16086; UTF16 527247] Observe that accepted sample.
+[21-30:P16087; UTF16 527277] The observation is consistent with the rejectable lot state.
+[21-30:P16088; UTF16 527338] Therefore acceptance of the sample does not exclude every rejectable lot.
+[21-30:P16089; UTF16 527412] Hence deterministic lot conformance does not follow.
+[21-30:P16090; UTF16 527465] Only:
+[21-30:P16091; UTF16 527471] exhaustive testing;
+[21-30:P16092; UTF16 527491] a deterministic structural theorem;
+[21-30:P16093; UTF16 527527] or another valid proof
+[21-30:P16094; UTF16 527550] can close the gap. ∎
+[21-30:P16098; UTF16 527574] 34. Latent Defects
+[21-30:P16099; UTF16 527593] DEF-ACC31 — Evidence-Consistent Delivered-State Fiber
+[21-30:P16100; UTF16 527647] For accepted evidence (E), define:
+[21-30:P16101; UTF16 527682] \left{ x: x\text{ is consistent with all accepted commissioning evidence} \right}. } ]
+[21-30:P16105; UTF16 527772] DEF-ACC32 — Latent-Defect State Set
+[21-30:P16107; UTF16 527813] [ \mathcal D_{\mathrm{latent}} \subseteq X ]
+[21-30:P16108; UTF16 527858] be states containing a modeled defect not currently detected by accepted evidence.
+[21-30:P16110; UTF16 527949] \Gamma_{\mathrm{del}}(E) \cap \mathcal D_{\mathrm{latent}}. } ]
+[21-30:P16114; UTF16 528016] THM-ACC22 — Nonempty Latent-Defect Fiber Prevents an Exact Defect-Free Conclusion
+[21-30:P16116; UTF16 528102] [ \Gamma_{\mathrm{latent}}(E) \neq \varnothing, ]
+[21-30:P16117; UTF16 528152] choose:
+[21-30:P16118; UTF16 528160] [ x\in \Gamma_{\mathrm{latent}}(E). ]
+[21-30:P16120; UTF16 528204] (x) is consistent with all accepted evidence;
+[21-30:P16121; UTF16 528250] (x) contains a modeled latent defect.
+[21-30:P16122; UTF16 528288] Therefore the evidence is compatible with a defective delivered state.
+[21-30:P16123; UTF16 528359] It cannot establish exact absence of modeled latent defects.
+[21-30:P16125; UTF16 528427] [ \boxed{ \Gamma_{\mathrm{latent}}(E) \neq\varnothing \Longrightarrow \text{defect-free status unresolved}. } ]
+[21-30:P16130; UTF16 528544] 35. Probabilistic Residual Defect Risk
+[21-30:P16131; UTF16 528583] DEF-ACC33 — Residual Latent-Defect Probability
+[21-30:P16132; UTF16 528630] Under a declared conditional law:
+[21-30:P16133; UTF16 528664] [ P(X\mid E), ]
+[21-30:P16135; UTF16 528688] P \left( X\in\mathcal D_{\mathrm{latent}} \mid E \right). } ]
+[21-30:P16136; UTF16 528750] This is a Prompt-17-style probability statement.
+[21-30:P16140; UTF16 528802] THM-ACC23 — Small Residual Latent-Defect Probability Is Not Proof of Defect Absence
+[21-30:P16142; UTF16 528890] [ 0<P_{\mathrm{latent}}<1, ]
+[21-30:P16144; UTF16 528925] [ P \left( X\in\mathcal D_{\mathrm{latent}} \mid E \right)
+[21-30:P16145; UTF16 528984] 0. ]
+[21-30:P16146; UTF16 528989] Therefore the event remains possible under the model.
+[21-30:P16148; UTF16 529050] [ \boxed{ \text{small latent-defect probability} \not\Longrightarrow \text{defect impossible}. } ]
+[21-30:P16153; UTF16 529154] 36. Test Actions Are Physical Interventions
+[21-30:P16154; UTF16 529198] DEF-ACC34 — Commissioning Test Transition
+[21-30:P16155; UTF16 529240] A test may change the system state:
+[21-30:P16156; UTF16 529276] [ \boxed{ x \xrightarrow{t} x'. } ]
+[21-30:P16157; UTF16 529312] Tests may:
+[21-30:P16158; UTF16 529323] consume resources;
+[21-30:P16159; UTF16 529342] alter control modes;
+[21-30:P16160; UTF16 529363] stress equipment;
+[21-30:P16161; UTF16 529381] introduce temporary configurations;
+[21-30:P16162; UTF16 529417] require restoration;
+[21-30:P16163; UTF16 529438] change evidence and software state.
+[21-30:P16167; UTF16 529477] THM-ACC24 — A Valid Test Result Can Be Invalid for the Final Operating State if the Test Leaves the Artifact in a Different Configuration
+[21-30:P16169; UTF16 529628] Let the system be tested in state:
+[21-30:P16170; UTF16 529663] [ x_T. ]
+[21-30:P16171; UTF16 529672] The test passes and establishes:
+[21-30:P16172; UTF16 529705] [ P(x_T). ]
+[21-30:P16173; UTF16 529717] After the test, restoration or configuration change produces:
+[21-30:P16174; UTF16 529779] [ x_F. ]
+[21-30:P16176; UTF16 529797] [ P(x_F)=\mathsf{FALSE}. ]
+[21-30:P16177; UTF16 529824] The test evidence remains valid for (x_T).
+[21-30:P16178; UTF16 529867] It does not prove (P(x_F)).
+[21-30:P16179; UTF16 529895] Therefore acceptance evidence must bind to the post-test configuration and artifact version. ∎
+[21-30:P16183; UTF16 529993] 37. Commissioning State Machine
+[21-30:P16184; UTF16 530025] DEF-ACC35 — Commissioning State Machine
+[21-30:P16186; UTF16 530073] (S,s_0,E,\delta,F,V). } ]
+[21-30:P16188; UTF16 530129] NOT_READY;
+[21-30:P16189; UTF16 530140] PRECHECK;
+[21-30:P16190; UTF16 530150] TEST_READY;
+[21-30:P16191; UTF16 530162] TESTING;
+[21-30:P16192; UTF16 530171] TEST_FAILED;
+[21-30:P16193; UTF16 530184] NONCONFORMANCE_OPEN;
+[21-30:P16196; UTF16 530241] SUBSYSTEM_ACCEPTED;
+[21-30:P16197; UTF16 530261] INTEGRATED_TESTING;
+[21-30:P16198; UTF16 530281] INTEGRATED_ACCEPTED;
+[21-30:P16199; UTF16 530302] READINESS_REVIEW;
+[21-30:P16200; UTF16 530320] HANDOVER_READY;
+[21-30:P16201; UTF16 530336] HANDED_OVER.
+[21-30:P16202; UTF16 530349] State vocabularies remain project specific.
+[21-30:P16206; UTF16 530396] 38. Punch Lists and Conditional Acceptance
+[21-30:P16207; UTF16 530439] DEF-ACC36 — Open Acceptance Item
+[21-30:P16208; UTF16 530472] An Open Acceptance Item contains:
+[21-30:P16209; UTF16 530506] requirement;
+[21-30:P16212; UTF16 530545] impact;
+[21-30:P16213; UTF16 530553] closure condition;
+[21-30:P16220; UTF16 530605] DEF-ACC37 — Conditional Acceptance
+[21-30:P16222; UTF16 530648] [ \boxed{ \mathsf{ConditionalAccept} \left( b, \mathcal O_{\mathrm{open}}, \mathsf{authority}, \mathsf{conditions}, \mathsf{expiry} \right). } ]
+[21-30:P16223; UTF16 530793] Conditional acceptance is not full acceptance.
+[21-30:P16227; UTF16 530843] THM-ACC25 — Conditional Acceptance With Open Mandatory Items Does Not Establish Full Acceptance
+[21-30:P16229; UTF16 530948] [ \mathcal O_{\mathrm{open}}\neq\varnothing ]
+[21-30:P16230; UTF16 530994] and full acceptance requires:
+[21-30:P16231; UTF16 531024] [ \mathcal O_{\mathrm{open}}=\varnothing ]
+[21-30:P16232; UTF16 531067] for all mandatory items.
+[21-30:P16233; UTF16 531092] Then conditional acceptance with a nonempty mandatory open set fails the full-acceptance predicate.
+[21-30:P16235; UTF16 531203] [ \boxed{ \text{conditional acceptance} \not\Longrightarrow \text{full acceptance}. } ]
+[21-30:P16240; UTF16 531296] 39. Acceptance Versus Regulatory and Contractual Status
+[21-30:P16241; UTF16 531352] THM-ACC26 — Engineering Acceptance, Regulatory Approval, and Contractual Acceptance Are Pairwise Nonidentical in General
+[21-30:P16243; UTF16 531478] (E): engineering acceptance;
+[21-30:P16244; UTF16 531507] (R): regulatory approval;
+[21-30:P16245; UTF16 531533] (C): contractual acceptance.
+[21-30:P16246; UTF16 531562] Construction 1 — Engineering accepted, regulatory process open
+[21-30:P16247; UTF16 531625] The physical system passes every declared engineering test.
+[21-30:P16248; UTF16 531685] A mandatory regulatory submission remains unprocessed.
+[21-30:P16250; UTF16 531746] [ E=\mathsf{TRUE}, \qquad R=\mathsf{FALSE}. ]
+[21-30:P16251; UTF16 531792] Construction 2 — Regulatory approval, engineering defect
+[21-30:P16252; UTF16 531849] An authority approval remains historically valid.
+[21-30:P16253; UTF16 531899] The delivered system develops or reveals a physical defect violating an engineering acceptance criterion.
+[21-30:P16255; UTF16 532011] [ R=\mathsf{TRUE}, \qquad E=\mathsf{FALSE}. ]
+[21-30:P16256; UTF16 532057] Construction 3 — Contractual acceptance, engineering defect
+[21-30:P16257; UTF16 532117] The declared contract administrator issues a formal acceptance event under the contract state machine.
+[21-30:P16258; UTF16 532220] An engineering nonconformance remains under the physical theory.
+[21-30:P16260; UTF16 532291] [ C=\mathsf{TRUE}, \qquad E=\mathsf{FALSE}. ]
+[21-30:P16261; UTF16 532337] Construction 4 — Engineering acceptance without contractual acceptance
+[21-30:P16262; UTF16 532408] Engineering tests pass, but a contractually required document remains missing.
+[21-30:P16264; UTF16 532493] [ E=\mathsf{TRUE}, \qquad C=\mathsf{FALSE}. ]
+[21-30:P16265; UTF16 532539] The predicates are not identical and no generic equivalence follows.
+[21-30:P16267; UTF16 532619] [ \boxed{ \text{engineering acceptance} \neq \text{regulatory approval} \neq \text{contractual acceptance}. } ]
+[21-30:P16272; UTF16 532736] 40. Readiness
+[21-30:P16273; UTF16 532750] DEF-ACC38 — Readiness Obligation
+[21-30:P16274; UTF16 532783] A Readiness Obligation may require:
+[21-30:P16275; UTF16 532819] acceptance certificate;
+[21-30:P16276; UTF16 532843] closure of critical nonconformances;
+[21-30:P16277; UTF16 532880] authorized treatment of conditional items;
+[21-30:P16278; UTF16 532923] operational documents;
+[21-30:P16279; UTF16 532946] software and firmware baseline;
+[21-30:P16281; UTF16 532991] ODT baseline;
+[21-30:P16283; UTF16 533015] spares;
+[21-30:P16285; UTF16 533035] regulatory state;
+[21-30:P16286; UTF16 533053] security and privacy release;
+[21-30:P16287; UTF16 533083] human-operational readiness.
+[21-30:P16291; UTF16 533115] DEF-ACC39 — Handover Readiness State
+[21-30:P16293; UTF16 533160] [ \boxed{ \mathsf{Ready}(c_t) } ]
+[21-30:P16294; UTF16 533194] to hold when every mandatory readiness obligation is certified or explicitly accepted under a valid conditional-release mode.
+[21-30:P16298; UTF16 533323] 41. Handover
+[21-30:P16299; UTF16 533336] DEF-ACC40 — Handover Artifact
+[21-30:P16300; UTF16 533366] A Handover Artifact is:
+[21-30:P16301; UTF16 533390] \left( \mathsf{deliveredArtifact}, \mathsf{acceptedBaseline}, \mathsf{documents}, \mathsf{openItems}, \mathsf{operationalState}, \mathsf{credentials}, \mathsf{training}, \mathsf{spares}, \mathsf{warranties}, \mathsf{ODT}, \mathsf{authority}, \mathsf{version} \right). } ]
+[21-30:P16305; UTF16 533665] DEF-ACC41 — Handover Transition
+[21-30:P16307; UTF16 533705] [ \boxed{ (c_t,\mathsf{constructionAuthority}) \longrightarrow (c_{t+1},\mathsf{operationalAuthority}) } ]
+[21-30:P16308; UTF16 533812] under a checked transition policy.
+[21-30:P16309; UTF16 533847] Handover may alter:
+[21-30:P16310; UTF16 533867] custody;
+[21-30:P16312; UTF16 533887] responsibility;
+[21-30:P16313; UTF16 533903] operational baseline;
+[21-30:P16316; UTF16 533968] It is not merely file copying.
+[21-30:P16320; UTF16 534002] 42. Handover Information Sufficiency
+[21-30:P16321; UTF16 534039] Let complete accepted operational state space be (X).
+[21-30:P16322; UTF16 534093] Let handover representation be:
+[21-30:P16323; UTF16 534125] [ H\rightarrow Y. ]
+[21-30:P16325; UTF16 534150] [ \mathcal F_{\mathrm{ops}} ]
+[21-30:P16326; UTF16 534180] contain every admitted future operational decision or report computation.
+[21-30:P16328; UTF16 534262] [ x_1 \equiv_{\mathrm{ops}} x_2 \iff \forall f\in\mathcal F_{\mathrm{ops}}, \quad f(x_1)=f(x_2). ]
+[21-30:P16332; UTF16 534364] THM-ACC27 — Handover Is Decision Sufficient Iff Every Admitted Operational Computation Factors Through the Handover Representation
+[21-30:P16334; UTF16 534505] The following are equivalent.
+[21-30:P16335; UTF16 534535] Handover fibers preserve all future operational distinctions: [ H(x_1)=H(x_2) \Longrightarrow x_1\equiv_{\mathrm{ops}}x_2. ]
+[21-30:P16336; UTF16 534660] For every: [ f\in\mathcal F_{\mathrm{ops}}, ] there exists: [ \bar f\rightarrow Y_f ] such that: [ \boxed{ f=\bar f\circ H. } ]
+[21-30:P16337; UTF16 534788] Proof: 2 implies 1
+[21-30:P16338; UTF16 534807] Assume every (f) factors.
+[21-30:P16341; UTF16 534856] then for every (f):
+[21-30:P16342; UTF16 534876] \bar f(H(x_1))
+[21-30:P16343; UTF16 534891] \bar f(H(x_2))
+[21-30:P16344; UTF16 534906] f(x_2). ]
+[21-30:P16346; UTF16 534922] [ x_1\equiv_{\mathrm{ops}}x_2. ]
+[21-30:P16347; UTF16 534955] Proof: 1 implies 2
+[21-30:P16348; UTF16 534974] Assume handover fibers preserve operational equivalence.
+[21-30:P16349; UTF16 535031] For each (f\in\mathcal F_{\mathrm{ops}}) and each:
+[21-30:P16350; UTF16 535082] [ y\in\operatorname{im}(H), ]
+[21-30:P16351; UTF16 535112] choose any (x_y) with:
+[21-30:P16352; UTF16 535135] [ H(x_y)=y. ]
+[21-30:P16354; UTF16 535157] [ \bar f(y)=f(x_y). ]
+[21-30:P16355; UTF16 535179] If (x'_y) is another state with the same handover value, assumption 1 gives:
+[21-30:P16356; UTF16 535256] [ x_y\equiv_{\mathrm{ops}}x'_y, ]
+[21-30:P16357; UTF16 535290] and therefore:
+[21-30:P16358; UTF16 535305] [ f(x_y)=f(x'_y). ]
+[21-30:P16359; UTF16 535325] Thus (\bar f) is well defined.
+[21-30:P16360; UTF16 535356] For every (x):
+[21-30:P16361; UTF16 535371] [ \bar f(H(x))=f(x). ]
+[21-30:P16362; UTF16 535394] Extend (\bar f) arbitrarily outside the image.
+[21-30:P16364; UTF16 535452] [ f=\bar f\circ H. ]
+[21-30:P16366; UTF16 535475] Canonical coarseness
+[21-30:P16368; UTF16 535510] X/{\equiv_{\mathrm{ops}}} ]
+[21-30:P16369; UTF16 535538] is the coarsest exact handover representation preserving all admitted operational computations.
+[21-30:P16370; UTF16 535634] The proof is identical to the coarseness arguments from Prompts 2, 23, and 24: every representation preserving all (f) can merge only states already equivalent under (\equiv_{\mathrm{ops}}).
+[21-30:P16374; UTF16 535828] THM-ACC28 — Document Transfer Alone Does Not Establish Operational Handover Sufficiency

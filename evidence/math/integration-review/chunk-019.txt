@@ -1,0 +1,637 @@
+[19519] Assume complete dependency roots, sound deterministic checkers, exact invalidation, compatible reused artifacts, and checked cyclic/fixed-point nodes. Condense checked cyclic nodes, topologically order the remaining dependency DAG, and induct over it. Changed roots agree by direct recomputation. Unchanged reused nodes agree because no changed ancestor reaches them and applicability roots match. Every invalidated node receives identical predecessor values and identical checker semantics under both procedures. Therefore every final PCDYN root agrees. \(\square\)
+[19520] THM-DYN136 — Untrusted GPU simulation cannot cause false acceptance under sound disposal
+[19521] A GPU may emit arbitrary trajectories. Acceptance occurs only if the CPU checker independently verifies every required proposition. Therefore GPU error affects completeness or cost, not soundness.
+[19522] THM-DYN137 — Compatible deterministic checkpoint resume equals uninterrupted execution
+[19523] If immutable roots, deterministic algorithm version, queue order, random seed, branch state, and numerical semantics match, restoring the complete serialized state reproduces the same future transition sequence by induction.
+[19524] THM-DYN138 — Lazy loading preserves policy semantics
+[19525] Moving immutable inactive scenario subtrees between RAM and SSD changes storage location, not node identity or transition semantics.
+[19526] THM-DYN139 — Contextual merging can reduce memory without changing admitted reports
+[19527] By THM-DYN33, one representative per equivalence class preserves all admitted future computations.
+[19528] THM-DYN140 — Unsound node merging can create anticipative behavior
+[19529] Merge two nodes with equal physical state but different observed histories and action permissions. A single merged action may use information present only in one history or suppress an action available only in the other.
+[19687] 83. Proof Artifacts
+[19691] Main invalidation roots
+[19692] 1. PCJCD applicability
+[19693] Initial static root applicable
+[19694] PCJCD checker adapter
+[19695] Project, artifact, theory
+[19696] 2. Lifecycle-stage certificate
+[19697] Phase/state correspondence valid
+[19698] Phase checker
+[19699] Time map
+[19700] 3. Commitment certificate
+[19701] Frozen decisions obey timing/authority
+[19702] Commitment checker
+[19703] Procurement/install state
+[19704] 4. Information-history certificate
+[19705] History contains declared observations
+[19706] History checker
+[19707] Observation schema
+[19708] 5. Nonanticipativity certificate
+[19709] Equal histories have equal actions
+[19710] Policy checker
+[19711] Policy/history partition
+[19712] 6. Scenario-tree certificate
+[19713] Tree ancestry and stages valid
+[19714] Tree checker
+[19715] Scenario model
+[19716] 7. Scenario-probability certificate
+[19717] Weights normalize and apply
+[19718] Rational probability checker
+[19719] Law version
+[19720] 8. Uncertainty-set certificate
+[19721] Membership and scope valid
+[19722] Set checker
+[19723] Bound/model version
+[19724] 9. Robust-trajectory certificate
+[19725] Every covered realization passes
+[19726] Exhaustive/adversarial checker
+[19727] Policy, uncertainty
+[19728] 10. Chance certificate
+[19729] Probability event exceeds threshold
+[19730] Probability checker
+[19731] Law/event
+[19732] 11. Expectation certificate
+[19733] Weighted path total correct
+[19734] Exact/interval arithmetic
+[19735] Costs/probabilities
+[19736] 12. CVaR certificate
+[19737] Quantile/tail LP correct
+[19738] Convex/rational checker
+[19739] Loss law, \(\alpha\)
+[19740] 13. DRO certificate
+[19741] Supremum bound valid
+[19742] Ambiguity-set checker
+[19743] Ambiguity radius/model
+[19744] 14. Nested-risk certificate
+[19745] Conditional recursion valid
+[19746] Risk-recursion checker
+[19747] Filtration/risk maps
+[19748] 15. Transition certificate
+[19749] State transition admissible
+[19750] Dynamics checker
+[19751] Model/state/action
+[19752] 16. Precedence certificate
+[19753] Task order respects DAG
+[19754] Graph checker
+[19755] Task graph
+[19756] 17. Resource certificate
+[19757] Capacity respected
+[19758] Schedule checker
+[19759] Capacity/task demand
+[19760] 18. Temporary-state certificate
+[19761] Temporary safety factors pass
+[19762] Multidomain checker
+[19763] Geometry/sequence
+[19764] 19. Installation certificate
+[19765] Delivery/assembly path exists
+[19766] Geometry checker
+[19767] Component/path
+[19768] 20. Change-order certificate
+[19769] Rewrite authorized and recertified
+[19770] Rewrite checker
+[19771] Authority/change
+[19772] 21. Commissioning-plan certificate
+[19773] Mandatory roots covered
+[19774] Coverage checker
+[19775] Requirements/tests
+[19776] 22. Calibration certificate
+[19777] Instrument mapping valid
+[19778] Metrology checker
+[19779] Calibration/time
+[19780] 23. Observability certificate
+[19781] Required state distinctions separated
+[19782] Experiment checker
+[19783] Sensor/test family
+[19784] 24. Acceptance certificate
+[19785] Mandatory commissioning roots closed
+[19786] Acceptance checker
+[19787] Evidence/defects
+[19788] 25. Invariant certificate
+[19789] Controlled set preserved
+[19790] Reachability checker
+[19791] Dynamics/disturbances
+[19792] 26. MPC certificate
+[19793] Horizon action and terminal assumptions valid
+[19794] MPC checker
+[19795] Model/state/horizon
+[19796] 27. Fallback certificate
+[19797] Backup policy preserves invariant
+[19798] Control checker
+[19799] Controller/model
+[19800] 28. Failure-model certificate
+[19801] Failure semantics applicable
+[19802] Reliability checker
+[19803] Hazard/data
+[19804] 29. Common-cause certificate
+[19805] Joint dependence encoded
+[19807] Latent-cause model
+[19808] 30. Reliability certificate
+[19809] Service event probability valid
+[19810] Exact/bounded checker
+[19811] Failure law/topology
+[19812] 31. Availability certificate
+[19813] Time fraction/limit valid
+[19814] Renewal/trajectory checker
+[19815] Repair process
+[19816] 32. Resilience certificate
+[19817] \(Q(t)\), loss, recovery correct
+[19818] Trajectory checker
+[19819] Event/performance
+[19820] 33. Cascade certificate
+[19821] Closure follows dependencies
+[19822] Graph/fixed-point checker
+[19823] Dependency graph
+[19824] 34. Twin-correspondence certificate
+[19825] Twin IDs map to physical IDs
+[19826] Identity checker
+[19827] Asset/configuration
+[19828] 35. Observation-applicability certificate
+[19829] Sensor evidence applicable
+[19830] Evidence checker
+[19832] 36. Bayesian certificate
+[19833] Posterior follows model
+[19835] Prior/likelihood
+[19836] 37. Set-membership certificate
+[19837] Enclosure propagation is sound
+[19838] Interval/set checker
+[19839] Bounds/model
+[19840] 38. Fault certificate
+[19841] Alarm/isolation claim matches evidence
+[19842] Detector checker
+[19843] Threshold/model
+[19844] 39. Degradation certificate
+[19845] Transition model covers asset
+[19846] Lifecycle checker
+[19847] Mechanism/environment
+[19848] 40. RUL certificate
+[19849] Hitting-time claim typed correctly
+[19850] Prognostic checker
+[19851] Failure set/model
+[19852] 41. Inspection certificate
+[19853] Scope and result valid
+[19854] Inspection checker
+[19855] Access/instrument
+[19856] 42. Maintenance certificate
+[19857] Physical effect and regression closed
+[19858] Maintenance checker
+[19859] Work/evidence/config
+[19860] 43. Supportability certificate
+[19861] Executable part/service path exists
+[19862] Supply checker
+[19863] Inventory/supplier
+[19864] 44. Retrofit trigger certificate
+[19865] PCJCD reopening required/authorized
+[19866] Dependency checker
+[19867] Changed roots
+[19868] 45. Drift certificate
+[19869] Current lineage mismatch identified
+[19870] Version checker
+[19871] Field edits
+[19872] 46. Decommissioning certificate
+[19873] Safe transition trace valid
+[19874] Hazard checker
+[19875] Hazards/sequence
+[19876] 47. Carbon certificate
+[19877] Time-resolved ledger valid
+[19878] Environmental checker
+[19879] Factors/boundary
+[19880] 48. Refrigerant certificate
+[19881] Mass/factor ledger valid
+[19882] Mass-balance checker
+[19883] Charge/leak/factor
+[19884] 49. Water certificate
+[19885] Withdrawal/return/consumption valid
+[19886] Water checker
+[19887] Meter/boundary
+[19888] 50. External-interface certificate
+[19889] Contract state valid
+[19890] Interface checker
+[19891] Capacity/time/version
+[19892] 51. Coincident-peak certificate
+[19893] Synchronized sum/max valid
+[19894] Time-series checker
+[19895] Traces/time base
+[19896] 52. Mutual-aid certificate
+[19897] One executable policy exists
+[19898] Assignment/policy checker
+[19899] Resource/history
+[19900] 53. Scenario-Benders certificate
+[19901] Every cut is valid
+[19902] LP/logic checker
+[19903] Recourse model
+[19904] 54. SDDP certificate
+[19905] Lower cuts valid in convex model
+[19906] Dual checker
+[19907] Stage model
+[19908] 55. PH status artifact
+[19909] Consensus/objective status
+[19910] Residual checker
+[19911] Convexity/subproblems
+[19912] 56. Adversarial-closure certificate
+[19913] Global maximum nonpositive
+[19914] Global oracle checker
+[19915] Set/model
+[19916] 57. Reduction-error certificate
+[19917] Reduced-model error bounded
+[19918] Metric/stability checker
+[19919] Distribution/objective
+[19920] 58. Scenario-quotient certificate
+[19921] Merged nodes contextually equal
+[19922] Factorization checker
+[19923] Experiment family
+[19924] 59. Dynamic-Pareto certificate
+[19925] Dominance/nondominance valid
+[19926] Objective checker
+[19927] Policies/objectives
+[19928] 60. Checkpoint certificate
+[19929] Serialized state compatible
+[19930] Hash/version checker
+[19931] All roots
+[19932] 61. Incremental certificate
+[19933] Incremental result equals cold semantics
+[19934] DAG checker
+[19935] Dependencies/checkers
+[19936] 62. PCDYN root certificate
+[19937] Final package satisfies modality
+[19938] PCDYN checker
+[19939] Entire package
+[19942] 84. Numerical and Replayable Examples
+[19943] 84.1 Exact Two-Stage Example
+[19944] Demand \(d\in\{0,1\}\) has:
+[19945] \[ P(d=1)=0.2, \qquad P(d=0)=0.8. \]
+[19946] First-stage capacity \(k\in\{0,1\}\) costs \(3k\). Emergency recourse \(y\ge0\) costs \(10y\) and must satisfy:
+[19947] \[ k+y\ge d. \]
+[19948] Perfect information
+[19949] Choose \(k=1\) only when \(d=1\):
+[19950] \[ z_{\mathrm{PI}} = 0.2(3)+0.8(0) = 0.6. \]
+[19951] Nonanticipative two-stage recourse
+[19952] If \(k=0\), use \(y=1\) only in the high-demand scenario:
+[19953] \[ z_{\mathrm{MS}} = 0+0.2(10) = 2. \]
+[19954] Choosing \(k=1\) costs \(3\), so \(k=0\) is optimal.
+[19955] Static no-recourse design
+[19956] Emergency recourse is forbidden. Feasibility for both scenarios requires \(k=1\):
+[19957] \[ z_{\mathrm{static}}=3. \]
+[19959] \[ \boxed{ 0.6=z_{\mathrm{PI}} \le 2=z_{\mathrm{MS}} \le 3=z_{\mathrm{static}}. } \]
+[19961] 84.2 Nonanticipativity Counterexample
+[19962] At \(t=0\), scenarios \(A,B\) have the same history. Exactly one valve command is allowed:
+[19963] \[ a_0\in\{L,R\}. \]
+[19964] Scenario A is feasible only under \(L\); scenario B only under \(R\). Therefore:
+[19965] \[ \forall\omega\in\{A,B\}\ \exists a_\omega \]
+[19966] but:
+[19967] \[ \nexists \pi_0(H_0) \]
+[19968] satisfying both.
+[19969] Expected status:
+[19970] \[ \mathsf{NONANTICIPATIVITY\_FAILURE}. \]
+[19972] 84.3 Robust Versus Chance
+[19973] A system succeeds with probability \(0.999\) and catastrophically fails in one represented scenario of probability \(0.001\).
+[19974] For \(\epsilon=0.01\):
+[19975] \[ 0.999\ge0.99, \]
+[19976] so the system is chance feasible.
+[19977] Because the failure scenario belongs to \(\Omega_{\mathrm{rob}}\), it is not robust feasible.
+[19979] 84.4 CVaR Example
+[19980] Policy A loss:
+[19981] \[ Z_A= \begin{cases} 0,&0.9,\\ 100,&0.1. \end{cases} \]
+[19982] Policy B loss:
+[19983] \[ Z_B=15 \quad\text{a.s.} \]
+[19984] Expectations:
+[19985] \[ \mathbb E[Z_A]=10, \qquad \mathbb E[Z_B]=15. \]
+[19986] At \(\alpha=0.9\):
+[19987] \[ \operatorname{VaR}_{0.9}(Z_A)=0, \]
+[19988] and:
+[19989] \[ \operatorname{CVaR}_{0.9}(Z_A) = 100. \]
+[19990] For B:
+[19991] \[ \operatorname{VaR}_{0.9}(Z_B) = \operatorname{CVaR}_{0.9}(Z_B) = 15. \]
+[19992] Expectation prefers A; CVaR prefers B.
+[19994] 84.5 Time-Consistency Example
+[19995] At time zero, nodes \(A,B\) each occur with probability \(1/2\). Each has two equiprobable leaves.
+[19996] Policy P losses:
+[19997] \[ P: \begin{cases} A:\{0,100\},\\ B:\{0,0\}. \end{cases} \]
+[19998] Policy Q losses:
+[19999] \[ Q:\{60,60,60,60\}. \]
+[20000] Static \(\operatorname{CVaR}_{0.5}\):
+[20001] \[ \operatorname{CVaR}_{0.5}(P) = \frac{100+0}{2} = 50, \]\[ \operatorname{CVaR}_{0.5}(Q)=60. \]
+[20002] Thus time-zero static CVaR prefers P.
+[20003] At node A:
+[20004] \[ \operatorname{CVaR}_{0.5}(P|A)=100, \qquad \operatorname{CVaR}_{0.5}(Q|A)=60. \]
+[20005] The preference reverses.
+[20006] Nested conditional CVaR evaluates node risks:
+[20007] \[ R_A(P)=100,\quad R_B(P)=0, \]
+[20008] and then:
+[20009] \[ \rho_0(P)=\operatorname{CVaR}_{0.5}(\{100,0\})=100. \]
+[20010] For Q:
+[20011] \[ \rho_0(Q)=60. \]
+[20012] Nested risk selects Q consistently.
+[20014] 84.6 Construction Sequence Example
+[20015] Tasks:
+[20016] Task
+[20017] Duration
+[20018] Preconditions
+[20019] Resources
+[20020] Special condition
+[20021] S — shaft preparation
+[20024] crew A
+[20025] opens shaft
+[20026] D — egress detour
+[20029] crew B
+[20030] required during delivery/insertion
+[20031] H — AHU delivery
+[20033] S,D
+[20034] crew B + crane
+[20035] uses egress corridor
+[20036] U — main duct insertion
+[20038] H,D
+[20039] crew A + crane
+[20040] corridor blocked
+[20041] R — rack installation
+[20043] S
+[20045] exclusive crane
+[20046] C — commissioning
+[20048] U,R
+[20050] final
+[20052] A precedence-only earliest schedule starts \(R\) and \(H\) after \(S\), causing crane conflict and omitting D.
+[20053] One valid repaired schedule is:
+[20054] \[ \begin{aligned} &S:[0,1],\\ &D:[1,2],\\ &H:[2,3],\\ &U:[3,5],\\ &R:[5,7],\\ &C:[7,8]. \end{aligned} \]
+[20055] All precedence, crane, crew, and temporary-egress requirements pass.
+[20057] 84.7 Commissioning and Observability Example
+[20058] Hidden fault vector:
+[20059] \[ f=(f_A,f_B)\in\{0,1\}^2. \]
+[20060] Four initial sensors all depend only on:
+[20061] \[ y=f_A+f_B. \]
+[20063] \[ (1,0)\equiv_H(0,1). \]
+[20064] A diagnostic sensor adds:
+[20065] \[ y_5=f_A-f_B. \]
+[20067] \[ y_5(1,0)=1, \qquad y_5(0,1)=-1, \]
+[20068] splitting the equivalence class and making exact isolation possible under the expanded experiment family.
+[20070] 84.8 Hybrid Control Example
+[20072] \[ x_{t+1}=x_t+u_t+w_t \]
+[20073] componentwise in \(\mathbb R^2\), with:
+[20074] \[ u_t\in[-0.5,0.5]^2, \qquad w_t\in[-0.1,0.1]^2. \]
+[20075] Take:
+[20076] \[ K=[-0.6,0.6]^2. \]
+[20077] Choose:
+[20078] \[ u_i=-\operatorname{clip}(x_i,-0.5,0.5). \]
+[20079] For \(|x_i|\le0.5\), post-control state before disturbance is \(0\), so next state lies in \([-0.1,0.1]\).
+[20080] For \(0.5<|x_i|\le0.6\), post-control magnitude is at most \(0.1\), and disturbance raises it to at most \(0.2\).
+[20081] Thus \(K\) is robust controlled invariant.
+[20082] A one-step-feasible but future-unsafe finite example has states \(s_0,s_1,\mathsf{FAIL}\). Action \(a\) maps \(s_0\to s_1\), which is currently safe, but every action maps \(s_1\to\mathsf{FAIL}\).
+[20084] 84.9 Common-Cause Reliability Example
+[20085] Each of two redundant components has marginal failure probability \(0.01\).
+[20086] Independent model
+[20087] \[ P(F_1\cap F_2)=0.01^2=0.0001. \]
+[20088] Common-cause model
+[20089] Let common event probability be:
+[20090] \[ p_c=0.009. \]
+[20091] Outside the common event, choose independent idiosyncratic failure probability:
+[20092] \[ q=\frac{0.01-0.009}{1-0.009} = \frac1{991}. \]
+[20093] Then each marginal remains \(0.01\). Joint failure is:
+[20094] \[ P(F_1\cap F_2) = 0.009 + 0.991\left(\frac1{991}\right)^2 = 0.009+\frac1{991000} \approx0.009001009. \]
+[20095] The independent calculation understates dual failure by approximately a factor of \(90\).
+[20097] 84.10 Resilience Example
+[20098] Both designs fail with the same probability.
+[20099] Design A:
+[20100] \[ Q_A(t)=0 \quad\text{for 10 hours}, \]
+[20101] then recovers to \(Q_0=1\). Hence:
+[20102] \[ L_{\mathrm{res},A}=10. \]
+[20103] Design B:
+[20104] \[ Q_B(t)=0.5 \quad\text{for 2 hours}, \]
+[20105] then recovers. Hence:
+[20106] \[ L_{\mathrm{res},B} = (1-0.5)2 = 1. \]
+[20107] Reliability is equal; resilience differs.
+[20109] 84.11 Digital-Twin Example
+[20110] Physical state:
+[20111] \[ s=(x_1,x_2). \]
+[20112] Sensor 1:
+[20113] \[ y_1=x_1+x_2. \]
+[20114] States \((1,0)\) and \((0,1)\) both produce \(1\).
+[20115] Add sensor 2:
+[20116] \[ y_2=x_1-x_2. \]
+[20117] The complete map:
+[20118] \[ \begin{pmatrix}y_1\\y_2\end{pmatrix} = \begin{pmatrix} 1&1\\ 1&-1 \end{pmatrix} \begin{pmatrix}x_1\\x_2\end{pmatrix} \]
+[20119] has determinant \(-2\ne0\), so the two-dimensional state is exactly recoverable in the noise-free model.
+[20121] 84.12 Degradation and Maintenance Example
+[20122] Condition states:
+[20123] \[ \{0,1,2,3,\mathsf{FAIL}\}. \]
+[20124] Without maintenance:
+[20125] \[ 0\rightarrow1\rightarrow2\rightarrow3\rightarrow\mathsf{FAIL}. \]
+[20126] Perfect replacement resets to \(0\). Imperfect repair maps:
+[20127] \[ 3\rightarrow1, \qquad 2\rightarrow1, \qquad 1\rightarrow0. \]
+[20128] A fixed-interval policy may replace at state \(2\) even when degradation is slow. A condition-based policy with perfect observation waits until state \(3\), reducing premature work in this model. If inspections are costly and uninformative while the trajectory is deterministic, the fixed policy can be cheaper. No universal ranking follows.
+[20130] 84.13 Retrofit Lineage Example
+[20131] Future feeder demand rises from \(180\) A to \(260\) A.
+[20132] Existing conductor ampacity:
+[20133] \[ I_{\max}=225\text{ A}. \]
+[20134] Existing tray fill after required conductor enlargement would exceed its certified limit. The changed demand invalidates:
+[20135] feeder sizing;
+[20136] voltage-drop result;
+[20137] tray packing;
+[20139] one penetration;
+[20140] commissioning tests.
+[20141] The retrofit creates:
+[20142] \[ \mathsf{PCJCD}^{(0)} \rightarrow \mathsf{PCJCD}^{(1)}, \]
+[20143] and the dependent PCROUTE and lifecycle slices are recomputed.
+[20145] 84.14 Time-Dependent Carbon Example
+[20146] Both strategies consume \(100\) MWh.
+[20147] High-factor interval:
+[20148] \[ \gamma_H=0.8. \]
+[20149] Low-factor interval:
+[20150] \[ \gamma_L=0.2. \]
+[20151] Strategy A:
+[20152] \[ E_A=80(0.8)+20(0.2)=68. \]
+[20153] Strategy B:
+[20154] \[ E_B=20(0.8)+80(0.2)=32. \]
+[20155] Equal energy does not imply equal emissions.
+[20157] 84.15 System-of-Systems Example
+[20158] Local building assets:
+[20159] grid feeder capacity \(10\);
+[20160] battery discharge capacity \(3\);
+[20161] building peak \(8\);
+[20162] neighboring synchronized demand \(6\).
+[20163] Local building check:
+[20164] \[ 8\le10 \]
+[20165] passes.
+[20166] Regional cut demand:
+[20167] \[ 8+6=14. \]
+[20168] Even with local battery support of \(3\):
+[20169] \[ 14-3=11>10. \]
+[20170] Regional slack:
+[20171] \[ s_U=10-11=-1. \]
+[20172] The local design is externally infeasible in this scenario.
+[20174] 84.16 Exact Scenario-Benders Example
+[20175] First-stage variables:
+[20176] \[ 0\le x_1,x_2\le5, \]
+[20177] with first-stage cost:
+[20178] \[ 2x_1+3x_2. \]
+[20179] Three scenarios have probabilities:
+[20180] \[ p_1=\frac12,\qquad p_2=\frac13,\qquad p_3=\frac16. \]
+[20181] Recourse:
+[20182] \[ Q_s(x)= \min_{y_s\ge0} q_sy_s \]
+[20183] subject to:
+[20184] \[ y_s\ge d_s-a_s^\top x. \]
+[20185] Data:
+[20186] \[ \begin{array}{c|c|c|c} s&q_s&d_s&a_s\\\hline 1&6&4&(1,1)\\ 2&4&3&(2,1)\\ 3&8&5&(1,2) \end{array} \]
+[20188] \[ Q_s(x)=q_s(d_s-a_s^\top x)_+. \]
+[20189] At \(x=(0,0)\), active duals are \(\pi_s=q_s\). The expected cut is:
+[20190] \[ \theta \ge \frac12 6(4-x_1-x_2) + \frac13 4(3-2x_1-x_2) + \frac16 8(5-x_1-2x_2). \]
+[20191] Collecting terms:
+[20192] \[ \boxed{ \theta \ge \frac{68}{3} - 7x_1 - 7x_2. } \]
+[20193] The master chooses the cheaper \(x_1\) direction:
+[20194] \[ x_1=\frac{68}{21}, \qquad x_2=0, \qquad \theta=0. \]
+[20195] At that point, scenario 2 has zero recourse, while scenarios 1 and 3 remain active. New duals are:
+[20196] \[ (\pi_1,\pi_2,\pi_3)=(6,0,8). \]
+[20197] The new cut is:
+[20198] \[ \boxed{ \theta \ge \frac{56}{3} - \frac{13}{3}x_1 - \frac{17}{3}x_2. } \]
+[20199] The master then selects:
+[20200] \[ x_1=\frac{56}{13}, \qquad x_2=0. \]
+[20201] Only scenario 3 remains active, yielding:
+[20202] \[ \boxed{ \theta \ge \frac{20}{3} - \frac43x_1 - \frac83x_2. } \]
+[20203] Solving the accumulated exact master gives:
+[20204] \[ x_1=3,\qquad x_2=1,\qquad \theta=0, \]
+[20205] with objective:
+[20206] \[ 2(3)+3(1)=9. \]
+[20207] All scenario deficits are nonpositive:
+[20208] \[ \begin{aligned} 4-(3+1)&=0,\\ 3-(6+1)&=-4,\\ 5-(3+2)&=0. \end{aligned} \]
+[20209] Direct piecewise-linear enumeration of the break regions confirms no lower objective exists, so the exact optimum is \(9\).
+[20211] 84.17 Convex SDDP Example
+[20212] Terminal demand:
+[20213] \[ D= \begin{cases} 1,&1/2,\\ 3,&1/2. \end{cases} \]
+[20214] Stored energy before the terminal stage is \(e\). Shortage costs \(10\) per unit:
+[20215] \[ V_3(e) = 5(1-e)_+ + 5(3-e)_+. \]
+[20216] At \(e=1\):
+[20217] \[ V_3(1)=10. \]
+[20218] For \(1<e<3\), derivative is \(-5\). Convexity gives the supporting cut:
+[20219] \[ V_3(e) \ge V_3(1)-5(e-1) = 15-5e. \]
+[20220] Thus the first SDDP lower approximation may include:
+[20221] \[ \underline V_3(e)=\max\{0,15-5e\}. \]
+[20222] Adding a binary physical retrofit \(r\in\{0,1\}\) that changes storage geometry makes the joint value nonconvex in \((e,r)\); the continuous supporting-hyperplane theorem does not directly certify the integer rewrite decision.
+[20224] 84.18 Adversarial Scenario Generation
+[20225] Constraint:
+[20226] \[ g(u,\omega)=\omega-u, \qquad \omega\in[0,3]. \]
+[20227] Active set initially contains only \(\omega=1\), so the candidate is \(u=1\).
+[20228] The exact adversary solves:
+[20229] \[ \max_{\omega\in[0,3]}(\omega-1)=2 \]
+[20230] at:
+[20231] \[ \omega^\star=3. \]
+[20232] Add \(\omega=3\). The repaired robust candidate is \(u=3\), and:
+[20233] \[ \max_{\omega\in[0,3]}(\omega-3)=0. \]
+[20234] Robust closure is certified.
+[20236] 85. Synthetic Multi-System Lifecycle Benchmark
+[20237] Consider a synthetic four-zone building with:
+[20238] two AHUs;
+[20239] one hydronic loop;
+[20240] normal and emergency feeders;
+[20241] one battery;
+[20242] a water tank;
+[20243] one communications gateway;
+[20244] six construction tasks;
+[20245] four commissioning tests;
+[20246] two common-cause hazards;
+[20247] five degradation states;
+[20248] one retrofit option.
+[20250] \[ |\Omega|=16 \]
+[20251] finite scenario leaves generated from:
+[20252] high/low occupancy;
+[20253] normal/extreme weather;
+[20254] grid available/unavailable;
+[20255] common-cause controller failure present/absent.
+[20256] Exact layer
+[20257] scenario histories and nonanticipativity;
+[20258] finite task precedence;
+[20259] finite failure transitions;
+[20260] exact rational scenario probabilities;
+[20261] commissioning truth table;
+[20262] component and regional capacity cuts.
+[20263] Bounded layer
+[20264] temperature dynamics with interval disturbances;
+[20265] degradation transition sets;
+[20266] grid-factor intervals;
+[20267] maintenance lead-time intervals.
+[20268] Probabilistic layer
+[20269] occupancy and ordinary failure law;
+[20270] CVaR of downtime;
+[20271] expected lifecycle cost.
+[20272] Heuristic layer
+[20273] AI scenario prioritization;
+[20274] GPU state propagation;
+[20275] value-of-computation ordering;
+[20276] progressive hedging over the mixed-integer maintenance plan.
+[20277] A candidate policy passes 15 leaves and fails one common-cause leaf. Its exact status is:
+[20278] \[ \mathsf{ROBUST\_COUNTEREXAMPLE}, \]
+[20279] not robust acceptance. A second backup-control path removes the violation; exhaustive checking then establishes finite represented robustness.
+[20281] 86. Synthetic 190-Room Hotel Dynamic Example
+[20282] All values are synthetic.
+[20283] 86.1 Initial alternatives
+[20284] The Prompt-3 lineage provides two accepted candidates:
+[20285] \[ H_1,\qquad H_2. \]
+[20286] \(H_1\): lower initial cost, one consolidated service spine.
+[20287] \(H_2\): higher initial cost, two partially independent service spines.
+[20288] Both possess accepted PCJCD and PCROUTE roots.
+[20289] 86.2 Phase 1 — Construction
+[20290] Tasks include:
+[20291] shaft preparation;
+[20292] main duct delivery;
+[20293] main duct installation;
+[20294] hydronic rack installation;
+[20295] electrical rack installation;
+[20296] AHU delivery;
+[20297] controls installation;
+[20298] temporary egress diversion;
+[20299] commissioning preparation.
+[20300] An initial sequence overlaps AHU delivery with main-duct insertion and blocks the only temporary egress path. It is rejected:
+[20301] \[ \mathsf{TEMPORARY\_STATE\_INVALID}. \]
+[20302] The repaired sequence installs the egress diversion first, separates crane-intensive tasks, and validates every temporary state.
+[20303] 86.3 Installation fiber
+[20304] The installed supply duct fits its final plenum, but the original rigid section cannot negotiate the delivery corner. The installation fiber is empty.
+[20305] The duct is split into three approved fabrication modules with a field-assembly joint. The revised installation fiber becomes nonempty.
+[20306] 86.4 Commissioning
+[20307] Four temperature sensors and two pressure sensors pass calibration. An AHU damper fault and a branch-flow sensor fault produce the same initial residual vector.
+[20308] The state pair remains observationally aliased:
+[20309] \[ F_{\mathrm{damper}} \equiv_H F_{\mathrm{flowSensor}}. \]
+[20310] A commanded damper sweep adds one diagnostic experiment and separates the faults. The commissioning uncertainty set contracts and handover becomes accepted.
+[20311] 86.5 Phase 2 — Initial operation
+[20312] Uncertainty includes:
+[20313] occupancy in \([0.6,1.0]\) of design;
+[20314] outdoor temperature in a declared interval;
+[20315] time-varying grid factors;
+[20316] ordinary equipment outages.
+[20317] A robust invariant comfort/safety controller handles the covered ordinary disturbance set. Optimization uses MPC, but a verified fallback controller remains authoritative if MPC fails or times out.
+[20318] 86.6 Phase 3 — Failure events
+[20319] Three relevant scenarios are:
+[20320] one AHU outage;
+[20321] one normal feeder outage;
+[20322] a common controller-network failure affecting both service spines.
+[20323] For \(H_1\), one AHU outage reduces conditioned-room service to \(70\%\) and recovery takes ten hours.
+[20324] For \(H_2\), zoning permits \(85\%\) service and recovery takes five hours.
+[20325] Both have the same modeled initiating-event probability, but:
+[20326] \[ L_{\mathrm{res}}(H_2) < L_{\mathrm{res}}(H_1). \]
+[20327] The common controller-network event defeats both nominal physical spines until an independent fallback controller is added.
+[20328] 86.7 External-grid event
+[20329] At one high-occupancy hour:
+[20330] \[ D_{\mathrm{hotel}}=8.0, \qquad D_{\mathrm{neighbor}}=5.0, \qquad C_{\mathrm{feeder}}=11.0. \]
+[20331] The hotel battery supplies \(1.5\), giving:
+[20332] \[ 8+5-1.5=11.5>11. \]
+[20333] Regional cut slack is:
+[20334] \[ s_U=-0.5. \]
+[20335] A local building check alone would have passed.
+[20336] 86.8 Digital-twin update
+[20337] A sensor replacement changes the likelihood and calibration root. The old posterior is invalidated. The replacement sensor is commissioned, and the twin belief is recomputed from the last valid physical-state enclosure rather than transported blindly.
+[20338] 86.9 Phase 4 — Degradation and maintenance
+[20339] A fan bearing moves through condition states:
+[20340] \[ 0\to1\to2\to3. \]
+[20341] An inspection reports a set-valued condition:
+[20342] \[ D_t\in\{2,3\}. \]
+[20343] The maintenance action has imperfect-repair factor:
+[20344] \[ \rho=0.4. \]
+[20345] Virtual age \(10\) becomes \(4\), not \(0\). A spare bearing has a six-week lead time; the operating policy derates the fan while retaining the verified fallback comfort envelope.
+[20346] 86.10 Phase 5 — Retrofit
+[20347] Future electrical load reaches \(260\) A, exceeding a \(225\) A feeder certificate. Tray packing and route envelope also fail after conductor enlargement.
+[20348] A new lineage is opened:
+[20349] \[ \mathsf{PCJCD}^{(0)} \rightarrow \mathsf{PCJCD}^{(1)}. \]
+[20350] The retrofit changes:
+[20351] feeder selection;
+[20352] tray assignment;
+[20354] emergency-distribution topology.
+[20355] The affected PCSIR, PCROUTE, commissioning, lifecycle, environmental, and external-interface roots are recertified.
+[20356] 86.11 Environmental ledger
+[20357] Both alternatives consume the same synthetic annual electricity:
+[20358] \[ 1000\text{ MWh}. \]

@@ -1,0 +1,358 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P11308; UTF16 376074] 38. Physical Deviation Status
+[11-20:P11309; UTF16 376104] DEF-PHY24 — Physical Deviation Status
+[11-20:P11310; UTF16 376142] Every detected or possible deviation receives one status:
+[11-20:P11311; UTF16 376200] [ { \mathsf{WITHIN_CERTIFIED_ENVELOPE}, \mathsf{APPROVED_RECOURSE}, \mathsf{REQUIRES_RECERTIFICATION}, \mathsf{STOP_WORK}, \mathsf{UNRESOLVED} }. ]
+[11-20:P11312; UTF16 376348] The status depends on:
+[11-20:P11313; UTF16 376371] current physical knowledge;
+[11-20:P11314; UTF16 376399] construction stage;
+[11-20:P11315; UTF16 376419] safety claims;
+[11-20:P11316; UTF16 376434] tolerance model;
+[11-20:P11317; UTF16 376451] recourse contract;
+[11-20:P11321; UTF16 376503] release dependencies.
+[11-20:P11322; UTF16 376525] Deviation magnitude alone does not determine status.
+[11-20:P11326; UTF16 376581] DEF-PHY25 — Stop-Work Obligation
+[11-20:P11327; UTF16 376614] A Stop-Work Obligation is a governed mandatory rule
+[11-20:P11328; UTF16 376666] [ \mathsf{StopRequired}(K_t) ]
+[11-20:P11329; UTF16 376697] over the current physical metaknowledge state.
+[11-20:P11330; UTF16 376744] A policy may require stop-work when, for example,
+[11-20:P11331; UTF16 376794] [ \Gamma_t \nsubseteq \mathcal S_t^{\mathrm{safe}}. ]
+[11-20:P11332; UTF16 376848] Mathematics does not universally dictate the governance policy.
+[11-20:P11333; UTF16 376912] Once the policy is declared, the checker treats it as mandatory.
+[11-20:P11337; UTF16 376980] 39. As-Built Digital Envelopes
+[11-20:P11338; UTF16 377011] DEF-PHY26 — As-Built Digital Envelope
+[11-20:P11339; UTF16 377049] An As-Built Digital Envelope is
+[11-20:P11340; UTF16 377081] \left( \widehat G, \widehat T, \widehat P, \widehat C, \widehat E, \Lambda_{\mathrm{AB}}, V_{\mathrm{AB}} \right) ]
+[11-20:P11341; UTF16 377197] with concretization
+[11-20:P11342; UTF16 377217] [ \gamma_{\mathrm{AB}} \left( \widehat b_{\mathrm{AB}} \right) \subseteq \mathcal P. ]
+[11-20:P11344; UTF16 377320] uncertain coordinates;
+[11-20:P11345; UTF16 377343] ambiguous correspondence;
+[11-20:P11346; UTF16 377369] uncertain topology;
+[11-20:P11347; UTF16 377389] alternative product identities;
+[11-20:P11348; UTF16 377421] unresolved concealed components;
+[11-20:P11349; UTF16 377454] bounded physical states.
+[11-20:P11350; UTF16 377479] Its certificate establishes
+[11-20:P11351; UTF16 377507] [ p^\star \in \gamma_{\mathrm{AB}} \left( \widehat b_{\mathrm{AB}} \right) ]
+[11-20:P11352; UTF16 377584] under the checked evidence assumptions.
+[11-20:P11353; UTF16 377624] ANANKE must not create a false exact as-built point when the evidence supports only a set.
+[11-20:P11357; UTF16 377718] 40. Commissioning Experiments
+[11-20:P11358; UTF16 377748] DEF-PHY27 — Commissioning Experiment
+[11-20:P11359; UTF16 377785] A Commissioning Experiment is
+[11-20:P11360; UTF16 377815] \left( x_0, u_{0}, d_{0}, y_{0}, \mathsf{Conditions}, \mathsf{Evidence} \right), ]
+[11-20:P11362; UTF16 377905] (x_0): physical initial-state enclosure;
+[11-20:P11363; UTF16 377946] (u): commanded inputs;
+[11-20:P11364; UTF16 377969] (d): observed or bounded disturbances;
+[11-20:P11365; UTF16 378008] (y): measured outputs;
+[11-20:P11366; UTF16 378031] (\mathsf{Conditions}): operating mode, occupancy, weather, equipment state, control state, and calibration;
+[11-20:P11367; UTF16 378139] (\mathsf{Evidence}): raw data, provenance, timing, and checker artifacts.
+[11-20:P11368; UTF16 378213] Its semantics is relational.
+[11-20:P11369; UTF16 378242] A commissioning experiment updates:
+[11-20:P11370; UTF16 378278] the physical knowledge set;
+[11-20:P11371; UTF16 378306] operating-model parameter sets;
+[11-20:P11372; UTF16 378338] fault hypotheses;
+[11-20:P11373; UTF16 378356] release reports.
+[11-20:P11377; UTF16 378376] 41. Finite Tests Do Not Prove Unrestricted Operation
+[11-20:P11378; UTF16 378429] THM-PHY20 — Finite Passing Commissioning Tests Do Not Establish an Unrestricted Universal Operational Claim
+[11-20:P11379; UTF16 378537] Let (D) be an operating domain and let
+[11-20:P11381; UTF16 378594] be a finite tested subset.
+[11-20:P11382; UTF16 378621] Then passing every test in (S) does not imply a universal property over (D).
+[11-20:P11384; UTF16 378704] Choose any
+[11-20:P11385; UTF16 378715] [ x^\star \in D\setminus S. ]
+[11-20:P11386; UTF16 378745] Define a physical response property (P) such that:
+[11-20:P11387; UTF16 378796] [ P(x)=\mathsf{true} \qquad \forall x\in S, ]
+[11-20:P11389; UTF16 378846] [ P(x^\star)=\mathsf{false}. ]
+[11-20:P11390; UTF16 378877] Every performed test passes.
+[11-20:P11391; UTF16 378906] The universal statement
+[11-20:P11392; UTF16 378930] [ \forall x\in D,; P(x) ]
+[11-20:P11394; UTF16 378966] Therefore finite passing tests do not establish unrestricted universality without an additional generalization theorem. ∎
+[11-20:P11398; UTF16 379091] 42. Commissioning Coverage
+[11-20:P11399; UTF16 379118] DEF-PHY28 — Commissioning Coverage Certificate
+[11-20:P11400; UTF16 379165] A Commissioning Coverage Certificate for operating domain (D_{\mathrm{op}}) proves a claim of the form
+[11-20:P11401; UTF16 379268] [ \forall p \in \Gamma_{\mathrm{commissioned}}, \forall u \in D_{\mathrm{op}}, \qquad P(p,u). ]
+[11-20:P11402; UTF16 379364] It may combine:
+[11-20:P11403; UTF16 379380] direct tests;
+[11-20:P11405; UTF16 379422] validated model envelopes;
+[11-20:P11408; UTF16 379470] interval reasoning;
+[11-20:P11409; UTF16 379490] parameter identification;
+[11-20:P11410; UTF16 379516] model-discrepancy evidence.
+[11-20:P11411; UTF16 379544] The domain (D_{\mathrm{op}}) is part of the theorem.
+[11-20:P11415; UTF16 379600] 43. Model-Assisted Commissioning
+[11-20:P11416; UTF16 379633] THM-PHY21 — Model-Assisted Commissioning Coverage Is Sound Under Explicit Validity and Discrepancy Hypotheses
+[11-20:P11418; UTF16 379751] the actual physical parameter satisfies [ \theta^\star \in \Theta_C; ]
+[11-20:P11419; UTF16 379822] for every operating input [ u\in D_{\mathrm{op}}, ] the actual physical response satisfies [ F_{\mathrm{phys}}(u) \in \Delta_M \left( F_M(u,\theta^\star) \right); ]
+[11-20:P11420; UTF16 379987] the model and discrepancy relation are valid throughout [ D_{\mathrm{op}} \times \Theta_C; ]
+[11-20:P11421; UTF16 380080] for every [ \theta\in\Theta_C, \quad u\in D_{\mathrm{op}}, \quad y \in \Delta_M(F_M(u,\theta)), ] property (P(y)) holds.
+[11-20:P11423; UTF16 380206] [ P(F_{\mathrm{phys}}(u)) \qquad \forall u\in D_{\mathrm{op}}. ]
+[11-20:P11425; UTF16 380277] Fix arbitrary (u\in D_{\mathrm{op}}).
+[11-20:P11426; UTF16 380315] By assumption 2,
+[11-20:P11427; UTF16 380332] [ F_{\mathrm{phys}}(u) \in \Delta_M \left( F_M(u,\theta^\star) \right). ]
+[11-20:P11428; UTF16 380406] By assumption 1,
+[11-20:P11429; UTF16 380423] [ \theta^\star\in\Theta_C. ]
+[11-20:P11430; UTF16 380452] Apply assumption 4 with
+[11-20:P11431; UTF16 380476] [ \theta=\theta^\star ]
+[11-20:P11433; UTF16 380504] [ y=F_{\mathrm{phys}}(u). ]
+[11-20:P11435; UTF16 380537] [ P(F_{\mathrm{phys}}(u)). ]
+[11-20:P11436; UTF16 380566] Because (u) was arbitrary, the claim holds throughout (D_{\mathrm{op}}). ∎
+[11-20:P11437; UTF16 380641] The theorem does not establish the discrepancy relation.
+[11-20:P11438; UTF16 380698] That remains an independent evidence obligation.
+[11-20:P11442; UTF16 380750] 44. Commissioning Sufficiency
+[11-20:P11443; UTF16 380780] For a commissioning suite (S), define
+[11-20:P11444; UTF16 380818] [ p_1 \equiv_S^{\mathrm{comm}} p_2 ]
+[11-20:P11445; UTF16 380855] when every experiment in (S) returns the same complete commissioning outcome on both states.
+[11-20:P11446; UTF16 380948] THM-PHY22 — A Commissioning Suite Is Claim Sufficient Exactly When Its Equivalence Classes Refine the Claim Partition
+[11-20:P11448; UTF16 381070] [ r_C:\mathcal P\to\mathcal R_C ]
+[11-20:P11449; UTF16 381104] be a commissioning claim report.
+[11-20:P11450; UTF16 381137] The suite (S) is claim sufficient if and only if
+[11-20:P11451; UTF16 381186] [ p_1 \equiv_S^{\mathrm{comm}} p_2 \Longrightarrow r_C(p_1)=r_C(p_2). ]
+[11-20:P11453; UTF16 381264] The forward direction is the definition of claim sufficiency.
+[11-20:P11454; UTF16 381326] For the reverse direction, assume every suite-equivalence class lies inside one claim-report cell.
+[11-20:P11455; UTF16 381425] If two states have equal suite outcomes, then they lie in the same suite-equivalence class.
+[11-20:P11456; UTF16 381517] By the refinement assumption, they have equal claim reports.
+[11-20:P11457; UTF16 381578] Therefore the suite is claim sufficient. ∎
+[11-20:P11458; UTF16 381621] This theorem gives an exact meaning to:
+[11-20:P11459; UTF16 381661] enough commissioning tests for this claim.
+[11-20:P11463; UTF16 381707] 45. Physical Release Manifest
+[11-20:P11464; UTF16 381737] DEF-PHY29 — Physical Release Manifest
+[11-20:P11465; UTF16 381775] The Physical Release Manifest is
+[11-20:P11468; UTF16 381844] as-built geometry;
+[11-20:P11470; UTF16 381891] structural completion;
+[11-20:P11472; UTF16 381928] pressure and leakage testing;
+[11-20:P11473; UTF16 381958] electrical protection;
+[11-20:P11476; UTF16 382006] accessibility;
+[11-20:P11477; UTF16 382021] architectural as-built sovereignty;
+[11-20:P11479; UTF16 382070] field evidence consistency;
+[11-20:P11480; UTF16 382098] event-capture obligations.
+[11-20:P11481; UTF16 382125] It is distinct from the Prompt-11 design-release manifest.
+[11-20:P11482; UTF16 382184] A design may be releaseable while occupancy release remains blocked.
+[11-20:P11486; UTF16 382256] DEF-PHY30 — Physical Release Closure
+[11-20:P11488; UTF16 382297] [ \Gamma^{\mathrm{phys}} \neq \varnothing. ]
+[11-20:P11489; UTF16 382342] Physical release is closed when, for every
+[11-20:P11490; UTF16 382385] [ R_i \in \mathfrak R_{\mathrm{phys}}, ]
+[11-20:P11491; UTF16 382426] there exists one accepted report
+[11-20:P11492; UTF16 382459] [ r_i \in \mathcal G_{R_i} ]
+[11-20:P11494; UTF16 382498] [ \Gamma^{\mathrm{phys}} \subseteq C_{R_i,r_i}. ]
+[11-20:P11495; UTF16 382548] Additionally:
+[11-20:P11496; UTF16 382562] evidence foundations are consistent;
+[11-20:P11497; UTF16 382599] calibration is applicable;
+[11-20:P11498; UTF16 382626] no blocking conflict remains;
+[11-20:P11499; UTF16 382656] every required sovereignty claim is closed;
+[11-20:P11500; UTF16 382700] every mandatory UNKNOWN remains blocking.
+[11-20:P11504; UTF16 382745] 46. Design Release and Physical Release Are Different
+[11-20:P11505; UTF16 382799] PRO-PHY2 — Design Release Does Not Imply Physical Release
+[11-20:P11506; UTF16 382857] A Prompt-11 PCR can prove:
+[11-20:P11507; UTF16 382884] the specified design satisfies the design-release manifest.
+[11-20:P11508; UTF16 382944] A physical release additionally depends on facts that do not exist at design time, including:
+[11-20:P11509; UTF16 383038] actual installed products;
+[11-20:P11510; UTF16 383065] physical geometry;
+[11-20:P11512; UTF16 383102] actual execution;
+[11-20:P11513; UTF16 383120] temporary-state history;
+[11-20:P11516; UTF16 383173] as-built evidence.
+[11-20:P11517; UTF16 383192] Therefore design release cannot logically imply physical release without additional premises. ∎
+[11-20:P11518; UTF16 383288] The two releases receive distinct version identities.
+[11-20:P11522; UTF16 383345] 47. Physical Execution Dependency Graph
+[11-20:P11523; UTF16 383385] DEF-PHY31 — Physical Execution Dependency Graph
+[11-20:P11524; UTF16 383433] A Physical Execution Dependency Graph has nodes for:
+[11-20:P11525; UTF16 383486] design entities;
+[11-20:P11526; UTF16 383503] physical entities;
+[11-20:P11527; UTF16 383522] execution actions;
+[11-20:P11528; UTF16 383541] event evidence;
+[11-20:P11531; UTF16 383577] geometry envelopes;
+[11-20:P11533; UTF16 383615] temporary safety;
+[11-20:P11534; UTF16 383633] field recourse;
+[11-20:P11536; UTF16 383664] model parameters;
+[11-20:P11537; UTF16 383682] release roots.
+[11-20:P11540; UTF16 383716] means changing (u) may change the validity or report of (v).
+[11-20:P11542; UTF16 383797] targeted measurement;
+[11-20:P11543; UTF16 383819] localized recertification;
+[11-20:P11544; UTF16 383846] stop-work cones;
+[11-20:P11545; UTF16 383863] commissioning planning;
+[11-20:P11546; UTF16 383887] release frontiers.
+[11-20:P11547; UTF16 383906] Exact reuse theorems require dependency completeness.
+[11-20:P11551; UTF16 383963] 48. Incremental Physical Recertification
+[11-20:P11552; UTF16 384004] THM-PHY23 — Dependency-Directed Physical Recertification Equals Cold Checking Under Complete Dependencies
+[11-20:P11554; UTF16 384118] every changed field root is identified;
+[11-20:P11555; UTF16 384158] the physical dependency graph is complete;
+[11-20:P11557; UTF16 384246] every reused artifact passes version, calibration, applicability, and identity checks;
+[11-20:P11558; UTF16 384333] every affected local computation uses the same post-change semantics as cold checking;
+[11-20:P11560; UTF16 384464] the same field evidence set is supplied.
+[11-20:P11561; UTF16 384505] Then incremental physical reconciliation produces the same:
+[11-20:P11562; UTF16 384565] conformance reports;
+[11-20:P11563; UTF16 384586] temporary safety reports;
+[11-20:P11564; UTF16 384612] product statuses;
+[11-20:P11565; UTF16 384630] topology statuses;
+[11-20:P11566; UTF16 384649] recourse classification;
+[11-20:P11567; UTF16 384674] commissioning reports;
+[11-20:P11568; UTF16 384697] physical release classification
+[11-20:P11569; UTF16 384729] as a full cold physical reconstruction and check.
+[11-20:P11571; UTF16 384785] Collapse metadata-only cycles into strongly connected components and topologically order the resulting dependency DAG.
+[11-20:P11572; UTF16 384904] Proceed by induction over the order.
+[11-20:P11573; UTF16 384941] For an unaffected node outside the changed descendant closure, all semantic inputs, evidence, applicability, and versions are unchanged.
+[11-20:P11574; UTF16 385078] The reused result equals cold recomputation by deterministic checker semantics.
+[11-20:P11575; UTF16 385158] For an affected node, every predecessor has already been shown equal between incremental and cold evaluation.
+[11-20:P11576; UTF16 385268] Applying the same local semantic function produces the same output.
+[11-20:P11577; UTF16 385336] By induction, all node reports agree.
+[11-20:P11578; UTF16 385374] The physical release classification is a deterministic function of the root reports, so it also agrees. ∎
+[11-20:P11582; UTF16 385483] 49. Physical Reconciliation Frontiers
+[11-20:P11583; UTF16 385521] DEF-PHY32 — Physical Reconciliation Frontier
+[11-20:P11584; UTF16 385566] A node (q) is a Physical Reconciliation Frontier for changed root set (R) when:
+[11-20:P11585; UTF16 385646] every path from (R) to relevant downstream release roots passes through (q);
+[11-20:P11586; UTF16 385723] the complete downstream-visible report at (q) is unchanged;
+[11-20:P11587; UTF16 385783] its evidence, scope, and version remain applicable;
+[11-20:P11588; UTF16 385835] downstream rules inspect the upstream region only through that report.
+[11-20:P11592; UTF16 385909] THM-PHY24 — An Unchanged Physical Reconciliation Frontier Stops Downstream Semantic Recertification
+[11-20:P11593; UTF16 386009] Under DEF-PHY32’s conditions, no downstream semantic report changes because of the upstream field change.
+[11-20:P11595; UTF16 386121] Every dependency path from the change to a downstream root passes through (q).
+[11-20:P11596; UTF16 386200] By assumption, the complete report exposed by (q) is unchanged.
+[11-20:P11597; UTF16 386264] Every downstream rule factors through that report and unchanged applicability data.
+[11-20:P11598; UTF16 386348] Therefore each downstream rule receives the same inputs before and after the field change.
+[11-20:P11599; UTF16 386439] By deterministic semantic evaluation, every downstream report is unchanged.
+[11-20:P11600; UTF16 386515] Thus semantic recertification may stop at (q). ∎
+[11-20:P11601; UTF16 386564] Metadata or package hashes may still require regeneration if governance demands it.
+[11-20:P11605; UTF16 386651] 50. Physical-Execution Algorithms
+[11-20:P11606; UTF16 386685] ALG-PHY1 — UpdatePhysicalKnowledge
+[11-20:P11608; UTF16 386726]     current physical knowledge set Γt
+[11-20:P11609; UTF16 386764]     accepted field-event relation
+[11-20:P11610; UTF16 386798]     new measurements
+[11-20:P11611; UTF16 386819]     calibration state
+[11-20:P11612; UTF16 386841]     evidence graph
+[11-20:P11614; UTF16 386861] 1. Form the union of every physical
+[11-20:P11615; UTF16 386897]    transition still compatible with
+[11-20:P11616; UTF16 386933]    the event evidence and capture theory.
+[11-20:P11618; UTF16 386976] 2. Compute:
+[11-20:P11619; UTF16 386988]        Γpost = Post(Γt).
+[11-20:P11621; UTF16 387014] 3. Intersect Γpost with the exact
+[11-20:P11622; UTF16 387048]    joint inverse observation relation.
+[11-20:P11624; UTF16 387088] 4. Preserve:
+[11-20:P11625; UTF16 387101]        shared uncertainty variables
+[11-20:P11626; UTF16 387137]        calibration correlation
+[11-20:P11627; UTF16 387168]        registration correlation
+[11-20:P11628; UTF16 387200]        topology hypotheses
+[11-20:P11629; UTF16 387227]        product identity hypotheses.
+[11-20:P11631; UTF16 387264] 5. If the result is empty:
+[11-20:P11632; UTF16 387291]        return EVIDENCE_CONFLICT
+[11-20:P11633; UTF16 387323]        or THEORY_CONFLICT.
+[11-20:P11635; UTF16 387351] 6. Recompute:
+[11-20:P11636; UTF16 387365]        conformance
+[11-20:P11637; UTF16 387384]        temporary safety
+[11-20:P11638; UTF16 387408]        field-recourse availability
+[11-20:P11639; UTF16 387443]        live release obligations.
+[11-20:P11642; UTF16 387484]     Γt+1
+[11-20:P11643; UTF16 387493]     updated evidence graph
+[11-20:P11644; UTF16 387520]     physical status
+[11-20:P11645; UTF16 387540] Correctness relies on THM-PHY4.
+[11-20:P11649; UTF16 387575] ALG-PHY2 — DeviationAwareExecute
+[11-20:P11650; UTF16 387608] LOOP during physical construction:
+[11-20:P11652; UTF16 387644]     ingest field-event evidence
+[11-20:P11653; UTF16 387676]     ingest measurements and inspections
+[11-20:P11655; UTF16 387717]     update Γphys
+[11-20:P11657; UTF16 387735]     check temporary safety
+[11-20:P11659; UTF16 387763]     if safety is not universally certified:
+[11-20:P11660; UTF16 387807]         apply governed stop-work rule
+[11-20:P11661; UTF16 387845]         or return unresolved
+[11-20:P11663; UTF16 387875]     classify every deviation:
+[11-20:P11664; UTF16 387905]         WITHIN_CERTIFIED_ENVELOPE
+[11-20:P11665; UTF16 387939]         APPROVED_RECOURSE
+[11-20:P11666; UTF16 387965]         REQUIRES_RECERTIFICATION
+[11-20:P11667; UTF16 387998]         STOP_WORK
+[11-20:P11668; UTF16 388016]         UNRESOLVED
+[11-20:P11670; UTF16 388036]     CASE WITHIN_CERTIFIED_ENVELOPE:
+[11-20:P11671; UTF16 388072]         continue under existing PCMP
+[11-20:P11673; UTF16 388110]     CASE APPROVED_RECOURSE:
+[11-20:P11674; UTF16 388138]         execute only an authorized,
+[11-20:P11675; UTF16 388174]         nonanticipative certified policy
+[11-20:P11677; UTF16 388216]     CASE REQUIRES_RECERTIFICATION:
+[11-20:P11678; UTF16 388251]         invoke:
+[11-20:P11679; UTF16 388267]             Prompt-7 rewrite transport
+[11-20:P11680; UTF16 388306]             Prompt-13 rematerialization
+[11-20:P11681; UTF16 388346]             Prompt-12 sovereignty check
+[11-20:P11682; UTF16 388386]             Prompt-11 assurance recertification
+[11-20:P11684; UTF16 388435]     CASE UNRESOLVED:
+[11-20:P11685; UTF16 388456]         expose field measurements,
+[11-20:P11686; UTF16 388491]         inspections, analyses, or
+[11-20:P11687; UTF16 388525]         human judgments to Prompt 9
+[11-20:P11689; UTF16 388562]     update physical execution ledger
+[11-20:P11693; UTF16 388602] ALG-PHY3 — ReconcileAsBuiltEntities
+[11-20:P11695; UTF16 388644]     design lineage
+[11-20:P11697; UTF16 388685]     field observations
+[11-20:P11698; UTF16 388708]     product identities
+[11-20:P11699; UTF16 388731]     scans
+[11-20:P11700; UTF16 388741]     inspection evidence
+[11-20:P11702; UTF16 388766] MATCH using:
+[11-20:P11703; UTF16 388779]     persistent identity
+[11-20:P11704; UTF16 388803]     serial number
+[11-20:P11706; UTF16 388834]     topology
+[11-20:P11707; UTF16 388847]     location
+[11-20:P11711; UTF16 388891] DO NOT FORCE MATCHES
+[11-20:P11713; UTF16 388913] CLASSIFY:
+[11-20:P11714; UTF16 388923]     MATCHED
+[11-20:P11715; UTF16 388935]     SUBSTITUTED
+[11-20:P11716; UTF16 388951]     MISSING
+[11-20:P11717; UTF16 388963]     EXTRA
+[11-20:P11718; UTF16 388973]     AMBIGUOUS
+[11-20:P11719; UTF16 388987]     UNOBSERVED
+[11-20:P11721; UTF16 389003] FOR every substituted, ambiguous,
+[11-20:P11722; UTF16 389037] or unobserved entity:
+[11-20:P11723; UTF16 389059]     invalidate identity-sensitive
+[11-20:P11724; UTF16 389093]     product and evidence claims
+[11-20:P11727; UTF16 389133]     reconciliation relation
+[11-20:P11728; UTF16 389161]     uncertainty
+[11-20:P11729; UTF16 389177]     affected dependency cone
+[11-20:P11733; UTF16 389209] ALG-PHY4 — CertifyAsBuiltGeometry
+[11-20:P11735; UTF16 389249]     design geometry
+[11-20:P11736; UTF16 389269]     raw scans and survey
+[11-20:P11737; UTF16 389294]     registration model
+[11-20:P11738; UTF16 389317]     calibration
+[11-20:P11739; UTF16 389333]     correspondence hypotheses
+[11-20:P11740; UTF16 389363]     occlusion model
+[11-20:P11743; UTF16 389390]     certified outer geometry envelope
+[11-20:P11745; UTF16 389429] FOR every geometric requirement:
+[11-20:P11746; UTF16 389462]     evaluate the complete envelope
+[11-20:P11749; UTF16 389508]     CERTIFIED_CONFORMING
+[11-20:P11750; UTF16 389533]     CERTIFIED_NONCONFORMING
+[11-20:P11754; UTF16 389592] DO NOT:
+[11-20:P11755; UTF16 389600]     copy unobserved BIM geometry
+[11-20:P11756; UTF16 389633]     into the measured model and
+[11-20:P11757; UTF16 389665]     call it field verified
+[11-20:P11760; UTF16 389700]     geometry envelope
+[11-20:P11761; UTF16 389722]     correspondence map
+[11-20:P11762; UTF16 389745]     conformance reports
+[11-20:P11763; UTF16 389769] Correctness of universal claims follows THM-PHY13.
+[11-20:P11767; UTF16 389823] ALG-PHY5 — ReconcileFieldDeviation
+[11-20:P11769; UTF16 389864]     deviation enclosure
+[11-20:P11770; UTF16 389888]     active PCMP
+[11-20:P11771; UTF16 389904]     field recourse contract
+[11-20:P11772; UTF16 389932]     physical dependency graph
+[11-20:P11774; UTF16 389963] IF the complete deviation enclosure lies
+[11-20:P11775; UTF16 390004] inside a pre-certified tolerance cell:
+[11-20:P11776; UTF16 390043]     reuse the applicable certificates
+[11-20:P11778; UTF16 390082] ELSE IF one approved nonanticipative
+[11-20:P11779; UTF16 390119] recourse policy covers every possible state:
+[11-20:P11780; UTF16 390164]     execute the authorized policy
+[11-20:P11781; UTF16 390198]     re-observe the resulting state
+[11-20:P11782; UTF16 390233]     verify terminal membership
+[11-20:P11786; UTF16 390298]     invoke:
+[11-20:P11787; UTF16 390310]         rewrite transport
+[11-20:P11788; UTF16 390336]         rematerialization
+[11-20:P11789; UTF16 390362]         sovereignty checking
+[11-20:P11790; UTF16 390391]         assurance recertification
+[11-20:P11793; UTF16 390433]     continued certification
+[11-20:P11794; UTF16 390461]     new design/materialization version
+[11-20:P11795; UTF16 390500]     stop-work requirement
+[11-20:P11796; UTF16 390526]     or unresolved status
+[11-20:P11800; UTF16 390554] ALG-PHY6 — CommissionPhysicalSystem
+[11-20:P11802; UTF16 390596]     as-built physical knowledge set
+[11-20:P11803; UTF16 390632]     commissioning manifest
+[11-20:P11804; UTF16 390659]     controlled experiment library
+[11-20:P11805; UTF16 390693]     operational models
+[11-20:P11806; UTF16 390716]     model-discrepancy evidence
+[11-20:P11807; UTF16 390747]     calibration evidence
+[11-20:P11809; UTF16 390773] FOR every live operational claim:
+[11-20:P11811; UTF16 390808]     test whether Γphys already lies
+[11-20:P11812; UTF16 390844]     in one accepted report cell
+[11-20:P11814; UTF16 390877]     if not:
+[11-20:P11815; UTF16 390889]         expose candidate experiments
+[11-20:P11816; UTF16 390926]         to the Prompt-9 scheduler
+[11-20:P11818; UTF16 390961]     execute the selected experiment
+[11-20:P11821; UTF16 391010]         initial-state scope
+[11-20:P11822; UTF16 391038]         commanded inputs

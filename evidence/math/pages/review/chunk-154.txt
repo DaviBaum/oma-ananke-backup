@@ -1,0 +1,326 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P5019; UTF16 170430] project and system identity;
+[21-30:P5020; UTF16 170459] references to lower-layer ANANKE packages;
+[21-30:P5021; UTF16 170502] physical artifact version;
+[21-30:P5022; UTF16 170529] deployed cyber configuration;
+[21-30:P5023; UTF16 170559] hardware identities;
+[21-30:P5024; UTF16 170580] software and firmware identities;
+[21-30:P5025; UTF16 170614] threat-model family;
+[21-30:P5026; UTF16 170635] principal identities;
+[21-30:P5027; UTF16 170657] credential inventory;
+[21-30:P5028; UTF16 170679] key state;
+[21-30:P5030; UTF16 170708] authentication rules;
+[21-30:P5031; UTF16 170730] authorization policy;
+[21-30:P5032; UTF16 170752] least-privilege analysis;
+[21-30:P5033; UTF16 170778] capability inventory;
+[21-30:P5034; UTF16 170800] cryptographic algorithm fingerprints;
+[21-30:P5035; UTF16 170838] signature evidence;
+[21-30:P5036; UTF16 170858] freshness state;
+[21-30:P5037; UTF16 170875] artifact digests;
+[21-30:P5038; UTF16 170893] provenance DAG;
+[21-30:P5040; UTF16 170915] SBOM-completeness certificate;
+[21-30:P5041; UTF16 170946] build provenance;
+[21-30:P5042; UTF16 170964] boot chain;
+[21-30:P5043; UTF16 170976] boot measurements;
+[21-30:P5044; UTF16 170995] attestations;
+[21-30:P5045; UTF16 171009] update policy;
+[21-30:P5046; UTF16 171024] rollback policy;
+[21-30:P5047; UTF16 171041] information-flow policy;
+[21-30:P5048; UTF16 171066] noninterference and declassification certificates;
+[21-30:P5049; UTF16 171117] network trust state;
+[21-30:P5051; UTF16 171157] sensor-compromise family;
+[21-30:P5052; UTF16 171183] Byzantine assumptions;
+[21-30:P5053; UTF16 171206] actuator-command policy;
+[21-30:P5054; UTF16 171231] physical safety guards;
+[21-30:P5055; UTF16 171255] cyber-physical invariants;
+[21-30:P5057; UTF16 171304] hardening status;
+[21-30:P5058; UTF16 171322] security-augmented ODT state;
+[21-30:P5059; UTF16 171352] security lease;
+[21-30:P5061; UTF16 171384] incident-response policy;
+[21-30:P5063; UTF16 171429] log-integrity state;
+[21-30:P5064; UTF16 171450] unresolved compromise hypotheses;
+[21-30:P5070; UTF16 171534] 42. Whole-Project Cyber-Physical Security Theorem
+[21-30:P5071; UTF16 171584] THM-SEC31 — Whole-Project Proof-Carrying Cyber-Physical Security and Trusted Release
+[21-30:P5074; UTF16 171707] (z_t^\star) be its actual current cyber-physical state;
+[21-30:P5075; UTF16 171763] (z_t) be the represented current security state;
+[21-30:P5076; UTF16 171812] (\mathfrak A_{\mathrm{SEC}}) be a nonempty adversary family;
+[21-30:P5077; UTF16 171873] (\mathsf{PCSEC}) be the candidate security package.
+[21-30:P5079; UTF16 171933] 1. Physical-state correctness
+[21-30:P5080; UTF16 171963] The physical and operational state is soundly inherited from Prompts 14 and 15.
+[21-30:P5081; UTF16 172043] 2. Cyber-state identity
+[21-30:P5082; UTF16 172067] Deployed hardware, software, firmware, model, network, and configuration versions are correctly identified.
+[21-30:P5083; UTF16 172175] 3. Threat coverage
+[21-30:P5084; UTF16 172194] Actual covered attacker behavior belongs to:
+[21-30:P5085; UTF16 172239] [ \mathfrak A_{\mathrm{SEC}}. ]
+[21-30:P5086; UTF16 172271] 4. Identity binding
+[21-30:P5087; UTF16 172291] Principal-to-credential relations are valid under the declared identity theory.
+[21-30:P5088; UTF16 172371] 5. Authentication correctness
+[21-30:P5089; UTF16 172401] Every authentication claim satisfies its credential, revocation, freshness, and cryptographic assumptions.
+[21-30:P5090; UTF16 172508] 6. Authorization correctness
+[21-30:P5091; UTF16 172537] Every privileged project action passes the current authorization policy and complete-mediation assumption.
+[21-30:P5092; UTF16 172644] 7. Freshness
+[21-30:P5093; UTF16 172657] Every replay-sensitive protocol uses valid freshness state.
+[21-30:P5094; UTF16 172717] 8. Cryptographic modality
+[21-30:P5095; UTF16 172743] Hashes, signatures, channels, and attestations retain their exact EXACT, IDEALIZED, or COMPUTATIONAL modality.
+[21-30:P5096; UTF16 172854] 9. Trust roots
+[21-30:P5097; UTF16 172869] Every active boot, attestation, signature, credential, and update chain terminates in a declared trust root covered by the threat model.
+[21-30:P5098; UTF16 173006] 10. Provenance
+[21-30:P5099; UTF16 173021] Every dependency required by an accepted supply-chain claim appears in the checked provenance graph.
+[21-30:P5100; UTF16 173122] 11. Boot and update
+[21-30:P5101; UTF16 173142] Every executing boot image and accepted update satisfies the active authorization, compatibility, and rollback policy.
+[21-30:P5102; UTF16 173261] 12. Information flow
+[21-30:P5103; UTF16 173282] Every confidentiality or noninterference root uses its exact domain, observation, transition, and declassification theory.
+[21-30:P5104; UTF16 173405] 13. Sensors
+[21-30:P5105; UTF16 173417] Sensor-message authenticity is interpreted separately from physical measurement truth.
+[21-30:P5106; UTF16 173504] 14. Byzantine assumptions
+[21-30:P5107; UTF16 173530] Every quorum or sensor-fusion claim uses valid identity uniqueness, (n), (f), honest-agreement, and synchronization assumptions.
+[21-30:P5108; UTF16 173659] 15. Actuation
+[21-30:P5109; UTF16 173673] Every safety-relevant cyber-authorized physical action passes the declared physical guard.
+[21-30:P5110; UTF16 173764] 16. Cyber-physical invariant
+[21-30:P5111; UTF16 173793] The accepted transition relation preserves the declared safety set against every covered adversary.
+[21-30:P5112; UTF16 173893] 17. ODT trust
+[21-30:P5113; UTF16 173907] Prompt-15 operational-twin claims use the security-augmented state family.
+[21-30:P5114; UTF16 173982] 18. Incident state
+[21-30:P5115; UTF16 174001] Known or suspected compromise is represented rather than omitted.
+[21-30:P5116; UTF16 174067] 19. Forensics
+[21-30:P5117; UTF16 174081] Forensic claims preserve their chain-of-custody, cryptographic, collection, and completeness limitations.
+[21-30:P5118; UTF16 174187] 20. Reliability modality
+[21-30:P5119; UTF16 174212] Probabilities of compromise or cyber failure retain Prompt-17 semantics.
+[21-30:P5120; UTF16 174285] 21. Governance authority
+[21-30:P5121; UTF16 174310] Authenticated identities possess only the rights established by Prompt 20.
+[21-30:P5122; UTF16 174385] 22. Regulatory authority
+[21-30:P5123; UTF16 174410] Cyber authorization does not create authority absent Prompt 21.
+[21-30:P5124; UTF16 174474] 23. UNKNOWN discipline
+[21-30:P5125; UTF16 174497] Unresolved compromise, key, provenance, dependency, or threat assumptions remain unresolved.
+[21-30:P5126; UTF16 174590] 24. Independent checking
+[21-30:P5127; UTF16 174615] The PCSEC checker accepts the package.
+[21-30:P5129; UTF16 174691] Identity conclusion
+[21-30:P5130; UTF16 174711] Every accepted authentication claim follows from the declared principal, identity, credential, key, revocation, freshness, and cryptographic theory.
+[21-30:P5131; UTF16 174860] Authorization conclusion
+[21-30:P5132; UTF16 174885] Every privileged action accepted by the cyber layer lies inside the active authorization relation.
+[21-30:P5133; UTF16 174984] No physical-safety conclusion follows solely from authorization.
+[21-30:P5134; UTF16 175049] Cryptographic conclusion
+[21-30:P5135; UTF16 175074] Every cryptographic result retains its exact modality and failure bound.
+[21-30:P5136; UTF16 175147] No computational cryptographic proposition is promoted to mathematical impossibility.
+[21-30:P5137; UTF16 175233] Provenance conclusion
+[21-30:P5138; UTF16 175255] Every accepted supply-chain claim covers exactly the dependency scope established by its provenance and completeness certificates.
+[21-30:P5139; UTF16 175386] Boot conclusion
+[21-30:P5140; UTF16 175402] Every executing boot stage belongs to the authorized boot chain under the declared trust-root assumptions.
+[21-30:P5141; UTF16 175509] No runtime-correctness claim follows merely from boot authorization.
+[21-30:P5142; UTF16 175578] Update conclusion
+[21-30:P5143; UTF16 175596] Every accepted update satisfies the active target, signature, version, compatibility, migration, and rollback rules.
+[21-30:P5144; UTF16 175713] Information-flow conclusion
+[21-30:P5145; UTF16 175741] Every noninterference certificate proves exactly the declared low-observation property, subject to its modeled observations and declassification rules.
+[21-30:P5146; UTF16 175893] Sensor conclusion
+[21-30:P5147; UTF16 175911] Authentication establishes the source and integrity of a sensor message under the credential theory, not the physical truth of its value.
+[21-30:P5148; UTF16 176049] Every Byzantine-fusion result retains its (n,f), identity, and honest-agreement assumptions.
+[21-30:P5149; UTF16 176142] Actuator conclusion
+[21-30:P5150; UTF16 176162] A safety-relevant command is committed only when:
+[21-30:P5151; UTF16 176212] authentication holds;
+[21-30:P5152; UTF16 176234] authorization holds;
+[21-30:P5153; UTF16 176255] freshness holds;
+[21-30:P5154; UTF16 176272] the physical-state guard holds.
+[21-30:P5155; UTF16 176304] Adversarial-safety conclusion
+[21-30:P5156; UTF16 176334] If the initial state is safe and every transition under every covered adversary preserves the invariant, every covered finite execution remains safe.
+[21-30:P5157; UTF16 176484] ODT conclusion
+[21-30:P5158; UTF16 176499] Operational-twin reasoning preserves every cyber or sensor compromise hypothesis not eliminated by checked evidence.
+[21-30:P5159; UTF16 176616] Incident conclusion
+[21-30:P5160; UTF16 176636] Physical service restoration is not promoted to cyber trust restoration until all required revocation, rekey, clean-state, provenance, and reattestation obligations are discharged.
+[21-30:P5161; UTF16 176817] Forensic conclusion
+[21-30:P5162; UTF16 176837] Hash-chain and signature evidence establishes only the supported integrity and attribution claims. It does not establish event completeness without a separate capture-completeness theorem.
+[21-30:P5165; UTF16 177049] [ \pi \in \gamma_{\mathrm{sec}}^\mu (z_t,\mathfrak A_{\mathrm{SEC}}), ]
+[21-30:P5167; UTF16 177127] [ \gamma_{\mathrm{sec}}^\mu (z_t,\mathfrak A_{\mathrm{SEC}}) \neq \varnothing ]
+[21-30:P5168; UTF16 177207] under exactly modality (\mu).
+[21-30:P5170; UTF16 177258] Prompt 11 may consume PCSEC claims only at their exact security modality.
+[21-30:P5172; UTF16 177338] Step 1 — Bind the certificate to the real project state
+[21-30:P5173; UTF16 177394] Assumptions 1–2 bind the PCSEC to the correct physical project, deployed devices, software, firmware, model, and configuration.
+[21-30:P5174; UTF16 177522] This prevents a valid certificate for one artifact from being applied to another.
+[21-30:P5175; UTF16 177604] Step 2 — Cover the actual attacker
+[21-30:P5176; UTF16 177639] Assumption 3 places actual covered attacker behavior inside the declared adversary family.
+[21-30:P5177; UTF16 177730] Therefore every robust threat-family theorem quantifies over the actual covered adversary.
+[21-30:P5178; UTF16 177821] THM-SEC16 explains why enlarging the threat family can only weaken the robustly secure set.
+[21-30:P5179; UTF16 177913] Step 3 — Establish identity and authentication scope
+[21-30:P5180; UTF16 177966] Assumptions 4–5 establish the principal-to-credential binding, validity, revocation, freshness, and cryptographic prerequisites.
+[21-30:P5181; UTF16 178095] Thus each accepted authentication claim follows from the exact active credential theory.
+[21-30:P5182; UTF16 178184] THM-SEC1 prevents authentication from becoming authorization.
+[21-30:P5183; UTF16 178246] THM-SEC6 prevents signature verification from becoming semantic truth.
+[21-30:P5184; UTF16 178317] THM-SEC7 prevents integrity from becoming freshness.
+[21-30:P5185; UTF16 178370] Step 4 — Establish authorization and complete mediation
+[21-30:P5186; UTF16 178426] Assumption 6 establishes that every protected action is checked against the authorization policy.
+[21-30:P5187; UTF16 178524] Therefore every accepted privileged action lies inside:
+[21-30:P5188; UTF16 178580] [ \mathsf{May}(p,a,r,z). ]
+[21-30:P5189; UTF16 178607] THM-SEC3 supplies authorization-trace monotonicity.
+[21-30:P5190; UTF16 178659] THM-SEC2 and THM-SEC23 prevent authorization from being promoted to physical safety.
+[21-30:P5191; UTF16 178744] Step 5 — Preserve cryptographic modality
+[21-30:P5192; UTF16 178785] Assumptions 7–8 ensure that replay-sensitive claims include freshness and that computational primitives retain their probability bounds.
+[21-30:P5193; UTF16 178922] THM-SEC5 prevents digest equality from becoming unrestricted logical identity.
+[21-30:P5194; UTF16 179001] PRO-SEC2 prevents small cryptographic failure probability from becoming impossibility.
+[21-30:P5195; UTF16 179088] Step 6 — Establish trust-root and boot claims
+[21-30:P5196; UTF16 179134] Assumption 9 establishes the trust roots.
+[21-30:P5197; UTF16 179176] Assumption 11 establishes boot and update policy compliance.
+[21-30:P5198; UTF16 179237] THM-SEC8 proves authorized boot-chain execution by induction.
+[21-30:P5199; UTF16 179299] THM-SEC9 and THM-SEC10 prevent boot or attestation from being upgraded to application correctness.
+[21-30:P5200; UTF16 179398] THM-SEC11 proves only the declared anti-rollback ordering.
+[21-30:P5201; UTF16 179457] Step 7 — Establish provenance scope
+[21-30:P5202; UTF16 179493] Assumption 10 supplies provenance completeness for each accepted dependency claim.
+[21-30:P5203; UTF16 179576] THM-SEC12 prevents an incomplete SBOM from proving absence.
+[21-30:P5204; UTF16 179636] THM-SEC13 establishes the exact dependency-policy conclusion when completeness holds.
+[21-30:P5205; UTF16 179722] THM-SEC14 establishes reproducibility only under identical deterministic build inputs.
+[21-30:P5206; UTF16 179809] PRO-SEC3 prevents reproducibility from becoming benignity.
+[21-30:P5207; UTF16 179868] Step 8 — Establish information-flow claims
+[21-30:P5208; UTF16 179911] Assumption 12 supplies the exact domain, observation, and declassification theory.
+[21-30:P5209; UTF16 179994] Where the unwinding hypotheses hold, THM-SEC15 proves deterministic low noninterference.
+[21-30:P5210; UTF16 180083] No claim is made about unmodeled timing, resource, or covert channels.
+[21-30:P5211; UTF16 180154] Step 9 — Establish sensor and Byzantine claims
+[21-30:P5212; UTF16 180201] Assumption 13 separates authenticated bytes from physical truth.
+[21-30:P5213; UTF16 180266] THM-SEC20 proves that message authentication alone is insufficient for measurement truth.
+[21-30:P5214; UTF16 180356] Assumption 14 supplies the Byzantine and identity conditions.
+[21-30:P5215; UTF16 180418] THM-SEC21 proves majority correctness under those conditions.
+[21-30:P5216; UTF16 180480] THM-SEC22 prevents identity counts from being used when Sybil behavior invalidates uniqueness.
+[21-30:P5217; UTF16 180575] Step 10 — Establish actuator safety
+[21-30:P5218; UTF16 180611] Assumption 15 requires both cyber authorization and physical guard satisfaction.
+[21-30:P5219; UTF16 180692] THM-SEC23 proves why this conjunction is necessary.
+[21-30:P5220; UTF16 180744] Therefore accepted commands satisfy both the cyber and physical commitment rules.
+[21-30:P5221; UTF16 180826] Step 11 — Establish cyber-physical invariance
+[21-30:P5222; UTF16 180872] Assumption 16 provides invariant closure under every covered transition.
+[21-30:P5223; UTF16 180945] THM-SEC24 proves by induction that every finite covered execution remains in the safety set.
+[21-30:P5224; UTF16 181038] THM-SEC25 preserves the distinction between security and safety.
+[21-30:P5225; UTF16 181103] Step 12 — Establish operational-twin trust
+[21-30:P5226; UTF16 181146] Assumption 17 requires Prompt-15 reasoning to use:
+[21-30:P5227; UTF16 181197] [ \Gamma_t^{\mathrm{ODT,SEC}}. ]
+[21-30:P5228; UTF16 181230] THM-SEC26 transfers deterministic reachable-set claims to the actual state because the actual state remains in the covered set.
+[21-30:P5229; UTF16 181358] Step 13 — Establish incident and forensic status
+[21-30:P5230; UTF16 181407] Assumption 18 prevents suspected compromise from being ignored.
+[21-30:P5231; UTF16 181471] THM-SEC28 prevents physical function recovery from being called trust recovery.
+[21-30:P5232; UTF16 181551] Assumption 19 limits forensic claims to their evidence.
+[21-30:P5233; UTF16 181607] THM-SEC29 establishes computational tamper-evidence scope and the exact completeness limitation.
+[21-30:P5234; UTF16 181704] Step 14 — Preserve cross-layer modalities and authority
+[21-30:P5235; UTF16 181760] Assumption 20 keeps compromise probabilities probabilistic.
+[21-30:P5236; UTF16 181820] Assumptions 21–22 ensure that:
+[21-30:P5237; UTF16 181851] authentication does not create project-governance rights;
+[21-30:P5238; UTF16 181909] cyber authorization does not create regulatory authority.
+[21-30:P5239; UTF16 181967] Step 15 — Apply UNKNOWN discipline
+[21-30:P5240; UTF16 182002] Assumption 23 prevents unresolved key, identity, provenance, threat, or compromise states from being treated as trusted.
+[21-30:P5241; UTF16 182123] Step 16 — Release fiber
+[21-30:P5242; UTF16 182147] Assumption 24 establishes checker acceptance.
+[21-30:P5243; UTF16 182193] A checked release witness is a member of:
+[21-30:P5244; UTF16 182235] [ \gamma_{\mathrm{sec}}^\mu. ]
+[21-30:P5245; UTF16 182266] Therefore that fiber is nonempty under exactly modality (\mu).
+[21-30:P5246; UTF16 182329] Every conclusion retains the modality established above. ∎
+[21-30:P5250; UTF16 182391] 43. What THM-SEC31 Does Not Prove
+[21-30:P5252; UTF16 182444] cryptographic primitives are mathematically unbreakable;
+[21-30:P5253; UTF16 182501] keys are uncompromised outside the threat model;
+[21-30:P5254; UTF16 182550] identity proofing is perfect;
+[21-30:P5255; UTF16 182580] the authorization policy contains no semantic mistake;
+[21-30:P5256; UTF16 182635] signed software is safe;
+[21-30:P5257; UTF16 182660] secure boot eliminates runtime defects;
+[21-30:P5258; UTF16 182700] SBOMs capture unknown dependencies unless completeness is established;
+[21-30:P5259; UTF16 182771] vulnerability databases are complete;
+[21-30:P5260; UTF16 182809] authenticated sensors report physical truth;
+[21-30:P5261; UTF16 182854] the Byzantine bound (f) is correct;
+[21-30:P5262; UTF16 182890] honest sensors are independent;
+[21-30:P5263; UTF16 182922] networks contain no covert channel;
+[21-30:P5264; UTF16 182958] noninterference covers timing unless timing is modeled;
+[21-30:P5265; UTF16 183014] all threat actors are represented;
+[21-30:P5266; UTF16 183049] incident detection is complete;
+[21-30:P5267; UTF16 183081] logs contain every event;
+[21-30:P5268; UTF16 183107] hardware provenance proves absence of hidden hardware;
+[21-30:P5269; UTF16 183162] a current release prevents future zero-day compromise;
+[21-30:P5270; UTF16 183217] cyber security alone proves physical safety.
+[21-30:P5274; UTF16 183265] 44. Open-World Security Limitation
+[21-30:P5275; UTF16 183300] THM-SEC32 — No Closed Security Theory Proves Absence of an Unmodeled Attack Capability
+[21-30:P5277; UTF16 183400] Construct two worlds:
+[21-30:P5278; UTF16 183422] [ W_0, \qquad W_1. ]
+[21-30:P5284; UTF16 183502] keys;
+[21-30:P5289; UTF16 183573] security checker result.
+[21-30:P5290; UTF16 183598] Introduce hidden attacker capability:
+[21-30:P5292; UTF16 183650] outside the declared threat theory.
+[21-30:P5293; UTF16 183686] In (W_0):
+[21-30:P5294; UTF16 183696] [ q=0 ]
+[21-30:P5295; UTF16 183704] and security claim (C) holds.
+[21-30:P5296; UTF16 183734] In (W_1):
+[21-30:P5297; UTF16 183744] [ q=1 ]
+[21-30:P5298; UTF16 183752] and an unmodeled transition violates (C).
+[21-30:P5299; UTF16 183794] Every represented artifact is identical.
+[21-30:P5300; UTF16 183835] Therefore the closed theory cannot prove absence of the omitted capability. ∎
+[21-30:P5301; UTF16 183913] [ \boxed{ \textbf{Cyber-security assurance is threat-model scoped.} } ]
+[21-30:P5305; UTF16 183988] 45. Proposal-Source Independence
+[21-30:P5306; UTF16 184021] THM-SEC33 — Security-Certificate Semantics Are Independent of Proposal Source
+[21-30:P5307; UTF16 184099] Security configurations, patches, policies, hardening actions, incident plans, and trust graphs may be proposed by:
+[21-30:P5309; UTF16 184219] human engineer;
+[21-30:P5310; UTF16 184235] vendor;
+[21-30:P5311; UTF16 184243] optimizer;
+[21-30:P5312; UTF16 184254] automated remediation system.
+[21-30:P5313; UTF16 184284] Assume acceptance depends only on independently checked:
+[21-30:P5318; UTF16 184390] threat models;
+[21-30:P5321; UTF16 184427] Then changing the proposal source while preserving all checked premises leaves the certificate’s formal conclusion unchanged.
+[21-30:P5323; UTF16 184559] The proposal-source identity does not appear as a premise in the trusted inference rules.
+[21-30:P5324; UTF16 184649] Every accepted conclusion is a function of the checked package and trusted checker semantics.
+[21-30:P5325; UTF16 184743] Therefore replacing the proposer does not alter certificate meaning. ∎
+[21-30:P5329; UTF16 184817] 46. Explicit PCSEC Checking Complexity
+[21-30:P5330; UTF16 184856] THM-SEC34 — Explicit PCSEC Checking Complexity
+[21-30:P5331; UTF16 184903] Let an explicit acyclic PCSEC proof DAG contain:
+[21-30:P5334; UTF16 184985] local checker costs: [ c_1,\ldots,c_N. ]
+[21-30:P5340; UTF16 185151] The total local proof-checking cost is:
+[21-30:P5342; UTF16 185207] Adding both terms proves the bound. ∎
+[21-30:P5344; UTF16 185278] It does not imply easy:
+[21-30:P5345; UTF16 185302] vulnerability discovery;
+[21-30:P5346; UTF16 185327] attack search;
+[21-30:P5347; UTF16 185342] policy synthesis;
+[21-30:P5348; UTF16 185360] protocol verification;
+[21-30:P5349; UTF16 185383] incident reconstruction;
+[21-30:P5350; UTF16 185408] software repair.
+[21-30:P5354; UTF16 185428] 47. Required Algorithms
+[21-30:P5355; UTF16 185452] ALG-SEC1 — AuditThreatModel
+[21-30:P5357; UTF16 185486]     system boundary
+[21-30:P5358; UTF16 185506]     protected assets
+[21-30:P5359; UTF16 185527]     declared adversaries
+[21-30:P5360; UTF16 185552]     attacker capabilities
+[21-30:P5361; UTF16 185578]     observation channels
+[21-30:P5362; UTF16 185603]     influence channels
+[21-30:P5363; UTF16 185626]     compromised components
+[21-30:P5364; UTF16 185653]     resource and corruption bounds
+[21-30:P5367; UTF16 185695]     system scope
+[21-30:P5368; UTF16 185712]     capability consistency
+[21-30:P5369; UTF16 185739]     omitted interfaces
+[21-30:P5370; UTF16 185762]     identity assumptions
+[21-30:P5371; UTF16 185787]     temporal scope
+[21-30:P5372; UTF16 185806]     physical consequences
+[21-30:P5373; UTF16 185832]     relation to current configuration
+[21-30:P5376; UTF16 185878]     VALID THREAT MODEL
+[21-30:P5383; UTF16 185948] ALG-SEC2 — BuildTrustDependencyGraph
+[21-30:P5385; UTF16 185991]     principals
+[21-30:P5386; UTF16 186006]     credentials
+[21-30:P5387; UTF16 186022]     keys
+[21-30:P5388; UTF16 186031]     trust roots
+[21-30:P5389; UTF16 186047]     software
+[21-30:P5390; UTF16 186060]     firmware
+[21-30:P5391; UTF16 186073]     hardware
+[21-30:P5393; UTF16 186101]     sensors
+[21-30:P5394; UTF16 186113]     actuators
+[21-30:P5398; UTF16 186147]     production dependencies
+[21-30:P5399; UTF16 186175]     trust dependencies
+[21-30:P5400; UTF16 186198]     version dependencies
+[21-30:P5401; UTF16 186223]     revocation dependencies
+[21-30:P5402; UTF16 186251]     cross-layer safety dependencies
+[21-30:P5405; UTF16 186295]     circular roots
+[21-30:P5406; UTF16 186314]     broken chains
+[21-30:P5411; UTF16 186382]     trust dependency graph
+[21-30:P5412; UTF16 186409]     unresolved roots
+[21-30:P5416; UTF16 186433] ALG-SEC3 — CheckIdentityCredential
+[21-30:P5418; UTF16 186474]     principal
+[21-30:P5419; UTF16 186488]     digital identity
+[21-30:P5420; UTF16 186509]     credential
+[21-30:P5421; UTF16 186524]     current time
+[21-30:P5422; UTF16 186541]     issuer evidence
+[21-30:P5423; UTF16 186561]     revocation state
+[21-30:P5424; UTF16 186582]     cryptographic state
+[21-30:P5427; UTF16 186613]     principal binding
+[21-30:P5428; UTF16 186635]     issuer
+[21-30:P5430; UTF16 186668]     revocation
+[21-30:P5431; UTF16 186683]     key state
+[21-30:P5432; UTF16 186697]     evidence provenance
+[21-30:P5435; UTF16 186729]     AUTHENTICATED
+[21-30:P5436; UTF16 186747]     INVALID CREDENTIAL
+[21-30:P5437; UTF16 186770]     REVOKED

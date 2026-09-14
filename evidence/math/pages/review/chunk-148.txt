@@ -1,0 +1,403 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P2524; UTF16 81030] Prompt-19 deadline: appeal or submission after expiry is rejected.
+[21-30:P2525; UTF16 81097] Prompt-20 authority: unauthorized party cannot validly file or approve the action.
+[21-30:P2526; UTF16 81180] Prompt-10 breaker: omitted local amendment breaks the compliance claim.
+[21-30:P2527; UTF16 81252] Incremental versus cold: exact agreement after source or design change.
+[21-30:P2528; UTF16 81324] AI compliance argument: attractive but uncertified interpretation is rejected.
+[21-30:P2529; UTF16 81403] PCRJ independence: checker verifies the package without trusting the proposal generator.
+[21-30:P2533; UTF16 81495] 45. Proof-Assistant Formalization
+[21-30:P2534; UTF16 81529] Tri-valued applicability
+[21-30:P2535; UTF16 81554] inductive TriBool
+[21-30:P2536; UTF16 81572] | true
+[21-30:P2537; UTF16 81579] | false
+[21-30:P2538; UTF16 81587] | unknown
+[21-30:P2539; UTF16 81597] Regulatory source
+[21-30:P2540; UTF16 81615] structure RegulatorySource where
+[21-30:P2541; UTF16 81648]   id : SourceId
+[21-30:P2542; UTF16 81664]   issuer : AuthorityId
+[21-30:P2543; UTF16 81687]   instrumentType : InstrumentType
+[21-30:P2544; UTF16 81721]   territory : Territory
+[21-30:P2545; UTF16 81745]   edition : Version
+[21-30:P2546; UTF16 81765]   effectiveFrom : Time
+[21-30:P2547; UTF16 81788]   effectiveUntil : Option Time
+[21-30:P2549; UTF16 81835]   hash : Hash
+[21-30:P2550; UTF16 81849] Regulatory context
+[21-30:P2551; UTF16 81868] structure RegulatoryContext where
+[21-30:P2554; UTF16 81940]   projectClass : ProjectClass
+[21-30:P2555; UTF16 81970]   useClass : UseClass
+[21-30:P2556; UTF16 81992]   permitHistory : PermitHistory
+[21-30:P2557; UTF16 82024]   projectVersion : Version
+[21-30:P2558; UTF16 82051] Exact authority state
+[21-30:P2559; UTF16 82073] structure RegulatoryState where
+[21-30:P2560; UTF16 82105]   sourceEffective :
+[21-30:P2561; UTF16 82125]     SourceId →
+[21-30:P2562; UTF16 82140]     RegulatoryContext →
+[21-30:P2564; UTF16 82173]   exactApplies :
+[21-30:P2565; UTF16 82190]     RuleId →
+[21-30:P2567; UTF16 82227]     ConcreteArtifact →
+[21-30:P2569; UTF16 82259]   displaced :
+[21-30:P2574; UTF16 82342]   interpretation : InterpretationState
+[21-30:P2575; UTF16 82381]   permitState : PermitState
+[21-30:P2576; UTF16 82409] Regulatory rule
+[21-30:P2577; UTF16 82425] structure RegulatoryRule where
+[21-30:P2578; UTF16 82456]   id : RuleId
+[21-30:P2579; UTF16 82470]   source : SourceId
+[21-30:P2580; UTF16 82490]   disposition : Disposition
+[21-30:P2581; UTF16 82518]   satisfied :
+[21-30:P2582; UTF16 82532]     RegulatoryState →
+[21-30:P2585; UTF16 82586] Effective rule set
+[21-30:P2586; UTF16 82605] def EffectiveRules
+[21-30:P2587; UTF16 82624]     (L : RegulatoryState)
+[21-30:P2588; UTF16 82650]     (J : RegulatoryContext)
+[21-30:P2590; UTF16 82707]     Set RegulatoryRule :=
+[21-30:P2591; UTF16 82733]   {r |
+[21-30:P2592; UTF16 82740]     L.sourceEffective r.source J ∧
+[21-30:P2593; UTF16 82775]     L.exactApplies r.id J b ∧
+[21-30:P2594; UTF16 82805]     ¬ L.displaced r.id J b}
+[21-30:P2595; UTF16 82833] Formal compliance
+[21-30:P2596; UTF16 82851] def FormallyCompliant
+[21-30:P2599; UTF16 82927]     (b : ConcreteArtifact) : Prop :=
+[21-30:P2600; UTF16 82964]   ∀ r ∈ EffectiveRules L J b,
+[21-30:P2601; UTF16 82994]     r.satisfied L b
+[21-30:P2602; UTF16 83014] Robust compliance
+[21-30:P2603; UTF16 83032] def RobustlyCompliant
+[21-30:P2604; UTF16 83054]     (Ls : Set RegulatoryState)
+[21-30:P2607; UTF16 83150]   ∀ L ∈ Ls,
+[21-30:P2608; UTF16 83162]     FormallyCompliant L J b
+[21-30:P2609; UTF16 83190] Possible compliance
+[21-30:P2610; UTF16 83210] def PossiblyCompliant
+[21-30:P2614; UTF16 83328]   ∃ L ∈ Ls,
+[21-30:P2616; UTF16 83368] Robust compliance soundness
+[21-30:P2617; UTF16 83396] theorem robust_compliance_sound
+[21-30:P2619; UTF16 83459]     (LActual : RegulatoryState)
+[21-30:P2620; UTF16 83491]     (hActual : LActual ∈ Ls)
+[21-30:P2621; UTF16 83520]     (hRobust :
+[21-30:P2622; UTF16 83535]       RobustlyCompliant Ls J b) :
+[21-30:P2623; UTF16 83569]     FormallyCompliant LActual J b := by
+[21-30:P2624; UTF16 83609]   exact hRobust LActual hActual
+[21-30:P2625; UTF16 83641] Permit machine
+[21-30:P2626; UTF16 83656] structure PermitMachine where
+[21-30:P2634; UTF16 83781]   released :
+[21-30:P2638; UTF16 83835] Regulatory policy
+[21-30:P2639; UTF16 83853] structure RegulatoryPolicy where
+[21-30:P2642; UTF16 83913]     RegulatoryHistory →
+[21-30:P2644; UTF16 83948]   nonanticipative : Nonanticipative choose
+[21-30:P2645; UTF16 83991] Regulatory release fiber
+[21-30:P2646; UTF16 84016] def RegulatoryReleaseFiber
+[21-30:P2649; UTF16 84098]     (mode : RegulatoryProcessMode) :
+[21-30:P2650; UTF16 84135]     Set RegulatoryPolicy :=
+[21-30:P2652; UTF16 84170]     RegulatoryPolicyValid b J mode π ∧
+[21-30:P2653; UTF16 84209]     ReachesRegulatoryRelease b J mode π}
+[21-30:P2654; UTF16 84250] PCRJ
+[21-30:P2655; UTF16 84255] structure PCRJ where
+[21-30:P2658; UTF16 84328]   context : RegulatoryContext
+[21-30:P2659; UTF16 84358]   sources : RegulatorySourceStore
+[21-30:P2660; UTF16 84392]   authorityGraph : AuthorityGraph
+[21-30:P2661; UTF16 84426]   rules : RegulatoryRuleStore
+[21-30:P2662; UTF16 84456]   permit : PermitCertificate
+[21-30:P2663; UTF16 84485]   inspections : InspectionStore
+[21-30:P2664; UTF16 84517]   alternatives : AlternativeMethodStore
+[21-30:P2665; UTF16 84557]   deviations : DeviationStore
+[21-30:P2666; UTF16 84587]   authorityStates : AuthorityStateFamily
+[21-30:P2672; UTF16 84684] 46. Mechanization Difficulty
+[21-30:P2673; UTF16 84713] ￼
+ATTACHED TABLE 1735827; native row/column order; 25 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Regulatory source identity", "Moderate"]
+ROW 2: ["Version and date checking", "Straightforward"]
+ROW 3: ["Adoption provenance", "Moderate"]
+ROW 4: ["Authority graph", "Moderate"]
+ROW 5: ["Scoped incorporation", "Difficult"]
+ROW 6: ["Unrestricted natural-language rule parsing", "Research-level"]
+ROW 7: ["Applicability predicates", "Difficult"]
+ROW 8: ["Formal checking after rule formalization", "Moderate"]
+ROW 9: ["Regulatory precedence", "Difficult"]
+ROW 10: ["Rule-internal exceptions", "Moderate"]
+ROW 11: ["Authority-granted deviations", "Moderate formally; authority interpretation difficult"]
+ROW 12: ["Alternative-method checking", "Difficult"]
+ROW 13: ["Multi-jurisdiction composition", "Difficult"]
+ROW 14: ["Authority-state families", "Moderate"]
+ROW 15: ["Robust compliance", "Moderate"]
+ROW 16: ["Transition rules", "Difficult"]
+ROW 17: ["Permit automata", "Moderate"]
+ROW 18: ["Inspection semantics", "Moderate"]
+ROW 19: ["Appeal processes", "Moderate"]
+ROW 20: ["Professional-attestation scope", "Moderate"]
+ROW 21: ["Regulatory repair selection", "NP-hard in the declared abstraction"]
+ROW 22: ["Incremental recertification", "Difficult"]
+ROW 23: ["Whole-project PCRJ checker", "Research-level"]
+ROW 24: ["Complete actual-law interpretation", "Open-world impossible without authoritative assumptions"]
+[21-30:P2677; UTF16 84718] 47. Prompt-21 Complexity Profile
+[21-30:P2678; UTF16 84751] DEF-REG37 — Prompt-21 Complexity Profile
+[21-30:P2680; UTF16 84800] \left( N_J, N_A, N_S, K_{\mathrm{authority}}, K_{\mathrm{adoption}}, K_{\mathrm{IBR}}, K_{\mathrm{rule}}, K_{\mathrm{app}}, K_{\mathrm{precedence}}, K_{\mathrm{ambiguity}}, K_{\mathrm{permit}}, K_{\mathrm{inspection}}, K_{\mathrm{appeal}}, K_{\mathrm{repair}}, C_{\mathrm{source}}, C_{\mathrm{rule}}, C_{\mathrm{compliance}}, C_{\mathrm{release}}, C_{\mathrm{check}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unresolved}} \right). } ]
+[21-30:P2682; UTF16 85254] (N_J): required jurisdiction count;
+[21-30:P2683; UTF16 85290] (N_A): authority-node count;
+[21-30:P2684; UTF16 85319] (N_S): regulatory-source count;
+[21-30:P2685; UTF16 85351] (K_{\mathrm{authority}}): authority-graph complexity;
+[21-30:P2686; UTF16 85405] (K_{\mathrm{adoption}}): adoption and transition complexity;
+[21-30:P2687; UTF16 85466] (K_{\mathrm{IBR}}): scoped-incorporation complexity;
+[21-30:P2688; UTF16 85519] (K_{\mathrm{rule}}): formal rule-representation complexity;
+[21-30:P2689; UTF16 85579] (K_{\mathrm{app}}): applicability-theory complexity;
+[21-30:P2690; UTF16 85632] (K_{\mathrm{precedence}}): conflict-resolution complexity;
+[21-30:P2691; UTF16 85691] (K_{\mathrm{ambiguity}}): authority-state-family complexity;
+[21-30:P2692; UTF16 85752] (K_{\mathrm{permit}}): permit-state-machine complexity;
+[21-30:P2693; UTF16 85808] (K_{\mathrm{inspection}}): inspection evidence and scope complexity;
+[21-30:P2694; UTF16 85877] (K_{\mathrm{appeal}}): appeal-process complexity;
+[21-30:P2695; UTF16 85927] (K_{\mathrm{repair}}): repair-family complexity;
+[21-30:P2696; UTF16 85976] (C_{\mathrm{source}}): source validation cost;
+[21-30:P2697; UTF16 86023] (C_{\mathrm{rule}}): rule compilation and local checking cost;
+[21-30:P2698; UTF16 86086] (C_{\mathrm{compliance}}): project compliance-checking cost;
+[21-30:P2699; UTF16 86147] (C_{\mathrm{release}}): release-process analysis cost;
+[21-30:P2700; UTF16 86202] (C_{\mathrm{check}}): independent PCRJ verification cost;
+[21-30:P2701; UTF16 86260] (R_{\mathrm{change}}): changed regulatory roots;
+[21-30:P2703; UTF16 86351] (B_{\mathrm{unresolved}}): unresolved regulatory blockers.
+[21-30:P2704; UTF16 86410] No scalar “regulatory complexity” or “compliance confidence” score is introduced.
+[21-30:P2708; UTF16 86495] 48. Permanent Assumption Registry
+[21-30:P2709; UTF16 86529] ￼
+ATTACHED TABLE 1735843; native row/column order; 25 rows
+ROW 0: ["ID", "Assumption"]
+ROW 1: ["ASSUMP-REG1", "Jurisdiction identity is correct"]
+ROW 2: ["ASSUMP-REG2", "Authority identities and competence relations are correct"]
+ROW 3: ["ASSUMP-REG3", "Regulatory sources and decisions are authentic"]
+ROW 4: ["ASSUMP-REG4", "Adoption state is represented correctly"]
+ROW 5: ["ASSUMP-REG5", "Effective and transition dates are correct"]
+ROW 6: ["ASSUMP-REG6", "Applicability-relevant rules are complete or unresolved"]
+ROW 7: ["ASSUMP-REG7", "Relevant amendments and orders are represented"]
+ROW 8: ["ASSUMP-REG8", "Precedence relations are valid"]
+ROW 9: ["ASSUMP-REG9", "Incorporation scope is correct"]
+ROW 10: ["ASSUMP-REG10", "Exception predicates are applied correctly"]
+ROW 11: ["ASSUMP-REG11", "Alternative and deviation authority is valid"]
+ROW 12: ["ASSUMP-REG12", "Permit state is correct"]
+ROW 13: ["ASSUMP-REG13", "Inspection conclusions remain scope limited"]
+ROW 14: ["ASSUMP-REG14", "Professional attestations remain scope limited"]
+ROW 15: ["ASSUMP-REG15", "Architectural sovereignty remains authoritative"]
+ROW 16: ["ASSUMP-REG16", "Regulatory claims use the correct materialization version"]
+ROW 17: ["ASSUMP-REG17", "As-built claims use applicable physical evidence"]
+ROW 18: ["ASSUMP-REG18", "Formal regulatory results do not become legal conclusions automatically"]
+ROW 19: ["ASSUMP-REG19", "UNKNOWN is never promoted"]
+ROW 20: ["ASSUMP-REG20", "Trusted checkers are sound"]
+ROW 21: ["ASSUMP-REG21", "Regulatory dependencies are complete"]
+ROW 22: ["ASSUMP-REG22", "The actual authority state lies in the robust family where claimed"]
+ROW 23: ["ASSUMP-REG23", "Authority-state families are nonempty"]
+ROW 24: ["ASSUMP-REG24", "Formal rule predicates faithfully represent the claimed source propositions"]
+[21-30:P2713; UTF16 86534] 49. Permanent Definition Registry
+[21-30:P2714; UTF16 86568] ￼
+ATTACHED TABLE 1735859; native row/column order; 38 rows
+ROW 0: ["ID", "Definition"]
+ROW 1: ["DEF-REG1", "Regulatory Context"]
+ROW 2: ["DEF-REG2", "Regulatory Source"]
+ROW 3: ["DEF-REG3", "Adoption Certificate"]
+ROW 4: ["DEF-REG4", "Effective Regulatory Source"]
+ROW 5: ["DEF-REG5", "Regulatory Authority Graph"]
+ROW 6: ["DEF-REG6", "Scoped Incorporation Relation"]
+ROW 7: ["DEF-REG7", "Regulatory Rule"]
+ROW 8: ["DEF-REG8", "Applicability Predicate"]
+ROW 9: ["DEF-REG9", "Applicability Certificate"]
+ROW 10: ["DEF-REG10", "Effective Regulatory Rule Set"]
+ROW 11: ["DEF-REG11", "Formal Compliance"]
+ROW 12: ["DEF-REG12", "Rule-Internal Exception"]
+ROW 13: ["DEF-REG13", "Authority-Granted Deviation"]
+ROW 14: ["DEF-REG14", "Alternative Compliance Proposal"]
+ROW 15: ["DEF-REG15", "Regulatory Conflict"]
+ROW 16: ["DEF-REG16", "Regulatory Priority Relation"]
+ROW 17: ["DEF-REG17", "Required Jurisdiction Family"]
+ROW 18: ["DEF-REG18", "Regulatory Authority-State Family"]
+ROW 19: ["DEF-REG19", "Robust and Possible Regulatory Admissibility"]
+ROW 20: ["DEF-REG20", "Regulatory Transition Rule"]
+ROW 21: ["DEF-REG21", "Permit State Machine"]
+ROW 22: ["DEF-REG22", "Permit Condition"]
+ROW 23: ["DEF-REG23", "Inspection Event"]
+ROW 24: ["DEF-REG24", "Inspection-Scope Predicate"]
+ROW 25: ["DEF-REG25", "Regulatory Release State"]
+ROW 26: ["DEF-REG26", "Regulatory Release Policy"]
+ROW 27: ["DEF-REG27", "Regulatory Release Fiber"]
+ROW 28: ["DEF-REG28", "Regulatory Appeal Action"]
+ROW 29: ["DEF-REG29", "Professional Attestation"]
+ROW 30: ["DEF-REG30", "Regulatory Source Provenance Chain"]
+ROW 31: ["DEF-REG31", "Regulatory Conflict Core"]
+ROW 32: ["DEF-REG32", "Regulatory Repair"]
+ROW 33: ["DEF-REG33", "Regulatory Repair Frontier"]
+ROW 34: ["DEF-REG34", "Regulatory Claim Modality"]
+ROW 35: ["DEF-REG35", "Proof-Carrying Regulatory and Jurisdictional Package"]
+ROW 36: ["DEF-REG36", "Regulatory Dependency Graph"]
+ROW 37: ["DEF-REG37", "Prompt-21 Complexity Profile"]
+[21-30:P2718; UTF16 86573] 50. Proposition Registry
+[21-30:P2719; UTF16 86598] ￼
+ATTACHED TABLE 1735875; native row/column order; 5 rows
+ROW 0: ["ID", "Proposition", "Status"]
+ROW 1: ["PRO-REG1", "Contract permission and regulatory permission are independent", "Proved"]
+ROW 2: ["PRO-REG2", "Failure to retrieve a rule does not prove nonapplicability", "Proved"]
+ROW 3: ["PRO-REG3", "Absence of a modeled prohibition does not prove permission", "Proved"]
+ROW 4: ["PRO-REG4", "Incomparable active conflicts remain unresolved", "Proved from the absence of an authorized resolution rule"]
+[21-30:P2720; UTF16 86600] No separate Prompt-21 lemmas are required; intermediate claims appear within theorem proofs.
+[21-30:P2724; UTF16 86696] 51. Permanent Theorem Registry
+[21-30:P2725; UTF16 86727] ￼
+ATTACHED TABLE 1735891; native row/column order; 28 rows
+ROW 0: ["ID", "Theorem", "Status"]
+ROW 1: ["THM-REG1", "Latest published edition need not equal adopted edition", "Proved"]
+ROW 2: ["THM-REG2", "Source authenticity does not imply target applicability", "Proved"]
+ROW 3: ["THM-REG3", "Incorporation by reference is not generically transitive", "Proved"]
+ROW 4: ["THM-REG4", "Adding pure conjunctive obligations cannot enlarge compliance set", "Proved"]
+ROW 5: ["THM-REG5", "Rule-internal exception and authority-granted deviation are distinct", "Proved"]
+ROW 6: ["THM-REG6", "Accepted alternative compliance is sound under its declared rule", "Proved"]
+ROW 7: ["THM-REG7", "Engineering equivalence alone does not establish regulatory acceptance", "Proved"]
+ROW 8: ["THM-REG8", "Total priority uniquely resolves a finite conflict set", "Proved"]
+ROW 9: ["THM-REG9", "Required independent jurisdictions compose by intersection", "Proved"]
+ROW 10: ["THM-REG10", "Robust compliance applies to a covered actual authority state", "Proved"]
+ROW 11: ["THM-REG11", "Ambiguity shrink expands robust set and shrinks possible set", "Proved"]
+ROW 12: ["THM-REG12", "Possible compliance does not establish actual compliance", "Proved"]
+ROW 13: ["THM-REG13", "Adoption date alone does not determine transition applicability", "Proved"]
+ROW 14: ["THM-REG14", "Permit issuance does not establish as-built compliance", "Proved"]
+ROW 15: ["THM-REG15", "Formal compliance does not imply permit issuance", "Proved"]
+ROW 16: ["THM-REG16", "Scoped inspection pass does not establish universal compliance", "Proved"]
+ROW 17: ["THM-REG17", "Checked release witness establishes nonempty release fiber", "Proved"]
+ROW 18: ["THM-REG18", "Appeal availability does not imply reversal", "Proved"]
+ROW 19: ["THM-REG19", "Professional attestation and authority approval are independent", "Proved"]
+ROW 20: ["THM-REG20", "Formal compliance does not imply universal safety", "Proved"]
+ROW 21: ["THM-REG21", "Engineering safety does not imply formal compliance", "Proved"]
+ROW 22: ["THM-REG22", "Minimum-cost regulatory repair is NP-hard", "Proved"]
+ROW 23: ["THM-REG23", "Incremental regulatory recertification equals cold checking", "Proved under complete dependencies"]
+ROW 24: ["THM-REG24", "Whole-project regulatory and jurisdictional theorem", "Proved under explicit assumptions"]
+ROW 25: ["THM-REG25", "Open-world regulatory limitation", "Proved"]
+ROW 26: ["THM-REG26", "Proposal-source independence", "Proved"]
+ROW 27: ["THM-REG27", "Explicit PCRJ checking complexity", "Proved"]
+[21-30:P2729; UTF16 86732] 52. Algorithm Registry
+[21-30:P2730; UTF16 86755] ￼
+ATTACHED TABLE 1735907; native row/column order; 28 rows
+ROW 0: ["ID", "Algorithm"]
+ROW 1: ["ALG-REG1", "AuditRegulatoryContext"]
+ROW 2: ["ALG-REG2", "ValidateRegulatorySource"]
+ROW 3: ["ALG-REG3", "BuildAuthorityGraph"]
+ROW 4: ["ALG-REG4", "ResolveAdoptedEdition"]
+ROW 5: ["ALG-REG5", "CompileRegulatoryRules"]
+ROW 6: ["ALG-REG6", "CheckRuleApplicability"]
+ROW 7: ["ALG-REG7", "BuildEffectiveRuleSet"]
+ROW 8: ["ALG-REG8", "ResolveRegulatoryConflict"]
+ROW 9: ["ALG-REG9", "CheckFormalCompliance"]
+ROW 10: ["ALG-REG10", "BuildRegulatoryAmbiguityFamily"]
+ROW 11: ["ALG-REG11", "CheckRobustRegulatoryCompliance"]
+ROW 12: ["ALG-REG12", "EvaluateException"]
+ROW 13: ["ALG-REG13", "ProcessAuthorityDeviation"]
+ROW 14: ["ALG-REG14", "EvaluateAlternativeCompliance"]
+ROW 15: ["ALG-REG15", "CompilePermitStateMachine"]
+ROW 16: ["ALG-REG16", "CheckPermitTrace"]
+ROW 17: ["ALG-REG17", "CheckInspection"]
+ROW 18: ["ALG-REG18", "PlanRegulatoryRelease"]
+ROW 19: ["ALG-REG19", "ProcessAppeal"]
+ROW 20: ["ALG-REG20", "AuditProfessionalAttestation"]
+ROW 21: ["ALG-REG21", "FindRegulatoryConflictCore"]
+ROW 22: ["ALG-REG22", "GenerateRegulatoryRepairFrontier"]
+ROW 23: ["ALG-REG23", "RegulatoryRCVOCInterface"]
+ROW 24: ["ALG-REG24", "RedTeamRegulatoryTheory"]
+ROW 25: ["ALG-REG25", "IncrementalRegulatoryRecertification"]
+ROW 26: ["ALG-REG26", "CheckPCRJ"]
+ROW 27: ["ALG-REG27", "BuildPCRJ"]
+[21-30:P2734; UTF16 86760] 53. Conjecture Registry
+[21-30:P2735; UTF16 86784] ￼
+ATTACHED TABLE 1735923; native row/column order; 11 rows
+ROW 0: ["ID", "Conjecture", "Falsification condition"]
+ROW 1: ["CONJ-REG1", "A large fraction of practical building-code provisions become machine checkable after jurisdiction and applicability are fixed", "Important provisions consistently depend on irreducibly open-textured judgment"]
+ROW 2: ["CONJ-REG2", "Project authority and adoption graphs remain moderate in size", "Real projects routinely require enormous unresolved authority graphs"]
+ROW 3: ["CONJ-REG3", "Most high-impact ambiguity is concentrated in a moderate number of applicability or interpretation questions", "Ambiguity remains diffuse across hundreds of rules"]
+ROW 4: ["CONJ-REG4", "Regulatory conflict cores are often understandable and small", "Typical failures require huge inseparable rule sets"]
+ROW 5: ["CONJ-REG5", "Alternative-compliance packages can combine proof-carrying engineering evidence with explicit authority acceptance", "Acceptance remains dominated by unformalizable informal processes"]
+ROW 6: ["CONJ-REG6", "Permit and inspection automata cover a useful administrative subset", "Major workflows resist operational formalization"]
+ROW 7: ["CONJ-REG7", "Incremental regulatory recertification is materially cheaper than cold checking", "Ordinary changes reopen most regulatory roots"]
+ROW 8: ["CONJ-REG8", "Authority clarification substantially shrinks regulatory ambiguity", "Clarification routinely creates equally large new ambiguities"]
+ROW 9: ["CONJ-REG9", "Source provenance materially reduces wrong-edition and wrong-jurisdiction errors", "Most compliance errors arise independently of provenance"]
+ROW 10: ["CONJ-REG10", "A 190-room hotel admits a practical PCRJ", "Source, applicability, permit, or interpretation complexity becomes prohibitive"]
+[21-30:P2739; UTF16 86789] 54. Dependency DAG — Prompts 1–21
+[21-30:P2746; UTF16 86918] complete experiment reports
+[21-30:P2750; UTF16 86978] decision separators,
+[21-30:P2756; UTF16 87056] certified uncertainty,
+[21-30:P2757; UTF16 87079] model discrepancy,
+[21-30:P2763; UTF16 87156] compositional physical interfaces
+[21-30:P2767; UTF16 87219] rewrite transport and
+[21-30:P2773; UTF16 87324] and action closure
+[21-30:P2777; UTF16 87372] RCVOC and
+[21-30:P2778; UTF16 87382] information acquisition
+[21-30:P2786; UTF16 87481] proof-carrying assurance,
+[21-30:P2787; UTF16 87507] evidence applicability,
+[21-30:P2788; UTF16 87531] versions
+[21-30:P2792; UTF16 87570] architectural sovereignty,
+[21-30:P2793; UTF16 87597] authority, consent
+[21-30:P2797; UTF16 87646] materialization,
+[21-30:P2798; UTF16 87663] products, documents
+[21-30:P2802; UTF16 87713] physical execution,
+[21-30:P2803; UTF16 87733] as-built evidence
+[21-30:P2807; UTF16 87781] operational state,
+[21-30:P2808; UTF16 87800] runtime evidence
+[21-30:P2812; UTF16 87847] cross-project evidence
+[21-30:P2813; UTF16 87870] and claim modalities
+[21-30:P2817; UTF16 87921] reliability and
+[21-30:P2818; UTF16 87937] probabilistic claims
+[21-30:P2822; UTF16 87988] economic execution,
+[21-30:P2823; UTF16 88008] schedule, procurement
+[21-30:P2827; UTF16 88060] commitment timing,
+[21-30:P2828; UTF16 88079] options, freeze/thaw
+[21-30:P2832; UTF16 88130] strategic implementation,
+[21-30:P2833; UTF16 88156] formal contracts,
+[21-30:P2834; UTF16 88174] authority boundaries
+[21-30:P2838; UTF16 88225] regulatory authority
+[21-30:P2840; UTF16 88247] DEF-REG1–4
+[21-30:P2841; UTF16 88258] context,
+[21-30:P2842; UTF16 88267] sources,
+[21-30:P2843; UTF16 88276] adoption,
+[21-30:P2844; UTF16 88286] effectiveness
+[21-30:P2848; UTF16 88382] THM-REG1                   THM-REG2
+[21-30:P2849; UTF16 88418] latest ≠ adopted           authentic ≠ applicable
+[21-30:P2851; UTF16 88469] DEF-REG5–6
+[21-30:P2852; UTF16 88480] authority graph,
+[21-30:P2853; UTF16 88497] scoped incorporation
+[21-30:P2856; UTF16 88538] THM-REG3
+[21-30:P2857; UTF16 88547] incorporation
+[21-30:P2858; UTF16 88561] not generically transitive
+[21-30:P2860; UTF16 88589] DEF-REG7–11
+[21-30:P2861; UTF16 88601] rules,
+[21-30:P2862; UTF16 88608] applicability,
+[21-30:P2863; UTF16 88623] effective set,
+[21-30:P2864; UTF16 88638] formal compliance
+[21-30:P2866; UTF16 88666]    ┌────┼────────────────┐
+[21-30:P2867; UTF16 88693]    ▼    ▼                ▼
+[21-30:P2868; UTF16 88720] REG4  PRO-REG2       PRO-REG3
+[21-30:P2869; UTF16 88750] rule  retrieval       silence
+[21-30:P2870; UTF16 88780] monotonicity limit    ≠ permission
+[21-30:P2872; UTF16 88816] DEF-REG12–14
+[21-30:P2873; UTF16 88829] exceptions,
+[21-30:P2874; UTF16 88841] deviations,
+[21-30:P2875; UTF16 88853] alternative compliance
+[21-30:P2879; UTF16 88936] REG5  REG6           REG7
+[21-30:P2880; UTF16 88962] distinction          engineering
+[21-30:P2881; UTF16 88995]                      ≠ approval
+[21-30:P2883; UTF16 89028] DEF-REG15–16
+[21-30:P2884; UTF16 89041] conflict and priority
+[21-30:P2888; UTF16 89135] THM-REG8              PRO-REG4
+[21-30:P2889; UTF16 89166] unique resolution     unresolved conflict
+[21-30:P2891; UTF16 89209] DEF-REG17
+[21-30:P2892; UTF16 89219] required jurisdictions
+[21-30:P2895; UTF16 89262] THM-REG9
+[21-30:P2896; UTF16 89271] intersection
+[21-30:P2898; UTF16 89285] DEF-REG18–19
+[21-30:P2899; UTF16 89298] authority-state family,
+[21-30:P2900; UTF16 89322] robust/possible sets
+[21-30:P2904; UTF16 89401] REG10 REG11         REG12
+[21-30:P2905; UTF16 89427] actual ambiguity    possible
+[21-30:P2906; UTF16 89456] state  shrink       ≠ actual
+[21-30:P2908; UTF16 89486] DEF-REG20
+[21-30:P2909; UTF16 89496] transition rules
+[21-30:P2912; UTF16 89533] THM-REG13
+[21-30:P2913; UTF16 89543] adoption date
+[21-30:P2916; UTF16 89571] DEF-REG21–22
+[21-30:P2917; UTF16 89584] permit machine,
+[21-30:P2918; UTF16 89600] permit conditions
+[21-30:P2922; UTF16 89674] THM-REG14       THM-REG15
+[21-30:P2923; UTF16 89700] permit ≠        compliance ≠
+[21-30:P2924; UTF16 89729] as-built        issuance
+[21-30:P2926; UTF16 89755] DEF-REG23–24
+[21-30:P2927; UTF16 89768] inspection semantics
+[21-30:P2930; UTF16 89809] THM-REG16
+[21-30:P2931; UTF16 89819] scoped pass only
+[21-30:P2933; UTF16 89837] DEF-REG25–27
+[21-30:P2934; UTF16 89850] release state,
+[21-30:P2935; UTF16 89865] policy,

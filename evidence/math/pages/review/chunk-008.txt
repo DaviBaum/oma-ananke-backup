@@ -1,0 +1,320 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P2493; UTF16 107198] for a finite domain (D_3) containing the defined sums.
+[1-10:P2494; UTF16 107253] There is no rule permitting addition when the dimension vectors differ.
+[1-10:P2495; UTF16 107325] Typed relation application
+[1-10:P2496; UTF16 107352] [ \frac{ R\times\cdots\times s_k\to\mathsf{Prop} \qquad \Gamma\vdash e_i\ \text{for every }i }{ \Gamma\vdash R(e_1,\ldots,e_k):\mathsf{Prop} }. ]
+[1-10:P2497; UTF16 107498] Thus an undeclared entity or an entity of the wrong sort cannot appear in a relation.
+[1-10:P2501; UTF16 107587] 4.3 Program typing rules
+[1-10:P2502; UTF16 107612] Failure
+[1-10:P2503; UTF16 107620] [ \frac{}{ \Gamma\vdash \mathsf{fail}_{\alpha\rightsquigarrow\beta} : \alpha\rightsquigarrow\beta }. ]
+[1-10:P2504; UTF16 107723] Atomic specification
+[1-10:P2505; UTF16 107744] [ \frac{ \begin{array}{c} \Gamma,\bar u:\bar s,\bar z:\bar D \vdash \Phi:\mathsf{Prop}\ \text{all interface bindings are injective and type compatible}\ \mathcal I_0\text{ is well typed}\ \mathcal E_0\text{ is well typed and acyclic} \end{array} }{ \Gamma\vdash \mathsf{spec}^{\alpha\rightsquigarrow\beta} \langle \bar u;\bar z \mid \Phi;\mathcal I_0;\mathcal E_0 \rangle : \alpha\rightsquigarrow\beta }. ]
+[1-10:P2506; UTF16 108151] Finite choice
+[1-10:P2507; UTF16 108165] [ \frac{ \forall i\in J,\quad \Gamma\vdash p_i:\tau }{ \Gamma\vdash \mathsf{choose}{p_i}_{i\in J} : \tau }. ]
+[1-10:P2508; UTF16 108275] Every branch must have the same externally visible type.
+[1-10:P2509; UTF16 108332] Finite selection
+[1-10:P2510; UTF16 108349] [ \frac{ D\text{ finite} \qquad \Gamma,z\vdash p:\tau }{ \Gamma\vdash \mathsf{select}\ z\in D\ \mathsf{in}\ p : \tau }. ]
+[1-10:P2511; UTF16 108471] Guard
+[1-10:P2512; UTF16 108477] [ \frac{ \Gamma\vdash\varphi:\mathsf{Prop} \qquad \Gamma\vdash p:\tau }{ \Gamma\vdash \mathsf{guard}(\varphi,p):\tau }. ]
+[1-10:P2513; UTF16 108599] Serial composition
+[1-10:P2514; UTF16 108618] [ \frac{ \Gamma\vdash p:\alpha\rightsquigarrow\beta \qquad \Gamma\vdash q:\beta'\rightsquigarrow\gamma \qquad \omega:\beta\cong\beta' }{ \Gamma\vdash q\circ_\omega p : \alpha\rightsquigarrow\gamma }. ]
+[1-10:P2515; UTF16 108820] The interface isomorphism (\omega) must preserve:
+[1-10:P2516; UTF16 108870] carrier type;
+[1-10:P2517; UTF16 108884] physical dimension;
+[1-10:P2518; UTF16 108904] finite value domain;
+[1-10:P2519; UTF16 108925] interface role.
+[1-10:P2520; UTF16 108941] Parallel composition
+[1-10:P2521; UTF16 108962] [ \frac{ \Gamma\vdash p:\alpha\rightsquigarrow\beta \qquad \Gamma\vdash q:\gamma\rightsquigarrow\delta }{ \Gamma\vdash p\otimes q : (\alpha\oplus\gamma) \rightsquigarrow (\beta\oplus\delta) }. ]
+[1-10:P2522; UTF16 109157] Local finite parameter
+[1-10:P2523; UTF16 109180] [ \frac{ \Gamma,z\vdash p:\tau \qquad z\notin\mathsf{FV}(\tau) }{ \Gamma\vdash \mathsf{local}\ z\ \mathsf{in}\ p : \tau }. ]
+[1-10:P2524; UTF16 109305] Evidence attachment
+[1-10:P2525; UTF16 109325] [ \frac{ \Gamma\vdash p:\tau \qquad \Gamma\vdash e:\mathsf{Evidence}[k,c] \qquad c\text{ is declared in }p }{ \Gamma\vdash \mathsf{attach}(e,p) : \tau }. ]
+[1-10:P2526; UTF16 109481] A professional judgment has a different evidence type from a formal proof. No coercion rule identifies them.
+[1-10:P2527; UTF16 109590] Intent restriction
+[1-10:P2528; UTF16 109609] [ \frac{ \Gamma\vdash p:\tau \qquad \Gamma\vdash\mathcal I:\mathsf{IntentTheory} }{ \Gamma\vdash \mathsf{restrict}(\mathcal I,p):\tau }. ]
+[1-10:P2529; UTF16 109748] Bounded repetition
+[1-10:P2530; UTF16 109767] A repetition term is well typed only if:
+[1-10:P2531; UTF16 109808] its index set is finite;
+[1-10:P2532; UTF16 109833] every instance is well typed;
+[1-10:P2533; UTF16 109863] all generated internal names are fresh;
+[1-10:P2534; UTF16 109903] all wiring maps are type compatible;
+[1-10:P2535; UTF16 109940] entity bounds are not exceeded.
+[1-10:P2539; UTF16 109975] 4.4 Reference integrity
+[1-10:P2540; UTF16 109999] DEF-F11 — Reference-safe rewrite
+[1-10:P2541; UTF16 110032] A rewrite
+[1-10:P2542; UTF16 110042] [ r\leadsto q ]
+[1-10:P2543; UTF16 110058] is reference safe if it supplies:
+[1-10:P2544; UTF16 110092] a total map from every retained identifier in (p) to an identifier in (q);
+[1-10:P2545; UTF16 110167] an explicit deletion certificate for every removed identifier;
+[1-10:P2546; UTF16 110230] a repaired or invalidated dependency for every reference to a removed identifier;
+[1-10:P2547; UTF16 110312] type preservation for every transported identifier.
+[1-10:P2548; UTF16 110364] A rewrite that leaves a reference to a nonexistent subsystem is not well typed.
+[1-10:P2552; UTF16 110447] 5. Denotational Semantics
+[1-10:P2553; UTF16 110473] 5.1 Semantic domains
+[1-10:P2554; UTF16 110494] For every type
+[1-10:P2555; UTF16 110509] [ \tau=\alpha\rightsquigarrow\beta, ]
+[1-10:P2556; UTF16 110547] let
+[1-10:P2557; UTF16 110551] [ \Omega_\tau ]
+[1-10:P2558; UTF16 110567] be the finite set of canonical well-formed open physical realizations of type (\tau). Its internal structure is defined in §6.
+[1-10:P2559; UTF16 110694] DEF-F12 — Denotation
+[1-10:P2560; UTF16 110715] For every well-typed program
+[1-10:P2561; UTF16 110744] [ \Gamma\vdash p:\tau, ]
+[1-10:P2562; UTF16 110769] its denotation is a set
+[1-10:P2563; UTF16 110793] [ \llbracket p\rrbracket_\Gamma \subseteq \Omega_\tau. ]
+[1-10:P2564; UTF16 110850] For a closed program, the environment subscript is omitted.
+[1-10:P2568; UTF16 110913] 5.2 Semantic clauses
+[1-10:P2570; UTF16 110942] \varnothing. ]
+[1-10:P2572; UTF16 110978] [ \llbracket \mathsf{spec}^{\tau} \langle \bar u;\bar z \mid \Phi;\mathcal I_0;\mathcal E_0 \rangle \rrbracket ]
+[1-10:P2573; UTF16 111091] is the set of canonical realizations (x\in\Omega_\tau) for which there exists a valuation of the declared finite variables satisfying:
+[1-10:P2574; UTF16 111226] the structural declarations;
+[1-10:P2575; UTF16 111255] (\Phi);
+[1-10:P2576; UTF16 111263] (\mathcal I_0);
+[1-10:P2577; UTF16 111279] (\mathcal E_0).
+[1-10:P2578; UTF16 111295] Choice
+[1-10:P2579; UTF16 111302] \bigcup_{i\in J} \llbracket p_i\rrbracket. ]
+[1-10:P2581; UTF16 111364] \bigcup_{d\in D} \llbracket p[d/z]\rrbracket. ]
+[1-10:P2583; UTF16 111418] { x\in\llbracket p\rrbracket : x\models\varphi }. ]
+[1-10:P2585; UTF16 111489] { \mathsf{glue}\omega(x,y) : x\in\llbracket p\rrbracket, y\in\llbracket q\rrbracket, \mathsf{Compat}\omega(x,y) }. ]
+[1-10:P2586; UTF16 111606] The gluing operation is defined in §7.
+[1-10:P2588; UTF16 111666] { \mathsf{canon}(x\uplus y) : x\in\llbracket p\rrbracket, y\in\llbracket q\rrbracket, \mathsf{DisjointCompat}(x,y) }. ]
+[1-10:P2590; UTF16 111809] \bigcup_{d\in D_z} \mathsf{erase}_z \left( \llbracket p[d/z]\rrbracket \right). ]
+[1-10:P2591; UTF16 111891] The typing rule requires that (z) is not externally exposed.
+[1-10:P2593; UTF16 111972] { \mathsf{attachEv}(x,e) : x\in\llbracket p\rrbracket, \mathsf{EvCompat}(x,e) }. ]
+[1-10:P2595; UTF16 112074] { x\in\llbracket p\rrbracket : x\models\mathcal I }. ]
+[1-10:P2597; UTF16 112148] A repetition is the finite composition or tensor fold prescribed by its wiring map. It introduces no unbounded semantic operation.
+[1-10:P2601; UTF16 112282] 5.3 Partial, complete, impossible, and unresolved programs
+[1-10:P2602; UTF16 112341] DEF-F13 — Impossible program
+[1-10:P2603; UTF16 112370] A program (p) is impossible when
+[1-10:P2604; UTF16 112403] [ \llbracket p\rrbracket=\varnothing. ]
+[1-10:P2605; UTF16 112443] DEF-F14 — Fully instantiated program
+[1-10:P2606; UTF16 112480] A program (p) is fully instantiated when:
+[1-10:P2607; UTF16 112522] (\llbracket p\rrbracket={x}) is a singleton canonical realization;
+[1-10:P2608; UTF16 112589] (x) contains no unresolved generative parameter;
+[1-10:P2609; UTF16 112638] every required product and process state is instantiated.
+[1-10:P2610; UTF16 112696] This definition does not imply engineering feasibility. A fully instantiated realization can fail a structural, safety, code, or intent model.
+[1-10:P2611; UTF16 112839] DEF-F15 — Realization family
+[1-10:P2612; UTF16 112868] A program (p) denotes a realization family when
+[1-10:P2613; UTF16 112916] [ |\llbracket p\rrbracket|>1. ]
+[1-10:P2614; UTF16 112948] DEF-F16 — Unresolved program
+[1-10:P2615; UTF16 112977] A program is unresolved when at least one of the following holds:
+[1-10:P2616; UTF16 113043] it denotes more than one realization;
+[1-10:P2617; UTF16 113081] it contains an open evidence obligation;
+[1-10:P2618; UTF16 113122] it contains a negotiable architectural change lacking approval;
+[1-10:P2619; UTF16 113186] it contains a finite parameter whose value has not been externally committed.
+[1-10:P2620; UTF16 113264] A program can be fully instantiated geometrically while remaining unresolved evidentially.
+[1-10:P2624; UTF16 113358] 5.4 Exponential denotation from a short term
+[1-10:P2625; UTF16 113403] Let
+[1-10:P2626; UTF16 113407] \mathsf{choose}{a_i,b_i} ]
+[1-10:P2627; UTF16 113434] for (i=1,\ldots,n), with independent compatible choices.
+[1-10:P2628; UTF16 113491] Then
+[1-10:P2629; UTF16 113496] p_1\otimes\cdots\otimes p_n ]
+[1-10:P2630; UTF16 113526] has source length (O(n)), while
+[1-10:P2631; UTF16 113558] 2^n. ]
+[1-10:P2632; UTF16 113565] Nested product families and finite parameter domains produce much larger denotations without explicitly storing every member.
+[1-10:P2633; UTF16 113691] This is exact symbolic generation, not probabilistic or lossy compression.
+[1-10:P2637; UTF16 113769] 6. Physical Realizations
+[1-10:P2638; UTF16 113794] 6.1 Concrete realization tuple
+[1-10:P2639; UTF16 113825] DEF-F17 — Concrete ANANKE-F realization
+[1-10:P2640; UTF16 113865] A concrete realization of type
+[1-10:P2641; UTF16 113896] [ \tau=\alpha\rightsquigarrow\beta ]
+[1-10:P2642; UTF16 113933] is a tuple
+[1-10:P2643; UTF16 113944] ( K_x, \Gamma_x, N_x, M_x, P_x, \mathcal U_x, I_x, E_x, \partial_x^-,\partial_x^+ ). ]
+[1-10:P2644; UTF16 114031] The components are as follows.
+[1-10:P2648; UTF16 114065] 6.2 Spatial topology (K_x)
+[1-10:P2649; UTF16 114092] ( U_x, \mathsf{Inc}_x, \mathsf{Adj}_x, \mathsf{Cont}_x, \mathsf{Sep}_x ). ]
+[1-10:P2651; UTF16 114174] (U_x=(U_{x,s})_{s\in\mathsf{Sort}}) is the finite family of typed entity carriers;
+[1-10:P2652; UTF16 114257] (\mathsf{Inc}_x) records boundary-region incidence;
+[1-10:P2653; UTF16 114309] (\mathsf{Adj}_x) records adjacency;
+[1-10:P2654; UTF16 114345] (\mathsf{Cont}_x) records containment;
+[1-10:P2655; UTF16 114384] (\mathsf{Sep}_x) records required separation classes.
+[1-10:P2656; UTF16 114438] Structural well-formedness requires, among other conditions:
+[1-10:P2657; UTF16 114499] every referenced entity exists;
+[1-10:P2658; UTF16 114531] relation arguments have the declared sorts;
+[1-10:P2659; UTF16 114575] containment is irreflexive and acyclic;
+[1-10:P2660; UTF16 114615] a boundary cannot be incident to a nonexistent region;
+[1-10:P2661; UTF16 114670] declared uniqueness constraints are respected.
+[1-10:P2665; UTF16 114720] 6.3 Finite geometry (\Gamma_x)
+[1-10:P2666; UTF16 114751] (\Gamma_x) assigns values from finite geometry domains to spatial entities.
+[1-10:P2667; UTF16 114827] It may include:
+[1-10:P2668; UTF16 114843] location cells;
+[1-10:P2669; UTF16 114859] width, depth, and height;
+[1-10:P2671; UTF16 114898] bounding-box or cell-complex occupancy;
+[1-10:P2672; UTF16 114938] permitted service bands;
+[1-10:P2673; UTF16 114963] penetration cells;
+[1-10:P2674; UTF16 114982] clearance cells;
+[1-10:P2675; UTF16 114999] façade-module phases.
+[1-10:P2676; UTF16 115021] All geometric values belong to finite domains.
+[1-10:P2677; UTF16 115068] Geometric well-formedness excludes syntactic nonsense such as a boundary referencing no region. Engineering conditions such as excessive deflection or insufficient access may remain model-level observations rather than type errors.
+[1-10:P2681; UTF16 115303] 6.4 Engineering networks (N_x)
+[1-10:P2682; UTF16 115334] ( N_x^{\mathrm{struct}}, (N_x^\kappa)_{\kappa\in\mathsf{Carrier}} ). ]
+[1-10:P2683; UTF16 115405] Structural component
+[1-10:P2684; UTF16 115426] The structural component is a finite typed graph or hypergraph containing:
+[1-10:P2685; UTF16 115501] supports;
+[1-10:P2686; UTF16 115511] nodes;
+[1-10:P2687; UTF16 115518] members;
+[1-10:P2688; UTF16 115527] connections;
+[1-10:P2689; UTF16 115540] load-path relations;
+[1-10:P2690; UTF16 115561] capacities;
+[1-10:P2691; UTF16 115573] penetration permissions.
+[1-10:P2692; UTF16 115598] Flow components
+[1-10:P2693; UTF16 115614] For each carrier (\kappa),
+[1-10:P2694; UTF16 115641] ( V_x^\kappa, E_x^\kappa, \mathsf{src}_x^\kappa, \mathsf{tgt}_x^\kappa, \mathsf{cap}_x^\kappa ). ]
+[1-10:P2695; UTF16 115740] Every edge and port is located in a spatial region.
+[1-10:P2696; UTF16 115792] A pipe or duct with no associated spatial region is not well formed.
+[1-10:P2700; UTF16 115864] 6.5 Products and assemblies (M_x)
+[1-10:P2701; UTF16 115898] (M_x) contains:
+[1-10:P2702; UTF16 115914] product selections;
+[1-10:P2703; UTF16 115934] assembly selections;
+[1-10:P2704; UTF16 115955] catalog-family membership;
+[1-10:P2705; UTF16 115982] product compatibility;
+[1-10:P2706; UTF16 116005] product geometry envelopes;
+[1-10:P2707; UTF16 116033] replacement alternatives;
+[1-10:P2708; UTF16 116059] finite lead-time and cost attributes.
+[1-10:P2709; UTF16 116097] Required products must be assigned exactly one compatible product unless the program explicitly represents a family.
+[1-10:P2713; UTF16 116217] 6.6 Processes (P_x)
+[1-10:P2714; UTF16 116237] ( P_x^{\mathrm{construct}}, P_x^{\mathrm{maint}}, P_x^{\mathrm{replace}} ). ]
+[1-10:P2715; UTF16 116315] Each component is a finite labeled transition system or precedence structure.
+[1-10:P2716; UTF16 116393] It contains:
+[1-10:P2717; UTF16 116406] states;
+[1-10:P2718; UTF16 116414] events;
+[1-10:P2719; UTF16 116422] enabling conditions;
+[1-10:P2720; UTF16 116443] precedence;
+[1-10:P2721; UTF16 116455] access demands;
+[1-10:P2722; UTF16 116471] temporary spatial occupations;
+[1-10:P2723; UTF16 116502] temporary structural conditions;
+[1-10:P2724; UTF16 116535] replacement paths;
+[1-10:P2725; UTF16 116554] shutdown domains.
+[1-10:P2726; UTF16 116572] A construction-state identifier cannot be supplied where structural stiffness is required because the two belong to different types.
+[1-10:P2730; UTF16 116708] 6.7 Uncertainty profile (\mathcal U_x)
+[1-10:P2731; UTF16 116747] ( \Xi_x, \pi_x, \mathsf{Applic}_x ). ]
+[1-10:P2733; UTF16 116792] (\Xi_x) is a finite scenario set;
+[1-10:P2734; UTF16 116826] (\pi_x:\Xi_x\to\mathbb Q_{\ge0}) is an optional rational mass function with total mass one;
+[1-10:P2735; UTF16 116918] (\mathsf{Applic}_x) records applicability conditions.
+[1-10:P2736; UTF16 116972] Correlation is represented by joint scenarios rather than an assumption of independence.
+[1-10:P2737; UTF16 117061] No probabilistic completeness claim is made. The scenario set is part of the formal model.
+[1-10:P2741; UTF16 117155] 6.8 Architectural record (I_x)
+[1-10:P2742; UTF16 117186] (I_x) contains:
+[1-10:P2743; UTF16 117202] architectural projection values;
+[1-10:P2744; UTF16 117235] protected-clause valuations;
+[1-10:P2745; UTF16 117264] bounded-variable valuations;
+[1-10:P2746; UTF16 117293] negotiable-clause approval states;
+[1-10:P2747; UTF16 117328] machine-free variable assignments;
+[1-10:P2748; UTF16 117363] architect-issued approval tokens.
+[1-10:P2752; UTF16 117400] 6.9 Evidence graph (E_x)
+[1-10:P2753; UTF16 117425] (E_x) is a finite acyclic typed provenance graph defined in §12.
+[1-10:P2757; UTF16 117493] 6.10 Interfaces (\partial_x^-) and (\partial_x^+)
+[1-10:P2758; UTF16 117543] The input interface map
+[1-10:P2759; UTF16 117567] [ \partial_x^-:\alpha\to x ]
+[1-10:P2760; UTF16 117596] and output interface map
+[1-10:P2761; UTF16 117621] [ \partial_x^+:\beta\to x ]
+[1-10:P2762; UTF16 117649] associate every interface coordinate with:
+[1-10:P2763; UTF16 117692] a typed boundary entity or exposed attribute;
+[1-10:P2764; UTF16 117738] a concrete value in the coordinate’s finite domain.
+[1-10:P2765; UTF16 117790] The maps must be type preserving.
+[1-10:P2769; UTF16 117827] 6.11 Well-formedness
+[1-10:P2770; UTF16 117848] DEF-F18 — Well-formed realization
+[1-10:P2771; UTF16 117882] The judgment
+[1-10:P2772; UTF16 117895] [ \mathsf{WF}_\tau(x) ]
+[1-10:P2773; UTF16 117919] holds when all of the following are true:
+[1-10:P2774; UTF16 117961] all carriers satisfy their finite bounds;
+[1-10:P2775; UTF16 118003] every relation is sort correct;
+[1-10:P2776; UTF16 118035] every reference targets an existing entity;
+[1-10:P2777; UTF16 118079] every attribute value belongs to its finite typed domain;
+[1-10:P2778; UTF16 118137] interface maps are total, injective where required, and type compatible;
+[1-10:P2779; UTF16 118210] connected ports have compatible carriers and dimensions;
+[1-10:P2780; UTF16 118267] every network edge has valid typed endpoints;
+[1-10:P2781; UTF16 118313] every physical edge is spatially located;
+[1-10:P2782; UTF16 118355] product assignments respect product-class compatibility;
+[1-10:P2783; UTF16 118412] process references are valid;
+[1-10:P2784; UTF16 118442] the evidence graph is typed and acyclic;
+[1-10:P2785; UTF16 118483] machine-free identifiers are not internally reassigned;
+[1-10:P2786; UTF16 118539] all canonicalization invariants hold.
+[1-10:P2787; UTF16 118577] Define
+[1-10:P2788; UTF16 118584] { x: \mathsf{WF}\tau(x) }/\cong\tau, ]
+[1-10:P2789; UTF16 118623] where (\cong_\tau) is interface-preserving typed isomorphism and one canonical representative is selected per class.
+[1-10:P2790; UTF16 118740] Well-formedness is weaker than engineering feasibility.
+[1-10:P2794; UTF16 118799] 7. Composition Algebra
+[1-10:P2795; UTF16 118822] 7.1 Compatibility
+[1-10:P2796; UTF16 118840] DEF-F19 — Typed interface wiring
+[1-10:P2797; UTF16 118873] For
+[1-10:P2798; UTF16 118877] [ p:\alpha\rightsquigarrow\beta, \qquad q:\beta'\rightsquigarrow\gamma, ]
+[1-10:P2799; UTF16 118951] a wiring
+[1-10:P2800; UTF16 118960] [ \omega:\beta\cong\beta' ]
+[1-10:P2801; UTF16 118988] is a bijection preserving every coordinate’s:
+[1-10:P2802; UTF16 119034] port carrier;
+[1-10:P2805; UTF16 119089] role;
+[1-10:P2806; UTF16 119095] orientation convention.
+[1-10:P2807; UTF16 119119] DEF-F20 — Realization compatibility
+[1-10:P2809; UTF16 119159] [ x\in\Omega_{\alpha\rightsquigarrow\beta}, \qquad y\in\Omega_{\beta'\rightsquigarrow\gamma}, ]
+[1-10:P2810; UTF16 119255] the predicate
+[1-10:P2811; UTF16 119269] [ \mathsf{Compat}_\omega(x,y) ]
+[1-10:P2812; UTF16 119301] holds when:
+[1-10:P2813; UTF16 119313] corresponding interface valuations agree after (\omega);
+[1-10:P2814; UTF16 119370] identified attributes do not conflict;
+[1-10:P2815; UTF16 119409] the combined wiring satisfies specified conservation constraints;
+[1-10:P2816; UTF16 119475] identified spatial interfaces are compatible;
+[1-10:P2817; UTF16 119521] the final glued structure contains no forbidden overlap;
+[1-10:P2818; UTF16 119578] locked architectural variables agree;
+[1-10:P2819; UTF16 119616] evidence graphs can be unioned without creating a dependency cycle;
+[1-10:P2820; UTF16 119684] the final glued structure is well formed.
+[1-10:P2821; UTF16 119726] Compatibility is evaluated against the final glued structure rather than against a parenthesization-dependent intermediate approximation.
+[1-10:P2825; UTF16 119867] 7.2 Gluing
+[1-10:P2826; UTF16 119878] DEF-F21 — Physical gluing
+[1-10:P2827; UTF16 119904] Form the disjoint tagged union of the carriers of (x) and (y):
+[1-10:P2828; UTF16 119967] [ U_x\uplus U_y. ]
+[1-10:P2829; UTF16 119986] Let (\sim_\omega) be the smallest equivalence relation identifying boundary entities paired by (\omega).
+[1-10:P2830; UTF16 120091] The glued carrier is
+[1-10:P2831; UTF16 120112] [ (U_x\uplus U_y)/{\sim_\omega}. ]
+[1-10:P2832; UTF16 120147] Every relation and attribute is transported to the quotient. Connected interface coordinates become internal. The result is canonicalized.
+[1-10:P2833; UTF16 120286] The resulting realization is
+[1-10:P2834; UTF16 120315] [ \mathsf{glue}\omega(x,y) \in \Omega{\alpha\rightsquigarrow\gamma}. ]
+[1-10:P2835; UTF16 120386] If compatibility fails, no realization is produced.
+[1-10:P2839; UTF16 120441] 7.3 Gluing preserves well-formedness
+[1-10:P2840; UTF16 120478] LEM-F1 — Typed gluing lemma
+[1-10:P2841; UTF16 120506] If
+[1-10:P2842; UTF16 120509] [ \mathsf{WF}_{\alpha\rightsquigarrow\beta}(x), ]
+[1-10:P2843; UTF16 120559] [ \mathsf{WF}_{\beta'\rightsquigarrow\gamma}(y), ]
+[1-10:P2844; UTF16 120610] and
+[1-10:P2845; UTF16 120614] [ \mathsf{Compat}_\omega(x,y), ]
+[1-10:P2846; UTF16 120647] then
+[1-10:P2847; UTF16 120652] [ \mathsf{WF}{\alpha\rightsquigarrow\gamma} \left( \mathsf{glue}\omega(x,y) \right). ]
+[1-10:P2848; UTF16 120739] Proof
+[1-10:P2849; UTF16 120745] By DEF-F20, compatibility includes the requirement that:
+[1-10:P2850; UTF16 120802] all identified entities have compatible sorts;
+[1-10:P2851; UTF16 120849] all identified values agree;
+[1-10:P2852; UTF16 120878] all combined relations remain sort correct;
+[1-10:P2853; UTF16 120922] all connected ports have matching carrier and dimension;
+[1-10:P2854; UTF16 120979] all references remain defined;
+[1-10:P2855; UTF16 121010] the evidence union remains acyclic;
+[1-10:P2856; UTF16 121046] all interface bindings are valid;
+[1-10:P2857; UTF16 121080] the final quotient structure satisfies the remaining conditions in DEF-F18.
+[1-10:P2858; UTF16 121156] The quotient construction in DEF-F21 introduces no undeclared relation or attribute. Every relation transported from (x) or (y) remains typed because the quotient identifies only entities of the same sort. Every external interface coordinate comes from an unglued coordinate of (x) or (y) and retains its declared type.
+[1-10:P2859; UTF16 121476] Therefore the glued canonical structure satisfies every clause of DEF-F18. ∎
+[1-10:P2863; UTF16 121556] 7.4 Identity
+[1-10:P2864; UTF16 121569] DEF-F22 — Identity subsystem
+[1-10:P2865; UTF16 121598] For every interface (\alpha), define
+[1-10:P2866; UTF16 121635] [ \mathbf 1_\alpha: \alpha\rightsquigarrow\alpha ]
+[1-10:P2867; UTF16 121686] as the zero-interior pass-through system whose denotation contains, for every
+[1-10:P2868; UTF16 121764] [ v\in\mathsf{Val}(\alpha), ]
+[1-10:P2869; UTF16 121794] one canonical wire realization with input valuation (v) and output valuation (v).
+[1-10:P2870; UTF16 121876] PRO-F1 — Identity law
+[1-10:P2871; UTF16 121898] For every
+[1-10:P2872; UTF16 121908] [ p:\alpha\rightsquigarrow\beta, ]
+[1-10:P2873; UTF16 121943] [ \mathbf 1_\beta\circ p \cong p ]
+[1-10:P2875; UTF16 121982] [ p\circ\mathbf 1_\alpha \cong p. ]
+[1-10:P2877; UTF16 122024] Composing with (\mathbf 1_\beta) identifies every output coordinate of (p) with a pass-through coordinate of the same type and value. The identity system introduces no internal entity or constraint beyond equality. Quotienting the disjoint union therefore produces a structure isomorphic to the original realization of (p).
+[1-10:P2878; UTF16 122348] The argument for right identity is symmetric. Canonicalization maps the isomorphic result to the same representative. ∎
+[1-10:P2882; UTF16 122471] 7.5 Associativity
+[1-10:P2883; UTF16 122489] PRO-F2 — Associativity up to canonical isomorphism
+[1-10:P2884; UTF16 122540] Suppose
+[1-10:P2885; UTF16 122548] [ p:\alpha\rightsquigarrow\beta, \quad q:\beta\rightsquigarrow\gamma, \quad r:\gamma\rightsquigarrow\delta ]
+[1-10:P2886; UTF16 122657] and all combined wirings are type compatible.
+[1-10:P2888; UTF16 122708] [ (r\circ q)\circ p \cong r\circ(q\circ p). ]
+[1-10:P2890; UTF16 122760] Take realizations
+[1-10:P2891; UTF16 122778] [ x\in\llbracket p\rrbracket, \quad y\in\llbracket q\rrbracket, \quad z\in\llbracket r\rrbracket. ]
+[1-10:P2892; UTF16 122878] Both parenthesizations begin from the same tagged disjoint union
+[1-10:P2893; UTF16 122943] [ U_x\uplus U_y\uplus U_z. ]
+[1-10:P2894; UTF16 122972] The left parenthesization quotients first by the identifications between (y) and (z), and then by those between (x) and (y).
+[1-10:P2895; UTF16 123097] The right parenthesization performs the same two families of identifications in the opposite order.
+[1-10:P2896; UTF16 123197] In both cases the final equivalence relation is the reflexive, symmetric, transitive closure of the union of the two wiring relations. Closure of a union of relations is independent of the order in which its generating relations are added.

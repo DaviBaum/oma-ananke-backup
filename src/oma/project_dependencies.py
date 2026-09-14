@@ -43,7 +43,7 @@ def project_inputs(state, *, source_ids, route_ids, report=None):
     for key, value in state.items():
         if key not in {"sources", "entities", "routes"}:
             result[f"state:{key}"] = value
-    for key, default in (("ports", []), ("explicit_connections", []), ("inferred_connections", []),
+    for key, default in (("ports", []), ("physical_networks", []), ("explicit_connections", []), ("inferred_connections", []),
                          ("mission", None), ("derived_artifacts", {}), ("numerical_policy", {}), ("units", "m")):
         result.setdefault("state:" + key, default)
     result["source:index"] = sorted(sources)
@@ -93,11 +93,14 @@ def _netlist(inputs, route_ids):
         if route:
             declared.append({"route_id": identifier, "ports": route.get("port_ids", []), "demands": route.get("demand_ids", []),
                              "unresolved_ports": [p for p in route.get("port_ids", []) if p not in ports]})
+    networks = _indexed(inputs["state:physical_networks"], "physical network")
     return {"explicit_port_count": len(ports), "explicit_connection_count": len(links),
             "explicit_components": len({root(p) for p in ports}), "invalid_explicit_connections": invalid,
             "port_position_status": dict(Counter(p.get("position_status", "MISSING") for p in ports.values())),
             "port_ownership_status": dict(Counter(p.get("ownership_status", "UNVERIFIED") for p in ports.values())),
             "declared_route_links": declared, "inferred_connection_count": len(inputs["state:inferred_connections"]),
+            "declared_networks": [{"network_id": n["id"], "component_ids": n["component_ids"],
+                "demand_ids": n["demand_ids"], "port_ids": n["port_ids"], "geometry_artifact": n["geometry_artifact"]} for n in networks.values()],
             "inferred_connections_promoted_to_explicit": False,
             "claim": "Declared state connectivity, not a physical port attachment or hydraulic certificate"}
 
@@ -107,7 +110,7 @@ def _coverage(inputs, route_ids):
     if mission is None:
         return {"status": "MISSING_MISSION", "demands": [], "claim": "No service adequacy inference"}
     ports = _indexed(inputs["state:ports"], "port")
-    routes = [inputs[f"route-record:{identifier}"] for identifier in route_ids]
+    routes = [inputs[f"route-record:{identifier}"] for identifier in route_ids] + inputs["state:physical_networks"]
     records = []
     for demand in mission.get("demands", []):
         assigned = [r for r in routes if r and demand["id"] in r.get("demand_ids", [])]
@@ -151,9 +154,9 @@ def build_nodes(source_ids, route_ids, input_keys, executable):
         nodes.append(DerivedNode(f"inventory:{identifier}", deps,
             lambda values, identifier=identifier: _source_inventory(values, identifier), VERSION))
     route_keys = tuple(f"route-record:{i}" for i in route_ids)
-    nodes.append(DerivedNode("netlist", ("state:ports", "state:explicit_connections", "state:inferred_connections", *route_keys),
+    nodes.append(DerivedNode("netlist", ("state:ports", "state:physical_networks", "state:explicit_connections", "state:inferred_connections", *route_keys),
                             lambda values: _netlist(values, route_ids), VERSION))
-    nodes.append(DerivedNode("mission-coverage", ("state:mission", "state:ports", *route_keys),
+    nodes.append(DerivedNode("mission-coverage", ("state:mission", "state:ports", "state:physical_networks", *route_keys),
                             lambda values: _coverage(values, route_ids), VERSION))
     for identifier in route_ids:
         nodes.append(DerivedNode(f"route-shape:{identifier}", (f"route-record:{identifier}", "state:units", "state:numerical_policy", "state:derived_artifacts"),
@@ -162,10 +165,17 @@ def build_nodes(source_ids, route_ids, input_keys, executable):
         # A far-away system is never omitted solely because of its distance.
         nodes.append(DerivedNode(f"route-clearance:{identifier}", (f"route-shape:{identifier}", *route_keys,
             *(f"source-record:{i}" for i in source_ids), *(f"entity-records:{i}" for i in source_ids),
-            "entities:unattributed", "state:mission", "state:derived_artifacts", "state:numerical_policy"),
+            "entities:unattributed", "state:mission", "state:physical_networks", "state:derived_artifacts", "state:numerical_policy"),
             lambda values: _fingerprint(values, "Full-federation physical clearance inputs"), VERSION))
         nodes.append(DerivedNode(f"route-service:{identifier}", (f"route-shape:{identifier}", "netlist", "mission-coverage",
             "state:mission", "state:derived_artifacts"), lambda values: _fingerprint(values, "Nonlocal service and demand inputs"), VERSION))
+    if "state:physical_networks" in input_keys:
+        nodes.append(DerivedNode("network-physical-inputs", ("state:physical_networks", "state:mission", "state:derived_artifacts",
+            "state:numerical_policy", "state:units", *route_keys, *(f"source-record:{i}" for i in source_ids),
+            *(f"entity-records:{i}" for i in source_ids), "entities:unattributed"),
+            lambda values: _fingerprint(values, "Every unique physical network component and all source obstacles"), VERSION))
+        nodes.append(DerivedNode("network-service-inputs", ("network-physical-inputs", "netlist", "mission-coverage", "state:mission"),
+            lambda values: _fingerprint(values, "Shared aggregate trunk flows and every fixed demand path"), VERSION))
     nodes.append(DerivedNode("independent-check-applicability", ("snapshot:root", "state:mission", "evidence:report"),
         lambda values: _check_applicability(values, executable), VERSION))
     # Account for every authoritative field, including future extension fields.

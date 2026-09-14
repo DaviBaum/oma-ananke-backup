@@ -1,0 +1,357 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P27900; UTF16 920023] At terminal time, the value is (g).
+[11-20:P27901; UTF16 920059] Assume (V_{t+1}) gives the robust optimal continuation value.
+[11-20:P27902; UTF16 920121] Fix state (s) and action (a).
+[11-20:P27903; UTF16 920151] Nature may select any current kernel:
+[11-20:P27904; UTF16 920189] [ p\in\mathfrak P_t(s,a). ]
+[11-20:P27905; UTF16 920217] After successor (s') is realized, rectangularity permits nature to select independently any admissible continuation kernel family from that successor onward.
+[11-20:P27906; UTF16 920375] By the induction hypothesis, the resulting worst-case continuation value from (s') is (V_{t+1}(s')).
+[11-20:P27907; UTF16 920476] Thus the worst-case value after choosing (a) is:
+[11-20:P27908; UTF16 920525] [ \min_{p\in\mathfrak P_t(s,a)} \sum_{s'}p(s') \left[ r_t(s,a,s') + V_{t+1}(s') \right]. ]
+[11-20:P27909; UTF16 920616] The controller selects the action maximizing this quantity.
+[11-20:P27910; UTF16 920676] Finite sets ensure the extrema are attained.
+[11-20:P27911; UTF16 920721] The resulting action selections define a nonanticipative Markov policy. ∎
+[11-20:P27915; UTF16 920798] THM-COM27 — Nonrectangular Ambiguity Can Break Stagewise Dynamic Consistency
+[11-20:P27917; UTF16 920888] At time one, state is:
+[11-20:P27918; UTF16 920911] [ L \quad\text{or}\quad R, ]
+[11-20:P27919; UTF16 920940] each with probability (1/2) under every admissible law.
+[11-20:P27920; UTF16 920996] There are two global laws.
+[11-20:P27921; UTF16 921023] Under (P_1):
+[11-20:P27922; UTF16 921036] [ Y(L)=0, \qquad Y(R)=2. ]
+[11-20:P27923; UTF16 921063] Under (P_2):
+[11-20:P27924; UTF16 921076] [ Y(L)=2, \qquad Y(R)=0. ]
+[11-20:P27925; UTF16 921103] The ambiguity family is:
+[11-20:P27926; UTF16 921128] {P_1,P_2}. ]
+[11-20:P27927; UTF16 921141] The precommitment robust expectation is:
+[11-20:P27929; UTF16 921184] At state (L), the conditional outcome set is:
+[11-20:P27930; UTF16 921230] [ {0,2}. ]
+[11-20:P27931; UTF16 921241] At state (R), it is also:
+[11-20:P27933; UTF16 921278] Naïve stagewise minimization chooses:
+[11-20:P27934; UTF16 921316] 0 at (L), using (P_1);
+[11-20:P27935; UTF16 921339] 0 at (R), using (P_2).
+[11-20:P27936; UTF16 921362] It therefore returns value:
+[11-20:P27938; UTF16 921397] But no global law in (\mathfrak P) produces zero at both states.
+[11-20:P27939; UTF16 921462] The stagewise calculation has silently replaced (\mathfrak P) by its rectangular hull, which contains the hybrid conditional pairing ((0,0)).
+[11-20:P27941; UTF16 921610] [ 0 \neq 1. ]
+[11-20:P27942; UTF16 921624] Naïve Bellman recursion is not valid for the original nonrectangular ambiguity family. ∎
+[11-20:P27946; UTF16 921716] 26. Dynamic Risk and Static CVaR
+[11-20:P27947; UTF16 921749] Prompt 17 defined:
+[11-20:P27948; UTF16 921768] \inf_{t\in\mathbb R} \left[ t + \frac{1}{1-\alpha} \mathbb E[(L-t)_+] \right]. ]
+[11-20:P27949; UTF16 921849] A static terminal-loss CVaR objective is a valid precommitment criterion.
+[11-20:P27950; UTF16 921923] Repeated conditional CVaR minimization need not reproduce the precommitment policy.
+[11-20:P27954; UTF16 922010] THM-COM28 — Static CVaR Need Not Be Dynamically Time Consistent
+[11-20:P27956; UTF16 922079] [ \alpha=\frac12. ]
+[11-20:P27957; UTF16 922099] At time one:
+[11-20:P27958; UTF16 922112] node (A) occurs with probability (1/4);
+[11-20:P27959; UTF16 922152] node (B) occurs with probability (3/4).
+[11-20:P27960; UTF16 922192] At (A), terminal loss is:
+[11-20:P27962; UTF16 922227] At (B), choose action (R) or (S).
+[11-20:P27963; UTF16 922261] Conditional on (B), there are six equiprobable outcomes.
+[11-20:P27964; UTF16 922318] Action (R) produces losses:
+[11-20:P27965; UTF16 922346] [ (10,10,10,0,0,0). ]
+[11-20:P27966; UTF16 922368] Action (S) produces losses:
+[11-20:P27967; UTF16 922396] [ (11,11,0,0,0,0). ]
+[11-20:P27968; UTF16 922417] Precommitment static CVaR
+[11-20:P27969; UTF16 922443] Under (R), unconditional loss distribution is:
+[11-20:P27970; UTF16 922490] [ 100 \quad\text{with probability } \frac14, ]
+[11-20:P27971; UTF16 922537] [ 10 \quad\text{with probability } \frac38, ]
+[11-20:P27972; UTF16 922583] [ 0 \quad\text{with probability } \frac38. ]
+[11-20:P27973; UTF16 922628] The worst (50%) consists of:
+[11-20:P27974; UTF16 922657] all (100)-loss mass;
+[11-20:P27975; UTF16 922678] (1/4) total probability mass at loss 10.
+[11-20:P27978; UTF16 922727] Under (S), unconditional distribution is:
+[11-20:P27980; UTF16 922816] [ 11 \quad\text{with probability } \frac14, ]
+[11-20:P27981; UTF16 922862] [ 0 \quad\text{with probability } \frac12. ]
+[11-20:P27983; UTF16 922918] 55.5. ]
+[11-20:P27984; UTF16 922926] The static precommitment problem prefers (R).
+[11-20:P27985; UTF16 922972] Conditional reoptimization at node (B)
+[11-20:P27986; UTF16 923011] Conditional on (B):
+[11-20:P27987; UTF16 923031] 10, ]
+[11-20:P27988; UTF16 923037] because the worst half consists of three losses of 10.
+[11-20:P27989; UTF16 923092] For (S), the worst half consists of two losses of 11 and one loss of zero:
+[11-20:P27990; UTF16 923167] \frac{11+11+0}{3}
+[11-20:P27991; UTF16 923185] \frac{22}{3} < 10. ]
+[11-20:P27992; UTF16 923206] Thus the future node prefers (S).
+[11-20:P27993; UTF16 923240] The precommitment action and future conditional-CVaR action differ.
+[11-20:P27994; UTF16 923308] Therefore static terminal CVaR is not generally dynamically time consistent under naïve repeated conditional minimization. ∎
+[11-20:P27995; UTF16 923433] Nested or otherwise time-consistent dynamic risk measures require separate definitions and governance.
+[11-20:P27996; UTF16 923536] No universal dynamic risk functional is assumed.
+[11-20:P28000; UTF16 923588] 27. Latest Safe Commitment Time
+[11-20:P28001; UTF16 923620] DEF-COM30 — Commitment Need Date
+[11-20:P28003; UTF16 923658] commitment time be (t);
+[11-20:P28004; UTF16 923682] completion need date be (D);
+[11-20:P28005; UTF16 923711] execution lead time satisfy:
+[11-20:P28006; UTF16 923740] [ L \in [\underline L,\overline L]. ]
+[11-20:P28010; UTF16 923781] THM-COM29 — Latest Robust Commitment Time Under One Bounded Lead Time
+[11-20:P28011; UTF16 923851] Robust completion by (D) requires:
+[11-20:P28012; UTF16 923886] [ t+L\le D \qquad \forall L\in[\underline L,\overline L]. ]
+[11-20:P28013; UTF16 923946] This is equivalent to:
+[11-20:P28014; UTF16 923969] [ \boxed{ t \le D-\overline L. } ]
+[11-20:P28016; UTF16 924011] D-\overline L. } ]
+[11-20:P28019; UTF16 924040] [ t\le D-\overline L, ]
+[11-20:P28020; UTF16 924064] then for every (L\le\overline L):
+[11-20:P28021; UTF16 924098] [ t+L \le t+\overline L \le D. ]
+[11-20:P28022; UTF16 924131] Conversely, if (t>D-\overline L), choose:
+[11-20:P28023; UTF16 924173] [ L=\overline L. ]
+[11-20:P28025; UTF16 924198] [ t+L>D. ]
+[11-20:P28026; UTF16 924209] Thus the robust condition fails. ∎
+[11-20:P28030; UTF16 924247] COR-COM1 — Option Expiry and Lead Time
+[11-20:P28031; UTF16 924286] If option exercise must occur by expiry (E), then:
+[11-20:P28032; UTF16 924337] [ t\le E ]
+[11-20:P28034; UTF16 924353] [ t\le D-\overline L. ]
+[11-20:P28036; UTF16 924388] \min \left( E, D-\overline L \right). } ]
+[11-20:P28038; UTF16 924432] A stochastic lead-time quantile produces a probabilistic commitment date, not a robust date.
+[11-20:P28042; UTF16 924528] 28. Commitment Viability
+[11-20:P28043; UTF16 924553] DEF-COM31 — Commitment Viability Kernel
+[11-20:P28044; UTF16 924593] For a finite robust state system, let terminal acceptable set be:
+[11-20:P28045; UTF16 924659] [ K_T=G_T. ]
+[11-20:P28046; UTF16 924672] Define recursively:
+[11-20:P28047; UTF16 924692] \left{ s: \exists a\in A_t(s) ; \forall w\in W_t(s,a) ; \forall s'\in T_t(s,a,w), \quad s'\in K_{t+1} \right}. } ]
+[11-20:P28051; UTF16 924810] THM-COM30 — Commitment Viability-Kernel Soundness and Completeness
+[11-20:P28052; UTF16 924877] For the exact finite recursion:
+[11-20:P28053; UTF16 924909] [ s_t\in K_t ]
+[11-20:P28054; UTF16 924924] iff there exists a nonanticipative robust policy from (s_t) that reaches (G_T) for every covered disturbance sequence.
+[11-20:P28057; UTF16 925081] At time (T):
+[11-20:P28059; UTF16 925107] Membership means the terminal requirement already holds.
+[11-20:P28060; UTF16 925164] Forward implication
+[11-20:P28061; UTF16 925184] Assume (s\in K_t).
+[11-20:P28062; UTF16 925203] By definition, there exists action (a) such that every disturbance and successor lies in (K_{t+1}).
+[11-20:P28063; UTF16 925303] Choose that action.
+[11-20:P28064; UTF16 925323] For each resulting successor, the induction hypothesis gives a robust continuation policy.
+[11-20:P28065; UTF16 925414] Combining the current action with those continuation policies yields a nonanticipative policy succeeding for every covered future.
+[11-20:P28066; UTF16 925545] Reverse implication
+[11-20:P28067; UTF16 925565] Assume a robust nonanticipative policy succeeds from (s).
+[11-20:P28068; UTF16 925623] Its first action (a) must send every covered successor to a state from which the remaining policy still succeeds.
+[11-20:P28069; UTF16 925737] By the induction hypothesis, every such successor belongs to (K_{t+1}).
+[11-20:P28070; UTF16 925809] Therefore (s\in K_t).
+[11-20:P28072; UTF16 925833] This theorem establishes existence, not computational tractability.
+[11-20:P28076; UTF16 925904] 29. Commitment Frontiers
+[11-20:P28077; UTF16 925929] DEF-COM32 — Wait Action
+[11-20:P28079; UTF16 925958] [ a_{\mathrm{wait}} ]
+[11-20:P28080; UTF16 925980] be an explicit deferral action.
+[11-20:P28081; UTF16 926012] Waiting may alter:
+[11-20:P28083; UTF16 926037] information;
+[11-20:P28086; UTF16 926073] supplier rights;
+[11-20:P28088; UTF16 926106] option validity.
+[11-20:P28089; UTF16 926123] It is not an identity action unless the model proves that it is.
+[11-20:P28093; UTF16 926191] DEF-COM33 — Commitment Frontier
+[11-20:P28094; UTF16 926223] State (s_t) lies on a commitment frontier when:
+[11-20:P28095; UTF16 926271] (s_t\in K_t);
+[11-20:P28096; UTF16 926285] every successor of (a_{\mathrm{wait}}) lies outside (K_{t+1});
+[11-20:P28097; UTF16 926348] at least one non-wait action preserves viability.
+[11-20:P28101; UTF16 926401] THM-COM31 — Commitment-Frontier Urgency
+[11-20:P28103; UTF16 926445] [ s_t\in K_t, ]
+[11-20:P28104; UTF16 926461] but every allowed wait successor lies outside:
+[11-20:P28105; UTF16 926508] [ K_{t+1}, ]
+[11-20:P28106; UTF16 926521] then no robustly feasible strategy can choose wait at time (t).
+[11-20:P28108; UTF16 926591] Suppose a robustly feasible policy chose wait.
+[11-20:P28109; UTF16 926638] Every possible wait successor would have to admit a robust continuation.
+[11-20:P28110; UTF16 926711] By THM-COM30, every such successor would belong to (K_{t+1}).
+[11-20:P28111; UTF16 926773] This contradicts the frontier assumption.
+[11-20:P28112; UTF16 926815] Therefore wait is not robustly feasible.
+[11-20:P28113; UTF16 926856] Since (s_t\in K_t), some other action preserves viability. ∎
+[11-20:P28114; UTF16 926917] This formalizes:
+[11-20:P28115; UTF16 926934] [ \boxed{ \text{commit no later than viability permits}. } ]
+[11-20:P28119; UTF16 926998] 30. Commitment Closure
+[11-20:P28120; UTF16 927021] DEF-COM34 — Commitment Closure
+[11-20:P28121; UTF16 927052] A commitment (a^\star) is (\varepsilon)-closed under knowledge state (K) when every future pure information refinement reachable under the fixed theory preserves:
+[11-20:P28122; UTF16 927215] mandatory validity of (a^\star);
+[11-20:P28123; UTF16 927248] authority of (a^\star);
+[11-20:P28124; UTF16 927272] continuation feasibility;
+[11-20:P28125; UTF16 927298] (\varepsilon)-optimal or (\varepsilon)-acceptable decision status.
+[11-20:P28126; UTF16 927365] The definition excludes waiting effects that change:
+[11-20:P28127; UTF16 927418] action set;
+[11-20:P28132; UTF16 927472] deadlines.
+[11-20:P28136; UTF16 927486] THM-COM32 — Commitment Closure Bounds the Value of Pure Waiting
+[11-20:P28137; UTF16 927550] Let (a^\star) be currently optimal.
+[11-20:P28138; UTF16 927586] Let future information sigma algebra be (\mathcal G).
+[11-20:P28139; UTF16 927640] Assume (a^\star) remains feasible and:
+[11-20:P28140; UTF16 927679] \mathbb E[U_{a^\star}\mid\mathcal G] \le \varepsilon ]
+[11-20:P28142; UTF16 927749] Assume waiting changes no action, cost, state, deadline, or authority.
+[11-20:P28144; UTF16 927826] \mathbb E[U_{a^\star}] \le \varepsilon. } ]
+[11-20:P28145; UTF16 927870] For exact closure (\varepsilon=0), waiting solely for the information has zero expected value.
+[11-20:P28147; UTF16 927971] The lower bound follows from information nonnegativity.
+[11-20:P28148; UTF16 928027] For the upper bound:
+[11-20:P28149; UTF16 928048] [ \max_a \mathbb E[U_a\mid\mathcal G] \le \mathbb E[U_{a^\star}\mid\mathcal G] + \varepsilon. ]
+[11-20:P28151; UTF16 928165] [ V(\mathcal G) \le \mathbb E[U_{a^\star}] + \varepsilon. ]
+[11-20:P28152; UTF16 928225] Since (a^\star) is currently optimal:
+[11-20:P28154; UTF16 928290] Thus the gain is at most (\varepsilon). ∎
+[11-20:P28155; UTF16 928332] If waiting has cost (c), the net value is at most:
+[11-20:P28156; UTF16 928383] [ \varepsilon-c. ]
+[11-20:P28160; UTF16 928405] 31. Just-in-Time Commitment
+[11-20:P28161; UTF16 928433] DEF-COM39 — Just-in-Time Commitment Policy
+[11-20:P28162; UTF16 928476] A Just-in-Time Commitment Policy is defined relative to a declared lexicographic or partial-order decision model.
+[11-20:P28163; UTF16 928590] A typical hierarchy is:
+[11-20:P28164; UTF16 928614] preserve mandatory safety and release obligations;
+[11-20:P28165; UTF16 928665] remain robustly executable;
+[11-20:P28166; UTF16 928693] preserve protected architectural and human options;
+[11-20:P28167; UTF16 928745] satisfy commitment-frontier deadlines;
+[11-20:P28168; UTF16 928784] optimize declared economic and performance objectives;
+[11-20:P28169; UTF16 928839] preserve additional valuable options;
+[11-20:P28170; UTF16 928877] delay otherwise equivalent commitments.
+[11-20:P28171; UTF16 928917] Later commitment is not automatically preferred.
+[11-20:P28172; UTF16 928966] It is preferred only among policies equivalent on higher-priority obligations.
+[11-20:P28176; UTF16 929048] 32. Minimum-Cost Option Preservation
+[11-20:P28177; UTF16 929085] THM-COM33 — Minimum-Cost Option-Enabling Selection Is NP-Hard
+[11-20:P28178; UTF16 929147] Reduction from Weighted Set Cover
+[11-20:P28180; UTF16 929217] future option universe (U);
+[11-20:P28181; UTF16 929245] enabling interventions (e_1,\ldots,e_m);
+[11-20:P28182; UTF16 929286] intervention (e_j) preserves option subset (S_j\subseteq U);
+[11-20:P28183; UTF16 929347] cost (c_j).
+[11-20:P28184; UTF16 929359] Require every option in (U) to remain live.
+[11-20:P28185; UTF16 929403] An enabling set (J) succeeds iff:
+[11-20:P28189; UTF16 929477] Therefore selecting a minimum-cost option-enabling set is exactly Weighted Set Cover.
+[11-20:P28191; UTF16 929597] Thus the problem is NP-hard. ∎
+[11-20:P28195; UTF16 929631] 33. Scenario-Tree Growth
+[11-20:P28196; UTF16 929656] PRO-COM2 — Explicit Scenario Trees Can Grow Exponentially
+[11-20:P28197; UTF16 929714] With (k) independent binary revelation stages, the complete scenario history has:
+[11-20:P28198; UTF16 929796] [ 2^k ]
+[11-20:P28199; UTF16 929804] terminal leaves.
+[11-20:P28201; UTF16 929827] Each stage doubles the number of possible histories.
+[11-20:P28202; UTF16 929880] After (k) stages:
+[11-20:P28203; UTF16 929898] 2^k. ]
+[11-20:P28205; UTF16 929907] Compression may use:
+[11-20:P28206; UTF16 929928] causal macrostates;
+[11-20:P28208; UTF16 929972] state aggregation;
+[11-20:P28209; UTF16 929991] dynamic programming;
+[11-20:P28210; UTF16 930012] symbolic policies.
+[11-20:P28211; UTF16 930031] No universal polynomial compression follows.
+[11-20:P28215; UTF16 930079] 34. Option-Aware Portfolios
+[11-20:P28216; UTF16 930107] DEF-COM38 — Commitment-Policy Portfolio
+[11-20:P28217; UTF16 930147] A Commitment-Policy Portfolio is:
+[11-20:P28218; UTF16 930181] {\pi_1,\ldots,\pi_k}. } ]
+[11-20:P28219; UTF16 930207] Descriptors may include:
+[11-20:P28220; UTF16 930232] commitment timing;
+[11-20:P28222; UTF16 930268] preserved expansion option;
+[11-20:P28223; UTF16 930296] capital intensity;
+[11-20:P28224; UTF16 930315] downside risk;
+[11-20:P28225; UTF16 930330] architectural effect;
+[11-20:P28226; UTF16 930352] expected value;
+[11-20:P28227; UTF16 930368] worst-case value;
+[11-20:P28229; UTF16 930407] reversibility profile.
+[11-20:P28230; UTF16 930430] Prompt-2 and Prompt-12 contextual equivalence may retain one representative per decision-relevant strategy class.
+[11-20:P28234; UTF16 930547] 35. Architectural Sovereignty
+[11-20:P28235; UTF16 930577] Prompt 12 remains authoritative.
+[11-20:P28236; UTF16 930610] A valuable option does not create authority.
+[11-20:P28238; UTF16 930673] moving a protected lobby wall to preserve future plant expansion;
+[11-20:P28239; UTF16 930739] reserving a visible shaft;
+[11-20:P28240; UTF16 930766] enlarging a façade opening;
+[11-20:P28241; UTF16 930794] oversizing a structural zone that changes the protected section.
+[11-20:P28242; UTF16 930859] ANANKE may report:
+[11-20:P28243; UTF16 930878] enabling cost;
+[11-20:P28244; UTF16 930893] option value;
+[11-20:P28245; UTF16 930907] future consequences;
+[11-20:P28246; UTF16 930928] commitment deadline;
+[11-20:P28247; UTF16 930949] alternatives;
+[11-20:P28249; UTF16 930983] It may not commit the change without authorization.
+[11-20:P28253; UTF16 931038] 36. Human and Engineering Options
+[11-20:P28254; UTF16 931072] An engineering option is an executable future action.
+[11-20:P28255; UTF16 931126] A human option is an alternative the authorized human is entitled to retain.
+[11-20:P28256; UTF16 931203] The two need not coincide.
+[11-20:P28257; UTF16 931230] Governance may forbid an executable engineering action.
+[11-20:P28258; UTF16 931286] Governance may require preservation of a human choice that imposes engineering cost.
+[11-20:P28259; UTF16 931371] Prompt 12’s human-option set remains authoritative.
+[11-20:P28263; UTF16 931426] 37. Commitment and Materialization
+[11-20:P28264; UTF16 931461] An option may require present physical enabling geometry.
+[11-20:P28266; UTF16 931527] [ \mathsf{Enable}(b,o) ]
+[11-20:P28267; UTF16 931552] when checked artifact (b) contains every physical interface and capacity required to preserve option (o).
+[11-20:P28269; UTF16 931668] spare sleeves;
+[11-20:P28270; UTF16 931683] knockouts;
+[11-20:P28271; UTF16 931694] structural reserve;
+[11-20:P28272; UTF16 931714] extra shaft area;
+[11-20:P28275; UTF16 931770] future utility stubs.
+[11-20:P28276; UTF16 931792] A semantic statement such as “permit a future chiller” is not materialized until (\mathsf{Enable}(b,o)) is checked.
+[11-20:P28280; UTF16 931911] 38. Commitment and Economic Execution
+[11-20:P28281; UTF16 931949] A future option may require:
+[11-20:P28282; UTF16 931978] supplier reservation;
+[11-20:P28283; UTF16 932000] purchase option;
+[11-20:P28284; UTF16 932017] inventory buffer;
+[11-20:P28286; UTF16 932046] schedule window;
+[11-20:P28288; UTF16 932070] procurement recourse.
+[11-20:P28289; UTF16 932092] Therefore an option may be:
+[11-20:P28290; UTF16 932120] physically live but economically dead;
+[11-20:P28291; UTF16 932159] economically reserved but physically unrealizable;
+[11-20:P28292; UTF16 932210] probabilistically available but not robustly available;
+[11-20:P28293; UTF16 932266] architecturally forbidden despite physical and economic feasibility.
+[11-20:P28294; UTF16 932335] Option status is typed.
+[11-20:P28298; UTF16 932362] 39. Commitment and Reliability
+[11-20:P28299; UTF16 932393] Prompt 17 remains authoritative.
+[11-20:P28301; UTF16 932435] [ P(\text{option exercise succeeds})\ge r ]
+[11-20:P28302; UTF16 932479] is probabilistic.
+[11-20:P28303; UTF16 932497] It is not a robust guarantee.
+[11-20:P28304; UTF16 932527] A backup supplier with 99% delivery reliability remains a probabilistic option path.
+[11-20:P28308; UTF16 932615] 40. Commitment and Fleet Learning
+[11-20:P28309; UTF16 932649] Prompt 16 remains authoritative.
+[11-20:P28310; UTF16 932682] Fleet evidence can alter:
+[11-20:P28311; UTF16 932708] demand forecasts;
+[11-20:P28312; UTF16 932726] failure theories;
+[11-20:P28313; UTF16 932744] supplier risk;
+[11-20:P28315; UTF16 932777] maintenance expectations;
+[11-20:P28316; UTF16 932803] product compatibility.
+[11-20:P28317; UTF16 932826] It may change option value.
+[11-20:P28318; UTF16 932854] It cannot retroactively create enabling geometry that was never preserved.
+[11-20:P28322; UTF16 932932] 41. Commitment and RCVOC
+[11-20:P28323; UTF16 932957] Prompt 9 schedules computations.
+[11-20:P28324; UTF16 932990] Prompt 19 schedules commitments.
+[11-20:P28325; UTF16 933023] Examples of Prompt-9 computations that may alter commitment timing:
+[11-20:P28326; UTF16 933091] obtain a supplier quote;
+[11-20:P28327; UTF16 933116] inspect geotechnical uncertainty;
+[11-20:P28328; UTF16 933150] validate a product alternative;
+[11-20:P28329; UTF16 933182] estimate future demand;
+[11-20:P28330; UTF16 933206] prove structural reserve;
+[11-20:P28331; UTF16 933232] test interface sufficiency;
+[11-20:P28332; UTF16 933260] inspect supplier capacity.
+[11-20:P28334; UTF16 933307] [ \boxed{ \text{what to compute next} \neq \text{what to commit next}. } ]
+[11-20:P28338; UTF16 933385] 42. Commitment Breakers
+[11-20:P28339; UTF16 933409] Prompt 10 may attack claims that:
+[11-20:P28340; UTF16 933443] an option is live;
+[11-20:P28341; UTF16 933462] a reversal is valid;
+[11-20:P28342; UTF16 933483] waiting remains feasible;
+[11-20:P28343; UTF16 933509] a supplier reservation is independent;
+[11-20:P28344; UTF16 933548] an interface preserves future exercise;
+[11-20:P28345; UTF16 933588] a robust policy is nonanticipative;
+[11-20:P28346; UTF16 933624] an ambiguity family is rectangular;
+[11-20:P28347; UTF16 933660] a lead-time bound is valid.
+[11-20:P28348; UTF16 933688] A checked breaker invalidates only the claim and scope it actually attacks.
+[11-20:P28352; UTF16 933767] 43. Commitment Claim Modalities
+[11-20:P28353; UTF16 933799] DEF-COM37 — Commitment Claim Modality
+[11-20:P28354; UTF16 933837] Every commitment claim carries one modality:
+[11-20:P28355; UTF16 933882] \left{ \begin{array}{l} \mathsf{EXACT},\ \mathsf{ROBUST},\ \mathsf{STOCHASTIC},\ \mathsf{DISTRIBUTIONALLY\ ROBUST},\ \mathsf{SET\ VALUED},\ \mathsf{HEURISTIC},\ \mathsf{UNRESOLVED} \end{array} \right}. } ]
+[11-20:P28356; UTF16 934088] A live option may therefore be:
+[11-20:P28357; UTF16 934120] exactly executable;
+[11-20:P28358; UTF16 934140] robustly executable;
+[11-20:P28359; UTF16 934161] probabilistically executable;
+[11-20:P28360; UTF16 934191] distributionally robust;
+[11-20:P28362; UTF16 934232] No modality is silently upgraded.
+[11-20:P28366; UTF16 934269] 44. Proof-Carrying Commitment Package
+[11-20:P28367; UTF16 934307] DEF-COM35 — Proof-Carrying Commitment Package
+[11-20:P28369; UTF16 934361] [ \boxed{ \mathsf{PCCP}. } ]
+[11-20:P28370; UTF16 934390] A PCCP contains:
+[11-20:P28371; UTF16 934407] project identity;
+[11-20:P28372; UTF16 934425] PCR, PCMP, PCAB, PCOT, PCRR, and PCEE references;
+[11-20:P28373; UTF16 934475] current decision node;
+[11-20:P28374; UTF16 934498] physical and economic state;
+[11-20:P28375; UTF16 934527] information history;
+[11-20:P28376; UTF16 934548] information process;
+[11-20:P28377; UTF16 934569] future action theory;
+[11-20:P28378; UTF16 934591] current commitments;
+[11-20:P28380; UTF16 934620] obligations;
+[11-20:P28381; UTF16 934633] cancellation and reversal semantics;
+[11-20:P28382; UTF16 934670] reversibility profiles;
+[11-20:P28383; UTF16 934694] design freezes;
+[11-20:P28384; UTF16 934710] live option set;
+[11-20:P28386; UTF16 934754] exercise windows;
+[11-20:P28388; UTF16 934784] supplier and contract reservations;
+[11-20:P28389; UTF16 934820] materialization prerequisites;
+[11-20:P28390; UTF16 934851] economic execution prerequisites;
+[11-20:P28391; UTF16 934885] scenario family;
+[11-20:P28392; UTF16 934902] probability law where used;
+[11-20:P28393; UTF16 934930] ambiguity set;
+[11-20:P28394; UTF16 934945] rectangularity certificate;
+[11-20:P28395; UTF16 934973] decision objective or partial order;
+[11-20:P28396; UTF16 935010] EVPI and EVSI claims;
+[11-20:P28397; UTF16 935032] value-of-waiting claims;
+[11-20:P28398; UTF16 935057] robust policy;
+[11-20:P28399; UTF16 935072] stochastic policy;
+[11-20:P28400; UTF16 935091] viability kernel;

@@ -1,0 +1,364 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P17737; UTF16 645745]     lower stability bound β
+[1-10:P17738; UTF16 645773]     model disagreement
+[1-10:P17740; UTF16 645797] IF β unresolved or near zero:
+[1-10:P17741; UTF16 645827]     return GLOBAL_MODE_RISK
+[1-10:P17743; UTF16 645856] IF residual / β exceeds decision budget:
+[1-10:P17744; UTF16 645897]     return INADEQUATE_REDUCTION
+[1-10:P17746; UTF16 645930] IF query trace lies outside retained port basis:
+[1-10:P17747; UTF16 645979]     return PORT_SPACE_FAILURE
+[1-10:P17750; UTF16 646021]     return CERTIFIED_ADEQUATE
+[1-10:P17754; UTF16 646054] ALG-PO6 — PortOperatorDP
+[1-10:P17756; UTF16 646085]     legal operator decomposition
+[1-10:P17757; UTF16 646118]     PCPE library
+[1-10:P17758; UTF16 646135]     semantic separator messages
+[1-10:P17759; UTF16 646167]     local parameter choices
+[1-10:P17763; UTF16 646236]     retrieve or compile local PCPE
+[1-10:P17764; UTF16 646271]     evaluate reduced operators
+[1-10:P17765; UTF16 646302]     certify local output
+[1-10:P17766; UTF16 646327]     compose through typed ports
+[1-10:P17767; UTF16 646359]     propagate error and evidence
+[1-10:P17768; UTF16 646392]     merge decision-equivalent messages
+[1-10:P17769; UTF16 646431]     escalate unresolved states
+[1-10:P17772; UTF16 646471]     run decision-stability check
+[1-10:P17773; UTF16 646504]     reconstruct witnesses through backpointers
+[1-10:P17778; UTF16 646582] Defined in §53.
+[1-10:P17782; UTF16 646601] ALG-PO8 — ReuseOrInvalidatePortArtifact
+[1-10:P17784; UTF16 646647]     cached PCPE
+[1-10:P17785; UTF16 646663]     new query
+[1-10:P17786; UTF16 646677]     new theory and tolerance
+[1-10:P17787; UTF16 646706]     current dependency versions
+[1-10:P17789; UTF16 646739] IF all cache-reuse conditions of THM-PO23 hold:
+[1-10:P17790; UTF16 646787]     return REUSE
+[1-10:P17792; UTF16 646805] IF topology/model/port signature changed:
+[1-10:P17793; UTF16 646847]     return INVALID
+[1-10:P17795; UTF16 646867] IF domain or tolerance only requires refinement:
+[1-10:P17796; UTF16 646916]     return REFINE
+[1-10:P17798; UTF16 646935] IF theory expanded:
+[1-10:P17799; UTF16 646955]     run incremental port-state refinement
+[1-10:P17802; UTF16 647009]     return PROVISIONAL_ONLY
+[1-10:P17806; UTF16 647040] 67. Falsification Experiments
+[1-10:P17807; UTF16 647070] F1 — Exact condensation
+[1-10:P17808; UTF16 647094] Compare full and condensed structural boundary responses over random exact rational loads.
+[1-10:P17809; UTF16 647185] Kill condition: any algebraic mismatch.
+[1-10:P17810; UTF16 647225] F2 — Port omission
+[1-10:P17811; UTF16 647244] Remove one hidden support, leak, or ground port.
+[1-10:P17812; UTF16 647293] Verify exterior composition becomes wrong.
+[1-10:P17813; UTF16 647336] F3 — Reduced-model bounds
+[1-10:P17814; UTF16 647362] For every test point:
+[1-10:P17816; UTF16 647385] ufullEPCPE.
+[1-10:P17817; UTF16 647397] Kill condition: one bound violation.
+[1-10:P17818; UTF16 647434] F4 — Repeated composition
+[1-10:P17819; UTF16 647460] Measure error against:
+[1-10:P17820; UTF16 647483] contractive;
+[1-10:P17821; UTF16 647496] linear;
+[1-10:P17822; UTF16 647504] amplifying
+[1-10:P17823; UTF16 647515] theoretical recurrence.
+[1-10:P17824; UTF16 647539] F5 — Global mode
+[1-10:P17825; UTF16 647556] Use the free-bar regression.
+[1-10:P17826; UTF16 647585] The detector must report a basis or validity failure.
+[1-10:P17827; UTF16 647639] F6 — Parameter threshold
+[1-10:P17828; UTF16 647664] Sweep across a catalog, contact, valve, or breaker threshold.
+[1-10:P17829; UTF16 647726] No interpolation across exact regimes is permitted.
+[1-10:P17830; UTF16 647778] F7 — Multiport correlation
+[1-10:P17831; UTF16 647805] Compare exact relation q1+q2=1 with independent marginals.
+[1-10:P17832; UTF16 647864] The checker must not call the marginals exact.
+[1-10:P17833; UTF16 647911] F8 — Adaptive enrichment
+[1-10:P17834; UTF16 647936] Record:
+[1-10:P17836; UTF16 647945] r
+[1-10:P17837; UTF16 647947] and true full-order error after every basis addition.
+[1-10:P17838; UTF16 648001] No certified bound may be violated.
+[1-10:P17839; UTF16 648037] F9 — Decision stopping
+[1-10:P17840; UTF16 648060] Stop when:
+[1-10:P17841; UTF16 648071] \[ \mathcal I(E)=\varnothing. \]
+[1-10:P17842; UTF16 648104] Run additional full-order refinement and confirm the decision remains unchanged.
+[1-10:P17843; UTF16 648185] F10 — Full-order fallback
+[1-10:P17844; UTF16 648211] Use an intentionally incompressible response family.
+[1-10:P17845; UTF16 648264] The system must become slower while retaining correct decisions.
+[1-10:P17849; UTF16 648332] 68. Proof-Assistant Formalization
+[1-10:P17850; UTF16 648366] 68.1 Typed ports
+[1-10:P17851; UTF16 648383] structure PortType where
+[1-10:P17852; UTF16 648408]   Disc : Type
+[1-10:P17853; UTF16 648422]   Quant : Type
+[1-10:P17854; UTF16 648437]   rev : Disc × Quant → Disc × Quant
+[1-10:P17855; UTF16 648473]   rev_involutive : Function.Involutive rev
+[1-10:P17856; UTF16 648516]   conn :
+[1-10:P17857; UTF16 648525]     (Disc × Quant) →
+[1-10:P17859; UTF16 648567]     Prop
+[1-10:P17860; UTF16 648576]   Balance : Type
+[1-10:P17861; UTF16 648593]   [balanceAddGroup : AddCommGroup Balance]
+[1-10:P17862; UTF16 648636]   balance : Disc × Quant → Balance
+[1-10:P17866; UTF16 648674] 68.2 Open subsystem
+[1-10:P17867; UTF16 648694] structure OpenSubsystem where
+[1-10:P17868; UTF16 648724]   Regime : Type
+[1-10:P17869; UTF16 648740]   Internal : Type
+[1-10:P17870; UTF16 648758]   Boundary : Type
+[1-10:P17871; UTF16 648776]   Param : Type
+[1-10:P17872; UTF16 648791]   Scenario : Type
+[1-10:P17873; UTF16 648809]   Consequence : Type
+[1-10:P17875; UTF16 648831]   valid :
+[1-10:P17876; UTF16 648841]     Regime → Boundary → Param → Scenario → Prop
+[1-10:P17878; UTF16 648890]   realize :
+[1-10:P17879; UTF16 648902]     Regime →
+[1-10:P17880; UTF16 648915]     Internal →
+[1-10:P17881; UTF16 648930]     Boundary →
+[1-10:P17882; UTF16 648945]     Param →
+[1-10:P17883; UTF16 648957]     Scenario →
+[1-10:P17884; UTF16 648972]     Consequence →
+[1-10:P17886; UTF16 648999] Exact port relation:
+[1-10:P17887; UTF16 649020] def portRel (S : OpenSubsystem) :
+[1-10:P17888; UTF16 649054]     S.Regime →
+[1-10:P17889; UTF16 649069]     S.Boundary →
+[1-10:P17890; UTF16 649086]     S.Param →
+[1-10:P17891; UTF16 649100]     S.Scenario →
+[1-10:P17892; UTF16 649117]     S.Consequence →
+[1-10:P17893; UTF16 649137]     Prop :=
+[1-10:P17894; UTF16 649149]   fun i b θ ξ z =>
+[1-10:P17895; UTF16 649168]     S.valid i b θ ξ ∧
+[1-10:P17896; UTF16 649190]     ∃ u, S.realize i u b θ ξ z
+[1-10:P17900; UTF16 649224] 68.3 Relational composition
+[1-10:P17901; UTF16 649252] def relComp
+[1-10:P17902; UTF16 649264]     (RA : X → Z → Prop)
+[1-10:P17903; UTF16 649288]     (RB : Z → Y → Prop) :
+[1-10:P17904; UTF16 649314]     X → Y → Prop :=
+[1-10:P17905; UTF16 649334]   fun x y =>
+[1-10:P17906; UTF16 649347]     ∃ z, RA x z ∧ RB z y
+[1-10:P17907; UTF16 649372] theorem outer_comp_sound
+[1-10:P17908; UTF16 649397]     (hA : ∀ x z, RA x z → RAh x z)
+[1-10:P17909; UTF16 649432]     (hB : ∀ z y, RB z y → RBh z y) :
+[1-10:P17911; UTF16 649480]       relComp RA RB x y →
+[1-10:P17912; UTF16 649506]       relComp RAh RBh x y := by
+[1-10:P17913; UTF16 649538]   intro x y h
+[1-10:P17914; UTF16 649552]   rcases h with ⟨z, hxz, hzy⟩
+[1-10:P17915; UTF16 649582]   exact ⟨z, hA _ _ hxz, hB _ _ hzy⟩
+[1-10:P17919; UTF16 649621] 68.4 Hiding
+[1-10:P17920; UTF16 649633] def hide
+[1-10:P17921; UTF16 649642]     (R : X → Z → Y → Prop) :
+[1-10:P17923; UTF16 649691]   fun x y => ∃ z, R x z y
+[1-10:P17927; UTF16 649720] 68.5 Static condensation
+[1-10:P17928; UTF16 649745] A finite-dimensional formalization requires:
+[1-10:P17929; UTF16 649790] block-matrix dimensions;
+[1-10:P17930; UTF16 649815] invertibility of Kii;
+[1-10:P17931; UTF16 649837] matrix multiplication identities.
+[1-10:P17933; UTF16 649896] theorem schur_boundary_exact
+[1-10:P17934; UTF16 649925]     (hInv : IsUnit Kii) :
+[1-10:P17935; UTF16 649951]     FullBoundaryRelation K
+[1-10:P17937; UTF16 649986]     CondensedBoundaryRelation
+[1-10:P17938; UTF16 650016]       (Kbb - Kbi ⬝ Kii⁻¹ ⬝ Kib) := by
+[1-10:P17943; UTF16 650063] 68.6 PCPE
+[1-10:P17944; UTF16 650073] structure PortEnvelope (S : OpenSubsystem) where
+[1-10:P17945; UTF16 650122]   outerRel :
+[1-10:P17953; UTF16 650228]   validity : ...
+[1-10:P17954; UTF16 650245]   sound :
+[1-10:P17955; UTF16 650255]     ∀ i b θ ξ z,
+[1-10:P17956; UTF16 650272]       portRel S i b θ ξ z →
+[1-10:P17957; UTF16 650300]       validity i b θ ξ →
+[1-10:P17958; UTF16 650325]       outerRel i b θ ξ z
+[1-10:P17960; UTF16 650351]   mandatoryCert : ...
+[1-10:P17961; UTF16 650373]   errorCert : ...
+[1-10:P17962; UTF16 650391]   evidence : ...
+[1-10:P17966; UTF16 650411] 68.7 Reduced basis certificate
+[1-10:P17967; UTF16 650442] structure ReducedBasisCertificate where
+[1-10:P17968; UTF16 650482]   residualNorm : ℝ
+[1-10:P17969; UTF16 650501]   stabilityLower : ℝ
+[1-10:P17970; UTF16 650522]   stabilityPositive : 0 < stabilityLower
+[1-10:P17971; UTF16 650563]   errorBound :
+[1-10:P17972; UTF16 650578]     trueError ≤
+[1-10:P17973; UTF16 650594]       residualNorm / stabilityLower
+[1-10:P17977; UTF16 650633] 68.8 Dynamic behavior
+[1-10:P17978; UTF16 650655] structure FiniteHorizonBehavior
+[1-10:P17979; UTF16 650687]     (T : Nat) where
+[1-10:P17980; UTF16 650707]   Initial : Type
+[1-10:P17981; UTF16 650724]   Input : Fin T → Type
+[1-10:P17982; UTF16 650747]   Output : Fin (T+1) → Type
+[1-10:P17983; UTF16 650775]   behavior :
+[1-10:P17984; UTF16 650788]     Initial →
+[1-10:P17985; UTF16 650802]     ((t : Fin T) → Input t) →
+[1-10:P17986; UTF16 650832]     ((t : Fin (T+1)) → Output t) →
+[1-10:P17991; UTF16 650879] 68.9 Whole-building theorem skeleton
+[1-10:P17992; UTF16 650916] theorem composite_port_envelope_sound
+[1-10:P17993; UTF16 650954]     (hComplete : PortComplete graph)
+[1-10:P17994; UTF16 650991]     (hLocal :
+[1-10:P17995; UTF16 651005]       ∀ v, ExactRel v ⊆ EnvelopeRel v)
+[1-10:P17996; UTF16 651044]     (hWiring : WiringSound graph) :
+[1-10:P17997; UTF16 651080]     ExactGlobalRel graph
+[1-10:P17998; UTF16 651105]       ⊆
+[1-10:P17999; UTF16 651113]     EnvelopeGlobalRel graph := by
+[1-10:P18004; UTF16 651156] 68.10 Mechanization difficulty
+[1-10:P18005; UTF16 651187] ￼
+ATTACHED TABLE 1736823; native row/column order; 17 rows
+ROW 0: ["Result", "Difficulty"]
+ROW 1: ["Typed relational ports", "Moderate"]
+ROW 2: ["Relational composition and hiding", "Straightforward"]
+ROW 3: ["THM-PO1 interior elimination", "Moderate"]
+ROW 4: ["THM-PO4 associativity", "Moderate"]
+ROW 5: ["Exact Schur condensation", "Moderate to difficult"]
+ROW 6: ["Kron reduction structural properties", "Difficult"]
+ROW 7: ["PCPE outer soundness", "Straightforward"]
+ROW 8: ["Quantitative set-valued error composition", "Moderate"]
+ROW 9: ["Residual reduced-basis theorem", "Moderate"]
+ROW 10: ["Implicit differentiation", "Difficult in full Banach generality"]
+ROW 11: ["Multiple equilibria semantics", "Straightforward"]
+ROW 12: ["Dynamic finite-horizon equivalence", "Moderate"]
+ROW 13: ["Small-gain feedback theorem", "Straightforward"]
+ROW 14: ["CMS exactness", "Difficult"]
+ROW 15: ["Whole-building PCPE theorem", "Difficult"]
+ROW 16: ["Real FEM/CFD certificate implementations", "Research-level"]
+[1-10:P18009; UTF16 651192] 69. Permanent Definition and Theorem Registry
+[1-10:P18010; UTF16 651238] 69.1 Definitions
+[1-10:P18011; UTF16 651255] ￼
+ATTACHED TABLE 1736839; native row/column order; 24 rows
+ROW 0: ["ID", "Object", "Dependencies", "Status", "Formalization difficulty"]
+ROW 1: ["DEF-PO1", "Engineering port type", "Prompt-1 types, Prompt-5 outcomes", "Defined", "Moderate"]
+ROW 2: ["DEF-PO2", "Typed port signature", "DEF-PO1", "Defined", "Straightforward"]
+ROW 3: ["DEF-PO3", "Open engineering subsystem", "DEF-PO2", "Defined", "Moderate"]
+ROW 4: ["DEF-PO4", "Exact port relation", "DEF-PO3", "Defined", "Straightforward"]
+ROW 5: ["DEF-PO5", "Port-complete interface", "DEF-PO4, Prompt-2 contexts", "Defined", "Moderate"]
+ROW 6: ["DEF-PO6", "Port contextual equivalence", "DEF-PO5", "Defined", "Straightforward"]
+ROW 7: ["DEF-PO7", "Port-sufficient statistic", "DEF-PO6", "Defined", "Straightforward"]
+ROW 8: ["DEF-PO8", "Typed wiring relation", "DEF-PO1–PO2", "Defined", "Moderate"]
+ROW 9: ["DEF-PO9", "Exact subsystem composition", "DEF-PO4, PO8", "Defined", "Moderate"]
+ROW 10: ["DEF-PO10", "Port hiding", "Relational semantics", "Defined", "Straightforward"]
+ROW 11: ["DEF-PO11", "Proof-Carrying Port Envelope", "Prompt-5 CEDA semantics", "Defined", "Difficult"]
+ROW 12: ["DEF-PO12", "Physical port rank", "Kolmogorov width", "Defined", "Moderate"]
+ROW 13: ["DEF-PO13", "Kolmogorov n-width", "Hilbert response space", "Defined", "Straightforward"]
+ROW 14: ["DEF-PO14", "Decision port rank", "Prompt-5 residual distance", "Defined", "Moderate"]
+ROW 15: ["DEF-PO15", "Certified reduced-basis model", "DEF-PO11", "Defined", "Moderate"]
+ROW 16: ["DEF-PO16", "Regime-partitioned operator", "Prompt-5 zero tolerance", "Defined", "Straightforward"]
+ROW 17: ["DEF-PO17", "Conservation certificate", "DEF-PO1", "Defined", "Straightforward"]
+ROW 18: ["DEF-PO18", "Dynamic behavior and operator graph", "DEF-PO3", "Defined", "Moderate"]
+ROW 19: ["DEF-PO19", "Physical operator elimination dimension", "Operator graph", "Defined", "Moderate"]
+ROW 20: ["DEF-PO20", "Port artifact fingerprint", "PCPE", "Defined", "Straightforward"]
+ROW 21: ["DEF-PO21", "Region expansion", "Prompt-3 regions", "Defined", "Straightforward"]
+ROW 22: ["DEF-PO22", "Hidden global mode", "Reduced composition", "Defined", "Moderate"]
+ROW 23: ["DEF-PO23", "Prompt-6 complexity profile", "Prompts 3–6", "Defined", "Straightforward"]
+[1-10:P18015; UTF16 651260] 69.2 Lemmas
+[1-10:P18016; UTF16 651272] ￼
+ATTACHED TABLE 1736855; native row/column order; 6 rows
+ROW 0: ["ID", "Statement", "Dependencies", "Proof status"]
+ROW 1: ["LEM-PO1", "Membership-separating port contexts make contextual equality imply relation equality", "DEF-PO6", "Proved"]
+ROW 2: ["LEM-PO2", "Natural join is monotone under relation inclusion", "Set theory", "Used and proved implicitly"]
+ROW 3: ["LEM-PO3", "Existential hiding is monotone", "DEF-PO10", "Used and proved implicitly"]
+ROW 4: ["LEM-PO4", "Exact mandatory regime mismatch forbids one resolved envelope", "THM-ER3", "Proved through THM-PO17"]
+ROW 5: ["LEM-PO5", "Joint uncertainty composition requires relational identification", "Prompt-5 joint traces", "Used in THM-PO26"]
+[1-10:P18020; UTF16 651277] 69.3 Theorems
+[1-10:P18021; UTF16 651291] ￼
+ATTACHED TABLE 1736871; native row/column order; 36 rows
+ROW 0: ["ID", "Statement", "Dependencies", "Proof status"]
+ROW 1: ["THM-PO1", "Equal exact port semantics are substitutable under a port-complete interface", "DEF-PO4–PO5", "Proved"]
+ROW 2: ["THM-PO2", "Hidden exterior dependencies make port replacement unsound in general", "DEF-PO5", "Proved"]
+ROW 3: ["THM-PO3", "Every exact port statistic refines the contextual port quotient", "DEF-PO6–PO7", "Proved"]
+ROW 4: ["THM-PO4", "Exact port composition is associative up to canonical isomorphism", "DEF-PO8–PO9", "Proved"]
+ROW 5: ["THM-PO5", "Hiding preserves exactly the external relation", "DEF-PO10", "Proved"]
+ROW 6: ["THM-PO6", "Schur/static condensation reproduces exact boundary response when Kii is invertible", "Linear algebra", "Proved"]
+ROW 7: ["THM-PO7", "A certified outer port envelope cannot omit true downstream behavior", "DEF-PO11", "Proved"]
+ROW 8: ["THM-PO8", "Composition of outer relations is outer sound", "Relational composition", "Proved"]
+ROW 9: ["THM-PO9", "Set-valued port approximation errors compose through downstream moduli", "Prompt-5 error algebra", "Proved"]
+ROW 10: ["THM-PO10", "Repeated affine error recurrence has stable, linear, or explosive regimes", "THM-PO9", "Proved"]
+ROW 11: ["THM-PO11", "Locally regular nonlinear systems induce differentiable port maps", "Implicit-function assumptions", "Proved"]
+ROW 12: ["THM-PO12", "Multiple equilibria require set-valued port semantics", "DEF-PO4", "Proved"]
+ROW 13: ["THM-PO13", "Certified residual-distance reduction is decision sufficient", "Prompt-5 decision stability", "Proved"]
+ROW 14: ["THM-PO14", "Residual/stability bounds certify reduced-basis error", "Coercivity or inf-sup", "Proved"]
+ROW 15: ["THM-PO15", "Finite-dimensional independent enrichment reaches full order", "DEF-PO15", "Proved"]
+ROW 16: ["THM-PO16", "Sound envelopes on a parameter cover yield a sound global envelope", "DEF-PO11", "Proved"]
+ROW 17: ["THM-PO17", "Mandatory regimes may not be smoothed or resolved jointly", "Prompt-5 THM-ER3", "Proved"]
+ROW 18: ["THM-PO18", "Independent multiport marginals are not generally exact", "Joint relation semantics", "Proved"]
+ROW 19: ["THM-PO19", "Conservation survives exact port composition", "DEF-PO17", "Proved"]
+ROW 20: ["THM-PO20", "Monotone operators are enclosed by ordered corner responses", "Order structure", "Proved"]
+ROW 21: ["THM-PO21", "Finite-horizon dynamic port equivalence is Prompt-2 contextual equivalence of the unrolling", "Prompt-2 semantics", "Proved"]
+ROW 22: ["THM-PO22", "Closed-loop error is bounded under a small-gain condition", "Lipschitz assumptions", "Proved"]
+ROW 23: ["THM-PO23", "A cached PCPE is safely reusable under matching fingerprints, domains, theories, and evidence", "DEF-PO20", "Proved"]
+ROW 24: ["THM-PO24", "Richer exterior theories refine port equivalence", "Prompt-4 theory monotonicity", "Proved"]
+ROW 25: ["THM-PO25", "Tightening to a full-order relation preserves correctness", "THM-PO8", "Proved"]
+ROW 26: ["THM-PO26", "Composition of valid PCPEs encloses full-order whole-building behavior and preserves stable decisions", "THM-PO7–PO9, Prompt-5 stability", "Proved"]
+ROW 27: ["THM-PO27", "Power-conserving interconnection of passive systems remains passive", "Passivity assumptions", "Proved"]
+ROW 28: ["THM-PO28", "Low-rank inverse and Schur updates follow Woodbury exactly", "Matrix invertibility", "Proved"]
+ROW 29: ["THM-PO29", "Global residual/stability bounds detect inadequate composed reductions", "THM-PO14", "Proved"]
+ROW 30: ["THM-PO30", "Base motifs and explicit exception PCPEs compose soundly", "THM-PO8", "Proved"]
+ROW 31: ["THM-PO31", "Kron reduction preserves exact boundary relation, symmetry, PSD, and row sums", "THM-PO6", "Proved"]
+ROW 32: ["THM-PO32", "Checked composition certificates imply a sound composite PCPE", "THM-PO8–PO9, PO19", "Proved"]
+ROW 33: ["THM-PO33", "A Lipschitz decision projection bounds decision rank by physical approximation rank", "DEF-PO12–PO14", "Proved"]
+ROW 34: ["THM-PO35", "Complete component modes are exact; truncated modes admit residual certification", "THM-PO14", "Proved"]
+ROW 35: ["THM-PO36", "Compilation break-even occurs at Ccompile/(CF-CR)", "Cost algebra", "Proved"]
+[1-10:P18022; UTF16 651293] No theorem listed above lacks a body statement and proof.
+[1-10:P18026; UTF16 651354] 69.4 Algorithms
+[1-10:P18027; UTF16 651370] ￼
+ATTACHED TABLE 1736887; native row/column order; 9 rows
+ROW 0: ["ID", "Algorithm", "Correctness basis"]
+ROW 1: ["ALG-PO1", "CompileExactPortRelation", "THM-PO1, PO5, PO6"]
+ROW 2: ["ALG-PO2", "CompileCertifiedPortEnvelope", "THM-PO7, PO14–PO17"]
+ROW 3: ["ALG-PO3", "ComposePortEnvelopes", "THM-PO8, PO9, PO19, PO32"]
+ROW 4: ["ALG-PO4", "AdaptivePortEnrich", "THM-PO15"]
+ROW 5: ["ALG-PO5", "DetectGlobalModeFailure", "THM-PO29"]
+ROW 6: ["ALG-PO6", "PortOperatorDP", "THM-PO26"]
+ROW 7: ["ALG-PO7", "CheckPortEnvelope", "THM-PO7, PO32"]
+ROW 8: ["ALG-PO8", "ReuseOrInvalidatePortArtifact", "THM-PO23–PO24"]
+[1-10:P18031; UTF16 651375] 69.5 Conjectures
+[1-10:P18032; UTF16 651392] ￼
+ATTACHED TABLE 1736903; native row/column order; 6 rows
+ROW 0: ["ID", "Exact conjecture", "Falsification condition"]
+ROW 1: ["CONJ-PO1", "Repeated building motifs have rapidly decaying certified decision-weighted port widths", "rdec grows approximately as full interface dimension"]
+ROW 2: ["CONJ-PO2", "Online certification is substantially cheaper than full-order solves for major building subsystems", "\\(C_{\\mathrm{red}}+C_{\\mathrm{cert}}\\ge C_{\\mathrm{full}}\\) over useful domains"]
+ROW 3: ["CONJ-PO3", "Region expansion plus enrichment controls global-mode failures without frequent full global solves", "Benchmarks require global fallback on a large fraction of queries"]
+ROW 4: ["CONJ-PO4", "Major HVAC, hydraulic, thermal, structural, and acoustic motifs admit reusable PCPE libraries", "Validity domains fragment so severely that reuse rates remain low"]
+ROW 5: ["CONJ-PO5", "Approximate operator rank and decision width remain jointly moderate in repetitive hotels", "Either rport or WD scales linearly with project size"]
+[1-10:P18036; UTF16 651397] 70. Dependency DAG
+[1-10:P18038; UTF16 651425] typed finite semantics, composition, hiding
+[1-10:P18039; UTF16 651469] DEF-F17–F23
+[1-10:P18043; UTF16 651510] contextual equivalence and minimal quotient
+[1-10:P18048; UTF16 651595] regional separators and decision width
+[1-10:P18049; UTF16 651634] DEF-DS4–DS8
+[1-10:P18050; UTF16 651646] THM-DS1–DS8
+[1-10:P18054; UTF16 651687] symbolic quotient discovery and CAQC
+[1-10:P18055; UTF16 651724] THM-AB10–AB18
+[1-10:P18059; UTF16 651767] mixed outcomes, error algebra,
+[1-10:P18060; UTF16 651798] context moduli, decision stability, CEDA
+[1-10:P18061; UTF16 651839] DEF-ER1–ER24
+[1-10:P18062; UTF16 651852] THM-ER1–ER28
+[1-10:P18064; UTF16 651875]         ├────────────────────────────────┐
+[1-10:P18065; UTF16 651918]         ▼                                ▼
+[1-10:P18066; UTF16 651961] DEF-PO1–PO5                       DEF-PO11
+[1-10:P18067; UTF16 652004] ports, open systems,             proof-carrying
+[1-10:P18068; UTF16 652052] exact relation, completeness     port envelope
+[1-10:P18069; UTF16 652099]         │                                │
+[1-10:P18071; UTF16 652185] THM-PO1–PO3                  THM-PO7–PO10
+[1-10:P18072; UTF16 652227] interior elimination,        outer soundness,
+[1-10:P18073; UTF16 652273] necessity, minimality        composition, error
+[1-10:P18076; UTF16 652407] DEF-PO8–PO10                 repeated error regimes
+[1-10:P18077; UTF16 652459] composition and hiding               │
+[1-10:P18078; UTF16 652498]         │                             ▼
+[1-10:P18079; UTF16 652538]         ├───────────────┐        THM-PO10
+[1-10:P18081; UTF16 652606] THM-PO4          THM-PO5
+[1-10:P18082; UTF16 652631] associativity    hiding
+[1-10:P18085; UTF16 652675] THM-PO6, PO31
+[1-10:P18086; UTF16 652689] Schur/Kron reduction
+[1-10:P18088; UTF16 652720]         ├──────────────────────────┐
+[1-10:P18089; UTF16 652757]         ▼                          ▼
+[1-10:P18090; UTF16 652794] THM-PO11–PO12                DEF-PO12–PO15
+[1-10:P18091; UTF16 652837] nonlinear/local maps         port rank, n-width,
+[1-10:P18092; UTF16 652886] and multiequilibria          reduced bases
+[1-10:P18093; UTF16 652929]                                    │
+[1-10:P18094; UTF16 652966]                           ┌────────┼─────────┐
+[1-10:P18095; UTF16 653013]                           ▼        ▼         ▼
+[1-10:P18096; UTF16 653060]                       PO13      PO14       PO15
+[1-10:P18097; UTF16 653108]                     decision   residual   enrichment
+[1-10:P18098; UTF16 653161]                     sufficient cert       convergence
+[1-10:P18099; UTF16 653215]                           │
+[1-10:P18100; UTF16 653243]                           ▼
+[1-10:P18101; UTF16 653271]                    DEF-PO16
+[1-10:P18102; UTF16 653299]                  regime partition
+[1-10:P18104; UTF16 653361]                   ┌───────┼────────┐
+[1-10:P18105; UTF16 653398]                   ▼       ▼        ▼
+[1-10:P18106; UTF16 653435]                PO16     PO17     PO18
+[1-10:P18107; UTF16 653473]              parameter regime   multiport
+[1-10:P18108; UTF16 653515]               splitting exactness correlation
+[1-10:P18111; UTF16 653617]                    THM-PO19–PO22
+[1-10:P18112; UTF16 653650]                conservation, monotonicity,
+[1-10:P18113; UTF16 653693]                dynamics, feedback
+[1-10:P18116; UTF16 653783]                    DEF-PO18A
+[1-10:P18117; UTF16 653812]                     operator DAG
+[1-10:P18119; UTF16 653873]                  ┌────────┼────────┐
+[1-10:P18120; UTF16 653910]                  ▼        ▼        ▼
+[1-10:P18121; UTF16 653947]               PO23      PO24     PO29
+[1-10:P18122; UTF16 653985]              cache      theory    global-mode

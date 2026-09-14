@@ -1,0 +1,315 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P37018; UTF16 1233860] where every selected (w_i) belongs to the required layer fiber.
+[21-30:P37019; UTF16 1233924] DEF-INT18 — Cross-Layer Witness Compatibility
+[21-30:P37020; UTF16 1233970] Witnesses (w_i,w_j) are compatible on shared object (x) when:
+[21-30:P37021; UTF16 1234032] \operatorname{Tr}_{j\to\star} (w_j|_x), } ]
+[21-30:P37022; UTF16 1234076] where (\operatorname{Tr}) is a trusted translation into the canonical shared-object representation.
+[21-30:P37023; UTF16 1234176] DEF-INT19 — Global Witness
+[21-30:P37024; UTF16 1234203] A global witness (W) is one project state whose restriction to every participating layer equals the selected local witness after trusted translation:
+[21-30:P37025; UTF16 1234353] w_\ell. } ]
+[21-30:P37026; UTF16 1234365] THM-INT7 — Local Fiber Nonemptiness Does Not Imply Global Fiber Nonemptiness
+[21-30:P37028; UTF16 1234455] Let shared variable:
+[21-30:P37029; UTF16 1234476] [ x\in{0,1}. ]
+[21-30:P37030; UTF16 1234491] Layer 1 accepts exactly:
+[21-30:P37031; UTF16 1234516] [ x=0. ]
+[21-30:P37032; UTF16 1234525] Its local fiber is nonempty.
+[21-30:P37033; UTF16 1234554] Layer 2 accepts exactly:
+[21-30:P37034; UTF16 1234579] [ x=1. ]
+[21-30:P37036; UTF16 1234617] No global assignment satisfies both.
+[21-30:P37038; UTF16 1234665] [ \boxed{ \gamma_1\neq\varnothing \land \gamma_2\neq\varnothing \not\Longrightarrow \gamma_{\mathrm{global}}\neq\varnothing. } ]
+[21-30:P37043; UTF16 1234799] 15. Pairwise Versus Global Compatibility
+[21-30:P37044; UTF16 1234840] THM-INT8 — Pairwise Satisfiability Does Not Imply Global Satisfiability
+[21-30:P37048; UTF16 1234944] [ R_{xy}=y, ]
+[21-30:P37049; UTF16 1234958] [ R_{yz}=z, ]
+[21-30:P37050; UTF16 1234972] [ R_{zx}\neq x. ]
+[21-30:P37051; UTF16 1234990] Every pair is satisfiable.
+[21-30:P37052; UTF16 1235017] For (R_{xy},R_{yz}), choose:
+[21-30:P37053; UTF16 1235046] [ x=y=z=0. ]
+[21-30:P37054; UTF16 1235059] For (R_{yz},R_{zx}), choose:
+[21-30:P37055; UTF16 1235088] [ y=z=0,\qquad x=1. ]
+[21-30:P37056; UTF16 1235110] For (R_{zx},R_{xy}), choose:
+[21-30:P37057; UTF16 1235139] [ x=y=0,\qquad z=1. ]
+[21-30:P37058; UTF16 1235161] All three together imply:
+[21-30:P37059; UTF16 1235187] [ x=y=z ]
+[21-30:P37061; UTF16 1235202] [ z\neq x, ]
+[21-30:P37069; UTF16 1235341] 16. Exact Acyclic Witness Gluing
+[21-30:P37070; UTF16 1235374] DEF-INT20 — Layer Interaction Bags
+[21-30:P37072; UTF16 1235414] [ T=(V,E) ]
+[21-30:P37073; UTF16 1235426] be a tree indexing local witness bags.
+[21-30:P37074; UTF16 1235465] Every bag (v\in V) contains shared variables:
+[21-30:P37075; UTF16 1235511] [ B_v. ]
+[21-30:P37076; UTF16 1235520] DEF-INT21 — Running-Intersection Property
+[21-30:P37077; UTF16 1235562] The bags satisfy running intersection when, for every shared variable (x), the set:
+[21-30:P37078; UTF16 1235646] [ {v\in V\in B_v} ]
+[21-30:P37079; UTF16 1235666] induces a connected subtree of (T).
+[21-30:P37080; UTF16 1235702] THM-INT9 — Join-Tree Global Witness Gluing
+[21-30:P37082; UTF16 1235757] (T) is a tree.
+[21-30:P37083; UTF16 1235772] The bag family satisfies running intersection.
+[21-30:P37084; UTF16 1235819] Every bag (v) has selected local witness (w_v).
+[21-30:P37085; UTF16 1235867] For every edge ((u,v)\in E): w_v|_{B_u\cap B_v}. ]
+[21-30:P37087; UTF16 1235929] There exists a global assignment (W) such that:
+[21-30:P37088; UTF16 1235977] [ \boxed{ W|_{B_v}=w_v \qquad \forall v\in V. } ]
+[21-30:P37090; UTF16 1236033] Root (T) at arbitrary bag (r).
+[21-30:P37091; UTF16 1236064] Initialize (W) on (B_r) using (w_r).
+[21-30:P37092; UTF16 1236101] Traverse the tree away from the root. Suppose the parent bag (u) has already been merged. For child (v), the witnesses agree on:
+[21-30:P37093; UTF16 1236230] [ B_u\cap B_v. ]
+[21-30:P37094; UTF16 1236247] Therefore values assigned by (w_v) on the separator agree with the existing global assignment. Extend (W) to the variables:
+[21-30:P37095; UTF16 1236371] [ B_v\setminus B_u ]
+[21-30:P37096; UTF16 1236392] using (w_v).
+[21-30:P37097; UTF16 1236405] No conflict arises.
+[21-30:P37098; UTF16 1236425] Suppose a variable (x) appears in more than one bag. By running intersection, all bags containing (x) form a connected subtree. The value of (x) is propagated through each separator along that subtree. Adjacent agreement therefore forces one common value in every bag containing (x).
+[21-30:P37099; UTF16 1236709] After all bags are traversed, (W) restricts to every (w_v).
+[21-30:P37102; UTF16 1236777] The theorem proves gluing for a selected acyclic witness decomposition. It does not prove:
+[21-30:P37103; UTF16 1236868] compatible local witnesses are easy to find;
+[21-30:P37104; UTF16 1236913] arbitrary cyclic package systems glue;
+[21-30:P37105; UTF16 1236952] the bag decomposition is complete;
+[21-30:P37106; UTF16 1236987] the real project contains no omitted cross-bag dependency.
+[21-30:P37110; UTF16 1237049] 17. Cross-Layer Contradictions
+[21-30:P37111; UTF16 1237080] DEF-INT22 — Scope-Aware Contradiction
+[21-30:P37112; UTF16 1237118] Claims (c_1,c_2) are contradictory when:
+[21-30:P37113; UTF16 1237159] their scopes are compatible;
+[21-30:P37114; UTF16 1237188] their proposition semantics are identical under trusted translation;
+[21-30:P37115; UTF16 1237257] (c_1) proves (\varphi);
+[21-30:P37116; UTF16 1237281] (c_2) proves (\neg\varphi).
+[21-30:P37117; UTF16 1237309] THM-INT10 — A Scope-Compatible Logical Contradiction Makes the Global Witness Set Empty
+[21-30:P37118; UTF16 1237397] Suppose every global witness must satisfy both:
+[21-30:P37121; UTF16 1237462] [ \neg\varphi ]
+[21-30:P37122; UTF16 1237478] on the same scope.
+[21-30:P37123; UTF16 1237497] No classical valuation satisfies both.
+[21-30:P37124; UTF16 1237536] Therefore no global witness exists:
+[21-30:P37130; UTF16 1237594] 18. Release Claim Envelopes
+[21-30:P37131; UTF16 1237622] DEF-INT23 — Claim Universe
+[21-30:P37133; UTF16 1237654] [ \boxed{ \mathcal C^\star } ]
+[21-30:P37134; UTF16 1237685] be the set of all well-typed, scope-bound, modality-bound, version-bound claim tokens admitted by the active constitutional theory.
+[21-30:P37135; UTF16 1237817] DEF-INT24 — Release Claim Envelope
+[21-30:P37136; UTF16 1237852] A release claim envelope is:
+[21-30:P37137; UTF16 1237881] [ \boxed{ R\subseteq\mathcal C^\star. } ]
+[21-30:P37138; UTF16 1237923] It represents a set of claims proposed for release, not necessarily an admissible release.
+[21-30:P37142; UTF16 1238017] 19. Release Lattice
+[21-30:P37143; UTF16 1238037] THM-INT11 — Raw Claim Envelopes Form a Complete Lattice
+[21-30:P37144; UTF16 1238093] The powerset:
+[21-30:P37145; UTF16 1238107] [ \boxed{ \left( 2^{\mathcal C^\star}, \subseteq \right) } ]
+[21-30:P37146; UTF16 1238168] is a complete lattice.
+[21-30:P37147; UTF16 1238191] For any indexed family ({R_\alpha}_{\alpha\in A}):
+[21-30:P37148; UTF16 1238242] \bigcap_{\alpha\in A}R_\alpha, } ]
+[21-30:P37150; UTF16 1238282] \bigcup_{\alpha\in A}R_\alpha. } ]
+[21-30:P37152; UTF16 1238323] The intersection is contained in every (R_\alpha). Every other lower bound is contained in the intersection, so it is the greatest lower bound.
+[21-30:P37153; UTF16 1238467] The union contains every (R_\alpha). Every other upper bound contains the union, so it is the least upper bound.
+[21-30:P37154; UTF16 1238580] Thus arbitrary meets and joins exist. ∎
+[21-30:P37155; UTF16 1238620] This is a lattice of raw claim sets. It is not yet a lattice of valid releases.
+[21-30:P37156; UTF16 1238700] DEF-INT25 — Admissible Release Envelope
+[21-30:P37157; UTF16 1238740] A release envelope is admissible when it satisfies:
+[21-30:P37158; UTF16 1238792] exact typing;
+[21-30:P37159; UTF16 1238806] scope coherence;
+[21-30:P37160; UTF16 1238823] version coherence;
+[21-30:P37161; UTF16 1238842] assumption closure;
+[21-30:P37162; UTF16 1238862] modality rules;
+[21-30:P37163; UTF16 1238878] contradiction freedom;
+[21-30:P37164; UTF16 1238901] waiver semantics;
+[21-30:P37165; UTF16 1238919] constitutional rules;
+[21-30:P37166; UTF16 1238941] release policy.
+[21-30:P37167; UTF16 1238957] THM-INT12 — Admissible Release Envelopes Need Not Be Closed Under Lattice Join
+[21-30:P37169; UTF16 1239041] [ R_1={\varphi}, ]
+[21-30:P37170; UTF16 1239060] [ R_2={\neg\varphi} ]
+[21-30:P37171; UTF16 1239082] under the same scope.
+[21-30:P37172; UTF16 1239104] Each envelope is internally contradiction free.
+[21-30:P37173; UTF16 1239152] Their raw lattice join is:
+[21-30:P37174; UTF16 1239179] {\varphi,\neg\varphi}. ]
+[21-30:P37175; UTF16 1239204] This envelope is inconsistent.
+[21-30:P37177; UTF16 1239246] [ \boxed{ \text{admissible release envelopes need not be closed under raw union}. } ]
+[21-30:P37179; UTF16 1239334] A compatible join must be separately checked and may fail to exist inside the admissible subset.
+[21-30:P37183; UTF16 1239434] 20. Theory Change
+[21-30:P37184; UTF16 1239452] DEF-INT26 — Theory Version
+[21-30:P37185; UTF16 1239479] Every theory has exact version:
+[21-30:P37186; UTF16 1239511] [ \boxed{ \Theta^{(v)}. } ]
+[21-30:P37187; UTF16 1239539] The version binds:
+[21-30:P37188; UTF16 1239558] vocabulary;
+[21-30:P37189; UTF16 1239570] axioms;
+[21-30:P37191; UTF16 1239591] experiments;
+[21-30:P37192; UTF16 1239604] inference rules;
+[21-30:P37194; UTF16 1239633] checker semantics.
+[21-30:P37195; UTF16 1239652] DEF-INT27 — Constraint Strengthening
+[21-30:P37197; UTF16 1239696] [ \boxed{ \Theta_1\preceq_C\Theta_2 } ]
+[21-30:P37199; UTF16 1239742] both theories use the same semantic state space;
+[21-30:P37200; UTF16 1239791] every state satisfying (\Theta_2) satisfies (\Theta_1).
+[21-30:P37201; UTF16 1239847] Thus (\Theta_2) adds constraints without removing prior ones.
+[21-30:P37202; UTF16 1239909] THM-INT13 — Constraint Strengthening Cannot Enlarge the Feasible Set
+[21-30:P37204; UTF16 1239986] {x\models\Theta}. ]
+[21-30:P37206; UTF16 1240010] [ \Theta_1\preceq_C\Theta_2, ]
+[21-30:P37207; UTF16 1240041] take arbitrary:
+[21-30:P37208; UTF16 1240057] [ x\in\mathcal F(\Theta_2). ]
+[21-30:P37210; UTF16 1240093] [ x\models\Theta_2. ]
+[21-30:P37211; UTF16 1240115] By strengthening:
+[21-30:P37212; UTF16 1240133] [ x\models\Theta_1. ]
+[21-30:P37214; UTF16 1240166] [ x\in\mathcal F(\Theta_1). ]
+[21-30:P37216; UTF16 1240203] [ \boxed{ \mathcal F(\Theta_2) \subseteq \mathcal F(\Theta_1). } ]
+[21-30:P37218; UTF16 1240272] A general semantic rewrite, ontology replacement, or state-space change need not be monotone.
+[21-30:P37222; UTF16 1240369] 21. Experiment-Family Expansion
+[21-30:P37223; UTF16 1240401] DEF-INT28 — Experiment Family
+[21-30:P37224; UTF16 1240431] For an experiment family (\mathcal E), define:
+[21-30:P37225; UTF16 1240478] [ x\equiv_{\mathcal E}y \iff \forall e\in\mathcal E, \quad e(x)=e(y). ]
+[21-30:P37226; UTF16 1240550] THM-INT14 — Expanding the Experiment Family Refines Contextual Equivalence
+[21-30:P37228; UTF16 1240633] [ \mathcal E_1\subseteq\mathcal E_2. ]
+[21-30:P37230; UTF16 1240681] [ x\equiv_{\mathcal E_2}y. ]
+[21-30:P37231; UTF16 1240710] Every experiment in (\mathcal E_2) agrees on (x,y). Since every member of (\mathcal E_1) belongs to (\mathcal E_2), every member of (\mathcal E_1) also agrees.
+[21-30:P37233; UTF16 1240876] [ x\equiv_{\mathcal E_1}y. ]
+[21-30:P37235; UTF16 1240916] [ \boxed{ {\equiv_{\mathcal E_2}} \subseteq {\equiv_{\mathcal E_1}}. } ]
+[21-30:P37238; UTF16 1241005] [ \boxed{ \text{new admitted computations may split old quotient classes}. } ]
+[21-30:P37239; UTF16 1241084] An unchanged artifact may require a refined abstraction because the theory now asks more questions.
+[21-30:P37243; UTF16 1241187] 22. Version-Aware Reuse
+[21-30:P37244; UTF16 1241211] THM-INT15 — Dependency Version Change Invalidates Descendant Certificate Reuse Unless an Applicability Theorem Closes the Change
+[21-30:P37245; UTF16 1241340] Let certificate (c) depend transitively on root:
+[21-30:P37246; UTF16 1241389] [ r^{(v_1)}. ]
+[21-30:P37247; UTF16 1241404] Suppose the active root becomes:
+[21-30:P37248; UTF16 1241437] [ r^{(v_2)}. ]
+[21-30:P37249; UTF16 1241452] The old derivation proves (c) using (r^{(v_1)}), not (r^{(v_2)}).
+[21-30:P37250; UTF16 1241518] If no transport or invariance theorem proves that the change preserves (c), the old proof is not an applicable proof of the active claim.
+[21-30:P37252; UTF16 1241667] [ \boxed{ \text{dependency changed} + \text{no applicability theorem} \Longrightarrow \text{descendant certificate invalidated}. } ]
+[21-30:P37254; UTF16 1241802] Historical validity is not denied. Current applicability is withdrawn.
+[21-30:P37258; UTF16 1241876] 23. Constitutional Conflicts
+[21-30:P37259; UTF16 1241905] DEF-INT29 — Global Constitutional Conflict Core
+[21-30:P37260; UTF16 1241953] A global conflict core is a jointly infeasible set containing some combination of:
+[21-30:P37261; UTF16 1242036] lower-layer claims;
+[21-30:P37269; UTF16 1242158] final release requirements.
+[21-30:P37270; UTF16 1242186] It is inclusion minimal if every proper subset has a global witness.
+[21-30:P37271; UTF16 1242255] DEF-INT30 — Constitutional Repair
+[21-30:P37272; UTF16 1242289] A constitutional repair may:
+[21-30:P37273; UTF16 1242318] change the design;
+[21-30:P37274; UTF16 1242337] select another lower-layer witness;
+[21-30:P37275; UTF16 1242373] refine a quotient;
+[21-30:P37277; UTF16 1242413] discharge an assumption;
+[21-30:P37278; UTF16 1242438] revise an active theory;
+[21-30:P37279; UTF16 1242463] change an authorized requirement;
+[21-30:P37280; UTF16 1242497] add or remove a valid waiver;
+[21-30:P37281; UTF16 1242527] update a checker;
+[21-30:P37282; UTF16 1242545] change the release mode;
+[21-30:P37283; UTF16 1242570] recertify an artifact.
+[21-30:P37284; UTF16 1242593] A constitutional repair does not silently rewrite proposition truth.
+[21-30:P37285; UTF16 1242662] THM-INT16 — An Inconsistent Premise Set Cannot Be Made Consistent Without Changing an Active Premise, Scope, or Requirement
+[21-30:P37286; UTF16 1242786] Let active premise set (C) satisfy:
+[21-30:P37288; UTF16 1242837] If every member of (C) remains semantically unchanged with the same scope, the intersection remains exactly the same empty set.
+[21-30:P37289; UTF16 1242965] Therefore any repair restoring nonempty feasibility must alter at least one:
+[21-30:P37290; UTF16 1243042] premise;
+[21-30:P37292; UTF16 1243064] assumption;
+[21-30:P37295; UTF16 1243091] witness;
+[21-30:P37296; UTF16 1243100] disposition affecting whether the premise is mandatory.
+[21-30:P37298; UTF16 1243163] [ \boxed{ \text{inconsistency cannot be repaired by relabeling it resolved}. } ]
+[21-30:P37303; UTF16 1243249] 24. Cyclic Assurance Dependencies
+[21-30:P37304; UTF16 1243283] Cross-layer assurance may contain cycles.
+[21-30:P37306; UTF16 1243343] lifecycle state affects environmental state;
+[21-30:P37307; UTF16 1243388] environmental retrofit affects lifecycle state;
+[21-30:P37308; UTF16 1243436] societal allocation affects regional demand;
+[21-30:P37309; UTF16 1243481] regional repair affects economic execution;
+[21-30:P37310; UTF16 1243525] economic infeasibility changes available repairs;
+[21-30:P37311; UTF16 1243575] cyber state affects ODT trust;
+[21-30:P37312; UTF16 1243606] ODT evidence affects cyber incident interpretation.
+[21-30:P37313; UTF16 1243658] Circular citation is not proof. A cyclic subsystem needs explicit semantics.
+[21-30:P37314; UTF16 1243735] DEF-INT31 — Assurance State Lattice
+[21-30:P37316; UTF16 1243776] [ \boxed{ L } ]
+[21-30:P37317; UTF16 1243792] be a finite complete lattice of abstract assurance states.
+[21-30:P37318; UTF16 1243851] DEF-INT32 — Cyclic Assurance Operator
+[21-30:P37319; UTF16 1243889] [ \boxed{ F\to L } ]
+[21-30:P37320; UTF16 1243910] updates mutually dependent assurance states.
+[21-30:P37321; UTF16 1243955] THM-INT17 — Finite Monotone Assurance Iteration From Bottom Reaches the Least Fixed Point
+[21-30:P37323; UTF16 1244053] (L) is finite;
+[21-30:P37324; UTF16 1244068] (F) is monotone.
+[21-30:P37326; UTF16 1244093] [ x_0=\bot, ]
+[21-30:P37327; UTF16 1244107] [ x_{k+1}=F(x_k). ]
+[21-30:P37328; UTF16 1244127] Because (\bot) is least:
+[21-30:P37329; UTF16 1244152] [ x_0\le x_1. ]
+[21-30:P37331; UTF16 1244177] [ x_k\le x_{k+1}. ]
+[21-30:P37332; UTF16 1244197] Monotonicity gives:
+[21-30:P37333; UTF16 1244217] [ F(x_k)\le F(x_{k+1}), ]
+[21-30:P37335; UTF16 1244247] [ x_{k+1}\le x_{k+2}. ]
+[21-30:P37336; UTF16 1244271] Thus ((x_k)) is ascending.
+[21-30:P37337; UTF16 1244298] A finite lattice admits no infinite strictly ascending sequence, so some (K) satisfies:
+[21-30:P37338; UTF16 1244386] [ x_K=x_{K+1}. ]
+[21-30:P37340; UTF16 1244414] [ x_K=F(x_K), ]
+[21-30:P37341; UTF16 1244430] and (x_K) is a fixed point.
+[21-30:P37342; UTF16 1244458] Let (y) be any fixed point. Since:
+[21-30:P37343; UTF16 1244493] [ \bot\le y, ]
+[21-30:P37344; UTF16 1244508] monotonicity gives inductively:
+[21-30:P37345; UTF16 1244540] [ x_k\le y ]
+[21-30:P37346; UTF16 1244553] for all (k). Hence:
+[21-30:P37347; UTF16 1244573] [ x_K\le y. ]
+[21-30:P37348; UTF16 1244587] Thus (x_K) is the least fixed point.
+[21-30:P37349; UTF16 1244624] [ \boxed{ x_K=\operatorname{lfp}(F). } ]
+[21-30:P37351; UTF16 1244667] THM-INT18 — Fixed-Point Convergence Does Not Establish Model Completeness
+[21-30:P37352; UTF16 1244741] Construct worlds (W_0,W_1) with the same represented lattice (L), operator (F), initial state, and fixed-point certificate.
+[21-30:P37353; UTF16 1244865] In (W_1), add one unmodeled physical dependency (d^\star) that changes the real project outcome but is absent from (F).
+[21-30:P37354; UTF16 1244985] The formal iteration is identical in both worlds and reaches the same fixed point.
+[21-30:P37356; UTF16 1245079] [ \boxed{ \text{fixed-point convergence} \not\Longrightarrow \text{completeness of the represented dependency model}. } ]
+[21-30:P37361; UTF16 1245206] 25. Trusted Kernel
+[21-30:P37362; UTF16 1245225] DEF-INT33 — ANANKE Trusted Kernel
+[21-30:P37363; UTF16 1245259] \left( \mathsf{typeRules}, \mathsf{logic}, \mathsf{proofChecker}, \mathsf{localCheckerRegistry}, \mathsf{modalityRules}, \mathsf{versionRules}, \mathsf{scopeRules}, \mathsf{constitutionRules} \right). } ]
+[21-30:P37364; UTF16 1245464] The trusted kernel should be much smaller than:
+[21-30:P37365; UTF16 1245512] AI models;
+[21-30:P37366; UTF16 1245523] routing algorithms;
+[21-30:P37367; UTF16 1245543] theorem search;
+[21-30:P37368; UTF16 1245559] optimization solvers;
+[21-30:P37369; UTF16 1245581] numerical simulators;
+[21-30:P37370; UTF16 1245603] MIP/CP/SAT search;
+[21-30:P37371; UTF16 1245622] generative design systems;
+[21-30:P37372; UTF16 1245649] natural-language explanations.
+[21-30:P37373; UTF16 1245680] THM-INT19 — Untrusted Proposal Components Need Not Be Correct for End-to-End Formal Soundness if Every Accepted Conclusion Passes a Sound Trusted Kernel
+[21-30:P37375; UTF16 1245841] untrusted component (U) may emit arbitrary candidates;
+[21-30:P37376; UTF16 1245896] no candidate is trusted because (U) emitted it;
+[21-30:P37377; UTF16 1245944] the trusted kernel independently checks every premise required by an accepted conclusion;
+[21-30:P37378; UTF16 1246034] the kernel is sound.
+[21-30:P37379; UTF16 1246055] A bug in (U) may:
+[21-30:P37380; UTF16 1246073] reduce completeness;
+[21-30:P37381; UTF16 1246094] waste computation;
+[21-30:P37382; UTF16 1246113] produce invalid artifacts;
+[21-30:P37383; UTF16 1246140] miss valid solutions.
+[21-30:P37384; UTF16 1246162] But an invalid candidate cannot become an accepted theorem unless the sound kernel accepts an invalid proof.
+[21-30:P37386; UTF16 1246282] [ \boxed{ \text{formal soundness can be independent of proposal correctness}. } ]
+[21-30:P37388; UTF16 1246366] This theorem is conditional on trusted-kernel soundness. It does not prove that the kernel, compiler, hardware, or formalization is defect free.
+[21-30:P37392; UTF16 1246514] 26. Proof DAGs and Shared Subproofs
+[21-30:P37393; UTF16 1246550] DEF-INT34 — Global Proof DAG
+[21-30:P37394; UTF16 1246579] [ \boxed{ D_{\mathrm{proof}}=(V,E). } ]
+[21-30:P37395; UTF16 1246619] Each node records:
+[21-30:P37396; UTF16 1246638] one claim;
+[21-30:P37397; UTF16 1246649] exact premise nodes;
+[21-30:P37399; UTF16 1246677] modality;
+[21-30:P37402; UTF16 1246721] checker identity;
+[21-30:P37403; UTF16 1246739] semantic content identity.
+[21-30:P37404; UTF16 1246766] DEF-INT35 — Exact Semantic Content Identity
+[21-30:P37405; UTF16 1246810] Two mathematical proof nodes are identical only when their complete semantic content is identical.
+[21-30:P37406; UTF16 1246909] Practical cryptographic hashes may represent this identity under Prompt-22 collision-resistance assumptions. Hash equality is not unconditional mathematical identity.
+[21-30:P37407; UTF16 1247076] THM-INT20 — Sharing Identical Subproofs Preserves Derivability
+[21-30:P37408; UTF16 1247139] Start with a finite proof tree containing repeated semantically identical subproofs.
+[21-30:P37409; UTF16 1247224] Replace repeated copies by one shared DAG node.
+[21-30:P37410; UTF16 1247272] Every parent still receives the same premise proposition, scope, modality, assumptions, and version.
+[21-30:P37411; UTF16 1247373] By induction from leaves toward the root, every local inference derives the same conclusion as before.
+[21-30:P37412; UTF16 1247476] Thus the root claim remains derivable.
+[21-30:P37413; UTF16 1247515] [ \boxed{ \text{exact shared-subproof deduplication preserves derivability}. } ]
+[21-30:P37414; UTF16 1247596] The number of distinct DAG nodes is no greater than the number of original tree nodes.
+[21-30:P37419; UTF16 1247688] 27. Final Release Modes
+[21-30:P37420; UTF16 1247712] DEF-INT36 — Final ANANKE Release Mode
+[21-30:P37421; UTF16 1247750] \left{ \begin{array}{l} \mathsf{UNCONDITIONAL_RELEASE},\ \mathsf{CONDITIONAL_RELEASE},\ \mathsf{NO_RELEASE},\ \mathsf{UNKNOWN} \end{array} \right}. } ]
+[21-30:P37422; UTF16 1247902] These are policy outcomes. They do not replace lower-layer modalities.
+[21-30:P37423; UTF16 1247973] An unconditional final mode does not mean every underlying claim is deterministic or exact. It means every mandatory target claim has been established at the exact modality the release requires, without active waiver or unresolved mandatory assumption debt.
+[21-30:P37424; UTF16 1248231] DEF-INT37 — Unconditional Release Predicate
+[21-30:P37425; UTF16 1248275] [ \mathsf{UncondRelease}(\Xi_t,y) ]
+[21-30:P37427; UTF16 1248323] every mandatory root is proved at its required modality;
+[21-30:P37428; UTF16 1248380] every mandatory assumption debt set is empty;
+[21-30:P37429; UTF16 1248426] no active mandatory waiver exists;
+[21-30:P37430; UTF16 1248461] no mandatory contradiction exists;
+[21-30:P37431; UTF16 1248496] one compatible global witness exists;
+[21-30:P37432; UTF16 1248534] every constitutional rule holds;
+[21-30:P37433; UTF16 1248567] the independent final checker accepts.
+[21-30:P37434; UTF16 1248606] DEF-INT38 — Conditional Release Predicate
+[21-30:P37435; UTF16 1248648] [ \mathsf{CondRelease}(\Xi_t,y) ]
+[21-30:P37437; UTF16 1248694] every unwaived mandatory root is proved at its required modality;
+[21-30:P37438; UTF16 1248760] every remaining waiver, uncertainty, or condition is explicitly authorized;
+[21-30:P37439; UTF16 1248836] no contradiction makes the permitted state logically impossible;
+[21-30:P37440; UTF16 1248901] one global witness satisfies all nonwaived obligations and compensating controls;
+[21-30:P37441; UTF16 1248983] every condition and expiry remains visible;
+[21-30:P37442; UTF16 1249027] the independent final checker accepts the conditional package.
+[21-30:P37443; UTF16 1249090] Exact final-mode partition
+[21-30:P37445; UTF16 1249125] (\mathsf{Block}): a mandatory unwaived root is refuted, the global witness set is empty, an active contradiction exists, or an exception lacks authority;
+[21-30:P37446; UTF16 1249279] (\mathsf{Indeterminate}): no blocking refutation is proved, but the checker cannot determine release because a required claim, cycle, scope, or dependency remains unresolved and is not conditionally authorized;
+[21-30:P37447; UTF16 1249490] (\mathsf{ConditionalEligible}): all nonwaived mandatory roots hold and every remaining condition is explicitly authorized;
+[21-30:P37448; UTF16 1249613] (\mathsf{UnconditionalEligible}): every mandatory root holds, mandatory debt is empty, and no active waiver or retained release condition exists.
+[21-30:P37449; UTF16 1249759] The classifier uses the mutually exclusive order:

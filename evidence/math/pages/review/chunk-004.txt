@@ -1,0 +1,363 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P1088; UTF16 51119] 11.3 Persistent elimination tree
+[1-10:P1089; UTF16 51152] Suppose a network’s internal variables have been eliminated through a tree of separator computations.
+[1-10:P1090; UTF16 51254] After a local rewrite:
+[1-10:P1091; UTF16 51277] untouched leaves are retained;
+[1-10:P1092; UTF16 51308] only affected ancestors are invalidated;
+[1-10:P1093; UTF16 51349] the smallest valid separator closure is recomputed;
+[1-10:P1094; UTF16 51401] cached operators outside that closure remain valid.
+[1-10:P1095; UTF16 51453] This is analogous to an incremental compiler or persistent data structure, not a full-model rebuild.
+[1-10:P1099; UTF16 51557] 11.4 Transported numerical knowledge
+[1-10:P1100; UTF16 51594] The Rewrite-Functor Jet transports:
+[1-10:P1101; UTF16 51630] compatible primal fields;
+[1-10:P1102; UTF16 51656] dual sensitivities;
+[1-10:P1103; UTF16 51676] local reduced bases;
+[1-10:P1104; UTF16 51697] preconditioner blocks;
+[1-10:P1105; UTF16 51720] uncertainty samples;
+[1-10:P1106; UTF16 51741] proof obligations;
+[1-10:P1107; UTF16 51760] solver trust regions.
+[1-10:P1108; UTF16 51782] A transported result is never accepted merely because it exists. Its residual is measured.
+[1-10:P1109; UTF16 51873] If:
+[1-10:P1110; UTF16 51877] \[ \|F_B(T_x x_A)\|\le\tau, \]
+[1-10:P1111; UTF16 51908] the state may be used as a warm start or certified approximation.
+[1-10:P1112; UTF16 51974] If not, the affected region expands.
+[1-10:P1116; UTF16 52014] 11.5 Generalized rewrite differential
+[1-10:P1117; UTF16 52052] For outcome functional J, define a rewrite differential approximately as:
+[1-10:P1118; UTF16 52126] \[ \mathfrak D_r J = J(B) - J(A) - \langle \lambda_A,\Delta_r F\rangle, \]
+[1-10:P1119; UTF16 52201] where rF is the residual introduced by the rewrite after transporting the previous solution.
+[1-10:P1120; UTF16 52294] Unlike an ordinary derivative, \(\mathfrak D_r J\) compares spaces of different topology and dimension through their common semantic interface.
+[1-10:P1121; UTF16 52438] It does not promise exact gradients over arbitrary topology.
+[1-10:P1122; UTF16 52499] Its role is to estimate:
+[1-10:P1123; UTF16 52524] whether a rewrite is likely valuable;
+[1-10:P1124; UTF16 52562] which analyses become invalid;
+[1-10:P1125; UTF16 52593] which solution information survives;
+[1-10:P1126; UTF16 52630] how large the affected computational region may be.
+[1-10:P1130; UTF16 52685] 11.6 Worst case
+[1-10:P1131; UTF16 52701] Some changes are genuinely global:
+[1-10:P1132; UTF16 52736] changing structural system;
+[1-10:P1133; UTF16 52764] reversing the building orientation;
+[1-10:P1134; UTF16 52800] replacing all-air HVAC with hydronic terminals;
+[1-10:P1135; UTF16 52848] introducing a new atrium;
+[1-10:P1136; UTF16 52874] changing floor count;
+[1-10:P1137; UTF16 52896] changing the fire strategy.
+[1-10:P1138; UTF16 52924] ANANKE does not claim those are local.
+[1-10:P1139; UTF16 52963] Its guarantee is:
+[1-10:P1140; UTF16 52981] It forgets only what the dependency and residual analysis proves must be forgotten.
+[1-10:P1144; UTF16 53068] 12. Automatic Abstraction Discovery
+[1-10:P1145; UTF16 53104] A fixed building ontology cannot be the theoretical endpoint.
+[1-10:P1146; UTF16 53166] ANANKE mines abstractions from its own computation.
+[1-10:P1147; UTF16 53218] 12.1 Sources of abstraction evidence
+[1-10:P1148; UTF16 53255] It examines:
+[1-10:P1149; UTF16 53268] variables repeatedly appearing together in proofs;
+[1-10:P1150; UTF16 53319] variables sharing sensitivity directions;
+[1-10:P1151; UTF16 53361] repeated separator messages;
+[1-10:P1152; UTF16 53390] common causes of threshold crossings;
+[1-10:P1153; UTF16 53428] repeated counterexamples;
+[1-10:P1154; UTF16 53454] recurring operator subspaces;
+[1-10:P1155; UTF16 53484] stable low-rank response coordinates;
+[1-10:P1156; UTF16 53522] patterns in successful topology rewrites;
+[1-10:P1157; UTF16 53564] recurring unsatisfiable cores.
+[1-10:P1161; UTF16 53598] 12.2 Proposed macro variable
+[1-10:P1162; UTF16 53627] Suppose 80 detailed variables involving:
+[1-10:P1163; UTF16 53668] room widths;
+[1-10:P1164; UTF16 53681] façade joints;
+[1-10:P1165; UTF16 53696] column locations;
+[1-10:P1166; UTF16 53714] bathroom-pod edges;
+[1-10:P1167; UTF16 53734] drainage branches;
+[1-10:P1168; UTF16 53753] rack splice points
+[1-10:P1169; UTF16 53772] repeatedly affect outcomes through a small phase relationship.
+[1-10:P1170; UTF16 53835] ANANKE may propose:
+[1-10:P1171; UTF16 53855] \[ z_{\mathrm{module}} = \left( w_{\mathrm{room}} \bmod p_{\mathrm{façade}}, \; 2w_{\mathrm{room}} \bmod p_{\mathrm{structure}}, \; w_{\mathrm{wetwall}} \bmod p_{\mathrm{rack}} \right). \]
+[1-10:P1172; UTF16 54044] This becomes an operational abstraction such as:
+[1-10:P1173; UTF16 54093] cross-system modular phase lock.
+[1-10:P1174; UTF16 54126] It is not merely a label or embedding.
+[1-10:P1175; UTF16 54165] The new variable can:
+[1-10:P1176; UTF16 54187] drive branching;
+[1-10:P1177; UTF16 54204] derive bounds;
+[1-10:P1178; UTF16 54219] define quotient classes;
+[1-10:P1179; UTF16 54244] formulate rewrites;
+[1-10:P1180; UTF16 54264] explain causal effects;
+[1-10:P1181; UTF16 54288] reduce separator width.
+[1-10:P1185; UTF16 54315] 12.3 Validation
+[1-10:P1186; UTF16 54331] A macro is promoted only if ANANKE can show that:
+[1-10:P1187; UTF16 54381] replacing detailed variables by the macro preserves relevant consequences within a bound;
+[1-10:P1188; UTF16 54471] adversarial interventions fail to find a distinguishing case;
+[1-10:P1189; UTF16 54533] the macro improves compression or computation;
+[1-10:P1190; UTF16 54580] the macro has an explicit concretization map back to realizations.
+[1-10:P1191; UTF16 54647] A failed macro is discarded or split.
+[1-10:P1195; UTF16 54688] 12.4 Self-improvement without giant training
+[1-10:P1196; UTF16 54733] ANANKE improves primarily by accumulating:
+[1-10:P1197; UTF16 54776] reusable operator bases;
+[1-10:P1198; UTF16 54801] successful separator statistics;
+[1-10:P1199; UTF16 54834] proof macros;
+[1-10:P1200; UTF16 54848] canonical rewrites;
+[1-10:P1201; UTF16 54868] unsatisfiable cores;
+[1-10:P1202; UTF16 54889] discrepancy models;
+[1-10:P1203; UTF16 54909] branching and refinement statistics;
+[1-10:P1204; UTF16 54946] validated motif libraries.
+[1-10:P1205; UTF16 54973] This is closer to a compiler learning optimization passes than a giant model memorizing buildings.
+[1-10:P1206; UTF16 55072] Optional AI components
+[1-10:P1207; UTF16 55095] ￼
+ATTACHED TABLE 1735879; native row/column order; 4 rows
+ROW 0: ["Model", "Approximate size", "Role", "Authority"]
+ROW 1: ["Quantized language model", "7–9B parameters, roughly 5–7 GB at 4-bit plus runtime overhead", "Propose structured interpretations of briefs, codes, specifications, and product documents", "None until translated, sourced, checked, and approved"]
+ROW 2: ["Graph computation-policy model", "10–30M parameters, under roughly 200 MB", "Predict promising refinements, separators, and rewrites", "Proposal and scheduling heuristic only"]
+ROW 3: ["Local residual/operator models", "1–20M parameters each; usually under 2–4 GB total resident", "Approximate local physics residuals inside certified envelopes", "Never allowed to narrow a conservative bound without verification"]
+[1-10:P1208; UTF16 55097] The language model is loaded on demand and unloaded before VRAM-intensive numerical work.
+[1-10:P1209; UTF16 55187] Hallucinated facts cannot enter the authoritative state without:
+[1-10:P1210; UTF16 55252] provenance;
+[1-10:P1211; UTF16 55264] deterministic parsing;
+[1-10:P1212; UTF16 55287] units;
+[1-10:P1213; UTF16 55294] validation;
+[1-10:P1214; UTF16 55306] or explicit human acceptance.
+[1-10:P1218; UTF16 55339] 13. Self-Optimizing Computation
+[1-10:P1219; UTF16 55371] At any point, ANANKE may choose among thousands of actions.
+[1-10:P1220; UTF16 55431] It does not rank them by “uncertainty” alone.
+[1-10:P1221; UTF16 55477] Uncertainty can be irrelevant.
+[1-10:P1222; UTF16 55508] 13.1 Decision gaps
+[1-10:P1223; UTF16 55527] Suppose class A has certified cost:
+[1-10:P1224; UTF16 55563] \[ \$81\text{M}\le C_A\le \$82\text{M}, \]
+[1-10:P1225; UTF16 55606] and class B has:
+[1-10:P1226; UTF16 55623] \[ \$93\text{M}\le C_B\le \$101\text{M}, \]
+[1-10:P1227; UTF16 55667] while B is no better on any protected or admitted criterion.
+[1-10:P1228; UTF16 55728] Refining B’s estimate from $96.318 million to $96.302 million has no decision value.
+[1-10:P1229; UTF16 55813] Conversely, a 20-millisecond clearance bound that proves every member of a huge shaft family infeasible may have enormous value.
+[1-10:P1233; UTF16 55945] 13.2 Computation actions
+[1-10:P1234; UTF16 55970] Each action advertises:
+[1-10:P1235; UTF16 55994] likely outcomes;
+[1-10:P1236; UTF16 56011] runtime distribution;
+[1-10:P1237; UTF16 56033] RAM and VRAM requirements;
+[1-10:P1238; UTF16 56060] expected circuit region affected;
+[1-10:P1239; UTF16 56094] possible proof obligations closed;
+[1-10:P1240; UTF16 56129] likely classes eliminated;
+[1-10:P1241; UTF16 56156] expected reuse;
+[1-10:P1242; UTF16 56172] risk of discovering model invalidity.
+[1-10:P1244; UTF16 56220] tighten a shaft-area lower bound;
+[1-10:P1245; UTF16 56254] split a façade operator domain;
+[1-10:P1246; UTF16 56286] run a structural bay solve;
+[1-10:P1247; UTF16 56314] inspect a code interpretation;
+[1-10:P1248; UTF16 56345] refine a construction-access abstraction;
+[1-10:P1249; UTF16 56387] execute a fire scenario;
+[1-10:P1250; UTF16 56412] ask an architect whether two transformations are equivalent;
+[1-10:P1251; UTF16 56473] build a new reduced basis;
+[1-10:P1252; UTF16 56500] attempt a topology rewrite;
+[1-10:P1253; UTF16 56528] search for a counterexample to a merge.
+[1-10:P1257; UTF16 56571] 13.3 RCVOC scheduling
+[1-10:P1258; UTF16 56593] ANANKE estimates:
+[1-10:P1259; UTF16 56611] \[ \operatorname{RCVOC}(c) = \frac{ \text{expected regret reduction} + \text{safety closure} + \text{future reuse} }{ \text{time} + \text{memory pressure} + \text{VRAM pressure} + \text{I/O} + \text{energy} }. \]
+[1-10:P1260; UTF16 56824] It also keeps upper bounds on actions it has not tried recently, preventing premature starvation.
+[1-10:P1264; UTF16 56925] 13.4 Mandatory overrides
+[1-10:P1265; UTF16 56950] The scheduler may not indefinitely postpone:
+[1-10:P1266; UTF16 56995] safety-critical unresolved obligations;
+[1-10:P1267; UTF16 57035] validity-domain violations;
+[1-10:P1268; UTF16 57063] evidence expiration;
+[1-10:P1269; UTF16 57084] counterexamples to certified merges;
+[1-10:P1270; UTF16 57121] human decisions blocking major branches.
+[1-10:P1271; UTF16 57162] Metareasoning is a servant, not an excuse to ignore assurance.
+[1-10:P1275; UTF16 57228] 13.5 Metareasoning budget
+[1-10:P1276; UTF16 57254] Exact value-of-computation calculation would itself be intractable.
+[1-10:P1277; UTF16 57322] ANANKE therefore caps metareasoning overhead at approximately 3–5% of total runtime.
+[1-10:P1279; UTF16 57416] cached outcome statistics;
+[1-10:P1280; UTF16 57443] local influence cones;
+[1-10:P1281; UTF16 57466] learned ranking;
+[1-10:P1282; UTF16 57483] conservative action bounds;
+[1-10:P1283; UTF16 57511] periodic portfolio review.
+[1-10:P1284; UTF16 57538] If the scheduler becomes uncertain, it falls back to deterministic policies:
+[1-10:P1287; UTF16 57641] major decision-boundary uncertainty;
+[1-10:P1288; UTF16 57678] high-reuse abstractions;
+[1-10:P1289; UTF16 57703] fine optimization.
+[1-10:P1293; UTF16 57725] 14. Human Architectural Sovereignty
+[1-10:P1294; UTF16 57761] ANANKE does not model beauty as a number.
+[1-10:P1295; UTF16 57803] It represents what the machine is permitted to treat as interchangeable.
+[1-10:P1296; UTF16 57876] 14.1 Protected invariants
+[1-10:P1298; UTF16 57912] sequence of compression and release at arrival;
+[1-10:P1299; UTF16 57960] views revealed at specific thresholds;
+[1-10:P1300; UTF16 57999] façade rhythm;
+[1-10:P1301; UTF16 58014] lobby proportions;
+[1-10:P1302; UTF16 58033] relationship between public and private zones;
+[1-10:P1303; UTF16 58080] deliberate asymmetry;
+[1-10:P1304; UTF16 58102] material continuity;
+[1-10:P1305; UTF16 58123] visible structural expression;
+[1-10:P1306; UTF16 58154] author-controlled irregularity.
+[1-10:P1307; UTF16 58186] A transformation violating a protected invariant is not penalized.
+[1-10:P1308; UTF16 58253] It is absent from the machine’s legal search language.
+[1-10:P1312; UTF16 58311] 14.2 Approved equivalence classes
+[1-10:P1313; UTF16 58345] An architect may approve:
+[1-10:P1314; UTF16 58371] These 17 internal guestroom service layouts are experientially equivalent because none changes visible geometry, room proportion, sound character, or maintenance access from guest space.
+[1-10:P1315; UTF16 58558] ANANKE may then optimize freely among them.
+[1-10:P1316; UTF16 58602] The architect may refuse equivalence between two façades even if their energy and cost are identical.
+[1-10:P1320; UTF16 58707] 14.3 Relational intent
+[1-10:P1321; UTF16 58730] Intent can be expressed through relations rather than target values:
+[1-10:P1322; UTF16 58799] space A must be perceived before space B;
+[1-10:P1323; UTF16 58841] view V must remain framed by surfaces S1,S2;
+[1-10:P1324; UTF16 58886] room width-to-depth relationships must lie in an approved family;
+[1-10:P1325; UTF16 58952] irregularity may occur only at specified narrative moments;
+[1-10:P1326; UTF16 59012] visible systems must remain subordinate to a material order;
+[1-10:P1327; UTF16 59073] circulation choices must preserve controlled ambiguity.
+[1-10:P1331; UTF16 59132] 14.4 Negotiable territory
+[1-10:P1332; UTF16 59158] A negotiable transformation generates a human decision node:
+[1-10:P1333; UTF16 59219] Moving the core 0.9 m is estimated to save 2.1–3.0 million and reduce six structural transfers, but alters the protected lobby edge by 240 mm. Approve, reject, or redefine the invariant.
+[1-10:P1334; UTF16 59406] The machine does not quietly choose the exchange rate.
+[1-10:P1338; UTF16 59464] 14.5 Human judgment as evidence
+[1-10:P1339; UTF16 59496] Architect approval is recorded as its own evidence type.
+[1-10:P1340; UTF16 59553] It is neither a mathematical proof nor a noisy score.
+[1-10:P1341; UTF16 59607] It states:
+[1-10:P1342; UTF16 59618] who approved;
+[1-10:P1343; UTF16 59632] what alternatives were reviewed;
+[1-10:P1344; UTF16 59665] what equivalence or exception was accepted;
+[1-10:P1345; UTF16 59709] under what project version;
+[1-10:P1346; UTF16 59737] what future changes invalidate that approval.
+[1-10:P1350; UTF16 59786] 15. Adversarial Failure Intelligence
+[1-10:P1351; UTF16 59823] ANANKE attacks claims rather than running only random scenarios.
+[1-10:P1352; UTF16 59888] For claim h, it solves:
+[1-10:P1353; UTF16 59912] \[ \min_{\delta} \operatorname{PlausibilityCost}(\delta) \]
+[1-10:P1354; UTF16 59972] subject to:
+[1-10:P1355; UTF16 59984] \[ h(x,\delta)=\text{false}, \qquad \delta\in\mathcal P, \]
+[1-10:P1356; UTF16 60044] where \(\mathcal P\) is the admitted set of perturbations.
+[1-10:P1357; UTF16 60103] The answer is a minimum falsifying intervention.
+[1-10:P1358; UTF16 60152] 15.1 Perturbation classes
+[1-10:P1359; UTF16 60178] correlated wind, rain, and power failure;
+[1-10:P1360; UTF16 60220] equipment failure plus blocked maintenance access;
+[1-10:P1361; UTF16 60271] construction tolerance plus supplier substitution;
+[1-10:P1362; UTF16 60322] abnormal occupancy plus controls failure;
+[1-10:P1363; UTF16 60364] flood plus disabled elevator;
+[1-10:P1364; UTF16 60394] fire plus open door and delayed detection;
+[1-10:P1365; UTF16 60437] maintenance neglect plus degraded filter;
+[1-10:P1366; UTF16 60479] utility interruption plus emergency-generator derating;
+[1-10:P1367; UTF16 60535] material substitution plus connection tolerance;
+[1-10:P1368; UTF16 60584] economic shock plus long-lead product unavailability.
+[1-10:P1372; UTF16 60641] 15.2 Search methods
+[1-10:P1373; UTF16 60661] Depending on the claim:
+[1-10:P1374; UTF16 60685] mixed-integer adversarial optimization;
+[1-10:P1375; UTF16 60725] gradient-based local attack;
+[1-10:P1376; UTF16 60754] symbolic constraint solving;
+[1-10:P1377; UTF16 60783] reachability analysis;
+[1-10:P1378; UTF16 60806] scenario branch-and-bound;
+[1-10:P1379; UTF16 60833] rare-event importance sampling;
+[1-10:P1380; UTF16 60865] causal intervention search;
+[1-10:P1381; UTF16 60893] CEGAR over scenario abstractions.
+[1-10:P1385; UTF16 60930] 15.3 Counterexample consequences
+[1-10:P1386; UTF16 60963] A counterexample may:
+[1-10:P1387; UTF16 60985] kill a witness;
+[1-10:P1388; UTF16 61001] kill an entire quotient class;
+[1-10:P1389; UTF16 61032] split a class previously considered equivalent;
+[1-10:P1390; UTF16 61080] invalidate a reduced operator;
+[1-10:P1391; UTF16 61111] add a new uncertainty variable;
+[1-10:P1392; UTF16 61143] create a new safety requirement;
+[1-10:P1393; UTF16 61176] expose a missing maintenance scenario;
+[1-10:P1394; UTF16 61215] force human reconsideration of a tradeoff.
+[1-10:P1398; UTF16 61261] 15.4 Adversarial equivalence testing
+[1-10:P1399; UTF16 61298] Suppose two shaft systems were merged because their ordinary pressure-flow and space behavior matched.
+[1-10:P1400; UTF16 61401] The adversary asks:
+[1-10:P1401; UTF16 61421] Are they still equivalent when one valve is inaccessible?
+[1-10:P1402; UTF16 61479] Under a particular supplier substitution?
+[1-10:P1403; UTF16 61521] During partial construction?
+[1-10:P1404; UTF16 61550] With one riser isolated?
+[1-10:P1405; UTF16 61575] Under a firestop inspection failure?
+[1-10:P1406; UTF16 61612] During future conversion?
+[1-10:P1407; UTF16 61638] If a distinguishing context is found, the quotient class splits.
+[1-10:P1408; UTF16 61703] This is how ANANKE prevents compression from becoming wishful thinking.
+[1-10:P1412; UTF16 61778] 16. Assurance Architecture
+[1-10:P1413; UTF16 61805] ANANKE uses a typed evidence lattice.
+[1-10:P1414; UTF16 61843] ￼
+ATTACHED TABLE 1735895; native row/column order; 9 rows
+ROW 0: ["Evidence type", "Meaning"]
+ROW 1: ["P — Mathematical proof", "A theorem or exact finite proof under formal assumptions."]
+ROW 2: ["B — Conservative bound", "A sound enclosure, relaxation, or impossibility certificate."]
+ROW 3: ["N — Numerically verified result", "Solver convergence, discretization assessment, residuals, and numerical error characterization."]
+ROW 4: ["V — Validated model", "Comparison with experimental or field data within a stated intended-use domain."]
+ROW 5: ["E — Empirical physical evidence", "Mockup, test, survey, measurement, commissioning, or observed operation."]
+ROW 6: ["C — Code interpretation", "Traceable interpretation tied to jurisdiction, edition, and reviewer."]
+ROW 7: ["J — Professional or architectural judgment", "Human decision or approval with scope and provenance."]
+ROW 8: ["U — Unresolved", "Explicitly open obligation, ambiguity, or unknown."]
+[1-10:P1415; UTF16 61845] 16.1 Every elimination carries evidence
+[1-10:P1416; UTF16 61885] When ANANKE removes a design class, it stores:
+[1-10:P1417; UTF16 61932] the elimination rule;
+[1-10:P1419; UTF16 61967] relevant bounds;
+[1-10:P1420; UTF16 61984] competing class;
+[1-10:P1421; UTF16 62001] decision functionals covered;
+[1-10:P1422; UTF16 62031] tolerance;
+[1-10:P1423; UTF16 62042] proof or numerical certificate;
+[1-10:P1425; UTF16 62099] The final answer therefore includes not merely:
+[1-10:P1426; UTF16 62147] Here are four good buildings.
+[1-10:P1427; UTF16 62177] It includes:
+[1-10:P1428; UTF16 62190] Here is why these four remain decision-relevant, why these other regions were eliminated, and where the argument is still incomplete.
+[1-10:P1432; UTF16 62327] 16.2 Approximation influence
+[1-10:P1433; UTF16 62356] Every approximation states:
+[1-10:P1434; UTF16 62384] its validity region;
+[1-10:P1435; UTF16 62405] numerical error;
+[1-10:P1436; UTF16 62422] model discrepancy;
+[1-10:P1437; UTF16 62441] which claims depend on it;
+[1-10:P1438; UTF16 62468] which conclusions cannot be affected by its error;
+[1-10:P1439; UTF16 62519] what would trigger refinement.
+[1-10:P1443; UTF16 62553] 16.3 Independent reconstruction
+[1-10:P1444; UTF16 62585] Final witnesses are regenerated through a separate backend:
+[1-10:P1445; UTF16 62645] independent geometric reconstruction;
+[1-10:P1446; UTF16 62683] fresh meshes;
+[1-10:P1447; UTF16 62697] fresh quantities;
+[1-10:P1448; UTF16 62715] alternate numerical formulations where practical;
+[1-10:P1449; UTF16 62765] model-disagreement tests;
+[1-10:P1450; UTF16 62791] independent code and clearance checks;
+[1-10:P1451; UTF16 62830] fresh uncertainty propagation.
+[1-10:P1452; UTF16 62861] The independent pipeline may run on the same workstation sequentially, but it must not reuse unverified optimizer conclusions as axioms.
+[1-10:P1456; UTF16 63001] 16.4 No proof of physical reality
+[1-10:P1457; UTF16 63035] A machine proof establishes a property of a formal model.
+[1-10:P1458; UTF16 63093] It does not prove that:
+[1-10:P1459; UTF16 63117] the model is complete;
+[1-10:P1460; UTF16 63140] workmanship will match;
+[1-10:P1461; UTF16 63164] material data are correct;
+[1-10:P1462; UTF16 63191] a code official agrees;
+[1-10:P1463; UTF16 63215] a future hazard distribution is exact.
+[1-10:P1464; UTF16 63254] ANANKE preserves those distinctions permanently.
+[1-10:P1468; UTF16 63306] 17. Workstation Architecture
+[1-10:P1469; UTF16 63335] The Ryzen 9 7900X3D provides 12 CPU cores, 24 threads, and 128 MB of L3 cache. The RTX 3090 provides 10,496 CUDA cores and 24 GB of GDDR6X VRAM. AMD
+[1-10:P1470; UTF16 63484] 17.1 CPU responsibilities
+[1-10:P1471; UTF16 63510] The CPU owns:
+[1-10:P1472; UTF16 63524] symbolic rewriting;
+[1-10:P1473; UTF16 63544] quotient maintenance;
+[1-10:P1474; UTF16 63566] union-find and structural hashing;
+[1-10:P1475; UTF16 63601] constraint propagation;
+[1-10:P1476; UTF16 63625] exact integer and logical reasoning;
+[1-10:P1477; UTF16 63662] branch-heavy search;
+[1-10:P1478; UTF16 63683] sparse topology operations;
+[1-10:P1479; UTF16 63711] geometry predicates;
+[1-10:P1480; UTF16 63732] evidence graph maintenance;
+[1-10:P1481; UTF16 63760] elimination-tree orchestration;
+[1-10:P1482; UTF16 63792] SSD cache management;
+[1-10:P1483; UTF16 63814] mixed-integer subproblems;
+[1-10:P1484; UTF16 63841] exact or high-precision arithmetic where needed.
+[1-10:P1485; UTF16 63890] Expected utilization:
+[1-10:P1486; UTF16 63912] 80–100% during compilation and search;
+[1-10:P1487; UTF16 63951] 20–60% while feeding GPU batches;
+[1-10:P1488; UTF16 63985] one or two threads reserved for I/O and scheduling.
+[1-10:P1492; UTF16 64040] 17.2 GPU responsibilities
+[1-10:P1493; UTF16 64066] The RTX 3090 owns:
+[1-10:P1494; UTF16 64085] batched reduced-operator evaluation;
+[1-10:P1495; UTF16 64122] dense and block-sparse linear algebra;
+[1-10:P1496; UTF16 64161] mixed-precision factor evaluation;
+[1-10:P1497; UTF16 64196] selected iterative PDE solves;
+[1-10:P1498; UTF16 64227] low-rank tensor contractions;
+[1-10:P1499; UTF16 64257] surrogate and neural-operator inference;
+[1-10:P1500; UTF16 64298] sensitivity batches;
+[1-10:P1501; UTF16 64319] uncertainty ensembles;
+[1-10:P1502; UTF16 64342] graph-policy inference;
+[1-10:P1503; UTF16 64366] residual evaluation.
+[1-10:P1505; UTF16 64409] 60–95% during numerical batches;
+[1-10:P1506; UTF16 64442] low utilization during symbolic saturation;
+[1-10:P1507; UTF16 64486] no requirement that all workloads be forced onto the GPU.
+[1-10:P1511; UTF16 64547] 17.3 Hierarchical memory architecture
+[1-10:P1512; UTF16 64585] RAM targets
+[1-10:P1513; UTF16 64597] ￼
+ATTACHED TABLE 1735911; native row/column order; 9 rows
+ROW 0: ["RAM use", "Normal", "Peak"]
+ROW 1: ["OS, runtime, allocator reserve", "8–10 GB", "10–12 GB"]
+ROW 2: ["Active DQAC and quotient metadata", "12–20 GB", "20–26 GB"]
+ROW 3: ["Discrete circuits and abstract domains", "8–14 GB", "14–20 GB"]
+ROW 4: ["Hot port-operator library", "12–22 GB", "22–30 GB"]
+ROW 5: ["Active solver and elimination states", "12–20 GB", "24–32 GB"]
+ROW 6: ["Evidence and dependency graph", "4–8 GB", "8–12 GB"]
+ROW 7: ["CPU caches, geometry, and I/O buffers", "8–14 GB", "14–20 GB"]
+ROW 8: ["Total target", "64–96 GB", "108–122 GB"]
+[1-10:P1514; UTF16 64599] The scheduler must begin eviction before approximately 118–122 GB, leaving operational headroom.
+[1-10:P1515; UTF16 64696] VRAM targets

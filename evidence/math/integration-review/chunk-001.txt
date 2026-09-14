@@ -1,0 +1,347 @@
+[422] Unsplittable flow
+[423] branch-and-price master
+[424] whole-net route choice
+[428] Disjoint paths
+[429] clearance/capacity rules
+[430] mutually exclusive route resources
+[434] Steiner trees
+[435] directive §1.3, §5.1
+[436] multi-terminal route subgraph
+[440] Route bundles
+[441] chain/disk construction
+[442] shared channel ordering
+[446] Shared trunks
+[447] multi-terminal/net topology
+[448] common route subtree
+[450] not visible as implemented
+[452] Branch-and-price
+[453] directive §§1.1, 5.1
+[454] column-based integer optimization
+[456] proposed gap/certificate semantics
+[458] Column generation
+[459] Stage 3
+[460] dynamically generated route columns
+[462] proposed reduced-cost checks
+[464] Pricing subproblem
+[465] lifted shortest path
+[466] negative reduced-cost route search
+[470] Topology-native branching
+[471] master-loop design
+[472] branching on combinatorial route structure
+[476] Benders rows
+[477] directive §§2.6, 5.1
+[478] subproblem infeasibility cuts
+[480] proposed typed rows
+[481] Prompt 3
+[482] Convex fiber optimization
+[483] directive §2.6
+[484] continuous width/placement subproblem
+[486] proposed dual checks
+[488] Lagrangian relaxation
+[489] transport/master duality
+[490] resource-price relaxation
+[494] Dual prices
+[495] Farkas/master dual
+[496] marginal resource values
+[498] interval caveat stated
+[500] Multiplicative weights
+[501] directive theorem T8
+[502] iterative congestion pricing
+[504] provisional rate
+[506] Min-plus kernels
+[507] later campaign design notes
+[508] batched shortest-path relaxation
+[509] source partially verified
+[510] implementation unavailable
+[512] Jacobi-style updates
+[513] campaign design notes
+[514] parallel relaxation
+[518] GPU batching
+[519] vault architecture versus CPU directive conflict
+[520] accelerator proposal
+[521] DESIGN_NOTE_ONLY, source-version conflict
+[522] none verified
+[523] Prompts 2 and 4
+[524] Deterministic predecessor keys
+[525] campaign notes
+[526] reproducible path reconstruction
+[527] design note
+[528] not independently verified
+[530] Exact CPU disposal
+[531] proposed GPU/CPU split
+[532] final exact candidate checking
+[536] Proof-producing output
+[537] directive Laws 1–3
+[538] route or checkable rejection
+[539] specification only
+[540] desired architecture
+[541] Prompts 2 and 5
+[542] Resumability
+[543] directive §§3.4, 5.1
+[544] stage-boundary persistence
+[545] specification; vault reports drills
+[546] artifact semantics specified
+[547] Prompt 4
+[548] Content-addressed caching
+[549] directive §3.2
+[550] canonical object reuse
+[551] specification
+[552] hash identity only
+[553] Prompts 1 and 4
+[554] Repair pricing
+[555] directive T4.1 and Stage 5
+[556] dual-guided design repair
+[559] Prompts 2–3
+[560] Infeasibility explanations
+[561] certificate hierarchy
+[562] typed conflict evidence
+[567] The central source finding is therefore:
+[568] \[ \boxed{ \text{Loom supplies strong transferable router mathematics, but not an inspectable finished building router.} } \]
+[569] Oma supplies inspectable building representations and a working conceptual router, but not the exact or proof-producing geometric kernel required by this program.
+[571] 7. Central representation decision
+[572] 7.1 Rejected alternatives
+[573] A single scene graph is rejected because scene hierarchy does not encode net incidence, unit semantics, proof obligations, or recertification dependencies.
+[574] A single ordinary directed multigraph is rejected because a graph edge cannot simultaneously and unambiguously mean:
+[575] cell adjacency;
+[576] a physical connection;
+[577] a control dependency;
+[578] a proof dependency;
+[579] a rewrite correspondence;
+[580] a route segment;
+[581] a constraint incidence.
+[582] A single hypergraph is insufficient because exact geometry and cellular boundary operators are not naturally reduced to hyperedges without losing geometric semantics.
+[583] A factor graph is insufficient because factors describe constraint scope but do not own geometry or system identity.
+[584] A single category or operad is rejected as the concrete storage representation. Category-theoretic structure is valuable for composition, but serialization and checking require explicit finite carriers, relations, maps, and versions.
+[585] 7.2 Selected setting
+[586] DEF-SIR1 — Source Provenance Status
+[587] \[ \mathsf{SourceStatus} = \left\{ \begin{array}{l} \mathsf{SOURCE\_VERIFIED},\\ \mathsf{SOURCE\_PARTIALLY\_VERIFIED},\\ \mathsf{DESIGN\_NOTE\_ONLY},\\ \mathsf{PROPOSED\_BUT\_UNIMPLEMENTED},\\ \mathsf{SOURCE\_UNAVAILABLE},\\ \mathsf{NEW\_MATHEMATICAL\_CONSTRUCTION} \end{array} \right\}. \]
+[588] DEF-SIR2 — Finite Versioned Relational Category
+[589] Let \(\Sigma_{\mathrm{SIR}}\) be a finite many-sorted signature. Its sorts include semantic identities, geometric cells, components, ports, nets, modes, scenarios, routes, factors, evidence objects, claims, and dependency nodes.
+[590] Define \(\mathbf{FinVRel}_{\Sigma_{\mathrm{SIR}}}\) as the category whose objects are finite \(\Sigma_{\mathrm{SIR}}\)-structures carrying explicit version and scope maps, and whose morphisms are total sort-preserving maps that preserve every declared relation, type, scope, and version-translation condition.
+[591] DEF-SIR3 — Common Identity Reduct
+[592] \(\mathfrak I\) is the finite structure containing:
+[593] stable semantic identities;
+[594] object kinds;
+[595] lineages;
+[596] artifact versions;
+[597] scopes;
+[598] canonical ownership;
+[599] permitted translations.
+[600] Each component structure \(X_c\) has a reduct or anchor morphism
+[601] \[ a_c:X_c\longrightarrow \mathfrak I. \]
+[602] DEF-SIR4 — Integrated SIR Pullback
+[603] The canonical SIR is the wide pullback
+[604] \[ \boxed{ \mathfrak X_{\mathrm{SIR}} = \lim \left( \mathfrak K_{\mathrm{geo}} \xrightarrow{a_K} \mathfrak I \xleftarrow{a_H} \mathfrak H_{\mathrm{sys}}, \mathfrak F_{\mathrm{constraint}}, \mathfrak P_{\mathrm{proof}}, \mathfrak D_{\mathrm{dependency}} \right). } \]
+[605] Concretely,
+[606] \[ \mathfrak X_{\mathrm{SIR}} = \left\{ (k,h,f,p,d): \operatorname{Compat}_{\mathfrak I}(k,h,f,p,d) \right\}, \]
+[607] where compatibility requires every cross-component reference to resolve to the same semantic object, scope, lineage, active version, and trusted translation.
+[608] 7.3 Information ownership
+[609] Component
+[610] Authoritative information
+[611] Prohibited authority
+[612] \(\mathfrak I\)
+[613] semantic identity, lineage, version, ownership
+[614] geometry or topology truth
+[615] \(\mathfrak K_{\mathrm{geo}}\)
+[616] frames, solids, cells, incidence, enclosures
+[617] system connection semantics
+[618] \(\mathfrak H_{\mathrm{sys}}\)
+[619] components, ports, nets, modes, topology
+[620] geometric collision truth
+[621] \(\mathfrak F_{\mathrm{constraint}}\)
+[622] factor scopes, PASS/FAIL/UNKNOWN, objective vectors
+[623] object identity
+[624] \(\mathfrak P_{\mathrm{proof}}\)
+[625] claims, assumptions, evidence, proof obligations
+[626] proposal generation
+[627] \(\mathfrak D_{\mathrm{dependency}}\)
+[628] semantic change propagation
+[629] engineering truth itself
+[631] Duplication is allowed only as a checked index or materialized view. For example, a port position may be cached in the port index, but its authoritative geometric object is identified by a reference into \(\mathfrak K_{\mathrm{geo}}\). A mismatch is rejected rather than resolved by last-write-wins.
+[633] 8. Permanent separations
+[634] \[ \boxed{\text{semantic identity}\neq\text{display label}} \]\[ \boxed{\text{semantic identity}\neq\text{artifact version}} \]\[ \boxed{\text{content hash}\neq\text{physical correctness}} \]\[ \boxed{\text{coordinate value}\neq\text{coordinate frame}} \]\[ \boxed{\text{coordinate frame}\neq\text{unit system}} \]\[ \boxed{\text{exact arithmetic}\neq\text{complete geometric model}} \]\[ \boxed{\text{topological connection}\neq\text{geometric realization}} \]\[ \boxed{\text{centerline clearance}\neq\text{envelope clearance}} \]\[ \boxed{\text{collision freedom}\neq\text{fabricability}} \]\[ \boxed{\text{fabricability}\neq\text{maintenance accessibility}} \]\[ \boxed{\text{individual route feasibility}\neq\text{joint feasibility}} \]\[ \boxed{\text{pairwise separation}\neq\text{shared-capacity feasibility}} \]\[ \boxed{\text{viewer equality}\neq\text{semantic equality}} \]\[ \boxed{\text{rewrite visualization}\neq\text{proof-preserving transport}} \]\[ \boxed{\text{objective vector}\neq\text{authorized scalar objective}} \]\[ \boxed{\text{bounded geometry}\neq\text{exact geometry}} \]\[ \boxed{\text{UNKNOWN}\neq\text{PASS}} \]
+[636] PART II — STANDING THEORY AND STATE
+[1044] PART VI — FACTORS, LOCALITY, INTERFACES, VIEWS, AND REWRITES
+[1045] 28. Constraint factors
+[1046] DEF-SIR77 — Constraint Factor
+[1047] \[ \phi_a: X_{\operatorname{scope}(a)} \rightarrow \{\mathsf{PASS},\mathsf{FAIL},\mathsf{UNKNOWN}\} \times\mathcal W_a. \]
+[1048] Factor classes are:
+[1050] bounded feasibility;
+[1051] objective;
+[1052] evidence applicability;
+[1053] authority;
+[1054] proof obligation;
+[1055] release condition.
+[1056] DEF-SIR78 — Represented Hard-Feasible Set
+[1057] \[ \mathcal X_{\mathrm{hard}} = \left\{ x: \forall a\in\mathcal A_{\mathrm{hard}}, \ \pi_1\phi_a(x)=\mathsf{PASS} \right\}. \]
+[1058] UNKNOWN is excluded from this exact PASS set.
+[1059] DEF-SIR79 — Objective Vector
+[1060] \[ \boxed{ \mathbf J = \left( J_{\mathrm{length}}, J_{\mathrm{material}}, J_{\mathrm{energy}}, J_{\mathrm{pressure}}, J_{\mathrm{electricalLoss}}, J_{\mathrm{penetration}}, J_{\mathrm{assembly}}, J_{\mathrm{area}}, J_{\mathrm{structure}}, J_{\mathrm{construction}}, J_{\mathrm{maintenance}}, J_{\mathrm{risk}}, J_{\mathrm{carbon}}, J_{\mathrm{cost}}, J_{\mathrm{proofComplexity}} \right). } \]
+[1061] No scalar ordering is intrinsic.
+[1063] 29. Local-to-global spatial structure
+[1064] DEF-SIR80 — Spatial Cover
+[1065] \[ \mathcal U=\{U_i\}_{i\in I}, \qquad \Omega\subseteq\bigcup_{i\in I}U_i. \]
+[1066] DEF-SIR81 — Local SIR State
+[1067] \[ x_i\in\mathcal X(U_i) \]
+[1068] is the restriction of geometry, systems, constraints, proofs, and dependencies to \(U_i\), including boundary-interface objects.
+[1069] DEF-SIR82 — Restriction Map
+[1070] \[ r_{ij}: \mathcal X(U_i) \rightarrow \mathcal X(U_i\cap U_j). \]
+[1071] DEF-SIR83 — Compatible Local Family
+[1072] \[ r_{ij}(x_i)=r_{ji}(x_j) \]
+[1073] for every required overlap.
+[1074] DEF-SIR84 — Global Section
+[1075] A global state \(x\in\mathcal X(\Omega)\) whose restrictions equal every \(x_i\).
+[1076] The formalism is sheaf-like only when uniqueness and gluing are actually established. For implementation, a join tree with explicit separator state is the primary certified structure.
+[1078] 30. Contextual router interface
+[1079] DEF-SIR85 — Router Experiment Family
+[1080] \[ \mathcal F_{R\to A} \]
+[1081] contains every admitted ANANKE/Oma computation that consumes router state.
+[1082] DEF-SIR86 — Router Contextual Equivalence
+[1083] \[ x_1\equiv_{R\to A}x_2 \iff \forall f\in\mathcal F_{R\to A}, \quad f(x_1)=f(x_2). \]
+[1084] DEF-SIR87 — Canonical Router Interface
+[1085] \[ \boxed{ Q_{R\to A} = X_R/{\equiv_{R\to A}}. } \]
+[1086] Foundational interface fields are:
+[1087] route identity and version;
+[1088] net and port identities;
+[1089] route class;
+[1090] exact or bounded geometry reference;
+[1091] section/envelope identity;
+[1092] fittings, supports, penetrations, and assemblies;
+[1093] clearance and capacity status;
+[1094] factor outcomes;
+[1095] proof references;
+[1096] conflict core;
+[1097] experiment-family and theory versions.
+[1098] Detailed reduced costs, dual values, pricing state, and branch-and-price artifacts belong to Prompts 2–3.
+[1099] DEF-SIR88 — Bounded Router Interface
+[1100] A map preserving certified enclosures rather than exact downstream values.
+[1102] 31. Viewer projection
+[1103] DEF-SIR89 — Viewer Scene
+[1104] \(\mathcal V_{\mathrm{scene}}\) contains render meshes, transforms, styles, labels, visibility state, and interaction metadata.
+[1105] DEF-SIR90 — Viewer Projection
+[1106] \[ \pi_{\mathrm{view}}: \mathfrak X_{\mathrm{SIR}} \rightarrow \mathcal V_{\mathrm{scene}}. \]
+[1107] The viewer may omit or visually collapse system types, directions, versions, uncertainty, hidden envelopes, authority, and proof state.
+[1109] 32. Rewrites and invalidation
+[1110] DEF-SIR91 — Versioned SIR Rewrite
+[1111] \[ r: \Xi^{(v)} \rightsquigarrow \Xi^{(v+1)}. \]
+[1112] DEF-SIR92 — Rewrite Correspondence
+[1113] \[ \chi_r: \operatorname{Obj}(\Xi^{(v)}) \rightharpoonup \mathcal P\!\left(\operatorname{Obj}(\Xi^{(v+1)})\right) \]
+[1114] classifies preserved, deleted, inserted, modified, split, merged, and semantically reidentified objects.
+[1115] DEF-SIR93 — SIR Dependency Graph
+[1116] \[ D_{\mathrm{SIR}}=(V_D,E_D), \]
+[1117] where \(u\to v\) means a change in \(u\) may alter validity or applicability of \(v\).
+[1118] DEF-SIR94 — SIR Invalidation Cone
+[1119] \[ \operatorname{InvCone}(\Delta) = \operatorname{Desc}_{D_{\mathrm{SIR}}}(\Delta). \]
+[1120] DEF-SIR95 — Transaction State
+[1121] A transaction stores the base version, proposed edits, correspondence, validation state, affected roots, rollback data, and commit status.
+[1123] 33. Modalities
+[1124] DEF-SIR96 — SIR Claim Modality
+[1125] \[ \boxed{ \mathsf{SIRMode} = \left\{ \begin{array}{l} \mathsf{EXACT\_SEMANTIC},\\ \mathsf{EXACT\_GEOMETRY},\\ \mathsf{BOUNDED\_GEOMETRY},\\ \mathsf{NETLIST\_WELL\_TYPED},\\ \mathsf{TOPOLOGY\_VALID},\\ \mathsf{PORT\_COMPATIBLE},\\ \mathsf{CLEARANCE\_CERTIFIED},\\ \mathsf{CONFIGURATION\_SPACE\_FEASIBLE},\\ \mathsf{ROUTE\_REALIZABLE},\\ \mathsf{JOINTLY\_REALIZABLE},\\ \mathsf{INTERFACE\_SUFFICIENT},\\ \mathsf{REWRITE\_TRANSPORTED},\\ \mathsf{INCREMENTALLY\_RECERTIFIED},\\ \mathsf{VIEW\_ONLY},\\ \mathsf{HEURISTIC},\\ \mathsf{UNKNOWN} \end{array} \right\}. } \]
+[1126] No implicit coercions include
+[1127] \[ \mathsf{VIEW\_ONLY} \not\Rightarrow \mathsf{EXACT\_SEMANTIC}, \]\[ \mathsf{BOUNDED\_GEOMETRY} \not\Rightarrow \mathsf{EXACT\_GEOMETRY}, \]\[ \mathsf{TOPOLOGY\_VALID} \not\Rightarrow \mathsf{ROUTE\_REALIZABLE}, \]\[ \forall n\;\mathsf{ROUTE\_REALIZABLE}(n) \not\Rightarrow \mathsf{JOINTLY\_REALIZABLE}. \]
+[1129] PART VII — THEOREM CORPUS
+[1130] 34. Lemmas, propositions, corollaries, and theorems
+[1131] LEM-SIR1 — Finite compatibility relation
+[1132] For finite component carriers, the set of compatible tuples satisfying a finite family of identity-equality predicates is finite.
+[1133] Proof. A finite product of finite sets is finite. The compatible tuples form a subset of that product. Every subset of a finite set is finite. ∎
+[1134] LEM-SIR2 — Pullback projection agreement
+[1135] If \(x=(x_c)_c\) belongs to the SIR pullback, then every pair of shared references has equal image in \(\mathfrak I\).
+[1136] Proof. This equality is exactly the defining compatibility condition of the pullback. ∎
+[1137] LEM-SIR3 — Scalar quantization bound
+[1138] For nearest-lattice rounding,
+[1139] \[ |x-Q_\delta(x)|\le\frac{\delta}{2}. \]
+[1140] Proof. Every real number lies within half the spacing of at least one nearest lattice point. The deterministic tie rule chooses one of the two equidistant points at exact half spacing. ∎
+[1141] LEM-SIR4 — Hausdorff perturbation inequality
+[1142] If \(d_H(A,A')\le\varepsilon_A\) and \(d_H(B,B')\le\varepsilon_B\), then
+[1143] \[ |d(A,B)-d(A',B')| \le \varepsilon_A+\varepsilon_B. \]
+[1144] Proof. Choose \(a'\in A'\), \(b'\in B'\) arbitrarily close to minimizers. Select \(a\in A\), \(b\in B\) within the respective Hausdorff bounds. The triangle inequality gives
+[1145] \[ \|a-b\| \le \|a-a'\|+\|a'-b'\|+\|b'-b\|. \]
+[1146] Taking infima gives one direction; interchange primed and unprimed sets for the other. ∎
+[1147] LEM-SIR5 — Transform composition associativity
+[1148] Composable affine transforms satisfy
+[1149] \[ (T_{kl}\circ T_{jk})\circ T_{ij} = T_{kl}\circ(T_{jk}\circ T_{ij}). \]
+[1150] Proof. Function composition is associative. For affine matrices, direct multiplication gives the same result by associativity of matrix multiplication and distributivity over translation. ∎
+[1151] LEM-SIR6 — Translational Minkowski membership
+[1152] For sets \(B,O\subseteq\mathbb R^3\),
+[1153] \[ (x+B)\cap O\neq\varnothing \iff x\in O\oplus(-B). \]
+[1154] Proof. The left side holds iff there exist \(b\in B,o\in O\) with \(x+b=o\), equivalently \(x=o-b\in O\oplus(-B)\). The reverse follows by reversing the algebra. ∎
+[1155] LEM-SIR7 — Incidence cancellation
+[1156] For a directed net in which every internal edge has one \(+1\) and one \(-1\) incidence,
+[1157] \[ \mathbf 1^\top B=0. \]
+[1158] Proof. Each column sum is \(+1-1=0\). ∎
+[1159] LEM-SIR8 — Running-intersection propagation
+[1160] In a join tree, if a variable occurs in two bags, it occurs in every bag on the unique path between them.
+[1161] Proof. This is the running-intersection hypothesis applied to the connected subtree of bags containing the variable. ∎
+[1163] PRO-SIR1 — UNKNOWN exclusion
+[1164] A hard factor evaluating to UNKNOWN does not place the state in \(\mathcal X_{\mathrm{hard}}\).
+[1165] Proof. Membership requires PASS for every hard factor by DEF-SIR78. UNKNOWN is distinct from PASS under ASSUMP-SIR30. ∎
+[1166] PRO-SIR2 — Viewer nonauthority
+[1167] Viewer output cannot by itself establish a modality stronger than VIEW_ONLY.
+[1168] Proof. The viewer is a projection and the trusted modality graph contains no implicit coercion from VIEW_ONLY to exact semantic or geometric truth. ∎
+[1169] PRO-SIR3 — No intrinsic scalar objective
+[1170] The objective vector \(\mathbf J\) defines no total ordering without an additional rule.
+[1171] Proof. Take alternatives with vectors \(a=(1,10)\), \(b=(10,1)\) in two minimized coordinates. Neither componentwise dominates the other. A total choice requires an external rule. ∎
+[1172] COR-SIR1 — Euclidean quantization bound
+[1173] For \(x\in\mathbb R^3\),
+[1174] \[ \|x-Q_\delta(x)\|_2 \le \frac{\sqrt3\,\delta}{2}. \]
+[1175] Proof. Apply LEM-SIR3 to three coordinates and sum squares. ∎
+[1176] COR-SIR2 — Interval cycle inconsistency
+[1177] If the identity transform is excluded from a sound enclosure of the cycle product, the frame graph is inconsistent under that enclosure.
+[1178] Proof. Any exact consistent realization must have identity cycle product. If no enclosed product equals identity, none is consistent. ∎
+[1179] COR-SIR3 — Topological validity is necessary for realization
+[1180] If a route realizes net \(n\), then the net’s endpoint incidence is topologically valid.
+[1181] Proof. Topological preservation is clause 2 of DEF-SIR74. ∎
+[1182] COR-SIR4 — Joint realization projects to individual realization
+[1183] \[ \Gamma_{\mathrm{joint}}^\mu(\mathcal N,\Xi;m,\omega)\neq\varnothing \Longrightarrow \forall n\in\mathcal N,\ \Gamma_{\mathrm{real}}^\mu(n,\Xi;m,\omega)\neq\varnothing. \]
+[1184] Proof. Project a joint witness family onto the coordinate for each net. ∎
+[1186] Representation and identity theorems
+[1187] THM-SIR1 — Wide-pullback well-definedness
+[1188] Assume each component \(X_c\) is finite, every anchor \(a_c:X_c\to\mathfrak I\) is total and typed, and compatibility is a finite conjunction of equality and trusted-translation predicates. Then \(\mathfrak X_{\mathrm{SIR}}\) is a well-defined finite relational structure with canonical projections.
+[1189] Proof.
+[1190] Form the finite product \(P=\prod_c X_c\).
+[1191] Define \(X\subseteq P\) as tuples satisfying every compatibility predicate.
+[1192] By LEM-SIR1, \(X\) is finite.
+[1193] Restrict each component projection \(\pi_c:P\to X_c\) to \(X\).
+[1194] Relations in the pullback are inherited coordinatewise from component relations, intersected with \(X\).
+[1195] Because the anchors are total and compatibility is typed, every cross-reference in an inherited relation resolves inside \(\mathfrak I\).
+[1196] For any structure \(Y\) with compatible maps \(f_c:Y\to X_c\), define \(f(y)=(f_c(y))_c\). Compatibility places \(f(y)\) in \(X\), and the component projections satisfy \(\pi_c\circ f=f_c\).
+[1197] Uniqueness follows because a tuple is determined by all coordinates.
+[1198] Thus \(X\) satisfies the pullback universal property and is finite. ∎
+[1199] THM-SIR2 — Shared-identity consistency
+[1200] Every member of \(\mathfrak X_{\mathrm{SIR}}\) assigns one compatible semantic identity to every shared reference.
+[1201] Proof. By LEM-SIR2, the images of all shared references under their anchor maps agree in \(\mathfrak I\). Trusted translations may change representation but must commute with the common semantic token. ∎
+[1202] THM-SIR3 — Component nonemptiness does not imply integrated nonemptiness
+[1203] There exist nonempty component structures whose SIR pullback is empty.
+[1204] Proof. Let the geometry component contain one record asserting shared object \(o\) has active version \(1\). Let the systems component contain one record asserting the same semantic object \(o\) has active version \(2\), with no transport theorem. Both carriers are nonempty. No tuple satisfies version compatibility, so the pullback is empty. ∎
+[1205] THM-SIR4 — An untyped single graph can alias semantically distinct states
+[1206] There exist two SIR states whose underlying unlabeled adjacency graphs are isomorphic but whose engineering semantics differ.
+[1207] Proof. Consider two vertices joined by one edge. In state \(X\), the vertices are an electrical source output and electrical load input. In state \(Y\), they are a hydronic supply output and hydronic return input. Removing types, media, directions, units, and port classes leaves the same two-vertex graph. Yet one state may be compatible and the other incompatible. Therefore unlabeled graph isomorphism does not preserve SIR semantics. ∎
+[1208] THM-SIR5 — Typed composition preserves declared compatibility
+[1209] Suppose fragments \(A\to B\) and \(B'\to C\) are well typed and a checked isomorphism \(\psi:B\cong B'\) preserves every port type, dimension, direction, mode, and version. Then their cospan-style composition is well typed.
+[1210] Proof. Identify each \(b\in B\) with \(\psi(b)\in B'\). Every identified pair has equal type by hypothesis. All unshared ports retain their original types. Every incidence relation is inherited from a well-typed fragment, and the only new relation is the checked identification. Hence no ill-typed incidence is introduced. ∎
+[1211] THM-SIR6 — Unit-incompatible composition is invalid
+[1212] If two connected state variables have unequal dimensions and no declared physical conversion component mediates them, the port composition is undefined.
+[1213] Proof. Port compatibility requires dimension equality or a typed adapter. With unequal dimensions and no adapter, DEF-SIR47 fails. The pushout identification is therefore not an allowed morphism in the typed port category. ∎
+[1214] THM-SIR7 — Same display label does not imply same semantic object
+[1215] Construction. Two components on different floors are both labeled “AHU-1” by separate source systems. They have different semantic IDs, source hashes, frames, and lineages. Labels agree; objects do not. ∎
+[1216] THM-SIR8 — Same semantic object does not imply same version
+[1217] Construction. The stable semantic ID CH-2 persists through a controller replacement. Version \(v_3\) and \(v_4\) share semantic identity but differ in firmware, ports, control behavior, and evidence. Therefore object identity does not imply version equality. ∎
+[1218] THM-SIR9 — Deterministic canonical serialization
+[1219] Assume finite state, canonical sort order, canonical object ordering by semantic ID and version, canonical unit normalization, canonical numeric encoding, and deterministic map-key ordering. Then serialization is a function and equal normalized SIR states have identical bytes.
+[1220] Proof. Each serialization decision is uniquely determined by the assumptions. Structural induction over the finite schema shows that every scalar, sequence, relation, and nested object has one byte representation. Equal normalized structures therefore produce equal byte sequences. ∎
+[1221] THM-SIR10 — Trusted unit conversion preserves represented physical quantity
+[1222] Let units \(u_1,u_2\) have equal dimension and exact affine maps to a canonical scale. Then converting \(x\) from \(u_1\) to \(u_2\) preserves its canonical value.
+[1224] \[ x_2=\frac{a_1x+b_1-b_2}{a_2}. \]
+[1267] Geometry and configuration-space theorems
+[1268] THM-SIR19 — Boundary of a boundary is zero
+[1269] For a valid oriented cell complex,
+[1270] \[ \partial_{d-1}\partial_d=0. \]
+[1271] Proof. Every codimension-two face of an oriented \(d\)-cell occurs twice in the iterated boundary with opposite induced orientations. The signed coefficients cancel. Extend linearly to chains. ∎
+[1272] THM-SIR20 — Ported-hypergraph composition is semantically compositional
+[1273] Assume port compatibility and component behavior relations are preserved by composition. Then the behavior of a composite fragment is relational composition over the identified internal port states.
+[1274] Proof. A composite external state is admissible exactly when there exists an internal shared-port state accepted by both fragments. This is the definition of relational composition. Associativity follows from associativity of existential quantification over intermediate states. Parallel composition is Cartesian product of independent state relations. ∎
+[1275] THM-SIR21 — Configuration-space obstacle equivalence for fixed translation
+[1276] For fixed orientation and rigid body \(B\),
+[1278] Hence translational free placement origins are
+[1279] \[ W\setminus(O\oplus(-B)). \]
+[1280] Proof. Apply LEM-SIR6. ∎

@@ -1,0 +1,325 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P13666; UTF16 457888] At time (t), define
+[11-20:P13667; UTF16 457908] \left( p_t, d_t, f_t, s_t, a_t, c_t, m_t, e_t \right) \in \mathcal Z_t, } ]
+[11-20:P13669; UTF16 457991] (p_t): physical building state inherited from Prompt 14;
+[11-20:P13670; UTF16 458048] (d_t): degradation and health state;
+[11-20:P13671; UTF16 458085] (f_t): plant/system fault mode;
+[11-20:P13672; UTF16 458117] (s_t): sensor and calibration health;
+[11-20:P13673; UTF16 458155] (a_t): actuator health;
+[11-20:P13674; UTF16 458179] (c_t): control configuration, logic, and version;
+[11-20:P13675; UTF16 458229] (m_t): maintenance, replacement, and lifecycle state;
+[11-20:P13676; UTF16 458283] (e_t): time-varying evidence and applicability state.
+[11-20:P13677; UTF16 458337] The actual state is
+[11-20:P13679; UTF16 458372] Observation relations may depend on every component.
+[11-20:P13680; UTF16 458425] For example, the same temperature reading may arise from:
+[11-20:P13681; UTF16 458483] true overheating in (p_t);
+[11-20:P13682; UTF16 458510] a biased sensor in (s_t);
+[11-20:P13683; UTF16 458536] a stuck damper in (a_t);
+[11-20:P13684; UTF16 458561] an unmodeled disturbance;
+[11-20:P13685; UTF16 458587] expired calibration in (e_t).
+[11-20:P13689; UTF16 458620] 5. Proof-Carrying Operational Twin State
+[11-20:P13690; UTF16 458661] DEF-ODT2 — Proof-Carrying Operational Twin State
+[11-20:P13692; UTF16 458730] \left( \Gamma_t^{\mathrm{ODT}}, \mathcal M_t, \mathsf{Sensors}_t, \mathsf{Actuators}_t, \mathsf{Claims}_t, \mathsf{Policies}_t, \mathsf{Evidence}_t, \mathsf{Dependencies}_t, \mathsf{Version}_t \right), } ]
+[11-20:P13694; UTF16 458942] [ \Gamma_t^{\mathrm{ODT}} \subseteq \mathcal Z_t. ]
+[11-20:P13695; UTF16 458994] The synchronization invariant is:
+[11-20:P13697; UTF16 459081] A twin is not certified because its nominal estimate is numerically close to a measured signal.
+[11-20:P13698; UTF16 459177] It is certified when the actual augmented state remains in its checked concretization and every active claim is valid throughout the relevant state or trajectory set.
+[11-20:P13702; UTF16 459347] 6. Operational Transition Semantics
+[11-20:P13703; UTF16 459383] DEF-ODT3 — Operational Transition Relation
+[11-20:P13705; UTF16 459431] (u_t^{\mathrm{cmd}}\in U_t^{\mathrm{cmd}}): commanded control;
+[11-20:P13706; UTF16 459494] (u_t^{\mathrm{phys}}\in U_t^{\mathrm{phys}}): physically applied actuation;
+[11-20:P13707; UTF16 459570] (w_t\in W_t): admitted disturbance;
+[11-20:P13708; UTF16 459606] (r_t\in R_t): maintenance or repair action.
+[11-20:P13709; UTF16 459650] Define an actuator relation
+[11-20:P13710; UTF16 459678] [ \mathsf{ActRel}_t \subseteq U_t^{\mathrm{cmd}} \times \mathcal H_t^{\mathrm{act}} \times U_t^{\mathrm{phys}}. ]
+[11-20:P13711; UTF16 459792] Define the physical operational transition relation
+[11-20:P13712; UTF16 459844] [ \widetilde T_t^{\mathrm{op}} \subseteq \mathcal Z_t \times U_t^{\mathrm{phys}} \times W_t \times R_t \times \mathcal Z_{t+1}. ]
+[11-20:P13713; UTF16 459974] The command-level operational relation is:
+[11-20:P13714; UTF16 460017] [ T_t^{\mathrm{op}} \left( z, u^{\mathrm{cmd}}, w, r, z' \right) ]
+[11-20:P13715; UTF16 460084] if and only if there exists (u^{\mathrm{phys}}) such that
+[11-20:P13716; UTF16 460142] [ \mathsf{ActRel}_t \left( u^{\mathrm{cmd}}, a(z), u^{\mathrm{phys}} \right) ]
+[11-20:P13718; UTF16 460225] [ \widetilde T_t^{\mathrm{op}} \left( z, u^{\mathrm{phys}}, w, r, z' \right). ]
+[11-20:P13719; UTF16 460305] The relation may incorporate:
+[11-20:P13720; UTF16 460335] plant dynamics;
+[11-20:P13722; UTF16 460364] mode jumps;
+[11-20:P13724; UTF16 460390] actuator degradation;
+[11-20:P13725; UTF16 460412] firmware changes;
+[11-20:P13726; UTF16 460430] maintenance effects;
+[11-20:P13727; UTF16 460451] evidence-state changes.
+[11-20:P13728; UTF16 460475] Markovity is not assumed automatically. When future behavior depends on history, the required history is added to (z_t), or the relation is indexed by observation history.
+[11-20:P13732; UTF16 460650] 7. Continuous and Hybrid Flow Semantics
+[11-20:P13733; UTF16 460690] For continuous or hybrid operation, define an optional certified flow relation
+[11-20:P13734; UTF16 460769] [ \Phi_{[t,t+\Delta]} \subseteq \mathcal Z_t \times \mathcal Z_{t+\Delta} \times \mathsf{Traj}_{[t,t+\Delta]}. ]
+[11-20:P13735; UTF16 460882] An accepted relation must contain every trajectory admitted by:
+[11-20:P13736; UTF16 460946] the active ODE, DAE, or reduced multiphysics model;
+[11-20:P13737; UTF16 460998] discrete control changes;
+[11-20:P13739; UTF16 461036] disturbance bounds;
+[11-20:P13740; UTF16 461056] fault transitions;
+[11-20:P13742; UTF16 461094] Prompt 15 does not require every physical model to be expressed as one fixed-step difference equation.
+[11-20:P13743; UTF16 461197] Every theorem below is relational and therefore applies to certified discrete transitions or certified flow segments.
+[11-20:P13747; UTF16 461318] 8. Operational Prediction and Observation Update
+[11-20:P13748; UTF16 461367] For sets
+[11-20:P13749; UTF16 461376] [ \Gamma_t \subseteq \mathcal Z_t, ]
+[11-20:P13750; UTF16 461413] [ U_t \subseteq U_t^{\mathrm{cmd}}, \qquad W_t^{\mathrm{adm}} \subseteq W_t, \qquad R_t^{\mathrm{adm}} \subseteq R_t, ]
+[11-20:P13752; UTF16 461540] [ \operatorname{Post}_{T_t^{\mathrm{op}}} \left( \Gamma_t, U_t, W_t^{\mathrm{adm}}, R_t^{\mathrm{adm}} \right) ]
+[11-20:P13753; UTF16 461653] as the set of all (z') for which there exist
+[11-20:P13754; UTF16 461698] [ z\in\Gamma_t, \quad u\in U_t, \quad w\in W_t^{\mathrm{adm}}, \quad r\in R_t^{\mathrm{adm}} ]
+[11-20:P13756; UTF16 461804] [ T_t^{\mathrm{op}}(z,u,w,r,z'). ]
+[11-20:P13757; UTF16 461839] Define the prediction
+[11-20:P13758; UTF16 461861] \operatorname{Post}_{T_t^{\mathrm{op}}} \left( \Gamma_t, U_t, W_t^{\mathrm{adm}}, R_t^{\mathrm{adm}} \right). ]
+[11-20:P13759; UTF16 461973] Let the complete augmented observation relation be
+[11-20:P13760; UTF16 462024] [ \mathsf{ObsRel}{t+1} \subseteq \mathcal Z{t+1} \times Y_{t+1}. ]
+[11-20:P13761; UTF16 462091] For observation (y_{t+1}), define
+[11-20:P13762; UTF16 462125] \left{ z: (z,y_{t+1}) \in \mathsf{ObsRel}_{t+1} \right}. ]
+[11-20:P13764; UTF16 462189] \Gamma_{t+1}^{-} \cap \mathsf{PreObs}(y_{t+1}). } ]
+[11-20:P13765; UTF16 462241] Because sensor health is part of (z), the update does not assume sensor health before it has been established.
+[11-20:P13769; UTF16 462355] 9. Online Operational-Twin Soundness
+[11-20:P13770; UTF16 462392] THM-ODT1 — Augmented Operational Update Preserves the Actual State
+[11-20:P13772; UTF16 462467] the actual state satisfies [ z_t^\star \in \Gamma_t; ]
+[11-20:P13773; UTF16 462522] the actual command, disturbance, maintenance action, and successor satisfy [ T_t^{\mathrm{op}} \left( z_t^\star, u_t^{\mathrm{cmd},\star}, w_t^\star, r_t^\star, z_{t+1}^\star \right); ]
+[11-20:P13774; UTF16 462708] the actual command, disturbance, and maintenance action belong to the sets used in prediction;
+[11-20:P13775; UTF16 462803] the actual observation satisfies [ \left( z_{t+1}^\star, y_{t+1} \right) \in \mathsf{ObsRel}_{t+1}. ]
+[11-20:P13777; UTF16 462910] [ \boxed{ z_{t+1}^\star \in \Gamma_{t+1}. } ]
+[11-20:P13779; UTF16 462962] By assumptions 1–3 and the definition of the Post operator,
+[11-20:P13780; UTF16 463022] [ z_{t+1}^\star \in \Gamma_{t+1}^{-}. ]
+[11-20:P13781; UTF16 463062] By assumption 4,
+[11-20:P13782; UTF16 463079] [ z_{t+1}^\star \in \mathsf{PreObs}(y_{t+1}). ]
+[11-20:P13783; UTF16 463127] Therefore the actual successor belongs to the intersection
+[11-20:P13784; UTF16 463186] \Gamma_{t+1}. ]
+[11-20:P13789; UTF16 463207] COR-ODT1 — Multi-Step Operational Soundness
+[11-20:P13791; UTF16 463255] [ z_0^\star \in \Gamma_0 ]
+[11-20:P13792; UTF16 463282] and THM-ODT1’s hypotheses hold at every step, then
+[11-20:P13793; UTF16 463333] [ \boxed{ z_t^\star \in \Gamma_t \qquad \forall t. } ]
+[11-20:P13796; UTF16 463414] This is the core invariant of the proof-carrying operational twin.
+[11-20:P13800; UTF16 463484] 10. Operational Uncertainty Need Not Shrink
+[11-20:P13801; UTF16 463528] THM-ODT2 — Prediction Without Informative Observation Can Increase Operational Uncertainty
+[11-20:P13803; UTF16 463628] x_t+w_t, \qquad w_t\in[-1,1], ]
+[11-20:P13805; UTF16 463665] {0}. ]
+[11-20:P13806; UTF16 463672] If no informative observation is received, then
+[11-20:P13807; UTF16 463720] [-t,t]. } ]
+[11-20:P13809; UTF16 463738] At (t=0),
+[11-20:P13810; UTF16 463748] [ \Gamma_0=[0,0]. ]
+[11-20:P13812; UTF16 463775] [ \Gamma_t=[-t,t]. ]
+[11-20:P13814; UTF16 463801] \Gamma_t+[-1,1]
+[11-20:P13815; UTF16 463817] [-t-1,t+1]. ]
+[11-20:P13816; UTF16 463831] By induction,
+[11-20:P13818; UTF16 463866] Its diameter is
+[11-20:P13819; UTF16 463882] [ 2t, ]
+[11-20:P13820; UTF16 463890] which grows with time. ∎
+[11-20:P13822; UTF16 463926] [ \boxed{ \text{operational knowledge is not monotone under time evolution.} } ]
+[11-20:P13823; UTF16 464007] This differs fundamentally from Prompt-9 pure epistemic refinement.
+[11-20:P13827; UTF16 464078] 11. Claim Synchronization
+[11-20:P13828; UTF16 464104] DEF-ODT4 — Claim-Synchronized Operational Twin
+[11-20:P13830; UTF16 464155] {C_1,\ldots,C_m} ]
+[11-20:P13831; UTF16 464174] be operational claims with complete report functions
+[11-20:P13832; UTF16 464227] [ r_{C_i}: \mathcal Z_t \to \mathcal R_{C_i}. ]
+[11-20:P13833; UTF16 464275] The twin is claim synchronized at (t) when, for every (C_i), there exists one report (r_i) such that
+[11-20:P13834; UTF16 464376] [ \forall z\in\Gamma_t, \qquad r_{C_i}(z)=r_i. ]
+[11-20:P13835; UTF16 464425] The twin may remain highly uncertain internally.
+[11-20:P13839; UTF16 464477] THM-ODT3 — Exact Operational Microstate Identification Is Unnecessary for a Claim-Synchronized Twin
+[11-20:P13841; UTF16 464584] [ z_t^\star \in \Gamma_t. ]
+[11-20:P13843; UTF16 464615] [ r_C(z)=r \qquad \forall z\in\Gamma_t, ]
+[11-20:P13845; UTF16 464662] [ r_C(z_t^\star)=r. ]
+[11-20:P13847; UTF16 464690] The actual state is one element of (\Gamma_t).
+[11-20:P13848; UTF16 464737] Instantiate the universal equality at (z_t^\star). ∎
+[11-20:P13849; UTF16 464790] A twin need not determine every concealed valve position, degradation parameter, or sensor-health mode if those differences cannot change any active claim or action.
+[11-20:P13853; UTF16 464959] 12. Sensor Health
+[11-20:P13854; UTF16 464977] DEF-ODT5 — Sensor Health State
+[11-20:P13855; UTF16 465008] For sensor (i), let
+[11-20:P13856; UTF16 465028] [ h_{i,t}^{\mathrm{sens}} \in \mathcal H_i^{\mathrm{sens}}. ]
+[11-20:P13857; UTF16 465090] Possible theory-specific modes include:
+[11-20:P13859; UTF16 465139] biased;
+[11-20:P13860; UTF16 465147] drifting;
+[11-20:P13861; UTF16 465157] stuck;
+[11-20:P13862; UTF16 465164] saturated;
+[11-20:P13863; UTF16 465175] disconnected;
+[11-20:P13864; UTF16 465189] mislocated;
+[11-20:P13866; UTF16 465222] common-mode corrupted.
+[11-20:P13867; UTF16 465245] The complete observation relation is
+[11-20:P13868; UTF16 465282] [ \mathsf{ObsRel} \left( p_t, h_t^{\mathrm{sens}}, y_t \right). ]
+[11-20:P13869; UTF16 465348] Sensor health is a latent state unless evidence establishes it.
+[11-20:P13873; UTF16 465415] PRO-ODT1 — Sensor Agreement Does Not Establish Sensor Independence
+[11-20:P13874; UTF16 465482] There exist three agreeing sensors whose readings are all wrong because of one common-cause reference failure.
+[11-20:P13876; UTF16 465615] Let true temperature be
+[11-20:P13877; UTF16 465639] [ T=20. ]
+[11-20:P13878; UTF16 465649] Let all three sensors share one reference error
+[11-20:P13879; UTF16 465697] [ c=5. ]
+[11-20:P13880; UTF16 465706] Let their readings be
+[11-20:P13881; UTF16 465728] [ y_i=T+c=25 \qquad i=1,2,3. ]
+[11-20:P13882; UTF16 465759] All sensors agree.
+[11-20:P13883; UTF16 465778] All are wrong by the same amount.
+[11-20:P13884; UTF16 465812] Majority voting returns (25), not (20).
+[11-20:P13885; UTF16 465852] Therefore agreement and sensor count do not establish independent confirmation. ∎
+[11-20:P13886; UTF16 465934] A correct twin retains the joint common-cause relation.
+[11-20:P13890; UTF16 465993] 13. Actuator Health
+[11-20:P13891; UTF16 466013] DEF-ODT6 — Actuator Execution Relation
+[11-20:P13892; UTF16 466052] A controller issues
+[11-20:P13893; UTF16 466072] [ u_t^{\mathrm{cmd}}. ]
+[11-20:P13894; UTF16 466096] The physically applied actuation is
+[11-20:P13895; UTF16 466132] [ u_t^{\mathrm{phys}}. ]
+[11-20:P13897; UTF16 466164] [ \mathsf{ActRel} \subseteq U^{\mathrm{cmd}} \times \mathcal H^{\mathrm{act}} \times U^{\mathrm{phys}}. ]
+[11-20:P13898; UTF16 466270] Actuator modes may include:
+[11-20:P13903; UTF16 466333] delayed;
+[11-20:P13904; UTF16 466342] disconnected.
+[11-20:P13905; UTF16 466356] Operational safety must quantify over the physically possible (u^{\mathrm{phys}}), not merely the logged command.
+[11-20:P13909; UTF16 466473] THM-ODT4 — Equal Controller Commands Do Not Establish Equal Physical Actuation Under Unknown Actuator Health
+[11-20:P13910; UTF16 466582] There exist two actuator-health states and one command that produce different physical actions.
+[11-20:P13912; UTF16 466684] Let the command be
+[11-20:P13913; UTF16 466703] [ u^{\mathrm{cmd}}=1. ]
+[11-20:P13914; UTF16 466727] For healthy actuator mode (a_H), define
+[11-20:P13915; UTF16 466767] [ \mathsf{ActRel}(1,a_H,1). ]
+[11-20:P13916; UTF16 466797] For stuck actuator mode (a_S), define
+[11-20:P13917; UTF16 466835] [ \mathsf{ActRel}(1,a_S,0). ]
+[11-20:P13918; UTF16 466865] Thus the same command produces physical actions (1) and (0) in the two possible health states.
+[11-20:P13919; UTF16 466960] Command equality therefore does not imply physical-actuation equality. ∎
+[11-20:P13920; UTF16 467033] This is the operational analogue of Prompt-14’s plan-versus-execution result.
+[11-20:P13924; UTF16 467114] 14. Operational Model Families
+[11-20:P13925; UTF16 467145] DEF-ODT7 — Operational Model Family
+[11-20:P13926; UTF16 467181] The active model family is
+[11-20:P13927; UTF16 467208] {M_1,\ldots,M_k}. ]
+[11-20:P13928; UTF16 467228] Each model (M) contains:
+[11-20:P13929; UTF16 467253] \left( V_M, \Theta_M, T_M, O_M, \Delta_M, E_M, \mathsf{Version}_M, \mathsf{Dependencies}_M \right), ]
+[11-20:P13931; UTF16 467362] (V_M): validity domain;
+[11-20:P13932; UTF16 467386] (\Theta_M): parameter domain;
+[11-20:P13933; UTF16 467416] (T_M): transition relation;
+[11-20:P13934; UTF16 467444] (O_M): output relation;
+[11-20:P13935; UTF16 467468] (\Delta_M): physical/model discrepancy relation;
+[11-20:P13936; UTF16 467517] (E_M): evidence;
+[11-20:P13937; UTF16 467534] versions and dependencies are explicit.
+[11-20:P13938; UTF16 467574] Several models may remain possible simultaneously.
+[11-20:P13939; UTF16 467625] A probability or ranking over models may guide scheduling.
+[11-20:P13940; UTF16 467684] It does not eliminate a model from exact assurance without an accepted rule.
+[11-20:P13944; UTF16 467764] DEF-ODT8 — Online Model-Validity Status
+[11-20:P13945; UTF16 467804] For current knowledge set (\Gamma_t) and model validity domain (V_M):
+[11-20:P13946; UTF16 467874] Valid throughout
+[11-20:P13947; UTF16 467891] [ \Gamma_t \subseteq V_M. ]
+[11-20:P13948; UTF16 467919] Invalid throughout
+[11-20:P13950; UTF16 467953] Mixed
+[11-20:P13951; UTF16 467959] [ \Gamma_t \cap V_M \neq \varnothing, \qquad \Gamma_t \nsubseteq V_M. ]
+[11-20:P13952; UTF16 468031] A mixed status does not authorize unconditional use of (M).
+[11-20:P13956; UTF16 468094] THM-ODT5 — A Model Cannot Establish One Exact Report on a Mixed In-Domain/Out-of-Domain Knowledge Set Without Additional Reasoning
+[11-20:P13958; UTF16 468233] [ z_1 \in \Gamma_t \cap V_M, ]
+[11-20:P13959; UTF16 468264] [ z_2 \in \Gamma_t \setminus V_M. ]
+[11-20:P13960; UTF16 468300] Suppose the target report is certified by (M) at (z_1), while an admissible physical continuation from (z_2) has a different report.
+[11-20:P13961; UTF16 468433] Then (M) does not establish one exact report throughout (\Gamma_t).
+[11-20:P13963; UTF16 468507] The model certificate applies at (z_1) because (z_1\in V_M).
+[11-20:P13964; UTF16 468568] It has no authority at (z_2).
+[11-20:P13965; UTF16 468598] By hypothesis, a state compatible with the evidence and outside the model domain has a different target report.
+[11-20:P13966; UTF16 468710] Therefore target-report constancy over (\Gamma_t) has not been proved.
+[11-20:P13967; UTF16 468781] The correct status is mixed or unresolved. ∎
+[11-20:P13968; UTF16 468826] Required responses include:
+[11-20:P13969; UTF16 468854] split the state family;
+[11-20:P13970; UTF16 468878] select a broader model;
+[11-20:P13971; UTF16 468902] obtain new evidence;
+[11-20:P13972; UTF16 468923] remain unresolved.
+[11-20:P13976; UTF16 468945] 15. Certified Parameter Sets
+[11-20:P13977; UTF16 468974] DEF-ODT9 — Certified Parameter Set
+[11-20:P13978; UTF16 469009] Let the actual model parameter be
+[11-20:P13979; UTF16 469043] [ \theta_t^\star \in \Theta. ]
+[11-20:P13980; UTF16 469074] Maintain
+[11-20:P13981; UTF16 469083] [ \Theta_t \subseteq \Theta. ]
+[11-20:P13982; UTF16 469114] For a static parameter and data ((u_t,y_t)), define
+[11-20:P13983; UTF16 469166] \left{ \theta: y_t \in Y(u_t,\theta) \right}. ]
+[11-20:P13984; UTF16 469214] Update:
+[11-20:P13985; UTF16 469222] \Theta_t \cap C_t. ]
+[11-20:P13986; UTF16 469243] For drifting parameters, first apply a sound parameter transition:
+[11-20:P13987; UTF16 469310] \operatorname{Post}{T\theta}(\Theta_t), ]
+[11-20:P13988; UTF16 469352] then intersect with (C_t).
+[11-20:P13992; UTF16 469382] THM-ODT6 — Sound Set-Membership Identification Preserves the True Parameter
+[11-20:P13994; UTF16 469466] [ \theta_t^\star \in \Theta_t, ]
+[11-20:P13995; UTF16 469499] and the accepted model/observation relation contains the actual observation under (\theta_t^\star).
+[11-20:P13996; UTF16 469599] Then, for the static update,
+[11-20:P13997; UTF16 469628] [ \theta_t^\star \in \Theta_{t+1}. ]
+[11-20:P13999; UTF16 469671] By assumption,
+[11-20:P14000; UTF16 469686] [ \theta_t^\star \in \Theta_t. ]
+[11-20:P14001; UTF16 469719] Observation compatibility gives
+[11-20:P14002; UTF16 469751] [ \theta_t^\star \in C_t. ]
+[11-20:P14004; UTF16 469789] \Theta_{t+1}. ]
+[11-20:P14006; UTF16 469807] The drifting-parameter form follows by adding transition membership exactly as in THM-ODT1.
+[11-20:P14010; UTF16 469902] 16. Model-Learning Authority Boundary
+[11-20:P14011; UTF16 469940] PRO-ODT2 — Predictive Fit Does Not Establish a Certified Physical Enclosure
+[11-20:P14012; UTF16 470016] For any finite observed input set, there exist two models that agree on every observation and disagree elsewhere.
+[11-20:P14014; UTF16 470136] Let the observed input set be finite:
+[11-20:P14015; UTF16 470174] {x_1,\ldots,x_n}. ]
+[11-20:P14016; UTF16 470194] Define model (M_1) by
+[11-20:P14017; UTF16 470216] [ M_1(x)=0 \qquad \forall x. ]
+[11-20:P14018; UTF16 470247] Define model (M_2) by
+[11-20:P14019; UTF16 470269] [ M_2(x)=0 \qquad x\in S, ]
+[11-20:P14020; UTF16 470297] but choose one unobserved (x^\star) and define
+[11-20:P14021; UTF16 470344] [ M_2(x^\star)=1. ]
+[11-20:P14022; UTF16 470364] Both models have perfect fit on the observed data.
+[11-20:P14023; UTF16 470415] They disagree at (x^\star).
+[11-20:P14024; UTF16 470443] Therefore finite predictive fit alone does not establish a universal physical enclosure. ∎
+[11-20:P14025; UTF16 470534] A learned transition, degradation, diagnosis, or RUL model becomes authoritative only through a checked outer relation over its declared domain.
+[11-20:P14026; UTF16 470679] Neural predictive variance is not automatically such a certificate.
+[11-20:P14030; UTF16 470750] 17. Healthy Hypotheses and Certified Anomalies
+[11-20:P14031; UTF16 470797] DEF-ODT10 — Healthy Operational Hypothesis
+[11-20:P14033; UTF16 470844] [ \mathcal H_0 \subseteq \mathcal Z ]
+[11-20:P14034; UTF16 470882] be the set of augmented states classified as healthy under the active theory.
+[11-20:P14035; UTF16 470960] “Healthy” includes every required condition on:
+[11-20:P14037; UTF16 471015] sensors;
+[11-20:P14038; UTF16 471024] actuators;
+[11-20:P14039; UTF16 471035] model mode;
+[11-20:P14041; UTF16 471063] It is not restricted to plant hardware.
+[11-20:P14045; UTF16 471106] DEF-ODT11 — Certified Anomaly Relative to a Healthy Theory
+[11-20:P14047; UTF16 471172] \Gamma_t \cap \mathcal H_0. ]
+[11-20:P14048; UTF16 471202] A certified anomaly occurs when
+[11-20:P14049; UTF16 471234] \varnothing \quad\text{and}\quad \Gamma_t \neq \varnothing. } ]
+[11-20:P14050; UTF16 471298] This means that no currently modeled healthy augmented state remains compatible with accepted evidence.
+[11-20:P14051; UTF16 471402] It does not identify the cause.
+[11-20:P14055; UTF16 471437] 18. Anomaly Is Not Unique Fault Isolation
+[11-20:P14056; UTF16 471479] THM-ODT7 — Healthy-Hypothesis Rejection Does Not Generally Identify a Unique Plant Fault
+[11-20:P14057; UTF16 471568] There exists an observation incompatible with every healthy augmented state but compatible with multiple distinct nonhealthy causes.
+[11-20:P14059; UTF16 471723] Let the predicted healthy output be
+[11-20:P14060; UTF16 471759] [ y=0. ]
+[11-20:P14061; UTF16 471768] Observe
+[11-20:P14062; UTF16 471776] [ y=5. ]
+[11-20:P14063; UTF16 471785] Consider three augmented hypotheses:
+[11-20:P14064; UTF16 471822] Plant fault [ p=5, \qquad b_{\mathrm{sens}}=0. ]
+[11-20:P14065; UTF16 471871] Sensor bias [ p=0, \qquad b_{\mathrm{sens}}=5. ]
+[11-20:P14066; UTF16 471920] Unmodeled disturbance represented by an admitted discrepancy mode [ p=0, \qquad b_{\mathrm{sens}}=0, \qquad d_{\mathrm{ext}}=5. ]
+[11-20:P14067; UTF16 472050] All produce the observation (y=5).
+[11-20:P14068; UTF16 472085] Suppose every healthy state requires
+[11-20:P14069; UTF16 472122] [ p=0, \quad b_{\mathrm{sens}}=0, \quad d_{\mathrm{ext}}=0. ]
+[11-20:P14070; UTF16 472184] The healthy set is eliminated.
+[11-20:P14071; UTF16 472215] Three distinct explanations remain.
+[11-20:P14072; UTF16 472251] Therefore anomaly detection does not identify one unique plant fault. ∎
+[11-20:P14073; UTF16 472323] [ \boxed{ \text{detection} \neq \text{isolation}. } ]
+[11-20:P14077; UTF16 472380] 19. Fault Hypothesis Sets and Exact Status
+[11-20:P14078; UTF16 472423] DEF-ODT12 — Fault Hypothesis Projection
+[11-20:P14080; UTF16 472467] [ \mathsf{FaultMode}: \mathcal Z \to \mathcal F. ]
+[11-20:P14082; UTF16 472525] \left{ f: \exists z\in\Gamma_t, ; \mathsf{FaultMode}(z)=f \right}. } ]
+[11-20:P14084; UTF16 472603] [ \mathsf{HEALTHY} \in \mathcal F. ]
+[11-20:P14085; UTF16 472640] When (\Gamma_t\neq\varnothing):
+[11-20:P14086; UTF16 472672] Certified healthy
+[11-20:P14087; UTF16 472690] { \mathsf{HEALTHY} }. ]
+[11-20:P14088; UTF16 472714] Certified fault present
+[11-20:P14089; UTF16 472738] [ \mathsf{HEALTHY} \notin \mathcal F_t. ]
+[11-20:P14090; UTF16 472780] Fault isolated
+[11-20:P14091; UTF16 472795] {f}, \qquad f\neq \mathsf{HEALTHY}. ]
+[11-20:P14092; UTF16 472833] Unresolved diagnosis
+[11-20:P14093; UTF16 472854] Every other nonempty case.
+[11-20:P14094; UTF16 472881] A posterior probability threshold does not silently replace this exact classification.
+[11-20:P14098; UTF16 472971] 20. Decision-Isolated Diagnosis
+[11-20:P14099; UTF16 473003] DEF-ODT13 — Maintenance-Decision Cell
+[11-20:P14101; UTF16 473045] [ r_M: \mathcal Z \to \mathcal R_M ]
+[11-20:P14102; UTF16 473082] be the complete operational intervention report.
+[11-20:P14103; UTF16 473131] It may return:
+[11-20:P14104; UTF16 473146] continue;
+[11-20:P14106; UTF16 473165] derate;
+[11-20:P14107; UTF16 473173] isolate;
+[11-20:P14109; UTF16 473190] replace;
+[11-20:P14110; UTF16 473199] shut down;
+[11-20:P14111; UTF16 473210] defer;
+[11-20:P14112; UTF16 473217] professional judgment required.
+[11-20:P14113; UTF16 473249] The current diagnosis is decision isolated when there exists one report (r) such that
+[11-20:P14114; UTF16 473335] [ r_M(z)=r \qquad \forall z\in\Gamma_t. ]
+[11-20:P14118; UTF16 473380] THM-ODT8 — Unique Fault Isolation Is Unnecessary When All Remaining Hypotheses Require the Same Certified Intervention
+[11-20:P14120; UTF16 473506] [ z_t^\star \in \Gamma_t ]
+[11-20:P14124; UTF16 473584] [ r_M(z_t^\star)=r, ]
+[11-20:P14125; UTF16 473606] even when
+[11-20:P14126; UTF16 473616] [ |\mathcal F_t|>1. ]
+[11-20:P14128; UTF16 473644] The actual state belongs to (\Gamma_t).
+[11-20:P14129; UTF16 473684] The report is constant on (\Gamma_t).
+[11-20:P14130; UTF16 473722] Instantiate at (z_t^\star). ∎

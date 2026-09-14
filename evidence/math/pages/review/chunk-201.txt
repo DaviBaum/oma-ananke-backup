@@ -1,0 +1,361 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P25900; UTF16 849724] for every (f\in\mathcal F_{\mathrm{ext}}). Hence (\bar f) is independent of the representative.
+[21-30:P25902; UTF16 849829] \bar f([x])
+[21-30:P25903; UTF16 849841] f(x). ]
+[21-30:P25905; UTF16 849860] [ f=\bar f\circ q_{\mathrm{ext}}. ]
+[21-30:P25908; UTF16 849904] Only computations included in (\mathcal F_{\mathrm{ext}}) are preserved. A newly introduced regional computation may refine the quotient.
+[21-30:P25909; UTF16 850042] THM-SOS2 — The Canonical External Quotient Is the Coarsest Exact Project Interface Preserving Every Declared Extra-Project Computation
+[21-30:P25912; UTF16 850192] [ a\to A ]
+[21-30:P25913; UTF16 850203] be any representation such that every:
+[21-30:P25914; UTF16 850242] [ f\in\mathcal F_{\mathrm{ext}} ]
+[21-30:P25915; UTF16 850276] factors through (a). Then:
+[21-30:P25916; UTF16 850303] [ \boxed{ a(x_1)=a(x_2) \Longrightarrow x_1\equiv_{\mathrm{ext}}x_2. } ]
+[21-30:P25917; UTF16 850376] Equivalently, every exact external representation refines the canonical quotient.
+[21-30:P25919; UTF16 850464] For every (f\in\mathcal F_{\mathrm{ext}}), assume there exists:
+[21-30:P25920; UTF16 850528] [ g_f\to Y_f ]
+[21-30:P25922; UTF16 850554] [ f=g_f\circ a. ]
+[21-30:P25924; UTF16 850581] [ a(x_1)=a(x_2). ]
+[21-30:P25925; UTF16 850600] Then for every (f):
+[21-30:P25926; UTF16 850620] g_f(a(x_1))
+[21-30:P25927; UTF16 850632] g_f(a(x_2))
+[21-30:P25931; UTF16 850694] Therefore every fiber of (a) lies inside one (\equiv_{\mathrm{ext}})-class.
+[21-30:P25932; UTF16 850770] Moreover, define on (\operatorname{im}a):
+[21-30:P25933; UTF16 850812] [ h(a(x))=q_{\mathrm{ext}}(x). ]
+[21-30:P25934; UTF16 850845] The implication just proved makes (h) well defined, and:
+[21-30:P25935; UTF16 850902] [ q_{\mathrm{ext}}=h\circ a. ]
+[21-30:P25936; UTF16 850933] Thus (a) contains at least as much distinction as (Q_{\mathrm{ext}}). The quotient is therefore coarsest among exact representations preserving all declared external computations. ∎
+[21-30:P25940; UTF16 851118] 7. Shared Infrastructure Networks
+[21-30:P25941; UTF16 851152] DEF-SOS6 — Capacitated Infrastructure Network
+[21-30:P25942; UTF16 851198] Define a directed network:
+[21-30:P25943; UTF16 851225] [ \boxed{ G=(V,E,c), } ]
+[21-30:P25945; UTF16 851257] [ c_e\ge0 ]
+[21-30:P25946; UTF16 851269] is the capacity of edge (e).
+[21-30:P25947; UTF16 851298] The abstraction may represent:
+[21-30:P25948; UTF16 851329] power;
+[21-30:P25950; UTF16 851343] sewer;
+[21-30:P25955; UTF16 851405] emergency routing.
+[21-30:P25956; UTF16 851424] Different physical domains may require additional nonlinear or dynamic semantics.
+[21-30:P25957; UTF16 851506] DEF-SOS7 — Network Balance Vector
+[21-30:P25959; UTF16 851545] [ b_v ]
+[21-30:P25960; UTF16 851553] be the required net outward flow at node (v).
+[21-30:P25962; UTF16 851623] (b_v>0): net supply or export;
+[21-30:P25963; UTF16 851654] (b_v<0): net demand or import.
+[21-30:P25965; UTF16 851694] [ \boxed{ \sum_{v\in V}b_v=0. } ]
+[21-30:P25966; UTF16 851728] DEF-SOS8 — Feasible Infrastructure Flow
+[21-30:P25967; UTF16 851768] A flow:
+[21-30:P25968; UTF16 851776] [ f\to\mathbb R_{\ge0} ]
+[21-30:P25969; UTF16 851801] is feasible when:
+[21-30:P25970; UTF16 851819] [ 0\le f_e\le c_e ]
+[21-30:P25971; UTF16 851839] for every edge and:
+[21-30:P25972; UTF16 851859] \sum_{e\in\delta^-(v)}f_e
+[21-30:P25973; UTF16 851885] b_v } ]
+[21-30:P25974; UTF16 851893] for every node.
+[21-30:P25975; UTF16 851909] DEF-SOS9 — Infrastructure Cut
+[21-30:P25976; UTF16 851939] For (S\subseteq V), let:
+[21-30:P25977; UTF16 851964] (\delta^+(S)): edges leaving (S);
+[21-30:P25978; UTF16 851998] (\delta^-(S)): edges entering (S).
+[21-30:P25980; UTF16 852041] \sum_{e\in\delta^+(S)}c_e, } ]
+[21-30:P25982; UTF16 852077] \sum_{e\in\delta^-(S)}c_e. } ]
+[21-30:P25986; UTF16 852111] 8. Infrastructure Cut Theorem
+[21-30:P25987; UTF16 852141] THM-SOS3 — Every Feasible Network Flow Satisfies Every Cut-Capacity Requirement
+[21-30:P25989; UTF16 852231] For any feasible flow and any (S\subseteq V):
+[21-30:P25990; UTF16 852277] [ \boxed{ \sum_{v\in S}b_v \le C^+(S), } ]
+[21-30:P25991; UTF16 852320] and symmetrically:
+[21-30:P25992; UTF16 852339] [ \boxed{ -\sum_{v\in S}b_v \le C^-(S). } ]
+[21-30:P25994; UTF16 852389] Sum the node-balance equations over (v\in S):
+[21-30:P25995; UTF16 852435] \sum_{e\in\delta^-(v)}f_e \right). ]
+[21-30:P25996; UTF16 852472] Every edge internal to (S) appears once as outgoing and once as incoming, so internal flows cancel.
+[21-30:P25997; UTF16 852572] The remaining terms are:
+[21-30:P25998; UTF16 852597] \sum_{e\in\delta^+(S)}f_e
+[21-30:P25999; UTF16 852623] \sum_{e\in\delta^-(S)}f_e. ]
+[21-30:P26000; UTF16 852652] Since every incoming flow is nonnegative:
+[21-30:P26001; UTF16 852694] [ -\sum_{e\in\delta^-(S)}f_e\le0. ]
+[21-30:P26003; UTF16 852737] [ \sum_{v\in S}b_v \le \sum_{e\in\delta^+(S)}f_e. ]
+[21-30:P26004; UTF16 852789] By edge capacities:
+[21-30:P26005; UTF16 852809] C^+(S). ]
+[21-30:P26007; UTF16 852830] [ \sum_{v\in S}b_v \le C^+(S). ]
+[21-30:P26008; UTF16 852863] For the incoming inequality, rearrange the cut balance:
+[21-30:P26009; UTF16 852919] \sum_{e\in\delta^-(S)}f_e
+[21-30:P26010; UTF16 852945] \sum_{e\in\delta^+(S)}f_e \le \sum_{e\in\delta^-(S)}f_e \le C^-(S). ]
+[21-30:P26013; UTF16 853032] A violated cut is an exact obstruction certificate for this flow theory.
+[21-30:P26015; UTF16 853122] The theorem is a necessary condition. Prompt 28 does not claim that these scalar cut inequalities characterize:
+[21-30:P26016; UTF16 853234] nonlinear hydraulic feasibility;
+[21-30:P26017; UTF16 853267] AC power flow;
+[21-30:P26018; UTF16 853282] multi-commodity routing;
+[21-30:P26019; UTF16 853307] dynamic communication quality;
+[21-30:P26020; UTF16 853338] transport congestion equilibria.
+[21-30:P26021; UTF16 853371] Those require their own domain models.
+[21-30:P26025; UTF16 853413] 9. Individual and Joint Project Feasibility
+[21-30:P26026; UTF16 853457] DEF-SOS10 — Isolated Project Infrastructure Feasibility
+[21-30:P26028; UTF16 853518] [ \boxed{ \mathcal A_i^{\mathrm{iso}} } ]
+[21-30:P26029; UTF16 853560] be project (i)’s admissible states when external capacity is analyzed with the project alone.
+[21-30:P26030; UTF16 853654] DEF-SOS11 — Joint Infrastructure Feasible Set
+[21-30:P26031; UTF16 853700] \left{ (x_1,\ldots,x_n): \exists \text{ shared-infrastructure witness satisfying all interfaces} \right}. } ]
+[21-30:P26032; UTF16 853810] THM-SOS4 — Individual Infrastructure Feasibility Does Not Imply Joint Infrastructure Feasibility
+[21-30:P26034; UTF16 853920] Let one shared resource have capacity:
+[21-30:P26035; UTF16 853959] [ C=10. ]
+[21-30:P26036; UTF16 853969] Let two projects require:
+[21-30:P26037; UTF16 853995] [ d_1=6, \qquad d_2=6. ]
+[21-30:P26038; UTF16 854020] Project 1 alone satisfies:
+[21-30:P26040; UTF16 854059] Project 2 alone satisfies:
+[21-30:P26043; UTF16 854104] [ x_1\in\mathcal A_1^{\mathrm{iso}}, \qquad x_2\in\mathcal A_2^{\mathrm{iso}}. ]
+[21-30:P26044; UTF16 854185] Joint demand is:
+[21-30:P26047; UTF16 854228] [ (x_1,x_2)\notin\mathcal A_{\mathrm{joint}}. ]
+[21-30:P26049; UTF16 854283] [ \boxed{ \prod_i\mathcal A_i^{\mathrm{iso}} \not\subseteq \mathcal A_{\mathrm{joint}}. } ]
+[21-30:P26051; UTF16 854377] THM-SOS5 — Pairwise Compatibility Does Not Imply Global Compatibility
+[21-30:P26053; UTF16 854460] Let shared capacity be:
+[21-30:P26055; UTF16 854494] Let three projects each require:
+[21-30:P26057; UTF16 854534] Every pair requires:
+[21-30:P26058; UTF16 854555] [ 4+4=8\le10. ]
+[21-30:P26059; UTF16 854571] All three require:
+[21-30:P26060; UTF16 854590] [ 4+4+4=12>10. ]
+[21-30:P26061; UTF16 854607] Thus every pair is feasible while the triple is infeasible.
+[21-30:P26063; UTF16 854678] [ \boxed{ \text{pairwise compatibility} \not\Longrightarrow \text{global compatibility}. } ]
+[21-30:P26068; UTF16 854776] 10. Portfolio Demand and Coincident Peaks
+[21-30:P26069; UTF16 854818] DEF-SOS12 — Project Demand Trace
+[21-30:P26070; UTF16 854851] For project (i):
+[21-30:P26071; UTF16 854868] [ \boxed{ d_i(t)\ge0. } ]
+[21-30:P26072; UTF16 854894] DEF-SOS13 — Individual Peak
+[21-30:P26073; UTF16 854922] \sup_{t\in T}d_i(t). } ]
+[21-30:P26074; UTF16 854947] DEF-SOS14 — Portfolio Demand
+[21-30:P26075; UTF16 854976] \sum_{i=1}^{n}d_i(t). } ]
+[21-30:P26076; UTF16 855002] DEF-SOS15 — Coincident Portfolio Peak
+[21-30:P26077; UTF16 855040] \sup_{t\in T}D(t). } ]
+[21-30:P26078; UTF16 855063] THM-SOS6 — Portfolio Peak Lies Between the Largest Individual Peak and the Sum of Individual Peaks
+[21-30:P26080; UTF16 855172] For bounded nonnegative demand traces:
+[21-30:P26081; UTF16 855211] [ \boxed{ \max_iP_i \le P_{\mathrm{port}} \le \sum_iP_i. } ]
+[21-30:P26083; UTF16 855278] For every (t):
+[21-30:P26084; UTF16 855293] [ d_i(t)\le P_i. ]
+[21-30:P26086; UTF16 855323] \sum_i d_i(t) \le \sum_iP_i. ]
+[21-30:P26087; UTF16 855354] Taking the supremum:
+[21-30:P26088; UTF16 855375] [ P_{\mathrm{port}} \le \sum_iP_i. ]
+[21-30:P26089; UTF16 855412] Also, because all traces are nonnegative:
+[21-30:P26090; UTF16 855454] [ D(t)\ge d_i(t) ]
+[21-30:P26091; UTF16 855473] for every (i,t).
+[21-30:P26092; UTF16 855490] Taking suprema:
+[21-30:P26093; UTF16 855506] P_i. ]
+[21-30:P26094; UTF16 855513] This holds for every (i), so:
+[21-30:P26095; UTF16 855543] [ P_{\mathrm{port}} \ge \max_iP_i. ]
+[21-30:P26097; UTF16 855582] Strict-inequality construction
+[21-30:P26099; UTF16 855618] [ d_1=(10,0), \qquad d_2=(0,10). ]
+[21-30:P26101; UTF16 855659] [ P_1=P_2=10, ]
+[21-30:P26103; UTF16 855679] [ P_1+P_2=20. ]
+[21-30:P26105; UTF16 855700] [ D=(10,10), ]
+[21-30:P26107; UTF16 855719] [ P_{\mathrm{port}}=10<20. ]
+[21-30:P26108; UTF16 855748] Thus the sum of individual peaks need not equal the coincident peak.
+[21-30:P26109; UTF16 855817] DEF-SOS16 — Coincidence Ratio
+[21-30:P26111; UTF16 855853] [ \sum_iP_i>0, ]
+[21-30:P26113; UTF16 855878] \frac{P_{\mathrm{port}}}{\sum_iP_i}. } ]
+[21-30:P26114; UTF16 855919] By THM-SOS6:
+[21-30:P26115; UTF16 855932] [ 0<\kappa\le1 ]
+[21-30:P26116; UTF16 855949] for a nonzero nonnegative portfolio.
+[21-30:P26117; UTF16 855986] The ratio remains scenario and time-pattern dependent.
+[21-30:P26121; UTF16 856044] 11. Average Versus Peak Demand
+[21-30:P26122; UTF16 856075] THM-SOS7 — Equal Mean Infrastructure Demand Does Not Determine Peak Capacity Requirement
+[21-30:P26124; UTF16 856177] On ([0,1]), define:
+[21-30:P26125; UTF16 856197] [ d_A(t)=1. ]
+[21-30:P26127; UTF16 856217] [ \bar d_A=1, \qquad P_A=1. ]
+[21-30:P26129; UTF16 856255] \begin{cases} 2,&0\le t<1/2,\ 0,&1/2\le t\le1. \end{cases} ]
+[21-30:P26130; UTF16 856316] Its mean is:
+[21-30:P26131; UTF16 856329] \int_0^1d_B(t),dt
+[21-30:P26132; UTF16 856347] 2\left(\frac12\right)
+[21-30:P26134; UTF16 856371] Its peak is:
+[21-30:P26135; UTF16 856384] [ P_B=2. ]
+[21-30:P26137; UTF16 856406] [ \bar d_A=\bar d_B ]
+[21-30:P26139; UTF16 856435] [ P_A\neq P_B. ]
+[21-30:P26141; UTF16 856459] [ \boxed{ \text{equal mean demand} \not\Longrightarrow \text{equal peak requirement}. } ]
+[21-30:P26146; UTF16 856554] 12. Shared Capacity Regions
+[21-30:P26147; UTF16 856582] DEF-SOS17 — Aggregative Shared Capacity Region
+[21-30:P26148; UTF16 856629] For an aggregate resource vector (r\in\mathbb R^m), let:
+[21-30:P26149; UTF16 856686] [ \boxed{ \mathcal K\subseteq\mathbb R^m } ]
+[21-30:P26150; UTF16 856731] be the admissible total-demand region.
+[21-30:P26151; UTF16 856770] This abstraction is valid only when network topology and physics have already been soundly compiled into the region.
+[21-30:P26152; UTF16 856887] THM-SOS8 — Individual Membership in a Shared Capacity Region Does Not Imply Aggregate Membership
+[21-30:P26155; UTF16 857002] [ \mathcal K=[0,10]. ]
+[21-30:P26159; UTF16 857062] [ d_1,d_2\in\mathcal K. ]
+[21-30:P26161; UTF16 857093] [ d_1+d_2=12\notin\mathcal K. ]
+[21-30:P26163; UTF16 857136] [ \boxed{ d_i\in\mathcal K\ \forall i \not\Longrightarrow \sum_i d_i\in\mathcal K. } ]
+[21-30:P26168; UTF16 857228] 13. Project-Local Versus Regional Optimization
+[21-30:P26169; UTF16 857275] THM-SOS9 — A Project-Local Improvement Can Worsen a Regional Infrastructure Metric
+[21-30:P26171; UTF16 857371] Use two periods.
+[21-30:P26172; UTF16 857388] Project (B) has demand:
+[21-30:P26173; UTF16 857412] [ d_B=(0,10). ]
+[21-30:P26174; UTF16 857428] Project (A) initially has:
+[21-30:P26175; UTF16 857455] [ d_A=(10,0). ]
+[21-30:P26176; UTF16 857471] Portfolio demand is:
+[21-30:P26179; UTF16 857511] [ P_{\mathrm{port}}=10. ]
+[21-30:P26180; UTF16 857537] Suppose project (A) has a project-local tariff or environmental objective preferring the second period. It shifts to:
+[21-30:P26181; UTF16 857655] [ d_A'=(0,10). ]
+[21-30:P26182; UTF16 857672] Project (A)’s total energy remains 10.
+[21-30:P26183; UTF16 857711] Its individual peak remains 10.
+[21-30:P26184; UTF16 857743] Its declared local objective improves.
+[21-30:P26185; UTF16 857782] The new portfolio demand is:
+[21-30:P26186; UTF16 857811] [ D'=(0,20), ]
+[21-30:P26188; UTF16 857830] [ P_{\mathrm{port}}'=20. ]
+[21-30:P26189; UTF16 857857] Thus the project-local improvement doubles the regional coincident peak.
+[21-30:P26191; UTF16 857941] [ \boxed{ \text{project-local improvement} \not\Longrightarrow \text{regional improvement}. } ]
+[21-30:P26196; UTF16 858042] 14. Externalities and Receptors
+[21-30:P26197; UTF16 858074] DEF-SOS18 — Extra-Project Externality
+[21-30:P26198; UTF16 858112] For project action (a_i), receptor (r), and system state (s):
+[21-30:P26199; UTF16 858174] [ \boxed{ X_{i\rightarrow r}(a_i,s) } ]
+[21-30:P26200; UTF16 858214] is a change in a declared receptor quantity outside the acting project’s direct objective or modeled internal boundary.
+[21-30:P26201; UTF16 858334] No legal conclusion follows automatically.
+[21-30:P26202; UTF16 858377] DEF-SOS19 — Receptor
+[21-30:P26203; UTF16 858398] A receptor may be:
+[21-30:P26204; UTF16 858417] another project;
+[21-30:P26205; UTF16 858434] a network node;
+[21-30:P26206; UTF16 858450] a neighborhood location;
+[21-30:P26207; UTF16 858475] a public-space system;
+[21-30:P26208; UTF16 858498] an emergency service;
+[21-30:P26209; UTF16 858520] an environmental compartment;
+[21-30:P26210; UTF16 858550] an ecological state.
+[21-30:P26211; UTF16 858571] DEF-SOS20 — Cumulative Exposure
+[21-30:P26212; UTF16 858603] For receptor (r):
+[21-30:P26213; UTF16 858621] \Phi_r(a_1,\ldots,a_n). } ]
+[21-30:P26214; UTF16 858649] The map (\Phi_r) need not be additive.
+[21-30:P26215; UTF16 858688] A neighborhood interface is the typed collection of project outputs, receptor states, temporal semantics, and interaction rules required to evaluate such external computations.
+[21-30:P26219; UTF16 858868] 15. Private and System Cost
+[21-30:P26220; UTF16 858896] THM-SOS10 — A Private Project Optimum Need Not Minimize Declared System Cost
+[21-30:P26223; UTF16 858991] [ a\in{0,1}. ]
+[21-30:P26224; UTF16 859006] Private project cost:
+[21-30:P26225; UTF16 859028] [ J_P(0)=1, \qquad J_P(1)=0. ]
+[21-30:P26226; UTF16 859059] Thus the private optimum is:
+[21-30:P26227; UTF16 859088] [ a_P^\star=1. ]
+[21-30:P26228; UTF16 859105] Let extra-project external cost be:
+[21-30:P26229; UTF16 859141] [ X(0)=0, \qquad X(1)=10. ]
+[21-30:P26230; UTF16 859169] Define a declared scalar system cost:
+[21-30:P26231; UTF16 859207] [ J_S(a)=J_P(a)+X(a). ]
+[21-30:P26233; UTF16 859237] [ J_S(0)=1, ]
+[21-30:P26235; UTF16 859258] [ J_S(1)=10. ]
+[21-30:P26237; UTF16 859279] [ a_S^\star=0. ]
+[21-30:P26239; UTF16 859307] [ \boxed{ \arg\min J_P \neq \arg\min J_S. } ]
+[21-30:P26242; UTF16 859372] The theorem does not define a universal social objective. It shows only that a declared project-private objective and a declared system objective may differ.
+[21-30:P26246; UTF16 859533] 16. Higher-Order Externalities
+[21-30:P26247; UTF16 859564] THM-SOS11 — Pairwise-Zero Externality Does Not Imply Zero Higher-Order Externality
+[21-30:P26249; UTF16 859660] For project subsets (S\subseteq{1,2,3}), define:
+[21-30:P26250; UTF16 859709] \begin{cases} 1,&S={1,2,3},\ 0,&\text{otherwise}. \end{cases} ]
+[21-30:P26251; UTF16 859773] Every singleton has zero externality.
+[21-30:P26252; UTF16 859811] Every pair has zero externality.
+[21-30:P26253; UTF16 859844] The triple has:
+[21-30:P26254; UTF16 859860] [ \Phi({1,2,3})=1. ]
+[21-30:P26256; UTF16 859892] [ \boxed{ \text{all pairwise externalities zero} \not\Longrightarrow \text{portfolio externality zero}. } ]
+[21-30:P26261; UTF16 860005] 17. Cumulative Thresholds
+[21-30:P26262; UTF16 860031] THM-SOS12 — Individual Threshold Compliance Does Not Imply Cumulative Threshold Compliance
+[21-30:P26264; UTF16 860135] Let cumulative receptor cap be:
+[21-30:P26265; UTF16 860167] [ B=10. ]
+[21-30:P26266; UTF16 860177] Two projects contribute:
+[21-30:P26267; UTF16 860202] [ x_1=6, \qquad x_2=6. ]
+[21-30:P26268; UTF16 860227] Each satisfies:
+[21-30:P26269; UTF16 860243] [ x_i\le B. ]
+[21-30:P26271; UTF16 860262] [ x_1+x_2=12>B. ]
+[21-30:P26273; UTF16 860291] [ \boxed{ \forall i,\ x_i\le B \not\Longrightarrow \sum_i x_i\le B. } ]
+[21-30:P26275; UTF16 860365] The theorem applies to an additive receptor model. Nonadditive receptor states require DEF-SOS20.
+[21-30:P26279; UTF16 860466] 18. Internal Transfer Cancellation
+[21-30:P26280; UTF16 860501] DEF-SOS21 — Antisymmetric Internal Transfer Ledger
+[21-30:P26281; UTF16 860552] For projects (i,j), let:
+[21-30:P26282; UTF16 860577] [ f_{ij}=-f_{ji}, \qquad f_{ii}=0. ]
+[21-30:P26283; UTF16 860614] The fixed sign convention determines transfer direction.
+[21-30:P26284; UTF16 860671] THM-SOS13 — Internal Antisymmetric Transfers Cancel in Portfolio Aggregation
+[21-30:P26286; UTF16 860758] For a finite project portfolio:
+[21-30:P26287; UTF16 860790] [ \boxed{ \sum_i\sum_jf_{ij}=0. } ]
+[21-30:P26289; UTF16 860832] Split the double sum into diagonal and off-diagonal terms.
+[21-30:P26290; UTF16 860891] Diagonal terms vanish because:
+[21-30:P26291; UTF16 860922] [ f_{ii}=0. ]
+[21-30:P26292; UTF16 860936] For every unordered pair ({i,j}) with (i\neq j), the sum contains:
+[21-30:P26293; UTF16 861003] f_{ij}-f_{ij}
+[21-30:P26295; UTF16 861019] Summing all cancelling pairs gives zero.
+[21-30:P26296; UTF16 861060] Thus internal transfers do not change net portfolio import or export. ∎
+[21-30:P26298; UTF16 861149] The theorem requires consistent event identity and antisymmetric accounting. Losses, conversion, storage changes, or measurement differences must be represented as separate terms.
+[21-30:P26302; UTF16 861332] 19. Infrastructure Interdependency
+[21-30:P26303; UTF16 861367] DEF-SOS22 — Infrastructure Dependency Relation
+[21-30:P26305; UTF16 861421] [ \boxed{ u\rightsquigarrow v } ]
+[21-30:P26306; UTF16 861455] when service state (v) depends on service (u).
+[21-30:P26307; UTF16 861502] Examples include synthetic:
+[21-30:P26308; UTF16 861530] power (\rightsquigarrow) pumping;
+[21-30:P26309; UTF16 861564] communication (\rightsquigarrow) dispatch;
+[21-30:P26310; UTF16 861607] transport (\rightsquigarrow) fuel resupply;
+[21-30:P26311; UTF16 861651] water (\rightsquigarrow) cooling.
+[21-30:P26312; UTF16 861685] DEF-SOS23 — Failure Set
+[21-30:P26313; UTF16 861709] [ \boxed{ F\subseteq V } ]
+[21-30:P26314; UTF16 861736] is a set of failed or unavailable components.
+[21-30:P26315; UTF16 861782] DEF-SOS24 — Monotone Cascade Operator
+[21-30:P26317; UTF16 861828] [ \boxed{ \Phi:2^V\to2^V } ]
+[21-30:P26319; UTF16 861868] Extensivity [ F\subseteq\Phi(F). ]
+[21-30:P26320; UTF16 861903] Monotonicity [ F\subseteq G \Longrightarrow \Phi(F)\subseteq\Phi(G). ]
+[21-30:P26324; UTF16 861977] 20. Finite Cascade Closure
+[21-30:P26325; UTF16 862004] THM-SOS14 — Iterating a Finite Monotone Extensive Cascade Operator Reaches the Least Fixed Point Containing the Initial Failure Set
+[21-30:P26328; UTF16 862151] [ F_{k+1}=\Phi(F_k). ]
+[21-30:P26329; UTF16 862174] If (V) is finite and (\Phi) is extensive and monotone, then the sequence stabilizes at a set (F_\infty) satisfying:
+[21-30:P26330; UTF16 862290] (F_\infty=\Phi(F_\infty));
+[21-30:P26331; UTF16 862317] (F_0\subseteq F_\infty);
+[21-30:P26332; UTF16 862342] for every fixed point (G) with (F_0\subseteq G): [ F_\infty\subseteq G. ]
+[21-30:P26334; UTF16 862422] Monotonic sequence
+[21-30:P26335; UTF16 862441] By extensivity:
+[21-30:P26336; UTF16 862457] [ F_k\subseteq\Phi(F_k)=F_{k+1}. ]
+[21-30:P26338; UTF16 862499] [ F_0\subseteq F_1\subseteq F_2\subseteq\cdots. ]
+[21-30:P26339; UTF16 862549] Finite stabilization
+[21-30:P26340; UTF16 862570] Whenever:
+[21-30:P26341; UTF16 862580] [ F_k\subsetneq F_{k+1}, ]
+[21-30:P26342; UTF16 862607] cardinality increases by at least one.
+[21-30:P26343; UTF16 862646] Because (F_k\subseteq V), there can be at most:
+[21-30:P26344; UTF16 862694] [ |V|-|F_0| ]
+[21-30:P26345; UTF16 862708] strict expansions.
+[21-30:P26346; UTF16 862727] Therefore there exists (K) such that:
+[21-30:P26347; UTF16 862765] [ F_K=F_{K+1}. ]
+[21-30:P26349; UTF16 862787] [ F_\infty=F_K. ]
+[21-30:P26351; UTF16 862811] F_{K+1}
+[21-30:P26352; UTF16 862819] \Phi(F_K)
+[21-30:P26353; UTF16 862829] \Phi(F_\infty). ]
+[21-30:P26354; UTF16 862847] Thus (F_\infty) is a fixed point.
+[21-30:P26355; UTF16 862881] Least-fixed-point property
+[21-30:P26356; UTF16 862908] Let (G) be any fixed point satisfying:
+[21-30:P26357; UTF16 862947] [ F_0\subseteq G. ]
+[21-30:P26358; UTF16 862967] We prove by induction that:
+[21-30:P26359; UTF16 862995] [ F_k\subseteq G ]
+[21-30:P26360; UTF16 863014] for every (k).
+[21-30:P26361; UTF16 863029] The base case holds by assumption.
+[21-30:P26362; UTF16 863064] If (F_k\subseteq G), monotonicity gives:
+[21-30:P26363; UTF16 863105] [ \Phi(F_k)\subseteq\Phi(G). ]
+[21-30:P26364; UTF16 863136] Because (G) is fixed:
+[21-30:P26365; UTF16 863158] [ \Phi(G)=G. ]
+[21-30:P26367; UTF16 863184] \Phi(F_k) \subseteq G. ]
+[21-30:P26368; UTF16 863209] By induction:
+[21-30:P26369; UTF16 863223] [ F_\infty\subseteq G. ]
+[21-30:P26370; UTF16 863248] Hence (F_\infty) is the least fixed point containing (F_0). ∎
+[21-30:P26371; UTF16 863310] Permanent limitation
+[21-30:P26372; UTF16 863331] [ \boxed{ \text{cascade convergence} \neq \text{cascade-model completeness}. } ]
+[21-30:P26373; UTF16 863412] The theorem proves closure only for dependencies represented by (\Phi).
+[21-30:P26377; UTF16 863487] 21. Regional Common Cause
+[21-30:P26378; UTF16 863513] DEF-SOS25 — Regional Common-Cause Variable
+[21-30:P26380; UTF16 863574] [ \boxed{ Z } ]
+[21-30:P26381; UTF16 863590] affect multiple:
+[21-30:P26382; UTF16 863607] projects;
+[21-30:P26383; UTF16 863617] infrastructure links;
+[21-30:P26385; UTF16 863650] service providers;
+[21-30:P26386; UTF16 863669] recovery resources.
+[21-30:P26387; UTF16 863689] THM-SOS15 — Local Redundancy Does Not Imply Regional Resilience
+[21-30:P26389; UTF16 863766] A project has two nominal utility feeds:
+[21-30:P26391; UTF16 863824] Feed (A) can replace (B) after a local (B)-failure.
+[21-30:P26392; UTF16 863876] Feed (B) can replace (A) after a local (A)-failure.
+[21-30:P26393; UTF16 863928] Both feeds depend on one upstream substation:
+[21-30:P26395; UTF16 863981] Failure of (S) removes both (A) and (B).
+[21-30:P26396; UTF16 864022] Therefore local dual-feed redundancy exists, while one regional common cause defeats both paths.
+[21-30:P26398; UTF16 864126] [ \boxed{ \text{local redundancy} \not\Longrightarrow \text{regional resilience}. } ]
+[21-30:P26400; UTF16 864214] THM-SOS16 — Marginal Infrastructure Availability Does Not Determine Joint Regional Availability
+[21-30:P26402; UTF16 864323] Let events (A,B) denote availability of two services, with:
+[21-30:P26403; UTF16 864383] [ P(A)=P(B)=p, \qquad 0<p<1. ]
+[21-30:P26405; UTF16 864432] If independent:
+[21-30:P26406; UTF16 864448] [ P(A\cap B)=p^2, ]
+[21-30:P26408; UTF16 864473] 1-(1-p)^2. ]
+[21-30:P26411; UTF16 864518] [ A=B \quad\text{almost surely}. ]
+[21-30:P26413; UTF16 864559] [ P(A\cap B)=p, ]
+[21-30:P26415; UTF16 864582] [ P(A\cup B)=p. ]
+[21-30:P26416; UTF16 864600] The marginals are identical in both worlds, but the joint laws differ.
+[21-30:P26417; UTF16 864671] Therefore marginal availability does not determine either:
+[21-30:P26418; UTF16 864730] simultaneous availability;
+[21-30:P26419; UTF16 864757] at-least-one-path availability.
+[21-30:P26424; UTF16 864794] 22. Regional Scenario Families
+[21-30:P26425; UTF16 864825] DEF-SOS26 — Regional Scenario
+[21-30:P26426; UTF16 864855] A regional scenario may include:
+[21-30:P26427; UTF16 864888] project demands;

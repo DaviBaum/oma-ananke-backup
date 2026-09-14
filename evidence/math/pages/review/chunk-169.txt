@@ -1,0 +1,331 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P11599; UTF16 387418] Hall’s condition for ({T_0}) implies (N({T_0})\neq\varnothing).
+[21-30:P11601; UTF16 387490] [ i_0\in N({T_0}). ]
+[21-30:P11602; UTF16 387511] Remove (T_0) and (i_0).
+[21-30:P11604; UTF16 387546] [ A\subseteq\mathcal T\setminus{T_0}, ]
+[21-30:P11605; UTF16 387586] if (A=\varnothing), Hall is trivial.
+[21-30:P11606; UTF16 387623] Otherwise (A) is a nonempty proper subset of (\mathcal T), so:
+[21-30:P11607; UTF16 387686] [ |N(A)|\ge|A|+1. ]
+[21-30:P11608; UTF16 387706] Removing one person can reduce the neighbor set by at most one:
+[21-30:P11609; UTF16 387770] [ |N(A)\setminus{i_0}| \ge |A|. ]
+[21-30:P11610; UTF16 387804] Thus the reduced graph satisfies Hall’s condition.
+[21-30:P11611; UTF16 387855] By induction, it has a complete matching.
+[21-30:P11612; UTF16 387897] Add edge ((T_0,i_0)).
+[21-30:P11613; UTF16 387919] The resulting matching covers every task.
+[21-30:P11614; UTF16 387961] Therefore Hall’s condition is sufficient. ∎
+[21-30:P11616; UTF16 388025] Total headcount is not sufficient.
+[21-30:P11617; UTF16 388060] Every simultaneously required subset of tasks must collectively possess enough distinct qualified people.
+[21-30:P11621; UTF16 388169] 10. Minimum-Cost Cross-Training
+[21-30:P11622; UTF16 388201] THM-HUM6 — Minimum-Cost Competency-Enabling Selection Is NP-Hard
+[21-30:P11624; UTF16 388300] Let a Weighted Set Cover instance contain:
+[21-30:P11625; UTF16 388343] universe: [ U={u_1,\ldots,u_m}; ]
+[21-30:P11626; UTF16 388377] subsets: [ S_1,\ldots,S_n\subseteq U; ]
+[21-30:P11627; UTF16 388417] costs: [ c_1,\ldots,c_n>0. ]
+[21-30:P11628; UTF16 388446] Construct a cross-training instance as follows.
+[21-30:P11629; UTF16 388494] Each universe element (u_k) is a required competency obligation.
+[21-30:P11630; UTF16 388559] Each training intervention (j) enables exactly the competencies in (S_j) and has cost (c_j).
+[21-30:P11631; UTF16 388652] A training portfolio (J\subseteq{1,\ldots,n}) makes every competency available iff:
+[21-30:P11632; UTF16 388736] [ \bigcup_{j\in J}S_j=U. ]
+[21-30:P11635; UTF16 388798] Thus feasible training portfolios are exactly set covers, with identical cost.
+[21-30:P11636; UTF16 388877] The construction is polynomial.
+[21-30:P11637; UTF16 388909] An optimal cross-training algorithm would solve Weighted Set Cover.
+[21-30:P11638; UTF16 388977] Therefore minimum-cost competency-enabling selection is NP-hard. ∎
+[21-30:P11642; UTF16 389047] 11. Procedures
+[21-30:P11643; UTF16 389062] DEF-HUM10 — Human Procedure
+[21-30:P11644; UTF16 389090] A Human Procedure is:
+[21-30:P11645; UTF16 389112] \left( S,s_0,A,\delta,F, \mathsf{roles}, \mathsf{observations}, \mathsf{timing}, \mathsf{recovery}, V \right). } ]
+[21-30:P11649; UTF16 389230] DEF-HUM11 — Procedure Execution Trace
+[21-30:P11651; UTF16 389276] (s_0,o_0,a_0,s_1,o_1,a_1,\ldots,s_k). } ]
+[21-30:P11652; UTF16 389318] Every human action must satisfy:
+[21-30:P11656; UTF16 389380] observation;
+[21-30:P11659; UTF16 389411] physical preconditions;
+[21-30:P11660; UTF16 389435] procedure version.
+[21-30:P11664; UTF16 389457] DEF-HUM12 — Human-Executable Procedure Witness
+[21-30:P11665; UTF16 389504] A Human-Executable Procedure Witness contains:
+[21-30:P11666; UTF16 389551] assigned people;
+[21-30:P11667; UTF16 389568] role mapping;
+[21-30:P11668; UTF16 389582] observation sequence;
+[21-30:P11669; UTF16 389604] human actions;
+[21-30:P11670; UTF16 389619] start and completion times;
+[21-30:P11671; UTF16 389647] workload allocation;
+[21-30:P11672; UTF16 389668] communication events;
+[21-30:P11673; UTF16 389690] recovery actions;
+[21-30:P11678; UTF16 389721] THM-HUM7 — A Formal Procedure Path Need Not Be Human Operationally Executable
+[21-30:P11680; UTF16 389812] Consider an untimed abstract procedure containing two required actions:
+[21-30:P11681; UTF16 389884] [ a_1, \qquad a_2. ]
+[21-30:P11682; UTF16 389905] Both must complete during interval:
+[21-30:P11683; UTF16 389941] [ [0,1]. ]
+[21-30:P11684; UTF16 389952] Each has duration one.
+[21-30:P11685; UTF16 389975] Each requires the same unique qualified operator (i).
+[21-30:P11686; UTF16 390029] The abstract procedure relation permits the action set and therefore contains a legal untimed completion path.
+[21-30:P11687; UTF16 390140] However, because (i) can perform at most one task at a time, at most one of (a_1,a_2) can finish by time 1.
+[21-30:P11688; UTF16 390248] No human-executable witness exists.
+[21-30:P11690; UTF16 390295] [ \boxed{ \text{formal procedure path} \not\Longrightarrow \text{human-operational execution witness}. } ]
+[21-30:P11692; UTF16 390404] The missing proof obligation is not procedural syntax but staffing and timing feasibility.
+[21-30:P11696; UTF16 390498] 12. Workload and Attention
+[21-30:P11697; UTF16 390525] DEF-HUM13 — Workload Demand
+[21-30:P11698; UTF16 390553] For person (i), task (j), and time (t), let:
+[21-30:P11699; UTF16 390598] [ w_{ij}(t)\ge0 ]
+[21-30:P11700; UTF16 390616] be declared workload demand.
+[21-30:P11701; UTF16 390645] No universal empirical meaning is assigned to one workload unit.
+[21-30:P11705; UTF16 390713] DEF-HUM14 — Human Capacity Envelope
+[21-30:P11707; UTF16 390754] [ C_i(t)\ge0 ]
+[21-30:P11708; UTF16 390769] be the declared service or attention-capacity envelope used by the model.
+[21-30:P11712; UTF16 390846] DEF-HUM15 — Workload Feasibility
+[21-30:P11713; UTF16 390879] A task allocation is workload feasible when:
+[21-30:P11714; UTF16 390924] [ \boxed{ \sum_{j\in\mathcal A_i(t)} w_{ij}(t) \le C_i(t) } ]
+[21-30:P11715; UTF16 390986] for every person (i) and time (t).
+[21-30:P11719; UTF16 391024] 13. Workload Capacity Cut
+[21-30:P11720; UTF16 391050] THM-HUM8 — Mandatory Attention Demand Above Available Capacity Proves Infeasibility
+[21-30:P11722; UTF16 391144] One operator must complete mandatory tasks:
+[21-30:P11723; UTF16 391188] [ 1,\ldots,n ]
+[21-30:P11724; UTF16 391203] during interval ([0,T]).
+[21-30:P11725; UTF16 391228] Task (j) requires total service (d_j>0).
+[21-30:P11726; UTF16 391269] Available service capacity is (C(t)).
+[21-30:P11728; UTF16 391311] [ \boxed{ \sum_{j=1}^{n}d_j
+[21-30:P11729; UTF16 391339] \int_0^T C(t),dt, } ]
+[21-30:P11730; UTF16 391361] then no schedule completes every task by (T).
+[21-30:P11732; UTF16 391413] At any time (t), a feasible schedule can allocate at most (C(t)) service.
+[21-30:P11733; UTF16 391487] Therefore the total service deliverable over ([0,T]) is at most:
+[21-30:P11734; UTF16 391552] [ \int_0^T C(t),dt. ]
+[21-30:P11735; UTF16 391574] The mandatory tasks require:
+[21-30:P11736; UTF16 391603] [ \sum_{j=1}^{n}d_j. ]
+[21-30:P11737; UTF16 391626] If required service exceeds available service, at least one task remains incomplete.
+[21-30:P11738; UTF16 391711] Therefore no feasible schedule exists. ∎
+[21-30:P11739; UTF16 391752] This is a deterministic resource theorem, not a universal psychological claim.
+[21-30:P11743; UTF16 391834] 14. Human Task Scheduling Hardness
+[21-30:P11744; UTF16 391869] THM-HUM9 — Restricted Human Task Makespan Minimization Is Weakly NP-Hard
+[21-30:P11745; UTF16 391942] Reduction from PARTITION
+[21-30:P11746; UTF16 391967] Let a PARTITION instance contain positive integers:
+[21-30:P11749; UTF16 392044] [ \sum_{j=1}^{n}a_j=2B. ]
+[21-30:P11751; UTF16 392081] two synthetic operators;
+[21-30:P11752; UTF16 392106] (n) nonpreemptive tasks;
+[21-30:P11753; UTF16 392131] task (j) has duration (a_j);
+[21-30:P11754; UTF16 392160] both operators are qualified for every task;
+[21-30:P11755; UTF16 392205] each operator performs at most one task at a time.
+[21-30:P11756; UTF16 392256] Ask whether all tasks can complete by time (B).
+[21-30:P11758; UTF16 392322] Suppose the integers partition into sets (J_1,J_2) with:
+[21-30:P11759; UTF16 392379] \sum_{j\in J_2}a_j
+[21-30:P11761; UTF16 392403] Assign (J_1) to operator 1 and (J_2) to operator 2.
+[21-30:P11762; UTF16 392455] Both workloads finish at time (B).
+[21-30:P11764; UTF16 392508] Suppose a schedule completes by (B).
+[21-30:P11765; UTF16 392545] The total work is (2B).
+[21-30:P11766; UTF16 392569] Two operators provide at most (2B) units of processing by time (B).
+[21-30:P11767; UTF16 392637] Therefore both operators must be continuously occupied and each must receive exactly (B) work.
+[21-30:P11768; UTF16 392732] The tasks assigned to each operator form a partition of the integers into two subsets summing to (B).
+[21-30:P11769; UTF16 392834] Thus the schedule exists iff the PARTITION instance is positive.
+[21-30:P11771; UTF16 392928] Hence the restricted scheduling problem is weakly NP-hard. ∎
+[21-30:P11775; UTF16 392992] 15. Human Observation Interfaces
+[21-30:P11776; UTF16 393025] DEF-HUM16 — Human Observation Interface
+[21-30:P11777; UTF16 393065] Let complete project state space be (X).
+[21-30:P11778; UTF16 393106] An HMI is a map:
+[21-30:P11779; UTF16 393123] [ \boxed{ H\rightarrow O, } ]
+[21-30:P11780; UTF16 393153] where (O) is the operator-observable state.
+[21-30:P11784; UTF16 393200] DEF-HUM17 — Required Human Decision Map
+[21-30:P11786; UTF16 393245] [ \boxed{ a^\star\rightarrow A } ]
+[21-30:P11787; UTF16 393280] be the required action under the declared engineering and authority theory.
+[21-30:P11791; UTF16 393359] 16. Decision-Sufficient HMI
+[21-30:P11792; UTF16 393387] THM-HUM10 — Exact HMI Decision-Sufficiency Factorization Theorem
+[21-30:P11794; UTF16 393462] Assume (A\neq\varnothing).
+[21-30:P11795; UTF16 393489] There exists a policy:
+[21-30:P11796; UTF16 393512] [ \pi\rightarrow A ]
+[21-30:P11798; UTF16 393544] [ \boxed{ a^\star=\pi\circ H } ]
+[21-30:P11800; UTF16 393582] [ \boxed{ H(x_1)=H(x_2) \Longrightarrow a^\star(x_1)=a^\star(x_2). } ]
+[21-30:P11803; UTF16 393679] [ a^\star=\pi\circ H. ]
+[21-30:P11805; UTF16 393707] [ H(x_1)=H(x_2), ]
+[21-30:P11807; UTF16 393732] \pi(H(x_1))
+[21-30:P11808; UTF16 393744] \pi(H(x_2))
+[21-30:P11809; UTF16 393756] a^\star(x_2). ]
+[21-30:P11811; UTF16 393790] Assume (a^\star) is constant on every fiber of (H).
+[21-30:P11812; UTF16 393842] For every observation:
+[21-30:P11813; UTF16 393865] [ o\in\operatorname{im}(H), ]
+[21-30:P11814; UTF16 393895] choose any state (x_o) satisfying:
+[21-30:P11815; UTF16 393930] [ H(x_o)=o. ]
+[21-30:P11817; UTF16 393952] [ \pi(o)=a^\star(x_o). ]
+[21-30:P11818; UTF16 393977] Fiber constancy makes this well defined.
+[21-30:P11819; UTF16 394018] For observations outside (\operatorname{im}(H)), assign any fixed action (a_0\in A).
+[21-30:P11820; UTF16 394103] Then for every (x\in X):
+[21-30:P11821; UTF16 394128] a^\star(x). ]
+[21-30:P11828; UTF16 394182] THM-HUM11 — Indistinguishable States Requiring Different Actions Make Perfect Human Control Impossible
+[21-30:P11833; UTF16 394323] [ a^\star(x_1)\neq a^\star(x_2), ]
+[21-30:P11834; UTF16 394358] then no policy depending only on (H(x)) is correct in both states.
+[21-30:P11836; UTF16 394431] If a correct observation-only policy existed, THM-HUM10 would imply that (a^\star) is constant on each HMI fiber.
+[21-30:P11837; UTF16 394545] The two states violate that condition.
+[21-30:P11838; UTF16 394584] Therefore no such policy exists. ∎
+[21-30:P11839; UTF16 394619] This is an information limitation, not a judgment about operator intelligence.
+[21-30:P11843; UTF16 394701] 17. Human Decision Quotient
+[21-30:P11844; UTF16 394729] DEF-HUM18 — Human-Decision Equivalence
+[21-30:P11846; UTF16 394776] [ \boxed{ x_1 \equiv_{\mathrm{HD}} x_2 \iff a^\star(x_1)=a^\star(x_2). } ]
+[21-30:P11847; UTF16 394851] For a family of human decisions or reports, replace the single equality with equality under every admitted human decision computation.
+[21-30:P11851; UTF16 394989] THM-HUM12 — The Human-Decision Quotient Is the Coarsest Exact Interface State Preserving the Required Decision
+[21-30:P11853; UTF16 395105] X/{\equiv_{\mathrm{HD}}}, ]
+[21-30:P11854; UTF16 395133] with quotient map:
+[21-30:P11855; UTF16 395152] [ q_{\mathrm{HD}}\rightarrow Q_{\mathrm{HD}}. ]
+[21-30:P11858; UTF16 395222] [ \bar a([x])=a^\star(x). ]
+[21-30:P11859; UTF16 395250] This is well defined because members of one quotient class have equal required actions.
+[21-30:P11861; UTF16 395344] \bar a\circ q_{\mathrm{HD}}. ]
+[21-30:P11862; UTF16 395375] Coarseness
+[21-30:P11864; UTF16 395391] [ b\rightarrow B ]
+[21-30:P11865; UTF16 395410] be any representation preserving the decision, so that:
+[21-30:P11866; UTF16 395466] [ a^\star=\widetilde a\circ b. ]
+[21-30:P11868; UTF16 395503] [ b(x_1)=b(x_2), ]
+[21-30:P11870; UTF16 395528] \widetilde a(b(x_1))
+[21-30:P11871; UTF16 395549] \widetilde a(b(x_2))
+[21-30:P11874; UTF16 395597] [ x_1\equiv_{\mathrm{HD}}x_2. ]
+[21-30:P11875; UTF16 395629] Every (b)-class lies inside a human-decision class.
+[21-30:P11876; UTF16 395681] Hence (Q_{\mathrm{HD}}) is the coarsest exact representation preserving the decision. ∎
+[21-30:P11880; UTF16 395772] COR-HUM1 — Interface Cardinality Lower Bound
+[21-30:P11881; UTF16 395817] Suppose (Q_{\mathrm{HD}}) has (m) decision-distinct classes.
+[21-30:P11882; UTF16 395878] Every exact HMI supporting (a^\star) must expose at least (m) distinct observable states.
+[21-30:P11884; UTF16 395974] If the HMI exposed fewer than (m) observations, the pigeonhole principle would merge two decision-distinct classes.
+[21-30:P11885; UTF16 396090] That would violate THM-HUM10. ∎
+[21-30:P11886; UTF16 396122] An ideal fixed-length binary encoding therefore needs at least:
+[21-30:P11887; UTF16 396186] [ \boxed{ \left\lceil \log_2m \right\rceil } ]
+[21-30:P11889; UTF16 396239] This is a representational lower bound, not a measured human cognitive-capacity law.
+[21-30:P11893; UTF16 396327] 18. Alarm Semantics
+[21-30:P11894; UTF16 396347] DEF-HUM19 — Alarm
+[21-30:P11895; UTF16 396365] An Alarm is:
+[21-30:P11896; UTF16 396378] \left( \mathsf{source}, \mathsf{condition}, \mathsf{priority}, \mathsf{requiredResponse}, \mathsf{deadline}, \mathsf{suppression}, \mathsf{evidence}, \mathsf{version} \right). } ]
+[21-30:P11900; UTF16 396561] DEF-HUM20 — Alarm Action Equivalence
+[21-30:P11901; UTF16 396598] Alarms (\alpha_1,\alpha_2) are action equivalent under context theory (\mathcal T) when every admitted context produces identical required human response and report behavior.
+[21-30:P11905; UTF16 396776] DEF-HUM21 — Alarm Decision Quotient
+[21-30:P11907; UTF16 396820] \mathcal A_{\mathrm{alarm}} / {\equiv_{\mathrm{action}}}. } ]
+[21-30:P11911; UTF16 396885] THM-HUM13 — Exact Alarm Quotienting Preserves Required Human Decisions
+[21-30:P11913; UTF16 396962] Let (r(\alpha,x)) be the required response to alarm (\alpha) in context (x).
+[21-30:P11914; UTF16 397039] By DEF-HUM20:
+[21-30:P11915; UTF16 397053] [ \alpha_1 \equiv_{\mathrm{action}} \alpha_2 ]
+[21-30:P11916; UTF16 397100] implies:
+[21-30:P11917; UTF16 397109] r(\alpha_2,x) ]
+[21-30:P11918; UTF16 397125] for every admitted (x).
+[21-30:P11920; UTF16 397157] [ \bar r([\alpha],x)=r(\alpha,x). ]
+[21-30:P11921; UTF16 397193] The equivalence condition makes (\bar r) well defined.
+[21-30:P11923; UTF16 397259] \bar r(q_{\mathrm{alarm}}(\alpha),x). ]
+[21-30:P11924; UTF16 397299] Replacing raw alarm identity with its quotient class preserves every required response. ∎
+[21-30:P11925; UTF16 397389] This permits removal of only those distinctions proved response irrelevant.
+[21-30:P11929; UTF16 397468] 19. Alarm Overload
+[21-30:P11930; UTF16 397487] THM-HUM14 — Alarm Demand Above Attention Capacity Makes Timely Complete Response Impossible
+[21-30:P11931; UTF16 397579] Suppose alarms (1,\ldots,n) all require response by time (T).
+[21-30:P11932; UTF16 397641] Alarm (j) requires mandatory service (d_j).
+[21-30:P11933; UTF16 397685] Available capacity is (C(t)).
+[21-30:P11937; UTF16 397769] then no response policy services every alarm by (T).
+[21-30:P11939; UTF16 397828] This is THM-HUM8 applied to the alarm tasks.
+[21-30:P11940; UTF16 397873] The capacity integral bounds total service deliverable before the common deadline.
+[21-30:P11941; UTF16 397956] If required alarm service exceeds it, at least one response is late or incomplete. ∎
+[21-30:P11942; UTF16 398041] No universal numerical alarm threshold follows.
+[21-30:P11946; UTF16 398092] 20. Human Reliability
+[21-30:P11947; UTF16 398114] DEF-HUM22 — Human Action Success Event
+[21-30:P11948; UTF16 398153] For required action (j), define event:
+[21-30:P11949; UTF16 398192] [ S_j. ]
+[21-30:P11950; UTF16 398201] Its law may depend on:
+[21-30:P11951; UTF16 398224] person;
+[21-30:P11952; UTF16 398232] task;
+[21-30:P11953; UTF16 398238] procedure;
+[21-30:P11959; UTF16 398306] context.
+[21-30:P11963; UTF16 398318] DEF-HUM23 — Human Reliability Law
+[21-30:P11964; UTF16 398352] A declared law specifies:
+[21-30:P11965; UTF16 398378] [ \boxed{ P \left( S_1,\ldots,S_n \mid \theta_{\mathrm{HUM}} \right). } ]
+[21-30:P11966; UTF16 398452] Marginals do not determine the joint law.
+[21-30:P11970; UTF16 398497] THM-HUM15 — Independent-Step Procedure Reliability Multiplies
+[21-30:P11972; UTF16 398571] Events:
+[21-30:P11973; UTF16 398579] [ S_1,\ldots,S_n ]
+[21-30:P11974; UTF16 398598] are mutually independent.
+[21-30:P11976; UTF16 398629] [ P(S_i)=p_i. ]
+[21-30:P11978; UTF16 398656] \prod_{i=1}^{n}p_i. } ]
+[21-30:P11980; UTF16 398686] This is exactly the defining finite-event property of mutual independence. ∎
+[21-30:P11981; UTF16 398763] The theorem is invalid without independence.
+[21-30:P11985; UTF16 398811] THM-HUM16 — Marginal Human Success Rates Do Not Determine Joint Procedure Reliability
+[21-30:P11987; UTF16 398902] [ 0<p<1. ]
+[21-30:P11988; UTF16 398913] Construct two worlds.
+[21-30:P11989; UTF16 398935] Independent world
+[21-30:P11990; UTF16 398953] Let (S_1,S_2) be independent with:
+[21-30:P11991; UTF16 398988] [ P(S_1)=P(S_2)=p. ]
+[21-30:P11993; UTF16 399015] [ P(S_1\cap S_2)=p^2. ]
+[21-30:P11994; UTF16 399039] Perfect common-cause world
+[21-30:P11996; UTF16 399071] [ S_1=S_2 ]
+[21-30:P11997; UTF16 399083] almost surely, with:
+[21-30:P11998; UTF16 399104] [ P(S_1)=p. ]
+[21-30:P12000; UTF16 399124] [ P(S_1\cap S_2)=p. ]
+[21-30:P12001; UTF16 399146] The marginal success rates are identical.
+[21-30:P12002; UTF16 399188] Joint procedure success differs.
+[21-30:P12004; UTF16 399232] [ \boxed{ \text{marginal human reliability} \not\Longrightarrow \text{joint procedure reliability}. } ]
+[21-30:P12009; UTF16 399341] THM-HUM17 — Two Operators Do Not Automatically Provide Independent Human Redundancy
+[21-30:P12010; UTF16 399425] Let one shared incorrect procedure state (Z) satisfy:
+[21-30:P12011; UTF16 399479] [ P(Z=\mathsf{incorrect})=q. ]
+[21-30:P12012; UTF16 399510] Both operators follow the procedure.
+[21-30:P12013; UTF16 399547] If (Z) is incorrect, both perform the wrong action.
+[21-30:P12014; UTF16 399599] Each operator’s marginal failure probability is:
+[21-30:P12015; UTF16 399648] [ q. ]
+[21-30:P12016; UTF16 399655] The probability both fail is:
+[21-30:P12017; UTF16 399685] [ q, ]
+[21-30:P12019; UTF16 399697] [ q^2. ]
+[21-30:P12020; UTF16 399706] Therefore two operators do not establish independent redundancy when one common procedural cause controls both. ∎
+[21-30:P12024; UTF16 399823] 21. Qualification and Human-Operational Leases
+[21-30:P12025; UTF16 399870] DEF-HUM24 — Human Qualification Lease
+[21-30:P12027; UTF16 399916] \left( i, \mathsf{role}, \mathsf{taskScope}, t_0, h, \mathsf{qualification}, \mathsf{fitnessAssumptions}, \mathsf{environment}, \mathsf{dependencies} \right). } ]
+[21-30:P12031; UTF16 400082] THM-HUM18 — Qualification-Lease Soundness
+[21-30:P12034; UTF16 400147] [ t\in[t_0,t_0+h], ]
+[21-30:P12035; UTF16 400168] the following remain true:
+[21-30:P12036; UTF16 400195] the qualification artifact remains valid;
+[21-30:P12037; UTF16 400237] task conditions remain inside its scope;
+[21-30:P12038; UTF16 400278] declared current-fitness assumptions remain satisfied;
+[21-30:P12039; UTF16 400333] no invalidating dependency changes;
+[21-30:P12040; UTF16 400369] the person remains available.
+[21-30:P12042; UTF16 400410] The lease’s formal task-eligibility claim remains valid throughout the interval.
+[21-30:P12044; UTF16 400497] The task-eligibility predicate is the conjunction of the five premises.
+[21-30:P12045; UTF16 400569] Each premise holds for every time in the interval.
+[21-30:P12046; UTF16 400620] Therefore their conjunction holds for every time in the interval. ∎
+[21-30:P12047; UTF16 400688] The theorem does not prove perfect performance.
+[21-30:P12051; UTF16 400739] 22. Handoffs and Shift Changes
+[21-30:P12052; UTF16 400770] DEF-HUM25 — Handoff Packet
+[21-30:P12053; UTF16 400797] A Handoff Packet is:
+[21-30:P12054; UTF16 400818] \left( \mathsf{openTasks}, \mathsf{systemState}, \mathsf{alarms}, \mathsf{temporaryConditions}, \mathsf{commitments}, \mathsf{risks}, \mathsf{authority}, \mathsf{evidence}, \mathsf{version} \right). } ]
+[21-30:P12058; UTF16 401024] DEF-HUM26 — Handoff Summary Map
+[21-30:P12060; UTF16 401061] [ \boxed{ \eta\rightarrow Y } ]
+[21-30:P12061; UTF16 401093] map complete outgoing operational state to the information transmitted to the receiving team.
+[21-30:P12065; UTF16 401190] THM-HUM19 — A Handoff Summary That Merges States Requiring Different Future Actions Is Insufficient
+[21-30:P12068; UTF16 401304] [ \eta(x_1)=\eta(x_2), ]
+[21-30:P12069; UTF16 401329] while the receiving team’s required first action satisfies:
+[21-30:P12071; UTF16 401424] then no policy depending only on the handoff summary can be correct in both states.
+[21-30:P12073; UTF16 401514] The handoff map (\eta) is an observation map.
+[21-30:P12074; UTF16 401560] Apply THM-HUM11 with (H=\eta).
+[21-30:P12075; UTF16 401591] The two states are observationally identical but decision distinct.
+[21-30:P12076; UTF16 401659] Therefore exact receiving-team control is impossible from the summary alone. ∎
+[21-30:P12080; UTF16 401741] THM-HUM20 — The Future-Decision Handoff Quotient Is the Coarsest Exact Handoff Summary Preserving All Declared Receiving-Team Decisions
+[21-30:P12082; UTF16 401882] [ \mathcal F_{\mathrm{handoff}} ]
+[21-30:P12083; UTF16 401916] contain every receiving-team decision and report computation.
+[21-30:P12085; UTF16 401986] [ x_1 \equiv_{\mathrm{handoff}} x_2 \iff \forall f\in\mathcal F_{\mathrm{handoff}}, \quad f(x_1)=f(x_2). ]
+[21-30:P12087; UTF16 402098] X/{\equiv_{\mathrm{handoff}}}. ]
+[21-30:P12089; UTF16 402137] For every (f\in\mathcal F_{\mathrm{handoff}}), define:
+[21-30:P12090; UTF16 402192] [ \bar f([x])=f(x). ]
+[21-30:P12091; UTF16 402214] The equivalence relation makes this well defined.
+[21-30:P12092; UTF16 402264] Thus each (f) factors through the quotient.
+[21-30:P12093; UTF16 402308] Now let (b\to B) be any summary through which every (f) factors.
+[21-30:P12096; UTF16 402396] then every (f) gives equal output on (x_1,x_2).
+[21-30:P12098; UTF16 402450] [ x_1 \equiv_{\mathrm{handoff}} x_2. ]
+[21-30:P12099; UTF16 402489] Therefore every (b)-class lies inside a quotient class.
+[21-30:P12100; UTF16 402545] The handoff quotient is the coarsest exact receiving-team sufficient summary. ∎
+[21-30:P12104; UTF16 402628] 23. Team Communication
+[21-30:P12105; UTF16 402651] DEF-HUM27 — Team Information State
+[21-30:P12106; UTF16 402686] For team member (i), define:
+[21-30:P12107; UTF16 402715] [ I_i(t) ]
+[21-30:P12108; UTF16 402726] as the information available at time (t).
+[21-30:P12112; UTF16 402771] DEF-HUM28 — Team Communication Policy
+[21-30:P12113; UTF16 402809] A Team Communication Policy specifies:
+[21-30:P12114; UTF16 402848] sender;
+[21-30:P12116; UTF16 402867] message;
+[21-30:P12118; UTF16 402884] acknowledgment;
+[21-30:P12119; UTF16 402900] retry;
+[21-30:P12120; UTF16 402907] escalation.
+[21-30:P12124; UTF16 402922] THM-HUM21 — Missing a Decision-Critical Bit Can Make a Team Policy Impossible
+[21-30:P12126; UTF16 403013] Let global state be one of:
+[21-30:P12128; UTF16 403062] Receiving agent (R) must choose:
+[21-30:P12129; UTF16 403095] [ a_0 ]
+[21-30:P12130; UTF16 403103] in (x_0), and:
+[21-30:P12131; UTF16 403118] [ a_1\neq a_0 ]
+[21-30:P12132; UTF16 403134] in (x_1).
+[21-30:P12133; UTF16 403144] Only sending agent (S) observes which state holds.
+[21-30:P12134; UTF16 403195] Suppose the communication channel sends the same message in both states.
+[21-30:P12135; UTF16 403268] Then (R)’s local information is identical.
+[21-30:P12136; UTF16 403311] Every deterministic receiver policy therefore selects the same action in both worlds.
+[21-30:P12137; UTF16 403397] It must be wrong in at least one.

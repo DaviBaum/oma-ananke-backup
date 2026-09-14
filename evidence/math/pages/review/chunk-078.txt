@@ -1,0 +1,330 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P5997; UTF16 189398]       EachPreservingOnReachableDomain
+[11-20:P5998; UTF16 189436]         I acts x₀)
+[11-20:P5999; UTF16 189455]     (hx :
+[11-20:P6000; UTF16 189465]       IntentFeasible I x₀) :
+[11-20:P6002; UTF16 189504]       Executes acts x₀ x' →
+[11-20:P6003; UTF16 189532]       IntentFeasible I x' := by
+[11-20:P6004; UTF16 189564]   induction acts generalizing x₀ with
+[11-20:P6007; UTF16 189623]   | cons a rest ih =>
+[11-20:P6012; UTF16 189658] 88.8 Scalar impossibility
+[11-20:P6013; UTF16 189684] theorem incomplete_not_exact_real_utility
+[11-20:P6014; UTF16 189726]     (hInc :
+[11-20:P6015; UTF16 189738]       ∃ x y,
+[11-20:P6016; UTF16 189751]         Incomparable I χ x y) :
+[11-20:P6017; UTF16 189783]     ¬ ∃ u : DesignState → ℝ,
+[11-20:P6018; UTF16 189812]         ∀ x y,
+[11-20:P6019; UTF16 189827]           I.pref χ x y ↔
+[11-20:P6020; UTF16 189852]           u x ≥ u y := by
+[11-20:P6025; UTF16 189887] 88.9 Human options
+[11-20:P6026; UTF16 189906] def HumanOption
+[11-20:P6027; UTF16 189922]     (Prefs : Set PreferenceTheory)
+[11-20:P6028; UTF16 189957]     (Menus : Set (Finset DesignState))
+[11-20:P6030; UTF16 190028]   ∃ P ∈ Prefs,
+[11-20:P6031; UTF16 190043]     ∃ M ∈ Menus,
+[11-20:P6032; UTF16 190060]       x ∈ P.choose M
+[11-20:P6036; UTF16 190084] 88.10 Conflict cores
+[11-20:P6037; UTF16 190105] def IsIntentConflictCore
+[11-20:P6038; UTF16 190130]     (U : Finset IntentClaim) : Prop :=
+[11-20:P6039; UTF16 190169]   ¬ ∃ x,
+[11-20:P6040; UTF16 190178]       EngineeringFeasible x ∧
+[11-20:P6041; UTF16 190208]       ∀ h ∈ U,
+[11-20:P6042; UTF16 190223]         HoldsIntent h x
+[11-20:P6046; UTF16 190250] 88.11 Sovereignty closure
+[11-20:P6047; UTF16 190276] def SovereigntyClosed
+[11-20:P6049; UTF16 190322]     (trace : DesignTrace I)
+[11-20:P6051; UTF16 190382]   IntentFeasible I x ∧
+[11-20:P6052; UTF16 190405]   AuthorizedTrace I trace ∧
+[11-20:P6053; UTF16 190433]   trace.finalState = x
+[11-20:P6057; UTF16 190459] 89. Mechanization Difficulty
+[11-20:P6058; UTF16 190488] ￼
+ATTACHED TABLE 1735908; native row/column order; 25 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Hard intent predicates", "Straightforward"]
+ROW 2: ["Veto semantics", "Straightforward"]
+ROW 3: ["Partial preference", "Moderate"]
+ROW 4: ["Incomparability theorem", "Straightforward"]
+ROW 5: ["Choice correspondences", "Moderate"]
+ROW 6: ["Lexicographic optimization", "Moderate"]
+ROW 7: ["Noncompensatory priority", "Moderate"]
+ROW 8: ["Authority relation", "Moderate"]
+ROW 9: ["Consent artifacts", "Moderate"]
+ROW 10: ["Trace-sensitive sovereignty", "Difficult"]
+ROW 11: ["Authorship provenance", "Difficult"]
+ROW 12: ["Noninterference", "Moderate"]
+ROW 13: ["Protected-intent dependency graph", "Moderate"]
+ROW 14: ["Intent conflict cores", "Moderate"]
+ROW 15: ["Minimum-relaxation optimization", "Hard"]
+ROW 16: ["Human-option preservation", "Difficult"]
+ROW 17: ["Preference-family representation", "Difficult"]
+ROW 18: ["Preference-query selection", "Hard"]
+ROW 19: ["Sequence/path intent", "Difficult"]
+ROW 20: ["Relational architectural intent", "Difficult"]
+ROW 21: ["Incremental sovereignty checking", "Difficult"]
+ROW 22: ["Sovereignty CEGAR", "Difficult"]
+ROW 23: ["Prompt-11 assurance integration", "Moderate"]
+ROW 24: ["Complete formalization of artistic intent", "Open-world and fundamentally incomplete"]
+[11-20:P6062; UTF16 190493] 90. Permanent Definition Registry
+[11-20:P6063; UTF16 190527] ￼
+ATTACHED TABLE 1735924; native row/column order; 34 rows
+ROW 0: ["ID", "Exact object", "Dependencies", "Status", "Formalization difficulty"]
+ROW 1: ["DEF-SOV1", "Sovereign Design State", "Prompts 1–11", "Defined", "Moderate"]
+ROW 2: ["DEF-SOV2", "Architectural Intent Program", "DEF-SOV1", "Defined", "Difficult"]
+ROW 3: ["DEF-SOV3", "Intent Scope", "DEF-SOV2", "Defined", "Moderate"]
+ROW 4: ["DEF-SOV4", "Hard Architectural Invariant", "DEF-SOV2", "Defined", "Straightforward"]
+ROW 5: ["DEF-SOV5", "Noncompensatory Veto", "DEF-SOV2", "Defined", "Straightforward"]
+ROW 6: ["DEF-SOV6", "Architectural Preference Relation", "Prompt-2 decisions", "Defined", "Moderate"]
+ROW 7: ["DEF-SOV7", "Sovereign Choice Correspondence", "Prompt-2 marked menus", "Defined", "Moderate"]
+ROW 8: ["DEF-SOV8", "Priority Architecture", "DEF-SOV6–7", "Defined", "Moderate"]
+ROW 9: ["DEF-SOV9", "Noncompensatory Commitment", "DEF-SOV8", "Defined", "Moderate"]
+ROW 10: ["DEF-SOV10", "Sovereignty-Safe Pruning", "Prompt-2 contextual tests", "Defined", "Difficult"]
+ROW 11: ["DEF-SOV11", "Robustly Unselectable Candidate", "DEF-SOV10", "Defined", "Moderate"]
+ROW 12: ["DEF-SOV12", "Human Option Set", "DEF-SOV6–7", "Defined", "Moderate"]
+ROW 13: ["DEF-SOV13", "Design Authority Relation", "DEF-SOV2", "Defined", "Moderate"]
+ROW 14: ["DEF-SOV14", "Design Control Right", "DEF-SOV13", "Defined", "Straightforward"]
+ROW 15: ["DEF-SOV15", "Consent Artifact", "DEF-SOV13–14", "Defined", "Moderate"]
+ROW 16: ["DEF-SOV16", "Sovereignty-Admissible Transformation", "DEF-SOV1–15", "Defined", "Difficult"]
+ROW 17: ["DEF-SOV17", "Sovereignty-Preserving Action", "DEF-SOV16", "Defined", "Moderate"]
+ROW 18: ["DEF-SOV18", "Design Transformation Trace", "DEF-SOV16", "Defined", "Difficult"]
+ROW 19: ["DEF-SOV19", "Authorship Provenance", "DEF-SOV18", "Defined", "Difficult"]
+ROW 20: ["DEF-SOV20", "Authorship-Preserving Transformation", "DEF-SOV19", "Defined", "Difficult"]
+ROW 21: ["DEF-SOV21", "Sovereignty Partition", "DEF-SOV13–16", "Defined", "Straightforward"]
+ROW 22: ["DEF-SOV22", "Protected-Intent Influence Graph", "Prompt-8 dependencies", "Defined", "Moderate"]
+ROW 23: ["DEF-SOV23", "Sovereignty Noninterference", "DEF-SOV22", "Defined", "Moderate"]
+ROW 24: ["DEF-SOV24", "Sovereignty-Constrained Feasibility", "DEF-SOV4–5", "Defined", "Straightforward"]
+ROW 25: ["DEF-SOV25", "Minimal Intent Conflict Core", "DEF-SOV24", "Defined", "Moderate"]
+ROW 26: ["DEF-SOV26", "Intent Relaxation Set", "DEF-SOV24", "Defined", "Moderate"]
+ROW 27: ["DEF-SOV27", "Architectural Sequence Constraint", "DEF-SOV3", "Defined", "Difficult"]
+ROW 28: ["DEF-SOV28", "Declared Design Descriptor", "Portfolio semantics", "Defined", "Straightforward"]
+ROW 29: ["DEF-SOV29", "Sovereign Design Portfolio", "DEF-SOV10–12", "Defined", "Difficult"]
+ROW 30: ["DEF-SOV30", "Sovereignty Preservation Certificate", "DEF-SOV1–29", "Defined", "Difficult"]
+ROW 31: ["DEF-SOV31", "Intent Version", "DEF-SOV2", "Defined", "Straightforward"]
+ROW 32: ["DEF-SOV32", "Intent Conflict Artifact", "DEF-SOV25–26", "Defined", "Moderate"]
+ROW 33: ["DEF-SOV33", "Prompt-12 Complexity Profile", "Prompt-12 objects", "Defined", "Straightforward"]
+[11-20:P6067; UTF16 190532] 91. Lemma Registry
+[11-20:P6068; UTF16 190551] ￼
+ATTACHED TABLE 1735940; native row/column order; 7 rows
+ROW 0: ["ID", "Exact statement", "Dependencies", "Proof status"]
+ROW 1: ["LEM-SOV1", "A finite weighted penalty dominates a bounded compensating objective when the penalty exceeds its full range", "THM-SOV1", "Proved in body"]
+ROW 2: ["LEM-SOV2", "Sequential lexicographic feasible sets are nested and nonempty under attainment assumptions", "THM-SOV3", "Proved in theorem"]
+ROW 3: ["LEM-SOV3", "Every valid consent-required committed action has an applicable prior consent artifact", "DEF-SOV15–16", "By definition"]
+ROW 4: ["LEM-SOV4", "Endpoint noninterference composes over action words", "DEF-SOV23", "Proved in THM-SOV11"]
+ROW 5: ["LEM-SOV5", "Every removed option without an equivalent representative changes at least one witnessing choice report", "DEF-SOV12", "Proved in THM-SOV7"]
+ROW 6: ["LEM-SOV6", "A vertex set yields a feasible relaxation in the THM-SOV12 construction iff it covers every graph edge", "THM-SOV12", "Proved in reduction"]
+[11-20:P6072; UTF16 190556] 92. Theorem Registry
+[11-20:P6073; UTF16 190577] ￼
+ATTACHED TABLE 1735956; native row/column order; 23 rows
+ROW 0: ["ID", "Exact statement", "Dependencies", "Proof status"]
+ROW 1: ["THM-SOV1", "Finite penalties do not universally encode hard constraints under unbounded compensation; bounded converse", "DEF-SOV4", "Proved"]
+ROW 2: ["THM-SOV2", "Genuinely incomplete preference has no exact ordinary real-utility representation", "DEF-SOV6", "Proved"]
+ROW 3: ["THM-SOV3", "Sequential constrained minimization yields exactly the lexicographic minimum set", "DEF-SOV8", "Proved"]
+ROW 4: ["THM-SOV4", "Finite weighted sums fail universally for unbounded lexicographic order; bounded-gap converse", "DEF-SOV8", "Proved"]
+ROW 5: ["THM-SOV5", "Optimization restricted to sovereignty-feasible space preserves hard intent", "DEF-SOV24", "Proved"]
+ROW 6: ["THM-SOV6", "Dominance under one incomplete relation is insufficient for complete pruning", "DEF-SOV10", "Proved by construction"]
+ROW 7: ["THM-SOV7", "A selectable option without an equivalent representative cannot be removed by an option-preserving optimizer", "DEF-SOV12", "Proved"]
+ROW 8: ["THM-SOV8", "Proposal authority does not imply execution authority", "DEF-SOV13–14", "Proved"]
+ROW 9: ["THM-SOV9", "Sequential composition of preserving actions preserves sovereignty", "DEF-SOV17", "Proved"]
+ROW 10: ["THM-SOV10", "Identical final geometry need not imply identical sovereign state", "DEF-SOV18", "Proved"]
+ROW 11: ["THM-SOV11", "Primitive endpoint-noninterfering actions preserve protected observations under finite composition", "DEF-SOV23", "Proved"]
+ROW 12: ["THM-SOV12", "Minimum Protected-Intent Relaxation is NP-hard", "DEF-SOV26", "Proved by Vertex Cover reduction"]
+ROW 13: ["THM-SOV13", "An authorized waiver changes the active intent theory rather than proving old intent preserved", "Prompt-11 waiver", "Proved"]
+ROW 14: ["THM-SOV14", "Protected-observation-invariant symmetries preserve endpoint intent", "DEF-SOV23", "Proved"]
+ROW 15: ["THM-SOV15", "Preference-family refinement shrinks the Human Option Set under fixed candidates", "DEF-SOV12", "Proved"]
+ROW 16: ["THM-SOV16", "Acceptance of a sound sovereignty certificate establishes every encoded state, authority, consent, and trace requirement", "DEF-SOV30", "Proved"]
+ROW 17: ["THM-SOV17", "Sovereignty completeness is relative to the declared intent program", "DEF-SOV2", "Proved"]
+ROW 18: ["THM-SOV18", "A branch universally violating active hard intent may be pruned", "DEF-SOV24", "Proved"]
+ROW 19: ["THM-SOV19", "Sovereignty-Safe Optimization preserves the active contract and legitimate human options", "ALG-SOV4", "Proved"]
+ROW 20: ["THM-SOV20", "Dependency-directed sovereignty recertification equals cold checking under completeness assumptions", "ALG-SOV5", "Proved"]
+ROW 21: ["THM-SOV21", "Minimum human preference-query selection is NP-hard in a restricted finite model", "Preference-query model", "Proved by Set Cover reduction"]
+ROW 22: ["THM-SOV22", "A contextually complete representative portfolio preserves every admitted sovereignty choice report", "DEF-SOV29, Prompt-2 congruence", "Proved"]
+[11-20:P6077; UTF16 190582] 93. Proposition and Corollary Registry
+[11-20:P6078; UTF16 190621] ￼
+ATTACHED TABLE 1735972; native row/column order; 7 rows
+ROW 0: ["ID", "Statement", "Dependencies", "Proof status"]
+ROW 1: ["COR-SOV10A", "No final-geometry-only metric can determine every procedural sovereignty claim", "THM-SOV10", "Proved"]
+ROW 2: ["PRO-SOV1", "Physical engineering Pareto optimality does not imply sovereignty admissibility", "DEF-SOV24", "Immediate counterexample"]
+ROW 3: ["PRO-SOV2", "Hard-intent conditioning may reduce realizable separator state count under a fixed theory", "Prompt-3 conditioning", "Inherited"]
+ROW 4: ["PRO-SOV3", "Adding architectural experiments may increase decision or causal width", "Prompt-3/8 theory monotonicity", "Inherited"]
+ROW 5: ["PRO-SOV4", "Human Option Sets may contain (2^n) elements under (n) incomparable binary design choices", "DEF-SOV12", "Proved by construction"]
+ROW 6: ["PRO-SOV5", "Sovereignty CEGAR is sound under Prompt-4 exact-refinement and Prompt-5 UNKNOWN assumptions", "ALG-SOV3", "Inherited theorem schema"]
+[11-20:P6082; UTF16 190626] 94. Algorithm Registry
+[11-20:P6083; UTF16 190649] ￼
+ATTACHED TABLE 1735988; native row/column order; 13 rows
+ROW 0: ["ID", "Algorithm", "Correctness basis"]
+ROW 1: ["ALG-SOV1", "SovereigntyRCVOCInterface", "Prompt-9 scheduler authority"]
+ROW 2: ["ALG-SOV2", "CheckSovereignty", "THM-SOV16"]
+ROW 3: ["ALG-SOV3", "SovereigntyCEGAR", "Prompt-4 CEGAR and THM-SOV16"]
+ROW 4: ["ALG-SOV4", "SovereignOptimize", "THM-SOV19"]
+ROW 5: ["ALG-SOV5", "IncrementalSovereigntyCheck", "THM-SOV20"]
+ROW 6: ["ALG-SOV6", "RedTeamIntent", "Prompt-10 Claim Breakers"]
+ROW 7: ["ALG-SOV7", "FindIntentConflictCore", "DEF-SOV25; exact verification"]
+ROW 8: ["ALG-SOV8", "ProposeIntentRepairs", "Proposal only; authority through DEF-SOV16"]
+ROW 9: ["ALG-SOV9", "MaintainHumanOptionPortfolio", "THM-SOV7, SOV22"]
+ROW 10: ["ALG-SOV10", "UpdatePreferenceTheory", "THM-SOV15"]
+ROW 11: ["ALG-SOV11", "CheckConsentTrace", "DEF-SOV15–18"]
+ROW 12: ["ALG-SOV12", "CompileIntentProgram", "Proposal system; authority from adoption and checking"]
+[11-20:P6087; UTF16 190654] 95. Conjecture Registry
+[11-20:P6088; UTF16 190678] ￼
+ATTACHED TABLE 1736004; native row/column order; 11 rows
+ROW 0: ["ID", "Exact conjecture", "Falsification condition"]
+ROW 1: ["CONJ-SOV1", "Most critical project intent can be represented by a moderate set of invariants, relations, sequences, and judgments", "Most important meaning remains uncapturable except by holistic review"]
+ROW 2: ["CONJ-SOV2", "Protected-intent dependency cones are sparse enough to leave large free optimization regions", "Nearly every engineering variable affects protected meaning"]
+ROW 3: ["CONJ-SOV3", "Most engineering transformations are FREE or cheaply certifiable as noninterfering", "Human consent is required for most optimization steps"]
+ROW 4: ["CONJ-SOV4", "Incomplete-preference portfolios outperform premature scalarization in real projects", "Stable scalar utilities accurately govern nearly all choices"]
+ROW 5: ["CONJ-SOV5", "Architectural/engineering conflict cores remain small and understandable", "Typical conflicts involve hundreds of inseparable rules"]
+ROW 6: ["CONJ-SOV6", "Most conflicts can be repaired on the engineering side without relaxing protected architecture", "Protected intent must routinely be weakened"]
+ROW 7: ["CONJ-SOV7", "Incremental sovereignty checking touches a small fraction of the intent graph", "Minor edits repeatedly invalidate most protected claims"]
+ROW 8: ["CONJ-SOV8", "AI-proposed intent and preference models reduce human work without acquiring false authority", "Most important semantics require manual specification"]
+ROW 9: ["CONJ-SOV9", "Human Option Sets remain symbolically manageable", "Incomplete-preference portfolios become intractably large"]
+ROW 10: ["CONJ-SOV10", "A 190-room hotel retains a moderate protected-intent interface while permitting aggressive optimization", "Protected state grows with nearly all building detail"]
+[11-20:P6092; UTF16 190683] 96. Dependency DAG
+[11-20:P6095; UTF16 190733] physical states
+[11-20:P6096; UTF16 190749] evidence typing
+[11-20:P6100; UTF16 190794] complete marked-menu experiments
+[11-20:P6101; UTF16 190827] choice correspondence semantics
+[11-20:P6103; UTF16 190882] congruence
+[11-20:P6109; UTF16 190957] conditioning
+[11-20:P6119; UTF16 191078] mandatory exact channels
+[11-20:P6120; UTF16 191103] decision cells
+[11-20:P6122; UTF16 191137] certified approximation
+[11-20:P6127; UTF16 191196] physical reduction
+[11-20:P6128; UTF16 191215] port validity
+[11-20:P6132; UTF16 191275] topology-changing rewrites
+[11-20:P6138; UTF16 191374] executable causal macrostates
+[11-20:P6139; UTF16 191404] action theories
+[11-20:P6140; UTF16 191420] freeze/thaw
+[11-20:P6141; UTF16 191432] action footprints
+[11-20:P6146; UTF16 191485] human-judgment computations
+[11-20:P6147; UTF16 191513] live decision cones
+[11-20:P6152; UTF16 191578] robustness
+[11-20:P6153; UTF16 191589] adversarial scope
+[11-20:P6156; UTF16 191627] PROMPT 11
+[11-20:P6157; UTF16 191637] Evidence Atoms
+[11-20:P6158; UTF16 191652] Professional Judgment
+[11-20:P6159; UTF16 191674] Waivers
+[11-20:P6160; UTF16 191682] PCR
+[11-20:P6161; UTF16 191686] release assurance
+[11-20:P6164; UTF16 191724] DEF-SOV1–SOV3
+[11-20:P6165; UTF16 191738] sovereign state,
+[11-20:P6166; UTF16 191755] intent program,
+[11-20:P6167; UTF16 191771] scope
+[11-20:P6169; UTF16 191787]         ├────────────────────────────────────────────┐
+[11-20:P6170; UTF16 191842]         ▼                                            ▼
+[11-20:P6171; UTF16 191897] DEF-SOV4–SOV5                               DEF-SOV6–SOV12
+[11-20:P6172; UTF16 191956] hard intent and veto                        preference, choice,
+[11-20:P6173; UTF16 192020]         │                                   pruning, option sets
+[11-20:P6174; UTF16 192085]         │                                            │
+[11-20:P6175; UTF16 192140]         ├───────────────┐                 ┌──────────┼────────────┐
+[11-20:P6176; UTF16 192208]         ▼               ▼                 ▼          ▼            ▼
+[11-20:P6177; UTF16 192276] THM-SOV1          DEF-SOV24          THM-SOV2   THM-SOV6    THM-SOV7
+[11-20:P6178; UTF16 192345] penalty limit     feasibility         scalar      safe         option
+[11-20:P6179; UTF16 192415]         │               │             impossibility pruning     protection
+[11-20:P6180; UTF16 192490]         ▼               ▼                 │                       │
+[11-20:P6181; UTF16 192558] hard semantic     THM-SOV5                ▼                       ▼
+[11-20:P6182; UTF16 192626] restriction       feasible         DEF-SOV8–SOV9            DEF-SOV29
+[11-20:P6183; UTF16 192696]                   optimization     priority and              portfolio
+[11-20:P6184; UTF16 192767]                                    noncompensation                │
+[11-20:P6185; UTF16 192835]                                            │                       ▼
+[11-20:P6186; UTF16 192904]                                   ┌────────┴────────┐          THM-SOV22
+[11-20:P6187; UTF16 192977]                                   ▼                 ▼          portfolio
+[11-20:P6188; UTF16 193050]                               THM-SOV3          THM-SOV4       preservation
+[11-20:P6189; UTF16 193126]                               lexicographic     weight limit
+[11-20:P6192; UTF16 193259]                           partial-order optimization
+[11-20:P6194; UTF16 193313] DEF-SOV13–SOV16
+[11-20:P6195; UTF16 193329] authority, rights,
+[11-20:P6196; UTF16 193348] consent, admissible steps
+[11-20:P6198; UTF16 193384]         ├──────────────────────┬─────────────────────┐
+[11-20:P6199; UTF16 193439]         ▼                      ▼                     ▼
+[11-20:P6200; UTF16 193494] THM-SOV8                 DEF-SOV17              DEF-SOV18
+[11-20:P6201; UTF16 193552] proposal/execution       preserving action      trace
+[11-20:P6202; UTF16 193606] distinction                    │                     │
+[11-20:P6203; UTF16 193661]                               ▼                  ┌───┴──────────┐
+[11-20:P6204; UTF16 193727]                          THM-SOV9               ▼              ▼
+[11-20:P6205; UTF16 193792]                          action sequence   THM-SOV10      DEF-SOV19–20
+[11-20:P6206; UTF16 193863]                          preservation      trace-sensitive authorship
+[11-20:P6207; UTF16 193933]                                                 state          provenance
+[11-20:P6208; UTF16 194007]                                                   │
+[11-20:P6209; UTF16 194059]                                                   ▼
+[11-20:P6210; UTF16 194111]                                            COR-SOV10A
+[11-20:P6211; UTF16 194165]                                            geometry-only
+[11-20:P6212; UTF16 194222]                                            limitation
+[11-20:P6214; UTF16 194277] DEF-SOV21
+[11-20:P6215; UTF16 194287] FREE / CONSENT /
+[11-20:P6216; UTF16 194304] PROTECTED partition
+[11-20:P6219; UTF16 194344] DEF-SOV22
+[11-20:P6220; UTF16 194354] protected influence graph
+[11-20:P6223; UTF16 194400] DEF-SOV23
+[11-20:P6224; UTF16 194410] noninterference
+[11-20:P6227; UTF16 194446] THM-SOV11
+[11-20:P6228; UTF16 194456] safe aggressive optimization
+[11-20:P6229; UTF16 194485] inside free action language
+[11-20:P6231; UTF16 194514] DEF-SOV24
+[11-20:P6232; UTF16 194524] sovereignty feasibility
+[11-20:P6234; UTF16 194558]         ├────────────────────────────────────┐
+[11-20:P6235; UTF16 194605]         ▼                                    ▼
+[11-20:P6236; UTF16 194652] DEF-SOV25                               DEF-SOV26
+[11-20:P6237; UTF16 194702] conflict cores                         relaxation sets
+[11-20:P6238; UTF16 194757]         │                                    │
+[11-20:P6240; UTF16 194851] ALG-SOV7                              THM-SOV12
+[11-20:P6241; UTF16 194899] conflict extraction                   NP-hard relaxation
+[11-20:P6243; UTF16 195003]         └─────────────────┬──────────────────┘
+[11-20:P6245; UTF16 195078]                       ALG-SOV8
+[11-20:P6246; UTF16 195109]                       repair proposals
+[11-20:P6249; UTF16 195204]                     human authority
+[11-20:P6252; UTF16 195296]                     THM-SOV13
+[11-20:P6253; UTF16 195326]                     versioned waiver
+[11-20:P6255; UTF16 195364] DEF-SOV27
+[11-20:P6256; UTF16 195374] sequence intent
+[11-20:P6260; UTF16 195468] path-language checks      relational intent
+[11-20:P6262; UTF16 195546]         └──────────┬────────────┘
+[11-20:P6263; UTF16 195580]                    ▼
+[11-20:P6264; UTF16 195601]             protected reports
+[11-20:P6265; UTF16 195631]                    │
+[11-20:P6267; UTF16 195673]             DEF-SOV30
+[11-20:P6268; UTF16 195695]             sovereignty certificate
+[11-20:P6271; UTF16 195773]               ALG-SOV2
+[11-20:P6272; UTF16 195796]               independent checker
+[11-20:P6275; UTF16 195872]               THM-SOV16
+[11-20:P6276; UTF16 195896]               checker soundness
+[11-20:P6278; UTF16 195949]                    ├─────────────────────┐
+[11-20:P6279; UTF16 195992]                    ▼                     ▼
+[11-20:P6280; UTF16 196035]               THM-SOV17             DEF-SOV31
+[11-20:P6281; UTF16 196081]               open-world intent      intent versions
+[11-20:P6282; UTF16 196134]                                            │
+[11-20:P6283; UTF16 196179]                                            ▼
+[11-20:P6284; UTF16 196224]                                       amendments and
+[11-20:P6285; UTF16 196277]                                       trace lineage
+[11-20:P6287; UTF16 196330] preference evidence
+[11-20:P6290; UTF16 196370] ALG-SOV10
+[11-20:P6291; UTF16 196380] preference update
+[11-20:P6294; UTF16 196418] THM-SOV15
+[11-20:P6295; UTF16 196428] option-set monotonicity
+[11-20:P6299; UTF16 196536] ALG-SOV9                      THM-SOV21
+[11-20:P6300; UTF16 196576] portfolio maintenance         query NP-hardness
+[11-20:P6303; UTF16 196644] DEF-SOV29 / THM-SOV22
+[11-20:P6304; UTF16 196666] sovereign portfolio
+[11-20:P6306; UTF16 196687] Prompt-8/11 dependency calculus
+[11-20:P6309; UTF16 196739] ALG-SOV5
+[11-20:P6310; UTF16 196748] incremental sovereignty
+[11-20:P6313; UTF16 196792] THM-SOV20
+[11-20:P6314; UTF16 196802] cold-equivalent checking
+[11-20:P6316; UTF16 196828] Prompt-10 adversarial calculus
+[11-20:P6319; UTF16 196879] ALG-SOV6
+[11-20:P6320; UTF16 196888] intent red team
+[11-20:P6323; UTF16 196924] checked sovereignty breakers
+[11-20:P6325; UTF16 196954] all branches
+[11-20:P6328; UTF16 196987] ALG-SOV4
+[11-20:P6329; UTF16 196996] SovereignOptimize
+[11-20:P6332; UTF16 197034] THM-SOV19
+[11-20:P6333; UTF16 197044] Whole-System
+[11-20:P6334; UTF16 197057] Sovereignty-Safe Optimization
+[11-20:P6337; UTF16 197107] PROMPT-11 PCR ROOT
+[11-20:P6338; UTF16 197126] final design satisfies
+[11-20:P6339; UTF16 197149] active intent version
+[11-20:P6343; UTF16 197174] 97. What Has Now Been Proven
+[11-20:P6344; UTF16 197203] Architectural intent semantics
+[11-20:P6345; UTF16 197234] Sovereign Design States contain physical, architectural, authority, provenance, consent, and evidence state.
+[11-20:P6346; UTF16 197343] Architectural intent is represented as a typed executable program rather than a label or scalar score.
+[11-20:P6347; UTF16 197446] Intent rules are scope and version aware.
+[11-20:P6348; UTF16 197488] Geometrically identical design states may differ sovereignly.

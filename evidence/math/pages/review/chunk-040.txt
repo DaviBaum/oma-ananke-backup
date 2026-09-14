@@ -1,0 +1,310 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P15730; UTF16 584479] Subsystem S0 fixes:
+[1-10:P15732; UTF16 584500] h=0,
+[1-10:P15733; UTF16 584505] while S1 fixes:
+[1-10:P15735; UTF16 584522] h=1.
+[1-10:P15736; UTF16 584527] Let the exterior experiment directly inspect h.
+[1-10:P15737; UTF16 584575] It returns different outcomes for S0 and S1, despite identical declared port relations.
+[1-10:P15738; UTF16 584663] Therefore port replacement is unsound when the interface is incomplete. ∎
+[1-10:P15739; UTF16 584737] Engineering examples
+[1-10:P15740; UTF16 584758] omitted structural support;
+[1-10:P15741; UTF16 584786] unmodeled HVAC leakage;
+[1-10:P15742; UTF16 584810] hidden electrical ground path;
+[1-10:P15743; UTF16 584841] cross-region maintenance access;
+[1-10:P15744; UTF16 584874] evidence validity depending on an omitted product identity.
+[1-10:P15748; UTF16 584937] 7. Interior Elimination
+[1-10:P15749; UTF16 584961] THM-PO1 — Interior Elimination Sufficiency
+[1-10:P15750; UTF16 585004] Let S1,S2 have compatible port-complete interfaces and suppose
+[1-10:P15751; UTF16 585067] \[ \mathcal P_{S_1} = \mathcal P_{S_2}. \]
+[1-10:P15752; UTF16 585110] Then every admitted exterior experiment interacting only through those ports produces the same complete Prompt-2 outcome for S1 and S2.
+[1-10:P15754; UTF16 585256] \[ S_1 \equiv_{\mathcal T_{\mathrm{port}}} S_2. \]
+[1-10:P15756; UTF16 585313] Port completeness gives, for every exterior experiment e, a factorization
+[1-10:P15757; UTF16 585387] \[ \mathsf{Out}_e(S_j) = \overline e(\mathcal P_{S_j}). \]
+[1-10:P15758; UTF16 585446] Because the two exact port relations are equal,
+[1-10:P15759; UTF16 585494] \[ \overline e(\mathcal P_{S_1}) = \overline e(\mathcal P_{S_2}). \]
+[1-10:P15760; UTF16 585563] This holds for every admitted port experiment, including mandatory, evidence, uncertainty, and marked-menu experiments.
+[1-10:P15761; UTF16 585683] Thus the subsystems are contextually equivalent under the port theory. ∎
+[1-10:P15763; UTF16 585789] Equal approximate center functions are insufficient.
+[1-10:P15764; UTF16 585842] The exact relation, mandatory regime semantics, uncertainty, and evidence must agree, or an approved bounded approximation theorem must apply.
+[1-10:P15768; UTF16 585988] 8. Port Contextual Equivalence
+[1-10:P15769; UTF16 586019] DEF-PO6 — Exact Port Contextual Equivalence
+[1-10:P15770; UTF16 586063] For compatible open subsystems,
+[1-10:P15772; UTF16 586096] S1portS2
+[1-10:P15773; UTF16 586105] when every context generated from legal port wiring, exterior operators, uncertainty, evidence, and terminal experiments gives equal complete outcomes.
+[1-10:P15774; UTF16 586257] This is precisely Prompt-2 contextual equivalence instantiated with the port-context language:
+[1-10:P15775; UTF16 586352] \[ \boxed{ S_1\equiv_{\mathrm{port}}S_2 \iff S_1\equiv_{\mathcal T_{\mathrm{port}}}S_2. } \]
+[1-10:P15776; UTF16 586445] Equality of exact port relations implies port equivalence by THM-PO1.
+[1-10:P15777; UTF16 586515] The converse requires a context language rich enough to distinguish any difference in the relation.
+[1-10:P15781; UTF16 586618] LEM-PO1 — Relation Equality from Membership-Separating Contexts
+[1-10:P15782; UTF16 586682] Suppose that for every tuple t in the symmetric difference of two port relations, the exterior language contains an experiment that binds the relevant boundary, parameter, and uncertainty values and tests whether outcome tuple t is admitted.
+[1-10:P15784; UTF16 586929] \[ S_1\equiv_{\mathrm{port}}S_2 \Longrightarrow \mathcal P_{S_1} = \mathcal P_{S_2}. \]
+[1-10:P15786; UTF16 587023] If the relations differed, choose a tuple in their symmetric difference.
+[1-10:P15787; UTF16 587096] The assumed membership experiment distinguishes the subsystems, contradicting port equivalence. ∎
+[1-10:P15788; UTF16 587194] Without membership-separating contexts, contextual port equivalence may be coarser than relation equality.
+[1-10:P15792; UTF16 587304] 9. Minimal Port Statistics
+[1-10:P15793; UTF16 587331] Let \(\mathcal X_S\) be the exact finite or symbolically represented semantic carrier of admissible subsystem behaviors under a fixed port theory.
+[1-10:P15795; UTF16 587482] \[ \Sigma_S^{\mathrm{port}} = \mathcal X_S/\equiv_{\mathrm{port}}. \]
+[1-10:P15796; UTF16 587552] DEF-PO7 — Port-Sufficient Statistic
+[1-10:P15797; UTF16 587588] A statistic
+[1-10:P15798; UTF16 587600] \[ \phi:\mathcal X_S\to Z \]
+[1-10:P15799; UTF16 587629] is port sufficient when every admitted port experiment outcome can be recovered from (x).
+[1-10:P15803; UTF16 587722] THM-PO3 — Minimal Port Statistic
+[1-10:P15804; UTF16 587755] Every exact port-sufficient statistic refines the contextual port quotient.
+[1-10:P15805; UTF16 587831] Formally,
+[1-10:P15806; UTF16 587841] \[ \phi(x)=\phi(y) \Longrightarrow x\equiv_{\mathrm{port}}y. \]
+[1-10:P15807; UTF16 587905] There exists a unique surjection
+[1-10:P15808; UTF16 587938] \[ g:\operatorname{im}(\phi) \twoheadrightarrow \Sigma_S^{\mathrm{port}} \]
+[1-10:P15811; UTF16 588025] Sport=g.
+[1-10:P15813; UTF16 588044] \[ |\operatorname{im}(\phi)| \ge |\Sigma_S^{\mathrm{port}}|. \]
+[1-10:P15815; UTF16 588114] If (x)=(y), every experiment decoder receives the same statistic and must produce the same outcome.
+[1-10:P15816; UTF16 588214] Thus xporty.
+[1-10:P15819; UTF16 588235] g((x))=[x]port.
+[1-10:P15820; UTF16 588251] The implication makes g well defined. Surjectivity and uniqueness follow as in THM-DS21.1. ∎
+[1-10:P15821; UTF16 588344] Raw finite-element boundary degrees of freedom are not presumed minimal.
+[1-10:P15825; UTF16 588420] 10. Port Wiring and Composition
+[1-10:P15826; UTF16 588452] DEF-PO8 — Typed Wiring Relation
+[1-10:P15827; UTF16 588484] Let A and B expose selected connected-port slices
+[1-10:P15828; UTF16 588534] \[ \mathcal B_A^c, \qquad \mathcal B_B^c. \]
+[1-10:P15829; UTF16 588579] A wiring relation is
+[1-10:P15830; UTF16 588600] \[ W \subseteq \mathcal B_A^c \times \mathcal B_B^c \]
+[1-10:P15831; UTF16 588655] that enforces:
+[1-10:P15832; UTF16 588670] matching port types;
+[1-10:P15833; UTF16 588691] orientation rules;
+[1-10:P15834; UTF16 588710] unit compatibility;
+[1-10:P15835; UTF16 588730] connection constraints;
+[1-10:P15837; UTF16 588768] exact discrete regime compatibility.
+[1-10:P15838; UTF16 588805] For a mechanical power port:
+[1-10:P15841; UTF16 588850] For a process port, W may enforce synchronous state or resource compatibility.
+[1-10:P15845; UTF16 588932] DEF-PO9 — Exact Subsystem Composition
+[1-10:P15846; UTF16 588970] Let bAe,bBe be unconnected exterior boundary variables.
+[1-10:P15847; UTF16 589026] Let AB be the joint parameter/scenario relation preserving shared uncertainty correlation.
+[1-10:P15849; UTF16 589124] \[ \mathcal P_{A\circ_WB} \]
+[1-10:P15851; UTF16 589156] \[ \begin{aligned} &(b_A^e,b_B^e,\lambda,z) \in \mathcal P_{A\circ_WB} \\ \iff{}& \exists b_A^c,b_B^c,z_A,z_B,\lambda_A,\lambda_B: \\ & (b_A^e,b_A^c,\lambda_A,z_A) \in \mathcal P_A, \\ & (b_B^e,b_B^c,\lambda_B,z_B) \in \mathcal P_B, \\ & W(b_A^c,b_B^c), \\ & \Lambda_{AB}(\lambda,\lambda_A,\lambda_B), \\ & z=\mu(z_A,z_B,W). \end{aligned} \]
+[1-10:P15852; UTF16 589498] The exact combiner  merges:
+[1-10:P15853; UTF16 589526] mandatory statuses;
+[1-10:P15854; UTF16 589546] internal consequences;
+[1-10:P15855; UTF16 589569] evidence graphs;
+[1-10:P15856; UTF16 589586] validity and discrepancy metadata.
+[1-10:P15857; UTF16 589621] It does not average incompatible mandatory regimes.
+[1-10:P15861; UTF16 589676] 11. Associativity
+[1-10:P15862; UTF16 589694] THM-PO4 — Port Composition Associativity
+[1-10:P15863; UTF16 589735] Let A,B,C have pairwise compatible typed ports.
+[1-10:P15865; UTF16 589791] all internal variables are distinctly named;
+[1-10:P15866; UTF16 589836] all wiring constraints arise from one consistent global wiring relation;
+[1-10:P15867; UTF16 589909] joint uncertainty is represented by one common relation rather than independent duplication;
+[1-10:P15868; UTF16 590002] consequence/evidence combination is associative up to canonical isomorphism.
+[1-10:P15870; UTF16 590084] \[ (A\circ B)\circ C \cong A\circ(B\circ C) \]
+[1-10:P15871; UTF16 590131] as exact external port relations.
+[1-10:P15873; UTF16 590171] Both parenthesizations are obtained from the conjunction
+[1-10:P15874; UTF16 590228] \[ \mathcal P_A \land \mathcal P_B \land \mathcal P_C \land W_{AB} \land W_{BC} \land \Lambda_{ABC} \]
+[1-10:P15875; UTF16 590331] by existentially eliminating the same internal port and local variables.
+[1-10:P15876; UTF16 590404] Finite existential quantification is associative and commutative over distinct variables:
+[1-10:P15877; UTF16 590494] \[ \exists x\,\exists y\,\Phi \iff \exists y\,\exists x\,\Phi. \]
+[1-10:P15878; UTF16 590560] Conjunction is associative.
+[1-10:P15879; UTF16 590588] Therefore both parenthesizations define the same relation on the remaining external variables, up to canonical ordering and renaming. ∎
+[1-10:P15880; UTF16 590724] This is semantic associativity. Implementations may use different elimination orders and incur different computational costs.
+[1-10:P15884; UTF16 590853] 12. Hiding
+[1-10:P15885; UTF16 590864] DEF-PO10 — Port Hiding
+[1-10:P15886; UTF16 590887] For relation
+[1-10:P15888; UTF16 590901] RXZY,
+[1-10:P15889; UTF16 590907] hiding internal port Z is
+[1-10:P15890; UTF16 590933] \[ \mathsf{hide}_Z(R) = \left\{ (x,y): \exists z,\; (x,z,y)\in R \right\}. \]
+[1-10:P15893; UTF16 591013] THM-PO5 — Hiding Correctness
+[1-10:P15894; UTF16 591042] \[ (x,y)\in\mathsf{hide}_Z(R) \]
+[1-10:P15895; UTF16 591075] if and only if there exists an internal port value z making the unhidden relation true.
+[1-10:P15896; UTF16 591163] Thus hiding removes the port representation while preserving exactly every externally realizable behavior.
+[1-10:P15898; UTF16 591276] This is the defining membership condition of existential projection. ∎
+[1-10:P15899; UTF16 591347] Hiding is exact. It may make the resulting relation more difficult to represent.
+[1-10:P15903; UTF16 591431] 13. Exact Linear Static Condensation
+[1-10:P15904; UTF16 591468] Consider
+[1-10:P15905; UTF16 591477] \[ K \begin{bmatrix} u_b\\ u_i \end{bmatrix} = \begin{bmatrix} f_b\\ f_i \end{bmatrix}, \]
+[1-10:P15907; UTF16 591573] \[ K = \begin{bmatrix} K_{bb}&K_{bi}\\ K_{ib}&K_{ii} \end{bmatrix}. \]
+[1-10:P15908; UTF16 591644] Assume Kii is invertible.
+[1-10:P15909; UTF16 591670] The internal equation is
+[1-10:P15911; UTF16 591696] Kibub+Kiiui=fi,
+[1-10:P15914; UTF16 591716] ui=Kii-1(fi-Kibub).
+[1-10:P15915; UTF16 591736] Substitution into the boundary equation gives
+[1-10:P15917; UTF16 591783] fb=Keffub+KbiKii-1fi,
+[1-10:P15919; UTF16 591811] \[ \boxed{ K_{\mathrm{eff}} = K_{bb} - K_{bi}K_{ii}^{-1}K_{ib}. } \]
+[1-10:P15922; UTF16 591882] THM-PO6 — Exact Static Condensation
+[1-10:P15923; UTF16 591918] If Kii is invertible, the condensed boundary relation above is exactly equal to the projection of the full linear system onto (ub,fb).
+[1-10:P15925; UTF16 592059] Every full solution satisfies the derived internal solution formula and therefore the condensed boundary equation.
+[1-10:P15926; UTF16 592174] Conversely, if ub,fb satisfy the condensed equation, define
+[1-10:P15929; UTF16 592255] The internal block equation holds by construction.
+[1-10:P15930; UTF16 592306] Substitution into the boundary block equation reproduces fb.
+[1-10:P15931; UTF16 592367] Thus full solutions and condensed boundary solutions correspond bijectively. ∎
+[1-10:P15935; UTF16 592449] 13.1 Singular Kii
+[1-10:P15936; UTF16 592467] If Kii is singular:
+[1-10:P15937; UTF16 592487] a solution exists only if \[ f_i-K_{ib}u_b \in \operatorname{range}(K_{ii}); \]
+[1-10:P15938; UTF16 592567] internal solutions are nonunique up to  
+[1-10:P15939; UTF16 592608] Kii;
+[1-10:P15941; UTF16 592614] the boundary response is unique only if  
+[1-10:P15942; UTF16 592656] Kbin=0nKii.
+[1-10:P15944; UTF16 592669] A pseudoinverse formula is exact only together with these compatibility and nullspace conditions.
+[1-10:P15945; UTF16 592767] Rigid-body modes and mechanisms are semantic information, not numerical nuisances to erase.
+[1-10:P15949; UTF16 592862] 14. Structural Worked Example
+[1-10:P15950; UTF16 592892] Consider four collinear nodes connected by springs
+[1-10:P15952; UTF16 592944] k1=1,k2=2,k3=1.
+[1-10:P15953; UTF16 592960] Boundary nodes are 1,4. Internal nodes are 2,3.
+[1-10:P15954; UTF16 593008] The full stiffness matrix is
+[1-10:P15955; UTF16 593037] \[ K = \begin{bmatrix} 1&-1&0&0\\ -1&3&-2&0\\ 0&-2&3&-1\\ 0&0&-1&1 \end{bmatrix}. \]
+[1-10:P15956; UTF16 593122] Partitioning gives
+[1-10:P15957; UTF16 593141] \[ K_{bb} = \begin{bmatrix} 1&0\\ 0&1 \end{bmatrix}, \]\[ K_{bi} = \begin{bmatrix} -1&0\\ 0&-1 \end{bmatrix}, \]\[ K_{ii} = \begin{bmatrix} 3&-2\\ -2&3 \end{bmatrix}. \]
+[1-10:P15958; UTF16 593311] Its inverse is
+[1-10:P15959; UTF16 593326] \[ K_{ii}^{-1} = \frac15 \begin{bmatrix} 3&2\\ 2&3 \end{bmatrix}. \]
+[1-10:P15961; UTF16 593405] \[ K_{\mathrm{eff}} = K_{bb} - K_{bi}K_{ii}^{-1}K_{ib} = \frac15 \begin{bmatrix} 2&-2\\ -2&2 \end{bmatrix}. \]
+[1-10:P15962; UTF16 593516] The equivalent spring stiffness is
+[1-10:P15964; UTF16 593552] keq=25.
+[1-10:P15968; UTF16 593563] 14.1 Boundary verification
+[1-10:P15969; UTF16 593590] Take
+[1-10:P15971; UTF16 593596] u1=0,u4=1,fi=0.
+[1-10:P15972; UTF16 593612] The internal right-hand side is
+[1-10:P15973; UTF16 593644] \[ -K_{ib}u_b = \begin{bmatrix} 0\\ 1 \end{bmatrix}. \]
+[1-10:P15975; UTF16 593705] \[ u_i = K_{ii}^{-1} \begin{bmatrix} 0\\ 1 \end{bmatrix} = \begin{bmatrix} 0.4\\ 0.6 \end{bmatrix}. \]
+[1-10:P15976; UTF16 593808] The full boundary forces are
+[1-10:P15977; UTF16 593837] \[ f_b = \begin{bmatrix} -0.4\\ 0.4 \end{bmatrix}. \]
+[1-10:P15978; UTF16 593891] The condensed operator gives
+[1-10:P15979; UTF16 593920] \[ K_{\mathrm{eff}} \begin{bmatrix} 0\\ 1 \end{bmatrix} = \begin{bmatrix} -0.4\\ 0.4 \end{bmatrix}. \]
+[1-10:P15980; UTF16 594023] The responses agree exactly.
+[1-10:P15984; UTF16 594055] 14.2 One-mode reduced approximation
+[1-10:P15985; UTF16 594091] Choose reduced internal basis
+[1-10:P15986; UTF16 594121] \[ v_1 = \frac1{\sqrt2} \begin{bmatrix} 1\\ 1 \end{bmatrix}. \]
+[1-10:P15987; UTF16 594185] The Galerkin solution is
+[1-10:P15988; UTF16 594210] \[ \widehat u_i = \begin{bmatrix} 0.5\\ 0.5 \end{bmatrix}. \]
+[1-10:P15989; UTF16 594272] The internal residual is
+[1-10:P15990; UTF16 594297] \[ r = \begin{bmatrix} 0\\ 1 \end{bmatrix} - K_{ii}\widehat u_i = \begin{bmatrix} -0.5\\ 0.5 \end{bmatrix}. \]
+[1-10:P15992; UTF16 594414] \[ \|r\|_2 = \sqrt{\frac12}. \]
+[1-10:P15993; UTF16 594446] The eigenvalues of Kii are 1,5, so the coercivity constant is
+[1-10:P15995; UTF16 594509] =1.
+[1-10:P15996; UTF16 594513] THM-PO14 below gives
+[1-10:P15997; UTF16 594534] \[ \|u_i-\widehat u_i\|_2 \le \frac{\|r\|_2}{\alpha} = \sqrt{\frac12}. \]
+[1-10:P15998; UTF16 594608] The exact error is
+[1-10:P15999; UTF16 594627] \[ u_i-\widehat u_i = \begin{bmatrix} -0.1\\ 0.1 \end{bmatrix}, \]
+[1-10:P16000; UTF16 594694] with norm
+[1-10:P16002; UTF16 594705] 0.020.1414.
+[1-10:P16003; UTF16 594717] The certificate is conservative but valid.
+[1-10:P16004; UTF16 594760] The reduced boundary force is
+[1-10:P16005; UTF16 594790] \[ \widehat f_b = \begin{bmatrix} -0.5\\ 0.5 \end{bmatrix}. \]
+[1-10:P16008; UTF16 594855] 14.3 Enrichment
+[1-10:P16009; UTF16 594871] Add
+[1-10:P16010; UTF16 594875] \[ v_2 = \frac1{\sqrt2} \begin{bmatrix} 1\\ -1 \end{bmatrix}. \]
+[1-10:P16011; UTF16 594940] The two vectors span the full two-dimensional internal space.
+[1-10:P16012; UTF16 595002] The enriched reduced solution equals the full solution, and the residual becomes zero.
+[1-10:P16016; UTF16 595092] 14.4 Composition with another condensed component
+[1-10:P16017; UTF16 595142] Two identical condensed components of stiffness 2/5 are connected in series through hidden displacement um.
+[1-10:P16018; UTF16 595250] Equilibrium gives
+[1-10:P16020; UTF16 595269] 25(um-uL)+25(um-uR)=0,
+[1-10:P16023; UTF16 595296] um=uL+uR2.
+[1-10:P16024; UTF16 595307] The external force becomes
+[1-10:P16026; UTF16 595335] fL=15(uL-uR).
+[1-10:P16027; UTF16 595349] Thus the exact composite stiffness is 1/5, obtained without reopening either original four-node interior.
+[1-10:P16031; UTF16 595458] 15. Exact Linear Network Elimination
+[1-10:P16032; UTF16 595495] Let a positive-conductance network have nodal Laplacian
+[1-10:P16033; UTF16 595551] \[ L = \begin{bmatrix} L_{bb}&L_{bi}\\ L_{ib}&L_{ii} \end{bmatrix}. \]
+[1-10:P16034; UTF16 595622] When every internal connected component is connected to a boundary node, Lii is invertible.
+[1-10:P16035; UTF16 595714] Define the Kron-reduced matrix
+[1-10:P16037; UTF16 595746] Lred=Lbb-LbiLii-1Lib.
+[1-10:P16041; UTF16 595771] THM-PO31 — Exact Kron Reduction
+[1-10:P16042; UTF16 595803] Under the invertibility condition:
+[1-10:P16043; UTF16 595838] Lred reproduces the exact boundary current-flow relation;
+[1-10:P16044; UTF16 595896] Lred is symmetric when L is symmetric;
+[1-10:P16045; UTF16 595935] Lred is positive semidefinite;
+[1-10:P16046; UTF16 595966] its row sums vanish.
+[1-10:P16048; UTF16 595993] Boundary exactness is THM-PO6.
+[1-10:P16049; UTF16 596024] Symmetry follows from
+[1-10:P16050; UTF16 596046] \[ L_{bi}=L_{ib}^{\mathsf T} \]
+[1-10:P16051; UTF16 596078] and symmetry of Lii-1.
+[1-10:P16052; UTF16 596101] For any boundary vector xb,
+[1-10:P16053; UTF16 596129] \[ x_b^{\mathsf T}L_{\mathrm{red}}x_b = \min_{x_i} \begin{bmatrix} x_b\\x_i \end{bmatrix}^{\mathsf T} L \begin{bmatrix} x_b\\x_i \end{bmatrix} \ge0. \]
+[1-10:P16054; UTF16 596281] Thus Lred is positive semidefinite.
+[1-10:P16056; UTF16 596323] \[ L\mathbf1=0, \]
+[1-10:P16057; UTF16 596342] the internal block gives
+[1-10:P16058; UTF16 596367] \[ L_{ii}\mathbf1_i = -L_{ib}\mathbf1_b. \]
+[1-10:P16059; UTF16 596411] Substitution into the boundary block yields
+[1-10:P16060; UTF16 596455] \[ L_{\mathrm{red}}\mathbf1_b=0. \]
+[1-10:P16062; UTF16 596493] This applies to:
+[1-10:P16063; UTF16 596510] resistive electrical networks;
+[1-10:P16064; UTF16 596541] linearized hydraulic networks;
+[1-10:P16065; UTF16 596572] linear thermal-resistance networks.
+[1-10:P16069; UTF16 596611] 16. Nonlinear Port Relations
+[1-10:P16070; UTF16 596640] For a nonlinear subsystem,
+[1-10:P16072; UTF16 596668] F(u,b,)=0,
+[1-10:P16073; UTF16 596679] the exact port relation is
+[1-10:P16074; UTF16 596706] \[ \mathcal P(b,\lambda) = \left\{ r: \exists u,\; F(u,b,\lambda)=0, \quad r=G(u,b,\lambda) \right\}. \]
+[1-10:P16075; UTF16 596811] Useful structural classes include:
+[1-10:P16076; UTF16 596846] ￼
+ATTACHED TABLE 1736791; native row/column order; 9 rows
+ROW 0: ["Class", "Consequence"]
+ROW 1: ["Strongly monotone interior operator", "Unique equilibrium and residual-to-error bound"]
+ROW 2: ["Strictly convex energy", "Unique minimizer"]
+ROW 3: ["Convex but not strictly convex", "Possibly multiple equilibria with common energy"]
+ROW 4: ["Maximal monotone relation", "Well-posed set-valued graph under suitable conditions"]
+ROW 5: ["Contraction mapping", "Unique fixed point and iterative convergence"]
+ROW 6: ["Smooth locally regular system", "Local implicit port map"]
+ROW 7: ["Passive/dissipative system", "Stable power-conserving composition under stated conditions"]
+ROW 8: ["General nonconvex system", "Multiple or absent equilibria; relation must remain set valued"]
+[1-10:P16077; UTF16 596848] ANANKE does not assign one theorem class to all building physics.
+[1-10:P16081; UTF16 596917] 17. Implicit Port Operators
+[1-10:P16082; UTF16 596945] THM-PO11 — Implicit Port Differentiation
+[1-10:P16083; UTF16 596986] Let U,B,V,R be Banach spaces.
+[1-10:P16085; UTF16 597020] \[ F:U\times B\to V, \qquad G:U\times B\to R \]
+[1-10:P16086; UTF16 597068] be continuously Fréchet differentiable near (u0,b0).
+[1-10:P16089; UTF16 597129] F(u0,b0)=0
+[1-10:P16091; UTF16 597144] \[ F_u(u_0,b_0):U\to V \]
+[1-10:P16092; UTF16 597170] is a bounded linear isomorphism.
+[1-10:P16093; UTF16 597203] Then there exist neighborhoods in which:
+[1-10:P16094; UTF16 597244] there is a unique differentiable map  
+[1-10:P16095; UTF16 597283] u=u(b)
+[1-10:P16096; UTF16 597290] satisfying F(u(b),b)=0;
+[1-10:P16097; UTF16 597314] its derivative is \[ \boxed{ \frac{du}{db} = -F_u^{-1}F_b; } \]
+[1-10:P16098; UTF16 597378] the port response  
+[1-10:P16099; UTF16 597398] r(b)=G(u(b),b)
+[1-10:P16100; UTF16 597413] satisfies \[ \boxed{ \frac{dr}{db} = G_b - G_uF_u^{-1}F_b. } \]
+[1-10:P16102; UTF16 597483] The Banach-space implicit function theorem gives existence, local uniqueness, and differentiability of u(b).
+[1-10:P16103; UTF16 597592] Differentiate
+[1-10:P16105; UTF16 597607] F(u(b),b)=0:
+[1-10:P16107; UTF16 597621] Fududb+Fb=0.
+[1-10:P16108; UTF16 597634] Invert Fu.
+[1-10:P16109; UTF16 597645] Then differentiate r(b)=G(u(b),b) and substitute. ∎
+[1-10:P16110; UTF16 597697] Validity boundary
+[1-10:P16111; UTF16 597715] The theorem applies only while:
+[1-10:P16112; UTF16 597747] the exact discrete regime is fixed;
+[1-10:P16113; UTF16 597783] Fu remains invertible;
+[1-10:P16114; UTF16 597806] no contact, buckling, flow reversal, threshold, or topology transition is crossed.
+[1-10:P16118; UTF16 597892] 18. Multiple Equilibria
+[1-10:P16119; UTF16 597916] THM-PO12 — Set-Valued Port Semantics for Multiple Equilibria
+[1-10:P16120; UTF16 597977] If one boundary state admits multiple internal equilibria producing different responses, any authoritative port representation must retain all admitted responses unless an exact selection rule is part of the physical theory.
+[1-10:P16121; UTF16 598202] For safety property P:
+[1-10:P16122; UTF16 598225] universal safety requires \[ \forall r\in\mathcal P(b),\quad P(r); \]
+[1-10:P16123; UTF16 598295] existential feasibility requires \[ \exists r\in\mathcal P(b),\quad P(r). \]
+[1-10:P16124; UTF16 598372] A numerical solver’s returned branch alone cannot establish either universal statement.
+[1-10:P16128; UTF16 598471] F(u)=u2-1=0,
+[1-10:P16129; UTF16 598484] so equilibria are
+[1-10:P16131; UTF16 598503] u=-1,u=1.
+[1-10:P16132; UTF16 598513] Let response r=u, and safety property \(r\ge0\).
+[1-10:P16133; UTF16 598562] A solver returning u=1 observes a safe branch, but the exact relation also contains u=-1, which is unsafe.
+[1-10:P16134; UTF16 598669] Therefore selecting one branch omits true behavior and cannot certify universal safety. ∎
+[1-10:P16135; UTF16 598759] Evidence may justify an equilibrium-selection rule, but that rule must itself be part of the exact semantics.
+[1-10:P16139; UTF16 598872] 19. Proof-Carrying Port Envelopes
+[1-10:P16140; UTF16 598906] DEF-PO11 — Proof-Carrying Port Envelope
+[1-10:P16141; UTF16 598946] A PCPE for subsystem S is
+[1-10:P16142; UTF16 598972] \[ \widehat{\mathfrak P}_S = \left( \widehat{\mathcal P}_S, \mathcal V_S, Q_S, \mathscr E_S, H_S, E_S, \Delta_S, \mathsf{Dep}_S, \mathsf{Cert}_S \right), \]
+[1-10:P16144; UTF16 599136] \(\widehat{\mathcal P}_S\) is an outer port relation;
+[1-10:P16145; UTF16 599190] \(\mathcal V_S\) is its certified validity domain;
+[1-10:P16146; UTF16 599241] QS is the exact discrete regime partition;
+[1-10:P16147; UTF16 599284] \(\mathscr E_S\) is the Prompt-5 typed error ledger;
+[1-10:P16148; UTF16 599337] HS is the exact mandatory-status semantics;
+[1-10:P16149; UTF16 599381] ES is the semantic evidence view;
+[1-10:P16150; UTF16 599415] S is model discrepancy;
+[1-10:P16151; UTF16 599439] \(\mathsf{Dep}_S\) contains hashes and dependencies;
+[1-10:P16152; UTF16 599492] \(\mathsf{Cert}_S\) proves the declared enclosure and structural properties.
+[1-10:P16153; UTF16 599569] The foundational condition is
+[1-10:P16154; UTF16 599599] \[ \boxed{ \mathcal P_S\!\restriction_{\mathcal V_S} \subseteq \widehat{\mathcal P}_S. } \]
+[1-10:P16155; UTF16 599691] If the envelope is centered around reduced operator \(\widetilde{\mathcal P}_S\), it may be represented as
+[1-10:P16156; UTF16 599798] \[ \mathcal P_S(b,\lambda) \subseteq \widetilde{\mathcal P}_S(b,\lambda) \oplus E_S(b,\lambda). \]
+[1-10:P16157; UTF16 599897] Mandatory regimes are not averaged. A PCPE spanning regimes is unresolved or partitioned.
+[1-10:P16161; UTF16 599990] 20. Port Envelope Soundness
+[1-10:P16162; UTF16 600018] THM-PO7 — Proof-Carrying Port Envelope Soundness
+[1-10:P16164; UTF16 600075] \[ \mathcal P_S \subseteq \widehat{\mathcal P}_S \]
+[1-10:P16165; UTF16 600127] throughout the declared validity domain.

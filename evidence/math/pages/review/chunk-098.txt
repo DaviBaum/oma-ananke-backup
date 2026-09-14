@@ -1,0 +1,327 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P14131; UTF16 473752] Fault identity may remain unresolved for later root-cause analysis while the immediate safe action is already closed.
+[11-20:P14135; UTF16 473873] 21. Change-Point Semantics
+[11-20:P14136; UTF16 473900] DEF-ODT14 — Change-Free History Set
+[11-20:P14138; UTF16 473940] [ \Gamma_{0}^{\mathrm{nochange}} ]
+[11-20:P14139; UTF16 473975] be the set of operational trajectories compatible with:
+[11-20:P14140; UTF16 474031] the initial twin seed;
+[11-20:P14141; UTF16 474054] every accepted observation;
+[11-20:P14142; UTF16 474082] every accepted transition;
+[11-20:P14143; UTF16 474109] no transition in the declared change or fault class.
+[11-20:P14147; UTF16 474165] DEF-ODT15 — Certified Change Detection
+[11-20:P14148; UTF16 474204] A change is certified by time (t) when
+[11-20:P14149; UTF16 474243] \varnothing } ]
+[11-20:P14150; UTF16 474259] while the full accepted trajectory family is nonempty.
+[11-20:P14151; UTF16 474314] This establishes that no unchanged trajectory remains compatible with the current evidence and theory.
+[11-20:P14152; UTF16 474417] It does not automatically identify:
+[11-20:P14153; UTF16 474453] the fault;
+[11-20:P14154; UTF16 474464] the exact change time;
+[11-20:P14155; UTF16 474487] plant versus sensor change;
+[11-20:P14156; UTF16 474515] maintenance action.
+[11-20:P14160; UTF16 474538] PRO-ODT3 — Change Detection Does Not Imply Change Localization
+[11-20:P14162; UTF16 474614] Let the measured output be
+[11-20:P14163; UTF16 474641] [ y_t=x_t+b_t. ]
+[11-20:P14164; UTF16 474658] Two trajectory families are possible:
+[11-20:P14165; UTF16 474696] plant changes from (x=0) to (x=5), with (b=0);
+[11-20:P14166; UTF16 474743] sensor bias changes from (b=0) to (b=5), with (x=0).
+[11-20:P14167; UTF16 474796] Both produce the same output history.
+[11-20:P14168; UTF16 474834] The no-change joint hypothesis is eliminated.
+[11-20:P14169; UTF16 474880] The location of the change remains unresolved. ∎
+[11-20:P14173; UTF16 474932] 22. Safe Diagnostic Experiments
+[11-20:P14174; UTF16 474964] DEF-ODT16 — Safe Diagnostic Experiment
+[11-20:P14175; UTF16 475003] A Safe Diagnostic Experiment is a controlled operational experiment
+[11-20:P14176; UTF16 475071] (\pi_e,\mathsf{Obs}_e,\mathsf{Domain}_e,\mathsf{Authority}_e) ]
+[11-20:P14178; UTF16 475146] its input policy is authorized;
+[11-20:P14179; UTF16 475178] it depends only on available history;
+[11-20:P14180; UTF16 475216] every admitted trajectory from the current knowledge set remains inside the declared diagnostic safety, comfort, sovereignty, and equipment domain;
+[11-20:P14181; UTF16 475364] its observation relation is certified.
+[11-20:P14183; UTF16 475421] valve exercise;
+[11-20:P14184; UTF16 475437] equipment switchover;
+[11-20:P14185; UTF16 475459] test pulse;
+[11-20:P14186; UTF16 475471] safe setpoint change;
+[11-20:P14187; UTF16 475493] sensor cross-check;
+[11-20:P14188; UTF16 475513] controlled load perturbation.
+[11-20:P14189; UTF16 475543] Active diagnosis is not free information.
+[11-20:P14190; UTF16 475585] The diagnostic input changes the physical building state.
+[11-20:P14194; UTF16 475646] 23. Diagnostic Contextual Equivalence
+[11-20:P14195; UTF16 475684] DEF-ODT17 — Diagnostic Equivalence
+[11-20:P14197; UTF16 475723] [ \mathcal T_{\mathrm{diag}} ]
+[11-20:P14198; UTF16 475754] be a complete family of admitted adaptive safe diagnostic experiments.
+[11-20:P14200; UTF16 475832] [ z_1 \equiv_{\mathrm{diag}} z_2 ]
+[11-20:P14201; UTF16 475867] when every experiment in (\mathcal T_{\mathrm{diag}}) produces the same complete outcome from (z_1,z_2).
+[11-20:P14202; UTF16 475972] This is Prompt-2 contextual equivalence specialized to operational diagnosis.
+[11-20:P14206; UTF16 476053] THM-ODT9 — Diagnostic-Equivalent Fault States Cannot Be Isolated by the Current Diagnostic Theory
+[11-20:P14208; UTF16 476159] [ z_1 \equiv_{\mathrm{diag}} z_2, ]
+[11-20:P14210; UTF16 476199] [ \mathsf{FaultMode}(z_1) \neq \mathsf{FaultMode}(z_2). ]
+[11-20:P14211; UTF16 476257] Then no diagnostic policy in (\mathcal T_{\mathrm{diag}}) isolates those two fault labels.
+[11-20:P14213; UTF16 476354] Diagnostic equivalence means every admitted complete diagnostic experiment returns the same outcome on (z_1,z_2).
+[11-20:P14214; UTF16 476468] A diagnostic policy isolates the labels only if some admitted experiment gives different complete reports.
+[11-20:P14215; UTF16 476575] No such experiment exists.
+[11-20:P14216; UTF16 476602] Therefore the current theory cannot isolate the faults. ∎
+[11-20:P14220; UTF16 476663] 24. Guaranteed Separating Diagnostic Experiments
+[11-20:P14221; UTF16 476712] For hypothesis set (H\subseteq\mathcal Z) and experiment (e), define
+[11-20:P14222; UTF16 476781] \left{ y: \exists z\in H \text{ such that }y \text{ is an admitted outcome of }e \right}. ]
+[11-20:P14223; UTF16 476873] THM-ODT10 — Disjoint Diagnostic Outcome Sets Guarantee One-Experiment Discrimination
+[11-20:P14224; UTF16 476958] Let (H_1,H_2) be two exhaustive current hypotheses.
+[11-20:P14227; UTF16 477028] then one valid observation from experiment (e) uniquely determines which hypothesis contains the actual state.
+[11-20:P14229; UTF16 477145] The actual state belongs to exactly one of (H_1,H_2).
+[11-20:P14230; UTF16 477199] If it belongs to (H_1), the observed output lies in (Y_e(H_1)).
+[11-20:P14231; UTF16 477263] Disjointness implies it does not lie in (Y_e(H_2)).
+[11-20:P14232; UTF16 477315] The symmetric argument holds when the actual state belongs to (H_2).
+[11-20:P14233; UTF16 477384] Thus the observation uniquely distinguishes the hypotheses. ∎
+[11-20:P14234; UTF16 477446] Merely having
+[11-20:P14235; UTF16 477460] [ Y_e(H_1) \neq Y_e(H_2) ]
+[11-20:P14236; UTF16 477487] is insufficient. The sets can differ while still overlapping.
+[11-20:P14237; UTF16 477549] Measurement uncertainty and sensor-health alternatives must be included in the outcome sets.
+[11-20:P14241; UTF16 477645] 25. Safe Active Diagnosis
+[11-20:P14242; UTF16 477671] Define the safe experiment set
+[11-20:P14243; UTF16 477702] [ \mathcal E_{\mathrm{diag}}^{\mathrm{safe}} (\Gamma_t) ]
+[11-20:P14244; UTF16 477760] as the experiments satisfying
+[11-20:P14245; UTF16 477790] [ \mathsf{Reach}e(\Gamma_t) \subseteq \mathcal S{\mathrm{op}} ]
+[11-20:P14246; UTF16 477854] and every applicable:
+[11-20:P14248; UTF16 477887] comfort;
+[11-20:P14249; UTF16 477896] architectural;
+[11-20:P14251; UTF16 477922] operational constraint.
+[11-20:P14252; UTF16 477946] An experiment can have excellent distinguishing power and still be forbidden.
+[11-20:P14253; UTF16 478024] Information value does not override physical safety.
+[11-20:P14257; UTF16 478080] 26. Diagnostic Experiment-Selection Hardness
+[11-20:P14258; UTF16 478125] THM-ODT11 — Minimum Healthy-versus-Fault Distinguishing Experiment Selection Is NP-Hard
+[11-20:P14260; UTF16 478246] Select a minimum experiment set distinguishing one reference healthy state from every possible fault state.
+[11-20:P14261; UTF16 478354] This problem is NP-hard.
+[11-20:P14266; UTF16 478473] [ S_1,\ldots,S_n. ]
+[11-20:P14267; UTF16 478493] Create:
+[11-20:P14268; UTF16 478501] one healthy operational state (z_0);
+[11-20:P14269; UTF16 478538] one fault state (z_i) for each (u_i).
+[11-20:P14270; UTF16 478576] For every subset (S_j), create diagnostic experiment (e_j) with deterministic binary output
+[11-20:P14271; UTF16 478668] [ e_j(z_0)=0, ]
+[11-20:P14273; UTF16 478748] A selected experiment suite (J) distinguishes every fault state from the healthy state exactly when
+[11-20:P14274; UTF16 478848] [ \forall i, \exists j\in J: e_j(z_i)\neq e_j(z_0). ]
+[11-20:P14275; UTF16 478902] By construction this is equivalent to
+[11-20:P14276; UTF16 478940] [ \forall i, \exists j\in J: u_i\in S_j, ]
+[11-20:P14277; UTF16 478983] which is equivalent to
+[11-20:P14279; UTF16 479011] Therefore selected suites correspond exactly to set covers, preserving cardinality.
+[11-20:P14280; UTF16 479095] A polynomial minimum-suite algorithm would solve Set Cover.
+[11-20:P14281; UTF16 479155] Hence the restricted diagnostic selection problem is NP-hard. ∎
+[11-20:P14282; UTF16 479219] This theorem does not claim that every fixed small diagnostic problem is hard.
+[11-20:P14286; UTF16 479301] 27. Degradation Semantics
+[11-20:P14287; UTF16 479327] DEF-ODT18 — Degradation State
+[11-20:P14289; UTF16 479361] [ d_t \in \mathcal D_t. ]
+[11-20:P14290; UTF16 479387] Define a degradation relation
+[11-20:P14291; UTF16 479417] [ T_D \subseteq \mathcal D_t \times W_t \times U_t \times R_t \times \mathcal D_{t+1}. ]
+[11-20:P14292; UTF16 479506] It may model:
+[11-20:P14295; UTF16 479540] wear;
+[11-20:P14296; UTF16 479546] fatigue;
+[11-20:P14298; UTF16 479567] filter loading;
+[11-20:P14299; UTF16 479583] insulation damage;
+[11-20:P14300; UTF16 479602] battery degradation.
+[11-20:P14301; UTF16 479623] Monotonicity is not assumed.
+[11-20:P14302; UTF16 479652] Maintenance may:
+[11-20:P14303; UTF16 479669] reduce degradation;
+[11-20:P14304; UTF16 479689] reset one component;
+[11-20:P14305; UTF16 479710] replace an asset;
+[11-20:P14306; UTF16 479728] introduce another uncertainty.
+[11-20:P14310; UTF16 479762] DEF-ODT19 — Operational Failure Set
+[11-20:P14311; UTF16 479798] For claim (C), define
+[11-20:P14312; UTF16 479820] [ \mathcal F_C \subseteq \mathcal Z. ]
+[11-20:P14314; UTF16 479869] unsafe;
+[11-20:P14315; UTF16 479877] unavailable;
+[11-20:P14316; UTF16 479890] comfort violation;
+[11-20:P14317; UTF16 479909] out-of-domain operation;
+[11-20:P14318; UTF16 479934] evidence invalidity;
+[11-20:P14319; UTF16 479955] unacceptable degradation;
+[11-20:P14320; UTF16 479981] outside viability kernel.
+[11-20:P14321; UTF16 480007] There is no universal scalar health state.
+[11-20:P14325; UTF16 480053] 28. Certified Operational Reach Tubes
+[11-20:P14326; UTF16 480091] DEF-ODT20 — Certified Operational Reach Tube
+[11-20:P14328; UTF16 480143] current knowledge set (\Gamma_t);
+[11-20:P14329; UTF16 480177] operational policy (\pi);
+[11-20:P14330; UTF16 480203] disturbance and fault theory;
+[11-20:P14331; UTF16 480233] horizon (h);
+[11-20:P14333; UTF16 480253] [ \mathsf{Reach}^{\pi}_{t+h} (\Gamma_t) ]
+[11-20:P14334; UTF16 480295] as an outer-certified set of every admissible state or trajectory reachable over the horizon.
+[11-20:P14335; UTF16 480389] The representation may use:
+[11-20:P14339; UTF16 480450] symbolic modes;
+[11-20:P14340; UTF16 480466] PCPE compositions;
+[11-20:P14341; UTF16 480485] hybrid reachability;
+[11-20:P14342; UTF16 480506] other checked outer approximations.
+[11-20:P14343; UTF16 480542] The required semantic contract is:
+[11-20:P14344; UTF16 480577] [ \mathsf{ActualTraj}{t+h} \subseteq \mathsf{Reach}^{\pi}{t+h} (\Gamma_t). ]
+[11-20:P14348; UTF16 480657] THM-ODT12 — Reach-Tube Inclusion Certifies Finite-Horizon Operational Safety
+[11-20:P14350; UTF16 480742] the actual state lies in the current knowledge set;
+[11-20:P14351; UTF16 480794] the certified reach tube contains every actual trajectory under policy (\pi);
+[11-20:P14352; UTF16 480872] the reach tube satisfies [ \mathsf{Reach}^{\pi}_{t+h} (\Gamma_t) \subseteq \mathcal S. ]
+[11-20:P14353; UTF16 480961] Then the actual building remains in (\mathcal S) throughout the horizon.
+[11-20:P14355; UTF16 481040] The actual trajectory is one member of the certified reach tube.
+[11-20:P14356; UTF16 481105] Every state in every trajectory represented by the tube lies in (\mathcal S).
+[11-20:P14357; UTF16 481183] Therefore every actual trajectory state lies in (\mathcal S). ∎
+[11-20:P14358; UTF16 481247] This theorem remains conditional on:
+[11-20:P14359; UTF16 481284] disturbance coverage;
+[11-20:P14360; UTF16 481306] fault coverage;
+[11-20:P14361; UTF16 481322] actuator semantics;
+[11-20:P14363; UTF16 481358] outer-sound reachability.
+[11-20:P14367; UTF16 481387] 29. Failure-Time Semantics
+[11-20:P14368; UTF16 481414] DEF-ODT21 — Trajectory Failure Time
+[11-20:P14369; UTF16 481450] For trajectory (\tau) and failure set (\mathcal F),
+[11-20:P14370; UTF16 481502] \inf \left{ k\ge0: \tau(t+k) \in \mathcal F \right}. ]
+[11-20:P14371; UTF16 481557] If the trajectory never enters (\mathcal F), set
+[11-20:P14372; UTF16 481606] [ T_{\mathcal F}(\tau)=\infty. ]
+[11-20:P14376; UTF16 481642] DEF-ODT22 — Certified Failure-Time Interval
+[11-20:P14377; UTF16 481686] For admitted trajectory family
+[11-20:P14378; UTF16 481717] [ \mathcal T(\Gamma_t,\pi), ]
+[11-20:P14380; UTF16 481754] \inf_{\tau\in\mathcal T} T_{\mathcal F}(\tau), ]
+[11-20:P14381; UTF16 481803] \sup_{\tau\in\mathcal T} T_{\mathcal F}(\tau). ]
+[11-20:P14385; UTF16 481855] LEM-ODT1 — Actual Failure Time Lies in the Certified Failure-Time Interval
+[11-20:P14386; UTF16 481930] If the actual trajectory belongs to (\mathcal T(\Gamma_t,\pi)), then
+[11-20:P14387; UTF16 481999] [ \boxed{ T_{\mathcal F}(\tau^\star) \in \left[ \underline T_{\mathcal F}, \overline T_{\mathcal F} \right]. } ]
+[11-20:P14389; UTF16 482118] The infimum is no larger than any member’s value, and the supremum is no smaller than any member’s value.
+[11-20:P14390; UTF16 482224] Apply these inequalities to (\tau^\star). ∎
+[11-20:P14391; UTF16 482268] A point RUL estimate is not the certified object.
+[11-20:P14395; UTF16 482321] 30. Claim-Relative Remaining Life
+[11-20:P14396; UTF16 482355] Different claims induce different failure sets and therefore different horizons:
+[11-20:P14397; UTF16 482436] [ \underline T_{\mathrm{struct}}, \quad \underline T_{\mathrm{chiller}}, \quad \underline T_{\mathrm{filter}}, \quad \underline T_{\mathrm{calibration}}, \quad \underline T_{\mathrm{evidence}}. ]
+[11-20:P14398; UTF16 482632] There is no single universal remaining-life scalar for the whole building unless a governance rule explicitly defines one.
+[11-20:P14402; UTF16 482758] 31. Synthetic Monotone Degradation Example
+[11-20:P14403; UTF16 482801] All values in this section are synthetic.
+[11-20:P14405; UTF16 482847] d_k+r_k, ]
+[11-20:P14407; UTF16 482864] [ d_0 \in [\ell,u], \qquad r_k \in [a,b], \qquad 0<a\le b. ]
+[11-20:P14408; UTF16 482925] Failure occurs when
+[11-20:P14409; UTF16 482945] [ d_k \ge D. ]
+[11-20:P14410; UTF16 482960] Earliest possible failure
+[11-20:P14411; UTF16 482986] The fastest failing trajectory starts at (u) and accumulates (b) per step.
+[11-20:P14413; UTF16 483066] \max \left( 0, \left\lceil \frac{D-u}{b} \right\rceil \right). ]
+[11-20:P14414; UTF16 483131] Latest possible failure
+[11-20:P14415; UTF16 483155] The slowest failing trajectory starts at (\ell) and accumulates (a) per step.
+[11-20:P14417; UTF16 483238] \max \left( 0, \left\lceil \frac{D-\ell}{a} \right\rceil \right). ]
+[11-20:P14418; UTF16 483306] Before (k_{\min}), no admissible trajectory has failed.
+[11-20:P14419; UTF16 483362] By (k_{\max}), every admissible trajectory has failed.
+[11-20:P14420; UTF16 483417] Synthetic numbers
+[11-20:P14422; UTF16 483439] [ d_0 \in [60,65], ]
+[11-20:P14423; UTF16 483460] [ r_k \in [2,5], ]
+[11-20:P14424; UTF16 483479] [ D=100. ]
+[11-20:P14426; UTF16 483495] 7, ]
+[11-20:P14428; UTF16 483502] The certified failure-time interval is
+[11-20:P14429; UTF16 483541] [ [7,20]. ]
+[11-20:P14430; UTF16 483553] Reporting one value such as “RUL (=9)” would add unsupported precision.
+[11-20:P14434; UTF16 483628] 32. Maintenance Actions
+[11-20:P14435; UTF16 483652] DEF-ODT23 — Maintenance Action
+[11-20:P14436; UTF16 483683] A Maintenance Action is a typed relation
+[11-20:P14437; UTF16 483724] [ T_m^{\mathrm{maint}} \subseteq \mathcal Z \times \mathcal Z'. ]
+[11-20:P14440; UTF16 483807] clean;
+[11-20:P14441; UTF16 483814] lubricate;
+[11-20:P14442; UTF16 483825] recalibrate;
+[11-20:P14445; UTF16 483855] reconfigure;
+[11-20:P14446; UTF16 483868] reset;
+[11-20:P14447; UTF16 483875] create downtime;
+[11-20:P14448; UTF16 483892] alter another subsystem;
+[11-20:P14449; UTF16 483917] change product identity;
+[11-20:P14450; UTF16 483942] change evidence;
+[11-20:P14451; UTF16 483959] change the active control version.
+[11-20:P14452; UTF16 483994] Maintenance is not assumed to restore “as new.”
+[11-20:P14453; UTF16 484042] That must be an explicit postcondition.
+[11-20:P14457; UTF16 484085] 33. Post-Maintenance Knowledge
+[11-20:P14458; UTF16 484116] Let maintenance evidence define
+[11-20:P14459; UTF16 484148] [ \mathsf{PostMaintEvidence}. ]
+[11-20:P14461; UTF16 484188] \operatorname{Post}_{T_m^{\mathrm{maint}}} (\Gamma_t) \cap \mathsf{PostMaintEvidence}. ]
+[11-20:P14462; UTF16 484277] A work order is evidence that an action was intended or reported.
+[11-20:P14463; UTF16 484343] It is not automatically proof of the exact post-maintenance state.
+[11-20:P14467; UTF16 484413] 34. Maintenance Decision Reports
+[11-20:P14468; UTF16 484446] DEF-ODT24 — Maintenance Decision Report
+[11-20:P14470; UTF16 484493] [ r_{\mathrm{maint}}: \mathcal Z \to \mathcal R_{\mathrm{maint}}. ]
+[11-20:P14471; UTF16 484561] Possible reports include:
+[11-20:P14480; UTF16 484658] human judgment required.
+[11-20:P14481; UTF16 484683] The report may be menu sensitive and need not arise from one scalar expected-cost objective.
+[11-20:P14485; UTF16 484779] PRO-ODT4 — Maintenance Completion Before the Earliest Possible Failure
+[11-20:P14487; UTF16 484858] the actual failure time satisfies [ T_{\mathcal F}(\tau^\star) \ge \underline T_{\mathcal F}; ]
+[11-20:P14488; UTF16 484954] maintenance begins at time (s);
+[11-20:P14489; UTF16 484986] every admitted maintenance realization completes within (L);
+[11-20:P14490; UTF16 485047] the project remains safe during maintenance;
+[11-20:P14491; UTF16 485092] completion occurs strictly before the earliest possible failure: [ s+L < \underline T_{\mathcal F}; ]
+[11-20:P14492; UTF16 485194] every possible post-maintenance state lies outside the failure set.
+[11-20:P14493; UTF16 485262] Then failure cannot occur before successful maintenance completion.
+[11-20:P14495; UTF16 485336] Every actual trajectory remains outside (\mathcal F) before (\underline T_{\mathcal F}).
+[11-20:P14496; UTF16 485425] Maintenance completes by (s+L<\underline T_{\mathcal F}).
+[11-20:P14497; UTF16 485483] Therefore completion occurs before any possible failure.
+[11-20:P14498; UTF16 485540] The post-maintenance state is outside (\mathcal F). ∎
+[11-20:P14499; UTF16 485594] This is a scoped timing theorem, not a universal maintenance recommendation.
+[11-20:P14503; UTF16 485674] 35. Maintenance-Planning Hardness
+[11-20:P14504; UTF16 485708] THM-ODT13 — Minimum-Cost Maintenance-Closure Planning Is NP-Hard in a Restricted Deterministic Model
+[11-20:P14505; UTF16 485809] Consider a restricted deterministic problem in which maintenance actions close specified operational obligations.
+[11-20:P14506; UTF16 485923] Finding a minimum-cost maintenance set that closes every obligation is NP-hard.
+[11-20:P14508; UTF16 486046] Take a Weighted Set Cover instance:
+[11-20:P14509; UTF16 486082] universe {u_1,\ldots,u_m}; ]
+[11-20:P14510; UTF16 486111] subsets [ S_1,\ldots,S_n \subseteq U; ]
+[11-20:P14511; UTF16 486151] nonnegative costs [ c_1,\ldots,c_n. ]
+[11-20:P14512; UTF16 486189] Create one unresolved operational obligation for each (u_i).
+[11-20:P14513; UTF16 486250] Create one maintenance action (m_j) with cost (c_j) that closes exactly the obligations corresponding to (S_j).
+[11-20:P14514; UTF16 486362] A maintenance set (J) closes every obligation exactly when
+[11-20:P14516; UTF16 486426] Its maintenance cost is
+[11-20:P14517; UTF16 486450] [ \sum_{j\in J}c_j, ]
+[11-20:P14518; UTF16 486472] equal to the cover cost.
+[11-20:P14519; UTF16 486497] Therefore minimum-cost maintenance closure is exactly Weighted Set Cover in this subclass.
+[11-20:P14520; UTF16 486588] A polynomial algorithm would solve Weighted Set Cover.
+[11-20:P14521; UTF16 486643] Hence the problem is NP-hard. ∎
+[11-20:P14522; UTF16 486675] Real maintenance planning may additionally contain:
+[11-20:P14523; UTF16 486727] sequencing;
+[11-20:P14524; UTF16 486739] stochastic durations;
+[11-20:P14526; UTF16 486769] downtime;
+[11-20:P14527; UTF16 486779] interaction;
+[11-20:P14528; UTF16 486792] spare-parts constraints.
+[11-20:P14532; UTF16 486820] 36. Robust One-Step Safe Controls
+[11-20:P14533; UTF16 486854] DEF-ODT25 — Robust One-Step Safe Control Set
+[11-20:P14536; UTF16 486940] safe set (\mathcal S_{t+1});
+[11-20:P14537; UTF16 486969] disturbance set (W_t);
+[11-20:P14539; UTF16 486999] [ U_{\mathrm{safe}}(\Gamma_t) ]
+[11-20:P14540; UTF16 487031] as the set of commands (u^{\mathrm{cmd}}) such that
+[11-20:P14541; UTF16 487083] [ \forall z\in\Gamma_t, ]
+[11-20:P14542; UTF16 487109] [ \forall u^{\mathrm{phys}} \text{ satisfying } \mathsf{ActRel} \left( u^{\mathrm{cmd}}, a(z), u^{\mathrm{phys}} \right), ]
+[11-20:P14543; UTF16 487233] [ \forall w\in W_t, ]
+[11-20:P14544; UTF16 487255] [ \forall z' \text{ satisfying } \widetilde T_t^{\mathrm{op}} \left( z, u^{\mathrm{phys}}, w, r_{\mathrm{none}}, z' \right), ]
+[11-20:P14546; UTF16 487390] [ z' \in \mathcal S_{t+1}. ]
+[11-20:P14547; UTF16 487419] This definition reasons about actual actuation, not software intent.
+[11-20:P14551; UTF16 487491] 37. Certified Runtime Safety Shield
+[11-20:P14552; UTF16 487527] DEF-ODT26 — Certified Runtime Safety Shield
+[11-20:P14553; UTF16 487571] A Certified Runtime Safety Shield receives a proposed command
+[11-20:P14554; UTF16 487633] [ u_t^{\mathrm{prop}} ]
+[11-20:P14555; UTF16 487657] and returns:
+[11-20:P14556; UTF16 487670] the proposal, when it lies in (U_{\mathrm{safe}}(\Gamma_t));
+[11-20:P14557; UTF16 487731] another certified safe command;
+[11-20:P14558; UTF16 487763] a verified fallback;
+[11-20:P14559; UTF16 487784] STOP or FAILSAFE when no safe command exists.
+[11-20:P14560; UTF16 487830] The performance controller may be:
+[11-20:P14562; UTF16 487874] heuristic;
+[11-20:P14563; UTF16 487885] model predictive;
+[11-20:P14565; UTF16 487910] LLM proposed.
+[11-20:P14566; UTF16 487924] It remains outside the safety trusted computing base.
+[11-20:P14570; UTF16 487981] THM-ODT14 — A Certified Runtime Safety Shield Preserves the Operational Safety Invariant
+[11-20:P14572; UTF16 488078] initially [ z_0^\star \in \Gamma_0 \subseteq \mathcal S_0; ]
+[11-20:P14573; UTF16 488139] at every time [ u_t^{\mathrm{cmd}} \in U_{\mathrm{safe}}(\Gamma_t); ]
+[11-20:P14574; UTF16 488209] actual actuator behavior, disturbance, and plant transition lie in the accepted theory;
+[11-20:P14575; UTF16 488297] operational updates preserve [ z_t^\star \in \Gamma_t. ]
+[11-20:P14577; UTF16 488359] [ \boxed{ z_t^\star \in \mathcal S_t \qquad \forall t. } ]
+[11-20:P14579; UTF16 488424] The base state lies in (\mathcal S_0).
+[11-20:P14582; UTF16 488498] The selected command belongs to (U_{\mathrm{safe}}(\Gamma_t)).
+[11-20:P14583; UTF16 488561] The actual state, physical actuation, disturbance, and successor are among those universally quantified by DEF-ODT25.
+[11-20:P14585; UTF16 488689] [ z_{t+1}^\star \in \mathcal S_{t+1}. ]
+[11-20:P14586; UTF16 488729] THM-ODT1 preserves actual-state containment for the next stage.
+[11-20:P14587; UTF16 488793] Induction proves the result. ∎
+[11-20:P14588; UTF16 488824] The theorem does not prove:
+[11-20:P14589; UTF16 488852] performance optimality;
+[11-20:P14590; UTF16 488876] comfort optimality;
+[11-20:P14591; UTF16 488896] nonemptiness of the safe-action set.
+[11-20:P14595; UTF16 488936] 38. Safe Controls May Not Exist
+[11-20:P14596; UTF16 488968] PRO-ODT5 — The Robust Safe-Control Set Can Be Empty
+[11-20:P14598; UTF16 489033] Let there be one current state (z).
+[11-20:P14599; UTF16 489069] Let every available command produce a successor in failure set (\mathcal F).
+[11-20:P14600; UTF16 489146] Then no command satisfies the universal safety definition, so
+[11-20:P14603; UTF16 489225] The required response may be:
+[11-20:P14604; UTF16 489255] emergency shutdown;
+[11-20:P14605; UTF16 489275] evacuation;
+[11-20:P14606; UTF16 489287] immediate maintenance;
+[11-20:P14607; UTF16 489310] another governed failsafe.
+[11-20:P14608; UTF16 489337] A shield cannot invent a safe action absent from the action theory.
+[11-20:P14612; UTF16 489408] 39. Information-State Viability
+[11-20:P14613; UTF16 489440] DEF-ODT33 — Finite-Horizon Operational Information-State Viability Kernel
+[11-20:P14615; UTF16 489519] (\mathfrak G_t) be operational knowledge states at time (t);
+[11-20:P14616; UTF16 489580] (\mathcal K_t^{\mathrm{safe}}) be knowledge states whose every concrete member is safe;
+[11-20:P14617; UTF16 489668] (\mathcal K_H^{\mathrm{goal}}) be accepted terminal knowledge states;

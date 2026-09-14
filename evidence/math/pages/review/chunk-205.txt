@@ -1,0 +1,387 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P28033; UTF16 910698] ￼
+ATTACHED TABLE 1736739; native row/column order; 85 rows
+ROW 0: ["Test", "Expected result"]
+ROW 1: ["1", "One project feasible, two jointly infeasible"]
+ROW 2: ["2", "Every pair feasible, triple infeasible"]
+ROW 3: ["3", "Valid flow satisfies all checked cuts"]
+ROW 4: ["4", "Negative outward cut slack proves infeasibility"]
+ROW 5: ["5", "Negative incoming cut slack proves infeasibility"]
+ROW 6: ["6", "Local connection passes while upstream cut fails"]
+ROW 7: ["7", "Portfolio peak equals peak sum under perfect coincidence"]
+ROW 8: ["8", "Portfolio peak strictly below peak sum under shifted peaks"]
+ROW 9: ["9", "Portfolio peak equals largest individual peak in perfectly shifted two-project case"]
+ROW 10: ["10", "Equal mean demand, different peak"]
+ROW 11: ["11", "Stale time alignment invalidates coincidence"]
+ROW 12: ["12", "Missing interval blocks exact portfolio peak"]
+ROW 13: ["13", "Individual capacity-region membership, aggregate failure"]
+ROW 14: ["14", "Local optimizer worsens regional peak"]
+ROW 15: ["15", "Local optimizer improves regional peak"]
+ROW 16: ["16", "External quotient factorization succeeds"]
+ROW 17: ["17", "External interface aliases regionally distinct states"]
+ROW 18: ["18", "Coarseness map from a refined interface to quotient exists"]
+ROW 19: ["19", "Internal transfer cancels"]
+ROW 20: ["20", "Nonantisymmetric internal ledger fails"]
+ROW 21: ["21", "Internal conversion loss remains external accounting term"]
+ROW 22: ["22", "Private optimum differs from system optimum"]
+ROW 23: ["23", "Pairwise-zero externality, nonzero triple interaction"]
+ROW 24: ["24", "Individual threshold compliance, cumulative violation"]
+ROW 25: ["25", "Additive externality model reproduces project sum"]
+ROW 26: ["26", "Nonzero interaction blocks naïve addition"]
+ROW 27: ["27", "Finite monotone cascade terminates"]
+ROW 28: ["28", "Cascade closure is a fixed point"]
+ROW 29: ["29", "Cascade closure is least among containing fixed points"]
+ROW 30: ["30", "Hidden dependency expands cascade after theory change"]
+ROW 31: ["31", "Nonmonotone cascade rejected from THM-SOS14"]
+ROW 32: ["32", "Dual feeds share one upstream substation"]
+ROW 33: ["33", "Equal marginals, different simultaneous availability"]
+ROW 34: ["34", "Equal marginals, different at-least-one availability"]
+ROW 35: ["35", "Scenario expansion shrinks robust set"]
+ROW 36: ["36", "Scenario expansion enlarges possible set"]
+ROW 37: ["37", "Robust result transfers to covered scenario"]
+ROW 38: ["38", "Actual scenario outside family blocks robust transfer"]
+ROW 39: ["39", "Static service state exists but is unreachable"]
+ROW 40: ["40", "Bootstrap action restores reachability"]
+ROW 41: ["41", "Recovery path violates authority and is rejected"]
+ROW 42: ["42", "Mutual-aid Hall condition passes"]
+ROW 43: ["43", "Mutual-aid Hall deficiency"]
+ROW 44: ["44", "Mutual-aid agreement with resource collision"]
+ROW 45: ["45", "Aid resource misses travel deadline"]
+ROW 46: ["46", "Aid resource is capable but unavailable"]
+ROW 47: ["47", "Resource double booking detected"]
+ROW 48: ["48", "Scenario-wise aid plans lack one nonanticipative plan"]
+ROW 49: ["49", "Robust prepositioning policy succeeds"]
+ROW 50: ["50", "Emergency aggregate capacity exceeded"]
+ROW 51: ["51", "Emergency compatibility cut fails despite adequate headcount"]
+ROW 52: ["52", "Average emergency utilization low while deadline window fails"]
+ROW 53: ["53", "Individual environmental compliance, regional budget failure"]
+ROW 54: ["54", "Regional environmental event double counted"]
+ROW 55: ["55", "Interaction term changes cumulative burden"]
+ROW 56: ["56", "Incompatible environmental functional units rejected"]
+ROW 57: ["57", "Negative cut slack reported without inventing price"]
+ROW 58: ["58", "Regional repair Hitting Set benchmark"]
+ROW 59: ["59", "Prompt-9 capacity measurement changes decision"]
+ROW 60: ["60", "Prompt-10 hidden upstream dependency breaker"]
+ROW 61: ["61", "Prompt-11 stale network evidence rejected"]
+ROW 62: ["62", "Prompt-12 repair violates architectural sovereignty"]
+ROW 63: ["63", "Prompt-13 interface cannot be materialized"]
+ROW 64: ["64", "Prompt-14 installed connection differs from interface"]
+ROW 65: ["65", "Prompt-15 demand update changes portfolio peak"]
+ROW 66: ["66", "Prompt-16 demand evidence remains population scoped"]
+ROW 67: ["67", "Prompt-17 common-cause availability remains probabilistic"]
+ROW 68: ["68", "Prompt-18 network repair economically infeasible"]
+ROW 69: ["69", "Prompt-19 infrastructure option expires"]
+ROW 70: ["70", "Prompt-20 actor lacks reservation authority"]
+ROW 71: ["71", "Prompt-21 mathematical feasibility does not create utility authority"]
+ROW 72: ["72", "Prompt-22 dispatch telemetry becomes suspect"]
+ROW 73: ["73", "Prompt-23 regional telemetry violates privacy"]
+ROW 74: ["74", "Prompt-24 dispatch exceeds human capacity"]
+ROW 75: ["75", "Prompt-25 infrastructure meter calibration expires"]
+ROW 76: ["76", "Prompt-26 support loss removes recovery path"]
+ROW 77: ["77", "Prompt-27 project environmental result remains individually valid"]
+ROW 78: ["78", "Incremental and cold PCSOS checks agree"]
+ROW 79: ["79", "AI pairwise-to-global inference rejected"]
+ROW 80: ["80", "AI assumes vendor independence and is rejected"]
+ROW 81: ["81", "AI proposes unreachable static recovery state"]
+ROW 82: ["82", "AI adds environmental intensities instead of absolute burdens"]
+ROW 83: ["83", "Valid PCSOS witness belongs to release fiber"]
+ROW 84: ["84", "Proposal-source replacement leaves checker result unchanged"]
+[21-30:P28037; UTF16 910703] 42. Proof-Assistant Formalization
+[21-30:P28038; UTF16 910737] Project interface equivalence
+[21-30:P28039; UTF16 910767] def ExternalEquivalent
+[21-30:P28040; UTF16 910790]     (F : Set (ProjectState → ExternalReport))
+[21-30:P28041; UTF16 910836]     (x y : ProjectState) : Prop :=
+[21-30:P28042; UTF16 910871]   ∀ f ∈ F, f x = f y
+[21-30:P28043; UTF16 910892] Infrastructure network
+[21-30:P28044; UTF16 910915] structure InfraEdge where
+[21-30:P28045; UTF16 910941]   source : NodeId
+[21-30:P28046; UTF16 910959]   target : NodeId
+[21-30:P28047; UTF16 910977]   capacity : ℝ
+[21-30:P28048; UTF16 910992]   capacityNonnegative : 0 ≤ capacity
+[21-30:P28050; UTF16 911030] structure InfraNetwork where
+[21-30:P28051; UTF16 911059]   nodes : Finset NodeId
+[21-30:P28052; UTF16 911083]   edges : Finset InfraEdge
+[21-30:P28054; UTF16 911130] Feasible flow
+[21-30:P28055; UTF16 911144] def FlowFeasible
+[21-30:P28056; UTF16 911161]     (G : InfraNetwork)
+[21-30:P28057; UTF16 911184]     (balance : NodeId → ℝ)
+[21-30:P28058; UTF16 911211]     (flow : InfraEdge → ℝ) : Prop :=
+[21-30:P28059; UTF16 911248]   (∀ e, 0 ≤ flow e ∧ flow e ≤ e.capacity) ∧
+[21-30:P28060; UTF16 911292]   (∀ v,
+[21-30:P28061; UTF16 911300]     Outflow G flow v - Inflow G flow v
+[21-30:P28062; UTF16 911339]       = balance v)
+[21-30:P28063; UTF16 911358] Cut inequality theorem skeleton
+[21-30:P28064; UTF16 911390] theorem feasible_flow_cut_bound
+[21-30:P28066; UTF16 911445]     (b : NodeId → ℝ)
+[21-30:P28067; UTF16 911466]     (f : InfraEdge → ℝ)
+[21-30:P28068; UTF16 911490]     (hFlow : FlowFeasible G b f)
+[21-30:P28069; UTF16 911523]     (S : Finset NodeId) :
+[21-30:P28070; UTF16 911549]     (∑ v in S, b v)
+[21-30:P28072; UTF16 911577]     CutCapacityOut G S := by
+[21-30:P28073; UTF16 911606]   -- Sum node balances over S.
+[21-30:P28074; UTF16 911637]   -- Cancel internal edges.
+[21-30:P28075; UTF16 911665]   -- Drop nonnegative incoming flow.
+[21-30:P28076; UTF16 911702]   -- Apply edge-capacity bounds.
+[21-30:P28078; UTF16 911741] Portfolio demand
+[21-30:P28079; UTF16 911758] def PortfolioDemand
+[21-30:P28080; UTF16 911778]     (demand : ProjectId → Time → ℝ)
+[21-30:P28081; UTF16 911814]     (t : Time) : ℝ :=
+[21-30:P28082; UTF16 911836]   ∑ p, demand p t
+[21-30:P28083; UTF16 911854] Cascade operator
+[21-30:P28084; UTF16 911871] def Extensive
+[21-30:P28085; UTF16 911885]     (Phi : Set Component → Set Component) : Prop :=
+[21-30:P28086; UTF16 911937]   ∀ F, F ⊆ Phi F
+[21-30:P28088; UTF16 911955] def Monotone
+[21-30:P28090; UTF16 912020]   ∀ F G, F ⊆ G → Phi F ⊆ Phi G
+[21-30:P28091; UTF16 912051] Cascade fixed-point skeleton
+[21-30:P28092; UTF16 912080] theorem finite_cascade_reaches_least_fixed_point
+[21-30:P28093; UTF16 912129]     [Fintype Component]
+[21-30:P28094; UTF16 912153]     (Phi : Set Component → Set Component)
+[21-30:P28095; UTF16 912195]     (hExt : Extensive Phi)
+[21-30:P28096; UTF16 912222]     (hMono : Monotone Phi)
+[21-30:P28097; UTF16 912249]     (F0 : Set Component) :
+[21-30:P28098; UTF16 912276]     ∃ Fstar,
+[21-30:P28099; UTF16 912289]       F0 ⊆ Fstar ∧
+[21-30:P28100; UTF16 912308]       Phi Fstar = Fstar ∧
+[21-30:P28101; UTF16 912334]       ∀ G,
+[21-30:P28102; UTF16 912345]         F0 ⊆ G →
+[21-30:P28103; UTF16 912362]         Phi G = G →
+[21-30:P28104; UTF16 912382]         Fstar ⊆ G := by
+[21-30:P28106; UTF16 912412] Externality
+[21-30:P28107; UTF16 912424] structure Externality where
+[21-30:P28108; UTF16 912452]   source : ProjectId
+[21-30:P28109; UTF16 912473]   receptor : ReceptorId
+[21-30:P28111; UTF16 912512]   eventId : EnvEventId
+[21-30:P28113; UTF16 912555] Regional scenario robustness
+[21-30:P28114; UTF16 912584] def RobustRegionalFeasible
+[21-30:P28115; UTF16 912611]     (Omega : Set RegionalScenario)
+[21-30:P28116; UTF16 912646]     (state : PortfolioState) : Prop :=
+[21-30:P28117; UTF16 912685]   ∀ w ∈ Omega,
+[21-30:P28118; UTF16 912700]     RegionalFeasible state w
+[21-30:P28119; UTF16 912729] Recovery reachability
+[21-30:P28120; UTF16 912751] def Reachable
+[21-30:P28122; UTF16 912777]       ServiceState →
+[21-30:P28123; UTF16 912798]       RecoveryAction →
+[21-30:P28126; UTF16 912854]     (x y : ServiceState) : Prop :=
+[21-30:P28127; UTF16 912889]   ∃ trace,
+[21-30:P28128; UTF16 912900]     ValidRecoveryTrace step x y trace
+[21-30:P28129; UTF16 912938] Mutual-aid compatibility
+[21-30:P28130; UTF16 912963] def AidCompatible
+[21-30:P28131; UTF16 912981]     (task : AidTask)
+[21-30:P28132; UTF16 913002]     (resource : AidResource) : Prop :=
+[21-30:P28133; UTF16 913041]   CapabilityCompatible task resource ∧
+[21-30:P28134; UTF16 913080]   resource.travelTime ≤ task.deadline ∧
+[21-30:P28135; UTF16 913120]   AuthorizedFor task resource ∧
+[21-30:P28136; UTF16 913152]   Available resource
+[21-30:P28137; UTF16 913173] System-of-systems fiber
+[21-30:P28138; UTF16 913197] def SoSReleaseFiber
+[21-30:P28139; UTF16 913217]     (target : SoSOutcome)
+[21-30:P28140; UTF16 913243]     (state : SoSState)
+[21-30:P28141; UTF16 913266]     (mode : SoSMode) :
+[21-30:P28142; UTF16 913289]     Set SoSWitness :=
+[21-30:P28144; UTF16 913318]     SoSValid target state mode w}
+[21-30:P28145; UTF16 913352] PCSOS
+[21-30:P28146; UTF16 913358] structure PCSOS where
+[21-30:P28147; UTF16 913380]   region : RegionId
+[21-30:P28148; UTF16 913400]   projects : ProjectInterfaceStore
+[21-30:P28149; UTF16 913435]   networks : InfrastructureNetworkStore
+[21-30:P28150; UTF16 913475]   demands : DemandStore
+[21-30:P28151; UTF16 913499]   externalities : ExternalityStore
+[21-30:P28152; UTF16 913534]   scenarios : RegionalScenarioStore
+[21-30:P28153; UTF16 913570]   dependencies : InterdependencyGraph
+[21-30:P28154; UTF16 913608]   cascades : CascadeCertificateStore
+[21-30:P28155; UTF16 913645]   mutualAid : MutualAidStore
+[21-30:P28156; UTF16 913674]   recovery : RecoveryStore
+[21-30:P28157; UTF16 913701]   environmental : RegionalEnvironmentalStore
+[21-30:P28158; UTF16 913746]   proofDependencies : DependencyGraph
+[21-30:P28163; UTF16 913807] 43. Mechanization Difficulty
+[21-30:P28164; UTF16 913836] ￼
+ATTACHED TABLE 1736755; native row/column order; 29 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Project-interface typing", "Moderate"]
+ROW 2: ["External contextual quotient", "Moderate"]
+ROW 3: ["Quotient coarseness", "Moderate"]
+ROW 4: ["Directed network flow", "Moderate"]
+ROW 5: ["Cut-capacity theorem", "Moderate"]
+ROW 6: ["Multi-commodity flow", "Difficult"]
+ROW 7: ["Nonlinear utility networks", "Research-level"]
+ROW 8: ["Portfolio-peak bounds", "Straightforward"]
+ROW 9: ["Temporal coincidence", "Difficult"]
+ROW 10: ["Shared-capacity regions", "Moderate"]
+ROW 11: ["Externality ledgers", "Difficult"]
+ROW 12: ["Higher-order interaction", "Difficult"]
+ROW 13: ["Internal-transfer cancellation", "Straightforward"]
+ROW 14: ["Interdependency graph", "Moderate"]
+ROW 15: ["Monotone cascade closure", "Moderate"]
+ROW 16: ["Nonmonotone cascades", "Research-level"]
+ROW 17: ["Common-cause probability", "Difficult"]
+ROW 18: ["Regional scenario families", "Difficult"]
+ROW 19: ["Recovery reachability", "Difficult"]
+ROW 20: ["Cyclic startup analysis", "Difficult"]
+ROW 21: ["Mutual-aid matching", "Moderate"]
+ROW 22: ["Rich aid scheduling", "NP-hard in useful restrictions"]
+ROW 23: ["Emergency-service capacity", "Difficult"]
+ROW 24: ["Regional environmental aggregation", "Difficult"]
+ROW 25: ["Regional repair", "NP-hard in the declared abstraction"]
+ROW 26: ["Incremental recertification", "Difficult"]
+ROW 27: ["PCSOS checker", "Research-level"]
+ROW 28: ["Complete open-world regional assurance", "Impossible without bounded assumptions"]
+[21-30:P28168; UTF16 913841] 44. Prompt-28 Complexity Profile
+[21-30:P28169; UTF16 913874] DEF-SOS45 — Prompt-28 Complexity Profile
+[21-30:P28170; UTF16 913915] \left( N_P, N_I, N_V, N_E, K_{\mathrm{flow}}, K_{\mathrm{peak}}, K_{\mathrm{capacity}}, K_{\mathrm{ext}}, K_{\mathrm{interaction}}, K_{\mathrm{dep}}, K_{\mathrm{cascade}}, K_{\mathrm{common}}, K_{\mathrm{scenario}}, K_{\mathrm{recovery}}, K_{\mathrm{aid}}, K_{\mathrm{emergency}}, K_{\mathrm{regionalEnv}}, C_{\mathrm{interface}}, C_{\mathrm{flow}}, C_{\mathrm{portfolio}}, C_{\mathrm{externality}}, C_{\mathrm{cascade}}, C_{\mathrm{recovery}}, C_{\mathrm{aid}}, C_{\mathrm{repair}}, C_{\mathrm{check}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unresolved}} \right). } ]
+[21-30:P28172; UTF16 914505] (N_P): project count;
+[21-30:P28173; UTF16 914527] (N_I): interface count;
+[21-30:P28174; UTF16 914551] (N_V): infrastructure-node count;
+[21-30:P28175; UTF16 914585] (N_E): infrastructure-edge count;
+[21-30:P28176; UTF16 914619] (K_{\mathrm{flow}}): network-flow complexity;
+[21-30:P28177; UTF16 914665] (K_{\mathrm{peak}}): temporal coincidence complexity;
+[21-30:P28178; UTF16 914719] (K_{\mathrm{capacity}}): shared-capacity complexity;
+[21-30:P28179; UTF16 914772] (K_{\mathrm{ext}}): externality complexity;
+[21-30:P28180; UTF16 914816] (K_{\mathrm{interaction}}): higher-order interaction complexity;
+[21-30:P28181; UTF16 914881] (K_{\mathrm{dep}}): interdependency complexity;
+[21-30:P28182; UTF16 914929] (K_{\mathrm{cascade}}): cascade complexity;
+[21-30:P28184; UTF16 915021] (K_{\mathrm{scenario}}): regional-scenario complexity;
+[21-30:P28185; UTF16 915076] (K_{\mathrm{recovery}}): recovery-reachability complexity;
+[21-30:P28186; UTF16 915135] (K_{\mathrm{aid}}): mutual-aid complexity;
+[21-30:P28187; UTF16 915178] (K_{\mathrm{emergency}}): emergency-service complexity;
+[21-30:P28188; UTF16 915234] (K_{\mathrm{regionalEnv}}): cumulative environmental complexity;
+[21-30:P28189; UTF16 915299] (C_{\mathrm{interface}}): interface-checking cost;
+[21-30:P28190; UTF16 915350] (C_{\mathrm{flow}}): network-feasibility cost;
+[21-30:P28191; UTF16 915397] (C_{\mathrm{portfolio}}): portfolio-demand cost;
+[21-30:P28192; UTF16 915446] (C_{\mathrm{externality}}): cumulative-externality cost;
+[21-30:P28193; UTF16 915503] (C_{\mathrm{cascade}}): cascade-analysis cost;
+[21-30:P28194; UTF16 915550] (C_{\mathrm{recovery}}): recovery-analysis cost;
+[21-30:P28195; UTF16 915599] (C_{\mathrm{aid}}): aid-computation cost;
+[21-30:P28196; UTF16 915641] (C_{\mathrm{repair}}): regional-repair cost;
+[21-30:P28197; UTF16 915686] (C_{\mathrm{check}}): independent PCSOS checking cost;
+[21-30:P28201; UTF16 915880] No scalar regional-resilience, infrastructure, externality, or community score is introduced.
+[21-30:P28205; UTF16 915977] 45. Permanent Assumption Registry
+[21-30:P28206; UTF16 916011] ￼
+ATTACHED TABLE 1736771; native row/column order; 32 rows
+ROW 0: ["ID", "Assumption"]
+ROW 1: ["ASSUMP-SOS1", "Regional Boundary Identity"]
+ROW 2: ["ASSUMP-SOS2", "Project-Set Coverage"]
+ROW 3: ["ASSUMP-SOS3", "Project-State Identity"]
+ROW 4: ["ASSUMP-SOS4", "Interface Completeness"]
+ROW 5: ["ASSUMP-SOS5", "Network Topology Correctness"]
+ROW 6: ["ASSUMP-SOS6", "Capacity Correctness"]
+ROW 7: ["ASSUMP-SOS7", "Demand and Injection Identity"]
+ROW 8: ["ASSUMP-SOS8", "Temporal Alignment"]
+ROW 9: ["ASSUMP-SOS9", "Conservation Correctness"]
+ROW 10: ["ASSUMP-SOS10", "Shared-Resource Completeness"]
+ROW 11: ["ASSUMP-SOS11", "Interdependency Completeness"]
+ROW 12: ["ASSUMP-SOS12", "Common-Cause Discipline"]
+ROW 13: ["ASSUMP-SOS13", "Scenario Coverage"]
+ROW 14: ["ASSUMP-SOS14", "Externality Completeness"]
+ROW 15: ["ASSUMP-SOS15", "Higher-Order Interaction Discipline"]
+ROW 16: ["ASSUMP-SOS16", "Cumulative-Impact Accounting"]
+ROW 17: ["ASSUMP-SOS17", "Mutual-Aid Resource Identity"]
+ROW 18: ["ASSUMP-SOS18", "Recovery Nonanticipativity"]
+ROW 19: ["ASSUMP-SOS19", "Emergency-Service Capacity"]
+ROW 20: ["ASSUMP-SOS20", "Dynamic Reachability"]
+ROW 21: ["ASSUMP-SOS21", "Environmental Integration"]
+ROW 22: ["ASSUMP-SOS22", "Governance Authority"]
+ROW 23: ["ASSUMP-SOS23", "Regulatory Authority"]
+ROW 24: ["ASSUMP-SOS24", "Economic Execution"]
+ROW 25: ["ASSUMP-SOS25", "Human Executability"]
+ROW 26: ["ASSUMP-SOS26", "Cyber Trust"]
+ROW 27: ["ASSUMP-SOS27", "Privacy"]
+ROW 28: ["ASSUMP-SOS28", "UNKNOWN Discipline"]
+ROW 29: ["ASSUMP-SOS29", "Checker Soundness"]
+ROW 30: ["ASSUMP-SOS30", "Dependency Completeness"]
+ROW 31: ["ASSUMP-SOS31", "Formalization Fidelity"]
+[21-30:P28210; UTF16 916016] 46. Permanent Definition Registry
+[21-30:P28211; UTF16 916050] ￼
+ATTACHED TABLE 1736787; native row/column order; 46 rows
+ROW 0: ["ID", "Definition"]
+ROW 1: ["DEF-SOS1", "Extra-Project System State"]
+ROW 2: ["DEF-SOS2", "Project External Interface"]
+ROW 3: ["DEF-SOS3", "Extra-Project Experiment Family"]
+ROW 4: ["DEF-SOS4", "Extra-Project Contextual Equivalence"]
+ROW 5: ["DEF-SOS5", "Canonical Extra-Project Quotient"]
+ROW 6: ["DEF-SOS6", "Capacitated Infrastructure Network"]
+ROW 7: ["DEF-SOS7", "Network Balance Vector"]
+ROW 8: ["DEF-SOS8", "Feasible Infrastructure Flow"]
+ROW 9: ["DEF-SOS9", "Infrastructure Cut"]
+ROW 10: ["DEF-SOS10", "Isolated Project Infrastructure Feasibility"]
+ROW 11: ["DEF-SOS11", "Joint Infrastructure Feasible Set"]
+ROW 12: ["DEF-SOS12", "Project Demand Trace"]
+ROW 13: ["DEF-SOS13", "Individual Peak"]
+ROW 14: ["DEF-SOS14", "Portfolio Demand"]
+ROW 15: ["DEF-SOS15", "Coincident Portfolio Peak"]
+ROW 16: ["DEF-SOS16", "Coincidence Ratio"]
+ROW 17: ["DEF-SOS17", "Aggregative Shared Capacity Region"]
+ROW 18: ["DEF-SOS18", "Extra-Project Externality"]
+ROW 19: ["DEF-SOS19", "Receptor"]
+ROW 20: ["DEF-SOS20", "Cumulative Exposure"]
+ROW 21: ["DEF-SOS21", "Antisymmetric Internal Transfer Ledger"]
+ROW 22: ["DEF-SOS22", "Infrastructure Dependency Relation"]
+ROW 23: ["DEF-SOS23", "Failure Set"]
+ROW 24: ["DEF-SOS24", "Monotone Cascade Operator"]
+ROW 25: ["DEF-SOS25", "Regional Common-Cause Variable"]
+ROW 26: ["DEF-SOS26", "Regional Scenario"]
+ROW 27: ["DEF-SOS27", "Regional Scenario Family"]
+ROW 28: ["DEF-SOS28", "Robust Regional Feasible Set"]
+ROW 29: ["DEF-SOS29", "Infrastructure Service State"]
+ROW 30: ["DEF-SOS30", "Recovery Transition Relation"]
+ROW 31: ["DEF-SOS31", "Mutual-Aid Resource"]
+ROW 32: ["DEF-SOS32", "Mutual-Aid Task"]
+ROW 33: ["DEF-SOS33", "Mutual-Aid Assignment Graph"]
+ROW 34: ["DEF-SOS34", "Regional Emergency-Service Demand"]
+ROW 35: ["DEF-SOS35", "Regional Environmental Budget"]
+ROW 36: ["DEF-SOS36", "Externality Decomposition"]
+ROW 37: ["DEF-SOS37", "Cut Slack"]
+ROW 38: ["DEF-SOS38", "System-of-Systems Conflict Core"]
+ROW 39: ["DEF-SOS39", "System-of-Systems Repair"]
+ROW 40: ["DEF-SOS40", "System-of-Systems Repair Frontier"]
+ROW 41: ["DEF-SOS41", "System-of-Systems Claim Modality"]
+ROW 42: ["DEF-SOS42", "System-of-Systems Dependency Graph"]
+ROW 43: ["DEF-SOS43", "System-of-Systems Release Fiber"]
+ROW 44: ["DEF-SOS44", "PCSOS"]
+ROW 45: ["DEF-SOS45", "Prompt-28 Complexity Profile"]
+[21-30:P28215; UTF16 916055] 47. Permanent Theorem Registry
+[21-30:P28216; UTF16 916086] ￼
+ATTACHED TABLE 1736803; native row/column order; 30 rows
+ROW 0: ["ID", "Theorem", "Status"]
+ROW 1: ["THM-SOS1", "External computations factor through canonical quotient", "Proved"]
+ROW 2: ["THM-SOS2", "Canonical quotient is coarsest exact interface", "Proved"]
+ROW 3: ["THM-SOS3", "Feasible flows satisfy cut-capacity bounds", "Proved"]
+ROW 4: ["THM-SOS4", "Individual feasibility does not imply joint feasibility", "Proved"]
+ROW 5: ["THM-SOS5", "Pairwise compatibility does not imply global compatibility", "Proved"]
+ROW 6: ["THM-SOS6", "Portfolio-peak bounds", "Proved"]
+ROW 7: ["THM-SOS7", "Equal means do not determine peaks", "Proved"]
+ROW 8: ["THM-SOS8", "Individual capacity membership does not imply aggregate membership", "Proved"]
+ROW 9: ["THM-SOS9", "Local improvement can worsen regional metric", "Proved"]
+ROW 10: ["THM-SOS10", "Private optimum need not minimize system cost", "Proved"]
+ROW 11: ["THM-SOS11", "Pairwise-zero effects need not exclude higher-order effects", "Proved"]
+ROW 12: ["THM-SOS12", "Individual thresholds do not imply cumulative threshold", "Proved"]
+ROW 13: ["THM-SOS13", "Antisymmetric internal transfers cancel", "Proved"]
+ROW 14: ["THM-SOS14", "Finite monotone cascade reaches least fixed point", "Proved"]
+ROW 15: ["THM-SOS15", "Local redundancy does not imply regional resilience", "Proved"]
+ROW 16: ["THM-SOS16", "Marginals do not determine joint availability", "Proved"]
+ROW 17: ["THM-SOS17", "Scenario expansion shrinks robust and enlarges possible set", "Proved"]
+ROW 18: ["THM-SOS18", "Robust feasibility transfers to covered actual scenario", "Proved"]
+ROW 19: ["THM-SOS19", "Static feasibility does not imply recovery reachability", "Proved"]
+ROW 20: ["THM-SOS20", "Mutual-aid agreement does not imply executable aid", "Proved"]
+ROW 21: ["THM-SOS21", "Scenario-wise aid plans need not form one policy", "Proved"]
+ROW 22: ["THM-SOS22", "Individual environmental compliance does not imply regional compliance", "Proved"]
+ROW 23: ["THM-SOS23", "Externalities add exactly iff interaction term vanishes", "Proved"]
+ROW 24: ["THM-SOS24", "Minimum-cost regional repair is NP-hard", "Proved"]
+ROW 25: ["THM-SOS25", "Incremental recertification equals cold checking", "Proved under explicit assumptions"]
+ROW 26: ["THM-SOS26", "Whole-project system-of-systems theorem", "Proved under 30 hypotheses"]
+ROW 27: ["THM-SOS27", "Open-world system-of-systems limitation", "Proved"]
+ROW 28: ["THM-SOS28", "Proposal-source independence", "Proved"]
+ROW 29: ["THM-SOS29", "Explicit PCSOS checking complexity", "Proved"]
+[21-30:P28220; UTF16 916091] 48. Corollary, Proposition, and Algorithm Registries
+[21-30:P28222; UTF16 916156] ￼
+ATTACHED TABLE 1736819; native row/column order; 3 rows
+ROW 0: ["ID", "Corollary"]
+ROW 1: ["COR-SOS1", "Unit-capacity mutual-aid assignment obeys Hall’s criterion"]
+ROW 2: ["COR-SOS2", "Emergency demand above compatible capacity proves deadline infeasibility"]
+[21-30:P28223; UTF16 916158] Proposition
+[21-30:P28224; UTF16 916170] ￼
+ATTACHED TABLE 1736835; native row/column order; 2 rows
+ROW 0: ["ID", "Proposition"]
+ROW 1: ["PRO-SOS1", "Negative cut slack certifies network infeasibility"]
+[21-30:P28225; UTF16 916172] Algorithms

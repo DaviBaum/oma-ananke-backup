@@ -1,0 +1,339 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P21344; UTF16 772124] robust-feasibility certificates;
+[1-10:P21345; UTF16 772157] global optimistic bounds (U_{d,u}^{\star});
+[1-10:P21346; UTF16 772201] portfolio pessimistic bounds (L_{d,u,A});
+[1-10:P21347; UTF16 772243] proofs of [ \overline R_d\le\varepsilon_d; ]
+[1-10:P21348; UTF16 772288] singleton mandatory-status proofs;
+[1-10:P21349; UTF16 772323] singleton diagonal qualitative-report proofs;
+[1-10:P21350; UTF16 772369] evidence-validity proofs;
+[1-10:P21351; UTF16 772395] model-validity and discrepancy fingerprints;
+[1-10:P21353; UTF16 772459] checker version.
+[1-10:P21357; UTF16 772479] 11. Certified Stopping and Monotonicity
+[1-10:P21358; UTF16 772519] THM-RC1 — Certified Regret-Closure Stopping
+[1-10:P21360; UTF16 772571] the theory fingerprint is fixed;
+[1-10:P21361; UTF16 772604] (G(K)=\mathbf 0);
+[1-10:P21362; UTF16 772622] (K'\sqsubseteq_{\mathrm{pure}}K).
+[1-10:P21364; UTF16 772662] every required mandatory status in (K') equals the certified mandatory status in (K);
+[1-10:P21365; UTF16 772748] every required qualitative report in (K') equals the certified report in (K);
+[1-10:P21366; UTF16 772826] the fixed portfolio (A_K) still satisfies [ \overline R_d(K',A_K)\le\varepsilon_d ] for every quantitative decision (d).
+[1-10:P21367; UTF16 772947] Therefore no further pure certified refinement can alter any required terminal decision.
+[1-10:P21370; UTF16 773051] [ \Gamma(K')\subseteq\Gamma(K), ]
+[1-10:P21371; UTF16 773085] every possible mandatory-status set satisfies:
+[1-10:P21372; UTF16 773132] [ \mathcal H_h(K') \subseteq \mathcal H_h(K). ]
+[1-10:P21373; UTF16 773180] At closure:
+[1-10:P21374; UTF16 773192] [ \mathcal H_h(K)={s_h} ]
+[1-10:P21375; UTF16 773218] for an acceptable (s_h). The nonempty subset must remain ({s_h}).
+[1-10:P21377; UTF16 773295] {(r_q,r_q)}. ]
+[1-10:P21378; UTF16 773310] Thus the exact qualitative report remains (r_q).
+[1-10:P21379; UTF16 773359] For quantitative regret, shrinking (\Gamma) gives:
+[1-10:P21380; UTF16 773410] [ U_{d,u}^{\star}(K') \le U_{d,u}^{\star}(K), ]
+[1-10:P21382; UTF16 773463] [ L_{d,u,A}(K') \ge L_{d,u,A}(K). ]
+[1-10:P21384; UTF16 773510] [ \overline R_d(K',A) \le \overline R_d(K,A) \le \varepsilon_d. ]
+[1-10:P21387; UTF16 773611] It does not cover:
+[1-10:P21388; UTF16 773630] a changed stakeholder theory;
+[1-10:P21389; UTF16 773660] a new hazard;
+[1-10:P21390; UTF16 773674] a changed release portfolio;
+[1-10:P21391; UTF16 773703] a newly admitted engineering action;
+[1-10:P21392; UTF16 773740] scientific or reusable value outside the current project.
+[1-10:P21396; UTF16 773801] THM-RC2 — Regret-Closure Deficit Monotonicity
+[1-10:P21398; UTF16 773851] [ K'\sqsubseteq_{\mathrm{pure}}K, ]
+[1-10:P21400; UTF16 773893] [ \boxed{ G(K')\preceq G(K). } ]
+[1-10:P21401; UTF16 773926] The result also holds for a portfolio expansion (A_K\subseteq A_{K'}) when the expansion is separately certified not to create a new qualitative menu distinction.
+[1-10:P21403; UTF16 774095] Shrinking (\Gamma) can only shrink each possible-status or possible-report set. A previously closed singleton remains the same singleton.
+[1-10:P21404; UTF16 774233] Thus no new mandatory, qualitative, or evidence blocker appears.
+[1-10:P21405; UTF16 774298] The quantitative inequalities from THM-RC1 show that every (g_d) is nonincreasing.
+[1-10:P21406; UTF16 774381] For a certified portfolio expansion, the pessimistic portfolio value cannot decrease:
+[1-10:P21407; UTF16 774467] [ L_{d,u,A'}(K') \ge L_{d,u,A}(K'). ]
+[1-10:P21408; UTF16 774505] The separate qualitative check prevents menu-induced reopening. ∎
+[1-10:P21412; UTF16 774574] THM-RC3 — Anytime Metareasoning Safety
+[1-10:P21413; UTF16 774613] At any interruption point, ANANKE may soundly return:
+[1-10:P21414; UTF16 774667] every currently certified conclusion;
+[1-10:P21415; UTF16 774705] the current certified portfolio;
+[1-10:P21416; UTF16 774738] current quantitative regret upper bounds;
+[1-10:P21417; UTF16 774780] current blocker sets;
+[1-10:P21418; UTF16 774802] all UNKNOWN and unresolved obligations.
+[1-10:P21419; UTF16 774842] It may not promote any unresolved assertion merely because the computation budget ended.
+[1-10:P21421; UTF16 774937] Every reported certified conclusion is supported by an independently checked artifact.
+[1-10:P21422; UTF16 775024] Interruption adds no new certificate and therefore cannot justify a stronger assertion.
+[1-10:P21423; UTF16 775112] The unresolved sets explicitly preserve absent conclusions. ∎
+[1-10:P21424; UTF16 775174] A timeout reduces completeness, not truthfulness.
+[1-10:P21428; UTF16 775227] 12. Stopping Policies
+[1-10:P21429; UTF16 775249] Certified closure stop
+[1-10:P21430; UTF16 775272] [ G(K)=\mathbf 0. ]
+[1-10:P21431; UTF16 775292] This is theorem backed.
+[1-10:P21432; UTF16 775316] Budget stop
+[1-10:P21433; UTF16 775328] The resource budget is exhausted.
+[1-10:P21434; UTF16 775362] Return current certified information and blockers.
+[1-10:P21435; UTF16 775413] Economic or provisional stop
+[1-10:P21436; UTF16 775442] A declared meta-utility predicts that further computation costs more than its expected benefit.
+[1-10:P21437; UTF16 775538] This may occur with:
+[1-10:P21438; UTF16 775559] [ G(K)\ne\mathbf 0. ]
+[1-10:P21439; UTF16 775581] It must be labeled provisional.
+[1-10:P21443; UTF16 775616] 13. Live Decision-Influence Graph
+[1-10:P21444; UTF16 775650] DEF-RC20 — Live Decision-Influence Graph
+[1-10:P21446; UTF16 775695] (V_K,E_K) ]
+[1-10:P21447; UTF16 775707] be a dependency-complete directed graph.
+[1-10:P21448; UTF16 775748] Nodes may represent:
+[1-10:P21449; UTF16 775769] unresolved variables;
+[1-10:P21450; UTF16 775791] candidate families;
+[1-10:P21452; UTF16 775819] PCPE errors;
+[1-10:P21453; UTF16 775832] macro coordinates;
+[1-10:P21454; UTF16 775851] quotient distinctions;
+[1-10:P21456; UTF16 775890] model-validity states;
+[1-10:P21457; UTF16 775913] computation availability;
+[1-10:P21458; UTF16 775939] mandatory obligations;
+[1-10:P21459; UTF16 775962] qualitative reports;
+[1-10:P21460; UTF16 775983] regret bounds.
+[1-10:P21463; UTF16 776017] means that changing the exact value or certified state at (u) can alter (v).
+[1-10:P21464; UTF16 776094] Let terminal live obligations be:
+[1-10:P21465; UTF16 776128] B_{\mathrm{mand}}(K) \cup B_{\mathrm{qual}}(K) \cup B_{\mathrm{ev}}(K) \cup {d(K)>0}. ]
+[1-10:P21469; UTF16 776219] DEF-RC21 — Backward Live Cone
+[1-10:P21470; UTF16 776249] \mathsf{Anc}^{*} \left( T_{\mathrm{live}}(K) \right). ]
+[1-10:P21471; UTF16 776305] A computation has an effect set
+[1-10:P21472; UTF16 776337] [ \mathsf{Eff}(c,K)\subseteq V_K ]
+[1-10:P21473; UTF16 776372] containing every node its result may refine, replace, activate, or invalidate.
+[1-10:P21477; UTF16 776454] DEF-RC22 — Directly Decision-Irrelevant Computation
+[1-10:P21478; UTF16 776506] Computation (c) is directly irrelevant in (K) when:
+[1-10:P21483; UTF16 776576] THM-RC4 — Zero Direct Decision Value Outside the Live Cone
+[1-10:P21485; UTF16 776643] the dependency graph is complete;
+[1-10:P21486; UTF16 776677] (c) is directly irrelevant;
+[1-10:P21487; UTF16 776705] (c) cannot change:
+[1-10:P21488; UTF16 776724] future computation availability;
+[1-10:P21489; UTF16 776757] future computation costs;
+[1-10:P21490; UTF16 776783] the theory fingerprint;
+[1-10:P21491; UTF16 776807] the certified release portfolio.
+[1-10:P21492; UTF16 776840] Then every possible result of (c) leaves:
+[1-10:P21493; UTF16 776882] [ G(K) ]
+[1-10:P21494; UTF16 776891] unchanged.
+[1-10:P21495; UTF16 776902] Its direct and strategic value for the current fixed problem is zero.
+[1-10:P21496; UTF16 776972] If condition 3 is removed, only immediate closure value is guaranteed to be zero.
+[1-10:P21498; UTF16 777060] By direct irrelevance and dependency completeness, no node influencing a live obligation changes.
+[1-10:P21500; UTF16 777169] no blocker status changes;
+[1-10:P21501; UTF16 777196] no live qualitative report set changes;
+[1-10:P21502; UTF16 777236] no active regret bound changes.
+[1-10:P21503; UTF16 777268] Condition 3 excludes indirect value through enabling, cost changes, theory changes, or portfolio changes.
+[1-10:P21504; UTF16 777374] Hence every post-computation state has the same deficit. ∎
+[1-10:P21508; UTF16 777436] 14. Strategic Computation
+[1-10:P21509; UTF16 777462] A computation can have zero immediate closure effect while changing future computation availability.
+[1-10:P21511; UTF16 777572] diagnostic (D) reveals whether subsystem (A) or (B) contains the decisive uncertainty;
+[1-10:P21512; UTF16 777659] only the corresponding full solve is then enabled or worth running.
+[1-10:P21514; UTF16 777733] [ \Delta_D^{(1)}=0 ]
+[1-10:P21515; UTF16 777754] can coexist with high multi-step value.
+[1-10:P21516; UTF16 777794] This is why THM-RC4 requires an availability-side-effect exclusion.
+[1-10:P21520; UTF16 777865] 15. Meta-Beliefs
+[1-10:P21521; UTF16 777882] DEF-RC23 — Meta-Belief
+[1-10:P21522; UTF16 777905] Before executing (c), ANANKE may maintain:
+[1-10:P21523; UTF16 777948] [ \mu_c(o\mid K) ]
+[1-10:P21524; UTF16 777967] over:
+[1-10:P21525; UTF16 777973] [ o\in\mathcal O_c(K). ]
+[1-10:P21526; UTF16 777998] This is a scheduling belief, not engineering evidence.
+[1-10:P21527; UTF16 778053] It may be based on:
+[1-10:P21528; UTF16 778073] exact prior probabilities where justified;
+[1-10:P21529; UTF16 778116] empirical solver histories;
+[1-10:P21530; UTF16 778144] learned compute metamodels;
+[1-10:P21531; UTF16 778172] subjective priors;
+[1-10:P21532; UTF16 778191] calibrated search statistics.
+[1-10:P21533; UTF16 778221] Prompt-5 engineering uncertainty
+[1-10:P21535; UTF16 778268] and Prompt-9 meta-uncertainty
+[1-10:P21537; UTF16 778317] are distinct levels.
+[1-10:P21541; UTF16 778341] THM-RC5 — Meta-Belief Independence of Engineering Correctness
+[1-10:P21543; UTF16 778411] the scheduler uses (\mu_c) only to select computation order;
+[1-10:P21544; UTF16 778472] every accepted engineering result is independently certified;
+[1-10:P21545; UTF16 778534] closure and release are independently checked.
+[1-10:P21546; UTF16 778581] Then arbitrary error in (\mu_c) can change:
+[1-10:P21547; UTF16 778625] runtime;
+[1-10:P21548; UTF16 778634] resource usage;
+[1-10:P21549; UTF16 778650] computation order;
+[1-10:P21550; UTF16 778669] probability of reaching closure within budget,
+[1-10:P21551; UTF16 778716] but cannot make a false engineering claim pass certification.
+[1-10:P21553; UTF16 778784] Engineering claims enter the authoritative state only through result certificates.
+[1-10:P21554; UTF16 778867] The meta-belief does not occur in the result-checking predicate or release gate.
+[1-10:P21555; UTF16 778948] Therefore an incorrect belief can select a poor computation but cannot validate an incorrect result. ∎
+[1-10:P21559; UTF16 779054] 16. Meta-Loss and Lexicographic Governance
+[1-10:P21560; UTF16 779097] The canonical closure object is the partial order (G(K)). A scalar is not intrinsic.
+[1-10:P21561; UTF16 779182] DEF-RC24 — Monotone Meta-Loss
+[1-10:P21562; UTF16 779212] A scalar meta-loss is a declared map
+[1-10:P21563; UTF16 779249] \Psi(G(K)) \in[0,\infty] ]
+[1-10:P21565; UTF16 779288] [ G_1\preceq G_2 \Longrightarrow \Psi(G_1)\le\Psi(G_2). ]
+[1-10:P21566; UTF16 779346] No canonical (\Psi) exists.
+[1-10:P21570; UTF16 779377] 16.1 Lexicographic alternative
+[1-10:P21571; UTF16 779408] A governance policy may define:
+[1-10:P21572; UTF16 779440] \left( \mathbf1[B_{\mathrm{mand}}\ne\varnothing], |B_{\mathrm{mand}}|, \mathbf1[B_{\mathrm{ev}}\ne\varnothing], |B_{\mathrm{ev}}|, \mathbf1[B_{\mathrm{qual}}\ne\varnothing], |B_{\mathrm{qual}}|, (g_d)_{d\in\prec} \right) ]
+[1-10:P21573; UTF16 779663] and compare vectors lexicographically.
+[1-10:P21574; UTF16 779702] This prevents a small quantitative-regret gain from compensating for an unresolved mandatory release blocker.
+[1-10:P21575; UTF16 779812] Expected lexicographic scheduling may use componentwise expectations followed by the declared lexicographic order.
+[1-10:P21576; UTF16 779927] Ratio-valued RCVOC is not defined for an unordered or lexicographic vector unless an additional scalar policy is supplied.
+[1-10:P21580; UTF16 780053] 17. One-Step Regret-Closure Value of Computation
+[1-10:P21581; UTF16 780102] DEF-RC25 — One-Step Expected Closure Value
+[1-10:P21582; UTF16 780145] Given a scalar meta-loss:
+[1-10:P21584; UTF16 780192] \mathbb E_{o\sim\mu_c(\cdot\mid K)} \left[ L_{\mathrm{meta}}(K_{c,o}) \right]. } ]
+[1-10:P21588; UTF16 780278] DEF-RC26 — One-Step RCVOC Rate
+[1-10:P21589; UTF16 780309] When a legitimate positive scalar cost exists:
+[1-10:P21590; UTF16 780356] \frac{ \Delta_c^{(1)}(K) }{ C(c,K) }. } ]
+[1-10:P21591; UTF16 780398] This is a myopic efficiency score.
+[1-10:P21592; UTF16 780433] It is not the canonical global metareasoning policy.
+[1-10:P21596; UTF16 780489] 17.1 Net value and value rate
+[1-10:P21597; UTF16 780519] Expected improvement:
+[1-10:P21598; UTF16 780541] [ \Delta_c^{(1)}. ]
+[1-10:P21599; UTF16 780561] Net value:
+[1-10:P21600; UTF16 780572] [ \Delta_c^{(1)}-\lambda C(c,K). ]
+[1-10:P21601; UTF16 780607] Efficiency rate:
+[1-10:P21602; UTF16 780624] [ \frac{\Delta_c^{(1)}}{C(c,K)}. ]
+[1-10:P21603; UTF16 780659] They may rank computations differently.
+[1-10:P21607; UTF16 780702] DEF-RC27 — Guaranteed Closure Value
+[1-10:P21608; UTF16 780738] For certified possible outcome set
+[1-10:P21609; UTF16 780773] [ \Omega_c(K), ]
+[1-10:P21612; UTF16 780819] \sup_{o\in\Omega_c(K)} L_{\mathrm{meta}}(K_{c,o}). ]
+[1-10:P21614; UTF16 780876] [ \Delta_c^{\mathrm{wc}}(K)>0, ]
+[1-10:P21615; UTF16 780909] the computation guarantees strict loss reduction.
+[1-10:P21616; UTF16 780959] Many useful computations have:
+[1-10:P21617; UTF16 780990] [ \Delta_c^{\mathrm{wc}}=0 ]
+[1-10:P21618; UTF16 781019] but positive expected value.
+[1-10:P21622; UTF16 781051] 18. Free Information and Computation Cost
+[1-10:P21623; UTF16 781093] THM-RC6 — Nonnegative Expected Value of Free Information
+[1-10:P21624; UTF16 781150] Suppose computation (c):
+[1-10:P21625; UTF16 781175] has zero cost;
+[1-10:P21626; UTF16 781190] changes no engineering facts except by revealing a signal;
+[1-10:P21627; UTF16 781249] does not remove future actions;
+[1-10:P21628; UTF16 781281] permits the downstream policy to ignore the signal.
+[1-10:P21629; UTF16 781333] Then the minimum expected terminal meta-loss after observing (c) is no greater than the minimum expected loss without observing it.
+[1-10:P21631; UTF16 781471] The post-signal policy class contains a policy that ignores the signal and executes the pre-signal optimal policy.
+[1-10:P21632; UTF16 781586] Therefore the optimum over the larger policy class cannot be worse. ∎
+[1-10:P21633; UTF16 781656] This does not imply an expensive computation should be run.
+[1-10:P21637; UTF16 781719] 18.1 Negative net-value example
+[1-10:P21639; UTF16 781760] [ \Delta_c^{(1)}=10^{-6} ]
+[1-10:P21641; UTF16 781792] [ C(c,K)=10^6 ]
+[1-10:P21642; UTF16 781808] in the declared common unit.
+[1-10:P21643; UTF16 781837] For (\lambda=1):
+[1-10:P21644; UTF16 781854] 10^{-6}-10^6<0. ]
+[1-10:P21645; UTF16 781872] Positive information value does not imply positive net computation value.
+[1-10:P21649; UTF16 781949] 19. Computation Policies
+[1-10:P21650; UTF16 781974] DEF-RC28 — Computation Policy
+[1-10:P21651; UTF16 782004] A policy (\pi) maps the current metaknowledge state and remaining resource to:
+[1-10:P21652; UTF16 782083] (\mathsf{STOP});
+[1-10:P21653; UTF16 782100] or one enabled computation.
+[1-10:P21654; UTF16 782128] Because outcomes are contingent, a policy is generally a decision tree.
+[1-10:P21658; UTF16 782203] DEF-RC29 — Metaknowledge Markov Sufficiency
+[1-10:P21659; UTF16 782247] A metaknowledge state representation is Markov sufficient when, conditioned on (K), the following are independent of earlier history:
+[1-10:P21660; UTF16 782381] available computations;
+[1-10:P21661; UTF16 782405] outcome distributions;
+[1-10:P21662; UTF16 782428] update laws;
+[1-10:P21663; UTF16 782441] costs;
+[1-10:P21664; UTF16 782448] terminal meta-loss.
+[1-10:P21665; UTF16 782468] History may be stored inside (K) when it affects those quantities.
+[1-10:P21669; UTF16 782538] 20. Exact Finite Metareasoning
+[1-10:P21671; UTF16 782577] finite metaknowledge state space (\mathcal K);
+[1-10:P21672; UTF16 782624] finite outcome spaces;
+[1-10:P21673; UTF16 782647] deterministic positive integer computation cost [ k(c,K)\ge1; ]
+[1-10:P21674; UTF16 782711] scalar integer budget (b);
+[1-10:P21675; UTF16 782738] Markov sufficiency.
+[1-10:P21677; UTF16 782766] [ V_b(K) ]
+[1-10:P21678; UTF16 782777] as the minimum expected terminal meta-loss over all policies costing at most (b).
+[1-10:P21682; UTF16 782862] THM-RC7 — Finite Budgeted Metareasoning Bellman Equation
+[1-10:P21683; UTF16 782919] \min \left{ L_{\mathrm{meta}}(K), ; \min_{\substack{c\in\mathcal C(K)\k(c,K)\le b}} \sum_{o\in\mathcal O_c(K)} \mu_c(o\mid K) V_{b-k(c,K)} \bigl(U_c(K,o)\bigr) \right}. } ]
+[1-10:P21684; UTF16 783092] The first term represents stopping now.
+[1-10:P21686; UTF16 783138] Every admissible policy either stops immediately or chooses one enabled computation (c).
+[1-10:P21687; UTF16 783227] If it stops, terminal loss is (L_{\mathrm{meta}}(K)).
+[1-10:P21688; UTF16 783281] If it chooses (c), outcome (o) occurs with probability (\mu_c(o\mid K)), leaving state (U_c(K,o)) and budget (b-k(c,K)).
+[1-10:P21689; UTF16 783402] By Markov sufficiency, the optimal continuation depends only on that state and remaining budget. Its value is (V_{b-k}(U_c(K,o))).
+[1-10:P21690; UTF16 783533] Taking expectation and minimizing over first actions gives the equation.
+[1-10:P21691; UTF16 783606] Conversely, choosing the minimizing first action and then a minimizing continuation realizes the displayed value. ∎
+[1-10:P21692; UTF16 783722] The globally optimal next computation is the minimizing non-STOP action.
+[1-10:P21696; UTF16 783798] 20.1 Stochastic cost
+[1-10:P21697; UTF16 783819] If cost is part of the outcome:
+[1-10:P21698; UTF16 783851] [ o=(r,k_o), ]
+[1-10:P21699; UTF16 783866] replace the continuation by:
+[1-10:P21700; UTF16 783895] [ V_{b-k_o}(U_c(K,o)). ]
+[1-10:P21701; UTF16 783920] A computation is budget admissible only when every supported cost respects the hard budget, unless budget violation has an explicit penalty state.
+[1-10:P21705; UTF16 784070] 20.2 Vector budgets
+[1-10:P21707; UTF16 784095] [ b\in\mathbb N^m, ]
+[1-10:P21708; UTF16 784116] use componentwise feasibility:
+[1-10:P21709; UTF16 784147] [ \kappa(c,K)\preceq b, ]
+[1-10:P21710; UTF16 784173] and continuation budget:
+[1-10:P21711; UTF16 784198] [ b-\kappa(c,K). ]
+[1-10:P21715; UTF16 784220] THM-RC8 — Budget Monotonicity
+[1-10:P21717; UTF16 784254] [ b_1\le b_2, ]
+[1-10:P21719; UTF16 784276] [ V_{b_2}(K) \le V_{b_1}(K). ]
+[1-10:P21721; UTF16 784313] Every policy feasible under (b_1) is feasible under (b_2).
+[1-10:P21722; UTF16 784372] The larger-budget optimum is taken over a superset of policies. ∎
+[1-10:P21723; UTF16 784438] More available compute cannot worsen the optimal expected result because it may be ignored.
+[1-10:P21727; UTF16 784533] 21. Robust Metareasoning
+[1-10:P21728; UTF16 784558] When no defensible meta-probability exists, let:
+[1-10:P21729; UTF16 784607] [ \Omega_c(K) ]
+[1-10:P21730; UTF16 784623] be the certified possible computation outcomes.
+[1-10:P21731; UTF16 784671] Define worst-case value:
+[1-10:P21732; UTF16 784696] [ W_b(K). ]
+[1-10:P21736; UTF16 784711] THM-RC26 — Robust Minimax Bellman Equation
+[1-10:P21737; UTF16 784754] Under the same finite positive-cost assumptions:
+[1-10:P21738; UTF16 784803] \min \left{ L_{\mathrm{meta}}(K), ; \min_{\substack{c\in\mathcal C(K)\k(c,K)\le b}} \max_{o\in\Omega_c(K)} W_{b-k(c,K)} \bigl(U_c(K,o)\bigr) \right}. } ]
+[1-10:P21740; UTF16 784963] Decompose every robust policy by its first computation.
+[1-10:P21741; UTF16 785019] After choosing (c), an adversarially worst certified outcome is selected.
+[1-10:P21742; UTF16 785093] Markov sufficiency gives the optimal continuation value from the resulting state.
+[1-10:P21743; UTF16 785175] Minimizing over the first computation yields the recursion. ∎
+[1-10:P21744; UTF16 785237] Expected and robust policies solve different metaproblems. Neither universally dominates.
+[1-10:P21748; UTF16 785330] 22. Certified Stop Versus Economic Stop
+[1-10:P21749; UTF16 785370] (\mathsf{STOP}_{\mathrm{CERTIFIED}})
+[1-10:P21750; UTF16 785407] [ G(K)=\mathbf0. ]
+[1-10:P21751; UTF16 785426] (\mathsf{STOP}_{\mathrm{PROVISIONAL}})
+[1-10:P21752; UTF16 785465] The Bellman policy chooses STOP under the declared cost and loss while:
+[1-10:P21753; UTF16 785537] [ G(K)\ne\mathbf0. ]
+[1-10:P21754; UTF16 785558] A provisional stop may be economically rational.
+[1-10:P21755; UTF16 785607] It is not a proof that the engineering decision is closed.
+[1-10:P21759; UTF16 785669] 23. Myopic RCVOC Failure
+[1-10:P21760; UTF16 785694] THM-RC9 — Myopic RCVOC Can Be Arbitrarily Suboptimal
+[1-10:P21761; UTF16 785747] For every (M>0), there exists a finite metareasoning problem in which the computation with the largest one-step closure value yields expected terminal loss at least (M/2), while the optimal contingent policy yields zero loss.
+[1-10:P21763; UTF16 785986] Hidden condition:
+[1-10:P21764; UTF16 786004] [ H\in{A,B} ]
+[1-10:P21765; UTF16 786018] with equal probability.
+[1-10:P21766; UTF16 786042] Unresolved terminal loss:
+[1-10:P21767; UTF16 786068] [ M. ]
+[1-10:P21768; UTF16 786075] Resolved terminal loss:
+[1-10:P21770; UTF16 786106] Budget:
+[1-10:P21771; UTF16 786114] [ 3. ]
+[1-10:P21772; UTF16 786121] Computations:
+[1-10:P21773; UTF16 786135] Diagnostic (D)
+[1-10:P21774; UTF16 786150] Cost:
+[1-10:P21775; UTF16 786156] [ 1. ]
+[1-10:P21776; UTF16 786163] Reveals whether (H=A) or (H=B), but does not itself resolve the engineering obligation.
+[1-10:P21777; UTF16 786251] Thus its one-step improvement if stopping immediately is:
+[1-10:P21779; UTF16 786316] Solve (S_A)
+[1-10:P21781; UTF16 786334] [ 2. ]
+[1-10:P21782; UTF16 786341] Resolves the obligation only when (H=A).
+[1-10:P21783; UTF16 786382] Solve (S_B)
+[1-10:P21786; UTF16 786407] Resolves only when (H=B).
+[1-10:P21787; UTF16 786433] Each solve has one-step expected improvement:
+[1-10:P21788; UTF16 786479] [ M/2. ]
+[1-10:P21789; UTF16 786488] A myopic scheduler chooses (S_A) or (S_B). It then has budget (1), insufficient for the other solve. Its expected terminal loss is:
+[1-10:P21791; UTF16 786629] The optimal policy runs (D), then the correct solve. Total cost is:
+[1-10:P21792; UTF16 786697] [ 1+2=3, ]
+[1-10:P21793; UTF16 786708] and terminal loss is zero.
+[1-10:P21794; UTF16 786735] Because (M) is arbitrary, the additive myopic gap is unbounded. ∎
+[1-10:P21795; UTF16 786801] Zero immediate value does not imply zero strategic value.
+[1-10:P21799; UTF16 786862] 24. Complementarity and Non-Submodularity
+[1-10:P21800; UTF16 786904] Let safety require:
+[1-10:P21801; UTF16 786924] [ x+y\le10. ]
+[1-10:P21802; UTF16 786938] Current knowledge:
+[1-10:P21803; UTF16 786957] [ x\in[3,8], \qquad y\in[3,8]. ]
+[1-10:P21804; UTF16 786990] Computation (c_x) proves:
+[1-10:P21805; UTF16 787016] [ x\in[3,4]. ]
+[1-10:P21806; UTF16 787031] Computation (c_y) proves:
+[1-10:P21807; UTF16 787057] [ y\in[3,4]. ]
+[1-10:P21808; UTF16 787072] Either result alone leaves safety unresolved:
+[1-10:P21809; UTF16 787118] [ 4+8>10. ]
+[1-10:P21811; UTF16 787140] [ x+y\le8, ]
+[1-10:P21812; UTF16 787153] so safety closes.
+[1-10:P21816; UTF16 787174] THM-RC10 — Regret-Closure Gain Is Not Submodular in General
+[1-10:P21817; UTF16 787234] Let deterministic set utility be:
+[1-10:P21818; UTF16 787268] \begin{cases} 1,&\text{the safety obligation is closed after computations }S,\ 0,&\text{otherwise}. \end{cases} ]
+[1-10:P21820; UTF16 787388] [ F(\varnothing)=0, ]
+[1-10:P21821; UTF16 787410] [ F({c_x})=0, ]
+[1-10:P21822; UTF16 787426] [ F({c_y})=0, ]
+[1-10:P21823; UTF16 787442] [ F({c_x,c_y})=1. ]
+[1-10:P21824; UTF16 787462] The marginal value of (c_y) satisfies:
+[1-10:P21825; UTF16 787501] [ F({c_y})-F(\varnothing)=0, ]
+[1-10:P21827; UTF16 787537] [ F({c_x,c_y})-F({c_x})=1. ]
+[1-10:P21828; UTF16 787566] This violates submodular diminishing returns. ∎
+[1-10:P21829; UTF16 787614] Unrestricted greedy scheduling has no universal submodular guarantee.
+[1-10:P21833; UTF16 787687] 25. A Positive Submodular Special Case
+[1-10:P21835; UTF16 787734] a finite obligation universe (U);

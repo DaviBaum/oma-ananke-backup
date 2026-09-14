@@ -1,0 +1,344 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P20053; UTF16 673281] Uncertainty over which (P) is correct is epistemic model uncertainty.
+[11-20:P20054; UTF16 673351] ANANKE does not average across (\mathfrak P_{\mathrm{REL}}) unless a governed Bayesian model defines that averaging.
+[11-20:P20058; UTF16 673471] 6. Failure Time and Mission Reliability
+[11-20:P20059; UTF16 673511] DEF-REL4 — Mission Failure Event
+[11-20:P20060; UTF16 673544] For mission (\mathfrak M),
+[11-20:P20061; UTF16 673571] \left{ \omega: \exists t\in[t_0,t_0+T], \quad Z_t(\omega)\in\mathcal F \right}. } ]
+[11-20:P20062; UTF16 673655] More general trace predicates may replace state-set failure.
+[11-20:P20066; UTF16 673719] DEF-REL5 — Failure Time
+[11-20:P20068; UTF16 673750] \inf \left{ t\ge0: Z_{t_0+t}\in\mathcal F \right}, } ]
+[11-20:P20070; UTF16 673810] [ T_F=\infty ]
+[11-20:P20071; UTF16 673825] if failure never occurs.
+[11-20:P20075; UTF16 673853] DEF-REL6 — Mission Reliability
+[11-20:P20076; UTF16 673884] Under target law (P),
+[11-20:P20077; UTF16 673906] P(T_F>T). } ]
+[11-20:P20078; UTF16 673920] The associated mission failure probability is
+[11-20:P20079; UTF16 673966] 1-R_P^\pi(T). ]
+[11-20:P20080; UTF16 673982] The strict boundary convention means failure at exactly (T) is not mission success. A project may adopt another convention, but it must be explicit.
+[11-20:P20084; UTF16 674134] 7. Reliability Is Not Deterministic Safety
+[11-20:P20085; UTF16 674177] THM-REL1 — Reliability Strictly Below One Does Not Establish Realized Mission Success
+[11-20:P20087; UTF16 674273] [ r\in(0,1), ]
+[11-20:P20088; UTF16 674288] there exists a reliability model with
+[11-20:P20089; UTF16 674326] [ R_P(T)=r ]
+[11-20:P20090; UTF16 674339] and an admissible trajectory that fails during the mission.
+[11-20:P20093; UTF16 674409] {\omega_{\mathrm{safe}},\omega_{\mathrm{fail}}}. ]
+[11-20:P20095; UTF16 674464] [ P(\omega_{\mathrm{safe}})=r, \qquad P(\omega_{\mathrm{fail}})=1-r. ]
+[11-20:P20096; UTF16 674535] Let the first trajectory remain outside the failure set throughout the mission.
+[11-20:P20097; UTF16 674615] Let the second enter the failure set before time (T).
+[11-20:P20099; UTF16 674674] [ P(T_F>T)=r, ]
+[11-20:P20100; UTF16 674690] while (\omega_{\mathrm{fail}}) is an admissible failed trajectory with positive probability. ∎
+[11-20:P20102; UTF16 674796] [ \boxed{ R_P(T)=0.999999 \not\Longrightarrow \text{mission failure is impossible}. } ]
+[11-20:P20103; UTF16 674884] The theorem does not say that a high reliability claim is useless. It says its modality remains probabilistic.
+[11-20:P20107; UTF16 674998] 8. Survival and Hazard
+[11-20:P20108; UTF16 675021] DEF-REL7 — Survival Function
+[11-20:P20109; UTF16 675050] For nonnegative failure time,
+[11-20:P20110; UTF16 675080] P(T_F>t). } ]
+[11-20:P20111; UTF16 675094] Thus mission reliability is the survival function evaluated at the mission horizon:
+[11-20:P20112; UTF16 675178] [ R_P(t)=S(t). ]
+[11-20:P20116; UTF16 675198] DEF-REL8 — Hazard Rate
+[11-20:P20118; UTF16 675229] (T_F) has an absolutely continuous distribution;
+[11-20:P20119; UTF16 675278] density (f);
+[11-20:P20120; UTF16 675291] (S(t)>0) on the interval considered;
+[11-20:P20121; UTF16 675328] (P(T_F>0)=1).
+[11-20:P20123; UTF16 675349] \frac{f(t)}{S(t)}. } ]
+[11-20:P20124; UTF16 675372] The hazard is an instantaneous conditional failure intensity, not a probability.
+[11-20:P20128; UTF16 675456] THM-REL2 — Hazard–Survival Identity
+[11-20:P20129; UTF16 675492] Under DEF-REL8,
+[11-20:P20130; UTF16 675508] \exp \left( -\int_0^t \lambda(u),du \right). } ]
+[11-20:P20132; UTF16 675563] Absolute continuity gives
+[11-20:P20133; UTF16 675589] [ S'(t)=-f(t) ]
+[11-20:P20134; UTF16 675605] almost everywhere.
+[11-20:P20136; UTF16 675632] [ f(t)=\lambda(t)S(t), ]
+[11-20:P20138; UTF16 675665] -\lambda(t)S(t). ]
+[11-20:P20139; UTF16 675684] On intervals where (S(t)>0),
+[11-20:P20140; UTF16 675713] -\lambda(t). ]
+[11-20:P20141; UTF16 675728] Integrating from (0) to (t),
+[11-20:P20142; UTF16 675757] -\int_0^t\lambda(u),du. ]
+[11-20:P20143; UTF16 675783] Since (P(T_F>0)=1),
+[11-20:P20144; UTF16 675803] [ S(0)=1. ]
+[11-20:P20146; UTF16 675825] \exp \left( -\int_0^t\lambda(u),du \right). ]
+[11-20:P20148; UTF16 675873] Removing absolute continuity permits atoms and requires a cumulative-hazard formulation.
+[11-20:P20152; UTF16 675965] 9. Availability
+[11-20:P20153; UTF16 675981] DEF-REL9 — Point Availability
+[11-20:P20154; UTF16 676011] Let (\mathcal U) be the operationally up state set.
+[11-20:P20156; UTF16 676070] P(Z_t\in\mathcal U). } ]
+[11-20:P20157; UTF16 676095] Availability may be high even after prior failures and repairs.
+[11-20:P20161; UTF16 676162] DEF-REL38 — Time-Average and Long-Run Availability
+[11-20:P20162; UTF16 676213] Define the expected time-average availability:
+[11-20:P20163; UTF16 676260] \frac1T \mathbb E_P \left[ \int_0^T \mathbf1_{\mathcal U}(Z_t),dt \right]. } ]
+[11-20:P20164; UTF16 676339] When the limit exists,
+[11-20:P20165; UTF16 676362] \lim_{T\to\infty} \overline A_P(T). } ]
+[11-20:P20166; UTF16 676402] Point availability, limiting point availability, and time-average availability need not coincide without additional regularity or ergodicity.
+[11-20:P20170; UTF16 676547] 10. Two-State Repairable System
+[11-20:P20171; UTF16 676579] Consider a continuous-time Markov chain:
+[11-20:P20172; UTF16 676620] [ U \xrightarrow{\lambda} F, \qquad F \xrightarrow{\mu} U, ]
+[11-20:P20173; UTF16 676681] with (\lambda,\mu>0), starting in (U).
+[11-20:P20177; UTF16 676723] THM-REL3 — Mission Reliability and Point Availability Differ in a Repairable Two-State CTMC
+[11-20:P20178; UTF16 676815] For the model above,
+[11-20:P20179; UTF16 676836] e^{-\lambda t} } ]
+[11-20:P20181; UTF16 676861] \frac{\mu}{\lambda+\mu} + \frac{\lambda}{\lambda+\mu} e^{-(\lambda+\mu)t}. } ]
+[11-20:P20183; UTF16 676950] \frac{\mu}{\lambda+\mu}, } ]
+[11-20:P20185; UTF16 676985] [ \lim_{t\to\infty}R(t)=0. ]
+[11-20:P20187; UTF16 677020] Reliability
+[11-20:P20188; UTF16 677032] Mission reliability means that the chain has not entered (F) before time (t).
+[11-20:P20189; UTF16 677110] Starting in (U), the first failure waiting time is exponential with rate (\lambda).
+[11-20:P20191; UTF16 677204] P(T_F>t)
+[11-20:P20192; UTF16 677213] e^{-\lambda t}. ]
+[11-20:P20193; UTF16 677231] Repair after first failure is irrelevant to this no-first-failure event.
+[11-20:P20194; UTF16 677304] Availability
+[11-20:P20196; UTF16 677321] [ a(t)=P(Z_t=U). ]
+[11-20:P20197; UTF16 677340] The Kolmogorov forward equation is
+[11-20:P20198; UTF16 677375] -\lambda a(t) + \mu(1-a(t)). ]
+[11-20:P20200; UTF16 677411] \mu. ]
+[11-20:P20201; UTF16 677418] The general solution is
+[11-20:P20202; UTF16 677442] \frac{\mu}{\lambda+\mu} + Ce^{-(\lambda+\mu)t}. ]
+[11-20:P20203; UTF16 677492] Since (a(0)=1),
+[11-20:P20204; UTF16 677508] \frac{\lambda}{\lambda+\mu}. ]
+[11-20:P20205; UTF16 677539] This gives the formula.
+[11-20:P20206; UTF16 677563] Taking (t\to\infty) yields the limit. ∎
+[11-20:P20210; UTF16 677606] COR-REL4 — Expected Long-Run Availability of the Two-State CTMC
+[11-20:P20211; UTF16 677670] For the same model,
+[11-20:P20212; UTF16 677690] \frac{\mu}{\lambda+\mu}. } ]
+[11-20:P20214; UTF16 677725] By Fubini,
+[11-20:P20215; UTF16 677736] \frac1T \int_0^T A(t),dt. ]
+[11-20:P20216; UTF16 677764] Substitute THM-REL3:
+[11-20:P20217; UTF16 677785] \frac{\mu}{\lambda+\mu} + \frac{\lambda}{\lambda+\mu} \frac{ 1-e^{-(\lambda+\mu)T} }{ (\lambda+\mu)T }. ]
+[11-20:P20218; UTF16 677891] The second term tends to zero. ∎
+[11-20:P20219; UTF16 677924] Mission reliability, point availability, and long-run availability are therefore distinct quantities.
+[11-20:P20223; UTF16 678029] 11. Finite CTMC Reliability
+[11-20:P20224; UTF16 678057] DEF-REL10 — Finite CTMC Reliability Model
+[11-20:P20225; UTF16 678099] Let finite state space be partitioned:
+[11-20:P20226; UTF16 678138] \mathcal U \sqcup \mathcal F. ]
+[11-20:P20227; UTF16 678170] Let (Q) be the generator.
+[11-20:P20228; UTF16 678196] For first-entry mission reliability, entering (\mathcal F) terminates mission success.
+[11-20:P20229; UTF16 678283] Let (Q_U) be the subgenerator on (\mathcal U), retaining diagonal loss rates to (\mathcal F).
+[11-20:P20230; UTF16 678377] Let (\alpha) be the initial row distribution over (\mathcal U).
+[11-20:P20234; UTF16 678444] THM-REL4 — Finite CTMC Mission Reliability Through the Killed Generator
+[11-20:P20235; UTF16 678516] Under DEF-REL10,
+[11-20:P20236; UTF16 678533] \alpha e^{Q_Ut} \mathbf1. } ]
+[11-20:P20238; UTF16 678569] Let (p_U(t)) be the row vector whose (i)-th component is the probability that:
+[11-20:P20239; UTF16 678648] failure has not occurred before (t);
+[11-20:P20240; UTF16 678685] the chain occupies up state (i) at time (t).
+[11-20:P20241; UTF16 678730] The killed process obeys
+[11-20:P20242; UTF16 678755] p_U(t)Q_U, \qquad p_U(0)=\alpha. ]
+[11-20:P20243; UTF16 678790] The unique finite-dimensional solution is
+[11-20:P20244; UTF16 678832] \alpha e^{Q_Ut}. ]
+[11-20:P20245; UTF16 678851] Mission reliability is the total surviving probability mass:
+[11-20:P20246; UTF16 678912] p_U(t)\mathbf1
+[11-20:P20247; UTF16 678927] \alpha e^{Q_Ut}\mathbf1. ]
+[11-20:P20249; UTF16 678956] Repair transitions after first failure do not enter this mission reliability.
+[11-20:P20253; UTF16 679037] 12. Uniformization
+[11-20:P20254; UTF16 679056] THM-REL5 — CTMC Uniformization Identity
+[11-20:P20255; UTF16 679096] Let (Q) be a finite CTMC generator.
+[11-20:P20257; UTF16 679139] [ \nu \ge \max_i(-q_{ii}). ]
+[11-20:P20259; UTF16 679175] I+\frac{Q}{\nu}. ]
+[11-20:P20260; UTF16 679194] Then (P) is stochastic and
+[11-20:P20261; UTF16 679221] e^{-\nu t} \sum_{k=0}^{\infty} \frac{(\nu t)^k}{k!} P^k. } ]
+[11-20:P20263; UTF16 679288] For (i\neq j),
+[11-20:P20264; UTF16 679303] \frac{q_{ij}}{\nu} \ge0. ]
+[11-20:P20265; UTF16 679330] For the diagonal,
+[11-20:P20266; UTF16 679348] 1+\frac{q_{ii}}{\nu} \ge0 ]
+[11-20:P20267; UTF16 679376] by the choice of (\nu).
+[11-20:P20268; UTF16 679400] Generator rows sum to zero, so
+[11-20:P20270; UTF16 679433] Thus (P) is stochastic.
+[11-20:P20271; UTF16 679457] Now
+[11-20:P20272; UTF16 679461] \nu(P-I). ]
+[11-20:P20273; UTF16 679473] Because (P) commutes with (I),
+[11-20:P20274; UTF16 679504] [ \begin{aligned} e^{Qt} &= e^{\nu t(P-I)}\ &= e^{-\nu tI} e^{\nu tP}\ &= e^{-\nu t} \sum_{k=0}^{\infty} \frac{(\nu t)^k}{k!} P^k. \end{aligned} ]
+[11-20:P20276; UTF16 679653] For a killed subgenerator (Q_U), the same identity holds with (P_U=I+Q_U/\nu) substochastic.
+[11-20:P20280; UTF16 679749] LEM-REL1 — Substochastic Power Bound
+[11-20:P20281; UTF16 679786] Let (P) be nonnegative with row sums at most one.
+[11-20:P20282; UTF16 679836] Let (\alpha) be a probability row vector and
+[11-20:P20283; UTF16 679881] [ g\in[0,1]^n. ]
+[11-20:P20285; UTF16 679903] [ \boxed{ 0 \le \alpha P^kg \le 1 } ]
+[11-20:P20286; UTF16 679941] for every (k\ge0).
+[11-20:P20288; UTF16 679966] Since (P) is substochastic, (P\mathbf1\le\mathbf1).
+[11-20:P20289; UTF16 680018] Inductively,
+[11-20:P20290; UTF16 680031] [ P^k\mathbf1 \le \mathbf1. ]
+[11-20:P20291; UTF16 680061] Because (0\le g\le\mathbf1),
+[11-20:P20292; UTF16 680090] [ 0 \le P^kg \le P^k\mathbf1 \le \mathbf1. ]
+[11-20:P20293; UTF16 680135] Multiplying by the probability row vector (\alpha) gives the result. ∎
+[11-20:P20297; UTF16 680209] COR-REL1 — Certified Uniformization Truncation Bound
+[11-20:P20298; UTF16 680262] Let (Q) be a generator or killed subgenerator.
+[11-20:P20300; UTF16 680313] [ P=I+\frac Q\nu ]
+[11-20:P20301; UTF16 680332] be stochastic or substochastic.
+[11-20:P20303; UTF16 680368] [ g\in[0,1]^n ]
+[11-20:P20304; UTF16 680384] and (\alpha) be a probability row vector.
+[11-20:P20306; UTF16 680433] e^{-\nu t} \sum_{k=0}^{K} \frac{(\nu t)^k}{k!} \alpha P^kg. ]
+[11-20:P20308; UTF16 680499] P \left( N_{\nu t}>K \right), \qquad N_{\nu t}\sim\operatorname{Poisson}(\nu t). ]
+[11-20:P20310; UTF16 680587] [ \boxed{ L_K \le \alpha e^{Qt}g \le L_K+\tau_K. } ]
+[11-20:P20312; UTF16 680646] Every omitted term is nonnegative, so (L_K) is a lower bound.
+[11-20:P20313; UTF16 680708] By LEM-REL1, each scalar factor (\alpha P^kg\le1).
+[11-20:P20314; UTF16 680759] Therefore the omitted remainder is bounded by
+[11-20:P20315; UTF16 680805] \tau_K. ]
+[11-20:P20317; UTF16 680817] This produces an independently checkable numerical enclosure.
+[11-20:P20321; UTF16 680882] 13. Semi-Markov Repair Semantics
+[11-20:P20322; UTF16 680915] DEF-REL41 — Semi-Markov Reliability Kernel
+[11-20:P20323; UTF16 680958] Let (J_n) be the state entered at transition (n), and (S_{n+1}) the holding time before the next transition.
+[11-20:P20324; UTF16 681067] A semi-Markov kernel is
+[11-20:P20325; UTF16 681091] P \left( J_{n+1}=j, ; S_{n+1}\le t \mid J_n=i \right). } ]
+[11-20:P20326; UTF16 681150] CTMCs are the special case in which holding times are exponential with memoryless rates.
+[11-20:P20327; UTF16 681239] Non-exponential repairs, inspections, delayed interventions, and aging effects may require semi-Markov rather than CTMC semantics.
+[11-20:P20328; UTF16 681370] No CTMC formula is authoritative unless its memorylessness assumptions are applicable.
+[11-20:P20332; UTF16 681460] 14. Coherent Failure Logic
+[11-20:P20333; UTF16 681487] DEF-REL11 — Coherent Boolean Failure System
+[11-20:P20335; UTF16 681535] [ X_i\in{0,1} ]
+[11-20:P20336; UTF16 681551] indicate component (i) failure.
+[11-20:P20337; UTF16 681583] A system failure function is
+[11-20:P20338; UTF16 681612] [ \phi: {0,1}^n \to {0,1}. ]
+[11-20:P20339; UTF16 681641] It is coherent here when:
+[11-20:P20340; UTF16 681667] (\phi) is monotone: [ x\le y \Longrightarrow \phi(x)\le\phi(y); ]
+[11-20:P20341; UTF16 681733] (\phi(0)=0);
+[11-20:P20342; UTF16 681746] (\phi(1)=1).
+[11-20:P20346; UTF16 681762] DEF-REL12 — Cut Set
+[11-20:P20347; UTF16 681782] For (C\subseteq{1,\ldots,n}), let (\mathbf1_C) be its indicator vector.
+[11-20:P20348; UTF16 681854] (C) is a cut set when
+[11-20:P20349; UTF16 681876] [ \phi(\mathbf1_C)=1. ]
+[11-20:P20350; UTF16 681900] It is minimal when no proper subset is a cut.
+[11-20:P20352; UTF16 681950] [ \mathcal C_{\min} ]
+[11-20:P20353; UTF16 681972] be the family of minimal cut sets.
+[11-20:P20357; UTF16 682010] LEM-REL2 — Every Nonempty Finite Inclusion Family Has a Minimal Element
+[11-20:P20358; UTF16 682082] Let (\mathcal A) be a nonempty finite family of finite sets.
+[11-20:P20359; UTF16 682143] Then (\mathcal A) contains an inclusion-minimal member.
+[11-20:P20361; UTF16 682205] Choose a member of minimum cardinality.
+[11-20:P20362; UTF16 682245] No proper subset belonging to (\mathcal A) can exist, because it would have smaller cardinality. ∎
+[11-20:P20366; UTF16 682347] THM-REL6 — Every Failure of a Finite Coherent System Contains a Minimal Cut Set
+[11-20:P20368; UTF16 682431] {\phi(X)=1}. ]
+[11-20:P20370; UTF16 682451] \bigcup_{C\in\mathcal C_{\min}} \bigcap_{i\in C} {X_i=1}. } ]
+[11-20:P20372; UTF16 682519] Right side implies failure
+[11-20:P20373; UTF16 682546] If all components in minimal cut (C) fail, then the actual failure vector (X) satisfies
+[11-20:P20374; UTF16 682634] [ X\ge\mathbf1_C. ]
+[11-20:P20375; UTF16 682654] By monotonicity,
+[11-20:P20377; UTF16 682673] Thus the system fails.
+[11-20:P20378; UTF16 682696] Failure implies one minimal cut occurs
+[11-20:P20379; UTF16 682735] Suppose (\phi(X)=1).
+[11-20:P20381; UTF16 682760] {i=1} ]
+[11-20:P20382; UTF16 682768] be the finite set of failed components.
+[11-20:P20384; UTF16 682813] [ X=\mathbf1_S, ]
+[11-20:P20385; UTF16 682831] so (S) is a cut set.
+[11-20:P20386; UTF16 682852] Consider all cut subsets of (S).
+[11-20:P20387; UTF16 682885] This family is nonempty because it contains (S).
+[11-20:P20388; UTF16 682934] By LEM-REL2, it has an inclusion-minimal member (C).
+[11-20:P20389; UTF16 682987] Then (C\in\mathcal C_{\min}) and every (i\in C) has failed. ∎
+[11-20:P20393; UTF16 683052] 15. Cut-Set Probability Bounds
+[11-20:P20394; UTF16 683083] THM-REL7 — Minimal-Cut Union Bound Requires No Independence
+[11-20:P20395; UTF16 683143] Under THM-REL6,
+[11-20:P20396; UTF16 683159] [ \boxed{ P(E_{\mathrm{sys}}) \le \sum_{C\in\mathcal C_{\min}} P \left( \bigcap_{i\in C}F_i \right), } ]
+[11-20:P20397; UTF16 683264] where (F_i={X_i=1}).
+[11-20:P20399; UTF16 683291] THM-REL6 expresses the system failure event as a finite union of minimal-cut events.
+[11-20:P20400; UTF16 683376] Apply the union bound. ∎
+[11-20:P20401; UTF16 683401] No independence assumption appears.
+[11-20:P20405; UTF16 683440] COR-REL2 — Independent-Component Cut Bound
+[11-20:P20406; UTF16 683483] If the component failure events are mutually independent, then
+[11-20:P20407; UTF16 683546] \prod_{i\in C}p_i. ]
+[11-20:P20409; UTF16 683573] [ \boxed{ P(E_{\mathrm{sys}}) \le \sum_{C\in\mathcal C_{\min}} \prod_{i\in C}p_i. } ]
+[11-20:P20410; UTF16 683659] The minimal-cut events may overlap, so this is generally a bound rather than an equality.
+[11-20:P20414; UTF16 683752] 16. Series and Parallel Systems
+[11-20:P20415; UTF16 683784] THM-REL8 — Independent Series and Parallel Reliability Formulas
+[11-20:P20416; UTF16 683848] Let component mission success events be (S_i), with
+[11-20:P20417; UTF16 683900] [ P(S_i)=r_i. ]
+[11-20:P20418; UTF16 683916] Assume mutual independence.
+[11-20:P20419; UTF16 683944] Series system
+[11-20:P20420; UTF16 683958] The system succeeds iff every component succeeds:
+[11-20:P20421; UTF16 684008] \bigcap_iS_i. ]
+[11-20:P20423; UTF16 684034] \prod_ir_i. } ]
+[11-20:P20424; UTF16 684050] Parallel system
+[11-20:P20425; UTF16 684066] The system fails iff every component fails:
+[11-20:P20426; UTF16 684110] \bigcap_iS_i^c. ]
+[11-20:P20428; UTF16 684138] \prod_i(1-r_i), ]
+[11-20:P20430; UTF16 684160] 1- \prod_i(1-r_i). } ]
+[11-20:P20432; UTF16 684185] Without independence, these formulas need not hold.
+[11-20:P20436; UTF16 684240] 17. Common-Cause Failure
+[11-20:P20437; UTF16 684265] THM-REL9 — Equal Component Marginals Do Not Determine Redundant-System Reliability
+[11-20:P20438; UTF16 684348] Let two component failure events satisfy
+[11-20:P20439; UTF16 684389] [ P(F_1)=P(F_2)=p. ]
+[11-20:P20440; UTF16 684410] Independent case
+[11-20:P20441; UTF16 684427] If (F_1,F_2) are independent,
+[11-20:P20442; UTF16 684457] [ P(F_1\cap F_2)=p^2. ]
+[11-20:P20443; UTF16 684481] Perfect common-cause case
+[11-20:P20445; UTF16 684511] [ F_1=F_2 ]
+[11-20:P20446; UTF16 684523] almost surely.
+[11-20:P20448; UTF16 684543] [ P(F_1\cap F_2)=p. ]
+[11-20:P20449; UTF16 684565] For a two-component parallel system, system failure probability is therefore either
+[11-20:P20450; UTF16 684649] [ p^2 ]
+[11-20:P20452; UTF16 684660] [ p ]
+[11-20:P20453; UTF16 684666] despite identical component marginals.
+[11-20:P20455; UTF16 684711] The independent calculation follows by multiplication.
+[11-20:P20456; UTF16 684766] In the common-cause construction,
+[11-20:P20457; UTF16 684800] [ F_1\cap F_2=F_1, ]
+[11-20:P20458; UTF16 684821] so its probability is (p). ∎
+[11-20:P20459; UTF16 684850] For small (p), the ratio is
+[11-20:P20460; UTF16 684878] \frac1p. ]
+[11-20:P20461; UTF16 684889] Redundancy is meaningful only relative to its joint failure structure.
+[11-20:P20465; UTF16 684963] DEF-REL13 — Common-Cause Reliability Model
+[11-20:P20466; UTF16 685006] Let (Z) be a shared latent cause.
+[11-20:P20467; UTF16 685040] Component failures may be conditionally independent given (Z):
+[11-20:P20468; UTF16 685103] [ F_i \perp F_j \mid Z. ]
+[11-20:P20472; UTF16 685132] THM-REL10 — Conditional-Independence Mixture Formula
+[11-20:P20473; UTF16 685185] Assume the failures in (C) are conditionally independent given (Z).
+[11-20:P20475; UTF16 685258] \int \prod_{i\in C} P(F_i\mid Z=z) , P_Z(dz). } ]
+[11-20:P20477; UTF16 685314] By conditional expectation,
+[11-20:P20478; UTF16 685342] \mathbb E \left[ P \left( \bigcap_{i\in C}F_i \mid Z \right) \right]. ]
+[11-20:P20479; UTF16 685414] Conditional independence gives
+[11-20:P20480; UTF16 685445] \prod_{i\in C} P(F_i\mid Z). ]
+[11-20:P20481; UTF16 685476] Integrate over (Z). ∎
+[11-20:P20482; UTF16 685498] The theorem is only as valid as the declared common-cause variable and conditional-independence relation.
+[11-20:P20486; UTF16 685607] 18. Dynamic Fault Systems
+[11-20:P20487; UTF16 685633] DEF-REL14 — Dynamic Failure Trace
+[11-20:P20488; UTF16 685667] A Dynamic Failure Trace is
+[11-20:P20489; UTF16 685694] (x_0,e_1,t_1,x_1,\ldots,e_k,t_k,x_k), } ]
+[11-20:P20490; UTF16 685736] where failure may depend on:
+[11-20:P20491; UTF16 685765] event identity;
+[11-20:P20492; UTF16 685781] event order;
+[11-20:P20493; UTF16 685794] event timing;
+[11-20:P20495; UTF16 685816] transient states;
+[11-20:P20496; UTF16 685834] resource state;
+[11-20:P20497; UTF16 685850] control state.
+[11-20:P20501; UTF16 685868] THM-REL11 — Terminal Component Failure Sets Cannot Represent Every Dynamic Fault Claim
+[11-20:P20502; UTF16 685955] There exists a dynamic failure claim for which two traces have the same terminal failed-component set but different system reports.
+[11-20:P20504; UTF16 686093] Let the components be (A,B).
+[11-20:P20506; UTF16 686132] [ \tau_1: A\text{ fails at }t=1, ; B\text{ fails at }t=2, ]
+[11-20:P20508; UTF16 686196] [ \tau_2: B\text{ fails at }t=1, ; A\text{ fails at }t=2. ]
+[11-20:P20509; UTF16 686256] Both end with terminal failed set
+[11-20:P20510; UTF16 686290] [ {A,B}. ]
+[11-20:P20511; UTF16 686301] Define system failure to occur iff (A) fails before (B).
+[11-20:P20512; UTF16 686358] Then (\tau_1) is a failed trace and (\tau_2) is not.
+[11-20:P20513; UTF16 686411] Any representation retaining only the terminal failed set maps the traces to the same state and cannot recover the report. ∎
+[11-20:P20514; UTF16 686536] Dynamic fault trees therefore require trace or state-augmented semantics.
+[11-20:P20518; UTF16 686613] 19. Competing Risks
+[11-20:P20519; UTF16 686633] DEF-REL15 — Competing Failure Causes
+[11-20:P20521; UTF16 686674] [ T_1,\ldots,T_m ]
+[11-20:P20522; UTF16 686693] be cause-specific failure times.
+[11-20:P20523; UTF16 686726] The first system failure time is
+[11-20:P20524; UTF16 686759] \min_iT_i. ]
+[11-20:P20525; UTF16 686772] Assuming no ties almost surely, the first cause is
+[11-20:P20526; UTF16 686823] \arg\min_iT_i. ]
+[11-20:P20530; UTF16 686843] THM-REL12 — Independent Exponential Competing Risks
+[11-20:P20532; UTF16 686902] [ T_i \sim \operatorname{Exp}(\lambda_i) ]
+[11-20:P20533; UTF16 686945] independently.
+[11-20:P20535; UTF16 686964] \sum_i\lambda_i. ]
+[11-20:P20537; UTF16 686988] [ \boxed{ T \sim \operatorname{Exp}(\Lambda) } ]
+[11-20:P20539; UTF16 687041] \frac{\lambda_j}{\Lambda}. } ]
+[11-20:P20541; UTF16 687078] For (t\ge0),
+[11-20:P20542; UTF16 687091] [ \begin{aligned} P(T>t) &= P(T_i>t\ \forall i)\ &= \prod_iP(T_i>t)\ &= \prod_ie^{-\lambda_it}\ &= e^{-\Lambda t}. \end{aligned} ]
+[11-20:P20543; UTF16 687222] Thus (T\sim\operatorname{Exp}(\Lambda)).
+[11-20:P20544; UTF16 687263] For the cause probability,
+[11-20:P20545; UTF16 687290] [ \begin{aligned} P(J=j) &= \int_0^\infty P(T_i>t\ \forall i\neq j) f_{T_j}(t) ,dt\ &= \int_0^\infty e^{-\sum_{i\neq j}\lambda_it} \lambda_je^{-\lambda_jt} ,dt\ &= \lambda_j \int_0^\infty e^{-\Lambda t},dt\ &= \frac{\lambda_j}{\Lambda}. \end{aligned} ]
+[11-20:P20547; UTF16 687545] The formulas rely on both independence and exponential waiting times.
+[11-20:P20551; UTF16 687618] 20. Computational Hardness
+[11-20:P20552; UTF16 687645] THM-REL13 — Exact Reliability of Compact Boolean Failure Logic Is #P-Hard
+[11-20:P20553; UTF16 687719] Consider a compact Boolean formula
+[11-20:P20555; UTF16 687783] Let component indicators be IID:
+[11-20:P20556; UTF16 687816] [ X_i \sim \operatorname{Bernoulli}(1/2). ]
+[11-20:P20557; UTF16 687860] Define system failure iff
+[11-20:P20558; UTF16 687886] [ \varphi(X)=1. ]
+[11-20:P20560; UTF16 687909] \frac{ #\mathrm{SAT}(\varphi) }{ 2^n }. } ]
+[11-20:P20561; UTF16 687953] Therefore exact evaluation of this reliability probability is #P-hard.
+[11-20:P20563; UTF16 688030] Each Boolean assignment occurs with probability
+[11-20:P20564; UTF16 688078] [ 2^{-n}. ]
+[11-20:P20565; UTF16 688090] The failure event contains exactly the satisfying assignments of (\varphi).
+[11-20:P20567; UTF16 688172] 2^{-n} #\mathrm{SAT}(\varphi). ]
+[11-20:P20568; UTF16 688205] An exact reliability evaluator would return the rational probability.
+[11-20:P20569; UTF16 688275] Multiplying by (2^n) recovers the number of satisfying assignments.

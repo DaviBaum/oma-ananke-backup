@@ -1,0 +1,235 @@
+name: "Build or download OCP Source"
+description: "Building or downloading OCP Source"
+inputs:
+  os:
+    description: "Operating system to use for the build"
+    required: true
+  python-version:
+    description: "Python version to use for the build"
+    required: true
+  plat:
+    description: "Space-separated list of platform tags for the stubs wheel"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
+
+    # - - -
+
+    - name: Restore OCP source cache
+      id: cache-ocp-source-restore
+      uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 #v6.1.0
+      with:
+        path: ${{ github.workspace }}/OCP
+        key: OCP-source-${{ env.OCP }}-vtk-${{ inputs.os }}
+
+    # - - -
+
+    - name: (Linux) Install gl headers [PYWRAP=true]
+      if: env.PYWRAP == 'true' && runner.os == 'Linux' && steps.cache-ocp-source-restore.outputs.cache-hit != 'true'
+      shell: bash -l {0}
+      run: |
+        # (Linux) Install gl headers [PYWRAP=true]
+        set -e
+        set -u
+        set -o pipefail
+
+        dnf install -y -q \
+          ca-certificates mesa-libGL-devel mesa-libEGL-devel mesa-libGLU-devel freeglut-devel \
+          git patch curl > /dev/null 2>&1
+
+    # - - -
+
+    - name: (Linux) Install minimal dependencies [PYWRAP=false]
+      if: env.PYWRAP == 'false' && runner.os == 'Linux'
+      shell: bash -l {0}
+      run: |
+        # (Linux) Install minimal dependencies [PYWRAP=false]
+        set -e
+        set -u
+        set -o pipefail
+
+        dnf install -y -q curl unzip > /dev/null 2>&1
+
+    - name: Set up Python ${{ inputs.python-version }} via micromamba [PYWRAP=true]
+      if: env.PYWRAP == 'true' && steps.cache-ocp-source-restore.outputs.cache-hit != 'true'
+      uses: mamba-org/setup-micromamba@ce51e99f4bb8a82ab7158c4dc59ef4634c59c4f9 #v3.1.0
+      with:
+        environment-file: environment-pywrap-${{ inputs.python-version }}.yml
+        log-level: warning
+        init-shell: ${{ inputs.shells }}
+        # do not cache, else cache overflow
+
+    # - - -
+
+    - name: Get number of CPUs
+      if: env.PYWRAP == 'true' && steps.cache-ocp-source-restore.outputs.cache-hit != 'true'
+      shell: bash -l {0}
+      id: cpu-count
+      run: |
+        # Get number of CPUs
+        micromamba activate build-ocp
+
+        cpu_count=$(python -c "import multiprocessing; print(multiprocessing.cpu_count())")
+        echo "cpu_count=$cpu_count" >> $GITHUB_OUTPUT
+        echo "=> Using $cpu_count CPUs"
+        
+    # - - - - - - - - - - - - - - - - - - - - -
+    # Option 1: Build OCP sources using pywrap
+    # (env.PYWRAP=true)
+    # - - - - - - - - - - - - - - - - - - - - -
+
+    # - - -
+
+    - name: Clone OCP [PYWRAP=true]
+      if: env.PYWRAP == 'true' && steps.cache-ocp-source-restore.outputs.cache-hit != 'true'
+      shell: bash -l {0}
+      run: |
+        # Clone OCP [PYWRAP=true]
+        set -e
+        set -u
+        set -o pipefail
+
+        git clone https://github.com/cadquery/OCP.git
+        cd OCP
+        # use master for the time being
+        # git checkout -b V${{ env.OCP }} tags/${{ env.OCP }}
+        git submodule update --init
+
+    # - - -
+
+    - name: (Linux, Mac) Generate OCP source [PYWRAP=true]
+      if: env.PYWRAP == 'true' && runner.os != 'Windows' && steps.cache-ocp-source-restore.outputs.cache-hit != 'true'
+      shell: bash -l {0}
+      run: |
+        # (Linux, Mac) Generate OCP source [PYWRAP=true]
+        set -e
+        set -o pipefail
+
+        micromamba activate build-ocp-source
+        cd OCP
+
+        cmake -DPython_ROOT_DIR=$CONDA_PREFIX \
+              -DPython3_ROOT_DIR=$CONDA_PREFIX \
+              -DPython_FIND_VIRTUALENV=ONLY \
+              -DPython3_FIND_VIRTUALENV=ONLY \
+              -DN_PROC=${{ steps.cpu-count.outputs.cpu_count }} \
+              -B new -S . -G Ninja
+        
+        cd new
+        cmake --build .        
+
+    # - - -
+
+    - name: (Windows) Generate OCP source [PYWRAP=true]
+      if: env.PYWRAP == 'true' && runner.os == 'Windows' && steps.cache-ocp-source-restore.outputs.cache-hit != 'true'
+      shell: bash -l {0}
+      run: |
+        # (Windows) Generate OCP source [PYWRAP=true]
+        set -e
+        set -o pipefail
+
+        micromamba activate build-ocp-source
+        cd OCP
+        micromamba create --yes --platform win-64 --no-deps --prefix ./occt  occt=${{ env.OCCT }}
+
+        cmake -DPython_ROOT_DIR=$CONDA_PREFIX \
+              -DPython3_ROOT_DIR=$CONDA_PREFIX \
+              -DPython_FIND_VIRTUALENV=ONLY \
+              -DPython3_FIND_VIRTUALENV=ONLY \
+              -DOCCT_LIB_DIR=./occt/Library/bin/\*.dll \
+              -DPLATFORM=Windows \
+              -DN_PROC=${{ steps.cpu-count.outputs.cpu_count }} \
+              -B new -S . -G Ninja
+        
+        cd new
+        cmake --build . -- -v
+
+    # - - - - - - - - - - - - - - - - - - - - -
+    # Option 2: Download official OCP sources
+    # (env.PYWRAP=false)
+    # - - - - - - - - - - - - - - - - - - - - -
+
+    - name: Download official OCP source [PYWRAP=false]
+      if: env.PYWRAP == 'false'
+      shell: bash -l {0}
+      run: |
+        # Download official OCP source [PYWRAP=false]
+        set -e
+        set -u
+        set -o pipefail
+
+        rm -fr OCP  # remove the cached sources again
+
+        if [[ ${{ inputs.os }} == "macos-15-intel" || ${{ inputs.os }} == "macos-15" ]]; then
+          curl -fL -O ${{ env.SOURCE_URL }}/${{ env.OCP }}/OCP_src_stubs_OSX.zip
+        elif [[ ${{ inputs.os }} == "ubuntu-22.04" || ${{ inputs.os }} == "ubuntu-22.04-arm" ]]; then
+          curl -fL -O ${{ env.SOURCE_URL }}/${{ env.OCP }}/OCP_src_stubs_Linux.zip
+        else
+          curl -fL -O ${{ env.SOURCE_URL }}/${{ env.OCP }}/OCP_src_stubs_Windows.zip
+        fi
+        # The 8.x archives extract flat, so unpack into a directory of our own.
+        unzip -q OCP_src_stubs_*.zip -d OCP_src
+        rm *.zip
+
+        mv OCP_src/OCP-stubs pypi-stubs/
+        mkdir OCP
+        mv OCP_src OCP/OCP
+
+    # - - -
+
+    - name: Cache OCP source folder
+      id: cache-ocp-source-save
+      uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 #v6.1.0
+      with:
+        path: ${{ github.workspace }}/OCP
+        key: ${{ steps.cache-ocp-source-restore.outputs.cache-primary-key }}
+
+    # - - -
+
+    - name: Upload OCP source
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a #v7.0.1
+      with:
+        name: OCP-source_${{ env.OCP }}-${{ inputs.os }}
+        path: ./OCP
+
+    # - - - - - - - - - - - - - - - - - - - - -
+    # Build the Python stubs (only for PYWRAP=false, stubs are downloaded)
+    # - - - - - - - - - - - - - - - - - - - - -
+
+    - name: Install uv
+      if: env.PYWRAP == 'false'
+      uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 #v9.0.0
+      with:
+        python-version: "3.12"
+        # enable-cache: true
+        activate-environment: true
+
+    - name: Create OCP stubs wheel
+      if: env.PYWRAP == 'false'
+      shell: bash -l {0}
+      run: |
+        set -euo pipefail
+
+        cd pypi-stubs
+        sed -i.bak 's/0\.0\.0\.0/${{ env.WHEEL }}/g' pyproject.toml
+        uv build --wheel
+
+        # Retag wheel with platform-specific tags
+        uv pip install wheel
+        cd dist
+        ORIG_WHEEL=$(ls *.whl)
+
+        # Create a wheel for each platform tag
+        for plat in ${{ inputs.plat }}; do
+          wheel tags --platform-tag "$plat" "$ORIG_WHEEL"
+        done
+        rm "$ORIG_WHEEL"
+
+    - name: Upload cadquery_ocp stubs wheel
+      if: env.PYWRAP == 'false'
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a #v7.0.1
+      with:
+        name: cadquery-ocp-${{ env.WHEEL }}-stubs-${{ inputs.os }}
+        path: pypi-stubs/dist/*.whl  

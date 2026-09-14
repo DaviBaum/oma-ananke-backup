@@ -1,0 +1,309 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P23048; UTF16 750327] subsets: [ C_1,\ldots,C_m\subseteq A; ]
+[21-30:P23049; UTF16 750367] positive costs: [ c_j. ]
+[21-30:P23050; UTF16 750392] The objective is to choose minimum-cost (H\subseteq A) satisfying:
+[21-30:P23052; UTF16 750506] Construct an environmental-repair instance:
+[21-30:P23053; UTF16 750550] each element (a_j) becomes candidate intervention (j);
+[21-30:P23054; UTF16 750605] each set (C_i) becomes environmental violation (i);
+[21-30:P23055; UTF16 750657] violation (i) is repaired exactly when at least one intervention in (C_i) is selected;
+[21-30:P23056; UTF16 750744] intervention cost is (c_j).
+[21-30:P23057; UTF16 750772] A repair set is feasible iff it intersects every (C_i).
+[21-30:P23058; UTF16 750828] Its cost is exactly the corresponding hitting-set cost.
+[21-30:P23060; UTF16 750916] Therefore a polynomial algorithm for minimum-cost environmental repair in this abstraction would solve Weighted Hitting Set.
+[21-30:P23065; UTF16 751076] 30. Environmental Claim Modalities
+[21-30:P23066; UTF16 751111] DEF-ENV43 — Environmental Claim Modality
+[21-30:P23067; UTF16 751152] \left{ \begin{array}{l} \mathsf{EXACT_INVENTORY},\ \mathsf{BOUNDED_IMPACT},\ \mathsf{ATTRIBUTIONAL},\ \mathsf{CONSEQUENTIAL},\ \mathsf{MEASURED_OPERATIONAL},\ \mathsf{MODELED_OPERATIONAL},\ \mathsf{SCENARIO_CONDITIONAL},\ \mathsf{ROBUST_SCENARIO},\ \mathsf{PROBABILISTIC_CLIMATE},\ \mathsf{CARBON_BUDGET_CERTIFIED},\ \mathsf{PHYSICAL_NET_ZERO},\ \mathsf{OFFSET_BALANCED},\ \mathsf{ADAPTATION_ROBUST},\ \mathsf{CIRCULAR_ACCOUNTED},\ \mathsf{HEURISTIC},\ \mathsf{UNKNOWN} \end{array} \right}. } ]
+[21-30:P23072; UTF16 751688] 31. Environmental Dependency Graph
+[21-30:P23073; UTF16 751723] DEF-ENV44 — Environmental Dependency Graph
+[21-30:P23076; UTF16 751802] service quantity;
+[21-30:P23077; UTF16 751820] boundary;
+[21-30:P23078; UTF16 751830] process;
+[21-30:P23080; UTF16 751845] characterization factor;
+[21-30:P23083; UTF16 751896] energy profile;
+[21-30:P23084; UTF16 751912] grid factor;
+[21-30:P23085; UTF16 751925] water flow;
+[21-30:P23086; UTF16 751937] refrigerant state;
+[21-30:P23090; UTF16 751998] climate scenario;
+[21-30:P23092; UTF16 752028] carbon stock;
+[21-30:P23094; UTF16 752050] recovery stream;
+[21-30:P23095; UTF16 752067] substitution ratio;
+[21-30:P23096; UTF16 752087] environmental release root.
+[21-30:P23099; UTF16 752135] means changing (u) may change environmental claim (v).
+[21-30:P23103; UTF16 752193] 32. Incremental Environmental Recertification
+[21-30:P23104; UTF16 752239] THM-ENV32 — Dependency-Directed Environmental Recertification Equals Cold Checking
+[21-30:P23106; UTF16 752334] Every changed environmental root is known.
+[21-30:P23107; UTF16 752377] The dependency graph is complete.
+[21-30:P23108; UTF16 752411] Every descendant is invalidated.
+[21-30:P23109; UTF16 752444] Reused artifacts pass:
+[21-30:P23110; UTF16 752467] version checks;
+[21-30:P23111; UTF16 752483] functional-unit checks;
+[21-30:P23112; UTF16 752507] boundary checks;
+[21-30:P23113; UTF16 752524] applicability checks.
+[21-30:P23114; UTF16 752546] Recomputed nodes use the same deterministic semantics as cold checking.
+[21-30:P23115; UTF16 752618] Local checkers are sound.
+[21-30:P23116; UTF16 752644] Cyclic climate, grid, lifecycle, and market models are encapsulated by checked solution nodes.
+[21-30:P23119; UTF16 752785] functional-unit normalization;
+[21-30:P23121; UTF16 752827] impact characterization;
+[21-30:P23122; UTF16 752852] allocation;
+[21-30:P23123; UTF16 752864] embodied burden;
+[21-30:P23124; UTF16 752881] operational burden;
+[21-30:P23125; UTF16 752901] replacement burden;
+[21-30:P23126; UTF16 752921] payback;
+[21-30:P23129; UTF16 752951] climate robustness;
+[21-30:P23132; UTF16 752991] net-zero modality;
+[21-30:P23133; UTF16 753010] circular accounting;
+[21-30:P23136; UTF16 753053] Condense every checked cyclic submodel into one certified node. The resulting dependency graph is acyclic.
+[21-30:P23137; UTF16 753160] Order its nodes topologically:
+[21-30:P23138; UTF16 753191] [ v_1,\ldots,v_N. ]
+[21-30:P23139; UTF16 753211] We prove by induction that incremental and cold checking assign identical values to each node.
+[21-30:P23141; UTF16 753316] A root node has no predecessors.
+[21-30:P23142; UTF16 753349] If changed, both procedures recompute it using identical semantics and inputs.
+[21-30:P23143; UTF16 753428] If unchanged, incremental checking reuses it only after version and applicability checks, which establish that its value equals the cold result.
+[21-30:P23145; UTF16 753588] Assume equality for every predecessor of (v_k).
+[21-30:P23146; UTF16 753636] If (v_k) is outside the invalidated descendant set, completeness of the dependency graph implies no changed root can affect it. Its reused value therefore equals the cold value.
+[21-30:P23147; UTF16 753814] If (v_k) is invalidated, both procedures evaluate the same local checker on predecessor values that are equal by the induction hypothesis. Determinism gives equal outputs.
+[21-30:P23148; UTF16 753986] Thus equality holds for (v_k).
+[21-30:P23149; UTF16 754017] By induction, equality holds for every node and every release root. ∎
+[21-30:P23153; UTF16 754090] 33. Environmental Performance Fiber
+[21-30:P23154; UTF16 754126] DEF-ENV45 — Environmental Performance Fiber
+[21-30:P23155; UTF16 754170] For target environmental release (y):
+[21-30:P23156; UTF16 754208] \left{ (\lambda,\pi_M,\pi_A,\eta): \mathsf{EnvironmentalValid}_\mu (y,e_t,\lambda,\pi_M,\pi_A,\eta) \right}. } ]
+[21-30:P23160; UTF16 754324] 34. Proof-Carrying Whole-Life Environmental Performance Package
+[21-30:P23161; UTF16 754388] DEF-ENV46 — Proof-Carrying Whole-Life Environmental Performance Package
+[21-30:P23163; UTF16 754468] [ \boxed{ \mathsf{PCWEP}. } ]
+[21-30:P23164; UTF16 754498] A PCWEP contains:
+[21-30:P23166; UTF16 754534] Prompt-26 lifecycle reference;
+[21-30:P23168; UTF16 754588] analysis horizon;
+[21-30:P23170; UTF16 754623] service quantity and quality;
+[21-30:P23171; UTF16 754653] system boundary;
+[21-30:P23173; UTF16 754690] excluded processes;
+[21-30:P23174; UTF16 754710] life-cycle inventory;
+[21-30:P23175; UTF16 754732] inventory provenance;
+[21-30:P23176; UTF16 754754] inventory uncertainty;
+[21-30:P23177; UTF16 754777] characterization model;
+[21-30:P23178; UTF16 754801] factor versions;
+[21-30:P23179; UTF16 754818] environmental impact vector;
+[21-30:P23181; UTF16 754865] co-product treatment;
+[21-30:P23182; UTF16 754887] substitution rules;
+[21-30:P23183; UTF16 754907] double-counting ledger;
+[21-30:P23184; UTF16 754931] attributional results;
+[21-30:P23185; UTF16 754954] consequential results;
+[21-30:P23186; UTF16 754977] production burdens;
+[21-30:P23187; UTF16 754997] construction burdens;
+[21-30:P23188; UTF16 755019] operational energy state;
+[21-30:P23189; UTF16 755045] time-resolved factors;
+[21-30:P23190; UTF16 755068] operational environmental burden;
+[21-30:P23191; UTF16 755102] maintenance burdens;
+[21-30:P23192; UTF16 755123] replacement schedule;
+[21-30:P23193; UTF16 755145] replacement burdens;
+[21-30:P23194; UTF16 755166] retrofit burdens;
+[21-30:P23195; UTF16 755184] causal-savings model;
+[21-30:P23196; UTF16 755206] payback state;
+[21-30:P23197; UTF16 755221] rebound state;
+[21-30:P23198; UTF16 755236] water inventory;
+[21-30:P23199; UTF16 755253] water-consumption state;
+[21-30:P23200; UTF16 755278] refrigerant inventory;
+[21-30:P23202; UTF16 755322] carbon-stock state;
+[21-30:P23203; UTF16 755342] climate scenario family;
+[21-30:P23204; UTF16 755367] climate obligations;
+[21-30:P23205; UTF16 755388] robust climate set;
+[21-30:P23206; UTF16 755408] adaptation policies;
+[21-30:P23207; UTF16 755429] mitigation policies;
+[21-30:P23208; UTF16 755450] environmental-budget state;
+[21-30:P23209; UTF16 755478] gross emissions;
+[21-30:P23210; UTF16 755495] physical removals;
+[21-30:P23211; UTF16 755514] external balancing credits;
+[21-30:P23212; UTF16 755542] net-zero claim state;
+[21-30:P23213; UTF16 755564] circular disposition;
+[21-30:P23214; UTF16 755586] substitution ratios;
+[21-30:P23224; UTF16 755714] 35. Whole-Project Environmental Theorem
+[21-30:P23225; UTF16 755754] THM-ENV33 — Whole-Project Proof-Carrying Environmental Performance, Climate Robustness, and Environmental Release
+[21-30:P23228; UTF16 755900] (e_t): active environmental state;
+[21-30:P23229; UTF16 755935] (y): target environmental release;
+[21-30:P23230; UTF16 755970] (\mathsf{PCWEP}): candidate package.
+[21-30:P23232; UTF16 756015] Project/lifecycle identity: the environmental model refers to the actual current Prompt-26 configuration.
+[21-30:P23233; UTF16 756121] Functional-unit correctness: every comparison uses the declared functional unit.
+[21-30:P23234; UTF16 756202] Service equivalence: alternatives provide the claimed service, or differences are explicit.
+[21-30:P23235; UTF16 756294] Boundary correctness: every result uses its declared boundary.
+[21-30:P23236; UTF16 756357] Inventory completeness: every flow required by a mandatory root is represented or unresolved.
+[21-30:P23237; UTF16 756451] Flow identity: quantities, units, times, locations, and provenance are correct.
+[21-30:P23238; UTF16 756531] Characterization validity: factors match flows and metrics.
+[21-30:P23239; UTF16 756591] Allocation correctness: co-product burdens use explicit semantics.
+[21-30:P23240; UTF16 756658] Anti-double-counting: no event is duplicated without declared semantics.
+[21-30:P23241; UTF16 756731] Accounting-model identity: attributional and consequential results remain distinct.
+[21-30:P23242; UTF16 756815] Time alignment: operational activity and factors are synchronized.
+[21-30:P23243; UTF16 756882] Counterfactual validity: causal savings use a valid counterfactual.
+[21-30:P23244; UTF16 756950] Operational measurement: measured quantities satisfy Prompt 25.
+[21-30:P23245; UTF16 757014] Lifecycle replacement consistency: maintenance and replacement agree with Prompt 26.
+[21-30:P23246; UTF16 757099] Water correctness: water accounting is valid.
+[21-30:P23247; UTF16 757145] Refrigerant correctness: charge, leakage, recovery, and factors are valid.
+[21-30:P23248; UTF16 757220] Carbon-stock correctness: storage and persistence remain time scoped.
+[21-30:P23249; UTF16 757290] Climate-scenario coverage: the actual covered climate lies inside the scenario family.
+[21-30:P23250; UTF16 757377] Climate-hazard semantics: hazards and thresholds are correctly modeled.
+[21-30:P23251; UTF16 757449] Adaptation executability: adaptation is executable across prior ANANKE layers.
+[21-30:P23252; UTF16 757528] Mitigation/adaptation separation: neither is substituted for the other.
+[21-30:P23253; UTF16 757600] Budget correctness: scope, horizon, gross/net basis, and credits are correct.
+[21-30:P23254; UTF16 757678] Net-zero semantics: gross emissions, removals, and credits remain separate.
+[21-30:P23255; UTF16 757754] Circular substitution: avoided-burden credits use valid substitution relations.
+[21-30:P23256; UTF16 757834] Environmental uncertainty: every uncertain result retains its modality.
+[21-30:P23257; UTF16 757906] Cross-prompt authority: repairs respect Prompts 12 and 18–26.
+[21-30:P23258; UTF16 757968] UNKNOWN discipline: no unresolved root is promoted.
+[21-30:P23259; UTF16 758020] Independent checking: the PCWEP checker accepts.
+[21-30:P23261; UTF16 758075] Step 1 — Establish lifecycle identity
+[21-30:P23262; UTF16 758113] Assumption 1 binds the environmental state to the current Prompt-26 configuration.
+[21-30:P23263; UTF16 758196] Therefore all material, maintenance, replacement, retrofit, and end-of-life flows refer to the lifecycle path that is actually executable.
+[21-30:P23264; UTF16 758335] Step 2 — Establish functional-unit semantics
+[21-30:P23265; UTF16 758380] Assumptions 2 and 3 bind every comparative result to a common service basis.
+[21-30:P23266; UTF16 758457] THM-ENV1 proves that absolute burden and normalized intensity may rank alternatives differently.
+[21-30:P23267; UTF16 758554] Therefore the package preserves both quantities rather than substituting one for the other.
+[21-30:P23268; UTF16 758646] Step 3 — Establish boundary semantics
+[21-30:P23269; UTF16 758684] Assumption 4 fixes the process boundary.
+[21-30:P23270; UTF16 758725] THM-ENV2 establishes monotonicity only for nonnegative gross burdens.
+[21-30:P23271; UTF16 758795] THM-ENV3 prevents that theorem from being applied to signed net accounting.
+[21-30:P23272; UTF16 758871] Thus every boundary conclusion is typed as gross or net.
+[21-30:P23273; UTF16 758928] Step 4 — Establish inventory identity
+[21-30:P23274; UTF16 758966] Assumptions 5 and 6 bind each impact claim to versioned physical flows.
+[21-30:P23275; UTF16 759038] Every included inventory item carries:
+[21-30:P23276; UTF16 759077] substance or resource identity;
+[21-30:P23278; UTF16 759119] unit;
+[21-30:P23283; UTF16 759162] Unknown required flows remain unresolved.
+[21-30:P23284; UTF16 759204] Step 5 — Establish characterization validity
+[21-30:P23285; UTF16 759249] Assumption 7 binds each factor to its compatible flow and metric.
+[21-30:P23286; UTF16 759315] For fixed linear models:
+[21-30:P23287; UTF16 759340] [ z=Kq. ]
+[21-30:P23288; UTF16 759350] THM-ENV4 proves additivity.
+[21-30:P23289; UTF16 759378] THM-ENV5 supplies interval bounds only under its nonnegative Cartesian-box hypotheses.
+[21-30:P23290; UTF16 759465] No stronger uncertainty claim is inferred.
+[21-30:P23291; UTF16 759508] Step 6 — Establish allocation consistency
+[21-30:P23292; UTF16 759550] Assumption 8 identifies the allocation rule.
+[21-30:P23293; UTF16 759595] THM-ENV6 proves conservation of the modeled shared burden.
+[21-30:P23294; UTF16 759654] THM-ENV7 proves that product-level burden is allocation-rule relative.
+[21-30:P23295; UTF16 759725] Therefore the package records both total shared burden and allocated burden.
+[21-30:P23296; UTF16 759802] Step 7 — Prevent double counting
+[21-30:P23297; UTF16 759835] Assumption 9 and PRO-ENV1 require unique environmental event identities.
+[21-30:P23298; UTF16 759908] A burden, reduction, removal, or credit cannot enter two aggregate roots as separate physical events unless the accounting theory explicitly represents that relation.
+[21-30:P23299; UTF16 760075] Step 8 — Preserve accounting mode
+[21-30:P23300; UTF16 760109] Assumption 10 distinguishes attributional and consequential results.
+[21-30:P23301; UTF16 760178] THM-ENV8 proves that they may differ in magnitude or sign.
+[21-30:P23302; UTF16 760237] Therefore one modality is never silently promoted to the other.
+[21-30:P23303; UTF16 760301] Step 9 — Establish whole-life modular accounting
+[21-30:P23304; UTF16 760350] Assumptions 4–6 and 9 ensure that lifecycle modules form a nonoverlapping partition where THM-ENV9 is invoked.
+[21-30:P23305; UTF16 760461] The module sum therefore equals the boundary total.
+[21-30:P23306; UTF16 760513] If overlap or omission remains possible, exact whole-life closure is withheld.
+[21-30:P23307; UTF16 760592] Step 10 — Establish replacement burdens
+[21-30:P23308; UTF16 760632] Assumption 14 connects replacement events to Prompt 26.
+[21-30:P23309; UTF16 760688] Where a deterministic fixed-life approximation is used, THM-ENV10 gives:
+[21-30:P23311; UTF16 760798] Where actual lifecycle replacement history exists, it supersedes the approximation.
+[21-30:P23312; UTF16 760882] Step 11 — Establish time-resolved operational burdens
+[21-30:P23313; UTF16 760936] Assumption 11 synchronizes load and factors.
+[21-30:P23314; UTF16 760981] THM-ENV11 proves that equal energy does not imply equal impact.
+[21-30:P23315; UTF16 761045] THM-ENV12 identifies the exact average-factor error:
+[21-30:P23316; UTF16 761098] [ T\operatorname{Cov}_T(p,g). ]
+[21-30:P23317; UTF16 761130] Therefore time averaging is accepted only at its proven scope.
+[21-30:P23318; UTF16 761193] Step 12 — Establish causal savings
+[21-30:P23319; UTF16 761228] Assumption 12 supplies the counterfactual baseline.
+[21-30:P23320; UTF16 761280] THM-ENV13 prevents before–after differences from becoming causal savings without that baseline.
+[21-30:P23321; UTF16 761376] Every accepted savings claim is therefore counterfactual-model relative.
+[21-30:P23322; UTF16 761449] Step 13 — Establish environmental payback
+[21-30:P23323; UTF16 761491] Given valid upfront burden and cumulative avoided burden, DEF-ENV19 defines payback.
+[21-30:P23324; UTF16 761576] THM-ENV14 proves the constant-savings formula where applicable.
+[21-30:P23325; UTF16 761640] THM-ENV15 prevents payback on one coordinate from becoming whole-vector dominance.
+[21-30:P23326; UTF16 761723] Step 14 — Establish rebound-adjusted consequences
+[21-30:P23327; UTF16 761773] Assumption 12 also governs post-intervention response effects.
+[21-30:P23328; UTF16 761836] THM-ENV16 proves that rebound exceeding gross savings causes backfire.
+[21-30:P23329; UTF16 761907] The package therefore reports:
+[21-30:P23330; UTF16 761938] engineering gross savings;
+[21-30:P23331; UTF16 761965] rebound burden;
+[21-30:P23332; UTF16 761981] net savings.
+[21-30:P23333; UTF16 761994] Step 15 — Establish water accounting
+[21-30:P23334; UTF16 762031] Assumption 15 validates withdrawal, return, and storage states.
+[21-30:P23335; UTF16 762095] THM-ENV17 prevents equal withdrawal from being interpreted as equal consumption.
+[21-30:P23336; UTF16 762176] Every water claim retains its exact quantity type.
+[21-30:P23337; UTF16 762227] Step 16 — Establish refrigerant accounting
+[21-30:P23338; UTF16 762270] Assumption 16 validates refrigerant mass balance and factors.
+[21-30:P23339; UTF16 762332] THM-ENV18 proves fixed-factor additivity.
+[21-30:P23340; UTF16 762374] No characterization claim follows without both valid leakage mass and factor.
+[21-30:P23341; UTF16 762452] Step 17 — Establish carbon-stock semantics
+[21-30:P23342; UTF16 762495] Assumption 17 binds storage and release over time.
+[21-30:P23343; UTF16 762546] THM-ENV19 prevents present storage from becoming permanent-removal proof.
+[21-30:P23344; UTF16 762620] A permanence claim requires an explicit persistence horizon and model.
+[21-30:P23345; UTF16 762691] Step 18 — Establish climate-scenario semantics
+[21-30:P23346; UTF16 762738] Assumptions 18 and 19 define the climate family and performance predicates.
+[21-30:P23347; UTF16 762814] THM-ENV20 establishes robust and possible set monotonicity.
+[21-30:P23348; UTF16 762874] THM-ENV21 transfers robust admissibility to the actual covered scenario.
+[21-30:P23349; UTF16 762947] Step 19 — Preserve extreme-event semantics
+[21-30:P23350; UTF16 762990] THM-ENV22 proves that equal climate means do not determine equal tail risk.
+[21-30:P23351; UTF16 763066] THM-ENV23 proves that historical performance does not establish future robustness.
+[21-30:P23352; UTF16 763149] Therefore climate release uses the full declared hazard family rather than only historical means.
+[21-30:P23353; UTF16 763247] Step 20 — Establish adaptation and mitigation separation
+[21-30:P23354; UTF16 763304] Assumptions 20 and 21 govern adaptation.
+[21-30:P23355; UTF16 763345] THM-ENV24 proves mitigation and adaptation are logically independent.
+[21-30:P23356; UTF16 763415] Where adaptation depends on observed climate information, THM-ENV25 supplies the exact decision-sufficiency condition.
+[21-30:P23357; UTF16 763534] Step 21 — Establish environmental-budget status
+[21-30:P23358; UTF16 763582] Assumption 22 defines budget scope and basis.
+[21-30:P23359; UTF16 763628] THM-ENV26 proves monotonicity for gross cumulative burden.
+[21-30:P23360; UTF16 763687] Set-valued budget closure remains three-way:
+[21-30:P23361; UTF16 763732] certified compliant;
+[21-30:P23362; UTF16 763753] certified violation;
+[21-30:P23364; UTF16 763786] Step 22 — Establish net-zero modality
+[21-30:P23365; UTF16 763824] Assumption 23 preserves gross emissions, physical removals, and external credits separately.
+[21-30:P23366; UTF16 763917] THM-ENV27 proves offset-balanced accounting does not imply physical net zero.
+[21-30:P23367; UTF16 763995] THM-ENV28 proves physical net zero does not imply zero gross emissions.
+[21-30:P23368; UTF16 764067] Therefore net-zero labels retain their exact modality.
+[21-30:P23369; UTF16 764122] Step 23 — Establish circular environmental consequences
+[21-30:P23370; UTF16 764178] Assumption 24 validates substitution.
+[21-30:P23371; UTF16 764216] THM-ENV29 prevents high recovery from becoming environmental-benefit proof.
+[21-30:P23372; UTF16 764292] Prompt-26 mass balance remains valid independently.
+[21-30:P23373; UTF16 764344] Step 24 — Preserve vector-valued environmental semantics
+[21-30:P23374; UTF16 764401] THM-ENV30 proves environmental dominance is not total.
+[21-30:P23375; UTF16 764456] Therefore incomparable impact vectors remain on a Pareto frontier unless a declared preference rule resolves them.
+[21-30:P23376; UTF16 764571] Step 25 — Establish environmental repair semantics
+[21-30:P23377; UTF16 764622] THM-ENV31 proves NP-hardness of the finite repair abstraction.
+[21-30:P23378; UTF16 764685] This affects synthesis, not verification.
+[21-30:P23379; UTF16 764727] Every supplied repair remains independently checked against physical, lifecycle, economic, architectural, regulatory, human, cyber, and privacy constraints.
+[21-30:P23380; UTF16 764884] Step 26 — Preserve uncertainty modalities
+[21-30:P23381; UTF16 764926] Assumption 25 requires exact uncertainty typing.
+[21-30:P23382; UTF16 764975] Inventory intervals, probabilistic climate laws, scenario families, and modeled operational values are not silently converted into exact facts.
+[21-30:P23383; UTF16 765119] Step 27 — Enforce UNKNOWN
+[21-30:P23384; UTF16 765145] Assumption 27 prevents unresolved:
+[21-30:P23385; UTF16 765180] boundaries;
+[21-30:P23386; UTF16 765192] inventories;
+[21-30:P23387; UTF16 765205] factors;
+[21-30:P23388; UTF16 765214] climate states;
+[21-30:P23389; UTF16 765230] counterfactuals;
+[21-30:P23390; UTF16 765247] substitution relations
+[21-30:P23391; UTF16 765270] from being promoted.
+[21-30:P23392; UTF16 765291] Step 28 — Establish incremental equivalence
+[21-30:P23393; UTF16 765335] Assumption 28 and THM-ENV32 establish equality of dependency-directed and cold checking.
+[21-30:P23394; UTF16 765424] Step 29 — Establish the accepted witness
+[21-30:P23395; UTF16 765465] Independent package acceptance and checker soundness imply:
+[21-30:P23396; UTF16 765525] [ \mathsf{EnvironmentalValid}_\mu (y,e_t,\lambda,\pi_M,\pi_A,\eta). ]
+[21-30:P23398; UTF16 765606] [ (\lambda,\pi_M,\pi_A,\eta) \in \gamma_{\mathrm{env}}^\mu(y,e_t). ]
+[21-30:P23401; UTF16 765745] Step 30 — Restrict assurance consumption
+[21-30:P23402; UTF16 765786] Prompt 11 may consume each PCWEP claim only at its exact DEF-ENV43 modality.
+[21-30:P23403; UTF16 765863] This proves the theorem. ∎
+[21-30:P23407; UTF16 765893] 36. What THM-ENV33 Does Not Prove
+[21-30:P23408; UTF16 765927] THM-ENV33 does not prove:
+[21-30:P23409; UTF16 765953] every environmental flow is known;
+[21-30:P23410; UTF16 765988] the chosen system boundary is uniquely correct;
+[21-30:P23411; UTF16 766036] every environmental factor is exact;
+[21-30:P23412; UTF16 766073] characterization captures every physical damage pathway;
+[21-30:P23413; UTF16 766130] allocation rules are uniquely correct;
+[21-30:P23414; UTF16 766169] consequential responses are complete;
+[21-30:P23415; UTF16 766207] future grid factors are known;
+[21-30:P23416; UTF16 766238] future energy use is known;
+[21-30:P23417; UTF16 766266] retrofit savings are certain;
+[21-30:P23418; UTF16 766296] rebound is known;
+[21-30:P23419; UTF16 766314] every replacement occurs as modeled;
+[21-30:P23420; UTF16 766351] water consequences are complete;
+[21-30:P23421; UTF16 766384] refrigerant leakage is fully observed;
+[21-30:P23422; UTF16 766423] carbon storage is permanent;
+[21-30:P23423; UTF16 766452] climate scenarios exhaust the future;
+[21-30:P23424; UTF16 766490] adaptation works under unmodeled hazards;
+[21-30:P23425; UTF16 766532] environmental budgets are ethically or legally sufficient;
+[21-30:P23426; UTF16 766591] external credits are physically equivalent to project abatement;
+[21-30:P23427; UTF16 766656] net zero means zero gross emissions;
+[21-30:P23428; UTF16 766693] recycling creates environmental benefit;
+[21-30:P23429; UTF16 766734] one environmental metric subsumes all others;
+[21-30:P23430; UTF16 766780] future ecological thresholds remain unchanged.

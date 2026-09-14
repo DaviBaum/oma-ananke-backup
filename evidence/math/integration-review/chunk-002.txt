@@ -1,0 +1,268 @@
+[1281] THM-SIR22 — Configuration-space freedom implies swept-volume nonintersection
+[1282] Let \(q:[0,1]\to\mathcal C_{\mathrm{free}}\) be a continuous route configuration. Then
+[1283] \[ \operatorname{Sweep}(q,B)\cap O=\varnothing. \]
+[1284] Proof. For every \(t\), \(q(t)\notin\mathcal C_{\mathrm{obs}}\), so the placed body \(q(t)\cdot B\) is disjoint from \(O\). The sweep is the union of these disjoint placed bodies. If the union intersected \(O\), one member would intersect \(O\), contradiction. ∎
+[1285] THM-SIR23 — Same centerline can have different envelope feasibility
+[1286] Consider a straight corridor of width \(1.0\) m centered on the \(x\)-axis. A circular service envelope of diameter \(0.6\) m has lateral radius \(0.3\) m and fits. A duct envelope of width \(1.2\) m has half-width \(0.6\) m and intersects both corridor walls. The centerline is identical; feasibility differs. ∎
+[1287] THM-SIR24 — Endpoint connectivity does not imply geometric routability
+[1288] Let two ports lie on opposite sides of a closed wall slab spanning the entire declared workspace from floor to ceiling, with no permitted penetration. The netlist contains a valid edge joining the ports. The permitted free configuration space has two disconnected components, one containing each endpoint. Therefore no route exists. ∎
+[1289] THM-SIR25 — Collision-free centerline does not imply bend-feasible route
+[1290] Let a polyline make a \(90^\circ\) turn at the origin inside otherwise empty space. Give the service minimum bend radius \(r=1\) m and only \(0.5\) m straight length on each adjacent leg before fixed ports. The zero-width polyline is collision free, but no tangent circular bend of radius \(1\) m fits between the fixed legs because it requires tangent offsets of \(1\) m. Hence the route is not fabricable. ∎
+[1291] THM-SIR26 — Collision-free route does not imply maintenance accessibility
+[1292] Place a collision-free pipe through the only \(1\) m-wide access aisle in front of an equipment panel. The pipe occupies a narrow region without colliding with equipment. The maintenance requirement demands the entire aisle remain clear. The route passes collision checks and fails the access-volume factor. ∎
+[1293] THM-SIR27 — Certified graph embedding soundness
+[1294] Let every route-graph edge \(e\) carry a checked continuous configuration path \(\gamma_e\subseteq\mathcal C_{\mathrm{free}}\), and let adjacent edges meet in equal certified configurations. Then every graph walk induces a collision-free continuous route.
+[1295] Proof. Concatenate the edge paths in walk order. Endpoint equality makes the concatenation continuous. Each segment lies in free configuration space, so the concatenation does. Apply THM-SIR22. ∎
+[1296] THM-SIR28 — Uncertified graph path may be physically invalid
+[1297] Construct a graph whose two vertices represent points on opposite sides of a wall and whose edge is inserted using Euclidean proximity without collision checking. The graph contains a path of one edge, but the straight embedding intersects the wall. Thus graph reachability alone is unsound. ∎
+[1298] THM-SIR29 — Finite discretization may miss a valid continuous route
+[1299] Let the workspace contain a narrow diagonal channel
+[1300] \[ |y-x|<\varepsilon \]
+[1301] from \((0,0)\) to \((1,1)\), with \(\varepsilon<\frac{h}{3}\), where a square sampling grid has spacing \(h\) and excludes the endpoints from intermediate grid vertices. A diagonal continuous path exists. A four-neighbor grid graph contains no interior sample inside the channel, so it reports no path. ∎
+[1302] THM-SIR30 — Coarse free-space relaxation may admit a spurious route
+[1303] Let a thin obstacle wall have thickness smaller than a voxel size and lie entirely inside one voxel marked free by center sampling. The coarse occupancy graph crosses that voxel and admits a path through the wall. The exact geometry rejects the route. ∎
+[1304] THM-SIR31 — Certified representational refinement preserves an exact witness
+[1305] Suppose route witness \(W\) was checked directly against unchanged authoritative exact geometry, rules, modes, and versions. Refining a derived approximation without changing any authoritative premise cannot invalidate \(W\).
+[1306] Proof. The truth of every witness predicate is a function of the authoritative premises and \(W\), none of which changed. The derived approximation was not a premise of the exact certificate. Therefore every predicate retains its value. A certificate depending on the old approximation would not satisfy the theorem’s hypothesis. ∎
+[1308] Netlist and topology theorems
+[1309] THM-SIR32 — Typed incidence conservation
+[1310] For a closed directed net without modeled storage or conversion,
+[1311] \[ \sum_{p\in P_n} B_{pn}f_{pn}=0. \]
+[1312] Proof. Every internal transfer appears once as positive injection and once as negative withdrawal. By LEM-SIR7 the incidence columns sum to zero; multiplication by the flow vector preserves cancellation. External sources and sinks must be represented explicitly. ∎
+[1313] THM-SIR33 — Port incompatibility empties the realization fiber
+[1314] If a mandatory net endpoint pair fails PortCompatible in mode \(m\) and scenario \(\omega\), then
+[1315] \[ \Gamma_{\mathrm{real}}^\mu(n,\Xi;m,\omega)=\varnothing. \]
+[1316] Proof. Endpoint compatibility is clause 1 of DEF-SIR74. Every putative witness violates that clause. ∎
+[1317] THM-SIR34 — Topological netlist validity does not imply geometric realization
+[1318] The wall construction of THM-SIR24 has a well-typed connected netlist but an empty route fiber. ∎
+[1319] THM-SIR35 — Same netlist, different placement, different route fibers
+[1320] Place two compatible ports in the same open room; a straight route exists. Move one component behind a sealed wall while preserving net incidence. The netlist is unchanged; the route fiber becomes empty. ∎
+[1321] THM-SIR36 — Same rendered geometry can carry different netlists
+[1322] Render two identical cylinders and equipment meshes. In state \(X\), the cylinders are supply and return hydronic branches. In state \(Y\), they are unrelated visual placeholders with no port incidence. If system color and hidden topology are omitted, renders agree while netlists differ. ∎
+[1323] THM-SIR37 — Equipment movement can create or destroy route realizability
+[1324] Moving equipment changes its port frame and the obstacle/access geometry. The same movement may open a straight channel or place the terminal in a disconnected free-space component. Explicit examples follow from THM-SIR35 in opposite directions. ∎
+[1325] THM-SIR38 — Topology rewrite can create or destroy homotopy classes
+[1326] Let free space be an annulus. Paths around the central obstacle have integer winding classes. Insert a permitted radial shaft through the obstacle and remove the obstacle region along that shaft, making the domain simply connected; winding classes collapse. Conversely, inserting a new obstacle into a simply connected room creates new endpoint-relative classes. ∎
+[1327] THM-SIR39 — Mode-wise feasibility does not imply one nonanticipative reconfiguration policy
+[1328] Suppose an irreversible branch damper must be set left or right before the emergency cause is observed. In scenario \(\omega_L\), only left yields a valid route state; in \(\omega_R\), only right does. Each scenario has a feasible configuration. No policy using the identical pre-observation history can select both settings. ∎
+[1329] THM-SIR40 — Individual realizability does not imply joint realizability
+[1330] Let two nets each have one route through a corridor of capacity one. Each individual fiber is nonempty. Any joint witness would place both route envelopes in the capacity-one corridor, violating the shared-capacity factor. Thus the joint fiber is empty. ∎
+[1331] THM-SIR41 — Pairwise route realizability does not imply joint realizability
+[1332] Let a rack have capacity \(10\) units and three route envelopes each consume \(4\). Every route exists individually; every pair consumes \(8\le10\); all three consume \(12>10\). Therefore every pair has a joint witness but the triple does not. ∎
+[1333] THM-SIR42 — Pairwise geometric separation does not imply rack-capacity feasibility
+[1334] Place three mutually separated service bodies in a wide notional rack region. Let each require support-load capacity \(4\), while the shared support limit is \(10\). Pairwise separation passes, but total support demand \(12\) fails. ∎
+[1336] Local-to-global theorems
+[1337] THM-SIR43 — Join-tree local-to-global gluing
+[1338] Let local-state bags \(B_i\) form a tree satisfying running intersection. Suppose selected local states agree exactly on every edge separator. Then there exists a global SIR state restricting to every local state.
+[1340] Root the tree.
+[1341] Initialize the global assignment with the root state.
+[1342] Visit each child after its parent.
+[1343] Agreement on the parent–child separator means all already assigned shared objects have equal values, versions, and relations.
+[1344] Add the child’s nonseparator objects and relations.
+[1345] By LEM-SIR8, any variable appearing in multiple bags occurs along a connected subtree, so its first assignment propagates consistently through every later separator.
+[1346] No object receives conflicting assignments.
+[1347] The final union restricts to each local state.
+[1348] Thus a global state exists. ∎
+[1349] THM-SIR44 — Pairwise overlap agreement may be insufficient on a cyclic cover
+[1350] Let three local bags contain variables
+[1351] \[ B_1=\{x,y\},\quad B_2=\{y,z\},\quad B_3=\{z,x\}, \]
+[1352] with binary constraints
+[1353] \[ x=y,\qquad y=z,\qquad z\neq x. \]
+[1354] Every pair of bags has a compatible assignment on its overlap, but no global assignment satisfies all three constraints. Thus pairwise agreement without a valid running-intersection or global constraint check is insufficient. ∎
+[1356] Contextual-interface theorems
+[1357] THM-SIR45 — Router contextual equivalence is an equivalence relation
+[1359] Reflexive: every computation equals itself.
+[1360] Symmetric: equality of outputs is symmetric.
+[1361] Transitive: if every output agrees between \(x_1,x_2\) and between \(x_2,x_3\), then it agrees between \(x_1,x_3\).
+[1362] Therefore \(\equiv_{R\to A}\) is an equivalence relation. ∎
+[1363] THM-SIR46 — Downstream factorization
+[1364] For every \(f\in\mathcal F_{R\to A}\), there exists a unique map on quotient classes
+[1365] \[ \bar f:Q_{R\to A}\to Y_f \]
+[1367] \[ f=\bar f\circ q. \]
+[1368] Proof. Define \(\bar f([x])=f(x)\). If \(x\sim y\), the definition of equivalence gives \(f(x)=f(y)\), so the map is well defined. The factorization is immediate. Uniqueness follows because \(q\) is surjective. ∎
+[1369] THM-SIR47 — Coarsest exact router interface
+[1370] Let \(a:X_R\to A\) be any representation through which every admitted computation factors. Then
+[1371] \[ a(x)=a(y)\Longrightarrow x\equiv_{R\to A}y. \]
+[1372] Proof. For each \(f\), write \(f=g_f\circ a\). Equal \(a\)-values give equal \(f\)-values for every admitted \(f\). Hence \(x\equiv y\). Thus every exact sufficient interface refines the canonical quotient. ∎
+[1373] THM-SIR48 — Experiment-family expansion refines the quotient
+[1375] \[ \mathcal F_1\subseteq\mathcal F_2, \]
+[1376] then
+[1377] \[ \equiv_{\mathcal F_2} \subseteq \equiv_{\mathcal F_1}. \]
+[1378] Proof. Agreement on every computation in the larger family implies agreement on the subfamily. ∎
+[1379] THM-SIR49 — A new objective can invalidate an old interface
+[1380] Let the old interface preserve route length and penetration count. Let router states \(x,y\) have equal values for both but different assembly-family counts. They are equivalent under the old experiment family. Add objective \(J_{\mathrm{assembly}}\); it distinguishes them. The old quotient now aliases decision-distinct states and is insufficient. ∎
+[1381] THM-SIR50 — Bounded interface does not license exact consumption
+[1382] Let the interface report only
+[1383] \[ J(x)\in[9,11]. \]
+[1384] A downstream exact decision requires knowing whether \(J(x)\le10\). The interval contains values on both sides. No exact decision follows. Thus bounded preservation cannot be consumed as exact equality or exact threshold truth without a separate theorem. ∎
+[1386] Viewer theorems
+[1387] THM-SIR51 — Viewer projection is generally noninjective
+[1388] Take two SIR states with identical visible meshes and transforms but different hidden port direction, system type, insulation, maintenance envelope, or proof status. The viewer projection is equal while the states differ. Therefore \(\pi_{\mathrm{view}}\) is not injective in general. ∎
+[1389] THM-SIR52 — Viewer sufficiency factorization criterion
+[1390] For a computation \(f:\mathfrak X_{\mathrm{SIR}}\to Y\), there exists \(g\) with
+[1391] \[ f=g\circ\pi_{\mathrm{view}} \]
+[1392] iff
+[1393] \[ \pi_{\mathrm{view}}(x)=\pi_{\mathrm{view}}(y) \Longrightarrow f(x)=f(y). \]
+[1394] Proof. The forward direction follows by substitution. For the reverse direction, define \(g(v)=f(x)\) for any \(x\) projecting to \(v\); fiber constancy makes the definition well defined. ∎
+[1395] THM-SIR53 — Visual correspondence does not imply rewrite correspondence
+[1396] Two before/after meshes may have nearest vertices or identical display labels while representing different semantic components or versions. A proof-preserving rewrite requires semantic lineage, object classification, and applicability, none of which follows from mesh proximity. ∎
+[1398] Rewrite and dependency theorems
+[1399] THM-SIR54 — Exact SIR transport preserves included semantics under commuting correspondence
+[1400] Let rewrite correspondence \(\chi\) be total on every object consumed by computation \(f\), preserve types and versions, and satisfy a commuting square
+[1401] \[ f_{v+1}\circ T_\chi=f_v. \]
+[1402] Then transporting state \(x\) gives
+[1403] \[ f_{v+1}(T_\chi x)=f_v(x). \]
+[1404] Proof. This equality is exactly the commuting hypothesis evaluated at \(x\). The theorem’s substance is the explicit requirement that every consumed object lies in the preserved correspondence domain. ∎
+[1405] THM-SIR55 — Incomplete correspondence requires set-valued output or UNKNOWN
+[1406] Suppose old object \(o\) may correspond to either \(o'_1\) or \(o'_2\), and a downstream computation differs on them. A single exact transported value would choose one without evidence. The sound output is the set of possible transported values or UNKNOWN. ∎
+[1407] THM-SIR56 — Incomplete invalidation is unsound
+[1408] Let certificate \(c\) depend on obstacle \(o\). Move \(o\), but omit edge \(o\to c\) from the invalidation graph and reuse \(c\). Choose the movement so the certified route now collides. The reused certificate says PASS while the current state fails. Thus dependency omission can make incremental reuse unsound. ∎
+[1409] THM-SIR57 — Dependency-directed SIR recertification equals cold recomputation
+[1410] Assume:
+[1411] every changed root is known;
+[1412] \(D_{\mathrm{SIR}}\) is complete;
+[1413] every descendant certificate is invalidated;
+[1414] reused nodes pass version, scope, theory, experiment, and applicability checks;
+[1415] recomputed nodes use the same deterministic checkers as cold computation;
+[1416] cyclic checked subsystems are condensed into certified nodes.
+[1417] Then incremental and cold checking agree on every SIR release root.
+[1419] Condense checked cycles, producing a DAG. Take a topological order. At source nodes, changed values are recomputed identically, and unchanged reused values pass equality/applicability checks, so they equal cold values. Assume equality for all predecessors of node \(v\). If invalidated, both procedures run the same deterministic checker on equal inputs; outputs agree. If reused, dependency completeness proves no changed root can affect it, and applicability establishes semantic equality with the cold node. Induction reaches every release root. ∎
+[1420] THM-SIR58 — Unchanged local geometry does not imply route-certificate reuse
+[1421] A route’s centerline neighborhood may be unchanged while its net demand, envelope size, clearance rule, operating mode, equipment version, or experiment family changes. Any such change can invalidate the certificate. Therefore local geometric equality alone is insufficient. ∎
+[1422] THM-SIR59 — Proposal-source independence
+[1423] Suppose acceptance depends only on a sound checker applied to the complete PCSIR witness. Replacing the proposer—AI, human, heuristic, or optimizer—without changing the checked witness does not change certificate semantics.
+[1424] Proof. Proposer identity is not a premise of the validity predicate. Equal checked premises produce equal checker results. ∎
+[1426] Optimization and complexity foundations
+[1427] THM-SIR60 — A locally shortest route may be absent from every globally preferred design
+[1428] Consider two equipment placements.
+[1429] Placement \(A\): local route length \(2\), but equipment and structural consequences add cost \(100\).
+[1430] Placement \(B\): local route length \(5\), with no additional cost.
+[1431] The locally shortest route belongs to \(A\), whose total objective coordinate is \(102\); \(B\) has total \(5\). Under any authorized scalarization weighting those quantities equally, the local shortest route is absent from the globally preferred design. ∎
+[1432] THM-SIR61 — Finite route realization contains an NP-hard subproblem
+[1433] Consider the restricted problem:
+[1434] exact finite embedded graph \(G=(V,E)\);
+[1435] one multi-terminal net with terminal set \(T\subseteq V\);
+[1436] every edge is geometrically certified and has nonnegative integer cost;
+[1437] ask whether a connected route subgraph spanning \(T\) has cost at most \(B\).
+[1438] This is exactly the graph Steiner Tree decision problem.
+[1439] Reduction. Given any graph Steiner Tree instance \((G,T,B)\), create the identical SIR routing graph, assign zero-width envelopes and no additional constraints, and request a route subgraph of cost at most \(B\). A Steiner tree is a valid route witness, and any valid connected route witness is a Steiner subgraph that can be cycle-pruned without increasing cost. The mapping is polynomial and preserves YES/NO answers. Therefore this exact finite restriction is NP-hard. ∎
+[1440] THM-SIR62 — Explicit witness-checking complexity
+[1441] Let an explicit PCSIR witness contain:
+[1442] \(N\) serialized objects;
+[1443] \(E_D\) dependency edges;
+[1444] \(E_H\) hypergraph incidences;
+[1445] \(F\) factors;
+[1446] local checker costs \(c_1,\ldots,c_F\);
+[1447] \(G\) shared-identity comparisons.
+[1448] Then a topological explicit checker runs in
+[1449] \[ O\!\left( N+E_D+E_H+G+\sum_{i=1}^{F}c_i \right), \]
+[1450] excluding the cost of generating the witness.
+[1451] Proof. Deserialize and validate each object once, traverse each incidence and dependency edge once, perform each identity comparison once, and invoke each local checker once. Summation gives the bound. ∎
+[1453] PART VIII — ALGORITHMS
+[1454] 35. Algorithm contract
+[1455] Every algorithm below has the fields:
+[1456] \[ (\mathsf{Input},\mathsf{Output},\mathsf{Mutation}, \mathsf{Determinism},\mathsf{Trust},\mathsf{Certificate}, \mathsf{Failures},\mathsf{Complexity},\mathsf{Reuse}). \]
+[1457] Unless stated otherwise, algorithms are pure, deterministic checkers. Proposal algorithms may be nondeterministic but remain untrusted.
+[1459] ALG-SIR1 — AuditInheritedANANKEObjects
+[1460] Input: canonical manifest \(M_{\mathrm{AN}}\), required-ID set \(R\).
+Output: audit table and dependency set.
+Mutation: none. Trust: checker.
+[1461] for each id in R:
+[1462]     locate active body, registry row, provenance, assumptions, scope, modality
+[1463]     reject superseded-only or bodyless objects
+[1464]     record exact Prompt-1 use
+[1465] return audit, imported_dependency_hash
+[1466] Failures: BROKEN_REFERENCE, SUPERSEDED_ONLY, BODY_MISSING, UNKNOWN.
+Complexity: \(O(|M_{\mathrm{AN}}|+|R|)\) with indexed lookup.
+Reuse: keyed by canonical manifest hash and required-ID set.
+[1467] ALG-SIR2 — AuditCeilingRouterSource
+[1468] Input: repository tree, source files, requested mechanism set.
+Output: mechanism-status ledger.
+Trust: evidence auditor.
+[1469] for each mechanism:
+[1470]     search code, tests, design notes, benchmarks, and unresolved gitlinks
+[1471]     classify source and implementation status separately
+[1472]     attach exact source references
+[1473]     never infer content of unavailable entries
+[1474] Failures: SOURCE_UNAVAILABLE, CLAIM_ONLY, STATUS_CONFLICT, UNKNOWN.
+Complexity: \(O(B+Q)\), source bytes plus query results.
+[1475] ALG-SIR3 — BuildCanonicalSemanticIdentityRegistry
+[1476] Input: imported objects, source IDs, lineages, versions.
+Output: \(\mathcal I\), collision report, registry certificate.
+[1477] normalize source namespace and object kind
+[1478] derive or preserve stable semantic IDs
+[1479] group records by semantic ID
+[1480] reject incompatible active kinds or lineages
+[1481] record artifacts, versions, owners, translations
+[1482] sort canonically and hash
+[1483] Failures: IDENTITY_COLLISION, LINEAGE_AMBIGUITY, VERSION_CONFLICT.
+Complexity: \(O(N\log N)\).
+Reuse: unchanged source-record hashes reuse prior registry entries.
+[1484] ALG-SIR4 — CanonicalizeUnitsAndDimensions
+[1485] Input: typed quantities and unit registry.
+Output: canonical quantities or typed rejection.
+[1486] validate unit token
+[1487] compute dimension vector
+[1488] reject requested conversions across unequal dimensions
+[1489] convert to canonical storage unit with certified arithmetic
+[1490] retain original presentation unit
+[1491] Failures: UNIT_UNKNOWN, UNIT_MISMATCH, CONVERSION_UNRESOLVED.
+Complexity: \(O(N)\).
+[1492] ALG-SIR5 — BuildAndAuditCoordinateFrameGraph
+[1493] Input: frames, transforms, uncertainty enclosures.
+Output: frame graph, path transforms, cycle certificates.
+[1494] validate transform domains/codomains and units
+[1495] build directed graph
+[1496] for each fundamental cycle:
+[1497]     compose exact transforms or interval enclosures
+[1498]     if exact product != identity: fail
+[1499]     if identity excluded from enclosure: fail
+[1500]     if enclosure contains identity but nontrivial: UNKNOWN
+[1501] return graph and certificates
+[1502] Failures: FRAME_TYPE_MISMATCH, FRAME_CYCLE_INCONSISTENT, FRAME_UNRESOLVED.
+Complexity: \(O(|V|+|E|+Ck^3)\) for matrix dimension \(k\).
+[1503] ALG-SIR6 — CanonicalizeExactGeometry
+[1504] Input: source geometry, frames, unit registry, quantum \(\delta\).
+Output: exact solids, bounded solids, residual ledger.
+[1505] transform each source object into canonical frame
+[1506] retain exact rational/lattice geometry when available
+[1507] otherwise build outward and inward enclosures
+[1508] quantize only under declared rule
+[1509] validate shells, orientation, regular closure, and provenance
+[1510] Failures: GEOMETRY_INVALID, FRAME_UNRESOLVED, QUANTIZATION_MARGIN_LOST, UNKNOWN.
+Complexity: representation dependent; \(O(V+F)\) before Boolean operations.
+[1511] ALG-SIR7 — BuildSpatialCellComplex
+[1512] Input: canonical solids and semantic boundaries.
+Output: \(\mathcal K\), incidence matrices, validation proof.
+[1513] construct arrangement or certified partition
+[1514] assign dimensions and orientations
+[1515] derive boundary operators
+[1516] check closure and ∂∂ = 0
+[1517] attach semantic types and source references
+[1518] Failures: NONMANIFOLD_UNRESOLVED, CELL_INCIDENCE_FAILURE, GEOMETRY_UNRESOLVED.
+Complexity: arrangement output sensitive; explicit checking \(O(N_{\text{inc}})\).
+[1519] ALG-SIR8 — CompileObstacleAndPermittedRegionState
+[1520] Input: cell complex, service classes, rules, modes, scenarios.
+Output: obstacle classes and \(W_s(m,\omega)\).
+[1521] for each cell/object and service context:
+[1522]     evaluate hard, penetrable, conditional, and unknown classifications
+[1523]     preserve UNKNOWN
+[1524]     assemble permitted-region expression
+[1525] Failures: RULE_MISSING, OBSTACLE_UNKNOWN, AUTHORITY_REQUIRED.
+Complexity: \(O(NS)\) factor evaluations.
+[1526] ALG-SIR9 — CompileEquipmentAndAccessVolumes
+[1527] Input: equipment geometry, manufacturer/source metadata, procedures.
+Output: occupancy and access-volume families.
+[1528] resolve active equipment version
+[1529] compile physical solid
+[1530] compile install, maintain, remove, operate, and future volumes separately
+[1531] bind each volume to mode and evidence
+[1532] Failures: EQUIPMENT_VERSION_CONFLICT, ACCESS_VOLUME_UNKNOWN.
+Complexity: \(O(E+V_{\mathrm{geom}})\).
+[1533] ALG-SIR10 — CompileTypedPortRegistry
+[1534] Input: equipment/components, source connection data, frames.
+Output: checked port registry.
+[1535] construct port token for each source terminal
+[1536] validate owner, frame, shape, medium, direction, state dimensions, capacities
+[1537] bind mode and version
+[1538] reject orphan or duplicate active ports

@@ -1,0 +1,424 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P13151; UTF16 436486]     PROCEDURE AUTOMATON
+[21-30:P13156; UTF16 436537] ALG-HUM8 — CheckProcedureExecution
+[21-30:P13158; UTF16 436578]     procedure
+[21-30:P13159; UTF16 436592]     execution witness
+[21-30:P13160; UTF16 436614]     staffing
+[21-30:P13165; UTF16 436690]     communication trace
+[21-30:P13167; UTF16 436715] CHECK each step
+[21-30:P13169; UTF16 436754]     person-task competence
+[21-30:P13171; UTF16 436795]     observation availability
+[21-30:P13174; UTF16 436848]     physical transition
+[21-30:P13178; UTF16 436893]     PROCEDURE EXECUTION CERTIFIED
+[21-30:P13179; UTF16 436927]     COUNTEREXAMPLE STEP
+[21-30:P13184; UTF16 436966] ALG-HUM9 — ComputeHumanWorkload
+[21-30:P13186; UTF16 437004]     task schedule
+[21-30:P13187; UTF16 437022]     alarm schedule
+[21-30:P13188; UTF16 437041]     communication tasks
+[21-30:P13189; UTF16 437065]     supervision tasks
+[21-30:P13190; UTF16 437087]     declared capacity envelopes
+[21-30:P13193; UTF16 437128]     time-varying demand
+[21-30:P13194; UTF16 437152]     cumulative service demand
+[21-30:P13195; UTF16 437182]     overlapping task sets
+[21-30:P13196; UTF16 437208]     deadline windows
+[21-30:P13199; UTF16 437237]     WORKLOAD PROFILE
+[21-30:P13203; UTF16 437261] ALG-HUM10 — FindAttentionCapacityCut
+[21-30:P13205; UTF16 437304]     mandatory service tasks
+[21-30:P13206; UTF16 437332]     release times
+[21-30:P13208; UTF16 437364]     capacity function
+[21-30:P13210; UTF16 437387] SEARCH intervals [u, v]
+[21-30:P13211; UTF16 437411]     where mandatory service due in interval
+[21-30:P13212; UTF16 437455]     exceeds integral capacity
+[21-30:P13215; UTF16 437493]     CAPACITY-CUT CERTIFICATE
+[21-30:P13216; UTF16 437522]     or NO FOUND CUT
+[21-30:P13217; UTF16 437542] Absence of a found cut does not by itself prove schedule feasibility.
+[21-30:P13221; UTF16 437615] ALG-HUM11 — SolveHumanTaskSchedule
+[21-30:P13223; UTF16 437656]     tasks
+[21-30:P13224; UTF16 437666]     qualified people
+[21-30:P13225; UTF16 437687]     durations
+[21-30:P13232; UTF16 437765]     CP
+[21-30:P13236; UTF16 437813]     heuristic proposals
+[21-30:P13239; UTF16 437859]     final assignment and schedule
+[21-30:P13248; UTF16 437953] ALG-HUM12 — CheckHMIDecisionSufficiency
+[21-30:P13250; UTF16 437999]     complete covered state set X
+[21-30:P13251; UTF16 438032]     HMI map H
+[21-30:P13252; UTF16 438046]     required action map a*
+[21-30:P13254; UTF16 438074] FOR every covered pair x1, x2:
+[21-30:P13255; UTF16 438105]     if H(x1) = H(x2)
+[21-30:P13256; UTF16 438126]        and a*(x1) != a*(x2):
+[21-30:P13257; UTF16 438155]         return ALIASING COUNTEREXAMPLE
+[21-30:P13258; UTF16 438194]                (x1, x2)
+[21-30:P13261; UTF16 438226]     HMI DECISION SUFFICIENT
+[21-30:P13265; UTF16 438257] ALG-HUM13 — BuildHumanDecisionQuotient
+[21-30:P13267; UTF16 438302]     covered states
+[21-30:P13268; UTF16 438321]     required human decision family
+[21-30:P13270; UTF16 438357] GROUP states
+[21-30:P13271; UTF16 438370]     iff all required decisions/reports agree
+[21-30:P13274; UTF16 438423]     EXACT HUMAN-DECISION QUOTIENT
+[21-30:P13275; UTF16 438457]     SYMBOLIC QUOTIENT
+[21-30:P13281; UTF16 438519] ALG-HUM14 — AuditAlarmSystem
+[21-30:P13285; UTF16 438577]     priorities
+[21-30:P13286; UTF16 438592]     response requirements
+[21-30:P13288; UTF16 438632]     suppression logic
+[21-30:P13289; UTF16 438654]     HMI mappings
+[21-30:P13292; UTF16 438678]     meaning
+[21-30:P13293; UTF16 438690]     duplication
+[21-30:P13294; UTF16 438706]     derived alarms
+[21-30:P13295; UTF16 438725]     missing response
+[21-30:P13297; UTF16 438765]     workload demand
+[21-30:P13300; UTF16 438793]     ALARM INVENTORY
+[21-30:P13301; UTF16 438813]     CONFLICTS
+[21-30:P13306; UTF16 438842] ALG-HUM15 — BuildAlarmQuotient
+[21-30:P13309; UTF16 438890]     admitted contexts
+[21-30:P13310; UTF16 438912]     required response map
+[21-30:P13312; UTF16 438939] MERGE two alarms only if
+[21-30:P13313; UTF16 438964]     every admitted context
+[21-30:P13314; UTF16 438991]     requires identical response/report
+[21-30:P13317; UTF16 439038]     ALARM ACTION QUOTIENT
+[21-30:P13318; UTF16 439064]     PROOF OF EACH MERGE
+[21-30:P13322; UTF16 439091] ALG-HUM16 — CheckAlarmWorkload
+[21-30:P13324; UTF16 439128]     alarm arrivals
+[21-30:P13325; UTF16 439147]     service demands
+[21-30:P13327; UTF16 439181]     operator capacity
+[21-30:P13328; UTF16 439203]     existing workload
+[21-30:P13331; UTF16 439233]     overload intervals
+[21-30:P13332; UTF16 439256]     missed deadlines
+[21-30:P13333; UTF16 439277]     impossible simultaneous responses
+[21-30:P13336; UTF16 439323]     ALARM WORKLOAD FEASIBLE
+[21-30:P13337; UTF16 439351]     CAPACITY VIOLATION
+[21-30:P13342; UTF16 439389] ALG-HUM17 — CheckHumanReliabilityModel
+[21-30:P13344; UTF16 439434]     success events
+[21-30:P13345; UTF16 439453]     probability law
+[21-30:P13346; UTF16 439473]     marginals
+[21-30:P13347; UTF16 439487]     dependence model
+[21-30:P13353; UTF16 439558]     probability modality
+[21-30:P13356; UTF16 439619]     latent common causes
+[21-30:P13357; UTF16 439644]     transfer scope
+[21-30:P13360; UTF16 439671]     HUMAN RELIABILITY MODEL VALID
+[21-30:P13361; UTF16 439705]     DEPENDENCE UNSUPPORTED
+[21-30:P13362; UTF16 439732]     POPULATION ONLY
+[21-30:P13367; UTF16 439767] ALG-HUM18 — AuditHandoff
+[21-30:P13369; UTF16 439798]     complete outgoing state model
+[21-30:P13370; UTF16 439832]     handoff map
+[21-30:P13371; UTF16 439848]     receiving-team decision family
+[21-30:P13374; UTF16 439890]     whether equal handoff summaries
+[21-30:P13375; UTF16 439926]     ever require different receiving decisions
+[21-30:P13378; UTF16 439981]     HANDOFF SUFFICIENT
+[21-30:P13379; UTF16 440004]     ALIASING COUNTEREXAMPLE
+[21-30:P13384; UTF16 440047] ALG-HUM19 — BuildHandoffQuotient
+[21-30:P13386; UTF16 440086]     outgoing state domain
+[21-30:P13387; UTF16 440112]     receiving-team future computations
+[21-30:P13390; UTF16 440162]     contextual equivalence classes
+[21-30:P13393; UTF16 440205]     COARSEST EXACT HANDOFF QUOTIENT
+[21-30:P13394; UTF16 440241]     SYMBOLIC REFINEMENT
+[21-30:P13399; UTF16 440280] ALG-HUM20 — AuditTeamCommunication
+[21-30:P13401; UTF16 440321]     team members
+[21-30:P13402; UTF16 440338]     local information
+[21-30:P13403; UTF16 440360]     decision responsibilities
+[21-30:P13404; UTF16 440390]     communication graph
+[21-30:P13405; UTF16 440414]     delays
+[21-30:P13406; UTF16 440425]     acknowledgments
+[21-30:P13409; UTF16 440455]     decision-critical variables
+[21-30:P13410; UTF16 440487]     owning agents
+[21-30:P13411; UTF16 440505]     required recipients
+[21-30:P13412; UTF16 440529]     latest delivery times
+[21-30:P13415; UTF16 440563]     COMMUNICATION SUFFICIENT
+[21-30:P13416; UTF16 440592]     MISSING DECISION-CRITICAL INFORMATION
+[21-30:P13421; UTF16 440649] ALG-HUM21 — CheckHumanAIDelegation
+[21-30:P13423; UTF16 440690]     delegation contract
+[21-30:P13424; UTF16 440714]     AI action set
+[21-30:P13425; UTF16 440732]     human action set
+[21-30:P13428; UTF16 440784]     approval and veto paths
+[21-30:P13429; UTF16 440812]     timeouts
+[21-30:P13433; UTF16 440847]     every AI action is in scope
+[21-30:P13434; UTF16 440879]     required human approvals are reachable
+[21-30:P13435; UTF16 440922]     veto remains effective
+[21-30:P13436; UTF16 440949]     escalation is timed and authorized
+[21-30:P13439; UTF16 440996]     DELEGATION CERTIFIED
+[21-30:P13440; UTF16 441021]     AUTHORITY VIOLATION
+[21-30:P13441; UTF16 441045]     INEFFECTIVE REVIEW
+[21-30:P13446; UTF16 441083] ALG-HUM22 — CheckEffectiveOverride
+[21-30:P13448; UTF16 441124]     hazard state family
+[21-30:P13450; UTF16 441156]     required override action
+[21-30:P13451; UTF16 441185]     minimum latency bounds
+[21-30:P13452; UTF16 441212]     maximum latency bounds
+[21-30:P13453; UTF16 441239]     hazard horizon
+[21-30:P13455; UTF16 441272]     physical transition model
+[21-30:P13456; UTF16 441302]     safe set
+[21-30:P13458; UTF16 441316] IF sum(minimum bounds) > hazard horizon:
+[21-30:P13459; UTF16 441357]     return OVERRIDE IMPOSSIBLE
+[21-30:P13462; UTF16 441395]     HMI decision sufficiency
+[21-30:P13464; UTF16 441438]     command path
+[21-30:P13465; UTF16 441455]     physical executability
+[21-30:P13466; UTF16 441482]     sum(maximum bounds) <= hazard horizon
+[21-30:P13467; UTF16 441524]     safe reachability
+[21-30:P13470; UTF16 441554]     EFFECTIVE OVERRIDE CERTIFIED
+[21-30:P13471; UTF16 441587]     NOT ROBUSTLY CERTIFIED
+[21-30:P13476; UTF16 441629] ALG-HUM23 — AuditAutomationModeAwareness
+[21-30:P13479; UTF16 441696]     automation modes
+[21-30:P13480; UTF16 441717]     HMI map
+[21-30:P13481; UTF16 441729]     human input semantics
+[21-30:P13482; UTF16 441755]     required decisions
+[21-30:P13485; UTF16 441786]     equal display states
+[21-30:P13486; UTF16 441811]     with mode-dependent consequences
+[21-30:P13487; UTF16 441848]     requiring different actions
+[21-30:P13490; UTF16 441888]     MODE AWARENESS SUFFICIENT
+[21-30:P13491; UTF16 441918]     HIDDEN-MODE COUNTEREXAMPLE
+[21-30:P13496; UTF16 441964] ALG-HUM24 — CheckEmergencyPolicy
+[21-30:P13498; UTF16 442003]     emergency family
+[21-30:P13499; UTF16 442024]     information histories
+[21-30:P13503; UTF16 442084]     communications
+[21-30:P13505; UTF16 442114]     safe terminal conditions
+[21-30:P13512; UTF16 442214]     information availability
+[21-30:P13513; UTF16 442243]     safe terminal for every covered scenario
+[21-30:P13516; UTF16 442296]     ROBUST EMERGENCY POLICY CERTIFIED
+[21-30:P13517; UTF16 442334]     SCENARIO FAILURE
+[21-30:P13518; UTF16 442355]     CLAIRVOYANCE VIOLATION
+[21-30:P13523; UTF16 442397] ALG-HUM25 — BuildEvacuationNetwork
+[21-30:P13526; UTF16 442451]     exits
+[21-30:P13527; UTF16 442461]     paths
+[21-30:P13528; UTF16 442471]     capacities
+[21-30:P13529; UTF16 442486]     traversal times
+[21-30:P13530; UTF16 442506]     occupant classes
+[21-30:P13531; UTF16 442527]     assistance resources
+[21-30:P13535; UTF16 442579]     class-indexed capacitated network
+[21-30:P13538; UTF16 442625]     EVACUATION NETWORK
+[21-30:P13539; UTF16 442648]     COVERAGE STATUS
+[21-30:P13543; UTF16 442671] ALG-HUM26 — ComputeEvacuationCuts
+[21-30:P13545; UTF16 442711]     evacuation network
+[21-30:P13546; UTF16 442734]     initial occupant populations
+[21-30:P13547; UTF16 442767]     acceptable destinations
+[21-30:P13549; UTF16 442796] FIND cuts separating occupants from exits
+[21-30:P13552; UTF16 442847]     capacity lower bounds
+[21-30:P13553; UTF16 442873]     travel-time lower bounds
+[21-30:P13556; UTF16 442910]     EVACUATION LOWER-BOUND CERTIFICATES
+[21-30:P13560; UTF16 442953] ALG-HUM27 — SolveEvacuationFlow
+[21-30:P13565; UTF16 443050]     assistance
+[21-30:P13566; UTF16 443065]     timing objective
+[21-30:P13569; UTF16 443094]     time-expanded feasible population flow
+[21-30:P13572; UTF16 443145]     edge capacity
+[21-30:P13573; UTF16 443163]     class compatibility
+[21-30:P13575; UTF16 443202]     route continuity
+[21-30:P13576; UTF16 443223]     arrival
+[21-30:P13579; UTF16 443243]     CERTIFIED EVACUATION WITNESS
+[21-30:P13585; UTF16 443306] ALG-HUM28 — CheckOccupantClassAccessibility
+[21-30:P13587; UTF16 443356]     occupant class
+[21-30:P13588; UTF16 443375]     allowed edges
+[21-30:P13589; UTF16 443393]     assistance policy
+[21-30:P13590; UTF16 443415]     refuge states
+[21-30:P13594; UTF16 443463]     route or accepted refuge/assistance witness
+[21-30:P13597; UTF16 443519]     CLASS ROUTE CERTIFIED
+[21-30:P13598; UTF16 443545]     ASSISTANCE REQUIRED
+[21-30:P13599; UTF16 443569]     NO COVERED ROUTE
+[21-30:P13604; UTF16 443605] ALG-HUM29 — FindOrganizationalCommonCause
+[21-30:P13606; UTF16 443653]     teams
+[21-30:P13608; UTF16 443678]     training
+[21-30:P13609; UTF16 443691]     HMIs
+[21-30:P13610; UTF16 443700]     supervisors
+[21-30:P13611; UTF16 443716]     information sources
+[21-30:P13612; UTF16 443740]     reliability model
+[21-30:P13614; UTF16 443763] IDENTIFY shared dependencies
+[21-30:P13615; UTF16 443792]     capable of correlated failure
+[21-30:P13618; UTF16 443834]     COMMON-CAUSE VARIABLES
+[21-30:P13619; UTF16 443861]     INVALIDATED INDEPENDENCE CLAIMS
+[21-30:P13623; UTF16 443900] ALG-HUM30 — FindHumanConflictCore
+[21-30:P13625; UTF16 443940]     human-operational constraints
+[21-30:P13636; UTF16 444072]     MIP conflict extraction
+[21-30:P13637; UTF16 444100]     deletion-based MUS search
+[21-30:P13645; UTF16 444181] ALG-HUM31 — GenerateHumanRepairFrontier
+[21-30:P13650; UTF16 444281]     cost and schedule model
+[21-30:P13653; UTF16 444319]     staffing changes
+[21-30:P13654; UTF16 444340]     cross-training
+[21-30:P13655; UTF16 444359]     workload redistribution
+[21-30:P13656; UTF16 444387]     procedure revision
+[21-30:P13657; UTF16 444410]     HMI redesign
+[21-30:P13658; UTF16 444427]     alarm quotienting
+[21-30:P13659; UTF16 444449]     bounded automation
+[21-30:P13660; UTF16 444472]     handoff expansion
+[21-30:P13661; UTF16 444494]     evacuation changes
+[21-30:P13663; UTF16 444518] VERIFY each candidate
+[21-30:P13666; UTF16 444548]     PARETO HUMAN REPAIR FRONTIER
+[21-30:P13670; UTF16 444584] ALG-HUM32 — HumanRCVOCInterface
+[21-30:P13671; UTF16 444616] EXPOSE Prompt-9 actions such as:
+[21-30:P13672; UTF16 444649]     observe one drill
+[21-30:P13673; UTF16 444671]     validate one qualification
+[21-30:P13674; UTF16 444702]     measure one alarm workload
+[21-30:P13675; UTF16 444733]     test one HMI state distinction
+[21-30:P13676; UTF16 444768]     inspect one handoff
+[21-30:P13677; UTF16 444792]     refine one dependence model
+[21-30:P13678; UTF16 444824]     test one override latency
+[21-30:P13679; UTF16 444854]     inspect one evacuation bottleneck
+[21-30:P13682; UTF16 444902]     affected human claims
+[21-30:P13686; UTF16 444981]     privacy impact
+[21-30:P13687; UTF16 445000]     commitment deadline
+[21-30:P13693; UTF16 445084] ALG-HUM33 — RedTeamHumanOperations
+[21-30:P13695; UTF16 445126]     training-as-competence
+[21-30:P13696; UTF16 445153]     stale qualification
+[21-30:P13697; UTF16 445177]     hidden unavailability
+[21-30:P13698; UTF16 445203]     overload
+[21-30:P13699; UTF16 445216]     HMI aliasing
+[21-30:P13700; UTF16 445233]     alarm flood
+[21-30:P13701; UTF16 445249]     shared procedure common cause
+[21-30:P13702; UTF16 445283]     handoff information loss
+[21-30:P13703; UTF16 445312]     ineffective override
+[21-30:P13704; UTF16 445337]     hidden automation mode
+[21-30:P13705; UTF16 445364]     inaccessible evacuation route
+[21-30:P13706; UTF16 445398]     privacy-invalid monitoring
+[21-30:P13709; UTF16 445437]     VERIFIED HUMAN-OPERATIONS BREAKER
+[21-30:P13715; UTF16 445511] ALG-HUM34 — IncrementalHumanRecertification
+[21-30:P13716; UTF16 445555] Implements THM-HUM33.
+[21-30:P13720; UTF16 445580] ALG-HUM35 — CheckPCHO
+[21-30:P13722; UTF16 445637]     HUMAN OPERATIONAL RELEASE CERTIFIED
+[21-30:P13723; UTF16 445677]     QUALIFICATION VALID
+[21-30:P13724; UTF16 445701]     STAFFING FEASIBLE
+[21-30:P13726; UTF16 445747]     WORKLOAD FEASIBLE
+[21-30:P13727; UTF16 445769]     WORKLOAD VIOLATION
+[21-30:P13729; UTF16 445820]     HMI ALIASING
+[21-30:P13730; UTF16 445837]     ALARM CAPACITY VIOLATION
+[21-30:P13732; UTF16 445889]     HANDOFF INSUFFICIENT
+[21-30:P13734; UTF16 445947]     OVERRIDE INEFFECTIVE
+[21-30:P13735; UTF16 445972]     EMERGENCY POLICY CERTIFIED
+[21-30:P13736; UTF16 446003]     EVACUATION CERTIFIED
+[21-30:P13737; UTF16 446028]     PROBABILISTIC HUMAN RELIABILITY ONLY
+[21-30:P13743; UTF16 446103] ALG-HUM36 — BuildPCHO
+[21-30:P13756; UTF16 446279]     reliability
+[21-30:P13758; UTF16 446308]     team communication
+[21-30:P13760; UTF16 446346]     overrides
+[21-30:P13761; UTF16 446360]     emergencies
+[21-30:P13762; UTF16 446376]     evacuation
+[21-30:P13771; UTF16 446497]     independent CheckPCHO
+[21-30:P13774; UTF16 446531]     PCHO
+[21-30:P13780; UTF16 446592] Every person, organization, timing, probability, and physical system below is synthetic.
+[21-30:P13781; UTF16 446681] Example A — Authorized but Not Competent
+[21-30:P13782; UTF16 446722] A facilities employee is authorized to enter a plant room.
+[21-30:P13783; UTF16 446781] The employee lacks the competency required to recalibrate a controller.
+[21-30:P13784; UTF16 446853] Authorization succeeds.
+[21-30:P13785; UTF16 446877] Task assignment fails.
+[21-30:P13789; UTF16 446903] Example B — Training Completed, Competence Not Established
+[21-30:P13790; UTF16 446962] Two synthetic technicians complete identical training.
+[21-30:P13791; UTF16 447017] One passes the required performance assessment.
+[21-30:P13792; UTF16 447065] The other does not.
+[21-30:P13793; UTF16 447085] Training states match.
+[21-30:P13794; UTF16 447108] Competence states differ.
+[21-30:P13798; UTF16 447137] Example C — Hall Deficiency
+[21-30:P13799; UTF16 447165] Tasks:
+[21-30:P13800; UTF16 447172] [ T_1,T_2,T_3. ]
+[21-30:P13801; UTF16 447189] People:
+[21-30:P13802; UTF16 447197] [ A,B. ]
+[21-30:P13803; UTF16 447206] Both people are qualified for all three simultaneous tasks.
+[21-30:P13805; UTF16 447271] [ S={T_1,T_2,T_3}, ]
+[21-30:P13806; UTF16 447292] [ |N(S)|=2<3=|S|. ]
+[21-30:P13807; UTF16 447312] No complete staffing assignment exists.
+[21-30:P13811; UTF16 447355] Example D — Workload Cut
+[21-30:P13812; UTF16 447380] One operator has capacity:
+[21-30:P13814; UTF16 447413] service unit per minute for ten minutes.
+[21-30:P13815; UTF16 447454] Three mandatory tasks require:
+[21-30:P13816; UTF16 447485] [ 4,\quad4,\quad4 ]
+[21-30:P13817; UTF16 447505] units.
+[21-30:P13818; UTF16 447512] Demand is:
+[21-30:P13819; UTF16 447523] [ 12. ]
+[21-30:P13820; UTF16 447531] Capacity is:
+[21-30:P13822; UTF16 447552] No schedule succeeds.
+[21-30:P13826; UTF16 447577] Example E — HMI Aliasing
+[21-30:P13828; UTF16 447610] [ x_1=\text{synthetic pump failure}, ]
+[21-30:P13829; UTF16 447649] [ x_2=\text{synthetic sensor failure}. ]
+[21-30:P13830; UTF16 447690] The HMI displays:
+[21-30:P13831; UTF16 447708] [ \text{LOW PRESSURE} ]
+[21-30:P13832; UTF16 447732] in both.
+[21-30:P13833; UTF16 447741] Correct action in (x_1): start backup pump.
+[21-30:P13834; UTF16 447785] Correct action in (x_2): verify the sensor and avoid unnecessary start.
+[21-30:P13835; UTF16 447857] One observation requires two different actions.
+[21-30:P13836; UTF16 447905] Exact decision support is impossible.
+[21-30:P13840; UTF16 447946] Example F — Alarm Quotient
+[21-30:P13841; UTF16 447973] Three alarms derive from the same synthetic physical condition and require exactly the same response in every admitted context.
+[21-30:P13842; UTF16 448101] They form one alarm-action equivalence class.
+[21-30:P13843; UTF16 448147] Replacing them with one certified alarm preserves required response.
+[21-30:P13847; UTF16 448219] Example G — Alarm Overload
+[21-30:P13848; UTF16 448246] Six alarms each require two minutes of mandatory service.
+[21-30:P13849; UTF16 448304] All expire in ten minutes.
+[21-30:P13850; UTF16 448331] Capacity is one operator-minute per minute.
+[21-30:P13851; UTF16 448375] Demand:
+[21-30:P13855; UTF16 448409] No complete timely response exists.
+[21-30:P13859; UTF16 448448] Example H — Human Reliability Dependence
+[21-30:P13860; UTF16 448489] Two checks each succeed with probability:
+[21-30:P13861; UTF16 448531] [ 0.9. ]
+[21-30:P13862; UTF16 448540] Independent model:
+[21-30:P13863; UTF16 448559] [ P(\text{both})=0.81. ]
+[21-30:P13864; UTF16 448584] Perfect common-cause model:
+[21-30:P13865; UTF16 448612] [ P(\text{both})=0.9. ]
+[21-30:P13866; UTF16 448636] The same marginals yield different procedure reliability.
+[21-30:P13870; UTF16 448697] Example I — Handoff Failure
+[21-30:P13871; UTF16 448725] The outgoing team knows synthetic valve (V) is manually isolated.
+[21-30:P13872; UTF16 448791] The handoff omits this fact.
+[21-30:P13873; UTF16 448820] Two states therefore generate the same handoff packet despite requiring different restart actions.
+[21-30:P13874; UTF16 448919] Handoff sufficiency fails.
+[21-30:P13878; UTF16 448949] Example J — Human in the Loop
+[21-30:P13879; UTF16 448979] An AI recommends opening valve (V).
+[21-30:P13880; UTF16 449015] A human must approve.
+[21-30:P13881; UTF16 449037] The display omits whether downstream line (L) is connected.
+[21-30:P13882; UTF16 449097] Opening is safe in one hidden state and unsafe in another.
+[21-30:P13883; UTF16 449156] Human presence does not repair the missing distinction.
+[21-30:P13887; UTF16 449215] Example K — Override Timing
+[21-30:P13888; UTF16 449243] A synthetic hazard becomes irreversible in:
+[21-30:P13889; UTF16 449287] [ 8\text{ s}. ]
+[21-30:P13890; UTF16 449303] Unavoidable minimum stage latencies are:
+[21-30:P13891; UTF16 449344] [ \underline\tau_{\mathrm{obs}}=2, \quad \underline\tau_{\mathrm{dec}}=2, \quad \underline\tau_{\mathrm{comm}}=1, \quad \underline\tau_{\mathrm{act}}=4. ]
+[21-30:P13892; UTF16 449499] Total:
+[21-30:P13893; UTF16 449506] [ 9>8. ]
+[21-30:P13894; UTF16 449515] Override is impossible under the declared model.
+[21-30:P13895; UTF16 449564] For a separate hazard with:
+[21-30:P13896; UTF16 449592] [ T_H=15\text{ s}, ]
+[21-30:P13897; UTF16 449613] and maximum certified total latency:
+[21-30:P13898; UTF16 449650] [ 12\text{ s}, ]
+[21-30:P13899; UTF16 449667] plus safe reachability, robust override may be certified.
+[21-30:P13903; UTF16 449728] Example L — Procedure Conformance Without Success
+[21-30:P13904; UTF16 449778] A synthetic procedure is executed exactly.
+[21-30:P13905; UTF16 449821] An unmodeled physical obstruction causes failure.
+[21-30:P13906; UTF16 449871] Procedure conformance remains true.
+[21-30:P13910; UTF16 449910] Example M — Successful Outcome Without Conformance
+[21-30:P13911; UTF16 449961] An operator skips required verification.
+[21-30:P13912; UTF16 450002] The physical operation happens to succeed.
+[21-30:P13913; UTF16 450045] Outcome success holds.
+[21-30:P13914; UTF16 450068] Procedure-conformance claim fails.
+[21-30:P13918; UTF16 450106] Example N — Evacuation Cut
+[21-30:P13919; UTF16 450133] Fifty synthetic occupants must cross a stair interface with capacity:
+[21-30:P13920; UTF16 450203] [ 5 ]
+[21-30:P13921; UTF16 450209] occupants per time unit.
+[21-30:P13922; UTF16 450234] Any evacuation requires at least:
+[21-30:P13924; UTF16 450273] time units, before adding travel time.
+[21-30:P13928; UTF16 450315] Example O — Shortest-Path Congestion
+[21-30:P13929; UTF16 450352] Ten occupants have:
+[21-30:P13930; UTF16 450372] Route A: travel time (1), capacity (1);
+[21-30:P13931; UTF16 450412] Route B: travel time (3), capacity (10).
+[21-30:P13932; UTF16 450453] All choosing A yields makespan (10).
+[21-30:P13933; UTF16 450490] All choosing B yields makespan (3).
+[21-30:P13937; UTF16 450529] Example P — Occupant-Class Route Difference
+[21-30:P13938; UTF16 450573] A route contains stairs.
+[21-30:P13939; UTF16 450598] Synthetic class (A) may use the stair edge.
+[21-30:P13940; UTF16 450642] Synthetic class (B) may not.
+[21-30:P13941; UTF16 450671] A route exists for (A) and not for (B).
+[21-30:P13945; UTF16 450714] 49. Synthetic 190-Room Hotel Human-Operational Example
+[21-30:P13946; UTF16 450769] Every person, role, qualification, timing, probability, alarm count, and occupant model in this section is synthetic.
+[21-30:P13948; UTF16 450926] facilities staff;
+[21-30:P13949; UTF16 450944] front-desk staff;
+[21-30:P13950; UTF16 450962] maintenance staff;
+[21-30:P13951; UTF16 450981] security staff;
+[21-30:P13953; UTF16 451010] emergency responders;
+[21-30:P13954; UTF16 451032] guests;
+[21-30:P13955; UTF16 451040] staff occupants;
+[21-30:P13960; UTF16 451115] fire/life-safety interfaces.
+[21-30:P13961; UTF16 451144] Stage 1 — Human Role Inventory
+[21-30:P13962; UTF16 451175] ANANKE identifies roles:
+[21-30:P13963; UTF16 451200] facilities supervisor;
+[21-30:P13964; UTF16 451223] HVAC technician;
+[21-30:P13965; UTF16 451240] electrical technician;
+[21-30:P13966; UTF16 451263] security operator;
+[21-30:P13967; UTF16 451282] front-desk emergency coordinator;
+[21-30:P13968; UTF16 451316] after-hours responder.
+[21-30:P13969; UTF16 451339] Each role receives:
+[21-30:P13970; UTF16 451359] tasks;
+[21-30:P13974; UTF16 451403] shift requirements.
+[21-30:P13975; UTF16 451423] Stage 2 — Qualification Gap
+[21-30:P13976; UTF16 451451] The synthetic overnight shift has:
+[21-30:P13977; UTF16 451486] one facilities supervisor;

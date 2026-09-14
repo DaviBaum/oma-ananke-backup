@@ -122,7 +122,10 @@ def recheck_candidate_run(store, run, control):
 def main():
     store = Store(sys.argv[1])
     candidate = store.candidate(sys.argv[2])
-    if candidate.get("kind") == "physical_route_set":
+    if candidate.get("kind") == "physical_network":
+        from .routing.network_checker import verify_network_candidate
+        report = verify_network_candidate(store, candidate["id"])
+    elif candidate.get("kind") == "physical_route_set":
         from .routing.joint_checker import verify_joint_candidate
         report = verify_joint_candidate(store, candidate["id"])
     elif candidate.get("kind") == "physical_route":

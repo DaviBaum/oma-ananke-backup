@@ -1,0 +1,350 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P327; UTF16 15847] [ P_2= \text{the model is valid for the current buckling regime}. ]
+[11-20:P328; UTF16 15915] Conclusion:
+[11-20:P329; UTF16 15927] [ C= \text{the physical member is safe}. ]
+[11-20:P330; UTF16 15970] Two worlds may share (P_1) while differing on (P_2) and (C).
+[11-20:P331; UTF16 16031] A converged solver does not discharge model validity.
+[11-20:P335; UTF16 16088] 8. Certified Assurance Inference
+[11-20:P336; UTF16 16121] DEF-ASS6 — Certified Assurance Inference
+[11-20:P337; UTF16 16162] A typed inference rule is:
+[11-20:P338; UTF16 16189] [ r: (P_1,\ldots,P_k) \Longrightarrow C. ]
+[11-20:P340; UTF16 16245] rule ID;
+[11-20:P341; UTF16 16254] typed premise list;
+[11-20:P342; UTF16 16274] conclusion;
+[11-20:P345; UTF16 16313] side conditions represented as explicit premises;
+[11-20:P346; UTF16 16363] proof of soundness;
+[11-20:P347; UTF16 16383] checker identity.
+[11-20:P348; UTF16 16401] The rule is sound when:
+[11-20:P349; UTF16 16425] [ \boxed{ \forall\omega\in\Omega_\vartheta, \qquad \bigwedge_{i=1}^{k} (\omega\models P_i) \Longrightarrow \omega\models C. } ]
+[11-20:P350; UTF16 16553] Evidence-to-claim inference is represented by such a rule.
+[11-20:P351; UTF16 16612] Evidence does not bypass inference.
+[11-20:P355; UTF16 16651] 8.1 Example: fire-test admission rule
+[11-20:P356; UTF16 16689] Premises:
+[11-20:P357; UTF16 16699] [ \begin{aligned} P_1&=\text{test report authentically establishes specimen result},\ P_2&=\text{installed assembly identity matches specimen},\ P_3&=\text{product revision matches},\ P_4&=\text{fastener spacing matches},\ P_5&=\text{jurisdiction accepts the test basis}. \end{aligned} ]
+[11-20:P359; UTF16 16999] [ C= \text{installed assembly has the required evidence classification}. ]
+[11-20:P360; UTF16 17074] The test report alone establishes only (P_1).
+[11-20:P364; UTF16 17123] 9. Assurance Case Hypergraph
+[11-20:P365; UTF16 17152] To avoid collision with Prompt-8 action notation (\mathcal A), denote the assurance case by:
+[11-20:P366; UTF16 17245] [ \mathfrak H. ]
+[11-20:P367; UTF16 17262] DEF-ASS7 — Assurance Case
+[11-20:P368; UTF16 17288] \left( V_C, V_E, V_A, V_R, H, \vartheta \right), ]
+[11-20:P370; UTF16 17346] (V_C): claim nodes;
+[11-20:P371; UTF16 17366] (V_E): evidence atoms;
+[11-20:P372; UTF16 17389] (V_A): assumptions;
+[11-20:P373; UTF16 17409] (V_R): inference rules;
+[11-20:P374; UTF16 17433] (H): typed inference hyperedges;
+[11-20:P375; UTF16 17466] (\vartheta): theory fingerprint.
+[11-20:P376; UTF16 17499] A hyperedge has form:
+[11-20:P377; UTF16 17521] [ h: {p_1,\ldots,p_k} \xrightarrow{r} C. ]
+[11-20:P378; UTF16 17564] Within one hyperedge the premises are conjunctive.
+[11-20:P379; UTF16 17615] Several incoming hyperedges to the same claim represent alternative proof routes.
+[11-20:P380; UTF16 17697] Thus the assurance case is naturally AND/OR structured.
+[11-20:P384; UTF16 17756] 10. Release Manifest
+[11-20:P385; UTF16 17777] DEF-ASS8 — Release Obligation Manifest
+[11-20:P386; UTF16 17816] { R_1,\ldots,R_m } \subseteq V_C ]
+[11-20:P387; UTF16 17851] is the complete declared release-obligation manifest.
+[11-20:P388; UTF16 17905] Each root records:
+[11-20:P389; UTF16 17924] exact claim;
+[11-20:P390; UTF16 17937] accepted reports;
+[11-20:P391; UTF16 17955] phase;
+[11-20:P393; UTF16 17973] jurisdiction;
+[11-20:P394; UTF16 17987] required evidence type;
+[11-20:P395; UTF16 18011] required robustness domain;
+[11-20:P396; UTF16 18039] required decision tolerance.
+[11-20:P397; UTF16 18068] Possible sources include:
+[11-20:P399; UTF16 18100] contract;
+[11-20:P400; UTF16 18110] owner requirements;
+[11-20:P401; UTF16 18130] professional governance;
+[11-20:P402; UTF16 18155] internal release policy;
+[11-20:P403; UTF16 18180] protected architectural intent.
+[11-20:P404; UTF16 18212] Release completeness is always relative to (\mathfrak R).
+[11-20:P408; UTF16 18273] THM-ASS3 — Assurance Completeness Is Relative to the Obligation Manifest
+[11-20:P409; UTF16 18346] Proving every:
+[11-20:P410; UTF16 18361] [ R_i\in\mathfrak R ]
+[11-20:P411; UTF16 18383] does not establish an omitted obligation:
+[11-20:P412; UTF16 18425] [ R^\star\notin\mathfrak R ]
+[11-20:P413; UTF16 18454] unless a separate theorem establishes that the manifest is exhaustive.
+[11-20:P415; UTF16 18531] Construct an exact database (\omega) satisfying every listed root:
+[11-20:P416; UTF16 18598] [ \omega\models R_i \qquad \forall R_i\in\mathfrak R, ]
+[11-20:P418; UTF16 18661] [ \omega\not\models R^\star. ]
+[11-20:P419; UTF16 18692] The conjunction of listed roots remains true.
+[11-20:P420; UTF16 18738] Therefore it does not entail the omitted obligation. ∎
+[11-20:P421; UTF16 18793] This is the release analogue of Prompt-10’s open-world hazard limitation.
+[11-20:P425; UTF16 18870] 11. Assurance Derivations
+[11-20:P426; UTF16 18896] DEF-ASS9 — Assurance Derivation
+[11-20:P427; UTF16 18928] A derivation (D) of claim (C) is a finite rooted acyclic DAG satisfying:
+[11-20:P428; UTF16 19001] the root is (C);
+[11-20:P429; UTF16 19018] every internal claim node selects one incoming sound inference hyperedge;
+[11-20:P430; UTF16 19092] every premise of that hyperedge is derived by a predecessor node;
+[11-20:P431; UTF16 19158] every leaf is one of:
+[11-20:P432; UTF16 19180] usable evidence;
+[11-20:P433; UTF16 19197] discharged assumption;
+[11-20:P434; UTF16 19220] accepted trusted axiom;
+[11-20:P435; UTF16 19244] independently certified lower-level claim;
+[11-20:P436; UTF16 19287] every version and applicability check passes;
+[11-20:P437; UTF16 19333] every referenced defeater is inactive.
+[11-20:P438; UTF16 19372] Shared subproofs may appear once and feed multiple conclusions.
+[11-20:P442; UTF16 19439] DEF-ASS10 — Assurance-Closed Claim
+[11-20:P444; UTF16 19484] [ \mathfrak H,K\vdash C ]
+[11-20:P446; UTF16 19522] the assurance foundations are consistent;
+[11-20:P447; UTF16 19564] a valid accepted derivation (D) of (C) exists in (\mathfrak H);
+[11-20:P448; UTF16 19628] all leaves are valid throughout the relevant exact database family;
+[11-20:P449; UTF16 19696] all rule and version checks pass.
+[11-20:P450; UTF16 19730] The claim is then assurance closed.
+[11-20:P454; UTF16 19769] 12. Circular Support
+[11-20:P455; UTF16 19790] A software dependency graph may contain cycles.
+[11-20:P456; UTF16 19838] An ordinary proof derivation may not justify itself.
+[11-20:P457; UTF16 19891] THM-ASS4 — Ungrounded Circular Support Proves Nothing
+[11-20:P459; UTF16 19950] [ C_1\Rightarrow C_2, ]
+[11-20:P460; UTF16 19974] [ C_2\Rightarrow C_3, ]
+[11-20:P461; UTF16 19998] [ \cdots ]
+[11-20:P462; UTF16 20009] [ C_n\Rightarrow C_1 ]
+[11-20:P463; UTF16 20032] be the only available premises.
+[11-20:P464; UTF16 20064] No (C_i) is thereby established.
+[11-20:P466; UTF16 20103] Consider an exact database (\omega) in which:
+[11-20:P467; UTF16 20149] [ \omega\not\models C_i \qquad \forall i. ]
+[11-20:P468; UTF16 20193] Every implication remains true, because each implication has a false antecedent.
+[11-20:P469; UTF16 20274] Thus all inference-rule propositions can hold while every (C_i) is false.
+[11-20:P470; UTF16 20348] No (C_i) follows from the cycle alone. ∎
+[11-20:P471; UTF16 20389] A legitimate coinductive proof requires a separately sound coinduction rule. It is not ordinary circular support.
+[11-20:P475; UTF16 20506] 13. Assurance Foundation Consistency
+[11-20:P476; UTF16 20543] DEF-ASS31 — Assurance Consistency
+[11-20:P478; UTF16 20582] [ \mathsf{Found}(\mathfrak H,K) ]
+[11-20:P479; UTF16 20616] be the set of active foundational exact propositions supplied by:
+[11-20:P481; UTF16 20695] direct evidentiary claims;
+[11-20:P482; UTF16 20722] model-validity claims;
+[11-20:P483; UTF16 20745] version constraints;
+[11-20:P484; UTF16 20766] applicability constraints.
+[11-20:P486; UTF16 20801] \left{ \omega\in\Gamma(K): \forall P\in\mathsf{Found}(\mathfrak H,K), ; \omega\models P \right}. ]
+[11-20:P487; UTF16 20900] The assurance case is semantically consistent when:
+[11-20:P488; UTF16 20952] [ \boxed{ \Gamma_{\mathrm{ass}}(\mathfrak H,K)\ne\varnothing. } ]
+[11-20:P492; UTF16 21021] THM-ASS23 — Inconsistent Foundations Cannot Be Used as a Valid Release Proof
+[11-20:P494; UTF16 21102] [ \Gamma_{\mathrm{ass}}(\mathfrak H,K)=\varnothing, ]
+[11-20:P495; UTF16 21156] the release checker must reject complete release.
+[11-20:P497; UTF16 21212] In classical semantics:
+[11-20:P498; UTF16 21236] [ \forall\omega\in\varnothing, \quad \omega\models C ]
+[11-20:P499; UTF16 21291] is vacuously true for every (C).
+[11-20:P500; UTF16 21324] Allowing an empty exact-database family would therefore permit an inconsistent premise set to “prove” arbitrary release claims.
+[11-20:P501; UTF16 21452] The release policy adds the explicit nonemptiness requirement.
+[11-20:P502; UTF16 21515] An inconsistent case fails that requirement and cannot release. ∎
+[11-20:P506; UTF16 21584] 14. Derivation Soundness
+[11-20:P507; UTF16 21609] THM-ASS5 — Assurance Derivation Soundness
+[11-20:P509; UTF16 21659] (\Gamma_{\mathrm{ass}}(\mathfrak H,K)\ne\varnothing);
+[11-20:P510; UTF16 21713] every evidence leaf establishes its direct evidentiary claim throughout (\Gamma_{\mathrm{ass}});
+[11-20:P511; UTF16 21810] every assumption leaf is true throughout (\Gamma_{\mathrm{ass}});
+[11-20:P512; UTF16 21876] every applicability predicate holds;
+[11-20:P513; UTF16 21913] every inference rule is sound;
+[11-20:P514; UTF16 21944] every version and dependency check passes.
+[11-20:P518; UTF16 22128] Topologically order the finite derivation DAG.
+[11-20:P519; UTF16 22175] For each leaf:
+[11-20:P520; UTF16 22190] evidence-leaf truth follows from assumptions 2 and 4;
+[11-20:P521; UTF16 22244] assumption-leaf truth follows from assumption 3;
+[11-20:P522; UTF16 22293] lower-level certified claim truth follows from its checked certificate.
+[11-20:P523; UTF16 22365] Assume inductively that every predecessor premise of an internal rule node is true in arbitrary:
+[11-20:P524; UTF16 22462] [ \omega\in\Gamma_{\mathrm{ass}}. ]
+[11-20:P525; UTF16 22498] Rule soundness gives truth of the rule’s conclusion in (\omega).
+[11-20:P526; UTF16 22563] Proceeding in topological order establishes every derivation node, including the root (C).
+[11-20:P527; UTF16 22654] Because (\omega) was arbitrary, (C) holds throughout (\Gamma_{\mathrm{ass}}). ∎
+[11-20:P528; UTF16 22734] This is the foundational assurance theorem.
+[11-20:P532; UTF16 22781] 15. Alternative Proof Routes
+[11-20:P533; UTF16 22810] A claim may have derivations:
+[11-20:P534; UTF16 22840] [ D_1, \qquad D_2. ]
+[11-20:P535; UTF16 22861] Invalidating one route does not invalidate the claim when another route remains valid.
+[11-20:P536; UTF16 22948] The assurance engine therefore maintains separately:
+[11-20:P537; UTF16 23001] proof-artifact validity;
+[11-20:P538; UTF16 23026] derivation validity;
+[11-20:P539; UTF16 23047] claim support status;
+[11-20:P540; UTF16 23069] exact claim truth.
+[11-20:P541; UTF16 23088] A claim is currently supported when at least one valid derivation survives.
+[11-20:P545; UTF16 23167] 16. Support Sets and Minimal Assurance Cores
+[11-20:P546; UTF16 23212] DEF-ASS11 — Support Set
+[11-20:P547; UTF16 23236] For derivation (D):
+[11-20:P548; UTF16 23256] [ \mathsf{Leaves}(D) ]
+[11-20:P549; UTF16 23279] is the set of externally supplied, invalidatable evidence and assumption leaves used by (D).
+[11-20:P550; UTF16 23372] Trusted inference rules and checker kernels are recorded separately in the TCB.
+[11-20:P554; UTF16 23455] DEF-ASS12 — Minimal Assurance Core
+[11-20:P555; UTF16 23490] A finite leaf set (S) supports claim (C) when there exists a valid derivation (D) such that:
+[11-20:P556; UTF16 23583] [ \mathsf{Leaves}(D)\subseteq S. ]
+[11-20:P557; UTF16 23618] It is an Assurance Core when it supports (C).
+[11-20:P558; UTF16 23664] It is inclusion minimal when:
+[11-20:P559; UTF16 23694] [ S\text{ supports }C, ]
+[11-20:P561; UTF16 23724] [ \forall S'\subsetneq S, \qquad S'\text{ does not support }C. ]
+[11-20:P563; UTF16 23797] [ \mathsf{MAC}(C) ]
+[11-20:P564; UTF16 23817] as the family of all inclusion-minimal assurance cores.
+[11-20:P565; UTF16 23873] For release roots (\mathfrak R), define (\mathsf{MAC}(\mathfrak R)) analogously using derivations for every root.
+[11-20:P569; UTF16 23990] 16.1 Minimum-cost core
+[11-20:P570; UTF16 24013] Given nonnegative leaf costs:
+[11-20:P571; UTF16 24043] [ w:\mathcal L_{\mathrm{ext}}\to[0,\infty), ]
+[11-20:P573; UTF16 24097] \sum_{e\in S}w(e). ]
+[11-20:P574; UTF16 24118] A minimum-cost core is:
+[11-20:P575; UTF16 24142] [ S^\star \in \arg\min_{S\text{ supports }C} \mathsf{CoreCost}(S). ]
+[11-20:P576; UTF16 24211] Cost may represent:
+[11-20:P577; UTF16 24231] audit time;
+[11-20:P578; UTF16 24243] storage;
+[11-20:P579; UTF16 24252] checker effort;
+[11-20:P580; UTF16 24268] external review cost.
+[11-20:P581; UTF16 24290] It is not automatically evidence strength.
+[11-20:P585; UTF16 24336] 17. Minimum Assurance Core Hardness
+[11-20:P586; UTF16 24372] THM-ASS6 — Minimum Assurance Core Is NP-Hard
+[11-20:P587; UTF16 24417] Computing a minimum-cardinality or minimum-cost Assurance Core is NP-hard.
+[11-20:P590; UTF16 24553] [ U={u_1,\ldots,u_n}, ]
+[11-20:P591; UTF16 24577] [ \mathcal S={S_1,\ldots,S_m}. ]
+[11-20:P592; UTF16 24610] Create one release obligation claim:
+[11-20:P593; UTF16 24647] [ O_u ]
+[11-20:P594; UTF16 24655] for every (u\in U).
+[11-20:P595; UTF16 24675] Create root:
+[11-20:P596; UTF16 24688] \bigwedge_{u\in U}O_u. ]
+[11-20:P597; UTF16 24713] For every set (S_j), create evidence atom (e_j).
+[11-20:P599; UTF16 24773] [ u\in S_j, ]
+[11-20:P600; UTF16 24787] add sound rule:
+[11-20:P601; UTF16 24803] [ e_j\Longrightarrow O_u. ]
+[11-20:P602; UTF16 24831] Finally add the conjunction rule:
+[11-20:P603; UTF16 24865] [ \bigwedge_{u\in U}O_u \Longrightarrow C_{\mathrm{release}}. ]
+[11-20:P604; UTF16 24929] A selected evidence set (E) supports (C_{\mathrm{release}}) exactly when, for every (u), at least one selected (e_j) satisfies:
+[11-20:P605; UTF16 25057] [ u\in S_j. ]
+[11-20:P606; UTF16 25071] Thus selected evidence sets supporting release correspond exactly to set covers.
+[11-20:P607; UTF16 25152] Minimum evidence-core size equals minimum set-cover size.
+[11-20:P608; UTF16 25210] The weighted version follows by assigning evidence cost equal to set cost. ∎
+[11-20:P612; UTF16 25290] PRO-ASS1 — Exponentially Many Minimal Assurance Cores
+[11-20:P613; UTF16 25344] There exist assurance cases with:
+[11-20:P615; UTF16 25386] distinct minimal cores.
+[11-20:P617; UTF16 25423] Create obligations:
+[11-20:P618; UTF16 25443] [ O_1,\ldots,O_n. ]
+[11-20:P619; UTF16 25463] For each (i), create two alternative evidence atoms:
+[11-20:P620; UTF16 25516] [ e_i^0, \qquad e_i^1, ]
+[11-20:P621; UTF16 25541] each of which individually establishes (O_i).
+[11-20:P622; UTF16 25587] Release requires:
+[11-20:P623; UTF16 25605] [ \bigwedge_iO_i. ]
+[11-20:P624; UTF16 25625] Every minimal core chooses exactly one evidence atom from each pair.
+[11-20:P625; UTF16 25694] The number of choices is:
+[11-20:P626; UTF16 25720] [ 2^n. ]
+[11-20:P628; UTF16 25731] An independent checker need not enumerate every valid proof route.
+[11-20:P632; UTF16 25801] 18. Release Slices
+[11-20:P633; UTF16 25820] DEF-ASS13 — Release Slice
+[11-20:P634; UTF16 25846] Choose one valid active derivation (D_i) for every release root:
+[11-20:P635; UTF16 25911] [ R_i\in\mathfrak R. ]
+[11-20:P636; UTF16 25934] The selected Release Slice is the union of:
+[11-20:P637; UTF16 25978] all nodes in (D_i);
+[11-20:P638; UTF16 25998] all dependency closures required to check those nodes;
+[11-20:P639; UTF16 26053] all referenced TCB rule identities;
+[11-20:P640; UTF16 26089] all version and applicability records.
+[11-20:P641; UTF16 26128] Denote it:
+[11-20:P642; UTF16 26139] [ \mathsf{Slice}(D_1,\ldots,D_m). ]
+[11-20:P646; UTF16 26178] THM-ASS7 — Selected Derivation Slice Sufficiency
+[11-20:P647; UTF16 26227] If every release root has one valid checked derivation entirely contained in slice (S), then artifacts outside (S) are unnecessary for verifying those selected derivations under the fixed theory.
+[11-20:P649; UTF16 26429] Verification of a derivation uses only:
+[11-20:P650; UTF16 26469] its nodes;
+[11-20:P651; UTF16 26480] its leaves;
+[11-20:P652; UTF16 26492] its inference rules;
+[11-20:P653; UTF16 26513] their dependencies;
+[11-20:P654; UTF16 26533] the TCB.
+[11-20:P655; UTF16 26542] By construction, all such objects lie in (S).
+[11-20:P656; UTF16 26588] No checker query for the selected derivations references an artifact outside (S).
+[11-20:P657; UTF16 26670] Therefore removing outside artifacts does not change verification of the selected derivations. ∎
+[11-20:P658; UTF16 26767] Outside artifacts may still have:
+[11-20:P659; UTF16 26801] future value;
+[11-20:P660; UTF16 26815] alternative-proof value;
+[11-20:P661; UTF16 26840] recertification value;
+[11-20:P662; UTF16 26863] audit value.
+[11-20:P666; UTF16 26879] 19. Evidence Cuts and Assurance Redundancy
+[11-20:P667; UTF16 26922] DEF-ASS14 — Evidence Cut
+[11-20:P669; UTF16 26952] [ \mathcal D_C ]
+[11-20:P670; UTF16 26969] be the family of currently valid derivations of claim (C).
+[11-20:P671; UTF16 27028] An Evidence Cut is a set (H) of invalidatable external leaves such that:
+[11-20:P672; UTF16 27101] [ \forall D\in\mathcal D_C, \qquad H\cap\mathsf{Leaves}(D)\ne\varnothing. ]
+[11-20:P673; UTF16 27177] Invalidating every leaf in (H) destroys every current derivation of (C).
+[11-20:P677; UTF16 27253] DEF-ASS15 — Assurance Redundancy
+[11-20:P678; UTF16 27286] \min \left{ |H|: H\text{ is an Evidence Cut for }C \right}. } ]
+[11-20:P679; UTF16 27350] If some valid derivation uses no invalidatable external leaf, define:
+[11-20:P680; UTF16 27420] [ \lambda_{\mathrm{ass}}(C)=\infty. ]
+[11-20:P681; UTF16 27458] This is assurance robustness.
+[11-20:P682; UTF16 27488] It is not physical robustness.
+[11-20:P686; UTF16 27522] 20. Core/Cut Duality
+[11-20:P687; UTF16 27543] LEM-ASS1 — Every Finite Support Contains a Minimal Core
+[11-20:P688; UTF16 27599] If finite (S) supports (C), then there exists:
+[11-20:P689; UTF16 27646] [ M\subseteq S ]
+[11-20:P691; UTF16 27674] [ M\in\mathsf{MAC}(C). ]
+[11-20:P693; UTF16 27705] Repeatedly remove any leaf whose removal preserves support.
+[11-20:P694; UTF16 27765] Because (S) is finite, this process terminates at an inclusion-minimal supporting subset. ∎
+[11-20:P698; UTF16 27860] THM-ASS8 — Assurance Core / Evidence-Cut Hypergraph Duality
+[11-20:P699; UTF16 27920] A set (H) destroys every current valid derivation of (C) if and only if:
+[11-20:P700; UTF16 27993] [ \boxed{ H\cap M\ne\varnothing \qquad \forall M\in\mathsf{MAC}(C). } ]
+[11-20:P701; UTF16 28065] Thus Evidence Cuts are exactly hitting sets of the minimal-core hypergraph.
+[11-20:P704; UTF16 28165] Assume (H) destroys every valid derivation.
+[11-20:P705; UTF16 28209] Every minimal core (M) supports at least one derivation whose external leaves equal a subset of (M). By minimality, unused leaves can be removed, yielding a derivation with leaf set (M).
+[11-20:P707; UTF16 28400] [ H\cap M=\varnothing, ]
+[11-20:P708; UTF16 28425] that derivation would survive invalidation of (H), contradicting that (H) destroys every derivation.
+[11-20:P709; UTF16 28526] Therefore (H) intersects every minimal core.
+[11-20:P711; UTF16 28589] Assume (H) intersects every minimal core.
+[11-20:P712; UTF16 28631] Take any valid derivation (D) with support:
+[11-20:P713; UTF16 28675] [ S=\mathsf{Leaves}(D). ]
+[11-20:P714; UTF16 28701] By LEM-ASS1, (S) contains a minimal core:
+[11-20:P715; UTF16 28743] [ M\subseteq S. ]
+[11-20:P716; UTF16 28761] Since (H\cap M\ne\varnothing), also:
+[11-20:P717; UTF16 28798] [ H\cap S\ne\varnothing. ]
+[11-20:P718; UTF16 28825] Thus every derivation loses at least one leaf when (H) is invalidated. ∎
+[11-20:P719; UTF16 28898] This is the formal connection to Prompt-10 minimum evidence breakers.
+[11-20:P723; UTF16 28971] 21. Minimum Evidence-Cut Hardness
+[11-20:P724; UTF16 29005] THM-ASS24 — Minimum Evidence Cut Is NP-Hard
+[11-20:P725; UTF16 29049] Finding a minimum-cardinality Evidence Cut is NP-hard.
+[11-20:P727; UTF16 29110] Reduce from 3-Hitting Set.
+[11-20:P729; UTF16 29142] {S_1,\ldots,S_m} ]
+[11-20:P730; UTF16 29161] be a family of three-element subsets of universe (U).
+[11-20:P731; UTF16 29215] Create one evidence leaf for every:
+[11-20:P732; UTF16 29251] [ u\in U. ]
+[11-20:P733; UTF16 29263] For every (S_j), create one derivation:
+[11-20:P734; UTF16 29303] [ \bigwedge_{u\in S_j}e_u \Longrightarrow C. ]
+[11-20:P735; UTF16 29350] Because every (S_j) has equal size and duplicate sets are removed, each (S_j) is a minimal core.
+[11-20:P736; UTF16 29447] An Evidence Cut must intersect every (S_j).
+[11-20:P737; UTF16 29491] Therefore it is exactly a hitting set of (\mathcal S).
+[11-20:P738; UTF16 29546] Minimum Evidence Cut equals minimum 3-Hitting Set. ∎
+[11-20:P742; UTF16 29602] 22. Derivation Count Does Not Equal Redundancy
+[11-20:P743; UTF16 29649] THM-ASS20 — Derivation Count Does Not Equal Assurance Redundancy
+[11-20:P744; UTF16 29714] For every (m\ge1), there exists a claim with (m) distinct valid derivations and:
+[11-20:P745; UTF16 29795] [ \lambda_{\mathrm{ass}}(C)=1. ]
+[11-20:P747; UTF16 29834] Create common evidence leaf:
+[11-20:P748; UTF16 29863] [ e^\star. ]
+[11-20:P749; UTF16 29876] For each (i=1,\ldots,m), create unique leaf (u_i) and derivation:
+[11-20:P750; UTF16 29942] [ e^\star\land u_i \Longrightarrow C. ]
+[11-20:P751; UTF16 29982] There are (m) distinct derivations.
+[11-20:P752; UTF16 30018] Every derivation contains (e^\star).
+[11-20:P754; UTF16 30061] [ {e^\star} ]
+[11-20:P755; UTF16 30075] is an Evidence Cut, and:
+[11-20:P758; UTF16 30135] Counting proof paths does not measure common-mode assurance fragility.
+[11-20:P762; UTF16 30209] 23. Physical Robustness Versus Assurance Robustness
+[11-20:P763; UTF16 30261] Prompt 10 defines physical robustness:
+[11-20:P765; UTF16 30318] Prompt 11 defines assurance robustness:
+[11-20:P766; UTF16 30358] [ \lambda_{\mathrm{ass}}(C). ]
+[11-20:P767; UTF16 30389] There is no universal functional relationship.
+[11-20:P768; UTF16 30436] PRO-ASS2 — Physical and Assurance Robustness Are Independent
+[11-20:P769; UTF16 30497] High physical robustness, fragile assurance
+[11-20:P770; UTF16 30541] A massively overdesigned beam has a large physical failure radius.
+[11-20:P771; UTF16 30608] Its release proof uses one material certificate.
+[11-20:P773; UTF16 30663] [ \rho_C^\star\text{ is large}, ]
+[11-20:P775; UTF16 30730] High assurance redundancy, physical fragility
+[11-20:P776; UTF16 30776] A marginally safe component has many independent measurements, analyses, and inspections confirming its current state.
+[11-20:P777; UTF16 30895] It may have:
+[11-20:P778; UTF16 30908] [ \lambda_{\mathrm{ass}}(C)\gg1, ]
+[11-20:P779; UTF16 30943] while a tiny load increase breaks the physical claim:
+[11-20:P780; UTF16 30997] [ \rho_C^\star\text{ is small}. ]
+[11-20:P781; UTF16 31031] Thus neither quantity determines the other. ∎
+[11-20:P785; UTF16 31080] 24. Formal Proof Evidence
+[11-20:P786; UTF16 31106] A proof-assistant theorem may establish:
+[11-20:P787; UTF16 31147] [ A\land B\Longrightarrow C. ]
+[11-20:P788; UTF16 31178] The proof object establishes the implication.
+[11-20:P789; UTF16 31224] It does not establish (A) or (B).
+[11-20:P790; UTF16 31258] The assurance derivation must separately discharge:
+[11-20:P791; UTF16 31310] [ A, \qquad B. ]
+[11-20:P792; UTF16 31327] Formal proof evidence therefore often occupies an internal inference node, not a complete release leaf.
+[11-20:P796; UTF16 31434] 25. Numerical and Model Evidence
+[11-20:P797; UTF16 31467] Suppose a CEDA establishes:
+[11-20:P799; UTF16 31524] This is a mathematical-model claim.
+[11-20:P800; UTF16 31560] To derive a physical claim, the assurance case may require:
+[11-20:P801; UTF16 31620] [ x\in\mathcal V_M, ]
+[11-20:P803; UTF16 31683] A sound inference may conclude:
+[11-20:P804; UTF16 31715] [ y_{\mathrm{phys}} \in \Delta_M(E_{\mathrm{num}}). ]
+[11-20:P805; UTF16 31769] The corresponding assurance path is:
+[11-20:P806; UTF16 31806] [ \boxed{ \text{numerical enclosure} + \text{model validity} + \text{model discrepancy} \Longrightarrow \text{physical claim enclosure}. } ]
+[11-20:P807; UTF16 31947] A converged solver alone does not establish the physical claim.
+[11-20:P811; UTF16 32014] 26. PCPE Evidence

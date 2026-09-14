@@ -1,0 +1,394 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P1805; UTF16 63209]     unresolved leaves
+[11-20:P1806; UTF16 63231]     conflicts
+[11-20:P1807; UTF16 63245]     candidate cores
+[11-20:P1808; UTF16 63265]     evidence cuts
+[11-20:P1813; UTF16 63332]     active derivations
+[11-20:P1814; UTF16 63355]     blocker frontier
+[11-20:P1815; UTF16 63376]     candidate PCR
+[11-20:P1816; UTF16 63394] AI may propose derivations.
+[11-20:P1817; UTF16 63422] The checker determines authority.
+[11-20:P1821; UTF16 63459] 61. Assurance Case Checker
+[11-20:P1822; UTF16 63486] ALG-ASS5 — CheckAssuranceCase
+[11-20:P1824; UTF16 63522]     release manifest identity
+[11-20:P1826; UTF16 63575]     design fingerprint
+[11-20:P1827; UTF16 63598]     release phase
+[11-20:P1828; UTF16 63616]     assurance consistency
+[11-20:P1830; UTF16 63643] FOR every selected derivation:
+[11-20:P1832; UTF16 63685]         grounded leaves
+[11-20:P1833; UTF16 63709]         evidence authenticity
+[11-20:P1834; UTF16 63739]         technical status
+[11-20:P1835; UTF16 63764]         applicability
+[11-20:P1838; UTF16 63824]         certificate objects
+[11-20:P1839; UTF16 63852]         inference-rule soundness references
+[11-20:P1840; UTF16 63896]         dependency hashes
+[11-20:P1841; UTF16 63922]         version compatibility
+[11-20:P1844; UTF16 63977]     require at least one valid derivation
+[11-20:P1847; UTF16 64026]     no release-blocking conflict
+[11-20:P1848; UTF16 64059]     no unresolved mandatory blocker
+[11-20:P1849; UTF16 64095]     governance and authority
+[11-20:P1852; UTF16 64132]     CERTIFIED RELEASE
+[11-20:P1853; UTF16 64154]     NOT RELEASEABLE
+[11-20:P1855; UTF16 64186]     INVALID CASE
+[11-20:P1856; UTF16 64203] Its semantic basis is THM-ASS5, THM-ASS16, THM-ASS19, and THM-ASS23.
+[11-20:P1860; UTF16 64275] 62. Minimal Core and Cut Algorithms
+[11-20:P1861; UTF16 64311] ALG-ASS6 — ExtractMinimalReleaseCore
+[11-20:P1862; UTF16 64348] EXACT MODE FOR SMALL CASES
+[11-20:P1863; UTF16 64375]     enumerate or symbolically represent
+[11-20:P1864; UTF16 64415]     candidate support sets
+[11-20:P1866; UTF16 64443]     solve minimum-cardinality or
+[11-20:P1867; UTF16 64476]     minimum-cost supporting set
+[11-20:P1869; UTF16 64509]     independently verify the selected core
+[11-20:P1871; UTF16 64553] SCALABLE MODE
+[11-20:P1872; UTF16 64567]     use heuristic deletion,
+[11-20:P1873; UTF16 64595]     integer programming,
+[11-20:P1874; UTF16 64620]     SAT/SMT,
+[11-20:P1875; UTF16 64633]     or greedy proposals
+[11-20:P1877; UTF16 64658]     independently verify support
+[11-20:P1880; UTF16 64699]     valid core
+[11-20:P1881; UTF16 64714]     and:
+[11-20:P1882; UTF16 64723]         PROVED MINIMUM
+[11-20:P1883; UTF16 64746]         INCLUSION MINIMAL
+[11-20:P1884; UTF16 64772]         VALID NONMINIMUM
+[11-20:P1885; UTF16 64797]         UNKNOWN
+[11-20:P1886; UTF16 64813] A heuristic core must not be labeled optimal without a proof.
+[11-20:P1890; UTF16 64878] ALG-ASS7 — ComputeAssuranceCuts
+[11-20:P1892; UTF16 64916]     minimal-core hypergraph
+[11-20:P1893; UTF16 64944]     or complete active derivation family
+[11-20:P1894; UTF16 64985]     evidence invalidation costs
+[11-20:P1897; UTF16 65026]     minimum-cardinality cut
+[11-20:P1898; UTF16 65054]     minimum-cost cut
+[11-20:P1899; UTF16 65075]     Pareto-minimal cuts
+[11-20:P1900; UTF16 65099]     single points of failure
+[11-20:P1903; UTF16 65136]     verified cuts
+[11-20:P1904; UTF16 65154]     assurance redundancy
+[11-20:P1905; UTF16 65179]     minimality status
+[11-20:P1906; UTF16 65201] The general problem is NP-hard.
+[11-20:P1910; UTF16 65236] 63. Assurance Artifact Reuse
+[11-20:P1911; UTF16 65265] ALG-ASS8 — ReuseOrInvalidateAssuranceArtifact
+[11-20:P1913; UTF16 65317]     cached artifact
+[11-20:P1914; UTF16 65337]     new design state
+[11-20:P1915; UTF16 65358]     current:
+[11-20:P1916; UTF16 65371]         theory
+[11-20:P1917; UTF16 65386]         model
+[11-20:P1918; UTF16 65400]         code
+[11-20:P1919; UTF16 65413]         evidence
+[11-20:P1920; UTF16 65430]         calibration
+[11-20:P1921; UTF16 65450]         adversarial-domain versions
+[11-20:P1923; UTF16 65487] IF every fingerprint and applicability condition matches:
+[11-20:P1924; UTF16 65545]     REUSE
+[11-20:P1927; UTF16 65562]     identify changed roots
+[11-20:P1928; UTF16 65589]     invalidate dependent proof paths
+[11-20:P1930; UTF16 65627] IF the artifact remains valid under
+[11-20:P1931; UTF16 65663] a proved semantic theory restriction:
+[11-20:P1932; UTF16 65701]     REUSE WITH RESTRICTED SCOPE
+[11-20:P1934; UTF16 65734] IF the new theory expands obligations:
+[11-20:P1935; UTF16 65773]     retain the old artifact as partial support
+[11-20:P1936; UTF16 65820]     add new obligations
+[11-20:P1939; UTF16 65856]     RECERTIFY or INVALIDATE
+[11-20:P1943; UTF16 65887] 64. Assurance Templates
+[11-20:P1944; UTF16 65911] ALG-ASS9 — CompileAssuranceTemplate
+[11-20:P1946; UTF16 65953]     repeated motif family
+[11-20:P1947; UTF16 65979]     parameter schema
+[11-20:P1948; UTF16 66000]     candidate proof
+[11-20:P1949; UTF16 66020]     validity domain
+[11-20:P1951; UTF16 66041] 1. Separate parametric premises.
+[11-20:P1953; UTF16 66075] 2. Prove:
+[11-20:P1954; UTF16 66085]        ∀ theta in V,
+[11-20:P1955; UTF16 66106]        P(theta) → C(theta).
+[11-20:P1957; UTF16 66135] 3. Compile an instance checker for:
+[11-20:P1958; UTF16 66171]        theta_i ∈ V
+[11-20:P1959; UTF16 66190]        P(theta_i).
+[11-20:P1961; UTF16 66210] 4. Fingerprint the template and dependencies.
+[11-20:P1963; UTF16 66257] 5. Register explicit exception conditions.
+[11-20:P1966; UTF16 66308]     certified template
+[11-20:P1967; UTF16 66331]     instance-check procedure
+[11-20:P1968; UTF16 66360] Correctness is THM-ASS18.
+[11-20:P1972; UTF16 66389] 65. Building the PCR
+[11-20:P1973; UTF16 66410] ALG-ASS10 — BuildProofCarryingRelease
+[11-20:P1975; UTF16 66454]     checked assurance case
+[11-20:P1976; UTF16 66481]     selected active derivations
+[11-20:P1978; UTF16 66534]     checker manifest
+[11-20:P1980; UTF16 66556] 1. Extract the selected release slice.
+[11-20:P1982; UTF16 66596] 2. Deduplicate shared proof and evidence objects.
+[11-20:P1984; UTF16 66647] 3. Include every selected assumption.
+[11-20:P1986; UTF16 66686] 4. Include all required:
+[11-20:P1987; UTF16 66711]        formal proofs
+[11-20:P1988; UTF16 66732]        numerical certificates
+[11-20:P1993; UTF16 66810]        adversarial coverage
+[11-20:P1994; UTF16 66838]        professional judgments
+[11-20:P1995; UTF16 66868]        code interpretations
+[11-20:P1997; UTF16 66897] 5. Include:
+[11-20:P1998; UTF16 66909]        design/theory fingerprints
+[11-20:P1999; UTF16 66943]        provenance
+[11-20:P2000; UTF16 66961]        consistency certificate
+[11-20:P2001; UTF16 66992]        unresolved list
+[11-20:P2002; UTF16 67015]        release phase
+[11-20:P2004; UTF16 67037] 6. Build package hash.
+[11-20:P2006; UTF16 67061] 7. Run independent final checker.
+[11-20:P2009; UTF16 67103]     PCR
+[11-20:P2010; UTF16 67111]     checker result
+[11-20:P2014; UTF16 67133] 66. Assurance Red Team
+[11-20:P2015; UTF16 67156] ALG-ASS11 — RedTeamAssuranceCase
+[11-20:P2016; UTF16 67189] SEARCH FOR
+[11-20:P2017; UTF16 67200]     stale evidence
+[11-20:P2018; UTF16 67219]     wrong applicability
+[11-20:P2019; UTF16 67243]     missing assumptions
+[11-20:P2020; UTF16 67267]     circular support
+[11-20:P2021; UTF16 67288]     conflicting reports
+[11-20:P2022; UTF16 67312]     hidden common dependencies
+[11-20:P2023; UTF16 67343]     theory mismatch
+[11-20:P2024; UTF16 67363]     code-version mismatch
+[11-20:P2025; UTF16 67389]     adversarial-domain mismatch
+[11-20:P2026; UTF16 67421]     PCPE scope violations
+[11-20:P2027; UTF16 67447]     omitted blockers
+[11-20:P2028; UTF16 67468]     inconsistent foundations
+[11-20:P2031; UTF16 67507]     every candidate through Prompt-10
+[11-20:P2032; UTF16 67545]     Claim Breaker semantics
+[11-20:P2035; UTF16 67581]     verified assurance breaker
+[11-20:P2036; UTF16 67612]     or bounded assurance coverage
+[11-20:P2037; UTF16 67646]     or UNKNOWN
+[11-20:P2041; UTF16 67664] 67. Conflict and Provenance Helper Algorithms
+[11-20:P2042; UTF16 67710] ALG-ASS12 — DetectAssuranceConflicts
+[11-20:P2043; UTF16 67747] FOR every claim and exact scope:
+[11-20:P2044; UTF16 67780]     collect active derived reports
+[11-20:P2046; UTF16 67816]     if two reports are incompatible:
+[11-20:P2047; UTF16 67853]         mark conflict open
+[11-20:P2048; UTF16 67880]         identify support paths
+[11-20:P2049; UTF16 67911]         expose resolution obligations
+[11-20:P2053; UTF16 67952] ALG-ASS13 — ExtractAssumptionLedger
+[11-20:P2054; UTF16 67988] START from selected release roots
+[11-20:P2056; UTF16 68023] TRAVERSE selected derivations backward
+[11-20:P2058; UTF16 68063] COLLECT every assumption leaf and
+[11-20:P2059; UTF16 68097] every hidden rule side condition
+[11-20:P2061; UTF16 68131] REJECT
+[11-20:P2062; UTF16 68138]     a derivation containing an
+[11-20:P2063; UTF16 68169]     unrecorded premise
+[11-20:P2066; UTF16 68200]     complete selected assumption ledger
+[11-20:P2070; UTF16 68243] ALG-ASS14 — VerifyEvidenceProvenance
+[11-20:P2072; UTF16 68286]     artifact identity
+[11-20:P2073; UTF16 68308]     signatures/hashes
+[11-20:P2074; UTF16 68330]     source chain
+[11-20:P2075; UTF16 68347]     transformations
+[11-20:P2076; UTF16 68367]     version continuity
+[11-20:P2077; UTF16 68390]     calibration linkage
+[11-20:P2078; UTF16 68414]     authority
+[11-20:P2081; UTF16 68436]     PROVENANCE VALID
+[11-20:P2084; UTF16 68481] Provenance validity remains distinct from technical applicability.
+[11-20:P2088; UTF16 68551] 68. Composition of Specialized Checkers
+[11-20:P2089; UTF16 68591] THM-ASS21 — Composition of Sound Certificate Checkers
+[11-20:P2090; UTF16 68645] Suppose each checker (V_i) satisfies:
+[11-20:P2091; UTF16 68683] [ V_i(\pi_i)=\mathsf{accept} \Longrightarrow P_i. ]
+[11-20:P2092; UTF16 68735] Suppose assurance inference rule:
+[11-20:P2093; UTF16 68769] [ P_1\land\cdots\land P_k \Longrightarrow C ]
+[11-20:P2095; UTF16 68825] Then acceptance of every (\pi_i) establishes (C).
+[11-20:P2097; UTF16 68881] Checker soundness gives every premise (P_i).
+[11-20:P2098; UTF16 68926] The sound inference rule derives (C).
+[11-20:P2100; UTF16 68966] This permits specialized kernels to compose into one project checker.
+[11-20:P2104; UTF16 69039] 69. Checker Versioning
+[11-20:P2105; UTF16 69062] A certificate checked under verifier version (V_1) is not automatically accepted by (V_2).
+[11-20:P2106; UTF16 69153] Reuse requires one of:
+[11-20:P2107; UTF16 69176] rechecking under (V_2);
+[11-20:P2108; UTF16 69200] a compatibility theorem;
+[11-20:P2109; UTF16 69225] retention of (V_1) inside the historical TCB.
+[11-20:P2110; UTF16 69271] Verifier hashes belong in the PCR.
+[11-20:P2114; UTF16 69309] 70. TCB Minimization
+[11-20:P2115; UTF16 69330] The TCB and the evidence core are different optimization objects.
+[11-20:P2116; UTF16 69396] Minimum release core
+[11-20:P2117; UTF16 69417] Minimizes externally supplied assurance support.
+[11-20:P2118; UTF16 69466] Minimum TCB
+[11-20:P2119; UTF16 69478] Minimizes trusted checking mechanisms.
+[11-20:P2120; UTF16 69517] A small evidence core can still require a large checker family.
+[11-20:P2121; UTF16 69581] A small TCB may require larger certificates.
+[11-20:P2122; UTF16 69626] Prompt 11 does not claim a universal optimum.
+[11-20:P2126; UTF16 69675] 71. PCR Reproducibility
+[11-20:P2127; UTF16 69699] An independent party should be able to rerun every deterministic check required for the PCR.
+[11-20:P2128; UTF16 69792] For expensive nondeterministic generation, the package may contain:
+[11-20:P2129; UTF16 69860] result;
+[11-20:P2130; UTF16 69868] certificate;
+[11-20:P2131; UTF16 69881] deterministic checker.
+[11-20:P2132; UTF16 69904] The independent party need not reproduce:
+[11-20:P2133; UTF16 69946] design search;
+[11-20:P2134; UTF16 69961] optimization history;
+[11-20:P2135; UTF16 69983] original full solver run
+[11-20:P2136; UTF16 70008] when a sound certificate is sufficient.
+[11-20:P2140; UTF16 70051] 72. Measurements and Calibration
+[11-20:P2141; UTF16 70084] A measurement evidence path may require:
+[11-20:P2142; UTF16 70125] [ \text{instrument identity} + \text{calibration validity} + \text{measurement bytes} + \text{uncertainty model} + \text{mapping to claim}. ]
+[11-20:P2143; UTF16 70267] If calibration expires or is invalidated, the raw measurement remains authentic.
+[11-20:P2144; UTF16 70348] Its release applicability may become stale.
+[11-20:P2148; UTF16 70395] 73. Field Inspection
+[11-20:P2149; UTF16 70416] Inspection evidence separates:
+[11-20:P2150; UTF16 70447] raw scan, image, or reading;
+[11-20:P2151; UTF16 70476] interpreted geometric fact;
+[11-20:P2152; UTF16 70504] professional judgment;
+[11-20:P2153; UTF16 70527] derived compliance claim.
+[11-20:P2154; UTF16 70553] The raw artifact does not directly equal its interpretation.
+[11-20:P2155; UTF16 70614] Each transformation becomes an assurance inference with provenance.
+[11-20:P2159; UTF16 70685] 74. Lifecycle and Digital-Twin Assurance
+[11-20:P2160; UTF16 70726] Operational measurements may update:
+[11-20:P2161; UTF16 70763] model calibration;
+[11-20:P2162; UTF16 70782] degradation assumptions;
+[11-20:P2163; UTF16 70807] maintenance forecasts;
+[11-20:P2164; UTF16 70830] reliability claims.
+[11-20:P2165; UTF16 70850] They may strengthen or invalidate a digital-twin assurance path.
+[11-20:P2166; UTF16 70915] Operational data does not automatically prove future behavior.
+[11-20:P2167; UTF16 70978] Lifecycle updates create new release versions or operational assurance versions.
+[11-20:P2171; UTF16 71062] 75. Provisional Release
+[11-20:P2172; UTF16 71086] A project may define a separate claim:
+[11-20:P2173; UTF16 71125] [ C_{\mathrm{provisional}} ]
+[11-20:P2174; UTF16 71154] permitting named unresolved obligations under authorized governance.
+[11-20:P2175; UTF16 71223] This is a different release manifest.
+[11-20:P2176; UTF16 71261] It must not be labeled:
+[11-20:P2177; UTF16 71285] [ C_{\mathrm{complete}}. ]
+[11-20:P2178; UTF16 71312] The provisional package records:
+[11-20:P2179; UTF16 71345] unresolved blockers;
+[11-20:P2180; UTF16 71366] authorizing authority;
+[11-20:P2182; UTF16 71401] compensating controls;
+[11-20:P2183; UTF16 71424] required follow-up.
+[11-20:P2187; UTF16 71447] 76. Malicious or Buggy Generators
+[11-20:P2188; UTF16 71481] A malicious generator may emit:
+[11-20:P2189; UTF16 71513] false structural result;
+[11-20:P2190; UTF16 71538] mismatched evidence;
+[11-20:P2191; UTF16 71559] stale PCPE;
+[11-20:P2192; UTF16 71571] fabricated dependency hash;
+[11-20:P2193; UTF16 71599] invalid proof route.
+[11-20:P2194; UTF16 71620] If the result lacks a valid certificate or fails applicability, the checker rejects it.
+[11-20:P2195; UTF16 71708] The assurance architecture assumes the generator may be wrong.
+[11-20:P2196; UTF16 71771] That is not an exceptional condition.
+[11-20:P2197; UTF16 71809] It is the design premise.
+[11-20:P2201; UTF16 71838] 77. Malicious Evidence Inputs
+[11-20:P2202; UTF16 71868] A signed third-party assertion may be:
+[11-20:P2203; UTF16 71907] authentic;
+[11-20:P2204; UTF16 71918] false;
+[11-20:P2205; UTF16 71925] misleading;
+[11-20:P2206; UTF16 71937] out of scope;
+[11-20:P2207; UTF16 71951] technically irrelevant.
+[11-20:P2208; UTF16 71975] Cryptography protects integrity and origin.
+[11-20:P2209; UTF16 72019] Engineering assurance still requires:
+[11-20:P2210; UTF16 72057] technical validity;
+[11-20:P2213; UTF16 72095] applicability;
+[11-20:P2214; UTF16 72110] possibly corroboration.
+[11-20:P2218; UTF16 72137] 78. Worked Structural Model Derivation
+[11-20:P2219; UTF16 72176] Consider structural physical claim:
+[11-20:P2220; UTF16 72212] [ C_s: \text{the physical member satisfies the declared strength criterion}. ]
+[11-20:P2221; UTF16 72291] Model output:
+[11-20:P2222; UTF16 72305] [ \sigma_{\mathrm{model}} \le 0.75\sigma_y. ]
+[11-20:P2223; UTF16 72351] A complete derivation may require:
+[11-20:P2224; UTF16 72386] [ \begin{aligned} P_1&=\text{as-modeled geometry matches current design},\ P_2&=\text{material evidence supports }\sigma_y,\ P_3&=\text{load model covers declared load cases},\ P_4&=\text{boundary conditions apply},\ P_5&=\text{numerical enclosure certificate is valid},\ P_6&=\text{model lies in its validity domain},\ P_7&=\text{model discrepancy remains within }\Delta_M,\ P_8&=\text{code criterion maps the physical enclosure to PASS}. \end{aligned} ]
+[11-20:P2225; UTF16 72842] Inference:
+[11-20:P2226; UTF16 72853] [ P_1\land\cdots\land P_8 \Longrightarrow C_s. ]
+[11-20:P2227; UTF16 72902] “Solver converged” discharges only part of (P_5).
+[11-20:P2228; UTF16 72952] It does not establish the remaining premises.
+[11-20:P2232; UTF16 73001] 79. Fire-Assembly Example
+[11-20:P2233; UTF16 73027] Root:
+[11-20:P2234; UTF16 73033] [ C_W: \text{Wall W17 has accepted two-hour fire evidence}. ]
+[11-20:P2235; UTF16 73095] One derivation is:
+[11-20:P2236; UTF16 73114] [ \begin{aligned} &\text{installed assembly identity}\ &+\text{authentic test report}\ &+\text{product revision match}\ &+\text{thickness match}\ &+\text{fastener-spacing match}\ &+\text{jurisdiction acceptance}\ &\Longrightarrow C_W. \end{aligned} ]
+[11-20:P2237; UTF16 73365] Change:
+[11-20:P2238; UTF16 73373] [ \text{insulation revision }I_1\to I_2. ]
+[11-20:P2239; UTF16 73416] Affected assurance roots include:
+[11-20:P2240; UTF16 73450] product identity;
+[11-20:P2241; UTF16 73468] test applicability;
+[11-20:P2242; UTF16 73488] fire-evidence claim;
+[11-20:P2243; UTF16 73509] dependent release root.
+[11-20:P2244; UTF16 73533] Unrelated:
+[11-20:P2245; UTF16 73544] structural geometry evidence;
+[11-20:P2246; UTF16 73574] electrical-product evidence;
+[11-20:P2247; UTF16 73603] HVAC calculation
+[11-20:P2248; UTF16 73620] remain outside the invalidation closure.
+[11-20:P2252; UTF16 73664] 80. MEP Routing Release Example
+[11-20:P2254; UTF16 73703] [ C_R: \text{Service route R is releaseable}. ]
+[11-20:P2255; UTF16 73751] Possible premises:
+[11-20:P2256; UTF16 73770] [ \begin{aligned} P_1&=\text{route exists},\ P_2&=\text{geometry is valid},\ P_3&=\text{clearances are certified},\ P_4&=\text{slope constraints hold},\ P_5&=\text{pressure/flow requirements hold},\ P_6&=\text{structural penetrations are approved},\ P_7&=\text{firestopping evidence applies},\ P_8&=\text{access and maintainability hold},\ P_9&=\text{products are evidenced},\ P_{10}&=\text{construction sequence is feasible}. \end{aligned} ]
+[11-20:P2257; UTF16 74213] A shortest-path certificate may establish:
+[11-20:P2258; UTF16 74256] [ \text{route optimality under the routing model}. ]
+[11-20:P2259; UTF16 74309] It does not establish (C_R) without the other premises.
+[11-20:P2263; UTF16 74368] 81. PCPE Assurance Example
+[11-20:P2265; UTF16 74402] The standard-room HVAC PCPE may replace the full room model for this floor.
+[11-20:P2266; UTF16 74478] Required premises:
+[11-20:P2267; UTF16 74497] [ \begin{aligned} &\text{room fingerprint match},\ &\text{parameter-domain membership},\ &\text{model-version match},\ &\text{reduced-basis certificate},\ &\text{residual/error certificate},\ &\text{model validity},\ &\text{model-discrepancy scope},\ &\text{decision margin},\ &\text{no global-mode alarm},\ &\text{exterior-theory compatibility}. \end{aligned} ]
+[11-20:P2268; UTF16 74860] Only after these premises does the PCPE become an applicable leaf in the floor assurance derivation.
+[11-20:P2272; UTF16 74964] 82. Adversarial Assurance Example
+[11-20:P2274; UTF16 75005] [ C_{\mathrm{cool},2}: \text{cooling service is robust through adversarial radius }2. ]
+[11-20:P2275; UTF16 75093] Required evidence includes:
+[11-20:P2277; UTF16 75153] common-cause model;
+[11-20:P2278; UTF16 75173] correlated hazard semantics;
+[11-20:P2279; UTF16 75202] coverage partition;
+[11-20:P2280; UTF16 75222] radius lower-bound proof;
+[11-20:P2282; UTF16 75264] An old certificate covering independent equipment failures remains valid for that old domain.
+[11-20:P2283; UTF16 75358] It does not discharge a new obligation containing shared electrical-bus failure.
+[11-20:P2284; UTF16 75439] Incremental recertification preserves the old proof as partial support and opens the new domain difference.
+[11-20:P2288; UTF16 75550] 83. Regret-Closure Assurance
+[11-20:P2289; UTF16 75579] Prompt-9 claim:
+[11-20:P2290; UTF16 75595] [ G(K)=\mathbf0 ]
+[11-20:P2291; UTF16 75613] may appear as one release root or lower-level claim.
+[11-20:P2292; UTF16 75666] Its evidence is the Prompt-9 closure certificate.
+[11-20:P2293; UTF16 75716] Whole-project release additionally requires:
+[11-20:P2294; UTF16 75761] engineering roots;
+[11-20:P2295; UTF16 75780] evidence validity;
+[11-20:P2296; UTF16 75799] model validity;
+[11-20:P2297; UTF16 75815] code roots;
+[11-20:P2298; UTF16 75827] professional approvals;
+[11-20:P2300; UTF16 75864] version match.
+[11-20:P2301; UTF16 75879] Regret closure is not synonymous with whole-project assurance closure.
+[11-20:P2305; UTF16 75953] 84. Assurance Common-Mode Failure
+[11-20:P2306; UTF16 75987] DEF-ASS30 — Assurance Dependency Overlap
+[11-20:P2307; UTF16 76028] For derivations (D_1,D_2), define direct overlap:
+[11-20:P2308; UTF16 76078] \mathsf{Leaves}(D_1) \cap \mathsf{Leaves}(D_2). ]
+[11-20:P2309; UTF16 76128] A dependency-aware overlap additionally includes shared transitive ancestors.
+[11-20:P2310; UTF16 76206] This is an explanatory structural object.
+[11-20:P2311; UTF16 76248] It is not reduced to a cosmetic score.
+[11-20:P2315; UTF16 76290] Example: common weather file
+[11-20:P2316; UTF16 76319] Energy, condensation, and cooling-sizing derivations may appear independent.
+[11-20:P2317; UTF16 76396] If all use weather file (W), then:
+[11-20:P2318; UTF16 76431] [ W ]
+[11-20:P2319; UTF16 76437] is a common dependency.
+[11-20:P2320; UTF16 76461] Corruption of (W) invalidates all three branches.
+[11-20:P2324; UTF16 76514] 85. Alternative Structural Proof Paths
+[11-20:P2325; UTF16 76553] Path A:
+[11-20:P2326; UTF16 76561] [ \text{FEM certificate} + \text{material certificate }M \Longrightarrow C. ]
+[11-20:P2327; UTF16 76639] Path B:
+[11-20:P2328; UTF16 76647] [ \text{analytical bound} + M \Longrightarrow C. ]
+[11-20:P2329; UTF16 76698] Minimal cores:
+[11-20:P2330; UTF16 76713] [ S_A={\mathsf{FEM},M}, ]
+[11-20:P2331; UTF16 76739] [ S_B={\mathsf{Analytical},M}. ]
+[11-20:P2332; UTF16 76772] The singleton:
+[11-20:P2333; UTF16 76787] [ {M} ]
+[11-20:P2334; UTF16 76795] hits both cores.
+[11-20:P2337; UTF16 76856] Two proof paths do not imply two independent assurance paths.
+[11-20:P2341; UTF16 76921] Fully independent alternative
+[11-20:P2342; UTF16 76951] Add Path C:
+[11-20:P2343; UTF16 76963] [ \text{full-scale load test }T + \text{independent material evidence }M_2 \Longrightarrow C. ]
+[11-20:P2344; UTF16 77059] Now minimal cores are:
+[11-20:P2345; UTF16 77082] [ {\mathsf{FEM},M}, ]
+[11-20:P2346; UTF16 77104] [ {\mathsf{Analytical},M}, ]
+[11-20:P2347; UTF16 77133] [ {T,M_2}. ]
+[11-20:P2348; UTF16 77146] No singleton intersects all three.
+[11-20:P2349; UTF16 77181] A cut such as:
+[11-20:P2350; UTF16 77196] [ {M,T} ]
+[11-20:P2351; UTF16 77206] does.
+[11-20:P2353; UTF16 77223] [ \lambda_{\mathrm{ass}}(C)=2. ]
+[11-20:P2357; UTF16 77259] 86. Contradictory Model Example
+[11-20:P2358; UTF16 77291] Model A predicts:
+[11-20:P2359; UTF16 77309] [ 480\text{ kN}. ]
+[11-20:P2360; UTF16 77328] Model B predicts:
+[11-20:P2361; UTF16 77346] [ 530\text{ kN}. ]
+[11-20:P2363; UTF16 77375] [ 500\text{ kN}. ]
+[11-20:P2364; UTF16 77394] Suppose both models are active, applicable, and carry no governing resolution rule.
+[11-20:P2365; UTF16 77478] One derivation supports:
+[11-20:P2366; UTF16 77503] [ \mathsf{SAFE}. ]
+[11-20:P2367; UTF16 77522] The other supports:
+[11-20:P2368; UTF16 77542] [ \mathsf{UNSAFE}. ]
+[11-20:P2369; UTF16 77563] The claim is conflict open.
+[11-20:P2370; UTF16 77591] ANANKE must not compute:
+[11-20:P2371; UTF16 77616] 505\text{ kN} ]
+[11-20:P2372; UTF16 77632] and treat the average as a justified report.
+[11-20:P2373; UTF16 77677] The conflict requires:
+[11-20:P2374; UTF16 77700] model-scope separation;
+[11-20:P2376; UTF16 77742] higher-fidelity analysis;
+[11-20:P2377; UTF16 77768] governance rule;
+[11-20:P2378; UTF16 77785] or unresolved status.
+[11-20:P2382; UTF16 77810] 87. Measurement Example
+[11-20:P2383; UTF16 77834] Required clearance:

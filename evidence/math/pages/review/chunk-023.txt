@@ -1,0 +1,356 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P8800; UTF16 339054]         best ← current result
+[1-10:P8802; UTF16 339085] return best
+[1-10:P8803; UTF16 339097] For primal-graph elimination orders, a crude search examines up to
+[1-10:P8804; UTF16 339164] [ |V|! ]
+[1-10:P8805; UTF16 339173] orders before accounting for local quotient compilation.
+[1-10:P8809; UTF16 339233] 29.4 Hardness
+[1-10:P8810; UTF16 339247] THM-DS25 — Optimal Decision-Width Decomposition Is NP-Hard
+[1-10:P8811; UTF16 339306] Consider the restricted class in which:
+[1-10:P8812; UTF16 339346] every variable is Boolean;
+[1-10:P8813; UTF16 339373] every raw bag assignment is contextually distinguishable;
+[1-10:P8814; UTF16 339431] legal decompositions are nice tree decompositions of the primal graph;
+[1-10:P8815; UTF16 339502] the separator message at a bag is its exact assignment.
+[1-10:P8817; UTF16 339564] \max_v|B_v|. ]
+[1-10:P8819; UTF16 339593] \operatorname{tw}(G)+1. ]
+[1-10:P8820; UTF16 339619] Therefore exact decision-width decomposition optimization is NP-hard.
+[1-10:P8822; UTF16 339695] If every bag assignment is distinguishable, a bag of size (|B_v|) has exactly
+[1-10:P8823; UTF16 339773] [ 2^{|B_v|} ]
+[1-10:P8824; UTF16 339787] separator states.
+[1-10:P8825; UTF16 339805] Thus its decision width is (|B_v|).
+[1-10:P8826; UTF16 339841] Minimizing the maximum bag size is exactly the treewidth problem plus one.
+[1-10:P8827; UTF16 339916] The restricted decision-width problem therefore contains the treewidth decision problem as a special case. ∎
+[1-10:P8828; UTF16 340025] This theorem concerns decomposition optimization, not online DP given a decomposition.
+[1-10:P8832; UTF16 340115] 30. Bottom-Up Quotient Compilation
+[1-10:P8833; UTF16 340150] 30.1 Why global enumeration is unnecessary in principle
+[1-10:P8834; UTF16 340206] A global assignment count can be exponential in the number of regions.
+[1-10:P8835; UTF16 340277] A decomposition may permit every regional carrier to be generated from smaller child carriers without materializing the global Cartesian product.
+[1-10:P8836; UTF16 340423] The challenge is that regional equivalence depends on exterior contexts.
+[1-10:P8837; UTF16 340496] Local minimization must therefore be supplied with the complete generated exterior transition theory, not merely local numerical outputs.
+[1-10:P8841; UTF16 340637] ALG-DS3 — BottomUpQuotientCompile
+[1-10:P8843; UTF16 340678]     legal decomposition D
+[1-10:P8844; UTF16 340704]     finite leaf semantic carriers
+[1-10:P8845; UTF16 340738]     exact local merge operations μv
+[1-10:P8846; UTF16 340774]     complete generated exterior-context manifests
+[1-10:P8847; UTF16 340824]     Prompt-2 terminal experiment tables
+[1-10:P8849; UTF16 340865] PHASE 1 — Provisional regional generation
+[1-10:P8851; UTF16 340908]     for leaves:
+[1-10:P8852; UTF16 340924]         enumerate all reachable leaf semantic states
+[1-10:P8854; UTF16 340978]     for internal nodes in postorder:
+[1-10:P8855; UTF16 341015]         Pv ← {
+[1-10:P8856; UTF16 341030]             μv(x1,...,xk,θ)
+[1-10:P8857; UTF16 341058]             :
+[1-10:P8858; UTF16 341072]             xi ∈ Pui,
+[1-10:P8859; UTF16 341094]             θ ∈ Θv
+[1-10:P8860; UTF16 341113]         }
+[1-10:P8862; UTF16 341124]         canonicalize equal denotational states
+[1-10:P8863; UTF16 341171]         retain typed undefined states
+[1-10:P8865; UTF16 341210] PHASE 2 — Regional primitive-context graph
+[1-10:P8867; UTF16 341254]     for every regional state carrier Pv:
+[1-10:P8868; UTF16 341295]         generate every primitive exterior action induced by:
+[1-10:P8869; UTF16 341356]             parent local operations
+[1-10:P8870; UTF16 341392]             sibling provisional states
+[1-10:P8871; UTF16 341431]             legal outer wiring
+[1-10:P8872; UTF16 341462]             hiding
+[1-10:P8873; UTF16 341481]             evidence attachment
+[1-10:P8874; UTF16 341513]             sovereignty restriction
+[1-10:P8875; UTF16 341549]             scenario attachment
+[1-10:P8876; UTF16 341581]             terminal completion
+[1-10:P8878; UTF16 341614] PHASE 3 — Joint exact minimization
+[1-10:P8880; UTF16 341650]     apply Prompt-2 ExactDecisionQuotient
+[1-10:P8881; UTF16 341691]     to the sorted union of regional carriers
+[1-10:P8882; UTF16 341736]     and primitive exterior actions
+[1-10:P8884; UTF16 341772]     obtain exact regional separator quotients Σv
+[1-10:P8886; UTF16 341822] PHASE 4 — Quotient transition construction
+[1-10:P8888; UTF16 341866]     construct μ̄v on quotient states
+[1-10:P8889; UTF16 341903]     verify operation stability
+[1-10:P8890; UTF16 341934]     emit separator certificates
+[1-10:P8892; UTF16 341967] RETURN:
+[1-10:P8893; UTF16 341975]     exact separator quotients
+[1-10:P8894; UTF16 342005]     quotient transitions
+[1-10:P8895; UTF16 342030]     theory fingerprints
+[1-10:P8896; UTF16 342054]     distinguishing contexts
+[1-10:P8898; UTF16 342102] The algorithm avoids the global realization product when each provisional regional carrier remains manageable.
+[1-10:P8902; UTF16 342216] THM-DS22 — Local Compilation Correctness
+[1-10:P8904; UTF16 342265] every reachable regional semantic state appears in its provisional carrier;
+[1-10:P8905; UTF16 342341] every legal exterior completion decomposes into the generated primitive exterior actions;
+[1-10:P8906; UTF16 342431] local merge operations exactly implement the ANANKE-F factorization;
+[1-10:P8907; UTF16 342500] Prompt 2 terminal experiments are complete;
+[1-10:P8908; UTF16 342544] the factorization is separator complete.
+[1-10:P8909; UTF16 342585] Then BottomUpQuotientCompile produces, for every node (v),
+[1-10:P8910; UTF16 342644] [ P_v/ \equiv_{\partial v} \cong \Sigma_v, ]
+[1-10:P8911; UTF16 342689] and its root quotient equals the global canonical quotient restricted to the problem’s reachable state set.
+[1-10:P8913; UTF16 342803] By induction on the decomposition tree, Phase 1 generates exactly every reachable regional semantic state.
+[1-10:P8914; UTF16 342910] By assumption 2 and Prompt 2 LEM-MN1, the generated primitive-action graph spans every finite legal exterior context.
+[1-10:P8915; UTF16 343028] Prompt 2 ALG-MN1 and THM-MN12 therefore compute exactly equality under all exterior experiments.
+[1-10:P8916; UTF16 343125] That relation is DEF-DS4 regional contextual equivalence.
+[1-10:P8917; UTF16 343183] Hence every computed partition is (\Sigma_v).
+[1-10:P8918; UTF16 343229] At the root, the exterior language consists of the terminal project experiments, so the resulting quotient is the global reachable canonical quotient.
+[1-10:P8923; UTF16 343385] 31. Quotient Compilation Complexity
+[1-10:P8924; UTF16 343421] 31.1 Provisional state counts
+[1-10:P8926; UTF16 343455] |P_v| ]
+[1-10:P8927; UTF16 343463] be the provisional regional carrier size before semantic minimization.
+[1-10:P8929; UTF16 343541] \log_2p_v. ]
+[1-10:P8930; UTF16 343554] DEF-DS16 — Provisional or discovery width
+[1-10:P8932; UTF16 343603] \max_vw_P(v). ]
+[1-10:P8933; UTF16 343619] Define provisional join width
+[1-10:P8934; UTF16 343649] \max_v \left( \lambda_v+ \sum_{u\in\operatorname{child}(v)} w_P(u) \right). ]
+[1-10:P8936; UTF16 343735] [ \Sigma_v ]
+[1-10:P8937; UTF16 343748] is a quotient of (P_v),
+[1-10:P8938; UTF16 343772] [ W_D(\mathcal D) \le W_P(\mathcal D). ]
+[1-10:P8942; UTF16 343816] 31.2 Compilation bound
+[1-10:P8943; UTF16 343839] THM-DS22A — Provisional-Width Compilation Bound
+[1-10:P8944; UTF16 343887] Under the assumptions of THM-DS22, provisional carrier generation takes
+[1-10:P8945; UTF16 343959] [ O!\left( \sum_v c_v \ell_v \prod_{u\in\operatorname{child}(v)} p_u \right) ]
+[1-10:P8946; UTF16 344038] time.
+[1-10:P8947; UTF16 344044] The explicit primitive-action graph contains at most a polynomial factor times the number of provisional operation tuples.
+[1-10:P8948; UTF16 344167] Prompt 2’s indexed refinement then adds
+[1-10:P8949; UTF16 344207] [ O!\left( (A_P+P)\log P \right) ]
+[1-10:P8950; UTF16 344242] time, where:
+[1-10:P8951; UTF16 344255] [ P=\sum_vp_v ]
+[1-10:P8952; UTF16 344271] and (A_P) is the provisional primitive-action edge count.
+[1-10:P8953; UTF16 344329] For bounded branching (b) and local-choice width (\Lambda),
+[1-10:P8954; UTF16 344389] [ \boxed{ T_{\mathrm{compile}} \le \operatorname{poly}(n) 2^{,bW_P+\Lambda}. } ]
+[1-10:P8955; UTF16 344470] Peak provisional message memory is
+[1-10:P8956; UTF16 344505] [ \operatorname{poly}(n) 2^{W_P}. ]
+[1-10:P8958; UTF16 344547] The carrier-generation count is the same Cartesian-product count as THM-DS8, replacing final quotient counts (q_u) by provisional counts (p_u).
+[1-10:P8959; UTF16 344691] Prompt 2 PRO-MN2 supplies the refinement bound once the primitive unary action graph has been materialized.
+[1-10:P8960; UTF16 344799] The exponential upper bound follows from:
+[1-10:P8961; UTF16 344841] [ p_u\le2^{W_P}, \qquad \ell_v\le2^\Lambda. ]
+[1-10:P8963; UTF16 344889] The final online query cost depends on (W_D).
+[1-10:P8964; UTF16 344935] The exact compilation cost generally depends on (W_P).
+[1-10:P8968; UTF16 344993] 32. The Discovery Gap
+[1-10:P8969; UTF16 345015] DEF-DS17 — Discovery gap
+[1-10:P8970; UTF16 345040] For a decomposition (\mathcal D), define
+[1-10:P8971; UTF16 345081] W_P(\mathcal D)-W_D(\mathcal D). ]
+[1-10:P8972; UTF16 345116] A system with:
+[1-10:P8973; UTF16 345131] [ W_D=10 ]
+[1-10:P8975; UTF16 345146] [ W_P=80 ]
+[1-10:P8976; UTF16 345157] has a tiny final separator alphabet but may still require provisional structures on the order of
+[1-10:P8977; UTF16 345254] [ 2^{80} ]
+[1-10:P8978; UTF16 345265] states to discover it by the exact explicit method.
+[1-10:P8982; UTF16 345320] 32.1 Small quotient does not imply easy discovery
+[1-10:P8983; UTF16 345370] THM-DS23 — Constant-Width Quotient Discovery Is coNP-Hard
+[1-10:P8984; UTF16 345428] There exists a compactly represented family of finite ANANKE-F separator problems for which:
+[1-10:P8985; UTF16 345521] [ |\Sigma_L|\le2, \qquad W_D(L)\le1, ]
+[1-10:P8986; UTF16 345560] yet deciding whether
+[1-10:P8987; UTF16 345581] [ |\Sigma_L|=1 ]
+[1-10:P8988; UTF16 345598] is coNP-hard.
+[1-10:P8991; UTF16 345622] [ \varphi(x_1,\ldots,x_n) ]
+[1-10:P8992; UTF16 345650] be a Boolean formula.
+[1-10:P8993; UTF16 345672] Construct regional semantic states:
+[1-10:P8994; UTF16 345708] [ {b} \cup {x_a\in{0,1}^n}, ]
+[1-10:P8995; UTF16 345738] where (b) is a fixed baseline state.
+[1-10:P8996; UTF16 345775] Admit one direct experiment with output:
+[1-10:P8997; UTF16 345816] [ \mathsf{Out}(b)=0, ]
+[1-10:P8998; UTF16 345839] [ \mathsf{Out}(x_a)=\varphi(a). ]
+[1-10:P8999; UTF16 345873] There are no additional distinguishing operations or contexts.
+[1-10:P9000; UTF16 345936] If (\varphi) is unsatisfiable, then every state has output zero, so:
+[1-10:P9001; UTF16 346005] [ |\Sigma_L|=1. ]
+[1-10:P9002; UTF16 346023] If (\varphi) is satisfiable, some (x_a) has output one while (b) has output zero, so:
+[1-10:P9004; UTF16 346127] Therefore deciding whether (|\Sigma_L|=1) decides UNSAT.
+[1-10:P9005; UTF16 346184] The quotient always has at most two states. ∎
+[1-10:P9009; UTF16 346233] 32.2 Consequence for parameterized compilation
+[1-10:P9010; UTF16 346280] If exact uniform quotient discovery were FPT in (W_D) alone, then for (W_D\le1) it would run in polynomial time and decide UNSAT in polynomial time.
+[1-10:P9011; UTF16 346429] Thus, unless
+[1-10:P9012; UTF16 346442] [ \mathsf P=\mathsf{coNP} ]
+[1-10:P9013; UTF16 346470] and hence (\mathsf P=\mathsf{NP}), uniform exact quotient discovery is not FPT in final decision width alone.
+[1-10:P9017; UTF16 346583] 32.3 Black-box lower bound
+[1-10:P9018; UTF16 346610] Suppose (N) state outputs are supplied only through a query oracle and all outputs happen to be equal.
+[1-10:P9019; UTF16 346713] Any deterministic compiler certifying one quotient class must inspect every state in the worst case; otherwise an uninspected state could have a distinct output.
+[1-10:P9020; UTF16 346875] Thus final width zero can still require
+[1-10:P9021; UTF16 346915] [ \Omega(N) ]
+[1-10:P9022; UTF16 346929] oracle queries.
+[1-10:P9026; UTF16 346948] CONJ-DS3 — Efficient Semantic Width Discovery
+[1-10:P9027; UTF16 346994] For restricted, structured engineering grammars with:
+[1-10:P9029; UTF16 347065] local conservation laws;
+[1-10:P9030; UTF16 347090] bounded evidence schemas;
+[1-10:P9031; UTF16 347116] compositional operator libraries;
+[1-10:P9032; UTF16 347150] reusable proof certificates;
+[1-10:P9033; UTF16 347179] there exist algorithms whose provisional width satisfies
+[1-10:P9034; UTF16 347236] [ W_P \le W_D+ O(\log n) ]
+[1-10:P9035; UTF16 347263] or another sublinear-gap bound.
+[1-10:P9036; UTF16 347295] This conjecture is not proved.
+[1-10:P9037; UTF16 347326] It is the formal target of later ANANKE work on:
+[1-10:P9039; UTF16 347400] CEGAR;
+[1-10:P9040; UTF16 347407] operator compilation;
+[1-10:P9041; UTF16 347429] abstraction discovery;
+[1-10:P9042; UTF16 347452] symbolic quotient construction.
+[1-10:P9046; UTF16 347487] 33. Exponential Semantic-Advantage Family
+[1-10:P9047; UTF16 347529] 33.1 Repeated hotel-floor family
+[1-10:P9048; UTF16 347562] Fix a finite motif with (r) binary internal design decisions and nontrivial local constraints.
+[1-10:P9049; UTF16 347657] Assume its internal state count is
+[1-10:P9050; UTF16 347692] [ 2^{\Theta(r)}, ]
+[1-10:P9051; UTF16 347711] but its exact exterior state lies in a fixed finite monoid (M) of size (q), where (q>1).
+[1-10:P9052; UTF16 347800] Construct a stack of (n) motifs.
+[1-10:P9053; UTF16 347833] Then the raw realization count is
+[1-10:P9054; UTF16 347867] 2^{\Theta(rn)}. ]
+[1-10:P9055; UTF16 347885] The separator state after every prefix belongs to (M), so
+[1-10:P9057; UTF16 347951] Using THM-DS17, the stack is evaluated in:
+[1-10:P9058; UTF16 347994] [ O(n) ]
+[1-10:P9059; UTF16 348003] monoid operations, or (O(\log n)) depth with parallel reduction.
+[1-10:P9060; UTF16 348068] The example is nontrivial because different motif states produce different monoid elements and therefore different downstream outcomes.
+[1-10:P9064; UTF16 348207] THM-DS3A — Exponential Semantic Advantage
+[1-10:P9065; UTF16 348249] There exists an ANANKE-F family satisfying:
+[1-10:P9066; UTF16 348293] 2^{\Theta(n)}, ]
+[1-10:P9067; UTF16 348310] [ W_D(\mathfrak P_n)=O(1), ]
+[1-10:P9068; UTF16 348339] and exact online decision evaluation time
+[1-10:P9069; UTF16 348381] [ T_{\mathrm{DQDP}}(n)=O(n) ]
+[1-10:P9070; UTF16 348411] after motif quotient compilation.
+[1-10:P9072; UTF16 348451] Use the fixed saturating monoid from §24.1 with at least two reachable states.
+[1-10:P9073; UTF16 348530] Each motif has at least two internally distinct valid configurations and maps exactly to one monoid element.
+[1-10:P9074; UTF16 348639] The raw product grows exponentially.
+[1-10:P9075; UTF16 348676] Associative semantic composition keeps every separator state inside the fixed monoid.
+[1-10:P9076; UTF16 348762] The repeated-motif theorem gives linear work. ∎
+[1-10:P9080; UTF16 348813] 34. High-Width Failure Family
+[1-10:P9081; UTF16 348843] The family in THM-DS4 has:
+[1-10:P9082; UTF16 348870] [ |\Sigma_n|=2^n, \qquad W_D(n)=n. ]
+[1-10:P9083; UTF16 348907] Any explicit exact message table must have
+[1-10:P9085; UTF16 348958] entries.
+[1-10:P9086; UTF16 348967] One can encode Boolean satisfiability so that root acceptance asks whether any message corresponds to a satisfying assignment.
+[1-10:P9087; UTF16 349094] Under the Exponential Time Hypothesis, no general algorithm for the resulting compact family runs in
+[1-10:P9088; UTF16 349195] [ 2^{o(n)} \operatorname{poly}(n) ]
+[1-10:P9090; UTF16 349237] This is a conditional complexity statement, not an unconditional lower bound.
+[1-10:P9091; UTF16 349315] CONJ-DS1 — Width-Optimality Under ETH
+[1-10:P9092; UTF16 349353] For an appropriate bounded-arity ANANKE-F CSP subclass, no algorithm can solve every instance in
+[1-10:P9093; UTF16 349450] [ 2^{o(W_D)} \operatorname{poly}(n) ]
+[1-10:P9094; UTF16 349488] time unless ETH fails.
+[1-10:P9095; UTF16 349511] The explicit-state and communication lower bounds are proved. The general ETH-tight lower bound remains conjectural for the full ANANKE-F language.
+[1-10:P9099; UTF16 349662] 35. Worked Repeated-Hotel Example
+[1-10:P9100; UTF16 349696] 35.1 Leaf model inherited from Prompt 2
+[1-10:P9101; UTF16 349736] Prompt 2’s feasible two-room hotel-bay model contains:
+[1-10:P9102; UTF16 349791] [ 192 ]
+[1-10:P9103; UTF16 349799] concrete feasible assignments.
+[1-10:P9104; UTF16 349830] Its feasible canonical bay quotient contains:
+[1-10:P9105; UTF16 349876] [ 96 ]
+[1-10:P9106; UTF16 349883] states.
+[1-10:P9107; UTF16 349891] Each feasible quotient state merges the two behaviorally equivalent bracket products.
+[1-10:P9111; UTF16 349980] 35.2 Four bays per floor
+[1-10:P9112; UTF16 350005] A floor contains four bay motifs, representing eight guestrooms.
+[1-10:P9113; UTF16 350070] The explicit feasible assignment count per floor is
+[1-10:P9114; UTF16 350122] 1,!358,!954,!496. ]
+[1-10:P9115; UTF16 350142] The product of feasible bay quotient states has size
+[1-10:P9116; UTF16 350195] 84,!934,!656. ]
+[1-10:P9117; UTF16 350211] Neither count is the final floor separator state count.
+[1-10:P9121; UTF16 350270] 35.3 Conditioned floor exterior theory
+[1-10:P9122; UTF16 350309] For this worked separator, assume cost, schedule, and façade decisions have already been conditioned to an approved stratum.
+[1-10:P9123; UTF16 350434] The remaining exterior theory observes:
+[1-10:P9124; UTF16 350474] structural offset count;
+[1-10:P9125; UTF16 350499] vertical service-flow class;
+[1-10:P9126; UTF16 350528] maximum outage class;
+[1-10:P9127; UTF16 350550] unresolved product-evidence status;
+[1-10:P9128; UTF16 350586] right-shaft count;
+[1-10:P9129; UTF16 350605] all mandatory Prompt-2 statuses.
+[1-10:P9130; UTF16 350638] This is a conditional exact theory under THM-DS12, not an unannounced loss of admitted distinctions.
+[1-10:P9134; UTF16 350742] 35.4 Project-specific bay signature
+[1-10:P9135; UTF16 350778] For one bay define:
+[1-10:P9136; UTF16 350798] [g_i=O] \in{0,1}, ]
+[1-10:P9137; UTF16 350818] [h_i=C]+[e_i=S] \in{0,1,2}, ]
+[1-10:P9138; UTF16 350848] 2-v_i \in{1,2}, ]
+[1-10:P9139; UTF16 350866] [e_i=S] \in{0,1}, ]
+[1-10:P9140; UTF16 350886] [s_i=R] \in{0,1}. ]
+[1-10:P9141; UTF16 350906] The pair ((f_i,u_i)) has exactly four possibilities:
+[1-10:P9142; UTF16 350959] [ (0,0), \quad (1,0), \quad (1,1), \quad (2,1). ]
+[1-10:P9143; UTF16 351009] The other coordinates are independently reachable after selecting compatible (c_i,d_i).
+[1-10:P9144; UTF16 351097] Therefore the project-specific bay separator has:
+[1-10:P9145; UTF16 351147] 32 ]
+[1-10:P9148; UTF16 351166] [ 96 \longrightarrow 32 ]
+[1-10:P9149; UTF16 351192] under the conditioned floor exterior theory.
+[1-10:P9153; UTF16 351240] 35.5 Floor aggregate
+[1-10:P9154; UTF16 351261] For four bays define:
+[1-10:P9155; UTF16 351283] \sum_{i=1}^4\ell_i, ]
+[1-10:P9156; UTF16 351305] \sum_{i=1}^4f_i, ]
+[1-10:P9157; UTF16 351324] \max_i o_i, ]
+[1-10:P9158; UTF16 351338] \max_i u_i, ]
+[1-10:P9159; UTF16 351352] \sum_{i=1}^4r_i. ]
+[1-10:P9160; UTF16 351371] Reachable values are:
+[1-10:P9161; UTF16 351393] [ L\in{0,\ldots,4}, ]
+[1-10:P9162; UTF16 351415] [ R\in{0,\ldots,4}, ]
+[1-10:P9163; UTF16 351437] [ O\in{1,2}. ]
+[1-10:P9164; UTF16 351452] For ((F,U)):
+[1-10:P9165; UTF16 351465] if (U=0), then every bay has (u_i=0) and [ F\in{0,\ldots,4}; ]
+[1-10:P9166; UTF16 351528] if (U=1), at least one bay has (u_i=1), and [ F\in{1,\ldots,8}. ]
+[1-10:P9167; UTF16 351594] Hence the pair ((F,U)) has:
+[1-10:P9168; UTF16 351622] [ 5+8=13 ]
+[1-10:P9169; UTF16 351633] reachable values.
+[1-10:P9170; UTF16 351651] Therefore the exact floor separator state count is:
+[1-10:P9171; UTF16 351703] 5\cdot5\cdot2\cdot13
+[1-10:P9173; UTF16 351726] Its decision width is:
+[1-10:P9174; UTF16 351749] \log_2 650 \approx 9.3443, ]
+[1-10:P9175; UTF16 351778] and its fixed-width encoding requires:
+[1-10:P9176; UTF16 351817] 10 ]
+[1-10:P9181; UTF16 351831] 35.6 Floor separator compression
+[1-10:P9182; UTF16 351864] Relative to explicit feasible assignments:
+[1-10:P9183; UTF16 351907] \frac{192^4}{650} \approx 2,!090,!699.22. ]
+[1-10:P9184; UTF16 351951] Thus more than two million raw feasible floor assignments collapse into each canonical floor separator state on average.
+[1-10:P9185; UTF16 352072] This is a state-count ratio, not automatically a wall-clock speedup.
+[1-10:P9189; UTF16 352144] 35.7 Exact floor DP work
+[1-10:P9190; UTF16 352169] After (m) bays, the aggregate state count is:
+[1-10:P9191; UTF16 352215] (m+1)^2 \cdot 2 \cdot (3m+1). ]
+[1-10:P9193; UTF16 352258] [ q_1=32, ]
+[1-10:P9194; UTF16 352270] [ q_2=126, ]
+[1-10:P9195; UTF16 352283] [ q_3=320, ]
+[1-10:P9196; UTF16 352296] [ q_4=650. ]
+[1-10:P9197; UTF16 352309] Sequential aggregation considers:
+[1-10:P9198; UTF16 352343] [ 32 + 32\cdot32 + 126\cdot32 + 320\cdot32 ]
+[1-10:P9199; UTF16 352388] candidate merges:
+[1-10:P9200; UTF16 352406] [
+[1-10:P9201; UTF16 352408] 32+1,!024+4,!032+10,!240
+[1-10:P9202; UTF16 352433] 15,!328. ]
+[1-10:P9203; UTF16 352444] This replaces explicit examination of:
+[1-10:P9204; UTF16 352483] [ 1,!358,!954,!496 ]
+[1-10:P9205; UTF16 352504] feasible assignments, assuming the bay quotients and transitions are already compiled.
+[1-10:P9209; UTF16 352594] 35.8 Four repeated floors
+[1-10:P9210; UTF16 352620] Now compose four such floors, representing:
+[1-10:P9211; UTF16 352664] [ 4\cdot8=32 ]
+[1-10:P9212; UTF16 352679] guestrooms.
+[1-10:P9213; UTF16 352691] Define stack summaries:
+[1-10:P9214; UTF16 352715] \min \left( 8, \sum_jL_j \right), ]
+[1-10:P9215; UTF16 352751] \min \left( 16, \sum_jF_j \right), ]
+[1-10:P9216; UTF16 352788] \max_jO_j, ]
+[1-10:P9217; UTF16 352801] \max_jU_j, ]
+[1-10:P9218; UTF16 352814] \min \left( 4, \sum_jR_j \right). ]
+[1-10:P9219; UTF16 352850] After (k) floors:
+[1-10:P9220; UTF16 352868] [ L^\star \in {0,\ldots,\min(4k,8)}, ]
+[1-10:P9221; UTF16 352907] [ R^\star \in {0,\ldots,4}. ]
+[1-10:P9222; UTF16 352937] For ((F^\star,U^\star)):
+[1-10:P9223; UTF16 352962] (U^\star=0) permits [ F^\star\in {0,\ldots,\min(4k,16)}; ]
+[1-10:P9224; UTF16 353021] (U^\star=1) permits [ F^\star\in {1,\ldots,\min(8k,16)}. ]
+[1-10:P9225; UTF16 353080] The exact stack-state counts are therefore:
+[1-10:P9226; UTF16 353124] [ q_1=650, ]
+[1-10:P9227; UTF16 353137] 9\cdot5\cdot2\cdot25
+[1-10:P9228; UTF16 353158] 2,!250, ]
+[1-10:P9229; UTF16 353168] 9\cdot5\cdot2\cdot29
+[1-10:P9230; UTF16 353189] 2,!610, ]
+[1-10:P9231; UTF16 353199] 9\cdot5\cdot2\cdot33
+[1-10:P9232; UTF16 353220] 2,!970. ]
+[1-10:P9233; UTF16 353230] The four-floor stack decision width is:
+[1-10:P9234; UTF16 353270] [ \log_2 2,!970 \approx 11.536, ]
+[1-10:P9235; UTF16 353304] requiring:
+[1-10:P9236; UTF16 353315] [ 12 ]
+[1-10:P9237; UTF16 353322] fixed-width bits.
+[1-10:P9241; UTF16 353343] 35.9 Global raw space
+[1-10:P9242; UTF16 353365] The complete feasible raw assignment count is:
+[1-10:P9243; UTF16 353412] 3,!410,!512,!607,!094,!195,!460,!639,!097,!831,!351,!648,!256. ]
+[1-10:P9244; UTF16 353477] This is approximately:
+[1-10:P9245; UTF16 353500] [ 3.41\times10^{36}. ]
+[1-10:P9246; UTF16 353523] Its raw information content is:
+[1-10:P9247; UTF16 353555] [ 16\log_2 192 \approx 121.36 ]
+[1-10:P9249; UTF16 353593] The stack separator requires only about:
+[1-10:P9250; UTF16 353634] [ 11.54 ]
+[1-10:P9251; UTF16 353644] semantic bits under the conditioned exterior theory.
+[1-10:P9255; UTF16 353700] 35.10 Exact stack DP work
+[1-10:P9256; UTF16 353726] Sequential stack aggregation considers:
+[1-10:P9257; UTF16 353766] [ 650 + 650^2 + 2,!250\cdot650 + 2,!610\cdot650 ]
+[1-10:P9260; UTF16 353836] 650 + 422,!500 + 1,!462,!500 + 1,!696,!500 ]
+[1-10:P9262; UTF16 353883] 3,!582,!150. ]
+[1-10:P9263; UTF16 353898] The computation covers a raw realization family of approximately (3.41\times10^{36}) assignments without materializing that family.
+[1-10:P9267; UTF16 354033] 35.11 Root decision
+[1-10:P9268; UTF16 354053] Consider the admitted root rule:
+[1-10:P9269; UTF16 354086] reject states with [ U^\star=1; ]
+[1-10:P9270; UTF16 354120] reject states with [ O^\star=2; ]
+[1-10:P9271; UTF16 354154] reject states with [ F^\star>12; ]
+[1-10:P9272; UTF16 354189] reject states with [ L^\star>6; ]
+[1-10:P9273; UTF16 354223] reject states with [ R^\star>2; ]
+[1-10:P9274; UTF16 354257] lexicographically minimize [ (F^\star,L^\star); ]

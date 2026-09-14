@@ -1,0 +1,331 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P8515; UTF16 286758] 30. Privacy-Aware Operational Twins
+[21-30:P8516; UTF16 286794] Prompt 15 defined the operational twin.
+[21-30:P8517; UTF16 286834] Prompt 22 added cyber-compromise hypotheses.
+[21-30:P8518; UTF16 286879] Prompt 23 adds purpose-limited data semantics.
+[21-30:P8522; UTF16 286929] DEF-PRIV29 — Privacy-Aware ODT View
+[21-30:P8523; UTF16 286965] For admitted ODT computation family:
+[21-30:P8524; UTF16 287002] [ \mathcal F_{\mathrm{ODT}}, ]
+[21-30:P8525; UTF16 287033] define a representation:
+[21-30:P8526; UTF16 287058] [ \boxed{ q_{\mathrm{ODT}}(D) } ]
+[21-30:P8527; UTF16 287092] sufficient for every admitted twin computation.
+[21-30:P8528; UTF16 287140] The representation may omit:
+[21-30:P8529; UTF16 287169] direct identity;
+[21-30:P8530; UTF16 287186] exact individual trajectory;
+[21-30:P8531; UTF16 287215] unnecessary timestamps;
+[21-30:P8532; UTF16 287239] unnecessary spatial precision.
+[21-30:P8536; UTF16 287273] THM-PRIV23 — Purpose-Sufficient ODT Compression Preserves Every Admitted Twin Computation
+[21-30:P8537; UTF16 287363] Assumption
+[21-30:P8539; UTF16 287385] [ f\in\mathcal F_{\mathrm{ODT}}, ]
+[21-30:P8540; UTF16 287420] there exists (\bar f) such that:
+[21-30:P8541; UTF16 287453] \bar f \circ q_{\mathrm{ODT}}. ]
+[21-30:P8543; UTF16 287497] Replacing raw dataset (D) with:
+[21-30:P8544; UTF16 287529] [ q_{\mathrm{ODT}}(D) ]
+[21-30:P8545; UTF16 287553] preserves every admitted ODT output.
+[21-30:P8547; UTF16 287596] For each admitted (f):
+[21-30:P8548; UTF16 287619] \bar f(q_{\mathrm{ODT}}(D)). ]
+[21-30:P8549; UTF16 287650] Thus the ODT can compute exactly the same (f(D)) from the reduced representation.
+[21-30:P8550; UTF16 287732] This holds for every admitted computation. ∎
+[21-30:P8551; UTF16 287777] The theorem does not establish adequacy for future purposes outside (\mathcal F_{\mathrm{ODT}}).
+[21-30:P8555; UTF16 287877] 31. Private Fleet Learning
+[21-30:P8556; UTF16 287904] Prompt 16 remains authoritative for cross-project transfer.
+[21-30:P8557; UTF16 287964] Prompt 23 adds a separate protected-unit question.
+[21-30:P8561; UTF16 288018] DEF-PRIV30 — Fleet Privacy Unit
+[21-30:P8562; UTF16 288050] A Fleet Privacy Unit specifies whether neighboring fleet datasets differ by:
+[21-30:P8571; UTF16 288203] PRO-PRIV4 — Project-Level, Person-Level, and Event-Level Privacy Are Distinct
+[21-30:P8572; UTF16 288281] A mechanism may be certified under adjacency:
+[21-30:P8573; UTF16 288327] [ \text{add or remove one entire project} ]
+[21-30:P8574; UTF16 288371] without carrying the same parameter under adjacency:
+[21-30:P8575; UTF16 288424] [ \text{add or remove one person}. ]
+[21-30:P8576; UTF16 288461] Conversely, one person contributing (k) event units may receive only the naïve group bound:
+[21-30:P8577; UTF16 288553] [ k\varepsilon ]
+[21-30:P8578; UTF16 288570] from THM-PRIV19.
+[21-30:P8579; UTF16 288587] Therefore no privacy parameter is meaningful without its privacy unit. ∎
+[21-30:P8583; UTF16 288663] 32. Confidential Analytics and Output Privacy
+[21-30:P8584; UTF16 288709] A confidential analytics system may prove one or more of the following:
+[21-30:P8585; UTF16 288781] raw inputs remain encrypted in transit;
+[21-30:P8586; UTF16 288821] a coalition sees only an allowed protocol view;
+[21-30:P8587; UTF16 288869] individual contributions remain hidden during aggregation;
+[21-30:P8588; UTF16 288928] intermediate computation states remain confidential.
+[21-30:P8589; UTF16 288981] Those claims concern the computation transcript.
+[21-30:P8590; UTF16 289030] The released output still requires a separate privacy analysis.
+[21-30:P8592; UTF16 289107] [ \text{secure aggregation} + \text{exact sum release} ]
+[21-30:P8593; UTF16 289164] can satisfy input-channel confidentiality while failing aggregate-output privacy by THM-PRIV15.
+[21-30:P8594; UTF16 289260] Accordingly, a confidential analytics package should carry two separate roots:
+[21-30:P8595; UTF16 289339] (\mathsf{ProtocolViewConfidential});
+[21-30:P8596; UTF16 289376] (\mathsf{ReleasedOutputPrivate}).
+[21-30:P8597; UTF16 289410] Neither root implies the other without a theorem.
+[21-30:P8601; UTF16 289463] 33. Data-Governance State Machine
+[21-30:P8602; UTF16 289497] DEF-PRIV31 — Data-Governance State Machine
+[21-30:P8604; UTF16 289548] (S,s_0,E,\delta,V). } ]
+[21-30:P8606; UTF16 289602] UNCOLLECTED;
+[21-30:P8607; UTF16 289615] COLLECTED;
+[21-30:P8608; UTF16 289626] PURPOSE_APPROVED;
+[21-30:P8611; UTF16 289664] RETENTION_HOLD;
+[21-30:P8615; UTF16 289726] DISCLOSURE_APPROVED;
+[21-30:P8616; UTF16 289747] DISCLOSED.
+[21-30:P8617; UTF16 289758] The state machine represents formal governance state.
+[21-30:P8621; UTF16 289815] THM-PRIV24 — Data-Governance Approval State Does Not Establish Physical Deletion or Non-Disclosure
+[21-30:P8622; UTF16 289914] Construction A — Deletion state without physical deletion
+[21-30:P8623; UTF16 289972] The governance machine enters:
+[21-30:P8624; UTF16 290003] [ \mathsf{DELETION_PENDING}. ]
+[21-30:P8625; UTF16 290034] The storage subsystem still contains the bytes.
+[21-30:P8626; UTF16 290082] Thus the governance state does not establish physical deletion.
+[21-30:P8627; UTF16 290146] Construction B — Formal nondisclosure without actual nondisclosure
+[21-30:P8628; UTF16 290213] A policy prohibits disclosure.
+[21-30:P8629; UTF16 290244] An external recipient already obtained an unmanaged copy.
+[21-30:P8630; UTF16 290302] The formal policy remains nondisclosure.
+[21-30:P8631; UTF16 290343] The physical information distribution violates it.
+[21-30:P8632; UTF16 290394] Therefore governance state does not by itself establish physical deletion or nondisclosure. ∎
+[21-30:P8633; UTF16 290488] Prompt-14 execution evidence and Prompt-22 cyber evidence may be required.
+[21-30:P8637; UTF16 290566] 34. Privacy Conflict Cores
+[21-30:P8638; UTF16 290593] DEF-PRIV32 — Privacy Conflict Core
+[21-30:P8639; UTF16 290628] A set of:
+[21-30:P8640; UTF16 290638] purpose requirements;
+[21-30:P8641; UTF16 290660] utility requirements;
+[21-30:P8642; UTF16 290682] retention rules;
+[21-30:P8643; UTF16 290699] minimization constraints;
+[21-30:P8644; UTF16 290725] disclosure constraints;
+[21-30:P8645; UTF16 290749] privacy-budget constraints
+[21-30:P8646; UTF16 290776] is a Privacy Conflict Core when no admitted processing policy satisfies all of them jointly.
+[21-30:P8647; UTF16 290869] A core is inclusion minimal if every proper subset is feasible.
+[21-30:P8648; UTF16 290933] A conflict core identifies incompatible premises.
+[21-30:P8649; UTF16 290983] It does not decide which premise should be relaxed.
+[21-30:P8653; UTF16 291038] 35. Privacy Repairs
+[21-30:P8654; UTF16 291058] DEF-PRIV33 — Privacy Repair
+[21-30:P8655; UTF16 291086] A Privacy Repair may:
+[21-30:P8656; UTF16 291108] remove fields;
+[21-30:P8657; UTF16 291123] aggregate;
+[21-30:P8658; UTF16 291134] reduce precision;
+[21-30:P8659; UTF16 291152] change purpose;
+[21-30:P8660; UTF16 291168] obtain scoped authority;
+[21-30:P8661; UTF16 291193] terminate a use;
+[21-30:P8662; UTF16 291210] delete a copy;
+[21-30:P8663; UTF16 291225] unlearn a model;
+[21-30:P8664; UTF16 291242] add differential privacy;
+[21-30:P8665; UTF16 291268] reduce query frequency;
+[21-30:P8666; UTF16 291292] shorten retention;
+[21-30:P8667; UTF16 291311] alter recipients;
+[21-30:P8668; UTF16 291329] redesign analytics.
+[21-30:P8672; UTF16 291352] DEF-PRIV34 — Privacy Repair Frontier
+[21-30:P8673; UTF16 291389] Let repair consequences be:
+[21-30:P8674; UTF16 291417] \left( \mathsf{privacy}, \mathsf{utility}, \mathsf{engineeringImpact}, \mathsf{cost}, \mathsf{latency}, \mathsf{retention}, \mathsf{authorityBurden} \right). ]
+[21-30:P8675; UTF16 291577] The Privacy Repair Frontier is the set of verified nondominated repairs.
+[21-30:P8676; UTF16 291650] No universal scalar privacy score is assumed.
+[21-30:P8680; UTF16 291699] 36. Privacy Repair Hardness
+[21-30:P8681; UTF16 291727] THM-PRIV25 — Minimum-Cost Privacy Repair Is NP-Hard in a Finite Inference-Path Abstraction
+[21-30:P8682; UTF16 291818] Abstract repair problem
+[21-30:P8684; UTF16 291847] (A={a_1,\ldots,a_n}): candidate suppressions or controls;
+[21-30:P8685; UTF16 291905] (C_1,\ldots,C_m\subseteq A): forbidden inference paths;
+[21-30:P8686; UTF16 291961] (c_j>0): cost of selecting repair (a_j).
+[21-30:P8687; UTF16 292002] Interpret each (C_i) as a set of released components such that suppressing any one member breaks inference path (i).
+[21-30:P8688; UTF16 292119] A repair set (H\subseteq A) blocks every path iff:
+[21-30:P8691; UTF16 292253] Take any Weighted Hitting Set instance:
+[21-30:P8694; UTF16 292332] costs (c_j).
+[21-30:P8695; UTF16 292345] Use the same universe, family, and costs as the privacy-repair instance.
+[21-30:P8696; UTF16 292418] A set is a feasible privacy repair exactly when it hits every forbidden inference path.
+[21-30:P8697; UTF16 292506] Its privacy-repair cost equals its hitting-set cost.
+[21-30:P8699; UTF16 292593] Therefore an optimal privacy-repair algorithm would solve Weighted Hitting Set.
+[21-30:P8700; UTF16 292673] Hence minimum-cost privacy repair is NP-hard in this abstraction. ∎
+[21-30:P8701; UTF16 292741] This theorem does not classify every privacy problem.
+[21-30:P8705; UTF16 292798] 37. Privacy Dependency Graph
+[21-30:P8706; UTF16 292827] DEF-PRIV35 — Privacy Dependency Graph
+[21-30:P8708; UTF16 292884] raw data;
+[21-30:P8713; UTF16 292933] dataset;
+[21-30:P8714; UTF16 292942] copy;
+[21-30:P8716; UTF16 292954] feature;
+[21-30:P8717; UTF16 292963] summary;
+[21-30:P8719; UTF16 292979] checkpoint;
+[21-30:P8720; UTF16 292991] privacy mechanism;
+[21-30:P8721; UTF16 293010] release;
+[21-30:P8723; UTF16 293030] retention state;
+[21-30:P8724; UTF16 293047] deletion state;
+[21-30:P8725; UTF16 293063] privacy budget;
+[21-30:P8726; UTF16 293079] ODT view;
+[21-30:P8727; UTF16 293089] fleet model.
+[21-30:P8730; UTF16 293130] means changing (u) may change validity of privacy claim (v).
+[21-30:P8734; UTF16 293194] 38. Incremental Privacy Recertification
+[21-30:P8735; UTF16 293234] THM-PRIV26 — Dependency-Directed Privacy Recertification Equals Cold Checking
+[21-30:P8737; UTF16 293324] every changed privacy root is identified;
+[21-30:P8738; UTF16 293366] the privacy dependency graph is complete;
+[21-30:P8741; UTF16 293509] recomputed nodes use identical deterministic semantics;
+[21-30:P8742; UTF16 293565] quantitative accounting nodes use identical accounting semantics;
+[21-30:P8744; UTF16 293657] cyclic learning or governance systems are encapsulated by checked solution nodes.
+[21-30:P8747; UTF16 293790] purpose authority;
+[21-30:P8752; UTF16 293868] unlearning;
+[21-30:P8753; UTF16 293880] purpose quotient;
+[21-30:P8755; UTF16 293912] pseudonymization status;
+[21-30:P8756; UTF16 293937] linkage reports;
+[21-30:P8757; UTF16 293954] differential-privacy status;
+[21-30:P8758; UTF16 293983] privacy-budget state;
+[21-30:P8759; UTF16 294005] ODT privacy;
+[21-30:P8760; UTF16 294018] fleet privacy;
+[21-30:P8761; UTF16 294033] privacy release.
+[21-30:P8764; UTF16 294145] At every changed root, incremental and cold checking use identical updated inputs.
+[21-30:P8766; UTF16 294271] If (v) is reused, its version and applicability checks establish that the stored report remains valid.
+[21-30:P8767; UTF16 294374] If (v) is recomputed, both procedures apply the same checker or accountant to identical predecessor states.
+[21-30:P8769; UTF16 294513] Induction over the topological order yields agreement at every privacy-release root. ∎
+[21-30:P8773; UTF16 294603] 39. Privacy Claim Modalities
+[21-30:P8774; UTF16 294632] DEF-PRIV36 — Privacy Claim Modality
+[21-30:P8776; UTF16 294676] \left{ \begin{array}{l} \mathsf{PURPOSE_AUTHORIZED},\ \mathsf{CONSENT_SCOPED},\ \mathsf{RETENTION_VALID},\ \mathsf{DELETION_CLOSED},\ \mathsf{EXACT_UNLEARNING},\ \mathsf{MINIMIZATION_CERTIFIED},\ \mathsf{PSEUDONYMIZED},\ \mathsf{K_ANONYMOUS},\ \mathsf{DIFFERENTIAL_PRIVATE},\ \mathsf{SECURE_AGGREGATION},\ \mathsf{SELECTIVE_DISCLOSURE},\ \mathsf{INFERENCE_BOUNDED},\ \mathsf{HEURISTIC},\ \mathsf{UNKNOWN} \end{array} \right}. } ]
+[21-30:P8779; UTF16 295159] [ \mathsf{PSEUDONYMIZED} \not\Rightarrow \mathsf{ANONYMOUS}, ]
+[21-30:P8781; UTF16 295227] [ \mathsf{SECURE_AGGREGATION} \not\Rightarrow \mathsf{DIFFERENTIAL_PRIVATE}. ]
+[21-30:P8785; UTF16 295309] 40. Privacy Release
+[21-30:P8786; UTF16 295329] DEF-PRIV37 — Privacy Release State
+[21-30:P8787; UTF16 295364] A Privacy Release State means that an intended:
+[21-30:P8788; UTF16 295412] data product;
+[21-30:P8792; UTF16 295451] disclosure
+[21-30:P8793; UTF16 295462] satisfies every active release obligation in the declared privacy theory.
+[21-30:P8797; UTF16 295539] DEF-PRIV38 — Privacy Release Fiber
+[21-30:P8799; UTF16 295582] \left{ \pi: \pi \text{ is a checked processing and release policy satisfying the declared privacy roots under modality }\mu \right}. } ]
+[21-30:P8800; UTF16 295719] A policy may include:
+[21-30:P8803; UTF16 295768] redaction;
+[21-30:P8806; UTF16 295823] retention controls;
+[21-30:P8812; UTF16 295874] 41. Proof-Carrying Privacy and Data-Governance Package
+[21-30:P8813; UTF16 295929] DEF-PRIV39 — Proof-Carrying Privacy and Data-Governance Package
+[21-30:P8815; UTF16 296001] [ \boxed{ \mathsf{PCPDG}. } ]
+[21-30:P8816; UTF16 296031] A PCPDG contains:
+[21-30:P8818; UTF16 296078] lower-layer ANANKE package references;
+[21-30:P8819; UTF16 296117] data inventory;
+[21-30:P8820; UTF16 296133] data principals and privacy units;
+[21-30:P8821; UTF16 296168] schemas and field classes;
+[21-30:P8822; UTF16 296195] data provenance;
+[21-30:P8823; UTF16 296212] purpose vocabulary;
+[21-30:P8824; UTF16 296232] purpose-authority state;
+[21-30:P8825; UTF16 296257] use and disclosure history;
+[21-30:P8826; UTF16 296285] consent and permission artifacts;
+[21-30:P8828; UTF16 296337] retention policy;
+[21-30:P8830; UTF16 296372] lineage DAG;
+[21-30:P8831; UTF16 296385] copy and export inventory;
+[21-30:P8832; UTF16 296412] deletion obligations;
+[21-30:P8833; UTF16 296434] deletion-closure certificates;
+[21-30:P8834; UTF16 296465] training-data lineage;
+[21-30:P8835; UTF16 296488] model and checkpoint lineage;
+[21-30:P8836; UTF16 296518] unlearning certificates;
+[21-30:P8837; UTF16 296543] admitted purpose-computation families;
+[21-30:P8838; UTF16 296582] purpose-sufficient quotients;
+[21-30:P8839; UTF16 296612] minimization certificates;
+[21-30:P8840; UTF16 296639] selective-disclosure artifacts;
+[21-30:P8841; UTF16 296671] pseudonymization state;
+[21-30:P8842; UTF16 296695] auxiliary-information family;
+[21-30:P8843; UTF16 296725] anonymity and inference reports;
+[21-30:P8844; UTF16 296758] secure-aggregation certificates;
+[21-30:P8845; UTF16 296791] privacy-unit definition;
+[21-30:P8846; UTF16 296816] neighbor relation;
+[21-30:P8847; UTF16 296835] differential-privacy mechanisms;
+[21-30:P8848; UTF16 296868] (\varepsilon,\delta) parameters;
+[21-30:P8849; UTF16 296901] privacy accountant;
+[21-30:P8851; UTF16 296943] privacy-aware ODT state;
+[21-30:P8852; UTF16 296968] fleet-learning privacy state;
+[21-30:P8854; UTF16 297022] privacy repair frontier;
+[21-30:P8855; UTF16 297047] privacy release fiber;
+[21-30:P8856; UTF16 297070] unresolved privacy claims;
+[21-30:P8863; UTF16 297152] 42. Whole-Project Privacy Theorem
+[21-30:P8864; UTF16 297186] THM-PRIV27 — Whole-Project Proof-Carrying Privacy, Data Governance, and Privacy Release
+[21-30:P8866; UTF16 297279] (B_\star): target project;
+[21-30:P8867; UTF16 297306] (d_t): current privacy and data-governance state;
+[21-30:P8868; UTF16 297356] (\mathcal D): active data and model family;
+[21-30:P8869; UTF16 297400] (\mathsf{PCPDG}): candidate package.
+[21-30:P8871; UTF16 297445] 1. Data identity
+[21-30:P8872; UTF16 297462] Every dataset, field, record, summary, copy, model, checkpoint, and release is correctly versioned.
+[21-30:P8873; UTF16 297562] 2. Privacy-unit correctness
+[21-30:P8874; UTF16 297590] Every quantitative privacy claim identifies its protected unit.
+[21-30:P8875; UTF16 297654] 3. Purpose identity
+[21-30:P8876; UTF16 297674] Every data-processing operation carries a declared purpose.
+[21-30:P8877; UTF16 297734] 4. Purpose authority
+[21-30:P8878; UTF16 297755] Every accepted operation has an applicable authority artifact.
+[21-30:P8879; UTF16 297818] 5. Consent scope
+[21-30:P8880; UTF16 297835] Every consent-based use remains inside the artifact’s exact data, purpose, operation, recipient, time, and revocation scope.
+[21-30:P8881; UTF16 297960] 6. Use history
+[21-30:P8882; UTF16 297975] Every in-scope collection, transformation, join, inference, training, retention, export, and disclosure event is represented.
+[21-30:P8883; UTF16 298101] 7. Lineage completeness
+[21-30:P8884; UTF16 298125] Every descendant relevant to retention, deletion, downstream use, and privacy accounting appears in the lineage graph.
+[21-30:P8885; UTF16 298244] 8. Retention correctness
+[21-30:P8886; UTF16 298269] Every retained asset is inside an active retention, hold, or explicitly permitted state.
+[21-30:P8887; UTF16 298358] 9. Deletion closure
+[21-30:P8888; UTF16 298378] Every certified deletion includes all policy-relevant descendants.
+[21-30:P8889; UTF16 298445] 10. Exact unlearning
+[21-30:P8890; UTF16 298466] Every exact model-forgetting claim satisfies:
+[21-30:P8892; UTF16 298537] 11. Minimization
+[21-30:P8893; UTF16 298554] Every certified minimized representation preserves all computations admitted by its purpose theory.
+[21-30:P8894; UTF16 298654] 12. Pseudonymization and anonymity discipline
+[21-30:P8895; UTF16 298700] Pseudonymization and (k)-anonymity retain their exact weaker modalities.
+[21-30:P8896; UTF16 298773] 13. Auxiliary-information scope
+[21-30:P8897; UTF16 298805] Every linkage or inference claim is evaluated against the maintained auxiliary-information family.
+[21-30:P8898; UTF16 298904] 14. Secure aggregation
+[21-30:P8899; UTF16 298927] Protocol confidentiality is kept distinct from output privacy.
+[21-30:P8900; UTF16 298990] 15. Differential-privacy unit
+[21-30:P8901; UTF16 299020] Every DP certificate uses the correct neighbor relation.
+[21-30:P8902; UTF16 299077] 16. Differential-privacy mechanism identity
+[21-30:P8903; UTF16 299121] The deployed randomized mechanism matches the certified mechanism.
+[21-30:P8904; UTF16 299188] 17. Privacy accounting
+[21-30:P8905; UTF16 299211] Every release relevant to the budget is included in the active accountant.
+[21-30:P8906; UTF16 299286] 18. ODT purpose scope
+[21-30:P8907; UTF16 299308] Operational-twin data are represented through an admitted purpose state or purpose-sufficient quotient.
+[21-30:P8908; UTF16 299412] 19. Fleet privacy
+[21-30:P8909; UTF16 299430] Cross-project learning uses the declared event-, person-, organization-, or project-level privacy unit.
+[21-30:P8910; UTF16 299534] 20. Cybersecurity
+[21-30:P8911; UTF16 299552] Every confidentiality, integrity, identity, and provenance premise required by the privacy proof is supported by Prompt 22.
+[21-30:P8912; UTF16 299676] 21. Governance and regulatory boundary
+[21-30:P8913; UTF16 299715] Privacy authorization does not exceed Prompt-20 or Prompt-21 authority.
+[21-30:P8915; UTF16 299810] No unresolved purpose, lineage, inference, deletion, or privacy-budget claim is promoted.
+[21-30:P8917; UTF16 299925] The PCPDG checker accepts the package.
+[21-30:P8918; UTF16 299964] Then the following typed conclusions hold.
+[21-30:P8919; UTF16 300007] Purpose conclusion
+[21-30:P8920; UTF16 300026] Every accepted use belongs to the exact declared actor, data, purpose, operation, recipient, time, and authority relation.
+[21-30:P8921; UTF16 300149] Consent conclusion
+[21-30:P8922; UTF16 300168] Consent supports only uses inside its certified scope.
+[21-30:P8923; UTF16 300223] Revocation changes future authority according to the governance theory but does not retroactively erase completed disclosures.
+[21-30:P8924; UTF16 300350] Retention conclusion
+[21-30:P8925; UTF16 300371] Every actively retained artifact has a valid current retention, hold, or archival state.
+[21-30:P8926; UTF16 300460] Retention expiry is not promoted to physical deletion.
+[21-30:P8927; UTF16 300515] Deletion conclusion
+[21-30:P8928; UTF16 300535] Where DELETION_CLOSED is certified, every policy-relevant descendant represented by the complete lineage theory satisfies its required deletion, restriction, aggregation, or unlearning condition.
+[21-30:P8929; UTF16 300731] Unlearning conclusion
+[21-30:P8930; UTF16 300753] Where EXACT_UNLEARNING is certified:
+[21-30:P8932; UTF16 300815] Therefore every deterministic report from the unlearned model equals the corresponding full-retraining report.
+[21-30:P8933; UTF16 300926] Minimization conclusion
+[21-30:P8934; UTF16 300950] Every admitted purpose computation factors through the certified purpose quotient.
+[21-30:P8935; UTF16 301033] No distinction outside the quotient is computationally required by the declared purpose family.
+[21-30:P8936; UTF16 301129] Pseudonymization conclusion
+[21-30:P8937; UTF16 301157] Pseudonymization establishes only the declared identifier-transformation property.
+[21-30:P8938; UTF16 301240] No anonymity conclusion follows automatically.
+[21-30:P8939; UTF16 301287] Differential-privacy conclusion
+[21-30:P8940; UTF16 301319] Every differential-privacy result retains:
+[21-30:P8941; UTF16 301362] privacy unit;
+[21-30:P8943; UTF16 301395] (\varepsilon);
+[21-30:P8944; UTF16 301410] (\delta);
+[21-30:P8945; UTF16 301420] mechanism identity;
+[21-30:P8946; UTF16 301440] accounting theory.
+[21-30:P8947; UTF16 301459] Post-processing, composition, and group-privacy conclusions are applied only under their hypotheses.
+[21-30:P8948; UTF16 301560] Secure-aggregation conclusion
+[21-30:P8949; UTF16 301590] Cryptographic secrecy of individual inputs during aggregation is not promoted to privacy of the aggregate output.
+[21-30:P8951; UTF16 301719] The privacy-aware ODT preserves every admitted operational computation while avoiding raw distinctions unnecessary under the declared purpose theory wherever the quotient certificate applies.
+[21-30:P8952; UTF16 301911] Fleet-learning conclusion
+[21-30:P8953; UTF16 301937] Fleet privacy retains the exact privacy unit rather than silently changing between project-, person-, and event-level adjacency.
+[21-30:P8956; UTF16 302089] [ \pi \in \gamma_{\mathrm{priv}}^\mu(D,p,d_t), ]
+[21-30:P8958; UTF16 302144] [ \gamma_{\mathrm{priv}}^\mu(D,p,d_t) \neq \varnothing ]
+[21-30:P8961; UTF16 302252] Prompt 11 may consume PCPDG claims only at their exact privacy modality.
+[21-30:P8963; UTF16 302331] Step 1 — Bind every claim to exact data and versions
+[21-30:P8964; UTF16 302384] Assumptions 1–2 establish the exact data objects and privacy units.
+[21-30:P8965; UTF16 302452] This prevents:
+[21-30:P8966; UTF16 302467] a certificate for one dataset from being applied to another;
+[21-30:P8967; UTF16 302528] event-level privacy from being relabeled person-level;
+[21-30:P8968; UTF16 302583] one model version’s lineage from being applied to another.
+[21-30:P8969; UTF16 302642] Step 2 — Establish purpose authority
+[21-30:P8971; UTF16 302706] purpose identity;
+[21-30:P8972; UTF16 302724] governing authority;
+[21-30:P8973; UTF16 302745] consent scope where consent is used.
+[21-30:P8974; UTF16 302782] THM-PRIV1 prevents cyber authorization from becoming privacy permission.
+[21-30:P8975; UTF16 302855] THM-PRIV2 prevents permission for one purpose from becoming permission for another.
+[21-30:P8976; UTF16 302939] THM-PRIV3 preserves the exact role of consent.
+[21-30:P8977; UTF16 302986] Therefore every accepted use satisfies its purpose-bound authority relation.
+[21-30:P8978; UTF16 303063] Step 3 — Preserve historical use and revocation semantics
+[21-30:P8979; UTF16 303121] Assumption 6 supplies the use and disclosure trace.
+[21-30:P8980; UTF16 303173] THM-PRIV4 establishes that revocation changes future authority without changing completed historical disclosures.
+[21-30:P8981; UTF16 303287] Therefore the package does not fabricate retroactive erasure.
+[21-30:P8982; UTF16 303349] Step 4 — Establish retention status
+[21-30:P8983; UTF16 303385] Assumption 8 establishes each active retention or hold state.
+[21-30:P8984; UTF16 303447] PRO-PRIV1 prevents expiry from becoming physical deletion.
+[21-30:P8985; UTF16 303506] Thus every certified retention result has the exact governance modality asserted.

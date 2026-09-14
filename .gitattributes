@@ -1,10 +1,16 @@
 * text=auto eol=lf
 *.png -text
 *.npz -text
-*.ifc -text
+*.ifc -text -diff
 *.docx -text
 *.pdf -text
 evidence/**/*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 evidence/**/*.jsonl -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 evidence/dependencies/licenses/** -text
 ui/qa/*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+evidence/math/pages/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+evidence/dependencies/native-review/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+evidence/** -text -whitespace
+# Verbatim upstream notices contain seven-character heading underlines.
+evidence/dependencies/native-review/source-notices/** -diff
+evidence/dependencies/native-review/THIRD_PARTY_NOTICES.txt -diff

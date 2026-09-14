@@ -1,0 +1,378 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P22738; UTF16 818659]     mandatory status singleton proofs
+[1-10:P22739; UTF16 818697]     qualitative marked-menu report equality
+[1-10:P22740; UTF16 818741]     evidence validity
+[1-10:P22741; UTF16 818763]     global optimistic utility bounds
+[1-10:P22742; UTF16 818800]     portfolio pessimistic utility bounds
+[1-10:P22743; UTF16 818841]     regret tolerance inequalities
+[1-10:P22744; UTF16 818875]     model and artifact validity
+[1-10:P22745; UTF16 818907]     dependency hashes
+[1-10:P22749; UTF16 818960]     CLOSED with certificate
+[1-10:P22750; UTF16 818988]     NOT CLOSED with blocker set
+[1-10:P22752; UTF16 819032] Correctness follows from THM-RC1 and LEM-RC1.
+[1-10:P22756; UTF16 819081] ALG-RC2 — BuildLiveComputationAgenda
+[1-10:P22758; UTF16 819124]     certified metaknowledge K
+[1-10:P22759; UTF16 819154]     dependency graph
+[1-10:P22760; UTF16 819175]     computation library
+[1-10:P22761; UTF16 819199]     resource limits
+[1-10:P22763; UTF16 819220] 1. Compute G(K).
+[1-10:P22765; UTF16 819238] 2. Identify all nonclosed obligations.
+[1-10:P22767; UTF16 819278] 3. Compute the backward live cone.
+[1-10:P22769; UTF16 819314] 4. Remove unavailable and theory-invalid computations.
+[1-10:P22771; UTF16 819370] 5. Remove computations outside the live cone
+[1-10:P22772; UTF16 819415]    unless they alter future availability.
+[1-10:P22774; UTF16 819458] 6. Replace recomputations by valid cheaper cache reuse.
+[1-10:P22776; UTF16 819515] 7. Remove information-dominated computations.
+[1-10:P22778; UTF16 819562] 8. Add prerequisite chains.
+[1-10:P22780; UTF16 819591] 9. Mark mandatory-fairness computations.
+[1-10:P22782; UTF16 819633] 10. Compute cheap value upper bounds.
+[1-10:P22784; UTF16 819672] 11. Return the admissible live agenda.
+[1-10:P22785; UTF16 819711] Sound pruning relies on THM-RC4, THM-RC13, and THM-RC16.
+[1-10:P22789; UTF16 819771] ALG-RC3 — GreedyRCVOC
+[1-10:P22791; UTF16 819799]     live computation agenda
+[1-10:P22792; UTF16 819827]     scalar meta-loss
+[1-10:P22793; UTF16 819848]     scalar cost policy
+[1-10:P22794; UTF16 819871]     outcome metamodels
+[1-10:P22795; UTF16 819894]     fairness constraints
+[1-10:P22797; UTF16 819920] FOR each live computation c:
+[1-10:P22798; UTF16 819949]     estimate μc(o | K)
+[1-10:P22799; UTF16 819972]     estimate post-outcome metaknowledge
+[1-10:P22800; UTF16 820012]     compute Δc(1)
+[1-10:P22801; UTF16 820030]     compute:
+[1-10:P22802; UTF16 820043]         expected gain
+[1-10:P22803; UTF16 820065]         net value
+[1-10:P22804; UTF16 820083]         or gain/cost rate
+[1-10:P22806; UTF16 820110] MASK
+[1-10:P22807; UTF16 820115]     computations violating hard constraints
+[1-10:P22809; UTF16 820160] FORCE
+[1-10:P22810; UTF16 820166]     mandatory-fairness action where required
+[1-10:P22812; UTF16 820212] SELECT
+[1-10:P22813; UTF16 820219]     highest declared score
+[1-10:P22814; UTF16 820246] Outside the restricted coverage regime of THM-RC11, this is a heuristic.
+[1-10:P22818; UTF16 820322] ALG-RC4 — OptimalFiniteMetaPolicy
+[1-10:P22820; UTF16 820362]     finite metaknowledge state graph
+[1-10:P22821; UTF16 820399]     computation transitions
+[1-10:P22822; UTF16 820427]     meta-beliefs
+[1-10:P22823; UTF16 820444]     positive integer costs
+[1-10:P22824; UTF16 820471]     budget
+[1-10:P22825; UTF16 820482]     terminal meta-loss
+[1-10:P22827; UTF16 820506] FOR b = 0,...,B:
+[1-10:P22828; UTF16 820523]     FOR each K:
+[1-10:P22829; UTF16 820539]         evaluate STOP
+[1-10:P22830; UTF16 820561]         evaluate every enabled computation
+[1-10:P22831; UTF16 820604]         apply Bellman recurrence
+[1-10:P22834; UTF16 820645]     Vb(K)
+[1-10:P22835; UTF16 820655]     optimal contingent policy
+[1-10:P22836; UTF16 820685]     optimal stop rule
+[1-10:P22837; UTF16 820707] Correctness is THM-RC7.
+[1-10:P22841; UTF16 820734] ALG-RC5 — RobustMetaPolicy
+[1-10:P22843; UTF16 820767]     finite certified outcome sets
+[1-10:P22844; UTF16 820801]     costs
+[1-10:P22846; UTF16 820822]     terminal loss
+[1-10:P22848; UTF16 820841] REPLACE
+[1-10:P22849; UTF16 820849]     expectation in Bellman recursion
+[1-10:P22850; UTF16 820886]     by worst-case maximum
+[1-10:P22853; UTF16 820920]     minimax policy
+[1-10:P22854; UTF16 820939] Correctness is THM-RC26.
+[1-10:P22858; UTF16 820967] ALG-RC6 — FairAnytimeRCVOC
+[1-10:P22860; UTF16 820999]     run CheckRegretClosure
+[1-10:P22862; UTF16 821027]     if CLOSED:
+[1-10:P22863; UTF16 821042]         return certified release-ready state
+[1-10:P22865; UTF16 821088]     build live computation agenda
+[1-10:P22867; UTF16 821123]     identify mandatory-fairness obligations
+[1-10:P22869; UTF16 821168]     if a fairness deadline is reached:
+[1-10:P22870; UTF16 821207]         choose an enabled computation from
+[1-10:P22871; UTF16 821250]         a required resolution chain
+[1-10:P22873; UTF16 821287]     otherwise:
+[1-10:P22874; UTF16 821302]         rank live computations by:
+[1-10:P22875; UTF16 821337]             guaranteed closure value
+[1-10:P22876; UTF16 821374]             expected RCVOC
+[1-10:P22877; UTF16 821401]             cost
+[1-10:P22878; UTF16 821418]             strategic enablement
+[1-10:P22880; UTF16 821452]     execute selected computation
+[1-10:P22882; UTF16 821486]     independently check result
+[1-10:P22884; UTF16 821518]     update:
+[1-10:P22885; UTF16 821530]         metaknowledge
+[1-10:P22886; UTF16 821552]         costs
+[1-10:P22887; UTF16 821566]         meta-beliefs
+[1-10:P22888; UTF16 821587]         UNKNOWN history
+[1-10:P22889; UTF16 821611]         availability
+[1-10:P22891; UTF16 821633] AT INTERRUPTION
+[1-10:P22892; UTF16 821649]     return:
+[1-10:P22893; UTF16 821661]         certified portfolio
+[1-10:P22894; UTF16 821689]         regret bounds
+[1-10:P22895; UTF16 821711]         blockers
+[1-10:P22896; UTF16 821728]         UNKNOWNs
+[1-10:P22897; UTF16 821745] Anytime safety is THM-RC3. Eventual closure in the finite resolvable regime is THM-RC15.
+[1-10:P22901; UTF16 821837] ALG-RC7 — DecisionDirectedFidelity
+[1-10:P22903; UTF16 821878]     live quantitative or mandatory uncertainty
+[1-10:P22904; UTF16 821925]     current enclosure
+[1-10:P22905; UTF16 821947]     decision boundaries
+[1-10:P22907; UTF16 821995]     available fidelity actions
+[1-10:P22909; UTF16 822027] 1. Identify which decisions the enclosure can alter.
+[1-10:P22911; UTF16 822081] 2. Identify the dominant error source:
+[1-10:P22912; UTF16 822120]        solver
+[1-10:P22913; UTF16 822134]        discretization
+[1-10:P22914; UTF16 822156]        reduction
+[1-10:P22915; UTF16 822173]        parameter
+[1-10:P22916; UTF16 822190]        model discrepancy
+[1-10:P22917; UTF16 822215]        evidence
+[1-10:P22919; UTF16 822232] 3. Remove refinements unable to affect that source.
+[1-10:P22921; UTF16 822285] 4. Estimate expected and guaranteed closure value
+[1-10:P22922; UTF16 822335]    of remaining refinements.
+[1-10:P22924; UTF16 822365] 5. Choose the cheapest justified route.
+[1-10:P22926; UTF16 822406] 6. Stop immediately when:
+[1-10:P22927; UTF16 822432]        mandatory state is exact
+[1-10:P22928; UTF16 822464]        and decision influence is empty.
+[1-10:P22930; UTF16 822505] 7. Escalate to full solve or measurement only
+[1-10:P22931; UTF16 822551]    when cheaper certified stages remain inadequate.
+[1-10:P22932; UTF16 822603] Correctness of stopping is THM-RC21.
+[1-10:P22936; UTF16 822643] ALG-RC8 — SearchVerifySchedule
+[1-10:P22938; UTF16 822680]     current global optimistic bound U*
+[1-10:P22939; UTF16 822719]     current portfolio lower bound LA
+[1-10:P22940; UTF16 822756]     candidate regions
+[1-10:P22941; UTF16 822778]     search and verification computations
+[1-10:P22943; UTF16 822820] FOR each computation:
+[1-10:P22944; UTF16 822842]     estimate expected:
+[1-10:P22945; UTF16 822865]         increase in LA
+[1-10:P22946; UTF16 822888]         decrease in U*
+[1-10:P22947; UTF16 822911]         qualitative closure
+[1-10:P22948; UTF16 822939]         mandatory closure
+[1-10:P22951; UTF16 822973]     the computation with best declared
+[1-10:P22952; UTF16 823012]     multi-step closure policy
+[1-10:P22954; UTF16 823043] AFTER UPDATE
+[1-10:P22955; UTF16 823056]     close every branch satisfying THM-RC17
+[1-10:P22956; UTF16 823099] No universal greedy optimality is claimed.
+[1-10:P22960; UTF16 823145] ALG-RC9 — MetaCEGAR
+[1-10:P22962; UTF16 823171]     candidate computation rankings
+[1-10:P22963; UTF16 823206]     score intervals
+[1-10:P22964; UTF16 823226]     metamodel refinement actions
+[1-10:P22966; UTF16 823260] IF one computation wins by THM-RC25:
+[1-10:P22967; UTF16 823297]     select it
+[1-10:P22970; UTF16 823323]     identify score uncertainty capable of
+[1-10:P22971; UTF16 823365]     changing the selected computation
+[1-10:P22973; UTF16 823404]     refine only that metamodel component
+[1-10:P22977; UTF16 823468]     repeat until:
+[1-10:P22978; UTF16 823486]         one winner is certified
+[1-10:P22979; UTF16 823518]         or metareasoning cost exceeds
+[1-10:P22980; UTF16 823556]         its declared expected benefit
+[1-10:P22984; UTF16 823597] ALG-RC10 — ReuseOrRefineComputePolicy
+[1-10:P22986; UTF16 823641]     cached computation-policy artifact
+[1-10:P22987; UTF16 823680]     current theory
+[1-10:P22988; UTF16 823699]     subsystem/macro fingerprints
+[1-10:P22990; UTF16 823756]     resource regime
+[1-10:P22992; UTF16 823777] IF fingerprints and cost regime match:
+[1-10:P22993; UTF16 823816]     reuse as a policy proposal
+[1-10:P22995; UTF16 823848] ELSE IF compatible but shifted:
+[1-10:P22996; UTF16 823880]     recalibrate costs and outcome beliefs
+[1-10:P22999; UTF16 823929]     discard or rebuild
+[1-10:P23001; UTF16 823953] ALWAYS
+[1-10:P23002; UTF16 823960]     retain independent result checking
+[1-10:P23003; UTF16 823999]     and release-gate verification
+[1-10:P23004; UTF16 824033] A cached scheduler policy is never an engineering certificate.
+[1-10:P23008; UTF16 824099] 64. RCLA Artifact
+[1-10:P23009; UTF16 824117] DEF-RC38 — Regret-Closure Ledger and Agenda
+[1-10:P23010; UTF16 824161] The persistent metareasoning artifact is the RCLA.
+[1-10:P23013; UTF16 824245] current certified portfolio;
+[1-10:P23014; UTF16 824274] discovered witness pool;
+[1-10:P23017; UTF16 824330] quantitative regret bounds;
+[1-10:P23018; UTF16 824358] live decision-influence graph;
+[1-10:P23019; UTF16 824389] backward live cone;
+[1-10:P23021; UTF16 824433] prerequisite graph;
+[1-10:P23022; UTF16 824453] resource vectors;
+[1-10:P23023; UTF16 824471] hard resource limits;
+[1-10:P23024; UTF16 824493] cached artifacts and fingerprints;
+[1-10:P23025; UTF16 824528] computation-dominance relations;
+[1-10:P23026; UTF16 824561] meta-beliefs;
+[1-10:P23027; UTF16 824575] expected and guaranteed closure-value estimates;
+[1-10:P23028; UTF16 824624] fairness obligations;
+[1-10:P23029; UTF16 824646] current policy;
+[1-10:P23030; UTF16 824662] computation history;
+[1-10:P23031; UTF16 824683] UNKNOWNs and failures;
+[1-10:P23032; UTF16 824706] stop classification;
+[1-10:P23033; UTF16 824727] closure certificate, if present.
+[1-10:P23037; UTF16 824763] 65. Proof-Assistant Formalization
+[1-10:P23038; UTF16 824797] 65.1 Metaknowledge state
+[1-10:P23039; UTF16 824822] structure MetaState where
+[1-10:P23040; UTF16 824848]   theoryFingerprint : Hash
+[1-10:P23042; UTF16 824876]   portfolio :
+[1-10:P23043; UTF16 824890]     Finset Candidate
+[1-10:P23045; UTF16 824912]   witnessPool :
+[1-10:P23048; UTF16 824950]   unresolvedMandatory :
+[1-10:P23049; UTF16 824974]     Finset MandatoryObligation
+[1-10:P23051; UTF16 825006]   unresolvedQualitative :
+[1-10:P23052; UTF16 825032]     Finset QualitativeObligation
+[1-10:P23054; UTF16 825066]   unresolvedEvidence :
+[1-10:P23055; UTF16 825089]     Finset EvidenceObligation
+[1-10:P23057; UTF16 825120]   regretUpper :
+[1-10:P23058; UTF16 825136]     QuantDecision → ENNReal
+[1-10:P23060; UTF16 825165]   artifacts :
+[1-10:P23061; UTF16 825179]     CertificateStore
+[1-10:P23063; UTF16 825201]   available :
+[1-10:P23064; UTF16 825215]     Finset ComputationId
+[1-10:P23066; UTF16 825241]   resources :
+[1-10:P23067; UTF16 825255]     ResourceState
+[1-10:P23071; UTF16 825276] 65.2 Closure
+[1-10:P23072; UTF16 825289] def Closed
+[1-10:P23073; UTF16 825300]     (K : MetaState) : Prop :=
+[1-10:P23074; UTF16 825330]   K.unresolvedMandatory = ∅ ∧
+[1-10:P23075; UTF16 825360]   K.unresolvedQualitative = ∅ ∧
+[1-10:P23076; UTF16 825392]   K.unresolvedEvidence = ∅ ∧
+[1-10:P23077; UTF16 825421]   ∀ d,
+[1-10:P23078; UTF16 825428]     K.regretUpper d ≤ tolerance d
+[1-10:P23082; UTF16 825465] 65.3 Refinement
+[1-10:P23083; UTF16 825481] structure Refines
+[1-10:P23084; UTF16 825499]     (K' K : MetaState) : Prop where
+[1-10:P23085; UTF16 825535]   sameTheory :
+[1-10:P23086; UTF16 825550]     K'.theoryFingerprint =
+[1-10:P23087; UTF16 825577]       K.theoryFingerprint
+[1-10:P23089; UTF16 825604]   concretizationSubset :
+[1-10:P23090; UTF16 825629]     Γ K' ⊆ Γ K
+[1-10:P23092; UTF16 825645]   samePortfolio :
+[1-10:P23093; UTF16 825663]     K'.portfolio =
+[1-10:P23094; UTF16 825682]       K.portfolio
+[1-10:P23096; UTF16 825701]   certificatesExtend :
+[1-10:P23097; UTF16 825724]     ...
+[1-10:P23101; UTF16 825735] 65.4 Stopping theorem
+[1-10:P23102; UTF16 825757] theorem closed_refinement_stable
+[1-10:P23103; UTF16 825790]     (hClosed : Closed K)
+[1-10:P23104; UTF16 825815]     (hRefine : Refines K' K) :
+[1-10:P23105; UTF16 825846]     SameRequiredDecision K K' := by
+[1-10:P23110; UTF16 825891] 65.5 Computation
+[1-10:P23111; UTF16 825908] structure Computation where
+[1-10:P23114; UTF16 825954]   enabled :
+[1-10:P23115; UTF16 825966]     MetaState → Prop
+[1-10:P23117; UTF16 825988]   cost :
+[1-10:P23118; UTF16 825997]     MetaState → ResourceVec
+[1-10:P23120; UTF16 826026]   update :
+[1-10:P23121; UTF16 826037]     MetaState →
+[1-10:P23122; UTF16 826053]     Outcome →
+[1-10:P23123; UTF16 826067]     MetaState
+[1-10:P23128; UTF16 826128]     UpdateCertificate
+[1-10:P23132; UTF16 826153] 65.6 Bellman value
+[1-10:P23133; UTF16 826172] def MetaValue :
+[1-10:P23134; UTF16 826188]     Nat →
+[1-10:P23136; UTF16 826214]     ℝ
+[1-10:P23137; UTF16 826220] | 0, K =>
+[1-10:P23138; UTF16 826230]     terminalLoss K
+[1-10:P23139; UTF16 826249] | b+1, K =>
+[1-10:P23140; UTF16 826261]     min
+[1-10:P23141; UTF16 826269]       (terminalLoss K)
+[1-10:P23142; UTF16 826292]       (sInf
+[1-10:P23143; UTF16 826304]         {v |
+[1-10:P23144; UTF16 826317]           ∃ c,
+[1-10:P23145; UTF16 826332]             c.enabled K ∧
+[1-10:P23146; UTF16 826358]             c.scalarCost K ≤ b+1 ∧
+[1-10:P23147; UTF16 826393]             v =
+[1-10:P23148; UTF16 826409]               expectedValue
+[1-10:P23149; UTF16 826437]                 (fun o =>
+[1-10:P23150; UTF16 826463]                   MetaValue
+[1-10:P23151; UTF16 826491]                     (b+1-c.scalarCost K)
+[1-10:P23152; UTF16 826532]                     (c.update K o))
+[1-10:P23153; UTF16 826568]                 (metaBelief c K)})
+[1-10:P23157; UTF16 826606] 65.7 Bellman theorem
+[1-10:P23158; UTF16 826627] theorem meta_bellman
+[1-10:P23159; UTF16 826648]     (hMarkov : MarkovSufficient K)
+[1-10:P23160; UTF16 826683]     (hFinite : FiniteMetaSystem) :
+[1-10:P23161; UTF16 826718]     MetaValue b K =
+[1-10:P23162; UTF16 826738]       min
+[1-10:P23163; UTF16 826748]         (terminalLoss K)
+[1-10:P23164; UTF16 826773]         (bestContinuation b K) := by
+[1-10:P23169; UTF16 826819] 65.8 Live cone
+[1-10:P23170; UTF16 826834] def LiveCone
+[1-10:P23171; UTF16 826847]     (K : MetaState) :
+[1-10:P23172; UTF16 826869]     Finset DependencyNode :=
+[1-10:P23173; UTF16 826898]   ancestors
+[1-10:P23174; UTF16 826910]     (liveObligationNodes K)
+[1-10:P23178; UTF16 826941] 65.9 Irrelevance
+[1-10:P23179; UTF16 826958] theorem outside_live_cone_zero_value
+[1-10:P23180; UTF16 826995]     (hOutside :
+[1-10:P23181; UTF16 827011]       Effects c K ∩ LiveCone K = ∅)
+[1-10:P23182; UTF16 827047]     (hNoEnablementEffect : ...)
+[1-10:P23183; UTF16 827079]     (hNoTheoryEffect : ...) :
+[1-10:P23184; UTF16 827109]     closureDeficit
+[1-10:P23185; UTF16 827128]       (run c K o)
+[1-10:P23187; UTF16 827154]     closureDeficit K := by
+[1-10:P23192; UTF16 827190] 65.10 Fairness
+[1-10:P23193; UTF16 827205] structure FairScheduler where
+[1-10:P23194; UTF16 827235]   choose :
+[1-10:P23196; UTF16 827262]     ComputationId
+[1-10:P23198; UTF16 827281]   eventuallySchedules :
+[1-10:P23199; UTF16 827305]     ∀ chain,
+[1-10:P23200; UTF16 827318]       RequiredChain chain →
+[1-10:P23201; UTF16 827346]       Eventually
+[1-10:P23202; UTF16 827363]         (fun t =>
+[1-10:P23203; UTF16 827381]           choose (stateAt t)
+[1-10:P23204; UTF16 827410]             ∈ chain)
+[1-10:P23208; UTF16 827434] 65.11 Formalization difficulty
+[1-10:P23209; UTF16 827465] ￼
+ATTACHED TABLE 1737063; native row/column order; 17 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Closure-deficit partial order", "Moderate"]
+ROW 2: ["Certified stopping theorem", "Moderate"]
+ROW 3: ["Regret-bound maintenance", "Difficult"]
+ROW 4: ["Qualitative marked-menu closure", "Difficult"]
+ROW 5: ["Computation update semantics", "Moderate"]
+ROW 6: ["Bellman theorem", "Moderate"]
+ROW 7: ["Vector-resource budgets", "Moderate"]
+ROW 8: ["Live-cone irrelevance", "Moderate"]
+ROW 9: ["Dominance theorem", "Difficult"]
+ROW 10: ["Commuting-computation theorem", "Moderate"]
+ROW 11: ["Fairness eventual closure", "Difficult"]
+ROW 12: ["Coverage submodularity", "Moderate"]
+ROW 13: ["Weighted-set-cover hardness", "Moderate"]
+ROW 14: ["Symbolic metareasoning", "Research-level"]
+ROW 15: ["Whole-building RCLA checker", "Research-level"]
+ROW 16: ["Learned scheduler with formal release gate", "Moderate semantically; difficult operationally"]
+[1-10:P23213; UTF16 827470] 66. Permanent Definition and Theorem Registry
+[1-10:P23214; UTF16 827516] 66.1 Definitions
+[1-10:P23215; UTF16 827533] ￼
+ATTACHED TABLE 1737079; native row/column order; 39 rows
+ROW 0: ["ID", "Exact object", "Dependencies", "Status", "Formalization difficulty"]
+ROW 1: ["DEF-RC1", "Exact project database (\\Omega_\\vartheta)", "Prompts 1–8", "Defined", "Moderate"]
+ROW 2: ["DEF-RC2", "Certified metaknowledge state (K)", "DEF-RC1", "Defined", "Difficult"]
+ROW 3: ["DEF-RC3", "Metaknowledge concretization (\\Gamma(K))", "DEF-RC2", "Defined", "Moderate"]
+ROW 4: ["DEF-RC4", "Pure certified refinement", "DEF-RC3", "Defined", "Moderate"]
+ROW 5: ["DEF-RC5", "Witness expansion", "DEF-RC2", "Defined", "Straightforward"]
+ROW 6: ["DEF-RC6", "Search-space activation", "DEF-RC2", "Defined", "Straightforward"]
+ROW 7: ["DEF-RC7", "Theory-changing update", "Theory fingerprint", "Defined", "Straightforward"]
+ROW 8: ["DEF-RC8", "Certified computation action", "DEF-RC2", "Defined", "Moderate"]
+ROW 9: ["DEF-RC9", "Computation resource vector", "DEF-RC8", "Defined", "Straightforward"]
+ROW 10: ["DEF-RC10", "Global optimistic utility bound", "DEF-RC3", "Defined", "Moderate"]
+ROW 11: ["DEF-RC11", "Portfolio pessimistic bound", "DEF-RC3", "Defined", "Moderate"]
+ROW 12: ["DEF-RC12", "Certified regret upper bound", "DEF-RC10–11", "Defined", "Moderate"]
+ROW 13: ["DEF-RC13", "Qualitative report-pair set", "Prompt-2 menu semantics", "Defined", "Difficult"]
+ROW 14: ["DEF-RC14", "Mandatory blocker set", "Prompt-5 exact channels", "Defined", "Moderate"]
+ROW 15: ["DEF-RC15", "Evidence blocker set", "Prompt-2 evidence", "Defined", "Moderate"]
+ROW 16: ["DEF-RC16", "Qualitative blocker set", "DEF-RC13", "Defined", "Moderate"]
+ROW 17: ["DEF-RC17", "Regret-closure deficit (G(K))", "DEF-RC12–16", "Defined", "Moderate"]
+ROW 18: ["DEF-RC18", "Certified regret closure", "DEF-RC17", "Defined", "Straightforward"]
+ROW 19: ["DEF-RC19", "Regret-closure certificate", "DEF-RC18", "Defined", "Difficult"]
+ROW 20: ["DEF-RC20", "Live decision-influence graph", "Prompt-5 influence, Prompt-8 macros", "Defined", "Difficult"]
+ROW 21: ["DEF-RC21", "Backward live cone", "DEF-RC20", "Defined", "Straightforward"]
+ROW 22: ["DEF-RC22", "Directly irrelevant computation", "DEF-RC21", "Defined", "Straightforward"]
+ROW 23: ["DEF-RC23", "Meta-belief (\\mu_c(o\\mid K))", "DEF-RC8", "Defined", "Moderate"]
+ROW 24: ["DEF-RC24", "Monotone meta-loss", "DEF-RC17", "Defined", "Moderate"]
+ROW 25: ["DEF-RC25", "One-step expected closure value", "DEF-RC23–24", "Defined", "Straightforward"]
+ROW 26: ["DEF-RC26", "One-step RCVOC rate", "DEF-RC25", "Defined", "Straightforward"]
+ROW 27: ["DEF-RC27", "Guaranteed closure value", "DEF-RC24", "Defined", "Straightforward"]
+ROW 28: ["DEF-RC28", "Computation policy", "DEF-RC8", "Defined", "Straightforward"]
+ROW 29: ["DEF-RC29", "Metaknowledge Markov sufficiency", "DEF-RC2, RC8", "Defined", "Moderate"]
+ROW 30: ["DEF-RC30", "Computation prerequisite graph", "DEF-RC8", "Defined", "Moderate"]
+ROW 31: ["DEF-RC31", "Information dominance", "DEF-RC8, RC23", "Defined", "Difficult"]
+ROW 32: ["DEF-RC32", "Commuting computations", "DEF-RC8", "Defined", "Moderate"]
+ROW 33: ["DEF-RC33", "Mandatory fairness policy", "DEF-RC17", "Defined", "Moderate"]
+ROW 34: ["DEF-RC34", "Search and elimination contributions", "DEF-RC10–12", "Defined", "Straightforward"]
+ROW 35: ["DEF-RC35", "Certified release gate", "DEF-RC18–19", "Defined", "Moderate"]
+ROW 36: ["DEF-RC36", "Prompt-9 complexity profile", "Prompts 1–9", "Defined", "Straightforward"]
+ROW 37: ["DEF-RC37", "Admissible computation mask", "DEF-RC8, RC20, RC31", "Defined", "Moderate"]
+ROW 38: ["DEF-RC38", "RCLA artifact", "All Prompt-9 semantics", "Defined", "Difficult"]
+[1-10:P23219; UTF16 827538] 66.2 Lemmas
+[1-10:P23220; UTF16 827550] ￼
+ATTACHED TABLE 1737095; native row/column order; 4 rows
+ROW 0: ["ID", "Exact statement", "Dependencies", "Proof status"]
+ROW 1: ["LEM-RC1", "The optimistic-minus-pessimistic expression upper-bounds exact robust portfolio regret", "DEF-RC10–12", "Proved"]
+ROW 2: ["LEM-RC2", "Shrinking (\\Gamma(K)) cannot enlarge possible exact report sets", "DEF-RC3", "Proved within THM-RC1"]
+ROW 3: ["LEM-RC3", "Shrinking (\\Gamma(K)) lowers optimistic bounds and raises fixed-portfolio pessimistic bounds", "DEF-RC10–11", "Proved within THM-RC1"]
+[1-10:P23224; UTF16 827555] 66.3 Theorems

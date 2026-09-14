@@ -1,0 +1,333 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P21105; UTF16 703745] The actual trajectory belongs to (\mathcal T_{\mathrm{reach}}).
+[11-20:P21106; UTF16 703809] The bounds hold universally over that set.
+[11-20:P21107; UTF16 703852] Instantiate them at the actual trajectory. ∎
+[11-20:P21108; UTF16 703897] This is a deterministic set-containment theorem, not a probability statement.
+[11-20:P21112; UTF16 703978] 34. Reliability and Resilience Are Different
+[11-20:P21113; UTF16 704023] THM-REL28 — Reliability and Resilience Are Independent Dimensions
+[11-20:P21114; UTF16 704089] Neither mission reliability determines resilience nor resilience determines mission reliability.
+[11-20:P21115; UTF16 704186] Construction A — High reliability, poor recovery
+[11-20:P21116; UTF16 704235] With probability (1-\varepsilon), service remains at one throughout the mission.
+[11-20:P21117; UTF16 704316] With probability (\varepsilon), service drops to zero and never recovers.
+[11-20:P21118; UTF16 704390] Then mission no-failure reliability is
+[11-20:P21119; UTF16 704429] [ R_A(T)=1-\varepsilon, ]
+[11-20:P21120; UTF16 704455] which can be arbitrarily close to one.
+[11-20:P21121; UTF16 704494] Conditional on the failure event,
+[11-20:P21122; UTF16 704528] [ T_{\mathrm{rec}}=\infty. ]
+[11-20:P21123; UTF16 704557] Recovery resilience is poor.
+[11-20:P21124; UTF16 704586] Construction B — Lower reliability, strong recovery
+[11-20:P21125; UTF16 704638] Let service always experience a brief drop from (1) to (0.9) at time (t_1), then return to one after duration (\delta).
+[11-20:P21126; UTF16 704758] If mission success is defined as uninterrupted full service, then
+[11-20:P21127; UTF16 704824] [ R_B(T)=0. ]
+[11-20:P21129; UTF16 704842] [ T_{\mathrm{rec}}=\delta ]
+[11-20:P21130; UTF16 704870] and the cumulative deficit can be arbitrarily small.
+[11-20:P21131; UTF16 704923] Thus a system may have lower reliability and stronger recovery.
+[11-20:P21132; UTF16 704987] The two dimensions do not determine one another. ∎
+[11-20:P21136; UTF16 705041] 35. Recovery Actions and Policies
+[11-20:P21137; UTF16 705075] DEF-REL29 — Recovery Action
+[11-20:P21138; UTF16 705103] A Recovery Action is a typed relation affecting:
+[11-20:P21139; UTF16 705152] failed components;
+[11-20:P21140; UTF16 705171] service;
+[11-20:P21142; UTF16 705198] repair resources;
+[11-20:P21143; UTF16 705216] spare parts;
+[11-20:P21145; UTF16 705239] products;
+[11-20:P21147; UTF16 705259] architecture where applicable.
+[11-20:P21151; UTF16 705293] DEF-REL30 — Recovery Policy
+[11-20:P21152; UTF16 705321] A Recovery Policy
+[11-20:P21153; UTF16 705339] [ \pi_{\mathrm{rec}} ]
+[11-20:P21154; UTF16 705362] maps available observation and knowledge history to:
+[11-20:P21157; UTF16 705436] isolation;
+[11-20:P21158; UTF16 705447] reconfiguration;
+[11-20:P21159; UTF16 705464] degraded-mode operation.
+[11-20:P21160; UTF16 705489] It must be nonanticipative.
+[11-20:P21164; UTF16 705520] THM-REL29 — Local Recovery Times Do Not Naïvely Compose Under Shared Repair Resources
+[11-20:P21165; UTF16 705606] Suppose subsystems (A,B) have failed.
+[11-20:P21166; UTF16 705644] Each requires one hour of the same unique repair crew.
+[11-20:P21167; UTF16 705699] Individually,
+[11-20:P21168; UTF16 705713] [ T_A=T_B=1\text{ hour}. ]
+[11-20:P21169; UTF16 705740] With independent crews, global completion could occur in
+[11-20:P21170; UTF16 705797] [ \max(T_A,T_B)=1\text{ hour}. ]
+[11-20:P21171; UTF16 705830] With one shared crew, the repairs must be serialized.
+[11-20:P21172; UTF16 705884] The total completion time is at least
+[11-20:P21173; UTF16 705922] [ T_A+T_B=2\text{ hours}. ]
+[11-20:P21174; UTF16 705950] Therefore local recovery-time certificates cannot be composed without shared-resource semantics. ∎
+[11-20:P21178; UTF16 706052] THM-REL37 — Maintenance Completed Before the Earliest Possible Failure Prevents Pre-Completion Failure Under a Safe Maintenance Tube
+[11-20:P21180; UTF16 706194] under the current operating policy, every admissible trajectory has failure time at least [ \underline T_F; ]
+[11-20:P21182; UTF16 706336] maintenance completes in time at most (L);
+[11-20:P21183; UTF16 706379] [ s+L<\underline T_F; ]
+[11-20:P21184; UTF16 706403] every maintenance trajectory remains outside the failure set until completion;
+[11-20:P21185; UTF16 706482] every completed post-maintenance state belongs to the accepted safe set.
+[11-20:P21186; UTF16 706555] Then no admissible trajectory fails before successful maintenance completion.
+[11-20:P21188; UTF16 706639] Before time (s), the current policy’s earliest possible failure bound excludes failure because
+[11-20:P21189; UTF16 706734] [ s<\underline T_F. ]
+[11-20:P21190; UTF16 706756] During the maintenance interval, assumption 5 universally excludes failure.
+[11-20:P21191; UTF16 706832] Maintenance completes by (s+L), which occurs before (\underline T_F).
+[11-20:P21192; UTF16 706902] Therefore no admissible trajectory fails before completion.
+[11-20:P21193; UTF16 706962] Assumption 6 establishes a valid safe post-maintenance state. ∎
+[11-20:P21194; UTF16 707026] The theorem does not say the maintenance duration or transition model is correct; those are assumptions.
+[11-20:P21198; UTF16 707134] 36. Cascading Failure
+[11-20:P21199; UTF16 707156] DEF-REL31 — Cascading Failure Process
+[11-20:P21200; UTF16 707194] A cascading state contains:
+[11-20:P21201; UTF16 707222] component failures;
+[11-20:P21202; UTF16 707242] redistributed loads;
+[11-20:P21203; UTF16 707263] network connectivity;
+[11-20:P21204; UTF16 707285] control mode;
+[11-20:P21205; UTF16 707299] shared resources;
+[11-20:P21206; UTF16 707317] protection state.
+[11-20:P21207; UTF16 707335] A transition kernel or certified relation
+[11-20:P21208; UTF16 707377] [ K_{\mathrm{cascade}} ]
+[11-20:P21209; UTF16 707402] allows one failure to change the conditions governing later failures.
+[11-20:P21213; UTF16 707475] PRO-REL2 — Independent Static Failure Probabilities Can Miss Cascade Amplification
+[11-20:P21214; UTF16 707558] Consider components (A,B).
+[11-20:P21215; UTF16 707585] Nominally:
+[11-20:P21216; UTF16 707596] [ P(B\text{ fails})=0 ]
+[11-20:P21217; UTF16 707620] under ordinary load.
+[11-20:P21218; UTF16 707641] If (A) fails, all load transfers to (B).
+[11-20:P21219; UTF16 707682] Under transferred load, (B) fails with probability one.
+[11-20:P21221; UTF16 707743] P(A\text{ fails}). ]
+[11-20:P21222; UTF16 707764] A static model assigning independent nominal failure probabilities predicts zero joint failure because the nominal (B) failure probability is zero.
+[11-20:P21223; UTF16 707912] The dynamic cascade produces joint failure whenever (A) fails. ∎
+[11-20:P21224; UTF16 707977] Reliability belongs to the transition path when failures change future operating conditions.
+[11-20:P21228; UTF16 708073] 37. Hazard Processes
+[11-20:P21230; UTF16 708121] A Hazard Process
+[11-20:P21232; UTF16 708146] is a versioned stochastic process representing a declared environmental or operational stress family.
+[11-20:P21233; UTF16 708248] Its artifact records:
+[11-20:P21234; UTF16 708270] mission horizon;
+[11-20:P21235; UTF16 708287] spatial structure;
+[11-20:P21236; UTF16 708306] dependence;
+[11-20:P21244; UTF16 708418] A tail claim may be
+[11-20:P21245; UTF16 708438] [ \boxed{ P \left( \sup_{t\in[0,T]}H_t>h \right) \le p. } ]
+[11-20:P21246; UTF16 708498] The statement is scoped to its target, horizon, model, evidence, and law modality.
+[11-20:P21250; UTF16 708584] 38. Online Target Reliability From the Operational Twin
+[11-20:P21251; UTF16 708640] DEF-REL34 — Conditional Target Reliability From an ODT State
+[11-20:P21252; UTF16 708701] At time (t), Prompt 15 provides
+[11-20:P21255; UTF16 708766] [ \mathfrak P_t ]
+[11-20:P21256; UTF16 708784] be the family of future conditional target laws compatible with:
+[11-20:P21257; UTF16 708849] the current ODT set;
+[11-20:P21258; UTF16 708870] current faults;
+[11-20:P21260; UTF16 708899] sensor and actuator health;
+[11-20:P21262; UTF16 708946] fleet-transfer evidence;
+[11-20:P21263; UTF16 708971] future policy.
+[11-20:P21264; UTF16 708986] For horizon (h), define
+[11-20:P21265; UTF16 709010] \inf_{P\in\mathfrak P_t} P \left( T_F>h \mid \mathcal H_t \right). } ]
+[11-20:P21269; UTF16 709084] THM-REL30 — Online Robust Reliability Bound Applies to the True Target Future Law
+[11-20:P21270; UTF16 709166] If the true conditional future law satisfies
+[11-20:P21271; UTF16 709211] [ P_t^\star \in \mathfrak P_t, ]
+[11-20:P21273; UTF16 709249] [ \boxed{ R_{P_t^\star}(h\mid\mathcal H_t) \ge \underline R_t(h). } ]
+[11-20:P21275; UTF16 709325] The true law is one member of the infimum domain.
+[11-20:P21276; UTF16 709375] Its reliability cannot be below the infimum. ∎
+[11-20:P21277; UTF16 709422] This is target-specific probabilistic assurance initialized from current physical evidence.
+[11-20:P21281; UTF16 709517] 39. Reliability Assurance Leases
+[11-20:P21282; UTF16 709550] DEF-REL35 — Reliability Assurance Lease
+[11-20:P21283; UTF16 709590] A Reliability Assurance Lease is
+[11-20:P21284; UTF16 709623] \left( t_0, h, \mathfrak M, \mathfrak P, r_{\min}, \mathsf{Evidence}, \mathsf{Dependencies}, \mathsf{Version} \right). } ]
+[11-20:P21285; UTF16 709746] It certifies
+[11-20:P21286; UTF16 709759] [ \underline R_{t_0}(h) \ge r_{\min} ]
+[11-20:P21287; UTF16 709798] provided:
+[11-20:P21288; UTF16 709808] the future law remains in (\mathfrak P);
+[11-20:P21289; UTF16 709849] initialization remains covered;
+[11-20:P21290; UTF16 709881] the policy remains fixed;
+[11-20:P21291; UTF16 709907] evidence remains applicable;
+[11-20:P21292; UTF16 709936] no theory-expanding mechanism is added.
+[11-20:P21296; UTF16 709979] THM-REL31 — Reliability Assurance Lease Soundness
+[11-20:P21298; UTF16 710037] the true future law lies in the certified law family;
+[11-20:P21299; UTF16 710091] the actual current state lies in the certified ODT initialization;
+[11-20:P21300; UTF16 710158] the mission policy remains the certified policy;
+[11-20:P21301; UTF16 710207] all model and evidence assumptions remain applicable during the lease;
+[11-20:P21302; UTF16 710278] [ \underline R_{t_0}(h) \ge r_{\mathrm{req}}. ]
+[11-20:P21304; UTF16 710331] [ \boxed{ R_{P^\star}(h) \ge r_{\mathrm{req}}. } ]
+[11-20:P21306; UTF16 710388] By THM-REL30,
+[11-20:P21307; UTF16 710402] [ R_{P^\star}(h) \ge \underline R_{t_0}(h). ]
+[11-20:P21308; UTF16 710448] Apply assumption 5. ∎
+[11-20:P21309; UTF16 710470] The lease proves a probability bound under a future-law family. It does not exclude a realized failure trajectory.
+[11-20:P21313; UTF16 710588] 40. Fleet Reliability Transfer
+[11-20:P21314; UTF16 710619] Prompt-16 semantics remain authoritative.
+[11-20:P21315; UTF16 710661] Fleet evidence may supply:
+[11-20:P21316; UTF16 710688] exact mechanism bridges;
+[11-20:P21317; UTF16 710713] set-valued rate or parameter constraints;
+[11-20:P21318; UTF16 710755] PAC population-risk bounds;
+[11-20:P21319; UTF16 710783] conformal prediction sets;
+[11-20:P21320; UTF16 710810] Bayesian priors;
+[11-20:P21321; UTF16 710827] target law ambiguity sets;
+[11-20:P21322; UTF16 710854] newly discovered fault mechanisms;
+[11-20:P21323; UTF16 710889] transferred PCPEs.
+[11-20:P21324; UTF16 710908] A fleet reliability estimate cannot bypass target identity, support, bridge, ODT state, or target evidence.
+[11-20:P21328; UTF16 711019] 41. Fleet Theory Expansion
+[11-20:P21329; UTF16 711046] A newly discovered target-applicable fault may alter:
+[11-20:P21331; UTF16 711113] minimal cut sets;
+[11-20:P21332; UTF16 711131] common-cause structure;
+[11-20:P21333; UTF16 711155] CTMC state space;
+[11-20:P21334; UTF16 711173] mission reliability;
+[11-20:P21335; UTF16 711194] availability;
+[11-20:P21336; UTF16 711208] recovery;
+[11-20:P21337; UTF16 711218] resilience;
+[11-20:P21338; UTF16 711230] assurance leases.
+[11-20:P21339; UTF16 711248] It is not sufficient to append the mechanism to a report without recomputation.
+[11-20:P21340; UTF16 711328] Prompt-16 THM-XFER15 remains the governing theory-expansion result.
+[11-20:P21344; UTF16 711399] 42. Reliability Claims in Whole-Project Assurance
+[11-20:P21345; UTF16 711449] A reliability certificate may support a Prompt-11 proposition such as
+[11-20:P21346; UTF16 711519] [ R_P(T)\ge0.9999. ]
+[11-20:P21347; UTF16 711540] It does not support
+[11-20:P21348; UTF16 711560] [ \text{failure is impossible}. ]
+[11-20:P21349; UTF16 711594] If the release manifest requires a probabilistic reliability threshold, the certificate can discharge that typed obligation.
+[11-20:P21350; UTF16 711719] If the manifest requires deterministic safety, a probabilistic certificate cannot substitute without an explicit release-theory change.
+[11-20:P21354; UTF16 711858] 43. Proof-Carrying Reliability and Resilience Package
+[11-20:P21355; UTF16 711912] DEF-REL36 — Proof-Carrying Reliability and Resilience Package
+[11-20:P21357; UTF16 711981] [ \boxed{ \mathsf{PCRR}. } ]
+[11-20:P21358; UTF16 712010] A PCRR contains:
+[11-20:P21359; UTF16 712027] target project ID;
+[11-20:P21360; UTF16 712046] PCR, PCMP, PCAB, and PCOT references;
+[11-20:P21361; UTF16 712084] mission definition;
+[11-20:P21362; UTF16 712104] reliability modality;
+[11-20:P21363; UTF16 712126] target-state initialization;
+[11-20:P21364; UTF16 712155] stochastic-law fingerprint;
+[11-20:P21365; UTF16 712183] law ambiguity set;
+[11-20:P21366; UTF16 712202] component failure models;
+[11-20:P21367; UTF16 712228] dependence structure;
+[11-20:P21369; UTF16 712274] system failure logic;
+[11-20:P21370; UTF16 712296] dynamic fault semantics;
+[11-20:P21371; UTF16 712321] repair process;
+[11-20:P21372; UTF16 712337] availability model;
+[11-20:P21373; UTF16 712357] degradation model;
+[11-20:P21375; UTF16 712396] hazard model;
+[11-20:P21376; UTF16 712410] rare-event estimator;
+[11-20:P21377; UTF16 712432] simulation provenance;
+[11-20:P21378; UTF16 712455] likelihood ratios;
+[11-20:P21379; UTF16 712474] importance-sampling support certificate;
+[11-20:P21381; UTF16 712537] Markov or semi-Markov certificates;
+[11-20:P21383; UTF16 712591] loss definitions;
+[11-20:P21384; UTF16 712609] VaR or CVaR claims;
+[11-20:P21385; UTF16 712629] resilience profile;
+[11-20:P21386; UTF16 712649] recovery policy;
+[11-20:P21387; UTF16 712666] shared-resource model;
+[11-20:P21388; UTF16 712689] cascading-failure model;
+[11-20:P21390; UTF16 712739] uncertainty and ambiguity;
+[11-20:P21391; UTF16 712766] target reliability bounds;
+[11-20:P21392; UTF16 712793] reliability lease;
+[11-20:P21393; UTF16 712812] theory-expansion history;
+[11-20:P21394; UTF16 712838] unresolved claims;
+[11-20:P21398; UTF16 712909] A PCRR certifies probability and resilience claims.
+[11-20:P21399; UTF16 712961] It does not certify that no future failure will occur.
+[11-20:P21403; UTF16 713019] 44. Reliability Dependency Graph
+[11-20:P21404; UTF16 713052] DEF-REL37 — Reliability Dependency Graph
+[11-20:P21406; UTF16 713112] target state;
+[11-20:P21407; UTF16 713126] component identity;
+[11-20:P21408; UTF16 713146] failure-rate evidence;
+[11-20:P21409; UTF16 713169] hazard data;
+[11-20:P21410; UTF16 713182] survival models;
+[11-20:P21412; UTF16 713214] fragility models;
+[11-20:P21413; UTF16 713232] repair models;
+[11-20:P21414; UTF16 713247] fault-tree logic;
+[11-20:P21415; UTF16 713265] dynamic traces;
+[11-20:P21416; UTF16 713281] cut sets;
+[11-20:P21417; UTF16 713291] simulation laws;
+[11-20:P21418; UTF16 713308] importance proposals;
+[11-20:P21419; UTF16 713330] tail losses;
+[11-20:P21420; UTF16 713343] resilience metrics;
+[11-20:P21421; UTF16 713363] fleet transfer;
+[11-20:P21422; UTF16 713379] target reliability roots.
+[11-20:P21425; UTF16 713424] means changing (u) can change (v).
+[11-20:P21429; UTF16 713462] 45. Incremental Reliability Recertification
+[11-20:P21430; UTF16 713506] THM-REL32 — Dependency-Directed Reliability Recertification Equals Cold Checking Under Complete Dependencies
+[11-20:P21433; UTF16 713657] the reliability dependency graph is complete;
+[11-20:P21434; UTF16 713703] every dependent artifact is invalidated;
+[11-20:P21435; UTF16 713744] reused artifacts pass version and applicability checks;
+[11-20:P21436; UTF16 713800] affected calculations use the same semantics as cold reconstruction;
+[11-20:P21438; UTF16 713913] Then incremental and cold analysis agree on:
+[11-20:P21441; UTF16 713993] minimal-cut status;
+[11-20:P21442; UTF16 714013] common-cause status;
+[11-20:P21443; UTF16 714034] rare-event-estimator validity;
+[11-20:P21444; UTF16 714065] tail-risk claims;
+[11-20:P21445; UTF16 714083] resilience claims;
+[11-20:P21446; UTF16 714102] recovery claims;
+[11-20:P21447; UTF16 714119] reliability leases.
+[11-20:P21449; UTF16 714145] Topologically order the acyclic dependency graph.
+[11-20:P21450; UTF16 714195] For each root, incremental and cold procedures use the same current authoritative value.
+[11-20:P21451; UTF16 714284] Assume all predecessors of node (v) agree.
+[11-20:P21452; UTF16 714327] If (v) is reused, version and applicability checks establish semantic equality with cold reconstruction.
+[11-20:P21453; UTF16 714432] If (v) is recomputed, both procedures apply the same deterministic checker to equal predecessor values.
+[11-20:P21454; UTF16 714536] Thus node (v) agrees.
+[11-20:P21455; UTF16 714558] Induction proves equality at every reliability root. ∎
+[11-20:P21459; UTF16 714616] 46. Whole-Project Reliability and Resilience Theorem
+[11-20:P21460; UTF16 714669] THM-REL33 — Whole-Project Proof-Carrying Reliability, Rare-Event, and Resilience Assurance
+[11-20:P21462; UTF16 714765] (B_\star) be a fixed target building;
+[11-20:P21463; UTF16 714803] (\Gamma_t^{\mathrm{ODT}}) be its current Prompt-15 knowledge set;
+[11-20:P21464; UTF16 714869] (\mathfrak M) be a declared mission;
+[11-20:P21465; UTF16 714906] (\mathfrak P_{\mathrm{REL}}) be its active stochastic-law family;
+[11-20:P21466; UTF16 714972] (\mathsf{PCRR}) be a candidate reliability package.
+[11-20:P21468; UTF16 715032] 1. Target-state soundness
+[11-20:P21469; UTF16 715058] The actual current augmented target state belongs to the ODT enclosure.
+[11-20:P21470; UTF16 715130] 2. Mission semantics
+[11-20:P21471; UTF16 715151] Mission start, horizon, policy, service requirements, and failure event are explicit.
+[11-20:P21472; UTF16 715237] 3. Law coverage
+[11-20:P21473; UTF16 715253] The true target future law belongs to (\mathfrak P_{\mathrm{REL}}).
+[11-20:P21474; UTF16 715321] 4. Dependence completeness
+[11-20:P21475; UTF16 715348] Common causes, clustering, shared resources, and required dependence mechanisms are represented.
+[11-20:P21476; UTF16 715445] 5. Failure semantics
+[11-20:P21477; UTF16 715466] Static, dynamic, cascading, and competing-risk semantics match the intended claims.
+[11-20:P21478; UTF16 715550] 6. Repair semantics
+[11-20:P21479; UTF16 715570] Availability and resilience claims use valid repair and recovery transitions and resource models.
+[11-20:P21480; UTF16 715668] 7. Hazard and fragility
+[11-20:P21481; UTF16 715692] Hazard and fragility claims use applicable target evidence or valid Prompt-16 transfer.
+[11-20:P21482; UTF16 715780] 8. Rare-event computation
+[11-20:P21483; UTF16 715806] Monte Carlo, importance sampling, and related estimators satisfy their sampling, support, and likelihood-ratio requirements.
+[11-20:P21484; UTF16 715931] 9. Numerical certification
+[11-20:P21485; UTF16 715958] Matrix exponentials, integrations, and reachability computations carry checked enclosures where exact values are unavailable.
+[11-20:P21486; UTF16 716084] 10. Model validity
+[11-20:P21487; UTF16 716103] Models are used only inside their certified domains and discrepancy bounds.
+[11-20:P21488; UTF16 716179] 11. Fleet transfer
+[11-20:P21489; UTF16 716198] Fleet evidence retains its Prompt-16 modality and passes target transfer gates.
+[11-20:P21490; UTF16 716278] 12. Theory expansion
+[11-20:P21491; UTF16 716299] New applicable hazards or faults trigger dependency-complete recertification.
+[11-20:P21492; UTF16 716377] 13. Tail-risk governance
+[11-20:P21493; UTF16 716402] Loss variables and tail-risk functionals are explicitly declared.
+[11-20:P21494; UTF16 716468] 14. Resilience semantics
+[11-20:P21495; UTF16 716493] Service, recovery, resource, and policy semantics are explicit.
+[11-20:P21496; UTF16 716557] 15. Prompt-11 assurance
+[11-20:P21497; UTF16 716581] Reliability evidence enters release through typed assurance rules.
+[11-20:P21498; UTF16 716648] 16. Prompt-10 separation
+[11-20:P21499; UTF16 716673] Adversarial robustness and probabilistic reliability remain separate unless a checked probability–cost bridge exists.
+[11-20:P21500; UTF16 716791] 17. UNKNOWN discipline
+[11-20:P21501; UTF16 716814] No unresolved reliability claim is promoted.
+[11-20:P21502; UTF16 716859] Then the following conclusions hold.
+[11-20:P21503; UTF16 716896] Exact numerical reliability conclusion
+[11-20:P21504; UTF16 716935] Every finite-state reliability quantity accepted as exact or interval certified lies in its reported numerical enclosure.
+[11-20:P21505; UTF16 717057] Target robust-reliability conclusion
+[11-20:P21507; UTF16 717097] [ P^\star\in\mathfrak P_{\mathrm{REL}}, ]
+[11-20:P21509; UTF16 717144] [ \boxed{ R_{P^\star}(T) \ge \underline R(T). } ]
+[11-20:P21510; UTF16 717194] Availability conclusion
+[11-20:P21511; UTF16 717218] Every availability claim concerns occupancy probability of the declared up set under the declared repairable process.
+[11-20:P21512; UTF16 717336] It is not mislabeled mission reliability.
+[11-20:P21513; UTF16 717378] Rare-event conclusion
+[11-20:P21514; UTF16 717400] Every Monte Carlo or importance-sampling result retains its estimator and confidence semantics.
+[11-20:P21515; UTF16 717496] No finite simulation run proves zero physical failure probability.
+[11-20:P21516; UTF16 717563] Dependence conclusion
+[11-20:P21517; UTF16 717585] Every system reliability claim uses a joint law or an explicitly valid bound.
+[11-20:P21518; UTF16 717663] Component marginals are not substituted for missing dependence information.
+[11-20:P21519; UTF16 717739] Tail-risk conclusion
+[11-20:P21520; UTF16 717760] Every VaR, CVaR, expected-loss, and tail-probability result refers to its declared loss law and modality.
+[11-20:P21521; UTF16 717866] Resilience conclusion
+[11-20:P21522; UTF16 717888] Every deterministic resilience bound proved over a trajectory enclosure holds for the actual trajectory.
+[11-20:P21523; UTF16 717993] Every stochastic resilience statement remains probabilistic.
+[11-20:P21524; UTF16 718054] Recovery conclusion
+[11-20:P21525; UTF16 718074] Recovery claims preserve shared resources, timing, authorization, and nonanticipativity.
+[11-20:P21526; UTF16 718163] Fleet conclusion
+[11-20:P21527; UTF16 718180] Fleet evidence changes the target only through Prompt-16 transport semantics.
+[11-20:P21529; UTF16 718277] A release manifest requiring probabilistic reliability may use the PCRR as typed evidence.
+[11-20:P21530; UTF16 718368] A release manifest requiring deterministic safety still requires a deterministic safety proof.
+[11-20:P21532; UTF16 718469] Step 1 — Current target state
+[11-20:P21533; UTF16 718499] Prompt-15 ODT soundness establishes that the actual current augmented state lies in (\Gamma_t^{\mathrm{ODT}}).
+[11-20:P21534; UTF16 718610] Step 2 — Target future-law coverage
+[11-20:P21535; UTF16 718646] Assumption 3 places the true future law in (\mathfrak P_{\mathrm{REL}}).
+[11-20:P21536; UTF16 718719] THM-REL24 therefore gives
+[11-20:P21537; UTF16 718745] [ R_{P^\star}(T) \ge \underline R(T). ]
+[11-20:P21538; UTF16 718785] Step 3 — Finite CTMC calculations
+[11-20:P21539; UTF16 718819] Where a finite CTMC model is used, THM-REL4 expresses mission reliability through the killed generator.
+[11-20:P21540; UTF16 718923] THM-REL5 and COR-REL1 provide a checked numerical enclosure for the matrix-exponential query.
+[11-20:P21541; UTF16 719017] Thus accepted CTMC quantities lie in their reported intervals.
+[11-20:P21542; UTF16 719080] Step 4 — Static coherent failure logic
+[11-20:P21543; UTF16 719119] THM-REL6 establishes minimal-cut completeness.
+[11-20:P21544; UTF16 719166] THM-REL7 gives a dependence-free union bound.
+[11-20:P21545; UTF16 719212] When independence is separately certified, COR-REL2 and THM-REL8 permit product formulas.
+[11-20:P21546; UTF16 719302] THM-REL9 prevents marginal-only substitution when common cause is unresolved.

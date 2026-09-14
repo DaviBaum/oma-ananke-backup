@@ -1,0 +1,353 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P1313; UTF16 47370] The PCR need not contain the history of design search.
+[11-20:P1317; UTF16 47428] 43. Trusted Computing Base
+[11-20:P1318; UTF16 47455] DEF-ASS24 — Assurance Trusted Computing Base
+[11-20:P1319; UTF16 47500] [ \mathsf{TCB}_{\mathrm{release}} ]
+[11-20:P1320; UTF16 47536] contains the trusted mechanisms whose soundness is assumed by the final theorem.
+[11-20:P1322; UTF16 47633] proof-assistant kernel;
+[11-20:P1323; UTF16 47657] SAT/SMT proof checker;
+[11-20:P1324; UTF16 47680] arithmetic checker;
+[11-20:P1325; UTF16 47700] interval and enclosure checker;
+[11-20:P1326; UTF16 47732] PCPE certificate checker;
+[11-20:P1327; UTF16 47758] CAQC/CEDA/CSSP checkers;
+[11-20:P1328; UTF16 47783] assurance-DAG checker;
+[11-20:P1329; UTF16 47806] evidence-applicability rules;
+[11-20:P1330; UTF16 47836] provenance and signature verification;
+[11-20:P1331; UTF16 47875] consistency checker;
+[11-20:P1332; UTF16 47896] release-policy manifest interpreter.
+[11-20:P1333; UTF16 47933] The synthesis engine, AI proposer, optimizer, and proof-search heuristics remain outside the TCB.
+[11-20:P1337; UTF16 48034] 44. Proof-Carrying Release Checker Soundness
+[11-20:P1338; UTF16 48079] THM-ASS16 — Proof-Carrying Release Checker Soundness
+[11-20:P1340; UTF16 48140] every inference rule accepted by the TCB is sound;
+[11-20:P1341; UTF16 48191] every supplied proof object is accepted by its sound checker;
+[11-20:P1342; UTF16 48253] (\Gamma_{\mathrm{ass}}\ne\varnothing);
+[11-20:P1343; UTF16 48292] every assumption leaf is discharged;
+[11-20:P1344; UTF16 48329] every evidence atom is valid and applicable;
+[11-20:P1345; UTF16 48374] every selected derivation is grounded and acyclic;
+[11-20:P1346; UTF16 48425] every version and fingerprint matches;
+[11-20:P1347; UTF16 48464] every release root has an accepted derivation;
+[11-20:P1348; UTF16 48511] no active release-blocking contradiction or unresolved obligation remains.
+[11-20:P1350; UTF16 48592] [ \boxed{ \forall\omega\in\Gamma_{\mathrm{ass}}(\mathfrak H,K), \qquad \bigwedge_{R_i\in\mathfrak R} (\omega\models R_i). } ]
+[11-20:P1352; UTF16 48724] By THM-ASS5, each selected root derivation establishes its root claim throughout (\Gamma_{\mathrm{ass}}).
+[11-20:P1353; UTF16 48830] Because every manifest root has such a derivation:
+[11-20:P1354; UTF16 48881] [ \forall\omega\in\Gamma_{\mathrm{ass}}, \quad \omega\models R_i \qquad \forall i. ]
+[11-20:P1355; UTF16 48966] Conjoining the finite family yields the result.
+[11-20:P1356; UTF16 49014] Consistency prevents vacuous assurance.
+[11-20:P1357; UTF16 49054] The conflict and unresolved conditions ensure the accepted report is unique and release admissible. ∎
+[11-20:P1361; UTF16 49159] PRO-ASS3 — Checker Incompleteness Is Safe
+[11-20:P1362; UTF16 49201] A sound checker may reject a valid project when no accepted derivation is supplied.
+[11-20:P1363; UTF16 49285] This is proof-search or checker incompleteness.
+[11-20:P1364; UTF16 49333] It does not compromise soundness.
+[11-20:P1365; UTF16 49367] The prohibited failure is accepting an invalid derivation.
+[11-20:P1369; UTF16 49429] 45. Generator Independence
+[11-20:P1370; UTF16 49456] THM-ASS17 — Release Soundness Is Independent of Generator Intelligence
+[11-20:P1371; UTF16 49527] Replace the assurance-case generator or design generator by:
+[11-20:P1373; UTF16 49596] another AI;
+[11-20:P1375; UTF16 49623] human engineers;
+[11-20:P1376; UTF16 49640] poor heuristics;
+[11-20:P1377; UTF16 49657] a malicious generator.
+[11-20:P1378; UTF16 49680] If the same sound independent checker controls acceptance, the meaning of an accepted PCR is unchanged.
+[11-20:P1380; UTF16 49790] The release theorem depends on:
+[11-20:P1381; UTF16 49822] supplied proof objects;
+[11-20:P1382; UTF16 49846] rule soundness;
+[11-20:P1383; UTF16 49862] evidence applicability;
+[11-20:P1384; UTF16 49886] consistency;
+[11-20:P1385; UTF16 49899] manifest coverage;
+[11-20:P1386; UTF16 49918] checker acceptance.
+[11-20:P1387; UTF16 49938] It does not depend on how the candidate package was generated.
+[11-20:P1388; UTF16 50001] A poor generator may fail to produce an accepted package.
+[11-20:P1389; UTF16 50059] It cannot alter the semantics of an accepted proof. ∎
+[11-20:P1393; UTF16 50116] 46. Whole-Project Assurance Closure
+[11-20:P1394; UTF16 50152] DEF-ASS29 — Whole-Project Assurance Closure
+[11-20:P1395; UTF16 50196] The project is assurance closed when:
+[11-20:P1396; UTF16 50234] [ \forall R_i\in\mathfrak R, \qquad \mathfrak H,K\vdash R_i, ]
+[11-20:P1399; UTF16 50341] no release-blocking conflict is active;
+[11-20:P1400; UTF16 50381] every assumption is discharged;
+[11-20:P1401; UTF16 50413] every selected evidence atom is valid and applicable;
+[11-20:P1402; UTF16 50467] every required robustness obligation is closed;
+[11-20:P1403; UTF16 50515] every required regret-closure claim is certified;
+[11-20:P1404; UTF16 50565] every phase and version matches;
+[11-20:P1405; UTF16 50598] the release-blocker set is empty.
+[11-20:P1409; UTF16 50635] THM-ASS19 — Whole-Project Proof-Carrying Release
+[11-20:P1411; UTF16 50692] the release manifest (\mathfrak R) is fixed;
+[11-20:P1412; UTF16 50737] each (R_i) has a checked derivation;
+[11-20:P1413; UTF16 50774] every derivation rule is sound;
+[11-20:P1414; UTF16 50806] every leaf evidence atom is valid and applicable;
+[11-20:P1416; UTF16 50888] all model-validity and discrepancy conditions are honored;
+[11-20:P1417; UTF16 50947] all required robustness claims have valid coverage;
+[11-20:P1418; UTF16 50999] all required decision-closure claims are certified;
+[11-20:P1419; UTF16 51051] no blocker or conflict remains;
+[11-20:P1421; UTF16 51122] assurance foundations are consistent.
+[11-20:P1424; UTF16 51292] Therefore the project is releaseable relative to the declared:
+[11-20:P1425; UTF16 51355] manifest;
+[11-20:P1430; UTF16 51404] authorities;
+[11-20:P1432; UTF16 51432] adversarial domains.
+[11-20:P1434; UTF16 51459] Assumptions 2–6 and 10 satisfy the premises of THM-ASS5 for every selected derivation.
+[11-20:P1435; UTF16 51546] Assumption 11 prevents vacuous proof.
+[11-20:P1436; UTF16 51584] Assumptions 7 and 8 discharge the robustness and decision roots appearing in the manifest.
+[11-20:P1437; UTF16 51675] Assumption 9 establishes that every root report is uniquely acceptable.
+[11-20:P1438; UTF16 51747] Therefore every root holds throughout (\Gamma_{\mathrm{ass}}).
+[11-20:P1439; UTF16 51810] The finite conjunction holds throughout (\Gamma_{\mathrm{ass}}). ∎
+[11-20:P1443; UTF16 51880] 46.1 What the theorem does not prove
+[11-20:P1445; UTF16 51936] every physically possible hazard was modeled;
+[11-20:P1446; UTF16 51982] the release manifest contains every socially relevant obligation;
+[11-20:P1447; UTF16 52048] future construction will match the design;
+[11-20:P1448; UTF16 52091] future operation will respect assumptions;
+[11-20:P1449; UTF16 52134] models equal physical reality;
+[11-20:P1450; UTF16 52165] professional judgments are objective facts;
+[11-20:P1451; UTF16 52209] a later version remains certified;
+[11-20:P1452; UTF16 52244] an omitted code rule is satisfied;
+[11-20:P1453; UTF16 52279] every unknown hazard is covered.
+[11-20:P1457; UTF16 52315] 47. Parametric Assurance Templates
+[11-20:P1458; UTF16 52350] DEF-ASS25 — Assurance Template
+[11-20:P1459; UTF16 52381] A parametric Assurance Template contains a checked proof:
+[11-20:P1460; UTF16 52439] [ \forall\theta\in V_T, \qquad P_T(\theta) \Longrightarrow C_T(\theta). ]
+[11-20:P1461; UTF16 52513] It also contains:
+[11-20:P1462; UTF16 52531] parameter schema;
+[11-20:P1463; UTF16 52549] validity domain (V_T);
+[11-20:P1464; UTF16 52572] instance checker;
+[11-20:P1465; UTF16 52590] dependency fingerprint;
+[11-20:P1466; UTF16 52614] exception policy.
+[11-20:P1470; UTF16 52635] THM-ASS18 — Certified Assurance Template Instantiation
+[11-20:P1472; UTF16 52694] [ \forall\theta\in V_T, \qquad P_T(\theta)\Longrightarrow C_T(\theta) ]
+[11-20:P1473; UTF16 52766] has a checked proof, and project instance (i) satisfies:
+[11-20:P1474; UTF16 52823] [ \theta_i\in V_T, ]
+[11-20:P1475; UTF16 52844] [ P_T(\theta_i), ]
+[11-20:P1477; UTF16 52869] [ C_T(\theta_i). ]
+[11-20:P1479; UTF16 52894] Instantiate the universal theorem at (\theta_i).
+[11-20:P1480; UTF16 52943] Apply modus ponens using the checked instance premise (P_T(\theta_i)). ∎
+[11-20:P1481; UTF16 53016] An exception outside (V_T) requires an explicit new derivation.
+[11-20:P1485; UTF16 53083] 48. Repeated-Motif Assurance
+[11-20:P1486; UTF16 53112] For a hotel:
+[11-20:P1489; UTF16 53162] 10 exception rooms.
+[11-20:P1490; UTF16 53182] A standard-room proof template may be instantiated 160 times when every room fingerprint and parameter lies inside the template domain.
+[11-20:P1491; UTF16 53318] Corner rooms use their own templates.
+[11-20:P1492; UTF16 53356] Exceptions remain explicit.
+[11-20:P1493; UTF16 53384] Logical proof sharing reduces:
+[11-20:P1494; UTF16 53415] storage duplication;
+[11-20:P1495; UTF16 53436] checker duplication;
+[11-20:P1496; UTF16 53457] recertification duplication.
+[11-20:P1497; UTF16 53486] It does not automatically imply equal wall-clock speedup.
+[11-20:P1501; UTF16 53547] 49. Proof Checking Complexity
+[11-20:P1502; UTF16 53577] THM-ASS28 — Explicit Proof-DAG Checking Complexity
+[11-20:P1503; UTF16 53628] Let an explicit acyclic PCR proof DAG contain:
+[11-20:P1504; UTF16 53675] (N) nodes;
+[11-20:P1505; UTF16 53686] (E) dependency edges;
+[11-20:P1506; UTF16 53708] local certificate-checking costs (c_1,\ldots,c_N).
+[11-20:P1508; UTF16 53767] constant-time adjacency access;
+[11-20:P1509; UTF16 53799] a supplied or computable topological order;
+[11-20:P1510; UTF16 53843] local checker cost (c_i) includes payload verification.
+[11-20:P1511; UTF16 53899] Then total checking time is:
+[11-20:P1512; UTF16 53928] [ \boxed{ O \left( N+E+\sum_{i=1}^{N}c_i \right). } ]
+[11-20:P1513; UTF16 53982] Memory is:
+[11-20:P1514; UTF16 53993] [ O(N+E) ]
+[11-20:P1515; UTF16 54004] plus local checker working memory.
+[11-20:P1517; UTF16 54045] Topological sorting costs:
+[11-20:P1518; UTF16 54072] [ O(N+E). ]
+[11-20:P1519; UTF16 54084] Each node and dependency edge is visited a constant number of times.
+[11-20:P1520; UTF16 54153] Each local checker runs once at cost (c_i).
+[11-20:P1521; UTF16 54197] Summing these costs gives the result. ∎
+[11-20:P1522; UTF16 54237] Proof discovery may remain exponentially or NP-hardly difficult.
+[11-20:P1526; UTF16 54305] PRO-ASS4 — Proof Discovery Can Be Harder Than Verification
+[11-20:P1527; UTF16 54364] A satisfying assignment of a Boolean formula is checked in polynomial time.
+[11-20:P1528; UTF16 54440] Finding one is NP-hard in general.
+[11-20:P1529; UTF16 54475] Likewise, a supplied assurance core or SAT certificate may be cheap to check even when finding it was expensive.
+[11-20:P1530; UTF16 54588] No theorem guarantees that both positive and negative claims always possess short certificates.
+[11-20:P1534; UTF16 54687] 50. Assurance Complexity Profile
+[11-20:P1535; UTF16 54720] DEF-ASS26 — Prompt-11 Assurance Complexity Profile
+[11-20:P1536; UTF16 54771] \left( N_C, N_E, N_A, N_R, |\pi|, K_{\mathrm{core}}, N_{\mathrm{cores}}, \lambda_{\mathrm{ass}}, C_{\mathrm{check}}, C_{\mathrm{discover}}, R_{\mathrm{invalidate}}, R_{\mathrm{recert}}, N_{\mathrm{templates}}, N_{\mathrm{exceptions}}, B_{\mathrm{unresolved}} \right), ]
+[11-20:P1538; UTF16 55048] (N_C): claim count;
+[11-20:P1539; UTF16 55068] (N_E): evidence-atom count;
+[11-20:P1540; UTF16 55096] (N_A): assumption count;
+[11-20:P1541; UTF16 55121] (N_R): rule count;
+[11-20:P1542; UTF16 55140] (|\pi|): PCR size;
+[11-20:P1543; UTF16 55159] (K_{\mathrm{core}}): selected or minimum core size/cost;
+[11-20:P1544; UTF16 55216] (N_{\mathrm{cores}}): number of minimal cores;
+[11-20:P1545; UTF16 55263] (\lambda_{\mathrm{ass}}): assurance redundancy;
+[11-20:P1546; UTF16 55311] (C_{\mathrm{check}}): independent verification cost;
+[11-20:P1547; UTF16 55364] (C_{\mathrm{discover}}): proof-discovery cost;
+[11-20:P1548; UTF16 55411] (R_{\mathrm{invalidate}}): invalidated nodes after change;
+[11-20:P1549; UTF16 55470] (R_{\mathrm{recert}}): rechecked nodes;
+[11-20:P1550; UTF16 55510] (N_{\mathrm{templates}}): proof templates;
+[11-20:P1551; UTF16 55553] (N_{\mathrm{exceptions}}): explicit exceptions;
+[11-20:P1552; UTF16 55601] (B_{\mathrm{unresolved}}): blocker profile.
+[11-20:P1553; UTF16 55645] These quantities are not automatically scalarized.
+[11-20:P1554; UTF16 55696] No new “assurance width” is introduced because no distinct theorem justifies one here.
+[11-20:P1558; UTF16 55786] 51. Assurance Blocker Frontiers
+[11-20:P1559; UTF16 55818] DEF-ASS27 — Assurance Blocker Frontier
+[11-20:P1560; UTF16 55857] For an unsupported release root (R), let:
+[11-20:P1561; UTF16 55899] [ \mathcal D_R^{\mathrm{cand}} ]
+[11-20:P1562; UTF16 55932] be the current candidate derivation family.
+[11-20:P1563; UTF16 55976] For each candidate derivation (D), let:
+[11-20:P1564; UTF16 56016] [ U(D) ]
+[11-20:P1565; UTF16 56025] be its unresolved or invalid external leaves.
+[11-20:P1566; UTF16 56071] A Blocker Frontier is an inclusion-minimal set (B) satisfying:
+[11-20:P1567; UTF16 56134] [ B\cap U(D)\ne\varnothing \qquad \forall D\in\mathcal D_R^{\mathrm{cand}}. ]
+[11-20:P1568; UTF16 56212] For several unsupported roots, the condition applies to every candidate release derivation forest.
+[11-20:P1569; UTF16 56311] A blocker frontier says:
+[11-20:P1570; UTF16 56336] Every currently available release route is obstructed by at least one blocker in this set.
+[11-20:P1571; UTF16 56427] Resolving every member of a blocker frontier need not be the cheapest release strategy.
+[11-20:P1572; UTF16 56515] Blocker explanation and blocker-resolution planning are different problems.
+[11-20:P1576; UTF16 56594] 52. Minimum Blocker-Resolution Hardness
+[11-20:P1577; UTF16 56634] THM-ASS25 — Minimum Blocker-Resolution Selection Is NP-Hard
+[11-20:P1578; UTF16 56694] Finding the minimum-cost set of evidence acquisitions or computations sufficient to close all release obligations is NP-hard.
+[11-20:P1580; UTF16 56854] Take Set Cover instance:
+[11-20:P1582; UTF16 56939] Create one unresolved release obligation (O_u) for each (u).
+[11-20:P1583; UTF16 57000] Create one computation (c_j) for each (S_j).
+[11-20:P1584; UTF16 57045] A successful execution of (c_j) discharges exactly obligations:
+[11-20:P1585; UTF16 57109] [ {O_u\in S_j}. ]
+[11-20:P1586; UTF16 57127] Assume deterministic success and no other proof routes.
+[11-20:P1587; UTF16 57183] A computation set closes every release obligation exactly when the corresponding subsets cover (U).
+[11-20:P1588; UTF16 57283] Minimum-cost blocker resolution therefore equals minimum-cost Set Cover. ∎
+[11-20:P1589; UTF16 57358] Prompt 9 remains the scheduler.
+[11-20:P1590; UTF16 57390] Prompt 11 exposes blockers and evidence-acquisition actions to it.
+[11-20:P1594; UTF16 57460] 53. Assurance RCVOC Interface
+[11-20:P1595; UTF16 57490] ALG-ASS2 — AssuranceRCVOCInterface
+[11-20:P1597; UTF16 57531]     assurance case
+[11-20:P1598; UTF16 57550]     blocker frontiers
+[11-20:P1599; UTF16 57572]     release manifest
+[11-20:P1600; UTF16 57593]     available assurance computations
+[11-20:P1602; UTF16 57631] FOR every unresolved assurance leaf:
+[11-20:P1603; UTF16 57668]     expose possible computations:
+[11-20:P1604; UTF16 57702]         check proof object
+[11-20:P1605; UTF16 57729]         acquire missing test
+[11-20:P1606; UTF16 57758]         verify product revision
+[11-20:P1607; UTF16 57790]         perform measurement
+[11-20:P1608; UTF16 57818]         obtain professional judgment
+[11-20:P1609; UTF16 57855]         resolve code interpretation
+[11-20:P1610; UTF16 57891]         recertify PCPE
+[11-20:P1611; UTF16 57914]         run adversarial coverage
+[11-20:P1612; UTF16 57947]         inspect provenance
+[11-20:P1613; UTF16 57974]         recalibrate instrument
+[11-20:P1615; UTF16 58006] ANNOTATE each computation with:
+[11-20:P1616; UTF16 58038]     affected release roots
+[11-20:P1617; UTF16 58065]     prerequisite graph
+[11-20:P1618; UTF16 58088]     evidence kind
+[11-20:P1619; UTF16 58106]     possible closure outcomes
+[11-20:P1620; UTF16 58136]     cost/resource vector
+[11-20:P1622; UTF16 58186]     mandatory-fairness status
+[11-20:P1623; UTF16 58216]     cache-reuse alternatives
+[11-20:P1626; UTF16 58253]     Prompt-9 computation actions
+[11-20:P1627; UTF16 58286] Prompt 9 selects the next computation.
+[11-20:P1628; UTF16 58325] Prompt 11 does not create a second scheduler.
+[11-20:P1632; UTF16 58374] 54. Human-in-the-Loop Assurance
+[11-20:P1633; UTF16 58406] When a human judgment is required, ANANKE should expose the narrowest exact unresolved proposition.
+[11-20:P1634; UTF16 58506] Instead of:
+[11-20:P1635; UTF16 58518] Do you approve the building?
+[11-20:P1636; UTF16 58547] ANANKE should ask:
+[11-20:P1637; UTF16 58566] Is the 80 mm deviation from façade rhythm rule A-17 acceptable under the approved architectural-intent policy for the west elevation?
+[11-20:P1638; UTF16 58700] The response becomes:
+[11-20:P1639; UTF16 58722] scoped;
+[11-20:P1640; UTF16 58730] versioned;
+[11-20:P1641; UTF16 58741] authority typed;
+[11-20:P1642; UTF16 58758] phase typed;
+[11-20:P1643; UTF16 58771] condition typed.
+[11-20:P1644; UTF16 58788] It does not discharge unrelated claims.
+[11-20:P1648; UTF16 58831] 55. Waivers
+[11-20:P1649; UTF16 58843] DEF-ASS34 — Assurance Waiver
+[11-20:P1650; UTF16 58872] A waiver is an authorized theory transformation:
+[11-20:P1651; UTF16 58921] [ w: (\vartheta,\mathfrak R) \longmapsto (\vartheta',\mathfrak R'). ]
+[11-20:P1653; UTF16 59004] issuing authority;
+[11-20:P1655; UTF16 59037] obligation modified;
+[11-20:P1657; UTF16 59065] conditions;
+[11-20:P1658; UTF16 59077] expiration;
+[11-20:P1663; UTF16 59101] THM-ASS22 — A Valid Waiver Changes the Obligation, Not the Engineering Fact
+[11-20:P1664; UTF16 59177] An authorized waiver may permit release without proving original obligation (R) only under the revised release theory.
+[11-20:P1666; UTF16 59315] [ \omega\models R. ]
+[11-20:P1668; UTF16 59342] The waiver modifies the manifest or accepted-report policy:
+[11-20:P1669; UTF16 59402] [ (\vartheta,\mathfrak R) \to (\vartheta',\mathfrak R'). ]
+[11-20:P1670; UTF16 59461] It supplies no semantic inference from its existence to the original engineering proposition (R).
+[11-20:P1671; UTF16 59559] Therefore it changes what must be proved, not whether (R) is true. ∎
+[11-20:P1675; UTF16 59631] 56. Architectural Sovereignty Assurance
+[11-20:P1676; UTF16 59671] A protected architectural-intent claim may be included in (\mathfrak R).
+[11-20:P1677; UTF16 59744] It may be discharged by:
+[11-20:P1678; UTF16 59769] exact geometric invariant;
+[11-20:P1679; UTF16 59796] approved equivalence relation;
+[11-20:P1680; UTF16 59827] Style Program constraint;
+[11-20:P1681; UTF16 59853] authorized architectural judgment;
+[11-20:P1682; UTF16 59888] explicit stakeholder approval.
+[11-20:P1683; UTF16 59919] It is not reduced to one aesthetic score.
+[11-20:P1684; UTF16 59961] A judgment approving one deviation has only its declared scope.
+[11-20:P1688; UTF16 60028] 57. Release Versioning
+[11-20:P1689; UTF16 60051] DEF-ASS28 — Release Version
+[11-20:P1690; UTF16 60079] \left( \mathsf{designHash}, \vartheta, \mathfrak R, \mathsf{PCRHash}, \mathsf{phase}, \mathsf{timestamp}, \mathsf{authority} \right). ]
+[11-20:P1691; UTF16 60215] A later design, theory, code, or evidence change creates a new version.
+[11-20:P1692; UTF16 60287] Historical releases remain auditable.
+[11-20:P1696; UTF16 60328] THM-ASS30 — Release Certificates Are Version Scoped
+[11-20:P1697; UTF16 60380] Acceptance of a PCR for design hash (h) does not establish release for a different design hash (h'\ne h) without a checked reconciliation or equivalence theorem.
+[11-20:P1699; UTF16 60548] Construct two designs sharing every PCR artifact reference except one unrecorded geometric difference.
+[11-20:P1700; UTF16 60651] Let the release claims hold for (h) and fail for (h').
+[11-20:P1701; UTF16 60706] The old package proves only the exact state to which its fingerprint binds.
+[11-20:P1702; UTF16 60782] No implication to (h') follows without a theorem relating them. ∎
+[11-20:P1706; UTF16 60851] 58. As-Built Reconciliation and Release Phases
+[11-20:P1707; UTF16 60898] Design-release assurance does not automatically establish as-built conformity.
+[11-20:P1708; UTF16 60977] An as-built reconciliation maps:
+[11-20:P1709; UTF16 61010] [ x_{\mathrm{design}} \longrightarrow x_{\mathrm{as-built}} ]
+[11-20:P1710; UTF16 61072] using:
+[11-20:P1711; UTF16 61079] inspection;
+[11-20:P1712; UTF16 61091] scan;
+[11-20:P1713; UTF16 61097] installed-product identity;
+[11-20:P1714; UTF16 61125] commissioning measurements;
+[11-20:P1715; UTF16 61153] field tests.
+[11-20:P1716; UTF16 61166] Differences become an Assurance Change Set and trigger incremental recertification.
+[11-20:P1717; UTF16 61250] Possible release phases include:
+[11-20:P1718; UTF16 61283] concept;
+[11-20:P1719; UTF16 61292] schematic;
+[11-20:P1720; UTF16 61303] design development;
+[11-20:P1721; UTF16 61323] permit;
+[11-20:P1722; UTF16 61331] construction documents;
+[11-20:P1723; UTF16 61355] procurement;
+[11-20:P1724; UTF16 61368] fabrication;
+[11-20:P1725; UTF16 61381] installation;
+[11-20:P1726; UTF16 61395] commissioning;
+[11-20:P1728; UTF16 61421] operation;
+[11-20:P1729; UTF16 61432] renovation.
+[11-20:P1730; UTF16 61444] A claim’s phase is part of its scope.
+[11-20:P1731; UTF16 61482] Construction-document assurance is not automatically operational assurance.
+[11-20:P1735; UTF16 61561] 59. Assurance Consistency Checking
+[11-20:P1736; UTF16 61596] ALG-ASS3 — CheckAssuranceConsistency
+[11-20:P1738; UTF16 61639]     active assumptions
+[11-20:P1739; UTF16 61662]     foundational evidentiary claims
+[11-20:P1740; UTF16 61698]     exact version identities
+[11-20:P1741; UTF16 61727]     applicability constraints
+[11-20:P1742; UTF16 61757]     symbolic project state
+[11-20:P1745; UTF16 61791]     conjunction of all active foundations
+[11-20:P1748; UTF16 61838]     exact or sound satisfiability check
+[11-20:P1751; UTF16 61886]     CONSISTENT
+[11-20:P1752; UTF16 61901]         with exact witness or checked SAT certificate
+[11-20:P1754; UTF16 61956]     INCONSISTENT
+[11-20:P1755; UTF16 61973]         with checked UNSAT certificate
+[11-20:P1758; UTF16 62025] Where consistency is mandatory:
+[11-20:P1759; UTF16 62057] [ \mathsf{UNKNOWN} ]
+[11-20:P1760; UTF16 62078] blocks complete release.
+[11-20:P1764; UTF16 62106] THM-ASS29 — Assurance Consistency Checker Soundness
+[11-20:P1765; UTF16 62158] If CheckAssuranceConsistency returns:
+[11-20:P1766; UTF16 62196] (\mathsf{CONSISTENT}) with a checked witness, then: [ \Gamma_{\mathrm{ass}}\ne\varnothing; ]
+[11-20:P1767; UTF16 62289] (\mathsf{INCONSISTENT}) with a checked UNSAT proof, then: [ \Gamma_{\mathrm{ass}}=\varnothing. ]
+[11-20:P1769; UTF16 62392] A checked witness is an exact database satisfying every active foundation, proving nonemptiness.
+[11-20:P1770; UTF16 62489] A checked UNSAT certificate proves no exact database satisfies the conjunction, proving emptiness. ∎
+[11-20:P1774; UTF16 62593] 60. Building an Assurance Case
+[11-20:P1775; UTF16 62624] ALG-ASS4 — BuildAssuranceCase
+[11-20:P1778; UTF16 62681]     current ANANKE artifact store
+[11-20:P1779; UTF16 62715]     assumption ledger
+[11-20:P1780; UTF16 62737]     evidence store
+[11-20:P1781; UTF16 62756]     theory and version fingerprints
+[11-20:P1782; UTF16 62792]     rule library
+[11-20:P1784; UTF16 62810] FOR every release root:
+[11-20:P1785; UTF16 62834]     enumerate, synthesize, or propose
+[11-20:P1786; UTF16 62872]     candidate derivation routes
+[11-20:P1788; UTF16 62905] FOR every route:
+[11-20:P1790; UTF16 62933]         rule typing
+[11-20:P1791; UTF16 62953]         evidence status
+[11-20:P1792; UTF16 62977]         evidence applicability
+[11-20:P1793; UTF16 63008]         assumptions
+[11-20:P1794; UTF16 63028]         versions
+[11-20:P1795; UTF16 63045]         provenance
+[11-20:P1796; UTF16 63064]         defeaters
+[11-20:P1797; UTF16 63082]         certificate references
+[11-20:P1799; UTF16 63114] SHARE
+[11-20:P1800; UTF16 63120]     repeated subproofs as a DAG
+[11-20:P1802; UTF16 63153] IDENTIFY
+[11-20:P1803; UTF16 63162]     active valid routes
+[11-20:P1804; UTF16 63186]     alternative routes

@@ -1,0 +1,317 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P8342; UTF16 322607] At node (v), the child-message Cartesian product has size
+[1-10:P8343; UTF16 322665] [ \prod_{u\in\operatorname{child}(v)}q_u. ]
+[1-10:P8344; UTF16 322709] Multiplying by (\ell_v) local choices yields (J_v) candidate tuples.
+[1-10:P8345; UTF16 322778] Each candidate costs at most (c_v).
+[1-10:P8346; UTF16 322814] Summing over nodes gives the exact profile bound.
+[1-10:P8347; UTF16 322864] Because
+[1-10:P8348; UTF16 322872] [ q_u=2^{w_u} ]
+[1-10:P8350; UTF16 322892] [ \ell_v=2^{\lambda_v}, ]
+[1-10:P8351; UTF16 322918] the exponential form follows.
+[1-10:P8352; UTF16 322948] If (d_v\le b) and every child width is at most (W_D),
+[1-10:P8353; UTF16 323002] [ \sum_{u\in\operatorname{child}(v)}w_u \le bW_D. ]
+[1-10:P8354; UTF16 323054] Substitution gives the uniform upper bound.
+[1-10:P8355; UTF16 323098] Each message table stores at most (q_v) entries of size (b_v). Summing gives the memory bound. ∎
+[1-10:P8359; UTF16 323198] 18.2 Correct interpretation
+[1-10:P8360; UTF16 323226] For a binary decomposition with bounded local-choice width,
+[1-10:P8361; UTF16 323286] [ T \le \operatorname{poly}(n,c) 2^{2W_D+O(1)}. ]
+[1-10:P8362; UTF16 323336] The general exact theorem is therefore not automatically
+[1-10:P8363; UTF16 323393] [ O(n2^{W_D}). ]
+[1-10:P8364; UTF16 323410] That stronger bound requires additional structure such as:
+[1-10:P8365; UTF16 323469] deterministic keyed compatibility;
+[1-10:P8366; UTF16 323504] functional rather than Cartesian joins;
+[1-10:P8367; UTF16 323544] sparse transition indexes;
+[1-10:P8368; UTF16 323571] bounded-degree message coupling;
+[1-10:P8369; UTF16 323604] a transition circuit that avoids enumerating every state pair.
+[1-10:P8370; UTF16 323667] The mathematically justified broad claim is:
+[1-10:P8371; UTF16 323712] \operatorname{poly}(n) 2^{O(W_D)} } ]
+[1-10:P8372; UTF16 323750] for bounded branching and bounded local-choice width, with the hidden exponent constant determined by the number of simultaneously joined separator messages.
+[1-10:P8376; UTF16 323911] 19. Fixed-Parameter Tractability
+[1-10:P8377; UTF16 323944] THM-DS18 — Nonuniform Fixed-Parameter Tractability
+[1-10:P8378; UTF16 323995] In the setting where:
+[1-10:P8379; UTF16 324017] the theory (\mathcal T) is fixed;
+[1-10:P8380; UTF16 324051] a legal decomposition is given;
+[1-10:P8381; UTF16 324083] canonical separator quotients and transition tables are precompiled;
+[1-10:P8382; UTF16 324152] branching factor (b), local-choice width (\Lambda), evidence-record size, and local factor cost are bounded or polynomial in (n);
+[1-10:P8383; UTF16 324282] exact ANANKE-F synthesis is fixed-parameter tractable in (W_D):
+[1-10:P8384; UTF16 324346] f(W_D)\operatorname{poly}(n), ]
+[1-10:P8386; UTF16 324383] 2^{bW_D+\Lambda}. ]
+[1-10:P8388; UTF16 324409] Immediate from THM-DS8 under the stated bounds. ∎
+[1-10:P8392; UTF16 324462] 19.1 Qualification
+[1-10:P8393; UTF16 324481] This theorem concerns online exact message passing over already known quotient states.
+[1-10:P8395; UTF16 324592] the optimal decomposition is easy to find;
+[1-10:P8396; UTF16 324635] the separator quotients are easy to discover;
+[1-10:P8397; UTF16 324681] (W_D) is easy to compute;
+[1-10:P8398; UTF16 324707] the uniform compact-input problem is FPT in (W_D) alone.
+[1-10:P8399; UTF16 324764] Those issues are treated in §§29–32.
+[1-10:P8403; UTF16 324804] 20. Information and Communication Lower Bounds
+[1-10:P8404; UTF16 324851] 20.1 One-way communication game
+[1-10:P8405; UTF16 324883] DEF-DS11 — Regional one-way decision game
+[1-10:P8406; UTF16 324925] For separator (L\mid\overline L):
+[1-10:P8407; UTF16 324959] Alice receives a regional state [ x\in\mathcal X_L; ]
+[1-10:P8408; UTF16 325013] Bob receives an exterior experiment [ e\in\mathfrak E_L^{\mathrm{out}}; ]
+[1-10:P8409; UTF16 325087] Alice sends one deterministic binary message [ m(x); ]
+[1-10:P8410; UTF16 325142] Bob must output [ \mathsf{Out}_e(x) ] exactly.
+[1-10:P8411; UTF16 325189] The communication matrix has rows (x), columns (e), and entries (\mathsf{Out}_e(x)).
+[1-10:P8415; UTF16 325277] THM-DS11 — Communication Interpretation
+[1-10:P8416; UTF16 325317] The minimum number of deterministic one-way messages required by the regional decision game is exactly
+[1-10:P8417; UTF16 325420] [ |\Sigma_L|. ]
+[1-10:P8418; UTF16 325436] The minimum worst-case fixed-length communication is
+[1-10:P8420; UTF16 325535] bits.
+[1-10:P8422; UTF16 325547] Two regional states can share one deterministic message only if Bob can produce the same output for every experiment column.
+[1-10:P8423; UTF16 325672] Thus they can share a message exactly when their communication-matrix rows are equal.
+[1-10:P8424; UTF16 325758] Row equality is precisely
+[1-10:P8426; UTF16 325811] Therefore the distinct rows are exactly the separator quotient classes.
+[1-10:P8427; UTF16 325883] At least one message is required per distinct row, and sending the class identifier achieves this bound.
+[1-10:P8428; UTF16 325988] The bit bound follows by binary counting. ∎
+[1-10:P8432; UTF16 326035] THM-DS10 — Separator State Lower Bound
+[1-10:P8433; UTF16 326074] Any exact deterministic compositional algorithm crossing separator (L) must support at least
+[1-10:P8435; UTF16 326182] distinct reachable message states.
+[1-10:P8436; UTF16 326217] In an explicit table model that materializes every reachable message state, it requires:
+[1-10:P8437; UTF16 326306] [ \Omega(|\Sigma_L|) ]
+[1-10:P8438; UTF16 326329] table entries and therefore
+[1-10:P8440; UTF16 326380] initialization or enumeration work.
+[1-10:P8441; UTF16 326416] This time bound applies only to explicit full-table materialization. A symbolic or on-demand algorithm need not enumerate every message if the requested output does not require the full table.
+[1-10:P8445; UTF16 326612] 21. Multiway Separator Theory
+[1-10:P8446; UTF16 326642] 21.1 Joint multiport separator
+[1-10:P8447; UTF16 326673] Suppose a region exposes ports
+[1-10:P8448; UTF16 326704] [ S_1,\ldots,S_k. ]
+[1-10:P8449; UTF16 326724] DEF-DS12 — Joint multiway separator quotient
+[1-10:P8450; UTF16 326769] Let the full joint interface be
+[1-10:P8451; UTF16 326801] S_1\oplus\cdots\oplus S_k. ]
+[1-10:P8452; UTF16 326830] Define the exterior experiment theory over contexts permitted to couple any subset of the ports.
+[1-10:P8453; UTF16 326927] The canonical multiway separator is
+[1-10:P8454; UTF16 326963] \mathcal X_L/ \equiv_{S_1,\ldots,S_k}. ]
+[1-10:P8458; UTF16 327007] 21.2 Marginal products can be unsound
+[1-10:P8459; UTF16 327045] Let a region contain a hidden bit (h\in{0,1}) and expose two Boolean ports satisfying
+[1-10:P8460; UTF16 327131] [ (p_1,p_2)=(h,h). ]
+[1-10:P8461; UTF16 327152] The reachable joint relation is
+[1-10:P8462; UTF16 327184] [ {(0,0),(1,1)}. ]
+[1-10:P8463; UTF16 327203] The marginal state sets are both
+[1-10:P8464; UTF16 327236] [ {0,1}. ]
+[1-10:P8465; UTF16 327247] Their Cartesian product is
+[1-10:P8466; UTF16 327274] [ {(0,0),(0,1),(1,0),(1,1)}, ]
+[1-10:P8467; UTF16 327305] which introduces two impossible cross-port combinations.
+[1-10:P8468; UTF16 327362] An exterior context testing
+[1-10:P8469; UTF16 327390] [ p_1=p_2 ]
+[1-10:P8470; UTF16 327402] distinguishes the true joint relation from the independent product.
+[1-10:P8471; UTF16 327470] Therefore separate port compression is not generally sufficient.
+[1-10:P8475; UTF16 327538] THM-DS11A — Joint separator composition condition
+[1-10:P8476; UTF16 327588] The product
+[1-10:P8477; UTF16 327600] [ \Sigma_{S_1}\times\cdots\times\Sigma_{S_k} ]
+[1-10:P8478; UTF16 327647] is an exact replacement for the joint separator if and only if:
+[1-10:P8479; UTF16 327711] every joint exterior experiment factors through the tuple of marginal residuals; and
+[1-10:P8480; UTF16 327796] the reachable joint relation is determined by that tuple.
+[1-10:P8481; UTF16 327854] Otherwise the joint quotient is strictly richer.
+[1-10:P8483; UTF16 327909] If both conditions hold, equal marginal classes imply equal joint experiment outcomes, so the tuple is an exact summary.
+[1-10:P8484; UTF16 328030] Conversely, if either condition fails, there exist states with the same marginal tuple but different joint behavior or correlation. A joint experiment distinguishes them, making the product summary unsound. ∎
+[1-10:P8485; UTF16 328239] Multiport structural, airflow, electrical, shaft, and construction systems must therefore use joint separator states unless independence is certified.
+[1-10:P8489; UTF16 328393] 22. Conditional Decision Width
+[1-10:P8490; UTF16 328424] 22.1 Conditioning on realization knowledge
+[1-10:P8492; UTF16 328471] [ A\subseteq\mathcal X_L ]
+[1-10:P8493; UTF16 328498] be the regional states compatible with a valid condition such as:
+[1-10:P8494; UTF16 328564] structural system fixed;
+[1-10:P8495; UTF16 328589] building height fixed;
+[1-10:P8496; UTF16 328612] product family eliminated;
+[1-10:P8497; UTF16 328639] façade rhythm frozen.
+[1-10:P8498; UTF16 328661] DEF-DS13 — Conditional separator quotient
+[1-10:P8500; UTF16 328710] A/ \left( \equiv_{\partial L}\cap(A\times A) \right). ]
+[1-10:P8502; UTF16 328773] \log_2|\Sigma_L\mid A|. ]
+[1-10:P8506; UTF16 328802] THM-DS12 — Conditioning Monotonicity
+[1-10:P8507; UTF16 328839] For fixed exterior experiment theory,
+[1-10:P8508; UTF16 328877] [ |\Sigma_L\mid A| \le |\Sigma_L|. ]
+[1-10:P8510; UTF16 328924] [ W_D(L\mid A) \le W_D(L). ]
+[1-10:P8512; UTF16 328959] Every conditional class is the nonempty intersection of (A) with an original separator class.
+[1-10:P8513; UTF16 329053] Conditioning can:
+[1-10:P8514; UTF16 329071] remove a class;
+[1-10:P8515; UTF16 329087] reduce the members of a class.
+[1-10:P8516; UTF16 329118] It cannot split one original class because the experiment theory and equivalence relation are unchanged.
+[1-10:P8517; UTF16 329223] Hence the number of nonempty conditional classes cannot increase. ∎
+[1-10:P8521; UTF16 329294] 22.2 Distinguish conditioning from theory expansion
+[1-10:P8522; UTF16 329346] Conditioning the realizable state set tends to decrease width.
+[1-10:P8523; UTF16 329409] Adding new experiments, hazards, evidence obligations, or stakeholder distinctions may increase width.
+[1-10:P8524; UTF16 329512] These are different mathematical operations and must not be conflated.
+[1-10:P8528; UTF16 329586] 23. Theory-Monotonicity
+[1-10:P8529; UTF16 329610] THM-DS13 — Theory-Monotonicity of Decision Width
+[1-10:P8531; UTF16 329667] [ \mathcal T_1 \subseteq \mathcal T_2 ]
+[1-10:P8532; UTF16 329707] in the sense that every exterior experiment admitted by (\mathcal T_1) is also admitted by (\mathcal T_2).
+[1-10:P8534; UTF16 329819] [ \equiv_{\partial L}^{\mathcal T_2} \subseteq \equiv_{\partial L}^{\mathcal T_1}, ]
+[1-10:P8536; UTF16 329907] [ |\Sigma_L^{\mathcal T_1}| \le |\Sigma_L^{\mathcal T_2}| ]
+[1-10:P8538; UTF16 329971] [ W_D^{\mathcal T_1}(L) \le W_D^{\mathcal T_2}(L). ]
+[1-10:P8540; UTF16 330030] If two states agree under every experiment in the larger theory, they agree under the subset belonging to the smaller theory.
+[1-10:P8541; UTF16 330156] Thus larger theories induce finer equivalence relations and at least as many quotient classes. ∎
+[1-10:P8543; UTF16 330269] More reality can require more irreducible information.
+[1-10:P8544; UTF16 330324] This is a safety property, not a failure of compression.
+[1-10:P8548; UTF16 330384] 23.1 Safe observation projection
+[1-10:P8550; UTF16 330421] [ \pi_O: \mathsf{Outcome} \to \mathsf{Outcome}' ]
+[1-10:P8551; UTF16 330471] be an officially approved projection.
+[1-10:P8552; UTF16 330509] The projected theory observes only
+[1-10:P8553; UTF16 330544] [ \pi_O(\mathsf{Out}_e(x)). ]
+[1-10:P8554; UTF16 330574] THM-DS13A — Safe-abstraction monotonicity
+[1-10:P8555; UTF16 330616] The projected theory has width no greater than the original theory:
+[1-10:P8556; UTF16 330684] [ W_D'(L) \le W_D(L). ]
+[1-10:P8558; UTF16 330714] Every distinction in the projected theory is inherited from a distinction in the original theory, while (\pi_O) may identify previously distinct outcomes.
+[1-10:P8559; UTF16 330869] Thus projected equivalence is coarser. ∎
+[1-10:P8560; UTF16 330910] The theorem is valid only when the projected distinctions are formally removed from the admitted decision theory. It is not permission to discard inconvenient safety or evidence information.
+[1-10:P8564; UTF16 331104] 24. Repeated Motifs and Width Scaling
+[1-10:P8566; UTF16 331146] [ M^{\otimes n} ]
+[1-10:P8567; UTF16 331164] denote (n) copies of a repeated motif under a declared associative composition.
+[1-10:P8568; UTF16 331244] Three asymptotic regimes are possible.
+[1-10:P8572; UTF16 331286] 24.1 Contractive semantic repetition
+[1-10:P8573; UTF16 331323] Let motif states be demand values
+[1-10:P8574; UTF16 331357] [ a\in{0,\ldots,B} ]
+[1-10:P8575; UTF16 331378] with composition
+[1-10:P8576; UTF16 331395] \min(B,a+b). ]
+[1-10:P8577; UTF16 331410] Then for every (n),
+[1-10:P8578; UTF16 331430] [ |\Sigma_n| \le B+1. ]
+[1-10:P8580; UTF16 331459] [ W_D(n)=O(1). ]
+[1-10:P8581; UTF16 331476] The repeated system can have exponentially many internal arrangements while exposing only a fixed saturated aggregate.
+[1-10:P8585; UTF16 331598] 24.2 Accumulative repetition
+[1-10:P8586; UTF16 331627] Let each motif contribute an integer in
+[1-10:P8587; UTF16 331667] [ {0,\ldots,B}, ]
+[1-10:P8588; UTF16 331685] and let the exterior observe the exact unsaturated total.
+[1-10:P8589; UTF16 331743] Then after (n) motifs,
+[1-10:P8590; UTF16 331766] {0,\ldots,nB}. ]
+[1-10:P8592; UTF16 331793] nB+1, ]
+[1-10:P8594; UTF16 331805] \Theta(\log n) ]
+[1-10:P8595; UTF16 331822] for fixed (B).
+[1-10:P8599; UTF16 331840] 24.3 Fully distinguishable repetition
+[1-10:P8600; UTF16 331878] Let each motif emit one independent bit, and admit exterior experiments querying each position.
+[1-10:P8602; UTF16 331979] 2^n, ]
+[1-10:P8604; UTF16 331990] [ W_D(n)=n. ]
+[1-10:P8605; UTF16 332004] Repetition alone provides no compression.
+[1-10:P8609; UTF16 332049] PRO-DS1 — Three repetition regimes
+[1-10:P8610; UTF16 332084] All three regimes occur in finite exact ANANKE-F systems.
+[1-10:P8611; UTF16 332142] The proofs are the explicit constructions above.
+[1-10:P8615; UTF16 332194] 25. Repeated-Motif Algebra
+[1-10:P8616; UTF16 332221] DEF-DS14 — Semantic repetition monoid
+[1-10:P8617; UTF16 332259] Suppose the canonical motif separator states form a set (M) with operation
+[1-10:P8618; UTF16 332334] [ \odot\times M\to M ]
+[1-10:P8619; UTF16 332357] and identity (1_M), satisfying:
+[1-10:P8620; UTF16 332389] closure;
+[1-10:P8621; UTF16 332398] associativity;
+[1-10:P8622; UTF16 332413] congruence with physical composition;
+[1-10:P8623; UTF16 332451] experiment preservation.
+[1-10:P8625; UTF16 332481] [ (M,\odot,1_M) ]
+[1-10:P8626; UTF16 332499] is a semantic repetition monoid.
+[1-10:P8630; UTF16 332535] THM-DS17 — Repeated-Motif Algebra
+[1-10:P8631; UTF16 332569] For motif states
+[1-10:P8632; UTF16 332586] [ s_1,\ldots,s_n\in M, ]
+[1-10:P8633; UTF16 332611] the separator state of their repeated composition is
+[1-10:P8634; UTF16 332664] s_1\odot\cdots\odot s_n, ]
+[1-10:P8635; UTF16 332691] independent of parenthesization.
+[1-10:P8636; UTF16 332724] If all (n) motifs have the same state (s), then
+[1-10:P8637; UTF16 332772] [ s^{\odot n} ]
+[1-10:P8638; UTF16 332788] can be computed by exponentiation by squaring in
+[1-10:P8639; UTF16 332837] [ O(\log n) ]
+[1-10:P8640; UTF16 332851] monoid operations.
+[1-10:P8641; UTF16 332870] For nonidentical states:
+[1-10:P8642; UTF16 332895] total work is (O(n));
+[1-10:P8643; UTF16 332917] balanced parallel depth is (O(\log n));
+[1-10:P8644; UTF16 332957] all prefixes can be computed by a parallel prefix scan.
+[1-10:P8646; UTF16 333019] Associativity gives parenthesization independence.
+[1-10:P8647; UTF16 333070] The exponentiation and balanced-reduction bounds follow from the standard recursive identities
+[1-10:P8648; UTF16 333165] s^m\odot s^m, ]
+[1-10:P8649; UTF16 333181] s\odot s^{2m}. ]
+[1-10:P8650; UTF16 333198] Every operation is a quotient transition and therefore preserves complete experiments. ∎
+[1-10:P8651; UTF16 333287] The theorem does not apply when exceptions destroy closure or require state outside (M). In that case the state space must be enlarged or repetition handled nonmonoidally.
+[1-10:P8655; UTF16 333462] 26. Witness Reconstruction
+[1-10:P8656; UTF16 333489] 26.1 Backpointer representation
+[1-10:P8657; UTF16 333521] For every message state (s\in M_v), store one record:
+[1-10:P8658; UTF16 333575] \begin{cases} \text{local leaf assignment},&v\text{ leaf},\ (s_{u_1},\ldots,s_{u_k},\theta),&v\text{ internal}. \end{cases} ]
+[1-10:P8659; UTF16 333701] Records share child references and therefore form a DAG.
+[1-10:P8663; UTF16 333761] THM-DS14 — Witness Reconstruction
+[1-10:P8664; UTF16 333795] For every realizable root quotient state (s_r), the DP can reconstruct a complete concrete ANANKE-F realization whose compiled root state is (s_r).
+[1-10:P8665; UTF16 333943] With one stored backpointer per message state:
+[1-10:P8666; UTF16 333990] pointer memory is [ O!\left(\sum_vq_v\right); ]
+[1-10:P8667; UTF16 334038] reconstruction visits at most one record per selected decomposition node;
+[1-10:P8668; UTF16 334112] reconstruction time is [ O(|T|+|x|), ] where (|x|) is the emitted realization size.
+[1-10:P8670; UTF16 334202] Proceed recursively from the root backpointer.
+[1-10:P8671; UTF16 334249] At a leaf, the stored assignment realizes the leaf state.
+[1-10:P8672; UTF16 334307] At an internal node, recursively reconstruct each child state and apply the stored local choice (\theta).
+[1-10:P8673; UTF16 334413] Correctness of the quotient transition guarantees that the assembled parent occupies the stored parent state.
+[1-10:P8674; UTF16 334523] Induction reaches a complete root realization.
+[1-10:P8675; UTF16 334570] Each selected node is visited once. ∎
+[1-10:P8679; UTF16 334611] 26.2 Multiple witnesses
+[1-10:P8680; UTF16 334635] Storing up to (k) backpointers per state requires
+[1-10:P8681; UTF16 334685] [ O!\left( k\sum_vq_v \right) ]
+[1-10:P8682; UTF16 334717] pointer memory.
+[1-10:P8683; UTF16 334733] Reconstructing (k) witnesses is output-sensitive.
+[1-10:P8684; UTF16 334783] Enumerating all witnesses may be exponential even when decision computation is polynomial, because one quotient state may represent exponentially many concrete realizations.
+[1-10:P8688; UTF16 334960] 27. Choice-Complete Portfolio Preservation
+[1-10:P8689; UTF16 335003] DEF-DS15 — Exact finite choice-complete portfolio
+[1-10:P8691; UTF16 335057] [ Q_r^{\mathrm{reach}} ]
+[1-10:P8692; UTF16 335082] be the reachable closed root states.
+[1-10:P8693; UTF16 335119] A canonical choice-complete state portfolio is
+[1-10:P8694; UTF16 335166] \left{ q\in Q_r^{\mathrm{reach}}: \exists d,M \text{ admitted such that } q \text{ is selected in }M \right}. ]
+[1-10:P8695; UTF16 335278] A concrete portfolio chooses one witness for each state in (A_Q^\star).
+[1-10:P8696; UTF16 335350] If witness diversity is itself admitted as a decision criterion, it must be represented by additional state distinctions or a separate approved diversity relation.
+[1-10:P8700; UTF16 335517] THM-DS15 — Choice Preservation Under Separator DP
+[1-10:P8701; UTF16 335567] The quotient-DP portfolio is exactly the portfolio obtained by explicit evaluation of all global realizations, modulo contextual equivalence.
+[1-10:P8703; UTF16 335715] THM-DS7 establishes that the root DP states are exactly the quotient classes of all explicit global assignments.
+[1-10:P8704; UTF16 335828] Prompt 2’s marked-candidate experiment preservation establishes that every admitted menu returns the same selected quotient labels whether evaluated:
+[1-10:P8705; UTF16 335978] on the explicit realization set;
+[1-10:P8706; UTF16 336011] or on one representative per root quotient class.
+[1-10:P8707; UTF16 336061] Therefore the union of selected quotient classes is identical.
+[1-10:P8708; UTF16 336124] Witness reconstruction supplies one concrete member of every selected class. ∎
+[1-10:P8712; UTF16 336206] 28. Evidence- and Safety-Aware Separators
+[1-10:P8713; UTF16 336248] THM-DS16 — Evidence-Aware Separator Sufficiency
+[1-10:P8714; UTF16 336296] Any exact separator quotient under ANANKE’s inherited experiment theory must preserve every semantic evidence distinction capable of changing:
+[1-10:P8715; UTF16 336439] a mandatory evidence obligation;
+[1-10:P8716; UTF16 336472] a model-applicability status;
+[1-10:P8717; UTF16 336502] a stakeholder decision;
+[1-10:P8718; UTF16 336526] a code interpretation;
+[1-10:P8719; UTF16 336549] a release decision;
+[1-10:P8720; UTF16 336569] a downstream evidence dependency.
+[1-10:P8722; UTF16 336609] Suppose regional states (x) and (y) differ in such an evidence distinction.
+[1-10:P8723; UTF16 336685] By assumption, some admitted mandatory query or decision experiment observes the distinction.
+[1-10:P8725; UTF16 336789] [ \mathsf{Out}_e(x) \ne \mathsf{Out}_e(y) ]
+[1-10:P8726; UTF16 336833] for that experiment.
+[1-10:P8728; UTF16 336860] [ x\not\equiv_{\partial L}y. ]
+[1-10:P8729; UTF16 336891] They occupy different separator classes. ∎
+[1-10:P8733; UTF16 336937] 28.1 Evidence-width example
+[1-10:P8734; UTF16 336965] Let two regional systems have identical physical responses.
+[1-10:P8735; UTF16 337025] State (x) has validated evidence:
+[1-10:P8736; UTF16 337059] [ \mathsf{EvStatus}(x)=\mathsf{validated}. ]
+[1-10:P8737; UTF16 337104] State (y) has an unresolved applicability obligation:
+[1-10:P8738; UTF16 337158] [ \mathsf{EvStatus}(y)=\mathsf{unresolved}. ]
+[1-10:P8739; UTF16 337204] Ignoring evidence yields one apparent state.
+[1-10:P8740; UTF16 337249] The exact separator has two states:
+[1-10:P8741; UTF16 337285] [ |\Sigma_L|=2. ]
+[1-10:P8742; UTF16 337303] Ignoring evidence reduces the apparent state count by (2\times), but produces an invalid merge.
+[1-10:P8746; UTF16 337402] 28.2 Safety-preserving separators
+[1-10:P8747; UTF16 337436] Suppose two valve networks have equal nominal pressure-flow response.
+[1-10:P8748; UTF16 337506] Network (x) has independent isolation paths.
+[1-10:P8749; UTF16 337551] Network (y) has a common-cause isolation failure.
+[1-10:P8750; UTF16 337601] A downstream maintenance-failure context produces different outage consequences.
+[1-10:P8753; UTF16 337724] Nominal boundary physics alone is not a sufficient separator summary.
+[1-10:P8757; UTF16 337797] 29. Optimal Decomposition Problem
+[1-10:P8758; UTF16 337831] 29.1 Exact optimization
+[1-10:P8760; UTF16 337862] [ \mathcal D^\star \in \arg\min_{\mathcal D\in\mathfrak D(\mathfrak P)} W_D(\mathcal D). ]
+[1-10:P8761; UTF16 337953] For actual running time, one may instead minimize
+[1-10:P8762; UTF16 338003] [ W_J(\mathcal D) ]
+[1-10:P8763; UTF16 338023] or the exact profile cost
+[1-10:P8764; UTF16 338049] [ \sum_v c_v 2^{j_v}. ]
+[1-10:P8765; UTF16 338073] A decomposition minimizing maximum message width need not minimize total join work.
+[1-10:P8769; UTF16 338160] 29.2 Fixed decomposition width is computable
+[1-10:P8770; UTF16 338205] For a finite explicit decomposition:
+[1-10:P8771; UTF16 338242] enumerate each regional carrier;
+[1-10:P8772; UTF16 338275] construct its exterior experiment transition system;
+[1-10:P8773; UTF16 338328] apply Prompt 2 ALG-MN1;
+[1-10:P8774; UTF16 338352] count quotient classes.
+[1-10:P8775; UTF16 338376] Therefore (W_D(\mathcal D)) is decidable.
+[1-10:P8779; UTF16 338421] 29.3 Optimal decomposition is decidable
+[1-10:P8780; UTF16 338461] The legal decomposition family is finite under bounded factors, types, and decomposition grammar.
+[1-10:P8781; UTF16 338559] Enumerating every legal decomposition and selecting the least width terminates.
+[1-10:P8782; UTF16 338639] The procedure may be superexponential.
+[1-10:P8786; UTF16 338681] ALG-DS2 — ExactWidthDecomposition
+[1-10:P8788; UTF16 338722]     finite factorization P
+[1-10:P8789; UTF16 338749]     finite legal decomposition grammar
+[1-10:P8791; UTF16 338789] best ← none
+[1-10:P8793; UTF16 338802] for every legal decomposition D:
+[1-10:P8794; UTF16 338835]     separatorTables ← BottomUpQuotientCompile(P,D)
+[1-10:P8795; UTF16 338886]     width ← max separator log-cardinality
+[1-10:P8796; UTF16 338928]     joinCost ← exact profile cost
+[1-10:P8798; UTF16 338963]     if (width,joinCost,canonicalEncoding(D))
+[1-10:P8799; UTF16 339008]        is lexicographically better than best:

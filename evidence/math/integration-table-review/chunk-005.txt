@@ -1,0 +1,193 @@
+[table native13560 continued columns] ["Architecture", "Semantic fidelity", "Exactness potential", "Routing feedback", "Discrete topology", "Geometry", "Proof support", "Pareto", "Workstation practicality", "Principal failure"]
+[table native13560 row1] {"cells": ["Architecture then routing", "Low", "Low", "None until late", "Moderate", "Moderate", "Candidate-only", "Weak", "High", "Arbitrarily bad coupling regret"]}
+[table native13560 row2] {"cells": ["Routing-first", "Low", "Low", "Reverse one-way", "Weak", "Weak", "Route-only", "Weak", "High", "Routes dictate bad architecture"]}
+[table native13560 row3] {"cells": ["Monolithic MILP/MINLP", "Potentially high on finite approximation", "High on tiny bounded model", "Direct", "High", "Difficult", "Solver-proof dependent", "Possible", "Poor at scale", "State explosion and mixed semantics"]}
+[table native13560 row4] {"cells": ["Alternating exact blocks", "Moderate", "Local only", "Strong local", "High", "Moderate", "Block-local", "Weak", "Moderate", "Coordinatewise nonglobal traps"]}
+[table native13560 row5] {"cells": ["Classical Benders", "High for fixed LP parameterization", "High", "Strong dual cuts", "Master handles discrete", "Only through fixed coefficients", "Strong", "Scalar subproblems", "High", "Invalid when route universe changes"]}
+[table native13560 row6] {"cells": ["Generalized Benders", "High for convex continuous fibers", "High under assumptions", "Lagrangian cuts", "Limited direct discrete support", "Smooth parameterization", "Strong when qualified", "Scalar/epsilon", "Moderate", "Fails across route-class changes"]}
+[table native13560 row7] {"cells": ["Logic-based Benders", "High", "High on finite exact domain", "Conflict cuts", "Excellent", "Via proved implications", "Strong", "Compatible", "Moderate", "Cut-strength proof can be hard"]}
+[table native13560 row8] {"cells": ["Branch-and-Benders-cut", "High", "Exact finite closure possible", "Strong", "Excellent", "Through materialization oracle", "Strong", "Compatible", "Moderate", "Nested exponential search"]}
+[table native13560 row9] {"cells": ["Blackboard orchestration", "Variable", "Variable", "Flexible", "Flexible", "Flexible", "Weak unless formalized", "Flexible", "High", "No canonical validity semantics"]}
+[table native13560 row10] {"cells": ["CEGAR co-design", "High for abstractions", "Exact under finite refinement", "Counterexamples", "High", "Strong", "Strong", "Compatible", "Moderate", "Refinement may proliferate"]}
+[table native13560 row11] {"cells": ["Selected JCD hierarchy", "High", "Exact or bounded by modality", "Dual, conflict, geometry, and repair channels", "High", "Candidate PCSIR + PCROUTE", "Explicit cut kernel", "Exact finite or partial archive", "Designed for one workstation", "Nested search remains hard"]}
+[table native14952 row0] {"columns": ["No.", "Artifact", "Proposition", "Checker", "Arithmetic", "Invalidation"]}
+[table native14952 row1] {"cells": ["1", "Baseline PCSIR applicability", "Baseline applies", "PCSIR checker", "hashes/types", "baseline root"]}
+[table native14952 row2] {"cells": ["2", "Rewrite authorization", "Actor may perform rewrite", "authority checker", "logic/time", "authority/version"]}
+[table native14952 row3] {"cells": ["3", "Rewrite precondition", "Rewrite applies", "transaction checker", "typed logic", "source state"]}
+[table native14952 row4] {"cells": ["4", "Rewrite correspondence", "Old/new identities map correctly", "RT checker", "finite relation", "rewrite"]}
+[table native14952 row5] {"cells": ["5", "Master assignment", "Assignment is typed/legal", "master checker", "finite/discrete", "schema"]}
+[table native14952 row6] {"cells": ["6", "Materialization", "Candidate follows from assignment", "materializer checker", "mixed", "assignment/rewrite"]}
+[table native14952 row7] {"cells": ["7", "Candidate PCSIR", "Candidate satisfies Prompt 1", "PCSIR checker", "mixed exact", "candidate roots"]}
+[table native14952 row8] {"cells": ["8", "PCROUTE applicability", "Route request matches candidate", "RTR checker", "types/hashes", "candidate/request"]}
+[table native14952 row9] {"cells": ["9", "PCROUTE result", "Routed proposition holds", "PCROUTE checker", "mixed exact", "route roots"]}
+[table native14952 row10] {"cells": ["10", "Route upper bound", "Disposed witness cost", "objective checker", "rational/interval", "route/objective"]}
+[table native14952 row11] {"cells": ["11", "Route lower bound", "Valid relaxation bound", "dual/pricing checker", "rational", "column universe"]}
+[table native14952 row12] {"cells": ["12", "No-good cut", "Excludes exact assignment", "Boolean checker", "integer", "schema"]}
+[table native14952 row13] {"cells": ["13", "Partial no-good", "Every extension infeasible", "logic checker", "SAT/SMT", "core/domain"]}
+[table native14952 row14] {"cells": ["14", "Core sufficiency", "Core literals imply conflict", "theorem checker", "mixed", "conflict/mapping"]}
+[table native14952 row15] {"cells": ["15", "Logic cut", "Literal cut is valid", "logic-Benders checker", "integer", "core"]}
+[table native14952 row16] {"cells": ["16", "Capacity cut", "Mandatory demand exceeds capacity", "cut checker", "rational/integer", "resources/topology"]}
+[table native14952 row17] {"cells": ["17", "Geometric cut", "Preserved separator blocks route", "geometry checker", "exact/interval", "geometry/envelope"]}
+[table native14952 row18] {"cells": ["18", "Classical optimality cut", "Dual underestimates route LP", "rational LP checker", "rational", "\\(W,c,T\\)"]}
+[table native14952 row19] {"cells": ["19", "Benders feasibility cut", "Farkas inequality necessary", "Farkas checker", "rational", "\\(W,T\\)"]}
+[table native14952 row20] {"cells": ["20", "Generalized-Benders cut", "Lagrangian envelope lower-bounds", "convex checker", "rational/interval", "model/domain"]}
+[table native14952 row21] {"cells": ["21", "Dual scope", "Multiplier bound to exact primal", "scope checker", "hashes/types", "primal roots"]}
+[table native14952 row22] {"cells": ["22", "Cut lift", "Point cut valid over region", "theorem/SMT checker", "mixed", "region roots"]}
+[table native14952 row23] {"cells": ["23", "Cut dominance", "One cut subsumes another", "cut checker", "logic/rational", "both cuts"]}
+[table native14952 row24] {"cells": ["24", "Cut applicability", "Active roots match domain", "dependency checker", "hashes/types", "any cut root"]}
+[table native14952 row25] {"cells": ["25", "Master lower bound", "Node objective lower bound", "master checker", "rational/interval", "node/cuts"]}
+[table native14952 row26] {"cells": ["26", "Candidate upper bound", "Joint witness objective", "joint checker", "rational/interval", "candidate"]}
+[table native14952 row27] {"cells": ["27", "Outer branch", "Children partition parent", "branch checker", "finite logic", "branch rule"]}
+[table native14952 row28] {"cells": ["28", "Pareto dominance", "Candidate dominates another", "objective checker", "exact", "objectives"]}
+[table native14952 row29] {"cells": ["29", "Pareto nondominance", "No feasible covered state dominates", "coverage checker", "mixed", "archive/search"]}
+[table native14952 row30] {"cells": ["30", "Interval objective", "Exact value enclosed", "interval checker", "outward interval", "analyses"]}
+[table native14952 row31] {"cells": ["31", "Contextual quotient", "Merged states indistinguishable", "experiment checker", "finite functions", "experiments"]}
+[table native14952 row32] {"cells": ["32", "Master CEGAR", "Refinement preserves/constricts domain", "abstraction checker", "set/logic", "partition"]}
+[table native14952 row33] {"cells": ["33", "AI proposal disposal", "Proposal passed typed gates", "transaction checker", "logic", "proposal/authority"]}
+[table native14952 row34] {"cells": ["34", "Sovereignty", "Protected roots preserved/authorized", "sovereignty checker", "logic", "protected state"]}
+[table native14952 row35] {"cells": ["35", "Scheduler provenance", "Computation order recorded", "provenance checker", "hashes", "scheduler"]}
+[table native14952 row36] {"cells": ["36", "Incremental recertification", "Incremental equals current semantics", "dependency checker", "mixed", "dependency graph"]}
+[table native14952 row37] {"cells": ["37", "Checkpoint", "Resume state complete", "checkpoint checker", "hashes", "all transition roots"]}
+[table native14952 row38] {"cells": ["38", "PCJCD root", "Final JCD mode valid", "PCJCD checker", "mixed exact", "entire package"]}
+[table native15238 row0] {"columns": ["\\(x_1\\)", "\\(x_2\\)", "Feasible?", "Route value", "Total"]}
+[table native15238 row1] {"cells": ["0", "0", "No", "\\(+\\infty\\)", "—"]}
+[table native15238 row2] {"cells": ["0", "1", "No", "\\(+\\infty\\)", "—"]}
+[table native15238 row3] {"cells": ["1", "0", "Yes", "1", "2"]}
+[table native15238 row4] {"cells": ["1", "1", "Yes", "0", "\\(8/5\\)"]}
+[table native15510 row0] {"columns": ["ID", "Test", "Required typed result"]}
+[table native15510 row1] {"cells": ["1", "Import superseded DS19", "SUPERSEDED_IMPORT_REJECTED"]}
+[table native15510 row2] {"cells": ["2", "Import RTR dual without candidate root", "DUAL_SCOPE_INCOMPLETE"]}
+[table native15510 row3] {"cells": ["3", "Reuse RTR pricing closure at changed geometry", "STALE_ROUTING_BOUND"]}
+[table native15510 row4] {"cells": ["4", "Treat MW convex load map as affine", "ADD_RTR3_1_VIOLATION"]}
+[table native15510 row5] {"cells": ["5", "Accepted Prompt-2 exact feasible package", "RTR_IMPORT_VALID"]}
+[table native15510 row6] {"cells": ["6", "Prompt-2 UNKNOWN promoted to infeasible", "UNKNOWN_PROMOTION"]}
+[table native15510 row7] {"cells": ["7", "Prompt-2 branch-local price called global", "DUAL_SCOPE_INVALID"]}
+[table native15510 row8] {"cells": ["8", "Prompt-2 repair price with empty dual support", "REPAIR_PROVENANCE_INVALID"]}
+[table native15510 row9] {"cells": ["9", "Master variable missing unit", "MASTER_TYPE_FAILURE"]}
+[table native15510 row10] {"cells": ["10", "Two owners claim same variable", "MASTER_OWNERSHIP_CONFLICT"]}
+[table native15510 row11] {"cells": ["11", "Router-local variable inserted in global master", "OWNERSHIP_VIOLATION"]}
+[table native15510 row12] {"cells": ["12", "Viewer coordinate optimized", "NONAUTHORITATIVE_VARIABLE"]}
+[table native15510 row13] {"cells": ["13", "Continuous geometry variable outside bounds", "MASTER_DOMAIN_FAILURE"]}
+[table native15510 row14] {"cells": ["14", "Binary topology value fractional in exact assignment", "MASTER_ASSIGNMENT_INVALID"]}
+[table native15510 row15] {"cells": ["15", "Derived variable independently assigned", "DERIVATION_CONFLICT"]}
+[table native15510 row16] {"cells": ["16", "Protected root absent from registry", "SOVEREIGNTY_INCOMPLETE"]}
+[table native15510 row17] {"cells": ["17", "Rewrite touches protected wall without authorization", "SOVEREIGNTY_VIOLATION"]}
+[table native15510 row18] {"cells": ["18", "Authorization expired", "AUTHORITY_EXPIRED"]}
+[table native15510 row19] {"cells": ["19", "Route savings offered as authorization", "AUTHORITY_NONCREATION"]}
+[table native15510 row20] {"cells": ["20", "Valid authority witness", "REWRITE_AUTHORIZED"]}
+[table native15510 row21] {"cells": ["21", "Master assignment references nonexistent shaft", "empty materialization fiber"]}
+[table native15510 row22] {"cells": ["22", "Assignment has two permitted equipment orientations", "MATERIALIZATION_NONUNIQUE"]}
+[table native15510 row23] {"cells": ["23", "Nonunique materialization assigned one exact route value", "MATERIALIZATION_REFINEMENT_REQUIRED"]}
+[table native15510 row24] {"cells": ["24", "Candidate compiler emits malformed port", "candidate PCSIR REJECT"]}
+[table native15510 row25] {"cells": ["25", "Candidate compiler emits approximate mesh only", "APPROX_MATERIALIZATION"]}
+[table native15510 row26] {"cells": ["26", "Exact candidate PCSIR accepted", "CANDIDATE_PCSIR_VALID"]}
+[table native15510 row27] {"cells": ["27", "Candidate root differs from PCROUTE root", "PCROUTE_INAPPLICABLE"]}
+[table native15510 row28] {"cells": ["28", "Materialization UNKNOWN passed to exact PCROUTE", "blocked"]}
+[table native15510 row29] {"cells": ["29", "Candidate versions all match", "applicability PASS"]}
+[table native15510 row30] {"cells": ["30", "Child state fails rewrite postcondition", "rewrite REJECT"]}
+[table native15510 row31] {"cells": ["31", "Disjoint wall-color and equipment-route rewrites", "commute if dependencies disjoint"]}
+[table native15510 row32] {"cells": ["32", "Equipment move and alignment rewrite overlap", "noncommuting"]}
+[table native15510 row33] {"cells": ["33", "Rewrite correspondence maps two objects to one without merge type", "correspondence REJECT"]}
+[table native15510 row34] {"cells": ["34", "Rollback reconstructs exact parent hash", "PASS"]}
+[table native15510 row35] {"cells": ["35", "Rollback parent hash differs", "rollback REJECT"]}
+[table native15510 row36] {"cells": ["36", "Rewrite omits invalidation of route graph", "DEPENDENCY_INCOMPLETE"]}
+[table native15510 row37] {"cells": ["37", "Equipment catalog option incompatible with port medium", "candidate PCSIR REJECT"]}
+[table native15510 row38] {"cells": ["38", "Equipment option exceeds room access opening", "materialization REJECT"]}
+[table native15510 row39] {"cells": ["39", "Equipment placement inside eligible region", "placement PASS"]}
+[table native15510 row40] {"cells": ["40", "Equipment placement intersects maintenance zone", "hard FAIL"]}
+[table native15510 row41] {"cells": ["41", "Source assignment changes net identity correctly", "topology candidate PASS"]}
+[table native15510 row42] {"cells": ["42", "Source assignment changes without net update", "NET_IDENTITY_FAILURE"]}
+[table native15510 row43] {"cells": ["43", "Loop topology used where radial required", "topology REJECT"]}
+[table native15510 row44] {"cells": ["44", "Manifold insertion updates aggregate flows", "topology PASS"]}
+[table native15510 row45] {"cells": ["45", "Topology rewrite leaves old route columns", "stale-column rejection"]}
+[table native15510 row46] {"cells": ["46", "Shaft activated without geometry materialization", "candidate REJECT"]}
+[table native15510 row47] {"cells": ["47", "Shaft capacity lower than mandatory cut demand", "capacity cut"]}
+[table native15510 row48] {"cells": ["48", "Shaft widening violates usable-area floor", "master hard FAIL"]}
+[table native15510 row49] {"cells": ["49", "Riser moved across protected fire compartment", "sovereignty FAIL"]}
+[table native15510 row50] {"cells": ["50", "Corridor reservation exceeds editable zone", "master FAIL"]}
+[table native15510 row51] {"cells": ["51", "Corridor width interval straddles route feasibility", "abstract MIXED"]}
+[table native15510 row52] {"cells": ["52", "Wider corridor gives valid exact candidate", "PCSIR check"]}
+[table native15510 row53] {"cells": ["53", "Penetration selected outside candidate family", "master FAIL"]}
+[table native15510 row54] {"cells": ["54", "Penetration conflicts with structure", "candidate PCSIR FAIL"]}
+[table native15510 row55] {"cells": ["55", "Authorized structural opening passes structural checker", "candidate eligible"]}
+[table native15510 row56] {"cells": ["56", "PCROUTE called on exact candidate", "route evaluation proceeds"]}
+[table native15510 row57] {"cells": ["57", "PCROUTE feasible witness", "routing upper bound"]}
+[table native15510 row58] {"cells": ["58", "PCROUTE pricing-closed LP", "routing lower bound"]}
+[table native15510 row59] {"cells": ["59", "PCROUTE bounded gap", "interval route value"]}
+[table native15510 row60] {"cells": ["60", "PCROUTE UNKNOWN", "route value UNKNOWN"]}
+[table native15510 row61] {"cells": ["61", "PCROUTE exact infeasibility", "route value \\(+\\infty\\)"]}
+[table native15510 row62] {"cells": ["62", "No inner path only", "not infeasible"]}
+[table native15510 row63] {"cells": ["63", "Candidate route objective policy differs", "route cache miss"]}
+[table native15510 row64] {"cells": ["64", "Route witness cost 100", "upper bound 100"]}
+[table native15510 row65] {"cells": ["65", "LP lower bound 90", "lower bound 90"]}
+[table native15510 row66] {"cells": ["66", "Upper 100 lower 90", "route interval [90,100]"]}
+[table native15510 row67] {"cells": ["67", "Lower exceeds upper", "certificate inconsistency"]}
+[table native15510 row68] {"cells": ["68", "UNKNOWN represented as 1e12 penalty", "UNKNOWN_PROMOTION"]}
+[table native15510 row69] {"cells": ["69", "Infeasible candidate omitted from scalar arithmetic", "valid"]}
+[table native15510 row70] {"cells": ["70", "Classical Benders primal matrix matches cut", "continue"]}
+[table native15510 row71] {"cells": ["71", "Dual feasible vector", "lower-bound cut"]}
+[table native15510 row72] {"cells": ["72", "Dual violates one column inequality", "cut REJECT"]}
+[table native15510 row73] {"cells": ["73", "Benders cut sign reversed", "cut REJECT"]}
+[table native15510 row74] {"cells": ["74", "Exact example first Farkas ray", "feasibility cut \\(2x_1+x_2\\ge2\\)"]}
+[table native15510 row75] {"cells": ["75", "Exact example optimality dual", "\\(\\eta\\ge2-x_1-x_2\\)"]}
+[table native15510 row76] {"cells": ["76", "Exact final solution", "\\(x=(1,1),z=8/5\\)"]}
+[table native15510 row77] {"cells": ["77", "\\(W\\) changes after geometry rewrite", "old cut stale"]}
+[table native15510 row78] {"cells": ["78", "\\(c\\) changes after objective update", "old dual stale"]}
+[table native15510 row79] {"cells": ["79", "New route column violates old dual", "COLUMN_UNIVERSE_CHANGED"]}
+[table native15510 row80] {"cells": ["80", "Resource renamed but numeric coefficients equal", "semantic mismatch"]}
+[table native15510 row81] {"cells": ["81", "Branch-local dual exported to root", "CUT_SCOPE_INVALID"]}
+[table native15510 row82] {"cells": ["82", "Incomplete pricing dual proposed", "cut REJECT"]}
+[table native15510 row83] {"cells": ["83", "Full pricing closure certified", "dual eligible for scoped cut"]}
+[table native15510 row84] {"cells": ["84", "Restricted Farkas ray without Farkas pricing", "not global infeasibility"]}
+[table native15510 row85] {"cells": ["85", "Full Farkas closure", "feasibility cut eligible"]}
+[table native15510 row86] {"cells": ["86", "Convex GBD subproblem with Slater", "multiplier cut accepted"]}
+[table native15510 row87] {"cells": ["87", "Discrete route class hidden in continuous model", "GBD precondition FAIL"]}
+[table native15510 row88] {"cells": ["88", "Local nonlinear multiplier", "heuristic only"]}
+[table native15510 row89] {"cells": ["89", "GBD cut \\(\\eta\\ge8-4w\\) on original class", "valid"]}
+[table native15510 row90] {"cells": ["90", "Same cut after cheap alternate class", "invalid"]}
+[table native15510 row91] {"cells": ["91", "Lagrangian envelope computed with unsafe local minimum", "cut REJECT"]}
+[table native15510 row92] {"cells": ["92", "Exact no-good at one assignment", "excludes exactly one"]}
+[table native15510 row93] {"cells": ["93", "Partial no-good without extension proof", "cut REJECT"]}
+[table native15510 row94] {"cells": ["94", "Partial core all extensions infeasible", "logic cut accepted"]}
+[table native15510 row95] {"cells": ["95", "Core contains unentailed route class", "cut REJECT"]}
+[table native15510 row96] {"cells": ["96", "E1-A/S1-off/T1 core", "three-literal cut accepted"]}
+[table native15510 row97] {"cells": ["97", "Drop T1 from that proof", "counterexample found"]}
+[table native15510 row98] {"cells": ["98", "Stronger core cut excludes superset", "dominance certificate"]}
+[table native15510 row99] {"cells": ["99", "Core theorem version changes", "cut stale"]}
+[table native15510 row100] {"cells": ["100", "Capacity cut ignores shared-trunk reduction", "cut REJECT"]}
+[table native15510 row101] {"cells": ["101", "Capacity map monotone and complete", "cut accepted"]}
+[table native15510 row102] {"cells": ["102", "Geometric separator preserved over interval", "lifted cut accepted"]}
+[table native15510 row103] {"cells": ["103", "Tiny wall move opens bypass", "lift rejected"]}
+[table native15510 row104] {"cells": ["104", "Portal set changes inside lifted domain", "cut lift UNKNOWN"]}
+[table native15510 row105] {"cells": ["105", "Cut \\(\\kappa_1\\) stronger everywhere", "remove dominated \\(\\kappa_2\\)"]}
+[table native15510 row106] {"cells": ["106", "Cut comparison domains differ", "dominance unresolved"]}
+[table native15510 row107] {"cells": ["107", "Old cut aged but roots unchanged", "remains valid"]}
+[table native15510 row108] {"cells": ["108", "Route-envelope version changes", "dependent cuts invalidated"]}
+[table native15510 row109] {"cells": ["109", "Objective policy changes", "lower-bound cuts invalidated"]}
+[table native15510 row110] {"cells": ["110", "Checker version changes", "cuts require recertification"]}
+[table native15510 row111] {"cells": ["111", "Branch-local cut installed globally", "MODAL_STRENGTHENING"]}
+[table native15510 row112] {"cells": ["112", "Exact global cut installed in child", "valid"]}
+[table native15510 row113] {"cells": ["113", "Dual scope includes candidate and node", "explanation accepted"]}
+[table native15510 row114] {"cells": ["114", "Dual field omits pricing-closure status", "explanation incomplete"]}
+[table native15510 row115] {"cells": ["115", "Interpolated field labeled exact", "modality failure"]}
+[table native15510 row116] {"cells": ["116", "Repair price interpreted as construction cost", "rejected"]}
+[table native15510 row117] {"cells": ["117", "Exact route dual reused after new column", "rejected"]}
+[table native15510 row118] {"cells": ["118", "Conflict suggests shaft activation", "proposal only"]}
+[table native15510 row119] {"cells": ["119", "Repair proposal passes authority and checks", "candidate generated"]}
+[table native15510 row120] {"cells": ["120", "Repair proposal violates protected room", "rejected"]}
+[table native15510 row121] {"cells": ["121", "Two-step repair outside declared radius", "neighborhood exclusion"]}
+[table native15510 row122] {"cells": ["122", "Repair distance called cost without semantics", "labeling failure"]}
+[table native15510 row123] {"cells": ["123", "Viewer-identical states with different hidden shaft capacity", "quotient separates"]}
+[table native15510 row124] {"cells": ["124", "Equal route cost but different carbon", "quotient separates"]}
+[table native15510 row125] {"cells": ["125", "Experiment family adds reliability objective", "quotient refines"]}
+[table native15510 row126] {"cells": ["126", "Quotient merger preserves every active function", "accepted"]}
+[table native15510 row127] {"cells": ["127", "Abstract cell contains feasible/infeasible placements", "MIXED"]}
+[table native15510 row128] {"cells": ["128", "Abstract feasible claim from one witness only", "overclaim"]}
+[table native15510 row129] {"cells": ["129", "Counterexample splits geometry box", "CEGAR refinement accepted"]}
+[table native15510 row130] {"cells": ["130", "Refinement child leaves parent concretization", "refinement invalid"]}
+[table native15510 row131] {"cells": ["131", "Finite atom refinement repeats split", "no-progress failure"]}
+[table native15510 row132] {"cells": ["132", "Exact objective vector A dominates D", "dominance PASS"]}
+[table native15510 row133] {"cells": ["133", "Unsupported point B under weighted sums", "remains Pareto"]}
+[table native15510 row134] {"cells": ["134", "Positive weighted optimum dominated", "impossible/check failure"]}
+[table native15510 row135] {"cells": ["135", "Interval dominance strict in all coordinates", "certified dominance"]}
+[table native15510 row136] {"cells": ["136", "Interval overlap", "dominance UNKNOWN"]}

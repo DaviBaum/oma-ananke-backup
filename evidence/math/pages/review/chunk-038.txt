@@ -1,0 +1,312 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P15070; UTF16 558994] def decisionMargin
+[1-10:P15071; UTF16 559013]     (q)
+[1-10:P15072; UTF16 559021]     (z : Profile q) : ENNReal :=
+[1-10:P15073; UTF16 559054]   edist z
+[1-10:P15074; UTF16 559064]     (Profile q \ reportCell q (report q z))
+[1-10:P15078; UTF16 559111] 59.8 Certified enclosure
+[1-10:P15079; UTF16 559136] structure CertifiedEnclosure
+[1-10:P15080; UTF16 559165]     (Y : Type) where
+[1-10:P15081; UTF16 559186]   set : Set Y
+[1-10:P15082; UTF16 559200]   containsTrue : TrueValue ∈ set
+[1-10:P15083; UTF16 559233]   validity : ValidityCertificate
+[1-10:P15084; UTF16 559266]   dependencies : Finset Dependency
+[1-10:P15088; UTF16 559304] 59.9 Approximate DP invariant
+[1-10:P15089; UTF16 559334] structure ApproxMessage where
+[1-10:P15090; UTF16 559364]   representative : State
+[1-10:P15091; UTF16 559389]   error : ErrorVec
+[1-10:P15093; UTF16 559439]   certificate :
+[1-10:P15094; UTF16 559455]     contextualDist trueState representative
+[1-10:P15095; UTF16 559499]       ≤ error
+[1-10:P15099; UTF16 559516] 59.10 UNKNOWN discipline
+[1-10:P15100; UTF16 559541] inductive CertResult (α : Type)
+[1-10:P15101; UTF16 559573] | certified : α → Certificate → CertResult α
+[1-10:P15102; UTF16 559618] | refuted : Counterexample → CertResult α
+[1-10:P15103; UTF16 559660] | unknown : CertResult α
+[1-10:P15104; UTF16 559685] No theorem may eliminate unknown without additional proof.
+[1-10:P15108; UTF16 559747] 59.11 Mechanization difficulty
+[1-10:P15109; UTF16 559778] ￼
+ATTACHED TABLE 1736679; native row/column order; 18 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Mixed outcome and zero-tolerance metric", "Straightforward"]
+ROW 2: ["Vector-valued pseudometric", "Moderate"]
+ROW 3: ["THM-ER1 zero kernel", "Straightforward"]
+ROW 4: ["THM-ER2 nontransitivity", "Straightforward"]
+ROW 5: ["Finite covering numbers", "Moderate"]
+ROW 6: ["THM-ER12 communication theorem", "Moderate"]
+ROW 7: ["Context moduli and composition", "Moderate"]
+ROW 8: ["Decision cells and margins", "Moderate"]
+ROW 9: ["THM-ER6 stability", "Straightforward"]
+ROW 10: ["Robust-regret portfolio", "Moderate"]
+ROW 11: ["Certified numerical operation interface", "Moderate"]
+ROW 12: ["Residual-to-error theorem", "Straightforward"]
+ROW 13: ["Correlation-aware error domain", "Difficult"]
+ROW 14: ["Approximate-DP invariant", "Difficult"]
+ROW 15: ["CEDA checker", "Difficult"]
+ROW 16: ["Model-discrepancy semantics", "Moderate"]
+ROW 17: ["Real FEM/CFD proof certificates", "Research-level"]
+[1-10:P15113; UTF16 559783] 60. Permanent Definition and Theorem Registry
+[1-10:P15114; UTF16 559829] 60.1 Definitions
+[1-10:P15115; UTF16 559846] ￼
+ATTACHED TABLE 1736695; native row/column order; 25 rows
+ROW 0: ["ID", "Object", "Dependencies", "Status", "Formalization difficulty"]
+ROW 1: ["DEF-ER1", "Typed uncertainty/error ontology", "Prompt 4 exact semantics", "Defined", "Moderate"]
+ROW 2: ["DEF-ER2", "ANANKE-(\\varepsilon) state", "DEF-ER1", "Defined", "Moderate"]
+ROW 3: ["DEF-ER3", "Mixed exact/quantitative outcome", "DEF-MN14", "Defined", "Straightforward"]
+ROW 4: ["DEF-ER4", "Zero-tolerance preservation policy", "DEF-ER3", "Defined", "Straightforward"]
+ROW 5: ["DEF-ER5", "Ordered vector error algebra", "DEF-ER3", "Defined", "Moderate"]
+ROW 6: ["DEF-ER6", "Mixed outcome distance", "DEF-ER5", "Defined", "Moderate"]
+ROW 7: ["DEF-ER7", "Contextual residual distance", "DEF-DS4, DEF-ER6", "Defined", "Moderate"]
+ROW 8: ["DEF-ER8", "Naive (\\varepsilon)-closeness", "DEF-ER7", "Defined", "Straightforward"]
+ROW 9: ["DEF-ER9", "Contextual (\\varepsilon)-cover", "DEF-ER7", "Defined", "Straightforward"]
+ROW 10: ["DEF-ER10", "Approximate decision width", "DEF-ER9", "Defined", "Straightforward"]
+ROW 11: ["DEF-ER11", "Error-transfer modulus", "DEF-MN6, DEF-ER5", "Defined", "Moderate"]
+ROW 12: ["DEF-ER12", "Decision-influence set", "Prompt 2 reports", "Defined", "Moderate"]
+ROW 13: ["DEF-ER13", "Decision cell and boundary", "DEF-ER12", "Defined", "Moderate"]
+ROW 14: ["DEF-ER14", "Decision-stability margin", "DEF-ER13", "Defined", "Moderate"]
+ROW 15: ["DEF-ER15", "Stable enclosure", "DEF-ER12", "Defined", "Straightforward"]
+ROW 16: ["DEF-ER16", "Quantitative decision functional", "THM-ER10 requirements", "Defined", "Moderate"]
+ROW 17: ["DEF-ER17", "(\\varepsilon)-choice-complete portfolio", "DEF-ER16", "Defined", "Moderate"]
+ROW 18: ["DEF-ER18", "Approximate separator message", "DEF-ER9", "Defined", "Moderate"]
+ROW 19: ["DEF-ER19", "Certified numerical operation", "DEF-ER1", "Defined", "Moderate"]
+ROW 20: ["DEF-ER20", "Numerical error ledger", "DEF-ER19", "Defined", "Moderate"]
+ROW 21: ["DEF-ER21", "Model discrepancy and validity", "DEF-ER1", "Defined", "Moderate"]
+ROW 22: ["DEF-ER22", "Error-aware pair classification", "DEF-ER7", "Defined", "Straightforward"]
+ROW 23: ["DEF-ER23", "CEDA artifact", "All Prompt-5 objects", "Defined", "Difficult"]
+ROW 24: ["DEF-ER24", "Prompt-5 complexity profile", "Prompts 3–5", "Defined", "Straightforward"]
+[1-10:P15119; UTF16 559851] 60.2 Lemmas
+[1-10:P15120; UTF16 559863] ￼
+ATTACHED TABLE 1736711; native row/column order; 7 rows
+ROW 0: ["ID", "Statement", "Dependencies", "Proof status"]
+ROW 1: ["LEM-ER1", "Error vectors form an ordered commutative monoid", "DEF-ER5", "Proved"]
+ROW 2: ["LEM-ER2", "Mixed outcome distance satisfies vector pseudometric laws", "DEF-ER6", "Proved"]
+ROW 3: ["LEM-ER3", "Contextual residual distance is a product pseudometric", "LEM-ER2", "Proved implicitly in THM-ER1"]
+ROW 4: ["LEM-ER4", "A positive report margin contains a same-report ball", "DEF-ER14", "By definition"]
+ROW 5: ["LEM-ER5", "Approximate cover balls cannot cross mandatory classes", "DEF-ER4, DEF-ER6", "Proved through THM-ER3"]
+ROW 6: ["LEM-ER6", "Acyclic transfer matrix is nilpotent", "DAG topology", "Used in THM-ER21"]
+[1-10:P15124; UTF16 559868] 60.3 Theorems
+[1-10:P15125; UTF16 559882] ￼
+ATTACHED TABLE 1736727; native row/column order; 29 rows
+ROW 0: ["ID", "Statement", "Dependencies", "Proof status"]
+ROW 1: ["THM-ER1", "Exact regional equivalence is the zero kernel of contextual residual distance", "THM-MN2, DEF-ER7", "Proved"]
+ROW 2: ["THM-ER2", "Naive (\\varepsilon)-closeness is nontransitive", "DEF-ER8", "Proved"]
+ROW 3: ["THM-ER3", "Mandatory semantic boundaries cannot be crossed by a resolved approximation", "DEF-ER4", "Proved"]
+ROW 4: ["THM-ER4", "Primitive-context error is bounded by its transfer modulus", "DEF-ER11", "Proved"]
+ROW 5: ["THM-ER5", "Context-chain error obeys composed transfer moduli", "THM-ER4", "Proved"]
+ROW 6: ["THM-ER6", "Certified error inside a decision margin preserves the report", "DEF-ER14", "Proved"]
+ROW 7: ["THM-ER7", "Positive margin plus convergent enclosures yields eventual certification", "THM-ER6", "Proved"]
+ROW 8: ["THM-ER8", "Zero-margin decisions may remain unresolved forever", "DEF-ER14", "Proved"]
+ROW 9: ["THM-ER9", "Decision-invariant stopping is sound", "DEF-ER15", "Proved"]
+ROW 10: ["THM-ER10", "Arbitrary choice correspondences do not define canonical numerical regret", "Prompt 2 decision semantics", "Proved"]
+ROW 11: ["THM-ER11", "(\\varepsilon)-choice-complete portfolios satisfy their exact and regret obligations", "DEF-ER17", "Proved"]
+ROW 12: ["THM-ER12", "Representative-message count equals contextual covering number", "DEF-ER9", "Proved"]
+ROW 13: ["THM-ER13", "Approximate width is monotone in tolerance", "DEF-ER10", "Proved"]
+ROW 14: ["THM-ER14", "Approximate separator DP preserves the propagated root enclosure", "THM-ER4–ER5", "Proved"]
+ROW 15: ["THM-ER15", "Nested refinement cannot alter an already certified decision", "THM-ER9", "Proved"]
+ROW 16: ["THM-ER16", "Numerical convergence cannot eliminate unresolved model discrepancy", "DEF-ER21", "Proved"]
+ROW 17: ["THM-ER17", "Joint correlated uncertainty cannot generally be replaced by marginals", "DEF-F32.1", "Proved"]
+ROW 18: ["THM-ER18", "A certified surrogate may replace the full model within its validity domain", "DEF-ER19", "Proved"]
+ROW 19: ["THM-ER19", "Error-budget allocation exists; a convex subclass is tractable; the general discrete problem is NP-hard", "THM-ER14", "Proved"]
+ROW 20: ["THM-ER20", "The zero-error finite limit recovers exact Prompt-2/3 semantics under stated assumptions", "THM-ER1, ER7, ER16", "Proved"]
+ROW 21: ["THM-ER21", "Typed error propagation through an acyclic dependency graph is sound", "THM-ER4", "Proved"]
+ROW 22: ["THM-ER22", "Residual bounds imply state-error bounds under strong monotonicity", "Numerical stability assumption", "Proved"]
+ROW 23: ["THM-ER23", "Universal enclosure checking proves robust claims", "DEF-ER19", "Proved"]
+ROW 24: ["THM-ER24", "Certified approximate representatives preserve declared experiment tolerances", "DEF-ER9", "Proved"]
+ROW 25: ["THM-ER25", "Error-aware CEGAR is sound under checked symbolic, numerical, validity, and discrepancy stages", "Prompt 4 CEGAR, Prompt 5 enclosures", "Proved"]
+ROW 26: ["THM-ER26", "Theory restriction and tolerance relaxation permit safe approximate reuse", "THM-DS13, THM-ER13", "Proved"]
+ROW 27: ["THM-ER27", "Accepted CEDA certificates imply sound numerical and decision claims", "THM-ER3–ER24", "Proved"]
+ROW 28: ["THM-ER28", "Approximate port-operator errors compose through transfer moduli", "THM-ER4", "Proved"]
+[1-10:P15129; UTF16 559887] 60.4 Algorithms
+[1-10:P15130; UTF16 559903] ￼
+ATTACHED TABLE 1736743; native row/column order; 10 rows
+ROW 0: ["ID", "Algorithm", "Correctness theorem"]
+ROW 1: ["ALG-ER1", "CertifiedNumericalEvaluate", "DEF-ER19 contract, THM-ER27"]
+ROW 2: ["ALG-ER2", "PropagateDecisionError", "THM-ER21"]
+ROW 3: ["ALG-ER3", "DecisionStabilityCheck", "THM-ER3, THM-ER6"]
+ROW 4: ["ALG-ER4", "ApproximateSeparatorCover", "THM-ER12, THM-ER24"]
+ROW 5: ["ALG-ER5", "AdaptiveFidelityRefine", "THM-ER15"]
+ROW 6: ["ALG-ER6", "ApproximateDecisionDP", "THM-ER14"]
+ROW 7: ["ALG-ER7", "CertifiedChoicePortfolio", "THM-ER11"]
+ROW 8: ["ALG-ER8", "ErrorAwareEngineeringCEGAR", "THM-ER25"]
+ROW 9: ["ALG-ER9", "CheckCEDA", "THM-ER27"]
+[1-10:P15134; UTF16 559908] 60.5 Conjectures
+[1-10:P15135; UTF16 559925] ￼
+ATTACHED TABLE 1736759; native row/column order; 6 rows
+ROW 0: ["ID", "Exact conjecture", "Falsification condition"]
+ROW 1: ["CONJ-ER1", "Real repetitive-building separators have slowly growing (W_D^\\varepsilon) under useful design-development tolerances", "Measured width remains (\\Theta(n)) across preregistered scaling families"]
+ROW 2: ["CONJ-ER2", "Certified local physics costs (C_{\\mathrm{cert}}(\\varepsilon)) remain manageable at decision-relevant tolerances", "Certification cost dominates enumeration or grows superpolynomially over useful tolerance range"]
+ROW 3: ["CONJ-ER3", "Decision-boundary-driven fidelity materially outperforms uniform fidelity without changing final decisions", "Controlled benchmark shows no computation reduction or introduces decision mismatch"]
+ROW 4: ["CONJ-ER4", "Practical building decisions possess positive margins often enough for eventual certification", "A large representative corpus exhibits persistent zero-margin or overlap-dominated decisions"]
+ROW 5: ["CONJ-ER5", "Compact certified approximate port operators exist for major repeated building subsystems", "Required operator ranks or certified envelopes grow too rapidly with parameter range"]
+[1-10:P15139; UTF16 559930] 61. Dependency DAG
+[1-10:P15140; UTF16 559949] PROMPT 1
+[1-10:P15141; UTF16 559958] typed finite semantics
+[1-10:P15142; UTF16 559981] DEF-F9.1, DEF-F27.1,
+[1-10:P15143; UTF16 560002] DEF-F30.1, DEF-F32.1
+[1-10:P15146; UTF16 560043] PROMPT 2
+[1-10:P15147; UTF16 560052] complete experiments and residual semantics
+[1-10:P15148; UTF16 560096] DEF-MN13–MN15
+[1-10:P15152; UTF16 560172] THM-MN1–MN5         THM-MN8
+[1-10:P15153; UTF16 560200] exact quotient      distinguishing contexts
+[1-10:P15156; UTF16 560264] PROMPT 3
+[1-10:P15157; UTF16 560273] regional equivalence and separator quotient
+[1-10:P15158; UTF16 560317] DEF-DS4–DS6
+[1-10:P15162; UTF16 560391] THM-DS1–DS2         THM-DS7–DS8
+[1-10:P15163; UTF16 560423] separator           exact separator DP
+[1-10:P15164; UTF16 560462] minimality
+[1-10:P15167; UTF16 560493] PROMPT 4
+[1-10:P15168; UTF16 560502] symbolic abstraction and discovery
+[1-10:P15169; UTF16 560537] DEF-AB1–AB15
+[1-10:P15171; UTF16 560560]         ├─────────────────────────┐
+[1-10:P15172; UTF16 560596]         ▼                         ▼
+[1-10:P15173; UTF16 560632] THM-AB10–AB12                THM-AB18
+[1-10:P15174; UTF16 560670] symbolic quotient            butterfly preservation
+[1-10:P15175; UTF16 560722] discovery
+[1-10:P15178; UTF16 560752] PROMPT 5
+[1-10:P15179; UTF16 560761] mixed exact/quantitative outcomes
+[1-10:P15180; UTF16 560795] DEF-ER1–ER6
+[1-10:P15183; UTF16 560827] DEF-ER7
+[1-10:P15184; UTF16 560835] contextual residual distance
+[1-10:P15186; UTF16 560874]    ┌────┴─────────┐
+[1-10:P15187; UTF16 560894]    ▼              ▼
+[1-10:P15188; UTF16 560914] THM-ER1        THM-ER2
+[1-10:P15189; UTF16 560937] zero kernel    nontransitivity
+[1-10:P15190; UTF16 560968]    │              │
+[1-10:P15191; UTF16 560988]    │              ▼
+[1-10:P15192; UTF16 561008]    │          DEF-ER9–ER10
+[1-10:P15193; UTF16 561035]    │          approximate covers
+[1-10:P15195; UTF16 561088]    │        ┌─────┴────────┐
+[1-10:P15196; UTF16 561117]    │        ▼              ▼
+[1-10:P15197; UTF16 561146]    │    THM-ER12       THM-ER13
+[1-10:P15198; UTF16 561178]    │ communication     width monotonicity
+[1-10:P15199; UTF16 561220]    │
+[1-10:P15200; UTF16 561225]    ▼
+[1-10:P15201; UTF16 561230] DEF-ER11
+[1-10:P15202; UTF16 561239] transfer moduli
+[1-10:P15204; UTF16 561260]    ├───────────────┐
+[1-10:P15205; UTF16 561281]    ▼               ▼
+[1-10:P15206; UTF16 561302] THM-ER4         THM-ER5
+[1-10:P15207; UTF16 561326] local transfer  context chains
+[1-10:P15208; UTF16 561357]    │               │
+[1-10:P15209; UTF16 561378]    └───────┬───────┘
+[1-10:P15210; UTF16 561399]            ▼
+[1-10:P15211; UTF16 561412]        THM-ER21
+[1-10:P15212; UTF16 561428]        DAG propagation
+[1-10:P15213; UTF16 561451]            │
+[1-10:P15215; UTF16 561477]        THM-ER14
+[1-10:P15216; UTF16 561493]  approximate separator DP
+[1-10:P15219; UTF16 561545]        THM-ER19
+[1-10:P15220; UTF16 561561]  error-budget allocation
+[1-10:P15222; UTF16 561587] DEF-ER12
+[1-10:P15223; UTF16 561596] decision influence
+[1-10:P15226; UTF16 561625] DEF-ER13–ER15
+[1-10:P15227; UTF16 561639] cells, margins, stability
+[1-10:P15231; UTF16 561712] THM-ER6         THM-ER9
+[1-10:P15232; UTF16 561736] stability       stopping
+[1-10:P15235; UTF16 561803] THM-ER7         THM-ER15
+[1-10:P15236; UTF16 561828] eventual        refinement
+[1-10:P15237; UTF16 561855] certification   preservation
+[1-10:P15240; UTF16 561894] THM-ER8
+[1-10:P15241; UTF16 561902] zero-margin limitation
+[1-10:P15243; UTF16 561926] Prompt 2 choice semantics
+[1-10:P15246; UTF16 561972] THM-ER10
+[1-10:P15247; UTF16 561981] no regret without structure
+[1-10:P15250; UTF16 562029] DEF-ER16–ER17
+[1-10:P15251; UTF16 562043] quantitative decisions and portfolios
+[1-10:P15254; UTF16 562101] THM-ER11
+[1-10:P15255; UTF16 562110] ε-choice completeness
+[1-10:P15257; UTF16 562133] DEF-ER19–ER21
+[1-10:P15258; UTF16 562147] numerical certificates,
+[1-10:P15259; UTF16 562171] error decomposition,
+[1-10:P15262; UTF16 562220]    ┌────┼───────────────┐
+[1-10:P15263; UTF16 562246]    ▼    ▼               ▼
+[1-10:P15264; UTF16 562272] ER22  ER16            ER18
+[1-10:P15265; UTF16 562299] residual model        surrogate
+[1-10:P15266; UTF16 562331] error   barrier       substitution
+[1-10:P15269; UTF16 562386] THM-ER20
+[1-10:P15270; UTF16 562395] zero-error recovery
+[1-10:P15272; UTF16 562416] Prompt 4 CEGAR
+[1-10:P15275; UTF16 562451] ALG-ER8
+[1-10:P15276; UTF16 562459] error-aware CEGAR
+[1-10:P15279; UTF16 562497] THM-ER25
+[1-10:P15281; UTF16 562507] All Prompt-5 certificates
+[1-10:P15284; UTF16 562553] DEF-ER23 CEDA
+[1-10:P15287; UTF16 562587] THM-ER27
+[1-10:P15288; UTF16 562596] certificate soundness
+[1-10:P15292; UTF16 562621] 62. What Has Now Been Proven
+[1-10:P15293; UTF16 562650] Under the explicit hypotheses in this paper:
+[1-10:P15294; UTF16 562695] ANANKE-F’s exact discrete semantic skeleton can coexist with continuous or numerical outcome spaces without weakening exact mandatory semantics.
+[1-10:P15295; UTF16 562840] Abstract family overapproximation, numerical error, parametric uncertainty, and model discrepancy are mathematically distinct objects.
+[1-10:P15296; UTF16 562975] Mandatory semantic disagreement has infinite distance and cannot be hidden by finite numerical tolerance.
+[1-10:P15297; UTF16 563081] The complete regional residual behavior carries a vector-valued contextual pseudometric.
+[1-10:P15298; UTF16 563170] Its zero-distance kernel is exactly Prompt 3 regional contextual equivalence.
+[1-10:P15299; UTF16 563248] Naive (\varepsilon)-closeness is generally nontransitive and cannot define an ordinary quotient.
+[1-10:P15300; UTF16 563345] The correct approximate separator object is a certified cover or residual codebook.
+[1-10:P15301; UTF16 563429] Its minimum representative-message count is the contextual covering number.
+[1-10:P15302; UTF16 563505] Approximate decision width is the logarithm of that covering number.
+[1-10:P15303; UTF16 563574] Approximate width is monotone nonincreasing in tolerance.
+[1-10:P15304; UTF16 563632] For finite exact semantics, zero tolerance recovers the exact separator quotient.
+[1-10:P15305; UTF16 563714] Primitive-context error propagates through certified transfer moduli.
+[1-10:P15306; UTF16 563784] Context-chain moduli compose, and scalar Lipschitz constants multiply.
+[1-10:P15307; UTF16 563855] A tiny local error may become globally large under amplifying contexts.
+[1-10:P15308; UTF16 563927] The exact Decision-Influence Error object is the set of mandatory or human reports that are nonconstant over the current enclosure.
+[1-10:P15309; UTF16 564059] A decision is stable whenever the whole enclosure lies inside one decision-report cell.
+[1-10:P15310; UTF16 564147] Error smaller than a positive decision margin guarantees exact report preservation.
+[1-10:P15311; UTF16 564231] Nested refinement eventually certifies every positive-margin decision.
+[1-10:P15312; UTF16 564302] Zero-margin decisions may remain unresolved forever.
+[1-10:P15313; UTF16 564355] Further numerical refinement cannot change a decision already certified over a containing enclosure.
+[1-10:P15314; UTF16 564456] Arbitrary choice correspondences do not define canonical numerical regret.
+[1-10:P15315; UTF16 564531] Bounded regret is valid only for decisions supplied with quantitative loss or utility structure.
+[1-10:P15316; UTF16 564628] An (\varepsilon)-choice-complete portfolio preserves qualitative reports exactly and quantitative decisions within declared regret.
+[1-10:P15317; UTF16 564760] Certified optimistic and pessimistic bounds can prune quantitatively irrelevant families when qualitative and mandatory effects have been excluded.
+[1-10:P15318; UTF16 564908] A small residual is not a state-error certificate without conditioning or stability assumptions.
+[1-10:P15319; UTF16 565005] Strong monotonicity converts residual bounds into state-error bounds.
+[1-10:P15320; UTF16 565075] Typed errors propagate soundly through an acyclic engineering dependency graph.
+[1-10:P15321; UTF16 565155] Correlation must be preserved when it affects robust decisions.
+[1-10:P15322; UTF16 565219] Robust scenario uncertainty does not vanish with numerical refinement.
+[1-10:P15323; UTF16 565290] Numerical convergence cannot eliminate unresolved model discrepancy.
+[1-10:P15324; UTF16 565359] A surrogate may replace a full model only through a certified outer envelope and validity domain.
+[1-10:P15325; UTF16 565457] Approximate port-operator errors compose through transfer moduli.
+[1-10:P15326; UTF16 565523] Approximate separator DP preserves a declared root error guarantee.
+[1-10:P15327; UTF16 565591] Its running time depends on approximate cover sizes and numerical certification costs.
+[1-10:P15328; UTF16 565678] Error-budget allocation is well defined, convex in one useful special case, and NP-hard in general.
+[1-10:P15329; UTF16 565778] Adaptive fidelity is sound when every update produces a certified nested enclosure.
+[1-10:P15330; UTF16 565862] Error-aware CEGAR can distinguish logical spuriousness, numerical uncertainty, model invalidity, and genuine failure without converting UNKNOWN into proof.
+[1-10:P15331; UTF16 566018] Theory restriction and tolerance relaxation permit safe artifact reuse.
+[1-10:P15332; UTF16 566090] A CEDA checker can verify numerical, model, evidence, and decision claims through a small trusted kernel.
+[1-10:P15333; UTF16 566196] Under finite exact semantics, vanishing computational error and vanishing discrepancy recover the exact Prompt-2/3 model and decision semantics.
+[1-10:P15334; UTF16 566341] The original ANANKE Decision-Influence Error concept has therefore been formalized as:
+[1-10:P15335; UTF16 566428] [ \boxed{ \left( E, \mathcal I(E) \right), } ]
+[1-10:P15337; UTF16 566482] (E) is a certified joint enclosure of all exact outcomes still possible;
+[1-10:P15338; UTF16 566555] (\mathcal I(E)) is the set of mandatory or human reports that are nonconstant over that enclosure.
+[1-10:P15339; UTF16 566654] The decisive stopping criterion is:
+[1-10:P15340; UTF16 566690] [ \boxed{ \mathcal I(E)=\varnothing. } ]
+[1-10:P15344; UTF16 566734] 63. What Has Not Yet Been Proven
+[1-10:P15346; UTF16 566794] Certified CFD enclosures are practical for full-building turbulence and smoke problems.
+[1-10:P15347; UTF16 566882] Nonlinear structural solvers can routinely produce tight global error certificates.
+[1-10:P15348; UTF16 566966] Soil-structure interaction admits useful certified discrepancy bounds.
+[1-10:P15349; UTF16 567037] Real building-energy models have defensible physical discrepancy envelopes across decades of operation.
+[1-10:P15350; UTF16 567141] Construction-productivity and cost models admit stable quantitative validity domains.
+[1-10:P15351; UTF16 567227] Broad architectural-intent relationships can be equipped with useful quantitative metrics without reducing authorship to scalar scores.
+[1-10:P15352; UTF16 567363] Real project decision rules possess positive margins often enough for efficient certification.
+[1-10:P15353; UTF16 567458] Approximate contextual covering numbers remain small for realistic buildings.
+[1-10:P15354; UTF16 567536] Minimum or near-minimum covers can be constructed tractably.
+[1-10:P15355; UTF16 567597] Local context moduli remain bounded across topology-changing rewrites.
+[1-10:P15356; UTF16 567668] Reduced-order multiphysics port operators possess compact certified envelopes.
+[1-10:P15357; UTF16 567747] Neural surrogates can obtain strong deterministic outer bounds over useful engineering domains.
+[1-10:P15358; UTF16 567843] Correlation-aware error domains remain compact at whole-building scale.
+[1-10:P15359; UTF16 567915] Adaptive error-budget allocation can be solved quickly on large decompositions.
+[1-10:P15360; UTF16 567995] Decision-boundary-driven refinement consistently outperforms uniform fidelity in real projects.
+[1-10:P15361; UTF16 568091] Model discrepancy can be reduced enough that numerical refinement matters.
+[1-10:P15362; UTF16 568166] Approximate separator covers compose without excessive error amplification.
+[1-10:P15363; UTF16 568242] Repeated-building systems have slowly growing: [ W_D^\varepsilon. ]
+[1-10:P15364; UTF16 568310] Evidence-aware regret can be defined for every important stakeholder decision.
+[1-10:P15365; UTF16 568389] Physical-world certification can be achieved without extensive mockups and measurements.
+[1-10:P15366; UTF16 568478] Continuous geometry and topology-change metrics can be made compatible with exact mandatory discontinuities.
+[1-10:P15367; UTF16 568587] The one-workstation constraint is satisfied for a full 190-room hotel under credible certified physics.
+[1-10:P15368; UTF16 568691] The mature scaling law remains conditional:
+[1-10:P15370; UTF16 568815] Real feasibility requires both terms to remain manageable.
+[1-10:P15374; UTF16 568877] 64. Exact Mathematical Inputs Required by Prompt 6
+[1-10:P15375; UTF16 568928] Prompt 6 may inherit the following without redefining them.
+[1-10:P15376; UTF16 568988] 64.1 ANANKE-(\varepsilon) state

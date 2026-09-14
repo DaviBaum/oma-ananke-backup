@@ -1,0 +1,541 @@
+[20359] \(H_1\) concentrates more load in high-factor hours and yields \(540\) synthetic carbon units. \(H_2\) shifts flexible loads and yields \(470\). \(H_2\) has \(25\) more initial embodied units.
+[20360] Over the represented horizon:
+[20361] \[ E_{\mathrm{life}}(H_1)=900, \qquad E_{\mathrm{life}}(H_2)=850. \]
+[20362] These are synthetic modeled values, not empirical hotel results.
+[20363] 86.12 Risk comparison
+[20364] Synthetic discounted lifecycle loss:
+[20365] \[ \begin{array}{c|cc} &\mathbb E[Z]&\operatorname{CVaR}_{0.95}(Z)\\\hline H_1&100&240\\ H_2&108&160 \end{array} \]
+[20366] Expectation prefers \(H_1\); tail risk prefers \(H_2\). Neither is universally preferable without an authorized policy.
+[20367] 86.13 Final modality
+[20368] Assume all finite represented robust scenarios have been exhaustively checked, but future grid factors remain scenario conditional and one long-horizon degradation mechanism remains UNKNOWN. The exact release is:
+[20369] \[ \boxed{ \mathsf{ROBUST\_FEASIBLE} \text{ for the represented operational scenario family,} } \]\[ \boxed{ \mathsf{ENVIRONMENTAL\_BOUNDED} \text{ for the declared grid scenarios,} } \]
+[20371] \[ \boxed{ \mathsf{LIFECYCLE\_FEASIBLE} \text{ only over the covered degradation horizon.} } \]
+[20372] No stronger modality is issued.
+[20374] 87. Falsification and Regression Suite
+[20375] Each test has one expected typed result.
+[20376] Prompt-3 inheritance and dynamic roots
+[20377] Valid PCJCD root → PCJCD_APPLICABLE.
+[20378] Wrong project lineage → PCJCD_INAPPLICABLE.
+[20379] Stale PCSIR version → STALE_DYNAMIC_ROOT.
+[20380] Static objective reused with different horizon → OBJECTIVE_SCOPE_MISMATCH.
+[20381] Protected root altered without authority → AUTHORITY_FAILURE.
+[20382] Router cache reused after physical rewrite → STALE_PCROUTE_CACHE.
+[20383] Static cut reused after uncertainty-model change → STALE_CUT.
+[20384] Static Pareto vector treated as lifecycle functional → TYPE_MISMATCH.
+[20385] Candidate root includes exact lifecycle epoch → ROOT_VALID.
+[20386] Missing Prompt-3 proof body reference → SOURCE_SCOPE_CONDITIONAL.
+[20387] Time, histories, and commitment
+[20388] Valid increasing time grid → TIME_GRID_VALID.
+[20389] Duplicate incompatible epoch → TIME_IDENTITY_CONFLICT.
+[20390] Phase-map gap → PHASE_GAP.
+[20391] Overlap explicitly permitted → PHASE_CONCURRENCY_VALID.
+[20392] Equal histories equal actions → NONANTICIPATIVE.
+[20393] Equal histories different actions → NONANTICIPATIVITY_FAILURE.
+[20394] Different histories equal actions → VALID.
+[20395] Future observation used at earlier node → ANTICIPATIVE_POLICY.
+[20396] Installed shaft changed as ordinary recourse → COMMITMENT_VIOLATION.
+[20397] Authorized change order changes shaft → CHANGE_ORDER_PENDING_RECERTIFICATION.
+[20398] Operational valve switch → OPERATIONAL_ACTION.
+[20399] Physical pipe centerline change → RETROFIT_REQUIRED.
+[20400] Expired procurement option selected → COMMITMENT_STATE_FAILURE.
+[20401] Equal physical states, different option rights → HISTORY_DISTINCT.
+[20402] Missing information root → INFORMATION_UNKNOWN.
+[20403] Scenario trees and uncertainty
+[20404] Scenario probabilities sum to one → PROBABILITY_LAW_VALID.
+[20405] Negative scenario probability → PROBABILITY_INVALID.
+[20406] Robust interval mislabeled probabilistic → MODALITY_VIOLATION.
+[20407] UNKNOWN assigned 0.01 probability without model → UNSUPPORTED_PROBABILITY.
+[20408] Scenario-tree parent cycle → SCENARIO_TREE_INVALID.
+[20409] Node stage decreases along edge → SCENARIO_STAGE_INVALID.
+[20410] Valid history-node action → NODE_POLICY_VALID.
+[20411] Independent leaf actions disagree at shared node → NONANTICIPATIVITY_FAILURE.
+[20412] Complete finite scenario pass → FINITE_SCENARIO_ROBUST.
+[20413] Sampled scenario pass only → SAMPLED_FEASIBILITY_ONLY.
+[20414] One omitted adversarial violation → ROBUST_COUNTEREXAMPLE.
+[20415] Expanded uncertainty invalidates closure → ROBUST_RECERTIFICATION_REQUIRED.
+[20416] Sound uncertainty contraction → UNIVERSAL_CLAIM_REUSABLE.
+[20417] Unsound contraction dropping possible state → ENCLOSURE_UNSOUND.
+[20418] Model-form alternative omitted → MODEL_FORM_UNKNOWN.
+[20419] Robust, chance, expectation, and risk
+[20420] Universal pass under supported law → ROBUST_AND_CHANCE_FEASIBLE.
+[20421] 0.999 success at \(\epsilon=.01\) → CHANCE_FEASIBLE.
+[20422] Same case with one represented failure → NOT_ROBUST.
+[20423] Expected constraint zero but tail violation → EXPECTED_ONLY.
+[20424] Expected objective exact rational sum → EXPECTED_VALUE_CERTIFIED.
+[20425] Missing probability weights → EXPECTATION_UNKNOWN.
+[20426] Worst-case finite enumeration → WORST_CASE_CERTIFIED.
+[20427] Incomplete adversary → WORST_CASE_BOUNDED_OR_UNKNOWN.
+[20428] CVaR exact finite distribution → CVAR_CERTIFIED.
+[20429] Wrong tail convention → RISK_SIGN_MISMATCH.
+[20430] Static CVaR used as nested risk → TIME_CONSISTENCY_UNPROVED.
+[20431] Valid nested conditional risk → NESTED_RISK_CERTIFIED.
+[20432] Ambiguity set contains nominal law → DRO_DOMINATES_NOMINAL.
+[20433] Unversioned ambiguity radius → DRO_UNKNOWN.
+[20434] Robust set expanded → ROBUST_FEASIBLE_SET_NONEXPANSION.
+[20435] Chance result promoted to robust → ILLEGAL_MODAL_STRENGTHENING.
+[20436] Expectation promoted to CVaR → ILLEGAL_MODAL_STRENGTHENING.
+[20437] CVaR promoted to worst case → ILLEGAL_MODAL_STRENGTHENING.
+[20438] Perfect-information action table used operationally → CLAIRVOYANCE_FAILURE.
+[20439] \(z_{\rm PI}\le z_{\rm MS}\le z_{\rm static}\) arithmetic → VALUE_ORDER_VALID.
+[20440] Scenario reduction and quotienting
+[20441] Contextually equal nodes merged → SCENARIO_DAG_VALID.
+[20442] Equal physical states but different commitments merged → NODE_ALIASING.
+[20443] New risk metric distinguishes merged nodes → QUOTIENT_REFINEMENT_REQUIRED.
+[20444] Reduced tree preserves expectation bound → REDUCTION_BOUNDED.
+[20445] Reduced tree claims robust closure → ROBUSTNESS_UNPROVED.
+[20446] Rare worst scenario removed → WORST_CASE_LOST.
+[20447] Finite CEGAR strict refinement → CEGAR_PROGRESS.
+[20448] CEGAR repeats same atom → NO_PROGRESS.
+[20449] Complete finite atoms exhausted → CEGAR_CLOSED.
+[20450] Scenario equivalence missing future retrofit computation → EXPERIMENT_FAMILY_INCOMPLETE.
+[20451] Construction and installation
+[20452] Acyclic precedence graph → PRECEDENCE_VALID.
+[20453] Precedence cycle → PRECEDENCE_INFEASIBLE.
+[20454] Crew capacity respected → RESOURCE_FEASIBLE.
+[20455] Crane overbooked → RESOURCE_CAPACITY_FAILURE.
+[20456] Temporary egress preserved → TEMPORARY_STATE_VALID.
+[20457] Temporary egress blocked → TEMPORARY_EGRESS_FAILURE.
+[20458] Permanent duct fits final space → FINAL_ROUTE_FEASIBLE.
+[20459] Same duct cannot be delivered → INSTALLATION_FIBER_EMPTY.
+[20460] Modularized duct delivery succeeds → INSTALLATION_CERTIFIED.
+[20461] Large equipment insertion path absent → EQUIPMENT_DELIVERY_INFEASIBLE.
+[20462] Temporary support missing → TEMPORARY_STRUCTURAL_FAILURE.
+[20463] Material stored in protected zone → LOGISTICS_FAILURE.
+[20464] Local sequences create global cycle → GLOBAL_SEQUENCE_INFEASIBLE.
+[20465] Installed shaft moved by future scenario → COMMITMENT_VIOLATION.
+[20466] Authorized change order reopens dependencies → CHANGE_ORDER_VALID.
+[20467] Construction delay changes grid factor → ENVIRONMENTAL_LEDGER_CHANGED.
+[20468] Construction delay changes procurement price → COST_LEDGER_CHANGED.
+[20469] Task identity changed without version → TASK_VERSION_CONFLICT.
+[20470] Installation proof reused after component-size change → STALE_INSTALLATION_CERTIFICATE.
+[20471] Final-state-only checker used for sequence release → CONSTRUCTION_PROOF_INCOMPLETE.
+[20472] Commissioning and calibration
+[20473] All mandatory tests proved → COMMISSIONING_ACCEPTED.
+[20474] Mandatory test UNKNOWN → HANDOVER_BLOCKED.
+[20475] Component passes, integration fails → INTEGRATED_TEST_FAILURE.
+[20476] Sampled pass with uninspected component → LATENT_DEFECT_UNRESOLVED.
+[20477] Fault pair observationally aliased → FAULT_ISOLATION_IMPOSSIBLE.
+[20478] Added sensor distinguishes pair → OBSERVABILITY_REFINED.
+[20479] Valid calibration → CALIBRATION_VALID.
+[20480] Expired calibration → CALIBRATION_STALE.
+[20481] Bias flips threshold → ACCEPTANCE_INVALID.
+[20482] Corrective action changes control code → REGRESSION_RECERTIFICATION_REQUIRED.
+[20483] Nondestructive test shrinks condition set → INFORMATION_UPDATED.
+[20484] Nondestructive test marked physical repair → TYPE_MISMATCH.
+[20485] Commissioning result references wrong mode → TEST_SCOPE_MISMATCH.
+[20486] Integrated-system test uses stale topology → TEST_ARTIFACT_STALE.
+[20487] Mandatory defect remains open → HANDOVER_BLOCKED.
+[20488] Operations, invariance, and MPC
+[20489] Initial state inside certified invariant set → OPERATIONALLY_SAFE.
+[20490] Disturbance outside invariant scope → OPERATIONAL_SCOPE_EXCEEDED.
+[20491] One-step feasible action creates dead end → RECURSIVE_FEASIBILITY_FAILURE.
+[20492] MPC terminal invariant valid → MPC_RECURSIVELY_FEASIBLE.
+[20493] MPC terminal assumption missing → MPC_FEASIBILITY_UNKNOWN.
+[20494] Fallback controller valid → FALLBACK_CERTIFIED.
+[20495] MPC timeout invokes fallback → SAFE_FALLBACK_USED.
+[20496] MPC timeout with no fallback → OPERATIONAL_UNKNOWN.
+[20497] Normal topology flow used in emergency mode → MODE_STALE_WITNESS.
+[20498] Valve switch within installed graph → FLOW_RECONFIGURATION_VALID.
+[20499] New physical route without PCJCD → RETROFIT_REQUIRED.
+[20500] Mode guard violated → HYBRID_TRANSITION_INVALID.
+[20501] Negative tank level → STATE_CONSTRAINT_FAILURE.
+[20502] Control action exceeds capacity → CONTROL_LIMIT_FAILURE.
+[20503] Full-horizon optimum inferred from MPC → OPTIMALITY_OVERCLAIM.
+[20504] Reliability, common cause, resilience, and cascades
+[20505] Independent series product with proof → RELIABILITY_CERTIFIED.
+[20506] Product used without independence → DEPENDENCE_UNRESOLVED.
+[20507] Independent parallel failure \(10^{-4}\) → RELIABILITY_CERTIFIED.
+[20508] Common-cause joint failure \(\approx.009001009\) → COMMON_CAUSE_CERTIFIED.
+[20509] Same marginals, different joint laws → MARGINALS_INSUFFICIENT.
+[20510] N-1 pass only → N_MINUS_ONE_ONLY.
+[20511] Shared substation failure → COMMON_CAUSE_FAILURE.
+[20512] Reliability and availability reported separately → MODALITY_VALID.
+[20513] Equal reliability, different recovery loss → RESILIENCE_DISTINCT.
+[20514] Recovery action anticipative → RECOVERY_POLICY_INVALID.
+[20515] Recovery resource double booked → MUTUAL_AID_CONFLICT.
+[20516] Cascade monotone closure → CASCADE_CLOSURE_CERTIFIED.
+[20517] Hidden dependency discovered → CASCADE_THEORY_CHANGED.
+[20518] Negative service performance → RESILIENCE_MODEL_INVALID.
+[20519] Recovery threshold reached → RECOVERY_TIME_CERTIFIED.
+[20520] Reliability promoted to resilience → ILLEGAL_MODAL_STRENGTHENING.
+[20521] Availability limit does not exist → LONG_RUN_AVAILABILITY_UNKNOWN.
+[20522] Failure law outside calibrated horizon → FAILURE_MODEL_STALE.
+[20523] Common-cause model omitted → REDUNDANCY_UNKNOWN.
+[20524] Cascade fixed point called model complete → OPEN_WORLD_OVERCLAIM.
+[20525] Twin, belief, and faults
+[20526] Twin semantic IDs match physical assets → TWIN_IDENTITY_VALID.
+[20527] Twin references replaced asset → TWIN_STALE.
+[20528] Observation unit mismatch → OBSERVATION_REJECTED.
+[20529] Observation timestamp stale → OBSERVATION_REJECTED.
+[20530] Observation calibration valid → EVIDENCE_ACCEPTED.
+[20531] Bayesian normalization positive → POSTERIOR_CERTIFIED.
+[20532] Zero evidence probability → BAYES_UPDATE_UNDEFINED.
+[20533] Wrong likelihood reused → POSTERIOR_STALE.
+[20534] Posterior confidence called model proof → MODEL_CLASS_OVERCLAIM.
+[20535] Set-membership prediction sound → SET_PREDICTION_VALID.
+[20536] Evidence intersection contracts set → SET_UPDATE_VALID.
+[20537] Empty intersection → MODEL_EVIDENCE_CONFLICT.
+[20538] Aliased states → OBSERVABILITY_INSUFFICIENT.
+[20539] New sensor splits alias → OBSERVABILITY_REFINED.
+[20540] Fault alarm with false-positive support → FAULT_DETECTED_ONLY.
+[20541] Independent confirmatory test → FAULT_CONFIRMED.
+[20542] Detection threshold raised → FP_DOWN_FN_UP_OR_EQUAL.
+[20543] Missing data imputed as exact → EVIDENCE_OVERCLAIM.
+[20544] Twin equality promoted to physical equality → ILLEGAL_MODAL_STRENGTHENING.
+[20545] Sensor replacement without model update → OBSERVATION_MODEL_STALE.
+[20546] Degradation, RUL, maintenance, spares, retrofit
+[20547] Same age, different load → CONDITION_DIFFERENT.
+[20548] Same estimate, hidden states differ → CONDITION_ALIASING.
+[20549] Deterministic exact RUL → RUL_EXACT.
+[20550] RUL interval → RUL_BOUNDED.
+[20551] RUL point promoted to guarantee → RUL_OVERCLAIM.
+[20552] Perfect repair model resets state → PERFECT_REPAIR_CERTIFIED.
+[20553] Imperfect repair labeled new → REPAIR_MODALITY_VIOLATION.
+[20554] Maintenance work completed, test fails → MAINTENANCE_FAILED.
+[20555] Maintenance introduces defect → DEFECT_INTRODUCED.
+[20556] Inspection changes information only → CONDITION_UNCHANGED.
+[20557] Fixed interval cheaper in deterministic model → POLICY_MODEL_RELATIVE.
+[20558] Condition policy cheaper with heterogeneous observed wear → POLICY_MODEL_RELATIVE.
+[20559] Spare inventory zero → REPAIR_NOT_EXECUTABLE.
+[20560] Supplier lead time misses deadline → REPAIR_NOT_EXECUTABLE.
+[20561] Approved substitute available → REPAIR_FIBER_RESTORED.
+[20562] Firmware unsupported but operating → OPERABLE_UNSUPPORTED.
+[20563] Retrofit changes route envelope → PCROUTE_RECERTIFICATION_REQUIRED.
+[20564] Retrofit changes structure → STRUCTURAL_RECERTIFICATION_REQUIRED.
+[20565] Three small edits accumulate → CONFIGURATION_DRIFT.
+[20566] Shutdown with pressure present → DECOMMISSIONING_UNSAFE.
+[20567] Environment and external systems
+[20568] Equal kWh, different timing → CARBON_DIFFERENT.
+[20569] Lower kWh, higher factor → ENERGY_CARBON_RANK_REVERSAL.
+[20570] Lower operational carbon, higher whole-life carbon → WHOLE_LIFE_RANK_REVERSAL.
+[20571] Replacement cycle omitted → ENVIRONMENTAL_BOUNDARY_INCOMPLETE.
+[20572] Functional units differ → ENVIRONMENTAL_COMPARISON_INVALID.
+[20573] Grid factor version changes → CARBON_RECERTIFICATION_REQUIRED.
+[20574] Refrigerant mass imbalance → REFRIGERANT_LEDGER_INVALID.
+[20575] Water withdrawal confused with consumption → WATER_SEMANTICS_INVALID.
+[20576] Local connection passes, upstream cut fails → EXTERNAL_CAPACITY_FAILURE.
+[20577] Individual peaks shifted → COINCIDENT_PEAK_REDUCED.
+[20578] Local optimization synchronizes peaks → COINCIDENT_PEAK_INCREASED.
+[20579] Outward/inward cut reversed → CUT_ORIENTATION_ERROR.
+[20580] Mutual aid scenario-wise only → NONANTICIPATIVE_AID_MISSING.
+[20581] Common upstream communications failure → EXTERNAL_COMMON_CAUSE.
+[20582] Building load shifted to dirtier hours → EXTERNAL_BURDEN_SHIFT.
+[20583] Decomposition, workstation, and release
+[20584] Valid scenario-Benders dual cut → CUT_VALID.
+[20585] Changed recourse matrix reused → CUT_STALE.
+[20586] Convex SDDP cut → SDDP_LOWER_BOUND.
+[20587] SDDP cut applied to binary retrofit → SDDP_SCOPE_VIOLATION.
+[20588] Progressive hedging convex consensus → PH_CONVERGENCE_CERTIFIED.
+[20589] PH discrete fixed point called optimum → PH_HEURISTIC_ONLY.
+[20590] Complete adversary returns max \(\le0\) → ROBUST_CLOSURE.
+[20591] Heuristic adversary finds none → ROBUSTNESS_UNKNOWN.
+[20592] Scenario reduction bound verified → REDUCED_MODEL_BOUNDED.
+[20593] Scenario reduction called exact → MODALITY_VIOLATION.
+[20594] GPU simulation candidate passes CPU replay → TRAJECTORY_FEASIBLE.
+[20595] GPU sample pass called universal proof → ROBUSTNESS_OVERCLAIM.
+[20596] Checkpoint roots identical → CHECKPOINT_COMPATIBLE.
+[20597] Probability version differs → CHECKPOINT_INCOMPATIBLE.
+[20598] Incremental and cold roots agree → RECERTIFICATION_EQUIVALENT.
+[20599] Missing dependency deliberately injected → REGRESSION_FAILURE.
+[20600] RAM budget exceeded → DYNAMIC_RESOURCE_BUDGET_EXCEEDED.
+[20601] System returns incumbent/bounds/checkpoint → ANYTIME_STATE_VALID.
+[20602] Timeout called exact optimum → OPTIMALITY_OVERCLAIM.
+[20603] PCDYN witness passes all exact checks → DYNAMIC_RELEASE_CERTIFIED.
+[20605] 88. Proof-Assistant Formalization Sketches
+[20606] The following Lean-style signatures state the intended mathematics. Library names and executable syntax have not been compilation-tested.
+[20607] abbrev TimeIndex := Fin (T + 1)
+[20609] inductive LifecyclePhase
+[20610] | design | procurement | construction | commissioning
+[20611] | operation | maintenance | retrofit | decommissioning
+[20613] structure DynamicState where
+[20614]   installed : InstalledState
+[20615]   construction : ConstructionState
+[20616]   operation : OperationalState
+[20617]   failure : FailureState
+[20618]   degradation : DegradationState
+[20619]   maintenance : MaintenanceState
+[20620]   external : ExternalState
+[20621]   evidence : EvidenceStore
+[20622]   belief : BeliefRepresentation
+[20623]   authority : AuthorityState
+[20626] structure Observation where
+[20627]   id : ObservationId
+[20628]   value : TypedValue
+[20629]   time : Time
+[20630]   calibration : CalibrationRef
+[20631]   provenance : EvidenceRef
+[20634] def InformationHistory (t : TimeIndex) :=
+[20635]   List (Observation ⊕ Action)
+[20637] structure Filtration where
+[20638]   observable : TimeIndex → Set Event
+[20639]   monotone :
+[20640]     ∀ {s t}, s ≤ t → observable s ⊆ observable t
+[20642] structure Scenario where
+[20643]   disturbances : TimeIndex → Disturbance
+[20644]   events : TimeIndex → EventSet
+[20647] structure ScenarioNode where
+[20648]   id : NodeId
+[20649]   stage : TimeIndex
+[20651]   history : InformationHistory stage
+[20652]   state : DynamicState
+[20653]   probability : Option ℚ
+[20656] structure ScenarioTree where
+[20657]   nodes : Finset ScenarioNode
+[20658]   root : NodeId
+[20659]   edges : Finset (NodeId × NodeId)
+[20660]   acyclic : IsAcyclic edges
+[20662] def HistoryEquivalent
+[20663]     (t : TimeIndex) (ω₁ ω₂ : Scenario) : Prop :=
+[20664]   history t ω₁ = history t ω₂
+[20666] def Policy :=
+[20667]   (t : TimeIndex) → InformationHistory t → Action t
+[20669] def Nonanticipative (π : Policy) : Prop :=
+[20670]   ∀ t ω₁ ω₂,
+[20671]     HistoryEquivalent t ω₁ ω₂ →
+[20672]     π t (history t ω₁) = π t (history t ω₂)
+[20674] structure Commitment where
+[20675]   decision : DecisionId
+[20676]   commitTime : TimeIndex
+[20677]   reversibility : ReversibilityClass
+[20678]   authority : AuthorityRef
+[20681] inductive UncertaintyKind
+[20682] | deterministicBound | interval | finiteScenario | probabilistic
+[20683] | distributionalAmbiguity | adversarial | modelForm | unknown
+[20685] structure UncertaintySet where
+[20686]   carrier : Set Scenario
+[20687]   nonempty : carrier.Nonempty
+[20690] structure ProbabilityLaw where
+[20691]   mass : Scenario → ℝ
+[20692]   nonnegative : ∀ ω, 0 ≤ mass ω
+[20693]   normalized : tsum mass = 1
+[20696] structure AmbiguitySet where
+[20697]   laws : Set ProbabilityLaw
+[20698]   nonempty : laws.Nonempty
+[20701] def RobustFeasible
+[20702]     (Π : Policy) (Ω : UncertaintySet) : Prop :=
+[20703]   ∀ ω ∈ Ω.carrier, TrajectoryValid Π ω
+[20705] def ChanceFeasible
+[20706]     (Π : Policy) (P : ProbabilityLaw) (ε : ℝ) : Prop :=
+[20707]   Probability P {ω | TrajectoryValid Π ω} ≥ 1 - ε
+[20709] def CVaR
+[20710]     (α : ℝ) (Z : Scenario → ℝ) (P : ProbabilityLaw) : ℝ :=
+[20711]   sInf {v | ∃ η,
+[20712]     v = η + (1 / (1 - α)) * Expectation P (fun ω => max (Z ω - η) 0)}
+[20714] structure ConditionalRisk where
+[20715]   eval :
+[20716]     (t : TimeIndex) →
+[20717]     RandomVariable (t+1) →
+[20718]     RandomVariable t
+[20719]   monotone : ...
+[20720]   translationEquivariant : ...
+[20722] def NestedRisk
+[20723]     (ρ : ConditionalRisk)
+[20724]     (Z : TimeIndex → RandomVariable) : ℝ := ...
+[20726] structure ConstructionTask where
+[20727]   id : TaskId
+[20728]   duration : Duration
+[20729]   predecessors : Finset TaskId
+[20730]   resources : ResourceDemand
+[20731]   effect : ConstructionEffect
+[20734] structure ConstructionState where
+[20735]   installed : Finset ObjectId
+[20736]   temporaryWorks : Finset ObjectId
+[20737]   temporaryRoutes : Finset RouteId
+[20738]   accessState : AccessState
+[20739]   logistics : LogisticsState
+[20740]   resources : ResourceState
+[20743] def TemporaryValid (c : ConstructionState) : Prop :=
+[20744]   TemporarySafety c ∧ TemporaryEgress c ∧
+[20745]   TemporaryAccess c ∧ TemporaryServiceValid c
+[20747] def InstallationFiber
+[20748]     (obj : ObjectId)
+[20749]     (c : ConstructionState) : Set InstallationWitness :=
+[20750]   {w | InstallationValid obj c w}
+[20752] structure CommissioningState where
+[20753]   plan : TestPlan
+[20754]   calibration : CalibrationStore
+[20755]   results : TestResultStore
+[20756]   defects : DefectStore
+[20757]   readiness : ReadinessState
+[20760] structure HybridState where
+[20761]   continuous : ContinuousState
+[20762]   mode : OperatingMode
+[20765] def ControlPolicy :=
+[20766]   InformationHistory currentTime → ControlAction
+[20768] def ControlledInvariant
+[20769]     (K : Set ContinuousState)
+[20770]     (f : Dynamics)
+[20771]     (W : Set Disturbance) : Prop :=
+[20772]   ∀ x ∈ K, ∃ u, ∀ w ∈ W, f x u w ∈ K
+[20774] structure FailureState where
+[20775]   status : ComponentId → AvailabilityClass
+[20776]   commonCause : CommonCauseState
+[20779] structure CommonCauseState where
+[20780]   latent : CommonCauseId → CauseStatus
+[20781]   dependenceModel : DependenceModel
+[20784] structure ReliabilityClaim where
+[20785]   successEvent : Set Trajectory
+[20786]   probability : ProbabilityInterval
+[20787]   horizon : Duration
+[20788]   assumptions : Finset AssumptionId
+[20791] structure ResilienceClaim where
+[20792]   baseline : ℝ
+[20793]   performance : Time → ℝ
+[20795]   lossArea : ℝ
+[20796]   recoveryTime : Duration
+[20799] structure TwinState where
+[20800]   estimate : DynamicStateEstimate
+[20801]   model : ModelRef
+[20807] structure BeliefState where
+[20808]   probability : Option (DynamicState → ℝ)
+[20809]   conditionSet : Option (Set DynamicState)
+[20812] def SetMembershipUpdate
+[20813]     (prior : Set DynamicState)
+[20814]     (transition : TransitionRelation)
+[20815]     (evidence : Set DynamicState) :
+[20816]     Set DynamicState :=
+[20817]   Propagate prior transition ∩ evidence
+[20819] def ObservationalEquivalent
+[20820]     (E : Set ObservationExperiment)
+[20821]     (x y : DynamicState) : Prop :=
+[20822]   ∀ e ∈ E, e.report x = e.report y
+[20824] structure FaultHypothesis where
+[20825]   id : FaultId
+[20826]   predicate : DynamicState → Prop
+[20829] structure DegradationState where
+[20830]   condition : AssetId → ConditionValue
+[20833] structure RULClaim where
+[20834]   failureSet : Set DegradationState
+[20835]   estimate : ExtendedNonnegativeReal
+[20836]   modality : RULModality
+[20840] structure MaintenanceAction where
+[20841]   target : AssetId
+[20842]   procedure : ProcedureRef
+[20843]   repairModel : RepairRelation
+[20845]   evidenceRequired : EvidenceRequirement
+[20848] structure RetrofitAction where
+[20849]   trigger : RetrofitTrigger
+[20850]   affectedRoots : Finset NodeId
+[20851]   pcjcdTransaction : PCJCDRef
+[20855] structure ExternalInterface where
+[20856]   commodity : CommodityType
+[20857]   direction : FlowDirection
+[20858]   capacity : Time → Scenario → ℝ
+[20859]   quality : QualityConstraint
+[20860]   failureModel : FailureModel
+[20863] structure EnvironmentalLedger where
+[20864]   initial : ImpactVector
+[20865]   operation : Time → ImpactVector
+[20866]   maintenance : ImpactVector
+[20867]   replacement : ImpactVector
+[20868]   endOfLife : ImpactVector
+[20869]   credits : ImpactVector
+[20872] structure DynamicParetoArchive where
+[20873]   policies : Finset PolicyRef
+[20874]   objectives : PolicyRef → IntervalObjectiveVector
+[20875]   nondominance : ParetoCertificateStore
+[20876]   completion : CompletionModality
+[20879] structure DynamicCheckpoint where
+[20880]   root : Hash
+[20881]   scenarioFrontier : ScenarioFrontier
+[20882]   policyState : PolicySearchState
+[20883]   proofState : ProofStore
+[20884]   versions : VersionVector
+[20885]   hash : Hash
+[20887] structure PCDYN where
+[20888]   project : ProjectId
+[20889]   initialPCJCD : PCJCDRef
+[20890]   stateSchema : DynamicStateSchema
+[20891]   scenarioState : ScenarioStore
+[20892]   policies : PolicyStore
+[20893]   construction : ConstructionStore
+[20894]   commissioning : CommissioningStore
+[20895]   operation : OperationalStore
+[20896]   reliability : ReliabilityStore
+[20897]   twin : TwinStore
+[20898]   lifecycle : LifecycleStore
+[20899]   environment : EnvironmentalStore
+[20900]   external : ExternalSystemStore
+[20901]   risk : RiskStore
+[20903]   proofs : ProofStore
+[20904]   finalMode : DYNMode
+[20907] structure DYNWitness where
+[20908]   initialState : DynamicState
+[20909]   policy : Policy
+[20910]   trajectories : TrajectoryStore
+[20911]   certificates : ProofStore
+[20913] Representative theorem signatures
+[20914] theorem nonanticipative_iff_constant_on_history_classes :
+[20915]   Nonanticipative π ↔
+[20916]   ∀ t ω₁ ω₂, HistoryEquivalent t ω₁ ω₂ →
+[20917]     ActionAt π t ω₁ = ActionAt π t ω₂ := by ...
+[20919] theorem perfect_information_lower_bound :
+[20920]   zPI ≤ zMS := by ...
+[20922] theorem recourse_value_nonnegative :
+[20923]   zMS ≤ zStatic := by ...
+[20925] theorem robust_implies_chance
+[20926]     (hSupport : P.support ⊆ Ω.carrier)
+[20927]     (hRobust : RobustFeasible Π Ω) :
+[20928]   ChanceFeasible Π P 0 := by ...
+[20930] theorem set_membership_contracts :
+[20931]   SetMembershipUpdate prior trans evidence ⊆
+[20932]     Propagate prior trans := by ...
+[20934] theorem controlled_invariant_safe :
+[20935]   ControlledInvariant K f W →
+[20936]   x₀ ∈ K →
+[20937]   ClosedLoopTrajectoryIn K := by ...
+[20939] theorem mpc_recursive_feasibility
+[20940]     (hTerminal : TerminalInvariant Kf)
+[20941]     (hInitial : MPCFeasible x₀) :
+[20942]   ∀ t, MPCFeasible x_t := by ...
+[20944] theorem independence_required_for_product :
+[20945]   MutualIndependent failures →
+[20946]   Probability (⋂ i, failures i) =
+[20947]     ∏ i, Probability (failures i) := by ...
+[20949] theorem observation_expansion_refines :
+[20950]   E₁ ⊆ E₂ →
+[20951]   ObservationalEquivalent E₂ x y →
+[20952]   ObservationalEquivalent E₁ x y := by ...
+[20954] theorem incremental_dynamic_equals_cold
+[20955]     (hComplete : DependencyComplete deps)
+[20956]     (hSound : CheckerSound checkers) :
+[20957]   IncrementalDynamicCheck changed state =
+[20958]     ColdDynamicCheck state := by ...
+[20960] theorem whole_robust_pcDyn :
+[20961]   WholeRobustHypotheses package witness →
+[20962]   witness ∈ DynamicReleaseFiber robustTarget state
+[20963]     .robustFeasible := by ...
+[20965] theorem whole_lifecycle_pcDyn :
+[20966]   WholeLifecycleHypotheses package witness →
+[20967]   LifecycleValid witness := by ...
+[20969] theorem dynamic_open_world_limitation :
+[20970]   ∃ W₀ W₁,
+[20971]     FormalArtifactsEqual W₀ W₁ ∧
+[20972]     RealOutcome W₀ ≠ RealOutcome W₁ := by ...
+[20974] 89. Mechanization Difficulty
+[20975] Object
+[20977] Main obstacle
+[20978] Finite scenario trees
+[20980] Typed histories and probabilities
+[20981] Nonanticipativity
+[20983] History equality
+[20984] Finite robust scenarios
+[20986] Complete enumeration
+[20987] Continuous robust sets
+[20989] Global separation
+[20990] Probability kernels
+[20992] Measurability
+[20993] CVaR
+[20995] Integrability and atoms
+[20996] Nested risk
+[20998] Conditional measurability/time consistency
+[20999] Distributional robustness
+[21001] Ambiguity duality and finite certificates
+[21002] Hybrid dynamics
+[21004] Continuous/discrete interaction
+[21005] Controlled invariance
+[21007] Reachability
+[21010] NP-hard resource scheduling
+[21011] Temporary geometry
+[21013] Time-indexed exact configuration spaces
+[21014] Installation reachability

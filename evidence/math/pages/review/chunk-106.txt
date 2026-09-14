@@ -1,0 +1,328 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P17579; UTF16 587962] Let the target satisfy
+[11-20:P17580; UTF16 587985] [ P_T(X=1)=\rho>0. ]
+[11-20:P17581; UTF16 588006] Define two target worlds.
+[11-20:P17582; UTF16 588032] In both worlds:
+[11-20:P17583; UTF16 588048] [ Y=0 \qquad \text{when }X=0. ]
+[11-20:P17584; UTF16 588080] In target world (T_1),
+[11-20:P17585; UTF16 588103] [ Y=0 \qquad \text{when }X=1. ]
+[11-20:P17586; UTF16 588135] In target world (T_2),
+[11-20:P17587; UTF16 588158] [ Y=1 \qquad \text{when }X=1. ]
+[11-20:P17588; UTF16 588190] The source distributions are identical because the source never observes (X=1).
+[11-20:P17589; UTF16 588270] For predictor (h(x)=0) with zero-one loss:
+[11-20:P17590; UTF16 588313] [ R_{T_1}(h)=0, ]
+[11-20:P17591; UTF16 588331] [ R_{T_2}(h)=\rho. ]
+[11-20:P17592; UTF16 588352] Thus identical source evidence is compatible with different target risks. ∎
+[11-20:P17593; UTF16 588428] [ \boxed{ \text{source success does not justify unsupported target extrapolation.} } ]
+[11-20:P17597; UTF16 588518] PRO-XFER3 — Perfect Source Performance Can Coexist With Arbitrarily Poor Target Performance
+[11-20:P17598; UTF16 588610] Let the source support be a set (S).
+[11-20:P17599; UTF16 588647] Define a predictor agreeing with the outcome perfectly on (S).
+[11-20:P17600; UTF16 588710] On a disjoint target-supported region (A), define the target outcome opposite to the predictor.
+[11-20:P17601; UTF16 588806] If the target puts arbitrarily large probability on (A), target error can approach one while source error remains zero. ∎
+[11-20:P17605; UTF16 588931] 23. Selection and Survivorship Bias
+[11-20:P17606; UTF16 588967] DEF-XFER15 — Observation-Selection Variable
+[11-20:P17608; UTF16 589015] [ S=1 ]
+[11-20:P17609; UTF16 589023] mean a project enters the observed fleet dataset.
+[11-20:P17610; UTF16 589073] The observed law is
+[11-20:P17611; UTF16 589093] [ P(B\mid S=1). ]
+[11-20:P17612; UTF16 589111] It need not equal
+[11-20:P17613; UTF16 589129] [ P(B). ]
+[11-20:P17617; UTF16 589142] THM-XFER11 — Without a Selection Assumption, Observed Fleet Failure Rate Can Differ Arbitrarily From Population Failure Rate
+[11-20:P17619; UTF16 589289] Let the population contain:
+[11-20:P17620; UTF16 589317] healthy projects;
+[11-20:P17621; UTF16 589335] failed projects.
+[11-20:P17622; UTF16 589352] Suppose selection is
+[11-20:P17623; UTF16 589373] [ S=1 \iff \text{project is healthy}. ]
+[11-20:P17624; UTF16 589413] Then the observed failure rate is zero even when the population failure rate is positive.
+[11-20:P17625; UTF16 589503] Conversely, select only failed projects:
+[11-20:P17626; UTF16 589544] [ S=1 \iff \text{project failed}. ]
+[11-20:P17627; UTF16 589580] Then the observed failure rate is one even when the population rate is arbitrarily small.
+[11-20:P17628; UTF16 589670] Therefore observed fleet failure rate does not identify population failure rate without a selection model. ∎
+[11-20:P17632; UTF16 589782] 24. Context Aggregation and Simpson Reversal
+[11-20:P17633; UTF16 589827] PRO-XFER4 — Aggregating Across Contexts Can Reverse Every Within-Context Comparison
+[11-20:P17634; UTF16 589911] Consider synthetic success counts.
+[11-20:P17635; UTF16 589946] Stratum 1
+[11-20:P17636; UTF16 589956] 90%, ]
+[11-20:P17637; UTF16 589963] 80%. ]
+[11-20:P17638; UTF16 589970] Thus (A>B).
+[11-20:P17639; UTF16 589982] Stratum 2
+[11-20:P17640; UTF16 589992] 10%, ]
+[11-20:P17641; UTF16 589999] 0%. ]
+[11-20:P17642; UTF16 590005] Again (A>B).
+[11-20:P17643; UTF16 590018] Pooled
+[11-20:P17644; UTF16 590025] [ A: \frac{19}{110} \approx 17.3%, ]
+[11-20:P17645; UTF16 590062] [ B: \frac{80}{110} \approx 72.7%. ]
+[11-20:P17646; UTF16 590099] The pooled ranking reverses.
+[11-20:P17647; UTF16 590128] The reversal occurs because the methods are distributed differently across the strata.
+[11-20:P17648; UTF16 590215] Therefore fleet aggregation without context semantics can reverse engineering conclusions. ∎
+[11-20:P17649; UTF16 590308] This example does not by itself establish causality.
+[11-20:P17653; UTF16 590364] 25. Conditional and Causal Mechanism Transport
+[11-20:P17654; UTF16 590411] DEF-XFER16 — Invariant Conditional Mechanism
+[11-20:P17655; UTF16 590456] Let (Z) be a declared mechanism-conditioning variable.
+[11-20:P17656; UTF16 590511] A statistical conditional-mechanism bridge asserts
+[11-20:P17657; UTF16 590562] P_T(dy\mid z)
+[11-20:P17658; UTF16 590576] K(dy\mid z). } ]
+[11-20:P17659; UTF16 590593] A genuinely causal version may instead assert equality of interventional kernels such as
+[11-20:P17660; UTF16 590682] P_T(dy\mid do(a),z). ]
+[11-20:P17661; UTF16 590705] The causal interpretation requires additional causal assumptions.
+[11-20:P17665; UTF16 590774] THM-XFER12 — Transport Through an Invariant Conditional Mechanism
+[11-20:P17667; UTF16 590847] P_S(dy\mid z)
+[11-20:P17668; UTF16 590861] K(dy\mid z), ]
+[11-20:P17669; UTF16 590876] and the target marginal (P_T^Z) is known.
+[11-20:P17671; UTF16 590923] \int K(A\mid z) P_T^Z(dz) } ]
+[11-20:P17672; UTF16 590953] for every measurable outcome set (A).
+[11-20:P17673; UTF16 590991] More generally, for integrable (g),
+[11-20:P17674; UTF16 591027] \int \left( \int g(y)K(dy\mid z) \right) P_T^Z(dz). } ]
+[11-20:P17676; UTF16 591089] Apply the disintegration identity under the target law and substitute the invariant conditional kernel. ∎
+[11-20:P17677; UTF16 591195] The engineering burden lies in establishing that (Z) is sufficient and the kernel is invariant.
+[11-20:P17681; UTF16 591294] 26. Observational Fit Does Not Establish Causal Transport
+[11-20:P17682; UTF16 591352] PRO-XFER5 — Observationally Equivalent Models Can Disagree Under Intervention
+[11-20:P17684; UTF16 591434] [ U\sim\operatorname{Bernoulli}(1/2). ]
+[11-20:P17685; UTF16 591474] Model (M_1)
+[11-20:P17687; UTF16 591507] Model (M_2)
+[11-20:P17688; UTF16 591519] [ Y=U, \qquad X=Y. ]
+[11-20:P17689; UTF16 591540] Under passive observation, both models produce:
+[11-20:P17690; UTF16 591588] [ P(X=0,Y=0)=\frac12, ]
+[11-20:P17691; UTF16 591612] [ P(X=1,Y=1)=\frac12. ]
+[11-20:P17692; UTF16 591636] Thus their observational distributions are identical.
+[11-20:P17693; UTF16 591690] Under intervention (do(X=0)):
+[11-20:P17694; UTF16 591720] in (M_1), the equation (Y=X) gives (Y=0);
+[11-20:P17695; UTF16 591762] in (M_2), (Y=U), so (Y=1) with probability (1/2).
+[11-20:P17696; UTF16 591812] Therefore observational equivalence does not determine the intervention response. ∎
+[11-20:P17697; UTF16 591896] [ \boxed{ \text{observational fit} \not\Longrightarrow \text{causal transportability}. } ]
+[11-20:P17701; UTF16 591990] 27. Hierarchical Set-Membership Fleet Transfer
+[11-20:P17702; UTF16 592037] This is Prompt 16’s principal nonprobabilistic fleet-learning mechanism.
+[11-20:P17703; UTF16 592110] DEF-XFER17 — Fleet Hyperparameter
+[11-20:P17705; UTF16 592148] [ \eta^\star \in H_0 ]
+[11-20:P17706; UTF16 592171] be a common but unknown fleet-level mechanism parameter.
+[11-20:P17707; UTF16 592228] Each project (i) has local parameter
+[11-20:P17708; UTF16 592265] [ \theta_i^\star. ]
+[11-20:P17709; UTF16 592285] Source evidence is related by
+[11-20:P17710; UTF16 592315] [ C_i ( \eta, \theta_i, E_i, \chi_i ). ]
+[11-20:P17714; UTF16 592359] DEF-XFER18 — Certified Fleet Hyperparameter Set
+[11-20:P17715; UTF16 592407] For source index set (I_S), define
+[11-20:P17716; UTF16 592442] \left{ \eta\in H_0: \exists (\theta_i)_{i\in I_S} ; \forall i\in I_S, ; C_i ( \eta, \theta_i, E_i, \chi_i ) \right}. } ]
+[11-20:P17717; UTF16 592563] No probability is required.
+[11-20:P17721; UTF16 592594] DEF-XFER19 — Induced Target Parameter Set
+[11-20:P17723; UTF16 592640] [ B_\star ( \eta, \chi_\star, \theta_\star ) ]
+[11-20:P17724; UTF16 592687] be the checked target bridge.
+[11-20:P17726; UTF16 592724] \left{ \theta: \exists\eta\in H_S, ; B_\star ( \eta, \chi_\star, \theta ) \right}. } ]
+[11-20:P17730; UTF16 592814] 28. Hierarchical Transfer Soundness
+[11-20:P17731; UTF16 592850] THM-XFER13 — Sound Fleet Set-Membership Transfer Preserves the True Target Parameter
+[11-20:P17733; UTF16 592943] the true fleet hyperparameter satisfies [ \eta^\star\in H_0; ]
+[11-20:P17734; UTF16 593006] for every source (i), [ C_i ( \eta^\star, \theta_i^\star, E_i, \chi_i ); ]
+[11-20:P17735; UTF16 593081] the target satisfies [ B_\star ( \eta^\star, \chi_\star, \theta_\star^\star ). ]
+[11-20:P17737; UTF16 593167] [ \boxed{ \eta^\star \in H_S } ]
+[11-20:P17739; UTF16 593204] [ \boxed{ \theta_\star^\star \in \Theta_\star^{\mathrm{fleet}}. } ]
+[11-20:P17741; UTF16 593278] Use the actual source parameter tuple
+[11-20:P17742; UTF16 593316] [ (\theta_i^\star)_{i\in I_S} ]
+[11-20:P17743; UTF16 593348] as the existential witness in DEF-XFER18.
+[11-20:P17744; UTF16 593390] Assumption 2 shows every source constraint holds.
+[11-20:P17746; UTF16 593450] [ \eta^\star \in H_S. ]
+[11-20:P17747; UTF16 593474] Assumption 3 and the newly established membership provide an existential witness (\eta^\star) in DEF-XFER19.
+[11-20:P17749; UTF16 593588] [ \theta_\star^\star \in \Theta_\star^{\mathrm{fleet}}. ]
+[11-20:P17751; UTF16 593648] This is a deterministic set-containment theorem.
+[11-20:P17755; UTF16 593700] 29. Monotonic Fleet Refinement
+[11-20:P17756; UTF16 593731] THM-XFER14 — More Sound Source Constraints Shrink the Fleet Hyperparameter Set Under a Fixed Theory
+[11-20:P17758; UTF16 593835] [ I_1 \subseteq I_2. ]
+[11-20:P17760; UTF16 593863] [ \boxed{ H_{I_2} \subseteq H_{I_1}. } ]
+[11-20:P17761; UTF16 593904] If the target bridge is unchanged, then
+[11-20:P17762; UTF16 593944] [ \boxed{ \Theta_{\star,I_2}^{\mathrm{fleet}} \subseteq \Theta_{\star,I_1}^{\mathrm{fleet}}. } ]
+[11-20:P17765; UTF16 594052] [ \eta\in H_{I_2}. ]
+[11-20:P17766; UTF16 594073] There exists a tuple ((\theta_i)_{i\in I_2}) satisfying every source constraint for (i\in I_2).
+[11-20:P17767; UTF16 594169] Restrict the tuple to (I_1).
+[11-20:P17768; UTF16 594198] Because (I_1\subseteq I_2), every (I_1) constraint remains satisfied.
+[11-20:P17770; UTF16 594278] [ \eta\in H_{I_1}. ]
+[11-20:P17771; UTF16 594299] This proves the first inclusion.
+[11-20:P17772; UTF16 594332] For the target set, take
+[11-20:P17773; UTF16 594357] [ \theta \in \Theta_{\star,I_2}^{\mathrm{fleet}}. ]
+[11-20:P17774; UTF16 594409] There exists
+[11-20:P17775; UTF16 594422] [ \eta \in H_{I_2} ]
+[11-20:P17776; UTF16 594443] satisfying the target bridge.
+[11-20:P17777; UTF16 594473] By the first inclusion,
+[11-20:P17780; UTF16 594528] [ \theta \in \Theta_{\star,I_1}^{\mathrm{fleet}}. ]
+[11-20:P17782; UTF16 594582] This is fixed-theory monotonicity.
+[11-20:P17783; UTF16 594617] A new mechanism is a theory expansion, not another constraint under the old theory.
+[11-20:P17787; UTF16 594704] COR-XFER2 — Sound Target Evidence Further Refines a Fleet-Induced Parameter Set
+[11-20:P17789; UTF16 594792] [ \theta_\star^\star \in \Theta_{\star,0}. ]
+[11-20:P17790; UTF16 594837] For target compatibility sets (C_{\star,1},\ldots,C_{\star,n}) each containing (\theta_\star^\star), define
+[11-20:P17791; UTF16 594945] \Theta_{\star,0} \cap \bigcap_{k=1}^{n} C_{\star,k}. ]
+[11-20:P17793; UTF16 595005] [ \theta_\star^\star \in \Theta_{\star,n}. ]
+[11-20:P17795; UTF16 595056] The true target parameter lies in every intersected set. ∎
+[11-20:P17799; UTF16 595118] COR-XFER3 — A Set-Valued Target Claim Can Discharge an Exact Target Claim Through Universal Verification
+[11-20:P17801; UTF16 595226] [ \theta_\star^\star \in \Theta_\star ]
+[11-20:P17803; UTF16 595270] [ \forall\theta\in\Theta_\star, \qquad P(\theta), ]
+[11-20:P17805; UTF16 595327] [ P(\theta_\star^\star). ]
+[11-20:P17807; UTF16 595360] Instantiate the universal statement at the true parameter. ∎
+[11-20:P17808; UTF16 595421] This is a valid modality conversion:
+[11-20:P17809; UTF16 595458] [ \mathsf{SET_VALUED_TARGET} + \text{universal target proof} \Longrightarrow \mathsf{EXACT_TARGET}. ]
+[11-20:P17813; UTF16 595563] 30. Fleet-Driven Theory Expansion
+[11-20:P17814; UTF16 595597] DEF-XFER20 — Cross-Project Theory Expansion Event
+[11-20:P17815; UTF16 595647] A source result is a Cross-Project Theory Expansion Event for a target class (K) when it proves:
+[11-20:P17816; UTF16 595744] a new physical mechanism or fault is admissible in the source;
+[11-20:P17817; UTF16 595807] a checked bridge makes the mechanism admissible for targets in (K);
+[11-20:P17818; UTF16 595875] the mechanism was absent from the old target theory.
+[11-20:P17820; UTF16 595938] new common-cause fault;
+[11-20:P17821; UTF16 595962] product-revision defect;
+[11-20:P17822; UTF16 595987] degradation mechanism;
+[11-20:P17823; UTF16 596010] control failure;
+[11-20:P17824; UTF16 596027] PCPE breaker.
+[11-20:P17828; UTF16 596044] THM-XFER15 — A New Applicable Fleet Failure Mechanism Can Reopen Previously Closed Target Assurance
+[11-20:P17829; UTF16 596144] Let the old fault family be
+[11-20:P17830; UTF16 596172] [ \mathcal F_0. ]
+[11-20:P17831; UTF16 596190] Suppose the old target claim is
+[11-20:P17832; UTF16 596222] [ C_0: \forall f\in\mathcal F_0, \quad P(f). ]
+[11-20:P17833; UTF16 596269] A checked fleet discovery adds
+[11-20:P17834; UTF16 596300] [ f_{\mathrm{new}} \notin \mathcal F_0 ]
+[11-20:P17835; UTF16 596341] to the applicable target theory:
+[11-20:P17836; UTF16 596374] \mathcal F_0 \cup {f_{\mathrm{new}}}. ]
+[11-20:P17837; UTF16 596414] The new claim is
+[11-20:P17838; UTF16 596431] [ C_1: \forall f\in\mathcal F_1, \quad P(f). ]
+[11-20:P17839; UTF16 596478] Then (C_0) does not generally imply (C_1).
+[11-20:P17840; UTF16 596521] If no valid proof of (P(f_{\mathrm{new}})) exists, the target claim reopens.
+[11-20:P17842; UTF16 596604] Construct a model satisfying
+[11-20:P17843; UTF16 596633] [ P(f) \qquad \forall f\in\mathcal F_0, ]
+[11-20:P17845; UTF16 596679] [ \neg P(f_{\mathrm{new}}). ]
+[11-20:P17846; UTF16 596709] Then (C_0) is true and (C_1) is false.
+[11-20:P17847; UTF16 596748] Therefore the old proof is insufficient for the expanded theory.
+[11-20:P17848; UTF16 596813] Under Prompt-11 assurance semantics, if no alternative derivation proves the expanded claim, closure is lost. ∎
+[11-20:P17849; UTF16 596925] More fleet evidence can reduce assurance by discovering a previously omitted possibility.
+[11-20:P17850; UTF16 597015] That is epistemic progress.
+[11-20:P17854; UTF16 597046] 31. Source Breakers and Universal Fleet Claims
+[11-20:P17855; UTF16 597093] THM-XFER16 — One Checked Source Breaker Refutes a Universal Fleet-Class Claim but Not a Target-Specific Claim
+[11-20:P17857; UTF16 597207] [ C_K: \forall B\in K, \quad C(B). ]
+[11-20:P17858; UTF16 597244] Suppose a source project satisfies
+[11-20:P17859; UTF16 597279] [ B_i\in K ]
+[11-20:P17860; UTF16 597292] and has a checked breaker proving
+[11-20:P17861; UTF16 597326] [ \neg C(B_i). ]
+[11-20:P17862; UTF16 597343] Then (C_K) is false.
+[11-20:P17863; UTF16 597364] However, this does not imply
+[11-20:P17864; UTF16 597393] [ \neg C(B_\star) ]
+[11-20:P17865; UTF16 597413] for another target (B_\star\in K).
+[11-20:P17867; UTF16 597454] The source project is a counterexample to the universal quantifier, so (C_K) is false.
+[11-20:P17868; UTF16 597541] For the second statement, construct another target (B_\star\in K) satisfying (C(B_\star)).
+[11-20:P17869; UTF16 597632] The source breaker does not logically determine the target-specific truth. ∎
+[11-20:P17870; UTF16 597709] A source breaker may enlarge target fault theory without proving that the target currently has the fault.
+[11-20:P17874; UTF16 597818] 32. Distributionally Robust Transfer
+[11-20:P17875; UTF16 597855] DEF-XFER21 — Target Distribution Ambiguity Set
+[11-20:P17876; UTF16 597902] A Target Distribution Ambiguity Set is
+[11-20:P17877; UTF16 597941] [ \boxed{ \mathfrak P_T } ]
+[11-20:P17878; UTF16 597969] containing candidate target laws.
+[11-20:P17879; UTF16 598003] It may be defined by:
+[11-20:P17880; UTF16 598025] moments;
+[11-20:P17882; UTF16 598043] confidence regions;
+[11-20:P17883; UTF16 598063] Wasserstein radius;
+[11-20:P17884; UTF16 598083] likelihood;
+[11-20:P17885; UTF16 598095] causal constraints;
+[11-20:P17886; UTF16 598115] domain-shift bounds.
+[11-20:P17887; UTF16 598136] The construction method is part of the evidence.
+[11-20:P17891; UTF16 598188] DEF-XFER22 — Robust Transferred Risk
+[11-20:P17892; UTF16 598225] For measurable integrable loss,
+[11-20:P17893; UTF16 598257] \sup_{P\in\mathfrak P_T} \mathbb E_P[\ell(h,B)]. } ]
+[11-20:P17897; UTF16 598313] THM-XFER17 — Distributionally Robust Risk Is Sound When the True Target Law Lies in the Ambiguity Set
+[11-20:P17899; UTF16 598418] [ P_T^\star \in \mathfrak P_T ]
+[11-20:P17901; UTF16 598454] [ R_{\mathrm{rob}}(h) \le \varepsilon, ]
+[11-20:P17903; UTF16 598500] [ \boxed{ \mathbb E_{P_T^\star} [\ell(h,B)] \le \varepsilon. } ]
+[11-20:P17905; UTF16 598571] The true target law is one member of the supremum domain.
+[11-20:P17907; UTF16 598639] R_{\mathrm{rob}}(h) \le \varepsilon. ]
+[11-20:P17909; UTF16 598680] This remains a distributional statement, not a deterministic fixed-target fact.
+[11-20:P17913; UTF16 598763] 33. Approximate Transfer Error Calculus
+[11-20:P17914; UTF16 598803] DEF-XFER23 — Transfer Error Ledger
+[11-20:P17916; UTF16 598847] [ d_S(y_S,\widehat y_S) \le \varepsilon_S. ]
+[11-20:P17917; UTF16 598892] Let transfer map (T) satisfy
+[11-20:P17918; UTF16 598921] [ d_T \left( T(x), T(y) \right) \le L_T d_S(x,y). ]
+[11-20:P17919; UTF16 598973] Suppose target-transfer discrepancy satisfies
+[11-20:P17920; UTF16 599019] [ d_T \left( y_T, T(y_S) \right) \le \varepsilon_{\mathrm{tr}}. ]
+[11-20:P17922; UTF16 599105] source approximation error;
+[11-20:P17923; UTF16 599133] transfer amplification;
+[11-20:P17924; UTF16 599157] transfer discrepancy;
+[11-20:P17925; UTF16 599179] target model validity;
+[11-20:P17926; UTF16 599202] exact mandatory channels.
+[11-20:P17930; UTF16 599231] THM-XFER18 — Source Error and Transfer Discrepancy Compose Additively
+[11-20:P17931; UTF16 599301] Under DEF-XFER23,
+[11-20:P17932; UTF16 599319] [ \boxed{ d_T \left( y_T, T(\widehat y_S) \right) \le \varepsilon_{\mathrm{tr}} + L_T\varepsilon_S. } ]
+[11-20:P17935; UTF16 599457] [ \begin{aligned} d_T \left( y_T, T(\widehat y_S) \right) &\le d_T \left( y_T, T(y_S) \right) + d_T \left( T(y_S), T(\widehat y_S) \right)\ &\le \varepsilon_{\mathrm{tr}} + L_T d_S \left( y_S, \widehat y_S \right)\ &\le \varepsilon_{\mathrm{tr}} + L_T\varepsilon_S. \end{aligned} ]
+[11-20:P17937; UTF16 599741] This cannot compensate for exact disagreements in:
+[11-20:P17942; UTF16 599850] model-domain validity.
+[11-20:P17946; UTF16 599876] 34. Transfer of Proof-Carrying Port Envelopes
+[11-20:P17947; UTF16 599922] DEF-XFER24 — Monotone Set Transport Operator
+[11-20:P17949; UTF16 599971] [ F: \mathcal P(Y_S) \to \mathcal P(Y_T) ]
+[11-20:P17950; UTF16 600014] be monotone:
+[11-20:P17951; UTF16 600027] [ A\subseteq B \Longrightarrow F(A)\subseteq F(B). ]
+[11-20:P17952; UTF16 600080] Suppose the source PCPE satisfies
+[11-20:P17954; UTF16 600165] Suppose the target bridge proves
+[11-20:P17955; UTF16 600198] [ \mathcal P_T \subseteq F(\mathcal P_S) \oplus E_{\mathrm{tr}}, ]
+[11-20:P17956; UTF16 600265] where (\oplus) denotes the declared set addition or transfer-envelope operation.
+[11-20:P17960; UTF16 600349] THM-XFER19 — Proof-Carrying PCPE Transfer
+[11-20:P17961; UTF16 600391] Under DEF-XFER24,
+[11-20:P17962; UTF16 600409] [ \boxed{ \mathcal P_T \subseteq F(\widehat{\mathcal P}S) \oplus E{\mathrm{tr}}. } ]
+[11-20:P17966; UTF16 600555] and monotonicity,
+[11-20:P17967; UTF16 600573] [ F(\mathcal P_S) \subseteq F(\widehat{\mathcal P}_S). ]
+[11-20:P17968; UTF16 600630] Applying the same discrepancy-set operation preserves inclusion:
+[11-20:P17969; UTF16 600695] [ F(\mathcal P_S) \oplus E_{\mathrm{tr}} \subseteq F(\widehat{\mathcal P}S) \oplus E{\mathrm{tr}}. ]
+[11-20:P17970; UTF16 600796] Combine with the target bridge inclusion. ∎
+[11-20:P17971; UTF16 600840] PCPE transfer requires:
+[11-20:P17972; UTF16 600864] source validity;
+[11-20:P17973; UTF16 600881] target bridge;
+[11-20:P17975; UTF16 600921] target product/context compatibility;
+[11-20:P17976; UTF16 600959] transfer discrepancy.
+[11-20:P17977; UTF16 600981] A filename match proves none of these.
+[11-20:P17981; UTF16 601023] 35. Fault and Degradation Model Transfer
+[11-20:P17982; UTF16 601064] A transferred fault or degradation model must carry:
+[11-20:P17983; UTF16 601117] source product identity;
+[11-20:P17984; UTF16 601142] source operating context;
+[11-20:P17985; UTF16 601168] environmental scope;
+[11-20:P17986; UTF16 601189] maintenance context;
+[11-20:P17988; UTF16 601227] failure mechanism;
+[11-20:P17991; UTF16 601283] target applicability.
+[11-20:P17992; UTF16 601305] A source fault occurrence may justify adding a possible fault mode to the target theory when applicability is proved.
+[11-20:P17993; UTF16 601423] It does not establish that the target currently occupies that mode.
+[11-20:P17994; UTF16 601491] A degradation law may be transferred as:
+[11-20:P17995; UTF16 601532] exact mechanism;
+[11-20:P17996; UTF16 601549] set-valued target relation;
+[11-20:P17997; UTF16 601577] statistical population claim;
+[11-20:P17998; UTF16 601607] Bayesian prior;
+[11-20:P17999; UTF16 601623] heuristic proposal.
+[11-20:P18000; UTF16 601643] Its modality must be explicit.
+[11-20:P18004; UTF16 601677] 36. Cross-Project Calibration
+[11-20:P18005; UTF16 601707] Calibration transfer requires:
+[11-20:P18006; UTF16 601738] exact instrument identity or proved equivalence;
+[11-20:P18007; UTF16 601787] calibration-chain compatibility;
+[11-20:P18008; UTF16 601820] firmware compatibility;
+[11-20:P18010; UTF16 601865] time validity;
+[11-20:P18011; UTF16 601880] sensor replacement history.
+[11-20:P18012; UTF16 601908] A calibration certificate from another sensor with the same part number is not automatically target evidence.
+[11-20:P18013; UTF16 602018] This is an applicability problem under Prompt 11.
+[11-20:P18017; UTF16 602071] 37. Bayesian Transfer as a Separate Modality
+[11-20:P18018; UTF16 602116] DEF-XFER30 — Bayesian Transfer Model
+[11-20:P18019; UTF16 602153] A Bayesian transfer model contains:
+[11-20:P18020; UTF16 602189] [ \left( \Theta, \Pi, L, \mathsf{ModelScope}, \mathsf{Version} \right), ]
+[11-20:P18022; UTF16 602270] (\Pi): prior law;
+[11-20:P18023; UTF16 602288] (L(E\mid\theta)): likelihood;
+[11-20:P18024; UTF16 602318] the posterior is defined by Bayes’ rule when normalizable.
+[11-20:P18025; UTF16 602377] A Bayesian posterior statement is conditional on:
+[11-20:P18029; UTF16 602459] observed evidence.
+[11-20:P18033; UTF16 602481] PRO-XFER6 — Posterior Certainty Does Not Establish Target Truth Under Model Misspecification
+[11-20:P18035; UTF16 602587] Let the Bayesian model class contain only parameter
+[11-20:P18036; UTF16 602639] [ \Theta={0}. ]
+[11-20:P18037; UTF16 602655] Let the actual target parameter be
+[11-20:P18038; UTF16 602690] [ \theta^\star=1, ]
+[11-20:P18039; UTF16 602710] which is outside the model class.
+[11-20:P18040; UTF16 602744] Every posterior necessarily satisfies
+[11-20:P18041; UTF16 602782] [ \Pi(\theta=0\mid E)=1 ]
+[11-20:P18042; UTF16 602808] for every evidence set allowed by the model.
+[11-20:P18043; UTF16 602853] The posterior is certain and wrong relative to the physical target.
+[11-20:P18044; UTF16 602921] Therefore posterior certainty does not establish target truth when the true mechanism is excluded. ∎
+[11-20:P18045; UTF16 603022] Bayesian outputs may guide decisions under an explicitly adopted Bayesian decision policy.
+[11-20:P18046; UTF16 603113] They do not silently become deterministic engineering facts.
+[11-20:P18050; UTF16 603177] 38. Federated Evidence
+[11-20:P18051; UTF16 603200] DEF-XFER25 — Federated Evidence Packet
+[11-20:P18052; UTF16 603239] A Federated Evidence Packet is
+[11-20:P18053; UTF16 603270] \left( \mathsf{ProjectID}, \chi_i, \mathsf{SamplingUnit}, S_i, \Pi_i, \mathsf{EvidenceCert}, \mathsf{Version} \right), } ]
+[11-20:P18055; UTF16 603400] (S_i): permitted summary, statistic, or model update;
+[11-20:P18056; UTF16 603454] (\Pi_i): provenance and local proof metadata.
+[11-20:P18057; UTF16 603500] Raw evidence may remain local.
+[11-20:P18058; UTF16 603531] The packet must contain enough information for the claimed aggregation theorem.
+[11-20:P18062; UTF16 603614] THM-XFER20 — Sound Local Evidence Certificates Compose Through a Sound Federated Aggregation Rule
+[11-20:P18063; UTF16 603712] Suppose each local checker proves

@@ -10,6 +10,7 @@ from __future__ import annotations
 from fractions import Fraction as Q
 from hashlib import sha256
 from pathlib import Path
+from copy import deepcopy
 import re
 from threading import RLock
 
@@ -232,13 +233,17 @@ def _box_corners(lo, hi):
 
 
 class ExactIfcEncloser:
-    def __init__(self, source_path, model, *, vertex_hull_completion=False):
+    def __init__(self, source_path, model, *, vertex_hull_completion=False, memoize_item_support=True):
         self.raw = StepRationals(source_path, model)
         self.model = model
         self.g = self.raw.get
         self.vertex_hull_completion = bool(vertex_hull_completion)
         self.nonplanar_polygons = 0
         self._lock = RLock()
+        self.memoize_item_support = bool(memoize_item_support)
+        self._support_cache = {}
+        self.support_cache_hits = 0
+        self.support_cache_misses = 0
 
     def _coords(self, entity, name="Coordinates"):
         value = self.g(entity, name)
@@ -528,6 +533,35 @@ class ExactIfcEncloser:
         return result, face_count
 
     def _support(self, item, transform, coverage, seen=frozenset()):
+        if not self.memoize_item_support:
+            return self._support_uncached(item, transform, coverage, seen)
+        if item.id() in seen:
+            raise EnclosureUnknown("CYCLIC_GEOMETRIC_OPERAND")
+        # Source bytes are captured by StepRationals. Numeric values and entity
+        # references come from those bytes, never later mutable model values.
+        key = (self.raw.source_sha256, CODE_SHA256, self.vertex_hull_completion, item.id())
+        cached = self._support_cache.get(key)
+        if cached is None:
+            self.support_cache_misses += 1
+            local_coverage = []
+            before = self.nonplanar_polygons
+            local_points = self._support_uncached(item, _identity(), local_coverage, seen)
+            lo, hi = _box(local_points)
+            nonplanar = self.nonplanar_polygons - before
+            # Only complete successful item trees enter the cache. Failed
+            # operands and unsupported siblings never acquire a bound.
+            cached = (lo, hi, deepcopy(local_coverage), nonplanar)
+            self._support_cache[key] = cached
+        else:
+            self.support_cache_hits += 1
+            self.nonplanar_polygons += cached[3]
+        lo, hi, local_coverage, _ = cached
+        coverage.extend(deepcopy(local_coverage))
+        # Affine images preserve containment. Rotating an item-local AABB may
+        # enlarge the result; it cannot justify inferring collision or solidity.
+        return [_apply(transform, point) for point in _box_corners(lo, hi)]
+
+    def _support_uncached(self, item, transform, coverage, seen=frozenset()):
         if item.id() in seen:
             raise EnclosureUnknown("CYCLIC_GEOMETRIC_OPERAND")
         seen = seen | {item.id()}
@@ -610,6 +644,7 @@ class ExactIfcEncloser:
         self.nonplanar_polygons = 0
         base = {"schema": "oma.ifc.source-enclosure/2", "source_sha256": self.raw.source_sha256,
             "checker_code_sha256": CODE_SHA256,
+            "support_evaluation": "COMPLETE_ITEM_LOCAL_BOX_THEN_OUTWARD_AFFINE" if self.memoize_item_support else "DIRECT_OUTWARD_AFFINE_SUPPORT",
             "product_step_id": product.id(), "frame": "IFC_LOCAL_ENGINEERING_METRES",
             "claim": "ALL_SELECTED_BODY_SUPPORTED_REPRESENTED_SUPPORT_IS_SUBSET_OF_OUTER_BOX",
             "analytic_support": "POSITIVE_LINEAR_EXTRUSIONS_AND_SUPPORTED_REGULARIZED_BOOLEANS",

@@ -1,0 +1,329 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P285; UTF16 14645] THM-REG1 — The Latest Published Edition Need Not Be the Governing Adopted Edition
+[21-30:P286; UTF16 14727] Statement
+[21-30:P287; UTF16 14737] There exist synthetic regulatory systems in which:
+[21-30:P288; UTF16 14788] compliance with the adopted edition does not imply compliance with the latest published edition; and
+[21-30:P289; UTF16 14889] compliance with the latest published edition does not imply compliance with the adopted edition.
+[21-30:P291; UTF16 14992] Let synthetic edition (E_1) be adopted.
+[21-30:P292; UTF16 15032] Let later edition (E_2) be published but unadopted.
+[21-30:P293; UTF16 15084] First direction
+[21-30:P295; UTF16 15109] [ E_1:\quad x\ge1, ]
+[21-30:P296; UTF16 15130] [ E_2:\quad x\ge2. ]
+[21-30:P298; UTF16 15157] [ x=1.5. ]
+[21-30:P300; UTF16 15174] [ x\models E_1, ]
+[21-30:P302; UTF16 15197] [ x\not\models E_2. ]
+[21-30:P303; UTF16 15219] Thus adopted-edition compliance need not imply latest-edition compliance.
+[21-30:P306; UTF16 15324] [ E_1:\quad x\le1, ]
+[21-30:P307; UTF16 15345] [ E_2:\quad x\le2. ]
+[21-30:P311; UTF16 15389] [ x\models E_2, ]
+[21-30:P313; UTF16 15412] [ x\not\models E_1. ]
+[21-30:P314; UTF16 15434] Thus latest-edition compliance need not imply adopted-edition compliance.
+[21-30:P316; UTF16 15519] [ \boxed{ \text{latest published edition} \neq \text{governing adopted edition} } ]
+[21-30:P317; UTF16 15603] without a valid adoption bridge. ∎
+[21-30:P321; UTF16 15641] THM-REG2 — Authentic Regulatory Text Does Not Establish Its Applicability to a Target Project
+[21-30:P323; UTF16 15757] Let (s) be one authentic synthetic source.
+[21-30:P324; UTF16 15800] Let its rule apply exactly to projects of class:
+[21-30:P325; UTF16 15849] [ \mathsf{ClassA}. ]
+[21-30:P326; UTF16 15870] Project (P_1) has class:
+[21-30:P328; UTF16 15916] Project (P_2) has class:
+[21-30:P329; UTF16 15941] [ \mathsf{ClassB}. ]
+[21-30:P330; UTF16 15962] The source bytes, hash, provenance, issuer, and edition are identical for both projects.
+[21-30:P332; UTF16 16056] [ \mathsf{Applies}(s,P_1)=\mathsf{TRUE}, ]
+[21-30:P334; UTF16 16106] [ \mathsf{Applies}(s,P_2)=\mathsf{FALSE}. ]
+[21-30:P335; UTF16 16150] Therefore source authenticity alone does not establish target applicability. ∎
+[21-30:P339; UTF16 16232] 8. Regulatory Authority Graph
+[21-30:P340; UTF16 16262] DEF-REG5 — Regulatory Authority Graph
+[21-30:P341; UTF16 16300] Define a labeled directed graph:
+[21-30:P342; UTF16 16333] (V,E,\ell), } ]
+[21-30:P343; UTF16 16349] where nodes may represent:
+[21-30:P345; UTF16 16389] sources;
+[21-30:P346; UTF16 16398] editions;
+[21-30:P349; UTF16 16431] adopted standards;
+[21-30:P350; UTF16 16450] permit conditions.
+[21-30:P351; UTF16 16469] Edge labels may include:
+[21-30:P352; UTF16 16494] [ { \mathsf{DERIVES_AUTHORITY}, \mathsf{ADOPTS}, \mathsf{AMENDS}, \mathsf{SUPERSEDES}, \mathsf{INCORPORATES}, \mathsf{DELEGATES}, \mathsf{CONDITIONS}, \mathsf{CITES} }. ]
+[21-30:P353; UTF16 16665] Each edge label has its own formal semantics.
+[21-30:P354; UTF16 16711] No graph operation is valid merely because it is graph-theoretically convenient.
+[21-30:P358; UTF16 16795] 9. Incorporation by Reference
+[21-30:P359; UTF16 16825] DEF-REG6 — Scoped Incorporation Relation
+[21-30:P361; UTF16 16873] [ \boxed{ s_1 \xrightarrow[\Gamma]{\mathsf{IBR}} s_2 } ]
+[21-30:P362; UTF16 16930] when source (s_1) incorporates source (s_2) over exact scope (\Gamma).
+[21-30:P363; UTF16 17001] The relation records where applicable:
+[21-30:P364; UTF16 17040] incorporated edition;
+[21-30:P365; UTF16 17062] incorporated sections;
+[21-30:P366; UTF16 17085] exclusions;
+[21-30:P368; UTF16 17109] whether nested references are included;
+[21-30:P369; UTF16 17149] effective interval;
+[21-30:P370; UTF16 17169] project scope.
+[21-30:P374; UTF16 17187] THM-REG3 — Incorporation by Reference Is Not Generically Transitive
+[21-30:P375; UTF16 17255] Proof by synthetic counterexample
+[21-30:P376; UTF16 17289] Let source (A) incorporate source (B) under scope:
+[21-30:P377; UTF16 17340] \text{“the direct normative clauses of }B\text{, excluding external references.”} ]
+[21-30:P379; UTF16 17430] [ A \xrightarrow[\Gamma_{AB}]{\mathsf{IBR}} B. ]
+[21-30:P380; UTF16 17479] Let (B) incorporate source (C) for projects directly governed by (B):
+[21-30:P381; UTF16 17549] [ B \xrightarrow[\Gamma_{BC}]{\mathsf{IBR}} C. ]
+[21-30:P382; UTF16 17598] Because (\Gamma_{AB}) explicitly excludes external references made by (B), the (A)-to-(B) incorporation does not import (C).
+[21-30:P384; UTF16 17734] [ A \not\xrightarrow{\mathsf{IBR}} C. ]
+[21-30:P385; UTF16 17774] We have:
+[21-30:P386; UTF16 17783] [ A\mathsf{,IBR,}B, \qquad B\mathsf{,IBR,}C, ]
+[21-30:P387; UTF16 17830] without:
+[21-30:P388; UTF16 17839] [ A\mathsf{,IBR,}C. ]
+[21-30:P389; UTF16 17861] Hence generic transitivity fails.
+[21-30:P390; UTF16 17895] A fortiori, if (B) merely cites (C), no incorporation follows without an additional rule. ∎
+[21-30:P394; UTF16 17990] 10. Regulatory Rules
+[21-30:P395; UTF16 18011] DEF-REG7 — Regulatory Rule
+[21-30:P396; UTF16 18038] A regulatory rule is:
+[21-30:P397; UTF16 18060] \left( s, \mathsf{subject}, \mathsf{trigger}, \mathsf{disposition}, \phi_r, \mathsf{exceptions}, \mathsf{verification}, \mathsf{priority} \right), } ]
+[21-30:P399; UTF16 18218] [ \mathsf{disposition} \in { \mathsf{REQUIRED}, \mathsf{FORBIDDEN}, \mathsf{CONDITIONAL}, \mathsf{EXPLICITLY_PERMITTED} }. ]
+[21-30:P400; UTF16 18343] The project predicate:
+[21-30:P401; UTF16 18366] [ \phi_r ]
+[21-30:P402; UTF16 18377] contains the formal content of the rule.
+[21-30:P403; UTF16 18418] The presence of an explicit permission disposition does not imply that every unmentioned action is permitted.
+[21-30:P407; UTF16 18531] 11. Applicability
+[21-30:P408; UTF16 18549] DEF-REG8 — Applicability Predicate
+[21-30:P409; UTF16 18584] For rule (r), context (J_t), and artifact (b):
+[21-30:P410; UTF16 18631] [ \boxed{ \mathsf{Applies}(r,J_t,b) \in { \mathsf{TRUE}, \mathsf{FALSE}, \mathsf{UNKNOWN} }. } ]
+[21-30:P411; UTF16 18728] A useful exact-state interpretation is:
+[21-30:P412; UTF16 18768] [ \mathsf{Applies}_L(r,J_t,b) \in {0,1}. ]
+[21-30:P413; UTF16 18811] For an unresolved family (\mathfrak L_{J_t}):
+[21-30:P414; UTF16 18857] \begin{cases} \mathsf{TRUE}, & \forall L\in\mathfrak L_{J_t}, ; \mathsf{Applies}L(r,J_t,b)=1, \[4pt] \mathsf{FALSE}, & \forall L\in\mathfrak L{J_t}, ; \mathsf{Applies}_L(r,J_t,b)=0, \[4pt] \mathsf{UNKNOWN}, & \text{otherwise}. \end{cases} ]
+[21-30:P415; UTF16 19098] Thus UNKNOWN is a genuine mixed authority-state result.
+[21-30:P419; UTF16 19157] DEF-REG9 — Applicability Certificate
+[21-30:P420; UTF16 19194] An applicability certificate contains:
+[21-30:P422; UTF16 19242] source and edition;
+[21-30:P424; UTF16 19276] project version;
+[21-30:P425; UTF16 19293] project classifications;
+[21-30:P426; UTF16 19318] exact applicability inputs;
+[21-30:P427; UTF16 19346] predicate evaluation;
+[21-30:P430; UTF16 19395] A nonapplicability certificate is equally scoped.
+[21-30:P434; UTF16 19448] PRO-REG2 — Failure to Retrieve an Applicable Rule Does Not Prove Nonapplicability
+[21-30:P436; UTF16 19552] Consider two regulatory worlds agreeing on every source retrieved by the system.
+[21-30:P437; UTF16 19633] In world (W_1), no additional source exists.
+[21-30:P438; UTF16 19678] In world (W_2), an omitted local amendment exists and applies to the project.
+[21-30:P439; UTF16 19756] The retrieval output is identical.
+[21-30:P440; UTF16 19791] The effective rule set differs.
+[21-30:P442; UTF16 19834] [ \boxed{ \text{rule not retrieved} \not\Longrightarrow \text{rule not applicable}. } ]
+[21-30:P447; UTF16 19927] 12. Effective Regulatory Rule Set
+[21-30:P448; UTF16 19961] DEF-REG10 — Effective Regulatory Rule Set
+[21-30:P449; UTF16 20003] For an exact authority state (L), define:
+[21-30:P450; UTF16 20045] \left{ r: \begin{array}{l} \mathsf{Effective}_L(\mathsf{source}(r),J_t),\ \mathsf{Applies}_L(r,J_t,b)=1,\ r\text{ is not displaced under }L \end{array} \right}. } ]
+[21-30:P451; UTF16 20210] Under unresolved authority state, ANANKE preserves the family:
+[21-30:P452; UTF16 20273] [ \left{ \mathcal R_{\mathrm{eff}}(L,J_t,b): L\in\mathfrak L_{J_t} \right}. ]
+[21-30:P453; UTF16 20351] It does not silently union or intersect the rule sets and call the result “the code.”
+[21-30:P457; UTF16 20440] 13. Formal Regulatory Compliance
+[21-30:P458; UTF16 20473] DEF-REG11 — Formal Compliance
+[21-30:P459; UTF16 20503] For exact authority state (L), define:
+[21-30:P460; UTF16 20542] [ \boxed{ \mathsf{Compliant}L(b;J_t) \iff \forall r\in \mathcal R{\mathrm{eff}}(L,J_t,b), \quad \mathsf{Sat}_L(b,r). } ]
+[21-30:P461; UTF16 20663] When (\mathfrak L_{J_t}={L}), abbreviate:
+[21-30:P462; UTF16 20705] [ \mathsf{Compliant}(b;J_t). ]
+[21-30:P463; UTF16 20736] The satisfaction relation may depend on:
+[21-30:P464; UTF16 20777] direct compliance;
+[21-30:P467; UTF16 20845] valid authority-granted deviations;
+[21-30:P468; UTF16 20881] project-specific conditions.
+[21-30:P472; UTF16 20913] PRO-REG3 — Absence of a Modeled Prohibition Does Not Prove Permission
+[21-30:P474; UTF16 20996] Let two exact regulatory worlds agree on every modeled source.
+[21-30:P475; UTF16 21059] World (W_1) contains no additional prohibition on action (a).
+[21-30:P476; UTF16 21121] World (W_2) contains one omitted applicable prohibition on (a).
+[21-30:P477; UTF16 21185] The modeled rule base contains no prohibition in either computational state.
+[21-30:P478; UTF16 21262] Actual permission differs.
+[21-30:P479; UTF16 21289] Therefore absence of a modeled prohibition cannot establish permission unless the action class carries a separate completeness or explicit-permission certificate. ∎
+[21-30:P483; UTF16 21457] 14. Monotonicity of Pure Conjunctive Obligations
+[21-30:P484; UTF16 21506] THM-REG4 — Adding Pure Conjunctive Obligations Cannot Enlarge the Formally Compliant Set
+[21-30:P485; UTF16 21595] Let (X) be a fixed project universe.
+[21-30:P486; UTF16 21632] For a rule set (R), define:
+[21-30:P487; UTF16 21660] \left{ b\in X: \forall r\in R, ; \mathsf{Sat}(b,r) \right}. ]
+[21-30:P489; UTF16 21726] [ R_1\subseteq R_2, ]
+[21-30:P491; UTF16 21754] [ \boxed{ C(R_2)\subseteq C(R_1). } ]
+[21-30:P494; UTF16 21804] [ b\in C(R_2). ]
+[21-30:P496; UTF16 21827] [ \mathsf{Sat}(b,r) ]
+[21-30:P498; UTF16 21860] [ r\in R_2. ]
+[21-30:P501; UTF16 21905] the same holds for every (r\in R_1).
+[21-30:P503; UTF16 21953] [ b\in C(R_1). ]
+[21-30:P505; UTF16 21977] [ C(R_2)\subseteq C(R_1). ]
+[21-30:P507; UTF16 22007] This theorem concerns pure conjunction under fixed semantics.
+[21-30:P509; UTF16 22077] an exception;
+[21-30:P510; UTF16 22091] an alternative route;
+[21-30:P511; UTF16 22113] a deviation;
+[21-30:P512; UTF16 22126] a changed interpretation
+[21-30:P513; UTF16 22151] is not merely adding another conjunctive obligation and may enlarge the admissible set.
+[21-30:P517; UTF16 22242] 15. Rule-Internal Exceptions
+[21-30:P518; UTF16 22271] DEF-REG12 — Rule-Internal Exception
+[21-30:P519; UTF16 22307] A rule-internal exception is part of the rule’s own applicability or satisfaction semantics.
+[21-30:P521; UTF16 22413] \mathsf{BaseApplies}_L(r,b) \land \neg \mathsf{Exception}_L(r,b). ]
+[21-30:P522; UTF16 22481] If the exception predicate is satisfied, the base obligation may not apply.
+[21-30:P523; UTF16 22557] No separate authority-granted deviation is inferred.
+[21-30:P527; UTF16 22613] 16. Authority-Granted Deviations
+[21-30:P528; UTF16 22646] DEF-REG13 — Authority-Granted Deviation
+[21-30:P529; UTF16 22686] Use the neutral formal category:
+[21-30:P530; UTF16 22719] \left( \mathsf{authority}, \mathsf{affectedRule}, \mathsf{project}, \mathsf{scope}, \mathsf{conditions}, \mathsf{effectiveInterval}, \mathsf{evidence}, \mathsf{version} \right). } ]
+[21-30:P531; UTF16 22901] A real jurisdiction may use labels such as:
+[21-30:P532; UTF16 22945] variance;
+[21-30:P533; UTF16 22955] waiver;
+[21-30:P534; UTF16 22963] modification;
+[21-30:P535; UTF16 22977] equivalency approval;
+[21-30:P536; UTF16 22999] exception order;
+[21-30:P537; UTF16 23016] special approval.
+[21-30:P538; UTF16 23034] Prompt 21 does not assign a real-world label without authoritative evidence.
+[21-30:P542; UTF16 23114] THM-REG5 — Rule-Internal Exception and Authority-Granted Deviation Are Logically Distinct
+[21-30:P543; UTF16 23204] Proof by two synthetic projects
+[21-30:P544; UTF16 23236] Let base rule (r) require:
+[21-30:P545; UTF16 23263] [ P(b). ]
+[21-30:P546; UTF16 23273] It contains rule-internal exception predicate (E(b)).
+[21-30:P547; UTF16 23327] Project (b_A)
+[21-30:P549; UTF16 23349] [ E(b_A)=\mathsf{TRUE}. ]
+[21-30:P550; UTF16 23375] No deviation artifact exists.
+[21-30:P551; UTF16 23405] The base requirement does not apply because the rule’s own exception predicate is satisfied.
+[21-30:P552; UTF16 23498] Project (b_B)
+[21-30:P554; UTF16 23520] [ E(b_B)=\mathsf{FALSE}, ]
+[21-30:P556; UTF16 23552] [ P(b_B)=\mathsf{FALSE}. ]
+[21-30:P557; UTF16 23579] A competent synthetic authority grants deviation (d) modifying the obligation for (b_B).
+[21-30:P558; UTF16 23668] Project (b_B) becomes formally admissible through (d), not through the rule-internal exception.
+[21-30:P560; UTF16 23770] (b_A) relies on the source’s exception semantics;
+[21-30:P561; UTF16 23820] (b_B) relies on a project-specific authority act.
+[21-30:P562; UTF16 23870] The proof objects differ, so the concepts are not identical. ∎
+[21-30:P566; UTF16 23936] 17. Alternative Compliance
+[21-30:P567; UTF16 23963] DEF-REG14 — Alternative Compliance Proposal
+[21-30:P569; UTF16 24015] \left( \mathsf{baseRequirement}, \mathsf{alternativeDesign}, \mathsf{equivalenceClaim}, \mathsf{evidence}, \mathsf{reviewAuthority}, \mathsf{decision} \right). } ]
+[21-30:P570; UTF16 24179] The proposal separates:
+[21-30:P571; UTF16 24203] engineering evidence;
+[21-30:P572; UTF16 24225] the formal rule authorizing an alternative route;
+[21-30:P573; UTF16 24275] authority acceptance where required.
+[21-30:P577; UTF16 24315] THM-REG6 — Accepted Alternative Compliance Is Sound Under Its Declared Alternative-Method Rule
+[21-30:P578; UTF16 24410] Suppose exact regulatory state (L) defines rule satisfaction by:
+[21-30:P579; UTF16 24475] [ \mathsf{Sat}_L(b,r) \iff P_r(b) \vee \left( A_r(b,e) \land \mathsf{ValidApproval}_L(q) \right). ]
+[21-30:P581; UTF16 24583] [ A_r(b,e)=\mathsf{TRUE} ]
+[21-30:P583; UTF16 24615] [ \mathsf{ValidApproval}_L(q)=\mathsf{TRUE}. ]
+[21-30:P585; UTF16 24668] [ \mathsf{Sat}_L(b,r). ]
+[21-30:P587; UTF16 24699] The second disjunct:
+[21-30:P588; UTF16 24720] [ A_r(b,e) \land \mathsf{ValidApproval}_L(q) ]
+[21-30:P590; UTF16 24776] Therefore the disjunction defining (\mathsf{Sat}_L(b,r)) is true. ∎
+[21-30:P591; UTF16 24844] The theorem is formal and conditional on the alternative-method rule actually existing in the authority state.
+[21-30:P595; UTF16 24958] THM-REG7 — Engineering Equivalence Alone Does Not Establish Regulatory Acceptance
+[21-30:P597; UTF16 25053] Let the engineering checker prove:
+[21-30:P598; UTF16 25088] [ A_r(b,e)=\mathsf{TRUE}. ]
+[21-30:P599; UTF16 25116] Suppose the governing formal rule also requires:
+[21-30:P600; UTF16 25165] [ \mathsf{ValidApproval}_L(q). ]
+[21-30:P601; UTF16 25198] No authority decision (q) exists.
+[21-30:P603; UTF16 25238] [ A_r(b,e)=\mathsf{TRUE}, ]
+[21-30:P605; UTF16 25271] [ \mathsf{ValidApproval}_L(q)=\mathsf{FALSE}. ]
+[21-30:P607; UTF16 25330] [ \mathsf{Sat}_L(b,r)=\mathsf{FALSE} ]
+[21-30:P608; UTF16 25369] under the declared alternative-method semantics.
+[21-30:P610; UTF16 25424] [ \boxed{ \text{engineering equivalence} \not\Longrightarrow \text{formal regulatory acceptance}. } ]
+[21-30:P615; UTF16 25531] 18. Regulatory Conflicts and Precedence
+[21-30:P616; UTF16 25571] DEF-REG15 — Regulatory Conflict
+[21-30:P617; UTF16 25603] Rules (r_1,r_2) conflict for project (b) under state (L) when:
+[21-30:P618; UTF16 25666] both are effective;
+[21-30:P619; UTF16 25686] both apply;
+[21-30:P620; UTF16 25698] their dispositions cannot be jointly satisfied.
+[21-30:P624; UTF16 25749] DEF-REG16 — Regulatory Priority Relation
+[21-30:P626; UTF16 25797] [ r_1\succ_{J,L}r_2 ]
+[21-30:P627; UTF16 25819] when the declared authority theory gives (r_1) priority over (r_2) for the relevant conflict class.
+[21-30:P628; UTF16 25919] No universal hierarchy is presumed.
+[21-30:P632; UTF16 25958] THM-REG8 — Deterministic Total Priority Uniquely Resolves a Finite Nonempty Conflict Set
+[21-30:P633; UTF16 26047] Let (C) be a finite nonempty set of conflicting applicable rules.
+[21-30:P635; UTF16 26121] (\succ) is a strict total order on (C);
+[21-30:P636; UTF16 26161] the formal resolution rule selects the unique (\succ)-maximal element.
+[21-30:P637; UTF16 26232] Then the governing rule is unique.
+[21-30:P639; UTF16 26273] Because (C) is finite and nonempty, a strict total order on (C) has at least one maximal element.
+[21-30:P640; UTF16 26371] Suppose (r) and (r') are two distinct maximal elements.
+[21-30:P641; UTF16 26427] Totality implies either:
+[21-30:P642; UTF16 26452] [ r\succ r' ]
+[21-30:P644; UTF16 26470] [ r'\succ r. ]
+[21-30:P645; UTF16 26485] In the first case (r') is not maximal.
+[21-30:P646; UTF16 26524] In the second case (r) is not maximal.
+[21-30:P647; UTF16 26563] Contradiction.
+[21-30:P648; UTF16 26578] Therefore the maximal element is unique. ∎
+[21-30:P649; UTF16 26621] This theorem does not prove that a real jurisdiction uses the declared priority relation.
+[21-30:P653; UTF16 26714] PRO-REG4 — Incomparable Conflicting Rules Leave Formal Status Unresolved
+[21-30:P654; UTF16 26787] If (r_1) and (r_2):
+[21-30:P655; UTF16 26807] are both effective;
+[21-30:P656; UTF16 26827] are both applicable;
+[21-30:P658; UTF16 26858] are incomparable under every checked resolution relation;
+[21-30:P659; UTF16 26916] then no formal theorem selects one as governing.
+[21-30:P660; UTF16 26965] The required result is:
+[21-30:P661; UTF16 26989] [ \boxed{ \mathsf{AUTHORITY_CONFLICT_UNRESOLVED}. } ]
+[21-30:P662; UTF16 27043] Selecting the rule more favorable to the design would be an unsupported authority inference.
+[21-30:P666; UTF16 27139] 19. Multi-Jurisdiction Projects
+[21-30:P667; UTF16 27171] DEF-REG17 — Required Jurisdiction Family
+[21-30:P669; UTF16 27217] {J_1,\ldots,J_m} } ]
+[21-30:P670; UTF16 27238] be the jurisdictions whose independent acceptance is required by the declared release theory.
+[21-30:P674; UTF16 27335] THM-REG9 — Independent Mandatory Jurisdictions Compose by Intersection
+[21-30:P675; UTF16 27406] If project (b) must be admissible in every (J_k), then:
+[21-30:P676; UTF16 27462] \bigcap_{k=1}^{m} \mathcal A_{\mathrm{reg}}(J_k). } ]
+[21-30:P679; UTF16 27537] [ b\in\mathcal A_{\mathrm{joint}} ]
+[21-30:P680; UTF16 27573] iff (b) is accepted by every required jurisdiction.
+[21-30:P682; UTF16 27648] [ \forall k,\quad b\in\mathcal A_{\mathrm{reg}}(J_k), ]
+[21-30:P683; UTF16 27704] which is exactly:
+[21-30:P684; UTF16 27722] [ b\in \bigcap_{k=1}^{m} \mathcal A_{\mathrm{reg}}(J_k). ]
+[21-30:P686; UTF16 27783] Delegation, preemption, unified review, or mutually exclusive jurisdiction rules require a richer authority model rather than this simple conjunction.
+[21-30:P690; UTF16 27937] 20. Regulatory Authority-State Uncertainty
+[21-30:P691; UTF16 27980] DEF-REG18 — Regulatory Authority-State Family
+[21-30:P693; UTF16 28031] [ \boxed{ \mathfrak L_{J_t} } ]
+[21-30:P694; UTF16 28063] be a nonempty set of exact authority states consistent with:
+[21-30:P695; UTF16 28124] authenticated sources;
+[21-30:P696; UTF16 28147] adoption evidence;
+[21-30:P699; UTF16 28203] unresolved interpretations;
+[21-30:P702; UTF16 28268] Each (L\in\mathfrak L_{J_t}) resolves the formal rule system completely enough for exact evaluation.
+[21-30:P706; UTF16 28372] DEF-REG19 — Robust and Possible Regulatory Admissibility
+[21-30:P708; UTF16 28437] \bigcap_{L\in\mathfrak L_{J_t}} \mathcal A_{\mathrm{reg}}(L), } ]
+[21-30:P710; UTF16 28569] A project in the first set is compliant under every surviving authority state.
+[21-30:P711; UTF16 28648] A project in the second set is compliant under at least one surviving state.
+[21-30:P715; UTF16 28728] THM-REG10 — Robust Regulatory Compliance Applies to the Actual Covered Authority State
+[21-30:P717; UTF16 28823] [ L^\star\in\mathfrak L_{J_t} ]
+[21-30:P719; UTF16 28860] [ b\in\mathcal A_{\mathrm{reg}}^\forall. ]
+[21-30:P721; UTF16 28909] [ \boxed{ b\in\mathcal A_{\mathrm{reg}}(L^\star). } ]
+[21-30:P724; UTF16 28984] [ b\in \bigcap_{L\in\mathfrak L_{J_t}} \mathcal A_{\mathrm{reg}}(L) ]
+[21-30:P726; UTF16 29061] [ \forall L\in\mathfrak L_{J_t}, \quad b\in\mathcal A_{\mathrm{reg}}(L). ]
+[21-30:P727; UTF16 29136] Apply this to (L^\star). ∎
+[21-30:P731; UTF16 29166] THM-REG11 — Shrinking the Authority-State Family Enlarges Robust Admissibility and Shrinks Possible Admissibility
+[21-30:P733; UTF16 29284] [ \mathfrak L_2\subseteq\mathfrak L_1, ]
+[21-30:P735; UTF16 29331] [ \boxed{ \mathcal A^\forall(\mathfrak L_1) \subseteq \mathcal A^\forall(\mathfrak L_2), } ]
+[21-30:P737; UTF16 29429] [ \boxed{ \mathcal A^\exists(\mathfrak L_2) \subseteq \mathcal A^\exists(\mathfrak L_1). } ]
+[21-30:P739; UTF16 29528] For robust admissibility:
+[21-30:P740; UTF16 29554] \bigcap_{L\in\mathfrak L_1}\mathcal A(L). ]
+[21-30:P741; UTF16 29598] Any (b) satisfying every state in the larger family (\mathfrak L_1) necessarily satisfies every state in the subset (\mathfrak L_2).
+[21-30:P743; UTF16 29737] [ \mathcal A^\forall(\mathfrak L_1) \subseteq \mathcal A^\forall(\mathfrak L_2). ]
+[21-30:P744; UTF16 29820] For possible admissibility:
+[21-30:P745; UTF16 29848] \bigcup_{L\in\mathfrak L_2}\mathcal A(L). ]
+[21-30:P746; UTF16 29892] A union over fewer states cannot contain an element that is not already in the union over the larger family.
+[21-30:P748; UTF16 30007] [ \mathcal A^\exists(\mathfrak L_2) \subseteq \mathcal A^\exists(\mathfrak L_1). ]
+[21-30:P753; UTF16 30095] THM-REG12 — Possible Compliance Does Not Establish Actual Compliance
+[21-30:P756; UTF16 30182] {L_1,L_2}. ]
+[21-30:P758; UTF16 30203] [ b\in\mathcal A(L_1), ]
+[21-30:P760; UTF16 30233] [ b\notin\mathcal A(L_2). ]
+[21-30:P762; UTF16 30267] \mathcal A^\exists. ]
+[21-30:P763; UTF16 30289] If the actual authority state is (L_2), the building is not compliant.
+[21-30:P764; UTF16 30360] Therefore possible compliance does not establish actual compliance. ∎
+[21-30:P768; UTF16 30433] 21. Transitional Rules
+[21-30:P769; UTF16 30456] DEF-REG20 — Regulatory Transition Rule
+[21-30:P770; UTF16 30495] A Regulatory Transition Rule determines source applicability using variables such as:
+[21-30:P771; UTF16 30581] adoption date;
+[21-30:P773; UTF16 30616] permit issuance date;
+[21-30:P775; UTF16 30658] substantial completion;
+[21-30:P776; UTF16 30682] alteration scope;
+[21-30:P777; UTF16 30700] occupancy or use change;
+[21-30:P779; UTF16 30751] project interruption.
+[21-30:P780; UTF16 30773] The rule is part of the authority state.
+[21-30:P784; UTF16 30817] THM-REG13 — Adoption Date Alone Does Not Determine Project Applicability
+[21-30:P786; UTF16 30903] Let old edition be (E_0), new edition (E_1), and adoption date (t_A).
+[21-30:P787; UTF16 30973] Consider one project whose permit was issued before (t_A), but construction continues afterward.
+[21-30:P788; UTF16 31070] Transition system (T_1)
+[21-30:P789; UTF16 31094] Every project with active work after (t_A) must use (E_1).
+[21-30:P790; UTF16 31153] Transition system (T_2)
+[21-30:P791; UTF16 31177] A project with a valid pre-(t_A) permit continues under (E_0).
+[21-30:P792; UTF16 31240] The adoption date, editions, project geometry, and construction date are identical.
+[21-30:P793; UTF16 31324] Under (T_1), (E_1) applies.
+[21-30:P794; UTF16 31352] Under (T_2), (E_0) applies.
+[21-30:P795; UTF16 31380] Therefore adoption date alone does not determine the governing edition. ∎
+[21-30:P799; UTF16 31457] 22. Permit State Machines
+[21-30:P800; UTF16 31483] DEF-REG21 — Permit State Machine
+[21-30:P802; UTF16 31524] \left( S, s_0, E, \delta, F, V \right), } ]
+[21-30:P804; UTF16 31575] (S): permit states;
+[21-30:P806; UTF16 31617] (E): recognized process events;
+[21-30:P807; UTF16 31649] (\delta): transition relation;
+[21-30:P808; UTF16 31680] (F): declared release or terminal states;
+[21-30:P809; UTF16 31722] (V): permit-process version.
+[21-30:P810; UTF16 31751] Synthetic states may include:
+[21-30:P811; UTF16 31781] NOT_SUBMITTED;
+[21-30:P812; UTF16 31796] SUBMITTED;

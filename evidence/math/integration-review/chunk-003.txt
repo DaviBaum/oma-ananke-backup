@@ -1,0 +1,503 @@
+[1539] Failures: ORPHAN_PORT, PORT_TYPE_INCOMPLETE, FRAME_UNRESOLVED.
+Complexity: \(O(P\log P)\).
+[1540] ALG-SIR11 — CompileExecutableSystemsHypergraph
+[1541] Input: components, ports, source networks, inferred relations.
+Output: \(\mathcal H_{\mathrm{sys}}\) with provenance.
+[1542] create component and net carriers
+[1543] attach each port to one component
+[1544] attach ports to nets through incidence
+[1545] separate source relations from inferred relations
+[1546] compile mode-dependent incidences
+[1547] Failures: NET_IDENTITY_CONFLICT, DANGLING_PORT, INFERENCE_UNQUALIFIED.
+Complexity: \(O(V+P+I)\).
+[1548] ALG-SIR12 — CheckNetlistTypingAndIncidence
+[1549] Input: systems hypergraph, modes, demands.
+Output: well-typed certificate or conflict core.
+[1550] for each net and active mode:
+[1551]     check system/medium compatibility
+[1552]     check direction and connection classes
+[1553]     check state-variable dimensions
+[1554]     check incidence and conservation schema
+[1555] return smallest found incompatibility
+[1556] Failures: TYPE_MISMATCH, PORT_INCOMPATIBLE, NETLIST_INVALID.
+Complexity: \(O(I+P^2_{\text{net}})\) in direct pairwise checking.
+[1557] ALG-SIR13 — CompileRouteEnvelope
+[1558] Input: service type, section, insulation, rules, support/access data.
+Output: \(B_s\) and envelope proof record.
+[1559] construct cross-section and orientation-dependent body
+[1560] add insulation and hard clearance
+[1561] attach support, installation, maintenance, and bend rules
+[1562] bind version and evidence
+[1563] Failures: SECTION_UNKNOWN, ENVELOPE_INCOMPLETE, RULE_CONFLICT.
+Complexity: \(O(K)\) primitives.
+[1564] ALG-SIR14 — ConstructConfigurationSpaceObstacle
+[1565] Input: route envelope, obstacles, configuration variables.
+Output: exact or bounded \(\mathcal C_{\mathrm{obs}}\).
+[1566] if fixed orientation and translation only:
+[1567]     compute or certify O ⊕ (-B)
+[1568] else:
+[1569]     construct lifted collision predicate over Q_s
+[1570]     partition or enclose orientation/size states
+[1571] preserve approximation direction
+[1572] Failures: CSPACE_UNSUPPORTED, BOUND_UNSOUND, UNKNOWN.
+Complexity: potentially output exponential; translational polyhedral case depends on Minkowski complexity.
+[1573] ALG-SIR15 — CheckSweptVolumeAndClearanceWitness
+[1574] Input: route, envelope, obstacles, separation factors.
+Output: PASS/FAIL/UNKNOWN with witness.
+[1575] verify continuous/fabrication primitive sequence
+[1576] compute exact or outer swept volume
+[1577] check obstacle intersections
+[1578] check pairwise and directional separations
+[1579] check access and support factors
+[1580] Failures: CLEARANCE_FAILURE, COLLISION, FABRICATION_FAILURE, UNKNOWN.
+Complexity: \(O(SO+S^2)\) primitive checks before acceleration.
+[1581] ALG-SIR16 — BuildSpatialPartitionAndSeparators
+[1582] Input: cell complex, hypergraph, dependency weights, memory budget.
+Output: local bags and separators.
+[1583] partition cells while preserving shared semantic objects
+[1584] include every cross-boundary port, net, route, factor, and proof dependency
+[1585] construct bag-interaction graph
+[1586] attempt join-tree or bounded-width decomposition
+[1587] Failures: SEPARATOR_INCOMPLETE, WIDTH_EXCEEDS_BUDGET, UNKNOWN.
+Complexity: heuristic partitioning; verification \(O(N+E)\).
+[1588] ALG-SIR17 — CheckLocalToGlobalStateGluing
+[1589] Input: local bags, separator states, join structure.
+Output: global state or mismatch.
+[1590] verify running intersection
+[1591] root join tree
+[1592] merge child states in traversal order
+[1593] compare all separator values, versions, and relations
+[1594] return global union
+[1595] Failures: RUNNING_INTERSECTION_FAILURE, SEPARATOR_MISMATCH, CYCLIC_UNRESOLVED.
+Complexity: \(O(N+S)\).
+[1596] ALG-SIR18 — ConstructRouteRealizationFiberInstance
+[1597] Input: net, SIR state, mode, scenario, modality.
+Output: finite/symbolic constraint instance defining \(\Gamma_{\mathrm{real}}\).
+[1598] resolve ports, placements, workspace, obstacles, envelope, factors
+[1599] compile endpoint, C-space, clearance, fabricability, support, and proof predicates
+[1600] return typed fiber instance
+[1601] Failures: PORT_INCOMPATIBLE, GEOMETRY_UNRESOLVED, FACTOR_MISSING.
+Complexity: \(O(\text{dependency slice})\).
+[1602] ALG-SIR19 — CheckExplicitRouteRealizationWitness
+[1603] Input: fiber instance and candidate \((\rho,q,a,p,\eta)\).
+Output: certified membership or failure core.
+[1604] check identity/version/scope
+[1605] check endpoints and topology
+[1606] check geometry, sweep, clearance, bends, supports, penetrations
+[1607] check mode/scenario factors
+[1608] replay proof object
+[1609] Failures: ROUTE_FIBER_EMPTY, WITNESS_INVALID, UNKNOWN.
+Complexity: THM-SIR62 specialized to the witness.
+[1610] ALG-SIR20 — BuildConstraintFactorStructure
+[1611] Input: rules, requirements, evidence, objectives.
+Output: factor hypergraph.
+[1612] create one factor per exact proposition
+[1613] record variable scope, modality, checker, evidence, version
+[1614] separate hard, bounded, objective, authority, and release factors
+[1615] reject scalarization not carrying authority
+[1616] Failures: FACTOR_SCOPE_INVALID, SILENT_SCALARIZATION, EVIDENCE_MISSING.
+Complexity: \(O(F+I_F)\).
+[1617] ALG-SIR21 — BuildRouterExperimentFamily
+[1618] Input: ANANKE/Oma consumers and requested reports.
+Output: versioned \(\mathcal F_{R\to A}\).
+[1619] enumerate every admitted downstream computation
+[1620] record domains, codomains, scopes, modalities, and versions
+[1621] hash canonical function/specification identities
+[1622] Failures: CONSUMER_UNKNOWN, EXPERIMENT_UNTYPED.
+Complexity: \(O(F)\).
+[1623] ALG-SIR22 — CompileContextualRouterInterface
+[1624] Input: router state family and experiment family.
+Output: exact quotient, certified refinement, or UNKNOWN.
+[1625] derive signatures of states under every experiment
+[1626] group states with equal complete signatures
+[1627] for symbolic state spaces, synthesize a sufficient representation and prove factorization
+[1628] Failures: QUOTIENT_INTRACTABLE, SIGNATURE_UNKNOWN, UNKNOWN.
+Complexity: finite explicit \(O(|X_R||\mathcal F|)\); symbolic may be harder.
+[1629] ALG-SIR23 — FindInterfaceAliasingCounterexample
+[1630] Input: candidate interface \(a\), experiment family.
+Output: \(x,y,f\) with equal interface and different output, or no found witness.
+[1631] solve a(x)=a(y) and OR_f[f(x) != f(y)]
+[1632] validate returned pair independently
+[1633] Failures: INTERFACE_ALIASING; absence of found witness is not proof unless search complete.
+Complexity: model dependent.
+[1634] ALG-SIR24 — CheckInterfaceSufficiency
+[1635] Input: candidate interface, complete bounded state model, experiments.
+Output: INTERFACE_SUFFICIENT, INTERFACE_ALIASING, or UNKNOWN.
+[1636] for each interface fiber:
+[1637]     verify every experiment is constant
+[1638] return factorization certificates
+[1639] Complexity: explicit \(O(|X|^2|\mathcal F|)\), reducible by hashing signatures.
+[1640] ALG-SIR25 — ProjectSemanticStateToViewer
+[1641] Input: SIR state and view specification.
+Output: scene plus object correspondence map.
+[1642] derive meshes and transforms from authoritative geometry
+[1643] attach semantic IDs and display metadata
+[1644] never discard authoritative state
+[1645] mark omitted semantic coordinates
+[1646] Failures: VIEW_DERIVATION_FAILURE, VIEW_STALE.
+Complexity: \(O(\text{render geometry})\).
+[1647] ALG-SIR26 — BuildRewriteCorrespondence
+[1648] Input: old state, proposed new state, transaction.
+Output: preserved/modified/deleted/inserted/split/merged correspondence.
+[1649] match stable IDs and lineage
+[1650] verify content/version relationships
+[1651] classify unmatched objects
+[1652] require explicit approval for semantic reidentification
+[1653] Failures: CORRESPONDENCE_AMBIGUOUS, ILLEGAL_REIDENTIFICATION.
+Complexity: \(O(N\log N+M)\).
+[1654] ALG-SIR27 — ComputeSIRInvalidationCone
+[1655] Input: changed roots, dependency graph.
+Output: descendant set and reasons.
+[1656] queue all changed roots
+[1657] perform graph reachability
+[1658] record first or all causal paths
+[1659] Failures: DEPENDENCY_GRAPH_INCOMPLETE, UNKNOWN.
+Complexity: \(O(|V_D|+|E_D|)\).
+[1660] ALG-SIR28 — IncrementalSIRRecertification
+[1661] Input: old PCSIR, changed state, invalidation cone.
+Output: updated PCSIR.
+[1662] invalidate descendants
+[1663] check applicability of every reused node
+[1664] recompute invalidated nodes topologically
+[1665] rebuild package root
+[1666] compare sampled or scheduled runs against cold checker
+[1667] Failures: STALE_CERTIFICATE, RECERTIFICATION_FAILURE, THEORY_CHANGED.
+Complexity: \(O(|\operatorname{InvCone}|+\sum c_i)\).
+[1668] ALG-SIR29 — RedTeamSpatialIR
+[1669] Input: PCSIR and attack budget.
+Output: verified breaker set.
+[1670] Attacks include identity aliasing, unit swaps, frame-cycle insertion, thin-obstacle omission, envelope downgrade, hidden access obstruction, stale quotient, incomplete invalidation, and viewer overclaim.
+[1671] Failures: returns BREAKER_FOUND, BOUNDED_COVERAGE, or UNKNOWN.
+Trust: adversarial proposer untrusted; breaker checker trusted.
+[1672] ALG-SIR30 — CheckPCSIR
+[1673] Input: candidate PCSIR.
+Output: typed release statuses.
+[1674] audit package identities and versions
+[1675] check pullback compatibility
+[1676] check assumptions and dependencies
+[1677] replay local proofs
+[1678] check experiment/interface sufficiency
+[1679] check unresolved and UNKNOWN roots
+[1680] return exact modality vector and package verdict
+[1681] Possible results include:
+[1682] \[ \begin{array}{l} \mathsf{SIR\ RELEASE\ CERTIFIED},\\ \mathsf{SEMANTIC\ CONFLICT},\\ \mathsf{FRAME\ CYCLE\ INCONSISTENT},\\ \mathsf{NETLIST\ INVALID},\\ \mathsf{ROUTE\ FIBER\ EMPTY},\\ \mathsf{INTERFACE\ ALIASING},\\ \mathsf{STALE\ CERTIFICATE},\\ \mathsf{UNKNOWN}. \end{array} \]
+[1683] ALG-SIR31 — BuildPCSIR
+[1684] Input: project source state, imported ANANKE packages, geometry, systems, rules, evidence.
+Output: independently checked PCSIR.
+[1685] run ALG-SIR1..27 as applicable
+[1686] assemble package fields
+[1687] invoke independent CheckPCSIR
+[1688] include checker result without trusting proposal provenance
+[1689] Complexity: sum of invoked construction and checking costs.
+Reuse: content-addressed by source, theory, experiment, and checker versions.
+[1691] PART IX — SYNTHETIC EXAMPLES
+[1692] 36. Synthetic worked examples
+[1693] Example A — Typed port mismatch
+[1694] Port \(p_1\):
+[1695] \[ (\mathsf{electrical},\mathsf{electron\ current},\mathsf{OUT},480\mathrm{V}) \]
+[1696] is connected to port \(p_2\):
+[1697] \[ (\mathsf{hydronic},\mathsf{water},\mathsf{IN},300\mathrm{kPa}). \]
+[1698] System type, medium, and state dimensions differ. PortCompatible is false, so THM-SIR33 gives
+[1700] Expected result:
+[1701] \[ \mathsf{TYPE\_MISMATCH}. \]
+[1702] Example B — Connected netlist, blocked geometry
+[1703] Workspace:
+[1704] \[ W=[0,10]\times[0,4]\times[0,3]. \]
+[1705] Ports are at
+[1706] \[ p=(1,2,1.5),\qquad q=(9,2,1.5). \]
+[1707] Wall:
+[1708] \[ O=[4.9,5.1]\times[0,4]\times[0,3]. \]
+[1709] No penetration is allowed. The net hyperedge connects both ports, but \(W\setminus O\) is disconnected. Expected result:
+[1710] \[ \mathsf{ROUTE\_FIBER\_EMPTY}. \]
+[1711] Example C — Envelope-sensitive feasibility
+[1712] Corridor width: \(1.0\) m.
+[1713] conduit envelope diameter: \(0.4\) m;
+[1714] duct envelope width: \(1.2\) m.
+[1715] The centered line is identical. The conduit has \(0.3\) m clearance to each wall; the duct overlaps each wall by \(0.1\) m.
+[1716] Example D — Bend-radius failure
+[1717] Polyline:
+[1718] \[ (0,0,0)\to(0.5,0,0)\to(0.5,0.5,0). \]
+[1719] Minimum bend radius:
+[1720] \[ r_{\min}=1.0\text{ m}. \]
+[1721] The route is collision free in an empty room. A \(90^\circ\) bend requires \(1\) m tangent setback on each leg, exceeding both leg lengths. Expected result:
+[1722] \[ \mathsf{FABRICATION\_FAILURE}. \]
+[1723] Example E — Homotopy alternatives
+[1724] Free space is a rectangle with a central rectangular obstacle. Port \(p\) lies left and \(q\) right. One route passes above and one below. They are not endpoint-relative homotopic without crossing the obstacle. They define distinct elements of
+[1725] \[ \Pi_1(F_s;p,q). \]
+[1726] Example F — Frame-cycle inconsistency
+[1727] Let
+[1728] \[ T_{AB}(x)=x+(1,0,0), \]\[ T_{BC}(x)=x+(0,1,0), \]\[ T_{CA}(x)=x+(-1,-0.9,0). \]
+[1729] The cycle product translates by \((0,0.1,0)\neq0\). Expected result:
+[1730] \[ \mathsf{FRAME\_CYCLE\_INCONSISTENT}. \]
+[1731] Example G — Pairwise versus joint congestion
+[1732] Shared rack capacity \(10\). Three routes consume \(4\) each.
+[1733] \[ 4+4\le10 \]
+[1734] for each pair, but
+[1735] \[ 4+4+4=12>10. \]
+[1736] Expected triple result:
+[1737] \[ \mathsf{JOINT\_CAPACITY\_FAILURE}. \]
+[1738] Example H — Viewer alias
+[1739] State \(X\) contains a \(400\) mm supply duct with \(50\) mm insulation and valid proof status. State \(Y\) contains a visually identical render mesh representing an uninsulated return duct with unresolved clearance. The viewer hides insulation and proof state. The renderings are equal; SIR states are not.
+[1740] Example I — Contextual-interface refinement
+[1741] Old interface:
+[1742] \[ a(x)= (J_{\mathrm{length}}(x),J_{\mathrm{penetration}}(x)). \]
+[1743] Router states \(x,y\) both report \((100,2)\), but assembly counts are \(1\) and \(5\). Adding \(J_{\mathrm{assembly}}\) splits the old class.
+[1744] Example J — Rewrite invalidation
+[1745] A shaft moves \(2\) m. Descendants include:
+[1746] local free-space cells;
+[1748] route witnesses using the shaft;
+[1749] pressure and voltage calculations depending on route length;
+[1750] penetration schedules;
+[1751] access checks;
+[1752] cost;
+[1753] construction sequence;
+[1754] proof roots.
+[1755] A structural proof in an unrelated wing has no dependency path and is reused.
+[1757] 37. Synthetic multi-system example
+[1758] Consider a \(12\times8\times3.5\) m service zone with:
+[1759] one supply-air unit;
+[1760] one return-air unit;
+[1761] one hydronic pump pair;
+[1762] one electrical panel;
+[1763] one communications rack;
+[1764] three shafts;
+[1765] two structural beams;
+[1766] one fire wall;
+[1767] one maintenance aisle.
+[1768] The system hypergraph contains:
+[1769] \[ V= \{\mathrm{AHU},\mathrm{Pump},\mathrm{Panel},\mathrm{Rack}, \mathrm{Terminal}_1,\ldots,\mathrm{Terminal}_8\}. \]
+[1770] Ports carry media and directional types:
+[1771] \[ \begin{aligned} p_{\mathrm{AHU,sup}}&:\mathsf{air,out},\\ p_{\mathrm{AHU,ret}}&:\mathsf{air,in},\\ p_{\mathrm{Pump,sup}}&:\mathsf{water,out},\\ p_{\mathrm{Pump,ret}}&:\mathsf{water,in},\\ p_{\mathrm{Panel,feed}}&:\mathsf{electric,out},\\ p_{\mathrm{Rack,data}}&:\mathsf{data,bidirectional}. \end{aligned} \]
+[1772] Four net families are declared:
+[1773] \[ N= \{n_{\mathrm{air}},n_{\mathrm{hyd}},n_{\mathrm{elec}},n_{\mathrm{data}}\}. \]
+[1774] Route-envelope widths are:
+[1775] \[ 0.8,\ 0.25,\ 0.20,\ 0.10\text{ m}, \]
+[1776] with service-pair separations supplied by a matrix \(\Sigma\).
+[1777] The air route alone fits the central corridor. The hydronic route alone also fits. Their simultaneous envelopes plus separation consume \(1.20\) m of a \(1.10\) m corridor, so the joint fiber is empty.
+[1778] Moving the pump by \(1.5\) m exposes an alternative lower corridor. The rewrite changes pump placement, port frame, hydronic free-space graph, route witness, support plan, and access factors. Air-route certificates remain reusable because their dependency slice excludes the pump placement.
+[1779] The resulting PCSIR contains exact identities, bounded geometry, typed ports, one joint conflict core, and a repair candidate consisting of the pump relocation.
+[1781] 38. Synthetic 190-room hotel
+[1782] 38.1 Project state
+[1783] The synthetic hotel has:
+[1784] 10 guest-room floors;
+[1785] 19 rooms per floor;
+[1786] 190 guestrooms;
+[1787] two guest corridors per floor;
+[1788] lobby, restaurant, meeting rooms, kitchen, laundry, loading area;
+[1789] two mechanical rooms;
+[1790] two electrical rooms;
+[1791] six principal shafts;
+[1792] four plumbing riser groups;
+[1793] two fire stairs;
+[1794] two elevator cores;
+[1795] back-of-house corridors;
+[1796] roof plant;
+[1797] structural framing;
+[1798] fire and acoustic boundaries.
+[1799] The local hotel frame is
+[1800] \[ F_H=(O_H,e_x,e_y,e_z,\text{right-handed},\mathrm{m}). \]
+[1801] Each floor \(k\) has frame
+[1802] \[ T_{H,F_k}(x)=x+(0,0,3.4k). \]
+[1803] Room R-0708 receives semantic identity
+[1804] \[ o_{\mathrm{R0708}} = (\mathrm{room:0708},\mathrm{GuestRoom},\lambda_H,v_1,S_H,\ldots). \]
+[1805] Its display label “708” is not used as identity.
+[1806] 38.2 Spatial complex
+[1807] Each floor is partitioned into:
+[1808] guest-room cells;
+[1809] corridor cells;
+[1810] shaft cells;
+[1811] riser cells;
+[1812] equipment cells;
+[1813] structural solids;
+[1814] service-plenum cells;
+[1815] protected egress cells;
+[1816] access cells.
+[1817] The complex records shared \(2\)-cell boundaries between rooms and corridors, fire-rated shaft walls, penetrable service walls, and nonpenetrable structural members.
+[1818] 38.3 Systems hypergraph
+[1819] Components include:
+[1820] two synthetic chillers;
+[1821] four air-handling units;
+[1822] guest-room fan-coil or terminal units;
+[1823] domestic-water pumps;
+[1824] hot-water equipment;
+[1825] sanitary stacks;
+[1826] storm stacks;
+[1827] main switchboard;
+[1828] floor distribution panels;
+[1829] emergency generator;
+[1830] communications racks;
+[1831] fire-alarm panels;
+[1832] sprinkler zone interfaces;
+[1833] control devices.
+[1834] Port examples:
+[1835] \[ p_{\mathrm{AHU1,supply}} = (\mathrm{air},\mathsf{OUT},1.8\mathrm{m}^3/\mathrm{s},F_{\mathrm{AHU1}},v_1), \]\[ p_{\mathrm{FCU0708,supply}} = (\mathrm{air},\mathsf{IN},0.09\mathrm{m}^3/\mathrm{s},F_{0708},v_1), \]\[ p_{\mathrm{DP07,in}} = (\mathrm{electric},\mathsf{IN},480\mathrm{V},F_{\mathrm{DP07}},v_2). \]
+[1836] Nets include:
+[1837] supply and return air;
+[1838] hydronic supply and return;
+[1839] domestic cold and hot water;
+[1840] sanitary and vent;
+[1841] storm;
+[1842] normal and emergency electrical;
+[1843] communications;
+[1844] fire alarm;
+[1845] controls;
+[1846] fire-protection distribution interfaces.
+[1847] 38.4 Route envelopes
+[1848] Representative synthetic envelopes:
+[1849] Service
+[1850] Physical section
+[1851] Added envelope
+[1852] Main supply duct
+[1853] \(1.2\times0.6\) m
+[1854] insulation, access, supports
+[1855] Floor branch duct
+[1856] \(0.45\times0.25\) m
+[1857] insulation and hangers
+[1858] Hydronic pair
+[1859] \(2\times100\) mm pipes
+[1860] insulation and pair spacing
+[1861] Domestic water
+[1862] 65 mm
+[1863] insulation and supports
+[1864] Electrical feeder tray
+[1865] \(0.4\times0.15\) m
+[1866] working separation
+[1867] Data tray
+[1868] \(0.3\times0.1\) m
+[1869] service separation
+[1870] Sprinkler main
+[1871] 100 mm
+[1872] fitting and support envelope
+[1874] 38.5 Modes and scenarios
+[1875] Modes include normal, emergency-power, fire-event, maintenance, and construction turnover.
+[1876] Scenarios include:
+[1877] full occupancy;
+[1878] partial occupancy;
+[1879] one AHU unavailable;
+[1880] one electrical riser unavailable;
+[1881] one shaft temporarily blocked;
+[1882] future tenant technology expansion.
+[1883] 38.6 Local partitions
+[1884] Each floor is one primary bag. Shaft/riser interfaces form separators containing:
+[1885] shaft semantic IDs;
+[1886] permitted cross-sectional cells;
+[1887] port and net continuity state;
+[1888] reserved capacity;
+[1889] fire-boundary penetration state;
+[1890] route class entry/exit data;
+[1891] proof dependencies.
+[1892] A second-level join tree attaches roof plant, podium, and below-grade service areas.
+[1893] 38.7 Invalid route
+[1894] A proposed floor-7 supply duct centerline passes through an open plenum but its \(0.45\) m-wide maintenance envelope intrudes into the required access volume of panel DP-07.
+[1895] The centerline collision factor passes. The access factor fails:
+[1896] \[ \phi_{\mathrm{maint-access}}(\rho)=\mathsf{FAIL}. \]
+[1897] The route is not in the realization fiber.
+[1898] 38.8 Feasible route witness
+[1899] A hydronic pair from shaft S-H2 to terminal group FCU-07-E uses:
+[1900] route class east of beam B-7-14;
+[1901] 100 mm supply and return pipes;
+[1903] a prefabricated support pair;
+[1904] one rated-wall penetration;
+[1905] slope-neutral orientation;
+[1906] verified access and separation.
+[1907] Its witness
+[1908] \[ W_{\mathrm{hyd07}} = (\rho,q,a,p,\eta) \]
+[1909] passes all foundational SIR factors and establishes
+[1910] \[ W_{\mathrm{hyd07}} \in \Gamma_{\mathrm{real}}^{\mathsf{ROUTE\_REALIZABLE}} (n_{\mathrm{hyd07}},\Xi;m_{\mathrm{normal}},\omega_{\mathrm{full}}). \]
+[1911] 38.9 Joint-capacity conflict
+[1912] A corridor rack has usable width \(1.50\) m.
+[1913] Required widths, including separations, are:
+[1914] \[ 0.72+0.34+0.30+0.24=1.60\text{ m}. \]
+[1915] Each service fits alone; selected pairs fit; the complete family fails by \(0.10\) m.
+[1916] Conflict core:
+[1917] \[ \{\text{supply duct},\text{hydronic pair},\text{feeder tray},\text{data tray},\text{rack width}\}. \]
+[1918] 38.10 Topology rewrite
+[1919] The design replaces one central supply trunk with two smaller trunks serving east and west room groups.
+[1920] The rewrite:
+[1921] deletes one trunk net segment;
+[1922] inserts two net branches;
+[1923] adds one AHU port split component;
+[1924] changes route envelopes;
+[1925] creates two route-class families;
+[1926] changes pressure-model dependencies;
+[1927] invalidates affected commissioning and environmental descendants.
+[1928] 38.11 Contextual router interface
+[1929] The foundational router-to-Oma interface exports:
+[1930] \[ \begin{aligned} &\text{net and port identities},\\ &\text{route classes and geometry references},\\ &\text{envelope and section state},\\ &\text{penetration and assembly state},\\ &\text{clearance and capacity factors},\\ &\text{proof references and conflict cores},\\ &\text{theory, experiment, and artifact versions}. \end{aligned} \]
+[1931] It does not yet export branch-and-price columns or reduced costs; those belong to Prompt 2.
+[1932] 38.12 Viewer projection
+[1933] The viewer receives triangulated display meshes, semantic IDs, and status styles. It does not own route truth. Hidden toggles can display maintenance volumes, uncertainty envelopes, and conflict cores, but omitting those layers does not alter the authoritative state.
+[1934] 38.13 Invalidation cone
+[1935] Moving shaft S-H2 invalidates:
+[1936] its geometric cells;
+[1937] connected port frames;
+[1938] affected route classes;
+[1939] hydronic, duct, electrical, and data route witnesses using it;
+[1941] local pressure and voltage calculations;
+[1942] construction and maintenance access checks;
+[1943] downstream cost and environmental quantities.
+[1944] Room geometry in the opposite wing, unrelated structural proofs, and unaffected societal incidence records are retained if the dependency graph proves independence.
+[1945] 38.14 PCSIR output
+[1946] The hotel PCSIR contains all 61 mandatory package classes listed below, plus:
+[1947] floor-shard index;
+[1948] shaft-separator index;
+[1949] unresolved source-geometry ledger;
+[1950] bounded-versus-exact geometry map;
+[1951] local-gluing certificates;
+[1952] conflict-core registry;
+[1953] content-addressed proof DAG.
+[1954] This is a Prompt-2 input specification, not a claim that the complete hotel has been optimally routed.
+[1956] PART X — FALSIFICATION AND FORMALIZATION
+[1957] 39. Falsification and regression suite
+[1958] Each test has a required typed result.
+[1959] Semantic identity tests
+[1960] Same label, different semantic IDs → SEMANTIC_ID_DISTINCT.
+[1961] Same semantic ID, different active versions without transport → VERSION_CONFLICT.
+[1962] Duplicate active semantic ID with different kinds → IDENTITY_COLLISION.
+[1963] Same content hash under different source scope → SCOPE_DISTINCT.
+[1964] Same file hash but false field measurement → HASH_NOT_TRUTH.
+[1965] Deleted object referenced by active net → DANGLING_REFERENCE.
+[1966] Split object without one-to-many correspondence → CORRESPONDENCE_INCOMPLETE.
+[1967] Merge with incompatible kinds → ILLEGAL_REIDENTIFICATION.
+[1968] Type and unit tests
+[1969] Electrical output to hydronic input → TYPE_MISMATCH.
+[1970] Air supply output to air input → PORT_COMPATIBLE.
+[1971] Two OUT ports without combining component → DIRECTION_MISMATCH.
+[1972] Metres converted to millimetres → UNIT_CONVERSION_VALID.
+[1973] Metres converted to volts → UNIT_MISMATCH.
+[1974] Equal number \(10\) m and \(10\) mm → QUANTITY_NOT_EQUAL.
+[1975] Pressure-drop sign reversed → ORIENTATION_MISMATCH.
+[1976] Temperature offset conversion checked → UNIT_CONVERSION_VALID.
+[1977] Missing unit token → UNIT_UNKNOWN.
+[1978] Unknown protocol adapter → PORT_COMPATIBILITY_UNKNOWN.
+[1979] Coordinate-frame tests
+[1980] Exact identity cycle → FRAME_GRAPH_VALID.
+[1981] Nonidentity translation cycle → FRAME_CYCLE_INCONSISTENT.
+[1982] Left/right-handed transform unannotated → ORIENTATION_UNKNOWN.
+[1983] Frame transform with wrong unit scale → FRAME_UNIT_MISMATCH.
+[1984] Two paths with zero holonomy agree → FRAME_PATH_CONSISTENT.
+[1985] Interval cycle excluding identity → FRAME_CYCLE_INCONSISTENT.
+[1986] Interval cycle containing identity and alternatives → FRAME_UNRESOLVED.
+[1987] Stale transform version → STALE_CERTIFICATE.
+[1988] Quantization tests
+[1989] Point at lattice node → zero residual.
+[1990] Point halfway with declared tie rule → residual \(\delta/2\).
+[1991] Three-dimensional worst corner → Euclidean bound \(\sqrt3\delta/2\).
+[1992] Strict clearance margin exceeds error → CLEARANCE_CERTIFIED.
+[1993] Margin equals error → GEOMETRY_UNRESOLVED.
+[1994] Coarse quantization merges two points → detected verdict instability.
+[1995] Quantized obstacle enlargement uses outward direction → sound.
+[1996] Inward obstacle rounding used for safety → BOUND_UNSOUND.
+[1997] Exact and bounded geometry tests
+[1998] Valid regular closed box → EXACT_GEOMETRY.
+[1999] Self-intersecting shell → GEOMETRY_INVALID.
+[2000] Dangling triangle in solid → REGULARIZATION_REQUIRED.
+[2001] Inner/outer enclosure contains source measurement → BOUNDED_GEOMETRY.
+[2002] Actual geometry escapes enclosure → ENCLOSURE_INVALID.
+[2003] Thin wall omitted from coarse voxel → spurious route found and rejected.
+[2004] Nonmanifold junction unresolved → GEOMETRY_UNRESOLVED.
+[2005] Obstacle source version changes → dependent geometry stale.
+[2006] Cell-complex tests
+[2007] Valid cubical complex satisfies \(\partial^2=0\).
+[2008] Missing face incidence violates \(\partial^2=0\).
+[2009] Adjacent cells separated by nonpenetrable fire wall → adjacency true, route transition false.

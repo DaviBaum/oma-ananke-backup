@@ -1,0 +1,304 @@
+[26439] 109.3 Lemmas, propositions, and corollaries
+[26440] LEM-CMP1–10: ACTIVE.
+[26441] PRO-CMP1–10: ACTIVE.
+[26442] COR-CMP1–10: ACTIVE.
+[26443] 109.4 Theorems
+[26444] THM-CMP1–140: ACTIVE.
+[26445] THM-CMP139 is expanded as THM-CMP-OMA-WHOLE.
+[26446] THM-CMP140 is the final open-world theorem.
+[26447] 109.5 Algorithms
+[26448] ALG-CMP1–81: ACTIVE.
+[26449] Search and proposal algorithms are untrusted producers.
+[26450] Commit, root closure, release, and proof checking are trusted or validator operations as specified.
+[26451] 109.6 Modalities
+[26452] \[ \boxed{ \mathsf{CMPMode} = \left\{ \begin{array}{l} \mathsf{SOURCE\_INGESTED},\\ \mathsf{SEMANTIC\_COMPILED},\\ \mathsf{TRANSACTION\_VALIDATED},\\ \mathsf{PROJECT\_ROOT\_COMMITTED},\\ \mathsf{PCSIR\_VALID},\\ \mathsf{ROUTING\_FEASIBLE},\\ \mathsf{JCD\_FEASIBLE},\\ \mathsf{DYNAMIC\_FEASIBLE},\\ \mathsf{PACKAGE\_COMPATIBLE},\\ \mathsf{GLOBAL\_WITNESS\_VALID},\\ \mathsf{BOUNDED\_RELEASE},\\ \mathsf{PROBABILISTIC\_RELEASE},\\ \mathsf{ROBUST\_RELEASE},\\ \mathsf{PARETO\_PARTIAL},\\ \mathsf{PARETO\_COMPLETE},\\ \mathsf{EXACT\_REPRESENTED\_OPTIMAL},\\ \mathsf{HEURISTIC},\\ \mathsf{UNKNOWN} \end{array} \right\}. } \]
+[26453] WAIVED is a disposition, not a truth-strength modality.
+[26454] 109.7 Failure statuses
+[26455] \[ \begin{aligned} \mathsf{CMPFailure} =\{& \mathsf{ROOT\_NOT\_CLOSED}, \mathsf{HASH\_MISMATCH}, \mathsf{IDENTITY\_COLLISION}, \mathsf{VERSION\_STALE}, \mathsf{WRITE\_CONFLICT}, \mathsf{UNAUTHORIZED},\\ & \mathsf{CAPABILITY\_EXPIRED}, \mathsf{PROTECTED\_AUTHORITY\_REQUIRED}, \mathsf{TRANSACTION\_INVALID}, \mathsf{MERGE\_CONFLICT}, \mathsf{PASS\_INVALID},\\ & \mathsf{PACKAGE\_INCOMPATIBLE}, \mathsf{CONTRADICTION}, \mathsf{CACHE\_STALE}, \mathsf{CHECKPOINT\_INCOMPATIBLE}, \mathsf{EXPORT\_LOSS\_UNDECLARED},\\ & \mathsf{RESOURCE\_BUDGET\_EXCEEDED}, \mathsf{UNKNOWN} \}. \end{aligned} \]
+[26456] 109.8 Conjectures
+[26457] CONJ-CMP1 — Immutable snapshots improve proof reuse.
+Falsified if mature projects show negligible proof-node reuse.
+[26458] CONJ-CMP2 — Most transactions have small invalidation cones.
+Falsified if median cone approaches the whole graph.
+[26459] CONJ-CMP3 — Branches structurally share most bytes.
+Falsified if average unique-byte ratio approaches full copies.
+[26460] CONJ-CMP4 — Proof-DAG sharing materially reduces disk use.
+Falsified by negligible deduplication.
+[26461] CONJ-CMP5 — Exact cache keys retain useful hit rates.
+Falsified if correctness-complete keys almost never repeat.
+[26462] CONJ-CMP6 — Translation validation is cheaper than recomputing large solves.
+Falsified if validator cost regularly approaches or exceeds solve cost.
+[26463] CONJ-CMP7 — Contextual quotienting reduces cache cardinality.
+Falsified if almost every input remains distinguishable.
+[26464] CONJ-CMP8 — MCP tool contracts remain compact enough for model use.
+Falsified if tool schemas exceed practical context and selection limits.
+[26465] CONJ-CMP9 — AI improves search order without affecting soundness.
+Falsified if no measurable search improvement or if AI enters proof premises.
+[26466] CONJ-CMP10 — Most edits admit bounded semantic rewrites.
+Falsified if ordinary edits require full model replacement.
+[26467] CONJ-CMP11 — Route conflicts generate useful repair proposals.
+Falsified if repair proposals rarely survive validation.
+[26468] CONJ-CMP12 — Viewer semantic IDs remain stable through most rewrites.
+Falsified by frequent wholesale reidentification.
+[26469] CONJ-CMP13 — Local crash-consistent storage is sufficient initially.
+Falsified if actual workflows require distributed write authority.
+[26470] CONJ-CMP14 — One RTX 3090 remains useful for proposal workloads.
+Falsified if data transfer or VRAM limits erase benefit.
+[26471] CONJ-CMP15 — Exact checking remains a minority of runtime.
+Falsified if checker runtime dominates.
+[26472] CONJ-CMP16 — Proof reuse compounds with project maturity.
+Falsified if reuse declines over time.
+[26473] CONJ-CMP17 — Partitioned hotel state fits the workstation.
+Falsified by measured storage or memory overflow.
+[26474] CONJ-CMP18 — Bounded JCD/PCDYN search is practical locally.
+Falsified by inability to produce useful bounded results.
+[26475] CONJ-CMP19 — Effect/capability separation reduces unsafe writes.
+Falsified if incidents are unaffected.
+[26476] CONJ-CMP20 — Model replacement changes search more than correctness.
+Falsified if checker semantics accidentally depend on model identity.
+[26477] CONJ-CMP21 — Import ambiguity becomes a major bottleneck.
+Falsified if source translation is routinely exact and cheap.
+[26478] CONJ-CMP22 — Pareto archives remain moderate.
+Falsified if most candidates remain mutually nondominated.
+[26480] 110. Dependency DAG
+[26481] SOURCES + HUMAN INTENT
+[26484] IMPORT PROPOSALS ──► REQUIREMENT PROPOSALS
+[26485]         │                    │
+[26486]         ├──── validators ────┤
+[26487]         ▼                    ▼
+[26488] CANONICAL SOURCE ROOT + REQUIREMENT ROOT
+[26494] PCROUTE ◄──────────────┐
+[26495]         │               │
+[26496]         ▼               │
+[26497] PCJCD ── architecture/routing loop
+[26500] PCDYN ── retrofit ─────► PCJCD
+[26503] CROSS-PACKAGE COMPATIBILITY
+[26506] GLOBAL WITNESS GLUING
+[26509] CLAIMS + ASSUMPTIONS + WAIVERS + UNKNOWN
+[26512] RELEASE-LATTICE CHECK
+[26515] PCOMA
+[26518] COMMITTED RELEASE ROOT
+[26520]         ├──► VIEWER PROJECTION
+[26521]         ├──► IFC / GLB EXPORT
+[26522]         └──► PROOF BUNDLE
+[26523] Proposal cycles are condensed into certified fixed-point or explicitly unresolved SCC nodes before final release checking.
+[26525] 111. Source-Grounded Implementation Map
+[26526] First module
+[26527] \[ \boxed{\texttt{oma-canon + oma-store}} \]
+[26528] because every later package needs exact root, artifact, transaction, and version semantics.
+[26529] First schema
+[26531] ArtifactRef
+[26533] VersionVector
+[26535] DependencyEdge
+[26537] First checker
+[26538] VerifyProjectRootClosure.
+[26539] First MCP tools
+[26550] First adapters
+[26551] current ServiceSpineDesign into a provisional canonical snapshot;
+[26552] current apply_choice_change into a proposal transaction;
+[26553] current independent verifier into a bounded translation validator;
+[26554] current viewer data pack into root-bound projection.
+[26556] 112. Minimum Viable Technical Demo
+[26557] The MVP demonstrates architecture, not the unimplemented full mathematics.
+[26558] Open the current Oma repository and one sealed run bundle.
+[26559] Convert its frozen candidate, evidence, transformation, and manifest records into canonical blobs.
+[26560] Commit genesis root.
+[26561] Query one equipment object through MCP.
+[26562] Ask AI to propose one allowed service-lane or equipment-option rewrite.
+[26563] Create proposal transaction.
+[26564] Compute dependency cone using the adapted graph.
+[26565] Materialize candidate through the existing immutable transformation code.
+[26566] Run current deterministic router adapter.
+[26567] Deliberately reject one route through the independent verifier.
+[26568] Accept one bounded valid candidate.
+[26569] Commit new root by CAS.
+[26570] Show before/after semantic viewer transition.
+[26571] Display proof/evidence trail.
+[26572] Roll back to old root.
+[26573] Replay transaction and reproduce the same canonical result or independently equal verdict.
+[26574] This demo does not claim full PCSIR, PCROUTE, PCJCD, or PCDYN implementation.
+[26576] 113. Twelve-Month Implementation Sequence
+[26577] Month 1 — Source stabilization
+[26578] Deliverables: frozen commits, reproducible current benchmarks, source map, initial schemas.
+Entry: repositories build.
+Exit: sealed current campaign replays.
+Mathematical risk: source identity gaps.
+Implementation risk: artifact inconsistency.
+Demo: reproducible current results.
+[26579] Month 2 — Canonicalization and object store
+[26580] Deliverables: Rust canonicalizer, CAS blobs, root manifests, SQLite schema.
+Exit: root closure and corruption tests pass.
+Demo: immutable project snapshot.
+[26581] Month 3 — Transactions and lineage
+[26582] Deliverables: begin/validate/prepare/CAS/rollback, branches, semantic diff.
+Exit: crash and concurrency tests pass.
+Demo: committed equipment rewrite and rollback.
+[26583] Month 4 — Dependency graph and incremental build
+[26584] Deliverables: generalized dependency roots, runtime read traces, invalidation, cache keys.
+Exit: tiny incremental/cold equivalence suite.
+Demo: local edit recertifies only affected analyses.
+[26585] Month 5 — PCSIR migration
+[26586] Deliverables: source/requirement roots, semantic identity, units, frames, ports, systems, geometry refs.
+Exit: existing service-bay candidate compiles into checked provisional PCSIR.
+Demo: semantic queries and root-bound viewer.
+[26587] Month 6 — Router adapter and disposal
+[26588] Deliverables: PCROUTE request/result schemas, current-router adapter, exact/legacy modality separation, conflict objects.
+Exit: invalid route rejected independently.
+Demo: alternative routes with proof trail.
+[26589] Month 7 — PCJCD adapter
+[26590] Deliverables: candidate materialization, rewrite transactions, objective policy, Pareto archive, route-feedback objects.
+Exit: current campaign represented as root lineage.
+Demo: coupled candidate search with immutable roots.
+[26591] Month 8 — Dynamic package foundation
+[26592] Deliverables: installed-state roots, scenario/policy schemas, retrofit linkage, dynamic cache roots.
+Exit: one bounded construction/operation scenario validated.
+Demo: lifecycle state attached to current design.
+[26593] Month 9 — MCP and capabilities
+[26594] Deliverables: stateless MCP gateway, tool registry, effects, capabilities, idempotency.
+Exit: unauthorized and injected-content tests pass.
+Demo: AI proposes but cannot commit unauthorized change.
+[26595] Month 10 — Viewer transitions
+[26596] Deliverables: semantic index, root switching, topology-aware transitions, conflicts/proofs/UNKNOWN overlays.
+Exit: picking and stale-overlay tests pass.
+Demo: central-trunk to split-trunk transition.
+[26597] Month 11 — Package gluing and release lattice
+[26598] Deliverables: compatibility graph, assumption closure, claim tokens, waivers, PCOMA checker.
+Exit: incompatible-package and modal-strengthening tests pass.
+Demo: bounded PCOMA release.
+[26599] Month 12 — End-to-end hardening
+[26600] Deliverables: crash injection, GC, export manifests, proof bundle, benchmarks, hotel walkthrough.
+Exit: full regression and independent replay.
+Demo: persistent, transactional, proof-carrying compiler loop on the synthetic hotel lineage.
+[26602] 114. What Has Now Been Proven
+[26603] Canonical normalization can be idempotent.
+[26604] Canonical equality implies byte equality.
+[26605] Canonical bytes determine practical content identity under explicit assumptions.
+[26606] Hash identity is not semantic or physical truth.
+[26607] Semantic identity is distinct from artifact version.
+[26608] Root manifests define immutable project snapshots.
+[26609] Structural sharing preserves shared immutable artifacts.
+[26610] Validated transactions preserve declared invariants.
+[26611] Rejected transactions leave authoritative state unchanged.
+[26612] CAS prevents silent stale overwrite.
+[26613] Transaction commutativity requires more than disjoint writes.
+[26614] Protected changes require authority and correctness.
+[26615] Translation validation can remove producer internals from the proof premise.
+[26616] Cyclic proposal processes require fixed-point or bounded semantics.
+[26617] PURE and READ tools cannot authorize mutation.
+[26618] Proposal tools do not commit project state.
+[26619] MCP schema validity does not establish engineering validity.
+[26620] Idempotency can prevent duplicate committed effects.
+[26621] AI model identity is absent from certificate truth semantics.
+[26622] Imported source text has no direct authority.
+[26623] Local package acceptance is insufficient for global compatibility.
+[26624] Version, identity, scope, and assumption agreement are necessary for gluing.
+[26625] Join-tree-compatible witnesses can be glued.
+[26626] Contradictory packages have no global witness.
+[26627] Release entailment is a partial order within compatible contexts.
+[26628] Waivers do not strengthen truth.
+[26629] UNKNOWN is preserved.
+[26630] Exact cache keys and applicability checks can license reuse.
+[26631] Missing semantic dependencies can make incremental reuse unsound.
+[26632] Complete dependency-directed compilation equals cold compilation.
+[26633] Snapshot reads isolate readers from staged transactions.
+[26634] Commit-last persistence prevents partial roots from becoming authoritative.
+[26635] Compatible deterministic checkpoints reproduce uninterrupted state.
+[26636] Reachability-preserving GC preserves release reproducibility.
+[26637] Viewer projections are noninjective.
+[26638] Viewer edits remain proposals.
+[26639] Topology-changing views require semantic transitions rather than naïve morphs.
+[26640] Import and export are translation-validated compiler passes.
+[26641] Round-trip equality requires representational completeness.
+[26642] Proof sidecars preserve semantics omitted by exchange formats.
+[26643] Local authoritative storage can remain independent of hosted AI.
+[26644] A complete PCOMA witness can establish represented feasibility.
+[26645] Valid lower and upper bounds establish bounded release.
+[26646] Complete represented search and equal bounds establish represented optimality.
+[26647] Complete dominance coverage establishes a represented Pareto frontier.
+[26648] Complete proof coverage can establish represented infeasibility.
+[26649] The final PCOMA theorem establishes exact release-fiber membership under its explicit hypotheses.
+[26650] No finite compiler proves absence of every unmodeled relevant fact.
+[26652] 115. What Has Not Yet Been Proven
+[26653] Prompt 5 does not prove:
+[26654] every source file is correct;
+[26655] every source object is mapped;
+[26656] every requirement is captured;
+[26657] every geometry fact is known;
+[26658] every code rule is represented;
+[26659] every stakeholder requirement is known;
+[26660] every physical mechanism is represented;
+[26661] every supplier state is known;
+[26662] every future event is modeled;
+[26663] every AI proposal is useful;
+[26664] every exact algorithm is practically tractable;
+[26665] every benchmark scales;
+[26666] cache keys remain compact;
+[26667] dependency graphs remain sparse;
+[26668] MCP remains protocol-stable forever;
+[26669] every IFC property round trips;
+[26670] viewer animation frames are physical states;
+[26671] every imported source is trustworthy;
+[26672] hosted models remain available;
+[26673] checker implementations are bug-free;
+[26674] practical hashes are collision impossible;
+[26675] the OS, filesystem, SSD, and SQLite implementation are failure-free;
+[26676] every future theory preserves today’s release;
+[26677] exact hotel-scale global optimization finishes in practical time;
+[26678] the unavailable Loom gitlinks contain the claimed implementation;
+[26679] the current A* router is an exact PCROUTE implementation;
+[26680] the current campaign event stream is a canonical transaction log;
+[26681] current cost/carbon proxies are real project estimates;
+[26682] current verifier is a fully formal proof kernel;
+[26683] the architecture MCP tool catalog alone guarantees safe use;
+[26684] capability correctness implies engineering correctness;
+[26685] authorization implies legal or regulatory approval;
+[26686] model-relative exactness implies real-world omniscience;
+[26687] universal real-world correctness.
+[26689] 116. Oma in Plain English
+[26690] Oma is a building compiler.
+[26691] A reasoning model can read design intent, query the project, and propose architecture, equipment, topology, routing, or lifecycle changes through typed tools. Those proposals do not directly become the building. They are checked against a persistent semantic project state, validated as transactions, routed and optimized through specialized systems, and committed only as new immutable project roots.
+[26692] Each accepted root records exactly what changed, what was reused, what was invalidated, which proofs apply, which assumptions remain, and what is still UNKNOWN. The router, optimizers, AI model, GPU kernels, viewer, and exporters can be replaced without changing what a valid certificate means, provided their outputs continue to pass the same independent validators.
+[26693] The first implementation remains a bounded research compiler built on the existing Oma and Concordia-Lite code. The complete PCSIR–PCROUTE–PCJCD–PCDYN–PCOMA architecture defined here is the target system, not a claim that every component already exists.
+[26695] 117. Final Charge
+[26696] An LLM is not a compiler kernel.
+[26697] An MCP server is not the project.
+[26698] A database row is not a semantic identity.
+[26699] A hash is not truth.
+[26700] A route is not valid because it looks correct.
+[26701] A solver status is not a proof.
+[26702] A schema is not engineering validity.
+[26703] Authority is not correctness.
+[26704] Correctness is not authority.
+[26705] A viewer is not canonical state.
+[26706] An export is not the source of record.
+[26707] A cache hit is not applicability.
+[26708] An incremental result is not cold-equivalent unless dependencies are complete.
+[26709] A checkpoint is not compatible because its filename matches.
+[26710] Accepted local packages are not automatically globally compatible.
+[26711] A waiver is not a theorem.
+[26712] A probabilistic release is not a robust release.
+[26713] A represented optimum is not universal optimality.
+[26714] The state law is:
+[26715] \[ \boxed{ \textbf{ Oma has one authoritative semantic project lineage. Every accepted mutation moves that lineage from one closed canonical root to another through a validated transaction. } } \]
+[26716] The compiler law is:
+[26717] \[ \boxed{ \textbf{ Generation and optimization may be sophisticated and untrusted. Released transformations are accepted only through independently checkable relations. } } \]
+[26718] The MCP law is:
+[26719] \[ \boxed{ \textbf{ The architecture MCP exposes typed, effect-declared, capability-controlled operations over the compiler. It does not give an AI ownership of project truth. } } \]
+[26720] The authority law is:
+[26721] \boxed{ \textbf{ Permission to alter a building and proof that the alteration is valid are orthogonal. Oma requires both. }
+[26722] The package law is:
+[26723] \[ \boxed{ \textbf{ PCSIR, PCROUTE, PCJCD, and PCDYN become final evidence only when their identities, versions, assumptions, scopes, and witnesses glue into one compatible project. } } \]
+[26724] The release law is:
+[26725] \boxed{ \textbf{ No compiler result may be released at a modality stronger than its complete proof and premise closure supports. }
+[26726] The incremental law is:
+[26727] \boxed{ \textbf{ Reuse is licensed by semantic dependency and applicability proofs—not by nearby filenames, equal display labels, or visually similar geometry. }
+[26728] The viewer law is:
+[26729] \boxed{ \textbf{ The viewer explains a committed building root. It never silently becomes that root. }
+[26730] The AI law is:
+[26731] \boxed{ \textbf{ The model proposes what should be tried. Independent validators determine what the resulting artifact proves. }
+[26732] The local-runtime law is:
+[26733] \boxed{ \textbf{ Project ownership, canonical state, checkpoints, and proof validity remain local to the declared workstation. Hosted intelligence is an accelerator, not a prerequisite for truth or ownership. }
+[26734] The constitutional law is:
+[26735] \[ \boxed{ \begin{aligned} &\textbf{Do not claim more than the witness proves.}\\ &\textbf{Do not forget what the witness assumes.}\\ &\textbf{Do not strengthen what the modality does not support.}\\ &\textbf{Do not hide what remains UNKNOWN.} \end{aligned} } \]
+[26736] The final principle of the five-prompt program is:
+[26737] \boxed{ \begin{minipage}{0.92\linewidth} Oma is not an LLM attached to CAD, and it is not a collection of unrelated engineering optimizers. It is a proof-carrying building compiler. Intent enters through an AI semantic front end, but authoritative state lives in a persistent, typed, spatial, operational, and lifecycle representation. Every proposed architectural, structural, equipment, topology, routing, or policy change is a transaction against an immutable project root. PCSIR establishes what the building means. PCROUTE establishes how its physical systems can occupy space. PCJCD lets architecture and routing change one another through mathematically valid feedback. PCDYN extends the physical system through construction, commissioning, operation, uncertainty, failure, maintenance, retrofit, external coupling, and lifecycle. The architecture MCP exposes this compiler through typed, capability-controlled tools. Search systems, models, GPU kernels, importers, optimizers, and viewers remain replaceable and largely untrusted. A minimized independent kernel checks their outputs, composes compatible proof packages, preserves versions and assumptions, rejects stale or contradictory artifacts, and releases only the exact modality supported by one globally coherent witness. The result is not merely a drawing, route set, BIM model, simulation, or AI answer. It is one persistent, versioned, transactional, executable, incrementally recertifiable, proof-carrying physical building system. \end{minipage} }

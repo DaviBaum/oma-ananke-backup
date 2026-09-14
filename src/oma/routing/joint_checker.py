@@ -120,8 +120,11 @@ def verify_joint_candidate(store, candidate_id):
             if pair["status"] != "PASS":
                 findings.append(pair)
     cross_status = "FAIL" if any(p["status"] == "FAIL" for p in findings) else "UNKNOWN" if findings else "PASS"
-    add("cross-route-interference", cross_status, f"All {pairs} physical part pairs between independent routes checked; {len(findings)} unresolved or forbidden pairs",
-        {"pairs_accounted": pairs, "findings": findings})
+    complete_bodies = all(len(bodies[rid]) == len(materializations[rid]["added_parts"]) for rid in routes)
+    if not complete_bodies and cross_status != "FAIL":
+        cross_status = "NOT_RUN"
+    add("cross-route-interference", cross_status, f"{pairs} physical part pairs between independent routes checked; {len(findings)} unresolved or forbidden pairs; complete component coverage: {complete_bodies}",
+        {"pairs_accounted": pairs, "findings": findings, "complete_component_coverage": complete_bodies})
     missions = [contracts[r]["mission"] for r in sorted(contracts)]
     aggregate = state["mission"]
     aggregate_valid = (aggregate["demands"] == [d for m in missions for d in m["demands"]]

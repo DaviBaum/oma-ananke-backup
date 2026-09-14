@@ -1,0 +1,323 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P688; UTF16 34603] symbolic expressions;
+[1-10:P689; UTF16 34625] reduced numerical operators;
+[1-10:P690; UTF16 34654] proof pointers.
+[1-10:P691; UTF16 34670] Failure mode: Circuit width or node count explodes.
+[1-10:P692; UTF16 34722] Fallback: Evict cold branches, use bounded-width approximate elimination, or revert to branch-and-bound for the affected region.
+[1-10:P696; UTF16 34854] 8.4 Proof-Carrying Port Envelopes
+[1-10:P697; UTF16 34888] Status: Known foundations plus extrapolated multiphysics composition; universal compactness is conjectural.
+[1-10:P698; UTF16 34996] Purpose: Eliminate repeated full simulation of nearly identical subsystem interiors.
+[1-10:P699; UTF16 35081] Mathematical object: For subsystem family S,
+[1-10:P700; UTF16 35126] \[ \mathcal P_S: (b,\theta,\xi) \longmapsto \left\{ r,\;y,\;e \right\}, \]
+[1-10:P702; UTF16 35208] b is the boundary condition;
+[1-10:P703; UTF16 35237]  is an unresolved design parameter;
+[1-10:P704; UTF16 35273]  is uncertainty;
+[1-10:P705; UTF16 35290] r is boundary response;
+[1-10:P706; UTF16 35314] y is internal consequence;
+[1-10:P707; UTF16 35341] e is evidence and error status.
+[1-10:P708; UTF16 35373] The stored object may be:
+[1-10:P709; UTF16 35399] an exact matrix;
+[1-10:P710; UTF16 35416] a symbolic transfer function;
+[1-10:P711; UTF16 35446] a reduced basis;
+[1-10:P712; UTF16 35463] an interval relation;
+[1-10:P713; UTF16 35485] a monotone graph;
+[1-10:P714; UTF16 35503] a polynomial/rational approximation;
+[1-10:P715; UTF16 35540] a tensor train;
+[1-10:P716; UTF16 35556] a neural residual with certified outer bounds.
+[1-10:P717; UTF16 35603] Composition rule: Glue ports, enforce compatibility and conservation, then eliminate the shared state.
+[1-10:P718; UTF16 35706] For linear structure:
+[1-10:P720; UTF16 35729] Keff=Kbb-KbiKii-1Kib.
+[1-10:P721; UTF16 35751] For network systems, compose flow-pressure relations and eliminate internal nodes.
+[1-10:P722; UTF16 35834] Refinement rule: Split parameter domains, add basis vectors, increase precision, or run a local full-order solve.
+[1-10:P723; UTF16 35948] Error semantics: Residual estimators and validity domains travel with the operator.
+[1-10:P724; UTF16 36032] Complexity conjecture: Many repeated building subsystems have low-dimensional boundary behavior even when their interiors are detailed.
+[1-10:P725; UTF16 36168] Implementation: Dense or sparse reduced matrices, basis vectors, interpolation coefficients, interval residuals, and content-addressed provenance.
+[1-10:P726; UTF16 36315] Failure mode: Strong nonlinearities, rare events, or global modes make the envelope broad or high rank.
+[1-10:P727; UTF16 36419] Fallback: Full local or global simulation; the resulting solve enriches the operator instead of being discarded.
+[1-10:P731; UTF16 36535] 8.5 Rewrite-Functor Jets
+[1-10:P732; UTF16 36560] Status: Conjectural synthesis of incremental computation, shape derivatives, topological derivatives, cospan-like rewrites, and solution transport.
+[1-10:P733; UTF16 36708] Purpose: Preserve knowledge across topology changes.
+[1-10:P734; UTF16 36761] Mathematical object: A topology rewrite is represented as a span:
+[1-10:P736; UTF16 36828] AKB,
+[1-10:P737; UTF16 36833] where K is the common semantic interface preserved by both topologies.
+[1-10:P738; UTF16 36904] Attached to the rewrite is a jet:
+[1-10:P740; UTF16 36939] Jr=(Tx,T,TV,TP,TE,r),
+[1-10:P741; UTF16 36961] containing transport maps for:
+[1-10:P742; UTF16 36992] primal states x;
+[1-10:P743; UTF16 37009] dual variables ;
+[1-10:P744; UTF16 37026] reduced bases V;
+[1-10:P745; UTF16 37043] preconditioners P;
+[1-10:P746; UTF16 37062] evidence dependencies E;
+[1-10:P747; UTF16 37087] residual change r.
+[1-10:P748; UTF16 37106] Operation: Reuse unchanged factors exactly, transport compatible boundary state, and recompute only the rewrite’s affected separator closure.
+[1-10:P749; UTF16 37248] Composition rule:
+[1-10:P751; UTF16 37267] Jr2r1Jr2Jr1,
+[1-10:P752; UTF16 37280] with residual bounds accumulated explicitly.
+[1-10:P753; UTF16 37325] Refinement rule: If transported states produce excessive residual, expand the affected region or cold-start that region.
+[1-10:P754; UTF16 37446] Error semantics: The jet provides a residual certificate showing how far the transported state lies from a valid new solution.
+[1-10:P755; UTF16 37573] Complexity conjecture: For local rewrites, update cost scales with affected separator size rather than total building size.
+[1-10:P756; UTF16 37697] Implementation: Persistent factor graphs, structural hashes, sparse projection/prolongation maps, low-rank updates, and dependency-indexed cache invalidation.
+[1-10:P757; UTF16 37856] Failure mode: A local topology change triggers a global mode change.
+[1-10:P758; UTF16 37925] Fallback: The dependency closure expands to the full model. Nothing is silently reused beyond its validity.
+[1-10:P762; UTF16 38036] 8.6 Decision-Influence Error Calculus
+[1-10:P763; UTF16 38074] Status: Extrapolated from interval analysis, sensitivity analysis, abstract interpretation, and goal-oriented error estimation.
+[1-10:P764; UTF16 38202] Purpose: Stop refining numerical values whose remaining error cannot affect the decision.
+[1-10:P765; UTF16 38292] Mathematical object: Each approximation carries not only a norm error
+[1-10:P766; UTF16 38362] \[ \|y-\hat y\|\le\delta, \]
+[1-10:P767; UTF16 38391] but a decision-influence set:
+[1-10:P768; UTF16 38421] \[ \mathcal I_E = \left\{ d\in\mathcal D: \delta\text{ could alter }d \right\}. \]
+[1-10:P769; UTF16 38504] Operation: Push errors through the DQAC using:
+[1-10:P770; UTF16 38551] local Lipschitz bounds;
+[1-10:P771; UTF16 38575] adjoint sensitivities;
+[1-10:P772; UTF16 38598] interval propagation;
+[1-10:P773; UTF16 38620] monotonicity;
+[1-10:P774; UTF16 38634] correlation-aware affine forms;
+[1-10:P775; UTF16 38666] threshold-distance calculations.
+[1-10:P776; UTF16 38699] Composition rule: Errors compose according to dependency structure rather than being naïvely added as independent or worst-case quantities.
+[1-10:P777; UTF16 38839] Refinement rule: Increase fidelity only where the error cone intersects a live feasibility, evidence, or choice boundary.
+[1-10:P778; UTF16 38961] Error semantics: Native by definition.
+[1-10:P779; UTF16 39000] Complexity conjecture: Most numerical precision sought in engineering optimization is decision-irrelevant.
+[1-10:P780; UTF16 39107] Implementation: Compact interval vectors, sparse influence bitsets, threshold-distance caches, and adjoint projections.
+[1-10:P781; UTF16 39227] Failure mode: Error correlations or nonlinear amplification are underestimated.
+[1-10:P782; UTF16 39307] Fallback: Conservative outer bounds; if uncertain, mark the computation as decision-relevant and refine.
+[1-10:P786; UTF16 39415] 8.7 Causal Sufficient-Separator Synthesis
+[1-10:P787; UTF16 39457] Status: Conjectural.
+[1-10:P788; UTF16 39478] Purpose: Allow the system to invent operational abstractions such as “wet-service spine” or “replacement-access bottleneck.”
+[1-10:P789; UTF16 39603] Mathematical object: A proposed macro variable
+[1-10:P791; UTF16 39651] z=(XS)
+[1-10:P792; UTF16 39658] that compresses a group of detailed variables XS while preserving downstream consequences.
+[1-10:P793; UTF16 39749] Operation: Search for  by combining:
+[1-10:P794; UTF16 39786] repeated proof patterns;
+[1-10:P795; UTF16 39811] common sensitivity directions;
+[1-10:P796; UTF16 39842] low-rank operator structure;
+[1-10:P798; UTF16 39893] graph cuts;
+[1-10:P799; UTF16 39905] intervention tests;
+[1-10:P800; UTF16 39925] minimum-description-length criteria.
+[1-10:P801; UTF16 39962] Composition rule: Replace the original factor cluster with a typed macro factor exposing z.
+[1-10:P802; UTF16 40054] Refinement rule: Counterexamples split the macro or add state dimensions.
+[1-10:P803; UTF16 40128] Error semantics: A residual relation states what consequences are not fully mediated by z.
+[1-10:P804; UTF16 40219] Complexity conjecture: Mature engineering domains contain many unnamed low-dimensional sufficient mechanisms.
+[1-10:P805; UTF16 40329] Implementation: Symbolic regression, sparse basis discovery, partition refinement, small graph neural proposal models, and deterministic verification.
+[1-10:P806; UTF16 40480] Failure mode: The discovered abstraction fits sampled cases but fails under rare conditions.
+[1-10:P807; UTF16 40573] Fallback: It remains a heuristic proposal until adversarially validated. Unvalidated abstractions may guide search but cannot justify elimination.
+[1-10:P811; UTF16 40723] 8.8 Regret-Closure Value of Computation
+[1-10:P812; UTF16 40763] Status: Extrapolated from rational metareasoning; the building-specific formulation is new.
+[1-10:P813; UTF16 40855] Purpose: Select the next computation by its expected effect on the final decision, not by generic uncertainty or model error.
+[1-10:P814; UTF16 40981] Let current state be Q, with certified decision regret \(\mathcal R(Q)\).
+[1-10:P815; UTF16 41055] For computation c with possible results o, define:
+[1-10:P816; UTF16 41106] \[ \operatorname{RCVOC}(c\mid Q) = \frac{ \mathcal R(Q) - \mathbb E_o[ \mathcal R(\operatorname{Update}(Q,c,o)) ] + \alpha\,\mathbb E[\Delta S_c] + \beta\,\mathbb E[\Delta R_c] }{ t_c + \lambda_M m_c + \lambda_V v_c + \lambda_I i_c + \lambda_E e_c }, \]
+[1-10:P818; UTF16 41367] Sc is safety-obligation closure;
+[1-10:P819; UTF16 41400] Rc is expected future reuse;
+[1-10:P820; UTF16 41429] tc is time;
+[1-10:P821; UTF16 41441] mc is RAM pressure;
+[1-10:P822; UTF16 41461] vc is VRAM pressure;
+[1-10:P823; UTF16 41482] ic is SSD traffic;
+[1-10:P824; UTF16 41501] ec is energy or delayed-decision cost.
+[1-10:P825; UTF16 41540] Operation: Rank candidate computations using optimistic and pessimistic RCVOC bounds.
+[1-10:P826; UTF16 41626] Composition rule: Computations with shared setup or reusable results may be bundled.
+[1-10:P827; UTF16 41711] Refinement rule: Update the RCVOC predictor from observed pruning, regret closure, and runtime.
+[1-10:P828; UTF16 41807] Complexity conjecture: A low-cost approximate scheduler can capture most of the gains of an intractable exact metareasoner.
+[1-10:P829; UTF16 41931] Implementation: Deterministic features plus a small learned ranking model.
+[1-10:P830; UTF16 42006] Failure mode: The scheduler mispredicts and starves important analyses.
+[1-10:P831; UTF16 42078] Fallback: Mandatory safety queues, fairness budgets, and conservative deterministic escalation policies.
+[1-10:P835; UTF16 42186] 8.9 Sovereignty-Preserving Transformation Logic
+[1-10:P836; UTF16 42234] Status: Extrapolated from refinement types, formal contracts, partial orders, and user-approved equivalence relations.
+[1-10:P837; UTF16 42353] Purpose: Preserve architectural authorship without turning beauty into a scalar objective.
+[1-10:P838; UTF16 42444] Mathematical object: An intent theory
+[1-10:P839; UTF16 42482] \[ \mathcal I = (P,\;B,\;N,\;F,\;\sim_A), \]
+[1-10:P841; UTF16 42534] P is protected invariants;
+[1-10:P842; UTF16 42561] B is bounded variation;
+[1-10:P843; UTF16 42585] N is negotiable territory;
+[1-10:P844; UTF16 42612] F is machine-free authorship;
+[1-10:P845; UTF16 42642] A is the architect-approved equivalence relation.
+[1-10:P846; UTF16 42692] Operation: Every transformation receives a type judgment:
+[1-10:P847; UTF16 42750] \[ \Gamma_{\mathcal I}\vdash r:A\to B \;:\; \text{preserving}, \text{bounded}, \text{approval-required}, \text{forbidden}. \]
+[1-10:P848; UTF16 42876] Composition rule: A sequence remains intent-preserving only if every transformation and emergent composition type-checks.
+[1-10:P849; UTF16 42998] Refinement rule: Humans may expand or narrow approved equivalence classes.
+[1-10:P850; UTF16 43073] Error semantics: Perceptual or learned assessments are proposals with uncertainty, never final architectural truth.
+[1-10:P851; UTF16 43189] Failure mode: Intent is incompletely formalized.
+[1-10:P852; UTF16 43238] Fallback: Unformalized visible changes require human approval rather than being optimized silently.
+[1-10:P856; UTF16 43341] 9. Search Without Candidate Enumeration
+[1-10:P857; UTF16 43381] ANANKE’s main loop is not:
+[1-10:P859; UTF16 43409] generatesimulatescorerepeat.
+[1-10:P860; UTF16 43438] It is:
+[1-10:P862; UTF16 43446] compileeliminatedistinctionsboundrefineonlyatdecisionboundaries.
+[1-10:P863; UTF16 43511] A simplified algorithm is:
+[1-10:P864; UTF16 43538] Q = compile_source_to_DQAC(grammar, physics, intent, uncertainty, evidence)
+[1-10:P866; UTF16 43615] while compute_budget_remains:
+[1-10:P868; UTF16 43646]     propagate_hard_constraints(Q)
+[1-10:P869; UTF16 43680]     canonicalize_symmetries_and_rewrites(Q)
+[1-10:P870; UTF16 43724]     eliminate_internal_variables_at_small_separators(Q)
+[1-10:P871; UTF16 43780]     compose_reusable_port_envelopes(Q)
+[1-10:P873; UTF16 43820]     merge_classes_with_certified_contextual_equivalence(Q)
+[1-10:P874; UTF16 43879]     prune_infeasible_or_decision-irrelevant_classes(Q)
+[1-10:P875; UTF16 43934]     update_decision_regret_and_evidence_frontier(Q)
+[1-10:P877; UTF16 43987]     if requested stopping condition is satisfied:
+[1-10:P878; UTF16 44037]         break
+[1-10:P880; UTF16 44052]     candidate_computations = enumerate_refinements_that_could_change_choice(Q)
+[1-10:P881; UTF16 44131]     c = select_by_bounded_regret_closure_value(candidate_computations)
+[1-10:P883; UTF16 44203]     result = execute(c)
+[1-10:P885; UTF16 44228]     if result is a counterexample:
+[1-10:P886; UTF16 44263]         split_quotient_class_or_expand_context(Q, result)
+[1-10:P887; UTF16 44321]     else:
+[1-10:P888; UTF16 44331]         tighten_bound_or_enrich_operator(Q, result)
+[1-10:P890; UTF16 44384] return extract_small_epsilon_choice_complete_witness_portfolio(Q)
+[1-10:P891; UTF16 44450] What gets eliminated without candidates
+[1-10:P892; UTF16 44490] Exact symmetries
+[1-10:P893; UTF16 44507] Permutations of identical guestrooms, equivalent floor labels, symmetric shaft assignments, and structurally isomorphic networks are canonicalized.
+[1-10:P894; UTF16 44655] Internal variables
+[1-10:P895; UTF16 44674] If a subsystem interacts with the rest of the building only through a small boundary relation, all internal choices are existentially eliminated.
+[1-10:P896; UTF16 44820] Decision-equivalent realizations
+[1-10:P897; UTF16 44853] Different systems producing the same admitted boundary consequences and evidence are merged.
+[1-10:P898; UTF16 44946] Dominated abstract classes
+[1-10:P899; UTF16 44973] If the optimistic envelope of a class is worse than the certified pessimistic envelope of another class for every admitted decision rule, the class is removed.
+[1-10:P900; UTF16 45133] Infeasible classes
+[1-10:P901; UTF16 45152] A conservative proof of infeasibility eliminates every realization in that class.
+[1-10:P902; UTF16 45234] Numerically irrelevant distinctions
+[1-10:P903; UTF16 45270] If two response intervals lie safely on the same side of every active threshold, refinement stops.
+[1-10:P904; UTF16 45369] Does a complete building exist during search?
+[1-10:P905; UTF16 45415] For most of the computation, no.
+[1-10:P906; UTF16 45448] ANANKE may temporarily materialize:
+[1-10:P907; UTF16 45484] a local room geometry;
+[1-10:P908; UTF16 45507] a representative structural bay;
+[1-10:P909; UTF16 45540] a route witness;
+[1-10:P910; UTF16 45557] a reduced simulation mesh;
+[1-10:P911; UTF16 45584] a partial floor plan;
+[1-10:P912; UTF16 45606] a candidate separator configuration.
+[1-10:P913; UTF16 45643] But it does not maintain a complete building for every live state.
+[1-10:P914; UTF16 45710] Complete buildings appear only when:
+[1-10:P915; UTF16 45747] a quotient class is competitive;
+[1-10:P916; UTF16 45780] its internal existential constraints appear satisfiable;
+[1-10:P917; UTF16 45837] an actual witness is needed for detailed analysis, review, or release.
+[1-10:P918; UTF16 45908] The witness is not the search state.
+[1-10:P919; UTF16 45945] It is a compiled output of the search state.
+[1-10:P923; UTF16 45993] 10. Physics Without Repeated Full Simulation
+[1-10:P924; UTF16 46038] 10.1 General principle
+[1-10:P925; UTF16 46061] For subsystem S, instead of repeatedly solving:
+[1-10:P927; UTF16 46110] FS(u,,)=0
+[1-10:P928; UTF16 46120] for every candidate, compile a reusable relation:
+[1-10:P929; UTF16 46170] \[ \mathcal P_S: (u_{\partial S},\theta,\xi) \mapsto (y_{\partial S},z_S,E_S). \]
+[1-10:P930; UTF16 46252] The interior variables are condensed away unless they become decision-relevant.
+[1-10:P934; UTF16 46335] 10.2 Structural systems
+[1-10:P935; UTF16 46359] Early and intermediate stages use:
+[1-10:P936; UTF16 46394] analytical bounds;
+[1-10:P937; UTF16 46413] condensed stiffness matrices;
+[1-10:P938; UTF16 46443] component mode synthesis;
+[1-10:P939; UTF16 46469] reduced buckling spaces;
+[1-10:P940; UTF16 46494] interval strength envelopes;
+[1-10:P941; UTF16 46523] cached nonlinear tangent operators.
+[1-10:P942; UTF16 46559] Repeated bays reuse the same local operators.
+[1-10:P943; UTF16 46605] A topology or connection detail requiring nonlinear contact receives a specialized operator or full solve only when it matters.
+[1-10:P944; UTF16 46733] Global nonlinear collapse, progressive failure, and detailed connection verification remain finalist analyses.
+[1-10:P948; UTF16 46847] 10.3 Thermal and energy systems
+[1-10:P949; UTF16 46879] Rooms, façade regions, and zones expose:
+[1-10:P950; UTF16 46920] thermal admittance;
+[1-10:P951; UTF16 46940] solar-gain transfer;
+[1-10:P952; UTF16 46961] moisture response;
+[1-10:P953; UTF16 46980] internal-load envelopes;
+[1-10:P954; UTF16 47005] state-space dynamics;
+[1-10:P955; UTF16 47027] control-relevant reduced states.
+[1-10:P956; UTF16 47060] Repeated floors can be composed through shared transfer operators with low-rank corrections for orientation, corner rooms, occupancy, and exceptions.
+[1-10:P957; UTF16 47210] Full annual simulations become cross-checks and calibration sources rather than the only way to evaluate every alternative.
+[1-10:P961; UTF16 47337] 10.4 HVAC, plumbing, drainage, and fire protection
+[1-10:P962; UTF16 47388] Segments expose relations such as:
+[1-10:P963; UTF16 47423] \[ (\Delta p,\;T_{\mathrm{in}},\;q_{\mathrm{in}}) \mapsto (q_{\mathrm{out}},\;T_{\mathrm{out}},\;\text{noise},\;\text{risk},\;\text{cost}). \]
+[1-10:P964; UTF16 47566] Networks are assembled by:
+[1-10:P965; UTF16 47593] conservation;
+[1-10:P966; UTF16 47607] compatibility;
+[1-10:P967; UTF16 47622] capacity constraints;
+[1-10:P968; UTF16 47644] monotone relation composition;
+[1-10:P969; UTF16 47675] internal-node elimination.
+[1-10:P970; UTF16 47702] Catalog thresholds remain exact predicates rather than being smoothed away.
+[1-10:P971; UTF16 47778] Drainage slope, cleanout access, fire separation, and replacement space are carried as logical-geometric port obligations.
+[1-10:P975; UTF16 47904] 10.5 Electrical systems
+[1-10:P976; UTF16 47928] Equipment and distribution regions expose:
+[1-10:P977; UTF16 47971] load envelopes;
+[1-10:P978; UTF16 47987] voltage-drop response;
+[1-10:P979; UTF16 48010] fault-current ranges;
+[1-10:P980; UTF16 48032] protective-device compatibility;
+[1-10:P981; UTF16 48065] redundancy state;
+[1-10:P982; UTF16 48083] thermal limits;
+[1-10:P983; UTF16 48099] feeder and pathway demands;
+[1-10:P984; UTF16 48127] catalog thresholds.
+[1-10:P985; UTF16 48147] Internal circuit assignments can be eliminated when only aggregate behavior matters. They are expanded when coordination, routing, or failure isolation distinguishes them.
+[1-10:P989; UTF16 48322] 10.6 Façade and envelope
+[1-10:P990; UTF16 48347] Assembly families expose:
+[1-10:P991; UTF16 48373] thermal transfer;
+[1-10:P992; UTF16 48391] solar response;
+[1-10:P993; UTF16 48407] air leakage;
+[1-10:P994; UTF16 48420] moisture migration;
+[1-10:P995; UTF16 48440] structural support demands;
+[1-10:P996; UTF16 48468] wind-pressure validity domains;
+[1-10:P997; UTF16 48500] maintenance and replacement access;
+[1-10:P998; UTF16 48536] embodied carbon and lead time.
+[1-10:P999; UTF16 48567] Rare details such as corners, parapets, transitions, and penetrations remain explicit exception operators rather than contaminating the entire repeated façade representation.
+[1-10:P1003; UTF16 48745] 10.7 Acoustics, lighting, and daylight
+[1-10:P1004; UTF16 48784] Early models use:
+[1-10:P1005; UTF16 48802] transfer matrices;
+[1-10:P1006; UTF16 48821] path-loss bounds;
+[1-10:P1007; UTF16 48839] radiosity or visibility summaries;
+[1-10:P1008; UTF16 48874] spectral response bases;
+[1-10:P1009; UTF16 48899] perceptual threshold envelopes.
+[1-10:P1010; UTF16 48931] High-resolution ray tracing or wave models are used only where uncertainty could alter room classification, architectural intent, or a final claim.
+[1-10:P1014; UTF16 49082] 10.8 Construction, maintenance, and lifecycle
+[1-10:P1015; UTF16 49128] These are not PDEs, but they still compile into interface behavior.
+[1-10:P1016; UTF16 49196] A construction package exposes:
+[1-10:P1017; UTF16 49228] prerequisites;
+[1-10:P1018; UTF16 49243] crew and crane demand;
+[1-10:P1019; UTF16 49266] workspace;
+[1-10:P1020; UTF16 49277] temporary stability;
+[1-10:P1021; UTF16 49298] completion state;
+[1-10:P1022; UTF16 49316] inspection obligations;
+[1-10:P1023; UTF16 49340] tolerance propagation;
+[1-10:P1024; UTF16 49363] downstream access.
+[1-10:P1025; UTF16 49382] A maintenance region exposes:
+[1-10:P1026; UTF16 49412] reachability;
+[1-10:P1027; UTF16 49426] clearance;
+[1-10:P1028; UTF16 49437] shutdown domain;
+[1-10:P1029; UTF16 49454] replacement path;
+[1-10:P1030; UTF16 49472] temporary support;
+[1-10:P1031; UTF16 49491] expected outage consequence.
+[1-10:P1032; UTF16 49520] Composition becomes constrained automata and precedence-network elimination.
+[1-10:P1036; UTF16 49600] 10.9 Where full simulation remains unavoidable
+[1-10:P1037; UTF16 49647] Full or high-fidelity analysis is still needed for selected cases involving:
+[1-10:P1038; UTF16 49724] nonlinear structure;
+[1-10:P1039; UTF16 49745] complex wind;
+[1-10:P1040; UTF16 49759] fire and smoke;
+[1-10:P1041; UTF16 49775] turbulent airflow;
+[1-10:P1042; UTF16 49794] soil-structure interaction;
+[1-10:P1043; UTF16 49822] unusual moisture behavior;
+[1-10:P1044; UTF16 49849] emergent controls;
+[1-10:P1045; UTF16 49868] complex acoustic fields;
+[1-10:P1046; UTF16 49893] coupled transient hazards.
+[1-10:P1047; UTF16 49920] ANANKE’s breakthrough is not abolishing high-fidelity physics.
+[1-10:P1048; UTF16 49983] It is ensuring that high-fidelity physics is invoked for dozens of decision-critical questions rather than millions of barely distinct realizations.
+[1-10:P1052; UTF16 50135] 11. Topology Change Without Forgetting Everything
+[1-10:P1053; UTF16 50185] Conventional topology change often destroys:
+[1-10:P1054; UTF16 50230] meshes;
+[1-10:P1055; UTF16 50238] variable numbering;
+[1-10:P1056; UTF16 50258] solver factorizations;
+[1-10:P1058; UTF16 50296] derivatives;
+[1-10:P1059; UTF16 50309] routes;
+[1-10:P1060; UTF16 50317] references;
+[1-10:P1061; UTF16 50329] proof state.
+[1-10:P1062; UTF16 50342] ANANKE avoids tying knowledge to one monolithic topology.
+[1-10:P1063; UTF16 50400] 11.1 Persistent factorized semantics
+[1-10:P1064; UTF16 50437] Every local subsystem has:
+[1-10:P1065; UTF16 50464] a structural hash;
+[1-10:P1066; UTF16 50483] an interface signature;
+[1-10:P1067; UTF16 50507] an operator;
+[1-10:P1068; UTF16 50520] evidence dependencies;
+[1-10:P1069; UTF16 50543] a place in an elimination tree.
+[1-10:P1070; UTF16 50575] A topology rewrite changes a bounded subgraph whenever possible.
+[1-10:P1071; UTF16 50640] Unchanged factors remain bit-for-bit reusable.
+[1-10:P1075; UTF16 50690] 11.2 Common-interface rewriting
+[1-10:P1076; UTF16 50722] A rewrite is expressed as:
+[1-10:P1078; UTF16 50750] AKB.
+[1-10:P1079; UTF16 50755] Examples:
+[1-10:P1080; UTF16 50765] one shaft becomes two while floor interfaces remain the same;
+[1-10:P1081; UTF16 50827] a central plant becomes two distributed plants while zone demand ports persist;
+[1-10:P1082; UTF16 50907] one structural bay is split while neighboring supports remain;
+[1-10:P1083; UTF16 50970] a corridor rack moves to the opposite side while room service ports remain.
+[1-10:P1084; UTF16 51046] The common interface K identifies what semantic information survives.

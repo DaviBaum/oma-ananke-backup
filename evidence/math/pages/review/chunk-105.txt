@@ -1,0 +1,336 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P17107; UTF16 572649] With high probability over a declared random training sample, a population-risk bound holds.
+[11-20:P17108; UTF16 572742] MARGINAL_PREDICTION
+[11-20:P17109; UTF16 572762] A future random unit receives a marginal coverage guarantee under exchangeability.
+[11-20:P17110; UTF16 572845] BAYESIAN_MODEL
+[11-20:P17111; UTF16 572860] A posterior or posterior-predictive statement holds conditional on a prior–likelihood model.
+[11-20:P17112; UTF16 572953] HEURISTIC
+[11-20:P17113; UTF16 572963] The object may guide search, ranking, or proposal generation but carries no engineering-proof authority.
+[11-20:P17114; UTF16 573068] These modalities are not arranged in one universal numerical hierarchy.
+[11-20:P17115; UTF16 573140] Every conversion requires an explicit inference rule.
+[11-20:P17119; UTF16 573197] 7. Cross-Project Evidence and Dependence
+[11-20:P17120; UTF16 573238] DEF-XFER6 — Cross-Project Evidence Atom
+[11-20:P17121; UTF16 573278] A Cross-Project Evidence Atom is
+[11-20:P17122; UTF16 573311] \left( \mathsf{ProjectID}, \chi_i, \mathsf{SamplingUnit}, \mathsf{EvidenceKind}, Q_i, \mathsf{RawRef}, \mathsf{Provenance}, \mathsf{Calibration}, \mathsf{Selection}, \mathsf{Version}, \mathsf{Status} \right). } ]
+[11-20:P17124; UTF16 573536] the source project;
+[11-20:P17125; UTF16 573556] physical entity or event;
+[11-20:P17126; UTF16 573582] claimed sampling unit;
+[11-20:P17127; UTF16 573605] clustering;
+[11-20:P17128; UTF16 573617] source-selection mechanism;
+[11-20:P17129; UTF16 573645] evidentiary proposition;
+[11-20:P17130; UTF16 573670] calibration and provenance.
+[11-20:P17131; UTF16 573698] A million measurements from one chiller are not automatically one million project-level observations.
+[11-20:P17135; UTF16 573803] DEF-XFER9 — Statistical Sampling Unit
+[11-20:P17136; UTF16 573841] A Statistical Sampling Unit is the unit claimed to contribute a distinct draw under the sampling model.
+[11-20:P17137; UTF16 573945] Possible units include:
+[11-20:P17138; UTF16 573969] project;
+[11-20:P17139; UTF16 573978] subsystem;
+[11-20:P17140; UTF16 573989] asset;
+[11-20:P17141; UTF16 573996] maintenance cycle;
+[11-20:P17142; UTF16 574015] failure event.
+[11-20:P17143; UTF16 574030] Repeated observations from one unit are dependent unless the probability model says otherwise.
+[11-20:P17147; UTF16 574128] DEF-XFER31 — Dependence and Clustering Specification
+[11-20:P17148; UTF16 574181] A Dependence Specification contains:
+[11-20:P17149; UTF16 574218] unit identities;
+[11-20:P17150; UTF16 574235] cluster memberships;
+[11-20:P17151; UTF16 574256] repeated-measurement structure;
+[11-20:P17152; UTF16 574288] shared vendors;
+[11-20:P17153; UTF16 574304] shared firmware;
+[11-20:P17154; UTF16 574321] shared calibration;
+[11-20:P17155; UTF16 574341] common climate or event variables;
+[11-20:P17156; UTF16 574376] conditional independence claims;
+[11-20:P17157; UTF16 574409] evidence supporting those claims.
+[11-20:P17158; UTF16 574443] Independence is never inferred from different database row IDs.
+[11-20:P17162; UTF16 574510] 8. Fundamental No-Transfer Theorem
+[11-20:P17163; UTF16 574545] THM-XFER1 — Source-Project Truth Alone Has No General Logical Implication for an Unconstrained Target Project
+[11-20:P17164; UTF16 574655] Let (C) be a nontrivial target proposition.
+[11-20:P17165; UTF16 574699] There exist two universes that:
+[11-20:P17166; UTF16 574731] agree on every source project;
+[11-20:P17167; UTF16 574762] agree on every source observation and certificate;
+[11-20:P17168; UTF16 574813] disagree on (C(B_\star)).
+[11-20:P17169; UTF16 574839] Therefore source evidence alone does not logically entail an arbitrary target claim.
+[11-20:P17171; UTF16 574930] Fix any source fleet
+[11-20:P17172; UTF16 574951] [ B_1,\ldots,B_n ]
+[11-20:P17173; UTF16 574970] and its complete source evidence.
+[11-20:P17174; UTF16 575004] Because (C) is nontrivial, there exist target worlds
+[11-20:P17175; UTF16 575057] [ \omega_\star^{+}, \qquad \omega_\star^{-} ]
+[11-20:P17177; UTF16 575113] [ C(\omega_\star^{+}) ]
+[11-20:P17179; UTF16 575141] [ \neg C(\omega_\star^{-}). ]
+[11-20:P17180; UTF16 575171] Construct universe (U_+) by combining the fixed source fleet with target world (\omega_\star^{+}).
+[11-20:P17181; UTF16 575270] Construct universe (U_-) using the identical source fleet and target world (\omega_\star^{-}).
+[11-20:P17182; UTF16 575365] Every source fact and source observation is identical in (U_+,U_-).
+[11-20:P17183; UTF16 575433] The target proposition differs.
+[11-20:P17184; UTF16 575465] Therefore the source facts do not logically determine the target proposition. ∎
+[11-20:P17185; UTF16 575545] This is the foundational negative theorem of Prompt 16.
+[11-20:P17189; UTF16 575604] 9. Exact Transport Bridges
+[11-20:P17190; UTF16 575631] DEF-XFER7 — Transport Bridge
+[11-20:P17191; UTF16 575660] A Transport Bridge from source (S) to target (T) is
+[11-20:P17192; UTF16 575712] \left( \mathsf{SourceScope}, \mathsf{TargetScope}, \mathsf{ContextRelation}, \mathsf{SemanticMap}, \mathsf{InvariantClaims}, \mathsf{Validity}, \mathsf{Evidence}, \mathsf{Version} \right). } ]
+[11-20:P17193; UTF16 575905] Semantically it induces a relation
+[11-20:P17194; UTF16 575940] [ \mathcal R_{S,T} \subseteq \Omega_S \times \Omega_T. ]
+[11-20:P17195; UTF16 575997] A bridge may assert:
+[11-20:P17196; UTF16 576018] exact semantic equivalence;
+[11-20:P17197; UTF16 576046] parameter relation;
+[11-20:P17198; UTF16 576066] product equivalence;
+[11-20:P17199; UTF16 576087] model-mechanism invariance;
+[11-20:P17200; UTF16 576115] bounded transfer discrepancy;
+[11-20:P17201; UTF16 576145] causal mechanism transport;
+[11-20:P17202; UTF16 576173] subsystem equivalence.
+[11-20:P17203; UTF16 576196] Similarity is not a transport bridge.
+[11-20:P17207; UTF16 576237] DEF-XFER8 — Exact Transport Certificate
+[11-20:P17208; UTF16 576277] For source proposition (P_S) and target proposition (P_T), an exact certificate proves
+[11-20:P17209; UTF16 576364] [ \boxed{ \forall (\omega_S,\omega_T) \in \mathcal R_{S,T}, \qquad P_S(\omega_S) \Longrightarrow P_T(\omega_T). } ]
+[11-20:P17210; UTF16 576480] Source evidence separately establishes (P_S(\omega_S)).
+[11-20:P17214; UTF16 576539] THM-XFER2 — Exact Transport Soundness
+[11-20:P17216; UTF16 576585] source evidence proves [ P_S(\omega_S); ]
+[11-20:P17217; UTF16 576627] the checked bridge proves [ (\omega_S,\omega_T) \in \mathcal R_{S,T}; ]
+[11-20:P17218; UTF16 576699] the transport certificate proves [ P_S \Longrightarrow P_T ] throughout (\mathcal R_{S,T}).
+[11-20:P17220; UTF16 576796] [ \boxed{ P_T(\omega_T). } ]
+[11-20:P17222; UTF16 576831] Instantiate the transport certificate at ((\omega_S,\omega_T)).
+[11-20:P17223; UTF16 576895] Its antecedent (P_S(\omega_S)) is true.
+[11-20:P17224; UTF16 576935] Therefore its consequent (P_T(\omega_T)) is true. ∎
+[11-20:P17225; UTF16 576987] This is genuine deterministic target transfer.
+[11-20:P17229; UTF16 577037] 10. Composition of Exact Transport
+[11-20:P17230; UTF16 577072] THM-XFER3 — Compatible Exact Transport Certificates Compose
+[11-20:P17232; UTF16 577136] [ \mathcal R_{S,M} \subseteq \Omega_S \times \Omega_M, ]
+[11-20:P17233; UTF16 577193] [ \mathcal R_{M,T} \subseteq \Omega_M \times \Omega_T. ]
+[11-20:P17235; UTF16 577257] \mathcal R_{M,T} \circ \mathcal R_{S,M}. ]
+[11-20:P17236; UTF16 577300] Suppose certificates prove:
+[11-20:P17237; UTF16 577328] [ P_S(\omega_S) \Longrightarrow P_M(\omega_M) ]
+[11-20:P17238; UTF16 577376] on (\mathcal R_{S,M}), and
+[11-20:P17239; UTF16 577403] [ P_M(\omega_M) \Longrightarrow P_T(\omega_T) ]
+[11-20:P17240; UTF16 577451] on (\mathcal R_{M,T}).
+[11-20:P17242; UTF16 577479] [ P_S(\omega_S) \Longrightarrow P_T(\omega_T) ]
+[11-20:P17243; UTF16 577527] on (\mathcal R_{S,T}).
+[11-20:P17246; UTF16 577561] [ (\omega_S,\omega_T) \in \mathcal R_{S,T}. ]
+[11-20:P17247; UTF16 577607] By relational composition there exists (\omega_M) such that
+[11-20:P17248; UTF16 577667] [ (\omega_S,\omega_M) \in \mathcal R_{S,M}, ]
+[11-20:P17249; UTF16 577713] [ (\omega_M,\omega_T) \in \mathcal R_{M,T}. ]
+[11-20:P17250; UTF16 577759] Assume (P_S(\omega_S)).
+[11-20:P17251; UTF16 577783] The first certificate yields (P_M(\omega_M)).
+[11-20:P17252; UTF16 577829] The second yields (P_T(\omega_T)).
+[11-20:P17253; UTF16 577864] Therefore the composite transport is sound. ∎
+[11-20:P17254; UTF16 577910] The theorem requires:
+[11-20:P17255; UTF16 577932] matching intermediate semantics;
+[11-20:P17256; UTF16 577965] compatible versions;
+[11-20:P17257; UTF16 577986] compatible claim scopes.
+[11-20:P17261; UTF16 578014] 11. Contextual-Equivalence Transfer
+[11-20:P17262; UTF16 578050] Cross-project states may belong to a common typed semantic carrier or be embedded into one common tagged carrier.
+[11-20:P17263; UTF16 578164] THM-XFER4 — Exact Contextual Equivalence Permits Cross-Project Report Reuse
+[11-20:P17264; UTF16 578240] Suppose source and target states satisfy
+[11-20:P17265; UTF16 578281] [ x_S \equiv_{\mathcal T} x_T ]
+[11-20:P17266; UTF16 578313] under a complete context theory containing claim experiment (C).
+[11-20:P17268; UTF16 578383] r_C(x_T). } ]
+[11-20:P17270; UTF16 578403] Contextual equivalence means that every admitted complete experiment in (\mathcal T) has identical outcomes on (x_S,x_T).
+[11-20:P17271; UTF16 578525] Because (C\in\mathcal T), its reports are equal. ∎
+[11-20:P17272; UTF16 578576] A shared product name, BIM family, or topological label does not establish contextual equivalence.
+[11-20:P17276; UTF16 578678] 12. Duplication and Dependence
+[11-20:P17277; UTF16 578709] PRO-XFER1 — Repeating One Random Observation Does Not Create Independent Sample Size
+[11-20:P17279; UTF16 578798] [ Z \sim \operatorname{Bernoulli}(1/2) ]
+[11-20:P17281; UTF16 578850] \cdots
+[11-20:P17282; UTF16 578857] X_m
+[11-20:P17283; UTF16 578861] Z. ]
+[11-20:P17287; UTF16 578886] \operatorname{Var}(Z)
+[11-20:P17288; UTF16 578908] \frac14. ]
+[11-20:P17289; UTF16 578919] If the variables were IID Bernoulli((1/2)), the variance would be
+[11-20:P17290; UTF16 578985] [ \frac{1}{4m}. ]
+[11-20:P17291; UTF16 579003] Hence perfectly correlated repeated records do not create IID sample size. ∎
+[11-20:P17292; UTF16 579080] This applies directly to:
+[11-20:P17293; UTF16 579106] repeated room measurements sharing one outside-air sensor;
+[11-20:P17294; UTF16 579165] repeated time steps from one asset;
+[11-20:P17295; UTF16 579201] multiple sensors sharing one reference;
+[11-20:P17296; UTF16 579241] repeated operational cycles with one latent common cause.
+[11-20:P17300; UTF16 579302] 13. Exchangeability
+[11-20:P17301; UTF16 579322] DEF-XFER10 — Finite Exchangeability
+[11-20:P17302; UTF16 579358] Random project variables
+[11-20:P17304; UTF16 579402] are exchangeable when for every permutation (\pi),
+[11-20:P17305; UTF16 579453] [ (B_1,\ldots,B_n) \overset d = (B_{\pi(1)},\ldots,B_{\pi(n)}). ]
+[11-20:P17306; UTF16 579519] IID sampling implies exchangeability.
+[11-20:P17307; UTF16 579557] Exchangeability does not imply:
+[11-20:P17308; UTF16 579589] physical identity;
+[11-20:P17309; UTF16 579608] equal geometry;
+[11-20:P17310; UTF16 579624] equal fault state;
+[11-20:P17311; UTF16 579643] independent projects.
+[11-20:P17312; UTF16 579665] It is a symmetry of the declared joint probability law.
+[11-20:P17316; UTF16 579724] 14. Population Risk
+[11-20:P17317; UTF16 579744] DEF-XFER11 — Population and Empirical Risk
+[11-20:P17319; UTF16 579792] (B\sim P);
+[11-20:P17320; UTF16 579803] (\mathcal H) be a hypothesis class;
+[11-20:P17321; UTF16 579839] (\ell(h,B)\in[0,1]).
+[11-20:P17323; UTF16 579867] \mathbb E_P[\ell(h,B)] ]
+[11-20:P17324; UTF16 579892] and, for sample (B_1,\ldots,B_n),
+[11-20:P17325; UTF16 579926] \frac1n \sum_{i=1}^{n} \ell(h,B_i). ]
+[11-20:P17329; UTF16 579967] 15. Hoeffding Concentration From First Principles
+[11-20:P17330; UTF16 580017] LEM-XFER1 — Hoeffding’s MGF Bound for a Unit-Interval Variable
+[11-20:P17332; UTF16 580084] [ X\in[0,1] ]
+[11-20:P17333; UTF16 580098] almost surely and
+[11-20:P17334; UTF16 580116] [ \mu=\mathbb E[X]. ]
+[11-20:P17335; UTF16 580138] Then for every (\lambda\in\mathbb R),
+[11-20:P17336; UTF16 580176] [ \boxed{ \mathbb E \left[ e^{\lambda(X-\mu)} \right] \le e^{\lambda^2/8}. } ]
+[11-20:P17338; UTF16 580261] By convexity of (x\mapsto e^{\lambda x}) on ([0,1]),
+[11-20:P17339; UTF16 580314] 1-x+x e^\lambda. ]
+[11-20:P17340; UTF16 580333] Taking expectations,
+[11-20:P17341; UTF16 580354] [ \mathbb E[e^{\lambda X}] \le 1-\mu+\mu e^\lambda. ]
+[11-20:P17343; UTF16 580413] [ \log \mathbb E[e^{\lambda(X-\mu)}] \le g_\mu(\lambda), ]
+[11-20:P17345; UTF16 580478] \log(1-\mu+\mu e^\lambda)
+[11-20:P17346; UTF16 580504] \mu\lambda. ]
+[11-20:P17347; UTF16 580518] We have
+[11-20:P17348; UTF16 580526] [ g_\mu(0)=0, \qquad g_\mu'(0)=0. ]
+[11-20:P17349; UTF16 580562] A direct derivative calculation gives
+[11-20:P17350; UTF16 580600] p_\lambda(1-p_\lambda), ]
+[11-20:P17352; UTF16 580632] \frac{\mu e^\lambda} {1-\mu+\mu e^\lambda}. ]
+[11-20:P17354; UTF16 580684] [ p_\lambda(1-p_\lambda) \le \frac14, ]
+[11-20:P17355; UTF16 580724] Taylor’s theorem gives, for some (\xi) between (0) and (\lambda),
+[11-20:P17356; UTF16 580790] \frac12 g_\mu''(\xi)\lambda^2 \le \frac{\lambda^2}{8}. ]
+[11-20:P17357; UTF16 580847] Exponentiating proves the result. ∎
+[11-20:P17361; UTF16 580886] LEM-XFER2 — Fixed-Hypothesis Hoeffding Bound
+[11-20:P17362; UTF16 580931] Let (B_1,\ldots,B_n) be IID from (P).
+[11-20:P17363; UTF16 580969] For fixed (h), let
+[11-20:P17364; UTF16 580988] [ X_i=\ell(h,B_i)\in[0,1]. ]
+[11-20:P17365; UTF16 581017] Then for every (\varepsilon>0),
+[11-20:P17366; UTF16 581049] [ \boxed{ P \left( \left| \widehat R_n(h)-R(h) \right|
+[11-20:P17367; UTF16 581104] \varepsilon \right) \le 2e^{-2n\varepsilon^2}. } ]
+[11-20:P17369; UTF16 581161] For (\lambda>0), Markov’s inequality and LEM-XFER1 give
+[11-20:P17370; UTF16 581217] [ \begin{aligned} P \left( \widehat R_n-R \ge \varepsilon \right) &= P \left( e^{\lambda\sum_i(X_i-R)} \ge e^{\lambda n\varepsilon} \right)\ &\le e^{-\lambda n\varepsilon} \prod_{i=1}^n \mathbb E \left[ e^{\lambda(X_i-R)} \right]\ &\le \exp \left( -\lambda n\varepsilon + \frac{n\lambda^2}{8} \right). \end{aligned} ]
+[11-20:P17371; UTF16 581535] The exponent is minimized at
+[11-20:P17372; UTF16 581564] [ \lambda=4\varepsilon. ]
+[11-20:P17373; UTF16 581590] Substitution yields
+[11-20:P17374; UTF16 581610] [ P \left( \widehat R_n-R \ge \varepsilon \right) \le e^{-2n\varepsilon^2}. ]
+[11-20:P17375; UTF16 581688] Apply the same argument to (R-\widehat R_n) and use the union bound. ∎
+[11-20:P17379; UTF16 581762] 16. Uniform Finite-Class PAC Theorem
+[11-20:P17380; UTF16 581799] THM-XFER5 — Uniform Finite-Class PAC Bound
+[11-20:P17382; UTF16 581847] (\mathcal H) be finite;
+[11-20:P17383; UTF16 581871] (B_1,\ldots,B_n) be IID from (P);
+[11-20:P17384; UTF16 581905] (\ell(h,B)\in[0,1]);
+[11-20:P17385; UTF16 581926] (0<\delta<1).
+[11-20:P17386; UTF16 581940] Then with probability at least (1-\delta),
+[11-20:P17387; UTF16 581983] [ \boxed{ \forall h\in\mathcal H, \qquad \left| R(h)-\widehat R_n(h) \right| \le \sqrt{ \frac{ \log(2|\mathcal H|/\delta) }{ 2n } }. } ]
+[11-20:P17389; UTF16 582126] For fixed (h), LEM-XFER2 gives
+[11-20:P17390; UTF16 582157] [ P \left( |R(h)-\widehat R_n(h)|
+[11-20:P17391; UTF16 582191] \varepsilon \right) \le 2e^{-2n\varepsilon^2}. ]
+[11-20:P17392; UTF16 582240] By the union bound,
+[11-20:P17393; UTF16 582260] [ \begin{aligned} P \left( \exists h\in\mathcal H: |R(h)-\widehat R_n(h)|
+[11-20:P17394; UTF16 582334] \varepsilon \right) &\le \sum_{h\in\mathcal H} 2e^{-2n\varepsilon^2}\ &= 2|\mathcal H| e^{-2n\varepsilon^2}. \end{aligned} ]
+[11-20:P17395; UTF16 582459] Choose
+[11-20:P17396; UTF16 582466] \sqrt{ \frac{ \log(2|\mathcal H|/\delta) }{ 2n } }. ]
+[11-20:P17397; UTF16 582520] Then the right-hand side equals (\delta).
+[11-20:P17398; UTF16 582562] Therefore, with probability at least (1-\delta), the bound holds simultaneously for every (h). ∎
+[11-20:P17402; UTF16 582662] COR-XFER1 — Data-Dependent Finite-Class Selection Remains Covered
+[11-20:P17404; UTF16 582732] \mathsf{Select}(B_1,\ldots,B_n) \in \mathcal H ]
+[11-20:P17405; UTF16 582781] be selected after observing the sample.
+[11-20:P17406; UTF16 582821] On the simultaneous event from THM-XFER5,
+[11-20:P17407; UTF16 582863] \widehat R_n(\widehat h) \right| \le \sqrt{ \frac{ \log(2|\mathcal H|/\delta) }{ 2n } }. ]
+[11-20:P17409; UTF16 582960] The event holds for every member of (\mathcal H), including the selected member. ∎
+[11-20:P17410; UTF16 583043] This remains a population-risk theorem.
+[11-20:P17414; UTF16 583086] 17. Population Guarantee Versus Fixed Target
+[11-20:P17415; UTF16 583131] THM-XFER6 — High Population Reliability Does Not Imply Deterministic Target Reliability
+[11-20:P17417; UTF16 583229] [ 0<\varepsilon<1, ]
+[11-20:P17418; UTF16 583250] there exists a population satisfying
+[11-20:P17419; UTF16 583287] [ P(C(B))=1-\varepsilon ]
+[11-20:P17420; UTF16 583313] and a fixed target (B_\star) satisfying
+[11-20:P17421; UTF16 583353] [ \neg C(B_\star). ]
+[11-20:P17423; UTF16 583380] Let the population contain two project types:
+[11-20:P17424; UTF16 583426] (B_{\mathrm{good}}), satisfying (C);
+[11-20:P17425; UTF16 583463] (B_{\mathrm{bad}}), violating (C).
+[11-20:P17426; UTF16 583498] Set
+[11-20:P17427; UTF16 583502] \varepsilon, ]
+[11-20:P17428; UTF16 583517] 1-\varepsilon. ]
+[11-20:P17431; UTF16 583556] Choose the fixed target
+[11-20:P17432; UTF16 583580] B_{\mathrm{bad}}. ]
+[11-20:P17436; UTF16 583628] A 99.999% population reliability claim is not a deterministic target safety proof.
+[11-20:P17440; UTF16 583714] 18. Conformal Marginal Prediction
+[11-20:P17441; UTF16 583748] DEF-XFER12 — Exchangeable Nonconformity Scores
+[11-20:P17443; UTF16 583799] [ S_1,\ldots,S_n,S_{n+1} ]
+[11-20:P17444; UTF16 583826] be exchangeable real-valued scores.
+[11-20:P17446; UTF16 583866] [ 0<\alpha<1 ]
+[11-20:P17448; UTF16 583892] \left\lceil (n+1)(1-\alpha) \right\rceil. ]
+[11-20:P17449; UTF16 583936] If (k\le n), let (q) be the (k)-th smallest calibration score among
+[11-20:P17451; UTF16 584024] If (k=n+1), define
+[11-20:P17452; UTF16 584043] [ q=+\infty. ]
+[11-20:P17456; UTF16 584061] LEM-XFER3 — Uniform Rank Under Exchangeability With Random Tie Breaking
+[11-20:P17457; UTF16 584133] Let (U_1,\ldots,U_{n+1}) be IID continuous random variables independent of the scores.
+[11-20:P17458; UTF16 584220] Order augmented pairs
+[11-20:P17459; UTF16 584242] (S_i,U_i) ]
+[11-20:P17460; UTF16 584254] lexicographically.
+[11-20:P17461; UTF16 584273] Then the rank of (\widetilde S_{n+1}) among all (n+1) augmented scores is uniform on
+[11-20:P17462; UTF16 584358] [ {1,\ldots,n+1}. ]
+[11-20:P17464; UTF16 584384] The augmented scores are exchangeable and almost surely distinct because the (U_i) are continuous.
+[11-20:P17465; UTF16 584483] For every rank (r), exchangeability implies each index is equally likely to occupy rank (r).
+[11-20:P17466; UTF16 584576] Exactly one index occupies rank (r).
+[11-20:P17467; UTF16 584613] Therefore each index, including (n+1), has probability (1/(n+1)) of occupying that rank. ∎
+[11-20:P17471; UTF16 584707] THM-XFER7 — Finite-Sample Split-Conformal Marginal Coverage
+[11-20:P17472; UTF16 584767] Under the exchangeability assumptions above,
+[11-20:P17473; UTF16 584812] [ \boxed{ P \left( S_{n+1} \le q \right) \ge 1-\alpha. } ]
+[11-20:P17475; UTF16 584877] If (k=n+1), (q=+\infty) and the result is immediate.
+[11-20:P17476; UTF16 584930] Assume (k\le n).
+[11-20:P17477; UTF16 584947] Let (R) be the rank of the augmented test score (\widetilde S_{n+1}) among all (n+1) augmented scores.
+[11-20:P17478; UTF16 585050] By LEM-XFER3,
+[11-20:P17479; UTF16 585064] \frac{k}{n+1} \ge 1-\alpha. ]
+[11-20:P17480; UTF16 585094] If (R\le k), then among the (n) calibration augmented scores, the (k)-th smallest is no smaller than the test augmented score.
+[11-20:P17481; UTF16 585221] Consequently its scalar score component is at least (S_{n+1}).
+[11-20:P17482; UTF16 585284] The scalar (k)-th calibration score is (q), so
+[11-20:P17483; UTF16 585331] [ R\le k \Longrightarrow S_{n+1}\le q. ]
+[11-20:P17485; UTF16 585382] [ P(S_{n+1}\le q) \ge P(R\le k) \ge 1-\alpha. ]
+[11-20:P17487; UTF16 585432] The guarantee is:
+[11-20:P17488; UTF16 585450] finite sample;
+[11-20:P17489; UTF16 585465] marginal;
+[11-20:P17490; UTF16 585475] exchangeability dependent.
+[11-20:P17491; UTF16 585502] It is not deterministic target inclusion.
+[11-20:P17495; UTF16 585547] 19. Marginal Coverage Is Not Subgroup Coverage
+[11-20:P17496; UTF16 585594] THM-XFER8 — Marginal Coverage Can Coexist With Zero Coverage on a Subpopulation
+[11-20:P17497; UTF16 585674] Let project group (G) satisfy
+[11-20:P17498; UTF16 585704] [ P(G=A)=0.9, \qquad P(G=B)=0.1. ]
+[11-20:P17499; UTF16 585739] Suppose a prediction set covers every (A)-project and no (B)-project.
+[11-20:P17501; UTF16 585814] 0.9, ]
+[11-20:P17505; UTF16 585835] By the law of total probability,
+[11-20:P17506; UTF16 585868] [ \begin{aligned} P(\text{coverage}) &= P(\text{coverage}\mid A)P(A) + P(\text{coverage}\mid B)P(B)\ &= 1\cdot0.9 + 0\cdot0.1\ &= 0.9. \end{aligned} ]
+[11-20:P17507; UTF16 586019] The conditional coverage for (B) is zero by construction. ∎
+[11-20:P17508; UTF16 586079] A target known to belong to group (B) does not receive a 90% conditional guarantee from the marginal theorem.
+[11-20:P17512; UTF16 586192] 20. Source and Target Domain Shift
+[11-20:P17513; UTF16 586227] DEF-XFER13 — Source and Target Domain-Shift Theory
+[11-20:P17515; UTF16 586282] [ P_S(X,Y) ]
+[11-20:P17516; UTF16 586295] be the source law and
+[11-20:P17517; UTF16 586317] [ P_T(X,Y) ]
+[11-20:P17518; UTF16 586330] the target law.
+[11-20:P17519; UTF16 586346] Prompt 16 distinguishes:
+[11-20:P17520; UTF16 586371] Covariate shift
+[11-20:P17521; UTF16 586387] P_T(Y\mid X), ]
+[11-20:P17523; UTF16 586409] [ P_S(X) \neq P_T(X). ]
+[11-20:P17524; UTF16 586433] Conditional or concept shift
+[11-20:P17525; UTF16 586462] [ P_S(Y\mid X) \neq P_T(Y\mid X). ]
+[11-20:P17526; UTF16 586498] Support shift
+[11-20:P17527; UTF16 586512] The target assigns positive mass where the source assigns zero mass.
+[11-20:P17528; UTF16 586581] Selection shift
+[11-20:P17529; UTF16 586597] Observed source projects follow a selected law rather than the intended source-population law.
+[11-20:P17530; UTF16 586692] These are distinct hypotheses and require distinct proofs.
+[11-20:P17534; UTF16 586754] DEF-XFER14 — Support-Overlap Condition
+[11-20:P17535; UTF16 586793] Require
+[11-20:P17536; UTF16 586801] [ \boxed{ P_T^X \ll P_S^X. } ]
+[11-20:P17537; UTF16 586832] That is,
+[11-20:P17538; UTF16 586841] [ P_S^X(A)=0 \Longrightarrow P_T^X(A)=0. ]
+[11-20:P17539; UTF16 586884] The density ratio is
+[11-20:P17540; UTF16 586905] \frac{ dP_T^X }{ dP_S^X }(x) ]
+[11-20:P17541; UTF16 586936] where defined.
+[11-20:P17545; UTF16 586954] 21. Covariate-Shift Risk Identity
+[11-20:P17546; UTF16 586988] THM-XFER9 — Target Risk Under Exact Covariate Shift Is a Source Weighted Expectation
+[11-20:P17548; UTF16 587081] (P_T^X\ll P_S^X);
+[11-20:P17549; UTF16 587099] source and target share one regular conditional kernel: P_S(dy\mid x) K(dy\mid x); ]
+[11-20:P17550; UTF16 587184] loss is integrable.
+[11-20:P17552; UTF16 587209] \mathbb E_{P_S} \left[ w(X) \ell(h(X),Y) \right]. } ]
+[11-20:P17554; UTF16 587269] By disintegration,
+[11-20:P17555; UTF16 587288] \int \ell(h(x),y) K(dy\mid x) P_T^X(dx). ]
+[11-20:P17557; UTF16 587339] w(x)P_S^X(dx), ]
+[11-20:P17559; UTF16 587364] \int w(x) \ell(h(x),y) K(dy\mid x) P_S^X(dx). ]
+[11-20:P17560; UTF16 587412] The joint source law is
+[11-20:P17561; UTF16 587436] K(dy\mid x)P_S^X(dx). ]
+[11-20:P17563; UTF16 587470] \mathbb E_{P_S} \left[ w(X)\ell(h(X),Y) \right]. ]
+[11-20:P17565; UTF16 587523] The identity fails when conditional invariance or support overlap fails.
+[11-20:P17569; UTF16 587599] 22. Support-Gap Nonidentifiability
+[11-20:P17570; UTF16 587634] THM-XFER10 — Source Data Cannot Identify Unconstrained Target Behavior Outside Source Support
+[11-20:P17571; UTF16 587728] Suppose there exists measurable region (A) satisfying
+[11-20:P17572; UTF16 587782] [ P_S^X(A)=0, \qquad P_T^X(A)>0. ]
+[11-20:P17573; UTF16 587817] Then source-domain observations alone do not generally identify target risk.
+[11-20:P17574; UTF16 587894] Proof by finite construction
+[11-20:P17576; UTF16 587927] [ X\in{0,1}. ]
+[11-20:P17578; UTF16 587946] [ P_S(X=0)=1. ]

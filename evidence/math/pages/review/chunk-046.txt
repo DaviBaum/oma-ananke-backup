@@ -1,0 +1,300 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P18408; UTF16 670803] be the changed root set.
+[1-10:P18409; UTF16 670828] Define the invalidation closure
+[1-10:P18410; UTF16 670860] R_\rho \cup \mathsf{Desc}^{*}(R_\rho). ]
+[1-10:P18411; UTF16 670901] The graph is dependency complete when every semantic dependency is represented by a directed path.
+[1-10:P18415; UTF16 671003] THM-CS0A — Semantic Invalidation Soundness
+[1-10:P18416; UTF16 671046] After invalidating every artifact in (\mathsf{Inv}(\rho)):
+[1-10:P18417; UTF16 671105] every artifact depending on a changed root is stale;
+[1-10:P18418; UTF16 671158] every artifact remaining active has no recorded dependency path from a changed root;
+[1-10:P18419; UTF16 671243] under dependency completeness, every active artifact is semantically independent of the changed roots.
+[1-10:P18421; UTF16 671352] Clauses 1 and 2 follow from reachability closure.
+[1-10:P18422; UTF16 671402] For clause 3, suppose an active artifact depended semantically on a changed root. Dependency completeness would provide a path from that root to the artifact, placing it in (\mathsf{Inv}(\rho)), contradicting active status. ∎
+[1-10:P18426; UTF16 671631] THM-CS0B — Exact Full-Recompute Fallback
+[1-10:P18428; UTF16 671676] [ \mathsf{ColdEval}_{t}\to\mathsf{Outcome} ]
+[1-10:P18429; UTF16 671721] be the authoritative post-rewrite evaluator.
+[1-10:P18430; UTF16 671766] If transport, reuse, or incremental certificates are unavailable, replacing the incremental result by
+[1-10:P18431; UTF16 671868] [ \mathsf{ColdEval}_{t}(x') ]
+[1-10:P18432; UTF16 671898] for the exact post-rewrite state (x') preserves correctness.
+[1-10:P18434; UTF16 671965] The cold evaluator is the defining authoritative semantics on (X_t). It does not depend on the validity of transported artifacts. ∎
+[1-10:P18435; UTF16 672097] The rewrite bridge required by Prompt 8 is now complete. No Rewrite-Functor Jet theorem is assumed.
+[1-10:P18439; UTF16 672200] 2. Scope and Central Problem
+[1-10:P18440; UTF16 672229] Prompt 8 studies a family of exact engineering states
+[1-10:P18441; UTF16 672283] [ (X_s)_{s\in\mathsf S} ]
+[1-10:P18442; UTF16 672309] and asks when those states can be replaced by smaller derived variables that remain usable under future design transformations.
+[1-10:P18443; UTF16 672437] Two distinct tasks must remain separate.
+[1-10:P18444; UTF16 672478] Semantic minimization
+[1-10:P18445; UTF16 672500] Determine which states are behaviorally interchangeable.
+[1-10:P18446; UTF16 672557] The result is a canonical equivalence-class space.
+[1-10:P18447; UTF16 672608] Macrovariable synthesis
+[1-10:P18448; UTF16 672632] Find a compact program whose values identify those canonical classes and whose updates remain executable under admitted actions.
+[1-10:P18449; UTF16 672761] The first task determines meaning.
+[1-10:P18450; UTF16 672796] The second determines representation.
+[1-10:P18451; UTF16 672834] A canonical class ID may be exact but uninterpretable.
+[1-10:P18452; UTF16 672889] An interpretable expression may be compact but wrong.
+[1-10:P18453; UTF16 672943] Correctness belongs to the quotient; interpretability is a secondary optimization.
+[1-10:P18457; UTF16 673029] 3. Engineering Action Relations
+[1-10:P18458; UTF16 673061] Topology rewrites can change state type. The authoritative action language is therefore many sorted.
+[1-10:P18459; UTF16 673162] DEF-CS1 — Admissible Engineering Action Relation
+[1-10:P18460; UTF16 673211] An engineering action signature is
+[1-10:P18461; UTF16 673246] \left( \mathsf S, \mathsf{Act}, \mathsf{src}, \mathsf{tgt}, (T_a)_{a\in\mathsf{Act}} \right), ]
+[1-10:P18463; UTF16 673349] (\mathsf S) is a finite sort set;
+[1-10:P18464; UTF16 673383] (\mathsf{Act}) is a finite or symbolically finite action alphabet;
+[1-10:P18465; UTF16 673450] each action has type [ a\longrightarrow t; ]
+[1-10:P18466; UTF16 673495] each action is interpreted by a relation [ T_a\subseteq X_s\times X_t. ]
+[1-10:P18467; UTF16 673568] Notation:
+[1-10:P18468; UTF16 673578] [ xT_ax' ]
+[1-10:P18469; UTF16 673589] means that (x') is one exact admissible successor of (x) after action (a).
+[1-10:P18470; UTF16 673664] Actions include:
+[1-10:P18471; UTF16 673681] parameter changes;
+[1-10:P18472; UTF16 673700] component replacement;
+[1-10:P18473; UTF16 673723] wall movement;
+[1-10:P18474; UTF16 673738] shaft splitting;
+[1-10:P18475; UTF16 673755] equipment relocation;
+[1-10:P18476; UTF16 673777] topology rewrites;
+[1-10:P18479; UTF16 673818] region expansion.
+[1-10:P18480; UTF16 673836] A deterministic action is a special case in which (T_a(x)) contains exactly one successor after totalization with a typed undefined state.
+[1-10:P18484; UTF16 673978] 4. Action Sequences
+[1-10:P18485; UTF16 673998] A typed action word is
+[1-10:P18486; UTF16 674021] [ w=a_1a_2\cdots a_k ]
+[1-10:P18488; UTF16 674049] [ a_i:s_{i-1}\to s_i. ]
+[1-10:P18490; UTF16 674081] \operatorname{id}_{X_s} ]
+[1-10:P18491; UTF16 674107] for the empty word at sort (s).
+[1-10:P18492; UTF16 674139] For nonempty word:
+[1-10:P18493; UTF16 674158] T_{a_k}\circ\cdots\circ T_{a_1}. ]
+[1-10:P18495; UTF16 674199] [ xT_wx' ]
+[1-10:P18496; UTF16 674210] when there exist intermediate states realizing the sequence.
+[1-10:P18500; UTF16 674274] LEM-CS1 — Action-Word Associativity
+[1-10:P18501; UTF16 674310] For legally typed words (u,v,w),
+[1-10:P18502; UTF16 674343] (T_w\circ T_v)\circ T_u. ]
+[1-10:P18503; UTF16 674370] Also:
+[1-10:P18504; UTF16 674376] [ T_{\epsilon w}=T_w=T_{w\epsilon}. ]
+[1-10:P18506; UTF16 674420] Relational composition is associative:
+[1-10:P18507; UTF16 674459] [ (x,z)\in R_3\circ(R_2\circ R_1) ]
+[1-10:P18508; UTF16 674495] iff there exist (y_1,y_2) such that
+[1-10:P18509; UTF16 674531] [ xR_1y_1,\qquad y_1R_2y_2,\qquad y_2R_3z, ]
+[1-10:P18510; UTF16 674576] which is also the membership condition for
+[1-10:P18511; UTF16 674619] [ (R_3\circ R_2)\circ R_1. ]
+[1-10:P18512; UTF16 674648] Identity relations give the identity laws. ∎
+[1-10:P18516; UTF16 674696] 5. Interventional Experiments
+[1-10:P18517; UTF16 674726] For each sort (s), let
+[1-10:P18518; UTF16 674749] [ \mathfrak E_s ]
+[1-10:P18519; UTF16 674767] be the complete family of Prompt-2 experiments applicable to (X_s).
+[1-10:P18520; UTF16 674835] The outcome includes:
+[1-10:P18523; UTF16 674885] uncertainty correlations;
+[1-10:P18524; UTF16 674911] marked-menu decisions;
+[1-10:P18525; UTF16 674934] quantitative fields.
+[1-10:P18526; UTF16 674955] DEF-CS2 — Interventional Engineering Experiment
+[1-10:P18527; UTF16 675003] An interventional experiment from sort (s) is a pair
+[1-10:P18528; UTF16 675056] [ (w,e) ]
+[1-10:P18530; UTF16 675073] (w\to t) is a typed action word;
+[1-10:P18531; UTF16 675106] (e\in\mathfrak E_t).
+[1-10:P18532; UTF16 675127] For (x\in X_s), define
+[1-10:P18533; UTF16 675150] \left{ \mathsf{Out}_e(x'): x'\in T_w(x) \right}. } ]
+[1-10:P18534; UTF16 675203] An empty successor set produces the exact empty result or a declared typed failure result according to the action semantics.
+[1-10:P18535; UTF16 675328] Nondeterministic outcomes are retained as sets. No solver-selected branch is silently preferred.
+[1-10:P18539; UTF16 675428] 6. Interventional Residual Semantics
+[1-10:P18540; UTF16 675465] DEF-CS3 — Interventional Residual
+[1-10:P18542; UTF16 675522] [ \mathsf{IRes}_s(x): \mathsf{Words}(s)\times\mathfrak E \longrightarrow \mathcal P(\mathsf{Outcome}) ]
+[1-10:P18544; UTF16 675629] \mathsf{IOut}_{w,e}(x). ]
+[1-10:P18545; UTF16 675655] This is the complete future observable fingerprint of (x) under the admitted action theory.
+[1-10:P18549; UTF16 675750] 7. Trace Equivalence
+[1-10:P18550; UTF16 675771] DEF-CS4 — Interventional Trace Equivalence
+[1-10:P18551; UTF16 675814] For (x,y\in X_s),
+[1-10:P18552; UTF16 675832] [ x\equiv_{\mathrm{tr}}^{\mathcal A}y ]
+[1-10:P18554; UTF16 675877] \mathsf{IRes}_s(y). ]
+[1-10:P18558; UTF16 675902] THM-CS1 — Interventional Trace Equivalence Is an Equivalence Relation
+[1-10:P18559; UTF16 675972] For every sort (s),
+[1-10:P18560; UTF16 675992] [ \equiv_{\mathrm{tr}}^{\mathcal A} ]
+[1-10:P18561; UTF16 676030] is reflexive, symmetric, and transitive.
+[1-10:P18563; UTF16 676077] It is equality of residual functions.
+[1-10:P18564; UTF16 676115] Function equality is reflexive, symmetric, and transitive. ∎
+[1-10:P18565; UTF16 676176] Its exact meaning is:
+[1-10:P18566; UTF16 676198] No admitted finite action sequence followed by any admitted complete engineering experiment distinguishes the two states.
+[1-10:P18570; UTF16 676323] 7.1 Relation to Prompt-2 contextual equivalence
+[1-10:P18571; UTF16 676371] THM-CS19 — Action-Context Adequacy
+[1-10:P18573; UTF16 676414] every action relation is represented extensionally by a legal Prompt-2 context transformer;
+[1-10:P18574; UTF16 676506] every typed action word corresponds to context composition;
+[1-10:P18575; UTF16 676566] the enlarged Prompt-2 theory contains exactly the action-word contexts followed by experiments in (\mathfrak E);
+[1-10:P18576; UTF16 676679] nondeterministic context semantics preserves the full successor outcome set.
+[1-10:P18578; UTF16 676762] [ x\equiv_{\mathrm{tr}}^{\mathcal A}y \iff x\equiv_{\mathcal T^{\mathcal A}}y. ]
+[1-10:P18580; UTF16 676849] Every interventional experiment is, by assumptions 1–3, one experiment in (\mathcal T^{\mathcal A}).
+[1-10:P18581; UTF16 676950] Conversely, every admitted context in (\mathcal T^{\mathcal A}) decomposes into an action word followed by a terminal experiment.
+[1-10:P18582; UTF16 677080] Assumption 4 makes the two outcome semantics equal.
+[1-10:P18583; UTF16 677132] Equality under one family is therefore equality under the other. ∎
+[1-10:P18584; UTF16 677199] Prompt 8’s novelty is not a new notion of contextual indistinguishability when the action contexts were already admitted. Its novelty is exact macro execution, action closure, factorization, and macro program synthesis.
+[1-10:P18588; UTF16 677422] 8. Predictive, Decision, Contextual, Interventional, and Executable Sufficiency
+[1-10:P18589; UTF16 677502] The five notions form a strict hierarchy in general.
+[1-10:P18590; UTF16 677555] Observational sufficiency
+[1-10:P18591; UTF16 677581] A statistic reproduces one current observation map.
+[1-10:P18592; UTF16 677633] Decision sufficiency
+[1-10:P18593; UTF16 677654] It reproduces all current decision reports.
+[1-10:P18594; UTF16 677698] Contextual sufficiency
+[1-10:P18595; UTF16 677721] It reproduces every currently admitted exterior experiment.
+[1-10:P18596; UTF16 677781] Interventional sufficiency
+[1-10:P18597; UTF16 677808] It reproduces every exterior experiment after every admitted action sequence.
+[1-10:P18598; UTF16 677886] Executable sufficiency
+[1-10:P18599; UTF16 677909] It also admits representative-independent one-step macro transitions, enabling action execution without reopening hidden microstate.
+[1-10:P18603; UTF16 678045] 8.1 Separating examples
+[1-10:P18604; UTF16 678069] Observational does not imply decision sufficient
+[1-10:P18605; UTF16 678118] Two states have equal energy use but different mandatory evidence validity. A statistic retaining energy alone reproduces the observation but not the release decision.
+[1-10:P18606; UTF16 678286] Decision does not imply contextual sufficiency
+[1-10:P18607; UTF16 678333] Two systems are both rejected in the current menu, but one passes under a different load or competitor menu while the other does not.
+[1-10:P18608; UTF16 678467] Contextual does not imply interventional sufficiency
+[1-10:P18609; UTF16 678520] The equivalent-resistance example below.
+[1-10:P18610; UTF16 678561] Interventional trace sufficiency does not imply executable one-step sufficiency
+[1-10:P18611; UTF16 678641] The nondeterministic branching example in §13.
+[1-10:P18615; UTF16 678691] 9. Predictive Sufficiency Does Not Imply Interventional Sufficiency
+[1-10:P18616; UTF16 678759] Consider two series-resistor states:
+[1-10:P18617; UTF16 678796] [ x=(R_1,R_2)=(2,8), ]
+[1-10:P18618; UTF16 678819] [ y=(R_1,R_2)=(5,5). ]
+[1-10:P18619; UTF16 678842] The current equivalent resistance is
+[1-10:P18620; UTF16 678879] R_{\mathrm{eq}}(y)
+[1-10:P18622; UTF16 678900] For every boundary voltage (V),
+[1-10:P18623; UTF16 678932] [ I=\frac V{10}. ]
+[1-10:P18625; UTF16 678956] [ \phi(R_1,R_2)=R_1+R_2 ]
+[1-10:P18626; UTF16 678982] is sufficient for present terminal behavior.
+[1-10:P18627; UTF16 679027] Admit action (a):
+[1-10:P18628; UTF16 679045] replace resistor (1) by resistance (3).
+[1-10:P18630; UTF16 679090] [ T_a(x)=(3,8), \qquad R_{\mathrm{eq}}=11, ]
+[1-10:P18632; UTF16 679141] [ T_a(y)=(3,5), \qquad R_{\mathrm{eq}}=8. ]
+[1-10:P18636; UTF16 679188] THM-CS2 — Predictive Sufficiency Does Not Imply Interventional Sufficiency
+[1-10:P18637; UTF16 679263] There exists a statistic that exactly factors every current exterior observation but does not factor the successor behavior of an admitted action.
+[1-10:P18639; UTF16 679416] The equivalent-resistance statistic is current-output sufficient by the series resistance law.
+[1-10:P18640; UTF16 679511] The two microstates share the statistic value (10), but their post-action statistic values are (11) and (8).
+[1-10:P18641; UTF16 679620] No representative-independent macro transition can map macrostate (10) to both one exact successor value while preserving deterministic action semantics. ∎
+[1-10:P18645; UTF16 679779] 10. Executable Engineering Bisimulation
+[1-10:P18646; UTF16 679819] For each sort (s), define the complete direct observation signature
+[1-10:P18647; UTF16 679887] \left( \mathsf{Out}e(x) \right){e\in\mathfrak E_s}. ]
+[1-10:P18648; UTF16 679941] DEF-CS5 — Observation-Preserving Action-Stable Equivalence
+[1-10:P18649; UTF16 680000] A family of equivalence relations
+[1-10:P18650; UTF16 680034] [ R=(R_s)_{s\in\mathsf S} ]
+[1-10:P18651; UTF16 680062] is an executable engineering bisimulation when:
+[1-10:P18652; UTF16 680110] if (xR_sy), then [ \lambda_s(x)=\lambda_s(y); ]
+[1-10:P18653; UTF16 680158] for every action (a\to t), \left{ [y']_{R_t}: yT_ay' \right}. ]
+[1-10:P18654; UTF16 680222] The second condition is exact equality of reachable equivalence-class sets.
+[1-10:P18655; UTF16 680298] Replacing equality by inclusion would define a simulation, not exact executable abstraction.
+[1-10:P18659; UTF16 680394] 11. Exact Executable Macrovariables
+[1-10:P18660; UTF16 680430] DEF-CS6 — Exact Executable Macrovariable
+[1-10:P18661; UTF16 680471] An exact executable macro consists of:
+[1-10:P18662; UTF16 680510] state sets (Z_s);
+[1-10:P18663; UTF16 680528] total encoders [ \phi_s\to Z_s; ]
+[1-10:P18664; UTF16 680562] observation decoders [ \overline O_e\to\mathsf{Outcome}; ]
+[1-10:P18665; UTF16 680621] macro action relations [ \overline T_a\subseteq Z_s\times Z_t; ]
+[1-10:P18667; UTF16 680697] Observation factorization
+[1-10:P18668; UTF16 680723] \overline O_e(\phi_s(x)). ]
+[1-10:P18669; UTF16 680751] Action factorization
+[1-10:P18670; UTF16 680772] \left{ \phi_t(x'): xT_ax' \right}. } ]
+[1-10:P18671; UTF16 680811] The right side must depend only on the macrostate, not on the chosen representative (x).
+[1-10:P18675; UTF16 680903] 11.1 Deterministic special case
+[1-10:P18676; UTF16 680935] If (T_a\to X_t) is a total deterministic map, action factorization becomes the commuting square
+[1-10:P18677; UTF16 681031] \overline T_a\circ\phi_s. } ]
+[1-10:P18678; UTF16 681061] LEM-CS2 — Deterministic Closure Criterion
+[1-10:P18679; UTF16 681103] For deterministic (T_a), a macro update (\overline T_a) exists exactly when
+[1-10:P18680; UTF16 681179] \phi_t(T_a(y)). ]
+[1-10:P18682; UTF16 681203] If (\overline T_a) exists, apply the commuting square to (x,y).
+[1-10:P18683; UTF16 681267] Conversely, define
+[1-10:P18684; UTF16 681286] \phi_t(T_a(x)) ]
+[1-10:P18685; UTF16 681303] for any (x) with (\phi_s(x)=z). The implication makes this definition representative independent. ∎
+[1-10:P18689; UTF16 681406] 12. Canonical Executable Macro Quotient
+[1-10:P18690; UTF16 681446] A finite coarsest executable equivalence is constructed by partition refinement.
+[1-10:P18691; UTF16 681527] Let (\Pi_s^0) be the partition of (X_s) by direct signature (\lambda_s).
+[1-10:P18692; UTF16 681600] For a many-sorted partition family (\Pi), define
+[1-10:P18693; UTF16 681649] \left{ B\in\Pi_{\mathsf{tgt}(a)}: \exists x'\in B,;xT_ax' \right}. ]
+[1-10:P18694; UTF16 681718] Define the refinement signature
+[1-10:P18695; UTF16 681750] \left( \operatorname{block}_{\Pi}(x), \left( \mathsf{Succ}^{\Pi}a(x) \right){a:\mathsf{src}(a)=s} \right). ]
+[1-10:P18696; UTF16 681859] Let (\Pi^{n+1}) split each block of (\Pi^n) by equality of this signature.
+[1-10:P18697; UTF16 681934] Because all carriers are finite, the sequence stabilizes.
+[1-10:P18698; UTF16 681992] DEF-CS7 — Canonical Executable Equivalence
+[1-10:P18699; UTF16 682035] Let (\Pi^\star) be the stable partition.
+[1-10:P18701; UTF16 682083] [ x\approx_{\mathcal A}y ]
+[1-10:P18702; UTF16 682110] when (x,y) belong to the same block of (\Pi^\star).
+[1-10:P18703; UTF16 682162] Define the canonical executable macro quotient
+[1-10:P18704; UTF16 682209] X_s/!\approx_{\mathcal A}. ]
+[1-10:P18708; UTF16 682241] LEM-CS3 — Coarsest Stable Partition
+[1-10:P18709; UTF16 682277] (\Pi^\star) is the coarsest partition refining direct observations and stable under every action.
+[1-10:P18711; UTF16 682381] The construction only splits, so it stabilizes after finitely many rounds.
+[1-10:P18712; UTF16 682456] At stability, states in one block have equal successor-block sets for every action.
+[1-10:P18713; UTF16 682540] Let (R) be any observation-preserving action-stable equivalence. Its partition refines (\Pi^0).
+[1-10:P18714; UTF16 682636] Assume it refines (\Pi^n). If (xRy), action stability gives equal sets of (R)-classes of successors. Mapping each (R)-class to its containing (\Pi^n)-block yields equal (\Pi^n)-successor signatures. Thus (x,y) remain together in (\Pi^{n+1}).
+[1-10:P18715; UTF16 682878] By induction, (R) refines every (\Pi^n), hence (\Pi^\star). ∎
+[1-10:P18719; UTF16 682943] 13. Canonical Executable Macro Minimality
+[1-10:P18720; UTF16 682985] THM-CS3 — Canonical Executable Macro Minimality
+[1-10:P18721; UTF16 683033] For finite state carriers:
+[1-10:P18722; UTF16 683060] (Q_{\mathcal A}) is an exact reachable executable macro system;
+[1-10:P18723; UTF16 683124] every exact executable macro [ \phi\to Z ] satisfies [ \phi(x)=\phi(y) \Longrightarrow x\approx_{\mathcal A}y; ]
+[1-10:P18724; UTF16 683237] for each sort, there is a unique surjection [ g_s:\operatorname{im}(\phi_s) \twoheadrightarrow Q_{\mathcal A,s} ] such that [ \pi_s=g_s\circ\phi_s; ]
+[1-10:P18725; UTF16 683387] (g) commutes with observations and macro action transitions;
+[1-10:P18726; UTF16 683448] therefore [ |\operatorname{im}(\phi_s)| \ge |Q_{\mathcal A,s}|. ]
+[1-10:P18727; UTF16 683514] Every minimum reachable exact executable macro is isomorphic to (Q_{\mathcal A}).
+[1-10:P18729; UTF16 683602] Quotient executability
+[1-10:P18732; UTF16 683654] Direct-observation uniformity makes this well defined.
+[1-10:P18734; UTF16 683717] \left{ [x']: xT_ax' \right}. ]
+[1-10:P18735; UTF16 683748] Action stability makes this representative independent.
+[1-10:P18736; UTF16 683804] Thus (Q_{\mathcal A}) is executable and reachable.
+[1-10:P18737; UTF16 683855] Lower bound
+[1-10:P18738; UTF16 683867] The kernel relation of any exact executable macro is observation preserving by outcome factorization.
+[1-10:P18739; UTF16 683969] It is action stable by exact action factorization.
+[1-10:P18740; UTF16 684020] LEM-CS3 therefore implies:
+[1-10:P18741; UTF16 684047] [ \ker\phi \subseteq \approx_{\mathcal A}. ]
+[1-10:P18743; UTF16 684100] [x]_{\mathcal A}. ]
+[1-10:P18744; UTF16 684120] Kernel inclusion makes (g_s) well defined. It is surjective because every quotient class contains a microstate.
+[1-10:P18745; UTF16 684232] Observation and transition commutation follow from the two factorization laws.
+[1-10:P18746; UTF16 684311] The cardinality lower bound follows from surjectivity.
+[1-10:P18747; UTF16 684366] If an exact reachable macro has the minimum number of states, the surjection to the canonical quotient is bijective and therefore an isomorphism preserving observations and transitions. ∎
+[1-10:P18751; UTF16 684557] 14. Trace Equivalence Versus Executable Bisimulation
+[1-10:P18752; UTF16 684610] THM-CS4 — Executable Bisimilarity Implies Interventional Trace Equivalence
+[1-10:P18753; UTF16 684685] [ x\approx_{\mathcal A}y \Longrightarrow x\equiv_{\mathrm{tr}}^{\mathcal A}y. ]
+[1-10:P18755; UTF16 684771] Induct on the length of action word (w).
+[1-10:P18756; UTF16 684812] For (w=\epsilon), direct observations agree.
+[1-10:P18757; UTF16 684857] Assume the sets of reachable quotient classes after (w) agree.
+[1-10:P18758; UTF16 684920] For one additional action (a), action stability gives the same successor quotient-class set from each reachable class.
+[1-10:P18759; UTF16 685039] Therefore the reachable quotient-class sets after (wa) agree.
+[1-10:P18760; UTF16 685101] Every complete experiment is constant on a quotient class, so the sets of terminal outcomes agree. ∎
+[1-10:P18764; UTF16 685205] 14.1 Nondeterministic converse failure
+[1-10:P18765; UTF16 685244] Let all nonterminal states have observation (0), and terminal (t) have observation (1).
+[1-10:P18766; UTF16 685332] Transitions:
+[1-10:P18767; UTF16 685345] [ p\xrightarrow a p_b, \qquad p\xrightarrow a p_c, ]
+[1-10:P18768; UTF16 685398] [ q\xrightarrow a q_{bc}, ]
+[1-10:P18769; UTF16 685426] [ p_b\xrightarrow b t, ]
+[1-10:P18770; UTF16 685451] [ p_c\xrightarrow c t, ]
+[1-10:P18771; UTF16 685476] [ q_{bc}\xrightarrow b t, \qquad q_{bc}\xrightarrow c t. ]
+[1-10:P18772; UTF16 685535] For every action word, (p) and (q) produce the same set of final observations:
+[1-10:P18773; UTF16 685614] (a): ({0});
+[1-10:P18774; UTF16 685626] (ab): ({1});
+[1-10:P18775; UTF16 685639] (ac): ({1});
+[1-10:P18776; UTF16 685652] every other nonempty continuation: equal empty or terminal sets.
+[1-10:P18778; UTF16 685723] [ p\equiv_{\mathrm{tr}}^{\mathcal A}q. ]
+[1-10:P18779; UTF16 685764] They are not bisimilar.
+[1-10:P18780; UTF16 685788] If they were, (p_b) and (q_{bc}) would have to be related because (q) has only one (a)-successor. But (q_{bc}) has a (c)-successor while (p_b) does not.
+[1-10:P18782; UTF16 685952] [ p\not\approx_{\mathcal A}q. ]
+[1-10:P18783; UTF16 685984] The same future outcome language does not determine the same branching structure.
+[1-10:P18787; UTF16 686069] COR-CS4A — Deterministic Trace Equivalence Equals Executable Equivalence
+[1-10:P18788; UTF16 686142] Assume every action is total and deterministic after typed-undefined totalization.
+[1-10:P18790; UTF16 686231] [ x\equiv_{\mathrm{tr}}^{\mathcal A}y \iff x\approx_{\mathcal A}y. ]
+[1-10:P18792; UTF16 686306] THM-CS4 gives one direction.
+[1-10:P18793; UTF16 686335] For the converse, let (x,y) be trace equivalent.
+[1-10:P18794; UTF16 686384] For action (a), let successors be (x_a,y_a).
+[1-10:P18795; UTF16 686429] For every continuation (w) and experiment (e),
+[1-10:P18796; UTF16 686476] \mathsf{IOut}_{aw,e}(x)
+[1-10:P18797; UTF16 686500] \mathsf{IOut}_{aw,e}(y)
+[1-10:P18798; UTF16 686524] \mathsf{IOut}_{w,e}(y_a). ]
+[1-10:P18799; UTF16 686552] Thus (x_a,y_a) are trace equivalent.
+[1-10:P18800; UTF16 686589] Trace equivalence is therefore action stable and observation preserving. It refines the coarsest executable relation. ∎
+[1-10:P18804; UTF16 686712] 15. Causal Sufficient Separators
+[1-10:P18805; UTF16 686745] Let region (L) have:
+[1-10:P18806; UTF16 686766] regional state carrier (X_L);
+[1-10:P18807; UTF16 686796] internal action language (\mathcal A_L);
+[1-10:P18808; UTF16 686837] exterior experiments [ \mathfrak E_L^{\mathrm{out}}. ]
+[1-10:P18809; UTF16 686892] DEF-CS8 — Causal Sufficient Separator
+[1-10:P18810; UTF16 686930] A map
+[1-10:P18811; UTF16 686936] [ \phi_L\to Z_L ]
+[1-10:P18812; UTF16 686954] is a causal sufficient separator when:
+[1-10:P18813; UTF16 686993] every exterior experiment factors through (Z_L);
+[1-10:P18814; UTF16 687042] every admitted regional action has a representative-independent transition on (Z_L);
+[1-10:P18815; UTF16 687127] exact mandatory semantics are preserved;
+[1-10:P18816; UTF16 687168] required evidence, scenario correlation, and validity distinctions are preserved.
+[1-10:P18817; UTF16 687250] The canonical causal separator is
+[1-10:P18818; UTF16 687284] Q_{\mathcal A_L}. ]
+[1-10:P18822; UTF16 687307] 16. Causal Separator Width

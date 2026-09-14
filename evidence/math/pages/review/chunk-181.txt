@@ -1,0 +1,402 @@
+HISTORICAL ORIGINAL 21-30; source SHA256 2fbf92eeaab870987a5daf6d84598a8eff0b072a3ff27fa4d7084b7b6f114098
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[21-30:P17589; UTF16 567547]     defect-discovery value
+[21-30:P17592; UTF16 567596]     safety disturbance
+[21-30:P17593; UTF16 567619]     human workload
+[21-30:P17594; UTF16 567638]     privacy/security impact
+[21-30:P17599; UTF16 567701] ALG-ACC32 — RedTeamAcceptance
+[21-30:P17602; UTF16 567760]     wrong artifact version
+[21-30:P17603; UTF16 567787]     hidden test precondition
+[21-30:P17604; UTF16 567816]     invalid measurement model
+[21-30:P17605; UTF16 567846]     uncovered operating point
+[21-30:P17606; UTF16 567876]     false independence
+[21-30:P17607; UTF16 567899]     sampling overclaim
+[21-30:P17608; UTF16 567922]     interaction fault
+[21-30:P17609; UTF16 567944]     local-only retest
+[21-30:P17610; UTF16 567966]     unresolved latent defect
+[21-30:P17611; UTF16 567995]     incomplete handover state
+[21-30:P17614; UTF16 568033]     VERIFIED ACCEPTANCE BREAKER
+[21-30:P17620; UTF16 568101] ALG-ACC33 — FindAcceptanceConflictCore
+[21-30:P17623; UTF16 568163]     artifact commitments
+[21-30:P17624; UTF16 568188]     test constraints
+[21-30:P17632; UTF16 568277]     MIP infeasibility
+[21-30:P17633; UTF16 568299]     interval constraint propagation
+[21-30:P17637; UTF16 568373]     ACCEPTANCE CONFLICT CORE
+[21-30:P17642; UTF16 568427] ALG-ACC34 — GenerateAcceptanceRepairFrontier
+[21-30:P17649; UTF16 568554]     latent-risk model
+[21-30:P17652; UTF16 568586]     physical correction
+[21-30:P17654; UTF16 568628]     additional test
+[21-30:P17655; UTF16 568648]     higher-precision measurement
+[21-30:P17656; UTF16 568681]     software revision
+[21-30:P17657; UTF16 568703]     integration change
+[21-30:P17658; UTF16 568726]     document repair
+[21-30:P17659; UTF16 568746]     conditional-acceptance path
+[21-30:P17664; UTF16 568809]     PARETO ACCEPTANCE REPAIR FRONTIER
+[21-30:P17668; UTF16 568850] ALG-ACC35 — IncrementalAcceptanceRecertification
+[21-30:P17669; UTF16 568899] Implements THM-ACC29.
+[21-30:P17673; UTF16 568924] ALG-ACC36 — CheckPCCAH
+[21-30:P17675; UTF16 568982]     MEASUREMENT VALID
+[21-30:P17676; UTF16 569004]     CALIBRATION VALID
+[21-30:P17677; UTF16 569026]     REQUIREMENT PASS
+[21-30:P17678; UTF16 569047]     REQUIREMENT FAIL
+[21-30:P17679; UTF16 569068]     REQUIREMENT UNRESOLVED
+[21-30:P17681; UTF16 569132]     COVERAGE HOLE
+[21-30:P17684; UTF16 569197]     STATISTICAL ACCEPTANCE ONLY
+[21-30:P17685; UTF16 569229]     NONCONFORMANCE OPEN
+[21-30:P17687; UTF16 569282]     LATENT DEFECT POSSIBLE
+[21-30:P17688; UTF16 569309]     CONDITIONAL ACCEPTANCE
+[21-30:P17690; UTF16 569355]     HANDOVER CONFIRMED
+[21-30:P17696; UTF16 569412] ALG-ACC37 — BuildPCCAH
+[21-30:P17698; UTF16 569441]     acceptance basis
+[21-30:P17701; UTF16 569492]     metrology
+[21-30:P17705; UTF16 569549]     coverage
+[21-30:P17706; UTF16 569562]     sampling
+[21-30:P17707; UTF16 569575]     nonconformances
+[21-30:P17708; UTF16 569595]     corrective actions
+[21-30:P17709; UTF16 569618]     regression
+[21-30:P17710; UTF16 569633]     integration
+[21-30:P17711; UTF16 569649]     latent-defect state
+[21-30:P17712; UTF16 569673]     readiness
+[21-30:P17713; UTF16 569687]     handover
+[21-30:P17722; UTF16 569802]     independent CheckPCCAH
+[21-30:P17725; UTF16 569837]     PCCAH
+[21-30:P17730; UTF16 569869] 56. Synthetic Worked Examples
+[21-30:P17731; UTF16 569899] Every value and artifact below is synthetic.
+[21-30:P17732; UTF16 569944] Example A — Design Pass, Field Fail
+[21-30:P17734; UTF16 569993] [ x\le10. ]
+[21-30:P17735; UTF16 570005] Design model predicts:
+[21-30:P17736; UTF16 570028] [ x=8. ]
+[21-30:P17737; UTF16 570037] As-built measurement enclosure is:
+[21-30:P17738; UTF16 570072] [ [10.7,11.1]. ]
+[21-30:P17739; UTF16 570089] The design satisfies the requirement.
+[21-30:P17740; UTF16 570127] The delivered artifact fails it.
+[21-30:P17744; UTF16 570163] Example B — Measurement Uncertainty
+[21-30:P17746; UTF16 570212] [ x\le100. ]
+[21-30:P17747; UTF16 570225] Measurement:
+[21-30:P17748; UTF16 570238] [ y=98. ]
+[21-30:P17749; UTF16 570248] Certified error bound:
+[21-30:P17750; UTF16 570271] [ u=3. ]
+[21-30:P17751; UTF16 570280] Measurement enclosure:
+[21-30:P17752; UTF16 570303] [ [95,101]. ]
+[21-30:P17753; UTF16 570317] Because it crosses 100, the result is:
+[21-30:P17754; UTF16 570356] [ \mathsf{UNRESOLVED}. ]
+[21-30:P17755; UTF16 570381] The point value (98) does not justify PASS.
+[21-30:P17759; UTF16 570428] Example C — Guard-Banded Pass
+[21-30:P17763; UTF16 570497] [ y=96. ]
+[21-30:P17765; UTF16 570530] [ u=2. ]
+[21-30:P17767; UTF16 570548] [ 96+2=98\le100, ]
+[21-30:P17768; UTF16 570567] the requirement passes under THM-ACC7.
+[21-30:P17772; UTF16 570609] Example D — Calibration Chain
+[21-30:P17773; UTF16 570639] Three bounded calibration contributions are:
+[21-30:P17774; UTF16 570684] [ 0.2, \qquad 0.1, \qquad 0.4. ]
+[21-30:P17775; UTF16 570717] THM-ACC2 gives endpoint bound:
+[21-30:P17776; UTF16 570748] [ 0.2+0.1+0.4=0.7. ]
+[21-30:P17777; UTF16 570769] The chain is traceable.
+[21-30:P17778; UTF16 570793] Zero error is not established.
+[21-30:P17782; UTF16 570827] Example E — Expired Calibration
+[21-30:P17783; UTF16 570859] An instrument calibration expired one day earlier.
+[21-30:P17784; UTF16 570910] No accepted drift envelope covers the present measurement.
+[21-30:P17785; UTF16 570969] The historic certificate remains authentic.
+[21-30:P17786; UTF16 571013] The current measurement remains unresolved.
+[21-30:P17790; UTF16 571060] Example F — Acceptance Aliasing
+[21-30:P17791; UTF16 571092] Two system states produce the same test vector:
+[21-30:P17792; UTF16 571140] [ (\mathsf{PASS},\mathsf{PASS}). ]
+[21-30:P17793; UTF16 571175] One state satisfies all requirements.
+[21-30:P17794; UTF16 571213] The other contains an uncovered interaction defect.
+[21-30:P17795; UTF16 571265] The test suite cannot decide exact acceptance.
+[21-30:P17799; UTF16 571315] Example G — Fault Coverage
+[21-30:P17800; UTF16 571342] Modeled fault family:
+[21-30:P17801; UTF16 571364] [ {f_1,f_2,f_3,f_4}. ]
+[21-30:P17802; UTF16 571387] Tests:
+[21-30:P17803; UTF16 571394] [ C(t_1)={f_1,f_2}, ]
+[21-30:P17804; UTF16 571416] [ C(t_2)={f_2,f_3}, ]
+[21-30:P17805; UTF16 571438] [ C(t_3)={f_4}. ]
+[21-30:P17806; UTF16 571456] Fault (f_1) requires (t_1).
+[21-30:P17807; UTF16 571484] Fault (f_3) requires (t_2).
+[21-30:P17808; UTF16 571512] Fault (f_4) requires (t_3).
+[21-30:P17809; UTF16 571540] Therefore every complete test suite contains all three tests.
+[21-30:P17813; UTF16 571605] Example H — Same Signature, Different Repair
+[21-30:P17814; UTF16 571650] Faults (f_A,f_B) both produce deterministic signature:
+[21-30:P17815; UTF16 571705] [ (\mathsf{FAIL},\mathsf{PASS},\mathsf{FAIL}). ]
+[21-30:P17816; UTF16 571754] Fault (f_A) requires sensor replacement.
+[21-30:P17817; UTF16 571795] Fault (f_B) requires wiring repair.
+[21-30:P17818; UTF16 571831] No diagnosis rule using only the three outcomes can choose the correct repair in both worlds.
+[21-30:P17822; UTF16 571928] Example I — Single Operating Point
+[21-30:P17823; UTF16 571963] A synthetic system is tested at:
+[21-30:P17824; UTF16 571996] [ 20% ]
+[21-30:P17825; UTF16 572004] load and passes.
+[21-30:P17826; UTF16 572021] At:
+[21-30:P17827; UTF16 572025] [ 100% ]
+[21-30:P17828; UTF16 572034] load, a shared resource exceeds capacity.
+[21-30:P17829; UTF16 572076] The low-load test does not establish full-range acceptance.
+[21-30:P17833; UTF16 572139] Example J — Subsystems Pass, Integration Fails
+[21-30:P17834; UTF16 572186] Subsystem (A) demand:
+[21-30:P17836; UTF16 572215] Subsystem (B) demand:
+[21-30:P17838; UTF16 572244] Shared capacity:
+[21-30:P17840; UTF16 572269] Each passes alone.
+[21-30:P17842; UTF16 572298] [ 12>10. ]
+[21-30:P17843; UTF16 572309] Integrated acceptance fails.
+[21-30:P17847; UTF16 572341] Example K — Sampling
+[21-30:P17848; UTF16 572362] Lot size:
+[21-30:P17849; UTF16 572372] [ N=100. ]
+[21-30:P17850; UTF16 572383] Sample size:
+[21-30:P17851; UTF16 572396] [ n=10. ]
+[21-30:P17852; UTF16 572406] Exactly one item is defective:
+[21-30:P17854; UTF16 572446] Accept only when no sampled defect is found.
+[21-30:P17855; UTF16 572491] THM-ACC20 gives:
+[21-30:P17856; UTF16 572508] \frac{100-10}{100}
+[21-30:P17858; UTF16 572534] A defective lot passes with probability (0.9).
+[21-30:P17862; UTF16 572584] Example L — Local Retest Failure
+[21-30:P17863; UTF16 572617] A correction fixes requirement (r_1).
+[21-30:P17864; UTF16 572655] The local (r_1) retest passes.
+[21-30:P17865; UTF16 572686] The edit invalidates (r_2).
+[21-30:P17866; UTF16 572714] Global acceptance remains open.
+[21-30:P17870; UTF16 572749] Example M — Latent Defect
+[21-30:P17871; UTF16 572775] Two physical worlds pass every selected commissioning test.
+[21-30:P17872; UTF16 572835] One contains a hidden interface defect outside the modeled coverage family.
+[21-30:P17873; UTF16 572911] Test evidence is identical.
+[21-30:P17874; UTF16 572939] Universal defect absence cannot be certified.
+[21-30:P17878; UTF16 572988] Example N — Conditional Acceptance
+[21-30:P17879; UTF16 573023] One synthetic mandatory item remains open.
+[21-30:P17880; UTF16 573066] The declared authority permits temporary conditional acceptance until day 20 subject to an operating restriction.
+[21-30:P17882; UTF16 573195] [ \mathsf{CONDITIONAL_ACCEPTANCE}, ]
+[21-30:P17883; UTF16 573232] not full acceptance.
+[21-30:P17887; UTF16 573256] Example O — Handover Failure
+[21-30:P17888; UTF16 573285] Transferred documents are identical in two systems.
+[21-30:P17889; UTF16 573337] One contains a manually isolated valve.
+[21-30:P17891; UTF16 573397] The receiving operator’s startup action differs.
+[21-30:P17892; UTF16 573446] The document-only handover representation is insufficient.
+[21-30:P17896; UTF16 573508] 57. Synthetic 190-Room Hotel Commissioning and Handover Example
+[21-30:P17897; UTF16 573572] Every value, item of equipment, requirement, test, and state below is synthetic.
+[21-30:P17898; UTF16 573653] The synthetic hotel contains:
+[21-30:P17899; UTF16 573683] 190 guestrooms;
+[21-30:P17900; UTF16 573699] HVAC plant;
+[21-30:P17901; UTF16 573711] air-handling equipment;
+[21-30:P17904; UTF16 573784] emergency power;
+[21-30:P17907; UTF16 573833] access controls;
+[21-30:P17908; UTF16 573850] life-safety interfaces;
+[21-30:P17910; UTF16 573895] operator procedures.
+[21-30:P17911; UTF16 573916] Stage 1 — Acceptance Basis
+[21-30:P17912; UTF16 573943] ANANKE creates an acceptance inventory for:
+[21-30:P17913; UTF16 573987] equipment performance;
+[21-30:P17914; UTF16 574010] room environmental conditions;
+[21-30:P17915; UTF16 574041] electrical transfer behavior;
+[21-30:P17916; UTF16 574071] control sequences;
+[21-30:P17918; UTF16 574110] system integration;
+[21-30:P17920; UTF16 574145] cyber configuration;
+[21-30:P17921; UTF16 574166] operational readiness.
+[21-30:P17922; UTF16 574189] Every requirement is tied to:
+[21-30:P17924; UTF16 574237] test method;
+[21-30:P17927; UTF16 574276] release modality.
+[21-30:P17928; UTF16 574294] Stage 2 — Measurement System
+[21-30:P17929; UTF16 574323] A synthetic airflow requirement is:
+[21-30:P17930; UTF16 574359] [ \dot V\ge100. ]
+[21-30:P17931; UTF16 574377] The first measurement is:
+[21-30:P17932; UTF16 574403] [ 102 ]
+[21-30:P17933; UTF16 574411] with total certified uncertainty:
+[21-30:P17934; UTF16 574445] [ \pm4. ]
+[21-30:P17935; UTF16 574455] The enclosure is:
+[21-30:P17936; UTF16 574473] [ [98,106]. ]
+[21-30:P17939; UTF16 574527] A higher-precision measurement later yields:
+[21-30:P17940; UTF16 574572] [ [101,103], ]
+[21-30:P17941; UTF16 574587] which passes.
+[21-30:P17942; UTF16 574601] Stage 3 — Calibration
+[21-30:P17943; UTF16 574623] One temperature instrument has:
+[21-30:P17945; UTF16 574674] bounded drift;
+[21-30:P17946; UTF16 574689] current environmental scope.
+[21-30:P17947; UTF16 574718] Another instrument’s calibration has expired.
+[21-30:P17948; UTF16 574764] Every test depending on the second instrument is invalidated.
+[21-30:P17949; UTF16 574826] Stage 4 — Test Coverage
+[21-30:P17950; UTF16 574850] The synthetic commissioning fault universe contains:
+[21-30:P17951; UTF16 574903] [ 84 ]
+[21-30:P17952; UTF16 574910] modeled faults.
+[21-30:P17953; UTF16 574926] The original plan covers:
+[21-30:P17954; UTF16 574952] [ 76. ]
+[21-30:P17955; UTF16 574960] Eight remain uncovered.
+[21-30:P17956; UTF16 574984] ANANKE cannot issue modeled-complete acceptance.
+[21-30:P17957; UTF16 575033] A minimum-cost test-selection computation proposes four additional tests.
+[21-30:P17958; UTF16 575107] The independent checker verifies that the expanded suite covers all 84 modeled faults.
+[21-30:P17959; UTF16 575194] Stage 5 — Diagnostic Ambiguity
+[21-30:P17960; UTF16 575225] Two controller faults produce identical test signatures.
+[21-30:P17961; UTF16 575282] They require different repairs.
+[21-30:P17962; UTF16 575314] ANANKE requests one additional discriminating test rather than allowing an AI-generated diagnosis to acquire exact authority.
+[21-30:P17963; UTF16 575440] Stage 6 — Guestroom Sampling
+[21-30:P17964; UTF16 575469] A repeated-room quality-control subsystem uses an explicit synthetic sampling plan rather than testing every item.
+[21-30:P17965; UTF16 575584] The result remains:
+[21-30:P17966; UTF16 575604] [ \mathsf{STATISTICAL_ACCEPTANCE}. ]
+[21-30:P17967; UTF16 575641] It is not promoted to deterministic perfection of every room.
+[21-30:P17968; UTF16 575703] Stage 7 — Integrated-System Test
+[21-30:P17969; UTF16 575736] The AHUs pass local tests.
+[21-30:P17970; UTF16 575763] The generator passes local tests.
+[21-30:P17971; UTF16 575797] The control system passes local tests.
+[21-30:P17972; UTF16 575836] During synthetic emergency-power integration, concurrent startup exceeds a shared power limit.
+[21-30:P17973; UTF16 575931] Subsystem acceptance remains valid.
+[21-30:P17974; UTF16 575967] Integrated-system acceptance fails.
+[21-30:P17975; UTF16 576003] A sequenced-start repair is proposed.
+[21-30:P17976; UTF16 576041] Stage 8 — Corrective Action
+[21-30:P17977; UTF16 576069] The startup sequence is modified.
+[21-30:P17979; UTF16 576123] control software;
+[21-30:P17981; UTF16 576149] generator load profile;
+[21-30:P17982; UTF16 576173] operator procedure;
+[21-30:P17983; UTF16 576193] ODT state.
+[21-30:P17984; UTF16 576204] The regression cone reopens every dependent certificate.
+[21-30:P17985; UTF16 576261] A local sequence test cannot close the project until the complete cone passes.
+[21-30:P17986; UTF16 576340] Stage 9 — Latent-Defect State
+[21-30:P17987; UTF16 576370] After all planned tests pass, two evidence-consistent physical states remain.
+[21-30:P17988; UTF16 576448] One contains an untested mounting defect.
+[21-30:P17989; UTF16 576490] Because that defect lies outside modeled coverage, ANANKE cannot claim universal defect absence.
+[21-30:P17990; UTF16 576587] Stage 10 — Punch List
+[21-30:P17991; UTF16 576609] Seven synthetic items remain.
+[21-30:P17992; UTF16 576639] Five are mandatory blockers.
+[21-30:P17993; UTF16 576668] Two are conditionally acceptable under authorized temporary release conditions.
+[21-30:P17994; UTF16 576748] Only after the five blockers close can HANDOVER_READY be certified.
+[21-30:P17995; UTF16 576816] Stage 11 — Handover Baseline
+[21-30:P17996; UTF16 576845] The facilities team receives:
+[21-30:P17997; UTF16 576875] accepted as-built model;
+[21-30:P18002; UTF16 576983] alarm configuration;
+[21-30:P18003; UTF16 577004] maintenance starting state;
+[21-30:P18005; UTF16 577037] open conditional items;
+[21-30:P18008; UTF16 577086] training and qualification evidence.
+[21-30:P18009; UTF16 577123] A handover-sufficiency check identifies one omitted temporary operating condition.
+[21-30:P18010; UTF16 577206] The baseline is amended before release.
+[21-30:P18011; UTF16 577246] Stage 12 — PCCAH Release
+[21-30:P18012; UTF16 577271] The final PCCAH separately records:
+[21-30:P18013; UTF16 577307] exact checked acceptance;
+[21-30:P18014; UTF16 577333] bounded measurement claims;
+[21-30:P18015; UTF16 577361] statistical sample acceptance;
+[21-30:P18018; UTF16 577437] conditional items;
+[21-30:P18019; UTF16 577456] latent-defect limitations;
+[21-30:P18021; UTF16 577494] confirmed handover.
+[21-30:P18022; UTF16 577514] No real hotel commissioning result is claimed.
+[21-30:P18026; UTF16 577564] 58. Falsification and Regression Suite
+[21-30:P18027; UTF16 577603] Design pass with as-built fail.
+[21-30:P18028; UTF16 577635] Wrong artifact version attached to test.
+[21-30:P18029; UTF16 577676] Correct measurand identity.
+[21-30:P18030; UTF16 577704] Wrong measurand scope.
+[21-30:P18031; UTF16 577727] Valid calibration chain.
+[21-30:P18032; UTF16 577752] Broken calibration chain.
+[21-30:P18033; UTF16 577778] Bounded-error propagation.
+[21-30:P18034; UTF16 577805] Traceability with nonzero error.
+[21-30:P18035; UTF16 577838] Calibration lease active.
+[21-30:P18036; UTF16 577864] Calibration lease expired.
+[21-30:P18037; UTF16 577891] Drift bound preserves enclosure.
+[21-30:P18038; UTF16 577924] Missing drift bound blocks current measurement.
+[21-30:P18039; UTF16 577972] Three-way PASS.
+[21-30:P18040; UTF16 577988] Three-way FAIL.
+[21-30:P18041; UTF16 578004] Three-way UNRESOLVED.
+[21-30:P18042; UTF16 578026] Guard-band sound pass.
+[21-30:P18043; UTF16 578049] Test executed under wrong precondition.
+[21-30:P18044; UTF16 578089] Test executed on wrong software version.
+[21-30:P18045; UTF16 578130] Human test procedure violates Prompt 24.
+[21-30:P18046; UTF16 578171] Acceptance factorization succeeds.
+[21-30:P18047; UTF16 578206] Acceptance aliasing counterexample.
+[21-30:P18048; UTF16 578242] Complete modeled fault coverage.
+[21-30:P18049; UTF16 578275] Missing fault coverage.
+[21-30:P18050; UTF16 578299] Coverage monotonicity after adding a test.
+[21-30:P18051; UTF16 578342] Weighted Set Cover test-selection benchmark.
+[21-30:P18052; UTF16 578387] Two faults have unique signatures.
+[21-30:P18053; UTF16 578422] Two faults have identical signatures.
+[21-30:P18054; UTF16 578460] Additional test separates diagnostic ambiguity.
+[21-30:P18055; UTF16 578508] One operating point passes while the envelope fails.
+[21-30:P18056; UTF16 578561] Subsystem (A) accepted.
+[21-30:P18057; UTF16 578585] Subsystem (B) accepted.
+[21-30:P18058; UTF16 578609] Integration fails through shared resource.
+[21-30:P18059; UTF16 578652] Interface-complete compositional acceptance succeeds.
+[21-30:P18060; UTF16 578706] Hypergeometric sampling arithmetic.
+[21-30:P18061; UTF16 578742] One-defect lot passes a nonexhaustive zero-defect sample.
+[21-30:P18062; UTF16 578800] Statistical acceptance retains probability modality.
+[21-30:P18063; UTF16 578853] Sampling-model mismatch invalidates the certificate.
+[21-30:P18064; UTF16 578906] False-acceptance probability.
+[21-30:P18065; UTF16 578936] False-rejection probability.
+[21-30:P18066; UTF16 578965] Nonconformance opened.
+[21-30:P18067; UTF16 578988] Physical correction without retest.
+[21-30:P18068; UTF16 579024] Local retest passes while a dependent requirement fails.
+[21-30:P18069; UTF16 579081] Regression cone invalidates dependent certificates.
+[21-30:P18070; UTF16 579133] Corrective closure succeeds after complete recertification.
+[21-30:P18071; UTF16 579193] Test changes configuration and invalidates its own scope.
+[21-30:P18072; UTF16 579251] Test restoration verified.
+[21-30:P18073; UTF16 579278] Latent-defect fiber empty under the modeled theory.
+[21-30:P18074; UTF16 579330] Latent-defect fiber nonempty.
+[21-30:P18075; UTF16 579360] Small probabilistic latent risk remains probabilistic.
+[21-30:P18076; UTF16 579415] Conditional acceptance with open items.
+[21-30:P18077; UTF16 579455] Conditional authority absent.
+[21-30:P18078; UTF16 579485] Conditional acceptance expires.
+[21-30:P18079; UTF16 579517] Readiness blocked by a mandatory punch-list item.
+[21-30:P18080; UTF16 579567] Readiness blocked by missing credential transfer.
+[21-30:P18081; UTF16 579617] Readiness blocked by stale ODT baseline.
+[21-30:P18082; UTF16 579658] Handover state is decision sufficient.
+[21-30:P18083; UTF16 579697] Handover documents omit a decision-critical temporary condition.
+[21-30:P18084; UTF16 579762] Prompt-20 contractual acceptance differs from engineering acceptance.
+[21-30:P18085; UTF16 579832] Prompt-21 regulatory approval differs from engineering acceptance.
+[21-30:P18086; UTF16 579899] Prompt-22 evidence signature valid but measurement semantics wrong.
+[21-30:P18087; UTF16 579967] Prompt-23 commissioning evidence collection violates privacy.
+[21-30:P18088; UTF16 580029] Prompt-24 operator can execute the test.
+[21-30:P18089; UTF16 580070] Prompt-24 operator workload makes the test infeasible.
+[21-30:P18090; UTF16 580125] Incremental recertification equals cold checking.
+[21-30:P18091; UTF16 580175] AI-proposed test plan has a coverage hole and is rejected.
+[21-30:P18092; UTF16 580234] AI-proposed diagnosis is ambiguous and rejected.
+[21-30:P18093; UTF16 580283] PCCAH witness belongs to the acceptance fiber.
+[21-30:P18094; UTF16 580330] PCCAH checker is independent of proposal source.
+[21-30:P18099; UTF16 580416] Acceptance requirement
+[21-30:P18100; UTF16 580439] structure AcceptanceRequirement where
+[21-30:P18101; UTF16 580477]   id : RequirementId
+[21-30:P18102; UTF16 580498]   predicate : ArtifactState → Prop
+[21-30:P18104; UTF16 580553] Measurement enclosure
+[21-30:P18105; UTF16 580575] structure MeasurementEnclosure where
+[21-30:P18106; UTF16 580612]   lower : ℝ
+[21-30:P18107; UTF16 580624]   upper : ℝ
+[21-30:P18108; UTF16 580636]   ordered : lower ≤ upper
+[21-30:P18110; UTF16 580663] def Encloses
+[21-30:P18111; UTF16 580676]     (I : MeasurementEnclosure)
+[21-30:P18112; UTF16 580707]     (x : ℝ) : Prop :=
+[21-30:P18113; UTF16 580729]   I.lower ≤ x ∧ x ≤ I.upper
+[21-30:P18114; UTF16 580757] Three-way acceptance
+[21-30:P18115; UTF16 580778] inductive MeasureDecision
+[21-30:P18116; UTF16 580804] | pass
+[21-30:P18117; UTF16 580811] | fail
+[21-30:P18120; UTF16 580832] def classifyMeasurement
+[21-30:P18122; UTF16 580887]     (limit : ℝ) : MeasureDecision :=
+[21-30:P18123; UTF16 580924]   if I.upper ≤ limit then
+[21-30:P18124; UTF16 580950]     .pass
+[21-30:P18125; UTF16 580960]   else if limit < I.lower then
+[21-30:P18126; UTF16 580991]     .fail
+[21-30:P18127; UTF16 581001]   else
+[21-30:P18128; UTF16 581008]     .unresolved
+[21-30:P18129; UTF16 581024] Test-observation sufficiency
+[21-30:P18130; UTF16 581053] def AcceptanceSufficient
+[21-30:P18131; UTF16 581078]     (testObs : State → Observation)
+[21-30:P18132; UTF16 581114]     (acceptable : State → Bool) : Prop :=
+[21-30:P18134; UTF16 581165]     testObs x = testObs y →
+[21-30:P18135; UTF16 581193]     acceptable x = acceptable y
+[21-30:P18136; UTF16 581225] Factorization skeleton
+[21-30:P18137; UTF16 581248] theorem acceptance_sufficient_iff_factor
+[21-30:P18138; UTF16 581289]     [Nonempty AcceptanceDecision]
+[21-30:P18139; UTF16 581323]     (T : State → Observation)
+[21-30:P18140; UTF16 581353]     (A : State → AcceptanceDecision) :
+[21-30:P18141; UTF16 581392]     AcceptanceSufficient T A ↔
+[21-30:P18142; UTF16 581423]     ∃ π : Observation → AcceptanceDecision,
+[21-30:P18143; UTF16 581467]       A = π ∘ T := by
+[21-30:P18145; UTF16 581495] Fault coverage
+[21-30:P18146; UTF16 581510] structure TestCase where
+[21-30:P18147; UTF16 581535]   id : TestId
+[21-30:P18148; UTF16 581549]   detects : Set FaultId
+[21-30:P18149; UTF16 581573]   cost : ℝ
+[21-30:P18151; UTF16 581585] def SuiteCovers
+[21-30:P18152; UTF16 581601]     (tests : Set TestCase)
+[21-30:P18153; UTF16 581628]     (faults : Set FaultId) : Prop :=
+[21-30:P18154; UTF16 581665]   faults ⊆
+[21-30:P18155; UTF16 581676]     ⋃₀ {t.detects | t ∈ tests}
+[21-30:P18156; UTF16 581707] Diagnostic equivalence
+[21-30:P18157; UTF16 581730] def DiagnosticEquivalent
+[21-30:P18158; UTF16 581755]     (signature : Fault → Set TestOutcome)
+[21-30:P18159; UTF16 581797]     (f₁ f₂ : Fault) : Prop :=
+[21-30:P18160; UTF16 581827]   signature f₁ = signature f₂
+[21-30:P18161; UTF16 581857] Sampling plan
+[21-30:P18162; UTF16 581871] structure SamplingPlan where
+[21-30:P18163; UTF16 581900]   lotSize : Nat
+[21-30:P18164; UTF16 581916]   sampleSize : Nat
+[21-30:P18165; UTF16 581935]   acceptCount : Nat
+[21-30:P18166; UTF16 581955]   validSample :
+[21-30:P18167; UTF16 581971]     sampleSize ≤ lotSize
+[21-30:P18168; UTF16 581996] Nonconformance
+[21-30:P18169; UTF16 582011] structure Nonconformance where

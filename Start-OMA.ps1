@@ -2,6 +2,9 @@ param([int]$Port = 8765, [switch]$NoBrowser)
 $ErrorActionPreference = 'Stop'
 $projectRoot = $PSScriptRoot
 $pythonPath = Join-Path $projectRoot '.venv\Scripts\python.exe'
+if (Test-Path -LiteralPath (Join-Path $projectRoot 'runtime\python.exe')) {
+    $pythonPath = Join-Path $projectRoot 'runtime\python.exe'
+}
 if (-not (Test-Path -LiteralPath $pythonPath)) {
     & (Join-Path $projectRoot 'Install-OMA.ps1')
 }

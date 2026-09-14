@@ -1,0 +1,340 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P3325; UTF16 139550] 12.1 Evidence kinds
+[1-10:P3326; UTF16 139570] DEF-F39 — Evidence-kind set
+[1-10:P3327; UTF16 139598] { \mathsf P, \mathsf B, \mathsf N, \mathsf V, \mathsf E, \mathsf C, \mathsf J, \mathsf U }. ]
+[1-10:P3328; UTF16 139692] The meanings are:
+[1-10:P3329; UTF16 139710] ￼
+ATTACHED TABLE 1736039; native row/column order; 9 rows
+ROW 0: ["Kind", "Meaning"]
+ROW 1: ["(\\mathsf P)", "Formal proof inside a declared mathematical theory"]
+ROW 2: ["(\\mathsf B)", "Conservative bound or enclosure"]
+ROW 3: ["(\\mathsf N)", "Numerically verified solver result"]
+ROW 4: ["(\\mathsf V)", "Empirical validation of a model for an intended use"]
+ROW 5: ["(\\mathsf E)", "Direct empirical or physical measurement"]
+ROW 6: ["(\\mathsf C)", "Code or regulatory interpretation"]
+ROW 7: ["(\\mathsf J)", "Professional, architectural, or stakeholder judgment"]
+ROW 8: ["(\\mathsf U)", "Explicit unresolved obligation"]
+[1-10:P3330; UTF16 139712] These kinds do not form a total strength order.
+[1-10:P3331; UTF16 139760] A formal proof of a finite-element result does not dominate a physical load test because they establish claims at different semantic layers.
+[1-10:P3335; UTF16 139904] 12.2 Typed claims
+[1-10:P3336; UTF16 139922] DEF-F40 — Claim layer
+[1-10:P3337; UTF16 139944] Each claim has a layer
+[1-10:P3338; UTF16 139967] [ \ell(c)\in { \mathsf{FormalModel}, \mathsf{NumericalExecution}, \mathsf{ModelValidity}, \mathsf{PhysicalWorld}, \mathsf{Regulatory}, \mathsf{ProfessionalDecision}, \mathsf{Open} }. ]
+[1-10:P3340; UTF16 140162] “The discrete network satisfies flow conservation” is a formal-model claim.
+[1-10:P3341; UTF16 140238] “The nonlinear solver residual is below tolerance” is a numerical-execution claim.
+[1-10:P3342; UTF16 140321] “The model predicts pressure loss within the validated domain” is a model-validity claim.
+[1-10:P3343; UTF16 140411] “The installed assembly leaked less than the specified amount” is a physical-world claim.
+[1-10:P3344; UTF16 140501] “This provision is accepted by the authority” is a regulatory claim.
+[1-10:P3345; UTF16 140570] DEF-F41 — Evidence typing
+[1-10:P3346; UTF16 140596] An evidence node has dependent type
+[1-10:P3347; UTF16 140632] [ e: \mathsf{Evidence}[k,c], ]
+[1-10:P3348; UTF16 140663] where (k\in\mathsf{EvKind}) and (c) is a claim.
+[1-10:P3349; UTF16 140711] A finite compatibility relation
+[1-10:P3350; UTF16 140743] [ \mathsf{KindSupports}(k,\ell(c)) ]
+[1-10:P3351; UTF16 140780] determines whether the kind can support the claim layer.
+[1-10:P3352; UTF16 140837] For example:
+[1-10:P3353; UTF16 140850] (\mathsf P) may directly support a formal-model claim;
+[1-10:P3354; UTF16 140905] (\mathsf E) may directly support a physical measurement claim;
+[1-10:P3355; UTF16 140968] (\mathsf J) may support a professional-decision claim;
+[1-10:P3356; UTF16 141023] no rule automatically coerces (\mathsf J) into (\mathsf P).
+[1-10:P3360; UTF16 141086] 12.3 Provenance graph
+[1-10:P3361; UTF16 141108] DEF-F42 — Evidence graph
+[1-10:P3362; UTF16 141133] An evidence graph is
+[1-10:P3363; UTF16 141154] ( V_E, D_E, \lambda_E, c_E, s_E ), ]
+[1-10:P3365; UTF16 141198] (V_E) is a finite set of evidence and assumption nodes;
+[1-10:P3366; UTF16 141254] (D_E\subseteq V_E\times V_E) is a directed acyclic dependency relation;
+[1-10:P3367; UTF16 141326] (\lambda_E\to\mathsf{EvKind}) gives each evidence kind;
+[1-10:P3368; UTF16 141382] (c_E\to\mathsf{Claim}) gives the supported claim;
+[1-10:P3369; UTF16 141432] (s_E\to{\mathsf{active},\mathsf{stale},\mathsf{rejected}}) gives status.
+[1-10:P3370; UTF16 141505] An edge
+[1-10:P3371; UTF16 141513] [ u\to v ]
+[1-10:P3372; UTF16 141524] means that the validity of (v) depends on (u).
+[1-10:P3376; UTF16 141574] 12.4 Invalidation
+[1-10:P3377; UTF16 141592] DEF-F43 — Dependency invalidation
+[1-10:P3378; UTF16 141626] For a changed root set
+[1-10:P3379; UTF16 141649] [ R\subseteq V_E, ]
+[1-10:P3380; UTF16 141669] define its dependency closure
+[1-10:P3381; UTF16 141699] { v\in V_E: \exists r\in R,\ r\to^{*}v }. ]
+[1-10:P3382; UTF16 141743] The invalidated graph marks every node in
+[1-10:P3383; UTF16 141785] [ R\cup\mathsf{Desc}^{*}(R) ]
+[1-10:P3384; UTF16 141815] as stale.
+[1-10:P3388; UTF16 141828] 12.5 Evidence dependency theorem
+[1-10:P3389; UTF16 141861] THM-FE1 — Graph-theoretic invalidation soundness
+[1-10:P3390; UTF16 141910] After invalidating root set (R):
+[1-10:P3391; UTF16 141943] every node reachable from (R) is stale;
+[1-10:P3392; UTF16 141983] every node remaining active has no dependency path from (R).
+[1-10:P3394; UTF16 142050] Clause 1 follows directly from DEF-F43: every reachable node belongs to (\mathsf{Desc}^{*}(R)) and is marked stale.
+[1-10:P3395; UTF16 142166] For clause 2, suppose an active node (v) had a dependency path from some (r\in R). Then
+[1-10:P3396; UTF16 142254] [ v\in\mathsf{Desc}^{*}(R), ]
+[1-10:P3397; UTF16 142284] so DEF-F43 would mark (v) stale, contradicting its active status.
+[1-10:P3398; UTF16 142350] Therefore no active node is reachable from (R). ∎
+[1-10:P3399; UTF16 142400] AXIOM-F3 — Dependency completeness
+[1-10:P3400; UTF16 142435] For a stronger semantic conclusion, assume every assumption on which a claim semantically depends is represented by a dependency path in the graph.
+[1-10:P3401; UTF16 142583] Under AXIOM-F3, THM-FE1 implies that an active claim does not semantically depend on any changed root.
+[1-10:P3402; UTF16 142686] Without dependency completeness, the graph theorem remains true, but the provenance graph may omit a real-world dependency.
+[1-10:P3406; UTF16 142813] 13. Exact Contextual Equivalence
+[1-10:P3407; UTF16 142846] 13.1 Test theory
+[1-10:P3408; UTF16 142863] DEF-F44 — ANANKE-F test theory
+[1-10:P3409; UTF16 142894] A test theory is a tuple
+[1-10:P3410; UTF16 142919] ( \mathbf C_{\mathcal T}, \rho, \mathcal M, \Xi, \mathcal D, \Lambda, \mathcal R, \mu ). ]
+[1-10:P3412; UTF16 143030] (\mathbf C_{\mathcal T}): a finite admissible context category;
+[1-10:P3413; UTF16 143094] (\rho): the closed project type at which observations are made;
+[1-10:P3414; UTF16 143158] (\mathcal M): a finite set of models;
+[1-10:P3415; UTF16 143196] (\Xi): a finite set of scenarios;
+[1-10:P3416; UTF16 143230] (\mathcal D): a finite set of decision functionals;
+[1-10:P3417; UTF16 143282] (\Lambda): a finite label universe containing (\star);
+[1-10:P3418; UTF16 143337] (\mathcal R\subseteq\widehat{\mathcal O}): admissible external-alternative profiles;
+[1-10:P3419; UTF16 143422] (\mu): the mandatory observation projection.
+[1-10:P3420; UTF16 143467] The theory (\mathcal T) is part of the equivalence relation. Expanding its contexts, models, scenarios, mandatory projections, or decisions may split an existing equivalence class.
+[1-10:P3424; UTF16 143651] 13.2 Contextual observation profile
+[1-10:P3426; UTF16 143691] [ p:\tau ]
+[1-10:P3427; UTF16 143702] and a test context
+[1-10:P3428; UTF16 143721] [ C:\tau\Longrightarrow\rho, ]
+[1-10:P3429; UTF16 143752] define
+[1-10:P3430; UTF16 143759] \widehat{\mathsf{Obs}}_{m,\xi}(C[p]). ]
+[1-10:P3434; UTF16 143802] 13.3 External replacement menu
+[1-10:P3436; UTF16 143837] [ B\subseteq\Lambda\setminus{\star} ]
+[1-10:P3437; UTF16 143875] be a finite external label set, and let
+[1-10:P3438; UTF16 143915] [ v\to\mathcal R ]
+[1-10:P3439; UTF16 143934] assign profiles to the external alternatives.
+[1-10:P3440; UTF16 143980] For candidate profile (O\in\widehat{\mathcal O}), define the replacement menu
+[1-10:P3441; UTF16 144058] \left( B\cup{\star}, v[\star\mapsto O] \right). ]
+[1-10:P3442; UTF16 144108] The same label (\star) is used when comparing (p) and (q). This permits exact comparison of the selected candidate and every external competitor.
+[1-10:P3446; UTF16 144257] 13.4 Mandatory tests
+[1-10:P3447; UTF16 144278] For every (C,m,\xi), define
+[1-10:P3448; UTF16 144306] \widehat\mu \left( \mathsf{Prof}_{C,m,\xi}(p) \right). ]
+[1-10:P3452; UTF16 144366] 13.5 Decision tests
+[1-10:P3453; UTF16 144386] For every admissible tuple
+[1-10:P3454; UTF16 144413] [ (C,m,\xi,d,B,v), ]
+[1-10:P3456; UTF16 144441] \mathsf{Choice}d \left( M \left( B, v, \mathsf{Prof}{C,m,\xi}(p) \right) \right). ]
+[1-10:P3457; UTF16 144525] This returns a set of labels, not merely whether the inserted candidate was selected.
+[1-10:P3458; UTF16 144611] Changing (p) to (q) may alter the selected external competitors even when neither inserted candidate is selected.
+[1-10:P3462; UTF16 144728] 13.6 Test family
+[1-10:P3463; UTF16 144745] DEF-F45 — Complete admitted test family
+[1-10:P3464; UTF16 144785] For program type (\tau), define
+[1-10:P3465; UTF16 144817] [ \mathfrak F^\tau_{\mathcal T} ]
+[1-10:P3466; UTF16 144851] to contain:
+[1-10:P3467; UTF16 144863] every mandatory test (f^{\mathrm{mand}}_{C,m,\xi});
+[1-10:P3468; UTF16 144915] every decision test (f^{\mathrm{dec}}_{C,m,\xi,d,B,v}).
+[1-10:P3469; UTF16 144971] All sets quantified over are finite.
+[1-10:P3473; UTF16 145011] 13.7 Exact decision-relative contextual equivalence
+[1-10:P3474; UTF16 145063] DEF-F46 — Contextual equivalence
+[1-10:P3475; UTF16 145096] For well-typed programs
+[1-10:P3476; UTF16 145120] [ p,q:\tau, ]
+[1-10:P3478; UTF16 145141] [ p \equiv_{\mathcal T,\tau} q ]
+[1-10:P3479; UTF16 145174] if and only if
+[1-10:P3480; UTF16 145189] [ \forall f\in\mathfrak F^\tau_{\mathcal T}, \qquad f(p)=f(q). ]
+[1-10:P3481; UTF16 145254] Expanded, this requires:
+[1-10:P3482; UTF16 145279] Mandatory indistinguishability
+[1-10:P3483; UTF16 145310] For every admitted context, model, and scenario,
+[1-10:P3484; UTF16 145359] \widehat\mu \left( \mathsf{Prof}_{C,m,\xi}(q) \right). ]
+[1-10:P3485; UTF16 145416] Decision substitutability
+[1-10:P3486; UTF16 145442] For every admitted context, model, scenario, decision rule, external menu, and external-profile assignment,
+[1-10:P3487; UTF16 145550] [ \begin{aligned} &\mathsf{Choice}d \left( M \left( B,v, \mathsf{Prof}{C,m,\xi}(p) \right) \right)\ ={}& \mathsf{Choice}d \left( M \left( B,v, \mathsf{Prof}{C,m,\xi}(q) \right) \right). \end{aligned} ]
+[1-10:P3488; UTF16 145752] This is the exact finite meaning of:
+[1-10:P3489; UTF16 145789] No admitted physical, architectural, evidentiary, uncertainty, safety, or stakeholder-decision context distinguishes (p) from (q).
+[1-10:P3493; UTF16 145923] 13.8 Why singleton comparison is insufficient
+[1-10:P3494; UTF16 145969] The expression
+[1-10:P3495; UTF16 145984] \mathsf{Choice}_d \left( { \mathsf{Obs}(C[q]) } \right) ]
+[1-10:P3496; UTF16 146042] does not establish substitutability.
+[1-10:P3497; UTF16 146079] Every feasible alternative may be selected when considered alone, while the two alternatives behave differently in the presence of competitors.
+[1-10:P3498; UTF16 146223] DEF-F46 therefore compares replacement inside arbitrary admitted labeled menus.
+[1-10:P3502; UTF16 146306] 13.9 Equivalence-relation properties
+[1-10:P3503; UTF16 146343] PRO-F3 — (\equiv_{\mathcal T,\tau}) is an equivalence relation
+[1-10:P3504; UTF16 146406] For every type (\tau), contextual equivalence is reflexive, symmetric, and transitive.
+[1-10:P3506; UTF16 146499] Reflexivity
+[1-10:P3507; UTF16 146511] For every program (p:\tau) and every test (f),
+[1-10:P3508; UTF16 146558] [ f(p)=f(p). ]
+[1-10:P3509; UTF16 146573] Hence
+[1-10:P3510; UTF16 146579] [ p\equiv_{\mathcal T,\tau}p. ]
+[1-10:P3511; UTF16 146611] Symmetry
+[1-10:P3513; UTF16 146628] [ p\equiv_{\mathcal T,\tau}q. ]
+[1-10:P3514; UTF16 146660] Then for every test (f),
+[1-10:P3515; UTF16 146685] [ f(p)=f(q). ]
+[1-10:P3516; UTF16 146700] Equality is symmetric, so
+[1-10:P3517; UTF16 146726] [ f(q)=f(p). ]
+[1-10:P3518; UTF16 146741] Therefore
+[1-10:P3519; UTF16 146751] [ q\equiv_{\mathcal T,\tau}p. ]
+[1-10:P3520; UTF16 146783] Transitivity
+[1-10:P3522; UTF16 146804] [ p\equiv_{\mathcal T,\tau}q ]
+[1-10:P3524; UTF16 146839] [ q\equiv_{\mathcal T,\tau}r. ]
+[1-10:P3525; UTF16 146871] For every test (f),
+[1-10:P3526; UTF16 146891] [ f(p)=f(q) ]
+[1-10:P3528; UTF16 146909] [ f(q)=f(r). ]
+[1-10:P3529; UTF16 146924] By transitivity of equality,
+[1-10:P3530; UTF16 146953] [ f(p)=f(r). ]
+[1-10:P3532; UTF16 146978] [ p\equiv_{\mathcal T,\tau}r. ]
+[1-10:P3533; UTF16 147010] Thus (\equiv_{\mathcal T,\tau}) is an equivalence relation. ∎
+[1-10:P3537; UTF16 147075] 14. Lemmas About Context Composition
+[1-10:P3538; UTF16 147112] 14.1 Context substitution composition
+[1-10:P3539; UTF16 147150] DEF-F47 — Context composition
+[1-10:P3541; UTF16 147184] [ D[-]: \tau\Longrightarrow\sigma ]
+[1-10:P3543; UTF16 147224] [ C[-]: \sigma\Longrightarrow\rho, ]
+[1-10:P3545; UTF16 147268] C[D[-]]. ]
+[1-10:P3549; UTF16 147282] 14.2 Context plugging associativity
+[1-10:P3550; UTF16 147318] LEM-F5 — Plugging-composition lemma
+[1-10:P3551; UTF16 147354] For every compatible (p,C,D),
+[1-10:P3552; UTF16 147384] [ (C\diamond D)[p] \cong C[D[p]]. ]
+[1-10:P3554; UTF16 147426] By DEF-F47, (C\diamond D) is formed by replacing the unique hole in (C) by the context (D), while retaining the unique hole of (D).
+[1-10:P3555; UTF16 147558] Plugging (p) into the resulting context replaces that remaining hole by (p). This produces the same abstract syntax tree as first forming (D[p]) and then plugging that program into (C), except possibly for internal identifier names.
+[1-10:P3556; UTF16 147791] Capture-avoiding substitution and canonical renaming identify the two results up to interface-preserving isomorphism. ∎
+[1-10:P3560; UTF16 147914] 14.3 Context typing under composition
+[1-10:P3561; UTF16 147952] LEM-F6 — Context-composition typing
+[1-10:P3563; UTF16 147991] [ \Gamma\vdash D[-]: \tau\Longrightarrow\sigma ]
+[1-10:P3565; UTF16 148044] [ \Gamma\vdash C[-]: \sigma\Longrightarrow\rho, ]
+[1-10:P3567; UTF16 148099] [ \Gamma\vdash C\diamond D: \tau\Longrightarrow\rho. ]
+[1-10:P3569; UTF16 148160] Let (p) be an arbitrary program satisfying
+[1-10:P3571; UTF16 148228] By LEM-F4 applied to (D),
+[1-10:P3572; UTF16 148254] [ \Gamma\vdash D[p]:\sigma. ]
+[1-10:P3573; UTF16 148284] Applying LEM-F4 to (C) gives
+[1-10:P3574; UTF16 148313] [ \Gamma\vdash C[D[p]]:\rho. ]
+[1-10:P3575; UTF16 148344] By LEM-F5,
+[1-10:P3576; UTF16 148355] [ C[D[p]] \cong (C\diamond D)[p]. ]
+[1-10:P3577; UTF16 148391] Typing is invariant under canonical renaming, so
+[1-10:P3578; UTF16 148440] [ \Gamma\vdash(C\diamond D)[p]:\rho. ]
+[1-10:P3579; UTF16 148479] Since (p) was arbitrary, the composed context has type
+[1-10:P3580; UTF16 148534] [ \tau\Longrightarrow\rho. ]
+[1-10:P3581; UTF16 148563] ∎
+[1-10:P3585; UTF16 148568] 14.4 Admissible-context closure
+[1-10:P3586; UTF16 148600] LEM-F7 — Admissible context closure
+[1-10:P3587; UTF16 148636] If (C) and (D) are composable morphisms in (\mathbf C_{\mathcal T}), then
+[1-10:P3588; UTF16 148710] [ C\diamond D \in \mathbf C_{\mathcal T}. ]
+[1-10:P3590; UTF16 148760] This is the composition-closure requirement in DEF-F27. Because (\mathbf C_{\mathcal T}) is a category, the composite of two composable morphisms is a morphism of the same category. ∎
+[1-10:P3594; UTF16 148947] 14.5 Test pullback
+[1-10:P3595; UTF16 148966] LEM-F8 — Pullback of a test through an outer context
+[1-10:P3597; UTF16 149023] [ D:\tau\Longrightarrow\sigma ]
+[1-10:P3598; UTF16 149055] be admissible.
+[1-10:P3599; UTF16 149070] For every test
+[1-10:P3600; UTF16 149085] [ f\in\mathfrak F^\sigma_{\mathcal T}, ]
+[1-10:P3601; UTF16 149126] there exists a test
+[1-10:P3602; UTF16 149146] [ f_D\in\mathfrak F^\tau_{\mathcal T} ]
+[1-10:P3603; UTF16 149186] such that, for every (p:\tau),
+[1-10:P3604; UTF16 149217] [ f(D[p])=f_D(p). ]
+[1-10:P3606; UTF16 149243] Every test (f\in\mathfrak F^\sigma_{\mathcal T}) contains an admitted closing context
+[1-10:P3607; UTF16 149329] [ C:\sigma\Longrightarrow\rho. ]
+[1-10:P3608; UTF16 149362] Replace that context by
+[1-10:P3609; UTF16 149386] [ C\diamond D: \tau\Longrightarrow\rho. ]
+[1-10:P3610; UTF16 149428] By LEM-F7, the composite is admitted.
+[1-10:P3611; UTF16 149466] For a mandatory test,
+[1-10:P3612; UTF16 149488] [ \begin{aligned} f(D[p]) &= \widehat\mu \left( \mathsf{Prof}{C,m,\xi}(D[p]) \right)\ &= \widehat\mu \left( \mathsf{Prof}{C\diamond D,m,\xi}(p) \right), \end{aligned} ]
+[1-10:P3613; UTF16 149657] using LEM-F5 and isomorphism invariance.
+[1-10:P3614; UTF16 149698] The right side is the mandatory test associated with (C\diamond D).
+[1-10:P3615; UTF16 149766] For a decision test, the same replacement of (C) by (C\diamond D) leaves (m,\xi,d,B,v) unchanged and gives the required test (f_D).
+[1-10:P3616; UTF16 149898] Thus every test after (D) is the pullback of an admitted test on the original hole type. ∎
+[1-10:P3620; UTF16 149992] 15. Theorem F1 — Context Congruence
+[1-10:P3621; UTF16 150028] THM-F1 — Context congruence
+[1-10:P3623; UTF16 150060] [ p,q:\tau ]
+[1-10:P3624; UTF16 150073] and suppose
+[1-10:P3626; UTF16 150117] For every admissible outer context
+[1-10:P3627; UTF16 150152] [ D:\tau\Longrightarrow\sigma, ]
+[1-10:P3628; UTF16 150185] we have
+[1-10:P3629; UTF16 150193] [ D[p] \equiv_{\mathcal T,\sigma} D[q]. ]
+[1-10:P3631; UTF16 150241] To prove
+[1-10:P3632; UTF16 150250] [ D[p] \equiv_{\mathcal T,\sigma} D[q], ]
+[1-10:P3633; UTF16 150292] DEF-F46 requires showing equality under every test
+[1-10:P3634; UTF16 150343] [ f\in\mathfrak F^\sigma_{\mathcal T}. ]
+[1-10:P3635; UTF16 150384] Fix an arbitrary such (f).
+[1-10:P3636; UTF16 150411] By LEM-F8, there exists
+[1-10:P3638; UTF16 150475] such that
+[1-10:P3639; UTF16 150485] [ f(D[r])=f_D(r) ]
+[1-10:P3640; UTF16 150504] for every (r:\tau).
+[1-10:P3641; UTF16 150524] Since
+[1-10:P3642; UTF16 150530] [ p\equiv_{\mathcal T,\tau}q, ]
+[1-10:P3643; UTF16 150562] DEF-F46 gives
+[1-10:P3644; UTF16 150576] [ f_D(p)=f_D(q). ]
+[1-10:P3645; UTF16 150595] Using the pullback identities,
+[1-10:P3646; UTF16 150626] f_D(p)
+[1-10:P3647; UTF16 150633] f_D(q)
+[1-10:P3648; UTF16 150640] f(D[q]). ]
+[1-10:P3649; UTF16 150651] The test (f) was arbitrary. Therefore all mandatory and decision tests agree, so
+[1-10:P3652; UTF16 150776] Significance
+[1-10:P3653; UTF16 150789] THM-F1 is the exact substitution theorem needed by ANANKE-F.
+[1-10:P3654; UTF16 150850] It establishes that an equivalent subsystem can be replaced inside any admitted larger engineering system without altering any admitted mandatory observation or choice result.
+[1-10:P3655; UTF16 151026] The theorem depends critically on:
+[1-10:P3656; UTF16 151061] context closure under composition;
+[1-10:P3657; UTF16 151096] observation isomorphism invariance;
+[1-10:P3658; UTF16 151132] extensional semantic contexts;
+[1-10:P3659; UTF16 151163] the universal quantification in DEF-F46.
+[1-10:P3663; UTF16 151207] 16. Quotient Construction
+[1-10:P3664; UTF16 151233] 16.1 Type-indexed quotient
+[1-10:P3665; UTF16 151260] DEF-F48 — Contextual quotient
+[1-10:P3666; UTF16 151290] For every program type (\tau), define
+[1-10:P3667; UTF16 151328] \mathsf{Prog}\tau / {\equiv{\mathcal T,\tau}}. ]
+[1-10:P3668; UTF16 151377] The equivalence class of (p) is
+[1-10:P3669; UTF16 151409] { q\in\mathsf{Prog}\tau: q\equiv{\mathcal T,\tau}p }. ]
+[1-10:P3670; UTF16 151465] Meaning
+[1-10:P3671; UTF16 151473] An equivalence class contains every source program interchangeable with (p) under the fixed test theory (\mathcal T).
+[1-10:P3672; UTF16 151591] Members may differ in:
+[1-10:P3673; UTF16 151614] internal topology;
+[1-10:P3674; UTF16 151633] product selection;
+[1-10:P3675; UTF16 151652] hidden geometry;
+[1-10:P3676; UTF16 151669] construction details;
+[1-10:P3677; UTF16 151691] source syntax;
+[1-10:P3678; UTF16 151706] number of internal realizations.
+[1-10:P3679; UTF16 151739] They may not differ in any manner detectable by the mandatory or decision tests in (\mathcal T).
+[1-10:P3680; UTF16 151836] The quotient is relative, not absolute.
+[1-10:P3681; UTF16 151876] If (\mathcal T') admits more contexts or tests than (\mathcal T), then generally
+[1-10:P3682; UTF16 151957] [ \equiv_{\mathcal T'} \subseteq \equiv_{\mathcal T}, ]
+[1-10:P3683; UTF16 152013] so (\mathcal Q_{\mathcal T'}) may refine (\mathcal Q_{\mathcal T}).
+[1-10:P3687; UTF16 152084] 16.2 Quotient composition
+[1-10:P3689; UTF16 152114] [ [p]{\mathcal T} \in \mathcal Q{\mathcal T,\alpha\rightsquigarrow\beta} ]
+[1-10:P3691; UTF16 152193] [ [q]{\mathcal T} \in \mathcal Q{\mathcal T,\beta\rightsquigarrow\gamma}, ]
+[1-10:P3692; UTF16 152269] propose
+[1-10:P3693; UTF16 152277] [q\circ p]_{\mathcal T}. ]
+[1-10:P3694; UTF16 152304] This is meaningful only if the result does not depend on the representatives (p) and (q).
+[1-10:P3698; UTF16 152397] 17. Theorem F2 — Quotient Composition Well-Definedness
+[1-10:P3699; UTF16 152452] THM-F2 — Quotient composition is well defined
+[1-10:P3701; UTF16 152506] [ p\equiv_{\mathcal T}p' ]
+[1-10:P3703; UTF16 152537] [ q\equiv_{\mathcal T}q', ]
+[1-10:P3704; UTF16 152565] with program types
+[1-10:P3705; UTF16 152584] [ p,p': \alpha\rightsquigarrow\beta, ]
+[1-10:P3706; UTF16 152623] [ q,q': \beta\rightsquigarrow\gamma. ]
+[1-10:P3708; UTF16 152667] [ q\circ p \equiv_{\mathcal T} q'\circ p'. ]
+[1-10:P3709; UTF16 152712] Consequently,
+[1-10:P3710; UTF16 152726] [q\circ p]_{\mathcal T} ]
+[1-10:P3711; UTF16 152752] is independent of the chosen representatives.
+[1-10:P3713; UTF16 152804] Define the admissible context
+[1-10:P3714; UTF16 152834] q\circ[-]. ]
+[1-10:P3715; UTF16 152847] Its hole type is
+[1-10:P3716; UTF16 152864] [ \alpha\rightsquigarrow\beta, ]
+[1-10:P3717; UTF16 152897] and its output type is
+[1-10:P3718; UTF16 152920] [ \alpha\rightsquigarrow\gamma. ]
+[1-10:P3720; UTF16 152960] [ p\equiv_{\mathcal T}p', ]
+[1-10:P3721; UTF16 152988] THM-F1 gives
+[1-10:P3722; UTF16 153001] [ q\circ p \equiv_{\mathcal T} q\circ p'. \tag{1} ]
+[1-10:P3723; UTF16 153053] Now define the admissible context
+[1-10:P3724; UTF16 153087] [-]\circ p'. ]
+[1-10:P3726; UTF16 153119] [ \beta\rightsquigarrow\gamma, ]
+[1-10:P3732; UTF16 153256] [ q\circ p' \equiv_{\mathcal T} q'\circ p'. \tag{2} ]
+[1-10:P3733; UTF16 153310] By transitivity of contextual equivalence, established in PRO-F3, equations (1) and (2) imply
+[1-10:P3735; UTF16 153449] Therefore the quotient class of the composition depends only on the quotient classes of the operands. ∎
+[1-10:P3736; UTF16 153553] Consequence
+[1-10:P3737; UTF16 153565] The quotient types and quotient composition form a category up to the inherited canonical isomorphisms:
+[1-10:P3738; UTF16 153669] objects: interfaces;
+[1-10:P3739; UTF16 153690] morphisms: contextual-equivalence classes;
+[1-10:P3740; UTF16 153733] identity: ([\mathbf 1_\alpha]_{\mathcal T});
+[1-10:P3741; UTF16 153778] composition: ([q]\circ[p]=[q\circ p]).
+[1-10:P3742; UTF16 153817] This is the exact algebra in which ANANKE-F may compute directly over compressed semantic states.
+[1-10:P3746; UTF16 153918] 18. Theorem F3 — Coarsest Decision-Preserving Partition
+[1-10:P3747; UTF16 153974] 18.1 Decision-sufficient representations
+[1-10:P3748; UTF16 154015] DEF-F49 — Test-factorizing representation
+[1-10:P3750; UTF16 154061] [ \phi: \mathsf{Prog}_\tau \to Z ]
+[1-10:P3751; UTF16 154096] be any representation map.
+[1-10:P3752; UTF16 154123] It is (\mathcal T)-decision sufficient when, for every test
+[1-10:P3753; UTF16 154183] [ f\in\mathfrak F^\tau_{\mathcal T}, ]
+[1-10:P3754; UTF16 154222] there exists a decoder
+[1-10:P3755; UTF16 154245] [ \bar f: Z\to\mathsf{Cod}(f) ]
+[1-10:P3757; UTF16 154287] \bar f\circ\phi. ]
+[1-10:P3758; UTF16 154306] Operationally, every admitted mandatory observation and menu-choice result must be recoverable from (\phi(p)) alone.
+[1-10:P3759; UTF16 154423] This definition does not require reconstruction of the source program or the full realization set.
+[1-10:P3763; UTF16 154525] 18.2 Coarsest-partition theorem
+[1-10:P3764; UTF16 154557] THM-F3 — Coarsest decision-preserving partition
+[1-10:P3766; UTF16 154609] [ \eta: \mathsf{Prog}\tau \to \mathcal Q{\mathcal T,\tau} ]
+[1-10:P3767; UTF16 154669] be the quotient map
+[1-10:P3768; UTF16 154689] [ \eta(p)=[p]_{\mathcal T}. ]
+[1-10:P3769; UTF16 154719] Then:
+[1-10:P3770; UTF16 154725] (\eta) is (\mathcal T)-decision sufficient.
+[1-10:P3771; UTF16 154769] For every (\mathcal T)-decision-sufficient representation [ \phi: \mathsf{Prog}_\tau\to Z, ] equality under (\phi) implies contextual equivalence: [ \phi(p)=\phi(q) \implies p\equiv_{\mathcal T}q. ]
+[1-10:P3772; UTF16 154968] Equivalently, [ \ker(\phi) \subseteq \equiv_{\mathcal T}. ]
+[1-10:P3773; UTF16 155028] There exists a unique function on the image of (\phi), [ h: \mathsf{im}(\phi) \to \mathcal Q_{\mathcal T,\tau}, ] satisfying h\circ\phi. ]

@@ -1,0 +1,352 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P16675; UTF16 615610] Two dynamic subsystems are equivalent for horizon T exactly when every admitted initial state and input history produces the same complete output/report relation.
+[1-10:P16676; UTF16 615773] This is Prompt-2 contextual equivalence applied to the finite unrolling of the transition system.
+[1-10:P16678; UTF16 615877] Unroll each subsystem into a finite acyclic ANANKE term containing T transition copies.
+[1-10:P16679; UTF16 615965] Input histories are exterior contexts.
+[1-10:P16680; UTF16 616004] Equality of all unrolled experiment outcomes is exactly Prompt-2 contextual equivalence. ∎
+[1-10:P16681; UTF16 616095] Infinite-horizon equivalence requires additional stability, observability, or automata-theoretic assumptions.
+[1-10:P16685; UTF16 616208] 37. Control-Loop Composition
+[1-10:P16686; UTF16 616237] Let plant and controller satisfy
+[1-10:P16688; UTF16 616271] y=P(u),
+[1-10:P16690; UTF16 616280] u=C(r-y).
+[1-10:P16691; UTF16 616290] Let approximate operators have uniform defects
+[1-10:P16692; UTF16 616337] \[ \|P(z)-\widehat P(z)\| \le \varepsilon_P, \]\[ \|C(z)-\widehat C(z)\| \le \varepsilon_C. \]
+[1-10:P16693; UTF16 616432] Assume Lipschitz constants LP,LC.
+[1-10:P16697; UTF16 616469] THM-PO22 — Closed-Loop Port Error Under a Small-Gain Condition
+[1-10:P16700; UTF16 616536] LPLC<1,
+[1-10:P16701; UTF16 616544] then corresponding exact and approximate closed-loop outputs satisfy
+[1-10:P16702; UTF16 616613] \[ \boxed{ \|y-\widehat y\| \le \frac{ \varepsilon_P+L_P\varepsilon_C }{ 1-L_PL_C }. } \]
+[1-10:P16703; UTF16 616703] Similarly,
+[1-10:P16704; UTF16 616714] \[ \|u-\widehat u\| \le \frac{ \varepsilon_C+L_C\varepsilon_P }{ 1-L_PL_C }. \]
+[1-10:P16707; UTF16 616804] \[ d_y=\|y-\widehat y\|, \qquad d_u=\|u-\widehat u\|. \]
+[1-10:P16709; UTF16 616866] \[ d_y \le L_Pd_u+\varepsilon_P, \]
+[1-10:P16711; UTF16 616906] \[ d_u \le L_Cd_y+\varepsilon_C. \]
+[1-10:P16712; UTF16 616942] Substitute the second into the first:
+[1-10:P16713; UTF16 616980] \[ d_y \le L_PL_Cd_y + L_P\varepsilon_C + \varepsilon_P. \]
+[1-10:P16714; UTF16 617040] Rearrange using 1-LPLC>0.
+[1-10:P16715; UTF16 617066] The u-bound is symmetric. ∎
+[1-10:P16716; UTF16 617094] If the small-gain condition fails, this theorem gives no finite guarantee. It does not prove the closed loop is unstable, only that this sufficient certificate is unavailable.
+[1-10:P16720; UTF16 617273] 38. Structural Component Mode Synthesis
+[1-10:P16721; UTF16 617313] Consider second-order dynamics
+[1-10:P16723; UTF16 617345] Mu+Ku=f.
+[1-10:P16724; UTF16 617354] Partition:
+[1-10:P16725; UTF16 617365] \[ u= \begin{bmatrix} u_b\\u_i \end{bmatrix}. \]
+[1-10:P16727; UTF16 617440] Constraint modes are
+[1-10:P16729; UTF16 617462] c=-Kii-1Kib.
+[1-10:P16730; UTF16 617475] Fixed-interface modes satisfy
+[1-10:P16732; UTF16 617506] Kiij=j2Miij,ub=0.
+[1-10:P16733; UTF16 617524] Choose r modes:
+[1-10:P16735; UTF16 617541] r=[1,,r].
+[1-10:P16736; UTF16 617551] The transformation is
+[1-10:P16738; UTF16 617574] uTrq,
+[1-10:P16740; UTF16 617585] \[ T_r = \begin{bmatrix} I&0\\ \Psi_c&\Phi_r \end{bmatrix}, \qquad q= \begin{bmatrix} u_b\\\eta \end{bmatrix}. \]
+[1-10:P16741; UTF16 617699] Reduced matrices are
+[1-10:P16743; UTF16 617721] Mr=TrMTr,Kr=TrKTr.
+[1-10:P16747; UTF16 617743] THM-PO35 — Component Mode Synthesis Exactness and Certification
+[1-10:P16748; UTF16 617807] If r contains a basis of the full internal space, Tr is invertible and the transformed model is exact.
+[1-10:P16749; UTF16 617910] With truncated r, at frequency , let  
+[1-10:P16750; UTF16 617949] A()=K-2M.
+[1-10:P16751; UTF16 617959] If A() has certified lower bound \[ \|A(\omega)v\| \ge \beta(\omega)\|v\|, \] then reduced response ur satisfies \[ \|u-\widehat u_r\| \le \frac{ \|f-A(\omega)\widehat u_r\| }{ \beta(\omega) }. \]
+[1-10:P16753; UTF16 618162] With a complete fixed-interface basis, the lower-right block r is invertible. Hence block-triangular Tr is invertible, making the coordinate transformation exact.
+[1-10:P16754; UTF16 618325] The truncated error bound is the inf-sup residual argument of THM-PO14. ∎
+[1-10:P16755; UTF16 618399] Near resonance, () may become small, exposing a global-mode or conditioning problem.
+[1-10:P16759; UTF16 618487] 39. Thermal Room Operator
+[1-10:P16762; UTF16 618523] CT=UeAe(Tout-T)+UaAa(Tadj-T)+mcp(Ts-T)+Qsolar+Qocc.
+[1-10:P16765; UTF16 618583] D=UeAe+UaAa+mcp.
+[1-10:P16768; UTF16 618606] T=-DCT+1CUeAeTout+UaAaTadj+mcpTs+Qsolar+Qocc.
+[1-10:P16769; UTF16 618652] The port inputs are:
+[1-10:P16770; UTF16 618673] outside temperature;
+[1-10:P16771; UTF16 618694] adjacent-zone temperature;
+[1-10:P16772; UTF16 618721] supply-air temperature and mass flow;
+[1-10:P16773; UTF16 618759] solar gain;
+[1-10:P16774; UTF16 618771] occupancy gain.
+[1-10:P16775; UTF16 618787] Outputs include:
+[1-10:P16776; UTF16 618804] zone temperature;
+[1-10:P16777; UTF16 618822] heat flows;
+[1-10:P16778; UTF16 618834] HVAC demand;
+[1-10:P16779; UTF16 618847] comfort status.
+[1-10:P16780; UTF16 618863] For constant inputs,
+[1-10:P16782; UTF16 618885] Tss=UeAeTout+UaAaTadj+mcpTs+Qsolar+QoccD.
+[1-10:P16786; UTF16 618930] 39.1 Synthetic standard-room calculation
+[1-10:P16789; UTF16 618977] UeAe=0.5kW/K,
+[1-10:P16791; UTF16 618992] UaAa=0.2kW/K,
+[1-10:P16793; UTF16 619007] mcp=1.0kW/K,
+[1-10:P16794; UTF16 619020] \[ T_{\mathrm{out}}=35^\circ\mathrm C, \]\[ T_{\mathrm{adj}}=24^\circ\mathrm C, \]\[ T_s=14^\circ\mathrm C, \]
+[1-10:P16795; UTF16 619131] Qsolar+Qocc[1,3]kW.
+[1-10:P16798; UTF16 619157] D=1.7kW/K
+[1-10:P16800; UTF16 619171] \[ T_{\mathrm{ss}} \in \left[ \frac{37.3}{1.7}, \frac{39.3}{1.7} \right] = [21.94,23.12]^\circ\mathrm C. \]
+[1-10:P16801; UTF16 619279] For a comfort band [20,24], the decision is stable.
+[1-10:P16805; UTF16 619334] 39.2 Corner exception
+[1-10:P16806; UTF16 619356] Let corner exposure increase to
+[1-10:P16808; UTF16 619389] UeAe=0.8kW/K.
+[1-10:P16811; UTF16 619409] D=2.0kW/K
+[1-10:P16813; UTF16 619423] \[ T_{\mathrm{ss}} \in [23.9,24.9]^\circ\mathrm C. \]
+[1-10:P16814; UTF16 619477] The enclosure crosses the comfort threshold.
+[1-10:P16815; UTF16 619522] The standard-room operator cannot silently certify the corner room. A corner-parameter operator, enrichment, or full solve is required.
+[1-10:P16819; UTF16 619661] 40. Hydraulic Operator
+[1-10:P16820; UTF16 619684] Consider boundary pressures p1,p2 and internal node p3.
+[1-10:P16821; UTF16 619740] Linear resistances:
+[1-10:P16823; UTF16 619761] R1=2,R2=3.
+[1-10:P16824; UTF16 619772] Flow equality gives
+[1-10:P16826; UTF16 619793] q=p1-p3R1=p3-p2R2.
+[1-10:P16827; UTF16 619812] Solving,
+[1-10:P16829; UTF16 619822] p3=3p1+2p25,
+[1-10:P16831; UTF16 619839] \[ \boxed{ q=\frac{p_1-p_2}{5}. } \]
+[1-10:P16832; UTF16 619876] The internal pressure is eliminated and the effective resistance is 5.
+[1-10:P16836; UTF16 619950] 40.1 Nonlinear loss
+[1-10:P16839; UTF16 619975] pj=Kjq|q|.
+[1-10:P16840; UTF16 619986] For two series elements:
+[1-10:P16842; UTF16 620012] p=(K1+K2)q|q|.
+[1-10:P16844; UTF16 620032] \[ q = \operatorname{sgn}(\Delta p) \sqrt{ \frac{|\Delta p|}{K_1+K_2} }. \]
+[1-10:P16845; UTF16 620108] This is monotone and single valued, but its derivative is unbounded at p=0.
+[1-10:P16848; UTF16 620189] K1+K2=5,p[20,45],
+[1-10:P16849; UTF16 620207] monotonicity gives
+[1-10:P16851; UTF16 620227] q[2,3].
+[1-10:P16852; UTF16 620235] No interior sampling is required.
+[1-10:P16853; UTF16 620269] Adding a check valve introduces an exact flow-direction regime. That regime may not be smoothed away.
+[1-10:P16857; UTF16 620374] 41. Electrical Operator
+[1-10:P16858; UTF16 620398] A resistive electrical network has nodal relation
+[1-10:P16860; UTF16 620449] i=Lv.
+[1-10:P16861; UTF16 620455] Kron reduction gives the exact terminal admittance matrix.
+[1-10:P16862; UTF16 620514] For two series resistors R1,R2,
+[1-10:P16864; UTF16 620547] I=V1-V2R1+R2.
+[1-10:P16865; UTF16 620561] An exact protection regime may be:
+[1-10:P16866; UTF16 620596] \[ q_{\mathrm{breaker}} = \begin{cases} \mathsf{closed},&|I|\le I_{\mathrm{trip}},\\ \mathsf{tripped},&|I|>I_{\mathrm{trip}}. \end{cases} \]
+[1-10:P16867; UTF16 620737] An enclosure crossing Itrip is unresolved.
+[1-10:P16868; UTF16 620780] AC phasor, fault-current, and relay dynamics require complex-valued and dynamic port spaces, but use the same relational architecture.
+[1-10:P16872; UTF16 620918] 42. Acoustic Port Example
+[1-10:P16873; UTF16 620944] For a homogeneous acoustic layer at angular frequency , one common transfer relation is
+[1-10:P16874; UTF16 621032] \[ \begin{bmatrix} p_L\\v_L \end{bmatrix} = T(\omega) \begin{bmatrix} p_R\\v_R \end{bmatrix}, \]
+[1-10:P16876; UTF16 621134] \[ T(\omega) = \begin{bmatrix} \cos(kd)&iZ\sin(kd)\\ iZ^{-1}\sin(kd)&\cos(kd) \end{bmatrix}. \]
+[1-10:P16877; UTF16 621230] Layer composition is exact matrix multiplication:
+[1-10:P16879; UTF16 621281] Tstack=T1T2Tm.
+[1-10:P16880; UTF16 621296] A broadband acoustic PCPE must preserve correlation across frequencies when decisions use:
+[1-10:P16881; UTF16 621387] weighted sound transmission;
+[1-10:P16882; UTF16 621416] tonal peaks;
+[1-10:P16883; UTF16 621429] resonance;
+[1-10:P16884; UTF16 621440] spectral comfort criteria.
+[1-10:P16885; UTF16 621467] Independent frequency intervals can become excessively broad or misleading if phase correlation matters.
+[1-10:P16889; UTF16 621575] 43. Construction and Maintenance Ports
+[1-10:P16890; UTF16 621614] A construction subsystem may be a finite relation
+[1-10:P16892; UTF16 621665] RconstructBpredBresourceBworkspaceBtemporarySupportBcompletion.
+[1-10:P16893; UTF16 621729] A maintenance subsystem may expose:
+[1-10:P16895; UTF16 621766] RmaintBshutdownBaccessBreplacementPathBoutageHE.
+[1-10:P16896; UTF16 621815] Composition is:
+[1-10:P16897; UTF16 621831] synchronous product;
+[1-10:P16898; UTF16 621852] resource compatibility;
+[1-10:P16899; UTF16 621876] precedence conjunction;
+[1-10:P16900; UTF16 621900] existential hiding of internal events.
+[1-10:P16901; UTF16 621939] Thus port algebra is not limited to PDEs or physical flux.
+[1-10:P16905; UTF16 622001] 44. Unified Relational Port Semantics
+[1-10:P16906; UTF16 622039] The common semantic form is
+[1-10:P16907; UTF16 622067] \[ \boxed{ R_S \subseteq B_{\mathrm{in}} \times B_{\mathrm{out}} \times \Theta \times \Xi \times H \times Y \times E. } \]
+[1-10:P16908; UTF16 622190] Specialized compilers may internally use:
+[1-10:P16909; UTF16 622232] FEM;
+[1-10:P16910; UTF16 622237] CFD;
+[1-10:P16911; UTF16 622242] ODEs;
+[1-10:P16912; UTF16 622248] graph algorithms;
+[1-10:P16913; UTF16 622266] automata;
+[1-10:P16915; UTF16 622281] discrete-event simulation.
+[1-10:P16916; UTF16 622308] The external composition layer operates on typed relations, mandatory semantics, error, and evidence.
+[1-10:P16917; UTF16 622410] This is the unifying abstraction.
+[1-10:P16921; UTF16 622447] 45. Operator DAGs
+[1-10:P16922; UTF16 622465] DEF-PO18A — Whole-Building Operator Graph
+[1-10:P16923; UTF16 622507] An operator graph is
+[1-10:P16924; UTF16 622528] \[ \mathcal G_{\mathrm{op}} = (V_{\mathrm{op}},E_{\mathrm{op}},\tau,\widehat{\mathcal P}), \]
+[1-10:P16926; UTF16 622629] nodes are open subsystems;
+[1-10:P16927; UTF16 622656] edges identify typed ports;
+[1-10:P16928; UTF16 622684]  assigns port types;
+[1-10:P16929; UTF16 622705] \(\widehat{\mathcal P}_v\) assigns a PCPE or full-order relation to each node.
+[1-10:P16930; UTF16 622784] The exact whole-building relation is
+[1-10:P16931; UTF16 622821] \[ \mathcal P_G = \mathsf{hide}_{\mathrm{internal}} \left( \bigwedge_{v\in V_{\mathrm{op}}} \mathcal P_v \land \bigwedge_{e\in E_{\mathrm{op}}} W_e \right). \]
+[1-10:P16932; UTF16 622981] The approximate graph relation replaces \(\mathcal P_v\) with \(\widehat{\mathcal P}_v\).
+[1-10:P16936; UTF16 623074] 46. Operator Elimination Width
+[1-10:P16937; UTF16 623105] Eliminating node v composes all incident relations and hides v’s internal variables.
+[1-10:P16938; UTF16 623190] This can create a new relation over all neighboring ports.
+[1-10:P16939; UTF16 623249] DEF-PO19 — Physical Operator Elimination Dimension
+[1-10:P16940; UTF16 623300] For elimination order , define
+[1-10:P16941; UTF16 623331] \[ D_{\mathrm{op}}(\pi) = \max_t \sum_{p\in\partial R_t} \dim_{\mathrm{num}}\mathcal B_p, \]
+[1-10:P16942; UTF16 623424] where Rt is the active quantitative boundary after elimination step t.
+[1-10:P16945; UTF16 623503] Dop=Dop().
+[1-10:P16946; UTF16 623514] This measures active numerical interface dimension.
+[1-10:P16947; UTF16 623566] It is not measured in semantic bits and is not Prompt-3 decision width.
+[1-10:P16948; UTF16 623638] A separate exact discrete regime profile must also be tracked.
+[1-10:P16952; UTF16 623704] 47. Decision Width Versus Physical Rank
+[1-10:P16953; UTF16 623744] Example A — High physical rank, low decision rank
+[1-10:P16954; UTF16 623794] Let the physical port response be
+[1-10:P16955; UTF16 623828] \[ u\in\mathbb R^{100}. \]
+[1-10:P16956; UTF16 623855] Suppose every admitted decision depends only on
+[1-10:P16958; UTF16 623904] J1(u)=i=140ui,
+[1-10:P16960; UTF16 623920] J2(u)=i=4180ui,
+[1-10:P16962; UTF16 623937] J3(u)=i=81100ui.
+[1-10:P16963; UTF16 623954] The full identity response has physical rank 100.
+[1-10:P16964; UTF16 624004] The exact decision statistic has dimension 3.
+[1-10:P16966; UTF16 624055] \[ r_{\mathrm{port}}^0=100, \qquad r_{\mathrm{dec}}^0\le3. \]
+[1-10:P16969; UTF16 624119] Example B — Low physical rank, high decision width
+[1-10:P16970; UTF16 624170] Let the physical interface contain only:
+[1-10:P16971; UTF16 624211] \[ (p,q)\in\mathbb R^2. \]
+[1-10:P16972; UTF16 624238] Let there be thirty-two exact product/evidence regimes with identical numerical p,q response but distinct admitted:
+[1-10:P16973; UTF16 624354] certification;
+[1-10:P16974; UTF16 624369] replacement;
+[1-10:P16975; UTF16 624382] failure;
+[1-10:P16976; UTF16 624391] code;
+[1-10:P16977; UTF16 624397] supplier
+[1-10:P16978; UTF16 624406] reports.
+[1-10:P16980; UTF16 624420] \[ r_{\mathrm{port}}^0\le2, \]
+[1-10:P16983; UTF16 624458] WD=232=5.
+[1-10:P16984; UTF16 624468] Physical rank and semantic width are independent complexity axes.
+[1-10:P16988; UTF16 624537] 48. Repeated Motif Reuse
+[1-10:P16989; UTF16 624562] Suppose instance i is related to base motif M by a certified parameter and orientation map
+[1-10:P16991; UTF16 624654] Ti.
+[1-10:P16992; UTF16 624658] The instance relation is
+[1-10:P16993; UTF16 624683] \[ \mathcal P_i = T_i^{-1} \circ \mathcal P_M \circ T_i. \]
+[1-10:P16994; UTF16 624743] If the query remains inside the transformed validity domain, one base PCPE can be reused.
+[1-10:P16998; UTF16 624836] THM-PO30 — Motif Plus Exception Reuse
+[1-10:P16999; UTF16 624874] Let Ibase be instances whose exact relation is represented by a common PCPE under certified transforms.
+[1-10:P17000; UTF16 624978] Let Iexc be exceptions with separate sound envelopes.
+[1-10:P17001; UTF16 625032] Then composing:
+[1-10:P17002; UTF16 625048] the shared base artifact for Ibase;
+[1-10:P17003; UTF16 625084] explicit exception artifacts for Iexc;
+[1-10:P17004; UTF16 625123] is sound for the entire repeated system.
+[1-10:P17006; UTF16 625170] Every base instance is enclosed by the transformed base PCPE.
+[1-10:P17007; UTF16 625232] Every exception is enclosed by its own PCPE.
+[1-10:P17008; UTF16 625277] Repeated application of THM-PO8 preserves global outer containment. ∎
+[1-10:P17009; UTF16 625347] The theorem shares valid computation. It does not force exceptional rooms into the base class.
+[1-10:P17013; UTF16 625445] 49. Low-Rank Updates
+[1-10:P17014; UTF16 625466] Let A be invertible and let
+[1-10:P17016; UTF16 625495] A'=A+UV.
+[1-10:P17019; UTF16 625512] I+VA-1U
+[1-10:P17020; UTF16 625520] is invertible.
+[1-10:P17021; UTF16 625535] THM-PO28 — Exact Low-Rank Inverse Update
+[1-10:P17022; UTF16 625576] \[ \boxed{ (A+UV^\top)^{-1} = A^{-1} - A^{-1}U \left( I+V^\top A^{-1}U \right)^{-1} V^\top A^{-1}. } \]
+[1-10:P17024; UTF16 625686] Multiply the proposed inverse by A+UV and simplify using
+[1-10:P17026; UTF16 625744] (I+VA-1U)-1(I+VA-1U)=I.
+[1-10:P17027; UTF16 625768] Both left and right products reduce to identity. ∎
+[1-10:P17028; UTF16 625819] If only Kii changes by UV, the updated Schur complement is
+[1-10:P17029; UTF16 625878] \[ \begin{aligned} K_{\mathrm{eff}}' ={}& K_{\mathrm{eff}} \\ &+ K_{bi}K_{ii}^{-1}U \left( I+V^\top K_{ii}^{-1}U \right)^{-1} V^\top K_{ii}^{-1}K_{ib}. \end{aligned} \]
+[1-10:P17030; UTF16 626047] This is exact under the stated rank-update assumptions.
+[1-10:P17031; UTF16 626103] Topology changes are generally not low-rank coordinate updates and belong to later rewrite mathematics.
+[1-10:P17035; UTF16 626210] 50. Cache Validity
+[1-10:P17036; UTF16 626229] DEF-PO20 — Port Artifact Fingerprint
+[1-10:P17037; UTF16 626266] A reusable port artifact records:
+[1-10:P17038; UTF16 626300] subsystem structural hash;
+[1-10:P17039; UTF16 626327] exact topology;
+[1-10:P17040; UTF16 626343] port signature;
+[1-10:P17041; UTF16 626359] orientation convention;
+[1-10:P17042; UTF16 626383] parameter domain;
+[1-10:P17043; UTF16 626401] uncertainty domain;
+[1-10:P17044; UTF16 626421] failure regimes;
+[1-10:P17045; UTF16 626438] model version;
+[1-10:P17047; UTF16 626471] reduced basis version;
+[1-10:P17048; UTF16 626494] validity domain;
+[1-10:P17050; UTF16 626531] error certificate;
+[1-10:P17051; UTF16 626550] model discrepancy version;
+[1-10:P17053; UTF16 626600] calibration version.
+[1-10:P17057; UTF16 626624] THM-PO23 — PCPE Cache Reuse Soundness
+[1-10:P17058; UTF16 626662] A cached PCPE may be reused for query q when:
+[1-10:P17059; UTF16 626708] structural and topology fingerprints match;
+[1-10:P17060; UTF16 626752] port types and units match;
+[1-10:P17061; UTF16 626780] q lies inside its certified validity domain;
+[1-10:P17062; UTF16 626825] the required exterior theory is covered;
+[1-10:P17063; UTF16 626866] the required tolerance is no tighter than the artifact certificate;
+[1-10:P17064; UTF16 626934] every evidence dependency is active;
+[1-10:P17065; UTF16 626971] discrepancy and calibration versions match.
+[1-10:P17066; UTF16 627015] Under these conditions, all original envelope and composition theorems remain valid.
+[1-10:P17068; UTF16 627106] The conditions establish that the new query is an instance of the exact domain quantified over by the original certificate.
+[1-10:P17069; UTF16 627230] Therefore the relation inclusion
+[1-10:P17070; UTF16 627263] \[ \mathcal P_S\subseteq\widehat{\mathcal P}_S \]
+[1-10:P17071; UTF16 627313] continues to hold, and all downstream soundness proofs apply unchanged. ∎
+[1-10:P17072; UTF16 627387] A mismatch yields one of:
+[1-10:P17073; UTF16 627413] invalid;
+[1-10:P17074; UTF16 627422] refinable;
+[1-10:P17075; UTF16 627433] reusable with a newly proved wider error;
+[1-10:P17076; UTF16 627475] provisional only.
+[1-10:P17080; UTF16 627496] 51. Theory Expansion
+[1-10:P17081; UTF16 627517] THM-PO24 — Port Theory Monotonicity
+[1-10:P17083; UTF16 627557] \[ \mathcal T_1\subseteq\mathcal T_2. \]
+[1-10:P17084; UTF16 627598] Then port contextual equivalence under \(\mathcal T_2\) refines equivalence under \(\mathcal T_1\):
+[1-10:P17085; UTF16 627698] \[ \equiv_{\mathrm{port}}^{\mathcal T_2} \subseteq \equiv_{\mathrm{port}}^{\mathcal T_1}. \]
+[1-10:P17086; UTF16 627791] Therefore a port statistic or operator state exact under \(\mathcal T_1\) may be too coarse for \(\mathcal T_2\).
+[1-10:P17088; UTF16 627911] Agreement under every experiment in the larger theory implies agreement under its subset.
+[1-10:P17089; UTF16 628001] The reverse need not hold. ∎
+[1-10:P17090; UTF16 628030] Adding:
+[1-10:P17091; UTF16 628038] failure operation;
+[1-10:P17092; UTF16 628057] maintenance;
+[1-10:P17093; UTF16 628070] fire;
+[1-10:P17094; UTF16 628076] control instability;
+[1-10:P17095; UTF16 628097] evidence requirements
+[1-10:P17096; UTF16 628119] may require extra port state, outputs, or regimes.
+[1-10:P17097; UTF16 628170] An old physical outer envelope may remain physically sound while ceasing to be decision complete.
+[1-10:P17101; UTF16 628271] 52. PCPE Artifact
+[1-10:P17102; UTF16 628289] A persistent PCPE artifact contains:
+[1-10:P17103; UTF16 628326] subsystem type;
+[1-10:P17104; UTF16 628342] topology fingerprint;
+[1-10:P17105; UTF16 628364] typed port signature;
+[1-10:P17106; UTF16 628386] exact discrete regime set;
+[1-10:P17107; UTF16 628413] reduced operator representation;
+[1-10:P17108; UTF16 628446] full-order governing-model identifier;
+[1-10:P17109; UTF16 628485] parameter and uncertainty domains;
+[1-10:P17110; UTF16 628520] joint multiport correlation representation;
+[1-10:P17111; UTF16 628564] mandatory semantics;
+[1-10:P17113; UTF16 628602] residual evaluator;
+[1-10:P17114; UTF16 628622] stability constants;
+[1-10:P17115; UTF16 628643] error estimator;
+[1-10:P17118; UTF16 628689] conservation certificates;
+[1-10:P17119; UTF16 628716] passivity or monotonicity certificates where present;
+[1-10:P17120; UTF16 628770] full-order enrichment samples;
+[1-10:P17121; UTF16 628801] basis and hyper-reduction data;
+[1-10:P17122; UTF16 628833] dependency hashes;
+[1-10:P17124; UTF16 628872] composition prerequisites;
+[1-10:P17125; UTF16 628899] locality-failure status.
+[1-10:P17129; UTF16 628927] 53. Independent Checker
+[1-10:P17130; UTF16 628951] ALG-PO7 — CheckPortEnvelope
+[1-10:P17132; UTF16 628985]     PCPE artifact
+[1-10:P17133; UTF16 629003]     trusted model and theory manifests
+[1-10:P17136; UTF16 629049]     port types and units
+[1-10:P17137; UTF16 629074]     orientation and wiring conventions
+[1-10:P17138; UTF16 629113]     topology and regime fingerprints
+[1-10:P17139; UTF16 629150]     parameter-domain coverage
+[1-10:P17140; UTF16 629180]     uncertainty and correlation semantics
+[1-10:P17142; UTF16 629241]     exact mandatory regime partition
+[1-10:P17143; UTF16 629278]     conservation identities
+[1-10:P17144; UTF16 629306]     reduced-basis dimensions
+[1-10:P17145; UTF16 629335]     residual computation
+[1-10:P17146; UTF16 629360]     stability/coercivity/inf-sup certificate
+[1-10:P17147; UTF16 629405]     outer-relation inclusion proof
+[1-10:P17148; UTF16 629440]     surrogate or hyper-reduction certificate
+[1-10:P17149; UTF16 629485]     discrepancy status
+[1-10:P17151; UTF16 629534]     theory fingerprint
+[1-10:P17152; UTF16 629557]     cache/version dependencies
+[1-10:P17155; UTF16 629596]     VALID
+[1-10:P17156; UTF16 629606]     INVALID
+[1-10:P17157; UTF16 629618]     or UNRESOLVED
+[1-10:P17158; UTF16 629636] The generator of a PCPE is not its certifier.
+[1-10:P17162; UTF16 629685] THM-PO32 — Composition Certificate Soundness
+[1-10:P17163; UTF16 629730] Suppose an independent checker validates:
+[1-10:P17164; UTF16 629772] constituent PCPE certificates;
+[1-10:P17165; UTF16 629803] shared-port type compatibility;
+[1-10:P17166; UTF16 629835] wiring and conservation;
+[1-10:P17167; UTF16 629860] correlated parameter identification;
+[1-10:P17168; UTF16 629897] validity-domain intersection;
+[1-10:P17169; UTF16 629927] exact mandatory-regime compatibility;
+[1-10:P17170; UTF16 629965] propagated error;
+[1-10:P17171; UTF16 629983] evidence dependency union;
+[1-10:P17172; UTF16 630010] existential hiding.
+[1-10:P17173; UTF16 630030] Then the reported composite PCPE is a sound outer envelope of the exact composed subsystem.
+[1-10:P17175; UTF16 630128] Constituent outer inclusion is valid.
+[1-10:P17176; UTF16 630166] THM-PO8 gives outer composition containment.
+[1-10:P17177; UTF16 630211] THM-PO19 establishes conservation.
+[1-10:P17178; UTF16 630246] THM-PO9 establishes propagated quantitative error.
+[1-10:P17179; UTF16 630297] Exact mandatory compatibility prevents false resolved regimes.
+[1-10:P17180; UTF16 630360] Existential hiding is exact by THM-PO5.
+[1-10:P17181; UTF16 630400] The remaining metadata follows from checked dependency and domain intersections. ∎
+[1-10:P17185; UTF16 630486] 54. Adaptive Escalation
+[1-10:P17186; UTF16 630510] A PCPE is usable only while:
+[1-10:P17187; UTF16 630539] the query lies in its validity domain;
+[1-10:P17188; UTF16 630578] the mandatory regime is resolved;
+[1-10:P17189; UTF16 630612] propagated error fits the decision budget;
+[1-10:P17190; UTF16 630655] evidence dependencies remain valid;
+[1-10:P17191; UTF16 630691] no global-mode alarm is active;
+[1-10:P17192; UTF16 630723] the theory fingerprint covers the query.
+[1-10:P17193; UTF16 630764] Escalation ladder:

@@ -1,0 +1,369 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P28401; UTF16 935109] commitment-frontier artifact;
+[11-20:P28402; UTF16 935139] latest commitment dates;
+[11-20:P28403; UTF16 935164] freeze/thaw ledger;
+[11-20:P28404; UTF16 935184] option portfolio;
+[11-20:P28406; UTF16 935227] theory-expansion triggers;
+[11-20:P28409; UTF16 935296] checker manifest and result.
+[11-20:P28413; UTF16 935328] 45. Commitment Dependency Graph
+[11-20:P28414; UTF16 935360] DEF-COM36 — Commitment Dependency Graph
+[11-20:P28416; UTF16 935419] project state;
+[11-20:P28417; UTF16 935434] physical interfaces;
+[11-20:P28418; UTF16 935455] economic state;
+[11-20:P28419; UTF16 935471] information sources;
+[11-20:P28420; UTF16 935492] decisions;
+[11-20:P28423; UTF16 935525] options;
+[11-20:P28424; UTF16 935534] enabling features;
+[11-20:P28428; UTF16 935591] value models;
+[11-20:P28429; UTF16 935605] viability kernels;
+[11-20:P28431; UTF16 935646] policy roots.
+[11-20:P28434; UTF16 935680] means changing (u) may change (v).
+[11-20:P28435; UTF16 935715] Cyclic dynamic models must be encapsulated as checked SCC or fixed-point nodes before topological incremental checking.
+[11-20:P28439; UTF16 935838] 46. Incremental Commitment Recertification
+[11-20:P28440; UTF16 935881] THM-COM34 — Dependency-Directed Commitment Recertification Equals Cold Checking
+[11-20:P28443; UTF16 936003] the commitment dependency graph is complete;
+[11-20:P28444; UTF16 936048] every descendant is invalidated;
+[11-20:P28445; UTF16 936081] reused artifacts remain version and applicability valid;
+[11-20:P28446; UTF16 936138] recomputed nodes use identical semantics to cold checking;
+[11-20:P28448; UTF16 936241] cyclic submodels are represented by checked policy or fixed-point nodes.
+[11-20:P28450; UTF16 936359] live option status;
+[11-20:P28451; UTF16 936379] reversibility profile;
+[11-20:P28454; UTF16 936452] viability;
+[11-20:P28455; UTF16 936463] policy validity;
+[11-20:P28458; UTF16 936527] robust strategy status.
+[11-20:P28460; UTF16 936557] Topologically order the checked acyclic dependency graph.
+[11-20:P28461; UTF16 936615] At source nodes, incremental and cold checking receive identical authoritative post-change inputs.
+[11-20:P28462; UTF16 936714] Assume all predecessor results agree at node (v).
+[11-20:P28463; UTF16 936764] If (v) is reused, its applicability and version certificate establishes equality with cold semantics.
+[11-20:P28464; UTF16 936866] If (v) is recomputed, both procedures apply the same deterministic local rule to identical predecessor values.
+[11-20:P28465; UTF16 936977] Thus (v) agrees.
+[11-20:P28466; UTF16 936994] Induction proves equality at every root. ∎
+[11-20:P28470; UTF16 937040] 47. Whole-Project Staged Commitment Theorem
+[11-20:P28471; UTF16 937084] THM-COM35 — Whole-Project Proof-Carrying Staged Commitment and Option Preservation
+[11-20:P28473; UTF16 937172] (n_t) be the current target-project decision node;
+[11-20:P28474; UTF16 937223] (\Theta_{\mathrm{COM}}) be the active commitment theory;
+[11-20:P28475; UTF16 937280] (\Pi^\star) be a candidate staged policy;
+[11-20:P28476; UTF16 937322] (\mathsf{PCCP}) be the candidate package.
+[11-20:P28478; UTF16 937372] 1. Current-state soundness
+[11-20:P28479; UTF16 937399] The current physical, operational, materialization, reliability, and economic state is correctly represented.
+[11-20:P28480; UTF16 937509] 2. Information correctness
+[11-20:P28481; UTF16 937536] Every action uses only information available at its decision time.
+[11-20:P28482; UTF16 937603] 3. Action validity
+[11-20:P28483; UTF16 937622] Every action belongs to the admitted future action theory.
+[11-20:P28484; UTF16 937681] 4. Commitment-trace integrity
+[11-20:P28485; UTF16 937711] Commitments, rights, obligations, expiration dates, and cancellation semantics are represented.
+[11-20:P28486; UTF16 937807] 5. Reversibility discipline
+[11-20:P28487; UTF16 937835] Every claimed reversal restores the complete required contextual state.
+[11-20:P28488; UTF16 937907] 6. Option validity
+[11-20:P28489; UTF16 937926] Every option labeled live possesses an applicable enabling witness or covered exercise policy.
+[11-20:P28490; UTF16 938021] 7. Materialization validity
+[11-20:P28491; UTF16 938049] Physical exercise passes Prompt-13 requirements.
+[11-20:P28492; UTF16 938098] 8. Economic execution validity
+[11-20:P28493; UTF16 938129] Procurement, schedule, resources, cash, inventory, and supply conditions pass Prompt-18 requirements.
+[11-20:P28494; UTF16 938231] 9. Reliability modality
+[11-20:P28495; UTF16 938255] Probabilistic exercise and recovery claims preserve Prompt-17 modality.
+[11-20:P28496; UTF16 938327] 10. Fleet modality
+[11-20:P28497; UTF16 938346] Cross-project information preserves Prompt-16 modality.
+[11-20:P28498; UTF16 938402] 11. Decision-theory validity
+[11-20:P28499; UTF16 938431] Every option-value, waiting-value, and information-value calculation uses a declared model.
+[11-20:P28500; UTF16 938523] 12. Robust-policy correctness
+[11-20:P28501; UTF16 938553] Every robust policy succeeds for every covered scenario.
+[11-20:P28502; UTF16 938610] 13. Nonanticipativity
+[11-20:P28503; UTF16 938632] Policies make identical decisions under identical information histories.
+[11-20:P28504; UTF16 938705] 14. Dynamic consistency
+[11-20:P28505; UTF16 938729] Bellman and recursive-risk calculations satisfy state sufficiency, rectangularity, and time-consistency assumptions.
+[11-20:P28506; UTF16 938846] 15. Commitment-frontier correctness
+[11-20:P28507; UTF16 938882] Latest safe dates, viability kernels, and frontier states are independently checked.
+[11-20:P28509; UTF16 938983] No commitment or enabling modification violates Prompt-12 authority.
+[11-20:P28510; UTF16 939052] 17. Theory expansion
+[11-20:P28511; UTF16 939073] Applicable new failure, supply, physical, economic, or causal mechanisms trigger recertification.
+[11-20:P28512; UTF16 939171] 18. UNKNOWN discipline
+[11-20:P28513; UTF16 939194] No unresolved commitment claim is promoted.
+[11-20:P28514; UTF16 939238] 19. Independent checking
+[11-20:P28515; UTF16 939263] CheckCommitmentPackage accepts the PCCP.
+[11-20:P28517; UTF16 939310] Continuation conclusion
+[11-20:P28518; UTF16 939334] Every accepted continuation policy satisfies:
+[11-20:P28519; UTF16 939380] [ \boxed{ \Pi^\star \in \gamma_{\mathrm{cont}}(n_t). } ]
+[11-20:P28520; UTF16 939437] Nonanticipativity conclusion
+[11-20:P28521; UTF16 939466] Every certified staged strategy is executable relative to the declared information process.
+[11-20:P28522; UTF16 939558] Option conclusion
+[11-20:P28523; UTF16 939576] Every option labeled live is exercisable under exactly its declared:
+[11-20:P28525; UTF16 939652] robust;
+[11-20:P28526; UTF16 939660] stochastic;
+[11-20:P28528; UTF16 939697] set-valued
+[11-20:P28529; UTF16 939708] modality.
+[11-20:P28530; UTF16 939718] Reversibility conclusion
+[11-20:P28531; UTF16 939743] Every action labeled contextually reversible has a checked recovery path to its declared contextual-equivalence class.
+[11-20:P28532; UTF16 939862] Information-value conclusion
+[11-20:P28533; UTF16 939891] Every EVPI and EVSI claim satisfies the exact stochastic decision model under which it was computed.
+[11-20:P28534; UTF16 939992] Waiting conclusion
+[11-20:P28535; UTF16 940011] Every value-of-waiting claim includes:
+[11-20:P28536; UTF16 940050] information gain;
+[11-20:P28538; UTF16 940080] lead-time loss;
+[11-20:P28540; UTF16 940111] price and schedule effects;
+[11-20:P28541; UTF16 940139] action-set changes.
+[11-20:P28542; UTF16 940159] Robust-commitment conclusion
+[11-20:P28543; UTF16 940188] If the current state lies in the certified robust viability kernel, the supplied policy preserves the declared terminal obligations for every covered scenario.
+[11-20:P28544; UTF16 940348] Frontier conclusion
+[11-20:P28545; UTF16 940368] If the current state lies on a certified commitment frontier, further waiting is not robustly admissible.
+[11-20:P28546; UTF16 940474] Commitment-closure conclusion
+[11-20:P28547; UTF16 940504] If exact commitment closure holds, pure additional information cannot change the justified commitment under the fixed theory.
+[11-20:P28548; UTF16 940630] Freeze conclusion
+[11-20:P28549; UTF16 940648] A certified freeze can coarsen the causal quotient only because the future action language has been restricted.
+[11-20:P28550; UTF16 940760] No conclusion of economic optimality follows from the quotient reduction alone.
+[11-20:P28552; UTF16 940861] Prompt 11 may use the PCCP only for the exact commitment, option, information-value, or policy propositions it proves.
+[11-20:P28554; UTF16 940986] Step 1 — Current-state foundation
+[11-20:P28555; UTF16 941020] By assumptions 1 and 19, every current state component used by the policy is accepted by the appropriate Prompt-13–18 checker.
+[11-20:P28556; UTF16 941147] Step 2 — Policy admissibility
+[11-20:P28557; UTF16 941177] The checker verifies each policy action against:
+[11-20:P28558; UTF16 941226] [ \mathcal A(n_\tau). ]
+[11-20:P28559; UTF16 941250] Assumptions 2 and 13 establish nonanticipativity.
+[11-20:P28560; UTF16 941300] Therefore the policy belongs to:
+[11-20:P28561; UTF16 941333] \gamma_{\mathrm{cont}}(n_t). ]
+[11-20:P28562; UTF16 941364] Step 3 — Reversibility
+[11-20:P28563; UTF16 941387] For each action labeled reversible, the checker verifies the applicable form of DEF-COM9–12.
+[11-20:P28564; UTF16 941480] THM-COM2 or THM-COM3 establishes contextual recovery where used.
+[11-20:P28565; UTF16 941545] THM-COM4 prevents physical restoration alone from being mislabeled project reversal.
+[11-20:P28566; UTF16 941630] Step 4 — Option liveness
+[11-20:P28567; UTF16 941655] For every live option, the checker verifies DEF-COM16.
+[11-20:P28568; UTF16 941710] Where a robust enabling witness is used, THM-COM8 establishes covered exercise success.
+[11-20:P28569; UTF16 941798] THM-COM9 and THM-COM10 prevent conceptual or merely modular possibilities from being treated as live options.
+[11-20:P28570; UTF16 941908] Step 5 — Information values
+[11-20:P28571; UTF16 941936] EVPI follows THM-COM14.
+[11-20:P28572; UTF16 941960] EVSI follows THM-COM15–17.
+[11-20:P28573; UTF16 941987] If a commitment is decision invariant, THM-COM18 or THM-COM32 bounds the remaining information value.
+[11-20:P28574; UTF16 942089] Step 6 — Waiting
+[11-20:P28575; UTF16 942106] The value calculation compares complete wait and commit-now policies under DEF-COM26.
+[11-20:P28576; UTF16 942192] THM-COM19 and THM-COM20 establish that either sign is possible.
+[11-20:P28577; UTF16 942256] No general waiting dominance is inferred.
+[11-20:P28578; UTF16 942298] Step 7 — Dynamic strategy
+[11-20:P28579; UTF16 942324] For finite expected-utility models, THM-COM23 validates the Bellman recursion.
+[11-20:P28580; UTF16 942403] For robust distributional models, THM-COM26 applies only after rectangularity is checked.
+[11-20:P28581; UTF16 942493] THM-COM27 and THM-COM28 block invalid recursive use of nonrectangular ambiguity or static CVaR.
+[11-20:P28582; UTF16 942589] Step 8 — Commitment timing
+[11-20:P28583; UTF16 942616] THM-COM29 verifies simple latest robust dates.
+[11-20:P28584; UTF16 942663] THM-COM30 validates robust continuation from viability-kernel states.
+[11-20:P28585; UTF16 942733] THM-COM31 proves that wait is invalid on the commitment frontier.
+[11-20:P28586; UTF16 942799] Step 9 — Freeze and thaw
+[11-20:P28587; UTF16 942824] THM-COM6 justifies causal quotient coarsening under action restriction.
+[11-20:P28588; UTF16 942896] THM-COM7 ensures thaw is not executed from an insufficient macrostate.
+[11-20:P28589; UTF16 942967] Step 10 — Cross-layer integration
+[11-20:P28590; UTF16 943001] Prompt 12 controls authority.
+[11-20:P28591; UTF16 943031] Prompt 13 controls physical enabling.
+[11-20:P28592; UTF16 943069] Prompt 18 controls economic execution.
+[11-20:P28593; UTF16 943108] Prompt 17 controls probabilistic exercise reliability.
+[11-20:P28594; UTF16 943163] Prompt 16 controls transferred information.
+[11-20:P28595; UTF16 943207] Prompt 9 controls which further computations are worth performing.
+[11-20:P28596; UTF16 943274] Every conclusion follows in its declared modality. ∎
+[11-20:P28600; UTF16 943330] 48. What THM-COM35 Does Not Prove
+[11-20:P28602; UTF16 943383] future information will arrive;
+[11-20:P28603; UTF16 943415] the scenario family is complete;
+[11-20:P28604; UTF16 943448] markets remain modeled;
+[11-20:P28605; UTF16 943472] contracts remain enforceable outside the represented theory;
+[11-20:P28606; UTF16 943533] suppliers remain solvent;
+[11-20:P28607; UTF16 943559] preserved options remain useful;
+[11-20:P28608; UTF16 943592] preserving options is always worth their cost;
+[11-20:P28609; UTF16 943639] more options always imply more value;
+[11-20:P28610; UTF16 943677] waiting is always beneficial;
+[11-20:P28611; UTF16 943707] early commitment is always harmful;
+[11-20:P28612; UTF16 943743] stochastic models remain valid;
+[11-20:P28613; UTF16 943775] static CVaR is dynamically consistent;
+[11-20:P28614; UTF16 943814] physical reversibility implies economic reversibility;
+[11-20:P28615; UTF16 943869] modularity implies flexibility;
+[11-20:P28616; UTF16 943901] conceptual redesign implies executability;
+[11-20:P28617; UTF16 943944] future technologies are represented;
+[11-20:P28618; UTF16 943981] future human preferences remain unchanged;
+[11-20:P28619; UTF16 944024] future architectural authority is predetermined.
+[11-20:P28623; UTF16 944076] 49. Open-World Commitment Limitation
+[11-20:P28624; UTF16 944113] THM-COM36 — No Closed Commitment Theory Proves the Value or Irrelevance of an Unmodeled Future Opportunity
+[11-20:P28625; UTF16 944220] There exist two future worlds that agree on:
+[11-20:P28626; UTF16 944265] current state;
+[11-20:P28627; UTF16 944280] current information;
+[11-20:P28628; UTF16 944301] current option set;
+[11-20:P28629; UTF16 944321] current contracts;
+[11-20:P28630; UTF16 944340] current modeled scenario family;
+[11-20:P28631; UTF16 944373] but differ through one future opportunity absent from the theory.
+[11-20:P28633; UTF16 944452] Let current choice be:
+[11-20:P28634; UTF16 944475] commit now to fixed design (A);
+[11-20:P28635; UTF16 944507] preserve flexibility at cost 1.
+[11-20:P28636; UTF16 944539] In world (W_0), no new future technology appears.
+[11-20:P28637; UTF16 944589] Preserving flexibility produces no benefit.
+[11-20:P28638; UTF16 944633] Committing now is better.
+[11-20:P28639; UTF16 944659] In world (W_1), an unmodeled technology appears later and can be adopted only if flexibility was preserved.
+[11-20:P28640; UTF16 944767] Its benefit is 100.
+[11-20:P28641; UTF16 944787] Preserving flexibility is better.
+[11-20:P28642; UTF16 944821] All currently modeled data and scenarios are identical.
+[11-20:P28643; UTF16 944877] Therefore the closed theory cannot determine the universally optimal current commitment relative to the omitted opportunity. ∎
+[11-20:P28647; UTF16 945007] 50. Proposer Independence
+[11-20:P28648; UTF16 945033] THM-COM37 — Commitment-Certificate Semantics Are Independent of Proposal Source
+[11-20:P28649; UTF16 945113] Commitment policies and option structures may be proposed by:
+[11-20:P28653; UTF16 945212] MILP;
+[11-20:P28654; UTF16 945218] stochastic programming;
+[11-20:P28655; UTF16 945242] robust optimization;
+[11-20:P28656; UTF16 945263] heuristic search.
+[11-20:P28657; UTF16 945281] If acceptance depends only on independently checked:
+[11-20:P28658; UTF16 945334] state;
+[11-20:P28660; UTF16 945354] action validity;
+[11-20:P28662; UTF16 945379] enabling witnesses;
+[11-20:P28663; UTF16 945399] nonanticipativity;
+[11-20:P28665; UTF16 945429] risk semantics;
+[11-20:P28669; UTF16 945540] Every accepted conclusion follows from the checker premises.
+[11-20:P28671; UTF16 945662] Replacing the proposer without changing the checked package cannot change the established proposition. ∎
+[11-20:P28675; UTF16 945770] 51. Checking Complexity
+[11-20:P28676; UTF16 945794] THM-COM38 — Explicit PCCP Checking Complexity
+[11-20:P28677; UTF16 945840] Let an explicit PCCP have:
+[11-20:P28678; UTF16 945867] (N) proof-DAG nodes;
+[11-20:P28686; UTF16 946072] Local proof checking costs:
+[11-20:P28688; UTF16 946116] Add the terms. ∎
+[11-20:P28690; UTF16 946166] Optimal staged-policy discovery may require exponential scenario exploration or NP-hard option selection.
+[11-20:P28694; UTF16 946275] 52. Algorithms
+[11-20:P28695; UTF16 946290] ALG-COM1 — AuditCommitmentState
+[11-20:P28697; UTF16 946328]     current project state
+[11-20:P28698; UTF16 946354]     commitment ledger
+[11-20:P28699; UTF16 946376]     contracts
+[11-20:P28702; UTF16 946417]     deadlines
+[11-20:P28703; UTF16 946431]     option records
+[11-20:P28706; UTF16 946457]     state/version identity
+[11-20:P28707; UTF16 946484]     current commitments
+[11-20:P28708; UTF16 946508]     cancellation obligations
+[11-20:P28709; UTF16 946537]     reserved capacity
+[11-20:P28710; UTF16 946559]     option windows
+[11-20:P28711; UTF16 946578]     current rights
+[11-20:P28712; UTF16 946597]     current information
+[11-20:P28713; UTF16 946621]     architectural authority
+[11-20:P28716; UTF16 946657]     CERTIFIED CURRENT NODE
+[11-20:P28718; UTF16 946701]     STALE
+[11-20:P28723; UTF16 946726] ALG-COM2 — BuildContinuationFiber
+[11-20:P28725; UTF16 946766]     finite or symbolic project model
+[11-20:P28726; UTF16 946803]     current node
+[11-20:P28727; UTF16 946820]     future action theory
+[11-20:P28729; UTF16 946871]     terminal obligations
+[11-20:P28731; UTF16 946897] GENERATE OR REPRESENT
+[11-20:P28732; UTF16 946919]     admissible policies
+[11-20:P28735; UTF16 946950]     action feasibility
+[11-20:P28738; UTF16 947009]     materialization
+[11-20:P28739; UTF16 947029]     economic execution
+[11-20:P28742; UTF16 947060]     EXACT FIBER
+[11-20:P28743; UTF16 947076]     SYMBOLIC OUTER FIBER
+[11-20:P28744; UTF16 947101]     SYMBOLIC INNER FIBER
+[11-20:P28745; UTF16 947126]     EMPTY WITH PROOF
+[11-20:P28750; UTF16 947162] ALG-COM3 — ClassifyReversibility
+[11-20:P28752; UTF16 947201]     state
+[11-20:P28753; UTF16 947211]     action
+[11-20:P28754; UTF16 947222]     candidate recovery words
+[11-20:P28755; UTF16 947251]     experiment theory
+[11-20:P28756; UTF16 947273]     cost/time/evidence limits
+[11-20:P28759; UTF16 947309]     exact physical restoration
+[11-20:P28760; UTF16 947340]     contextual restoration
+[11-20:P28761; UTF16 947367]     economic restoration
+[11-20:P28762; UTF16 947392]     contractual restoration
+[11-20:P28763; UTF16 947420]     evidence restoration
+[11-20:P28764; UTF16 947445]     sovereignty restoration
+[11-20:P28767; UTF16 947481]     reversibility profile
+[11-20:P28768; UTF16 947507]     recovery witness
+[11-20:P28769; UTF16 947528]     limiting irreversibility
+[11-20:P28773; UTF16 947560] ALG-COM4 — BuildLiveOptionSet
+[11-20:P28774; UTF16 947590] FOR each candidate option:
+[11-20:P28775; UTF16 947617]     check exercise window
+[11-20:P28776; UTF16 947643]     check rights
+[11-20:P28777; UTF16 947660]     check enabling geometry
+[11-20:P28778; UTF16 947688]     check capacity
+[11-20:P28779; UTF16 947707]     check supplier path
+[11-20:P28780; UTF16 947731]     check evidence
+[11-20:P28781; UTF16 947750]     check authority
+[11-20:P28782; UTF16 947770]     check materialization
+[11-20:P28783; UTF16 947796]     check economic execution
+[11-20:P28784; UTF16 947825]     preserve probability modality
+[11-20:P28787; UTF16 947869]     LIVE EXACT
+[11-20:P28788; UTF16 947884]     LIVE ROBUST
+[11-20:P28789; UTF16 947900]     LIVE PROBABILISTIC
+[11-20:P28791; UTF16 947935]     CONCEPTUAL ONLY
+[11-20:P28792; UTF16 947955]     BLOCKED
+[11-20:P28797; UTF16 947982] ALG-COM5 — ComputeCommitmentPreorder
+[11-20:P28799; UTF16 948025]     aligned nodes
+[11-20:P28800; UTF16 948043]     decision-relevant future report theory
+[11-20:P28802; UTF16 948087] COMPUTE OR CERTIFY
+[11-20:P28803; UTF16 948106]     continuation outcome images
+[11-20:P28805; UTF16 948139] IF Y(n1) subset Y(n2):
+[11-20:P28806; UTF16 948162]     report n1 at least as committed as n2
+[11-20:P28808; UTF16 948205] DO NOT
+[11-20:P28809; UTF16 948212]     infer ordering from raw option counts
+[11-20:P28813; UTF16 948257] ALG-COM6 — ComputeEVPI
+[11-20:P28815; UTF16 948286]     finite state law
+[11-20:P28816; UTF16 948307]     action utilities
+[11-20:P28819; UTF16 948337]     expected utility of perfect-information action
+[11-20:P28820; UTF16 948388]     best current fixed action
+[11-20:P28823; UTF16 948426]     EVPI
+[11-20:P28824; UTF16 948435]     arithmetic certificate
+[11-20:P28828; UTF16 948465] ALG-COM7 — ComputeEVSI
+[11-20:P28830; UTF16 948494]     signal law
+[11-20:P28833; UTF16 948541]     action availability
+[11-20:P28836; UTF16 948573]     probability layer
+[11-20:P28837; UTF16 948595]     signal timing
+[11-20:P28838; UTF16 948613]     integrability
+[11-20:P28839; UTF16 948631]     unchanged action set if using
+[11-20:P28840; UTF16 948665]     nonnegative-information theorem
+[11-20:P28843; UTF16 948709]     EVSI
+[11-20:P28844; UTF16 948718]     modality and assumptions
+[11-20:P28848; UTF16 948750] ALG-COM8 — EvaluateValueOfWaiting
+[11-20:P28850; UTF16 948790]     commit-now strategies
+[11-20:P28851; UTF16 948816]     wait strategies
+[11-20:P28852; UTF16 948836]     information process
+[11-20:P28853; UTF16 948860]     delay cost
+[11-20:P28855; UTF16 948890]     option expiry
+[11-20:P28856; UTF16 948908]     market changes
+[11-20:P28857; UTF16 948927]     schedule effects
+[11-20:P28860; UTF16 948957]     complete value of both strategy families
+[11-20:P28863; UTF16 949010]     POSITIVE VOW
+[11-20:P28864; UTF16 949027]     ZERO VOW
+[11-20:P28865; UTF16 949040]     NEGATIVE VOW
+[11-20:P28870; UTF16 949075] ALG-COM9 — SolveFiniteStagedCommitment
+[11-20:P28872; UTF16 949120]     finite sufficient-state model
+[11-20:P28873; UTF16 949154]     transition probabilities
+[11-20:P28874; UTF16 949183]     rewards
+[11-20:P28875; UTF16 949195]     action sets
+[11-20:P28879; UTF16 949228]     backward induction
+[11-20:P28882; UTF16 949259]     optimal policy
+[11-20:P28883; UTF16 949278]     value function
+[11-20:P28884; UTF16 949297]     Bellman proof trace
+[11-20:P28888; UTF16 949324] ALG-COM10 — SolveRobustStagedCommitment
+[11-20:P28890; UTF16 949370]     robust dynamic model
+[11-20:P28891; UTF16 949395]     ambiguity family
+[11-20:P28896; UTF16 949451]     rectangularity
+[11-20:P28897; UTF16 949470]     state sufficiency
+[11-20:P28898; UTF16 949492]     bounded rewards
+[11-20:P28900; UTF16 949513] IF rectangular:
+[11-20:P28901; UTF16 949529]     run robust Bellman recursion
+[11-20:P28903; UTF16 949568]     solve declared precommitment problem
+[11-20:P28904; UTF16 949609]     or return UNKNOWN
+[11-20:P28907; UTF16 949638]     silently replace ambiguity family
+[11-20:P28908; UTF16 949676]     by its rectangular hull
+[11-20:P28912; UTF16 949707] ALG-COM11 — CheckDynamicRiskConsistency
+[11-20:P28914; UTF16 949753]     requested risk functional
+[11-20:P28915; UTF16 949783]     information tree
+[11-20:P28916; UTF16 949804]     recursive policy semantics
+[11-20:P28919; UTF16 949842]     whether recursive decomposition is valid
+[11-20:P28920; UTF16 949887]     whether risk mappings are nested
+[11-20:P28921; UTF16 949924]     whether static CVaR is being
+[11-20:P28922; UTF16 949957]     improperly reoptimized conditionally
+[11-20:P28925; UTF16 950006]     TIME CONSISTENT
+[11-20:P28926; UTF16 950026]     PRECOMMITMENT ONLY
+[11-20:P28927; UTF16 950049]     INVALID RECURSION
+[11-20:P28932; UTF16 950086] ALG-COM12 — ComputeCommitmentViabilityKernel
+[11-20:P28934; UTF16 950137]     finite state sets
+[11-20:P28935; UTF16 950159]     actions
+[11-20:P28936; UTF16 950171]     disturbance sets
+[11-20:P28937; UTF16 950192]     transition relation
+[11-20:P28938; UTF16 950216]     terminal acceptable set
+[11-20:P28940; UTF16 950245] K[T] <- terminal set
+[11-20:P28942; UTF16 950267] FOR t = T-1 downto 0:
+[11-20:P28943; UTF16 950289]     K[t] <- states having an action
+[11-20:P28944; UTF16 950325]             whose every covered successor
+[11-20:P28945; UTF16 950367]             lies in K[t+1]
+[11-20:P28948; UTF16 950402]     viability kernels
+[11-20:P28949; UTF16 950424]     witness actions
+[11-20:P28950; UTF16 950444]     predecessor certificates
+[11-20:P28954; UTF16 950476] ALG-COM13 — ComputeLatestSafeCommitment
+[11-20:P28956; UTF16 950522]     need date
+[11-20:P28957; UTF16 950536]     lead-time set or law

@@ -1,0 +1,280 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P12512; UTF16 466832] ￼
+ATTACHED TABLE 1736583; native row/column order; 28 rows
+ROW 0: ["ID", "Exact statement", "Dependencies", "Status", "Formalization", "", ""]
+ROW 1: ["THM-AB1", "Universal irrelevance certificate makes pruning safe", "Prompt-2 decision semantics", "Proved", "Moderate", "", ""]
+ROW 2: ["THM-AB2", "Quotient-homogeneous family may be merged", "THM-DS1", "Proved", "Straightforward", "", ""]
+ROW 3: ["THM-AB3", "Every exact symbolic split is concrete-partition sound", "LEM-AB4", "Proved", "Straightforward", "", ""]
+ROW 4: ["THM-AB4", "Stable exact symbolic partition contains no inequivalent pair", "LEM-MN1", "Proved", "Moderate", "", ""]
+ROW 5: ["THM-AB5", "Stable quotient-respecting symbolic partition equals (\\Sigma_L)", "THM-AB4, AB9", "Proved", "Moderate", "", ""]
+ROW 6: ["THM-AB6", "Treating UNKNOWN as unresolved preserves soundness", "DEF-AB34", "Proved", "Straightforward", "", ""]
+ROW 7: ["THM-AB7", "Nontrivial symbolic split makes strict progress", "DEF-AB13", "Proved", "Straightforward", "", ""]
+ROW 8: ["THM-AB8", "Quotient-respecting finite CEGAR terminates in at most (", "\\Sigma", "-b_0) splits", "THM-AB7, AB9", "Proved with explicit conditions", "Moderate"]
+ROW 9: ["THM-AB9", "Context-derived preimage refinement is quotient respecting", "THM-MN1", "Proved", "Moderate", "", ""]
+ROW 10: ["THM-AB10", "Exact symbolic operations compute the canonical Engineering Myhill–Nerode quotient without state enumeration", "THM-AB3–AB9", "Proved", "Difficult", "", ""]
+ROW 11: ["THM-AB11", "Simple symbolic compilation costs (O(KQ^2C(s^\\star)))", "ALG-AB1", "Proved", "Moderate", "", ""]
+ROW 12: ["THM-AB12", "Symbolic accessibility closes the discovery gap in (\\operatorname{poly}(n,2^{W_D}))", "THM-AB11", "Proved", "Moderate", "", ""]
+ROW 13: ["THM-AB13", "No universal (f(W_D)\\operatorname{poly}(n)) compiler unless (\\mathsf P=\\mathsf{coNP})", "THM-DS23", "Proved", "Straightforward", "", ""]
+ROW 14: ["THM-AB14", "Quotient-complete domain can represent exact separator quotient", "DEF-AB25", "Proved", "Moderate", "", ""]
+ROW 15: ["THM-AB15", "Quotient-class Boolean algebra is minimal experiment-complete shell", "THM-MN8, AB9", "Proved", "Moderate", "", ""]
+ROW 16: ["THM-AB16", "Must/may equivalence sandwich remains sound", "DEF-AB26–AB27", "Proved", "Straightforward", "", ""]
+ROW 17: ["THM-AB17", "Early stopping cannot certify false merge or prune", "THM-AB1, AB16", "Proved", "Moderate", "", ""]
+ROW 18: ["THM-AB18", "Every finite downstream butterfly distinction eventually forces a split", "THM-MN8, fair exact refinement", "Proved", "Moderate", "", ""]
+ROW 19: ["THM-AB19", "Predicate truth vector is sufficient exactly under kernel refinement condition", "THM-DS21.1", "Proved", "Straightforward", "", ""]
+ROW 20: ["THM-AB20", "Saturating repetition quotient is polynomially symbolically discoverable", "Cardinality automaton", "Proved", "Moderate", "", ""]
+ROW 21: ["THM-AB21", "Joint-trace abstraction preserves robust decisions under stated conditions", "DEF-F32.1", "Proved", "Moderate", "", ""]
+ROW 22: ["THM-AB22", "Accepted CAQC certificate implies safe prune, merge, transition, and exact quotient claim", "THM-AB1–AB5", "Proved", "Difficult", "", ""]
+ROW 23: ["THM-AB23", "Quotients safely reuse under theory restriction; theory expansion requires uniformity or refinement", "THM-DS13", "Proved", "Moderate", "", ""]
+ROW 24: ["THM-AB24", "Incremental refinement computes exact expanded-theory quotient", "THM-AB5, AB23", "Proved", "Difficult", "", ""]
+ROW 25: ["THM-AB25", "Symbolic conditioning exactly restricts state space; theory restriction may permit merges", "THM-DS12", "Proved", "Moderate", "", ""]
+ROW 26: ["THM-AB26", "Certified correctness is independent of predicate proposal source", "Trusted-kernel model", "Proved", "Straightforward", "", ""]
+ROW 27: ["THM-AB27", "Exact reduced product preserves concretization", "DEF-AB32", "Proved", "Straightforward", "", ""]
+[1-10:P12516; UTF16 466837] 59.4 Algorithms
+[1-10:P12517; UTF16 466853] ￼
+ATTACHED TABLE 1736599; native row/column order; 6 rows
+ROW 0: ["ID", "Algorithm", "Correctness basis"]
+ROW 1: ["ALG-AB1", "SymbolicDecisionQuotient", "THM-AB3–AB5"]
+ROW 2: ["ALG-AB2", "IncrementalTheoryRefine", "THM-AB24"]
+ROW 3: ["ALG-AB3", "EngineeringCEGAR", "THM-AB6–AB9"]
+ROW 4: ["ALG-AB4", "CertificateCheckAbstractQuotient", "THM-AB22"]
+ROW 5: ["ALG-AB5", "ReducedProductPropagate", "THM-AB27"]
+[1-10:P12518; UTF16 466855] ALG-AB5 — ReducedProductPropagate
+[1-10:P12519; UTF16 466889] repeat:
+[1-10:P12520; UTF16 466897]     apply each domain's local transformer
+[1-10:P12521; UTF16 466939]     exchange implied constraints
+[1-10:P12522; UTF16 466972]     apply exact or invariant-sound reduction ρ
+[1-10:P12523; UTF16 467019] until fixed point or resource stop
+[1-10:P12525; UTF16 467055] never remove a concrete state
+[1-10:P12526; UTF16 467085] without an exact or invariant-relative certificate
+[1-10:P12530; UTF16 467139] 60. Dependency DAG
+[1-10:P12531; UTF16 467158] Prompt 1–2 repaired semantics
+[1-10:P12532; UTF16 467188] DEF-F9.1, F27.1, F30.1, F32.1, F46.1
+[1-10:P12533; UTF16 467225] DEF-MN5, MN13–MN15
+[1-10:P12534; UTF16 467244] THM-MN1–MN18
+[1-10:P12537; UTF16 467277] Prompt 3 regional quotient
+[1-10:P12538; UTF16 467304] DEF-DS4, DEF-DS5
+[1-10:P12539; UTF16 467321] THM-DS1, DS2, DS5
+[1-10:P12541; UTF16 467349]         ├─────────────────────────────────┐
+[1-10:P12542; UTF16 467393]         ▼                                 ▼
+[1-10:P12543; UTF16 467437] DEF-AB1 concrete lattice             DEF-AB11
+[1-10:P12544; UTF16 467483] DEF-AB2 abstract domain          symbolic predicate language
+[1-10:P12545; UTF16 467544]         │                                 │
+[1-10:P12547; UTF16 467632] DEF-AB3–AB5                        DEF-AB12–AB15
+[1-10:P12548; UTF16 467681] Galois connection                blocks, partitions,
+[1-10:P12549; UTF16 467734]         │                        preimages, direct fibers
+[1-10:P12550; UTF16 467792]         ▼                                 │
+[1-10:P12551; UTF16 467836] LEM-AB1–AB3                              ▼
+[1-10:P12552; UTF16 467879] Galois consequences                  ALG-AB1
+[1-10:P12553; UTF16 467924] and best transformer        SymbolicDecisionQuotient
+[1-10:P12555; UTF16 468021]         ▼                      ┌──────────┼──────────┐
+[1-10:P12556; UTF16 468076] DEF-AB6 transformer           ▼          ▼          ▼
+[1-10:P12557; UTF16 468130]         │                 THM-AB3    THM-AB4    THM-AB9
+[1-10:P12558; UTF16 468186]         ▼                 split      stable     quotient-
+[1-10:P12559; UTF16 468244] DEF-AB7–AB9              soundness  completeness respecting
+[1-10:P12560; UTF16 468304] abstract experiment              \       |       /
+[1-10:P12561; UTF16 468355] semantics                         \      |      /
+[1-10:P12562; UTF16 468405]         │                          ▼     ▼     ▼
+[1-10:P12563; UTF16 468454]         ▼                           THM-AB5
+[1-10:P12564; UTF16 468498] THM-AB1 pruning             exact symbolic quotient
+[1-10:P12565; UTF16 468550] THM-AB2 homogeneous merge            │
+[1-10:P12566; UTF16 468589]                                       ▼
+[1-10:P12567; UTF16 468629]                                   THM-AB10
+[1-10:P12568; UTF16 468672]                         symbolic Engineering Myhill–Nerode
+[1-10:P12569; UTF16 468731]                                       │
+[1-10:P12570; UTF16 468771]                          ┌────────────┼─────────────┐
+[1-10:P12571; UTF16 468825]                          ▼            ▼             ▼
+[1-10:P12572; UTF16 468879]                     DEF-AB21      THM-AB11      DEF-AB25
+[1-10:P12573; UTF16 468936]                   symbolic size   complexity   quotient-complete
+[1-10:P12574; UTF16 469001]                          │            │             │
+[1-10:P12575; UTF16 469055]                          │            ▼             ▼
+[1-10:P12576; UTF16 469109]                          │        DEF-AB36      THM-AB14
+[1-10:P12577; UTF16 469166]                          │       symbolic         domain
+[1-10:P12578; UTF16 469223]                          │      accessibility   sufficiency
+[1-10:P12579; UTF16 469283]                          │            │
+[1-10:P12580; UTF16 469323]                          │            ▼
+[1-10:P12581; UTF16 469363]                          │        THM-AB12
+[1-10:P12582; UTF16 469406]                          │    discovery-gap closure
+[1-10:P12585; UTF16 469512]                     DEF-AB30
+[1-10:P12586; UTF16 469541]                description complexity
+[1-10:P12589; UTF16 469633]                     DEF-AB37
+[1-10:P12590; UTF16 469662]               refined discovery profile
+[1-10:P12592; UTF16 469703] Prompt 3 THM-DS23
+[1-10:P12595; UTF16 469741]     THM-AB13
+[1-10:P12596; UTF16 469754] no universal efficient compiler
+[1-10:P12598; UTF16 469787] DEF-AB16–AB20
+[1-10:P12599; UTF16 469801] counterexamples and refinement
+[1-10:P12602; UTF16 469852]      ALG-AB3
+[1-10:P12603; UTF16 469865]  EngineeringCEGAR
+[1-10:P12605; UTF16 469893]    ┌────┼────────────┐
+[1-10:P12606; UTF16 469916]    ▼    ▼            ▼
+[1-10:P12607; UTF16 469939] AB6   AB7          AB8
+[1-10:P12608; UTF16 469962] UNKNOWN progress termination
+[1-10:P12611; UTF16 470011]     THM-AB18
+[1-10:P12612; UTF16 470024] butterfly preservation
+[1-10:P12614; UTF16 470048] Direct fibers + primitive preimages
+[1-10:P12617; UTF16 470104] experiment-generated Boolean algebra
+[1-10:P12620; UTF16 470161]     THM-AB15
+[1-10:P12621; UTF16 470174] minimal complete shell
+[1-10:P12623; UTF16 470198] DEF-AB26–AB28
+[1-10:P12624; UTF16 470212] must/may and partial certificate
+[1-10:P12626; UTF16 470255]         ├─────────────┐
+[1-10:P12627; UTF16 470279]         ▼             ▼
+[1-10:P12628; UTF16 470303]     THM-AB16      THM-AB17
+[1-10:P12629; UTF16 470330]     sandwich       anytime safety
+[1-10:P12631; UTF16 470365] DEF-AB33, DEF-AB35
+[1-10:P12632; UTF16 470384] transformer certificates and CAQC
+[1-10:P12635; UTF16 470438]     ALG-AB4
+[1-10:P12636; UTF16 470450] certificate checker
+[1-10:P12639; UTF16 470490]     THM-AB22
+[1-10:P12641; UTF16 470504] THM-DS13 theory monotonicity
+[1-10:P12644; UTF16 470553]     THM-AB23
+[1-10:P12645; UTF16 470566] theory-safe reuse
+[1-10:P12648; UTF16 470604]     ALG-AB2
+[1-10:P12649; UTF16 470616] incremental refinement
+[1-10:P12652; UTF16 470659]     THM-AB24
+[1-10:P12654; UTF16 470673] THM-DS12 conditioning
+[1-10:P12657; UTF16 470715]     THM-AB25
+[1-10:P12659; UTF16 470729] DEF-AB31–AB32
+[1-10:P12660; UTF16 470743] product and reduced product
+[1-10:P12663; UTF16 470791]     THM-AB27
+[1-10:P12667; UTF16 470807] 61. What Has Now Been Proven
+[1-10:P12669; UTF16 470866] A regional family can be represented by one abstract object denoting arbitrarily many exact semantic states.
+[1-10:P12670; UTF16 470975] Sound abstract transformers cannot omit any real primitive-context successor.
+[1-10:P12671; UTF16 471053] The best correct abstraction is the most precise sound transformer available inside the selected domain.
+[1-10:P12672; UTF16 471158] Abstract family membership does not imply contextual equivalence.
+[1-10:P12673; UTF16 471224] A family may be merged only after quotient homogeneity is certified.
+[1-10:P12674; UTF16 471293] Universal abstract certificates can prune entire families safely.
+[1-10:P12675; UTF16 471359] “May fail” does not justify pruning; “must fail” may justify pruning under the admitted rejection semantics.
+[1-10:P12676; UTF16 471468] Exact symbolic predicates can represent quotient blocks without enumerating their members.
+[1-10:P12677; UTF16 471559] Primitive-context preimages provide exact symbolic split predicates.
+[1-10:P12678; UTF16 471628] A stable direct-output-uniform symbolic partition contains no contextually inequivalent pair.
+[1-10:P12679; UTF16 471722] Context-derived refinement never separates equivalent states.
+[1-10:P12680; UTF16 471784] Exact symbolic partition refinement therefore converges to exactly the canonical separator quotient.
+[1-10:P12681; UTF16 471885] A fair quotient-respecting run accepts at most: [ |\Sigma_L|-b_0 ] semantic splits.
+[1-10:P12682; UTF16 471969] General analysis-domain CEGAR may perform additional refinements and does not share that bound automatically.
+[1-10:P12683; UTF16 472079] UNKNOWN results may safely remain unresolved but cannot justify proof.
+[1-10:P12684; UTF16 472150] The canonical quotient-class Boolean algebra is the minimal domain containing direct fibers and closed under primitive-context preimages.
+[1-10:P12685; UTF16 472288] The quotient can be discovered without explicit state enumeration whenever symbolic operations are exact.
+[1-10:P12686; UTF16 472394] A simple symbolic compiler has running time: [ O(KQ^2C(s^\star)). ]
+[1-10:P12687; UTF16 472462] Under symbolic-accessibility assumptions: \operatorname{poly} \left( n,2^{W_D} \right). ]
+[1-10:P12688; UTF16 472552] There is no generic exact compiler FPT in (W_D) alone unless: [ \mathsf P=\mathsf{coNP}. ]
+[1-10:P12689; UTF16 472643] Must-equivalent and may-equivalent relations provide an exact anytime sandwich around the unknown quotient.
+[1-10:P12690; UTF16 472751] Early stopping cannot certify a false merge or prune under the stated discipline.
+[1-10:P12691; UTF16 472833] Every finite downstream butterfly effect changing an admitted experiment eventually forces a split under fair exact refinement.
+[1-10:P12692; UTF16 472961] Predicate abstractions are exact only when truth-vector equality refines contextual equivalence.
+[1-10:P12693; UTF16 473058] The information lower bound: [ \lceil\log_2|\Sigma_L|\rceil ] may be much smaller than the description complexity of an exact predicate basis.
+[1-10:P12694; UTF16 473201] Small quotient size and compact symbolic description are distinct properties.
+[1-10:P12695; UTF16 473279] Small formulas and easy symbolic reasoning are distinct properties.
+[1-10:P12696; UTF16 473347] Reduced products can derive cross-disciplinary infeasibility without enumerating Cartesian products.
+[1-10:P12697; UTF16 473448] Joint model/scenario correlation must remain relational.
+[1-10:P12698; UTF16 473505] Menu-sensitive choice behavior cannot be replaced by independent scalar intervals.
+[1-10:P12699; UTF16 473588] Abstract transformers and quotient tables can carry independently checkable certificates.
+[1-10:P12700; UTF16 473678] Symbolic quotients are safely reusable under theory restriction.
+[1-10:P12701; UTF16 473743] Theory expansion requires targeted symbolic refinement rather than blind trust in old merges.
+[1-10:P12702; UTF16 473837] Conditioning can be implemented by symbolic restriction and optional reminimization.
+[1-10:P12703; UTF16 473922] The correctness of the system is independent of whether predicates were proposed by humans, heuristics, or AI.
+[1-10:P12704; UTF16 474033] A structured saturating repetition family with exponentially many states has a polynomially discoverable exact quotient.
+[1-10:P12705; UTF16 474154] A (2^{40})-state benchmark can be minimized exactly to five classes using a 205-node count diagram and a small number of exact symbolic operations.
+[1-10:P12706; UTF16 474302] Prompt 3’s (192^{16})-state repeated-hotel family can be represented through fewer than nine thousand aggregate symbolic states under its conditioned theory.
+[1-10:P12707; UTF16 474460] The strongest positive result is:
+[1-10:P12708; UTF16 474494] [ \boxed{ \begin{aligned} &\text{If quotient classes are compactly expressible,}\ &\text{primitive preimages preserve compactness,}\ &\text{and exact symbolic oracles are tractable,}\ &\text{then ANANKE can discover the canonical quotient}\ &\text{without enumerating the provisional state universe.} \end{aligned} } ]
+[1-10:P12709; UTF16 474813] The strongest preservation result is:
+[1-10:P12710; UTF16 474851] [ \boxed{ \text{Any finite local distinction with an admitted downstream consequence is eventually separated.} } ]
+[1-10:P12714; UTF16 474969] 62. What Has NOT Yet Been Proven
+[1-10:P12715; UTF16 475002] The following remain open.
+[1-10:P12716; UTF16 475029] Real building design grammars are symbolically accessible.
+[1-10:P12717; UTF16 475088] Real separator classes have compact symbolic predicates.
+[1-10:P12718; UTF16 475145] Primitive engineering-context preimages preserve compact representation size.
+[1-10:P12719; UTF16 475223] SAT/SMT queries arising from realistic structure, MEP, construction, evidence, and code systems are tractable.
+[1-10:P12720; UTF16 475334] BDD, SDD, SMT, or custom-domain representations avoid exponential blowup on real projects.
+[1-10:P12721; UTF16 475425] A practical domain-selection algorithm finds the right abstraction family automatically.
+[1-10:P12722; UTF16 475514] CEGAR refinement reaches the quotient in few iterations on realistic buildings.
+[1-10:P12723; UTF16 475594] Useful interpolants remain small.
+[1-10:P12724; UTF16 475628] Evidence dependency completeness can be certified automatically.
+[1-10:P12725; UTF16 475693] Real project context languages can be generated completely.
+[1-10:P12726; UTF16 475753] Continuous or approximate physical semantics can be incorporated without losing compositional guarantees.
+[1-10:P12727; UTF16 475859] Numerical error can be connected to decision equivalence.
+[1-10:P12728; UTF16 475917] Approximate quotient relations are transitive.
+[1-10:P12729; UTF16 475964] Real geometric topology changes admit compact symbolic preimages.
+[1-10:P12730; UTF16 476030] Symbolic representations survive large topology rewrites.
+[1-10:P12731; UTF16 476088] The repeated-hotel conditioned quotient remains small after adding all design-development and fabrication-level distinctions.
+[1-10:P12732; UTF16 476214] Symbolic quotient compilation fits the one-workstation hardware envelope for a full hotel.
+[1-10:P12733; UTF16 476305] The minimum predicate basis is efficiently discoverable.
+[1-10:P12734; UTF16 476362] The minimum complete abstract shell can be represented compactly.
+[1-10:P12735; UTF16 476428] Symbolic accessibility can be inferred from source syntax alone.
+[1-10:P12736; UTF16 476493] A small (W_D) and small (K_{\mathcal F}) guarantee small proof certificates.
+[1-10:P12737; UTF16 476570] General CEGAR terminates quickly.
+[1-10:P12738; UTF16 476604] AI-proposed abstractions are usually useful rather than merely safe after checking.
+[1-10:P12739; UTF16 476688] The core unresolved practical conjecture is now:
+[1-10:P12740; UTF16 476737] [ \boxed{ \begin{aligned} &\text{Do realistic repetitive engineering problems possess}\ &\text{small decision width, compact exact quotient predicates,}\ &\text{tractable context preimages, and manageable solver complexity?} \end{aligned} } ]
+[1-10:P12744; UTF16 476983] 63. Exact Mathematical Inputs Required by Prompt 5
+[1-10:P12745; UTF16 477034] Prompt 5 may use the following objects without redefining them.
+[1-10:P12746; UTF16 477098] 63.1 Concrete family semantics
+[1-10:P12748; UTF16 477158] 63.2 Abstract engineering domain
+[1-10:P12749; UTF16 477191] [ (A,\sqsubseteq,\alpha,\gamma). ]
+[1-10:P12750; UTF16 477226] 63.3 Galois law
+[1-10:P12751; UTF16 477242] [ \alpha(S)\sqsubseteq a \iff S\subseteq\gamma(a). ]
+[1-10:P12752; UTF16 477295] 63.4 Sound abstract transformer
+[1-10:P12753; UTF16 477327] [ K_*(\gamma(a)) \subseteq \gamma(K^#(a)). ]
+[1-10:P12754; UTF16 477372] 63.5 Best correct approximation
+[1-10:P12755; UTF16 477404] \alpha K_*\gamma. ]
+[1-10:P12756; UTF16 477424] 63.6 Complete abstract experiment semantics
+[1-10:P12757; UTF16 477468] [ \mathsf{Out}^#_e(a) \supseteq { \mathsf{Out}_e(x): x\in\gamma(a) }. ]
+[1-10:P12758; UTF16 477540] 63.7 Quotient homogeneity
+[1-10:P12759; UTF16 477566] [ \forall x,y\in\gamma(a), \quad x\equiv_{\partial L}y. ]
+[1-10:P12760; UTF16 477624] 63.8 Exact symbolic preimage
+[1-10:P12762; UTF16 477703] 63.9 Exact symbolic quotient algorithm
+[1-10:P12763; UTF16 477742] ALG-AB1.
+[1-10:P12764; UTF16 477751] 63.10 Counterexample-guided refinement
+[1-10:P12765; UTF16 477790] ALG-AB3.
+[1-10:P12766; UTF16 477799] 63.11 Must/may equivalence sandwich
+[1-10:P12768; UTF16 477915] 63.12 Symbolic discovery complexity
+[1-10:P12769; UTF16 477951] O(KQ^2C(s^\star)). ]
+[1-10:P12770; UTF16 477972] 63.13 Structured discovery-gap closure
+[1-10:P12771; UTF16 478011] \operatorname{poly} \left( n,2^{W_D} \right) ]
+[1-10:P12772; UTF16 478058] under symbolic-accessibility conditions.
+[1-10:P12773; UTF16 478099] 63.14 Negative complexity boundary
+[1-10:P12774; UTF16 478134] No generic:
+[1-10:P12776; UTF16 478179] exact compiler exists unless:
+[1-10:P12778; UTF16 478238] 63.15 Symbolic description complexity
+[1-10:P12779; UTF16 478276] [ K_{\mathcal F}(\Sigma_L). ]
+[1-10:P12780; UTF16 478306] 63.16 Refined complexity profile
+[1-10:P12781; UTF16 478339] \left( W_D, W_P, S^\star, K_{\mathcal F}, C_{\mathrm{oracle}}, R_Q, R_A \right). ]
+[1-10:P12782; UTF16 478422] 63.17 Certified abstract artifact
+[1-10:P12783; UTF16 478456] CAQC from DEF-AB35.
+[1-10:P12784; UTF16 478476] 63.18 Exact/approximate boundary
+[1-10:P12785; UTF16 478509] Prompt 4 permits temporary overapproximation:
+[1-10:P12786; UTF16 478555] [ S\subseteq\gamma(a). ]
+[1-10:P12787; UTF16 478580] It does not permit approximate final equivalence.
+[1-10:P12788; UTF16 478630] Prompt 5 may introduce bounded decision error only by explicitly defining:
+[1-10:P12789; UTF16 478705] an error domain;
+[1-10:P12790; UTF16 478722] a decision metric or preorder;
+[1-10:P12791; UTF16 478753] composition laws;
+[1-10:P12792; UTF16 478771] transitivity conditions;
+[1-10:P12793; UTF16 478796] mandatory zero-tolerance distinctions;
+[1-10:P12794; UTF16 478835] numerical and model uncertainty certificates.
+[1-10:P12795; UTF16 478881] The exact finite chain now established is:
+[1-10:P12796; UTF16 478924] [ \boxed{ \text{raw compact theory} } ]
+[1-10:P12797; UTF16 478964] [ \Downarrow ]
+[1-10:P12798; UTF16 478979] [ \boxed{ \text{sound symbolic abstraction} } ]
+[1-10:P12800; UTF16 479042] [ \boxed{ \text{verified counterexamples and necessary predicates} } ]
+[1-10:P12802; UTF16 479128] [ \boxed{ \text{exact canonical separator quotient} } ]
+[1-10:P12804; UTF16 479199] [ \boxed{ \text{decision-width dynamic programming}. } ]
+[1-10:P12805; UTF16 479256] The scientific success condition is correspondingly precise:
+[1-10:P12806; UTF16 479317] [ \boxed{ W_D\text{ small} \quad+\quad K_{\mathcal F}\text{ small} \quad+\quad \text{tractable exact symbolic closure} } ]
+[1-10:P12807; UTF16 479440] is sufficient to close the discovery gap.
+[1-10:P12808; UTF16 479482] A small final quotient by itself is not.
+[1-10:P12809; UTF16 479523] ANANKE Mathematics Program — Prompt 5
+[1-10:P12810; UTF16 479561] Certified Approximate Contextual Semantics, Decision-Influence Error Calculus, (\varepsilon)-Choice Completeness, and the Passage from Exact Finite Quotients to Numerical Engineering
+[1-10:P12812; UTF16 479753] Prompts 1–4 established an exact semantic foundation for ANANKE:
+[1-10:P12813; UTF16 479818] [ \text{typed finite semantics} \longrightarrow \text{Engineering Myhill–Nerode quotients} \longrightarrow \text{decision-separator width} \longrightarrow \text{certified symbolic quotient discovery}. ]
+[1-10:P12814; UTF16 480021] Those results permit exact reasoning over enormous finite design spaces, but they do not yet justify floating-point simulation, discretization, reduced-order models, uncertain loads, surrogates, or physical model discrepancy.
+[1-10:P12815; UTF16 480247] This paper constructs ANANKE-(\varepsilon), a mixed exact/quantitative semantic extension that preserves ANANKE-F’s exact discrete skeleton while permitting certified numerical enclosures and explicitly typed uncertainty.
+[1-10:P12816; UTF16 480469] Four distinct phenomena are kept permanently separate:
+[1-10:P12817; UTF16 480524] symbolic overapproximation of exact state families;
+[1-10:P12818; UTF16 480576] numerical error relative to a fixed mathematical model;
+[1-10:P12819; UTF16 480632] admitted parametric uncertainty inside the model;
+[1-10:P12820; UTF16 480682] discrepancy between the mathematical model and physical reality.
+[1-10:P12821; UTF16 480747] A complete outcome is divided into:
+[1-10:P12822; UTF16 480783] [ O=(H,Y), ]

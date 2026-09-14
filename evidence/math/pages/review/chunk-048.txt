@@ -1,0 +1,358 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P19265; UTF16 703115] LEM-CS3 proves that every executable bisimulation refines every refinement round.
+[1-10:P19266; UTF16 703197] Therefore the final stable partition is the coarsest executable one.
+[1-10:P19267; UTF16 703266] Canonicality follows because any two runs compute the same greatest stable partition, though block identifiers may differ. ∎
+[1-10:P19268; UTF16 703391] A naïve implementation runs in polynomial time in the explicitly enumerated transition system, but that system may be exponential in the compact source description.
+[1-10:P19272; UTF16 703559] 33. Symbolic Executable-Macro Compilation
+[1-10:P19273; UTF16 703601] For action
+[1-10:P19274; UTF16 703612] [ a\to t ]
+[1-10:P19275; UTF16 703623] and symbolic target block (C\subseteq X_t), define the existential preimage
+[1-10:P19276; UTF16 703699] \left{ x\in X_s: \exists x'\in C,; xT_ax' \right}. ]
+[1-10:P19277; UTF16 703752] A source block is stable when membership in every target-block preimage is uniform.
+[1-10:P19281; UTF16 703839] ALG-CS2 — SymbolicExecutableMacroQuotient
+[1-10:P19283; UTF16 703887]     exact symbolic state formulas
+[1-10:P19284; UTF16 703921]     direct observation fibers
+[1-10:P19285; UTF16 703951]     exact symbolic action relations
+[1-10:P19286; UTF16 703987]     exact existential preimage
+[1-10:P19287; UTF16 704018]     conjunction, difference, SAT/UNSAT
+[1-10:P19288; UTF16 704057]     no-use-of-UNKNOWN-for-certification rule
+[1-10:P19291; UTF16 704114]     symbolic partitions by direct observation fibers
+[1-10:P19293; UTF16 704168] WORKLIST
+[1-10:P19294; UTF16 704177]     every pair (action a, target block C)
+[1-10:P19296; UTF16 704220] WHILE worklist nonempty:
+[1-10:P19297; UTF16 704245]     remove (a,C)
+[1-10:P19299; UTF16 704263]     P ← Prea(C)
+[1-10:P19301; UTF16 704280]     for every source block B:
+[1-10:P19302; UTF16 704310]         L ← B ∧ P
+[1-10:P19303; UTF16 704328]         R ← B \ P
+[1-10:P19305; UTF16 704347]         solve L and R
+[1-10:P19307; UTF16 704370]         if both SAT:
+[1-10:P19308; UTF16 704391]             split B into L,R
+[1-10:P19309; UTF16 704420]             record action-successor counterexample
+[1-10:P19310; UTF16 704471]             add affected predecessor splitters
+[1-10:P19312; UTF16 704519]         if UNKNOWN:
+[1-10:P19313; UTF16 704539]             mark unresolved
+[1-10:P19314; UTF16 704567]             do not claim exact convergence
+[1-10:P19316; UTF16 704611] AT STABILITY
+[1-10:P19317; UTF16 704624]     build exact quotient action tables
+[1-10:P19318; UTF16 704663]     verify each source block reaches a unique set
+[1-10:P19319; UTF16 704713]     of target blocks for every action
+[1-10:P19322; UTF16 704759]     symbolic executable quotient
+[1-10:P19323; UTF16 704792]     certificates
+[1-10:P19328; UTF16 704839] THM-CS22 — Symbolic Executable-Quotient Correctness
+[1-10:P19330; UTF16 704899] direct observation fibers are exact;
+[1-10:P19331; UTF16 704936] action preimages are exact;
+[1-10:P19332; UTF16 704964] symbolic Boolean operations are exact;
+[1-10:P19333; UTF16 705003] emptiness is exactly decided;
+[1-10:P19334; UTF16 705033] the worklist is fair;
+[1-10:P19335; UTF16 705055] all carriers are finite.
+[1-10:P19336; UTF16 705080] Then ALG-CS2 terminates with the same canonical quotient as ALG-CS1 without enumerating the complete microstate carrier.
+[1-10:P19338; UTF16 705207] Every symbolic split is exactly the concrete split induced by successor-block reachability.
+[1-10:P19339; UTF16 705299] A stable symbolic block has equal direct observation and equal successor-block sets for every action.
+[1-10:P19340; UTF16 705401] Thus it is executable-stable.
+[1-10:P19341; UTF16 705431] Every split predicate is a preimage of a union of canonical classes, so it does not split executable-equivalent states.
+[1-10:P19342; UTF16 705551] Finite fair refinement therefore reaches exactly the canonical stable partition. ∎
+[1-10:P19343; UTF16 705634] Formula size and symbolic-oracle complexity may still be exponential.
+[1-10:P19347; UTF16 705707] 34. Interventional Distinguishing Witnesses
+[1-10:P19348; UTF16 705751] DEF-CS21 — Causal Macro Counterexample
+[1-10:P19349; UTF16 705790] A causal counterexample is one of:
+[1-10:P19350; UTF16 705825] observation witness [ (x,y,e) ] with different direct outcomes;
+[1-10:P19351; UTF16 705889] action-successor witness [ (x,y,a,C) ] where one state has an (a)-successor in certified target class (C) and the other does not;
+[1-10:P19352; UTF16 706019] recursive modal witness a finite tree built from:
+[1-10:P19353; UTF16 706069] direct observation predicates;
+[1-10:P19354; UTF16 706100] “there exists an (a)-successor satisfying (\psi)”;
+[1-10:P19355; UTF16 706151] negation and finite conjunction.
+[1-10:P19356; UTF16 706184] A linear action trace is insufficient for trace-equivalent but nonbisimilar states.
+[1-10:P19357; UTF16 706268] Partition split history yields a finite recursive witness for every pair of different quotient blocks.
+[1-10:P19361; UTF16 706374] 35. Causal CEGAR
+[1-10:P19362; UTF16 706391] ALG-CS3 — CausalSeparatorCEGAR
+[1-10:P19364; UTF16 706428]     candidate macro program Φ
+[1-10:P19365; UTF16 706458]     exact or symbolic micro semantics
+[1-10:P19366; UTF16 706496]     action theory
+[1-10:P19367; UTF16 706514]     exterior theory
+[1-10:P19368; UTF16 706534]     macro grammar
+[1-10:P19369; UTF16 706552]     fallback canonical quotient
+[1-10:P19372; UTF16 706590]     CHECK observation sufficiency
+[1-10:P19374; UTF16 706625]     if failed:
+[1-10:P19375; UTF16 706640]         extract observation or mandatory counterexample
+[1-10:P19376; UTF16 706696]         synthesize a distinguishing coordinate
+[1-10:P19377; UTF16 706743]         refine Φ
+[1-10:P19378; UTF16 706760]         continue
+[1-10:P19380; UTF16 706778]     CHECK action closure for every action
+[1-10:P19383; UTF16 706836]         extract:
+[1-10:P19384; UTF16 706853]             representative pair
+[1-10:P19385; UTF16 706885]             action
+[1-10:P19386; UTF16 706904]             mismatched successor class
+[1-10:P19391; UTF16 707025]     CHECK evidence, validity, port, and rewrite conditions
+[1-10:P19394; UTF16 707100]         refine or return UNKNOWN
+[1-10:P19396; UTF16 707134]     if every check passes:
+[1-10:P19397; UTF16 707161]         emit exact CSSP certificate
+[1-10:P19398; UTF16 707197]         return VALID
+[1-10:P19400; UTF16 707219]     if compact representation synthesis fails:
+[1-10:P19401; UTF16 707266]         return canonical quotient class identifiers
+[1-10:P19402; UTF16 707318] The fallback preserves semantics even when interpretability fails.
+[1-10:P19406; UTF16 707388] THM-CS23 — Causal CEGAR Termination
+[1-10:P19407; UTF16 707424] For finite carriers:
+[1-10:P19408; UTF16 707445] if every accepted semantic split is canonical-quotient respecting, at most [ |Q_{\mathcal A}|-b_0 ] semantic splits are accepted;
+[1-10:P19409; UTF16 707575] if representation predicates may overrefine, at most [ |X|-b_0 ] concrete partition splits occur;
+[1-10:P19410; UTF16 707673] representation-search steps not refining a finite partition need not terminate unless separately bounded.
+[1-10:P19412; UTF16 707785] The first two bounds follow from strict finite partition refinement.
+[1-10:P19413; UTF16 707854] The third case lacks a finite monotone semantic measure. ∎
+[1-10:P19417; UTF16 707916] 36. AI Proposal Boundary
+[1-10:P19418; UTF16 707941] An AI may propose:
+[1-10:P19419; UTF16 707960] [ z=\phi(x), ]
+[1-10:P19420; UTF16 707975] such as:
+[1-10:P19421; UTF16 707984] wet-service phase;
+[1-10:P19422; UTF16 708003] shaft demand class;
+[1-10:P19424; UTF16 708054] outage-isolation domain.
+[1-10:P19425; UTF16 708079] The proposal receives no authority from its source.
+[1-10:P19426; UTF16 708131] COR-CS23A — Proposal-System Independence
+[1-10:P19427; UTF16 708172] If every accepted macro program is verified by the same exact checker, correctness is independent of whether the proposal came from:
+[1-10:P19428; UTF16 708305] a human;
+[1-10:P19429; UTF16 708314] symbolic synthesis;
+[1-10:P19430; UTF16 708334] heuristic search;
+[1-10:P19431; UTF16 708352] an AI model.
+[1-10:P19433; UTF16 708371] The soundness proofs depend only on the verified factorization conditions, not on proposal provenance. ∎
+[1-10:P19437; UTF16 708479] 37. Passive Observation Limitation
+[1-10:P19438; UTF16 708514] THM-CS13 — Passive Observation Does Not Establish Interventional Sufficiency
+[1-10:P19439; UTF16 708591] There exist two exact microstructural models with identical passive observations and different intervention responses.
+[1-10:P19441; UTF16 708716] Let hidden variable
+[1-10:P19442; UTF16 708736] [ U\in{0,1}. ]
+[1-10:P19443; UTF16 708751] Model (M_1):
+[1-10:P19444; UTF16 708764] [ X=U, \qquad Y=X. ]
+[1-10:P19445; UTF16 708785] Model (M_2):
+[1-10:P19446; UTF16 708798] [ X=U, \qquad Y=U. ]
+[1-10:P19447; UTF16 708819] Under passive operation:
+[1-10:P19448; UTF16 708844] [ X=U, ]
+[1-10:P19449; UTF16 708853] so both models satisfy
+[1-10:P19450; UTF16 708876] [ Y=X. ]
+[1-10:P19451; UTF16 708885] Their passive observation relations are identical.
+[1-10:P19452; UTF16 708936] Under intervention fixing
+[1-10:P19453; UTF16 708962] [ X:=1, ]
+[1-10:P19454; UTF16 708972] model (M_1) gives
+[1-10:P19455; UTF16 708990] [ Y=1, ]
+[1-10:P19456; UTF16 708999] while model (M_2) retains
+[1-10:P19457; UTF16 709025] [ Y=U, ]
+[1-10:P19458; UTF16 709034] which may be (0) or (1).
+[1-10:P19459; UTF16 709059] Thus passive equivalence does not determine interventional behavior. ∎
+[1-10:P19460; UTF16 709130] Data may propose or falsify a macro. Universal exact sufficiency requires exact semantics, certified assumptions, or complete intervention coverage.
+[1-10:P19464; UTF16 709282] 38. Causal Separator Statistic Discovery
+[1-10:P19465; UTF16 709323] DEF-CS22 — Executable Separator Statistic
+[1-10:P19466; UTF16 709365] For raw regional boundary state
+[1-10:P19467; UTF16 709397] [ b\in B_{\mathrm{raw}}, ]
+[1-10:P19468; UTF16 709424] a statistic
+[1-10:P19469; UTF16 709436] [ z=\phi(b) ]
+[1-10:P19470; UTF16 709450] is an executable separator statistic when:
+[1-10:P19471; UTF16 709493] every exterior experiment factors through (z);
+[1-10:P19472; UTF16 709540] every permitted internal intervention induces a representative-independent update on (z);
+[1-10:P19473; UTF16 709630] exact mandatory and evidence semantics factor through (z).
+[1-10:P19474; UTF16 709689] Its minimum exact semantics is the canonical causal separator quotient.
+[1-10:P19478; UTF16 709764] 38.1 Causal Sufficient-Separator Synthesis
+[1-10:P19479; UTF16 709807] The exact synthesis problem is:
+[1-10:P19480; UTF16 709839] [ \min_{\phi} \mathsf{RepresentationProfile}(\phi) ]
+[1-10:P19482; UTF16 709904] [ \phi \text{ is an exact causal sufficient separator}. ]
+[1-10:P19483; UTF16 709962] The output may be:
+[1-10:P19484; UTF16 709981] [ z=(z_1,\ldots,z_k). ]
+[1-10:P19485; UTF16 710005] The semantic cardinality is fixed by the canonical quotient.
+[1-10:P19486; UTF16 710066] The optimization concerns expression, factorization, and update structure.
+[1-10:P19490; UTF16 710144] 39. Joint Decomposition and Macro Search
+[1-10:P19491; UTF16 710185] Let (\mathcal D) be a legal regional decomposition and (\Phi) a family of executable separator programs.
+[1-10:P19492; UTF16 710290] Define the objective profile
+[1-10:P19493; UTF16 710319] \left( W_C, W_J, r_{\mathrm{port}}^\varepsilon, K_{\mathrm{macro}}, K_{\mathrm{update}}, C_{\mathrm{cert}} \right). ]
+[1-10:P19494; UTF16 710437] This is a Pareto or lexicographic profile unless an explicit scalar policy is supplied.
+[1-10:P19498; UTF16 710528] THM-CS14 — Joint Causal-Separator Synthesis Is NP-Hard
+[1-10:P19499; UTF16 710583] The bounded finite joint decomposition and exact macro-synthesis problem is NP-hard.
+[1-10:P19501; UTF16 710674] Restrict to instances where:
+[1-10:P19502; UTF16 710703] the action set contains only identity;
+[1-10:P19503; UTF16 710742] every raw boundary assignment is observationally distinguishable;
+[1-10:P19504; UTF16 710808] the macro map must therefore be identity on the raw separator state.
+[1-10:P19505; UTF16 710877] Then causal width equals raw bag width.
+[1-10:P19506; UTF16 710917] Optimizing the decomposition reduces to the Prompt-3 treewidth special case, which is NP-hard.
+[1-10:P19507; UTF16 711012] The joint problem contains that restricted problem. ∎
+[1-10:P19511; UTF16 711069] 39.1 Finite decidability
+[1-10:P19513; UTF16 711101] finite state carriers;
+[1-10:P19514; UTF16 711124] finite decomposition grammar;
+[1-10:P19515; UTF16 711154] bounded macro-expression grammar;
+[1-10:P19516; UTF16 711188] enumerating all legal pairs ((\mathcal D,\Phi)) and checking them is decidable.
+[1-10:P19517; UTF16 711268] It may be superexponential.
+[1-10:P19521; UTF16 711299] 40. Macro Hierarchy Discovery
+[1-10:P19522; UTF16 711329] ALG-CS4 — DiscoverMacroHierarchy
+[1-10:P19524; UTF16 711368]     micro action system
+[1-10:P19525; UTF16 711392]     candidate regional decomposition
+[1-10:P19526; UTF16 711429]     macro grammars by level
+[1-10:P19528; UTF16 711458] 1. Compute or symbolically characterize local
+[1-10:P19529; UTF16 711504]    canonical executable quotients.
+[1-10:P19531; UTF16 711540] 2. Synthesize and verify local macro programs.
+[1-10:P19533; UTF16 711588] 3. Compose accepted local macro systems.
+[1-10:P19535; UTF16 711630] 4. Compute the induced higher-level action system.
+[1-10:P19537; UTF16 711682] 5. Minimize the induced system.
+[1-10:P19539; UTF16 711715] 6. Synthesize higher-level coordinates.
+[1-10:P19541; UTF16 711756] 7. Test whether local distinctions became globally irrelevant.
+[1-10:P19543; UTF16 711820] 8. Merge or refactor where certified.
+[1-10:P19545; UTF16 711859] 9. If a higher-level counterexample reveals missing
+[1-10:P19546; UTF16 711911]    lower-level information:
+[1-10:P19547; UTF16 711939]        refine the affected lower level.
+[1-10:P19549; UTF16 711980] 10. If representation synthesis fails:
+[1-10:P19550; UTF16 712019]        retain categorical quotient IDs.
+[1-10:P19551; UTF16 712059] Every accepted level is exact. The hierarchy is not claimed globally optimal.
+[1-10:P19555; UTF16 712140] 41. Macro Thawing and Witness Fibers
+[1-10:P19556; UTF16 712177] ALG-CS5 — ThawMacrostate
+[1-10:P19558; UTF16 712208]     macrostate z
+[1-10:P19559; UTF16 712225]     symbolic fiber Φz(x)
+[1-10:P19560; UTF16 712250]     targeted action a
+[1-10:P19561; UTF16 712272]     current macro action theory
+[1-10:P19563; UTF16 712305] IF a is certified executable:
+[1-10:P19564; UTF16 712335]     return macro transition ā(z)
+[1-10:P19567; UTF16 712380]     compute symbolic postcondition:
+[1-10:P19568; UTF16 712416]         Posta(Φz)
+[1-10:P19570; UTF16 712435]     reabstract the postcondition
+[1-10:P19572; UTF16 712469]     if one existing macrostate is exact:
+[1-10:P19573; UTF16 712510]         return it
+[1-10:P19575; UTF16 712529]     if several macro classes occur:
+[1-10:P19576; UTF16 712565]         refine the macro partition
+[1-10:P19578; UTF16 712601]     materialize concrete witnesses only when required
+[1-10:P19580; UTF16 712656]     if symbolic processing is UNKNOWN:
+[1-10:P19581; UTF16 712695]         invoke cold microstate reconstruction or full recompute
+[1-10:P19585; UTF16 712762] 41.1 One representative is insufficient
+[1-10:P19586; UTF16 712802] The resistor microstates
+[1-10:P19587; UTF16 712827] [ (2,8), \qquad (5,5) ]
+[1-10:P19588; UTF16 712851] share current equivalent resistance (10).
+[1-10:P19589; UTF16 712893] Keeping only representative ((2,8)) and later replacing resistor 1 predicts post-action resistance (11).
+[1-10:P19590; UTF16 712998] The other hidden state yields (8).
+[1-10:P19591; UTF16 713033] One representative is sufficient for present terminal behavior but not arbitrary hidden-detail editing.
+[1-10:P19592; UTF16 713137] A symbolic fiber or executable macro refinement is required.
+[1-10:P19596; UTF16 713201] 42. Sparse Action Footprints
+[1-10:P19597; UTF16 713230] DEF-CS23 — Action-Footprint Certificate
+[1-10:P19598; UTF16 713270] For coordinate (j) and action (a), a certificate proves:
+[1-10:P19599; UTF16 713327] [ \forall xT_ax', \qquad \phi_j(x')=\phi_j(x). ]
+[1-10:P19600; UTF16 713376] The certified action footprint is any set (F_a) containing every coordinate lacking such a certificate.
+[1-10:P19604; UTF16 713483] THM-CS26 — Exact Structural Sharing from Action-Footprint Certificates
+[1-10:P19605; UTF16 713554] If (j\notin F_a), reusing the old stored value of coordinate (j) after action (a) is exact.
+[1-10:P19607; UTF16 713652] The footprint certificate states equality for every exact action transition. ∎
+[1-10:P19608; UTF16 713731] This supports persistent and copy-on-write search states, but does not guarantee sparse footprints exist.
+[1-10:P19612; UTF16 713840] 42.1 No-free-sparsity family
+[1-10:P19614; UTF16 713873] [ Z={0,1}^k ]
+[1-10:P19615; UTF16 713887] and let direct observations expose every coordinate.
+[1-10:P19616; UTF16 713940] Action (a) maps
+[1-10:P19617; UTF16 713956] [ z\mapsto\neg z. ]
+[1-10:P19618; UTF16 713976] Every coordinate is semantically necessary, and every coordinate changes:
+[1-10:P19619; UTF16 714050] [ |F_a|=k. ]
+[1-10:P19620; UTF16 714063] Semantic compactness does not imply local updates.
+[1-10:P19624; UTF16 714117] 42.2 Positive sparse family
+[1-10:P19626; UTF16 714149] [ x=(x_1,\ldots,x_n) ]
+[1-10:P19627; UTF16 714172] with independent module macro coordinates
+[1-10:P19628; UTF16 714214] [ z_i=f_i(x_i). ]
+[1-10:P19629; UTF16 714232] Action (a_i) modifies only module (i).
+[1-10:P19631; UTF16 714277] [ |F_{a_i}|=1. ]
+[1-10:P19632; UTF16 714294] If an aggregate count (g=\sum_i z_i) is also stored, the action updates:
+[1-10:P19633; UTF16 714367] (z_i);
+[1-10:P19634; UTF16 714374] (g).
+[1-10:P19635; UTF16 714379] The footprint becomes two, independent of (n).
+[1-10:P19639; UTF16 714429] 43. Relative-Phase Macro Example
+[1-10:P19641; UTF16 714467] [ r,s,p\in\mathbb Z_m ]
+[1-10:P19642; UTF16 714491] represent:
+[1-10:P19643; UTF16 714502] room-module phase;
+[1-10:P19644; UTF16 714521] structural-grid phase;
+[1-10:P19645; UTF16 714544] service-spine phase.
+[1-10:P19647; UTF16 714573] [ z_1=(s-r)\bmod m, ]
+[1-10:P19648; UTF16 714595] [ z_2=(p-r)\bmod m. ]
+[1-10:P19649; UTF16 714617] Assume every exterior routing and penetration outcome depends only on ((z_1,z_2)).
+[1-10:P19650; UTF16 714700] Actions:
+[1-10:P19651; UTF16 714709] Common translation
+[1-10:P19652; UTF16 714728] [ (r,s,p)\mapsto(r+1,s+1,p+1). ]
+[1-10:P19654; UTF16 714767] [ (z_1,z_2)\mapsto(z_1,z_2). ]
+[1-10:P19655; UTF16 714798] Shift structure
+[1-10:P19656; UTF16 714814] [ s\mapsto s+1. ]
+[1-10:P19658; UTF16 714838] [ z_1\mapsto z_1+1, \qquad z_2\mapsto z_2. ]
+[1-10:P19659; UTF16 714883] Shift service spine
+[1-10:P19660; UTF16 714903] [ p\mapsto p+1. ]
+[1-10:P19662; UTF16 714927] [ z_2\mapsto z_2+1. ]
+[1-10:P19663; UTF16 714949] Shift room module
+[1-10:P19664; UTF16 714967] [ r\mapsto r+1. ]
+[1-10:P19666; UTF16 714991] [ z_1\mapsto z_1-1, \qquad z_2\mapsto z_2-1. ]
+[1-10:P19667; UTF16 715038] All arithmetic is modulo (m).
+[1-10:P19671; UTF16 715071] PRO-CS1 — Relative-Phase Executability
+[1-10:P19672; UTF16 715110] Under the declared invariant interaction theory,
+[1-10:P19673; UTF16 715159] [ \phi(r,s,p)=(z_1,z_2) ]
+[1-10:P19674; UTF16 715185] is an exact executable macro.
+[1-10:P19675; UTF16 715215] The (m^3) raw phase states collapse to (m^2) macro states.
+[1-10:P19677; UTF16 715280] Two raw states with equal ((z_1,z_2)) differ by one common translation.
+[1-10:P19678; UTF16 715352] Exterior outcomes are invariant under common translation by assumption.
+[1-10:P19679; UTF16 715424] The four action updates above depend only on ((z_1,z_2)).
+[1-10:P19680; UTF16 715482] Thus observations and actions factor through (\phi). ∎
+[1-10:P19681; UTF16 715537] The meaningful causal variables are relative phases, not absolute coordinates.
+[1-10:P19685; UTF16 715619] 44. Saturated-Service Example
+[1-10:P19686; UTF16 715649] Let anonymous demand units have total count
+[1-10:P19687; UTF16 715693] [ s=\sum_iq_i. ]
+[1-10:P19688; UTF16 715710] Define saturation macro:
+[1-10:P19689; UTF16 715735] [ z=\min(B,s). ]
+[1-10:P19690; UTF16 715752] Add-only anonymous action
+[1-10:P19691; UTF16 715778] Action:
+[1-10:P19694; UTF16 715810] [ z\mapsto\min(B,z+1). ]
+[1-10:P19695; UTF16 715835] The saturation macro is executable.
+[1-10:P19696; UTF16 715871] Remove action
+[1-10:P19697; UTF16 715885] Suppose removal is admitted.
+[1-10:P19698; UTF16 715914] States:
+[1-10:P19699; UTF16 715922] [ s=B \qquad\text{and}\qquad s=B+1 ]
+[1-10:P19700; UTF16 715959] share (z=B).
+[1-10:P19701; UTF16 715972] After one removal:
+[1-10:P19702; UTF16 715991] [ B\mapsto B-1, ]
+[1-10:P19703; UTF16 716009] [ B+1\mapsto B. ]
+[1-10:P19704; UTF16 716027] The macro is no longer executable.
+[1-10:P19705; UTF16 716062] Targeted heterogeneous unit action
+[1-10:P19706; UTF16 716097] If the action modifies one named unit with a hidden parameter, total saturation is generally insufficient.
+[1-10:P19707; UTF16 716204] Action theory determines macro validity.
+[1-10:P19711; UTF16 716248] 45. Equivalent-Resistance Example
+[1-10:P19712; UTF16 716282] Case A — Boundary voltage only
+[1-10:P19713; UTF16 716313] No internal action is admitted.
+[1-10:P19714; UTF16 716345] [ R_{\mathrm{eq}} ]
+[1-10:P19715; UTF16 716365] is sufficient for terminal current.
+[1-10:P19716; UTF16 716401] Case B — Replace named resistor
+[1-10:P19717; UTF16 716433] Equivalent resistance is insufficient by THM-CS2.
+[1-10:P19718; UTF16 716483] Case C — Uniform scaling
+[1-10:P19720; UTF16 716516] [ R_i\mapsto\alpha R_i \qquad \forall i. ]
+[1-10:P19722; UTF16 716565] [ R_{\mathrm{eq}} \mapsto \alpha R_{\mathrm{eq}}. ]
+[1-10:P19723; UTF16 716617] Equivalent resistance is executable for this action.
+[1-10:P19724; UTF16 716670] The same statistic can be:
+[1-10:P19725; UTF16 716697] valid;
+[1-10:P19727; UTF16 716713] valid again
+[1-10:P19728; UTF16 716725] under different action theories.
+[1-10:P19732; UTF16 716761] 46. Hydraulic Example
+[1-10:P19733; UTF16 716783] Consider two parallel branches with coefficients (K_1,K_2>0) in linear regime:
+[1-10:P19734; UTF16 716862] [ q_1=\frac{\Delta p}{K_1}, \qquad q_2=\frac{\Delta p}{K_2}. ]
+[1-10:P19735; UTF16 716925] Total flow:
+[1-10:P19736; UTF16 716937] \Delta p \left( \frac1{K_1} + \frac1{K_2} \right). ]
+[1-10:P19737; UTF16 716990] Define equivalent coefficient:
+[1-10:P19738; UTF16 717021] \left( \frac1{K_1} + \frac1{K_2} \right)^{-1}. ]
+[1-10:P19739; UTF16 717070] Current terminal behavior depends only on (K_{\mathrm{eq}}).
+[1-10:P19740; UTF16 717131] Uniform roughness scaling
+[1-10:P19741; UTF16 717157] [ K_i\mapsto\alpha K_i. ]
+[1-10:P19743; UTF16 717189] [ K_{\mathrm{eq}}\mapsto\alpha K_{\mathrm{eq}}. ]
+[1-10:P19744; UTF16 717239] The macro is executable.
+[1-10:P19745; UTF16 717264] Close branch 1
+[1-10:P19746; UTF16 717279] The successor equivalent coefficient is:
+[1-10:P19747; UTF16 717320] [ K_2. ]
+[1-10:P19748; UTF16 717329] Different pairs ((K_1,K_2)) can share the same (K_{\mathrm{eq}}) and have different (K_2).
+[1-10:P19749; UTF16 717420] Therefore branch closure is not executable from (K_{\mathrm{eq}}) alone.
+[1-10:P19750; UTF16 717493] Replace one named valve
+[1-10:P19751; UTF16 717517] The same failure occurs.
+[1-10:P19752; UTF16 717542] A richer macro might retain:
+[1-10:P19753; UTF16 717571] [ (K_{\mathrm{eq}},K_1,K_2) ]
+[1-10:P19754; UTF16 717601] or an action-specific decomposition class.
+[1-10:P19758; UTF16 717647] 47. Thermal-Zone Split Example
+[1-10:P19759; UTF16 717678] Suppose current merged-zone observation is average temperature:
+[1-10:P19760; UTF16 717742] \frac{T_1+T_2}{2}. ]
+[1-10:P19761; UTF16 717763] States
+[1-10:P19762; UTF16 717770] [ x=(20,24) ]
+[1-10:P19764; UTF16 717788] [ y=(22,22) ]
+[1-10:P19765; UTF16 717802] share:
+[1-10:P19766; UTF16 717809] [ T_{\mathrm{avg}}=22. ]
+[1-10:P19767; UTF16 717834] For a currently merged zone, the average may be sufficient.
+[1-10:P19768; UTF16 717894] Admit rewrite:
+[1-10:P19769; UTF16 717909] split the zone into two controlled rooms.
+[1-10:P19770; UTF16 717951] The post-rewrite outputs expose (T_1,T_2).
+[1-10:P19771; UTF16 717994] The first state produces a differential mode:
+[1-10:P19772; UTF16 718040] [ T_1-T_2=-4. ]
+[1-10:P19773; UTF16 718056] The second produces:
+[1-10:P19775; UTF16 718084] The one-temperature macro is not closed under zone splitting.

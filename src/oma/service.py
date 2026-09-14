@@ -153,13 +153,15 @@ class EngineService:
             candidate.setdefault("objective", {})
             candidate.setdefault("changed_ids", [])
             candidate.setdefault("routes", [])
-            if candidate.get("kind") in {"physical_route", "physical_route_set"}:
+            candidate.setdefault("networks", [])
+            if candidate.get("kind") in {"physical_route", "physical_route_set", "physical_network"}:
                 candidate_state = self.store.get(candidate["state_root"])
                 from .validation_advisories import candidate_advisories
                 candidate["validation_advisories"] = candidate_advisories(self.store, candidate, candidate_state)
                 contracts = candidate_state.get("derived_artifacts", {}).get("routing_contracts", {})
                 candidate["routes"] = [{**route, "request_demand_id": contracts.get(route["id"], {}).get("request_demand_id")}
                     for route in (candidate["routes"] or candidate_state.get("routes", []))]
+                candidate["networks"] = self.network_views(candidate_state)
         sources = state.get("sources", [])
         missing = []
         if not sources:
@@ -184,12 +186,40 @@ class EngineService:
             entities.append({"id": route["id"], "name": route["id"], "ifc_type": "PhysicalRoute", "discipline": route["service"],
                              "geometry_status": "represented" if route.get("geometry_artifact") else "unresolved", "locked": False,
                              "properties": {"section": route["section"], "demand_ids": route["demand_ids"], "ports": route["port_ids"]}})
+        networks = self.network_views(state)
+        for network in networks:
+            spec = network["network_spec"]
+            parts = {part["component_id"]: part for part in network["added_parts"]}
+            for component in spec["components"]:
+                cid = component["id"]
+                part = parts.get(cid, {})
+                demand_ids = [path["demand_id"] for path in spec["demand_paths"]
+                              if any(step["component"] == cid for step in path["steps"])]
+                entities.append({"id": f"{network['id']}:{cid}", "name": f"{spec['network_id']} / {cid}",
+                    "ifc_type": "PhysicalNetworkComponent", "discipline": network["service"],
+                    "system": spec["network_id"], "guid": part.get("ifc_guid"), "step_id": part.get("step_id"),
+                    "source_file": network["source_file"],
+                    "network_id": network["id"], "component_id": cid, "demand_ids": demand_ids,
+                    "geometry_status": "represented" if part.get("ifc_guid") else "unresolved", "locked": False,
+                    "properties": {"kind": component["kind"], "section": network["section"],
+                        "demand_ids": demand_ids, "shared_component": len(demand_ids) > 1,
+                        "ports": part.get("ports", {}), "component": component}})
         history = [{**r, "state_root": r["root"]} for r in self.store.history(project_id)]
         with self.store.connect() as db:
             seq = db.execute("SELECT COALESCE(MAX(seq),0) FROM events WHERE project_id=?", (project_id,)).fetchone()[0]
         return {"project": project, "entities": entities, "sources": sources, "issues": issues, "checks": checks,
                 "candidates": candidates, "runs": self.store.runs(project_id), "history": history,
-                "constraints": [state["mission"]] if state.get("mission") else [], "missing_inputs": missing, "events_seq": seq}
+                "networks": networks, "constraints": [state["mission"]] if state.get("mission") else [], "missing_inputs": missing, "events_seq": seq}
+
+    def network_views(self, state: dict) -> list[dict]:
+        views = []
+        for network in state.get("physical_networks", []):
+            if not network.get("geometry_artifact"):
+                continue
+            materialized = self.store.get(network["geometry_artifact"])
+            views.append({**network, "source_file": Path(materialized["export_path"]).name, "network_spec": materialized["network_spec"],
+                          "added_parts": materialized["added_parts"]})
+        return views
 
     def geometry(self, project_id: str, revision: int | None = None, candidate_id: str | None = None) -> dict:
         project = self.selected_project(project_id, revision, candidate_id)
@@ -244,6 +274,8 @@ class EngineService:
                     json.dump(route_meshes, stream, separators=(",", ":"))
                 os.replace(temp, cache)
             meshes.extend(route_meshes)
+        from .geometry_stream import iter_network_meshes
+        meshes.extend(iter_network_meshes(self.store, state))
         return {"project_id": project_id, "state_root": project["state_root"], "revision": project["revision"],
                 "units": "m", "coordinate_system": "world", "meshes": meshes,
                 "bounds": {"min": minimum, "max": maximum} if minimum else None}

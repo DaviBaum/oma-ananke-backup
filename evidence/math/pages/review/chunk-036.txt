@@ -1,0 +1,356 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P14060; UTF16 529722]             if mandatory enclosure crosses a class:
+[1-10:P14061; UTF16 529774]                 mark UNRESOLVED
+[1-10:P14062; UTF16 529806]                 request refinement
+[1-10:P14063; UTF16 529841]                 do not emit a resolved message
+[1-10:P14066; UTF16 529912]                 emit parent cover message
+[1-10:P14067; UTF16 529954]                 with error, validity, evidence, and backpointers
+[1-10:P14069; UTF16 530020] AT ROOT
+[1-10:P14070; UTF16 530028]     run DecisionStabilityCheck
+[1-10:P14071; UTF16 530059]     retain exact qualitative decisions
+[1-10:P14072; UTF16 530098]     certify quantitative regret where declared
+[1-10:P14073; UTF16 530145]     return unresolved obligations separately
+[1-10:P14077; UTF16 530193] THM-ER14 — Approximate Separator-DP Error Correctness
+[1-10:P14078; UTF16 530247] For every generated node message, its certified error enclosure contains the exact regional outcome represented by its child concrete states.
+[1-10:P14079; UTF16 530389] At the root, the exact outcome lies within the recursively propagated root enclosure.
+[1-10:P14080; UTF16 530475] If the root enclosure is decision stable, the approximate DP produces the exact required qualitative decision reports and the declared quantitative regret guarantees.
+[1-10:P14083; UTF16 530696] At a leaf, correctness is the leaf numerical or cover certificate.
+[1-10:P14084; UTF16 530763] Assume each child exact state lies within the child message enclosure.
+[1-10:P14085; UTF16 530834] The transfer modulus bounds the effect of child representation error on the exact parent map.
+[1-10:P14086; UTF16 530928] The local numerical defect bounds the difference between exact parent evaluation and the approximate routine.
+[1-10:P14087; UTF16 531038] The cover quantization certificate bounds the difference between the approximate parent result and the stored representative.
+[1-10:P14088; UTF16 531164] The triangle/error-monoid composition gives the stated parent error.
+[1-10:P14089; UTF16 531233] Mandatory compatibility is checked exactly; unresolved crossings are not represented as resolved messages.
+[1-10:P14090; UTF16 531340] Induction reaches the root.
+[1-10:P14091; UTF16 531368] THM-ER6 and THM-ER11 convert a stable root enclosure into exact qualitative or bounded-regret decision guarantees. ∎
+[1-10:P14095; UTF16 531488] 34.1 Complexity
+[1-10:P14097; UTF16 531508] \left| \widetilde\Sigma_v^{\varepsilon_v} \right|, ]
+[1-10:P14099; UTF16 531567] O!\left( \sum_v c_v(\varepsilon_v) \ell_v \prod_{u\in\operatorname{child}(v)} q_u^{\varepsilon_u} \right). } ]
+[1-10:P14100; UTF16 531678] The certification cost (c_v(\varepsilon_v)) may increase sharply as tolerance shrinks.
+[1-10:P14104; UTF16 531768] 35. Error-Budget Allocation
+[1-10:P14105; UTF16 531796] For each decomposition node choose local budget (\varepsilon_v).
+[1-10:P14107; UTF16 531866] [ \mathsf{RootErr} \left( (\varepsilon_v)_v \right) ]
+[1-10:P14108; UTF16 531920] be the propagated root error under THM-ER14.
+[1-10:P14109; UTF16 531965] The exact optimization problem is:
+[1-10:P14110; UTF16 532000] [ \min_{(\varepsilon_v)} \sum_v c_v(\varepsilon_v) \ell_v \prod_{u} q_u^{\varepsilon_u} ]
+[1-10:P14112; UTF16 532102] [ \mathsf{RootErr} \left( (\varepsilon_v)v \right) \preceq \varepsilon{\mathrm{root}}, ]
+[1-10:P14113; UTF16 532191] plus mandatory non-crossing and validity constraints.
+[1-10:P14117; UTF16 532248] THM-ER19 — Error-Budget Allocation Structure
+[1-10:P14118; UTF16 532293] The finite discretized error-budget problem has a minimum.
+[1-10:P14119; UTF16 532352] In the scalar special case: [ \sum_v a_v\varepsilon_v \le \varepsilon_{\mathrm{root}}, ] with convex feasible domains and convex cost functions (C_v(\varepsilon_v)), the allocation problem is convex.
+[1-10:P14120; UTF16 532552] The generic discrete allocation problem is NP-hard.
+[1-10:P14122; UTF16 532610] Part 1
+[1-10:P14123; UTF16 532617] A finite nonempty feasible set has a minimum under any finite objective.
+[1-10:P14124; UTF16 532690] Part 2
+[1-10:P14125; UTF16 532697] The constraint is linear, hence convex. A sum of convex functions is convex. Therefore the optimization is a convex program.
+[1-10:P14126; UTF16 532822] Part 3
+[1-10:P14127; UTF16 532829] Given a minimum-cost knapsack-cover instance with item error reductions (a_i), costs (c_i), and required total reduction (R), let each node choose:
+[1-10:P14128; UTF16 532977] coarse: [ \varepsilon_i=a_i,\quad\text{cost }0; ]
+[1-10:P14129; UTF16 533027] refined: [ \varepsilon_i=0,\quad\text{cost }c_i. ]
+[1-10:P14130; UTF16 533078] Require:
+[1-10:P14131; UTF16 533087] [ \sum_i\varepsilon_i \le \sum_i a_i-R. ]
+[1-10:P14132; UTF16 533129] Choosing refinements satisfying the error constraint is exactly choosing items whose total reduction is at least (R) with minimum cost.
+[1-10:P14133; UTF16 533265] Thus the generic problem contains minimum knapsack cover. ∎
+[1-10:P14137; UTF16 533328] 36. Adaptive Fidelity
+[1-10:P14138; UTF16 533350] ALG-ER5 — AdaptiveFidelityRefine
+[1-10:P14140; UTF16 533389]     current certified enclosure E
+[1-10:P14141; UTF16 533423]     decision influence set I#(E)
+[1-10:P14142; UTF16 533456]     available refinement actions
+[1-10:P14144; UTF16 533490] IF all required decisions are stable:
+[1-10:P14145; UTF16 533528]     STOP
+[1-10:P14147; UTF16 533538] FOR each influenced obligation:
+[1-10:P14148; UTF16 533570]     identify the enclosure component
+[1-10:P14149; UTF16 533607]     intersecting its live decision boundary
+[1-10:P14151; UTF16 533652] GENERATE candidate actions:
+[1-10:P14152; UTF16 533680]     tighten solver tolerance
+[1-10:P14153; UTF16 533709]     refine mesh
+[1-10:P14154; UTF16 533725]     raise model order
+[1-10:P14155; UTF16 533747]     split parameter domain
+[1-10:P14156; UTF16 533774]     replace surrogate
+[1-10:P14157; UTF16 533796]     run full model
+[1-10:P14158; UTF16 533815]     request measurement
+[1-10:P14159; UTF16 533839]     request human judgment
+[1-10:P14160; UTF16 533866]     split symbolic state family
+[1-10:P14162; UTF16 533899] SELECT an action by a declared heuristic
+[1-10:P14164; UTF16 533941] EXECUTE action
+[1-10:P14165; UTF16 533956] CHECK certificate
+[1-10:P14166; UTF16 533974] REPLACE E only by a certified subset E' ⊆ E
+[1-10:P14168; UTF16 534019] REPEAT
+[1-10:P14169; UTF16 534026] Correctness does not depend on the action-order heuristic.
+[1-10:P14170; UTF16 534085] The only soundness requirement is nested certified refinement or an explicitly justified model change.
+[1-10:P14174; UTF16 534191] 37. Approximate CEGAR
+[1-10:P14175; UTF16 534213] ALG-ER8 — ErrorAwareEngineeringCEGAR
+[1-10:P14176; UTF16 534250] abstract failure or distinction
+[1-10:P14177; UTF16 534282]         |
+[1-10:P14178; UTF16 534292]         v
+[1-10:P14179; UTF16 534302] symbolically realizable?
+[1-10:P14180; UTF16 534327]     UNSAT certificate
+[1-10:P14181; UTF16 534349]         -> symbolic abstraction refinement
+[1-10:P14182; UTF16 534392]     UNKNOWN
+[1-10:P14183; UTF16 534404]         -> unresolved
+[1-10:P14184; UTF16 534426]     SAT witness
+[1-10:P14187; UTF16 534462] numerically enclosed?
+[1-10:P14188; UTF16 534484]     no
+[1-10:P14189; UTF16 534491]         -> increase numerical fidelity
+[1-10:P14190; UTF16 534530]     yes
+[1-10:P14193; UTF16 534558] mandatory class uniform?
+[1-10:P14195; UTF16 534590]         -> refine, split, or remain unresolved
+[1-10:P14199; UTF16 534665] model validity established?
+[1-10:P14201; UTF16 534700]         -> MODEL BOUNDARY / UNKNOWN
+[1-10:P14205; UTF16 534764] physical discrepancy bounded?
+[1-10:P14207; UTF16 534801]         -> model-level result only
+[1-10:P14211; UTF16 534864] decision report stable?
+[1-10:P14213; UTF16 534896]         -> certified decision or real counterexample
+[1-10:P14215; UTF16 534956]         -> further fidelity or unresolved
+[1-10:P14219; UTF16 535001] THM-ER25 — Error-Aware CEGAR Soundness
+[1-10:P14220; UTF16 535040] If ALG-ER8:
+[1-10:P14221; UTF16 535052] accepts only checked symbolic SAT/UNSAT results;
+[1-10:P14222; UTF16 535101] treats numerical enclosures conservatively;
+[1-10:P14223; UTF16 535145] enforces mandatory non-crossing;
+[1-10:P14224; UTF16 535178] enforces model-validity domains;
+[1-10:P14225; UTF16 535211] preserves discrepancy status;
+[1-10:P14226; UTF16 535241] treats UNKNOWN as unresolved;
+[1-10:P14227; UTF16 535271] then every reported real counterexample is concretely feasible under the mathematical model, every physical claim respects its discrepancy certificate, and no false quotient merge or safety prune is certified.
+[1-10:P14229; UTF16 535487] A symbolic UNSAT refinement is checked and therefore removes no concrete path.
+[1-10:P14230; UTF16 535566] A SAT path supplies a concrete discrete witness.
+[1-10:P14231; UTF16 535615] Numerical certification encloses the exact mathematical output.
+[1-10:P14232; UTF16 535679] Mandatory non-crossing prevents categorical overstatement.
+[1-10:P14233; UTF16 535738] Validity checks prevent unsupported extrapolation.
+[1-10:P14234; UTF16 535789] Discrepancy metadata limits physical claims to what the model-to-reality relation supports.
+[1-10:P14235; UTF16 535881] UNKNOWN contributes no certified premise.
+[1-10:P14236; UTF16 535923] The remaining inferences are applications of THM-AB1, THM-AB2, THM-ER3, and THM-ER6. ∎
+[1-10:P14240; UTF16 536013] 38. Error-Aware Must/May State
+[1-10:P14241; UTF16 536044] DEF-ER22 — Error-Aware Pair Classification
+[1-10:P14242; UTF16 536087] For state pair ((x,y)), ANANKE may record:
+[1-10:P14243; UTF16 536130] exactly equivalent [ xE_{\mathrm{exact}}y; ]
+[1-10:P14244; UTF16 536175] certified close [ \boldsymbol\delta_L(x,y) \preceq \mathbf e_{xy}; ]
+[1-10:P14245; UTF16 536244] definitely distinguishable, supported by:
+[1-10:P14246; UTF16 536286] mandatory mismatch;
+[1-10:P14247; UTF16 536306] concrete distinguishing experiment;
+[1-10:P14248; UTF16 536342] lower distance bound exceeding tolerance;
+[1-10:P14250; UTF16 536396] The relation:
+[1-10:P14251; UTF16 536410] [ \boldsymbol\delta_L(x,y) \preceq \boldsymbol\varepsilon ]
+[1-10:P14252; UTF16 536470] is not treated as an equivalence relation.
+[1-10:P14253; UTF16 536513] Approximate separator compilation therefore uses codebook assignment and error certificates rather than quotienting by closeness.
+[1-10:P14257; UTF16 536646] 39. Approximate Theory Reuse
+[1-10:P14258; UTF16 536675] THM-ER26 — Theory and Tolerance Safe Reuse
+[1-10:P14259; UTF16 536718] Let an artifact be certified under experiment theory (\mathcal T_1) and tolerance (\boldsymbol\varepsilon_1).
+[1-10:P14260; UTF16 536828] It is directly safe for a new project with ((\mathcal T_2,\boldsymbol\varepsilon_2)) when:
+[1-10:P14264; UTF16 537026] metric definitions are compatible;
+[1-10:P14265; UTF16 537061] model validity domains contain the new states;
+[1-10:P14266; UTF16 537108] evidence dependencies remain valid.
+[1-10:P14267; UTF16 537144] If the new theory is richer or the new tolerance tighter, refinement or recompilation may be required.
+[1-10:P14269; UTF16 537253] Theory restriction removes possible distinctions.
+[1-10:P14270; UTF16 537303] Tolerance enlargement permits every error accepted previously.
+[1-10:P14271; UTF16 537366] Therefore every old certified outcome remains acceptable under the new obligations.
+[1-10:P14272; UTF16 537450] Richer theories may distinguish old codewords; tighter tolerances may invalidate old cover radii. ∎
+[1-10:P14276; UTF16 537553] 40. Evidence-Aware Error Floors
+[1-10:P14277; UTF16 537585] Suppose a cost routine reports:
+[1-10:P14278; UTF16 537617] [ $81.372641\text{M} ]
+[1-10:P14279; UTF16 537640] with numerical enclosure:
+[1-10:P14280; UTF16 537666] [ \pm$0.001\text{M}, ]
+[1-10:P14281; UTF16 537689] while the validated empirical cost-model discrepancy is:
+[1-10:P14282; UTF16 537746] [ \pm$6\text{M}. ]
+[1-10:P14283; UTF16 537765] Under independent additive enclosure composition:
+[1-10:P14284; UTF16 537815] E_{\mathrm{num}} \oplus E_{\mathrm{model}}, ]
+[1-10:P14285; UTF16 537861] the total half-width is:
+[1-10:P14286; UTF16 537886] [ $6.001\text{M}. ]
+[1-10:P14287; UTF16 537906] The decimal digits beyond that scale are numerical artifacts, not defensible knowledge.
+[1-10:P14288; UTF16 537994] PRO-ER2 — Unresolved-Component Lower Bound
+[1-10:P14289; UTF16 538037] Under componentwise Minkowski error composition in which every component contains zero and may vary independently, the total error radius in each coordinate is at least the radius of every individual component.
+[1-10:P14291; UTF16 538254] The Minkowski sum contains each component by fixing every other component at zero. ∎
+[1-10:P14292; UTF16 538339] With known correlations, the exact relational composition may be tighter. Correlation must be certified rather than assumed.
+[1-10:P14296; UTF16 538467] 41. Value of Additional Computation
+[1-10:P14298; UTF16 538507] [ \mathcal I(E)=\varnothing, ]
+[1-10:P14299; UTF16 538538] then every sound refinement:
+[1-10:P14301; UTF16 538585] has the same required report.
+[1-10:P14302; UTF16 538615] Therefore the decision value of further numerical refinement for the current fixed decision is zero.
+[1-10:P14303; UTF16 538716] This does not imply zero value for:
+[1-10:P14304; UTF16 538752] future reuse;
+[1-10:P14305; UTF16 538766] evidence improvement;
+[1-10:P14306; UTF16 538788] model validation;
+[1-10:P14307; UTF16 538806] another decision theory.
+[1-10:P14308; UTF16 538831] A later metareasoner may estimate expected influence removal per computational cost. Prompt 5 supplies the sound semantic influence object but not the full value-of-computation policy.
+[1-10:P14312; UTF16 539019] 42. Required Algorithms
+[1-10:P14313; UTF16 539043] ALG-ER1 — CertifiedNumericalEvaluate
+[1-10:P14315; UTF16 539086]     exact mathematical model M
+[1-10:P14316; UTF16 539117]     state or state enclosure X
+[1-10:P14317; UTF16 539148]     target quantity J
+[1-10:P14318; UTF16 539170]     requested certification tolerance
+[1-10:P14319; UTF16 539208]     validity and evidence requirements
+[1-10:P14322; UTF16 539254]     X is inside model validity domain
+[1-10:P14324; UTF16 539293] RUN
+[1-10:P14325; UTF16 539297]     numerical method
+[1-10:P14326; UTF16 539318]     residual estimator
+[1-10:P14327; UTF16 539341]     discretization estimator
+[1-10:P14328; UTF16 539370]     roundoff enclosure
+[1-10:P14329; UTF16 539393]     reduced-model or surrogate certificate
+[1-10:P14331; UTF16 539437] VERIFY
+[1-10:P14332; UTF16 539444]     every proof object in trusted kernel
+[1-10:P14334; UTF16 539486] COMBINE
+[1-10:P14335; UTF16 539494]     error components using correlation-aware rules
+[1-10:P14337; UTF16 539546] PROPAGATE
+[1-10:P14338; UTF16 539556]     model discrepancy and measurement uncertainty separately
+[1-10:P14340; UTF16 539618] RETURN
+[1-10:P14341; UTF16 539625]     numerical approximation
+[1-10:P14342; UTF16 539653]     exact mathematical enclosure
+[1-10:P14343; UTF16 539686]     physical claim enclosure, if justified
+[1-10:P14344; UTF16 539729]     validity status
+[1-10:P14345; UTF16 539749]     error decomposition
+[1-10:P14346; UTF16 539773]     evidence dependencies
+[1-10:P14347; UTF16 539799]     certificate
+[1-10:P14348; UTF16 539815]     unresolved obligations
+[1-10:P14352; UTF16 539845] ALG-ER2 — PropagateDecisionError
+[1-10:P14354; UTF16 539884]     dependency DAG
+[1-10:P14355; UTF16 539903]     local certified defects
+[1-10:P14356; UTF16 539931]     transfer moduli or matrices
+[1-10:P14357; UTF16 539963]     correlation representation
+[1-10:P14358; UTF16 539994]     root decision obligations
+[1-10:P14360; UTF16 540025] TOPOLOGICAL ORDER
+[1-10:P14361; UTF16 540043]     for every node:
+[1-10:P14362; UTF16 540063]         propagate parent errors
+[1-10:P14363; UTF16 540095]         add local certified defect
+[1-10:P14364; UTF16 540130]         preserve shared error symbols
+[1-10:P14365; UTF16 540168]         update mandatory status set
+[1-10:P14366; UTF16 540204]         update decision influence overapproximation
+[1-10:P14369; UTF16 540264]     node enclosures
+[1-10:P14370; UTF16 540284]     root enclosure
+[1-10:P14371; UTF16 540303]     influence set
+[1-10:P14372; UTF16 540321]     dominant uncertainty sources
+[1-10:P14373; UTF16 540354] Correctness follows from THM-ER21.
+[1-10:P14377; UTF16 540392] ALG-ER3 — DecisionStabilityCheck
+[1-10:P14379; UTF16 540431]     certified joint outcome enclosure E
+[1-10:P14380; UTF16 540471]     mandatory policy
+[1-10:P14381; UTF16 540492]     qualitative decision instances
+[1-10:P14382; UTF16 540527]     quantitative decision obligations
+[1-10:P14384; UTF16 540566] IF any exact mandatory projection has more than one value:
+[1-10:P14385; UTF16 540625]     return UNSTABLE if concrete witnesses exist
+[1-10:P14386; UTF16 540673]     otherwise return UNKNOWN
+[1-10:P14388; UTF16 540703] FOR each qualitative decision:
+[1-10:P14389; UTF16 540734]     compute the set of possible reports over E
+[1-10:P14391; UTF16 540782] FOR each quantitative decision:
+[1-10:P14392; UTF16 540814]     compute decision cell or regret bound
+[1-10:P14394; UTF16 540857] IF every required report is singleton
+[1-10:P14395; UTF16 540895]    and every regret bound is within tolerance:
+[1-10:P14396; UTF16 540942]     return STABLE with certificate
+[1-10:P14398; UTF16 540978] IF two certified feasible outcomes produce different reports:
+[1-10:P14399; UTF16 541040]     return UNSTABLE with witnesses
+[1-10:P14401; UTF16 541076] OTHERWISE:
+[1-10:P14402; UTF16 541087]     return UNKNOWN
+[1-10:P14406; UTF16 541109] ALG-ER4 — ApproximateSeparatorCover
+[1-10:P14408; UTF16 541151]     exact or symbolic regional carrier
+[1-10:P14409; UTF16 541190]     contextual distortion policy
+[1-10:P14410; UTF16 541223]     tolerance vector
+[1-10:P14411; UTF16 541244]     candidate representatives
+[1-10:P14413; UTF16 541275] FOR each candidate representative c:
+[1-10:P14414; UTF16 541312]     construct symbolic ball predicate
+[1-10:P14415; UTF16 541350]         Bc(x) := δ(x,c) ≤ ε
+[1-10:P14417; UTF16 541379]     verify:
+[1-10:P14418; UTF16 541391]         mandatory status uniform
+[1-10:P14419; UTF16 541424]         validity domain
+[1-10:P14420; UTF16 541448]         error certificate
+[1-10:P14422; UTF16 541475] SELECT a covering family
+[1-10:P14423; UTF16 541500]     by exact set cover for small instances
+[1-10:P14424; UTF16 541543]     or by a heuristic for large instances
+[1-10:P14426; UTF16 541586] VERIFY symbolically:
+[1-10:P14427; UTF16 541607]     every exact state is covered
+[1-10:P14430; UTF16 541648]     certified cover
+[1-10:P14431; UTF16 541668]     cardinality upper bound
+[1-10:P14432; UTF16 541696]     optional packing lower bound
+[1-10:P14433; UTF16 541729]     uncovered or UNKNOWN obligations
+[1-10:P14434; UTF16 541766] The returned cover need not have minimum cardinality.
+[1-10:P14439; UTF16 541856] Defined in §36.
+[1-10:P14444; UTF16 541907] Defined in §34.
+[1-10:P14448; UTF16 541926] ALG-ER7 — CertifiedChoicePortfolio
+[1-10:P14450; UTF16 541967]     root approximate messages
+[1-10:P14451; UTF16 541997]     exact qualitative decision instances
+[1-10:P14452; UTF16 542038]     quantitative utility/loss models
+[1-10:P14453; UTF16 542075]     regret tolerances
+[1-10:P14454; UTF16 542097]     evidence requirements
+[1-10:P14456; UTF16 542124] RETAIN
+[1-10:P14457; UTF16 542131]     every state needed for exact qualitative report preservation
+[1-10:P14459; UTF16 542197] ADD
+[1-10:P14460; UTF16 542201]     representatives until every quantitative regret bound is met
+[1-10:P14462; UTF16 542267] INCLUDE
+[1-10:P14463; UTF16 542275]     unresolved mandatory families separately
+[1-10:P14466; UTF16 542328]     evidence
+[1-10:P14467; UTF16 542341]     model validity
+[1-10:P14468; UTF16 542360]     regret
+[1-10:P14469; UTF16 542371]     qualitative report equality
+[1-10:P14472; UTF16 542411]     portfolio
+[1-10:P14473; UTF16 542425]     witnesses
+[1-10:P14474; UTF16 542439]     regret certificates
+[1-10:P14475; UTF16 542463]     unresolved set
+[1-10:P14476; UTF16 542482] The algorithm does not claim globally minimum portfolio cardinality.
+[1-10:P14481; UTF16 542591] Defined in §37.
+[1-10:P14485; UTF16 542610] ALG-ER9 — CheckCEDA
+[1-10:P14486; UTF16 542630] Defined in §45.
+[1-10:P14490; UTF16 542649] 43. Certified Error and Decision Artifact
+[1-10:P14491; UTF16 542691] DEF-ER23 — CEDA
+[1-10:P14492; UTF16 542707] A Certified Error and Decision Artifact contains:
+[1-10:P14493; UTF16 542757] experiment-theory fingerprint;
+[1-10:P14494; UTF16 542788] exact finite semantic state identity;
+[1-10:P14495; UTF16 542826] source and model versions;
+[1-10:P14496; UTF16 542853] validity domains;
+[1-10:P14497; UTF16 542871] numerical method;
+[1-10:P14498; UTF16 542889] approximation type;
+[1-10:P14499; UTF16 542909] local numerical enclosure;
+[1-10:P14500; UTF16 542936] solver residual;
+[1-10:P14501; UTF16 542953] conditioning or stability bound;
+[1-10:P14502; UTF16 542986] discretization certificate;
+[1-10:P14503; UTF16 543014] reduced-model or surrogate certificate;
+[1-10:P14504; UTF16 543054] parametric uncertainty object;
+[1-10:P14505; UTF16 543085] model-discrepancy object;
+[1-10:P14506; UTF16 543111] measurement uncertainty;
+[1-10:P14507; UTF16 543136] correlation representation;
+[1-10:P14508; UTF16 543164] propagated root enclosure;
+[1-10:P14509; UTF16 543191] transfer moduli;
+[1-10:P14510; UTF16 543208] mandatory boundary status;
+[1-10:P14511; UTF16 543235] decision cells and margins;
+[1-10:P14512; UTF16 543263] decision-influence set;
+[1-10:P14513; UTF16 543287] separator-cover membership;
+[1-10:P14514; UTF16 543315] qualitative report certificate;
+[1-10:P14515; UTF16 543347] quantitative regret certificate;
+[1-10:P14519; UTF16 543444] checker result.
+[1-10:P14520; UTF16 543460] A CEDA may certify:
+[1-10:P14521; UTF16 543480] model-level truth;
+[1-10:P14522; UTF16 543499] physical-level truth within discrepancy;
+[1-10:P14523; UTF16 543540] decision stability;
+[1-10:P14524; UTF16 543560] bounded regret;
+[1-10:P14525; UTF16 543576] unresolved status.
+[1-10:P14526; UTF16 543595] Those claims remain distinct.
+[1-10:P14530; UTF16 543628] 44. Trusted-Kernel Boundary
+[1-10:P14531; UTF16 543656] A numerical solver may propose:
+[1-10:P14532; UTF16 543688] [ E=[a,b]. ]
+[1-10:P14533; UTF16 543701] The trusted kernel verifies some sufficient certificate such as:
+[1-10:P14534; UTF16 543766] interval arithmetic proof;
+[1-10:P14535; UTF16 543793] residual plus conditioning bound;
+[1-10:P14536; UTF16 543827] primal/dual optimization bound;
+[1-10:P14537; UTF16 543859] a posteriori finite-element bound;
+[1-10:P14538; UTF16 543894] interval Newton or Krawczyk certificate;
+[1-10:P14539; UTF16 543935] exact rational derivation;
+[1-10:P14540; UTF16 543962] checked theorem-prover proof;
+[1-10:P14541; UTF16 543992] validated model-domain membership.
+[1-10:P14542; UTF16 544027] An AI or surrogate may propose:
+[1-10:P14543; UTF16 544059] [ \widehat F(x), ]
+[1-10:P14544; UTF16 544078] but cannot authorize its own error envelope.
+[1-10:P14545; UTF16 544123] The authority rule remains:
+[1-10:P14546; UTF16 544151] [ \boxed{ \text{proposal provenance is secondary; checked certificate validity is authoritative.} } ]
+[1-10:P14550; UTF16 544256] THM-ER27 — CEDA Verification Soundness
+[1-10:P14551; UTF16 544295] If an independent checker verifies all CEDA dependencies and proof objects, then every certified:
+[1-10:P14553; UTF16 544414] propagated root bound;
+[1-10:P14554; UTF16 544437] mandatory status;
+[1-10:P14555; UTF16 544455] decision-stability claim;
+[1-10:P14556; UTF16 544481] bounded-regret claim;
+[1-10:P14557; UTF16 544503] separator-cover membership
+[1-10:P14558; UTF16 544530] is sound relative to the declared mathematical models, validity domains, discrepancy relations, and experiment theory.
+[1-10:P14560; UTF16 544655] Local enclosures follow from checked numerical certificates.
+[1-10:P14561; UTF16 544716] THM-ER4, THM-ER5, and THM-ER21 justify propagation.
+[1-10:P14562; UTF16 544768] THM-ER3 justifies mandatory classifications.
+[1-10:P14563; UTF16 544813] THM-ER6 and THM-ER9 justify decision stability.
+[1-10:P14564; UTF16 544861] THM-ER11 justifies bounded-regret portfolios.
+[1-10:P14565; UTF16 544907] THM-ER24 justifies separator-cover membership.
+[1-10:P14566; UTF16 544954] The discrepancy relation bounds the scope of any physical claim. ∎
+[1-10:P14570; UTF16 545024] 45. Worked Example 1 — Hard Numerical Thresholds
+[1-10:P14571; UTF16 545073] 45.1 Clearance

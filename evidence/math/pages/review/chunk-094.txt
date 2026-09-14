@@ -1,0 +1,334 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P12773; UTF16 421741] def CertifiedConforming
+[11-20:P12774; UTF16 421765]     (Γ : Set PhysicalState)
+[11-20:P12775; UTF16 421793]     (b : ConcreteArtifact) :
+[11-20:P12777; UTF16 421834]   Γ ⊆
+[11-20:P12778; UTF16 421840]     {p |
+[11-20:P12779; UTF16 421849]       Conforms b p}
+[11-20:P12780; UTF16 421869] 73.11 Release closure
+[11-20:P12783; UTF16 421937]     (report :
+[11-20:P12784; UTF16 421951]       PhysicalState → ReleaseReport)
+[11-20:P12785; UTF16 421988]     (accepted :
+[11-20:P12786; UTF16 422004]       Set ReleaseReport) : Prop :=
+[11-20:P12787; UTF16 422039]   ∃ r,
+[11-20:P12788; UTF16 422046]     r ∈ accepted ∧
+[11-20:P12789; UTF16 422065]     ∀ p ∈ Γ,
+[11-20:P12790; UTF16 422078]       report p = r
+[11-20:P12791; UTF16 422097] 73.12 Field policy
+[11-20:P12792; UTF16 422116] structure FieldPolicy where
+[11-20:P12795; UTF16 422171]     ObservationHistory →
+[11-20:P12796; UTF16 422196]     Action
+[11-20:P12797; UTF16 422207] 73.13 Controlled invariance
+[11-20:P12798; UTF16 422235] def ControlledInvariant
+[11-20:P12799; UTF16 422259]     (Safe : Set PhysicalState)
+[11-20:P12800; UTF16 422290]     (Allowed :
+[11-20:P12801; UTF16 422305]       PhysicalState →
+[11-20:P12802; UTF16 422327]       Set FieldAction)
+[11-20:P12803; UTF16 422350]     (step :
+[11-20:P12804; UTF16 422362]       FieldAction →
+[11-20:P12808; UTF16 422448]   ∀ p ∈ Safe,
+[11-20:P12809; UTF16 422462]     ∃ a ∈ Allowed p,
+[11-20:P12810; UTF16 422483]       ∀ p',
+[11-20:P12811; UTF16 422495]         step a p p' →
+[11-20:P12812; UTF16 422517]         p' ∈ Safe
+[11-20:P12813; UTF16 422535] This full-state-feedback definition must be refined when the policy observes only history.
+[11-20:P12814; UTF16 422626] 73.14 PCAB release skeleton
+[11-20:P12815; UTF16 422654] theorem physical_release_sound
+[11-20:P12816; UTF16 422685]     (pkg : PCAB)
+[11-20:P12817; UTF16 422702]     (pTrue : PhysicalState)
+[11-20:P12818; UTF16 422730]     (hContained :
+[11-20:P12819; UTF16 422748]       pTrue ∈ pkg.physicalKnowledge)
+[11-20:P12820; UTF16 422785]     (hClosed :
+[11-20:P12821; UTF16 422800]       PhysicalReleaseClosed pkg) :
+[11-20:P12822; UTF16 422835]     AllManifestClaimsHold
+[11-20:P12823; UTF16 422861]       pTrue
+[11-20:P12824; UTF16 422873]       pkg.manifest := by
+[11-20:P12829; UTF16 422907] 74. Mechanization Difficulty
+[11-20:P12830; UTF16 422936] ￼
+ATTACHED TABLE 1736180; native row/column order; 29 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Physical-state relations", "Moderate"]
+ROW 2: ["Nondeterministic field actions", "Moderate"]
+ROW 3: ["Physical traces", "Straightforward"]
+ROW 4: ["Field-event evidence", "Moderate"]
+ROW 5: ["Event-capture completeness", "Difficult"]
+ROW 6: ["Measurement relations", "Moderate"]
+ROW 7: ["Calibration semantics", "Moderate"]
+ROW 8: ["Set-membership update", "Straightforward"]
+ROW 9: ["Field-evidence consistency", "Moderate"]
+ROW 10: ["Conformance classification", "Straightforward"]
+ROW 11: ["Field contextual equivalence", "Moderate"]
+ROW 12: ["Claim sufficiency", "Moderate"]
+ROW 13: ["Sensor-suite optimization", "Hard"]
+ROW 14: ["Correlated sensor models", "Difficult"]
+ROW 15: ["Scan outer geometry", "Difficult"]
+ROW 16: ["Entity reconciliation", "Difficult"]
+ROW 17: ["Physical topology reconciliation", "Difficult"]
+ROW 18: ["Temporary-state safety", "Moderate"]
+ROW 19: ["Controlled invariance", "Difficult"]
+ROW 20: ["Viability kernels", "Difficult"]
+ROW 21: ["Nonanticipative field recourse", "Difficult"]
+ROW 22: ["Out-of-contract repair recertification", "Difficult"]
+ROW 23: ["Commissioning experiment semantics", "Moderate"]
+ROW 24: ["Commissioning coverage", "Difficult"]
+ROW 25: ["System identification", "Research-level in general"]
+ROW 26: ["Incremental physical reconciliation", "Difficult"]
+ROW 27: ["PCAB checker", "Research-level"]
+ROW 28: ["Exact guarantee over unobserved reality", "Impossible without assumptions and evidence"]
+[11-20:P12834; UTF16 422941] 75. Permanent Assumption Registry
+[11-20:P12835; UTF16 422975] ￼
+ATTACHED TABLE 1736196; native row/column order; 13 rows
+ROW 0: ["ID", "Exact assumption", "Used by"]
+ROW 1: ["ASSUMP-PHY1", "Fixed physical theory for one theorem instance", "All exact results"]
+ROW 2: ["ASSUMP-PHY2", "Actual state belongs to modeled physical universe", "THM-PHY4, PHY25–28"]
+ROW 3: ["ASSUMP-PHY3", "Accepted transition relation contains actual actions", "THM-PHY4, PHY25"]
+ROW 4: ["ASSUMP-PHY4", "Observation relations contain actual state–observation pairs", "THM-PHY4, PHY25"]
+ROW 5: ["ASSUMP-PHY5", "Calibration is applicable", "THM-PHY3–5, PHY25"]
+ROW 6: ["ASSUMP-PHY6", "Event-capture completeness where absence of unrecorded work is claimed", "THM-PHY2, PHY25"]
+ROW 7: ["ASSUMP-PHY7", "Dependency graph is complete for incremental reuse", "THM-PHY18, PHY23–24"]
+ROW 8: ["ASSUMP-PHY8", "Trusted checkers are sound", "THM-PHY25, PHY28–29"]
+ROW 9: ["ASSUMP-PHY9", "Physical release manifest is fixed", "THM-PHY25"]
+ROW 10: ["ASSUMP-PHY10", "Evidence, authority, consent, and sovereignty premises are applicable", "THM-PHY25"]
+ROW 11: ["ASSUMP-PHY11", "Model-discrepancy relation is valid over claimed operating domain", "THM-PHY21, PHY25"]
+ROW 12: ["ASSUMP-PHY12", "Mandatory UNKNOWN remains unresolved", "THM-PHY25, PHY28"]
+[11-20:P12839; UTF16 422980] 76. Permanent Definition Registry
+[11-20:P12840; UTF16 423014] ￼
+ATTACHED TABLE 1736212; native row/column order; 36 rows
+ROW 0: ["ID", "Exact object", "Dependencies", "Status", "Formalization difficulty"]
+ROW 1: ["DEF-PHY1", "Physical Project State", "Prompt-13 artifact theory", "Defined", "Moderate"]
+ROW 2: ["DEF-PHY2", "Physical Execution Action", "DEF-PHY1", "Defined", "Moderate"]
+ROW 3: ["DEF-PHY3", "Physical Execution Trace", "DEF-PHY2", "Defined", "Straightforward"]
+ROW 4: ["DEF-PHY4", "Field Event Evidence", "Prompt-11 evidence", "Defined", "Moderate"]
+ROW 5: ["DEF-PHY5", "Event-Capture Completeness", "DEF-PHY4", "Defined", "Difficult"]
+ROW 6: ["DEF-PHY6", "Design-to-Physical Conformance", "DEF-MAT2", "Defined", "Difficult"]
+ROW 7: ["DEF-PHY7", "Accepted Physical Realization Set", "DEF-PHY6", "Defined", "Straightforward"]
+ROW 8: ["DEF-PHY8", "Measurement Channel", "Prompt-5 uncertainty", "Defined", "Moderate"]
+ROW 9: ["DEF-PHY9", "Calibration State", "DEF-PHY8", "Defined", "Moderate"]
+ROW 10: ["DEF-PHY10", "Field Observation History", "DEF-PHY4, PHY8", "Defined", "Moderate"]
+ROW 11: ["DEF-PHY11", "Certified Physical Knowledge Set", "DEF-PHY1, PHY10", "Defined", "Moderate"]
+ROW 12: ["DEF-PHY12", "Field Evidence Conflict", "DEF-PHY11", "Defined", "Straightforward"]
+ROW 13: ["DEF-PHY13", "Physical Release Report", "Prompt-2 reports", "Defined", "Moderate"]
+ROW 14: ["DEF-PHY14", "Field Experiment Theory", "Prompt-2 contexts", "Defined", "Moderate"]
+ROW 15: ["DEF-PHY15", "Release-Sufficient Field Theory", "DEF-PHY13–14", "Defined", "Moderate"]
+ROW 16: ["DEF-PHY16", "Claim-Sufficient Experiment Suite", "DEF-PHY14–15", "Defined", "Moderate"]
+ROW 17: ["DEF-PHY17", "Certified As-Built Geometry Envelope", "Prompt-5 enclosures", "Defined", "Difficult"]
+ROW 18: ["DEF-PHY18", "As-Built Entity Reconciliation", "DEF-MAT16", "Defined", "Difficult"]
+ROW 19: ["DEF-PHY19", "Temporary Physical Safety Set", "DEF-PHY1", "Defined", "Moderate"]
+ROW 20: ["DEF-PHY20", "Controlled Physical Invariant", "DEF-PHY2, PHY19", "Defined", "Difficult"]
+ROW 21: ["DEF-PHY21", "Physical Viability Kernel", "DEF-PHY20", "Defined", "Difficult"]
+ROW 22: ["DEF-PHY22", "Field Recourse Policy", "DEF-PHY10", "Defined", "Difficult"]
+ROW 23: ["DEF-PHY23", "Approved Field Recourse Contract", "DEF-PHY20–22", "Defined", "Difficult"]
+ROW 24: ["DEF-PHY24", "Physical Deviation Status", "DEF-PHY11, PHY23", "Defined", "Moderate"]
+ROW 25: ["DEF-PHY25", "Stop-Work Obligation", "DEF-PHY19, PHY24", "Defined", "Moderate"]
+ROW 26: ["DEF-PHY26", "As-Built Digital Envelope", "DEF-PHY17–18", "Defined", "Difficult"]
+ROW 27: ["DEF-PHY27", "Commissioning Experiment", "DEF-PHY8–11", "Defined", "Moderate"]
+ROW 28: ["DEF-PHY28", "Commissioning Coverage Certificate", "DEF-PHY27", "Defined", "Difficult"]
+ROW 29: ["DEF-PHY29", "Physical Release Manifest", "Prompt-11 manifest", "Defined", "Moderate"]
+ROW 30: ["DEF-PHY30", "Physical Release Closure", "DEF-PHY11, PHY13, PHY29", "Defined", "Moderate"]
+ROW 31: ["DEF-PHY31", "Physical Execution Dependency Graph", "Prompts 7, 11, 13", "Defined", "Difficult"]
+ROW 32: ["DEF-PHY32", "Physical Reconciliation Frontier", "DEF-PHY31", "Defined", "Moderate"]
+ROW 33: ["DEF-PHY33", "Proof-Carrying As-Built Package", "All PHY objects", "Defined", "Research-level"]
+ROW 34: ["DEF-PHY34", "Prompt-14 Complexity Profile", "Prompt-14 objects", "Defined", "Straightforward"]
+ROW 35: ["DEF-PHY35", "Certified Operational Twin Seed", "DEF-PHY26–33", "Defined", "Difficult"]
+[11-20:P12844; UTF16 423019] 77. Lemma Registry
+[11-20:P12845; UTF16 423038] ￼
+ATTACHED TABLE 1736228; native row/column order; 9 rows
+ROW 0: ["ID", "Exact statement", "Dependencies", "Proof status"]
+ROW 1: ["LEM-PHY1", "Actual transition membership places the successor in the Post set", "DEF-PHY2", "Proved within THM-PHY4"]
+ROW 2: ["LEM-PHY2", "Sound observation membership places the actual state in the inverse observation set", "DEF-PHY8", "Proved within THM-PHY4"]
+ROW 3: ["LEM-PHY3", "Intersections preserve actual-state membership when all factors contain it", "Set semantics", "Proved within THM-PHY4"]
+ROW 4: ["LEM-PHY4", "Running one-step update soundness inductively gives multi-step containment", "THM-PHY4", "Proved as COR-PHY1"]
+ROW 5: ["LEM-PHY5", "Nonempty mixed conformance enclosures contain both conforming and nonconforming possibilities", "DEF-PHY7", "Proved within THM-PHY7"]
+ROW 6: ["LEM-PHY6", "Report-cell inclusion transfers the report to the actual state", "DEF-PHY13", "Proved in THM-PHY8"]
+ROW 7: ["LEM-PHY7", "Dependency-factorized downstream rules receive identical inputs across unchanged frontiers", "DEF-PHY32", "Proved in THM-PHY24"]
+ROW 8: ["LEM-PHY8", "Model-discrepancy inclusion transfers universally checked properties to physical response", "DEF-PHY28", "Proved in THM-PHY21"]
+[11-20:P12849; UTF16 423043] 78. Theorem Registry
+[11-20:P12850; UTF16 423064] ￼
+ATTACHED TABLE 1736244; native row/column order; 30 rows
+ROW 0: ["ID", "Exact statement", "Dependencies", "Proof status"]
+ROW 1: ["THM-PHY1", "A valid construction plan does not establish actual execution", "DEF-PHY2–3", "Proved"]
+ROW 2: ["THM-PHY2", "Event-log existence does not prove absence of unrecorded work", "DEF-PHY4–5", "Proved"]
+ROW 3: ["THM-PHY3", "Authentic measurement bytes do not establish physical interpretation without calibration", "DEF-PHY8–9", "Proved"]
+ROW 4: ["THM-PHY4", "Sound set-membership update preserves the actual physical state", "DEF-PHY8–11", "Proved"]
+ROW 5: ["THM-PHY5", "Pure measurement refinement cannot enlarge the physical knowledge set", "DEF-PHY11", "Proved"]
+ROW 6: ["THM-PHY6", "Empty physical knowledge means premise inconsistency, not nonexistence of reality", "DEF-PHY12", "Proved"]
+ROW 7: ["THM-PHY7", "Inclusion/disjointness gives sound three-way conformance classification", "DEF-PHY6–7, PHY11", "Proved"]
+ROW 8: ["THM-PHY8", "Exact physical reconstruction is unnecessary inside one accepted report cell", "DEF-PHY13", "Proved"]
+ROW 9: ["THM-PHY9", "Observation-equivalent states with different release reports cannot be resolved by the existing theory", "DEF-PHY14–15", "Proved"]
+ROW 10: ["THM-PHY10", "Adding field experiments refines contextual equivalence", "DEF-PHY14", "Proved"]
+ROW 11: ["THM-PHY11", "Minimum claim-sufficient experiment selection is NP-hard", "DEF-PHY16", "Proved"]
+ROW 12: ["THM-PHY12", "Independent marginalization can alter correlated conformance conclusions", "DEF-PHY8", "Proved"]
+ROW 13: ["THM-PHY13", "Universal claims over certified geometry envelopes hold for actual geometry", "DEF-PHY17", "Proved"]
+ROW 14: ["THM-PHY14", "Topology-changing deviations cannot generally be encoded as coordinate perturbations", "DEF-PHY1, PHY6", "Proved"]
+ROW 15: ["THM-PHY15", "Identity-sensitive claims require identity-sufficient reconciliation", "DEF-PHY18", "Proved"]
+ROW 16: ["THM-PHY16", "Field trace safety follows from invariant-preserving actions", "DEF-PHY19", "Proved"]
+ROW 17: ["THM-PHY17", "Scenario-wise repairs need not admit a nonanticipative field policy", "DEF-PHY22", "Proved"]
+ROW 18: ["THM-PHY18", "Pre-certified recourse preserves covered claims under stated hypotheses", "DEF-PHY20–23", "Proved"]
+ROW 19: ["THM-PHY19", "Out-of-contract repair does not automatically inherit affected assurance", "DEF-PHY23", "Proved"]
+ROW 20: ["THM-PHY20", "Finite passing commissioning tests do not prove unrestricted universality", "DEF-PHY27", "Proved"]
+ROW 21: ["THM-PHY21", "Model-assisted commissioning is sound under validity and discrepancy assumptions", "DEF-PHY28", "Proved"]
+ROW 22: ["THM-PHY22", "Commissioning sufficiency is exactly refinement of the claim partition", "DEF-PHY27–28", "Proved"]
+ROW 23: ["THM-PHY23", "Incremental physical recertification equals cold checking under complete dependencies", "DEF-PHY31", "Proved"]
+ROW 24: ["THM-PHY24", "Unchanged reconciliation frontiers stop downstream semantic recertification", "DEF-PHY32", "Proved"]
+ROW 25: ["THM-PHY25", "Whole-Project Proof-Carrying Physical Execution and As-Built Release", "DEF-PHY1–33", "Proved"]
+ROW 26: ["THM-PHY26", "Closed field theories imply nothing about unmodeled physical deviations", "DEF-PHY14", "Proved"]
+ROW 27: ["THM-PHY27", "Release soundness is independent of reconstruction proposal source", "DEF-PHY26, PHY33", "Proved"]
+ROW 28: ["THM-PHY28", "Accepted PCAB release is sound under the physical foundation assumptions", "ALG-PHY9, THM-PHY25", "Proved"]
+ROW 29: ["THM-PHY29", "Explicit PCAB checking is (O(N+E+\\sum c_i))", "DEF-PHY33", "Proved"]
+[11-20:P12851; UTF16 423066] The duplicate hardness numbering suggested in the task has been resolved permanently as THM-PHY11. THM-PHY28 is reserved for independent-checker release soundness.
+[11-20:P12855; UTF16 423233] 79. Proposition and Corollary Registry
+[11-20:P12856; UTF16 423272] ￼
+ATTACHED TABLE 1736260; native row/column order; 9 rows
+ROW 0: ["ID", "Statement", "Dependencies", "Proof status"]
+ROW 1: ["PRO-PHY1", "Typed physical conformance cannot generally be replaced by one geometric distance", "DEF-PHY6", "Proved"]
+ROW 2: ["PRO-PHY2", "Design release does not imply physical release", "DEF-PHY29", "Proved"]
+ROW 3: ["COR-PHY1", "Multi-step sound updates preserve actual-state containment", "THM-PHY4", "Proved"]
+ROW 4: ["COR-PHY2", "Set-valued trace invariance preserves actual temporary safety", "THM-PHY16", "Proved"]
+ROW 5: ["COR-PHY3", "A physical release claim may close over a non-singleton knowledge set", "THM-PHY8", "Immediate"]
+ROW 6: ["COR-PHY4", "Any release claim whose report varies inside (\\Gamma) remains unresolved", "DEF-PHY30", "Immediate"]
+ROW 7: ["COR-PHY5", "A field measurement outside the live claim cone can have zero current release value under Prompt-9 assumptions", "Prompt-9 relevance theorem", "Inherited"]
+ROW 8: ["COR-PHY6", "A valid physical frontier permits reuse of downstream semantic artifacts", "THM-PHY24", "Immediate"]
+[11-20:P12860; UTF16 423277] 80. Algorithm Registry
+[11-20:P12861; UTF16 423300] ￼
+ATTACHED TABLE 1736276; native row/column order; 15 rows
+ROW 0: ["ID", "Algorithm", "Correctness basis"]
+ROW 1: ["ALG-PHY1", "UpdatePhysicalKnowledge", "THM-PHY4–6"]
+ROW 2: ["ALG-PHY2", "DeviationAwareExecute", "THM-PHY16, PHY18–19, PHY23"]
+ROW 3: ["ALG-PHY3", "ReconcileAsBuiltEntities", "THM-PHY15"]
+ROW 4: ["ALG-PHY4", "CertifyAsBuiltGeometry", "THM-PHY13"]
+ROW 5: ["ALG-PHY5", "ReconcileFieldDeviation", "THM-PHY18–19, PHY23"]
+ROW 6: ["ALG-PHY6", "CommissionPhysicalSystem", "THM-PHY20–22"]
+ROW 7: ["ALG-PHY7", "PhysicalRCVOCInterface", "Prompt-9 metareasoning"]
+ROW 8: ["ALG-PHY8", "RedTeamPhysicalExecution", "Prompt-10 Claim Breaker soundness"]
+ROW 9: ["ALG-PHY9", "CheckPhysicalExecution", "THM-PHY25, PHY28"]
+ROW 10: ["ALG-PHY10", "PlanClaimDirectedMeasurements", "DEF-PHY16, THM-PHY11"]
+ROW 11: ["ALG-PHY11", "CheckFieldRecourse", "DEF-PHY23, THM-PHY18"]
+ROW 12: ["ALG-PHY12", "IncrementalPhysicalRecertify", "THM-PHY23–24"]
+ROW 13: ["ALG-PHY13", "BuildPCAB", "THM-PHY28"]
+ROW 14: ["ALG-PHY14", "InitializeOperationalTwin", "DEF-PHY35"]
+[11-20:P12865; UTF16 423305] 81. Conjecture Registry
+[11-20:P12866; UTF16 423329] ￼
+ATTACHED TABLE 1736292; native row/column order; 11 rows
+ROW 0: ["ID", "Exact conjecture", "Falsification condition"]
+ROW 1: ["CONJ-PHY1", "Real projects admit compact online physical knowledge sets", "Topology and uncertainty hypotheses grow near-explicitly with project size"]
+ROW 2: ["CONJ-PHY2", "Claim-directed measurement needs far fewer observations than full-state reconstruction", "Nearly every physical variable must be separately observed"]
+ROW 3: ["CONJ-PHY3", "Event capture can become sufficiently complete for proof-carrying execution", "Important unrecorded deviations remain common"]
+ROW 4: ["CONJ-PHY4", "Joint scan and calibration error models remain compact", "Accurate correlation tracking becomes intractable"]
+ROW 5: ["CONJ-PHY5", "Most ordinary deviations lie inside pre-certified recourse contracts", "Most deviations trigger full rematerialization"]
+ROW 6: ["CONJ-PHY6", "Nonanticipative recourse covers a useful fraction of field variation", "Most corrections require unmodeled improvisation"]
+ROW 7: ["CONJ-PHY7", "Dependency-directed field recertification is much smaller than cold reconstruction", "Local deviations routinely invalidate most of the project"]
+ROW 8: ["CONJ-PHY8", "Sparse commissioning tests can be soundly generalized through defensible models", "Test-to-domain generalization remains too weak"]
+ROW 9: ["CONJ-PHY9", "PCAB checking is substantially cheaper than as-built reconstruction", "Checking repeatedly requires rerunning complete estimation"]
+ROW 10: ["CONJ-PHY10", "A 190-room hotel can move from PCMP to checked PCAB on the target workstation", "Evidence fusion, reconciliation, or commissioning exceeds practical resources"]
+[11-20:P12870; UTF16 423334] 82. Dependency DAG: Prompts 1–14
+[11-20:P12879; UTF16 423501] menu-sensitive reports
+[11-20:P12896; UTF16 423732] joint uncertainty
+[11-20:P12902; UTF16 423804] physical operator semantics
+[11-20:P12903; UTF16 423832] compositional error
+[11-20:P12907; UTF16 423898] topology changes
+[11-20:P12921; UTF16 424094] measurement value
+[11-20:P12927; UTF16 424177] open-world hazard limit
+[11-20:P12932; UTF16 424254] evidence applicability
+[11-20:P12933; UTF16 424277] assumption accounting
+[11-20:P12938; UTF16 424355] authority
+[11-20:P12939; UTF16 424365] consent
+[11-20:P12943; UTF16 424407] PROMPT 13
+[11-20:P12946; UTF16 424460] tolerance recourse
+[11-20:P12947; UTF16 424479] construction witness
+[11-20:P12951; UTF16 424525] DEF-PHY1–PHY3
+[11-20:P12953; UTF16 424555] physical actions
+[11-20:P12954; UTF16 424572] physical traces
+[11-20:P12956; UTF16 424598]         ├─────────────────────────────┐
+[11-20:P12957; UTF16 424638]         ▼                             ▼
+[11-20:P12958; UTF16 424678] THM-PHY1                       DEF-PHY4–PHY5
+[11-20:P12959; UTF16 424723] plan ≠ execution               event evidence
+[11-20:P12960; UTF16 424769]                                event completeness
+[11-20:P12963; UTF16 424899]                                  THM-PHY2
+[11-20:P12964; UTF16 424941]                                  unrecorded-action
+[11-20:P12965; UTF16 424992]                                  limitation
+[11-20:P12967; UTF16 425037] DEF-PHY8–PHY11
+[11-20:P12968; UTF16 425052] measurement channels
+[11-20:P12969; UTF16 425073] calibration
+[11-20:P12970; UTF16 425085] field histories
+[11-20:P12971; UTF16 425101] knowledge sets
+[11-20:P12973; UTF16 425126]         ├───────────────┬─────────────────┐
+[11-20:P12974; UTF16 425170]         ▼               ▼                 ▼
+[11-20:P12975; UTF16 425214] THM-PHY3          THM-PHY4          THM-PHY5
+[11-20:P12976; UTF16 425259] calibration       update             observation
+[11-20:P12977; UTF16 425308] boundary          soundness          monotonicity
+[11-20:P12979; UTF16 425384]         │               ▼
+[11-20:P12980; UTF16 425410]         │          COR-PHY1
+[11-20:P12981; UTF16 425438]         │          multi-step
+[11-20:P12982; UTF16 425468]         │          actual-state
+[11-20:P12983; UTF16 425500]         │          containment
+[11-20:P12985; UTF16 425541]         └───────────────────┐
+[11-20:P12986; UTF16 425571]                             ▼
+[11-20:P12987; UTF16 425601]                        DEF-PHY12
+[11-20:P12988; UTF16 425634]                        evidence conflict
+[11-20:P12989; UTF16 425675]                             │
+[11-20:P12991; UTF16 425735]                        THM-PHY6
+[11-20:P12992; UTF16 425767]                        empty-set meaning
+[11-20:P12994; UTF16 425809] PROMPT 13 artifact b
+[11-20:P12997; UTF16 425850] DEF-PHY6–PHY7
+[11-20:P12998; UTF16 425864] conformance relation
+[11-20:P12999; UTF16 425885] accepted physical set
+[11-20:P13002; UTF16 425927] THM-PHY7
+[11-20:P13003; UTF16 425936] three-way conformance
+[11-20:P13006; UTF16 425978] DEF-PHY13
+[11-20:P13007; UTF16 425988] release reports
+[11-20:P13010; UTF16 426024] THM-PHY8
+[11-20:P13011; UTF16 426033] release without
+[11-20:P13012; UTF16 426049] unique physical state
+[11-20:P13014; UTF16 426072] DEF-PHY14–PHY16
+[11-20:P13015; UTF16 426088] field experiment theory
+[11-20:P13016; UTF16 426112] field equivalence
+[11-20:P13017; UTF16 426130] claim-sufficient suites
+[11-20:P13019; UTF16 426164]         ├───────────────┬──────────────────┐
+[11-20:P13020; UTF16 426209]         ▼               ▼                  ▼
+[11-20:P13021; UTF16 426254] THM-PHY9          THM-PHY10           THM-PHY11
+[11-20:P13022; UTF16 426302] identifiability   theory refinement   measurement
+[11-20:P13023; UTF16 426352]                                        selection hardness
+[11-20:P13025; UTF16 426411] joint measurement theory
+[11-20:P13028; UTF16 426456] THM-PHY12
+[11-20:P13031; UTF16 426489] DEF-PHY17
+[11-20:P13032; UTF16 426499] as-built geometry envelope
+[11-20:P13035; UTF16 426546] THM-PHY13
+[11-20:P13036; UTF16 426556] outer-envelope soundness
+[11-20:P13039; UTF16 426601] ALG-PHY4
+[11-20:P13040; UTF16 426610] certified scan reconciliation
+[11-20:P13042; UTF16 426641] physical topology
+[11-20:P13045; UTF16 426679] THM-PHY14
+[11-20:P13046; UTF16 426689] topology ≠ coordinate error
+[11-20:P13048; UTF16 426718] DEF-PHY18
+[11-20:P13049; UTF16 426728] entity reconciliation
+[11-20:P13052; UTF16 426770] THM-PHY15
+[11-20:P13053; UTF16 426780] identity-sensitive claims
+[11-20:P13056; UTF16 426826] ALG-PHY3
+[11-20:P13058; UTF16 426836] DEF-PHY19–PHY22
+[11-20:P13059; UTF16 426852] temporary safety
+[11-20:P13060; UTF16 426869] controlled invariance
+[11-20:P13061; UTF16 426891] viability
+[11-20:P13062; UTF16 426901] nonanticipative policy
+[11-20:P13066; UTF16 427024] THM-PHY16       THM-PHY17            DEF-PHY23
+[11-20:P13067; UTF16 427071] trace safety    scenario repairs     approved recourse
+[11-20:P13068; UTF16 427126]                 ≠ executable policy         │
+[11-20:P13069; UTF16 427172]                                   ┌─────────┴──────────┐
+[11-20:P13070; UTF16 427229]                                   ▼                    ▼
+[11-20:P13071; UTF16 427286]                              THM-PHY18           THM-PHY19
+[11-20:P13072; UTF16 427345]                              covered recourse     out-of-contract
+[11-20:P13073; UTF16 427411]                              preservation         limitation
+[11-20:P13074; UTF16 427472]                                   │                    │
+[11-20:P13075; UTF16 427529]                                   └──────────┬─────────┘
+[11-20:P13076; UTF16 427586]                                              ▼
+[11-20:P13077; UTF16 427633]                                         ALG-PHY5
+[11-20:P13078; UTF16 427682]                                         field deviation
+[11-20:P13079; UTF16 427738]                                         reconciliation
+[11-20:P13081; UTF16 427794] DEF-PHY24–PHY25
+[11-20:P13082; UTF16 427810] deviation status
+[11-20:P13083; UTF16 427827] stop-work governance
+[11-20:P13086; UTF16 427868] ALG-PHY2
+[11-20:P13087; UTF16 427877] DeviationAwareExecute
+[11-20:P13089; UTF16 427900] DEF-PHY26
+[11-20:P13090; UTF16 427910] as-built digital envelope
+[11-20:P13093; UTF16 427956] DEF-PHY33

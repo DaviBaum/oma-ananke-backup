@@ -1,0 +1,307 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P10869; UTF16 359693] The physical state may remain highly nonunique.
+[11-20:P10870; UTF16 359741] Physical release requires report certainty, not omniscience.
+[11-20:P10874; UTF16 359805] 23. Field Contextual Equivalence
+[11-20:P10875; UTF16 359838] DEF-PHY14 — Field Experiment Theory
+[11-20:P10877; UTF16 359878] [ \mathcal T_{\mathrm{field}} ]
+[11-20:P10878; UTF16 359910] be a family of complete field experiments.
+[11-20:P10879; UTF16 359953] A complete experiment may include:
+[11-20:P10880; UTF16 359988] one measurement;
+[11-20:P10881; UTF16 360005] one inspection;
+[11-20:P10882; UTF16 360021] a controlled test;
+[11-20:P10883; UTF16 360040] a product query;
+[11-20:P10884; UTF16 360057] an adaptive finite sequence of measurements;
+[11-20:P10885; UTF16 360102] a commissioning protocol;
+[11-20:P10886; UTF16 360128] an as-built release query.
+[11-20:P10887; UTF16 360155] The theory is closed under every adaptive composition claimed by its equivalence semantics.
+[11-20:P10889; UTF16 360255] [ p_1 \equiv_{\mathrm{field}} p_2 ]
+[11-20:P10890; UTF16 360291] if every experiment in (\mathcal T_{\mathrm{field}}) returns the same complete outcome on (p_1) and (p_2).
+[11-20:P10891; UTF16 360398] This is Prompt-2 contextual equivalence specialized to physical field experiments.
+[11-20:P10895; UTF16 360484] DEF-PHY15 — Release-Sufficient Field Observation Theory
+[11-20:P10896; UTF16 360540] A field experiment theory is release sufficient for report (r_R) when
+[11-20:P10897; UTF16 360610] [ p_1 \equiv_{\mathrm{field}} p_2 \Longrightarrow r_R(p_1)=r_R(p_2). ]
+[11-20:P10898; UTF16 360681] Equivalently, every field-equivalence class lies inside one release-report cell.
+[11-20:P10902; UTF16 360765] 24. Physical Identifiability
+[11-20:P10903; UTF16 360794] THM-PHY9 — Observation-Equivalent States with Different Release Reports Cannot Be Resolved by the Existing Field Experiment Theory
+[11-20:P10905; UTF16 360934] [ p_1 \equiv_{\mathrm{field}} p_2, ]
+[11-20:P10907; UTF16 360975] [ r_R(p_1) \neq r_R(p_2). ]
+[11-20:P10908; UTF16 361003] Then no experiment in the current complete field theory distinguishes (p_1) and (p_2).
+[11-20:P10910; UTF16 361096] By definition of
+[11-20:P10912; UTF16 361150] every admitted complete experiment returns the same outcome on both states.
+[11-20:P10913; UTF16 361226] Therefore no experiment in the theory distinguishes them.
+[11-20:P10914; UTF16 361284] Because their release reports differ, the theory is not release sufficient. ∎
+[11-20:P10915; UTF16 361362] The remedy requires:
+[11-20:P10916; UTF16 361383] a richer measurement;
+[11-20:P10917; UTF16 361405] a destructive test;
+[11-20:P10918; UTF16 361425] a stronger model premise;
+[11-20:P10919; UTF16 361451] another evidence source;
+[11-20:P10920; UTF16 361476] or unresolved release.
+[11-20:P10924; UTF16 361502] 25. Measurement-Theory Monotonicity
+[11-20:P10925; UTF16 361538] THM-PHY10 — Adding Field Experiments Can Only Refine Field Contextual Equivalence
+[11-20:P10927; UTF16 361624] [ \mathcal T_1 \subseteq \mathcal T_2. ]
+[11-20:P10929; UTF16 361670] [ \equiv_{\mathcal T_2} \subseteq \equiv_{\mathcal T_1}. ]
+[11-20:P10932; UTF16 361743] [ p_1 \equiv_{\mathcal T_2} p_2. ]
+[11-20:P10933; UTF16 361778] Then (p_1,p_2) agree under every experiment in (\mathcal T_2).
+[11-20:P10934; UTF16 361841] Because every experiment in (\mathcal T_1) also belongs to (\mathcal T_2), they agree under every experiment in (\mathcal T_1).
+[11-20:P10936; UTF16 361979] [ p_1 \equiv_{\mathcal T_1} p_2. ]
+[11-20:P10938; UTF16 362016] Additional sensing can reduce ambiguity.
+[11-20:P10939; UTF16 362057] This theorem does not imply the additional experiment is worth performing.
+[11-20:P10940; UTF16 362132] Prompt 9 decides that.
+[11-20:P10944; UTF16 362158] 26. Claim-Sufficient Experiment Suites
+[11-20:P10945; UTF16 362197] DEF-PHY16 — Claim-Sufficient Experiment Suite
+[11-20:P10947; UTF16 362247] [ S \subseteq \mathcal T_{\mathrm{field}} ]
+[11-20:P10948; UTF16 362291] be a finite experiment suite.
+[11-20:P10949; UTF16 362321] Define suite equivalence:
+[11-20:P10950; UTF16 362347] [ p_1 \equiv_S p_2 ]
+[11-20:P10951; UTF16 362368] when all experiments in (S) produce identical outcomes on (p_1,p_2).
+[11-20:P10952; UTF16 362437] The suite is claim sufficient for release reports
+[11-20:P10953; UTF16 362487] [ r_{R_1},\ldots,r_{R_m} ]
+[11-20:P10955; UTF16 362519] r_{R_i}(p_2) \qquad \forall i. ]
+[11-20:P10956; UTF16 362552] The suite need not identify the full physical state.
+[11-20:P10957; UTF16 362605] It must identify the claim partition.
+[11-20:P10961; UTF16 362646] 27. Minimum Measurement Selection Is NP-Hard
+[11-20:P10962; UTF16 362691] THM-PHY11 — Minimum Claim-Sufficient Experiment Selection Is NP-Hard
+[11-20:P10963; UTF16 362760] The problem of selecting a minimum-cardinality claim-sufficient experiment suite is NP-hard, even for a finite binary-report subclass.
+[11-20:P10966; UTF16 362956] {u_1,\ldots,u_m}, ]
+[11-20:P10967; UTF16 362976] with subsets
+[11-20:P10968; UTF16 362989] [ S_1,\ldots,S_n \subseteq U. ]
+[11-20:P10969; UTF16 363021] Construct physical states
+[11-20:P10970; UTF16 363047] {p_0,p_1,\ldots,p_m}. ]
+[11-20:P10971; UTF16 363071] Define binary release report
+[11-20:P10972; UTF16 363100] [ r(p_0)=\mathsf{PASS}, ]
+[11-20:P10973; UTF16 363126] [ r(p_i)=\mathsf{FAIL} \qquad i=1,\ldots,m. ]
+[11-20:P10974; UTF16 363172] For every set (S_j), create experiment (e_j) with outcome
+[11-20:P10975; UTF16 363230] [ e_j(p_0)=0, ]
+[11-20:P10977; UTF16 363250] \begin{cases} 1, &u_i\in S_j,\ 0, &u_i\notin S_j. \end{cases} ]
+[11-20:P10978; UTF16 363314] Let (J\subseteq{1,\ldots,n}) be a selected experiment index set.
+[11-20:P10979; UTF16 363379] The corresponding suite is claim sufficient exactly when every fail state (p_i) differs from (p_0) on at least one selected experiment.
+[11-20:P10980; UTF16 363515] That condition is:
+[11-20:P10981; UTF16 363534] [ \forall i, \exists j\in J: u_i\in S_j. ]
+[11-20:P10983; UTF16 363591] U. ]
+[11-20:P10984; UTF16 363596] Thus selected claim-sufficient suites correspond exactly to set covers, with equal cardinality.
+[11-20:P10985; UTF16 363692] A polynomial-time minimum-suite algorithm would solve Set Cover.
+[11-20:P10986; UTF16 363757] Therefore minimum claim-sufficient experiment selection is NP-hard. ∎
+[11-20:P10987; UTF16 363827] This theorem concerns the compact selection problem.
+[11-20:P10988; UTF16 363880] It does not say that every practical sensor-planning instance is hard.
+[11-20:P10992; UTF16 363954] 28. Correlated Field Uncertainty
+[11-20:P10993; UTF16 363987] Field observations may share:
+[11-20:P10994; UTF16 364017] datum error;
+[11-20:P10995; UTF16 364030] registration error;
+[11-20:P10996; UTF16 364050] calibration drift;
+[11-20:P10997; UTF16 364069] environmental bias;
+[11-20:P10998; UTF16 364089] common reference frames;
+[11-20:P10999; UTF16 364114] operator bias;
+[11-20:P11000; UTF16 364129] scan transformation.
+[11-20:P11001; UTF16 364150] Let the exact joint error relation be
+[11-20:P11002; UTF16 364188] [ \Delta_{\mathrm{meas}} \subseteq \Delta_1\times\cdots\times\Delta_k. ]
+[11-20:P11006; UTF16 364264] THM-PHY12 — Independent Marginalization Can Change a Physical Conformance Decision
+[11-20:P11007; UTF16 364347] There exists a correlated field-error model for which replacing the joint relation by the product of its marginals changes the conformance report.
+[11-20:P11010; UTF16 364520] [ e_1=e_2=c, \qquad c\in[-1,1]. ]
+[11-20:P11011; UTF16 364554] The exact joint relation is
+[11-20:P11012; UTF16 364582] \left{ (c,c): c\in[-1,1] \right}. ]
+[11-20:P11013; UTF16 364618] Suppose conformance requires
+[11-20:P11014; UTF16 364647] [ |e_1-e_2| \le 0.5. ]
+[11-20:P11015; UTF16 364670] For every exact joint error state,
+[11-20:P11016; UTF16 364705] [ e_1-e_2=0. ]
+[11-20:P11017; UTF16 364720] Thus the claim is certified.
+[11-20:P11018; UTF16 364749] The marginal projections are both
+[11-20:P11019; UTF16 364783] [ [-1,1]. ]
+[11-20:P11020; UTF16 364795] Their Cartesian product admits
+[11-20:P11021; UTF16 364826] [ (e_1,e_2)=(1,-1), ]
+[11-20:P11022; UTF16 364848] for which
+[11-20:P11023; UTF16 364858] 2
+[11-20:P11024; UTF16 364860] 0.5. ]
+[11-20:P11025; UTF16 364867] The independent product makes the claim unresolved or failing, even though the exact correlated model certifies it.
+[11-20:P11026; UTF16 364983] Thus independent marginalization changes the decision. ∎
+[11-20:P11027; UTF16 365040] The opposite error is also possible: imposing a false correlation may remove a real failing combination and create false acceptance.
+[11-20:P11031; UTF16 365176] 29. Certified As-Built Geometry Envelopes
+[11-20:P11032; UTF16 365218] DEF-PHY17 — Certified As-Built Geometry Envelope
+[11-20:P11033; UTF16 365267] A Certified As-Built Geometry Envelope
+[11-20:P11034; UTF16 365306] [ \widehat G ]
+[11-20:P11035; UTF16 365321] has concretization
+[11-20:P11036; UTF16 365340] [ \gamma_G(\widehat G) \subseteq \mathcal G_{\mathrm{phys}} ]
+[11-20:P11037; UTF16 365402] containing every physical geometry consistent with:
+[11-20:P11039; UTF16 365461] survey points;
+[11-20:P11040; UTF16 365476] registration;
+[11-20:P11042; UTF16 365503] occlusion;
+[11-20:P11043; UTF16 365514] correspondence hypotheses;
+[11-20:P11045; UTF16 365566] environmental effects.
+[11-20:P11046; UTF16 365589] A nominal reconstructed mesh may be stored.
+[11-20:P11047; UTF16 365633] The certificate concerns the outer set.
+[11-20:P11051; UTF16 365676] THM-PHY13 — Universal Geometric Claims Proven Over an As-Built Outer Envelope Hold for the True Geometry
+[11-20:P11053; UTF16 365788] [ G^\star \in \gamma_G(\widehat G). ]
+[11-20:P11055; UTF16 365829] [ \forall G \in \gamma_G(\widehat G), \qquad P(G), ]
+[11-20:P11057; UTF16 365887] [ P(G^\star). ]
+[11-20:P11059; UTF16 365909] The true geometry (G^\star) is one member of the universally quantified set.
+[11-20:P11060; UTF16 365986] Instantiate the universal claim at (G^\star). ∎
+[11-20:P11061; UTF16 366034] An apparent breaker in an outer envelope may be spurious because the envelope can overapproximate physically possible geometries.
+[11-20:P11062; UTF16 366164] It must be concretized or refined before being declared a physical defect.
+[11-20:P11066; UTF16 366242] 30. Topology Is Not a Small Geometric Error
+[11-20:P11067; UTF16 366286] THM-PHY14 — Topology-Changing Deviations Cannot Generally Be Represented as Pure Coordinate Perturbations Under a Topology-Sensitive Theory
+[11-20:P11068; UTF16 366426] There exist two physical states with identical coordinates for every shared entity but different topology and different physical reports.
+[11-20:P11070; UTF16 366586] Let two pipe endpoints (u,v) occupy fixed coordinates.
+[11-20:P11071; UTF16 366641] In state (p_c), the topology contains edge
+[11-20:P11072; UTF16 366684] [ (u,v). ]
+[11-20:P11073; UTF16 366695] In state (p_d), no such edge exists.
+[11-20:P11074; UTF16 366732] All entity coordinates are identical.
+[11-20:P11075; UTF16 366770] Let a physical experiment report whether pressure can propagate from (u) to (v).
+[11-20:P11076; UTF16 366851] It returns CONNECTED on (p_c) and DISCONNECTED on (p_d).
+[11-20:P11077; UTF16 366908] No coordinate perturbation on the fixed topology of (p_c) changes the incidence relation to that of (p_d).
+[11-20:P11078; UTF16 367015] Therefore the topology-changing deviation is not representable as a pure coordinate perturbation under the topology-sensitive theory. ∎
+[11-20:P11079; UTF16 367151] Required response:
+[11-20:P11080; UTF16 367170] topology rewrite;
+[11-20:P11081; UTF16 367188] lineage update;
+[11-20:P11082; UTF16 367204] rematerialization;
+[11-20:P11083; UTF16 367223] recertification.
+[11-20:P11084; UTF16 367240] A small geometric magnitude does not make a topological change a tolerance event.
+[11-20:P11088; UTF16 367325] 31. As-Built Entity Reconciliation
+[11-20:P11089; UTF16 367360] DEF-PHY18 — As-Built Entity Reconciliation Relation
+[11-20:P11091; UTF16 367416] [ \mathsf{DesignEnt}(b) ]
+[11-20:P11092; UTF16 367442] be designed entities and
+[11-20:P11093; UTF16 367467] [ \mathsf{FieldEnt}(h) ]
+[11-20:P11094; UTF16 367492] be field-observed entity hypotheses.
+[11-20:P11096; UTF16 367536] [ \Lambda_{\mathrm{AB}} \subseteq \mathsf{DesignEnt}(b) \times \mathsf{FieldEnt}(h). ]
+[11-20:P11097; UTF16 367623] Statuses include:
+[11-20:P11098; UTF16 367641] [ { \mathsf{MATCHED}, \mathsf{SUBSTITUTED}, \mathsf{MISSING}, \mathsf{EXTRA}, \mathsf{AMBIGUOUS}, \mathsf{UNOBSERVED} }. ]
+[11-20:P11103; UTF16 367823] ambiguous.
+[11-20:P11104; UTF16 367834] Entity identity can be supported by:
+[11-20:P11105; UTF16 367871] serial numbers;
+[11-20:P11106; UTF16 367887] product tags;
+[11-20:P11109; UTF16 367921] location;
+[11-20:P11116; UTF16 367978] THM-PHY15 — Identity-Sensitive Design Claims Require Identity-Sufficient As-Built Reconciliation
+[11-20:P11117; UTF16 368075] Geometric proximity alone does not justify transport of an identity-sensitive design claim.
+[11-20:P11119; UTF16 368189] Let designed product (e) require certified revision (A).
+[11-20:P11120; UTF16 368246] Consider two field entities (f_A,f_B) with identical geometry and location.
+[11-20:P11122; UTF16 368327] (f_A) be revision (A), with applicable evidence;
+[11-20:P11123; UTF16 368376] (f_B) be revision (B), without the required evidence.
+[11-20:P11124; UTF16 368430] A geometry-only reconciliation maps the design entity to either field entity equally well.
+[11-20:P11125; UTF16 368521] The release claim
+[11-20:P11126; UTF16 368539] [ \text{“installed entity has applicable revision-A evidence”} ]
+[11-20:P11127; UTF16 368604] is true for (f_A) and false for (f_B).
+[11-20:P11128; UTF16 368643] Therefore geometry alone does not determine the claim.
+[11-20:P11129; UTF16 368698] A persistent identity observation or a theorem establishing materialization contextual equivalence is required. ∎
+[11-20:P11133; UTF16 368815] 32. Temporary Physical Safety
+[11-20:P11134; UTF16 368845] DEF-PHY19 — Temporary Physical Safety Set
+[11-20:P11135; UTF16 368887] For stage (t), define
+[11-20:P11136; UTF16 368909] [ \mathcal S_t^{\mathrm{safe}} \subseteq \mathcal P_t. ]
+[11-20:P11138; UTF16 368981] temporary structural stability;
+[11-20:P11139; UTF16 369013] excavation support;
+[11-20:P11140; UTF16 369033] incomplete fire protection;
+[11-20:P11141; UTF16 369061] temporary drainage;
+[11-20:P11142; UTF16 369081] electrical energization restrictions;
+[11-20:P11143; UTF16 369119] crane exclusion;
+[11-20:P11144; UTF16 369136] temporary access;
+[11-20:P11145; UTF16 369154] incomplete-system hazards;
+[11-20:P11146; UTF16 369181] stored-energy conditions.
+[11-20:P11150; UTF16 369210] 33. Physical Trace Safety
+[11-20:P11151; UTF16 369236] THM-PHY16 — Field Trace Safety Follows from Invariant-Preserving Physical Actions
+[11-20:P11153; UTF16 369326] the initial actual state satisfies [ p_0^\star \in \mathcal S_0^{\mathrm{safe}}; ]
+[11-20:P11154; UTF16 369409] for each stage (t), [ p\in \mathcal S_t^{\mathrm{safe}} \land pT_{a_t}^{\mathrm{phys}}p' \Longrightarrow p'\in \mathcal S_{t+1}^{\mathrm{safe}}. ]
+[11-20:P11155; UTF16 369556] Then every state in every execution trace generated by (a_1,\ldots,a_n) from (p_0^\star) lies in its corresponding safe set.
+[11-20:P11157; UTF16 369687] Induct on (t).
+[11-20:P11158; UTF16 369702] The base state is safe by assumption.
+[11-20:P11160; UTF16 369747] [ p_t^\star \in \mathcal S_t^{\mathrm{safe}}. ]
+[11-20:P11162; UTF16 369803] [ p_t^\star T_{a_{t+1}}^{\mathrm{phys}} p_{t+1}^\star, ]
+[11-20:P11163; UTF16 369860] the invariant-preservation hypothesis gives
+[11-20:P11164; UTF16 369904] [ p_{t+1}^\star \in \mathcal S_{t+1}^{\mathrm{safe}}. ]
+[11-20:P11165; UTF16 369960] Thus every stage is safe. ∎
+[11-20:P11169; UTF16 369991] COR-PHY2 — Set-Valued Trace Safety
+[11-20:P11171; UTF16 370029] [ \Gamma_0 \subseteq \mathcal S_0^{\mathrm{safe}} ]
+[11-20:P11173; UTF16 370085] [ \operatorname{Post}{T{a_t}} (\Gamma_t) \subseteq \mathcal S_{t+1}^{\mathrm{safe}}, ]
+[11-20:P11174; UTF16 370172] then every actual state contained in the sound physical knowledge sequence is stage safe.
+[11-20:P11178; UTF16 370265] 34. Controlled Invariance
+[11-20:P11179; UTF16 370291] DEF-PHY20 — Controlled Physical Invariant
+[11-20:P11181; UTF16 370338] (S\subseteq\mathcal P) be a safety set;
+[11-20:P11182; UTF16 370378] (D(p,h)) be the disturbance set consistent with current physical state and observation history;
+[11-20:P11183; UTF16 370474] (U(h,d)) be the actions permitted after the information represented by (h,d) is available;
+[11-20:P11184; UTF16 370565] (T_{a,d}) be the physical successor relation.
+[11-20:P11185; UTF16 370611] If disturbance (d) is observed before action selection, (S) is controlled invariant when
+[11-20:P11186; UTF16 370700] [ \forall p\in S, \forall d\in D(p,h), \exists a\in U(h,d), \forall p'\in T_{a,d}(p), \qquad p'\in S. ]
+[11-20:P11187; UTF16 370804] If (d) is not observed before action selection, the correct order is
+[11-20:P11188; UTF16 370873] [ \forall p\in S, \exists a\in U(h), \forall d\in D(p,h), \forall p'\in T_{a,d}(p), \qquad p'\in S. ]
+[11-20:P11189; UTF16 370975] The quantifier order is part of the theorem.
+[11-20:P11193; UTF16 371023] DEF-PHY21 — Physical Viability Kernel
+[11-20:P11194; UTF16 371061] For finite horizon (T), target set (G_T), safety sets (S_t), observation process, disturbance theory, and allowed field policies, define
+[11-20:P11195; UTF16 371198] [ \operatorname{Viab}_0^T ]
+[11-20:P11196; UTF16 371226] as the set of initial physical states for which there exists a nonanticipative policy
+[11-20:P11197; UTF16 371312] (\pi_0,\ldots,\pi_{T-1}) ]
+[11-20:P11198; UTF16 371339] such that every admissible physical trace:
+[11-20:P11199; UTF16 371382] remains in (S_t) at every stage;
+[11-20:P11200; UTF16 371415] terminates in (G_T).
+[11-20:P11201; UTF16 371436] This definition quantifies over all disturbances and transition nondeterminism admitted by the theory.
+[11-20:P11205; UTF16 371542] 35. Nonanticipative Field Recourse
+[11-20:P11206; UTF16 371577] DEF-PHY22 — Field Recourse Policy
+[11-20:P11207; UTF16 371611] A Field Recourse Policy is a history-measurable map
+[11-20:P11208; UTF16 371663] \pi_t(h_t). ]
+[11-20:P11209; UTF16 371677] It may depend on:
+[11-20:P11210; UTF16 371695] observations;
+[11-20:P11213; UTF16 371736] known product deliveries;
+[11-20:P11214; UTF16 371762] revealed deviations;
+[11-20:P11215; UTF16 371783] current authority state.
+[11-20:P11216; UTF16 371808] It may not depend on future unobserved deviations or measurements.
+[11-20:P11220; UTF16 371878] THM-PHY17 — Scenario-Wise Field Repairs Need Not Admit One Nonanticipative Field Policy
+[11-20:P11221; UTF16 371966] There exists a finite field-repair problem in which every complete scenario admits a successful repair but no nonanticipative policy succeeds in every scenario.
+[11-20:P11223; UTF16 372133] At stage (1), choose action
+[11-20:P11224; UTF16 372161] [ r_1\in{0,1}. ]
+[11-20:P11225; UTF16 372178] At stage (2), unobserved future scenario
+[11-20:P11226; UTF16 372219] [ \delta_2\in{0,1} ]
+[11-20:P11227; UTF16 372240] is revealed.
+[11-20:P11230; UTF16 372288] For each full scenario, a clairvoyant repair exists:
+[11-20:P11232; UTF16 372359] At stage (1), the observation histories are identical across the two scenarios.
+[11-20:P11233; UTF16 372439] A nonanticipative policy must therefore choose the same (r_1) in both.
+[11-20:P11234; UTF16 372510] That action fails in one scenario.
+[11-20:P11236; UTF16 372551] [ \forall\delta \exists r_\delta ]
+[11-20:P11238; UTF16 372601] [ \exists\pi \forall\delta. ]
+[11-20:P11243; UTF16 372636] 36. Approved Field Recourse Contracts
+[11-20:P11244; UTF16 372674] DEF-PHY23 — Approved Field Recourse Contract
+[11-20:P11245; UTF16 372719] An Approved Field Recourse Contract is
+[11-20:P11246; UTF16 372758] \left( D, \mathsf{Obs}, \Pi, \mathsf{Actions}, \mathsf{Authority}, \mathsf{Products}, \mathsf{TemporarySafety}, \mathsf{TerminalSet}, \mathsf{ClaimCoverage}, \mathsf{Escalation} \right), ]
+[11-20:P11248; UTF16 372954] (D): covered deviation domain;
+[11-20:P11249; UTF16 372985] (\mathsf{Obs}): information available before action;
+[11-20:P11250; UTF16 373038] (\Pi): certified nonanticipative policy family;
+[11-20:P11251; UTF16 373086] (\mathsf{Actions}): permitted field adjustments;
+[11-20:P11252; UTF16 373135] (\mathsf{Authority}): required authority and consent;
+[11-20:P11253; UTF16 373189] (\mathsf{Products}): permitted alternative parts;
+[11-20:P11254; UTF16 373239] (\mathsf{TemporarySafety}): stage-safe sets;
+[11-20:P11255; UTF16 373284] (\mathsf{TerminalSet}): accepted final physical set;
+[11-20:P11256; UTF16 373337] (\mathsf{ClaimCoverage}): invariant or re-established claims;
+[11-20:P11257; UTF16 373399] (\mathsf{Escalation}): out-of-domain response.
+[11-20:P11258; UTF16 373446] “Field adjustment allowed” is not a sufficient formal contract.
+[11-20:P11262; UTF16 373513] THM-PHY18 — Pre-Certified Nonanticipative Recourse Can Preserve Covered Release Claims Without Full Redesign
+[11-20:P11264; UTF16 373630] the actual physical state lies in the recourse domain (D);
+[11-20:P11265; UTF16 373689] the observed history satisfies the contract’s information conditions;
+[11-20:P11266; UTF16 373759] the policy (\pi) is nonanticipative;
+[11-20:P11267; UTF16 373796] every selected action is authorized;
+[11-20:P11268; UTF16 373833] every possible successor remains in the certified temporary safety set;
+[11-20:P11269; UTF16 373905] every terminal physical state lies in the accepted terminal set;
+[11-20:P11270; UTF16 373970] every affected claim is either:
+[11-20:P11271; UTF16 374002] invariant over the recourse relation; or
+[11-20:P11272; UTF16 374043] explicitly re-established by the recourse certificate;
+[11-20:P11273; UTF16 374098] the dependency graph is complete.
+[11-20:P11274; UTF16 374132] Then executing the recourse policy preserves every covered claim, and claims outside the affected dependency cone need not be reopened.
+[11-20:P11276; UTF16 374274] The actual state begins in (D).
+[11-20:P11277; UTF16 374306] At each stage, the action is chosen from the current history only, so the policy is executable.
+[11-20:P11278; UTF16 374402] By controlled invariance, every admitted successor remains in the required temporary safety set.
+[11-20:P11279; UTF16 374499] At termination, every admitted terminal state lies in the accepted physical realization set.
+[11-20:P11280; UTF16 374592] For every affected claim:
+[11-20:P11281; UTF16 374618] invariance proves unchanged truth; or
+[11-20:P11282; UTF16 374656] the recourse certificate proves its post-action report.
+[11-20:P11283; UTF16 374712] Dependency completeness ensures that every claim that could change is either covered or included in the affected cone.
+[11-20:P11284; UTF16 374831] Therefore no unrelated claim requires semantic recomputation. ∎
+[11-20:P11285; UTF16 374895] Field evidence must still establish that the realized state remained inside the recourse domain.
+[11-20:P11289; UTF16 374995] 37. Repairs Outside the Contract
+[11-20:P11290; UTF16 375028] THM-PHY19 — An Out-of-Contract Field Repair Does Not Automatically Inherit Affected Design Assurance
+[11-20:P11291; UTF16 375129] There exists a field repair with superficially identical geometry to an approved repair but different engineering consequences.
+[11-20:P11293; UTF16 375279] Suppose the approved design uses a bolted structural connection with a certified load path.
+[11-20:P11294; UTF16 375371] A field worker substitutes an adhesive connection occupying the same visible geometry.
+[11-20:P11295; UTF16 375458] The adhesive repair is outside the approved recourse contract.
+[11-20:P11296; UTF16 375521] Construct two physical states:
+[11-20:P11297; UTF16 375552] (p_B): bolted connection, satisfying the structural claim;
+[11-20:P11298; UTF16 375611] (p_A): adhesive connection, failing the load claim.
+[11-20:P11299; UTF16 375663] The two states may have the same external geometry.
+[11-20:P11300; UTF16 375715] The old proof depends on the bolted connection identity and properties.
+[11-20:P11301; UTF16 375787] It does not transport to (p_A).
+[11-20:P11302; UTF16 375819] Therefore an out-of-contract repair cannot automatically inherit the affected assurance. ∎
+[11-20:P11303; UTF16 375910] The required response is:
+[11-20:P11304; UTF16 375936] [ \boxed{ \text{out-of-contract repair} \Longrightarrow \text{rewrite, rematerialize, and recertify the affected dependency cone}. } ]

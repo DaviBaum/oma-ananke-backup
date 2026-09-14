@@ -1,0 +1,379 @@
+HISTORICAL ORIGINAL 11-20; source SHA256 17aa284cbc289378eb6d15630bd71c74371d7da30c42a07c9f404f761fa35200
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[11-20:P19095; UTF16 634574] Mechanism transport: invariant kernel plus target covariates reproduces target distribution.
+[11-20:P19096; UTF16 634667] False causal transport: identical observational distribution, different interventions.
+[11-20:P19097; UTF16 634754] Hierarchical transfer: true target parameter remains inside the induced fleet set.
+[11-20:P19098; UTF16 634837] Fleet monotonicity: added compatible source evidence shrinks the fixed-theory set.
+[11-20:P19099; UTF16 634920] Theory expansion: new source fault enlarges target fault family and reopens claims.
+[11-20:P19100; UTF16 635004] Universal fleet breaker: one source refutes universal class claim but not target-specific claim.
+[11-20:P19101; UTF16 635101] Distributional robustness: every law in a finite ambiguity set respects the robust bound.
+[11-20:P19102; UTF16 635191] Approximate transfer: verify the Lipschitz error calculation.
+[11-20:P19103; UTF16 635253] PCPE transfer: source containment plus monotone map preserves target containment.
+[11-20:P19104; UTF16 635335] Wrong PCPE target: changed product or control regime invalidates transfer.
+[11-20:P19105; UTF16 635410] Federated evidence: local packets support a checked aggregate.
+[11-20:P19106; UTF16 635473] Federated privacy negative: raw-data update yields no privacy claim.
+[11-20:P19107; UTF16 635542] Modality gate: PAC evidence remains statistical.
+[11-20:P19108; UTF16 635591] Target measurement: fleet target set intersects soundly with local evidence.
+[11-20:P19109; UTF16 635668] Minimum source selection: recover a known Weighted Set Cover optimum.
+[11-20:P19110; UTF16 635738] Incremental transfer: incremental and cold checking agree.
+[11-20:P19111; UTF16 635797] Cross-project red team: source success and target failure.
+[11-20:P19112; UTF16 635856] Prompt-9 integration: target-critical measurement outranks irrelevant fleet refinement.
+[11-20:P19113; UTF16 635944] Prompt-10 integration: source breaker creates a checked theory-expansion event.
+[11-20:P19114; UTF16 636024] Prompt-11 integration: statistical evidence remains a typed statistical proposition.
+[11-20:P19115; UTF16 636109] Prompt-12 integration: fleet preferences do not override target architectural authority.
+[11-20:P19116; UTF16 636198] Prompt-13 integration: product transfer requires exact applicability.
+[11-20:P19117; UTF16 636268] Prompt-14 integration: fleet sensor evidence does not replace target calibration.
+[11-20:P19118; UTF16 636350] Prompt-15 integration: transferred fault theory expands hypotheses without asserting actual fault.
+[11-20:P19119; UTF16 636449] PCTP independence: checker verifies the package without trusting learner internals.
+[11-20:P19123; UTF16 636536] 66. Proof-Assistant Formalization
+[11-20:P19124; UTF16 636570] 66.1 Project instance
+[11-20:P19125; UTF16 636592] structure ProjectInstance where
+[11-20:P19127; UTF16 636641]   World : Type
+[11-20:P19128; UTF16 636656]   id : ProjectId
+[11-20:P19129; UTF16 636673]   context : Context
+[11-20:P19131; UTF16 636720]   evidence : EvidenceStore
+[11-20:P19132; UTF16 636747] 66.2 Fixed fleet
+[11-20:P19133; UTF16 636764] def Fleet (B : Type) :=
+[11-20:P19134; UTF16 636788]   Finset B
+[11-20:P19135; UTF16 636799] No probability is implied.
+[11-20:P19136; UTF16 636826] 66.3 Statistical population
+[11-20:P19137; UTF16 636854] structure ProjectPopulation where
+[11-20:P19138; UTF16 636888]   Project : Type
+[11-20:P19139; UTF16 636905]   measurableProject : MeasurableSpace Project
+[11-20:P19140; UTF16 636951]   law : Measure Project
+[11-20:P19141; UTF16 636975] 66.4 Transport bridge
+[11-20:P19142; UTF16 636997] structure TransportBridge
+[11-20:P19143; UTF16 637023]     (Source Target : Type) where
+[11-20:P19144; UTF16 637056]   relates :
+[11-20:P19145; UTF16 637068]     Source →
+[11-20:P19146; UTF16 637081]     Target →
+[11-20:P19148; UTF16 637103] 66.5 Exact transport
+[11-20:P19149; UTF16 637124] structure ExactTransportCertificate
+[11-20:P19150; UTF16 637160]     (Source Target : Type)
+[11-20:P19151; UTF16 637187]     (B : TransportBridge Source Target)
+[11-20:P19152; UTF16 637227]     (PS : Source → Prop)
+[11-20:P19153; UTF16 637252]     (PT : Target → Prop) where
+[11-20:P19155; UTF16 637293]     ∀ s t,
+[11-20:P19156; UTF16 637304]       B.relates s t →
+[11-20:P19157; UTF16 637326]       PS s →
+[11-20:P19158; UTF16 637339]       PT t
+[11-20:P19159; UTF16 637350] 66.6 Fleet hyperparameter set
+[11-20:P19160; UTF16 637380] def FleetHyperSet
+[11-20:P19161; UTF16 637398]     (H : Set HyperParam)
+[11-20:P19162; UTF16 637423]     (sources : Finset SourceProject) :
+[11-20:P19163; UTF16 637462]     Set HyperParam :=
+[11-20:P19164; UTF16 637484]   {η |
+[11-20:P19165; UTF16 637491]     η ∈ H ∧
+[11-20:P19166; UTF16 637503]     ∃ θs : SourceProject → LocalParam,
+[11-20:P19167; UTF16 637542]       ∀ i ∈ sources,
+[11-20:P19168; UTF16 637563]         Compatible i η (θs i)}
+[11-20:P19169; UTF16 637594] 66.7 Target parameter set
+[11-20:P19170; UTF16 637620] def TargetParamSet
+[11-20:P19172; UTF16 637664]     (χ : TargetContext) :
+[11-20:P19173; UTF16 637690]     Set TargetParam :=
+[11-20:P19174; UTF16 637713]   {θ |
+[11-20:P19175; UTF16 637720]     ∃ η ∈ H,
+[11-20:P19176; UTF16 637733]       TargetBridge η χ θ}
+[11-20:P19177; UTF16 637759] 66.8 Claim mode
+[11-20:P19178; UTF16 637775] inductive ClaimMode
+[11-20:P19179; UTF16 637795] | finiteFleetFact
+[11-20:P19180; UTF16 637813] | exactTarget
+[11-20:P19181; UTF16 637827] | exactTransport
+[11-20:P19182; UTF16 637844] | setValuedTarget
+[11-20:P19183; UTF16 637862] | robustDistributional
+[11-20:P19184; UTF16 637885] | populationPAC
+[11-20:P19185; UTF16 637901] | marginalPrediction
+[11-20:P19186; UTF16 637922] | bayesianModel
+[11-20:P19187; UTF16 637938] | heuristic
+[11-20:P19188; UTF16 637950] 66.9 Exchangeability
+[11-20:P19189; UTF16 637971] def Exchangeable
+[11-20:P19190; UTF16 637988]     (X : Fin n → Ω → α) : Prop :=
+[11-20:P19191; UTF16 638022]   ∀ π : Equiv.Perm (Fin n),
+[11-20:P19192; UTF16 638050]     IdentDistrib
+[11-20:P19193; UTF16 638067]       (fun ω i => X i ω)
+[11-20:P19194; UTF16 638092]       (fun ω i => X (π i) ω)
+[11-20:P19195; UTF16 638121] A production formalization would use an appropriate product-space measurable structure.
+[11-20:P19196; UTF16 638209] 66.10 Robust risk
+[11-20:P19197; UTF16 638227] def RobustRisk
+[11-20:P19198; UTF16 638242]     (Ps : Set (Measure B))
+[11-20:P19199; UTF16 638269]     (loss : B → ℝ) : ℝ :=
+[11-20:P19200; UTF16 638295]   sSup
+[11-20:P19202; UTF16 638311]       ∃ P ∈ Ps,
+[11-20:P19203; UTF16 638327]         Integrable loss P ∧
+[11-20:P19204; UTF16 638355]         r = ∫ b, loss b ∂P}
+[11-20:P19205; UTF16 638383] 66.11 PCTP
+[11-20:P19206; UTF16 638394] structure PCTP where
+[11-20:P19207; UTF16 638415]   sourceProjects : Finset ProjectId
+[11-20:P19208; UTF16 638451]   targetProject : ProjectId
+[11-20:P19209; UTF16 638479]   claimMode : ClaimMode
+[11-20:P19210; UTF16 638503]   sourceEvidence : EvidenceStore
+[11-20:P19211; UTF16 638536]   bridges : BridgeStore
+[11-20:P19212; UTF16 638560]   statisticalCertificates :
+[11-20:P19213; UTF16 638588]     StatisticalCertificateStore
+[11-20:P19214; UTF16 638620]   targetEvidence : EvidenceStore
+[11-20:P19220; UTF16 638709] 67. Mechanization Difficulty
+[11-20:P19221; UTF16 638738] ￼
+ATTACHED TABLE 1736452; native row/column order; 28 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Fixed fleet semantics", "Straightforward"]
+ROW 2: ["Exact transport bridges", "Moderate"]
+ROW 3: ["Transport composition", "Straightforward"]
+ROW 4: ["Contextual-equivalence transfer", "Moderate"]
+ROW 5: ["Sampling-unit semantics", "Moderate"]
+ROW 6: ["Dependence specification", "Moderate"]
+ROW 7: ["Exchangeability", "Moderate"]
+ROW 8: ["Finite-class PAC proof", "Moderate"]
+ROW 9: ["Conformal rank proof", "Difficult"]
+ROW 10: ["Covariate-shift measure theory", "Moderate"]
+ROW 11: ["Support-gap impossibility", "Moderate"]
+ROW 12: ["Selection bias", "Straightforward"]
+ROW 13: ["Simpson construction", "Straightforward"]
+ROW 14: ["Conditional-mechanism transport", "Moderate"]
+ROW 15: ["Causal discovery", "Research-level"]
+ROW 16: ["Hierarchical set transfer", "Moderate"]
+ROW 17: ["Distributionally robust transfer", "Moderate"]
+ROW 18: ["Approximate transfer ledger", "Moderate"]
+ROW 19: ["PCPE transfer", "Moderate"]
+ROW 20: ["Fleet theory expansion", "Moderate"]
+ROW 21: ["Federated evidence composition", "Moderate"]
+ROW 22: ["Privacy guarantees", "Separate research problem"]
+ROW 23: ["Target transfer gate", "Difficult"]
+ROW 24: ["Incremental recertification", "Difficult"]
+ROW 25: ["PCTP checker", "Research-level"]
+ROW 26: ["Automatic bridge discovery", "Research-level"]
+ROW 27: ["Complete shift detection", "Impossible without assumptions"]
+[11-20:P19225; UTF16 638743] 68. Permanent Assumption Registry
+[11-20:P19226; UTF16 638777] ￼
+ATTACHED TABLE 1736468; native row/column order; 21 rows
+ROW 0: ["ID", "Assumption"]
+ROW 1: ["ASSUMP-XFER1", "Source evidence is valid and correctly project scoped"]
+ROW 2: ["ASSUMP-XFER2", "Project identities, contexts, products, and versions are correct"]
+ROW 3: ["ASSUMP-XFER3", "Sampling units are correctly identified"]
+ROW 4: ["ASSUMP-XFER4", "IID or exchangeability is invoked only where justified"]
+ROW 5: ["ASSUMP-XFER5", "Dependence and common-cause structure are represented where relevant"]
+ROW 6: ["ASSUMP-XFER6", "Sampling and selection mechanisms used in statistical claims are valid"]
+ROW 7: ["ASSUMP-XFER7", "Support-overlap assumptions are valid where used"]
+ROW 8: ["ASSUMP-XFER8", "Conditional or causal invariance assumptions are valid where used"]
+ROW 9: ["ASSUMP-XFER9", "Exact transport bridges are sound"]
+ROW 10: ["ASSUMP-XFER10", "True target population law belongs to the ambiguity set where invoked"]
+ROW 11: ["ASSUMP-XFER11", "Hierarchical common-parameter theory contains the true mechanism"]
+ROW 12: ["ASSUMP-XFER12", "Transfer discrepancy and approximation bounds are sound"]
+ROW 13: ["ASSUMP-XFER13", "Target-specific evidence is sound"]
+ROW 14: ["ASSUMP-XFER14", "Claim modalities are preserved"]
+ROW 15: ["ASSUMP-XFER15", "Dependency graphs are complete for exact incremental claims"]
+ROW 16: ["ASSUMP-XFER16", "Statistical, transfer, and assurance checkers are sound"]
+ROW 17: ["ASSUMP-XFER17", "UNKNOWN is never promoted"]
+ROW 18: ["ASSUMP-XFER18", "Probability spaces and measurable structures are valid where probability is used"]
+ROW 19: ["ASSUMP-XFER19", "Target fixed/random status is correctly declared"]
+ROW 20: ["ASSUMP-XFER20", "Federated packet provenance is valid where aggregation relies on it"]
+[11-20:P19230; UTF16 638782] 69. Definition Registry
+[11-20:P19231; UTF16 638806] ￼
+ATTACHED TABLE 1736484; native row/column order; 32 rows
+ROW 0: ["ID", "Object", "Status"]
+ROW 1: ["DEF-XFER1", "Project Instance", "Defined"]
+ROW 2: ["DEF-XFER2", "Finite Fleet", "Defined"]
+ROW 3: ["DEF-XFER3", "Statistical Project Population", "Defined"]
+ROW 4: ["DEF-XFER4", "Sampling Design", "Defined"]
+ROW 5: ["DEF-XFER5", "Cross-Project Claim Modality", "Defined"]
+ROW 6: ["DEF-XFER6", "Cross-Project Evidence Atom", "Defined"]
+ROW 7: ["DEF-XFER7", "Transport Bridge", "Defined"]
+ROW 8: ["DEF-XFER8", "Exact Transport Certificate", "Defined"]
+ROW 9: ["DEF-XFER9", "Statistical Sampling Unit", "Defined"]
+ROW 10: ["DEF-XFER10", "Finite Exchangeability", "Defined"]
+ROW 11: ["DEF-XFER11", "Population and Empirical Risk", "Defined"]
+ROW 12: ["DEF-XFER12", "Exchangeable Nonconformity Scores", "Defined"]
+ROW 13: ["DEF-XFER13", "Source/Target Domain-Shift Theory", "Defined"]
+ROW 14: ["DEF-XFER14", "Support-Overlap Condition", "Defined"]
+ROW 15: ["DEF-XFER15", "Observation-Selection Variable", "Defined"]
+ROW 16: ["DEF-XFER16", "Invariant Conditional Mechanism", "Defined"]
+ROW 17: ["DEF-XFER17", "Fleet Hyperparameter", "Defined"]
+ROW 18: ["DEF-XFER18", "Certified Fleet Hyperparameter Set", "Defined"]
+ROW 19: ["DEF-XFER19", "Induced Target Parameter Set", "Defined"]
+ROW 20: ["DEF-XFER20", "Cross-Project Theory Expansion Event", "Defined"]
+ROW 21: ["DEF-XFER21", "Target Distribution Ambiguity Set", "Defined"]
+ROW 22: ["DEF-XFER22", "Robust Transferred Risk", "Defined"]
+ROW 23: ["DEF-XFER23", "Transfer Error Ledger", "Defined"]
+ROW 24: ["DEF-XFER24", "Monotone Set Transport Operator", "Defined"]
+ROW 25: ["DEF-XFER25", "Federated Evidence Packet", "Defined"]
+ROW 26: ["DEF-XFER26", "Transfer Dependency Graph", "Defined"]
+ROW 27: ["DEF-XFER27", "Target Transfer Gate", "Defined"]
+ROW 28: ["DEF-XFER28", "Proof-Carrying Transfer Package", "Defined"]
+ROW 29: ["DEF-XFER29", "Prompt-16 Complexity Profile", "Defined"]
+ROW 30: ["DEF-XFER30", "Bayesian Transfer Model", "Defined"]
+ROW 31: ["DEF-XFER31", "Dependence and Clustering Specification", "Defined"]
+[11-20:P19235; UTF16 638811] 70. Lemma, Proposition, and Corollary Registry
+[11-20:P19236; UTF16 638858] ￼
+ATTACHED TABLE 1736500; native row/column order; 13 rows
+ROW 0: ["ID", "Result", "Proof status"]
+ROW 1: ["LEM-XFER1", "Hoeffding MGF bound for unit-interval variables", "Proved"]
+ROW 2: ["LEM-XFER2", "Fixed-hypothesis Hoeffding concentration", "Proved"]
+ROW 3: ["LEM-XFER3", "Uniform randomized rank under exchangeability", "Proved"]
+ROW 4: ["PRO-XFER1", "Repeated perfectly correlated records do not create IID sample size", "Proved"]
+ROW 5: ["PRO-XFER2", "Federated computation alone does not establish privacy", "Proved"]
+ROW 6: ["PRO-XFER3", "Perfect source performance can coexist with arbitrarily poor target performance", "Proved"]
+ROW 7: ["PRO-XFER4", "Context aggregation can reverse every within-context ranking", "Proved"]
+ROW 8: ["PRO-XFER5", "Observationally equivalent models can disagree under intervention", "Proved"]
+ROW 9: ["PRO-XFER6", "Posterior certainty need not establish target truth under misspecification", "Proved"]
+ROW 10: ["COR-XFER1", "Data-dependent finite-class model selection remains covered by simultaneous PAC event", "Proved"]
+ROW 11: ["COR-XFER2", "Sound target evidence refines a fleet-induced target set while preserving truth", "Proved"]
+ROW 12: ["COR-XFER3", "Universal verification over a certified target set yields an exact target claim", "Proved"]
+[11-20:P19240; UTF16 638863] 71. Theorem Registry
+[11-20:P19241; UTF16 638884] ￼
+ATTACHED TABLE 1736516; native row/column order; 28 rows
+ROW 0: ["ID", "Theorem", "Proof status"]
+ROW 1: ["THM-XFER1", "Source truth alone has no general target implication", "Proved"]
+ROW 2: ["THM-XFER2", "Exact transport certificate soundness", "Proved"]
+ROW 3: ["THM-XFER3", "Exact transport composition", "Proved"]
+ROW 4: ["THM-XFER4", "Contextual-equivalence transfer", "Proved"]
+ROW 5: ["THM-XFER5", "Uniform finite-class PAC bound", "Proved"]
+ROW 6: ["THM-XFER6", "Population guarantee does not imply deterministic fixed-target truth", "Proved"]
+ROW 7: ["THM-XFER7", "Finite-sample conformal marginal coverage", "Proved"]
+ROW 8: ["THM-XFER8", "Marginal coverage need not imply subgroup coverage", "Proved"]
+ROW 9: ["THM-XFER9", "Covariate-shift weighted-risk identity", "Proved"]
+ROW 10: ["THM-XFER10", "Support-gap nonidentifiability", "Proved"]
+ROW 11: ["THM-XFER11", "Selection bias makes observed fleet rate nonidentifying", "Proved"]
+ROW 12: ["THM-XFER12", "Invariant conditional-mechanism transport", "Proved"]
+ROW 13: ["THM-XFER13", "Hierarchical set-membership target-transfer soundness", "Proved"]
+ROW 14: ["THM-XFER14", "Fixed-theory fleet-refinement monotonicity", "Proved"]
+ROW 15: ["THM-XFER15", "New applicable fleet mechanism can reopen target assurance", "Proved"]
+ROW 16: ["THM-XFER16", "One source breaker refutes a universal fleet claim but not a target-specific claim", "Proved"]
+ROW 17: ["THM-XFER17", "Distributionally robust target-risk soundness", "Proved"]
+ROW 18: ["THM-XFER18", "Approximate transfer-error composition", "Proved"]
+ROW 19: ["THM-XFER19", "Proof-carrying PCPE transfer", "Proved"]
+ROW 20: ["THM-XFER20", "Federated evidence-certificate composition", "Proved"]
+ROW 21: ["THM-XFER21", "Claim-modality non-escalation", "Proved"]
+ROW 22: ["THM-XFER22", "Minimum transfer-evidence selection is NP-hard", "Proved"]
+ROW 23: ["THM-XFER23", "Whole-project proof-carrying cross-project learning", "Proved"]
+ROW 24: ["THM-XFER24", "Open-world target-domain limitation", "Proved"]
+ROW 25: ["THM-XFER25", "Learner/proposer independence", "Proved"]
+ROW 26: ["THM-XFER26", "Explicit PCTP checking complexity", "Proved"]
+ROW 27: ["THM-XFER27", "Incremental transfer recertification equals cold checking", "Proved"]
+[11-20:P19245; UTF16 638889] 72. Algorithm Registry
+[11-20:P19246; UTF16 638912] ￼
+ATTACHED TABLE 1736532; native row/column order; 17 rows
+ROW 0: ["ID", "Algorithm", "Correctness basis"]
+ROW 1: ["ALG-XFER1", "CheckTransferPackage", "THM-XFER23"]
+ROW 2: ["ALG-XFER2", "AuditSourceFleet", "DEF-XFER1–6, XFER31"]
+ROW 3: ["ALG-XFER3", "BuildHierarchicalFleetSet", "THM-XFER13–14"]
+ROW 4: ["ALG-XFER4", "CertifyFiniteClassPAC", "THM-XFER5"]
+ROW 5: ["ALG-XFER5", "BuildConformalTransferCertificate", "THM-XFER7"]
+ROW 6: ["ALG-XFER6", "CheckDomainShift", "THM-XFER9–12"]
+ROW 7: ["ALG-XFER7", "TransportUnderCovariateShift", "THM-XFER9"]
+ROW 8: ["ALG-XFER8", "BuildDistributionallyRobustTransfer", "THM-XFER17"]
+ROW 9: ["ALG-XFER9", "TransferPCPE", "THM-XFER19"]
+ROW 10: ["ALG-XFER10", "FederatedEvidenceAggregate", "THM-XFER20"]
+ROW 11: ["ALG-XFER11", "DiscoverFleetFailure", "THM-XFER15–16"]
+ROW 12: ["ALG-XFER12", "TargetRecertificationGate", "THM-XFER21, XFER23"]
+ROW 13: ["ALG-XFER13", "CrossProjectRCVOCInterface", "Prompt-9 RCVOC"]
+ROW 14: ["ALG-XFER14", "RedTeamTransfer", "Prompt-10 breaker theory"]
+ROW 15: ["ALG-XFER15", "BuildPCTP", "THM-XFER23, XFER26"]
+ROW 16: ["ALG-XFER16", "IncrementalTransferRecertification", "THM-XFER27"]
+[11-20:P19250; UTF16 638917] 73. Conjecture Registry
+[11-20:P19251; UTF16 638941] ￼
+ATTACHED TABLE 1736548; native row/column order; 11 rows
+ROW 0: ["ID", "Conjecture", "Falsification condition"]
+ROW 1: ["CONJ-XFER1", "Real fleets admit compact contexts sufficient for many transfers", "Transfer requires nearly complete project state"]
+ROW 2: ["CONJ-XFER2", "Exact or set-valued bridges cover many repeated subsystems", "Most reuse remains heuristic"]
+ROW 3: ["CONJ-XFER3", "Fleet set-membership learning materially tightens target parameter sets", "Fleet evidence barely reduces target uncertainty"]
+ROW 4: ["CONJ-XFER4", "Target-local evidence after safe transfer is much smaller than cold identification", "Nearly all evidence must be reacquired"]
+ROW 5: ["CONJ-XFER5", "Support gaps are detected before harmful transfer", "Important extrapolations pass checks undetected"]
+ROW 6: ["CONJ-XFER6", "Transferred PCPEs materially reduce target full-order computation", "Transfer discrepancy dominates"]
+ROW 7: ["CONJ-XFER7", "Fleet fault discovery improves target fault theories without excessive false expansion", "Most discovered mechanisms are inapplicable"]
+ROW 8: ["CONJ-XFER8", "Federated packets retain enough information for valuable learning", "Raw centralized data are routinely required"]
+ROW 9: ["CONJ-XFER9", "Exact and statistical modalities coexist without systematic confusion", "Modality errors become a major hazard"]
+ROW 10: ["CONJ-XFER10", "A hotel fleet supports proof-carrying transfer within practical compute limits", "Bridge checking or certificate processing is impractical"]
+[11-20:P19255; UTF16 638946] 74. Dependency DAG — Prompts 1–16
+[11-20:P19277; UTF16 639257] uncertainty
+[11-20:P19286; UTF16 639364] PROMPT 7
+[11-20:P19287; UTF16 639373] rewrites and invalidation
+[11-20:P19291; UTF16 639428] causal executable macros
+[11-20:P19319; UTF16 639767] operational twin
+[11-20:P19320; UTF16 639784] continuous assurance
+[11-20:P19323; UTF16 639825] DEF-XFER1–4
+[11-20:P19324; UTF16 639837] project, fleet,
+[11-20:P19325; UTF16 639853] population, sampling
+[11-20:P19327; UTF16 639884]         ├───────────────────────────┐
+[11-20:P19328; UTF16 639922]         ▼                           ▼
+[11-20:P19329; UTF16 639960] fixed-fleet semantics         statistical population
+[11-20:P19330; UTF16 640013]         │                           │
+[11-20:P19332; UTF16 640089] THM-XFER1                DEF-XFER9–12
+[11-20:P19333; UTF16 640127] no transfer              sampling units,
+[11-20:P19334; UTF16 640168] without bridge           exchangeability,
+[11-20:P19335; UTF16 640210]         │                 PAC and conformal
+[11-20:P19336; UTF16 640254]         │                         │
+[11-20:P19337; UTF16 640290]         │              ┌──────────┴──────────┐
+[11-20:P19338; UTF16 640337]         │              ▼                     ▼
+[11-20:P19339; UTF16 640384]         │         THM-XFER5             THM-XFER7
+[11-20:P19340; UTF16 640434]         │         PAC bound             conformal
+[11-20:P19341; UTF16 640484]         │              │                     │
+[11-20:P19343; UTF16 640578]         │         THM-XFER6             THM-XFER8
+[11-20:P19344; UTF16 640628]         │         fixed-target          subgroup limit
+[11-20:P19345; UTF16 640683]         │         limitation
+[11-20:P19347; UTF16 640722] DEF-XFER7–8
+[11-20:P19348; UTF16 640734] transport bridges
+[11-20:P19350; UTF16 640762]         ├──────────────────┐
+[11-20:P19351; UTF16 640791]         ▼                  ▼
+[11-20:P19352; UTF16 640820] THM-XFER2           THM-XFER3
+[11-20:P19353; UTF16 640850] exact transfer      composition
+[11-20:P19356; UTF16 640902] THM-XFER4
+[11-20:P19357; UTF16 640912] contextual reuse
+[11-20:P19359; UTF16 640930] domain shift
+[11-20:P19362; UTF16 640963] DEF-XFER13–16
+[11-20:P19363; UTF16 640977] shift, support,
+[11-20:P19364; UTF16 640993] selection, mechanism
+[11-20:P19366; UTF16 641024]    ┌────┼────────┬────────────┐
+[11-20:P19367; UTF16 641056]    ▼    ▼        ▼            ▼
+[11-20:P19368; UTF16 641088] XFER9 XFER10  XFER11       XFER12
+[11-20:P19369; UTF16 641122] covar support selection    mechanism
+[11-20:P19370; UTF16 641159] shift  gap     bias        transport
+[11-20:P19372; UTF16 641197] hierarchical transfer
+[11-20:P19375; UTF16 641239] DEF-XFER17–19
+[11-20:P19376; UTF16 641253] fleet hyperparameter
+[11-20:P19377; UTF16 641274] target parameter set
+[11-20:P19379; UTF16 641305]         ├────────────────────┐
+[11-20:P19380; UTF16 641336]         ▼                    ▼
+[11-20:P19381; UTF16 641367] THM-XFER13            THM-XFER14
+[11-20:P19382; UTF16 641400] sound target set       monotone refinement
+[11-20:P19385; UTF16 641463] target PCOT / PCPE /
+[11-20:P19386; UTF16 641484] parameter identification
+[11-20:P19388; UTF16 641510] theory expansion
+[11-20:P19391; UTF16 641547] DEF-XFER20
+[11-20:P19392; UTF16 641558] fleet discovery
+[11-20:P19396; UTF16 641646] THM-XFER15            THM-XFER16
+[11-20:P19397; UTF16 641679] target reopening       universal breaker
+[11-20:P19399; UTF16 641721] distributional robustness
+[11-20:P19402; UTF16 641767] DEF-XFER21–22
+[11-20:P19403; UTF16 641781] ambiguity set
+[11-20:P19404; UTF16 641795] robust risk
+[11-20:P19407; UTF16 641827] THM-XFER17
+[11-20:P19409; UTF16 641839] approximate transfer
+[11-20:P19412; UTF16 641880] DEF-XFER23–24
+[11-20:P19413; UTF16 641894] error ledger
+[11-20:P19414; UTF16 641907] PCPE map
+[11-20:P19418; UTF16 641988] THM-XFER18            THM-XFER19
+[11-20:P19419; UTF16 642021] error composition      PCPE transfer
+[11-20:P19421; UTF16 642059] federated evidence
+[11-20:P19424; UTF16 642098] DEF-XFER25
+[11-20:P19428; UTF16 642181] THM-XFER20            PRO-XFER2
+[11-20:P19429; UTF16 642213] aggregation            federation ≠ privacy
+[11-20:P19431; UTF16 642258] claim modalities
+[11-20:P19434; UTF16 642295] DEF-XFER5
+[11-20:P19437; UTF16 642325] THM-XFER21
+[11-20:P19438; UTF16 642336] non-escalation
+[11-20:P19440; UTF16 642352] transfer dependency
+[11-20:P19443; UTF16 642392] DEF-XFER26–27
+[11-20:P19444; UTF16 642406] dependency graph
+[11-20:P19445; UTF16 642423] target transfer gate
+[11-20:P19448; UTF16 642464] THM-XFER27
+[11-20:P19449; UTF16 642475] incremental = cold
+[11-20:P19451; UTF16 642495] all transfer evidence
+[11-20:P19454; UTF16 642537] DEF-XFER28
+[11-20:P19455; UTF16 642548] PCTP
+[11-20:P19458; UTF16 642573] ALG-XFER1
+[11-20:P19462; UTF16 642623] THM-XFER23
+[11-20:P19464; UTF16 642648] Proof-Carrying Transfer
+[11-20:P19466; UTF16 642682]     ┌───┴─────────────┐
+[11-20:P19467; UTF16 642706]     ▼                 ▼
+[11-20:P19468; UTF16 642730] THM-XFER24       THM-XFER25
+[11-20:P19469; UTF16 642758] open-world       proposer independence
+[11-20:P19472; UTF16 642817] THM-XFER26

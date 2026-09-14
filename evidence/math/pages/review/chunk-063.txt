@@ -1,0 +1,326 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P25959; UTF16 915577]     {r |
+[1-10:P25960; UTF16 915586]       ∃ b : ClaimBreaker C A Gamma,
+[1-10:P25961; UTF16 915622]         cost b.perturb = r}
+[1-10:P25965; UTF16 915653] 72.6 Breaker upper bound
+[1-10:P25966; UTF16 915678] theorem breaker_upper_bound
+[1-10:P25967; UTF16 915706]     (b : ClaimBreaker C A Gamma) :
+[1-10:P25968; UTF16 915741]     robustnessRadius C A Gamma cost
+[1-10:P25970; UTF16 915785]     cost b.perturb := by
+[1-10:P25971; UTF16 915810]   apply sInf_le
+[1-10:P25972; UTF16 915826]   exact ⟨b, rfl⟩
+[1-10:P25976; UTF16 915846] 72.7 Coverage lower bound
+[1-10:P25977; UTF16 915872] theorem coverage_lower_bound
+[1-10:P25978; UTF16 915901]     (r : ENNReal)
+[1-10:P25980; UTF16 915928]       ∀ α,
+[1-10:P25981; UTF16 915939]         cost α < r →
+[1-10:P25982; UTF16 915960]         ∀ ω ∈ Gamma,
+[1-10:P25983; UTF16 915981]           A.admissible ω α →
+[1-10:P25984; UTF16 916010]           ∀ ω',
+[1-10:P25985; UTF16 916026]             A.step α ω ω' →
+[1-10:P25986; UTF16 916054]             C.Holds ω') :
+[1-10:P25987; UTF16 916080]     r ≤ robustnessRadius C A Gamma cost := by
+[1-10:P25992; UTF16 916135] 72.8 Joint hazard relation
+[1-10:P25993; UTF16 916162] structure JointHazard where
+[1-10:P25994; UTF16 916190]   State : Type
+[1-10:P25996; UTF16 916220]     State → Prop
+[1-10:P25997; UTF16 916237] Independent marginal products are not substituted without a factorization theorem.
+[1-10:P26001; UTF16 916323] 72.9 Claim dependency graph
+[1-10:P26002; UTF16 916351] structure ClaimDependencyGraph where
+[1-10:P26003; UTF16 916388]   Node : Type
+[1-10:P26004; UTF16 916402]   depends :
+[1-10:P26005; UTF16 916414]     Node → Node → Prop
+[1-10:P26006; UTF16 916437] Invalidation is reachability from changed roots.
+[1-10:P26010; UTF16 916489] 72.10 Formalization difficulty
+[1-10:P26011; UTF16 916520] ￼
+ATTACHED TABLE 1737191; native row/column order; 20 rows
+ROW 0: ["Object or theorem", "Difficulty"]
+ROW 1: ["Exact claim semantics", "Moderate"]
+ROW 2: ["Claim-breaker witness", "Straightforward"]
+ROW 3: ["Universal coverage certificate", "Moderate"]
+ROW 4: ["Robustness radius", "Moderate"]
+ROW 5: ["Continuous minimum existence", "Moderate"]
+ROW 6: ["Pareto breaker frontier", "Moderate"]
+ROW 7: ["Correlated adversaries", "Difficult"]
+ROW 8: ["Action-sequence breakers", "Moderate"]
+ROW 9: ["Claim attack cone", "Moderate"]
+ROW 10: ["Macro-level breaker preservation", "Difficult"]
+ROW 11: ["Cost-sufficient macro", "Difficult"]
+ROW 12: ["PCPE adversarial coverage", "Moderate"]
+ROW 13: ["Evidence adversary", "Difficult"]
+ROW 14: ["Construction-history adversary", "Difficult"]
+ROW 15: ["Adversarial CEGAR", "Difficult"]
+ROW 16: ["Symbolic minimum breaker", "Research-level"]
+ROW 17: ["Whole-building robustness coverage", "Research-level"]
+ROW 18: ["Full CFD/fire adversarial certification", "Research-level"]
+ROW 19: ["Open-world hazard completeness", "Not formally solvable without additional assumptions"]
+[1-10:P26015; UTF16 916525] 73. Permanent Definition and Theorem Registry
+[1-10:P26016; UTF16 916571] 73.1 Definitions
+[1-10:P26017; UTF16 916588] ￼
+ATTACHED TABLE 1737207; native row/column order; 23 rows
+ROW 0: ["ID", "Exact object", "Dependencies", "Status", "Formalization difficulty"]
+ROW 1: ["DEF-ADV1", "Engineering claim", "Prompts 1–9", "Defined", "Moderate"]
+ROW 2: ["DEF-ADV2", "Exact claim truth", "DEF-ADV1", "Defined", "Straightforward"]
+ROW 3: ["DEF-ADV3", "Claim dependency graph", "Prompt-1 evidence, Prompt-9 dependencies", "Defined", "Moderate"]
+ROW 4: ["DEF-ADV4", "Adversarial claim theory", "Prompt-8 actions", "Defined", "Difficult"]
+ROW 5: ["DEF-ADV5", "Adversarial perturbation/program", "DEF-ADV4", "Defined", "Moderate"]
+ROW 6: ["DEF-ADV6", "Claim Breaker", "DEF-ADV1–5", "Defined", "Moderate"]
+ROW 7: ["DEF-ADV7", "Robustness coverage certificate", "DEF-ADV6", "Defined", "Difficult"]
+ROW 8: ["DEF-ADV8", "Adversarial cost profile", "DEF-ADV4", "Defined", "Straightforward"]
+ROW 9: ["DEF-ADV9", "Exact scalar robustness radius", "DEF-ADV6, ADV8", "Defined", "Moderate"]
+ROW 10: ["DEF-ADV10", "Certified robustness interval", "DEF-ADV9", "Defined", "Straightforward"]
+ROW 11: ["DEF-ADV11", "Robustness requirement closure", "DEF-ADV7, ADV9", "Defined", "Moderate"]
+ROW 12: ["DEF-ADV12", "Pareto-minimal breaker", "DEF-ADV8", "Defined", "Straightforward"]
+ROW 13: ["DEF-ADV13", "Worst-case damage function", "DEF-ADV8", "Defined", "Moderate"]
+ROW 14: ["DEF-ADV14", "Claim attack cone", "DEF-ADV3", "Defined", "Straightforward"]
+ROW 15: ["DEF-ADV15", "Adversarial cost-sufficient macro", "Prompt-8 executable macros", "Defined", "Difficult"]
+ROW 16: ["DEF-ADV16", "Evidence adversary", "Prompt-2 evidence", "Defined", "Moderate"]
+ROW 17: ["DEF-ADV17", "Claim Breaker Certificate Artifact", "DEF-ADV6", "Defined", "Moderate"]
+ROW 18: ["DEF-ADV18", "Adversarial Coverage Artifact", "DEF-ADV7", "Defined", "Difficult"]
+ROW 19: ["DEF-ADV19", "Claim-specific executable equivalence", "Prompt-8 canonical quotient", "Defined", "Moderate"]
+ROW 20: ["DEF-ADV20", "Adversarial Claim Ledger", "All Prompt-10 objects", "Defined", "Difficult"]
+ROW 21: ["DEF-ADV21", "Adversarial coverage partition", "DEF-ADV7", "Defined", "Straightforward"]
+ROW 22: ["DEF-ADV22", "Robustness release obligation", "Prompt-9 blocker semantics", "Defined", "Moderate"]
+[1-10:P26021; UTF16 916593] 73.2 Lemmas
+[1-10:P26022; UTF16 916605] ￼
+ATTACHED TABLE 1737223; native row/column order; 4 rows
+ROW 0: ["ID", "Exact statement", "Dependencies", "Proof status"]
+ROW 1: ["LEM-ADV1", "Adversarial program composition is associative", "DEF-ADV5", "Proved"]
+ROW 2: ["LEM-ADV2", "A breaker-cost set with one certified member yields a finite upper bound", "DEF-ADV9", "Proved within THM-ADV8"]
+ROW 3: ["LEM-ADV3", "Safe coverage below (r) excludes all breaker costs below (r)", "DEF-ADV7", "Proved within THM-ADV9"]
+[1-10:P26026; UTF16 916610] 73.3 Theorems
+[1-10:P26027; UTF16 916624] ￼
+ATTACHED TABLE 1737239; native row/column order; 36 rows
+ROW 0: ["ID", "Exact statement", "Dependencies", "Proof status"]
+ROW 1: ["THM-ADV1", "Dependency-complete claim invalidation", "DEF-ADV3", "Proved"]
+ROW 2: ["THM-ADV2", "Checked breaker certificates soundly refute universal adversarial survival", "DEF-ADV6", "Proved"]
+ROW 3: ["THM-ADV3", "One failed candidate does not refute an existential claim", "Claim logic", "Proved"]
+ROW 4: ["THM-ADV4", "Checked universal coverage proves no breaker in the covered domain", "DEF-ADV7", "Proved"]
+ROW 5: ["THM-ADV5", "Search failure on a proper subset is not robustness proof", "Finite construction", "Proved"]
+ROW 6: ["THM-ADV6", "Finite nonempty breaker sets attain minimum cost", "DEF-ADV9", "Proved"]
+ROW 7: ["THM-ADV7", "Compact closed breaker sets with lower-semicontinuous cost attain a minimum", "Topological assumptions", "Proved"]
+ROW 8: ["THM-ADV8", "A certified breaker gives an upper bound on robustness radius", "DEF-ADV9", "Proved"]
+ROW 9: ["THM-ADV9", "Safe coverage below a radius gives a lower bound", "DEF-ADV7, ADV9", "Proved"]
+ROW 10: ["THM-ADV10", "Adversarial budget sets are monotone", "DEF-ADV8", "Proved"]
+ROW 11: ["THM-ADV11", "Worst-case damage is monotone in budget", "DEF-ADV13", "Proved"]
+ROW 12: ["THM-ADV12", "Robustness radius is the first positive-damage budget", "DEF-ADV9, ADV13", "Proved"]
+ROW 13: ["THM-ADV13", "Marginal hazard domains do not determine joint robustness", "Correlated-hazard construction", "Proved"]
+ROW 14: ["THM-ADV14", "Perturbations outside a complete claim attack cone cannot change claim truth", "DEF-ADV14", "Proved"]
+ROW 15: ["THM-ADV15", "Exact executable macros preserve breaker reachability; cost-sufficient macros preserve minimum cost", "DEF-ADV15", "Proved"]
+ROW 16: ["THM-ADV16", "Universal properties proved over a valid PCPE outer envelope hold for the exact subsystem", "Prompt-6 PCPE soundness", "Proved"]
+ROW 17: ["THM-ADV17", "Invalidated evidence propagates through complete proof dependencies", "DEF-ADV16", "Proved"]
+ROW 18: ["THM-ADV18", "Adversarial CEGAR returns only real breakers or valid bounded certificates", "ALG-ADV2", "Proved"]
+ROW 19: ["THM-ADV19", "A closed adversarial theory implies nothing about an unmodeled perturbation", "Scope construction", "Proved"]
+ROW 20: ["THM-ADV20", "Breaker correctness is independent of proposal source", "THM-ADV2", "Proved"]
+ROW 21: ["THM-ADV21", "Adversarial work outside the live decision cone has zero current release value under fixed availability", "Prompt-9 THM-RC4", "Proved"]
+ROW 22: ["THM-ADV22", "Symmetry-orbit reduction preserves breaker existence and minimum cost", "Group invariance", "Proved"]
+ROW 23: ["THM-ADV23", "Commuting final-state failure actions need only one permutation explored", "Exact commutation assumptions", "Proved"]
+ROW 24: ["THM-ADV24", "Exact local breakers lift globally under certified separator extendability", "Prompt-3 separator semantics", "Proved"]
+ROW 25: ["THM-ADV25", "Breaker existence is NP-hard", "SAT reduction", "Proved"]
+ROW 26: ["THM-ADV26", "Exact bounded robustness verification is coNP-hard", "UNSAT reduction", "Proved"]
+ROW 27: ["THM-ADV27", "Minimum-cost breaker synthesis is NP-hard", "Unit-cost SAT reduction", "Proved"]
+ROW 28: ["THM-ADV28", "Dijkstra returns the exact shortest breaker in finite nonnegative weighted graphs", "ALG-ADV1", "Proved"]
+ROW 29: ["THM-ADV29", "Regions whose lower cost exceeds the incumbent need not be searched for cheaper breakers", "Branch-and-bound invariant", "Proved"]
+ROW 30: ["THM-ADV30", "Finite exact fair adversarial CEGAR terminates", "Finite strict refinement", "Proved"]
+ROW 31: ["THM-ADV31", "Claim-specific executable quotient is the unique smallest exact adversarial verifier state space", "Prompt-8 THM-CS3", "Proved"]
+ROW 32: ["THM-ADV32", "Independent conjunctive robustness composes by minimum under product assumptions", "Strong independence assumptions", "Proved"]
+ROW 33: ["THM-ADV33", "Minimum evidence-breaker selection is NP-hard", "Hitting Set reduction", "Proved"]
+ROW 34: ["THM-ADV34", "Finite fair exact minimum-breaker search converges to the true radius", "ALG-ADV3", "Proved"]
+ROW 35: ["THM-ADV35", "Certified numerical intervals classify breaker, safe, or unresolved states soundly", "Prompt-5 enclosure semantics", "Proved"]
+[1-10:P26031; UTF16 916629] 73.4 Algorithms
+[1-10:P26032; UTF16 916645] ￼
+ATTACHED TABLE 1737255; native row/column order; 14 rows
+ROW 0: ["ID", "Algorithm", "Correctness theorem"]
+ROW 1: ["ALG-ADV1", "ExactShortestClaimBreaker", "THM-ADV28"]
+ROW 2: ["ALG-ADV2", "AdversarialClaimCEGAR", "THM-ADV18, ADV30"]
+ROW 3: ["ALG-ADV3", "MinimumClaimBreaker", "THM-ADV29, ADV34"]
+ROW 4: ["ALG-ADV4", "CheckClaimBreaker", "THM-ADV2"]
+ROW 5: ["ALG-ADV5", "CheckRobustnessCoverage", "THM-ADV4, ADV8, ADV9"]
+ROW 6: ["ALG-ADV6", "SynthesizeCorrelatedHazards", "THM-ADV13"]
+ROW 7: ["ALG-ADV7", "BreakEvidenceClaim", "THM-ADV17, ADV33"]
+ROW 8: ["ALG-ADV8", "BreakPortEnvelope", "THM-ADV16 plus full-order validation"]
+ROW 9: ["ALG-ADV9", "BreakExecutableMacro", "Prompt-8 closure semantics"]
+ROW 10: ["ALG-ADV10", "BreakQuotientMerge", "Prompt-2 distinguishing contexts"]
+ROW 11: ["ALG-ADV11", "BreakRewriteTransport", "Prompt-8 rewrite bridge and cold fallback"]
+ROW 12: ["ALG-ADV12", "BreakReleaseClaim", "Prompt-9 closure semantics"]
+ROW 13: ["ALG-ADV13", "AdversarialRCVOCInterface", "Prompt-9 scheduler authority"]
+[1-10:P26036; UTF16 916650] 73.5 Conjectures
+[1-10:P26037; UTF16 916667] ￼
+ATTACHED TABLE 1737271; native row/column order; 11 rows
+ROW 0: ["ID", "Exact conjecture", "Falsification condition"]
+ROW 1: ["CONJ-ADV1", "Real whole-building adversarial domains admit compact symbolic representations", "Symbolic state size grows near explicit domain size"]
+ROW 2: ["CONJ-ADV2", "Claim-specific causal quotients remain moderate for important building claims", "(W_C^{\\mathrm{adv}}) grows linearly with project detail"]
+ROW 3: ["CONJ-ADV3", "Correlated hazard models can be calibrated well enough for release-grade use", "Observed common-cause failures routinely fall outside modeled relations"]
+ROW 4: ["CONJ-ADV4", "Continuous robustness radii can be tightly certified for useful structural and MEP models", "Lower bounds remain too weak to approach breaker upper bounds"]
+ROW 5: ["CONJ-ADV5", "Adversarial CEGAR converges with manageable refinement counts", "Spurious breakers dominate and refinement explodes"]
+ROW 6: ["CONJ-ADV6", "PCPE red teaming catches rare global modes without frequent full-order fallback", "Most hard cases require global full-order solves"]
+ROW 7: ["CONJ-ADV7", "Symmetry and partial-order reduction materially reduce repetitive-building failure search", "Named exceptions destroy most symmetry"]
+ROW 8: ["CONJ-ADV8", "Minimum breaker cost correlates with useful engineering resilience", "Small-cost breakers do not predict meaningful real-world fragility"]
+ROW 9: ["CONJ-ADV9", "Prompt-9 RCVOC prioritizes adversarial computations effectively", "Scheduled red-team work misses release-critical failures or wastes compute"]
+ROW 10: ["CONJ-ADV10", "A full hotel adversarial claim ledger fits the one-workstation target", "Coverage artifacts and symbolic search exceed memory or runtime limits"]
+[1-10:P26041; UTF16 916672] 74. Dependency DAG
+[1-10:P26044; UTF16 916734] evidence and dependency graphs
+[1-10:P26050; UTF16 916838] distinguishing contexts
+[1-10:P26056; UTF16 916926] local/global composition
+[1-10:P26060; UTF16 916980] symbolic abstraction
+[1-10:P26062; UTF16 917007] quotient homogeneity
+[1-10:P26066; UTF16 917057] certified enclosures
+[1-10:P26067; UTF16 917078] mandatory boundaries
+[1-10:P26074; UTF16 917171] reduced physics
+[1-10:P26075; UTF16 917187] global-mode detection
+[1-10:P26079; UTF16 917249] PROMPT 7 / 8 BRIDGE
+[1-10:P26085; UTF16 917340] adversarially executable actions
+[1-10:P26086; UTF16 917373] causal macros
+[1-10:P26090; UTF16 917423] PROMPT 9
+[1-10:P26092; UTF16 917456] closure deficit
+[1-10:P26093; UTF16 917472] live decision cone
+[1-10:P26095; UTF16 917497] release gate
+[1-10:P26098; UTF16 917530] DEF-ADV1–ADV3
+[1-10:P26099; UTF16 917544] claims, truth, dependencies
+[1-10:P26103; UTF16 917660] THM-ADV1                       DEF-ADV4–ADV5
+[1-10:P26104; UTF16 917705] claim invalidation             adversarial theory
+[1-10:P26105; UTF16 917755]                                      │
+[1-10:P26106; UTF16 917794]                                      ▼
+[1-10:P26107; UTF16 917833]                               DEF-ADV6
+[1-10:P26108; UTF16 917872]                               Claim Breaker
+[1-10:P26110; UTF16 917955]                          ┌───────────┼────────────┐
+[1-10:P26111; UTF16 918007]                          ▼           ▼            ▼
+[1-10:P26112; UTF16 918059]                      THM-ADV2    DEF-ADV7      DEF-ADV8
+[1-10:P26113; UTF16 918115]                      breaker      coverage      cost
+[1-10:P26114; UTF16 918168]                      soundness     certificate   profile
+[1-10:P26115; UTF16 918225]                          │           │            │
+[1-10:P26117; UTF16 918329]                      THM-ADV3    THM-ADV4      DEF-ADV9
+[1-10:P26118; UTF16 918385]                      existential  robustness     radius
+[1-10:P26119; UTF16 918441]                      distinction  coverage          │
+[1-10:P26120; UTF16 918495]                                                     ├──────────────┐
+[1-10:P26121; UTF16 918564]                                                     ▼              ▼
+[1-10:P26122; UTF16 918633]                                               THM-ADV6–7      DEF-ADV10–11
+[1-10:P26123; UTF16 918708]                                               min existence    radius bounds
+[1-10:P26124; UTF16 918785]                                                                     │
+[1-10:P26125; UTF16 918855]                                                         ┌───────────┼───────────┐
+[1-10:P26126; UTF16 918937]                                                         ▼           ▼           ▼
+[1-10:P26127; UTF16 919019]                                                     THM-ADV8   THM-ADV9   THM-ADV10
+[1-10:P26128; UTF16 919103]                                                     upper       lower       budget
+[1-10:P26129; UTF16 919186]                                                     bound       bound       monotonicity
+[1-10:P26131; UTF16 919276] DEF-ADV13
+[1-10:P26132; UTF16 919286] damage curve
+[1-10:P26134; UTF16 919305]     ├──────────────┐
+[1-10:P26135; UTF16 919326]     ▼              ▼
+[1-10:P26136; UTF16 919347] THM-ADV11      THM-ADV12
+[1-10:P26137; UTF16 919372] monotonicity   radius duality
+[1-10:P26139; UTF16 919403] Joint hazards
+[1-10:P26142; UTF16 919429] THM-ADV13
+[1-10:P26143; UTF16 919439] correlation necessity
+[1-10:P26146; UTF16 919473] ALG-ADV6
+[1-10:P26148; UTF16 919483] Claim dependencies
+[1-10:P26151; UTF16 919514] DEF-ADV14
+[1-10:P26152; UTF16 919524] attack cone
+[1-10:P26155; UTF16 919548] THM-ADV14
+[1-10:P26156; UTF16 919558] attack pruning
+[1-10:P26158; UTF16 919574] Prompt-8 macro quotient
+[1-10:P26161; UTF16 919610] DEF-ADV15
+[1-10:P26162; UTF16 919620] cost-sufficient macro
+[1-10:P26165; UTF16 919654] THM-ADV15
+[1-10:P26166; UTF16 919664] macro breaker preservation
+[1-10:P26169; UTF16 919703] DEF-ADV19
+[1-10:P26170; UTF16 919713] claim quotient
+[1-10:P26173; UTF16 919740] THM-ADV31
+[1-10:P26174; UTF16 919750] claim-specific minimality
+[1-10:P26176; UTF16 919777] Prompt-6 PCPE
+[1-10:P26179; UTF16 919803] THM-ADV16
+[1-10:P26180; UTF16 919813] PCPE coverage
+[1-10:P26183; UTF16 919839] ALG-ADV8
+[1-10:P26185; UTF16 919849] Evidence graph
+[1-10:P26188; UTF16 919876] DEF-ADV16
+[1-10:P26189; UTF16 919886] evidence adversary
+[1-10:P26193; UTF16 919953] THM-ADV17      THM-ADV33
+[1-10:P26194; UTF16 919978] propagation     hardness
+[1-10:P26197; UTF16 920015] ALG-ADV7
+[1-10:P26199; UTF16 920025] Prompt-4 CEGAR
+[1-10:P26202; UTF16 920052] ALG-ADV2
+[1-10:P26203; UTF16 920061] adversarial CEGAR
+[1-10:P26207; UTF16 920127] THM-ADV18      THM-ADV30
+[1-10:P26208; UTF16 920152] soundness       termination
+[1-10:P26210; UTF16 920181] Finite weighted graph
+[1-10:P26213; UTF16 920215] ALG-ADV1
+[1-10:P26214; UTF16 920224] shortest breaker
+[1-10:P26217; UTF16 920253] THM-ADV28
+[1-10:P26219; UTF16 920264] Minimum breaker search
+[1-10:P26222; UTF16 920299] ALG-ADV3
+[1-10:P26226; UTF16 920356] THM-ADV29      THM-ADV34
+[1-10:P26227; UTF16 920381] pruning         convergence
+[1-10:P26229; UTF16 920410] Symmetry and commutation
+[1-10:P26233; UTF16 920483] THM-ADV22      THM-ADV23
+[1-10:P26234; UTF16 920508] orbit reduction partial-order reduction
+[1-10:P26236; UTF16 920549] Local separator
+[1-10:P26239; UTF16 920577] THM-ADV24
+[1-10:P26240; UTF16 920587] local breaker lifting
+[1-10:P26242; UTF16 920610] Compact Boolean adversary
+[1-10:P26244; UTF16 920642]     ├──────────────┬───────────────┐
+[1-10:P26245; UTF16 920679]     ▼              ▼               ▼
+[1-10:P26246; UTF16 920716] THM-ADV25      THM-ADV26       THM-ADV27
+[1-10:P26247; UTF16 920757] NP-hard        coNP-hard       min-cost NP-hard
+[1-10:P26249; UTF16 920806] Prompt-9 live cone
+[1-10:P26252; UTF16 920837] THM-ADV21
+[1-10:P26253; UTF16 920847] adversarial scheduling relevance
+[1-10:P26256; UTF16 920892] ALG-ADV13
+[1-10:P26257; UTF16 920902] RCVOC interface
+[1-10:P26261; UTF16 920921] 75. What Has Now Been Proven
+[1-10:P26262; UTF16 920950] Claim semantics
+[1-10:P26263; UTF16 920966] Engineering claims are first-class exact report objects with explicit applicability, acceptance, evidence, and theory scope.
+[1-10:P26264; UTF16 921091] Universal, existential, equivalence, dominance, reuse, PCPE, macro, and release claims require different falsification objects.
+[1-10:P26265; UTF16 921219] One failed candidate cannot refute an existential claim.
+[1-10:P26266; UTF16 921276] Complete claim dependencies support exact invalidation.
+[1-10:P26267; UTF16 921332] Breaker correctness
+[1-10:P26268; UTF16 921352] A checked Claim Breaker soundly refutes universal adversarial survival inside the declared theory.
+[1-10:P26269; UTF16 921451] Proposal source is irrelevant to breaker correctness.
+[1-10:P26270; UTF16 921505] A surrogate, AI, or visual scenario is not authoritative without certification.
+[1-10:P26271; UTF16 921585] Robustness coverage
+[1-10:P26272; UTF16 921605] A checked universal coverage proof establishes that no breaker exists in the covered adversarial domain.
+[1-10:P26273; UTF16 921710] Failure to find a breaker on a proper tested subset is not a robustness proof.
+[1-10:P26274; UTF16 921789] Coverage labels distinguish safe, broken, unresolved, and outside-theory regions.
+[1-10:P26275; UTF16 921871] Search completeness and theory completeness are different.
+[1-10:P26276; UTF16 921930] Robustness radii
+[1-10:P26277; UTF16 921947] Scalar robustness radius is the infimum of certified breaker costs.
+[1-10:P26278; UTF16 922015] Finite nonempty breaker sets attain their minimum.
+[1-10:P26279; UTF16 922066] Compact closed breaker sets with lower-semicontinuous cost attain their minimum.
+[1-10:P26280; UTF16 922147] Open domains, nonclosed breaker sets, or discontinuous costs can produce unattained infima.
+[1-10:P26281; UTF16 922239] A breaker gives a certified radius upper bound.
+[1-10:P26282; UTF16 922287] Safe coverage below a radius gives a certified lower bound.
+[1-10:P26283; UTF16 922347] Closed-budget robustness is defined directly rather than inferred ambiguously from radius equality.
+[1-10:P26284; UTF16 922447] Pareto robustness
+[1-10:P26285; UTF16 922465] Vector-cost adversaries require Pareto-minimal breakers.
+[1-10:P26286; UTF16 922522] The Pareto breaker frontier can be exponentially large.
+[1-10:P26287; UTF16 922578] Scalar “smallest breaker” is undefined without a legitimate scalar cost.
+[1-10:P26288; UTF16 922651] Worst-case damage
+[1-10:P26289; UTF16 922669] Worst-case damage is monotone in adversarial budget.
+[1-10:P26290; UTF16 922722] Under positive-damage failure semantics, robustness radius is the first budget with positive worst-case damage.
+[1-10:P26291; UTF16 922834] Correlated hazards
+[1-10:P26292; UTF16 922853] Marginal hazard domains do not determine joint robustness.
+[1-10:P26293; UTF16 922912] Common-cause variables must remain explicit.
+[1-10:P26294; UTF16 922957] Failure ordering may be semantically relevant.
+[1-10:P26295; UTF16 923004] A failure multiset cannot replace a temporal failure sequence without a commutation theorem.
+[1-10:P26296; UTF16 923097] Causal attack cones
+[1-10:P26297; UTF16 923117] Perturbations outside a dependency-complete claim cone cannot change claim truth.
+[1-10:P26298; UTF16 923199] This enables exact pruning of adversarial search.
+[1-10:P26299; UTF16 923249] Macro-level attack reduction
+[1-10:P26300; UTF16 923278] Exact executable macrostates preserve breaker reachability.
+[1-10:P26301; UTF16 923338] Exact minimum breaker costs are preserved only when adversarial costs are also macro sufficient.
+[1-10:P26302; UTF16 923435] The claim-specific executable quotient is the unique smallest exact adversarial verification state space.
+[1-10:P26303; UTF16 923541] PCPE attacks
+[1-10:P26304; UTF16 923554] Universal properties established over a valid PCPE outer envelope hold for the exact subsystem.
+[1-10:P26305; UTF16 923650] Apparent breakers inside an outer envelope may be spurious.
+[1-10:P26306; UTF16 923710] Full-order validation is required for authoritative PCPE breaker claims.
+[1-10:P26307; UTF16 923783] Reduced-model certificates can be directly broken by one checked error-bound violation.
+[1-10:P26308; UTF16 923871] Evidence attacks
+[1-10:P26309; UTF16 923888] Evidence invalidation propagates through complete proof dependencies.
+[1-10:P26310; UTF16 923958] Evidence failure and physical failure remain distinct.
+[1-10:P26311; UTF16 924013] Minimum evidence-breaker selection is NP-hard for general AND/OR proof structures.
+[1-10:P26312; UTF16 924096] Construction and lifecycle attacks
+[1-10:P26313; UTF16 924131] Construction adversaries may require correlated geometry and event histories.
+[1-10:P26314; UTF16 924209] Lifecycle claims require explicitly time-indexed adversarial theories.
+[1-10:P26315; UTF16 924280] A commissioning certificate is not automatically a lifecycle certificate.
+[1-10:P26316; UTF16 924354] Adversarial CEGAR
+[1-10:P26317; UTF16 924372] Every breaker returned by the certified CEGAR loop is real.
+[1-10:P26318; UTF16 924432] Every robustness certificate returned by the loop covers the declared domain.

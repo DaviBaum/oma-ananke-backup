@@ -1,0 +1,550 @@
+[2010] Cell type conflict on same semantic ID → SEMANTIC_CONFLICT.
+[2011] Route graph node without cell embedding → EMBEDDING_CERTIFICATE_MISSING.
+[2012] Partition duplicates a shared boundary with unequal versions → SEPARATOR_MISMATCH.
+[2013] Port and netlist tests
+[2014] Compatible hydronic ports → PORT_COMPATIBLE.
+[2015] Voltage-class mismatch → PORT_INCOMPATIBLE.
+[2016] Capacity below demand → PORT_INCOMPATIBLE.
+[2017] Control port connected to power conductor without adapter → TYPE_MISMATCH.
+[2018] Orphan port → NETLIST_INVALID.
+[2019] Hyperedge with one source and many sinks → valid.
+[2020] Two-source net with prohibited backfeed → NETLIST_INVALID.
+[2021] Incidence conservation passes.
+[2022] Incidence imbalance without explicit source → NETLIST_INVALID.
+[2023] Same topology under different placement → topology equal, route status may differ.
+[2024] Route-envelope and configuration-space tests
+[2025] Small conduit fits corridor → CONFIGURATION_SPACE_FEASIBLE.
+[2026] Large duct on same centerline fails → CLEARANCE_FAILURE.
+[2027] Fixed translation Minkowski equivalence replay → pass.
+[2028] Rotating rectangular duct evaluated by translation-only model → CSPACE_UNSUPPORTED.
+[2029] Bend radius satisfied → FABRICABLE.
+[2030] Bend radius violated → FABRICATION_FAILURE.
+[2031] Minimum straight length violated → FABRICATION_FAILURE.
+[2032] Required slope sign reversed → FABRICATION_FAILURE.
+[2033] Support spacing exceeded → SUPPORT_FAILURE.
+[2034] Penetration through nonpenetrable wall → PENETRATION_FAILURE.
+[2035] Maintenance volume blocked → MAINTENANCE_ACCESS_FAILURE.
+[2036] Installation sequence lacks insertion volume → INSTALLATION_FAILURE.
+[2037] Swept-volume and homotopy tests
+[2038] Entire configuration path free → swept volume clear.
+[2039] One intermediate orientation collides → COLLISION.
+[2040] Centerline clear but envelope collides → CLEARANCE_FAILURE.
+[2041] Above-obstacle and below-obstacle paths form distinct classes.
+[2042] Homotopy signature changes after obstacle insertion.
+[2043] Graph word maps to no continuous path → HOMOTOPY_CERTIFICATE_INVALID.
+[2044] Continuous path exists but coarse graph misses it → DISCRETIZATION_INCOMPLETE.
+[2045] Refinement preserves exact witness → WITNESS_REUSED.
+[2046] Joint feasibility tests
+[2047] Two routes fit capacity-one corridor individually → individual PASS.
+[2048] Both together exceed capacity → JOINT_CAPACITY_FAILURE.
+[2049] Every pair of three \(4\)-unit routes fits \(10\)-unit rack.
+[2050] Triple fails \(12>10\).
+[2051] Pairwise geometric separation but support overload → JOINT_CAPACITY_FAILURE.
+[2052] Shared penetration count exceeded → JOINT_CAPACITY_FAILURE.
+[2053] Shared maintenance aisle occupied by one route → competing equipment access fails.
+[2054] Local-to-global tests
+[2055] Join-tree separators agree → global state constructed.
+[2056] One separator version mismatch → SEPARATOR_MISMATCH.
+[2057] Running-intersection failure → theorem not applicable.
+[2058] Cyclic binary constraint example → GLOBAL_INCONSISTENCY.
+[2059] Floor partition omits shaft net state → SEPARATOR_INCOMPLETE.
+[2060] Contextual interface and viewer tests
+[2061] Exact quotient preserves all current experiments → INTERFACE_SUFFICIENT.
+[2062] Two states alias under route length but differ in penetration count → INTERFACE_ALIASING.
+[2063] New assembly objective splits old class → QUOTIENT_REFINEMENT_REQUIRED.
+[2064] Bounded cost interval consumed as exact threshold → ILLEGAL_MODAL_STRENGTHENING.
+[2065] Identical viewer scene with different port directions → viewer noninjectivity witness.
+[2066] Viewer used as engineering truth → VIEW_ONLY.
+[2067] Mesh-nearest correspondence used as semantic identity → CORRESPONDENCE_INVALID.
+[2068] Rewrite, incremental, workstation, and AI tests
+[2069] Obstacle moved; route certificate reused → STALE_CERTIFICATE.
+[2070] Unaffected structural proof reused with complete dependency proof → valid.
+[2071] Missing dependency edge causes cold/incremental disagreement → DEPENDENCY_GRAPH_INCOMPLETE.
+[2072] Exact incremental and cold results agree → pass.
+[2073] Experiment family changes without quotient check → STALE_INTERFACE.
+[2074] AI proposes route crossing wall → checker rejects.
+[2075] AI marks UNKNOWN obstacle free → UNKNOWN_PROMOTION.
+[2076] AI scalarizes protected architecture → SILENT_SCALARIZATION.
+[2077] Viewer geometry is sole project record → VIEWER_NONAUTHORITY.
+[2078] Package requires all geometry in VRAM → WORKSTATION_REPRESENTATION_INVALID.
+[2079] Content-addressed shard reloads with correct hash → pass.
+[2080] Hash collision assumption absent for semantic identity → HASH_NOT_SEMANTIC_ID.
+[2081] Unmodeled obstacle world pair → open-world theorem passes.
+[2083] 40. Proof-assistant formalization sketches
+[2084] The following are Lean-style mathematical signatures. Library names are indicative where exact compilation has not been tested.
+[2085] structure Version where
+[2086]   lineage : String
+[2087]   branch : String
+[2088]   major minor patch : Nat
+[2089]   theory : String
+[2090] deriving DecidableEq
+[2091] structure SemanticObjectId where
+[2092]   value : String
+[2093]   kind : String
+[2096] structure Dimension where
+[2097]   length mass time temperature current amount luminous : Int
+[2098]   currency carbon data : Int
+[2100] structure TypedQuantity where
+[2101]   value : ℚ
+[2102]   dimension : Dimension
+[2103]   unit : String
+[2104]   frame : Option SemanticObjectId
+[2105]   version : Version
+[2106] structure CoordinateFrame where
+[2107]   id : SemanticObjectId
+[2108]   handedness : Bool
+[2111] structure FrameTransform where
+[2112]   source target : CoordinateFrame
+[2113]   matrix : Matrix (Fin 4) (Fin 4) ℚ
+[2115] def FrameCycleConsistent
+[2116]     (cycle : List FrameTransform) : Prop :=
+[2117]   composeTransforms cycle = 1
+[2118] structure SpatialCell where
+[2120]   dim : Fin 4
+[2121]   geometryRef : String
+[2123] structure SpatialComplex where
+[2124]   cells : Finset SpatialCell
+[2125]   boundary : SpatialCell → FormalChain SpatialCell
+[2126]   boundarySquaredZero :
+[2127]     ∀ c, boundaryChain boundary (boundary c) = 0
+[2128] structure Solid where
+[2129]   contains : Point3 ℚ → Prop
+[2130]   regularClosed : Prop
+[2132] inductive PortDirection
+[2133] | input | output | bidirectional | sense | control
+[2134] structure Port where
+[2136]   component : SemanticObjectId
+[2137]   systemType medium : String
+[2138]   direction : PortDirection
+[2139]   frame : CoordinateFrame
+[2140]   capacity : TypedQuantity
+[2142] def PortCompatible (p q : Port) : Prop :=
+[2143]   p.systemType = q.systemType ∧
+[2144]   p.medium = q.medium ∧
+[2145]   DirectionCompatible p.direction q.direction ∧
+[2146]   p.capacity.dimension = q.capacity.dimension
+[2147] structure Component where
+[2149]   ports : Finset SemanticObjectId
+[2152] structure SystemNet where
+[2157] structure SystemsHypergraph where
+[2158]   components : Finset Component
+[2159]   ports : Finset Port
+[2160]   nets : Finset SystemNet
+[2161]   incidence : SemanticObjectId → SemanticObjectId → Prop
+[2162] structure RouteEnvelope where
+[2163]   solid : Solid
+[2164]   bendRadius : ℚ
+[2165]   clearance : ℚ
+[2167] structure Configuration where
+[2168]   position : Point3 ℚ
+[2169]   orientation : Rotation3 ℚ
+[2170]   sectionState fittingState supportState : String
+[2171] def ConfigurationFree
+[2172]     (B O : Solid)
+[2173]     (q : Configuration) : Prop :=
+[2174]   Disjoint (placeSolid q B) O
+[2175] structure Route where
+[2177]   net : SemanticObjectId
+[2178]   centerline : ContinuousPath
+[2179]   envelope : RouteEnvelope
+[2181] inductive FactorStatus
+[2182] | pass | fail | unknown
+[2183] structure ConstraintFactor where
+[2184]   id : String
+[2185]   scope : Finset SemanticObjectId
+[2186]   check : SIRState → FactorStatus
+[2188] def ContextualEquivalent
+[2189]     (E : Set (RouterState → Report))
+[2190]     (x y : RouterState) : Prop :=
+[2191]   ∀ e ∈ E, e x = e y
+[2192] structure RouterInterface where
+[2193]   project : RouterState → InterfaceState
+[2194]   sufficient :
+[2195]     ∀ x y, project x = project y →
+[2196]       ContextualEquivalent experiments x y
+[2197] structure Rewrite where
+[2198]   oldVersion newVersion : Version
+[2199]   correspondence :
+[2200]     SemanticObjectId → Finset SemanticObjectId
+[2201] structure DependencyGraph where
+[2202]   nodes : Finset String
+[2203]   edge : String → String → Prop
+[2204] structure SIRWitness where
+[2205]   state : SIRState
+[2206]   localProofs : Finset ProofRef
+[2207]   sharedIdentityCompatible : Prop
+[2208]   hardFactorsPass : Prop
+[2209] structure PCSIR where
+[2210]   project : SemanticObjectId
+[2212]   dependencies : DependencyGraph
+[2213]   witness : Option SIRWitness
+[2214]   checkerVersion : Version
+[2215] theorem quantization_error
+[2216]     (δ : ℚ) (hδ : 0 < δ) (x : ℚ) :
+[2217]     |x - nearestLattice δ x| ≤ δ / 2 := by
+[2218]   sorry
+[2219] theorem frame_cycle_path_independent
+[2220]     (hcycles : ∀ c, IsCycle c → composeTransforms c = 1) :
+[2221]     ∀ p q, Path p q → Path p q →
+[2222]       pathTransform ‹Path p q› = pathTransform ‹Path p q› := by
+[2224] theorem translation_cspace_equiv
+[2225]     (x : Point3 ℚ) (B O : Set (Point3 ℚ)) :
+[2226]     ((x +ᵥ B) ∩ O).Nonempty ↔ x ∈ O + (-B) := by
+[2228] theorem typed_net_composition
+[2229]     (h : PortCompatible p q) :
+[2230]     WellTyped (composeFragments A B p q) := by
+[2232] theorem contextual_factorization
+[2233]     (h : ContextualEquivalent E x y) :
+[2234]     ∀ f ∈ E, f x = f y := by
+[2235]   exact h
+[2236] theorem quotient_coarsest
+[2237]     (a : RouterState → A)
+[2238]     (hfac : ∀ f ∈ E, ∃ g, f = g ∘ a) :
+[2239]     a x = a y → ContextualEquivalent E x y := by
+[2241] theorem experiment_expansion_refines
+[2242]     (hE : E₁ ⊆ E₂) :
+[2243]     ContextualEquivalent E₂ x y →
+[2244]     ContextualEquivalent E₁ x y := by
+[2245]   intro h e he
+[2246]   exact h e (hE he)
+[2247] def RouteRealizationFiber
+[2248]     (n : SystemNet)
+[2249]     (Ξ : SIRState)
+[2250]     (m : Mode)
+[2251]     (ω : Scenario) :
+[2252]     Set RouteWitness :=
+[2253]   {w | Realizes n Ξ m ω w}
+[2254] theorem join_tree_gluing
+[2255]     (hri : RunningIntersection bags tree)
+[2256]     (hag : PairwiseSeparatorAgreement localStates tree) :
+[2257]     ∃ global, ∀ i, restrict global (bags i) = localStates i := by
+[2259] theorem incremental_equals_cold
+[2260]     (hdep : DependencyComplete D)
+[2261]     (hcheck : CheckerSound check) :
+[2262]     IncrementalCheck D changed state =
+[2263]     ColdCheck state := by
+[2265] theorem whole_pcsir_membership
+[2266]     (h : CheckPCSIR pkg = .accepted) :
+[2267]     ∃ w, w ∈ SIRReleaseFiber target pkg.state mode := by
+[2270] 41. Mechanization difficulty
+[2271] Object or result
+[2272] Difficulty
+[2273] Semantic IDs and versions
+[2274] Straightforward
+[2275] Finite typed registries
+[2277] Dimension-vector checking
+[2278] Moderate
+[2279] Exact rational unit conversion
+[2281] Affine temperature-unit semantics
+[2283] Frame-graph composition
+[2285] Interval transform propagation
+[2286] Difficult
+[2287] Exact rational polyhedral predicates
+[2289] General B-rep validity
+[2290] Research-level
+[2291] Mesh repair and semantic recovery
+[2293] Inner/outer geometric enclosures
+[2295] Cell-complex boundary checking
+[2297] Port compatibility
+[2299] Decorated hypergraph composition
+[2301] Mode-dependent netlists
+[2303] Configuration-space construction
+[2304] Research-level in full 3D
+[2305] Translational convex Minkowski sums
+[2307] Orientation-dependent C-space
+[2309] Swept-volume checking
+[2311] Anisotropic clearance
+[2313] Fabricability predicates
+[2315] Fundamental groupoid semantics
+[2317] Certified homotopy signatures
+[2319] Route-realization checking
+[2321] Joint route realization
+[2322] NP-hard in useful restrictions
+[2323] Join-tree gluing
+[2325] General cyclic local-to-global consistency
+[2327] Contextual equivalence definition
+[2329] Canonical quotient computation
+[2330] Potentially intractable
+[2331] Viewer factorization checks
+[2332] Moderate for finite state
+[2333] Rewrite transport
+[2335] Exact dependency invalidation
+[2337] Incremental recertification
+[2339] PCSIR package checking
+[2341] Real-world obstacle/rule completeness
+[2342] Open-world impossible without assumptions
+[2345] 42. Complexity profile
+[2346] DEF-SIR97 — Prompt-1 Complexity Profile
+[2347] \[ \boxed{ \mathcal C_{\mathrm{SIR}} = \left( N_I, N_K, N_H, N_P, N_N, N_F, N_D, K_{\mathrm{geom}}, K_{\mathrm{frame}}, K_{\mathrm{config}}, K_{\mathrm{context}}, K_{\mathrm{glue}}, C_{\mathrm{canon}}, C_{\mathrm{geom}}, C_{\mathrm{type}}, C_{\mathrm{clear}}, C_{\mathrm{quotient}}, C_{\mathrm{rewrite}}, C_{\mathrm{check}}, R_{\mathrm{change}}, R_{\mathrm{recert}}, B_{\mathrm{unknown}} \right). } \]
+[2348] Where:
+[2349] \(N_I\): semantic-identity count;
+[2350] \(N_K\): cell and geometric-primitive count;
+[2351] \(N_H\): systems-hypergraph carrier size;
+[2352] \(N_P\): port count;
+[2353] \(N_N\): net count;
+[2354] \(N_F\): factor count;
+[2355] \(N_D\): dependency-edge count;
+[2356] \(K_{\mathrm{geom}}\): exact/bounded geometry complexity;
+[2357] \(K_{\mathrm{frame}}\): transform-graph complexity;
+[2358] \(K_{\mathrm{config}}\): configuration-space dimension and combinatorics;
+[2359] \(K_{\mathrm{context}}\): experiment-family complexity;
+[2360] \(K_{\mathrm{glue}}\): separator width/treewidth-like complexity;
+[2361] \(C_{\mathrm{canon}}\): canonicalization cost;
+[2362] \(C_{\mathrm{geom}}\): geometry construction cost;
+[2363] \(C_{\mathrm{type}}\): type and unit checking cost;
+[2364] \(C_{\mathrm{clear}}\): clearance checking cost;
+[2365] \(C_{\mathrm{quotient}}\): interface quotient cost;
+[2366] \(C_{\mathrm{rewrite}}\): rewrite/correspondence cost;
+[2367] \(C_{\mathrm{check}}\): explicit PCSIR checking cost;
+[2368] \(R_{\mathrm{change}}\): changed roots;
+[2369] \(R_{\mathrm{recert}}\): recertified descendants;
+[2370] \(B_{\mathrm{unknown}}\): unresolved blockers.
+[2371] Representative bounds:
+[2372] \[ C_{\mathrm{identity}} = O(N_I\log N_I), \]\[ C_{\mathrm{frame-check}} = O(|V_{\mathrm{frame}}|+|E_{\mathrm{frame}}|+C_{\mathrm{cycle}}), \]\[ C_{\mathrm{dependency}} = O(|V_D|+|E_D|), \]\[ C_{\mathrm{explicit-check}} = O\!\left( N_I+N_K+N_H+N_D+\sum_a c_a \right). \]
+[2373] Exact three-dimensional arrangement, Minkowski, homotopy, and joint routing construction may be exponential or worse in output size. Exact representation does not imply easy synthesis.
+[2375] 43. Single-workstation foundations
+[2376] DEF-SIR98 — Hardware Envelope
+[2377] \[ H_\star = \left( C_{\mathrm{CPU}}, M_{\mathrm{RAM}}, M_{\mathrm{VRAM}}, M_{\mathrm{SSD}} \right) \]
+[2378] with the initial target:
+[2379] \[ \begin{aligned} C_{\mathrm{CPU}}&=\text{Ryzen 9 7900X3D},\\ M_{\mathrm{RAM}}&=128\text{ GB},\\ M_{\mathrm{VRAM}}&=24\text{ GB},\\ M_{\mathrm{SSD}}&\approx2\text{ TB}. \end{aligned} \]
+[2380] DEF-SIR99 — Immutable Baseline and Delta Chain
+[2381] \[ X^{(v_k)} = X^{(v_0)} \oplus \Delta_1\oplus\cdots\oplus\Delta_k. \]
+[2382] Each delta is finite, versioned, reversible where declared, and content addressed.
+[2383] DEF-SIR100 — Memory-Mappable Shard
+[2384] A shard is a self-describing immutable object containing one local partition, separator index, object table, relation table, dependency slice, and checksums.
+[2385] DEF-SIR101 — Proof-DAG Sharing
+[2386] Semantically identical proof nodes are stored once and referenced by content identity, subject to hash and canonicalization assumptions.
+[2387] The foundational storage discipline is:
+[2388] authoritative state on local SSD;
+[2389] identity and dependency indexes in RAM;
+[2390] working geometric partitions streamed or memory mapped;
+[2391] only active numeric batches in VRAM;
+[2392] no full copy per candidate;
+[2393] viewer assets derived and discardable;
+[2394] hosted AI clients receive typed projections, not ownership of the only project state.
+[2395] A representation requiring all project geometry simultaneously in GPU memory is not a valid canonical SIR implementation.
+[2397] PART XI — PCSIR AND WHOLE-PROMPT RELEASE
+[2398] 44. PCSIR
+[2399] DEF-SIR102 — Proof-Carrying Spatial Systems Intermediate Representation Package
+[2400] \[ \boxed{\mathsf{PCSIR}} \]
+[2401] contains at minimum:
+[2402] project identity;
+[2403] canonical project lineage;
+[2404] theory version;
+[2405] experiment-family version;
+[2406] checker version;
+[2407] unit registry;
+[2408] dimension registry;
+[2409] coordinate-frame graph;
+[2410] transform certificates;
+[2411] quantization semantics;
+[2412] geometry-source references;
+[2413] exact geometry representation;
+[2414] bounded geometry representations;
+[2415] spatial cell complex;
+[2416] obstacle registry;
+[2417] permitted-region registry;
+[2418] equipment registry;
+[2419] equipment placement state;
+[2420] equipment occupancy volumes;
+[2421] maintenance volumes;
+[2422] installation volumes;
+[2423] future-access volumes;
+[2424] component registry;
+[2425] port registry;
+[2426] port frames;
+[2427] port-compatibility results;
+[2428] systems hypergraph;
+[2429] net registry;
+[2430] topology state;
+[2431] operating modes;
+[2432] scenarios;
+[2433] route-envelope registry;
+[2434] configuration-space definitions;
+[2435] clearance requirements;
+[2436] separation requirements;
+[2437] penetration candidates;
+[2438] rack and assembly candidates;
+[2439] local spatial partitions;
+[2440] separator interfaces;
+[2441] route-realization fiber definitions;
+[2442] explicit route witnesses where present;
+[2443] constraint factors;
+[2444] objective-vector semantics;
+[2445] evidence references;
+[2446] assumption graph;
+[2447] proof obligations;
+[2448] contextual experiment families;
+[2449] router-to-ANANKE quotient;
+[2450] ANANKE-to-router interface;
+[2451] viewer projection;
+[2452] object-correspondence registry;
+[2453] rewrite state;
+[2454] invalidation graph;
+[2455] unresolved objects;
+[2456] UNKNOWN claims;
+[2457] conflict cores;
+[2458] source-availability ledger;
+[2459] provenance ledger;
+[2460] dependency DAG;
+[2461] checker manifest;
+[2462] checker result;
+[2463] storage-shard manifest;
+[2464] canonical serialization hash;
+[2465] modality vector;
+[2466] package scope and release target.
+[2467] DEF-SIR103 — SIR Witness
+[2468] A witness \(W\) contains:
+[2469] \[ W= \left( x_{\mathrm{pullback}}, \eta_{\mathrm{id}}, \eta_{\mathrm{type}}, \eta_{\mathrm{frame}}, \eta_{\mathrm{geometry}}, \eta_{\mathrm{net}}, \eta_{\mathrm{factor}}, \eta_{\mathrm{interface}}, \eta_{\mathrm{dependency}}, \eta_{\mathrm{package}} \right). \]
+[2470] DEF-SIR104 — SIR Release Fiber
+[2471] \[ \boxed{ \gamma_{\mathrm{SIR}}^\mu (y,\Xi_t^{\mathrm{SIR}}) = \left\{ W: \mathsf{SIRValid}_\mu (y,\Xi_t^{\mathrm{SIR}},W) \right\}. } \]
+[2472] PCSIR release exists exactly when
+[2473] \[ \gamma_{\mathrm{SIR}}^\mu (y,\Xi_t^{\mathrm{SIR}}) \neq\varnothing. \]
+[2474] This is release of the foundational representation, not final building release.
+[2476] 45. Whole-Prompt-1 theorem
+[2477] THM-SIR63 — THM-SIR-WHOLE: Whole-Project Proof-Carrying Spatial Systems IR Theorem
+[2479] \(B_\star\) be the target project lineage;
+[2480] \(\Xi_t^{\mathrm{SIR}}\) be the active state;
+[2481] \(y\) be the target foundational release;
+[2482] \(\mu\) be the exact SIR modality;
+[2483] \(\mathsf{PCSIR}\) be the candidate package.
+[2485] project identity is correct;
+[2486] semantic-object identities are unique and applicable;
+[2487] every authoritative relation is well typed;
+[2488] every quantity has correct unit and dimension;
+[2489] every geometric value has a valid frame;
+[2490] every consumed transform is applicable and directionally correct;
+[2491] exact and bounded geometry satisfy their declared semantics;
+[2492] the obstacle model is complete relative to every released route claim;
+[2493] every port record is valid;
+[2494] every port connection satisfies exact compatibility;
+[2495] every netlist and topology record is well typed;
+[2496] every equipment placement satisfies occupancy and access requirements;
+[2497] every route envelope is exact and version correct;
+[2498] every configuration-space construction uses an applicable body and obstacle theory;
+[2499] every clearance checker is sound;
+[2500] every mode and scenario is correctly identified;
+[2501] every factor expresses the claimed proposition;
+[2502] every mandatory assumption has complete transitive closure;
+[2503] every contextual experiment family is active and version correct;
+[2504] every exact router interface is sufficient for that family;
+[2505] the viewer is consumed only as a projection;
+[2506] every rewrite correspondence and version transition is valid;
+[2507] the dependency graph is complete;
+[2508] UNKNOWN is preserved;
+[2509] every imported ANANKE result is applicable;
+[2510] every package object is finitely serialized;
+[2511] trusted local checkers are sound;
+[2512] the independent PCSIR checker accepts.
+[2513] Then there exists a witness
+[2514] \[ W \in \gamma_{\mathrm{SIR}}^\mu (y,\Xi_t^{\mathrm{SIR}}). \]
+[2516] Step 1 — Construct the identity-consistent state.
+Hypotheses 1–2 establish \(\mathfrak I\). Hypotheses 3–14 provide finite component structures and total typed anchor maps. THM-SIR1 constructs the wide pullback; THM-SIR2 establishes shared-identity consistency.
+[2517] Step 2 — Establish numeric and frame semantics.
+Hypotheses 4–6 and THM-SIR10 preserve physical quantity under unit conversion. THM-SIR15 establishes path transforms. Frame-cycle checks use THM-SIR16–18.
+[2518] Step 3 — Establish geometric semantics.
+Hypotheses 7–8 establish exact or bounded solids and obstacle applicability. Where quantization is used, THM-SIR11–14 preserve only the certified strict-margin conclusions.
+[2519] Step 4 — Establish cellular consistency.
+The cell-complex checker establishes \(\partial^2=0\) by THM-SIR19 and validates the incidence structure used by local partitions.
+[2520] Step 5 — Establish port and netlist semantics.
+Hypotheses 9–11 and THM-SIR5–6 establish typed composition. THM-SIR32 establishes declared conservation where its hypotheses apply. Any incompatible mandatory port would invoke THM-SIR33 and contradict package acceptance.
+[2521] Step 6 — Establish placement and route-envelope state.
+Hypotheses 12–13 bind equipment, ports, occupancy, access volumes, and service bodies to exact versions.
+[2522] Step 7 — Establish configuration-space and clearance semantics.
+Hypotheses 14–15 invoke THM-SIR21–22 for applicable translational or general configuration-space witnesses. Fabricability and access remain separate factors by THM-SIR25–26.
+[2523] Step 8 — Establish factors and UNKNOWN discipline.
+Hypotheses 17, 18, and 24 plus PRO-SIR1 ensure every mandatory hard root is PASS and no UNKNOWN is silently accepted.
+[2524] Step 9 — Establish local-to-global consistency.
+Where the package uses a join decomposition, the separator certificates satisfy THM-SIR43. If the interaction structure is not covered by that theorem, hypothesis 28 requires another independently checked global compatibility proof.
+[2525] Step 10 — Establish contextual interfaces.
+Hypotheses 19–20 invoke THM-SIR45–47. THM-SIR48–50 prevent stale or bounded interfaces from being overconsumed.
+[2526] Step 11 — Preserve viewer nonauthority.
+Hypothesis 21 and THM-SIR51–53 prevent scene equality or visual correspondence from becoming semantic or rewrite proof.
+[2527] Step 12 — Establish rewrite and dependency applicability.
+Hypotheses 22–23 invoke THM-SIR54–58. Reused certificates are therefore current or explicitly invalidated.
+[2528] Step 13 — Establish imported-theorem applicability.
+Hypothesis 25 ensures no historical superseded or out-of-scope ANANKE theorem enters the proof.
+[2529] Step 14 — Establish finite package materialization.
+Hypothesis 26 provides a finite canonical package, and THM-SIR9 gives deterministic serialization under the stated canonicalization assumptions.
+[2530] Step 15 — Independent checking.
+Hypotheses 27–28 state that the package checker is sound and accepts. Therefore the supplied object
+[2531] \[ W= (x_{\mathrm{pullback}},\eta_{\mathrm{id}},\eta_{\mathrm{type}}, \eta_{\mathrm{frame}},\eta_{\mathrm{geometry}}, \eta_{\mathrm{net}},\eta_{\mathrm{factor}}, \eta_{\mathrm{interface}},\eta_{\mathrm{dependency}}, \eta_{\mathrm{package}}) \]
+[2532] satisfies \(\mathsf{SIRValid}_\mu\).
+[2533] Hence
+[2535] Therefore
+[2536] \[ \boxed{ \gamma_{\mathrm{SIR}}^\mu (y,\Xi_t^{\mathrm{SIR}}) \neq\varnothing. } \]
+[2539] 46. What THM-SIR-WHOLE does not prove
+[2540] It does not prove:
+[2541] every real building obstacle is represented;
+[2542] every source model is correct;
+[2543] every frame observation is exact;
+[2544] every coordinate transform is empirically correct;
+[2545] every real connection is represented by a port;
+[2546] every port property is known;
+[2547] every building-services rule is formalized;
+[2548] every manufacturer envelope is correct;
+[2549] every route class has been enumerated;
+[2550] every feasible route has been found;
+[2551] every joint route family is computationally tractable;
+[2552] every route satisfies full pressure, voltage, thermal, acoustic, or hydraulic physics;
+[2553] every construction sequence is feasible;
+[2554] every maintenance procedure is executable;
+[2555] every source-derived topology is qualified;
+[2556] every Loom design mechanism is implemented;
+[2557] every Oma route model is exact;
+[2558] the synthetic hotel is realistic;
+[2559] the complete high-fidelity state always fits in memory simultaneously;
+[2560] final Oma release.
+[2562] 47. Open-world theorem and proposal-source independence
+[2563] THM-SIR64 — Open-world Spatial-IR limitation
+[2564] Construct two worlds \(W_0,W_1\) that agree on:
+[2565] every PCSIR object;
+[2567] cell complex;
+[2568] components;
+[2570] nets;
+[2573] experiments;
+[2574] evidence;
+[2576] checker results.
+[2577] In \(W_1\), add one unmodeled release-relevant object \(z^\star\), such as:
+[2578] a hidden obstacle;
+[2579] an omitted clearance rule;
+[2580] a real port incompatibility;
+[2581] an unmodeled maintenance access need;
+[2582] an installation constraint;
+[2583] a stakeholder requirement.
+[2584] Let \(z^\star\) invalidate one route. The formal packages remain identical, so the checker returns the same result in both worlds. The real route validity differs.
+[2585] Therefore no closed PCSIR theory can prove that every unmodeled route-relevant fact is absent.
+[2586] \[ \boxed{ \textbf{PCSIR validity is geometry-, topology-, rule-, experiment-, evidence-, version-, and checker-model scoped.} } \]
+[2588] Proposal-source independence is already proved by THM-SIR59 and remains subordinate to checker soundness.
+[2590] PART XII — PERMANENT REGISTRIES
+[2591] 48. Permanent registries
+[2592] 48.1 Assumption registry
+[2594] Title
+[2595] Status
+[2596] Provenance
+[2597] Principal dependencies
+[2598] Scope
+[2599] ASSUMP-SIR1
+[2600] Finite canonical representation
+[2602] NEW
+[2603] ANANKE F/SEM
+[2604] PCSIR
+[2605] ASSUMP-SIR2
+[2606] Typed total interfaces
+[2609] typed semantics
+[2610] interfaces
+[2611] ASSUMP-SIR3
+[2612] Unit identity
+[2615] Oma units
+[2616] quantities
+[2617] ASSUMP-SIR4
+[2618] Dimension identity
+[2621] typed quantities
+[2623] ASSUMP-SIR5
+[2624] Frame identity
+[2627] geometry
+[2628] coordinates
+[2629] ASSUMP-SIR6
+[2630] Transform orientation
+[2633] frame graph
+[2634] transforms

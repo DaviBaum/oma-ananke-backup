@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { candidateEntityIds } from "./candidateGeometry";
 import {
   Box,
   Maximize,
@@ -786,9 +787,7 @@ export default function Viewport(props: Props) {
       c.bounds.copy(rawBounds).translate(c.origin.clone().negate());
       const entities = new Map(props.entities.map((e) => [e.id, e]));
       const groups = new Map<string, MeshData[]>();
-      const proposedIds = new Set(
-        props.candidate?.routes.map((route) => route.id).filter(Boolean) ?? [],
-      );
+      const proposedIds = candidateEntityIds(props.candidate);
       const objectIds = new Set<string>();
       const pickIndices = new Map<string, number>();
       let triangleCount = 0;
@@ -946,9 +945,9 @@ export default function Viewport(props: Props) {
     const c = ctx.current;
     if (!c) return;
     disposeGroup(c.selection);
-    c.selection.userData.candidate = !!props.candidate?.routes.some(
-      (route) => route.id === props.selected,
-    );
+    c.selection.userData.candidate =
+      !!props.selected &&
+      candidateEntityIds(props.candidate).has(props.selected);
     if (props.selected && !preparing) {
       const data = c.meshes.get(props.selected);
       if (data) {
@@ -1348,7 +1347,7 @@ export default function Viewport(props: Props) {
           </span>
         </div>
       )}
-      {props.candidate && props.candidate.routes.length > 0 && (
+      {props.candidate && candidateEntityIds(props.candidate).size > 0 && (
         <div className="compare-control">
           <button
             className={compare ? "active" : ""}
@@ -1362,6 +1361,10 @@ export default function Viewport(props: Props) {
               const c = ctx.current;
               if (!c) return;
               const box = new THREE.Box3();
+              for (const id of candidateEntityIds(props.candidate)) {
+                const data = c.meshes.get(id);
+                if (data) box.union(entityBounds(data, c.origin));
+              }
               for (const route of props.candidate?.routes ?? []) {
                 const mesh = route.id ? c.meshes.get(route.id) : undefined;
                 if (mesh) box.union(entityBounds(mesh, c.origin));
@@ -1383,24 +1386,26 @@ export default function Viewport(props: Props) {
           <span>{props.candidate.status}</span>
         </div>
       )}
-      {compare && props.candidate && props.candidate.routes.length > 0 && (
-        <>
-          <div className="compare-line" style={{ left: `${split}%` }}>
-            <span>↔</span>
-          </div>
-          <div className="compare-label before">Baseline context</div>
-          <div className="compare-label after">Candidate geometry</div>
-          <input
-            className="compare-range"
-            aria-label="Before and candidate comparison divider"
-            type="range"
-            min="5"
-            max="95"
-            value={split}
-            onChange={(e) => setSplit(+e.target.value)}
-          />
-        </>
-      )}
+      {compare &&
+        props.candidate &&
+        candidateEntityIds(props.candidate).size > 0 && (
+          <>
+            <div className="compare-line" style={{ left: `${split}%` }}>
+              <span>↔</span>
+            </div>
+            <div className="compare-label before">Baseline context</div>
+            <div className="compare-label after">Candidate geometry</div>
+            <input
+              className="compare-range"
+              aria-label="Before and candidate comparison divider"
+              type="range"
+              min="5"
+              max="95"
+              value={split}
+              onChange={(e) => setSplit(+e.target.value)}
+            />
+          </>
+        )}
       {!props.projectId && !props.loading && (
         <div className="empty-viewport">
           <div className="empty-orbit">

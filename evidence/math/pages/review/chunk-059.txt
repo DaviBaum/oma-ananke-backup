@@ -1,0 +1,322 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P23907; UTF16 854880] THM-ADV1 — Dependency-Complete Claim Invalidation
+[1-10:P23908; UTF16 854930] Suppose primitive claim or assumption (u) is invalidated.
+[1-10:P23909; UTF16 854988] Then every active proof artifact reachable from (u) must become stale.
+[1-10:P23910; UTF16 855059] A descendant claim may remain active only if it possesses an alternative valid proof whose dependency closure excludes (u).
+[1-10:P23911; UTF16 855183] If the dependency graph is complete, no claim outside the descendant closure of (u) must be invalidated solely because (u) changed.
+[1-10:P23913; UTF16 855321] Every proof artifact reachable from (u) has a dependency path beginning at (u). Invalidating (u) invalidates at least one premise of that proof, so the proof is no longer valid.
+[1-10:P23914; UTF16 855499] A claim supported by another proof independent of (u) may remain supported by that proof.
+[1-10:P23915; UTF16 855589] For a claim outside the descendant closure, dependency completeness states that it has no semantic proof dependency on (u). Invalidating (u) therefore does not invalidate its existing proof. ∎
+[1-10:P23919; UTF16 855785] 6. Adversarial Claim Theory
+[1-10:P23920; UTF16 855813] DEF-ADV4 — Adversarial Claim Theory
+[1-10:P23921; UTF16 855849] For claim (C), define:
+[1-10:P23922; UTF16 855872] \left( \mathsf S_C, \mathsf{Act}^{\mathrm{adv}}C, \mathsf{src}, \mathsf{tgt}, (T\beta^{\mathrm{adv}})_\beta, \mathsf{Adm}_C, \mathsf{Corr}_C, \mathsf{Hist}_C, \mathsf{Plaus}_C, \kappa_C, \mathsf{EvScope}_C, \vartheta_C \right). ]
+[1-10:P23924; UTF16 856122] typed exact project-state carriers;
+[1-10:P23925; UTF16 856158] primitive adversarial actions;
+[1-10:P23927; UTF16 856219] baseline-dependent admissibility;
+[1-10:P23929; UTF16 856284] temporal-history constraints;
+[1-10:P23930; UTF16 856314] physical plausibility constraints;
+[1-10:P23931; UTF16 856349] scalar or vector cost;
+[1-10:P23932; UTF16 856372] evidence attack scope;
+[1-10:P23933; UTF16 856395] theory fingerprint.
+[1-10:P23934; UTF16 856415] The adversary may not violate physical laws unless such a violation is explicitly admitted as model discrepancy or theory failure.
+[1-10:P23938; UTF16 856549] Closed-world guarantee
+[1-10:P23939; UTF16 856572] Every Prompt-10 theorem is relative to (\mathfrak A_C).
+[1-10:P23940; UTF16 856628] A certificate covering:
+[1-10:P23941; UTF16 856652] wind;
+[1-10:P23942; UTF16 856658] seismic load;
+[1-10:P23943; UTF16 856672] material tolerances;
+[1-10:P23944; UTF16 856693] equipment failures
+[1-10:P23945; UTF16 856712] says nothing about fire if fire is absent from (\mathfrak A_C).
+[1-10:P23949; UTF16 856779] 7. Adversarial Perturbations and Programs
+[1-10:P23950; UTF16 856821] DEF-ADV5 — Adversarial Perturbation
+[1-10:P23951; UTF16 856857] A primitive adversarial action
+[1-10:P23952; UTF16 856888] [ \beta\to t ]
+[1-10:P23953; UTF16 856903] has relation:
+[1-10:P23954; UTF16 856917] [ T_\beta^{\mathrm{adv}} \subseteq \Omega_s\times\Omega_t. ]
+[1-10:P23955; UTF16 856978] An adversarial program is a legally typed word
+[1-10:P23956; UTF16 857025] [ \alpha=\beta_1\cdots\beta_k. ]
+[1-10:P23957; UTF16 857058] Its relation is:
+[1-10:P23958; UTF16 857075] T_{\beta_k}^{\mathrm{adv}} \circ\cdots\circ T_{\beta_1}^{\mathrm{adv}}. ]
+[1-10:P23959; UTF16 857149] The empty program is the identity.
+[1-10:P23963; UTF16 857187] LEM-ADV1 — Adversarial Program Associativity
+[1-10:P23964; UTF16 857232] For legally typed programs (u,v,w):
+[1-10:P23965; UTF16 857268] \left( T_w^{\mathrm{adv}} \circ T_v^{\mathrm{adv}} \right) \circ T_u^{\mathrm{adv}}. ]
+[1-10:P23967; UTF16 857361] This is associativity of relational composition. Both sides hold exactly when there exist the same ordered intermediate exact databases realizing (u), then (v), then (w). ∎
+[1-10:P23968; UTF16 857534] Ordering is preserved. A failure multiset does not replace a failure history unless the actions are proved to commute.
+[1-10:P23972; UTF16 857656] 8. Claim Breakers
+[1-10:P23973; UTF16 857674] DEF-ADV6 — Claim Breaker
+[1-10:P23974; UTF16 857699] A Claim Breaker relative to (K,C,\mathfrak A_C) is a tuple:
+[1-10:P23975; UTF16 857759] [ b=(\omega,\alpha,\omega',\pi_{\mathrm{base}}, \pi_{\mathrm{adm}}, \pi_{\mathrm{step}}, \pi_{\mathrm{viol}}) ]
+[1-10:P23978; UTF16 857906] [ \mathsf{Adm}_C(\omega,\alpha), ]
+[1-10:P23982; UTF16 858020] The proof fields certify each condition.
+[1-10:P23983; UTF16 858061] When the baseline is exact, (\Gamma(K)) may be a singleton.
+[1-10:P23987; UTF16 858124] THM-ADV2 — Claim-Breaker Certificate Soundness
+[1-10:P23988; UTF16 858171] If an independent checker validates:
+[1-10:P23989; UTF16 858208] baseline consistency;
+[1-10:P23990; UTF16 858230] adversarial admissibility;
+[1-10:P23991; UTF16 858257] exact perturbation execution;
+[1-10:P23992; UTF16 858287] violation of the claim report;
+[1-10:P23994; UTF16 858324] [ \exists\omega\in\Gamma(K), \exists\alpha\in\mathfrak A_C, \exists\omega'\in T_\alpha^{\mathrm{adv}}(\omega) ]
+[1-10:P23997; UTF16 858473] Therefore the universal assertion that (C) survives every perturbation in the declared adversarial theory is false.
+[1-10:P23999; UTF16 858595] The checked certificate directly supplies the existential witnesses and validates all predicates in the displayed existential formula. ∎
+[1-10:P24000; UTF16 858732] A plausible image or AI-generated scenario is not a breaker until these conditions are checked.
+[1-10:P24004; UTF16 858831] 9. Existential Claims
+[1-10:P24005; UTF16 858853] THM-ADV3 — One Failed Candidate Does Not Refute an Existential Claim
+[1-10:P24007; UTF16 858927] [ C=\exists z\in D(z). ]
+[1-10:P24009; UTF16 858961] [ z_0\in D ]
+[1-10:P24011; UTF16 858980] [ \neg P(z_0), ]
+[1-10:P24012; UTF16 858997] it does not follow that:
+[1-10:P24013; UTF16 859022] [ \neg C. ]
+[1-10:P24015; UTF16 859040] Choose any domain containing another element (z_1) with:
+[1-10:P24016; UTF16 859097] [ P(z_1). ]
+[1-10:P24018; UTF16 859115] [ \neg P(z_0) ]
+[1-10:P24019; UTF16 859131] holds while:
+[1-10:P24020; UTF16 859144] [ \exists z\in D(z) ]
+[1-10:P24021; UTF16 859166] is true, witnessed by (z_1). ∎
+[1-10:P24022; UTF16 859197] Falsifying an existential claim requires a complete certificate for:
+[1-10:P24023; UTF16 859266] [ \forall z\in D,\quad\neg P(z). ]
+[1-10:P24024; UTF16 859301] Valid forms include:
+[1-10:P24025; UTF16 859322] exact UNSAT;
+[1-10:P24026; UTF16 859335] exhaustive finite coverage;
+[1-10:P24027; UTF16 859363] symbolic universal proof;
+[1-10:P24028; UTF16 859389] verified interval exclusion.
+[1-10:P24032; UTF16 859421] 10. Robustness Coverage
+[1-10:P24033; UTF16 859445] DEF-ADV7 — Robustness Coverage Certificate
+[1-10:P24034; UTF16 859488] For adversarial subset (A), a coverage certificate proves:
+[1-10:P24035; UTF16 859547] [ \boxed{ \forall \omega\in\Gamma(K), \forall\alpha\in A, \forall\omega'\in T_\alpha^{\mathrm{adv}}(\omega), \qquad \omega'\models C. } ]
+[1-10:P24036; UTF16 859685] The artifact records:
+[1-10:P24037; UTF16 859707] the exact definition of (A);
+[1-10:P24038; UTF16 859736] model and theory fingerprints;
+[1-10:P24039; UTF16 859767] all assumptions;
+[1-10:P24040; UTF16 859784] the proof or region partition.
+[1-10:P24044; UTF16 859818] THM-ADV4 — Bounded Robustness Certificate Soundness
+[1-10:P24045; UTF16 859870] If an independent checker validates a complete coverage certificate over (A), then no Claim Breaker with perturbation in (A) exists.
+[1-10:P24047; UTF16 860009] Assume a breaker existed in (A).
+[1-10:P24048; UTF16 860042] It would provide:
+[1-10:P24049; UTF16 860060] [ \omega\in\Gamma(K), \quad \alpha\in A, \quad \omega'\in T_\alpha^{\mathrm{adv}}(\omega), \quad \omega'\not\models C. ]
+[1-10:P24050; UTF16 860181] This contradicts the universally quantified coverage certificate. ∎
+[1-10:P24051; UTF16 860249] The theorem has no implication outside (A).
+[1-10:P24055; UTF16 860296] 11. Search Failure Is Not a Proof
+[1-10:P24056; UTF16 860330] THM-ADV5 — Search Failure Is Not Robustness Proof
+[1-10:P24057; UTF16 860380] For every proper tested subset
+[1-10:P24058; UTF16 860411] [ S\subsetneq A, ]
+[1-10:P24059; UTF16 860430] there exists a finite claim system in which:
+[1-10:P24060; UTF16 860475] every tested perturbation in (S) satisfies the claim;
+[1-10:P24061; UTF16 860529] one untested perturbation in (A\setminus S) breaks it.
+[1-10:P24064; UTF16 860598] [ \alpha^\star\in A\setminus S. ]
+[1-10:P24065; UTF16 860632] Create one exact baseline and one exact poststate for every perturbation.
+[1-10:P24066; UTF16 860706] Define the claim report to be accepted for every perturbation in (S), and violated only for (\alpha^\star).
+[1-10:P24067; UTF16 860814] The tested set contains no breaker, yet (A) does. ∎
+[1-10:P24069; UTF16 860877] [ \text{heuristic search exhaustion} \neq \text{quantified robustness}. ]
+[1-10:P24073; UTF16 860954] 12. Adversarial Cost Profiles
+[1-10:P24074; UTF16 860984] DEF-ADV8 — Adversarial Cost Profile
+[1-10:P24075; UTF16 861020] A perturbation may carry vector cost:
+[1-10:P24076; UTF16 861058] \left( \kappa_{\mathrm{geom}}, \kappa_{\mathrm{failure}}, \kappa_{\mathrm{duration}}, \kappa_{\mathrm{construction}}, \kappa_{\mathrm{model}}, \kappa_{\mathrm{evidence}}, \ldots \right). ]
+[1-10:P24077; UTF16 861247] The default order is componentwise:
+[1-10:P24078; UTF16 861283] [ u\preceq v \iff u_i\le v_i \quad\forall i. ]
+[1-10:P24079; UTF16 861330] No scalar minimum is defined unless governance supplies a scalar cost preserving the intended meaning.
+[1-10:P24080; UTF16 861433] Plausibility is not automatically probability.
+[1-10:P24084; UTF16 861483] 13. Scalar Robustness Radius
+[1-10:P24085; UTF16 861512] DEF-ADV9 — Exact Robustness Radius
+[1-10:P24086; UTF16 861547] Assume a legitimate scalar cost:
+[1-10:P24087; UTF16 861580] [ \kappa_C:\mathfrak A_C\to[0,\infty]. ]
+[1-10:P24089; UTF16 861629] \inf \left{ \kappa_C(\alpha): \exists\omega\in\Gamma(K), \exists\omega'\in T_\alpha^{\mathrm{adv}}(\omega), ; \omega'\not\models C \right}. } ]
+[1-10:P24090; UTF16 861773] If the breaker set is empty:
+[1-10:P24091; UTF16 861802] [ \rho_C^\star(K)=\infty. ]
+[1-10:P24092; UTF16 861830] For an exact baseline (\omega), define (\rho_C^\star(\omega)) by replacing (\Gamma(K)) with ({\omega}).
+[1-10:P24093; UTF16 861934] The metaknowledge radius is conservative:
+[1-10:P24094; UTF16 861976] \inf_{\omega\in\Gamma(K)} \rho_C^\star(\omega). ]
+[1-10:P24098; UTF16 862029] 14. Existence of Minimum Breakers
+[1-10:P24099; UTF16 862063] THM-ADV6 — Finite Breaker-Minimum Existence
+[1-10:P24100; UTF16 862107] If the set of admissible perturbations is finite and at least one breaker exists, then:
+[1-10:P24101; UTF16 862195] \min_{\alpha\in\mathsf{Break}(C)} \kappa_C(\alpha). ]
+[1-10:P24103; UTF16 862255] The breaker-cost image is a nonempty finite subset of ([0,\infty]).
+[1-10:P24104; UTF16 862323] Every nonempty finite totally ordered set has a least element.
+[1-10:P24105; UTF16 862386] Its least element equals its infimum. ∎
+[1-10:P24109; UTF16 862429] THM-ADV7 — Continuous Minimum Breaker Existence
+[1-10:P24111; UTF16 862482] [ A ]
+[1-10:P24112; UTF16 862488] be a compact topological adversarial domain.
+[1-10:P24113; UTF16 862533] Let the breaker perturbation set:
+[1-10:P24114; UTF16 862567] \left{ \alpha\in A: \alpha\text{ admits a checked breaker} \right} ]
+[1-10:P24115; UTF16 862636] be nonempty and closed.
+[1-10:P24117; UTF16 862665] [ \kappa_C\to[0,\infty] ]
+[1-10:P24118; UTF16 862691] be lower semicontinuous.
+[1-10:P24119; UTF16 862716] Then there exists:
+[1-10:P24120; UTF16 862735] [ \alpha^\star\in B_C ]
+[1-10:P24122; UTF16 862770] \rho_C^\star. ]
+[1-10:P24124; UTF16 862792] A closed subset of compact (A) is compact.
+[1-10:P24125; UTF16 862835] A lower-semicontinuous extended-real function attains its minimum on a nonempty compact domain.
+[1-10:P24126; UTF16 862931] Therefore (\kappa_C) attains a minimum on (B_C), and that minimum equals the infimum. ∎
+[1-10:P24130; UTF16 863022] 14.1 Failure of attainment
+[1-10:P24131; UTF16 863049] Open domain
+[1-10:P24133; UTF16 863066] [ A=(0,1], \qquad B_C=A, \qquad \kappa(\alpha)=\alpha. ]
+[1-10:P24135; UTF16 863129] [ \rho^\star=0, ]
+[1-10:P24136; UTF16 863147] but (0\notin A), so no minimum breaker exists.
+[1-10:P24137; UTF16 863194] Nonclosed breaker set
+[1-10:P24139; UTF16 863221] [ A=[0,1], \qquad B_C=(0,1], \qquad \kappa(\alpha)=\alpha. ]
+[1-10:P24140; UTF16 863282] Again:
+[1-10:P24141; UTF16 863289] [ \rho^\star=0 ]
+[1-10:P24142; UTF16 863306] without an attained breaker.
+[1-10:P24143; UTF16 863335] Failure of lower semicontinuity
+[1-10:P24145; UTF16 863372] [ A=[0,1], ]
+[1-10:P24146; UTF16 863385] [ \kappa(0)=1, \qquad \kappa(x)=x;\text{for }x>0. ]
+[1-10:P24147; UTF16 863437] The infimum is (0), but it is not attained.
+[1-10:P24151; UTF16 863484] 15. Certified Radius Bounds
+[1-10:P24152; UTF16 863512] DEF-ADV10 — Certified Robustness Interval
+[1-10:P24153; UTF16 863554] ANANKE maintains:
+[1-10:P24155; UTF16 863626] (\rho_C^-) comes from universal safe coverage.
+[1-10:P24156; UTF16 863673] (\rho_C^+) comes from the cheapest currently certified breaker.
+[1-10:P24157; UTF16 863737] If no breaker is known: [ \rho_C^+=\infty. ]
+[1-10:P24161; UTF16 863785] THM-ADV8 — Breaker Upper Bound
+[1-10:P24162; UTF16 863816] A certified breaker (\alpha) of cost (r) implies:
+[1-10:P24165; UTF16 863895] The infimum over all breaker costs cannot exceed the cost of one member of that set. ∎
+[1-10:P24169; UTF16 863985] THM-ADV9 — Coverage Lower Bound
+[1-10:P24170; UTF16 864017] If a checked certificate proves:
+[1-10:P24171; UTF16 864050] [ \forall\alpha: \kappa_C(\alpha)<r \Longrightarrow \alpha\text{ is not a breaker}, ]
+[1-10:P24175; UTF16 864171] Every breaker has cost at least (r).
+[1-10:P24176; UTF16 864208] The infimum of breaker costs is therefore at least (r). ∎
+[1-10:P24177; UTF16 864266] If a minimum breaker is known to exist and the claim is safe for every:
+[1-10:P24178; UTF16 864338] [ \kappa_C(\alpha)\le r, ]
+[1-10:P24180; UTF16 864371] [ \rho_C^\star>r. ]
+[1-10:P24181; UTF16 864391] Without minimum attainment, safety through (r) permits:
+[1-10:P24183; UTF16 864466] through breakers of costs decreasing to (r) from above.
+[1-10:P24187; UTF16 864525] 16. Radius Closure and Boundary Policy
+[1-10:P24188; UTF16 864564] DEF-ADV11 — Robustness Requirement Closure
+[1-10:P24189; UTF16 864607] For required closed-budget radius (r_{\mathrm{req}}), define:
+[1-10:P24190; UTF16 864669] Certified broken within target
+[1-10:P24191; UTF16 864700] There exists a breaker with:
+[1-10:P24192; UTF16 864729] [ \kappa_C(\alpha)\le r_{\mathrm{req}}. ]
+[1-10:P24193; UTF16 864771] Certified robust through target
+[1-10:P24194; UTF16 864803] A coverage certificate proves:
+[1-10:P24195; UTF16 864834] [ \forall\alpha: \kappa_C(\alpha)\le r_{\mathrm{req}} \Longrightarrow \alpha\text{ is not a breaker}. ]
+[1-10:P24196; UTF16 864938] Unresolved
+[1-10:P24197; UTF16 864949] Neither certificate exists.
+[1-10:P24198; UTF16 864977] This direct quantified definition avoids ambiguity when:
+[1-10:P24199; UTF16 865034] [ \rho_C^\star=r_{\mathrm{req}}. ]
+[1-10:P24203; UTF16 865072] 17. Adversarial Budget Sets
+[1-10:P24205; UTF16 865108] \left{ \alpha: \kappa_C(\alpha)\le r \right}. ]
+[1-10:P24206; UTF16 865156] THM-ADV10 — Robustness Monotonicity in Adversarial Budget
+[1-10:P24208; UTF16 865218] [ r_1\le r_2, ]
+[1-10:P24210; UTF16 865240] [ A_{r_1}\subseteq A_{r_2}. ]
+[1-10:P24212; UTF16 865284] robustness on (A_{r_2}) implies robustness on (A_{r_1});
+[1-10:P24213; UTF16 865341] a breaker in (A_{r_1}) is also a breaker within budget (r_2).
+[1-10:P24215; UTF16 865409] If (\kappa_C(\alpha)\le r_1) and (r_1\le r_2), then (\kappa_C(\alpha)\le r_2). The two consequences follow by universal and existential monotonicity. ∎
+[1-10:P24219; UTF16 865564] 18. Pareto-Minimal Breakers
+[1-10:P24220; UTF16 865592] DEF-ADV12 — Pareto-Minimal Claim Breaker
+[1-10:P24221; UTF16 865633] A breaker (\alpha) is Pareto minimal when no breaker (\beta) satisfies:
+[1-10:P24222; UTF16 865705] [ \boldsymbol\kappa_C(\beta) \preceq \boldsymbol\kappa_C(\alpha) ]
+[1-10:P24223; UTF16 865772] with at least one strict inequality.
+[1-10:P24224; UTF16 865809] Define the breaker frontier:
+[1-10:P24225; UTF16 865838] \operatorname{ParetoMin} \left{ \boldsymbol\kappa_C(\alpha): \alpha\text{ breaks }C \right}. ]
+[1-10:P24226; UTF16 865933] The frontier may be exponential.
+[1-10:P24228; UTF16 865975] Let cost dimension be (n), and let every binary vector of Hamming weight (n/2) be a breaker cost.
+[1-10:P24229; UTF16 866073] No distinct pair dominates another.
+[1-10:P24230; UTF16 866109] The frontier size is:
+[1-10:P24231; UTF16 866131] 2^{\Theta(n)}. ]
+[1-10:P24235; UTF16 866151] 19. Worst-Case Damage
+[1-10:P24236; UTF16 866173] DEF-ADV13 — Worst-Case Damage Function
+[1-10:P24238; UTF16 866217] [ L_C(\omega,\alpha,\omega')\ge0 ]
+[1-10:P24239; UTF16 866252] be a declared damage measure.
+[1-10:P24241; UTF16 866290] \sup \left{ L_C(\omega,\alpha,\omega'): \begin{array}{l} \omega\in\Gamma(K),\ \kappa_C(\alpha)\le r,\ \omega'\in T_\alpha^{\mathrm{adv}}(\omega) \end{array} \right}. } ]
+[1-10:P24242; UTF16 866460] Take the supremum of an empty set as (0).
+[1-10:P24246; UTF16 866505] THM-ADV11 — Worst-Case Damage Monotonicity
+[1-10:P24250; UTF16 866574] [ D_C(r_1)\le D_C(r_2). ]
+[1-10:P24252; UTF16 866606] The feasible adversarial set for (r_1) is contained in the feasible set for (r_2).
+[1-10:P24253; UTF16 866689] The supremum over a subset cannot exceed the supremum over the containing set. ∎
+[1-10:P24257; UTF16 866773] THM-ADV12 — Robustness Radius as the First Positive-Damage Budget
+[1-10:P24258; UTF16 866839] Assume claim failure is exactly:
+[1-10:P24259; UTF16 866872] [ L_C(\omega,\alpha,\omega')>0. ]
+[1-10:P24263; UTF16 866936] If (D_C(r)>0), some admissible triple within budget (r) has positive damage, hence is a breaker. Therefore:
+[1-10:P24265; UTF16 867067] Conversely, for every breaker of cost (s), any (r\ge s) admits that breaker and therefore has:
+[1-10:P24266; UTF16 867162] [ D_C(r)>0. ]
+[1-10:P24267; UTF16 867176] The two sets have the same infimum. If no breaker exists, both infima are (\infty). ∎
+[1-10:P24271; UTF16 867265] 20. Robustness and Probability
+[1-10:P24272; UTF16 867296] An adversarial cost may measure:
+[1-10:P24273; UTF16 867329] geometric magnitude;
+[1-10:P24274; UTF16 867350] number of component failures;
+[1-10:P24275; UTF16 867380] duration;
+[1-10:P24276; UTF16 867390] construction deviation;
+[1-10:P24278; UTF16 867433] evidence invalidation count.
+[1-10:P24279; UTF16 867462] It is not automatically:
+[1-10:P24280; UTF16 867487] [ -\log P(\alpha). ]
+[1-10:P24281; UTF16 867508] An optional validated probability model may additionally define:
+[1-10:P24282; UTF16 867573] failure probability;
+[1-10:P24283; UTF16 867594] expected damage;
+[1-10:P24284; UTF16 867611] tail probability;
+[1-10:P24285; UTF16 867629] CVaR.
+[1-10:P24286; UTF16 867635] Worst-case robustness and probability remain separate axes.
+[1-10:P24287; UTF16 867695] A rare catastrophic common-cause event may still have a small adversarial distance.
+[1-10:P24291; UTF16 867782] 21. Correlated Adversaries
+[1-10:P24292; UTF16 867809] An exact joint adversarial domain is:
+[1-10:P24293; UTF16 867847] [ A \subseteq A_1\times\cdots\times A_k. ]
+[1-10:P24294; UTF16 867890] Replacing it by:
+[1-10:P24295; UTF16 867907] [ \pi_1(A)\times\cdots\times\pi_k(A) ]
+[1-10:P24296; UTF16 867946] may add impossible combinations.
+[1-10:P24297; UTF16 867979] Using only marginals may also omit dependence structure needed to compute risk.
+[1-10:P24301; UTF16 868062] THM-ADV13 — Marginal Adversarial Domains Are Not Generally Sufficient
+[1-10:P24302; UTF16 868132] Two adversarial theories can have identical coordinate marginals and different claim truth.
+[1-10:P24304; UTF16 868230] Let hazards:
+[1-10:P24305; UTF16 868243] [ H_1,H_2\in{0,1}. ]
+[1-10:P24306; UTF16 868264] Define joint domain:
+[1-10:P24307; UTF16 868285] {(0,0),(1,1)}. ]
+[1-10:P24309; UTF16 868310] {(1,0),(0,1)}. ]
+[1-10:P24310; UTF16 868327] Both coordinate projections are:
+[1-10:P24312; UTF16 868371] Let claim be:
+[1-10:P24313; UTF16 868385] [ \neg(H_1=1\land H_2=1). ]
+[1-10:P24314; UTF16 868413] The claim is broken in (A_+) and robust in (A_-).
+[1-10:P24315; UTF16 868463] Thus identical marginals do not determine adversarial robustness. ∎
+[1-10:P24319; UTF16 868534] 22. Common-Cause Failures
+[1-10:P24320; UTF16 868560] Introduce a common-cause variable:
+[1-10:P24321; UTF16 868595] [ Z. ]
+[1-10:P24322; UTF16 868602] Subsystem failures may satisfy:
+[1-10:P24323; UTF16 868634] [ F_i=f_i(Z,\epsilon_i). ]
+[1-10:P24324; UTF16 868661] The exact hazard relation stores:
+[1-10:P24325; UTF16 868695] [ (Z,\epsilon_1,\ldots,\epsilon_n,F_1,\ldots,F_n). ]
+[1-10:P24326; UTF16 868748] Independent sampling of (F_i) is invalid unless the theory proves conditional or unconditional independence sufficient for the claim.
+[1-10:P24330; UTF16 868885] 23. Temporal Adversarial Programs
+[1-10:P24331; UTF16 868919] A failure history may be:
+[1-10:P24332; UTF16 868945] [ \text{fire-damper failure} \to \text{power interruption} \to \text{control failover} \to \text{smoke migration}. ]
+[1-10:P24333; UTF16 869062] The ordering is part of the adversarial program.
+[1-10:P24334; UTF16 869111] A multiset loses this information.
+[1-10:P24335; UTF16 869146] For additive primitive action cost:
+[1-10:P24336; UTF16 869182] \sum_{i=1}^k \kappa(\alpha_i). ]
+[1-10:P24337; UTF16 869215] Other composition rules must be declared explicitly.
+[1-10:P24341; UTF16 869271] 24. Exact Shortest Claim Breakers
+[1-10:P24342; UTF16 869305] ALG-ADV1 — ExactShortestClaimBreaker
+[1-10:P24344; UTF16 869348]     finite explicit adversarial transition graph
+[1-10:P24345; UTF16 869397]     baseline state set
+[1-10:P24346; UTF16 869420]     nonnegative edge costs
+[1-10:P24347; UTF16 869447]     exact claim-violation predicate
+[1-10:P24349; UTF16 869484] 1. Add a super-source connected with zero cost
+[1-10:P24350; UTF16 869531]    to every admissible baseline state.
+[1-10:P24352; UTF16 869571] 2. Run Dijkstra's algorithm from the super-source.
+[1-10:P24354; UTF16 869623] 3. Stop when the first violating state is removed
+[1-10:P24355; UTF16 869673]    from the priority queue.
+[1-10:P24357; UTF16 869702] 4. Reconstruct the action sequence and exact states.
+[1-10:P24359; UTF16 869756] 5. Emit the breaker path and its accumulated cost.
+[1-10:P24361; UTF16 869808] 6. If no violating state is reachable:
+[1-10:P24362; UTF16 869847]        return NO BREAKER IN EXPLICIT GRAPH.
+[1-10:P24366; UTF16 869894] THM-ADV28 — Exact Shortest-Breaker Correctness
+[1-10:P24367; UTF16 869941] For a finite explicit graph with nonnegative edge costs, ALG-ADV1 returns a minimum-cost adversarial action sequence reaching a violating state, or correctly reports that no violating state is reachable.
+[1-10:P24369; UTF16 870151] The added super-source converts multiple baselines into one source without changing path costs.
+[1-10:P24370; UTF16 870247] Dijkstra’s invariant states that when a vertex is removed from the priority queue, its recorded distance is the minimum path cost from the source.
+[1-10:P24371; UTF16 870394] Therefore the first violating vertex removed has the smallest distance among all reachable violating vertices.
+[1-10:P24372; UTF16 870505] Its predecessor chain gives a minimum-cost breaker.
+[1-10:P24373; UTF16 870557] If no violating state is reached, no breaker path exists in the graph. ∎
+[1-10:P24374; UTF16 870630] With unit edge costs, breadth-first search runs in:
+[1-10:P24375; UTF16 870682] [ O(N+M). ]
+[1-10:P24376; UTF16 870694] With a binary heap, Dijkstra runs in:
+[1-10:P24377; UTF16 870732] [ O((N+M)\log N). ]
+[1-10:P24378; UTF16 870752] Negative edge costs invalidate this theorem.
+[1-10:P24382; UTF16 870800] 25. Claim Attack Cones
+[1-10:P24383; UTF16 870823] DEF-ADV14 — Claim Attack Cone
+[1-10:P24384; UTF16 870853] Let (D_C) be dependency complete.
+[1-10:P24385; UTF16 870887] The attack cone is:
+[1-10:P24386; UTF16 870907] \mathsf{Anc}^{*}(C), ]
+[1-10:P24387; UTF16 870930] the set of all state, model, evidence, artifact, and assumption nodes whose change can affect (C).
+[1-10:P24388; UTF16 871029] A perturbation has effect set:
+[1-10:P24389; UTF16 871060] [ \mathsf{Eff}^{\mathrm{adv}}(\alpha). ]
+[1-10:P24393; UTF16 871104] THM-ADV14 — Perturbations Outside a Complete Claim Cone Cannot Break the Claim
+[1-10:P24395; UTF16 871191] (D_C) is dependency complete;

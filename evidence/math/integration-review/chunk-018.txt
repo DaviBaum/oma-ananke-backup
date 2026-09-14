@@ -1,0 +1,246 @@
+[19261] at every current history, applying monotonicity of \(\rho_t\) preserves the order one stage earlier. Backward induction gives time consistency. \(\square\)
+[19262] THM-DYN29 — Static terminal risk need not be time consistent
+[19263] The reversal in §84.5 proves the claim. \(\square\)
+[19264] THM-DYN30 — Worst-case risk is monotone under uncertainty-set inclusion
+[19265] If \(\Omega_1\subseteq\Omega_2\):
+[19266] \[ \sup_{\Omega_1}Z\le\sup_{\Omega_2}Z. \]
+[19268] D. Scenario Trees and Dynamic Abstraction
+[19269] THM-DYN31 — Scenario-node nonanticipativity
+[19270] Assigning one action per information node is equivalent to equality of leaf actions sharing that node.
+[19271] Proof. This is PRO-DYN1. \(\square\)
+[19272] THM-DYN32 — Independent leaf optimization may be anticipative
+[19273] If two leaves share a decision node but their independently optimized actions differ, the leaf solution violates nonanticipativity.
+[19274] THM-DYN33 — Scenario-DAG merging is sound under contextual equivalence
+[19275] If \(n_1\equiv_tn_2\), every admitted future dynamic report agrees. Replacing the two nodes by their equivalence class preserves those reports by factorization through the quotient. \(\square\)
+[19276] THM-DYN34 — New experiments refine the scenario quotient
+[19277] If \(\mathcal F_1\subseteq\mathcal F_2\), then:
+[19279] Proof. Agreement on the larger family implies agreement on the smaller. \(\square\)
+[19280] THM-DYN35 — Expectation-preserving reduction need not preserve worst case
+[19281] Original losses \(\{0,100\}\) with probabilities \(\{0.99,0.01\}\) have expectation \(1\) and worst case \(100\). A reduced constant scenario \(1\) preserves expectation but has worst case \(1\). \(\square\)
+[19282] THM-DYN36 — Removing a rare scenario can destroy robust validity
+[19283] If the removed scenario is the unique violation, the reduced set is feasible and the original set is not.
+[19284] THM-DYN37 — Finite exhaustive scenario enumeration terminates
+[19285] A finite scenario set contains \(N\) elements. An algorithm that checks one previously unchecked scenario per iteration terminates in at most \(N\) iterations.
+[19286] THM-DYN38 — Finite dynamic CEGAR terminates under strict atom separation
+[19287] If the abstraction contains finitely many atoms and each refinement permanently splits or removes at least one unresolved atom, no more than the finite atom count of strict refinements can occur. \(\square\)
+[19289] E. Commitments and Construction
+[19290] THM-DYN39 — Final-state feasibility does not imply construction-sequence feasibility
+[19291] A large duct fits in its final plenum but must pass through a temporary opening narrower than its rigid section.
+[19292] Proof. Final occupancy intersection is empty, but the delivery configuration-space path is empty. \(\square\)
+[19293] THM-DYN40 — Precedence feasibility does not imply resource feasibility
+[19294] Two tasks with no precedence relation each require the only crane during the same interval. The precedence schedule overlaps them, violating crane capacity.
+[19295] THM-DYN41 — Resource feasibility does not imply temporary egress
+[19296] A resource-feasible sequence may place stored materials across the sole required temporary egress route.
+[19297] THM-DYN42 — Permanent route feasibility does not imply installation feasibility
+[19298] Immediate from the distinction between final route occupancy and \(\Gamma_{\mathrm{install}}\).
+[19299] THM-DYN43 — Installation may require a larger envelope than final occupancy
+[19300] A rigid rectangular module of width \(w\) turning through a corner sweeps a set wider than its final width. Thus final clearance \(w+\epsilon\) can be sufficient for occupancy and insufficient for insertion. \(\square\)
+[19301] THM-DYN44 — Irreversible commitment is not ordinary recourse
+[19302] If a shaft is cast at \(t=2\), a scenario revealed at \(t=5\) cannot choose a different shaft without a change-order or retrofit transition.
+[19303] THM-DYN45 — A change order is a new rewrite transaction
+[19304] A change order alters physical semantic roots, versions, cost, schedule, and certificates. Therefore it is not represented solely by an operational action variable. \(\square\)
+[19305] THM-DYN46 — Finite construction scheduling is NP-hard
+[19306] Reduce identical-machine makespan scheduling: each source job becomes a construction task with its processing time and no precedence; crews become machines. A schedule of makespan at most \(B\) exists iff the corresponding construction schedule does. The reduction is polynomial. \(\square\)
+[19307] THM-DYN47 — Valid temporary states and transitions yield sequence validity
+[19308] If \(C_0\) is valid, every action preserves \(\mathsf{TempValid}\), and all task/transition preconditions hold, induction proves every \(C_t\) valid.
+[19309] THM-DYN48 — Local sequences need not admit one global interleaving
+[19310] Two subsystems may each require exclusive first access to the same sealed zone before the other closes it. Each local sequence exists; their combined precedence constraints form a cycle.
+[19311] THM-DYN49 — Construction delay can change cost or carbon
+[19312] If cost or emissions factor \(g(t)\) varies in time, shifting a task energy \(e\) from \(t_1\) to \(t_2\) changes impact by:
+[19313] \[ e(g(t_2)-g(t_1)). \]
+[19315] F. Commissioning
+[19316] THM-DYN50 — Component test pass does not imply integrated-system pass
+[19317] Two controllers pass independently but use incompatible network addresses when connected. Component tests pass; integrated communication fails.
+[19318] THM-DYN51 — Sampling does not prove absence of all latent defects
+[19319] Inspect one of two identical hidden joints. The sampled joint passes; the uninspected joint is defective.
+[19320] THM-DYN52 — Observational aliasing prevents deterministic fault isolation
+[19321] If \(F_1\equiv_HF_2\), every detector based on \(H\) receives identical input under the two faults and therefore cannot always output distinct diagnoses.
+[19322] THM-DYN53 — Calibration drift can reverse acceptance
+[19323] True threshold is \(10\). Instrument bias changes from \(0\) to \(-2\). A true value \(11\) is displayed as \(9\), changing a pass/fail comparison.
+[19324] THM-DYN54 — Defect closure reopens dependent claims
+[19325] A corrective action changes a root artifact. Every descendant acceptance claim must be invalidated and rechecked; otherwise a stale certificate can survive a physically changed state.
+[19326] THM-DYN55 — Mandatory UNKNOWN blocks handover
+[19327] Handover requires every mandatory root PROVED. An UNKNOWN root fails that predicate by definition.
+[19328] THM-DYN56 — Commissioning can reduce uncertainty without changing physical state
+[19329] A nondestructive measurement intersects the condition set with an evidence set but leaves the asset transition state unchanged.
+[19330] THM-DYN57 — Failed commissioning may force co-design rework
+[19331] If a failed integrated test reveals an installed topology incapable of satisfying the requirement, the corrective action changes PCJCD roots rather than merely test evidence.
+[19333] G. Operations and Control
+[19334] THM-DYN58 — Robust controlled invariance implies safety
+[19335] If \(x_0\in K\) and the policy selects the control promised by DEF-DYN70, then \(x_t\in K\subseteq\mathcal X_{\mathrm{safe}}\) for all admitted disturbances.
+[19336] Proof. Apply LEM-DYN7. \(\square\)
+[19337] THM-DYN59 — One-step feasibility does not imply recursive feasibility
+[19338] State \(x_0\) has action \(a\) producing safe \(x_1\), but \(x_1\) has no safe successor. The first action is one-step feasible and destroys future feasibility.
+[19339] THM-DYN60 — MPC recursive feasibility under terminal invariance
+[19340] Assume the MPC solution ends in invariant set \(K_f\), the terminal controller keeps \(K_f\) feasible, and disturbances are covered. Shift the previous optimal sequence by one step and append the terminal control. This supplies a feasible candidate at the next epoch. Induction proves recursive feasibility. \(\square\)
+[19341] THM-DYN61 — Exact MPC may be full-horizon suboptimal
+[19342] Let a horizon-one controller choose immediate cost \(0\) action leading to inevitable future cost \(100\); another action costs \(1\) now and zero later. Horizon-one MPC chooses the first, while full-horizon optimum chooses the second.
+[19343] THM-DYN62 — Operational reconfiguration preserves installed geometry
+[19344] Changing \(G_t^{\mathrm{op}}\subseteq G^{\mathrm{installed}}\) changes enabled flow edges, not the semantic geometry of \(G^{\mathrm{installed}}\).
+[19345] THM-DYN63 — Physical rerouting requires retrofit
+[19346] A changed centerline, penetration, fitting, support, or route envelope changes PCSIR/PCROUTE roots and therefore cannot be certified as ordinary control.
+[19347] THM-DYN64 — Normal-mode feasibility does not imply emergency-mode feasibility
+[19348] A normal mode may use both sources while emergency mode loses one source and exceeds the remaining capacity.
+[19349] THM-DYN65 — Mode switching can stale a static flow witness
+[19350] A flow satisfying the normal topology may use an edge disabled in emergency mode.
+[19351] THM-DYN66 — Verified fallback preserves its invariant
+[19352] If the fallback is applicable and satisfies DEF-DYN70 on \(K\), THM-DYN58 applies whenever fallback is invoked.
+[19354] H. Reliability, Common Cause, and Resilience
+[19355] THM-DYN67 — Series reliability product requires independence
+[19356] For component success events \(S_i\):
+[19357] \[ P\!\left(\bigcap_iS_i\right)=\prod_iP(S_i) \]
+[19358] only follows under mutual independence. In general joint probability is not determined by marginals.
+[19359] THM-DYN68 — Parallel complement formula requires independence
+[19360] \[ P(\text{all fail})=\prod_iP(F_i) \]
+[19361] requires independent failure events.
+[19362] THM-DYN69 — Marginals do not determine system reliability
+[19363] Two components each fail with probability \(0.01\). Independent joint failure is \(0.0001\); perfectly correlated joint failure is \(0.01\).
+[19364] THM-DYN70 — Common cause can destroy redundancy
+[19365] The construction in THM-DYN69 increases dual-component failure by a factor of \(100\) without changing either marginal.
+[19366] THM-DYN71 — N-1 does not prove common-cause resilience
+[19367] A shared upstream event simultaneously removes both nominally redundant components; every single local component failure is survivable, but the common event is not.
+[19368] THM-DYN72 — Reliability and availability differ
+[19369] A nonrepairable system may have high short-horizon reliability and low long-run availability; a repairable frequently failing system may have lower mission reliability but high steady-state availability.
+[19370] THM-DYN73 — Higher reliability need not imply lower resilience loss
+[19371] Design A fails with probability \(0.01\) and remains down for \(100\) hours. Design B fails with probability \(0.02\) and recovers in one hour. Expected resilience loss can be lower for B.
+[19372] THM-DYN74 — Equal reliability can coexist with different recovery time
+[19373] Keep the same failure event probability and assign different post-event \(Q(t)\) curves.
+[19374] THM-DYN75 — Recovery policy must be nonanticipative
+[19375] Recovery actions taken before failure location is observed must be constant on histories that have not revealed that location.
+[19376] THM-DYN76 — Cascades may amplify one local failure
+[19377] Let \(A\) power \(B\), and \(B\) cool \(C\). Failure \(A\) induces \(B\), then \(C\), under the cascade operator.
+[19378] THM-DYN77 — Breaking one dependency can reduce cascade reach without changing component marginals
+[19379] Remove the \(B\rightarrow C\) dependency. Individual component failure probabilities remain fixed, but \(C\) no longer belongs to the closure from \(A\).
+[19381] I. Digital Twins and Observations
+[19382] THM-DYN78 — Twin equality does not imply physical equality
+[19383] Two physical states can map to the same estimated twin state under a noninjective estimator.
+[19384] THM-DYN79 — Observationally aliased states are not exactly distinguishable
+[19385] If \(s_1\equiv_Hs_2\), any decision depending only on the admitted observation family receives the same report.
+[19386] THM-DYN80 — A distinguishing sensor refines observational equivalence
+[19387] Adding experiment \(e\) with \(e(s_1)\ne e(s_2)\) removes \((s_1,s_2)\) from the equivalence relation.
+[19388] THM-DYN81 — Bayesian update is conditional on its model
+[19389] DEF-DYN85 is Bayes’ rule for the declared prior, likelihood, and transition kernel. Changing any one changes the posterior.
+[19390] THM-DYN82 — Posterior confidence does not establish model-class correctness
+[19391] Two model classes can agree on observed likelihood and differ on future response; posterior probability one inside the selected class does not refute the omitted class.
+[19392] THM-DYN83 — Set-membership update contracts the predicted set
+[19393] \[ \mathcal B_{t+1} = \mathcal B_{t+1}^{-}\cap E \subseteq \mathcal B_{t+1}^{-}. \]
+[19394] THM-DYN84 — Universal claims survive sound set contraction
+[19395] This is LEM-DYN3 applied to condition sets.
+[19396] THM-DYN85 — Contradictory evidence can empty the belief set
+[19397] If \(\mathcal B^-\cap E=\varnothing\), no represented state satisfies all current premises. The correct output is model/evidence conflict, not an invented point state.
+[19398] THM-DYN86 — Stale calibration invalidates dependent twin claims
+[19399] Calibration is a dependency root of the observation map. Changed calibration changes the state-consistency set and invalidates descendants absent a transport theorem.
+[19400] THM-DYN87 — Detection thresholds trade false positives and false negatives
+[19401] For overlapping residual distributions, increasing a threshold weakly reduces the alarm region, reducing false positives and increasing or preserving false negatives.
+[19402] THM-DYN88 — Alarm is not confirmed fault
+[19403] An alarm can be produced under the no-fault distribution with nonzero false-positive probability.
+[19405] J. Degradation and Lifecycle
+[19406] THM-DYN89 — Equal age does not imply equal condition
+[19407] Two same-age assets operated under different loads can occupy different degradation states.
+[19408] THM-DYN90 — Equal condition estimate does not imply equal hidden degradation
+[19409] A noninjective observation model can map different latent damage states to one estimate.
+[19410] THM-DYN91 — RUL point estimate does not guarantee survival
+[19411] Two trajectories may share estimate \(\widehat{\tau}=10\) while failing at \(8\) and \(12\).
+[19412] THM-DYN92 — Perfect repair resets state only under its model
+[19413] If \(\mathcal R_m(D)=\{D_0\}\), the model resets to \(D_0\). Without that premise, maintenance execution alone gives no reset theorem.
+[19414] THM-DYN93 — Imperfect repair is not renewal
+[19415] If virtual age changes from \(a^->0\) to \(\rho a^-\) with \(0<\rho<1\), post-repair age remains positive and differs from a new asset.
+[19416] THM-DYN94 — Maintenance completion does not imply improvement
+[19417] A completed procedure may leave \(D_{t^+}=D_{t^-}\) or introduce a defect.
+[19418] THM-DYN95 — Maintenance can worsen state
+[19419] An incorrect reconnection can move the system from an integral to a failed state.
+[19420] THM-DYN96 — Inspection may change information without changing condition
+[19421] A nondestructive inspection changes \(\mathcal B_t\), not \(D_t\).
+[19422] THM-DYN97 — Condition-based maintenance can outperform fixed intervals in some models, but not universally
+[19423] In a model with perfectly observed heterogeneous degradation, maintenance at a threshold avoids premature replacement. In a model with uninformative costly sensing and deterministic lifetime, the fixed schedule can be cheaper. Thus neither dominates model-independently.
+[19424] THM-DYN98 — Physical repairability does not imply supportability
+[19425] A component may be replaceable in principle while no approved spare, substitute, skill, or delivery path exists before the deadline.
+[19426] THM-DYN99 — Obsolescence can empty the repair fiber
+[19427] Remove the only supported replacement and substitute path from a previously nonempty repair fiber.
+[19428] THM-DYN100 — Retrofit invalidates dependent certificates
+[19429] A retrofit changing geometry, ports, topology, route envelopes, or control state changes roots of PCSIR, PCROUTE, commissioning, and lifecycle proofs. Complete dependency invalidation follows.
+[19430] THM-DYN101 — Small edits can accumulate into significant drift
+[19431] Three setpoint changes of \(0.4\) produce cumulative drift \(1.2\), exceeding a limit of \(1\), although each edit is below \(1\).
+[19432] THM-DYN102 — Shutdown is not safe decommissioning
+[19433] A machine may be switched off while pressure, refrigerant, stored electrical energy, or unsupported load remains.
+[19435] K. Environmental Dynamics
+[19436] THM-DYN103 — Equal energy can yield unequal emissions
+[19437] For equal \(100\) MWh loads, allocating \(80\) MWh to a factor \(0.8\) and \(20\) to \(0.2\) yields \(68\), while the reverse yields \(32\).
+[19438] THM-DYN104 — Lower energy need not imply lower carbon
+[19439] Design A uses \(90\) MWh entirely at factor \(1\), emitting \(90\). Design B uses \(100\) MWh at factor \(0.2\), emitting \(20\).
+[19440] THM-DYN105 — Lower operational carbon need not imply lower whole-life carbon
+[19441] A low-operational-carbon design may require a sufficiently large initial and replacement burden to exceed the alternative whole-life total.
+[19442] THM-DYN106 — Replacement can reverse embodied advantage
+[19443] Let A initial burden \(50\), replacement burden \(40\) every five years over twenty years; B initial burden \(100\), no replacement. A’s total \(170\) exceeds B’s \(100\).
+[19444] THM-DYN107 — Functional-unit changes can reverse comparison
+[19445] A building with total burden \(90\) for \(100\) service units has intensity \(0.9\); one with total \(100\) for \(200\) units has intensity \(0.5\).
+[19446] THM-DYN108 — Boundary changes invalidate direct comparison
+[19447] Adding or removing replacement, maintenance, end-of-life, or external supply processes changes the proposition computed.
+[19448] THM-DYN109 — Refrigerant can dominate electricity in a synthetic case
+[19449] Let electricity impact be \(20\), refrigerant leak mass \(5\), factor \(10\). Refrigerant impact \(50\) exceeds electricity impact.
+[19450] THM-DYN110 — Future grid decarbonization is scenario-relative
+[19451] Two scenarios with identical current state and different future \(\gamma_{\mathrm{grid}}(t)\) produce different lifecycle emissions.
+[19453] L. External Systems
+[19454] THM-DYN111 — Individual peaks do not determine coincident peak
+[19455] Two loads with peaks \(10\) at disjoint times have peak sum \(20\) and portfolio peak \(10\); synchronized peaks give \(20\).
+[19456] THM-DYN112 — Local interface feasibility does not imply network feasibility
+[19457] Each project may be below its connection limit while their combined demand exceeds an upstream cut.
+[19458] THM-DYN113 — External contracts are direction-, time-, and version-dependent
+[19459] A \(10\)-unit import contract does not imply a \(10\)-unit export right, nor availability after expiry.
+[19460] THM-DYN114 — Scenario-wise aid plans need not form one policy
+[19461] Before the affected region is observed, one mobile resource must be sent east in one scenario and west in another. No common prepositioning action succeeds in both.
+[19462] THM-DYN115 — Common upstream failure defeats independent-looking redundancy
+[19463] Two building feeds sharing one substation fail together when the substation fails.
+[19464] THM-DYN116 — Cross-network cascade can follow one initiating event
+[19465] Power loss disables pumping; water loss disables cooling; cooling loss disables communication equipment.
+[19466] THM-DYN117 — Positive external slack in one scenario does not prove robust slack
+[19467] Another admissible scenario can have lower capacity or higher coincident flow.
+[19468] THM-DYN118 — Optimization may shift external burden
+[19469] Load shifting can reduce local cost while increasing regional peak or marginal emissions.
+[19471] M. Dynamic Decomposition
+[19472] THM-DYN119 — Classical scenario-Benders cut validity
+[19473] For:
+[19474] \[ Q_s(x)= \min_y\{c_s^\top y:W_sy\ge h_s-T_sx,\ y\ge0\}, \]
+[19475] let \(\pi_s\ge0\), \(W_s^\top\pi_s\le c_s\). Weak duality gives:
+[19476] \[ Q_s(x)\ge\pi_s^\top(h_s-T_sx). \]
+[19477] Multiplying by \(p_s\ge0\) and summing yields:
+[19478] \[ \sum_sp_sQ_s(x) \ge \sum_sp_s\pi_s^\top(h_s-T_sx). \]
+[19479] Thus the aggregate cut is valid when recourse structure and probabilities remain applicable. \(\square\)
+[19480] THM-DYN120 — Logic scenario cut validity
+[19481] If a checked implication proves that master/history literals \(L\) force scenario-node infeasibility, excluding every assignment satisfying all literals in \(L\) preserves every feasible policy.
+[19482] THM-DYN121 — Probability aggregation requires probabilistic semantics
+[19483] The weighted sum \(\sum_sp_sQ_s\) represents expectation only when \(p_s\) is an applicable probability law. Without that, it is merely an authorized weighting.
+[19484] THM-DYN122 — Convex SDDP cuts lower-bound cost-to-go
+[19485] At state \(\bar x\), let a convex stage recourse problem have dual solution \(\pi\) and parameter-affine right side. Weak duality gives an affine lower bound:
+[19486] \[ V_t(x)\ge\alpha+\beta^\top x. \]
+[19487] The pointwise maximum of valid lower bounds remains a lower bound. \(\square\)
+[19488] THM-DYN123 — SDDP does not directly certify discrete PCJCD rewrites
+[19489] Discrete topology and geometry rewrites make the cost-to-go nonconvex and change recourse structure. The convex subgradient cut theorem of THM-DYN122 does not apply without a valid convexification or exact mixed-integer extension.
+[19490] THM-DYN124 — Progressive hedging converges under its convex assumptions
+[19491] Assume finite scenarios, closed proper convex scenario objectives, nonempty solution set, a linear nonanticipativity subspace, positive penalty, and exact scenario solves. Progressive hedging is the proximal-point/Douglas–Rachford splitting of the maximal monotone operators associated with the scenario objective and consensus subspace. Firm nonexpansiveness and existence of a saddle point imply convergence of primal consensus residuals to zero and objective values to the convex optimum. \(\square\)
+[19492] THM-DYN125 — Progressive hedging need not solve mixed-integer JCD globally
+[19493] A nonconvex consensus problem can have multiple discrete local fixed points. Scenario subproblem minimizers can agree at a suboptimal integer consensus; convex proximal convergence no longer supplies a global theorem.
+[19494] THM-DYN126 — Complete adversarial separation closes a robust constraint
+[19495] If a globally complete oracle returns:
+[19496] \[ v^\star=\max_{\omega\in\Omega}g(\Pi,\omega)\le0, \]
+[19497] then \(g(\Pi,\omega)\le0\) for every \(\omega\in\Omega\).
+[19498] THM-DYN127 — Heuristic adversarial failure proves no robustness
+[19499] Failure of an incomplete search to find \(\omega\) with \(g>0\) does not establish that the maximum is nonpositive.
+[19500] THM-DYN128 — Scenario reduction carries only its proved error guarantee
+[19501] If:
+[19502] \[ |J(P)-J(\widehat P)|\le\varepsilon \]
+[19503] is proved for a declared objective class, the reduced model certifies only that bound. It does not certify preservation of unrelated chance, tail, or robust claims.
+[19504] THM-DYN129 — Nonnested lower bounds need not be monotone
+[19505] Two relaxations can omit different constraints, producing lower bounds \(L_1,L_2\) with neither uniformly larger.
+[19506] THM-DYN130 — Policy-cache reuse requires information-structure identity
+[19507] A cached action map indexed by one history partition may become anticipative or incomplete when the observation model or decision timing changes.
+[19509] N. Incremental and Workstation Semantics
+[19510] THM-DYN131 — Exact scenario-node reuse under root equality
+[19511] If state, history, transition, uncertainty, policy, objective, evidence, dependency, and checker roots are identical, deterministic node checking returns the same result.
+[19512] THM-DYN132 — Stale probabilities invalidate expectation and CVaR
+[19513] Expectation and CVaR depend on probability weights. A changed probability vector changes the mathematical functional even when losses are unchanged.
+[19514] THM-DYN133 — Changed uncertainty invalidates robust closure
+[19515] A certificate proving \(g\le0\) on \(\Omega_1\) does not prove it on enlarged \(\Omega_2\) without checking \(\Omega_2\setminus\Omega_1\).
+[19516] THM-DYN134 — Changed observation model invalidates policy quotient
+[19517] A new sensor can split old history classes; a removed sensor can merge them. Policies and node equivalence must be recomputed.
+[19518] THM-DYN135 — Incremental dynamic recertification equals cold checking

@@ -1,0 +1,334 @@
+HISTORICAL ORIGINAL 1-10; source SHA256 0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970
+NATIVE PARAGRAPHS AND ATTACHED TABLE ROWS; NO IMPLIED RECONSTRUCTION EQUIVALENCE
+[1-10:P6264; UTF16 247815] Same-block soundness
+[1-10:P6265; UTF16 247836] Take states (p,q) in one reported block.
+[1-10:P6266; UTF16 247877] Direct-output uniformity gives equal terminal experiment outcomes.
+[1-10:P6267; UTF16 247944] Operation stability implies that every primitive context maps same-block inputs to same-block outputs.
+[1-10:P6268; UTF16 248047] By induction on the primitive decomposition length from LEM-MN1, every admitted context maps (p) and (q) into the same reported block.
+[1-10:P6269; UTF16 248182] The terminal outputs after that context are therefore equal.
+[1-10:P6270; UTF16 248243] Hence no admitted experiment distinguishes (p) and (q), so
+[1-10:P6272; UTF16 248329] Different-block completeness
+[1-10:P6273; UTF16 248358] For any two distinct blocks, the checker has verified a complete experiment producing different outcomes for their representatives.
+[1-10:P6274; UTF16 248490] Operation stability and same-block soundness imply that the witness result is uniform for all members of each respective block.
+[1-10:P6275; UTF16 248618] Therefore no term in one block is contextually equivalent to a term in the other.
+[1-10:P6276; UTF16 248700] Thus reported blocks are exactly the contextual-equivalence classes.
+[1-10:P6277; UTF16 248769] Operation consistency then makes the quotient transitions well defined.
+[1-10:P6279; UTF16 248843] Information required for coarseness
+[1-10:P6280; UTF16 248879] Uniformity and stability prove that a partition is a sound congruence.
+[1-10:P6281; UTF16 248950] To prove it is the coarsest such congruence, the certificate additionally needs pairwise distinguishability or an equivalent refinement proof DAG demonstrating that no two reported blocks can be merged.
+[1-10:P6285; UTF16 249156] 21. Complexity Analysis
+[1-10:P6286; UTF16 249180] 21.1 Size parameters
+[1-10:P6288; UTF16 249206] |\mathsf{Ty}|, ]
+[1-10:P6289; UTF16 249223] \sum_\tau n_\tau, ]
+[1-10:P6290; UTF16 249243] |\mathsf{Op}|, ]
+[1-10:P6291; UTF16 249260] \max_f \mathsf{arity}(f), ]
+[1-10:P6292; UTF16 249288] \sum_f \prod_{i=1}^{\mathsf{arity}(f)} n_{\tau_i}, ]
+[1-10:P6293; UTF16 249341] \text{number of explicit primitive-action edges}, ]
+[1-10:P6294; UTF16 249393] \sum_\tau n_\tau |\mathfrak E_\tau^0|, ]
+[1-10:P6295; UTF16 249434] \sum_\tau q_\tau, \qquad q_\tau=|Q_\tau|, ]
+[1-10:P6296; UTF16 249478] n^\star. ]
+[1-10:P6297; UTF16 249489] For fully materialized operations,
+[1-10:P6298; UTF16 249524] [ A\le rM. ]
+[1-10:P6302; UTF16 249540] 21.2 Simple synchronous implementation
+[1-10:P6303; UTF16 249579] PRO-MN1 — Synchronous complexity
+[1-10:P6304; UTF16 249612] Assuming direct outputs and primitive actions are explicitly available:
+[1-10:P6305; UTF16 249684] initialization requires [ O(D_0); ]
+[1-10:P6306; UTF16 249720] each refinement round requires expected [ O(A+N) ] time with hashing;
+[1-10:P6307; UTF16 249790] deterministic comparison sorting requires [ O((A+N)\log N) ] per round.
+[1-10:P6308; UTF16 249862] Thus expected total refinement time is
+[1-10:P6309; UTF16 249901] [ O \left( D_0 + R(A+N) \right), ]
+[1-10:P6310; UTF16 249936] and a deterministic comparison-based bound is
+[1-10:P6311; UTF16 249982] [ O \left( D_0 + R(A+N)\log N \right). ]
+[1-10:P6312; UTF16 250023] Operation-table construction adds (O(M)).
+[1-10:P6313; UTF16 250065] The RAM requirement is
+[1-10:P6314; UTF16 250088] [ O(M+A+D_0+N) ]
+[1-10:P6315; UTF16 250105] when every table is stored explicitly.
+[1-10:P6317; UTF16 250150] Every round scans each state and every outgoing primitive-action edge once to construct signatures. Hash insertion is expected constant time per signature component. Deterministic sorting introduces the logarithmic factor.
+[1-10:P6318; UTF16 250373] THM-MN7 bounds the number of rounds. ∎
+[1-10:P6322; UTF16 250415] 21.3 Worklist refinement
+[1-10:P6323; UTF16 250440] The primitive action system is a deterministic typed labeled transition system:
+[1-10:P6324; UTF16 250520] [ x \xrightarrow{K} K(x). ]
+[1-10:P6325; UTF16 250548] Build inverse transition indexes
+[1-10:P6326; UTF16 250581] {x(x)\in B}. ]
+[1-10:P6327; UTF16 250596] A smaller-half worklist splitter can then refine predecessor blocks.
+[1-10:P6328; UTF16 250665] PRO-MN2 — Indexed worklist complexity
+[1-10:P6329; UTF16 250703] Assume:
+[1-10:P6330; UTF16 250711] every primitive unary action is explicitly materialized;
+[1-10:P6331; UTF16 250768] inverse action indexes are available;
+[1-10:P6332; UTF16 250806] block membership is constant-time;
+[1-10:P6333; UTF16 250841] smaller-half scheduling is used;
+[1-10:P6334; UTF16 250874] direct output labels admit constant-time hashing or canonical integer IDs.
+[1-10:P6335; UTF16 250949] Then partition refinement can be implemented in
+[1-10:P6336; UTF16 250997] [ O \left( D_0 + (A+N)\log N \right) ]
+[1-10:P6337; UTF16 251036] time after operation and inverse-index construction, using
+[1-10:P6338; UTF16 251095] [ O(A+N+D_0) ]
+[1-10:P6339; UTF16 251110] working memory.
+[1-10:P6340; UTF16 251126] Proof sketch with explicit amortization
+[1-10:P6341; UTF16 251166] Whenever a block is split, only the smaller child is inserted as a new splitter for each relevant inverse action list.
+[1-10:P6342; UTF16 251285] A state can belong to a selected smaller child at most
+[1-10:P6343; UTF16 251340] [ \lfloor\log_2N\rfloor+1 ]
+[1-10:P6344; UTF16 251368] times because each such event at least halves the size of its containing block.
+[1-10:P6345; UTF16 251448] An incoming primitive-action edge is scanned only when its target lies in a selected splitter. Therefore every edge is scanned (O(\log N)) times.
+[1-10:P6346; UTF16 251594] The remaining block bookkeeping contributes (O(N\log N)).
+[1-10:P6347; UTF16 251652] Typed sorts only restrict which edges and blocks may interact; they do not invalidate the amortization.
+[1-10:P6348; UTF16 251756] Higher-arity operations have already been instantiated into unary primitive actions. Their cost appears in
+[1-10:P6351; UTF16 251878] This optimized bound is conditional on explicit primitive-action materialization. It is not a polynomial bound in the compact source grammar.
+[1-10:P6355; UTF16 252023] 21.4 Quotient transition size
+[1-10:P6356; UTF16 252053] The quotient operation-table size is
+[1-10:P6357; UTF16 252090] \sum_f \prod_i q_{\tau_i}. ]
+[1-10:P6359; UTF16 252125] [ q_{\tau_i}\le n_{\tau_i}, ]
+[1-10:P6361; UTF16 252163] [ M_Q\le M. ]
+[1-10:P6362; UTF16 252177] It may nevertheless be large for high-arity operations.
+[1-10:P6366; UTF16 252236] 21.5 Certificate size
+[1-10:P6367; UTF16 252258] Explicit pairwise certificate
+[1-10:P6368; UTF16 252288] A context for every pair of quotient states can require
+[1-10:P6369; UTF16 252344] [ O(Q^2R) ]
+[1-10:P6370; UTF16 252356] primitive-context symbols in the worst case.
+[1-10:P6371; UTF16 252401] Refinement proof DAG
+[1-10:P6372; UTF16 252422] A split DAG stores:
+[1-10:P6373; UTF16 252442] at most (N-b_0) split nodes;
+[1-10:P6374; UTF16 252471] one primitive action and predecessor reference per recursive split;
+[1-10:P6375; UTF16 252539] terminal-output leaves.
+[1-10:P6376; UTF16 252563] Its structural size is polynomial in the explicit refinement history, although fully expanding a separate witness for every quotient-state pair may still be quadratic.
+[1-10:P6380; UTF16 252734] 21.6 Compact grammar complexity
+[1-10:P6381; UTF16 252766] The preceding algorithms are polynomial in (N), (A), and (M).
+[1-10:P6382; UTF16 252828] They need not be polynomial in the compact source description.
+[1-10:P6383; UTF16 252891] A short grammar can denote:
+[1-10:P6384; UTF16 252919] exponentially many realizations;
+[1-10:P6385; UTF16 252952] doubly exponentially many realization families;
+[1-10:P6386; UTF16 253000] exponentially many denotational states;
+[1-10:P6387; UTF16 253040] an enormous operation table.
+[1-10:P6389; UTF16 253075] [ \text{polynomial in the explicit finite universe} ]
+[1-10:P6390; UTF16 253129] does not imply
+[1-10:P6391; UTF16 253144] [ \text{polynomial in the source grammar size}. ]
+[1-10:P6392; UTF16 253194] Prompt 2 proves exact finite computability, not practical scalability from compact input.
+[1-10:P6396; UTF16 253287] 22. Information-Theoretic Lower Bounds
+[1-10:P6397; UTF16 253326] THM-MN15 — Exact State Information Lower Bound
+[1-10:P6398; UTF16 253373] Fix an interface type (\tau) and let
+[1-10:P6399; UTF16 253410] [ q_\tau=|Q_\tau|. ]
+[1-10:P6400; UTF16 253431] Any exact compositional summary using a fixed-width (b)-bit state code must satisfy
+[1-10:P6401; UTF16 253515] [ b \ge \left\lceil \log_2q_\tau \right\rceil. ]
+[1-10:P6402; UTF16 253564] The same lower bound applies to the maximum codeword length of any injective prefix-free binary encoding.
+[1-10:P6404; UTF16 253676] Exactness requires different contextual-equivalence classes to receive different summary states.
+[1-10:P6405; UTF16 253773] Therefore at least (q_\tau) distinct codes are required.
+[1-10:P6406; UTF16 253830] A fixed-width (b)-bit encoding has at most
+[1-10:P6407; UTF16 253873] [ 2^b ]
+[1-10:P6408; UTF16 253881] distinct codes. Hence
+[1-10:P6409; UTF16 253903] [ 2^b\ge q_\tau, ]
+[1-10:P6410; UTF16 253922] which implies
+[1-10:P6411; UTF16 253936] [ b\ge\lceil\log_2q_\tau\rceil. ]
+[1-10:P6412; UTF16 253970] For a prefix-free code with maximum length (b), Kraft’s inequality gives
+[1-10:P6413; UTF16 254043] [ q_\tau2^{-b}\le1, ]
+[1-10:P6414; UTF16 254065] hence the same bound.
+[1-10:P6419; UTF16 254092] COR-MN15A — Exact state-count lower bound
+[1-10:P6420; UTF16 254134] Every reachable exact or sound experiment-sufficient representation satisfies
+[1-10:P6421; UTF16 254212] [ |A_\tau| \ge q_\tau. ]
+[1-10:P6422; UTF16 254237] This is COR-MN4A.
+[1-10:P6424; UTF16 254270] The quantity
+[1-10:P6425; UTF16 254283] [ \log_2q_\tau ]
+[1-10:P6426; UTF16 254300] is the irreducible exact information needed to identify the decision-relevant contextual state of a subsystem boundary of type (\tau).
+[1-10:P6427; UTF16 254435] It is not yet a separator-width theory. It is the local information lower bound on which Prompt 3 can build.
+[1-10:P6431; UTF16 254547] 23. No-Free-Compression Results
+[1-10:P6432; UTF16 254579] PRO-MN3 — Identity quotient
+[1-10:P6433; UTF16 254607] If every two distinct terms of type (\tau) are distinguished by some admitted experiment, then
+[1-10:P6434; UTF16 254702] |T_{\Sigma,\tau}| ]
+[1-10:P6435; UTF16 254722] for a finite term carrier, or every class is a singleton in the general carrier.
+[1-10:P6437; UTF16 254809] The hypothesis states:
+[1-10:P6438; UTF16 254832] [ p\ne q \implies p\not\equiv_{\mathcal T}q. ]
+[1-10:P6439; UTF16 254879] Therefore contextual equivalence is equality. ∎
+[1-10:P6443; UTF16 254930] PRO-MN4 — Trivial quotient
+[1-10:P6444; UTF16 254957] If no admitted experiment distinguishes any pair of compatible terms of type (\tau), then
+[1-10:P6445; UTF16 255047] [ |Q_\tau|=1 ]
+[1-10:P6446; UTF16 255062] provided the carrier is nonempty.
+[1-10:P6448; UTF16 255102] Every pair is contextually equivalent by definition, so there is one equivalence class. ∎
+[1-10:P6452; UTF16 255195] PRO-MN5 — Experiment-theory refinement monotonicity
+[1-10:P6454; UTF16 255255] [ \mathfrak E_\tau^{(1)} \subseteq \mathfrak E_\tau^{(2)} ]
+[1-10:P6457; UTF16 255336] [ \equiv_{\mathcal T_2,\tau} \subseteq \equiv_{\mathcal T_1,\tau}. ]
+[1-10:P6459; UTF16 255411] If (p\equiv_{\mathcal T_2}q), all experiments in the larger theory agree.
+[1-10:P6460; UTF16 255485] Every experiment in (\mathcal T_1) also belongs to (\mathcal T_2), so all (\mathcal T_1)-experiments agree.
+[1-10:P6461; UTF16 255593] Thus (p\equiv_{\mathcal T_1}q). ∎
+[1-10:P6463; UTF16 255641] [ |Q_{\mathcal T_2,\tau}| \ge |Q_{\mathcal T_1,\tau}|. ]
+[1-10:P6464; UTF16 255698] Adding hazards, evidence obligations, intent distinctions, or stakeholder decisions can only preserve or split classes.
+[1-10:P6468; UTF16 255821] COR-MN5A — Context restriction monotonicity
+[1-10:P6469; UTF16 255865] If the admitted context set is restricted, contextual equivalence can only become coarser, and the quotient can only stay the same size or shrink.
+[1-10:P6473; UTF16 256015] Safety cost of richness
+[1-10:P6474; UTF16 256039] A richer model of reality may identify:
+[1-10:P6475; UTF16 256079] previously omitted failure modes;
+[1-10:P6476; UTF16 256113] evidence applicability distinctions;
+[1-10:P6477; UTF16 256150] maintenance constraints;
+[1-10:P6478; UTF16 256175] code interpretations;
+[1-10:P6479; UTF16 256197] correlated scenarios.
+[1-10:P6480; UTF16 256219] Each new admitted distinction can split quotient classes.
+[1-10:P6481; UTF16 256277] That reduction in compression is not an algorithmic defect. It is the exact information cost of preserving more of reality.
+[1-10:P6485; UTF16 256404] 24. Finite Decision-Quotient Algebra Compilation
+[1-10:P6486; UTF16 256453] 24.1 Compiled artifact
+[1-10:P6487; UTF16 256476] DEF-MN22 — Finite Decision-Quotient Algebra
+[1-10:P6488; UTF16 256520] An FDQA contains:
+[1-10:P6489; UTF16 256538] sorted quotient-state sets [ (Q_\tau)_\tau; ]
+[1-10:P6490; UTF16 256584] quotient operation tables [ (\delta_f^Q)_f; ]
+[1-10:P6491; UTF16 256630] terminal output tables;
+[1-10:P6492; UTF16 256654] experiment evaluators;
+[1-10:P6493; UTF16 256677] one representative source term per reachable state;
+[1-10:P6494; UTF16 256729] witness-extraction recipes;
+[1-10:P6495; UTF16 256757] evidence summaries;
+[1-10:P6496; UTF16 256777] distinguishing-context certificates;
+[1-10:P6497; UTF16 256814] source, model, scenario, intent, and evidence provenance;
+[1-10:P6498; UTF16 256872] canonicalization metadata.
+[1-10:P6502; UTF16 256902] 24.2 Bottom-up compilation
+[1-10:P6504; UTF16 256936] [ \mathsf{Compile}\tau : T{\Sigma,\tau} \to Q_\tau ]
+[1-10:P6505; UTF16 256989] recursively:
+[1-10:P6506; UTF16 257002] For a nullary symbol (a),
+[1-10:P6507; UTF16 257028] [a]. ]
+[1-10:P6509; UTF16 257039] [ p=f(p_1,\ldots,p_k), ]
+[1-10:P6510; UTF16 257064] \delta_f^Q \left( \mathsf{Compile}(p_1), \ldots, \mathsf{Compile}(p_k) \right). ]
+[1-10:P6511; UTF16 257146] DAG implementations may memoize this evaluation by LEM-MN0.
+[1-10:P6515; UTF16 257209] 25. Compilation and Experiment-Preservation Proofs
+[1-10:P6516; UTF16 257260] THM-MN16 — Compilation Correctness
+[1-10:P6517; UTF16 257295] For every admissible term (p),
+[1-10:P6520; UTF16 257352] Proceed by structural induction on (p).
+[1-10:P6521; UTF16 257392] For a nullary term (a), correctness is the definition of its compiled state.
+[1-10:P6523; UTF16 257477] [ p=f(p_1,\ldots,p_k) ]
+[1-10:P6524; UTF16 257501] and the result holds for every child:
+[1-10:P6525; UTF16 257539] [ \mathsf{Compile}(p_i)=[p_i]. ]
+[1-10:P6527; UTF16 257577] [ \begin{aligned} \mathsf{Compile}(p) &= \delta_f^Q \left( \mathsf{Compile}(p_1),\ldots,\mathsf{Compile}(p_k) \right)\ &= \delta_f^Q([p_1],\ldots,[p_k])\ &= [f(p_1,\ldots,p_k)]\ &= [p]. \end{aligned} ]
+[1-10:P6532; UTF16 257784] THM-MN17 — Experiment Preservation
+[1-10:P6533; UTF16 257819] For every experiment (e) and term (p),
+[1-10:P6536; UTF16 257885] Decompose the experiment context using LEM-MN1:
+[1-10:P6537; UTF16 257933] K_n\diamond\cdots\diamond K_1. ]
+[1-10:P6538; UTF16 257966] Each primitive context induces a quotient transition
+[1-10:P6539; UTF16 258019] [ \delta_{K_i}^Q. ]
+[1-10:P6540; UTF16 258039] By repeated application of THM-MN16 and quotient operation correctness,
+[1-10:P6541; UTF16 258111] [C[p]]. ]
+[1-10:P6542; UTF16 258121] The FDQA terminal output table returns
+[1-10:P6543; UTF16 258160] [ \mathsf{Out}_{e_0}(C[p]). ]
+[1-10:P6544; UTF16 258190] By definition of complete experiment evaluation, this is
+[1-10:P6550; UTF16 258273] THM-MN18 — Substitution Without Reanalysis
+[1-10:P6552; UTF16 258319] \mathsf{Compile}(q), ]
+[1-10:P6553; UTF16 258342] then for every legal outer context (C) and every terminal experiment (e_0),
+[1-10:P6554; UTF16 258418] \mathsf{Out}_{(C,e_0)}(q). ]
+[1-10:P6555; UTF16 258447] Moreover, compiled evaluation of (C[p]) and (C[q]) reaches the same quotient state.
+[1-10:P6557; UTF16 258537] Compilation correctness gives
+[1-10:P6561; UTF16 258617] THM-F1.1 gives
+[1-10:P6562; UTF16 258632] [ C[p]\equiv_{\mathcal T}C[q]. ]
+[1-10:P6563; UTF16 258665] Hence their terminal experiment outcomes agree.
+[1-10:P6564; UTF16 258713] At the compiled level, deterministic quotient transitions apply the same context operations to the same initial quotient state, so the resulting quotient states are equal.
+[1-10:P6566; UTF16 258887] This is the exact finite mathematical form of ANANKE’s substitution promise:
+[1-10:P6567; UTF16 258964] Once two subsystems have the same FDQA state, every admitted outer engineering analysis may reuse that state without reconsidering which representative subsystem was inserted.
+[1-10:P6571; UTF16 259143] 26. Canonicalization
+[1-10:P6572; UTF16 259164] 26.1 Canonical up to isomorphism
+[1-10:P6573; UTF16 259197] THM-MN5 and THM-MN13 establish canonicality up to a unique source-commuting isomorphism.
+[1-10:P6574; UTF16 259286] This is the strongest representation-independent theorem.
+[1-10:P6578; UTF16 259347] 26.2 Deterministic numbering relative to an input encoding
+[1-10:P6579; UTF16 259406] DEF-MN23 — Input-relative canonical numbering
+[1-10:P6580; UTF16 259452] Assume canonical orderings of:
+[1-10:P6582; UTF16 259490] carrier states;
+[1-10:P6583; UTF16 259506] primitive actions;
+[1-10:P6584; UTF16 259525] terminal outcomes;
+[1-10:P6585; UTF16 259544] source representatives.
+[1-10:P6586; UTF16 259568] At every refinement round:
+[1-10:P6587; UTF16 259595] serialize signatures in that fixed order;
+[1-10:P6588; UTF16 259637] sort unique signatures lexicographically;
+[1-10:P6589; UTF16 259679] assign consecutive block IDs in sorted order.
+[1-10:P6590; UTF16 259725] The resulting quotient serialization is deterministic relative to the supplied canonical input encoding.
+[1-10:P6594; UTF16 259833] 26.3 Absolute residual serialization
+[1-10:P6596; UTF16 259874] the semantic experiment set is canonically enumerated;
+[1-10:P6597; UTF16 259929] every outcome has a canonical serialization;
+[1-10:P6598; UTF16 259974] then each quotient state has the canonical key
+[1-10:P6599; UTF16 260021] \mathsf{Serialize} \left( \mathsf{Res}_{\mathcal T}(p) \right). ]
+[1-10:P6600; UTF16 260087] Different quotient classes have different residuals, so the key is injective.
+[1-10:P6601; UTF16 260165] Sorting states by this key yields a byte-for-byte canonical artifact.
+[1-10:P6602; UTF16 260235] This construction can be prohibitively large because it serializes the full residual table.
+[1-10:P6606; UTF16 260330] 26.4 Graph-isomorphism limitation
+[1-10:P6607; UTF16 260364] Without a canonical experiment enumeration or canonical source carrier, turning an arbitrary quotient transition hypergraph into a byte-identical serialization is a colored, many-sorted directed-hypergraph canonicalization problem.
+[1-10:P6608; UTF16 260596] That problem is not trivial and may contain graph-isomorphism-hard instances.
+[1-10:P6609; UTF16 260674] A practical implementation may therefore guarantee:
+[1-10:P6610; UTF16 260726] deterministic output for a fixed canonical input encoding;
+[1-10:P6611; UTF16 260785] mathematical canonicality up to isomorphism;
+[1-10:P6612; UTF16 260830] without claiming inexpensive absolute byte-level canonicalization.
+[1-10:P6616; UTF16 260900] 27. Complete Worked Hotel-Bay Example
+[1-10:P6617; UTF16 260938] 27.1 Base universe
+[1-10:P6618; UTF16 260957] Prompt 1 fixed:
+[1-10:P6619; UTF16 260973] [ w=3.6\text{ m}, \qquad a=\mathsf{corridorAccess}. ]
+[1-10:P6620; UTF16 261027] The remaining binary variables are:
+[1-10:P6621; UTF16 261063] [ (s,g,h,e,v,c,b,d). ]
+[1-10:P6622; UTF16 261086] Thus the pre-guard instantiated carrier contains
+[1-10:P6623; UTF16 261135] [ 2^8=256 ]
+[1-10:P6624; UTF16 261147] terms.
+[1-10:P6625; UTF16 261154] The conflict predicates are:
+[1-10:P6626; UTF16 261183] [ \mathsf{BeamConflict} \iff (g=O)\land(h=W)\land(d=H), ]
+[1-10:P6627; UTF16 261241] [ \mathsf{SequenceConflict} \iff (c=T)\land(h=C)\land(d=H). ]
+[1-10:P6628; UTF16 261303] They are disjoint because the first requires (h=W) and the second requires (h=C).
+[1-10:P6629; UTF16 261385] Each conflict fixes three binary variables and leaves five free, so each contains
+[1-10:P6630; UTF16 261467] [ 2^5=32 ]
+[1-10:P6632; UTF16 261485] Therefore the feasible carrier has
+[1-10:P6633; UTF16 261520] [ 256-32-32=192 ]
+[1-10:P6634; UTF16 261538] terms, agreeing with Prompt 1.
+[1-10:P6638; UTF16 261572] 27.2 Behavioral variables
+[1-10:P6639; UTF16 261598] The bracket variable (b) and equipment variable (e) do not enter the direct numerical formulas.
+[1-10:P6640; UTF16 261694] For feasible states define:
+[1-10:P6641; UTF16 261722] (C,F,T,O), ]
+[1-10:P6643; UTF16 261742] 2[h=W] + [v=1] + [c=T] + 2[d=L], ]
+[1-10:P6644; UTF16 261777] 20 + 4[h=C] + 3[d=H] + 2[s=R], ]
+[1-10:P6645; UTF16 261810] [h=W], ]
+[1-10:P6650; UTF16 261867] 27.3 Exact count of direct profiles
+[1-10:P6651; UTF16 261903] There are six behavior variables in (z):
+[1-10:P6652; UTF16 261944] [ (s,g,h,v,c,d). ]
+[1-10:P6653; UTF16 261963] There are (64) assignments before conflicts.
+[1-10:P6654; UTF16 262008] The beam conflict excludes:
+[1-10:P6655; UTF16 262036] [ 2^3=8 ]
+[1-10:P6656; UTF16 262046] assignments over these six variables.
+[1-10:P6657; UTF16 262084] The sequence conflict excludes another (8), disjointly.
+[1-10:P6658; UTF16 262140] Therefore there are
+[1-10:P6659; UTF16 262160] [ 64-8-8=48 ]
+[1-10:P6660; UTF16 262174] feasible behavior tuples.
+[1-10:P6661; UTF16 262200] The map from these tuples to (z) is injective.
+[1-10:P6662; UTF16 262247] Proof of injectivity
+[1-10:P6663; UTF16 262268] From
+[1-10:P6664; UTF16 262273] [ O ]
+[1-10:P6665; UTF16 262279] we recover (v).
+[1-10:P6666; UTF16 262295] The fan-pressure value is
+[1-10:P6667; UTF16 262321] 20+4(1-h)+3d+2s. ]
+[1-10:P6668; UTF16 262340] The eight values corresponding to ((h,d,s)) are:
+[1-10:P6669; UTF16 262389] [ 20,22,23,25,24,26,27,29, ]
+[1-10:P6670; UTF16 262418] all distinct. Therefore (F) uniquely determines ((h,d,s)).
+[1-10:P6671; UTF16 262477] Given (h),
+[1-10:P6672; UTF16 262488] 2c+g. ]
+[1-10:P6673; UTF16 262496] The four values of (2c+g) are (0,1,2,3), so (T) uniquely determines ((c,g)).
+[1-10:P6674; UTF16 262573] Thus ((F,T,O)), and hence (z), uniquely determines all six behavior variables.
+[1-10:P6675; UTF16 262652] Therefore there are exactly (48) feasible direct profiles (z).
+[1-10:P6679; UTF16 262718] 27.4 Pattern table
+[1-10:P6680; UTF16 262737] For each feasible quadruple ((g,h,c,d)), let (C_0,F_0,T_0) denote the values at (s=0,v=0).
+[1-10:P6681; UTF16 262828] ￼
+ATTACHED TABLE 1736215; native row/column order; 13 rows
+ROW 0: ["Pattern", "(g)", "(h)", "(c)", "(d)", "(C_0)", "(F_0)", "(T_0)"]
+ROW 1: ["1", "0", "0", "0", "0", "102", "24", "30"]
+ROW 2: ["2", "0", "0", "0", "1", "100", "27", "30"]
+ROW 3: ["3", "0", "0", "1", "0", "103", "24", "32"]
+ROW 4: ["4", "0", "1", "0", "0", "100", "20", "29"]
+ROW 5: ["5", "0", "1", "0", "1", "98", "23", "29"]
+ROW 6: ["6", "0", "1", "1", "0", "101", "20", "31"]
+ROW 7: ["7", "0", "1", "1", "1", "99", "23", "31"]
+ROW 8: ["8", "1", "0", "0", "0", "105", "24", "31"]
+ROW 9: ["9", "1", "0", "0", "1", "103", "27", "31"]
+ROW 10: ["10", "1", "0", "1", "0", "106", "24", "33"]
+ROW 11: ["11", "1", "1", "0", "0", "103", "20", "30"]
+ROW 12: ["12", "1", "1", "1", "0", "104", "20", "32"]
+[1-10:P6682; UTF16 262830] For each row:
+[1-10:P6683; UTF16 262844] [ C=C_0+2s+v, ]
+[1-10:P6684; UTF16 262860] [ F=F_0+2s, ]
+[1-10:P6685; UTF16 262874] [ T=T_0, ]
+[1-10:P6686; UTF16 262885] [ O=2-v. ]
+[1-10:P6687; UTF16 262896] This yields (12\cdot4=48) distinct profiles.
+[1-10:P6691; UTF16 262944] 27.5 Typed context sorts
+[1-10:P6692; UTF16 262969] Use three program sorts.
+[1-10:P6693; UTF16 262994] Bay sort
+[1-10:P6694; UTF16 263003] [ \mathsf B ]
+[1-10:P6695; UTF16 263017] contains the 256 pre-guard bay assignments.
+[1-10:P6696; UTF16 263061] Clearance-attached sort
+[1-10:P6697; UTF16 263085] [ \mathsf U ]
+[1-10:P6698; UTF16 263099] represents a bay inserted into an 850 mm equipment-withdrawal envelope.
+[1-10:P6699; UTF16 263171] Replacement-executed project sort
+[1-10:P6700; UTF16 263205] [ \mathsf P ]
+[1-10:P6701; UTF16 263219] represents the same system after a replacement operation is demanded.
+[1-10:P6702; UTF16 263289] Define primitive contexts:
+[1-10:P6703; UTF16 263316] [ K_{850}: \mathsf B\Longrightarrow\mathsf U, ]

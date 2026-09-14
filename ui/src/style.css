@@ -3680,6 +3680,254 @@ button:hover:not(:disabled) {
   box-shadow: 0 1px 4px #263c1920;
   font-weight: 600;
 }
+.shared-network-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.network-example {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 13px;
+  background: #fafbf9;
+}
+.network-example summary,
+.candidate-network summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+.network-example p {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #727970;
+  margin: 12px 0;
+}
+.network-example .form-grid {
+  margin-bottom: 14px;
+}
+.network-json-label > span {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+.network-json {
+  min-height: 300px;
+  max-height: 650px;
+  resize: vertical;
+  font:
+    11px/1.65 "JetBrains Mono",
+    monospace;
+  tab-size: 2;
+}
+.network-input-ready {
+  margin: 0;
+  font-size: 11px;
+  color: #477866;
+}
+.network-diagram {
+  border: 1px solid #dce3da;
+  border-radius: 9px;
+  overflow: hidden;
+  background: #f8faf6;
+}
+.network-diagram-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 13px;
+  border-bottom: 1px solid #e1e6dd;
+}
+.network-diagram-header > span {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: #677567;
+}
+.network-diagram-header select {
+  max-width: 190px;
+  font-size: 11px;
+  border: 1px solid #dbe2d7;
+  border-radius: 5px;
+  padding: 5px 8px;
+  background: #fff;
+}
+.network-diagram svg {
+  display: block;
+  width: 100%;
+  max-height: 255px;
+  background-image: radial-gradient(#cfd8ca 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.network-diagram svg polyline {
+  fill: none;
+  stroke: #598575;
+  stroke-width: 7px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.network-diagram svg .shared polyline {
+  stroke: #315b4c;
+  stroke-width: 10px;
+}
+.network-diagram svg text {
+  fill: #394d3b;
+  font:
+    11px "JetBrains Mono",
+    monospace;
+  stroke: #f8faf6;
+  stroke-width: 4px;
+  paint-order: stroke;
+}
+.network-diagram svg .dimmed {
+  opacity: 0.18;
+}
+.network-diagram svg .selected polyline {
+  stroke: #cc8b38;
+}
+.network-component-table {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #e1e6dd;
+  max-height: 260px;
+  overflow-y: auto;
+}
+.network-component-table button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  padding: 10px 14px;
+  gap: 14px;
+  border: 0;
+  border-bottom: 1px solid #e8ece4;
+  background: transparent;
+  color: #415244;
+  font-size: 11px;
+}
+.network-component-table button:hover,
+.network-component-table button.selected {
+  background: #e9eee4;
+}
+.network-component-table button > span {
+  text-align: right;
+}
+.network-component-table small {
+  display: block;
+  margin-top: 3px;
+  font-size: 9px;
+  font-weight: 400;
+  color: #5d6f59;
+}
+.network-caption {
+  margin: 0;
+  padding: 10px 13px;
+  font-size: 10px;
+  line-height: 1.6;
+  color: #5d6f59;
+}
+.candidate-network {
+  margin: 12px 18px;
+}
+.candidate-network > summary {
+  margin-bottom: 12px;
+  color: #54684f;
+}
+.candidate-network .network-diagram {
+  max-width: 700px;
+}
+.network-service-evidence {
+  margin-top: 15px;
+  padding: 14px;
+  background: #f4f7f0;
+  border: 1px solid #d8e1d1;
+  border-radius: 8px;
+}
+.service-evidence-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.service-evidence-summary > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.service-evidence-summary span {
+  color: #5e705a;
+  font-size: 10px;
+}
+.service-evidence-summary strong {
+  color: #2d513b;
+  font-size: 21px;
+  font-weight: 500;
+}
+.service-evidence-summary strong small {
+  font-size: 10px;
+}
+.service-evidence-condition {
+  padding: 10px 0;
+  border-bottom: 1px solid #dce4d5;
+  font-size: 11px;
+  line-height: 1.65;
+}
+.service-evidence-table {
+  width: 100%;
+  overflow-x: auto;
+}
+.service-evidence-table table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 10px;
+}
+.service-evidence-table caption {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 0 12px;
+}
+.service-evidence-table th,
+.service-evidence-table td {
+  padding: 9px 7px;
+  border-bottom: 1px solid #dce4d5;
+  vertical-align: top;
+}
+.service-evidence-table th {
+  font-weight: 500;
+}
+.service-evidence-table td {
+  font-variant-numeric: tabular-nums;
+}
+.network-service-evidence > details {
+  margin-top: 12px;
+}
+.network-service-evidence dl {
+  margin: 10px 0;
+}
+.network-service-evidence dl > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid #e0e7d8;
+  font-size: 10px;
+}
+.network-service-evidence dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.service-pressure-terms {
+  padding-top: 12px;
+  font-size: 11px;
+}
+.network-service-evidence .network-caption {
+  padding: 12px 0 0;
+}
+
 .joint-editor {
   margin-top: 18px;
 }

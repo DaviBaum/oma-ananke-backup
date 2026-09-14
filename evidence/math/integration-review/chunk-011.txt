@@ -1,0 +1,399 @@
+[13630] Logic-based Benders
+[13632] High on finite exact domain
+[13633] Conflict cuts
+[13634] Excellent
+[13635] Via proved implications
+[13637] Compatible
+[13639] Cut-strength proof can be hard
+[13640] Branch-and-Benders-cut
+[13642] Exact finite closure possible
+[13645] Through materialization oracle
+[13649] Nested exponential search
+[13650] Blackboard orchestration
+[13651] Variable
+[13653] Flexible
+[13656] Weak unless formalized
+[13659] No canonical validity semantics
+[13660] CEGAR co-design
+[13661] High for abstractions
+[13662] Exact under finite refinement
+[13663] Counterexamples
+[13669] Refinement may proliferate
+[13670] Selected JCD hierarchy
+[13672] Exact or bounded by modality
+[13673] Dual, conflict, geometry, and repair channels
+[13675] Candidate PCSIR + PCROUTE
+[13676] Explicit cut kernel
+[13677] Exact finite or partial archive
+[13678] Designed for one workstation
+[13679] Nested search remains hard
+[13682] 10. Final co-design architecture decision
+[13683] The selected architecture is:
+[13684] \[ \boxed{ \textbf{proof-carrying branch-and-Benders-and-CEGAR co-design with nested PCROUTE branch-and-price}. } \]
+[13685] It has six formal layers.
+[13686] Layer 1 — Strategic master
+[13687] Owns finite/discretized strategic decisions and bounded continuous parameters.
+[13688] Layer 2 — Candidate materializer
+[13689] Transforms a master assignment into zero, one, or multiple concrete PCSIR candidates.
+[13690] Layer 3 — PCSIR checker
+[13691] Rejects malformed, unauthorized, semantically inconsistent, or unresolved candidate states.
+[13692] Layer 4 — PCROUTE oracle
+[13693] Produces one of:
+[13694] route witness;
+[13695] exact or bounded route value;
+[13696] typed routing infeasibility;
+[13698] resource cut;
+[13699] branch-local dual;
+[13700] UNKNOWN.
+[13701] Layer 5 — Cut-validity kernel
+[13702] Proves or rejects each proposed master cut over an explicit validity domain.
+[13703] Layer 6 — Outer branch/Pareto controller
+[13704] Maintains:
+[13705] valid master relaxation;
+[13706] branch partitions;
+[13707] scalar or epsilon objective policy;
+[13708] lower bounds;
+[13709] incumbents;
+[13710] Pareto archive;
+[13711] unresolved states;
+[13712] checkpoint lineage.
+[13713] The AI and computation scheduler remain outside all proof roots.
+[13715] 11. Permanent separations
+[13716] \[ \boxed{ \text{master assignment} \neq \text{candidate PCSIR}. } \]\[ \boxed{ \text{abstract candidate} \neq \text{concrete building}. } \]\[ \boxed{ \text{accepted PCSIR} \neq \text{routable design}. } \]\[ \boxed{ \text{routing infeasible at }x \neq \text{all architectural descendants infeasible}. } \]\[ \boxed{ \text{PCROUTE lower bound at }x_0 \neq \text{PCROUTE lower bound at }x_1. } \]\[ \boxed{ \text{route-master dual} \neq \text{architecture gradient}. } \]\[ \boxed{ \text{conflict core} \neq \text{valid master cut}. } \]\[ \boxed{ \text{branch-local cut} \neq \text{global cut}. } \]\[ \boxed{ \text{same viewer scene} \neq \text{same route fiber}. } \]\[ \boxed{ \text{same route cost} \neq \text{same joint objective vector}. } \]\[ \boxed{ \text{weighted-sum optimum} \neq \text{complete Pareto frontier}. } \]\[ \boxed{ \text{AI rewrite proposal} \neq \text{authorized rewrite}. } \]\[ \boxed{ \text{UNKNOWN route state} \neq +\infty. } \]
+[13718] 12. Standing assumptions
+[13720] \[ \Theta_{\mathrm{JCD}} = \left( \Theta_{\mathrm{master}}, \Theta_{\mathrm{sovereignty}}, \Theta_{\mathrm{rewrite}}, \Theta_{\mathrm{materialize}}, \Theta_{\mathrm{PCSIR}}, \Theta_{\mathrm{PCROUTE}}, \Theta_{\mathrm{value}}, \Theta_{\mathrm{cut}}, \Theta_{\mathrm{dual}}, \Theta_{\mathrm{abstraction}}, \Theta_{\mathrm{Pareto}}, \Theta_{\mathrm{AI}}, \Theta_{\mathrm{dependency}}, \Theta_{\mathrm{checkpoint}}, \Theta_{\mathrm{checker}} \right). \]
+[13721] ASSUMP-JCD1 — Accepted baseline PCSIR. The baseline package is independently accepted.
+[13722] ASSUMP-JCD2 — Active RTR theory. Every PCROUTE call uses the active Prompt-2 theory and addenda.
+[13723] ASSUMP-JCD3 — Finite master schema. Every released master schema is finitely serializable.
+[13724] ASSUMP-JCD4 — Typed variables. Every master variable has a type, domain, units, owner, and version.
+[13725] ASSUMP-JCD5 — Semantic identity. Master literals resolve to exact semantic objects.
+[13726] ASSUMP-JCD6 — Version binding. Every candidate, cut, route result, and proof is version-bound.
+[13727] ASSUMP-JCD7 — Protected-root coverage. Every represented protected design root is registered.
+[13728] ASSUMP-JCD8 — Authority fidelity. Authorization predicates faithfully represent active authority.
+[13729] ASSUMP-JCD9 — Rewrite-library fidelity. Each rewrite template has correct declared semantics.
+[13730] ASSUMP-JCD10 — Rewrite precondition soundness. Accepted preconditions imply applicability.
+[13731] ASSUMP-JCD11 — Correspondence soundness. Rewrite identity correspondences are correct.
+[13732] ASSUMP-JCD12 — Materializer soundness. Accepted materialization witnesses establish the resulting PCSIR candidate.
+[13733] ASSUMP-JCD13 — Materialization completeness where claimed. No completeness claim is made without enumerating every represented concretization.
+[13734] ASSUMP-JCD14 — Candidate PCSIR checker soundness.
+[13735] ASSUMP-JCD15 — PCROUTE checker soundness.
+[13736] ASSUMP-JCD16 — Candidate-root binding. Every route result names the exact candidate PCSIR root.
+[13737] ASSUMP-JCD17 — Route-request consistency. Net, mode, scenario, and policy requests match the candidate.
+[13738] ASSUMP-JCD18 — Objective-policy identity. Every scalar, lexicographic, or epsilon search names its policy.
+[13739] ASSUMP-JCD19 — No silent scalarization.
+[13740] ASSUMP-JCD20 — Universal cut validity. Every active cut has a checked universal proposition.
+[13741] ASSUMP-JCD21 — Cut-domain identity. Every cut names its exact domain.
+[13742] ASSUMP-JCD22 — Cut-checker soundness.
+[13743] ASSUMP-JCD23 — Fixed classical-Benders matrix. \(W\) is unchanged on the cut domain where required.
+[13744] ASSUMP-JCD24 — Fixed classical-Benders objective. \(c\) is unchanged where required.
+[13745] ASSUMP-JCD25 — Master-independent dual domain. The dual-feasible region is independent of \(x\) for classical cuts.
+[13746] ASSUMP-JCD26 — Exact RHS parameterization. The parameter enters as declared.
+[13747] ASSUMP-JCD27 — Full pricing closure for exported route-LP duals.
+[13748] ASSUMP-JCD28 — Conflict-to-master implication. A logic cut uses only proved master consequences.
+[13749] ASSUMP-JCD29 — Generalized-Benders convexity.
+[13750] ASSUMP-JCD30 — Generalized-Benders constraint qualification.
+[13751] ASSUMP-JCD31 — Integer/continuous distinction. Discrete route choices are not hidden inside convex claims.
+[13752] ASSUMP-JCD32 — Outer branch partition validity.
+[13753] ASSUMP-JCD33 — Master lower-bound soundness.
+[13754] ASSUMP-JCD34 — Incumbent disposal soundness.
+[13755] ASSUMP-JCD35 — Materialization UNKNOWN discipline.
+[13756] ASSUMP-JCD36 — Routing UNKNOWN discipline.
+[13757] ASSUMP-JCD37 — Abstract-truth soundness.
+[13758] ASSUMP-JCD38 — CEGAR monotonicity.
+[13759] ASSUMP-JCD39 — Experiment-family identity.
+[13760] ASSUMP-JCD40 — Quotient applicability.
+[13761] ASSUMP-JCD41 — Cut-dependency completeness.
+[13762] ASSUMP-JCD42 — Cache-dependency completeness.
+[13763] ASSUMP-JCD43 — Deterministic recertification semantics.
+[13764] ASSUMP-JCD44 — Checkpoint completeness.
+[13765] ASSUMP-JCD45 — AI nonauthority.
+[13766] ASSUMP-JCD46 — Proposal-source independence.
+[13767] ASSUMP-JCD47 — VOC nonauthority.
+[13768] ASSUMP-JCD48 — Pareto objective completeness relative to the declared archive claim.
+[13769] ASSUMP-JCD49 — Interval-enclosure soundness.
+[13770] ASSUMP-JCD50 — Finite exact partition where exact closure is claimed.
+[13771] ASSUMP-JCD51 — Open-world scope.
+[13772] ASSUMP-JCD52 — Formalization fidelity.
+[13773] ASSUMP-JCD53 — Trusted-kernel soundness.
+[13774] ASSUMP-JCD54 — Independent PCJCD checking.
+[14185] 41. Master abstraction
+[14186] DEF-JCD104 — Master abstraction
+[14187] \[ \alpha: \mathcal X_{\mathrm{concrete}} \to \mathcal X_{\mathrm{abstract}}. \]
+[14188] DEF-JCD105 — Concretization
+[14189] \[ \gamma(a) = \{x:\alpha(x)=a\}. \]
+[14190] DEF-JCD106 — Abstract truth status
+[14191] For predicate \(P\):
+[14192] \[ \mathsf{AbsStatus}(a,P) = \begin{cases} \mathsf{TRUE},&\forall x\in\gamma(a),P(x),\\ \mathsf{FALSE},&\forall x\in\gamma(a),\neg P(x),\\ \mathsf{MIXED},&\exists x_1,x_2\in\gamma(a):P(x_1)\land\neg P(x_2),\\ \mathsf{UNKNOWN},&\text{membership or evaluation unresolved}. \end{cases} \]
+[14193] An existential candidate witness must still identify a concrete \(x\).
+[14195] 42. Contextual master quotient
+[14196] DEF-JCD107 — JCD experiment family
+[14197] \[ \mathcal F_{\mathrm{JCD}} \]
+[14198] contains every admitted master decision, objective, materialization, routing, proof, and downstream computation.
+[14199] DEF-JCD108 — JCD contextual equivalence
+[14200] \[ x_1\equiv_{\mathrm{JCD}}x_2 \iff \forall f\in\mathcal F_{\mathrm{JCD}}, \quad f(x_1)=f(x_2). \]
+[14201] DEF-JCD109 — JCD quotient
+[14202] \[ \boxed{ Q_{\mathrm{JCD}} = \mathcal X_{\mathrm{master}}/\equiv_{\mathrm{JCD}}. } \]
+[14203] Equal viewer state, equal route length, or equal scalar objective is insufficient unless it preserves the entire active experiment family.
+[14205] 43. Master CEGAR
+[14206] DEF-JCD110 — Master counterexample
+[14207] \[ \zeta= ( \mathsf{abstractState}, \mathsf{concreteWitness}, \mathsf{failedClaim}, \mathsf{distinguishingRoot}, \mathsf{refinement} ). \]
+[14208] DEF-JCD111 — Master refinement
+[14209] \[ a\rightsquigarrow\{a_1,\ldots,a_k\} \]
+[14211] \[ \gamma(a_i)\subseteq\gamma(a), \qquad \bigcup_i\gamma(a_i)=\gamma(a). \]
+[14212] DEF-JCD112 — Abstract atom
+[14213] An atom is a master region on which every represented distinction relevant to the current exact search is constant.
+[14214] Refinement may split:
+[14215] placement boxes;
+[14216] geometry intervals;
+[14217] topology classes;
+[14218] materialization choices;
+[14219] cut applicability;
+[14220] quotient classes.
+[14222] 44. Sequential-design theorem construction
+[14223] Consider two architecture choices \(a_0,a_1\):
+[14224] \[ J_A(a_0)=0, \qquad J_A(a_1)=1. \]
+[14225] Route costs:
+[14226] \[ \varphi(a_0)=M, \qquad \varphi(a_1)=1. \]
+[14227] Architecture-first optimization selects \(a_0\). Joint optimization selects \(a_1\) whenever \(M>2\).
+[14228] Sequential objective:
+[14229] \[ M. \]
+[14230] Joint objective:
+[14231] \[ 2. \]
+[14232] The regret ratio is
+[14233] \[ \frac M2\to\infty. \]
+[14234] The formal result is THM-JCD8.
+[14236] 45. Router-first theorem construction
+[14237] Let route alternatives \(r_0,r_1\) have isolated costs
+[14238] \[ J_R(r_0)=0, \qquad J_R(r_1)=1. \]
+[14239] Route \(r_0\) forces an architectural support/opening cost \(M\), while \(r_1\) permits architectural cost \(0\).
+[14240] Router-first selects \(r_0\), producing joint cost \(M\). Joint optimization selects \(r_1\), producing cost \(1\). The ratio is unbounded.
+[14242] 46. Local-route/global-design theorem construction
+[14243] Placement \(A\):
+[14244] \[ J_A(A)=100, \qquad \min_rJ_R(r\mid A)=1. \]
+[14245] Placement \(B\):
+[14246] \[ J_A(B)=0, \qquad \min_rJ_R(r\mid B)=2. \]
+[14247] The locally shortest route occurs at \(A\), while the joint optimum is \(B\).
+[14249] 47. Monolithic hardness
+[14250] The JCD problem contains Prompt-2 multi-terminal route pricing as the special case obtained by fixing every architecture variable. Since that special case contains graph Steiner Tree, JCD is NP-hard.
+[14251] Independently, fixing route cost to zero while allowing equipment facilities and assignment costs embeds uncapacitated facility location.
+[14252] Decomposition does not remove hardness. It isolates:
+[14253] strategic master combinatorics;
+[14254] candidate materialization;
+[14255] route search;
+[14257] reusable proof structures.
+[14259] 48. Alternating-optimization limitation
+[14260] Let architecture \(a\in\{0,1\}\), routing state \(r\in\{0,1\}\), and
+[14261] \[ F(0,0)=1,\quad F(0,1)=3,\quad F(1,0)=3,\quad F(1,1)=0. \]
+[14262] Starting at \((0,0)\):
+[14263] fixing \(r=0\), \(a=0\) is the exact best response;
+[14264] fixing \(a=0\), \(r=0\) is the exact best response.
+[14265] Alternating optimization remains at value \(1\), while the global optimum has value \(0\).
+[14267] 49. Parametric routing nonsmoothness
+[14268] A continuously moved port may cross:
+[14269] a visibility threshold;
+[14270] a portal boundary;
+[14271] a fitting-feasibility threshold;
+[14272] a catalog-size threshold;
+[14273] a route-class bifurcation.
+[14274] Therefore \(\varphi(x)\) can be:
+[14275] discontinuous;
+[14276] nonconvex;
+[14277] nondifferentiable;
+[14278] extended-valued;
+[14279] piecewise defined over topology regions.
+[14280] Local smoothness is available only when:
+[14281] the active route class is fixed;
+[14282] active constraints and catalogs are fixed;
+[14283] the physical fiber is regular;
+[14284] strong duality and differentiability hold;
+[14285] no competing route attains the same value locally.
+[14287] 50. Branch-and-Benders search
+[14288] DEF-JCD113 — Outer branch node
+[14289] \[ \nu= ( D_\nu, \mathcal C_\nu, \mathcal M_\nu, L_\nu, \mathcal Q_\nu, \mathcal P_\nu, \mathsf{proofState}, \mathsf{version} ). \]
+[14291] \(D_\nu\): master domain;
+[14292] \(\mathcal C_\nu\): applicable cuts;
+[14293] \(\mathcal M_\nu\): master relaxation;
+[14294] \(L_\nu\): node lower bound;
+[14295] \(\mathcal Q_\nu\): candidate queue;
+[14296] \(\mathcal P_\nu\): PCROUTE cache.
+[14297] DEF-JCD114 — Outer branch decision
+[14298] A finite disjoint partition
+[14299] \[ D_\nu = \dot\bigcup_j D_{\nu_j}. \]
+[14301] 51. Nested branch-and-price hierarchy
+[14302] \[ \boxed{ \begin{aligned} &\text{outer JCD branch-and-Benders node}\\ &\quad\downarrow\\ &\text{master assignment or abstract region}\\ &\quad\downarrow\\ &\text{candidate PCSIR materialization}\\ &\quad\downarrow\\ &\text{PCROUTE}\\ &\quad\downarrow\\ &\text{route branch-and-price}\\ &\quad\downarrow\\ &\text{route physical fibers}. \end{aligned} } \]
+[14303] The nested proof composition is legal only when every inner artifact is rooted to the exact candidate and objective policy.
+[14305] 52. Lower-bound hierarchy
+[14306] DEF-JCD115 — Lower-bound hierarchy
+[14307] When models are nested:
+[14308] \[ L_0\le L_1\le L_2\le L_3\le U, \]
+[14310] \(L_0\): master-only relaxation;
+[14311] \(L_1\): master plus coarse route relaxation;
+[14312] \(L_2\): pricing-closed PCROUTE LP bound;
+[14313] \(L_3\): branch-enhanced route bound;
+[14314] \(U\): disposed joint witness.
+[14315] For additive scalar objective,
+[14316] \[ F(x,r)=F_A(x)+F_R(x,r), \]
+[14317] valid bounds compose as
+[14318] \[ L_{\mathrm{JCD}}(D) = L_A(D)+L_R(D). \]
+[14319] No monotonic hierarchy is claimed when the models are not nested.
+[14321] 53. Pareto semantics
+[14322] DEF-JCD116 — Exact Pareto vector
+[14323] \[ J(x) = (J_1(x),\ldots,J_m(x)). \]
+[14324] DEF-JCD117 — Exact dominance
+[14326] \[ x\prec y \iff J_i(x)\le J_i(y)\ \forall i \quad\land\quad J_j(x)<J_j(y)\ \text{for some }j. \]
+[14327] DEF-JCD118 — Interval objective vector
+[14328] \[ \widehat J(x) = \left( [\underline J_1,\overline J_1], \ldots, [\underline J_m,\overline J_m] \right). \]
+[14329] DEF-JCD119 — Certified interval dominance
+[14330] \[ x\prec_I y \]
+[14331] when
+[14332] \[ \overline J_i(x)\le\underline J_i(y) \quad\forall i \]
+[14333] and strict inequality holds for at least one coordinate.
+[14334] DEF-JCD120 — Pareto archive
+[14335] \[ \mathcal P = (\mathcal P_{\mathrm{exact}}, \mathcal P_{\mathrm{certified}}, \mathcal P_{\mathrm{possible}}, \mathcal P_{\mathrm{dominated}}, \mathsf{coverageScope}). \]
+[14336] DEF-JCD121 — Pareto completeness
+[14337] The archive is complete only if every feasible design is in it or is covered by a checked dominance proof.
+[14339] 54. Scalarization limits
+[14340] DEF-JCD122 — Weighted scalarization state
+[14341] \[ S_w(x)=w^\top J(x), \qquad w\ge0. \]
+[14342] The scalar optimum depends on the authorized weight vector and need not enumerate unsupported Pareto points.
+[14344] 55. Epsilon-constraint search
+[14345] DEF-JCD123 — Epsilon subproblem
+[14346] \[ \begin{aligned} \min\quad &J_1(x)\\ \text{s.t.}\quad &J_i(x)\le\epsilon_i, \quad i=2,\ldots,m. \end{aligned} \]
+[14347] DEF-JCD124 — Lexicographic search state
+[14348] Stores completed priority levels, exact fixed optimum values, and the active next objective.
+[14349] DEF-JCD125 — Scalarization state
+[14350] Stores weights, normalization, policy authority, bounds, and exact version.
+[14352] 56. Pareto-carrying router interface
+[14353] DEF-JCD126 — Router-alternative interface
+[14354] \[ \mathcal R_{\mathrm{alt}}(x) = \{ R_1,\ldots,R_k \} \]
+[14355] contains contextually distinct PCROUTE alternatives.
+[14356] Two alternatives may be merged only if every active JCD computation agrees. Prompt 3 normally requests:
+[14357] one exact route optimum per active scalar or epsilon policy;
+[14358] additional alternatives only when they are globally decision-distinct.
+[14360] 57. AI role
+[14361] DEF-JCD127 — JCD AI state
+[14362] \[ \mathcal A_t^{JCD} = ( \mathsf{context}, \mathsf{proposals}, \mathsf{toolCalls}, \mathsf{explanations}, \mathsf{disposals}, \mathsf{version} ). \]
+[14363] DEF-JCD128 — AI proposal
+[14364] An AI proposal is an untrusted suggested master assignment, rewrite, cut candidate, abstraction refinement, or computation action.
+[14365] DEF-JCD129 — Typed AI transaction
+[14366] \[ \tau_{\mathrm{AI}} = ( \mathsf{proposal}, \mathsf{targetObjects}, \mathsf{claimedPurpose}, \mathsf{requiredAuthority}, \mathsf{expectedDependencies}, \mathsf{version} ). \]
+[14367] The acceptance chain is
+[14368] \[ \boxed{ \text{AI proposal} \to \text{typed transaction} \to \text{authority check} \to \text{materialization} \to \text{independent checking}. } \]
+[14370] 58. AI-readable conflict interface
+[14371] DEF-JCD130 — AI conflict explanation
+[14372] \[ E_K= ( \mathsf{affectedObjects}, \mathsf{constraintClass}, \mathsf{spatialRegion}, \mathsf{resourceShortfall}, \mathsf{routeClasses}, \mathsf{proofStrength}, \mathsf{modifiableRoots}, \mathsf{protectedRoots}, \mathsf{repairTypes}, \mathsf{versions} ). \]
+[14373] It is a projection of the authoritative conflict state.
+[14374] It may omit detail for usability. It may not strengthen the conflict’s modality or validity domain.
+[14376] 59. AI-readable dual interface
+[14377] DEF-JCD131 — AI dual explanation
+[14378] \[ E_\lambda= ( \mathsf{resourceId}, \mathsf{price}, \mathsf{primalScope}, \mathsf{branchNode}, \mathsf{pricingClosure}, \mathsf{validityDomain}, \mathsf{modality}, \mathsf{spatialProjection} ). \]
+[14379] An interpolated spatial field is labeled heuristic.
+[14381] 60. Value-of-computation scheduling
+[14382] DEF-JCD132 — Computation action
+[14383] \[ a\in\mathcal A_{\mathrm{comp}} \]
+[14384] may be:
+[14385] master refinement;
+[14386] materialization;
+[14387] PCROUTE solve;
+[14388] pricing refinement;
+[14389] cut checking;
+[14390] Pareto exploration;
+[14391] proof checking;
+[14392] AI proposal generation.
+[14393] DEF-JCD133 — VOC score
+[14394] \[ \operatorname{VOC}(a\mid s) = \mathbb E[\Delta U(s,a)] - \lambda C(a). \]
+[14395] Unless a complete decision-theoretic model is proved, this is a heuristic scheduling score.
+[14397] 61. Anytime semantics
+[14398] DEF-JCD134 — Anytime JCD state
+[14399] \[ \mathcal Y_t= ( \mathsf{incumbents}, \mathsf{ParetoArchive}, \mathsf{lowerBounds}, \mathsf{validCuts}, \mathsf{openNodes}, \mathsf{unresolvedRoutes}, \mathsf{UNKNOWN}, \mathsf{proofState} ). \]
+[14400] DEF-JCD135 — JCD checkpoint
+[14401] A checkpoint stores every transition-determining outer-master, candidate, PCROUTE, cut, archive, dependency, and scheduler state.
+[14402] DEF-JCD136 — JCD cache key
+[14403] \[ K_{\mathrm{cache}} = ( \mathsf{candidatePCSIRRoot}, \mathsf{request}, \mathsf{objectivePolicy}, \mathsf{experimentFamily}, \mathsf{routeTheory}, \mathsf{checkerVersions} ). \]
+[14404] DEF-JCD137 — JCD dependency graph
+[14405] \[ D_{\mathrm{JCD}}=(V,E). \]
+[14406] DEF-JCD138 — JCD invalidation cone
+[14407] \[ \operatorname{InvCone}_{\mathrm{JCD}}(\Delta) = \operatorname{Desc}_{D_{\mathrm{JCD}}}(\Delta). \]
+[14409] 62. Theorem corpus
+[14410] Each theorem below is ACTIVE unless stated otherwise. Each is scoped to the represented theory and explicit hypotheses.
+[14411] Preliminary lemmas, propositions, and corollaries
+[14412] LEM-JCD1 — Materialization typing
+[14413] If \(\mathsf{Materializes}(x,\Xi,\eta)\), then every authoritative coordinate of \(\Xi\) has the type required by the active PCSIR theory.
+[14414] Proof. Type checking is a mandatory conjunct of the materialization predicate. ∎
+[14415] LEM-JCD2 — Benders weak duality
+[14416] For dual-feasible \(\pi\),
+[14417] \[ \pi^\top(h-Tx)\le\varphi_{\mathrm{LP}}(x). \]
+[14418] Proof. For any primal-feasible \(y\),
+[14419] \[ \pi^\top(h-Tx) \le \pi^\top Wy \le c^\top y. \]
+[14420] Take the infimum over \(y\). ∎
+[14421] LEM-JCD3 — Farkas feasibility necessity
+[14422] If \(Wy\ge h-Tx\), \(y\ge0\), and \(\pi\ge0\), \(W^\top\pi\le0\), then
+[14423] \[ \pi^\top(h-Tx)\le0. \]
+[14425] \[ \pi^\top(h-Tx) \le \pi^\top Wy = (W^\top\pi)^\top y \le0. \]
+[14427] LEM-JCD4 — No-good mismatch count
+[14428] The left side of an exact no-good cut equals the Hamming distance from \(x^\star\).
+[14429] Proof. Each summand is one exactly when the corresponding bit differs. ∎
+[14430] LEM-JCD5 — Valid-cut intersection
+[14431] Intersecting a feasible set with a valid infeasibility cut preserves every feasible joint design.
+[14432] Proof. The cut excludes only states whose infeasibility implication is proved. ∎
+[14433] LEM-JCD6 — Rewrite-composition support bound
+[14434] \[ \operatorname{supp}(r_2\circ r_1) \subseteq \operatorname{supp}(r_1)\cup\operatorname{supp}(r_2) \]
+[14435] after transporting \(r_2\)’s support through \(r_1\).
+[14436] Proof. Objects outside both supports remain unchanged by both rewrites. ∎
+[14437] LEM-JCD7 — Dominance transitivity
+[14438] Exact componentwise weak dominance is transitive.
+[14439] Proof. Coordinatewise inequalities compose. ∎
+[14440] LEM-JCD8 — Refinement contracts concretization
+[14441] For each child \(a_i\),
+[14442] \[ \gamma(a_i)\subseteq\gamma(a). \]
+[14443] Proof. This is a required refinement invariant. ∎
+[14444] LEM-JCD9 — Interval objective aggregation
+[14445] Outward interval addition encloses the exact sum of objective contributions.
+[14446] Proof. Repeated application of interval inclusion. ∎
+[14447] LEM-JCD10 — Maximum of lower bounds
+[14448] If \(L_k(x)\le\varphi(x)\) for all \(k\), then
+[14449] \[ \max_kL_k(x)\le\varphi(x). \]
+[14450] Proof. Every term is bounded above by \(\varphi(x)\). ∎
+[14451] PRO-JCD1 — Abstract-status trichotomy plus UNKNOWN
+[14452] Every resolved abstraction cell is TRUE, FALSE, or MIXED; unresolved evaluation is UNKNOWN.
+[14453] Proof. The truth set over \(\gamma(a)\) is all, empty, or a proper nonempty subset. ∎
+[14454] PRO-JCD2 — Extended route-value distinction
+[14455] \[ \mathsf{UNKNOWN}\neq+\infty. \]
+[14456] Proof. \(+\infty\) asserts certified emptiness; UNKNOWN asserts absence of a resolved proof. ∎
+[14457] PRO-JCD3 — Cut modality nonstrengthening
+[14458] A branch-local or heuristic cut cannot be stored as globally exact without a transport or validity proof.
+[14459] Proof. The stronger universal quantifier is absent from the weaker artifact. ∎
+[14460] PRO-JCD4 — Exact candidate-cache key
+[14461] Equality of the complete cache key reproduces the exact route request and candidate state under deterministic compilation.
+[14462] Proof. Every semantic input to the cached computation is included. ∎
+[14463] PRO-JCD5 — Objective-role separation
+[14464] A coordinate assigned only as informational cannot influence feasibility or ranking without a policy update.
+[14465] Proof. It is absent from every corresponding predicate and objective function. ∎
+[14466] COR-JCD1 — Route-LP lower bound transfers to route IP
+[14467] \[ L(x)\le\varphi_{\mathrm{LP}}(x) \Longrightarrow L(x)\le\varphi_{\mathrm{IP}}(x). \]
+[14468] Proof. Use \(\varphi_{\mathrm{LP}}\le\varphi_{\mathrm{IP}}\). ∎
+[14469] COR-JCD2 — Exact assignment no-good is a logic cut
+[14470] Take the core to contain every bit literal of \(x^\star\).
+[14471] COR-JCD3 — Exact zero scalar gap
+[14472] If \(L=U\) with valid bounds, the represented scalar optimum equals that common value.
+[14473] COR-JCD4 — Finite epsilon recovery
+[14474] Under exact complete threshold coverage, the union of epsilon-subproblem optima contains the finite Pareto set.
+[14475] COR-JCD5 — AI-garbage containment
+[14476] Arbitrary AI proposals cannot change accepted engineering claims under sound independent disposal.
+[14478] A. Candidate and materialization semantics
+[14479] THM-JCD1 — A master assignment is not a PCSIR
+[14480] A master assignment does not, by itself, establish a valid candidate PCSIR.
+[14481] Proof. A master assignment contains strategic values only. It may omit derived geometry, frames, ports, route envelopes, dependencies, and proof obligations. Construct an assignment selecting a shaft identifier that does not exist in the active geometry version. The assignment is syntactically complete and has no valid PCSIR materialization. ∎
+[14482] Limitation. A specially defined master language could itself contain a full PCSIR, but that is not the selected architecture.
+[14483] THM-JCD2 — Accepted materialization yields a valid candidate PCSIR
+[14484] If \(\eta_M\) proves materialization and the Prompt-1 checker accepts \(\Xi_x^{SIR}\), then \(\Xi_x^{SIR}\) is a valid candidate PCSIR under its exact modality.
+[14485] Proof. Materialization binds \(x\) to the candidate. Prompt-1 acceptance establishes every required PCSIR predicate. Their conjunction yields the candidate claim. ∎
+[14486] THM-JCD3 — One master assignment may have multiple materializations
+[14487] There exist assignments \(x\) for which
+[14488] \[ |\mathcal M(x)|>1. \]
+[14489] Construction. Let \(x\) select “equipment in room A” without fixing orientation or one of two catalog-compatible connection faces. Both concrete states satisfy the master literal and have distinct port coordinates. ∎
+[14490] THM-JCD4 — Empty materialization fiber invalidates a master assignment
+[14492] \[ \mathcal M(x)=\varnothing, \]
+[14493] then \(x\) cannot participate in a joint witness.
+[14494] Proof. Every JCD witness contains \(\Xi_x^{SIR}\in\mathcal M(x)\). No such coordinate exists. ∎
+[14495] THM-JCD5 — Nonunique materialization blocks an exact route value
