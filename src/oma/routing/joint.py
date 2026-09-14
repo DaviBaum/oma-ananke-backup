@@ -21,7 +21,7 @@ from oma.optimization.finite import FiniteOutcome
 from oma.optimization.master import MasterProblem, RouteColumn
 from oma.store import digest
 from .proposals import project_proposals
-from .objectives import reported_route_cost
+from .selection import refresh_selection_cases, retain_current_incumbent, try_selection_evidence
 from .joint_materialize import materialize_route_set
 from .joint_scenario import parse_joint_request
 from .physical_archive import freeze_route_menu, compile_route_archive
@@ -171,15 +171,20 @@ def joint_project_run(store, run, control):
         columns = None
         verdict = "PASS" if checked["status"] == "CHECKED" else "FAIL" if checked["status"] == "REJECTED" else "UNKNOWN"
         if verdict == "PASS":
-            checked_count += 1
-            values = next(r["witness"]["per_route"] for r in report["results"] if r["id"] == "joint-objective")
-            columns = MasterProblem(net_ids=tuple(values), columns=tuple(RouteColumn(rid, rid,
-                reported_route_cost(objective, weights), artifact_ref=checked["report_root"])
-                for rid, objective in values.items()), state_root=checked["state_root"], objective_policy=json.dumps(weights, sort_keys=True), declared_universe_complete=True)
+            evidence, _ = try_selection_evidence(store, run, checked["id"], "physical_route_set", weights)
+            if evidence:
+                checked_count += 1
+                values = evidence["per_route_costs"]
+                columns = MasterProblem(net_ids=tuple(values), columns=tuple(RouteColumn(rid, rid,
+                    cost, artifact_ref=evidence["report_root"]) for rid, cost in values.items()),
+                    state_root=checked["state_root"], objective_policy=json.dumps(weights, sort_keys=True), declared_universe_complete=True)
+            else:
+                verdict = "UNKNOWN"
         cases.append(DesignCase(checked["id"], tuple((d.id, choice[0]) for d, choice in zip(request.route_demands, assignment)),
             checked["state_root"], Fraction(0), FiniteOutcome(checked["id"], verdict, Fraction(0) if verdict == "PASS" else None, evidence_root=checked["report_root"]), columns))
         store.update_run(run["id"], "RUNNING", f"Joint assignment {attempted}: {checked['status']}; {checked_count} checked alternatives", "joint_selection")
     if cases:
+        cases = refresh_selection_cases(store, run, cases, "physical_route_set", weights)
         problem = FiniteCoDesignProblem(tuple(cases), tuple(domains), (), run["base_root"], declared_design_universe_complete=False)
         selected = solve_finite_codesign(problem, time_limit_seconds=max(.1, deadline-time.monotonic()))
         independent = verify_finite_codesign_result(problem, selected)
@@ -196,7 +201,11 @@ def joint_project_run(store, run, control):
     store.append_event(run["project_id"], run_id=run["id"], state_root=run["base_root"], stage="physical_menu_compilation",
         status=compiled["status"], message="Source-derived finite contextual and causal compilers applied to actual checked report projections",
         artifacts=[archive], payload={"summary": compiled.get("summary"), "candidate_acceptance_authority": False})
+    retained = retain_current_incumbent(store, run, [c.id for c in cases], "physical_route_set", weights,
+        arithmetic_selected=[chosen] if chosen else [])
+    chosen = next(iter(retained["selected_candidate_ids"]), None)
     store.update_run(run["id"], "COMPLETED" if chosen else "BUDGET_EXHAUSTED" if time.monotonic() >= deadline else "NO_INCUMBENT_FOUND",
         "Checked simultaneous incumbent available; no continuous global optimality claim" if chosen else "No checked simultaneous incumbent in the examined assignments; infeasibility is not established",
-        "complete", artifacts=[r for r in (artifact, archive) if r], payload={"selected_candidate_ids": [chosen] if chosen else [],
-            "attempted": attempted, "checked_feasible": checked_count, "global_lower_bound": None, "global_gap": None})
+        "complete", artifacts=[r for r in (artifact, archive, retained["artifact_root"]) if r], payload={"selected_candidate_ids": [chosen] if chosen else [],
+            "attempted": attempted, "checked_feasible": retained["checked_feasible"], "global_lower_bound": None, "global_gap": None,
+            "selection_evidence_root": retained["artifact_root"]})

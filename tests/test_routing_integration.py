@@ -25,16 +25,18 @@ def test_real_ifc_pipeline_rejects_intersecting_baseline_then_accepts_checked_ro
     assert next(r["status"] for r in rejected["results"] if r["id"] == "physical-interference-and-clearance") == "NOT_RUN"
     checked = [c for c in candidates if c["status"] == "CHECKED"]
     assert checked, [(c["status"], store.get(c["report_root"])["results"] if c["report_root"] else None) for c in candidates]
-    # This native workflow must actually consume a source-checked cell proposal,
-    # then independently check its fabricated elbows and complete obstacle set.
+    # This native workflow must consume a source-bound fabrication-state path,
+    # then independently check actual elbows and the complete obstacle set.
     certified = [c for c in checked if c.get("proposal_evidence")]
     assert certified
     checked = certified + [c for c in checked if not c.get("proposal_evidence")]
     evidence = checked[0]["proposal_evidence"]
     model = store.get(evidence["report_root"])
     assert model["context"]["base_root"] == run["base_root"]
-    assert model["report"]["status"] == "CHECKED_GEOMETRIC_PROPOSALS"
-    assert model["report"]["coverage_check"]["physical_elements"] == 1
+    assert evidence["method"] == "SOURCE_BOUND_FABRICATION_GRAPH"
+    assert model["report"]["status"] == "CHECKED_FABRICATION_PROPOSALS"
+    assert model["report"]["source_coverage_check"]["physical_elements"] == 1
+    assert model["report"]["binary64_fabrication_check"]["fabrication_status"] == "PASS"
     assert not evidence["route_acceptance"] and not evidence["physical_infeasibility_claim"]
     assert store.get(checked[0]["state_root"])["derived_artifacts"]["route_proposal_evidence"] == evidence
     from oma.verification import CHECKER_VERSION

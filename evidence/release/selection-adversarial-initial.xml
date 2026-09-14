@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="6" time="16.411" timestamp="2026-09-14T13:40:17.634402-05:00" hostname="DESKTOP-2CSEC3C"><testcase classname="tests.test_selection_adversarial" name="test_fresh_rejection_of_cached_incumbent_is_not_selected[single]" time="3.252"><failure message="AssertionError: {'selected': ['446a68c659a94eefaa5494a5ac200e6b'], 'now_rejected': ['446a68c659a94eefaa5494a5ac200e6b']}&#10;assert not ({'446a68c659a94eefaa5494a5ac200e6b'} &amp; {'446a68c659a94eefaa5494a5ac200e6b'})&#10; +  where {'446a68c659a94eefaa5494a5ac200e6b'} = set(['446a68c659a94eefaa5494a5ac200e6b'])&#10; +  and   {'446a68c659a94eefaa5494a5ac200e6b'} = set(['446a68c659a94eefaa5494a5ac200e6b'])">tests\test_selection_adversarial.py:78: in test_fresh_rejection_of_cached_incumbent_is_not_selected
+    assert not set(selected) &amp; set(rejected), {"selected": selected, "now_rejected": rejected}
+E   AssertionError: {'selected': ['446a68c659a94eefaa5494a5ac200e6b'], 'now_rejected': ['446a68c659a94eefaa5494a5ac200e6b']}
+E   assert not ({'446a68c659a94eefaa5494a5ac200e6b'} &amp; {'446a68c659a94eefaa5494a5ac200e6b'})
+E    +  where {'446a68c659a94eefaa5494a5ac200e6b'} = set(['446a68c659a94eefaa5494a5ac200e6b'])
+E    +  and   {'446a68c659a94eefaa5494a5ac200e6b'} = set(['446a68c659a94eefaa5494a5ac200e6b'])</failure></testcase><testcase classname="tests.test_selection_adversarial" name="test_fresh_rejection_of_cached_incumbent_is_not_selected[joint]" time="2.587"><failure message="AssertionError: {'selected': ['4249a6d27b1345c888f5116ab7458dda'], 'now_rejected': ['4249a6d27b1345c888f5116ab7458dda']}&#10;assert not ({'4249a6d27b1345c888f5116ab7458dda'} &amp; {'4249a6d27b1345c888f5116ab7458dda'})&#10; +  where {'4249a6d27b1345c888f5116ab7458dda'} = set(['4249a6d27b1345c888f5116ab7458dda'])&#10; +  and   {'4249a6d27b1345c888f5116ab7458dda'} = set(['4249a6d27b1345c888f5116ab7458dda'])">tests\test_selection_adversarial.py:78: in test_fresh_rejection_of_cached_incumbent_is_not_selected
+    assert not set(selected) &amp; set(rejected), {"selected": selected, "now_rejected": rejected}
+E   AssertionError: {'selected': ['4249a6d27b1345c888f5116ab7458dda'], 'now_rejected': ['4249a6d27b1345c888f5116ab7458dda']}
+E   assert not ({'4249a6d27b1345c888f5116ab7458dda'} &amp; {'4249a6d27b1345c888f5116ab7458dda'})
+E    +  where {'4249a6d27b1345c888f5116ab7458dda'} = set(['4249a6d27b1345c888f5116ab7458dda'])
+E    +  and   {'4249a6d27b1345c888f5116ab7458dda'} = set(['4249a6d27b1345c888f5116ab7458dda'])</failure></testcase><testcase classname="tests.test_selection_adversarial" name="test_fresh_rejection_of_cached_incumbent_is_not_selected[network]" time="2.475"><failure message="AssertionError: {'selected': ['f9968e9bacb24c1c99b3af46ac5abc9c'], 'now_rejected': ['f9968e9bacb24c1c99b3af46ac5abc9c']}&#10;assert not ({'f9968e9bacb24c1c99b3af46ac5abc9c'} &amp; {'f9968e9bacb24c1c99b3af46ac5abc9c'})&#10; +  where {'f9968e9bacb24c1c99b3af46ac5abc9c'} = set(['f9968e9bacb24c1c99b3af46ac5abc9c'])&#10; +  and   {'f9968e9bacb24c1c99b3af46ac5abc9c'} = set(['f9968e9bacb24c1c99b3af46ac5abc9c'])">tests\test_selection_adversarial.py:78: in test_fresh_rejection_of_cached_incumbent_is_not_selected
+    assert not set(selected) &amp; set(rejected), {"selected": selected, "now_rejected": rejected}
+E   AssertionError: {'selected': ['f9968e9bacb24c1c99b3af46ac5abc9c'], 'now_rejected': ['f9968e9bacb24c1c99b3af46ac5abc9c']}
+E   assert not ({'f9968e9bacb24c1c99b3af46ac5abc9c'} &amp; {'f9968e9bacb24c1c99b3af46ac5abc9c'})
+E    +  where {'f9968e9bacb24c1c99b3af46ac5abc9c'} = set(['f9968e9bacb24c1c99b3af46ac5abc9c'])
+E    +  and   {'f9968e9bacb24c1c99b3af46ac5abc9c'} = set(['f9968e9bacb24c1c99b3af46ac5abc9c'])</failure></testcase><testcase classname="tests.test_selection_adversarial" name="test_finite_selection_limit_retains_a_separately_checked_incumbent_without_optimum_claim[single]" time="2.773"><failure message="AssertionError: {'attempted': 1, 'checked_feasible': 1, 'global_gap': None, 'global_lower_bound': None, ...}&#10;assert [] == ['195a91ab658...432791aabacb']&#10;  &#10;  Right contains one more item: '195a91ab658249aba0b0432791aabacb'&#10;  Use -v to get more diff">tests\test_selection_adversarial.py:101: in test_finite_selection_limit_retains_a_separately_checked_incumbent_without_optimum_claim
+    assert event["payload"]["selected_candidate_ids"] == [candidates[0]["id"]], event["payload"]
+E   AssertionError: {'attempted': 1, 'checked_feasible': 1, 'global_gap': None, 'global_lower_bound': None, ...}
+E   assert [] == ['195a91ab658...432791aabacb']
+E     
+E     Right contains one more item: '195a91ab658249aba0b0432791aabacb'
+E     Use -v to get more diff</failure></testcase><testcase classname="tests.test_selection_adversarial" name="test_finite_selection_limit_retains_a_separately_checked_incumbent_without_optimum_claim[joint]" time="2.508"><failure message="AssertionError: {'attempted': 1, 'checked_feasible': 1, 'global_gap': None, 'global_lower_bound': None, ...}&#10;assert [] == ['c68a1ebd26c...4a5c8cb62cd8']&#10;  &#10;  Right contains one more item: 'c68a1ebd26ca42808ddf4a5c8cb62cd8'&#10;  Use -v to get more diff">tests\test_selection_adversarial.py:101: in test_finite_selection_limit_retains_a_separately_checked_incumbent_without_optimum_claim
+    assert event["payload"]["selected_candidate_ids"] == [candidates[0]["id"]], event["payload"]
+E   AssertionError: {'attempted': 1, 'checked_feasible': 1, 'global_gap': None, 'global_lower_bound': None, ...}
+E   assert [] == ['c68a1ebd26c...4a5c8cb62cd8']
+E     
+E     Right contains one more item: 'c68a1ebd26ca42808ddf4a5c8cb62cd8'
+E     Use -v to get more diff</failure></testcase><testcase classname="tests.test_selection_adversarial" name="test_finite_selection_limit_retains_a_separately_checked_incumbent_without_optimum_claim[network]" time="2.383"><failure message="AssertionError: {'attempted': 1, 'checked_feasible': 1, 'global_gap': None, 'global_lower_bound': None, ...}&#10;assert [] == ['9b66390491b...4d1d20c21d8d']&#10;  &#10;  Right contains one more item: '9b66390491bb4967b69a4d1d20c21d8d'&#10;  Use -v to get more diff">tests\test_selection_adversarial.py:101: in test_finite_selection_limit_retains_a_separately_checked_incumbent_without_optimum_claim
+    assert event["payload"]["selected_candidate_ids"] == [candidates[0]["id"]], event["payload"]
+E   AssertionError: {'attempted': 1, 'checked_feasible': 1, 'global_gap': None, 'global_lower_bound': None, ...}
+E   assert [] == ['9b66390491b...4d1d20c21d8d']
+E     
+E     Right contains one more item: '9b66390491bb4967b69a4d1d20c21d8d'
+E     Use -v to get more diff</failure></testcase></testsuite></testsuites>

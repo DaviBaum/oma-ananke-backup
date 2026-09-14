@@ -36,7 +36,9 @@ def test_joint_search_consumes_checked_cell_path_and_rechecks_complete_route_set
     assert artifact["context"]["request_demand_id"] == "obstructed"
     assert artifact["context"]["request_root"] == digest(run["request"])
     assert artifact["context"]["base_root"] == run["base_root"]
-    assert artifact["report"]["coverage_check"]["physical_elements"] == 1
+    assert evidence["method"] == "SOURCE_BOUND_FABRICATION_GRAPH"
+    assert artifact["report"]["source_coverage_check"]["physical_elements"] == 1
+    assert artifact["report"]["binary64_fabrication_check"]["fabrication_status"] == "PASS"
     assert not artifact["route_acceptance"] and not artifact["physical_infeasibility_claim"]
     state = store.get(checked["state_root"])
     assert state["derived_artifacts"]["route_proposal_evidence_by_route"][route_id] == evidence

@@ -52,6 +52,35 @@ class _ProposalBudget(Exception):
     pass
 
 
+class _CoverageCheckpoints:
+    """Cooperative traversal checks which preserve caller exception identity."""
+
+    def __init__(self, callback):
+        self.callback = callback
+        self.failure = None
+        self.counts = {}
+
+    def __call__(self, stage):
+        if self.callback is not None:
+            try:
+                self.callback(stage)
+            except BaseException as exc:
+                self.failure = exc
+                raise
+
+    def tick(self, stage):
+        count = self.counts.get(stage, 0)
+        if count % 64 == 0:
+            self(stage)
+        self.counts[stage] = count + 1
+
+    def items(self, values, stage):
+        for value in values:
+            self.tick(stage)
+            yield value
+        self(stage)
+
+
 def _box(value):
     result = tuple(tuple(_q(v) for v in row) for row in value)
     if len(result) != 2 or any(len(row) != 3 for row in result) or any(a > b for a, b in zip(*result)):
@@ -83,39 +112,44 @@ def _plane(domain, obstacle, threshold):
     return normal if sum(n*n for n in normal) > threshold*threshold else None
 
 
-def verify_cell_coverage(coverage, problem):
+def verify_cell_coverage(coverage, problem, *, checkpoint=None):
     """Independent exact check of complete grouping and out-of-zone omissions.
 
     This verifies the finite coverage algebra, not IFC/native authenticity.
     The caller binds the inventory to freshly loaded and hashed source bytes.
     """
+    check = _CoverageCheckpoints(checkpoint)
     try:
+        check("cell_coverage_inventory")
         if coverage["blockers"] or problem["inner_obstacles"]:
             raise ValueError("Blocked coverage or unsupported inner occupancy")
-        objects = {o["id"]: o for o in coverage["objects"]}
+        objects = {o["id"]: o for o in check.items(coverage["objects"], "cell_coverage_objects")}
         if len(objects) != len(coverage["objects"]):
             raise ValueError("Duplicate loaded physical identity")
-        expected = set(coverage["physical_ids"])
+        expected = set(check.items(coverage["physical_ids"], "cell_coverage_physical_ids"))
         if len(expected) != len(coverage["physical_ids"]):
             raise ValueError("Duplicate original physical identity")
-        assemblies = {o["id"]: o["children"] for o in coverage["assemblies"]}
+        assemblies = {o["id"]: o["children"] for o in check.items(coverage["assemblies"], "cell_coverage_assemblies")}
         if len(assemblies) != len(coverage["assemblies"]) or set(objects) & set(assemblies) or set(objects) | set(assemblies) != expected:
             raise ValueError("Original physical denominator does not equal objects plus assemblies")
         def grounded(key, active):
+            check.tick("cell_coverage_assembly_traversal")
             if key in objects:
                 return True
             children = assemblies.get(key, [])
-            return bool(children) and key not in active and len(children) == len(set(children)) and all(grounded(c, active | {key}) for c in children)
-        if not all(grounded(a, set()) for a in assemblies):
+            return (bool(children) and key not in active
+                and len(children) == len(set(check.items(children, "cell_coverage_assembly_children")))
+                and all(grounded(c, active | {key}) for c in children))
+        if not all(grounded(a, set()) for a in check.items(assemblies, "cell_coverage_assembly_roots")):
             raise ValueError("Uncovered or cyclic representation-free assembly")
-        groups = {o["id"]: _box(o["bounds"]) for o in problem["outer_obstacles"]}
+        groups = {o["id"]: _box(o["bounds"]) for o in check.items(problem["outer_obstacles"], "cell_coverage_groups")}
         if len(groups) != len(problem["outer_obstacles"]):
             raise ValueError("Duplicate grouped obstacle")
         allowed = _box(problem["allowed_bounds"])
         radius, clearance = _q(problem["body_radius"]), _q(problem["clearance"])
         domain = (tuple(v+radius for v in allowed[0]), tuple(v-radius for v in allowed[1]))
         seen = set()
-        for obj in coverage["objects"]:
+        for obj in check.items(coverage["objects"], "cell_coverage_support_replay"):
             bounds = _box(obj["bounds_m"])
             source = _box(obj["source_bounds_m"])
             matrix = obj["source_to_common_matrix"]
@@ -141,35 +175,48 @@ def verify_cell_coverage(coverage, problem):
                 raise ValueError("Unaccounted physical obstacle")
         if seen != set(groups):
             raise ValueError("Extraneous or unreferenced grouped geometry")
+        check("cell_coverage_complete")
         return {"status":"PASS", "physical_elements":len(expected), "loaded_obstacles":len(objects),
                 "representation_free_assemblies":len(assemblies), "model_groups":len(groups),
                 "scope":"EXACT_FINITE_OUTER_COVER_ACCOUNTING; SOURCE_AUTHENTICITY_IS_EXTERNAL"}
     except (ValueError, KeyError, TypeError, IndexError, RecursionError) as exc:
+        if check.failure is exc:
+            raise
         return {"status":"FAIL", "reason":str(exc)}
 
 
-def _group_boxes(objects, maximum):
+def _group_boxes(objects, maximum, *, checkpoint=None):
     # Deterministic spatial splitting. Every leaf is a conservative union box;
     # no individual object is dropped when the kernel's box limit is reached.
+    check = _CoverageCheckpoints(checkpoint)
+    check("cell_group_start")
+    def coordinate(obj, side, axis):
+        check.tick("cell_group_bounds")
+        return obj["_bounds"][side][axis]
+    def sort_key(obj):
+        check.tick("cell_group_sort_keys")
+        return sum(row[axis] for row in obj["_bounds"]), obj["id"]
     groups = [objects] if objects else []
     while len(groups) < maximum:
-        candidates = [(len(g), i) for i,g in enumerate(groups) if len(g) > 1]
+        candidates = [(len(g), i) for i,g in enumerate(check.items(groups, "cell_group_partition")) if len(g) > 1]
         if not candidates:
             break
         _, index = max(candidates)
         group = groups.pop(index)
-        axis = max(range(3), key=lambda a: max(o["_bounds"][1][a] for o in group)-min(o["_bounds"][0][a] for o in group))
-        group.sort(key=lambda o: (sum(row[axis] for row in o["_bounds"]), o["id"]))
+        axis = max(range(3), key=lambda a: max(coordinate(o,1,a) for o in group)-min(coordinate(o,0,a) for o in group))
+        group.sort(key=sort_key)
+        check("cell_group_sorted")
         mid = len(group)//2
         groups.extend((group[:mid], group[mid:]))
     result = []
-    for i, members in enumerate(groups):
+    for i, members in enumerate(check.items(groups, "cell_group_output")):
         name = f"outer-group:{i}"
-        bounds = (tuple(min(o["_bounds"][0][a] for o in members) for a in range(3)),
-                  tuple(max(o["_bounds"][1][a] for o in members) for a in range(3)))
+        bounds = (tuple(min(coordinate(o,0,a) for o in members) for a in range(3)),
+                  tuple(max(coordinate(o,1,a) for o in members) for a in range(3)))
         result.append({"id":name, "bounds":_json_box(bounds)})
-        for obj in members:
+        for obj in check.items(members, "cell_group_members"):
             obj.update(disposition="GROUPED_OUTER_COVER", group_id=name)
+    check("cell_group_complete")
     return result
 
 
@@ -263,11 +310,12 @@ def build_certified_cell_proposals(source_specs, scenario, *, context_root, coor
               "assumptions":deepcopy(ASSUMPTIONS), "context_root":context_root, "adapter_code_sha256":CODE_SHA256,
               "dependency_code_sha256":deepcopy(_DEPENDENCY_HASHES)}
     coverage = result["coverage"]
+    caller_check = _CoverageCheckpoints(checkpoint)
     def check(stage):
-        if checkpoint:
-            checkpoint(stage)
+        caller_check(stage)
         if deadline is not None and time.monotonic() >= deadline:
             raise _Deadline()
+    traversal = _CoverageCheckpoints(check)
     def finish(status, reason=None):
         result["status"] = status
         if reason: result["reason"] = reason
@@ -277,6 +325,7 @@ def build_certified_cell_proposals(source_specs, scenario, *, context_root, coor
         result["timing"] = {"total_seconds":time.monotonic()-started}
         return result
     try:
+        check("cell_source_start")
         if any(sha256(p.read_bytes()).hexdigest() != _DEPENDENCY_HASHES[str(p)] for p in _DEPENDENCY_PATHS):
             return finish("BLOCKED", "Loaded geometry implementation differs from current source files")
         scenario = RoutingScenario.model_validate(scenario) if isinstance(scenario,dict) else scenario
@@ -338,8 +387,9 @@ def build_certified_cell_proposals(source_specs, scenario, *, context_root, coor
         for spec in specs:
             check("cell_source_inventory")
             source_model = ifcopenshell.open(spec["path"])
-            physical = {e.id():e for e in source_model.by_type("IfcElement") if not e.is_a("IfcFeatureElementSubtraction")}
-            ids = {i:f"{spec['sha256']}:{i}" for i in physical}
+            physical = {e.id():e for e in traversal.items(source_model.by_type("IfcElement"), "cell_source_physical_inventory")
+                if not e.is_a("IfcFeatureElementSubtraction")}
+            ids = {i:f"{spec['sha256']}:{i}" for i in traversal.items(physical, "cell_source_physical_ids")}
             coverage["physical_ids"].extend(ids.values())
             cache_report = {}
             loaded, failures = cad.load_cad(spec["path"], cache_directory=cache_directory, cache_report=cache_report,
@@ -375,12 +425,13 @@ def build_certified_cell_proposals(source_specs, scenario, *, context_root, coor
                     "bounds_m":_json_box(bounds),"support_authority":authority,"support_evidence":support,
                     "source_bounds_m":_json_box(source_bounds),"source_to_common_matrix":spec["transform_m"],
                     "source_native_valid":bool(obj.valid),"source_native_reason":obj.reason,"_bounds":bounds})
-            for step, entity in physical.items():
+            for step, entity in traversal.items(physical.items(), "cell_source_assemblies"):
                 if step in loaded_ids: continue
                 relations = list(getattr(entity,"IsDecomposedBy",())) + list(getattr(entity,"IsNestedBy",()))
-                children = [c for rel in relations for c in rel.RelatedObjects]
-                if entity.Representation is None and children and all(c.id() in ids for c in children):
-                    coverage["assemblies"].append({"id":ids[step],"children":[ids[c.id()] for c in children],"scope":"NO_OWN_REPRESENTATION; COMPLETE_PHYSICAL_CHILDREN_REQUIRED"})
+                children = [c for rel in traversal.items(relations, "cell_source_assembly_relations")
+                    for c in traversal.items(rel.RelatedObjects, "cell_source_assembly_children")]
+                if entity.Representation is None and children and all(c.id() in ids for c in traversal.items(children, "cell_source_assembly_identity")):
+                    coverage["assemblies"].append({"id":ids[step],"children":[ids[c.id()] for c in traversal.items(children, "cell_source_assembly_ledger")],"scope":"NO_OWN_REPRESENTATION; COMPLETE_PHYSICAL_CHILDREN_REQUIRED"})
                 else:
                     coverage["blockers"].append({"reason":"MISSING_PHYSICAL_SOURCE_SUPPORT","id":ids[step]})
             if file_hash(spec["path"]) != spec["sha256"]:
@@ -392,21 +443,21 @@ def build_certified_cell_proposals(source_specs, scenario, *, context_root, coor
         radius, clearance = _q(scenario.outer_radius), _q(scenario.clearance_m)
         domain = (tuple(v+radius for v in allowed[0]),tuple(v-radius for v in allowed[1]))
         near = []
-        for obj in coverage["objects"]:
+        for obj in traversal.items(coverage["objects"], "cell_source_dispositions"):
             normal = _plane(domain,obj["_bounds"],radius+clearance)
             if normal is not None:
                 obj.update(disposition="CERTIFIED_OUTSIDE_COMPLETE_CENTRE_DOMAIN",separating_normal=[str(v) for v in normal])
             else:
                 near.append(obj)
-        outer = _group_boxes(near,max_outer_boxes)
-        for obj in coverage["objects"]: obj.pop("_bounds",None)
+        outer = _group_boxes(near,max_outer_boxes,checkpoint=check)
+        for obj in traversal.items(coverage["objects"], "cell_source_coverage_ledger"): obj.pop("_bounds",None)
         problem = {"allowed_bounds":_json_box(allowed),"body_radius":str(radius),"clearance":str(clearance),
             "outer_obstacles":outer,"inner_obstacles":[],"start":list(scenario.start),"goal":list(scenario.end),
             "grid_axes":[[str(lo+(hi-lo)*i/grid_divisions) for i in range(grid_divisions+1)] for lo,hi in zip(*domain)],
             "context_root":context_root,"source_roots":{"outer_cover":digest(coverage),"inner_occupancy":digest([]),
                 "frame":digest(frame),"body_model":digest({"kind":"TRANSLATING_CLOSED_BALL","radius":str(radius),"scenario":result["scenario_root"]})}}
         result["model"] = problem
-        coverage_check = verify_cell_coverage(coverage,problem)
+        coverage_check = verify_cell_coverage(coverage,problem,checkpoint=check)
         result["coverage_check"] = coverage_check
         if coverage_check["status"] != "PASS":
             return finish("BLOCKED", "Independent complete-support accounting failed")
@@ -429,18 +480,25 @@ def build_certified_cell_proposals(source_specs, scenario, *, context_root, coor
                 raise ValueError("Immutable source changed before proposal publication")
         if any(sha256(p.read_bytes()).hexdigest() != _DEPENDENCY_HASHES[str(p)] for p in _DEPENDENCY_PATHS):
             raise ValueError("Geometry implementation changed during proposal checking")
+        check("cell_proposal_publish")
         for proposal in result["proposals"]:
             proposal.update(cell_certificate_root=certificate["root"],coverage_root=digest(coverage))
         return finish("CHECKED_GEOMETRIC_PROPOSALS" if result["proposals"] else "UNKNOWN",
                       None if result["proposals"] else "No checked path in the bounded conservative inner graph")
-    except _Deadline:
+    except _Deadline as exc:
+        if caller_check.failure is exc:
+            raise
         for obj in coverage["objects"]: obj.pop("_bounds",None)
         result["proposals"] = []
         return finish("UNKNOWN","CERTIFIED_CELL_DEADLINE")
-    except _ProposalBudget:
+    except _ProposalBudget as exc:
+        if caller_check.failure is exc:
+            raise
         result["proposals"] = []
         return finish("UNKNOWN","CERTIFIED_CELL_PROPOSAL_EMBEDDING_BUDGET")
     except (ValueError, OSError, KeyError, TypeError, RuntimeError, OverflowError) as exc:
+        if caller_check.failure is exc:
+            raise
         for obj in coverage["objects"]: obj.pop("_bounds",None)
         result["proposals"] = []
         coverage["blockers"].append({"reason":"SOURCE_MODEL_NOT_APPLICABLE", "detail":str(exc)})

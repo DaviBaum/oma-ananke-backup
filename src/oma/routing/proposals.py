@@ -68,12 +68,38 @@ def project_proposals(store, run, state, scenario, obstacles, *, deadline, check
                     "request_demand_id": request_demand_id,
                     "coverage": report.get("coverage_check"), "timing": report["timing"],
                     "route_acceptance": False, "physical_infeasibility_claim": False})
+            remaining = deadline-time.monotonic()
+            if report.get("coverage_check",{}).get("status") == "PASS" and remaining > 1:
+                from .certified_fabrication import build_certified_fabrication_proposals
+                checkpoint("fabrication_graph_search")
+                lifted = build_certified_fabrication_proposals(specs,scenario,report,context_root=digest(context),
+                    deadline=min(deadline,time.monotonic()+min(10.,remaining*.15)),checkpoint=checkpoint)
+                checkpoint("fabrication_graph_result")
+                lifted_root = store.put({"context":context,"report":lifted,
+                    "route_acceptance":False,"physical_infeasibility_claim":False})
+                store.append_event(run["project_id"],run_id=run["id"],state_root=run["base_root"],
+                    stage="fabrication_graph",status=lifted["status"],artifacts=[lifted_root],
+                    message="Finite route search checked bend trim, straight length and full body support; native checks remain required",
+                    payload={"proposal_count":len(lifted["proposals"]),"reason":lifted.get("reason"),
+                        "request_demand_id":request_demand_id,"coverage":lifted.get("coverage_check"),
+                        "timing":lifted["timing"],"route_acceptance":False,"physical_infeasibility_claim":False})
+                for proposal in lifted["proposals"]:
+                    if time.monotonic() >= deadline:
+                        return
+                    if unseen(proposal):
+                        yield {**proposal,"geometry_evidence":{
+                            "method":"SOURCE_BOUND_FABRICATION_GRAPH","report_root":lifted_root,
+                            "context_root":digest(context),"model_root":lifted["model_root"],
+                            "fabrication_search_certificate_root":digest(lifted["certificate"]),
+                            "coverage_root":digest(lifted["coverage"]),"scope":proposal["geometry_scope"],
+                            "route_acceptance":False,"physical_infeasibility_claim":False}}
             for proposal in report["proposals"]:
                 checkpoint("route_cell_proposal")
                 if time.monotonic() >= deadline:
                     return
                 if unseen(proposal):
                     yield {**proposal, "geometry_evidence": {
+                        "method":"SOURCE_BOUND_ROUTE_CELLS",
                         "report_root": artifact, "context_root": digest(context),
                         "model_root": report["model_root"],
                         "cell_certificate_root": proposal["cell_certificate_root"],

@@ -6,6 +6,73 @@
   "full_engine_mathematics_implemented": false,
   "obligations": [
     {
+      "obligation": "BOUNDED_FABRICATION_LIFTED_GRID_SEARCH",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4472,
+          4473,
+          4474,
+          4475,
+          4476,
+          4484,
+          5522,
+          5523,
+          1289,
+          1290
+        ],
+        "objects": [
+          "DEF-RTR39",
+          "DEF-RTR40",
+          "DEF-RTR41",
+          "ALG-RTR15",
+          "THM-SIR25"
+        ]
+      },
+      "interpretation_and_assumptions": "Exact finite Cartesian route search carries incoming direction, straight-run origin and previous bend trim debt. Admitted straight continuations and quarter turns satisfy exact remaining-straight, full primitive envelope, allowed-box and complete outer-box separation predicates. Independent transition reconstruction checks a source-to-goal state path or a source-containing goal-free successor-closed finite set; producer geometry bound construction is not reused.",
+      "implementations": [
+        "oma.optimization.fabrication_search.compile_fabrication_search"
+      ],
+      "independent_checkers": [
+        "oma.optimization.fabrication_search.verify_fabrication_search"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.fabrication_search.compile_fabrication_search",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_search.verify_fabrication_search",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_fabrication_search.py"
+      ],
+      "real_model_benchmark": {
+        "status": "SYNTHETIC_ACTUAL_IFC_WALL_DETOUR_AND_FINITE_GRAPH_CUT",
+        "evidence": "evidence/math/fabrication-search/latest.json",
+        "scope": "Exact finite graph, separate fixed-polyline proof and actual native five-part IFC4 wall coordination in metres/millimetres; no accepted candidate or continuous closure"
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Fixed round size and a declared conservative grid only; closed-set proof means no path in that graph, never physical universe infeasibility. No manufacturer/support/slope/service/homotopy closure, nonadjacent self-interference or length optimum claim. Source cover/frame authenticity belongs to the physical adapter. Work/state/callback budgets stop with UNKNOWN or propagated interruption. Actual native metre/millimetre wall tests remain separate from exact nominal proofs and candidate acceptance.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
       "obligation": "EXACT_ORTHOGONAL_FABRICATION_TRANSITIONS",
       "source": {
         "document": "oma-integration",
@@ -1746,7 +1813,9 @@
   "additional_adapter_test_runs": [
     "evidence/math/certified-cells-adapter-tests.xml",
     "evidence/math/opening-inverse-regression.xml",
-    "evidence/math/fabrication-tests.xml"
+    "evidence/math/fabrication-tests.xml",
+    "evidence/math/fabrication-search-tests.xml",
+    "evidence/math/route-metadata-tests.xml"
   ],
   "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py tests/test_optimization_route_cells.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"
 }

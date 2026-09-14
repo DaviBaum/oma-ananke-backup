@@ -19,7 +19,7 @@ from oma.optimization.master import MasterProblem, RouteColumn, solve_master
 from oma.optimization.checker import verify_master_result
 from oma.store import Store, digest
 from .proposals import project_proposals
-from .objectives import reported_route_cost
+from .selection import retain_current_incumbent, try_selection_evidence
 from .scenario import RoutingScenario
 
 
@@ -156,11 +156,18 @@ def route_project_run(store: Store, run: dict, control):
         control.checkpoint("selection")
         checked = store.candidate(candidate["id"])
         if checked["status"] == "CHECKED":
-            report = store.get(checked["report_root"])
-            cost = reported_route_cost(report["objective"], scenario.objective_weights)
-            columns.append(RouteColumn(checked["id"], net_id, cost, artifact_ref=checked["report_root"]))
-            feasible_ids.append(checked["id"])
+            evidence, _ = try_selection_evidence(store, run, checked["id"], "physical_route", scenario.objective_weights)
+            if evidence:
+                columns.append(RouteColumn(checked["id"], net_id, evidence["cost"], artifact_ref=evidence["report_root"]))
+                feasible_ids.append(checked["id"])
         store.update_run(run["id"], "RUNNING", f"Candidate {attempted}: {checked['status']}; {len(feasible_ids)} checked alternatives", "selection")
+    current_columns = []
+    for column in columns:
+        evidence, _ = try_selection_evidence(store, run, column.id, "physical_route", scenario.objective_weights)
+        if evidence:
+            current_columns.append(RouteColumn(column.id, net_id, evidence["cost"], artifact_ref=evidence["report_root"]))
+    columns = current_columns
+    arithmetic_selected, artifact = (), None
     if columns:
         problem = MasterProblem(net_ids=(net_id,), columns=tuple(columns), state_root=run["base_root"],
                                 objective_policy=json.dumps(scenario.objective_weights, sort_keys=True), declared_universe_complete=False)
@@ -169,7 +176,14 @@ def route_project_run(store: Store, run: dict, control):
         if independent["verdict"] != "PASS":
             raise RuntimeError(f"Independent finite-master verification did not pass: {independent}")
         artifact = store.put({"problem": problem.payload(), "result": result.to_dict(), "independent_check": independent})
-        store.update_run(run["id"], "COMPLETED", "Checked feasible incumbent available; continuous routing optimality is not established", "complete", artifacts=[artifact], payload={"selected_candidate_ids": list(result.selected), "attempted": attempted, "checked_feasible": len(feasible_ids), "global_lower_bound": None, "global_gap": None})
-    else:
-        status = "BUDGET_EXHAUSTED" if time.monotonic() >= deadline else "NO_INCUMBENT_FOUND"
-        store.update_run(run["id"], status, "No independently checked candidate found in the attempted finite search; this is not proof of infeasibility", "complete", payload={"attempted": attempted, "checked_feasible": 0})
+        arithmetic_selected = result.selected
+    retained = retain_current_incumbent(store, run, feasible_ids, "physical_route", scenario.objective_weights,
+        arithmetic_selected=arithmetic_selected)
+    chosen = retained["selected_candidate_ids"]
+    status = "COMPLETED" if chosen else "BUDGET_EXHAUSTED" if time.monotonic() >= deadline else "NO_INCUMBENT_FOUND"
+    store.update_run(run["id"], status,
+        "Currently checked feasible incumbent retained; continuous routing optimality is not established" if chosen
+        else "No currently applicable checked incumbent; this is not proof of infeasibility", "complete",
+        artifacts=[root for root in (artifact, retained["artifact_root"]) if root],
+        payload={"selected_candidate_ids": chosen, "attempted": attempted, "checked_feasible": retained["checked_feasible"],
+            "global_lower_bound": None, "global_gap": None, "selection_evidence_root": retained["artifact_root"]})

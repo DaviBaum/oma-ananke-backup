@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import copy
 from fractions import Fraction
+import json
 import subprocess
 import sys
 import time
@@ -17,7 +18,7 @@ from oma.optimization.codesign import DesignCase, FiniteCoDesignProblem, solve_f
 from oma.optimization.master import MasterProblem, RouteColumn
 from oma.store import digest
 from .network_scenario import SharedNetworkScenario, network_requirements, network_baseline_context
-from .objectives import reported_route_cost
+from .selection import refresh_selection_cases, retain_current_incumbent, try_selection_evidence
 
 
 def network_project_run(store, run, control):
@@ -76,10 +77,13 @@ def network_project_run(store, run, control):
         checked = store.candidate(candidate["id"])
         report = store.get(checked["report_root"])
         verdict = "PASS" if checked["status"] == "CHECKED" else "FAIL" if checked["status"] == "REJECTED" else "UNKNOWN"
-        cost = reported_route_cost(report["objective"], scenario.objective_weights) if verdict == "PASS" else None
+        evidence, _ = try_selection_evidence(store, run, checked["id"], "physical_network", scenario.objective_weights) if verdict == "PASS" else (None, None)
+        if verdict == "PASS" and not evidence:
+            verdict = "UNKNOWN"
+        cost = Fraction(evidence["cost"]) if evidence else None
         outcomes.append(FiniteOutcome(checked["id"], verdict, cost, evidence_root=checked["report_root"]))
         columns = MasterProblem(net_ids=("physical-network",), columns=(RouteColumn(checked["id"], "physical-network", cost,
-            artifact_ref=checked["report_root"]),), state_root=checked["state_root"], declared_universe_complete=True) if verdict == "PASS" else None
+            artifact_ref=checked["report_root"]),), state_root=checked["state_root"], objective_policy=json.dumps(scenario.objective_weights, sort_keys=True), declared_universe_complete=True) if verdict == "PASS" else None
         cases.append(DesignCase(checked["id"], (("network", network.network_id),), checked["state_root"], Fraction(0),
             FiniteOutcome(checked["id"], verdict, Fraction(0) if verdict == "PASS" else None, evidence_root=checked["report_root"]), columns))
         store.update_run(run["id"], "RUNNING", f"Shared network {index+1}: {checked['status']}", "network_selection")
@@ -87,6 +91,7 @@ def network_project_run(store, run, control):
     if outcomes:
         # This universe is only the checked archive. Unmaterialized, unfinished
         # and continuous alternatives remain open; finite selection cannot close them.
+        cases = refresh_selection_cases(store, run, cases, "physical_network", scenario.objective_weights)
         problem = FiniteCoDesignProblem(tuple(cases), (("network", tuple(n.network_id for n in scenario.network_alternatives)),), (),
             run["base_root"], declared_design_universe_complete=False)
         selection = solve_finite_codesign(problem, time_limit_seconds=max(.1, deadline-time.monotonic()))
@@ -98,7 +103,11 @@ def network_project_run(store, run, control):
         selected = selection.get("selected_design_id")
     else:
         artifact = None
+    retained = retain_current_incumbent(store, run, [case.id for case in cases], "physical_network", scenario.objective_weights,
+        arithmetic_selected=[selected] if selected else [])
+    selected = next(iter(retained["selected_candidate_ids"]), None)
     store.update_run(run["id"], "COMPLETED" if selected else "BUDGET_EXHAUSTED" if time.monotonic() >= deadline else "NO_INCUMBENT_FOUND",
         "Checked shared-network alternative available; unexamined topology and continuous optimality remain open" if selected else "No checked shared-network incumbent in the examined alternatives",
-        "complete", artifacts=[artifact] if artifact else [], payload={"selected_candidate_ids": [selected] if selected else [],
-            "attempted": len(all_candidate_ids), "checked_feasible": sum(o.verdict == "PASS" for o in outcomes), "global_lower_bound": None, "global_gap": None})
+        "complete", artifacts=[root for root in (artifact, retained["artifact_root"]) if root], payload={"selected_candidate_ids": [selected] if selected else [],
+            "attempted": len(all_candidate_ids), "checked_feasible": retained["checked_feasible"], "global_lower_bound": None, "global_gap": None,
+            "selection_evidence_root": retained["artifact_root"]})

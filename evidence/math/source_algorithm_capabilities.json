@@ -13264,7 +13264,9 @@
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
         "oma.optimization.fabrication.compile_orthogonal_fabrication",
-        "oma.optimization.fabrication.verify_orthogonal_fabrication"
+        "oma.optimization.fabrication.verify_orthogonal_fabrication",
+        "oma.optimization.fabrication_search.compile_fabrication_search",
+        "oma.optimization.fabrication_search.verify_fabrication_search"
       ],
       "callable_probe": [
         {
@@ -13274,14 +13276,24 @@
         {
           "path": "oma.optimization.fabrication.verify_orthogonal_fabrication",
           "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_search.compile_fabrication_search",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.fabrication_search.verify_fabrication_search",
+          "callable": true
         }
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "BOUNDED_FABRICATION_LIFTED_GRID_SEARCH",
         "EXACT_ORTHOGONAL_FABRICATION_TRANSITIONS"
       ],
       "automated_tests": [
-        "tests/test_optimization_fabrication.py"
+        "tests/test_optimization_fabrication.py",
+        "tests/test_optimization_fabrication_search.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
       "reference_only_note": null
