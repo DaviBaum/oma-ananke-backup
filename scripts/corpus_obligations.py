@@ -1,0 +1,146 @@
+"""Build the source-to-callable traceability register without claiming release."""
+from __future__ import annotations
+import hashlib
+import importlib
+import json
+from pathlib import Path
+import sys
+import xml.etree.ElementTree as ET
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+
+def main():
+    sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
+    identities = {s["document_id"]: s["sha256"] for s in sources}
+    entries = [
+        ("FINITE_CONTEXTUAL_QUOTIENT", "ananke-canonical", [17949, 18192], ["ALG-AB5", "DEF-AB7"],
+         ["oma.optimization.finite.contextual_quotient"], ["oma.optimization.finite.verify_contextual_quotient"], "tests/test_optimization_finite.py",
+         "Complete explicit finite state-by-experiment table, typed observations, immutable context. Partition by equality under every experiment; independently replay all state pairs and separating observations.",
+         ["OMA-MATH-A006"], "Finite table equivalence only; replacing the active experiment family invalidates the quotient. Does not infer applicability of unmodeled physical experiments."),
+        ("FINITE_ARCHIVE_WITH_UNKNOWNS", "ananke-canonical", [18178, 18185], ["THM-DS21.1"],
+         ["oma.optimization.finite.finite_archive_optimum"], [], "tests/test_optimization_finite.py",
+         "Complete declared candidate list plus PASS/FAIL/UNKNOWN outcomes, exact accepted costs and supplied valid objective floors. Every unresolved potentially improving candidate blocks optimum.",
+         ["OMA-MATH-A007"], "Finite table conclusion relative to supplied domain outcomes and lower-bound evidence; no physical proof follows from an evidence-root string. Accepted-subset and complete-domain claims are distinct."),
+        ("FINITE_CHANCE_AND_RISK", "oma-integration", [19531, 19686], ["ALG-DYN16", "ALG-DYN17", "ALG-DYN18", "ALG-DYN19"],
+         ["oma.optimization.finite.finite_chance_constraint", "oma.optimization.finite.finite_risk"], [], "tests/test_optimization_finite.py",
+         "Exact finite joint probability law, nonnegative probabilities summing to one, explicit event truth including UNKNOWN, rational losses and confidence alpha in [0,1). Bound violation probability and enumerate all CVaR breakpoints.",
+         [], "Expectation, worst listed scenario and finite-law CVaR only. Samples do not certify universal uncertainty coverage, independence, or applicability of supplied probability law."),
+        ("FINITE_QUANTITY_TRANSPORT", "oma-integration", [19531, 19686], ["ALG-DYN11"],
+         ["oma.optimization.finite.check_quantity_transport"], [], "tests/test_optimization_finite.py",
+         "Explicit source/target quantities and nonnegative finite allocation edges, equal units, complete identities. Exact outgoing and incoming marginal equalities establish conservative split/merge quantity transport.",
+         [], "Quantity conservation only. No nonlinear physics, geometry, identity/functorial transport, or inherited certificate is established by these marginals."),
+        ("FINITE_NONANTICIPATIVE_POLICY", "oma-integration", [19531, 19686], ["ALG-DYN8-19", "ALG-DYN60"],
+         ["oma.optimization.policy.solve_finite_policy", "oma.optimization.finite.check_nonanticipativity"], ["oma.optimization.policy.verify_finite_policy_result"], "tests/test_optimization_policy.py",
+         "Finite same-horizon scenarios, explicit pre-action histories, one action domain per history node, complete or UNKNOWN leaf outcomes. Enumerate common-history decisions and independently replay exact expected or worst-listed cost.",
+         ["OMA-MATH-A007"], "Finite policy class and supplied leaf outcomes only; domain checkers must establish dynamic transitions and physical feasibility. Missing leaves, checker budgets and omitted uncertainty sets remain explicit."),
+        ("FINITE_CANDIDATE_ROOTED_CODESIGN", "oma-integration", [14815, 14948], ["ALG-JCD9", "ALG-JCD17", "ALG-JCD18", "ALG-JCD39", "ALG-JCD43", "ALG-JCD44", "ADD-RTR3.2"],
+         ["oma.optimization.codesign.solve_finite_codesign"], ["oma.optimization.codesign.verify_finite_codesign_result"], "tests/test_optimization_codesign.py",
+         "Finite explicit strategic domains and materialized cases; fixed protected assignment tokens; each route master bound to its own design root; shared resource and hyperedge constraints; compatible capital/routing objective units supplied by adapter.",
+         ["OMA-MATH-A002", "OMA-MATH-A007"], "Optimum only over complete declared finite assignments/materializations/routes with disposed or nonimproving unresolved alternatives. BIM sovereignty/materialization and physical route validity require upstream independent checks. No universal Benders cut or continuous design completeness theorem."),
+        ("SOURCE_PLANAR_IFC_ENCLOSURE", "oma-integration", [797, 853], ["DEF-SIR25", "DEF-SIR34", "DEF-SIR36", "THM-RTR6", "THM-RTR18"],
+         ["oma.ifc.enclosure.ExactIfcEncloser.enclose_product"], [], "tests/test_ifc_enclosure.py",
+         "Complete selected Body face-item traversal from immutable raw STEP rationals; all supported planar faces lie in the hull of their vertices. Unit and placement/mapping transforms use outward rational interval arithmetic.",
+         [], "Enclosure relation only for declared planar IFC subset and local engineering frame; no solid validity or route verdict. Explicit opt-in extends claim to all vertex-hull completions of source faces while retaining nonplanarity evidence. Unknown siblings, map origins and unsupported classes block. Real DigitalHub coverage separately measured."),
+        ("FINITE_MASTER", "oma-integration", [4688, 4880], ["DEF-RTR62", "DEF-RTR68", "THM-RTR67-86"],
+         ["oma.optimization.master.solve_master"], ["oma.optimization.checker.verify_master_result"], "tests/test_optimization_master.py",
+         "Finite serialized route columns, one per required net; rational costs, nonnegative rational resource usage, explicit higher-order conflict semantics. Geometry and physical validity are separate obligations.",
+         ["OMA-MATH-A002", "OMA-MATH-A007"], "Exhaustive finite optimum or finite infeasibility; budget stops retain incumbent and UNKNOWN. No unrestricted continuous/global building optimality. Upstream unresolved physical candidates cannot be dropped to claim optimum over a larger domain."),
+        ("FINITE_PRICING", "oma-integration", [4728, 4802], ["DEF-RTR70-75", "THM-RTR69-76"],
+         ["oma.optimization.master.generate_columns", "oma.optimization.master.price_columns"], ["oma.optimization.checker.verify_dual"], "tests/test_optimization_master.py",
+         "HiGHS proposes restricted LP multipliers; exact rational pricing covers every serialized column and repairs selection duals. Every row sign and conflict RHS is independently replayed.",
+         ["OMA-MATH-A002"], "Checked weak-duality bound over explicit column universe only. Numeric LP status is not a certificate; missing continuous route universe remains unproved."),
+        ("EXACT_PRIMITIVES", "oma-integration", [4369, 4408], ["DEF-RTR25-26", "THM-RTR17-25"],
+         ["oma.exact.orient2d", "oma.exact.orient3d", "oma.exact.segment_triangle_intersection", "oma.exact.segment_box_distance_squared", "oma.exact.capsule_box_clearance"], [], "tests/test_exact.py",
+         "Finite 2D/3D rational coordinates; exact arbitrary-precision determinants, degenerate/coplanar predicates and globally minimized piecewise quadratic capsule/AABB distance.",
+         [], "Exact predicates for represented primitives, independently analytically tested. Does not certify IFC approximation error, general BRep validity or missing geometry."),
+        ("ALLOWED_REGION", "oma-integration", [954, 1002], ["DEF-SIR60-70"],
+         ["oma.exact.capsule_within_box"], [], "tests/test_exact.py",
+         "Entire capsule must fit allowed AABB, including its outer radius. Axis margins implement erosion of allowed domain by physical body.",
+         ["OMA-MATH-A004"], "Exact capsule/AABB containment; general allowed polyhedra and rectangular rotating duct envelopes need additional implementations."),
+        ("FLUID_FIBERS", "oma-integration", [4558, 4609], ["DEF-RTR52-56", "THM-RTR53-66"],
+         ["oma.optimization.physical.evaluate_fluid_path", "oma.optimization.physical.select_fluid_catalog"], [], "tests/test_optimization_physical.py",
+         "SI fixed-section constant-flow path with supplied Darcy friction enclosure, density, fitting losses, head, velocity and efficiency. Rational interval calculation; finite catalog plus separate envelope callback.",
+         [], "Partial fixed-path physical evaluation. Branch pressure networks, friction applicability, fittings/supports/access and missing inputs remain separate. Analytic tests are not an independent whole-building simulator."),
+        ("ELECTRICAL_FIBER", "oma-integration", [4611, 4629], ["DEF-RTR57", "THM-RTR63"],
+         ["oma.optimization.physical.evaluate_electrical_path"], [], "tests/test_optimization_physical.py",
+         "Balanced three-phase supplied resistance/reactance, current, power factor, ampacity, tray fill and voltage-drop limit. SI with exact rational square-root enclosure.",
+         [], "Partial declared electrical approximation; no fault/harmonic/protection or code-compliance claim."),
+        ("CONSERVATION_AND_TRUNKS", "oma-integration", [3786, 3826], ["ADD-SIR2.1", "ADD-SIR2.2", "DEF-RTR45"],
+         ["oma.optimization.physical.aggregate_tree_flows", "oma.optimization.physical.check_conservation"], [], "tests/test_optimization_physical.py",
+         "Finite directed arborescence with exact terminal demands; aggregate branch demands upstream. Incidence head +1, tail -1; Bf=storage+loss-injection-conversion.",
+         ["OMA-MATH-A003"], "Exact conservation and arborescence topology. No geometric fitting correctness inferred from graph connectivity."),
+        ("GRAVITY_FIBER", "oma-integration", [4631, 4646], ["DEF-RTR58", "THM-RTR64"],
+         ["oma.optimization.physical.solve_gravity_elevations"], ["oma.optimization.physical.verify_gravity_result"], "tests/test_optimization_physical.py",
+         "Finite fixed directed topology, rational positive horizontal lengths, slope intervals and complete node elevation bounds. Exact Bellman-Ford difference constraints.",
+         [], "Feasible rational elevations or checked negative-cycle certificate tied to original constraints; vertical drops, fittings, cleanouts and physical body require separate checks."),
+        ("INCREMENTAL_DEPENDENCIES", "oma-integration", [23806, 23861], ["DEF-CMP218-243", "THM-CMP79-85"],
+         ["oma.dependencies.invalidation_closure", "oma.dependencies.DependencyEngine.build", "oma.dependencies.DependencyEngine.compare_with_cold"], [], "tests/test_dependencies.py",
+         "Complete declared graph, deterministic versioned functions, guarded declared reads, fully typed source values and cache context including objective/theory/experiment/checker/environment/tool/scope.",
+         ["OMA-MATH-A005"], "Conservative graph-relative reuse and equality to cold computation. Undeclared reads through interface fail. Arbitrary hidden Python globals require explicit versioned dependencies."),
+        ("FINITE_CYCLE_CLOSURE", "oma-integration", [24199, 24204], ["THM-CMP31-33", "DEF-CMP110-116"],
+         ["oma.dependencies.DependencyEngine.build"], ["oma.dependencies.verify_closure_certificate"], "tests/test_dependencies.py",
+         "Each SCC has explicit finite chain domains. Enumerate full product-state operator, check every covering monotonicity relation, iterate from bottom. Budget and nonmonotone cases remain UNKNOWN.",
+         [], "Least fixed point of serialized finite operator table only. No general nonlinear contraction solver or proof for arbitrary infinite cycles."),
+        ("CORE_MINIMALITY", "oma-integration", [4882, 4891], ["DEF-RTR82", "THM-RTR96"],
+         ["oma.optimization.certificates.classify_core_minimality"], [], "tests/test_optimization_certificates.py",
+         "Finite checked-infeasible constraint core; each deletion must carry independently checked feasible evidence. UNKNOWN deletion is not proof of minimality.",
+         ["OMA-MATH-A001"], "Logical evidence classification only; underlying deletion certificates checked by relevant solver/geometry checker."),
+        ("FARKAS_ARITHMETIC", "oma-integration", [4833, 4852], ["DEF-RTR78-79", "THM-RTR89-92"],
+         ["oma.optimization.certificates.verify_farkas"], [], "tests/test_optimization_certificates.py",
+         "Exact rational finite matrix Ax>=b,x>=0 and ray y>=0. Check A^Ty<=0 and b^Ty>0 with strict exact comparisons.",
+         [], "Infeasibility of supplied finite linear system only; full routing use additionally needs complete domain and Farkas pricing closure."),
+    ]
+    register = []
+    for identifier, document, locations, objects, implementations, checkers, tests, interpretation, amendments, limitation in entries:
+        callables = []
+        for path in implementations + checkers:
+            chunks = path.split(".")
+            resolved = None
+            for split in range(len(chunks) - 1, 0, -1):
+                try:
+                    resolved = importlib.import_module(".".join(chunks[:split]))
+                except ModuleNotFoundError:
+                    continue
+                for attribute in chunks[split:]:
+                    resolved = getattr(resolved, attribute)
+                break
+            callables.append({"path": path, "callable": callable(resolved)})
+        register.append({"obligation": identifier, "source": {"document": document, "sha256": identities[document],
+                         "paragraphs": locations, "objects": objects}, "interpretation_and_assumptions": interpretation,
+                         "implementations": implementations, "independent_checkers": checkers,
+                         "callable_probe": callables, "automated_tests": [tests],
+                         "real_model_benchmark": {"status": "NOT_RUN_BY_MATH_AGENT", "evidence": None},
+                         "status": "IMPLEMENTED_SCOPED_UNIT_TESTED", "amendments": amendments,
+                         "certificate_and_limitations": limitation,
+                         "cache_invalidation": ["source-state", "geometry", "envelope", "net-obligations", "catalog", "rules", "objective", "scenarios", "theory", "checker", "solver-version"]})
+    pending = [
+        "Complete source review and cross-document dependency semantic reconciliation",
+        "General 3D solid/mesh uncertainty and complete obstacle-accounting closure",
+        "Certified inner graph with continuous fitting/body transitions",
+        "Complete outer abstraction and adaptive CEGAR geometry proofs",
+        "Complete 3D homotopy presentations and fabrication/size lifts",
+        "Multi-terminal topology pricing with physical fitting/junction validity",
+        "General pressure/flow networks, supports, penetrations and access fibers",
+        "Full finite route universe closure or a continuous-completeness theorem",
+        "Nested topology-native branch-and-price proof tree",
+        "Universally scoped JCD Benders cuts and joint strategic rewrite search",
+        "Continuous/nonlinear dynamic models and universal adversarial closure beyond implemented finite nonanticipative policy kernel",
+        "Package composition and final release premise closure across complete corpus",
+    ]
+    test_path = ROOT / "evidence/math/implemented-obligation-tests.xml"
+    suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
+    proof = {"schema": "oma.math.traceability/1", "source_review_complete": False, "full_engine_mathematics_implemented": False,
+             "obligations": register, "pending_source_mechanisms": pending,
+             "unit_test_run": {"path": str(test_path.relative_to(ROOT)), "tests": int(suite.get("tests")) if suite is not None else None,
+                               "failures": int(suite.get("failures")) if suite is not None else None},
+             "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"}
+    destination = ROOT / "evidence/math/traceability_register.json"
+    destination.write_text(json.dumps(proof, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({"registered_obligations": len(register), "callables_resolved": all(c["callable"] for r in register for c in r["callable_probe"]),
+                      "full_corpus_gate": "INCOMPLETE", "unit_tests": proof["unit_test_run"]}))
+
+
+if __name__ == "__main__":
+    main()

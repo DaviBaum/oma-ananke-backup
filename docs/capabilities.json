@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "release_status": "IN_PROGRESS",
+  "capabilities": [
+    {
+      "id": "source_traceability",
+      "milestone": "M0",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "evidence/math/review_status.json",
+        "evidence/math/traceability_register.json",
+        "docs/math/implementation-contract.md"
+      ],
+      "scope": "Tracked source/equation inventory, partial full-body review and explicit amendments; complete review pending"
+    },
+    {
+      "id": "dataset_lock_and_all_inputs",
+      "milestone": "M0",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "evidence/ifc/dataset-lock.json",
+        "evidence/ifc/acquisition.json",
+        "evidence/ifc/campaign.json"
+      ],
+      "scope": "All50 IFC inputs acquired at pinned revision; final complete retry and licence dispositions pending"
+    },
+    {
+      "id": "ifc_import_federation",
+      "milestone": "M1",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "tests/test_ifc_pipeline.py",
+        "tests/test_ifc_federation.py",
+        "evidence/ifc/digital-hub-datum.json"
+      ],
+      "scope": "Real meshes, properties and exact product accounting; local anchor transforms and unresolved global datums separated"
+    },
+    {
+      "id": "live_workbench",
+      "milestone": "M1",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "ui/qa/digital-hub-navigation-desktop.json",
+        "ui/qa/digital-hub-reconnect-timings.json",
+        "ui/qa/digital-hub-cancel-timings.json"
+      ],
+      "scope": "Real DigitalHub full/filtered geometry, selection, history, route candidates and durable events; largecase QA active"
+    },
+    {
+      "id": "independent_physical_drc",
+      "milestone": "M2",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "tests/test_ifc_cad.py",
+        "tests/test_route_adversarial.py",
+        "docs/math/outer-obstacle-enclosure.md"
+      ],
+      "scope": "Fresh native solids, exact bounded source enclosures, ports/body consistency, full obstacle and self-pair accounting; source/model coverage limitations explicit"
+    },
+    {
+      "id": "physical_routing_repair",
+      "milestone": "M3",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "tests/test_routing_integration.py",
+        "scripts/ifc_real_repair_campaign.py"
+      ],
+      "scope": "Analytic actualIFC obstructed-route repair passes independent check; frozen realmodel campaign active; full joint topology incomplete"
+    },
+    {
+      "id": "transactional_revisions_history",
+      "milestone": "M3",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "tests/test_store.py",
+        "tests/test_worker_control.py"
+      ],
+      "scope": "Immutable roots, atomic revisions/outbox, CAS, idempotent accept/revert, live-worker-aware recovery, portable backups"
+    },
+    {
+      "id": "edited_ifc_export_recheck",
+      "milestone": "M3",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "tests/test_routing_integration.py",
+        "tests/test_ifc_pipeline.py",
+        "evidence/ifc/duplex-native-export-v4.json"
+      ],
+      "scope": "Analytic edited replacementIFC, new native straight/bend solids, explicit ports and fresh local-scope check; multiple-route export incomplete"
+    },
+    {
+      "id": "oma_ananke_joint_optimization",
+      "milestone": "M4",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "tests/test_optimization_master.py",
+        "tests/test_optimization_certificates.py",
+        "docs/math/implementation-contract.md"
+      ],
+      "scope": "Exact bounded finite master with independent enumeration/dual checks; complete continuous oracle and full co-design integration absent"
+    },
+    {
+      "id": "incremental_dependencies",
+      "milestone": "M4",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "tests/test_dependencies.py"
+      ],
+      "scope": "Tested fullcontext keys, guarded reads, transitive invalidation, finite fixedpoints and cold equivalence primitives; realproject integration pending"
+    },
+    {
+      "id": "engineering_analysis",
+      "milestone": "M5",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "tests/test_optimization_physical.py"
+      ],
+      "scope": "Rational/interval physical fibers and explicit service inputs; complete source/topology/scenario integration pending"
+    },
+    {
+      "id": "gpu_compute_3090",
+      "milestone": "M5",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "evidence/benchmarks/gpu-broadphase-first.json",
+        "tests/test_broadphase.py"
+      ],
+      "scope": "Actual boundedGPU broadphase, transfers/sync measured, exactresult agreement; end-to-end largeapplication GPU gates pending"
+    },
+    {
+      "id": "full_corpus_benchmarks",
+      "milestone": "M6",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "evidence/ifc/campaign.json",
+        "scripts/ifc_real_repair_campaign.py"
+      ],
+      "scope": "Allfile import campaign and realmodel seededrepair campaign; full required repair/optimization/cold/runlong gates incomplete"
+    },
+    {
+      "id": "recovery_and_security",
+      "milestone": "M6",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "tests/test_api.py",
+        "tests/test_store.py",
+        "tests/test_worker_control.py",
+        "evidence/release/core-reliability-tests.xml"
+      ],
+      "scope": "Loopback origin checks, source validation, process limits, durablecontrol, ownership-aware recovery and portablehashchecked backup; expanded fault campaign pending"
+    },
+    {
+      "id": "offline_installation_packaging",
+      "milestone": "M6",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "OMA.cmd",
+        "Start-OMA.ps1",
+        "Install-OMA.ps1",
+        "requirements.lock",
+        "evidence/dependencies/sbom.json"
+      ],
+      "scope": "Launcher and pinned installer exist; wheelhouse, redistribution source notices and fresh offline install not complete"
+    }
+  ],
+  "updated_at": "2026-09-14"
+}

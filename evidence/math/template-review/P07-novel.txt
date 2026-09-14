@@ -1,0 +1,576 @@
+PROMPT 7: Proof-Carrying Rewrite Transport, Cross-Topology State and Certificate Migration, Rewrite-Functor Jets, Dependency-Complete Invalidation, Certified Incremental Reuse, and Cold-Recomputation Equivalence
+Role: rewrite spans, state/certificate transport, invalidation, and exact reuse; domain: rewrite transport; namespace RT; package PCRT; fiber \mathcal F_{RT}
+READING AID ONLY: duplicate matches do not themselves establish dependency applicability or implementation.
+[20068] ANANKE MATHEMATICS PROGRAM — PROMPT 7 OF 30
+[20069] Proof-Carrying Rewrite Transport, Cross-Topology State and Certificate Migration, Rewrite-Functor Jets, Dependency-Complete Invalidation, Certified Incremental Reuse, and Cold-Recomputation Equivalence
+[20070] Canonical provenance: RECONSTRUCTED_CANONICAL_BODY. The exact historical Pages body was not available in the active file surface. This chapter is the complete active canonical reconstruction produced under Prompt 32; it is not represented as recovered historical wording. Canonical package: PCRT. Release fiber: FRT.
+[20072] This prompt formalizes rewrite spans, state/certificate transport, invalidation, and exact reuse. Every theorem is relative to a declared state, theory version, evidence version, experiment family, dependency graph, and checker. Acceptance licenses only the exact claim scope and modality. The proposal source may be a human, optimizer, heuristic, simulation, or AI system; the independent checker remains authoritative.
+[20074] Prompt 7 converts the complete package of Prompt 6 into a proof-carrying rewrite transport layer. It defines typed states and artifacts, exact and approximate reuse boundaries, negative theorems preventing invalid inference, finite checking algorithms, a synthetic 190-room hotel example, falsification tests, proof-assistant sketches, complexity bounds, permanent registries, and an explicit open-world limitation. Its output is PCRT and is consumed by the next prompt without modal strengthening.
+[20079] 7
+[20089] FRT
+[20109] 1. Rewrite and Transport Scope Convention
+[20110] A rewrite is a versioned change of project topology, semantics, interfaces, or identity. Transport is licensed only by explicit correspondence, applicability, dependency, and checker conditions. Name equality, geometric proximity, or local edit size never licenses reuse by itself.
+[20111] 2. Abstract Linking Prompts 1-6 to Prompt 8
+[20112] Prompts 1-6 provide typed states, claims, evidence, proof obligations, and independent checkers. Prompt 7 defines how these objects migrate across edits while preserving exactness or carrying an explicit error envelope. Prompt 8 imports the layer through compatibility aliases and applies it to context-sensitive incremental compilation.
+[20113] 3. Mandatory Prompt-6 Audit
+[20114] Prompt-6 dependency audit.
+[20115] Imported object
+[20116] Required property
+[20117] Prompt-7 use
+[20118] Typed claim tokens
+[20119] Complete scope, modality, versions
+[20120] Transported without strengthening
+[20121] Independent checkers
+[20122] Sound and total
+[20123] Dispose every transported artifact
+[20124] Dependency graph
+[20125] Complete
+[20126] Defines invalidation closure
+[20127] Trusted-kernel rule
+[20128] Proposal independence
+[20129] Rewrite proposer remains untrusted
+[20130] UNKNOWN semantics
+[20131] Preserved
+[20132] No unsupported reuse
+[20133] 4. Standing Rewrite-Transport Assumptions
+[20175] ASSUMP-RT11 — Independent acceptance
+[20176] Provenance: RECONSTRUCTED_CANONICAL_BODY. The accepted package is disposed by a checker independent of the proposal-generating procedure.
+[20177] Formal form of ASSUMP-RT11.
+LATEX: Accept(P)\iff K_{ind}(P)=\mathsf{ACCEPT}
+[20179] ASSUMP-RT12 — No modal strengthening
+[20180] Provenance: RECONSTRUCTED_CANONICAL_BODY. Composition cannot assign a conclusion a stronger modality or scope than its premises and rule license.
+[20181] Formal form of ASSUMP-RT12.
+LATEX: \mu_{out}\preceq\bigwedge_j\mu_j
+[20217] ASSUMP-RT11
+[20218] Independent acceptance
+[20220] ASSUMP-RT12
+[20221] No modal strengthening
+[20223] 5. Typed Project State and Artifact Graph
+[20224] DEF-RT1 — Versioned project state
+[20225] Provenance: RECONSTRUCTED_CANONICAL_BODY. A typed state before rewrite.
+[20226] Defining expression for DEF-RT1.
+LATEX: X=(M,V,A,E,D,H)
+[20229] Provenance: RECONSTRUCTED_CANONICAL_BODY. The finite dependency graph of source and derived artifacts.
+[20230] Defining expression for DEF-RT2.
+LATEX: G_A=(N_A,E_A)
+[20232] DEF-RT3 — Rewrite span
+[20233] Provenance: RECONSTRUCTED_CANONICAL_BODY. A source-to-interface and target-to-interface span recording common structure.
+[20234] Defining expression for DEF-RT3.
+LATEX: X\xleftarrow{\ell}K\xrightarrow{r}X\prime
+[20236] DEF-RT4 — Object correspondence
+[20237] Provenance: RECONSTRUCTED_CANONICAL_BODY. A partial typed relation between source and target objects.
+[20238] Defining expression for DEF-RT4.
+LATEX: R\subseteq Obj(X)\times Obj(X\prime)
+[20240] DEF-RT5 — Partial correspondence
+[20241] Provenance: RECONSTRUCTED_CANONICAL_BODY. A correspondence not required to cover deleted or inserted objects.
+[20242] Defining expression for DEF-RT5.
+LATEX: R:Obj(X)\rightharpoonup Obj(X\prime)
+[20244] DEF-RT6 — Versioned rewrite
+[20245] Provenance: RECONSTRUCTED_CANONICAL_BODY. A rewrite span plus theory, experiment-family, dependency, and checker versions.
+[20246] Defining expression for DEF-RT6.
+LATEX: \rho=(X,K,X\prime,\ell,r,V)
+[20248] DEF-RT7 — Preserved object class
+[20249] Provenance: RECONSTRUCTED_CANONICAL_BODY. Objects mapped with equal canonical semantics and roots.
+[20250] Defining expression for DEF-RT7.
+LATEX: Pres(\rho)=\{x:R(x)=x\prime\wedge sem(x)=sem(x\prime)\}
+[20252] DEF-RT8 — Deleted object class
+[20253] Provenance: RECONSTRUCTED_CANONICAL_BODY. Source objects with no target image.
+[20254] Defining expression for DEF-RT8.
+LATEX: Del(\rho)=dom(R)^c
+[20256] DEF-RT9 — Inserted object class
+[20257] Provenance: RECONSTRUCTED_CANONICAL_BODY. Target objects with no source preimage.
+[20258] Defining expression for DEF-RT9.
+LATEX: Ins(\rho)=im(R)^c
+[20260] DEF-RT10 — Modified object class
+[20261] Provenance: RECONSTRUCTED_CANONICAL_BODY. Corresponded objects whose semantic roots differ.
+[20262] Defining expression for DEF-RT10.
+LATEX: Mod(\rho)=\{x\in dom(R):roots(x)\ne roots(Rx)\}
+[20264] DEF-RT11 — Semantically reidentified class
+[20265] Provenance: RECONSTRUCTED_CANONICAL_BODY. Objects with changed identifiers but proved semantic identity.
+[20266] Defining expression for DEF-RT11.
+LATEX: ReId(\rho)=\{(x,x\prime):id(x)\ne id(x\prime)\wedge sem(x)=sem(x\prime)\}
+[20268] DEF-RT12 — Exact state transport
+[20269] Provenance: RECONSTRUCTED_CANONICAL_BODY. A relation mapping a source state and rewrite to one target state with checker-licensed preserved content.
+[20270] Defining expression for DEF-RT12.
+LATEX: T_X\subseteq X\times Rewrite\times X\prime
+[20272] DEF-RT13 — Set-valued state transport
+[20273] Provenance: RECONSTRUCTED_CANONICAL_BODY. A relation returning all targets compatible with incomplete correspondence.
+[20274] Defining expression for DEF-RT13.
+LATEX: T_X^{set}(x,\rho)\subseteq X\prime
+[20276] DEF-RT14 — Witness transport
+[20277] Provenance: RECONSTRUCTED_CANONICAL_BODY. A map carrying a witness to target scope when every referenced object and assumption transports.
+[20278] Defining expression for DEF-RT14.
+LATEX: T_W:W_X\rightharpoonup W_{X\prime}
+[20280] DEF-RT15 — Certificate transport
+[20281] Provenance: RECONSTRUCTED_CANONICAL_BODY. A map carrying proof objects and their dependency/applicability metadata.
+[20282] Defining expression for DEF-RT15.
+LATEX: T_C:C_X\rightharpoonup C_{X\prime}
+[20284] DEF-RT16 — Evidence transport
+[20285] Provenance: RECONSTRUCTED_CANONICAL_BODY. A provenance-preserving relocation or reindexing of evidence references.
+[20286] Defining expression for DEF-RT16.
+LATEX: T_E:E_X\rightharpoonup E_{X\prime}
+[20288] DEF-RT17 — Assumption transport
+[20289] Provenance: RECONSTRUCTED_CANONICAL_BODY. The image of assumptions plus newly introduced assumptions and discharged deletions.
+[20290] Defining expression for DEF-RT17.
+LATEX: T_A(A)=A_{pres}\cup A_{new}\setminus A_{discharged}
+[20292] DEF-RT18 — Boundary-condition transport
+[20293] Provenance: RECONSTRUCTED_CANONICAL_BODY. A typed map on domains, orientations, interfaces, loads, controls, and units.
+[20294] Defining expression for DEF-RT18.
+LATEX: T_B:B_X\rightharpoonup B_{X\prime}
+[20296] DEF-RT19 — Quotient transport
+[20297] Provenance: RECONSTRUCTED_CANONICAL_BODY. A commuting map between source and target contextual quotients.
+[20298] Defining expression for DEF-RT19.
+LATEX: \bar T\circ q_X=q_{X\prime}\circ T_X
+[20300] DEF-RT20 — Decision-context preservation
+[20301] Provenance: RECONSTRUCTED_CANONICAL_BODY. Preservation of every active experiment and decision after transport.
+[20302] Defining expression for DEF-RT20.
+LATEX: e_{X\prime}(T_Xx)=e_X(x)\quad\forall e\in\mathcal E
+[20304] DEF-RT21 — Basis and reduced-model transport
+[20305] Provenance: RECONSTRUCTED_CANONICAL_BODY. A map of bases, modes, condensed operators, and surrogate state with residual certificate.
+[20306] Defining expression for DEF-RT21.
+LATEX: T_Basis=(Q,Q\prime,P,residual)
+[20308] DEF-RT22 — Sensitivity transport
+[20309] Provenance: RECONSTRUCTED_CANONICAL_BODY. A pullback or pushforward for gradients, duals, adjoints, and shadow prices.
+[20310] Defining expression for DEF-RT22.
+LATEX: T_{sens}(g)=J_\rho^{-T}g
+[20312] DEF-RT23 — Rewrite-Functor Jet
+[20313] Provenance: RECONSTRUCTED_CANONICAL_BODY. The value, first derivative, second-order remainder bound, versions, and applicability of a transport functor.
+[20314] Defining expression for DEF-RT23.
+LATEX: J^2T_\rho=(T_\rho,DT_\rho,D^2T_\rho,R_2,V,S)
+[20316] DEF-RT24 — Invalidation cone
+[20317] Provenance: RECONSTRUCTED_CANONICAL_BODY. Changed roots and all downstream artifacts reachable in the complete dependency graph.
+[20318] Defining expression for DEF-RT24.
+LATEX: I_\rho=Reach_D(ChangedRoots(\rho))
+[20320] DEF-RT25 — Exact reuse predicate
+[20321] Provenance: RECONSTRUCTED_CANONICAL_BODY. Equality of complete roots, applicability, artifact bytes, and checker semantics outside the invalidation cone.
+[20322] Defining expression for DEF-RT25.
+LATEX: ReuseExact(a,\rho)\iff roots\prime(a)=roots(a)\wedge Applicable\prime(a)
+[20324] DEF-RT26 — Approximate reuse envelope
+[20325] Provenance: RECONSTRUCTED_CANONICAL_BODY. A transported artifact paired with a checked residual or error bound.
+[20326] Defining expression for DEF-RT26.
+LATEX: ReuseApprox=(a\prime,\varepsilon,norm,scope,V)
+[20328] DEF-RT27 — Conflict core
+[20329] Provenance: RECONSTRUCTED_CANONICAL_BODY. A checked subset of rewrite changes and obligations sufficient for transport failure.
+[20330] Defining expression for DEF-RT27.
+LATEX: K_\rho\subseteq Changed(\rho)\cup Obligations
+[20332] DEF-RT28 — Repair frontier
+[20333] Provenance: RECONSTRUCTED_CANONICAL_BODY. Nondominated edits to rewrite correspondence or target state that restore transport feasibility.
+[20334] Defining expression for DEF-RT28.
+LATEX: RF_\rho=Pareto\{\delta:Check(T(X,\rho\oplus\delta))=ACCEPT\}
+[20336] DEF-RT29 — Cold recomputation
+[20337] Provenance: RECONSTRUCTED_CANONICAL_BODY. Complete target derivation without cached artifacts.
+[20338] Defining expression for DEF-RT29.
+LATEX: Cold(X\prime,V\prime)
+[20340] DEF-RT30 — Proof-Carrying Rewrite Transport Package
+[20341] Provenance: RECONSTRUCTED_CANONICAL_BODY. PCRT containing rewrite, correspondences, transports, reused and invalidated artifacts, residuals, proofs, roots, limitations, and verdict.
+[20342] Defining expression for DEF-RT30.
+LATEX: PCRT=(\rho,R,T_X,T_W,T_C,T_E,T_A,T_B,T_{sens},I,K,RF,W,D,V,L,H)
+[20344] Prompt-7 definition registry.
+[20349] Versioned project state
+[20355] Rewrite span
+[20358] Object correspondence
+[20361] Partial correspondence
+[20364] Versioned rewrite
+[20367] Preserved object class
+[20370] Deleted object class
+[20373] Inserted object class
+[20376] Modified object class
+[20379] Semantically reidentified class
+[20382] Exact state transport
+[20385] Set-valued state transport
+[20388] Witness transport
+[20391] Certificate transport
+[20393] DEF-RT16
+[20394] Evidence transport
+[20396] DEF-RT17
+[20397] Assumption transport
+[20399] DEF-RT18
+[20400] Boundary-condition transport
+[20402] DEF-RT19
+[20403] Quotient transport
+[20405] DEF-RT20
+[20406] Decision-context preservation
+[20408] DEF-RT21
+[20409] Basis and reduced-model transport
+[20411] DEF-RT22
+[20412] Sensitivity transport
+[20414] DEF-RT23
+[20415] Rewrite-Functor Jet
+[20417] DEF-RT24
+[20418] Invalidation cone
+[20420] DEF-RT25
+[20421] Exact reuse predicate
+[20423] DEF-RT26
+[20424] Approximate reuse envelope
+[20426] DEF-RT27
+[20427] Conflict core
+[20429] DEF-RT28
+[20432] DEF-RT29
+[20435] DEF-RT30
+[20436] Proof-Carrying Rewrite Transport Package
+[20438] 6. Identity Rewrite Behavior
+[20439] THM-RT1 — Identity transport is identity
+[20441] Statement. Under identical versions and complete applicability, transporting any canonical object along the identity rewrite returns the same object and certificate.
+[20442] Formal statement for THM-RT1.
+LATEX: T_{id}=id
+[20445] Step 1. The identity correspondence maps every object to itself.
+[20446] Step 2. Every root, dependency, and checker input is equal, so deterministic transport returns the original object.
+[20448] 7. Composition of Rewrites
+[20449] THM-RT2 — Functorial transport under compatibility
+[20451] Statement. If rewrites are composable, correspondence composition is typed, intermediate applicability holds, and transport rules are deterministic, transport along the composite equals successive transport.
+[20452] Formal statement for THM-RT2.
+LATEX: T_{\rho_2\circ\rho_1}=T_{\rho_2}\circ T_{\rho_1}
+[20455] Step 1. Compose the object correspondences and versions.
+[20456] Step 2. For each object, both constructions apply the same deterministic semantic maps in the same order.
+[20458] 8. Path Dependence when Functorial Conditions Fail
+[20459] THM-RT3 — Rewrite transport can be path dependent
+[20461] Statement. Without compatible intermediate identity, theory, or experiment-family conditions, two rewrite paths with the same endpoints can yield different transported artifacts.
+[20462] Formal statement for THM-RT3.
+LATEX: T_{\rho_b}\circ T_{\rho_a}\ne T_{\rho_d}\circ T_{\rho_c}
+[20465] Step 1. Let one path recalibrate a surrogate before aggregation and the other aggregate before recalibration.
+[20466] Step 2. Noncommuting transformations give unequal results, so endpoint equality alone is insufficient.
+[20468] 9. Exact State Transport
+[20469] THM-RT4 — Exact state transport preserves included semantics
+[20471] Statement. If correspondence is total on every object referenced by active decisions, roots agree, and boundary maps commute, transported state preserves all included experiments.
+[20472] Formal statement for THM-RT4.
+LATEX: \forall e\in\mathcal E:e(T_Xx)=e(x)
+[20475] Step 1. Every active experiment factors through transported objects and interfaces.
+[20476] Step 2. Commuting maps make its target value equal the source value.
+[20478] 10. Partial and Set-Valued State Transport
+[20479] THM-RT5 — Incomplete correspondence requires set-valued or UNKNOWN output
+[20481] Statement. If multiple target completions satisfy the known correspondence and active decisions separate them, no single exact transported state is licensed.
+[20483] Step 1. Each completion is consistent with available information.
+[20484] Step 2. Selecting one uniquely would add unsupported information; preserve the set or return UNKNOWN.
+[20486] 11. Witness Transport
+[20487] THM-RT6 — Witness transport soundness
+[20489] Statement. A witness transports soundly when every referenced object, assumption, scope, and checker rule has an applicable target image.
+[20490] Formal statement for THM-RT6.
+LATEX: C_{X\prime}(T_Aa,T_Ww)=ACCEPT
+[20493] Step 1. Replace each source reference by its proved target image.
+[20494] Step 2. Checker soundness on the target revalidates the transported witness.
+[20496] 12. Proof and Certificate Transport
+[20497] THM-RT7 — Certificate transport is conditional on proof-rule invariance
+[20499] Statement. A proof certificate remains valid only when its rule semantics and every premise transport under unchanged or conservatively extended theory.
+[20501] Step 1. A certificate is a finite derivation tree.
+[20502] Step 2. Induct over the tree: transported premises and invariant rules yield transported conclusions.
+[20504] 13. Evidence Transport and Applicability
+[20505] THM-RT8 — Evidence relocation does not preserve applicability automatically
+[20507] Statement. Byte-identical evidence moved to a new object or context can become inapplicable.
+[20509] Step 1. Applicability depends on scope, object identity, method, time, and theory.
+[20510] Step 2. Changing any field can falsify applicability while bytes remain equal.
+[20512] 14. Assumption Transport
+[20513] THM-RT9 — Assumptions cannot be silently transported
+[20515] Statement. Every transported theorem must carry preserved assumptions and explicitly add, discharge, or invalidate changed assumptions.
+[20517] Step 1. The source proof is conditional on its assumption set.
+[20518] Step 2. Dropping an undischarged assumption yields an unsupported target implication.
+[20520] 15. Boundary-Condition Transport
+[20521] THM-RT10 — Boundary orientation and units are semantic
+[20523] Statement. Equal boundary names or geometry do not imply equal boundary conditions when orientation, units, sign, control, or interface law changes.
+[20524] Formal statement for THM-RT10.
+LATEX: n\prime=-n\Rightarrow q\prime=-q
+[20527] Step 1. Construct equal boundary labels with opposite outward normals.
+[20528] Step 2. A flux condition changes sign, separating the models.
+[20530] 16. Quotient and Abstraction Transport
+[20531] THM-RT11 — Quotient transport requires commuting equivalence
+[20533] Statement. A source quotient transports exactly only when target images of source-equivalent states remain target-equivalent and the quotient diagram commutes.
+[20534] Formal statement for THM-RT11.
+LATEX: \bar T\circ q_X=q_{X\prime}\circ T_X
+[20537] Step 1. Well-definedness requires all representatives of one source class map to one target class.
+[20538] Step 2. The commuting equation then defines a unique quotient transport.
+[20540] 17. Context Expansion and Quotient Refinement
+[20541] THM-RT12 — New experiments can split transported classes
+[20543] Statement. Expanding the active experiment family can refine a quotient even when project geometry is unchanged.
+[20545] Step 1. Old equivalence quantifies over fewer experiments.
+[20546] Step 2. A new experiment can separate two previously equivalent states.
+[20548] 18. Basis, Reduced Model, and Surrogate Transport
+[20549] THM-RT13 — Reduced-model reuse requires residual certification
+[20551] Statement. A transported reduced model is licensed only with a checked residual or error envelope in the target state.
+[20552] Formal statement for THM-RT13.
+LATEX: \|u\prime-Q\prime\hat u\prime\|\le\kappa\|r\prime\|
+[20555] Step 1. Basis correspondence alone does not bound target approximation error.
+[20556] Step 2. A residual theorem converts the checked residual to a scoped error bound.
+[20558] 19. Sensitivity, Gradient, Dual, Adjoint, and Shadow-Price Transport
+[20559] THM-RT14 — Sensitivity transport follows the chain rule under differentiability
+[20561] Statement. For a differentiable invertible local state map, covector sensitivities transport by the inverse transpose Jacobian.
+[20562] Formal statement for THM-RT14.
+LATEX: g\prime=J_\rho^{-T}g
+[20565] Step 1. Differentiate the composite objective.
+[20566] Step 2. Solve the chain-rule relation for the target covector.
+[20568] 20. Rewrite-Functor Jets
+[20569] THM-RT15 — Second-order jet yields a local transport envelope
+[20571] Statement. If the transport functor is twice differentiable with bounded second derivative, its first-order jet has a quadratic remainder bound.
+[20572] Formal statement for THM-RT15.
+LATEX: \|T(x+h)-T(x)-DT_xh\|\le\tfrac12M\|h\|^2
+[20575] Step 1. Apply Taylor’s theorem along the rewrite parameter segment.
+[20576] Step 2. Bound the integral remainder by the second-derivative supremum.
+[20578] 21. Exact Reuse Conditions
+[20579] THM-RT16 — Unaffected certificates may be reused
+[20581] Statement. Under complete dependencies, exact unchanged-root equality, unchanged applicability, immutable versions, and deterministic checker semantics, a certificate outside the invalidation cone may be reused.
+[20582] Formal statement for THM-RT16.
+LATEX: a\notin I_\rho\wedge Roots\prime(a)=Roots(a)\Rightarrow Cert\prime(a)=Cert(a)
+[20585] Step 1. Outside the closure, no semantic predecessor changes.
+[20586] Step 2. Root equality and determinism reproduce the same artifact and verdict.
+[20588] 22. Approximate Reuse
+[20589] THM-RT17 — Approximate reuse is bounded, not exact
+[20591] Statement. A reused artifact with a certified residual supports only the modality and scope licensed by its error envelope.
+[20593] Step 1. The residual theorem supplies an inequality, not equality.
+[20594] Step 2. Therefore the output claim is bounded or robust, never silently exact.
+[20596] 23. Dependency-Complete Invalidation
+[20597] THM-RT18 — Incomplete dependency invalidation is unsound
+[20599] Statement. If a changed semantic root has an omitted dependency path to a reused artifact, incremental checking can differ from cold recomputation.
+[20601] Step 1. Construct a derived artifact depending on the root through the omitted edge.
+[20602] Step 2. The cache reuses the old value while cold derivation changes it.
+[20604] 24. Cold-Recomputation Equivalence
+[20605] THM-RT19 — Dependency-directed recomputation equals cold recomputation
+[20607] Statement. With complete dependencies, deterministic derivations, immutable versions, and sound checkers, recomputing exactly the invalidation cone yields the cold target package.
+[20608] Formal statement for THM-RT19.
+LATEX: PCRT_{inc}(X,\rho)=PCRT_{cold}(X\prime)
+[20611] Step 1. Topologically order the target dependency graph.
+[20612] Step 2. Induct: preserved nodes have equal roots; recomputed nodes receive cold-equal predecessors.
+[20614] 25. Negative Theorem: Names and Local Geometry
+[20615] THM-RT20 — Unchanged names or local geometry do not imply reuse
+[20617] Statement. An object may retain name and geometry while theory, load, interface, evidence, or experiment-family roots change.
+[20619] Step 1. Construct a same-geometry wall whose fire rating or load role changes.
+[20620] Step 2. The active certificate changes despite nominal sameness.
+[20622] 26. Negative Theorem: Local Correspondence
+[20623] THM-RT21 — Local correspondence does not imply global semantic equivalence
+[20625] Statement. A correct local object map does not guarantee that all global couplings, shared resources, or stakeholder decisions are preserved.
+[20627] Step 1. Map one riser locally while changing upstream plant capacity.
+[20628] Step 2. The local map holds, but system decisions differ.
+[20630] 27. Rewrite Conflict Cores
+[20631] THM-RT22 — Transport rejection core is constructive
+[20633] Statement. A checked minimal set of failed correspondences, applicability predicates, or version roots is sufficient to explain scoped transport failure.
+[20635] Step 1. The checker verifies the subset is inconsistent with transport obligations.
+[20636] Step 2. Every superset remains infeasible; minimality is separately checked if claimed.
+[20638] 28. Rewrite Repair Frontiers
+[20639] THM-RT23 — Repair frontiers are model relative
+[20641] Statement. Nondominated transport repairs depend on declared edits, costs, and constraints.
+[20643] Step 1. Different repair libraries define different feasible repair sets.
+[20644] Step 2. Their Pareto frontiers can differ for the same core.
+[20646] 29. Proposal-Source Independence
+[20647] THM-RT24 — Rewrite proposal source is irrelevant to acceptance
+[20649] Statement. Acceptance depends on normalized rewrite semantics and checker evidence, not on proposer identity.
+[20651] Step 1. The checker input excludes proposer identity unless explicitly modeled.
+[20652] Step 2. Equal canonical inputs receive equal verdicts.
+[20654] 30. Open-World Rewrite Limitation
+[20655] THM-RT25 — Accepted transport is not real-world equivalence
+[20657] Statement. PCRT acceptance does not prove that every unmodeled consequence of the rewrite is unchanged.
+[20659] Step 1. Add an unmodeled hazard dependent on the changed state.
+[20660] Step 2. All modeled transport predicates can hold while the new hazard differs.
+[20662] 31. Checking Complexity
+[20663] Rewrite checking complexity.
+LATEX: T_{RT}=O(|V_D|+|E_D|)+\sum_{u\in I_\rho}T_u+T_C
+[20665] 32. Required Algorithms
+[20666] ALG-RT1 — Build rewrite correspondence
+[20667] Provenance: RECONSTRUCTED_CANONICAL_BODY. Construct typed preserved, deleted, inserted, modified, and reidentified classes.
+[20668] INPUT source X, target X2, candidate mapping R
+1 normalize objects and versions
+2 type-check every pair
+3 classify preserved/deleted/inserted/modified/reidentified
+4 emit correspondence witnesses and UNKNOWN pairs
+[20669] Correctness basis. Every accepted transition is independently checked; failure is returned as REJECT or UNKNOWN. Complexity: O(|Obj(X)|+|Obj(X2)|+|R|).
+[20670] ALG-RT2 — Transport state and witnesses
+[20671] Provenance: RECONSTRUCTED_CANONICAL_BODY. Transport only applicable objects and return a set-valued result where identity is incomplete.
+[20672] INPUT rewrite rho, state X, witnesses W
+1 transport source roots
+2 test applicability and boundary maps
+3 transport exact witnesses
+4 attach residual envelopes for approximate artifacts
+5 return target candidate or UNKNOWN set
+[20673] Correctness basis. Every accepted transition is independently checked; failure is returned as REJECT or UNKNOWN. Complexity: O(|R|+|W|+T_C).
+[20674] ALG-RT3 — Compute invalidation cone
+[20675] Provenance: RECONSTRUCTED_CANONICAL_BODY. Reachability from every changed semantic root.
+[20676] INPUT D, changed roots Delta
+1 Q <- Delta
+2 BFS or DFS through outgoing dependency edges
+3 return Q with predecessor witnesses
+[20677] Correctness basis. Every accepted transition is independently checked; failure is returned as REJECT or UNKNOWN. Complexity: O(|V_D|+|E_D|).
+[20678] ALG-RT4 — Incremental recertify
+[20679] Provenance: RECONSTRUCTED_CANONICAL_BODY. Recompute cone and compare with cold contract on regression instances.
+[20680] INPUT target X2, cone Q, preserved cache K
+1 verify root equality outside Q
+2 recompute Q topologically
+3 independently check each result
+4 assemble PCRT and optional cold-comparison hash
+[20681] Correctness basis. Every accepted transition is independently checked; failure is returned as REJECT or UNKNOWN. Complexity: O(|V_D|+|E_D|+sum T_u).
+[20682] ALG-RT5 — Extract rewrite conflict and repair frontier
+[20683] Provenance: RECONSTRUCTED_CANONICAL_BODY. Find a checked conflict core and enumerate declared nondominated repairs.
+[20684] INPUT failed obligations O, repair library A
+1 minimize an unsatisfied core with checker calls
+2 generate declared repairs touching the core
+3 independently recheck each repair
+4 return Pareto frontier or UNKNOWN
+[20685] Correctness basis. Every accepted transition is independently checked; failure is returned as REJECT or UNKNOWN. Complexity: O(T_{core}+|A|T_C).
+[20686] 33. Synthetic Worked Examples
+[20688] Worked Example RT-1 — Version aliasing
+[20692] Worked Example RT-2 — Finite release arithmetic
+[20696] Worked Example RT-3 — Synthetic 190-room hotel
+[20729] 34. Synthetic 190-Room Hotel Rewrite Example
+[20730] Riser R3 is moved 2.4 m to remove a guest-room conflict. Correspondence preserves equipment identities but modifies route nodes, sleeves, fire stops, structural openings, quantities, installation sequence, commissioning tests, lifecycle access, and utility interface pressure. Prompt-7 closure recomputes exactly those descendants and reuses unrelated room-finish and facade certificates. Cold and incremental package hashes agree under the declared regression model.
+[20731] Hotel rewrite invalidation set.
+LATEX: cl_D(\Delta_{R3})=\{route,sleeve,opening,firestop,cost,sequence,test,maintenance\}_{R3}
+[20733] 35. Large Falsification and Regression Suite
+[20734] RT regression 1. Delete a dependency edge; incremental/cold equality must fail.
+[20735] RT regression 2. Map two differently typed objects; correspondence checker must reject.
+[20736] RT regression 3. Preserve geometry but change theory version; exact reuse must fail.
+[20737] RT regression 4. Reverse a boundary normal; flux witness must be recomputed.
+[20738] RT regression 5. Change experiment family only; quotient reuse must fail.
+[20739] RT regression 6. Transport evidence after its validity interval; applicability must fail.
+[20740] RT regression 7. Reuse a reduced model without residual; exact claim must fail.
+[20741] RT regression 8. Compose noncommuting rewrites and claim path independence; checker must reject.
+[20742] RT regression 9. Rename an object with proved semantic identity; reidentification should succeed.
+[20743] RT regression 10. Retain a deleted assumption silently; closure must fail.
+[20744] RT regression 11. Mutate one transported witness byte; target checker must reject.
+[20745] RT regression 12. Compare all tiny rewrite cases with cold recomputation; hashes must agree.
+[20746] 36. Proof-Assistant Formalization Sketch
+[20747] structure Rewrite where
+  sourceVersion : Nat
+  targetVersion : Nat
+  correspondence : FiniteMap Object Object
+
+def invalidation (D : DepGraph) (r : Rewrite) := reach D (changedRoots r)
+
+theorem incremental_eq_cold
+  (hD : Complete D) (hDet : Deterministic derivations) :
+  incremental D r = cold r.targetVersion := by
+  induction topologicalOrder D <;> simp [invalidation,hD,hDet,*]
+[20748] 37. Mechanization Difficulty
+[20749] Prompt-7 mechanization difficulty.
+[20753] Typed correspondence
+[20755] Partial identity and reidentification proofs.
+[20758] Finite reachability.
+[20759] Functoriality
+[20761] Commuting diagrams and version constraints.
+[20762] Second-order jets
+[20764] Differentiability and numerical bounds.
+[20765] Cold equivalence
+[20767] Induction over dependency DAG.
+[20770] Explicit nonclaim.
+[20771] 38. Prompt-7 Complexity Profile
+[20772] Prompt-7 complexity.
+[20774] Bound
+[20775] Correspondence
+[20776] Onlogn+∥R∥
+[20777] Invalidation
+[20779] Exact transport
+[20780] O∥R∥+TC
+[20781] Incremental recomputation
+[20782] O∥V∥+∥E∥+u∈I​Tu
+[20783] Repair enumeration
+[20784] Potentially exponential
+[20785] 39. Permanent Assumption Registry
+[20786] Prompt-7 assumption registry.
+[20813] 40. Permanent Definition Registry
+[20877] 41. Permanent Theorem Registry
+[20878] Prompt-7 theorem registry.
+[20883] Identity transport is identity
+[20886] Functorial transport under compatibility
+[20889] Rewrite transport can be path dependent
+[20892] Exact state transport preserves included semantics
+[20895] Incomplete correspondence requires set-valued or UNKNOWN output
+[20898] Witness transport soundness
+[20901] Certificate transport is conditional on proof-rule invariance
+[20904] Evidence relocation does not preserve applicability automatically
+[20907] Assumptions cannot be silently transported
+[20910] Boundary orientation and units are semantic
+[20913] Quotient transport requires commuting equivalence
+[20916] New experiments can split transported classes
+[20919] Reduced-model reuse requires residual certification
+[20922] Sensitivity transport follows the chain rule under differentiability
+[20925] Second-order jet yields a local transport envelope
+[20928] Unaffected certificates may be reused
+[20931] Approximate reuse is bounded, not exact
+[20934] Incomplete dependency invalidation is unsound
+[20937] Dependency-directed recomputation equals cold recomputation
+[20940] Unchanged names or local geometry do not imply reuse
+[20943] Local correspondence does not imply global semantic equivalence
+[20946] Transport rejection core is constructive
+[20948] THM-RT23
+[20949] Repair frontiers are model relative
+[20951] THM-RT24
+[20952] Rewrite proposal source is irrelevant to acceptance
+[20954] THM-RT25
+[20955] Accepted transport is not real-world equivalence
+[20957] 42. Algorithm Registry
+[20958] Prompt-7 algorithm registry.
+[20962] Build rewrite correspondence
+[20964] Transport state and witnesses
+[20966] Compute invalidation cone
+[20967] ALG-RT4
+[20968] Incremental recertify
+[20970] Extract rewrite conflict and repair frontier
+[20971] 43. Conjecture Registry
+[20972] CONJ-RT1 — Certified higher-order rewrite transport
+[20973] Status: CONJECTURE. Provenance: RECONSTRUCTED_CANONICAL_BODY. Restricted smooth topology-preserving rewrites may admit compositional higher-order transport jets with polynomial checking.
+[20974] Falsification condition. A restricted family requiring superpolynomial checking or violating composition falsifies the conjecture.
+[20975] CONJ-RT2 — Minimal invalidation certificate
+[20976] Status: CONJECTURE. Provenance: RECONSTRUCTED_CANONICAL_BODY. Every complete finite dependency graph may admit a compact certificate that a proposed invalidation set is exact.
+[20977] Falsification condition. A graph family requiring linear-size disclosure beyond the proposed compact bound falsifies it.
+[20978] 44. Dependency DAG through Prompt 7
+[20979] P01-F -> P02-SEM -> P03-DS -> P04-AB -> P05-ER -> P06-PO
+                                                    |
+                                                    v
+                 correspondences -> transport -> invalidation -> PCRT -> P08-CS
+[20980] 45. Prompt-7 / Prompt-8 Compatibility Map
+[20981] Compatibility aliases.
+[20982] Prompt-8 provisional object
+[20983] Prompt-7 canonical object
+[20985] DEF-CS0
+[20987] Compatibility alias: exact state transport
+[20988] DEF-CS0A
+[20990] Compatibility alias: invalidation cone
+[20991] THM-CS0A
+[20993] Imported exact reuse theorem
+[20994] THM-CS0B
+[20996] Imported cold-equivalence theorem
+[20997] 46. What Has Now Been Proven
+[20998] The reconstructed Prompt 7 proves explicit conditions for exact and approximate state, witness, certificate, evidence, assumption, boundary, quotient, reduced-model, and sensitivity transport; functoriality; path-dependence counterexamples; complete invalidation; exact reuse; and cold-recomputation equivalence.
+[20999] 47. What Has Not Yet Been Proven
+[21000] Prompt 7 does not prove that every real rewrite admits correspondence, that all physical consequences are modeled, that differentiable jets exist for discrete topology changes, or that repair-frontier enumeration is tractable.
+[21001] 48. Open-World Limitation
+[21002] PCRT certifies transport only for declared semantics, evidence, interfaces, experiments, and checkers. Unmodeled consequences can invalidate real-world equivalence without contradicting the formal theorem.
+[21003] 49. Exact Mathematical Inputs Required by Prompt 8
+[21004] Prompt 8 receives PCRT, the rewrite span and correspondence, transported states and witnesses, invalidation cone, exact and approximate reuse records, experiment-family and theory versions, conflict cores, repair frontier, regression evidence, and compatibility aliases.
+[21005] 50. Source Ambiguity and Reconstruction Notice
+[21006] The historical Prompt-7 body was not present. The complete active chapter is RECONSTRUCTED_CANONICAL_BODY constrained by Prompt 8 bridge identifiers, later dependency semantics, and Prompt-32 requirements.
+[21007] 51. Exact Reuse Release Fiber
+[21008] Prompt-7 release fiber.
+LATEX: \mathcal F_{RT}(X,\rho)=\{PCRT:C_{RT}(X,\rho,PCRT)=ACCEPT\}
+[21010] 52. Package Completeness
+[21011] PCRT includes every transported and invalidated object, every preserved assumption and applicability predicate, all roots and versions, residual envelopes, UNKNOWN results, counterexamples, limitations, and checker verdicts.
+[21012] 53. Final Charge
+[21013] Reuse nothing because it merely looks unchanged. Reuse only what complete semantic dependencies, applicability, versions, and independent checking license. When those conditions fail, return UNKNOWN, a transport conflict core, or cold recomputation.
+[21014] 54. Prompt-Specific Completeness Certification
+[21015] This reconstructed canonical body contains the required scope, audit, assumptions, definitions, theorem statements and proofs, algorithms, examples, hotel case, regression suite, formalization, complexity, registries, dependency DAG, compatibility map, proven and unproven claims, handoff, and final charge.
+[21153] Certified higher-order rewrite transport
+[21156] CONJ-RT2
+[21157] Minimal invalidation certificate
+[21162] P06-PACKAGE
+  |
+  v
+P07-STATE --> P07-ASSUMPTIONS --> P07-DEFINITIONS
+  |                                      |
+  v                                      v
+P07-ALGORITHMS ----------------> P07-THEOREMS
+  |                                      |
+  +------------------> PCRT -----+--> P08-INPUT
+[21164] Within the declared model, Prompt 7 proves the explicit set-theoretic, factorization, quotient, checking, dependency, complexity, and release claims in this chapter. The accepted output is PCRT in the fiber FRT. Every theorem remains conditional on its assumptions and versions.
+[21170] Prompt 8 receives PCRT, all active claim tokens, witnesses and rejection cores, the dependency graph, source and canonical hashes, assumptions, theory and experiment-family versions, waivers, limitations, and UNKNOWN records. A registry title never substitutes for a body or proof.
+[21173] Embedded-object anchor A1-10-0055 — Source/provenance object.
+[21184] Prompt 7: Source/provenance object
+[21186] Embedded-object anchor A1-10-0056 — Assumption registry object.
+[21197] Prompt 7: Assumption registry object
+[21199] Embedded-object anchor A1-10-0057 — Definition registry object.
+[21210] Prompt 7: Definition registry object
+[21212] Embedded-object anchor A1-10-0058 — Theorem registry object.
+[21223] Prompt 7: Theorem registry object
+[21225] Embedded-object anchor A1-10-0059 — Algorithm registry object.
+[21236] Prompt 7: Algorithm registry object
+[21238] Embedded-object anchor A1-10-0060 — Regression-suite object.
+[21249] Prompt 7: Regression-suite object
+[21251] Embedded-object anchor A1-10-0061 — Mechanization/complexity object.
+[21262] Prompt 7: Mechanization/complexity object
+[21264] Embedded-object anchor A1-10-0062 — Dependency DAG object.
+[21275] Prompt 7: Dependency DAG object
+[21277] Embedded-object anchor A1-10-0063 — Package-and-symbol map.
+[21288] Prompt 7: Package-and-symbol map

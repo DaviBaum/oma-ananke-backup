@@ -1,0 +1,67 @@
+{
+  "schema": "oma.math.counterexamples/1",
+  "arithmetic": "Python arbitrary-precision integers; finite exhaustive truth tables",
+  "application_implementation_proven": false,
+  "checks": [
+    {
+      "amendment": "OMA-MATH-A001",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "{x>=1,x<=0,y>=0}; deletion of y>=0 remains infeasible despite UNKNOWN oracle output",
+      "corrected_verdict": "MINIMALITY_UNKNOWN"
+    },
+    {
+      "amendment": "OMA-MATH-A002",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "assignments_exhausted": 8,
+      "exact_legal": 7,
+      "incorrect_clique_legal": 4,
+      "corrected_row": "sum(lambda[r] for r in H) <= len(H)-1"
+    },
+    {
+      "amendment": "OMA-MATH-A003",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "Bf": [
+        -1,
+        1
+      ],
+      "source_defined_injection": [
+        1,
+        -1
+      ],
+      "corrected_equation": "Bf = storage_rate + losses - (injection-withdrawal) - conversion"
+    },
+    {
+      "obligation": "MATH-RTR-PRICING",
+      "status": "NEGATIVE_CONTROL_PASSED",
+      "restricted_optimum": 10,
+      "full_optimum": 1,
+      "meaning": "No full lower-bound claim without complete pricing or another proven relaxation"
+    },
+    {
+      "amendment": "OMA-MATH-A004",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "W=[0,10], B=[-1,1], O=empty, center=0 overflows W",
+      "corrected_equation": "F = (W eroded by B) minus (O Minkowski-summed with -B)"
+    },
+    {
+      "amendment": "OMA-MATH-A006",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "counterexample": "a=(2,2) dominates b=(3,3), but c=(1,1) is better: dominance is not argmin membership",
+      "source_defect": "Canonical P04-E0034 and E0035 copy an argmin formula unrelated to their dominance/contextual-equivalence statements; PDF155-156 inspected",
+      "corrected_equations": [
+        "complete objective vector and f(a)<=f(b) componentwise implies declared weak dominance",
+        "q(x)=q(y) and every active e factors through q implies e(x)=e(y)"
+      ]
+    },
+    {
+      "amendment": "OMA-MATH-A007",
+      "status": "COUNTEREXAMPLE_REPRODUCED_CORRECTION_PASSED",
+      "accepted_optimum": 10,
+      "actual_finite_optimum": 1,
+      "source_defect": "THM-DS21.1 requires more than complete finite generation and sound checking: UNKNOWN may hide the best feasible candidate",
+      "corrected_obligation": "Dispose every candidate completely, or prove every unresolved candidate cannot improve the incumbent; otherwise accepted-subset optimum only"
+    }
+  ],
+  "passed": 7,
+  "failed": 0
+}

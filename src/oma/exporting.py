@@ -1,0 +1,107 @@
+"""Immutable local export bundles, identity maps and explicit release status."""
+from __future__ import annotations
+
+import json
+import copy
+import shutil
+import subprocess
+import sys
+import uuid
+from pathlib import Path
+
+from .ifc.audit import atomic_json, sha256_file
+from .store import IntegrityError, Store, utcnow
+
+
+def export_project(store: Store, project_id: str, candidate_id: str | None = None, draft: bool = True) -> dict:
+    project = store.project(project_id)
+    candidate = store.candidate(candidate_id) if candidate_id else None
+    if candidate and candidate["project_id"] != project_id:
+        raise IntegrityError("Candidate belongs to a different project")
+    root = candidate["state_root"] if candidate else project["state_root"]
+    state = store.get(root)
+    if not state.get("sources"):
+        raise ValueError("Import must finish before export")
+    if not draft:
+        from .build_identity import checker_version
+        if not candidate or candidate["status"] != "CHECKED" or not candidate.get("report_root"):
+            raise IntegrityError("Checked export requires complete independent evidence for an explicit candidate")
+        report = store.get(candidate["report_root"])
+        if report["status"] != "PASS" or report["candidate_root"] != root or report["checker_version"] != checker_version():
+            raise IntegrityError("Candidate does not have a passing root-matched report")
+    route_specs = state.get("derived_artifacts", {}).get("route_exports", [])
+    if len(route_specs) > 1:
+        raise ValueError("Joint multi-route export correspondence is required; cannot drop or duplicate routes")
+    export_id = uuid.uuid4().hex
+    directory = store.directory / "exports" / export_id
+    directory.mkdir(parents=True)
+    manifest = {"export_id": export_id, "project_id": project_id, "candidate_id": candidate_id, "state_root": root,
+                "created_at": utcnow(), "status": "DRAFT", "files": [], "correspondences": [],
+                "round_trip": "NOT_RUN", "whole_building_release": "NOT_CERTIFIED", "limitations": [], "source_redistribution": "Local user export; original project license terms retained"}
+    exported_materialization = None
+    for index, source in enumerate(state["sources"]):
+        original = store.resolve_path(source["immutable_path"])
+        if sha256_file(original) != source["sha256"]:
+            raise IntegrityError("Immutable source hash mismatch; export stopped")
+        destination = directory / f"{index + 1:02d}_{source['name']}"
+        spec = next((r for r in route_specs if r["source_id"] == source["id"]), None)
+        if spec:
+            prior = store.get(state["derived_artifacts"]["route_materialization"]["root"])
+            if sha256_file(store.resolve_path(prior["export_path"])) != prior["export_sha256"] or prior["source_sha256"] != source["sha256"]:
+                raise IntegrityError("Physical IFC no longer matches checked materialization")
+            shutil.copyfile(store.resolve_path(prior["export_path"]), destination)
+            exported_materialization = {**prior, "source_path": str(original), "export_path": str(destination), "export_sha256": sha256_file(destination), "reimport": {"status": "NOT_RUN"}}
+            atomic_json(destination.with_suffix(".manifest.json"), exported_materialization)
+            manifest["correspondences"].append({"source_id": source["id"], "replacement_path": str(destination), "route_id": spec["route_spec"]["route_id"], "part_guids": [p["ifc_guid"] for p in prior["added_parts"]]})
+        else:
+            shutil.copyfile(original, destination)
+        manifest["files"].append({"path": str(destination), "source_id": source["id"], "sha256": sha256_file(destination),
+                                  "source_sha256": source["sha256"], "schema": source["schema"], "changed": bool(spec)})
+    if exported_materialization:
+        worker = Path(__file__).resolve().parents[2] / "scripts" / "ifc_recheck.py"
+        process = subprocess.run([sys.executable, str(worker), str(Path(exported_materialization["export_path"]).with_suffix(".manifest.json"))], capture_output=True, text=True, timeout=300, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+        if process.returncode:
+            manifest["round_trip"] = "FAIL"
+            manifest["limitations"].append(process.stderr[-3000:])
+        else:
+            exported_materialization = json.loads(Path(exported_materialization["export_path"]).with_suffix(".manifest.json").read_text(encoding="utf-8"))
+            manifest["round_trip"] = exported_materialization["reimport"]["status"]
+        if not draft and manifest["round_trip"] == "PASS":
+            exported_state = copy.deepcopy(state)
+            materialized_root = store.put(exported_materialization)
+            exported_state["derived_artifacts"]["route_materialization"].update(root=materialized_root, path=exported_materialization["export_path"])
+            for route in exported_state["routes"]:
+                if route["id"] in candidate["changed_ids"]:
+                    route["geometry_artifact"] = materialized_root
+            exported_state["derived_artifacts"]["export_correspondence"] = {"input_candidate_root": root, "files": manifest["files"]}
+            exported_candidate = store.add_candidate(candidate["run_id"], exported_state, {"kind": "physical_route", "export_recheck": True, "changed_ids": candidate["changed_ids"], "routes": exported_state["routes"], "objective": {}, "rationale": "Independent verification of exported physical IFC copy"})
+            from .build_identity import frozen_environment
+            process = subprocess.run([sys.executable, "-m", "oma.verification", str(store.directory), exported_candidate["id"]], capture_output=True, text=True, timeout=600, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0), env=frozen_environment(store.directory))
+            checked = store.candidate(exported_candidate["id"])
+            if process.returncode == 0 and checked["status"] == "CHECKED":
+                export_report = store.get(checked["report_root"])
+                if export_report["objective"] == report["objective"]:
+                    manifest.update(status="CHECKED_LOCAL_SCOPE", checked_scope=export_report["scope"], exported_state_root=checked["state_root"], verification_root=checked["report_root"], objective=export_report["objective"], round_trip="PASS")
+                    atomic_json(directory / "verification.json", export_report)
+                else:
+                    manifest["round_trip"] = "FAIL_OBJECTIVE_MISMATCH"
+            else:
+                manifest["round_trip"] = "FAIL_INDEPENDENT_CHECK"
+                manifest["limitations"].append(process.stderr[-3000:] or checked["status"])
+    else:
+        manifest["round_trip"] = "BYTE_IDENTICAL_ORIGINALS"
+        manifest["limitations"].append("No accepted route edits in this state; exported files are unchanged source copies")
+    manifest["limitations"].append("Local route checks do not certify pre-existing defects or whole-building adequacy")
+    atomic_json(directory / "manifest.json", manifest)
+    snapshot = store.get(root)
+    atomic_json(directory / "state.json", snapshot)
+    events, cursor = [], 0
+    while batch := store.events(project_id, cursor, 1000):
+        events.extend(batch)
+        cursor = batch[-1]["seq"]
+    atomic_json(directory / "events.json", events)
+    manifest_root = store.put(manifest)
+    store.append_event(project_id, state_root=root, candidate_id=candidate_id, stage="export", status=manifest["status"], message="IFC export bundle written with replacement map and checking evidence", artifacts=[manifest_root], payload={"directory": str(directory), "round_trip": manifest["round_trip"]})
+    if not draft and manifest["status"] != "CHECKED_LOCAL_SCOPE":
+        raise IntegrityError(f"Export recheck failed; draft evidence preserved at {directory}")
+    return {"status": manifest["status"], "export_id": export_id, "directory": str(directory), "manifest": str(directory / "manifest.json"), "artifact_root": manifest_root, "files": manifest["files"], "scope": manifest.get("checked_scope"), "round_trip": manifest["round_trip"]}

@@ -1,0 +1,1086 @@
+{
+  "schema": "oma.math.traceability/1",
+  "source_review_complete": false,
+  "full_engine_mathematics_implemented": false,
+  "obligations": [
+    {
+      "obligation": "FINITE_CONTEXTUAL_QUOTIENT",
+      "source": {
+        "document": "ananke-canonical",
+        "sha256": "a1c77139b621389887d720086271f0620d177cfa8960de06674c90b43268dac5",
+        "paragraphs": [
+          16501,
+          17064
+        ],
+        "objects": [
+          "ALG-AB5",
+          "DEF-AB7"
+        ]
+      },
+      "interpretation_and_assumptions": "Complete explicit finite state-by-experiment table, typed observations, immutable context. Partition by equality under every experiment; independently replay all state pairs and separating observations.",
+      "implementations": [
+        "oma.optimization.finite.contextual_quotient"
+      ],
+      "independent_checkers": [
+        "oma.optimization.finite.verify_contextual_quotient"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.finite.contextual_quotient",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.finite.verify_contextual_quotient",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_finite.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [
+        "OMA-MATH-A006"
+      ],
+      "certificate_and_limitations": "Finite table equivalence only; replacing the active experiment family invalidates the quotient. Does not infer applicability of unmodeled physical experiments.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "FINITE_ARCHIVE_WITH_UNKNOWNS",
+      "source": {
+        "document": "ananke-canonical",
+        "sha256": "a1c77139b621389887d720086271f0620d177cfa8960de06674c90b43268dac5",
+        "paragraphs": [
+          18178,
+          18185
+        ],
+        "objects": [
+          "THM-DS21.1"
+        ]
+      },
+      "interpretation_and_assumptions": "Complete declared candidate list plus PASS/FAIL/UNKNOWN outcomes, exact accepted costs and supplied valid objective floors. Every unresolved potentially improving candidate blocks optimum.",
+      "implementations": [
+        "oma.optimization.finite.finite_archive_optimum"
+      ],
+      "independent_checkers": [],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.finite.finite_archive_optimum",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_finite.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [
+        "OMA-MATH-A007"
+      ],
+      "certificate_and_limitations": "Finite table conclusion relative to supplied domain outcomes and lower-bound evidence; no physical proof follows from an evidence-root string. Accepted-subset and complete-domain claims are distinct.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "FINITE_CHANCE_AND_RISK",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          19531,
+          19686
+        ],
+        "objects": [
+          "ALG-DYN16",
+          "ALG-DYN17",
+          "ALG-DYN18",
+          "ALG-DYN19"
+        ]
+      },
+      "interpretation_and_assumptions": "Exact finite joint probability law, nonnegative probabilities summing to one, explicit event truth including UNKNOWN, rational losses and confidence alpha in [0,1). Bound violation probability and enumerate all CVaR breakpoints.",
+      "implementations": [
+        "oma.optimization.finite.finite_chance_constraint",
+        "oma.optimization.finite.finite_risk"
+      ],
+      "independent_checkers": [],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.finite.finite_chance_constraint",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.finite.finite_risk",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_finite.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Expectation, worst listed scenario and finite-law CVaR only. Samples do not certify universal uncertainty coverage, independence, or applicability of supplied probability law.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "FINITE_QUANTITY_TRANSPORT",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          19531,
+          19686
+        ],
+        "objects": [
+          "ALG-DYN11"
+        ]
+      },
+      "interpretation_and_assumptions": "Explicit source/target quantities and nonnegative finite allocation edges, equal units, complete identities. Exact outgoing and incoming marginal equalities establish conservative split/merge quantity transport.",
+      "implementations": [
+        "oma.optimization.finite.check_quantity_transport"
+      ],
+      "independent_checkers": [],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.finite.check_quantity_transport",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_finite.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Quantity conservation only. No nonlinear physics, geometry, identity/functorial transport, or inherited certificate is established by these marginals.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "FINITE_NONANTICIPATIVE_POLICY",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          19531,
+          19686
+        ],
+        "objects": [
+          "ALG-DYN8-19",
+          "ALG-DYN60"
+        ]
+      },
+      "interpretation_and_assumptions": "Finite same-horizon scenarios, explicit pre-action histories, one action domain per history node, complete or UNKNOWN leaf outcomes. Enumerate common-history decisions and independently replay exact expected or worst-listed cost.",
+      "implementations": [
+        "oma.optimization.policy.solve_finite_policy",
+        "oma.optimization.finite.check_nonanticipativity"
+      ],
+      "independent_checkers": [
+        "oma.optimization.policy.verify_finite_policy_result"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.policy.solve_finite_policy",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.finite.check_nonanticipativity",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.policy.verify_finite_policy_result",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_policy.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [
+        "OMA-MATH-A007"
+      ],
+      "certificate_and_limitations": "Finite policy class and supplied leaf outcomes only; domain checkers must establish dynamic transitions and physical feasibility. Missing leaves, checker budgets and omitted uncertainty sets remain explicit.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "FINITE_CANDIDATE_ROOTED_CODESIGN",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          14815,
+          14948
+        ],
+        "objects": [
+          "ALG-JCD9",
+          "ALG-JCD17",
+          "ALG-JCD18",
+          "ALG-JCD39",
+          "ALG-JCD43",
+          "ALG-JCD44",
+          "ADD-RTR3.2"
+        ]
+      },
+      "interpretation_and_assumptions": "Finite explicit strategic domains and materialized cases; fixed protected assignment tokens; each route master bound to its own design root; shared resource and hyperedge constraints; compatible capital/routing objective units supplied by adapter.",
+      "implementations": [
+        "oma.optimization.codesign.solve_finite_codesign"
+      ],
+      "independent_checkers": [
+        "oma.optimization.codesign.verify_finite_codesign_result"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.codesign.solve_finite_codesign",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.codesign.verify_finite_codesign_result",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_codesign.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [
+        "OMA-MATH-A002",
+        "OMA-MATH-A007"
+      ],
+      "certificate_and_limitations": "Optimum only over complete declared finite assignments/materializations/routes with disposed or nonimproving unresolved alternatives. BIM sovereignty/materialization and physical route validity require upstream independent checks. No universal Benders cut or continuous design completeness theorem.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "SOURCE_PLANAR_IFC_ENCLOSURE",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          797,
+          853
+        ],
+        "objects": [
+          "DEF-SIR25",
+          "DEF-SIR34",
+          "DEF-SIR36",
+          "THM-RTR6",
+          "THM-RTR18"
+        ]
+      },
+      "interpretation_and_assumptions": "Complete selected Body face-item traversal from immutable raw STEP rationals; all supported planar faces lie in the hull of their vertices. Unit and placement/mapping transforms use outward rational interval arithmetic.",
+      "implementations": [
+        "oma.ifc.enclosure.ExactIfcEncloser.enclose_product"
+      ],
+      "independent_checkers": [],
+      "callable_probe": [
+        {
+          "path": "oma.ifc.enclosure.ExactIfcEncloser.enclose_product",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_ifc_enclosure.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Enclosure relation only for declared planar IFC subset and local engineering frame; no solid validity or route verdict. Explicit opt-in extends claim to all vertex-hull completions of source faces while retaining nonplanarity evidence. Unknown siblings, map origins and unsupported classes block. Real DigitalHub coverage separately measured.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "FINITE_MASTER",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4688,
+          4880
+        ],
+        "objects": [
+          "DEF-RTR62",
+          "DEF-RTR68",
+          "THM-RTR67-86"
+        ]
+      },
+      "interpretation_and_assumptions": "Finite serialized route columns, one per required net; rational costs, nonnegative rational resource usage, explicit higher-order conflict semantics. Geometry and physical validity are separate obligations.",
+      "implementations": [
+        "oma.optimization.master.solve_master"
+      ],
+      "independent_checkers": [
+        "oma.optimization.checker.verify_master_result"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.master.solve_master",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.checker.verify_master_result",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_master.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [
+        "OMA-MATH-A002",
+        "OMA-MATH-A007"
+      ],
+      "certificate_and_limitations": "Exhaustive finite optimum or finite infeasibility; budget stops retain incumbent and UNKNOWN. No unrestricted continuous/global building optimality. Upstream unresolved physical candidates cannot be dropped to claim optimum over a larger domain.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "FINITE_PRICING",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4728,
+          4802
+        ],
+        "objects": [
+          "DEF-RTR70-75",
+          "THM-RTR69-76"
+        ]
+      },
+      "interpretation_and_assumptions": "HiGHS proposes restricted LP multipliers; exact rational pricing covers every serialized column and repairs selection duals. Every row sign and conflict RHS is independently replayed.",
+      "implementations": [
+        "oma.optimization.master.generate_columns",
+        "oma.optimization.master.price_columns"
+      ],
+      "independent_checkers": [
+        "oma.optimization.checker.verify_dual"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.master.generate_columns",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.master.price_columns",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.checker.verify_dual",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_master.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [
+        "OMA-MATH-A002"
+      ],
+      "certificate_and_limitations": "Checked weak-duality bound over explicit column universe only. Numeric LP status is not a certificate; missing continuous route universe remains unproved.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "EXACT_PRIMITIVES",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4369,
+          4408
+        ],
+        "objects": [
+          "DEF-RTR25-26",
+          "THM-RTR17-25"
+        ]
+      },
+      "interpretation_and_assumptions": "Finite 2D/3D rational coordinates; exact arbitrary-precision determinants, degenerate/coplanar predicates and globally minimized piecewise quadratic capsule/AABB distance.",
+      "implementations": [
+        "oma.exact.orient2d",
+        "oma.exact.orient3d",
+        "oma.exact.segment_triangle_intersection",
+        "oma.exact.segment_box_distance_squared",
+        "oma.exact.capsule_box_clearance"
+      ],
+      "independent_checkers": [],
+      "callable_probe": [
+        {
+          "path": "oma.exact.orient2d",
+          "callable": true
+        },
+        {
+          "path": "oma.exact.orient3d",
+          "callable": true
+        },
+        {
+          "path": "oma.exact.segment_triangle_intersection",
+          "callable": true
+        },
+        {
+          "path": "oma.exact.segment_box_distance_squared",
+          "callable": true
+        },
+        {
+          "path": "oma.exact.capsule_box_clearance",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_exact.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Exact predicates for represented primitives, independently analytically tested. Does not certify IFC approximation error, general BRep validity or missing geometry.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "ALLOWED_REGION",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          954,
+          1002
+        ],
+        "objects": [
+          "DEF-SIR60-70"
+        ]
+      },
+      "interpretation_and_assumptions": "Entire capsule must fit allowed AABB, including its outer radius. Axis margins implement erosion of allowed domain by physical body.",
+      "implementations": [
+        "oma.exact.capsule_within_box"
+      ],
+      "independent_checkers": [],
+      "callable_probe": [
+        {
+          "path": "oma.exact.capsule_within_box",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_exact.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [
+        "OMA-MATH-A004"
+      ],
+      "certificate_and_limitations": "Exact capsule/AABB containment; general allowed polyhedra and rectangular rotating duct envelopes need additional implementations.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "FLUID_FIBERS",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4558,
+          4609
+        ],
+        "objects": [
+          "DEF-RTR52-56",
+          "THM-RTR53-66"
+        ]
+      },
+      "interpretation_and_assumptions": "SI fixed-section constant-flow path with supplied Darcy friction enclosure, density, fitting losses, head, velocity and efficiency. Rational interval calculation; finite catalog plus separate envelope callback.",
+      "implementations": [
+        "oma.optimization.physical.evaluate_fluid_path",
+        "oma.optimization.physical.select_fluid_catalog"
+      ],
+      "independent_checkers": [],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.physical.evaluate_fluid_path",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.physical.select_fluid_catalog",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_physical.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Partial fixed-path physical evaluation. Branch pressure networks, friction applicability, fittings/supports/access and missing inputs remain separate. Analytic tests are not an independent whole-building simulator.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "ELECTRICAL_FIBER",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4611,
+          4629
+        ],
+        "objects": [
+          "DEF-RTR57",
+          "THM-RTR63"
+        ]
+      },
+      "interpretation_and_assumptions": "Balanced three-phase supplied resistance/reactance, current, power factor, ampacity, tray fill and voltage-drop limit. SI with exact rational square-root enclosure.",
+      "implementations": [
+        "oma.optimization.physical.evaluate_electrical_path"
+      ],
+      "independent_checkers": [],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.physical.evaluate_electrical_path",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_physical.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Partial declared electrical approximation; no fault/harmonic/protection or code-compliance claim.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "CONSERVATION_AND_TRUNKS",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          3786,
+          3826
+        ],
+        "objects": [
+          "ADD-SIR2.1",
+          "ADD-SIR2.2",
+          "DEF-RTR45"
+        ]
+      },
+      "interpretation_and_assumptions": "Finite directed arborescence with exact terminal demands; aggregate branch demands upstream. Incidence head +1, tail -1; Bf=storage+loss-injection-conversion.",
+      "implementations": [
+        "oma.optimization.physical.aggregate_tree_flows",
+        "oma.optimization.physical.check_conservation"
+      ],
+      "independent_checkers": [],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.physical.aggregate_tree_flows",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.physical.check_conservation",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_physical.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [
+        "OMA-MATH-A003"
+      ],
+      "certificate_and_limitations": "Exact conservation and arborescence topology. No geometric fitting correctness inferred from graph connectivity.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "GRAVITY_FIBER",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4631,
+          4646
+        ],
+        "objects": [
+          "DEF-RTR58",
+          "THM-RTR64"
+        ]
+      },
+      "interpretation_and_assumptions": "Finite fixed directed topology, rational positive horizontal lengths, slope intervals and complete node elevation bounds. Exact Bellman-Ford difference constraints.",
+      "implementations": [
+        "oma.optimization.physical.solve_gravity_elevations"
+      ],
+      "independent_checkers": [
+        "oma.optimization.physical.verify_gravity_result"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.physical.solve_gravity_elevations",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.physical.verify_gravity_result",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_physical.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Feasible rational elevations or checked negative-cycle certificate tied to original constraints; vertical drops, fittings, cleanouts and physical body require separate checks.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "INCREMENTAL_DEPENDENCIES",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          23806,
+          23861
+        ],
+        "objects": [
+          "DEF-CMP218-243",
+          "THM-CMP79-85"
+        ]
+      },
+      "interpretation_and_assumptions": "Complete declared graph, deterministic versioned functions, guarded declared reads, fully typed source values and cache context including objective/theory/experiment/checker/environment/tool/scope.",
+      "implementations": [
+        "oma.dependencies.invalidation_closure",
+        "oma.dependencies.DependencyEngine.build",
+        "oma.dependencies.DependencyEngine.compare_with_cold"
+      ],
+      "independent_checkers": [],
+      "callable_probe": [
+        {
+          "path": "oma.dependencies.invalidation_closure",
+          "callable": true
+        },
+        {
+          "path": "oma.dependencies.DependencyEngine.build",
+          "callable": true
+        },
+        {
+          "path": "oma.dependencies.DependencyEngine.compare_with_cold",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_dependencies.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [
+        "OMA-MATH-A005"
+      ],
+      "certificate_and_limitations": "Conservative graph-relative reuse and equality to cold computation. Undeclared reads through interface fail. Arbitrary hidden Python globals require explicit versioned dependencies.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "FINITE_CYCLE_CLOSURE",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          24199,
+          24204
+        ],
+        "objects": [
+          "THM-CMP31-33",
+          "DEF-CMP110-116"
+        ]
+      },
+      "interpretation_and_assumptions": "Each SCC has explicit finite chain domains. Enumerate full product-state operator, check every covering monotonicity relation, iterate from bottom. Budget and nonmonotone cases remain UNKNOWN.",
+      "implementations": [
+        "oma.dependencies.DependencyEngine.build"
+      ],
+      "independent_checkers": [
+        "oma.dependencies.verify_closure_certificate"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.dependencies.DependencyEngine.build",
+          "callable": true
+        },
+        {
+          "path": "oma.dependencies.verify_closure_certificate",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_dependencies.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Least fixed point of serialized finite operator table only. No general nonlinear contraction solver or proof for arbitrary infinite cycles.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "CORE_MINIMALITY",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4882,
+          4891
+        ],
+        "objects": [
+          "DEF-RTR82",
+          "THM-RTR96"
+        ]
+      },
+      "interpretation_and_assumptions": "Finite checked-infeasible constraint core; each deletion must carry independently checked feasible evidence. UNKNOWN deletion is not proof of minimality.",
+      "implementations": [
+        "oma.optimization.certificates.classify_core_minimality"
+      ],
+      "independent_checkers": [],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.certificates.classify_core_minimality",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_certificates.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [
+        "OMA-MATH-A001"
+      ],
+      "certificate_and_limitations": "Logical evidence classification only; underlying deletion certificates checked by relevant solver/geometry checker.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    },
+    {
+      "obligation": "FARKAS_ARITHMETIC",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4833,
+          4852
+        ],
+        "objects": [
+          "DEF-RTR78-79",
+          "THM-RTR89-92"
+        ]
+      },
+      "interpretation_and_assumptions": "Exact rational finite matrix Ax>=b,x>=0 and ray y>=0. Check A^Ty<=0 and b^Ty>0 with strict exact comparisons.",
+      "implementations": [
+        "oma.optimization.certificates.verify_farkas"
+      ],
+      "independent_checkers": [],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.certificates.verify_farkas",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_optimization_certificates.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_RUN_BY_MATH_AGENT",
+        "evidence": null
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Infeasibility of supplied finite linear system only; full routing use additionally needs complete domain and Farkas pricing closure.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ]
+    }
+  ],
+  "pending_source_mechanisms": [
+    "Complete source review and cross-document dependency semantic reconciliation",
+    "General 3D solid/mesh uncertainty and complete obstacle-accounting closure",
+    "Certified inner graph with continuous fitting/body transitions",
+    "Complete outer abstraction and adaptive CEGAR geometry proofs",
+    "Complete 3D homotopy presentations and fabrication/size lifts",
+    "Multi-terminal topology pricing with physical fitting/junction validity",
+    "General pressure/flow networks, supports, penetrations and access fibers",
+    "Full finite route universe closure or a continuous-completeness theorem",
+    "Nested topology-native branch-and-price proof tree",
+    "Universally scoped JCD Benders cuts and joint strategic rewrite search",
+    "Continuous/nonlinear dynamic models and universal adversarial closure beyond implemented finite nonanticipative policy kernel",
+    "Package composition and final release premise closure across complete corpus"
+  ],
+  "unit_test_run": {
+    "path": "evidence\\math\\implemented-obligation-tests.xml",
+    "tests": 72,
+    "failures": 0
+  },
+  "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"
+}

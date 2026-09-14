@@ -1,0 +1,103 @@
+PROMPT 4: Proof-Carrying Abstraction, Quotients, Contextual Equivalence, Bisimulation, Refinement, and Exact Factorization
+Role: exact abstractions, quotients, refinement, and factorization; domain: abstraction and quotients; namespace AB; package PCAB; fiber \mathcal F_{AB}
+READING AID ONLY: duplicate matches do not themselves establish dependency applicability or implementation.
+[17822] ANANKE MATHEMATICS PROGRAM — PROMPT 4 OF 30
+[17823] Proof-Carrying Abstraction, Quotients, Contextual Equivalence, Bisimulation, Refinement, and Exact Factorization
+[17824] Canonical provenance: RECONSTRUCTED_CANONICAL_BODY. The exact historical Pages body was not available in the active file surface. This chapter is the complete active canonical reconstruction produced under Prompt 32; it is not represented as recovered historical wording. Canonical package: PCAB. Release fiber: FAB.
+[17826] This prompt formalizes exact abstractions, quotients, refinement, and factorization. Every theorem is relative to a declared state, theory version, evidence version, experiment family, dependency graph, and checker. Acceptance licenses only the exact claim scope and modality. The proposal source may be a human, optimizer, heuristic, simulation, or AI system; the independent checker remains authoritative.
+[17828] Prompt 4 converts the complete package of Prompt 3 into a proof-carrying abstraction and quotients layer. It defines typed states and artifacts, exact and approximate reuse boundaries, negative theorems preventing invalid inference, finite checking algorithms, a synthetic 190-room hotel example, falsification tests, proof-assistant sketches, complexity bounds, permanent registries, and an explicit open-world limitation. Its output is PCAB and is consumed by the next prompt without modal strengthening.
+[17843] FAB
+[17951] Defining expression for DEF-AB7.
+LATEX: x\sim_{AB,\mathcal E}y\iff\forall e\in\mathcal E:e(x)=e(y)
+[17963] Defining expression for DEF-AB10.
+LATEX: v_T^{AB}=hash(T_{AB})
+[17967] Defining expression for DEF-AB11.
+LATEX: v_\mathcal E^{AB}=hash(\mathcal E_{AB})
+[18053] Formal statement for THM-AB5.
+LATEX: Release_{inc}^{AB}(X,\Delta)=Release_{cold}^{AB}(X\oplus\Delta)
+[18141] Promoted Abstraction Lemmas and Prompt-3 Repairs
+[18142] LEM-AB5 — Quotient factorization well-definedness
+[18144] Statement. A function constant on equivalence classes induces a unique function on the quotient.
+[18145] Formal statement for LEM-AB5.
+LATEX: f=\bar f\circ q
+[18148] Step 1. Define the quotient function on a class using any representative.
+[18149] Step 2. Class constancy proves representative independence; uniqueness follows from surjectivity of the quotient map.
+[18151] LEM-AB6 — Context refinement refines equivalence
+[18153] Statement. Adding experiments to a contextual family can only split equivalence classes, never merge classes that were already distinct.
+[18154] Formal statement for LEM-AB6.
+LATEX: \mathcal E\subseteq\mathcal E\prime\Rightarrow\sim_{\mathcal E\prime}\subseteq\sim_{\mathcal E}
+[18157] Step 1. The refined equivalence quantifies over a superset of experiments.
+[18158] Step 2. Agreement on the larger family implies agreement on the smaller family.
+[18160] THM-DS19.1 — Global dominance under complete objective coverage
+[18161] Status: ACTIVE — REPAIRED. Provenance: REPAIRED_SUPERSEDING_RESULT. Modality: DEDUCTIVE. Scope: the declared finite theory and stated assumptions.
+[18162] Statement. Local componentwise dominance implies global dominance only when the inspected objective vector contains every active global objective and coupling contribution.
+[18163] Formal statement for THM-DS19.1.
+LATEX: x^*\in\operatorname*{argmin}_{x\in\mathcal C\cap F}f(x)
+[18166] Step 1. Under complete coverage the local vector is the global vector.
+[18167] Step 2. Coordinatewise no-worse status therefore is global dominance.
+[18169] THM-DS20.1 — Interchangeable refinement under contextual equivalence
+[18171] Statement. Two abstract states are interchangeable for a later refinement family when the abstraction quotient is exact for every experiment and decision in that family.
+[18172] Formal statement for THM-DS20.1.
+LATEX: x^*\in\operatorname*{argmin}_{x\in\mathcal C\cap F}f(x)
+[18175] Step 1. Exact quotient equality makes every later experiment agree.
+[18176] Step 2. The refinement algorithm receives equal semantic inputs and deterministically returns equivalent results.
+[18178] THM-DS21.1 — Declared global optimality under complete finite enumeration
+[18180] Statement. If the generator enumerates every feasible design in the declared universe and the checker is sound, exhaustive finite minimization returns a declared global optimum.
+[18181] Formal statement for THM-DS21.1.
+LATEX: x^*\in\operatorname*{argmin}_{x\in\mathcal C\cap F}f(x)
+[18184] Step 1. Completeness places every declared feasible design in the archive.
+[18185] Step 2. Minimization over all checked feasible candidates yields the declared global minimum.
+[18187] ALG-AB5 — Exact contextual quotient construction
+[18188] Provenance: PROMOTED_DERIVED_RESULT. Constructs the coarsest exact quotient for a finite experiment family by partition refinement.
+[18189] INPUT finite state set X and experiment family E
+1 initialize one block containing X
+2 split blocks by the vector (e(x)) for e in E
+3 repeat until stable
+4 return quotient map and separation witnesses
+[18190] Correctness basis. Every accepted transition is independently checked; failure is returned as REJECT or UNKNOWN. Complexity: O(|X|^2|E|).
+[18218] Worked Example AB-1 — Version aliasing
+[18222] Worked Example AB-2 — Finite release arithmetic
+[18226] Worked Example AB-3 — Synthetic 190-room hotel
+[18313] LEM-AB5
+[18314] Quotient factorization well-definedness
+[18317] LEM-AB6
+[18318] Context refinement refines equivalence
+[18386] THM-DS19.1
+[18387] Global dominance under complete objective coverage
+[18388] ACTIVE — REPAIRED
+[18389] REPAIRED_SUPERSEDING_RESULT
+[18390] THM-DS20.1
+[18391] Interchangeable refinement under contextual equivalence
+[18394] THM-DS21.1
+[18395] Declared global optimality under complete finite enumeration
+[18403] ALG-AB5
+[18404] Exact contextual quotient construction
+[18430] P03-PACKAGE
+  |
+  v
+P04-STATE --> P04-ASSUMPTIONS --> P04-DEFINITIONS
+  |                                      |
+  v                                      v
+P04-ALGORITHMS ----------------> P04-THEOREMS
+  |                                      |
+  +------------------> PCAB -----+--> P05-INPUT
+[18432] Within the declared model, Prompt 4 proves the explicit set-theoretic, factorization, quotient, checking, dependency, complexity, and release claims in this chapter. The accepted output is PCAB in the fiber FAB. Every theorem remains conditional on its assumptions and versions.
+[18438] Prompt 5 receives PCAB, all active claim tokens, witnesses and rejection cores, the dependency graph, source and canonical hashes, assumptions, theory and experiment-family versions, waivers, limitations, and UNKNOWN records. A registry title never substitutes for a body or proof.
+[18441] Embedded-object anchor A1-10-0028 — Source/provenance object.
+[18452] Prompt 4: Source/provenance object
+[18454] Embedded-object anchor A1-10-0029 — Assumption registry object.
+[18465] Prompt 4: Assumption registry object
+[18467] Embedded-object anchor A1-10-0030 — Definition registry object.
+[18478] Prompt 4: Definition registry object
+[18480] Embedded-object anchor A1-10-0031 — Theorem registry object.
+[18491] Prompt 4: Theorem registry object
+[18493] Embedded-object anchor A1-10-0032 — Algorithm registry object.
+[18504] Prompt 4: Algorithm registry object
+[18506] Embedded-object anchor A1-10-0033 — Regression-suite object.
+[18517] Prompt 4: Regression-suite object
+[18519] Embedded-object anchor A1-10-0034 — Mechanization/complexity object.
+[18530] Prompt 4: Mechanization/complexity object
+[18532] Embedded-object anchor A1-10-0035 — Dependency DAG object.
+[18543] Prompt 4: Dependency DAG object
+[18545] Embedded-object anchor A1-10-0036 — Package-and-symbol map.
+[18556] Prompt 4: Package-and-symbol map
