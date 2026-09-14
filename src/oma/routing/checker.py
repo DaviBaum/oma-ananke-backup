@@ -410,7 +410,54 @@ def _semantics(path, source_path, materialization, scenario, known_physical_guid
             "connections": len(links), "original_records_checked": len(original_ids), "slope_margins": slopes}
 
 
+class _RoutePreflight:
+    """One-shot local continuation; never a persisted or caller-authored proof."""
+    def __init__(self, evaluation):
+        self._evaluation = evaluation
+        self._terminal = None
+        self._used = False
+        try:
+            self.checks = next(evaluation)
+            self.ready = True
+        except StopIteration as completed:
+            self._terminal = completed.value
+            self.checks = self._terminal[0]
+            self.ready = False
+
+    def finish(self):
+        if self._used:
+            raise RuntimeError("A route preflight can only be consumed once")
+        self._used = True
+        if self._terminal is not None:
+            return self._terminal
+        try:
+            next(self._evaluation)
+        except StopIteration as completed:
+            return completed.value
+        finally:
+            self._evaluation.close()
+        raise RuntimeError("Route checker unexpectedly paused more than once")
+
+    def close(self):
+        self._used = True
+        self._evaluation.close()
+
+
+def prepare_route_state(*args, **kwargs):
+    """Run the same invocation's input/mission/IFC semantics before native work."""
+    return _RoutePreflight(_evaluate_route_state(*args, **kwargs))
+
+
 def evaluate_route_state(store, state, baseline, requested, scenario, mission, materialization, route_ids, control, *, candidate_run=None, known_physical_guids=None):
+    prepared = prepare_route_state(store, state, baseline, requested, scenario, mission, materialization, route_ids,
+        control, candidate_run=candidate_run, known_physical_guids=known_physical_guids)
+    try:
+        return prepared.finish()
+    finally:
+        prepared.close()
+
+
+def _evaluate_route_state(store, state, baseline, requested, scenario, mission, materialization, route_ids, control, *, candidate_run=None, known_physical_guids=None):
     """Independently evaluate one obligation against a pinned composite state."""
     path = store.resolve_path(materialization["export_path"])
     results = []
@@ -499,6 +546,10 @@ def evaluate_route_state(store, state, baseline, requested, scenario, mission, m
         add("exported-physical-semantics", "PASS" if not semantics["errors"] else "FAIL", "Fresh IFC directrices, sections, terminal locations, connections and original STEP records agree" if not semantics["errors"] else "; ".join(semantics["errors"]), witness={"recomputed": semantics})
         objective = {"length_m": semantics["length_m"], "fitting_count": float(semantics["fitting_count"])}
         guids = {p["ifc_guid"] for p in materialization["added_parts"]}
+        # Joint verification may schedule one fresh native counterexample here.
+        # All locals remain in this exact invocation; no stored preparation or
+        # prior numerical result is accepted by the continuation.
+        yield results
         opening_args = None
         opening_manifest = materialization.get("authorized_opening")
         opening_edit = state.get("derived_artifacts", {}).get("opening_edit")

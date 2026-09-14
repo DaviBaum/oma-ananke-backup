@@ -1,0 +1,35 @@
+{
+  "status": "ONE_REPRODUCED_CURRENT_BYTE_BINDING_DEFECT_FIXED_BY_OWNER",
+  "reviewed_build": "fc2eda1a64dc502bf4f3339cdca7d4d70286573bb90f17d4feb7113e07972f54",
+  "source_sha256": {
+    "routing/joint_negative_probe.py": "46b8514135c4a50a3f80a756a5bb709acbf836992867db580adc741665180e1d",
+    "routing/checker.py": "91118ac91e230ed4fce2f60eab8a0f89a5d9ba4b919287e6d466799ee9e5b23a",
+    "routing/joint_checker.py": "a23bf8be60b322588397f74abe7af1f22f12bf9c94649f0cd5378940ccc9a893",
+    "routing/joint.py": "d889929de172fd758d0fa862da9ea23c9a289f564fc227d431b0f0be2be7f2d1"
+  },
+  "finding": {
+    "id": "IFC-JOINT-PARSE-001",
+    "defect": "Public-path hash-before/open/hash-after can label transient B geometry with current A byte identity",
+    "original_build": "9f2ca87a0aa92a3754cf4a6eb5ad0530a9472cb8f5a6899da7360e6d797b89c6",
+    "initial_evidence": "evidence/release/joint-probe-native-audit/60b6221594ce4a9c888f147e056367d6",
+    "current_A_sha256": "c9c5d6a23501dd88ea4b3c86322103ad8f689056a5df93ce8d532c9c72d1cdc8",
+    "transient_B_sha256": "e805ddc9a1191e470a02aec6f74e222ff964795620a298fb68fc8c77c8493c74",
+    "false_common_volume_m3": 0.06157521601035999,
+    "fix": "Child streams source/export into exclusive private files, hashes exactly copied bytes before parse, uses private inputs for native models and federation, and retains public-path postchecks",
+    "production_fix_owner": "export_backend",
+    "native_verdict_mocked": false
+  },
+  "independent_tests": {
+    "passed": 3,
+    "failed": 0,
+    "junit_sha256": "33846fb596aa742e085aa713feac00ce3c474ef10c35a488da9346ee9e408e7d",
+    "file": "tests/test_joint_probe_native_audit.py",
+    "scope": [
+      "Transient current-export replacement no longer yields false FAIL",
+      "Original building object substituted into current part manifest cannot reach early probe",
+      "Another route object substituted into current part manifest cannot reach early probe"
+    ]
+  },
+  "remaining_findings_in_reviewed_gate": [],
+  "review_scope": "Current joint early-negative path, same-invocation semantic preflights, participant/frame/body binding, completed-child admission, input/cancellation checkpoints and bounded supervision. Not an audit of every preexisting parser path or all mathematical optimality claims."
+}
