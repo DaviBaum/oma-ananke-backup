@@ -1,0 +1,183 @@
+{
+  "status": "EXACT_DESIGN_EDGE_CASES_CHECKED",
+  "production_implementation": false,
+  "cases": {
+    "negative_resistance_endpoint_selection": {
+      "drop": [
+        -4,
+        -1
+      ],
+      "K": [
+        1,
+        4
+      ],
+      "exact_flow": [
+        "-2",
+        "-1/2"
+      ]
+    },
+    "sharp_barrier_interval_cancellation": {
+      "true_uniform_pressure_bounds": [
+        "1/5",
+        "4/5"
+      ],
+      "true_lower_worst_residual": "0 = -sqrt(1/5)+sqrt(1/5)",
+      "naive_outward_residual": [
+        "-212591468537154852355322059393/316912650057057350374175801344",
+        "1/1267650600228229401496703205376"
+      ],
+      "naive_certificate_disposition": "UNRESOLVED_SIGN",
+      "relaxed_lower": "1/5-1/1000000",
+      "relaxed_residual": [
+        "-425183645712870337239528197707/633825300114114700748351602688",
+        "-1771597232018303255149729/1267650600228229401496703205376"
+      ],
+      "point": "Never replace a positive outward endpoint by an epsilon zero; use exact cancellation or outward slack"
+    },
+    "equal_pressure_zero_flow": {
+      "pressure": "3",
+      "flows": {
+        "SJ": [
+          "0",
+          "0"
+        ],
+        "JT": [
+          "0",
+          "0"
+        ]
+      },
+      "requires_minimum_flow": false
+    },
+    "boundary_only": {
+      "delta_h": 4,
+      "K": 1,
+      "flow": [
+        "2",
+        "2"
+      ],
+      "internal_count": 0
+    },
+    "zero_flow_lipschitz_counterexample": {
+      "K": 1,
+      "pressure_residual": "1/1000000",
+      "flow_error": "1/1000",
+      "claimed_flow_error_le_pressure_residual": false
+    },
+    "direction_not_certified": {
+      "pressure_drop": [
+        "-1/1000000",
+        "1/1000000"
+      ],
+      "flow": [
+        "-633825300114114700748351603/633825300114114700748351602688",
+        "633825300114114700748351603/633825300114114700748351602688"
+      ],
+      "unique_per_parameter_tuple": true,
+      "strict_positive_delivery_proved": false
+    },
+    "two_junction_three_sink_tree": {
+      "edges": [
+        [
+          "SJ1",
+          "S",
+          "J1",
+          [
+            "1",
+            "1"
+          ]
+        ],
+        [
+          "J1T1",
+          "J1",
+          "T1",
+          [
+            "1",
+            "1"
+          ]
+        ],
+        [
+          "J1J2",
+          "J1",
+          "J2",
+          [
+            "1",
+            "1"
+          ]
+        ],
+        [
+          "J2T2",
+          "J2",
+          "T2",
+          [
+            "1",
+            "1"
+          ]
+        ],
+        [
+          "J2T3",
+          "J2",
+          "T3",
+          [
+            "1",
+            "1"
+          ]
+        ]
+      ],
+      "pressure": {
+        "S": 14,
+        "J1": 5,
+        "J2": 1,
+        "T1": 4,
+        "T2": 0,
+        "T3": 0
+      },
+      "flow": {
+        "SJ1": 3,
+        "J1T1": 1,
+        "J1J2": 2,
+        "J2T2": 1,
+        "J2T3": 1
+      },
+      "all_edge_losses_and_internal_continuity_exact": true,
+      "native_junction_loss_applicability": false
+    },
+    "ungrounded_component": {
+      "pressures_1": [
+        0,
+        0
+      ],
+      "pressures_2": [
+        5,
+        5
+      ],
+      "same_edge_flow": 0,
+      "disposition": "INVALID_MODEL_NO_DIRICHLET_GROUND"
+    },
+    "zero_resistance_cycle": {
+      "K": [
+        0,
+        0,
+        0
+      ],
+      "pressure": [
+        0,
+        0,
+        0
+      ],
+      "distinct_continuity_flows": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "disposition": "INVALID_MODEL_NONPOSITIVE_RESISTANCE"
+    }
+  },
+  "script_sha256": "7277e8210046d150a5e1c7f3d66362506989d0df515d336b70455e1dc24bb368"
+}

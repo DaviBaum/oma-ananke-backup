@@ -1,0 +1,1 @@
+The proposed shape-budget bypass was NOT reproduced. All four probes returned UNKNOWN with the expected node/edge budget reason. The copied source already included the owner?s correction. The initial harness prefilled an incorrect top-level label in result.json; disposition.json explicitly corrects that label. Raw per-probe outcomes and source bytes are retained unchanged.

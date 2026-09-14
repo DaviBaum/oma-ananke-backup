@@ -1,0 +1,13 @@
+# Unchanged Office B2/B0 run under residual-enabled 1abe
+
+`campaign-reconciliation.json` is the completed read-only reconciliation. The exact historical specification, source bytes, original project/candidate/run, and frozen application source were preserved. All new project writes are in the private isolated Store.
+
+B2 attempted four candidates. The planted direct route was rejected by a fresh positive forbidden-volume witness; its remaining full denominator is explicitly NOT_RUN. Three alternatives passed full native checking. Normal selection chose the distinct right-hand residual detour `7e0f02477ee74a179bb7062482687745`, tied with the original left-hand frontier at **3.2964797960769348 m total and two elbows**. The third checked option was longer. This is no improvement or continuous optimality claim. The generated-word ledger, original frontier, residual frontier, binary64 body and current native capacity master were independently replayed.
+
+The selected candidate was accepted at revision 1. Selected and freshly exported checks each account for 803 source obstacles against five detour parts plus one separate straight part: **4,818 source pairs, 10 self pairs and five cross-route pairs**. Export `6dd6778fa8734d37bd2cd32295cd2306` is CHECKED_LOCAL_SCOPE with fresh report `9288c3d5341cd1bb7f8ea2642275ddd96a65f891fbf671240816549b2b803167`. Its actual IFC SHA is `3b89bccc41090526e57a8bc8ce04e9aaea45dcff5d573ce15038729d5c94c08b`.
+
+B0 attempted three candidates. The direct route failed geometrically; the two fully checked detours each used two new elbows and failed the zero-elbow budget. The run ends NO_INCUMBENT_FOUND. This bounded search does not prove physical infeasibility or a global lower bound.
+
+Two evidence-wrapper failures remain untouched: the parent initially compared path-keyed dependencies from a different byte-identical frozen runtime directory; replay under the exact worker runtime passed without changing that predicate. The final wrapper then decoded the UTF-8 project-name declaration using Windows cp1252. Explicit UTF-8 reconciliation proves exact equality with the original read-only SQLite project. A draft reconciliation additionally assumed all worker-completed runs had run status COMPLETED; B0 correctly uses NO_INCUMBENT_FOUND. No optimization or native test was rerun to correct these bookkeeping issues.
+
+All results are pinned to `oma-independent-checker/2:1abe9a077844a184ec17e1c8a0a390aa4bf33d05dd302a6eefff7d770a0ff719`. The unchanged mission explicitly disclaims hydraulic adequacy; source vertex-hull and numerical CAD assumptions remain. This private result grants no native runtime promotion, whole-building certification, or public release approval.

@@ -1,0 +1,7 @@
+# Corrected fixed-flow and passive-pressure checkpoint
+
+Frozen application 52bd5d29217117127da6dc0576a1626c8512ae7e145132ba9f9ef7b8ed12ea52 passes all 1,979 declared application cases in the original native environment in 709.15 seconds. The separate custom native build b8fd96f167739f4e4688086fa0414dd54b3efe04ffeb0ac8bc663c9ab347d036 passes the identical cases in 718.11 seconds. Both have zero failed or skipped cases. These counts do not include separately tested packaging provenance guards.
+
+`result.json`, `tests.xml`, `test-nodes.json`, `runner.py` and `inventory-helper.py` bind the exact executed source, test inputs and completion. `retention.json` indexes all 110 unchanged input/support files and exactly six generated outputs from two named tests in `retained-snapshot/`. Retention and the independent completion audit do not rerun the tests. The original source has 100 Python files; source hashes are retained in the receipt.
+
+Custom native completion and its read-only audit are in `../../dependencies/native-build/checkpoint-validation/52bd5d292171-d136440d704e/`. The application includes the native section correction and the independently checked grounded passive graph kernel. The new multi-tee native adapter is a later private development and is not claimed by this checkpoint. These regressions do not establish physical model applicability, global routing optimality or completion of all supplied algorithms.

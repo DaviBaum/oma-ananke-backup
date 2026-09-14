@@ -15,6 +15,10 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES", "1-10", [16069, 16077, 16118, 16135, 16139, 16203, 16360, 16397, 16836, 16853, 17130, 17158, 17615, 17681], ["ALG-PO1", "ALG-PO2", "ALG-PO7", "THM-PO7", "THM-PO8", "THM-PO12"],
+         ["oma.optimization.passive_pressure.compile_passive_pressure"], ["oma.optimization.passive_pressure.verify_passive_pressure"], "tests/test_passive_pressure.py",
+         "Explicit bounded signed quadratic edge model on any finite graph whose every component contains a Dirichlet boundary. Strict positive resistance boxes, full boundary-head boxes and exact zero internal injection define the admitted relation. Grounded strict-convex/coercive pressure energy proves unique existence for each parameter tuple, including loops, reversal and zero flow. Independently checked rational sub/supersolution barriers, signed resistance extrema, square-root inequalities and complete incidence sums enclose all pressures, edge flows and boundary injections. The producer may refine barriers but the verifier never invokes its search or radical producer. Model/query/domain/topology/assumption roots, every edge and node denominator, width claims and final callback mutation guards are independently checked.",
+         [], "Conditional scalar-junction/per-edge law only; it does not establish native IFC applicability, catalogue loss truth, individual sink delivery, physical velocity requirements, continuous routing optimality, tight interval hulls or full source algorithm completion. Existing unequal outlet-specific tee losses referenced to total inlet flow cannot be transferred to the separable law. Zero resistance and ungrounded components are unsupported. Whole-parameter-box enclosures may be coarse; attained width is explicit. Count/work/rational/input/certificate limits return UNKNOWN without partial authority. No residual-norm error certificate or native graph adapter is implemented by this module."),
         ("RESIDUAL_WHOLE_WORD_FABRICATION_FRONTIER_AND_JOINT_PROPOSALS", "oma-integration", [4472, 4484, 5522, 5523, 5536, 5537, 5544, 5545, 5546, 5547], ["ALG-RTR15", "ALG-RTR22", "ALG-RTR26", "ALG-RTR27"],
          ["oma.optimization.fabrication_alternatives.compile_fabrication_alternatives", "oma.routing.fabrication_residual.residual_proposals", "oma.routing.certified_fabrication.build_certified_fabrication_proposals", "oma.routing.proposals.project_proposals"], ["oma.optimization.fabrication_alternatives.verify_fabrication_alternatives", "oma.optimization.fabrication.verify_orthogonal_fabrication", "oma.routing.joint_checker.verify_joint_candidate"], "tests/test_optimization_fabrication_alternatives.py",
          "Bounded new specialization of the fabrication lift and represented pricing domain. A compact prefix trie excludes only complete independently checked seven-coordinate graph-state words already generated as proposals; all prefixes, shared edges and successors of excluded goal states remain available. Grounded full reachable-product closure, independently reconstructed geometry/count/trie transitions, nonnegative rational potentials, terminal debt and a realizing path certify each exact count in the residual finite language. The pi coefficient remains fixed at wL*R*k/2. One optional source-bound residual round binds its original checked frontier, exact excluded words and generation ledger, then freshly checks binary64 bodies. The real joint consumer enables the round only under an explicit fitting budget before freezing the finite menu.",
@@ -186,7 +190,7 @@ def main():
         "Complete outer abstraction and adaptive CEGAR geometry proofs",
         "Complete 3D homotopy presentations and fabrication/size lifts",
         "Multi-terminal topology pricing with physical fitting/junction validity",
-        "General pressure/flow networks, supports, penetrations and access fibers",
+        "General physical pressure/flow and coupled junction applicability beyond the declared positive-K passive graph and two-sink models, supports, penetrations and access fibers",
         "Full finite route universe closure or a continuous-completeness theorem",
         "Nested topology-native branch-and-price proof tree",
         "Universally scoped JCD Benders cuts and joint strategic rewrite search",
@@ -197,6 +201,19 @@ def main():
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
     coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
     for row in register:
+        if row["obligation"] == "GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES":
+            row["related_sources"] = [{"document": "oma-integration", "sha256": identities["oma-integration"],
+                "paragraphs": [4592, 4609, 5530, 5531, 5532, 5533], "objects": ["DEF-RTR56", "ALG-RTR19", "ALG-RTR20"]}]
+            row["full_source_algorithms_implemented"] = False
+            row["documentation"] = "docs/math/passive-pressure.md"
+            row["evidence"] = "evidence/math/passive-pressure/latest.json"
+            row["real_model_benchmark"] = {"status": "NOT_IMPLEMENTED_NATIVE_PASSIVE_ADAPTER",
+                "evidence": "evidence/math/passive-pressure/independent-implementation-review/result.json",
+                "scope": "119 exact declared kernel cases, 32 independently manufactured rational equilibria, 210 coherent/inventory/callback attacks and five budget cases. Retained finite parameter references supplement the exact comparison proof; they do not establish physical model applicability."}
+            row["consumer_scope"] = {"native_graph_adapter": False, "existing_native_tee_missions_reinterpreted": False,
+                "kernel_proof_grants_physical_acceptance": False, "default_nodes": 64, "default_edges": 128,
+                "signed_zero_and_reversed_flow": True, "positive_K_required_throughout_parameter_box": True,
+                "every_connected_component_grounded": True, "individual_boundary_directions_assumed": False}
         if row["obligation"] == "RESIDUAL_WHOLE_WORD_FABRICATION_FRONTIER_AND_JOINT_PROPOSALS":
             row["automated_tests"].extend(["tests/test_certified_fabrication_residual.py", "tests/test_joint_residual_fabrication.py"])
             row["full_source_algorithms_implemented"] = False
@@ -204,6 +221,10 @@ def main():
             row["real_model_benchmark"] = {"status": "ANALYTIC_IFC_JOINT_SELECTION_ACCEPTANCE_EXPORT_RECHECK_PASS",
                 "evidence": "evidence/math/fabrication-residual/latest.json",
                 "scope": "Frozen synthetic wall plus separately declared competing route, with no solver/checker stubs. Cheaper original exact-count option has actual positive native common volume; a costlier residual option of the same two-fitting count is selected, accepted at revision 2, exported as actual IFC and independently rechecked. Both complete checks cover 5+1 source pairs and 5 cross-route pairs. This is analytic IFC integration, not a real Office benchmark or whole-building release."}
+            row["real_model_benchmark"]["office_campaign"] = {"status": "UNCHANGED_MISSION_RESIDUAL_TIE_ACCEPTED_AND_EXPORT_RECHECKED",
+                "evidence": "evidence/benchmarks/residual-fitting/office/310e9ac661714f8e91fcf67d91409415/README.md",
+                "source_checkpoint": "1abe9a077844a184ec17e1c8a0a390aa4bf33d05dd302a6eefff7d770a0ff719",
+                "scope": "Seven attempted candidates across frozen B2/B0 cases. B2 normally selects a distinct residual route tied with the original frontier at 3.2964797960769348 m and two fittings, accepts and freshly checks export against 4818 source, ten self and five cross-route pairs. B0 has no checked incumbent; no length improvement, physical infeasibility, continuous optimum or hydraulic adequacy claim."}
             row["consumer_scope"] = {"mission_field": "JointRoutingScenario.max_new_fittings", "absent_budget_activates_residual": False,
                 "residual_rounds": 1, "default_phase_seconds": 3, "default_maximum_outputs": 8,
                 "represented_count_maximum": 32, "declared_joint_budget_maximum": 1024,

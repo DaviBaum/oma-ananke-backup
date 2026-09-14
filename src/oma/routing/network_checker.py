@@ -173,9 +173,9 @@ def verify_network_candidate(store, candidate_id):
             p = transform[:3, :3] @ measured_ports[endpoint.key()]["position_m"] + transform[:3, 3]
             return [Interval(Fraction(str(float(v))) - budget, Fraction(str(float(v))) + budget) for v in p]
         positions = {"source": position(selected.source), "sinks": {s.id: position(s.endpoint) for s in selected.sinks}}
+        radii = {p["component_id"]: Interval(Fraction(str(p["radius_m"])) - budget, Fraction(str(p["radius_m"])) + budget) for p in semantics["parts"]}
         if request.pressure_driven is not None:
             from .network_pressure import evaluate_pressure_network
-            radii = {p["component_id"]: Interval(Fraction(str(p["radius_m"])) - budget, Fraction(str(p["radius_m"])) + budget) for p in semantics["parts"]}
             calculation = evaluate_pressure_network(request, selected, lengths, positions,
                 component_outer_radii=radii,
                 context={"candidate_root": candidate["state_root"], "baseline_root": run["base_root"],
@@ -189,8 +189,8 @@ def verify_network_candidate(store, candidate_id):
                 {"artifact": calculation_root, "model_root": calculation.get("independent_check", {}).get("model_root") if calculation.get("independent_check") else None})
             reason = "Every minimum outlet delivery and every component port velocity checked using independently certified pressure-driven flow enclosures"
         else:
-            calculation = evaluate_network_flow(request, selected, lengths, positions)
-            reason = "Aggregate trunk flow, every port velocity and each demand's static pressure requirement checked under explicit fixed-flow control and loss assumptions"
+            calculation = evaluate_network_flow(request, selected, lengths, positions, component_outer_radii=radii)
+            reason = "Aggregate trunk flow, every component port velocity and each demand's static pressure requirement checked with current native section enclosures under explicit fixed-flow control and loss assumptions"
         add("network-demand-conditioned-service", calculation["verdict"], reason, {"calculation": calculation, "metric_tolerance_m": str(budget)})
     else:
         add("network-demand-conditioned-service", "NOT_APPLICABLE", "Requested scope is local physical coordination; no hydraulic operating point or service capacity claim")

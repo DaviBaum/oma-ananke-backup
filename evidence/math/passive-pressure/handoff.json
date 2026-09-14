@@ -1,0 +1,59 @@
+{
+  "schema": "oma.passive-pressure-kernel-handoff/1",
+  "status": "IMPLEMENTED_SCOPED_TESTED_INDEPENDENTLY_REVIEWED",
+  "build": "oma-independent-checker/2:6792b9b6eefbe8ceb91392b86582c4a2a4dcf6e7e3d2e994c84f8e2b37896cca",
+  "tests": 119,
+  "failures": 0,
+  "skips": 0,
+  "merge_files": [
+    {
+      "path": "src/oma/optimization/passive_pressure.py",
+      "sha256": "10fd4677d37952d4e0b41a1bf90aeba9bbdef5506e7e5c33ec8773dd456ec51e",
+      "bytes": 33390
+    },
+    {
+      "path": "tests/test_passive_pressure.py",
+      "sha256": "31fee888d40eb090a0ed8e250acfaa3ff3e1e33ce25e5bf0d82635f1382df313",
+      "bytes": 19568
+    },
+    {
+      "path": "tests/fixtures/passive-pressure/reference-results.json",
+      "sha256": "a03aebb50e215cd8f4c6bc33040ef9f797eb1d2178755cb322352ce989cedeae",
+      "bytes": 367172
+    },
+    {
+      "path": "tests/fixtures/passive-pressure/coupled-loop-result.json",
+      "sha256": "9328d26b128981a7b559832d6f7cc58e2d9f5a79ecc8a11167fa0ae8f23c7333",
+      "bytes": 158829
+    }
+  ],
+  "documentation": {
+    "path": "docs/math/passive-pressure.md",
+    "sha256": "0661448916230b4f7e8b5b0d84e5d246e06e9e31ac5c70603f65c679232f9962",
+    "bytes": 13335
+  },
+  "scope": "Uniform exact comparison barriers on grounded positive-K signed quadratic networks; no native new-network adapter, residual norm module, physical applicability or full source completion",
+  "base_source_should_not_replace_production": true,
+  "production_written": false,
+  "native_adapter_implemented": false,
+  "initial_failures_retained": true,
+  "test_snapshot": "validation/ea0bdfd7814243a5bcfee37ec8dd1079",
+  "source_basis_sha256": "5fb592bb944b4821df001705d82cda6088772426142200c7f793c112d9fe75d5",
+  "complete_examples_sha256": "bfa431ba63036b91d5ec7d4d3a1fc139a40db3d35000c017cef31cede49a630e",
+  "fixed_flow_review": {
+    "path": "fixed-flow-review/result.json",
+    "sha256": "ba7d58a27a3d36299229f3d466cf12c0cf13d99c0a908d9c108ce4d227ebe13e",
+    "separate_build": "4f524101a53fe75c2dedd741b1e2aa9cb4390139ffcd9622a17764ed43a380cc"
+  },
+  "portable_evidence_manifest": "contents.json",
+  "fixture_scope": "Pinned unchanged finite numerical reference cases; universal authority comes from independently checked barriers",
+  "independent_implementation_review": {
+    "path": "independent-implementation-review/result.json",
+    "sha256": "3ae3d55d888e70d0e734725485b5cea140b2ef1f03d3a22657b0303b326864cc",
+    "manufactured_graphs": 32,
+    "coherent_and_inventory_attacks": 210,
+    "budget_unknown_cases": 5,
+    "producer_disabled_verifier_status": "PASS",
+    "scope": "Standalone declared passive signed quadratic model only. Finite manufactured exact equilibria and adversarial packets supplement source-level proof review; no native/BIM/tee-flow applicability, delivery requirement, tight interval hull or whole-backend claim."
+  }
+}

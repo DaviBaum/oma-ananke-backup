@@ -6,6 +6,111 @@
   "full_engine_mathematics_implemented": false,
   "obligations": [
     {
+      "obligation": "GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES",
+      "source": {
+        "document": "1-10",
+        "sha256": "0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970",
+        "paragraphs": [
+          16069,
+          16077,
+          16118,
+          16135,
+          16139,
+          16203,
+          16360,
+          16397,
+          16836,
+          16853,
+          17130,
+          17158,
+          17615,
+          17681
+        ],
+        "objects": [
+          "ALG-PO1",
+          "ALG-PO2",
+          "ALG-PO7",
+          "THM-PO7",
+          "THM-PO8",
+          "THM-PO12"
+        ]
+      },
+      "interpretation_and_assumptions": "Explicit bounded signed quadratic edge model on any finite graph whose every component contains a Dirichlet boundary. Strict positive resistance boxes, full boundary-head boxes and exact zero internal injection define the admitted relation. Grounded strict-convex/coercive pressure energy proves unique existence for each parameter tuple, including loops, reversal and zero flow. Independently checked rational sub/supersolution barriers, signed resistance extrema, square-root inequalities and complete incidence sums enclose all pressures, edge flows and boundary injections. The producer may refine barriers but the verifier never invokes its search or radical producer. Model/query/domain/topology/assumption roots, every edge and node denominator, width claims and final callback mutation guards are independently checked.",
+      "implementations": [
+        "oma.optimization.passive_pressure.compile_passive_pressure"
+      ],
+      "independent_checkers": [
+        "oma.optimization.passive_pressure.verify_passive_pressure"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.passive_pressure.compile_passive_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.passive_pressure.verify_passive_pressure",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_passive_pressure.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NOT_IMPLEMENTED_NATIVE_PASSIVE_ADAPTER",
+        "evidence": "evidence/math/passive-pressure/independent-implementation-review/result.json",
+        "scope": "119 exact declared kernel cases, 32 independently manufactured rational equilibria, 210 coherent/inventory/callback attacks and five budget cases. Retained finite parameter references supplement the exact comparison proof; they do not establish physical model applicability."
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Conditional scalar-junction/per-edge law only; it does not establish native IFC applicability, catalogue loss truth, individual sink delivery, physical velocity requirements, continuous routing optimality, tight interval hulls or full source algorithm completion. Existing unequal outlet-specific tee losses referenced to total inlet flow cannot be transferred to the separable law. Zero resistance and ungrounded components are unsupported. Whole-parameter-box enclosures may be coarse; attained width is explicit. Count/work/rational/input/certificate limits return UNKNOWN without partial authority. No residual-norm error certificate or native graph adapter is implemented by this module.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ],
+      "related_sources": [
+        {
+          "document": "oma-integration",
+          "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+          "paragraphs": [
+            4592,
+            4609,
+            5530,
+            5531,
+            5532,
+            5533
+          ],
+          "objects": [
+            "DEF-RTR56",
+            "ALG-RTR19",
+            "ALG-RTR20"
+          ]
+        }
+      ],
+      "full_source_algorithms_implemented": false,
+      "documentation": "docs/math/passive-pressure.md",
+      "evidence": "evidence/math/passive-pressure/latest.json",
+      "consumer_scope": {
+        "native_graph_adapter": false,
+        "existing_native_tee_missions_reinterpreted": false,
+        "kernel_proof_grants_physical_acceptance": false,
+        "default_nodes": 64,
+        "default_edges": 128,
+        "signed_zero_and_reversed_flow": true,
+        "positive_K_required_throughout_parameter_box": true,
+        "every_connected_component_grounded": true,
+        "individual_boundary_directions_assumed": false
+      }
+    },
+    {
       "obligation": "RESIDUAL_WHOLE_WORD_FABRICATION_FRONTIER_AND_JOINT_PROPOSALS",
       "source": {
         "document": "oma-integration",
@@ -79,7 +184,13 @@
       "real_model_benchmark": {
         "status": "ANALYTIC_IFC_JOINT_SELECTION_ACCEPTANCE_EXPORT_RECHECK_PASS",
         "evidence": "evidence/math/fabrication-residual/latest.json",
-        "scope": "Frozen synthetic wall plus separately declared competing route, with no solver/checker stubs. Cheaper original exact-count option has actual positive native common volume; a costlier residual option of the same two-fitting count is selected, accepted at revision 2, exported as actual IFC and independently rechecked. Both complete checks cover 5+1 source pairs and 5 cross-route pairs. This is analytic IFC integration, not a real Office benchmark or whole-building release."
+        "scope": "Frozen synthetic wall plus separately declared competing route, with no solver/checker stubs. Cheaper original exact-count option has actual positive native common volume; a costlier residual option of the same two-fitting count is selected, accepted at revision 2, exported as actual IFC and independently rechecked. Both complete checks cover 5+1 source pairs and 5 cross-route pairs. This is analytic IFC integration, not a real Office benchmark or whole-building release.",
+        "office_campaign": {
+          "status": "UNCHANGED_MISSION_RESIDUAL_TIE_ACCEPTED_AND_EXPORT_RECHECKED",
+          "evidence": "evidence/benchmarks/residual-fitting/office/310e9ac661714f8e91fcf67d91409415/README.md",
+          "source_checkpoint": "1abe9a077844a184ec17e1c8a0a390aa4bf33d05dd302a6eefff7d770a0ff719",
+          "scope": "Seven attempted candidates across frozen B2/B0 cases. B2 normally selects a distinct residual route tied with the original frontier at 3.2964797960769348 m and two fittings, accepts and freshly checks export against 4818 source, ten self and five cross-route pairs. B0 has no checked incumbent; no length improvement, physical infeasibility, continuous optimum or hydraulic adequacy claim."
+        }
       },
       "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
       "amendments": [],
@@ -2266,7 +2377,7 @@
     "Complete outer abstraction and adaptive CEGAR geometry proofs",
     "Complete 3D homotopy presentations and fabrication/size lifts",
     "Multi-terminal topology pricing with physical fitting/junction validity",
-    "General pressure/flow networks, supports, penetrations and access fibers",
+    "General physical pressure/flow and coupled junction applicability beyond the declared positive-K passive graph and two-sink models, supports, penetrations and access fibers",
     "Full finite route universe closure or a continuous-completeness theorem",
     "Nested topology-native branch-and-price proof tree",
     "Universally scoped JCD Benders cuts and joint strategic rewrite search",
