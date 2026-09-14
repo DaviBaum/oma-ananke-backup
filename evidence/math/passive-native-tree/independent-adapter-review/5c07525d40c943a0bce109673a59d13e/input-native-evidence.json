@@ -1,0 +1,2593 @@
+{
+  "source_sha256": "bd448875ed5f3a83c3ef96b73209d3c7a7b8736607a54dd0a4ac375d777ebfd7",
+  "export_sha256": "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d",
+  "manifest": {
+    "schema": "oma-network-materialization/1",
+    "source_path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\passive-native-tree\\evidence\\native-three-sink\\5c0e4ad0641d4acab0aca886eb023bf0\\original.ifc",
+    "source_sha256": "bd448875ed5f3a83c3ef96b73209d3c7a7b8736607a54dd0a4ac375d777ebfd7",
+    "export_path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\passive-native-tree\\evidence\\native-three-sink\\5c0e4ad0641d4acab0aca886eb023bf0\\three-sink.ifc",
+    "export_sha256": "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d",
+    "ifc_schema": "IFC4",
+    "network_spec": {
+      "schema": "oma-physical-network/1",
+      "network_id": "explicit-positive-common-loss-three-sink-tree",
+      "system_type": "PRESSURE_PIPE",
+      "components": [
+        {
+          "id": "trunk",
+          "kind": "segment",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "geometry": {
+            "start_m": [
+              -1,
+              4,
+              3
+            ],
+            "end_m": [
+              -0.2,
+              4,
+              3
+            ]
+          },
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          }
+        },
+        {
+          "id": "tee-1",
+          "kind": "tee",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "geometry": {
+            "frame_m": [
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                1,
+                3
+              ],
+              [
+                0,
+                0,
+                0,
+                1
+              ]
+            ],
+            "trunk_takeout_m": 0.2,
+            "branch_takeout_m": 0.2
+          },
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE",
+            "branch": "SOURCE"
+          }
+        },
+        {
+          "id": "arm-a",
+          "kind": "segment",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "geometry": {
+            "start_m": [
+              0,
+              4.2,
+              3
+            ],
+            "end_m": [
+              0,
+              5,
+              3
+            ]
+          },
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          }
+        },
+        {
+          "id": "inter-tee",
+          "kind": "segment",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "geometry": {
+            "start_m": [
+              0.2,
+              4,
+              3
+            ],
+            "end_m": [
+              1.8,
+              4,
+              3
+            ]
+          },
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          }
+        },
+        {
+          "id": "tee-2",
+          "kind": "tee",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "geometry": {
+            "frame_m": [
+              [
+                1,
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                1,
+                3
+              ],
+              [
+                0,
+                0,
+                0,
+                1
+              ]
+            ],
+            "trunk_takeout_m": 0.2,
+            "branch_takeout_m": 0.2
+          },
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE",
+            "branch": "SOURCE"
+          }
+        },
+        {
+          "id": "arm-b",
+          "kind": "segment",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "geometry": {
+            "start_m": [
+              2.2,
+              4,
+              3
+            ],
+            "end_m": [
+              3,
+              4,
+              3
+            ]
+          },
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          }
+        },
+        {
+          "id": "arm-c",
+          "kind": "segment",
+          "system_type": "PRESSURE_PIPE",
+          "diameter_m": 0.1,
+          "insulation_m": 0.02,
+          "geometry": {
+            "start_m": [
+              2,
+              4.2,
+              3
+            ],
+            "end_m": [
+              2,
+              5,
+              3
+            ]
+          },
+          "ports": {
+            "a": "SINK",
+            "b": "SOURCE"
+          }
+        }
+      ],
+      "connections": [
+        {
+          "source": {
+            "component": "trunk",
+            "port": "b"
+          },
+          "sink": {
+            "component": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "source": {
+            "component": "tee-1",
+            "port": "branch"
+          },
+          "sink": {
+            "component": "arm-a",
+            "port": "a"
+          }
+        },
+        {
+          "source": {
+            "component": "tee-1",
+            "port": "b"
+          },
+          "sink": {
+            "component": "inter-tee",
+            "port": "a"
+          }
+        },
+        {
+          "source": {
+            "component": "inter-tee",
+            "port": "b"
+          },
+          "sink": {
+            "component": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "source": {
+            "component": "tee-2",
+            "port": "b"
+          },
+          "sink": {
+            "component": "arm-b",
+            "port": "a"
+          }
+        },
+        {
+          "source": {
+            "component": "tee-2",
+            "port": "branch"
+          },
+          "sink": {
+            "component": "arm-c",
+            "port": "a"
+          }
+        }
+      ],
+      "source": {
+        "component": "trunk",
+        "port": "a"
+      },
+      "sinks": [
+        {
+          "id": "sink-a",
+          "endpoint": {
+            "component": "arm-a",
+            "port": "b"
+          }
+        },
+        {
+          "id": "sink-b",
+          "endpoint": {
+            "component": "arm-b",
+            "port": "b"
+          }
+        },
+        {
+          "id": "sink-c",
+          "endpoint": {
+            "component": "arm-c",
+            "port": "b"
+          }
+        }
+      ],
+      "demand_paths": [
+        {
+          "demand_id": "demand-a",
+          "sink_id": "sink-a",
+          "steps": [
+            {
+              "component": "trunk",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "tee-1",
+              "entry_port": "a",
+              "exit_port": "branch"
+            },
+            {
+              "component": "arm-a",
+              "entry_port": "a",
+              "exit_port": "b"
+            }
+          ]
+        },
+        {
+          "demand_id": "demand-b",
+          "sink_id": "sink-b",
+          "steps": [
+            {
+              "component": "trunk",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "tee-1",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "inter-tee",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "tee-2",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "arm-b",
+              "entry_port": "a",
+              "exit_port": "b"
+            }
+          ]
+        },
+        {
+          "demand_id": "demand-c",
+          "sink_id": "sink-c",
+          "steps": [
+            {
+              "component": "trunk",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "tee-1",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "inter-tee",
+              "entry_port": "a",
+              "exit_port": "b"
+            },
+            {
+              "component": "tee-2",
+              "entry_port": "a",
+              "exit_port": "branch"
+            },
+            {
+              "component": "arm-c",
+              "entry_port": "a",
+              "exit_port": "b"
+            }
+          ]
+        }
+      ]
+    },
+    "network_id": "explicit-positive-common-loss-three-sink-tree",
+    "added_parts": [
+      {
+        "component_id": "trunk",
+        "kind": "segment",
+        "ifc_guid": "1hWNtkSG1Ljx$dislpiplE",
+        "step_id": 44,
+        "ports": {
+          "a": "1XX8P2fSLJXviSmztjbvX8",
+          "b": "0eNSCGTlTSyPIA7f92HeSI"
+        }
+      },
+      {
+        "component_id": "tee-1",
+        "kind": "tee",
+        "ifc_guid": "3ILJsTu4nNQAd301cXwJWy",
+        "step_id": 75,
+        "ports": {
+          "a": "0kNYhSrU5GuwoHepsoYUtX",
+          "b": "1ZoOHzIenNPgVkWGHXMPqm",
+          "branch": "17X1FKprzNyvQrCM0mOumg"
+        }
+      },
+      {
+        "component_id": "arm-a",
+        "kind": "segment",
+        "ifc_guid": "3npHVDTVvNGvHcXyfylkxa",
+        "step_id": 123,
+        "ports": {
+          "a": "3Pp9_HkyDQoBYT$8tPorsF",
+          "b": "2Ri_2srCfM8eMEkc_wajnU"
+        }
+      },
+      {
+        "component_id": "inter-tee",
+        "kind": "segment",
+        "ifc_guid": "3djI_VAjXLnRrI7nkxtUgO",
+        "step_id": 154,
+        "ports": {
+          "a": "3Wjr4c2qDQt8moR9321cx8",
+          "b": "2ln46Jr_LI4PU4N1aYHXs$"
+        }
+      },
+      {
+        "component_id": "tee-2",
+        "kind": "tee",
+        "ifc_guid": "20sWPAye1Nken6U68l$Kyk",
+        "step_id": 185,
+        "ports": {
+          "a": "2o8TjBtubHVx6HwFICPNGF",
+          "b": "35wCXPR4zSNBKXfdRsOsYz",
+          "branch": "30irIAX09HdAW$egMBArf2"
+        }
+      },
+      {
+        "component_id": "arm-b",
+        "kind": "segment",
+        "ifc_guid": "1vdKsoO9bTKucY0UjyGTOV",
+        "step_id": 233,
+        "ports": {
+          "a": "2iEakLi31Maww0JkufyPhR",
+          "b": "3ddQOJOBrUmAfHohjHiJ00"
+        }
+      },
+      {
+        "component_id": "arm-c",
+        "kind": "segment",
+        "ifc_guid": "0GtUP9P_zKAQ5SLPPNb3Qw",
+        "step_id": 264,
+        "ports": {
+          "a": "2R5a0TzHPUzPwTszfBxyGm",
+          "b": "0AreZfTS5MngDlAs3OYfMD"
+        }
+      }
+    ],
+    "source_system_guid": "1rCGaeTqPHEBSWr0jOqdoF",
+    "port_axis_convention": "IFC_FLOW_AXIS_V1",
+    "original_step_records": 32,
+    "original_records_changed": [],
+    "status": "DRAFT",
+    "physical_component_count": 7,
+    "physical_port_count": 16,
+    "explicit_internal_connections": 6,
+    "unique_length_m": 6.0,
+    "fitting_count": 2,
+    "demand_path_lengths_m": {
+      "demand-a": 2.0,
+      "demand-b": 4.0,
+      "demand-c": 4.0
+    }
+  },
+  "semantics": {
+    "status": "PASS",
+    "errors": [],
+    "parts": [
+      {
+        "component_id": "trunk",
+        "ifc_guid": "1hWNtkSG1Ljx$dislpiplE",
+        "kind": "segment",
+        "radius_m": 0.07,
+        "length_m": 0.8,
+        "analytic_volume_m3": 0.01231504320207199,
+        "path_lengths_m": {
+          "a:b": 0.8
+        },
+        "caps": {
+          "a": {
+            "position_m": [
+              -1.0,
+              4.0,
+              3.0
+            ],
+            "outward_normal": [
+              -1.0,
+              -0.0,
+              -0.0
+            ]
+          },
+          "b": {
+            "position_m": [
+              -0.19999999999999996,
+              4.0,
+              3.0
+            ],
+            "outward_normal": [
+              1.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "start_m": [
+          -1.0,
+          4.0,
+          3.0
+        ],
+        "end_m": [
+          -0.19999999999999996,
+          4.0,
+          3.0
+        ],
+        "native_volume_m3": 0.012315043202072003,
+        "volume_error_m3": 1.214306433183765e-17,
+        "native_solid_count": 1,
+        "fitting_count": 0
+      },
+      {
+        "component_id": "tee-1",
+        "ifc_guid": "3ILJsTu4nNQAd301cXwJWy",
+        "kind": "tee",
+        "radius_m": 0.07,
+        "length_m": 0.6000000000000002,
+        "analytic_volume_m3": 0.008321615734887329,
+        "path_lengths_m": {
+          "a:b": 0.4,
+          "a:branch": 0.4000000000000002
+        },
+        "caps": {
+          "a": {
+            "position_m": [
+              -0.2,
+              4.0,
+              3.0
+            ],
+            "outward_normal": [
+              -1.0,
+              -0.0,
+              -0.0
+            ]
+          },
+          "b": {
+            "position_m": [
+              0.2,
+              4.0,
+              3.0
+            ],
+            "outward_normal": [
+              1.0,
+              0.0,
+              0.0
+            ]
+          },
+          "branch": {
+            "position_m": [
+              0.0,
+              4.2,
+              3.0
+            ],
+            "outward_normal": [
+              0.0,
+              1.0,
+              0.0
+            ]
+          }
+        },
+        "center_m": [
+          0.0,
+          4.0,
+          3.0
+        ],
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "trunk_takeout_m": 0.2,
+        "branch_takeout_m": 0.20000000000000018,
+        "native_volume_m3": 0.008321615754714382,
+        "volume_error_m3": 1.9827053193699484e-11,
+        "native_solid_count": 1,
+        "fitting_count": 1
+      },
+      {
+        "component_id": "arm-a",
+        "ifc_guid": "3npHVDTVvNGvHcXyfylkxa",
+        "kind": "segment",
+        "radius_m": 0.07,
+        "length_m": 0.7999999999999998,
+        "analytic_volume_m3": 0.012315043202071987,
+        "path_lengths_m": {
+          "a:b": 0.7999999999999998
+        },
+        "caps": {
+          "a": {
+            "position_m": [
+              0.0,
+              4.2,
+              3.0
+            ],
+            "outward_normal": [
+              -0.0,
+              -1.0,
+              -0.0
+            ]
+          },
+          "b": {
+            "position_m": [
+              0.0,
+              5.0,
+              3.0
+            ],
+            "outward_normal": [
+              0.0,
+              1.0,
+              0.0
+            ]
+          }
+        },
+        "start_m": [
+          0.0,
+          4.2,
+          3.0
+        ],
+        "end_m": [
+          0.0,
+          5.0,
+          3.0
+        ],
+        "native_volume_m3": 0.012315043202072001,
+        "volume_error_m3": 1.3877787807814457e-17,
+        "native_solid_count": 1,
+        "fitting_count": 0
+      },
+      {
+        "component_id": "inter-tee",
+        "ifc_guid": "3djI_VAjXLnRrI7nkxtUgO",
+        "kind": "segment",
+        "radius_m": 0.07,
+        "length_m": 1.6,
+        "analytic_volume_m3": 0.02463008640414398,
+        "path_lengths_m": {
+          "a:b": 1.6
+        },
+        "caps": {
+          "a": {
+            "position_m": [
+              0.2,
+              4.0,
+              3.0
+            ],
+            "outward_normal": [
+              -1.0,
+              -0.0,
+              -0.0
+            ]
+          },
+          "b": {
+            "position_m": [
+              1.8,
+              4.0,
+              3.0
+            ],
+            "outward_normal": [
+              1.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "start_m": [
+          0.2,
+          4.0,
+          3.0
+        ],
+        "end_m": [
+          1.8,
+          4.0,
+          3.0
+        ],
+        "native_volume_m3": 0.024630086404144005,
+        "volume_error_m3": 2.42861286636753e-17,
+        "native_solid_count": 1,
+        "fitting_count": 0
+      },
+      {
+        "component_id": "tee-2",
+        "ifc_guid": "20sWPAye1Nken6U68l$Kyk",
+        "kind": "tee",
+        "radius_m": 0.07,
+        "length_m": 0.6000000000000003,
+        "analytic_volume_m3": 0.008321615734887329,
+        "path_lengths_m": {
+          "a:b": 0.40000000000000013,
+          "a:branch": 0.40000000000000024
+        },
+        "caps": {
+          "a": {
+            "position_m": [
+              1.8,
+              4.0,
+              3.0
+            ],
+            "outward_normal": [
+              -1.0,
+              -0.0,
+              -0.0
+            ]
+          },
+          "b": {
+            "position_m": [
+              2.2,
+              4.0,
+              3.0
+            ],
+            "outward_normal": [
+              1.0,
+              0.0,
+              0.0
+            ]
+          },
+          "branch": {
+            "position_m": [
+              2.0,
+              4.2,
+              3.0
+            ],
+            "outward_normal": [
+              0.0,
+              1.0,
+              0.0
+            ]
+          }
+        },
+        "center_m": [
+          2.0,
+          4.0,
+          3.0
+        ],
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "trunk_takeout_m": 0.20000000000000007,
+        "branch_takeout_m": 0.20000000000000018,
+        "native_volume_m3": 0.008321615754714646,
+        "volume_error_m3": 1.9827316871667833e-11,
+        "native_solid_count": 1,
+        "fitting_count": 1
+      },
+      {
+        "component_id": "arm-b",
+        "ifc_guid": "1vdKsoO9bTKucY0UjyGTOV",
+        "kind": "segment",
+        "radius_m": 0.07,
+        "length_m": 0.7999999999999998,
+        "analytic_volume_m3": 0.012315043202071987,
+        "path_lengths_m": {
+          "a:b": 0.7999999999999998
+        },
+        "caps": {
+          "a": {
+            "position_m": [
+              2.2,
+              4.0,
+              3.0
+            ],
+            "outward_normal": [
+              -1.0,
+              -0.0,
+              -0.0
+            ]
+          },
+          "b": {
+            "position_m": [
+              3.0,
+              4.0,
+              3.0
+            ],
+            "outward_normal": [
+              1.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "start_m": [
+          2.2,
+          4.0,
+          3.0
+        ],
+        "end_m": [
+          3.0,
+          4.0,
+          3.0
+        ],
+        "native_volume_m3": 0.012315043202072001,
+        "volume_error_m3": 1.3877787807814457e-17,
+        "native_solid_count": 1,
+        "fitting_count": 0
+      },
+      {
+        "component_id": "arm-c",
+        "ifc_guid": "0GtUP9P_zKAQ5SLPPNb3Qw",
+        "kind": "segment",
+        "radius_m": 0.07,
+        "length_m": 0.7999999999999998,
+        "analytic_volume_m3": 0.012315043202071987,
+        "path_lengths_m": {
+          "a:b": 0.7999999999999998
+        },
+        "caps": {
+          "a": {
+            "position_m": [
+              2.0,
+              4.2,
+              3.0
+            ],
+            "outward_normal": [
+              -0.0,
+              -1.0,
+              -0.0
+            ]
+          },
+          "b": {
+            "position_m": [
+              2.0,
+              5.0,
+              3.0
+            ],
+            "outward_normal": [
+              0.0,
+              1.0,
+              0.0
+            ]
+          }
+        },
+        "start_m": [
+          2.0,
+          4.2,
+          3.0
+        ],
+        "end_m": [
+          2.0,
+          5.0,
+          3.0
+        ],
+        "native_volume_m3": 0.012315043202072003,
+        "volume_error_m3": 1.5612511283791264e-17,
+        "native_solid_count": 1,
+        "fitting_count": 0
+      }
+    ],
+    "ports": [
+      {
+        "port_guid": "1XX8P2fSLJXviSmztjbvX8",
+        "port_step_id": 61,
+        "owner_guids": [
+          "1hWNtkSG1Ljx$dislpiplE"
+        ],
+        "owner_step_ids": [
+          44
+        ],
+        "owner_relationship_step_ids": [
+          62
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SINK",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          -1.0,
+          4.0,
+          3.0
+        ],
+        "flow_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          -1.0,
+          -0.0,
+          -0.0
+        ],
+        "errors": [],
+        "component_id": "trunk",
+        "slot": "a",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "0eNSCGTlTSyPIA7f92HeSI",
+        "port_step_id": 68,
+        "owner_guids": [
+          "1hWNtkSG1Ljx$dislpiplE"
+        ],
+        "owner_step_ids": [
+          44
+        ],
+        "owner_relationship_step_ids": [
+          69
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SOURCE",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          -0.2,
+          4.0,
+          3.0
+        ],
+        "flow_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "errors": [],
+        "component_id": "trunk",
+        "slot": "b",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "0kNYhSrU5GuwoHepsoYUtX",
+        "port_step_id": 102,
+        "owner_guids": [
+          "3ILJsTu4nNQAd301cXwJWy"
+        ],
+        "owner_step_ids": [
+          75
+        ],
+        "owner_relationship_step_ids": [
+          103
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SINK",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          -0.2,
+          4.0,
+          3.0
+        ],
+        "flow_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          -1.0,
+          -0.0,
+          -0.0
+        ],
+        "errors": [],
+        "component_id": "tee-1",
+        "slot": "a",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "1ZoOHzIenNPgVkWGHXMPqm",
+        "port_step_id": 109,
+        "owner_guids": [
+          "3ILJsTu4nNQAd301cXwJWy"
+        ],
+        "owner_step_ids": [
+          75
+        ],
+        "owner_relationship_step_ids": [
+          110
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SOURCE",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          0.2,
+          4.0,
+          3.0
+        ],
+        "flow_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "errors": [],
+        "component_id": "tee-1",
+        "slot": "b",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "17X1FKprzNyvQrCM0mOumg",
+        "port_step_id": 116,
+        "owner_guids": [
+          "3ILJsTu4nNQAd301cXwJWy"
+        ],
+        "owner_step_ids": [
+          75
+        ],
+        "owner_relationship_step_ids": [
+          117
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SOURCE",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          0.0,
+          4.2,
+          3.0
+        ],
+        "flow_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "errors": [],
+        "component_id": "tee-1",
+        "slot": "branch",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "3Pp9_HkyDQoBYT$8tPorsF",
+        "port_step_id": 140,
+        "owner_guids": [
+          "3npHVDTVvNGvHcXyfylkxa"
+        ],
+        "owner_step_ids": [
+          123
+        ],
+        "owner_relationship_step_ids": [
+          141
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SINK",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          0.0,
+          4.2,
+          3.0
+        ],
+        "flow_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          -0.0,
+          -1.0,
+          -0.0
+        ],
+        "errors": [],
+        "component_id": "arm-a",
+        "slot": "a",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "2Ri_2srCfM8eMEkc_wajnU",
+        "port_step_id": 147,
+        "owner_guids": [
+          "3npHVDTVvNGvHcXyfylkxa"
+        ],
+        "owner_step_ids": [
+          123
+        ],
+        "owner_relationship_step_ids": [
+          148
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SOURCE",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          0.0,
+          5.0,
+          3.0
+        ],
+        "flow_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "errors": [],
+        "component_id": "arm-a",
+        "slot": "b",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "3Wjr4c2qDQt8moR9321cx8",
+        "port_step_id": 171,
+        "owner_guids": [
+          "3djI_VAjXLnRrI7nkxtUgO"
+        ],
+        "owner_step_ids": [
+          154
+        ],
+        "owner_relationship_step_ids": [
+          172
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SINK",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          0.2,
+          4.0,
+          3.0
+        ],
+        "flow_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          -1.0,
+          -0.0,
+          -0.0
+        ],
+        "errors": [],
+        "component_id": "inter-tee",
+        "slot": "a",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "2ln46Jr_LI4PU4N1aYHXs$",
+        "port_step_id": 178,
+        "owner_guids": [
+          "3djI_VAjXLnRrI7nkxtUgO"
+        ],
+        "owner_step_ids": [
+          154
+        ],
+        "owner_relationship_step_ids": [
+          179
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SOURCE",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          1.8,
+          4.0,
+          3.0
+        ],
+        "flow_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "errors": [],
+        "component_id": "inter-tee",
+        "slot": "b",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "2o8TjBtubHVx6HwFICPNGF",
+        "port_step_id": 212,
+        "owner_guids": [
+          "20sWPAye1Nken6U68l$Kyk"
+        ],
+        "owner_step_ids": [
+          185
+        ],
+        "owner_relationship_step_ids": [
+          213
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SINK",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          1.8,
+          4.0,
+          3.0
+        ],
+        "flow_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          -1.0,
+          -0.0,
+          -0.0
+        ],
+        "errors": [],
+        "component_id": "tee-2",
+        "slot": "a",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "35wCXPR4zSNBKXfdRsOsYz",
+        "port_step_id": 219,
+        "owner_guids": [
+          "20sWPAye1Nken6U68l$Kyk"
+        ],
+        "owner_step_ids": [
+          185
+        ],
+        "owner_relationship_step_ids": [
+          220
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SOURCE",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          2.2,
+          4.0,
+          3.0
+        ],
+        "flow_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "errors": [],
+        "component_id": "tee-2",
+        "slot": "b",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "30irIAX09HdAW$egMBArf2",
+        "port_step_id": 226,
+        "owner_guids": [
+          "20sWPAye1Nken6U68l$Kyk"
+        ],
+        "owner_step_ids": [
+          185
+        ],
+        "owner_relationship_step_ids": [
+          227
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SOURCE",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          2.0,
+          4.2,
+          3.0
+        ],
+        "flow_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "errors": [],
+        "component_id": "tee-2",
+        "slot": "branch",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "2iEakLi31Maww0JkufyPhR",
+        "port_step_id": 250,
+        "owner_guids": [
+          "1vdKsoO9bTKucY0UjyGTOV"
+        ],
+        "owner_step_ids": [
+          233
+        ],
+        "owner_relationship_step_ids": [
+          251
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SINK",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          2.2,
+          4.0,
+          3.0
+        ],
+        "flow_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          -1.0,
+          -0.0,
+          -0.0
+        ],
+        "errors": [],
+        "component_id": "arm-b",
+        "slot": "a",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "3ddQOJOBrUmAfHohjHiJ00",
+        "port_step_id": 257,
+        "owner_guids": [
+          "1vdKsoO9bTKucY0UjyGTOV"
+        ],
+        "owner_step_ids": [
+          233
+        ],
+        "owner_relationship_step_ids": [
+          258
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SOURCE",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          3.0,
+          4.0,
+          3.0
+        ],
+        "flow_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "errors": [],
+        "component_id": "arm-b",
+        "slot": "b",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "2R5a0TzHPUzPwTszfBxyGm",
+        "port_step_id": 281,
+        "owner_guids": [
+          "0GtUP9P_zKAQ5SLPPNb3Qw"
+        ],
+        "owner_step_ids": [
+          264
+        ],
+        "owner_relationship_step_ids": [
+          282
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SINK",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          2.0,
+          4.2,
+          3.0
+        ],
+        "flow_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          -0.0,
+          -1.0,
+          -0.0
+        ],
+        "errors": [],
+        "component_id": "arm-c",
+        "slot": "a",
+        "status": "PASS"
+      },
+      {
+        "port_guid": "0AreZfTS5MngDlAs3OYfMD",
+        "port_step_id": 288,
+        "owner_guids": [
+          "0GtUP9P_zKAQ5SLPPNb3Qw"
+        ],
+        "owner_step_ids": [
+          264
+        ],
+        "owner_relationship_step_ids": [
+          289
+        ],
+        "owner_placement_status": "OWNER_RELATIVE",
+        "flow_direction": "SOURCE",
+        "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+        "position_m": [
+          2.0,
+          5.0,
+          3.0
+        ],
+        "flow_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "physical_outward_normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "errors": [],
+        "component_id": "arm-c",
+        "slot": "b",
+        "status": "PASS"
+      }
+    ],
+    "connectivity": [
+      [
+        68,
+        102
+      ],
+      [
+        116,
+        140
+      ],
+      [
+        109,
+        171
+      ],
+      [
+        178,
+        212
+      ],
+      [
+        219,
+        250
+      ],
+      [
+        226,
+        281
+      ]
+    ],
+    "unique_length_m": 6.0,
+    "fitting_count": 2,
+    "demand_path_lengths_m": {
+      "demand-a": 2.0,
+      "demand-b": 4.0,
+      "demand-c": 4.0
+    },
+    "original_records_checked": 32,
+    "physical_components": 7,
+    "physical_ports": 16,
+    "connections": 6,
+    "coordination_status": "NOT_RUN",
+    "scope": "Actual IFC component geometry, analytic/native volume, port caps, directed tree and unique inventory; full obstacle clearance is a separate check"
+  },
+  "cad": {
+    "checker": "oma-native-cad/1",
+    "status": "PASS",
+    "implementation": {
+      "cad_code_sha256": "699ab61c5ea04e7c78ca72434fce2fd687e6c9b62be2233d9573d1ba61392e15",
+      "enclosure_code_sha256": "9fa5eda8395d9549637531cebff3fb0c4afc948be5e3f9ba66e13bf076b68ff9",
+      "python_version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+      "numpy_version": "2.5.3",
+      "ifcopenshell_version": "0.8.5",
+      "ocp_version": "8.0.1.0.0"
+    },
+    "scope": "new_route_vs_all_source_physical_obstacles",
+    "sources": [
+      {
+        "path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\passive-native-tree\\evidence\\native-three-sink\\5c0e4ad0641d4acab0aca886eb023bf0\\original.ifc",
+        "sha256": "bd448875ed5f3a83c3ef96b73209d3c7a7b8736607a54dd0a4ac375d777ebfd7"
+      }
+    ],
+    "cache_trust": {
+      "conversion_provenance": "LOCAL_CHECKER_PRODUCED_NATIVE_CACHE_ASSUMED",
+      "revalidation": "Digests, source/build keys, native topology, volume and bounds detect corruption",
+      "hostile_replacement": "Equality to original IFC is not proved against a hostile replaced BRep plus forged neighboring hashes/source claims",
+      "source_enclosures": "Independently rebuilt from current raw source bytes",
+      "pair_verdicts": "Fresh native or enclosure comparisons; no cached scalar PASS authority"
+    },
+    "effective_host_edits": [],
+    "export_sha256": "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d",
+    "route_guids": [
+      "0GtUP9P_zKAQ5SLPPNb3Qw",
+      "1hWNtkSG1Ljx$dislpiplE",
+      "1vdKsoO9bTKucY0UjyGTOV",
+      "20sWPAye1Nken6U68l$Kyk",
+      "3ILJsTu4nNQAd301cXwJWy",
+      "3djI_VAjXLnRrI7nkxtUgO",
+      "3npHVDTVvNGvHcXyfylkxa"
+    ],
+    "route_count": 7,
+    "obstacle_count": 1,
+    "pairs_accounted": 7,
+    "broad_separation_passes": 7,
+    "pair_results": [],
+    "failed_pairs": 0,
+    "unknown_pairs": 0,
+    "missing_geometry": [],
+    "invalid_solids": [],
+    "blocked_pairs": 0,
+    "represented_support_enclosures": 0,
+    "clearance_m": 0.1,
+    "numerical_tolerance_m": 1e-06,
+    "coordinate_status": "VERIFIED_SAME_SOURCE_RECORDS",
+    "coordinate_evidence": {
+      "method": "SOURCE_SHA_AND_ALL_ORIGINAL_STEP_RECORDS_RECHECKED",
+      "source_sha256": "bd448875ed5f3a83c3ef96b73209d3c7a7b8736607a54dd0a4ac375d777ebfd7",
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "export_sha256": "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d"
+    },
+    "representation_interpretation": {
+      "policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+      "native_solid_geometry": "INDEPENDENT_NUMERICAL_CAD_VALIDATION",
+      "invalid_native_fallback": "EXACT_SUPPORTED_REPRESENTED_SUPPORT_SUBSET_OF_OUTER_BOX",
+      "source_support_details": "Each independently rebuilt source certificate binds its supported analytic items and face interpretation",
+      "source_native_validity": "UNRESOLVED_WHERE_REPORTED_INVALID",
+      "scope_exclusion": "No assertion about arbitrary outside-vertex-hull projection or undocumented physical extent"
+    },
+    "coordination_status": "PASS",
+    "self_interference_status": "PASS",
+    "self_pair_results": [
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:44",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:154"
+        ],
+        "participant_guids": [
+          "1hWNtkSG1Ljx$dislpiplE",
+          "3djI_VAjXLnRrI7nkxtUgO"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 0.3999799999999999,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:44",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:123"
+        ],
+        "participant_guids": [
+          "1hWNtkSG1Ljx$dislpiplE",
+          "3npHVDTVvNGvHcXyfylkxa"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 0.1838194788372553,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:44",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:185"
+        ],
+        "participant_guids": [
+          "1hWNtkSG1Ljx$dislpiplE",
+          "20sWPAye1Nken6U68l$Kyk"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.10276425895928e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 1.9999799999999999,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:44",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:75"
+        ],
+        "participant_guids": [
+          "1hWNtkSG1Ljx$dislpiplE",
+          "3ILJsTu4nNQAd301cXwJWy"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1027642589668004e-05,
+        "status": "PASS",
+        "common_volume_m3": 0.0,
+        "distance_m": 5.551115123125783e-17,
+        "witness": {
+          "p1": [
+            -0.19999999999999996,
+            4.07,
+            3.0
+          ],
+          "p2": [
+            -0.2,
+            4.07,
+            3.0
+          ]
+        },
+        "clearance_margin_m": 5.551115123125783e-17,
+        "reason": "ZERO_VOLUME_CONTACT_CONFINED_TO_EXPLICIT_JOINT_DISK",
+        "interface": {
+          "point_a": [
+            -0.2,
+            4.0,
+            3.0
+          ],
+          "point_b": [
+            -0.2,
+            4.0,
+            3.0
+          ],
+          "axis_a": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "axis_b": [
+            -1.0,
+            -0.0,
+            -0.0
+          ],
+          "radius_a": 0.07,
+          "radius_b": 0.07,
+          "flow_axis_a": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "flow_axis_b": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+          "flow_a": "SOURCE",
+          "flow_b": "SINK",
+          "relationship_guid": "3tUgsSwIvGGfiWOk6N$0Y_"
+        }
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:44",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:233"
+        ],
+        "participant_guids": [
+          "1hWNtkSG1Ljx$dislpiplE",
+          "1vdKsoO9bTKucY0UjyGTOV"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 2.3999800000000002,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:44",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:264"
+        ],
+        "participant_guids": [
+          "1hWNtkSG1Ljx$dislpiplE",
+          "0GtUP9P_zKAQ5SLPPNb3Qw"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 2.1339422674477393,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:154",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:123"
+        ],
+        "participant_guids": [
+          "3djI_VAjXLnRrI7nkxtUgO",
+          "3npHVDTVvNGvHcXyfylkxa"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 0.1838194788372553,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:154",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:185"
+        ],
+        "participant_guids": [
+          "3djI_VAjXLnRrI7nkxtUgO",
+          "20sWPAye1Nken6U68l$Kyk"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.10276425895928e-05,
+        "status": "PASS",
+        "common_volume_m3": 0.0,
+        "distance_m": 0.0,
+        "witness": {
+          "p1": [
+            1.8,
+            4.07,
+            3.0
+          ],
+          "p2": [
+            1.8,
+            4.07,
+            3.0
+          ]
+        },
+        "clearance_margin_m": 0.0,
+        "reason": "ZERO_VOLUME_CONTACT_CONFINED_TO_EXPLICIT_JOINT_DISK",
+        "interface": {
+          "point_a": [
+            1.8,
+            4.0,
+            3.0
+          ],
+          "point_b": [
+            1.8,
+            4.0,
+            3.0
+          ],
+          "axis_a": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "axis_b": [
+            -1.0,
+            -0.0,
+            -0.0
+          ],
+          "radius_a": 0.07,
+          "radius_b": 0.07,
+          "flow_axis_a": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "flow_axis_b": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+          "flow_a": "SOURCE",
+          "flow_b": "SINK",
+          "relationship_guid": "30cedulW5PhfGQ5ODKdGa3"
+        }
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:154",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:75"
+        ],
+        "participant_guids": [
+          "3djI_VAjXLnRrI7nkxtUgO",
+          "3ILJsTu4nNQAd301cXwJWy"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1027642589668004e-05,
+        "status": "PASS",
+        "common_volume_m3": 0.0,
+        "distance_m": 0.0,
+        "witness": {
+          "p1": [
+            0.2,
+            4.07,
+            3.0
+          ],
+          "p2": [
+            0.2,
+            4.07,
+            3.0
+          ]
+        },
+        "clearance_margin_m": 0.0,
+        "reason": "ZERO_VOLUME_CONTACT_CONFINED_TO_EXPLICIT_JOINT_DISK",
+        "interface": {
+          "point_a": [
+            0.2,
+            4.0,
+            3.0
+          ],
+          "point_b": [
+            0.2,
+            4.0,
+            3.0
+          ],
+          "axis_a": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "axis_b": [
+            -1.0,
+            -0.0,
+            -0.0
+          ],
+          "radius_a": 0.07,
+          "radius_b": 0.07,
+          "flow_axis_a": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "flow_axis_b": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+          "flow_a": "SOURCE",
+          "flow_b": "SINK",
+          "relationship_guid": "1_28LmCW5RRhcrGjIo7rDI"
+        }
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:154",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:233"
+        ],
+        "participant_guids": [
+          "3djI_VAjXLnRrI7nkxtUgO",
+          "1vdKsoO9bTKucY0UjyGTOV"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 0.39998,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:154",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:264"
+        ],
+        "participant_guids": [
+          "3djI_VAjXLnRrI7nkxtUgO",
+          "0GtUP9P_zKAQ5SLPPNb3Qw"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 0.1838194788372552,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:123",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:185"
+        ],
+        "participant_guids": [
+          "3npHVDTVvNGvHcXyfylkxa",
+          "20sWPAye1Nken6U68l$Kyk"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.10276425895928e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 1.72998,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:123",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:75"
+        ],
+        "participant_guids": [
+          "3npHVDTVvNGvHcXyfylkxa",
+          "3ILJsTu4nNQAd301cXwJWy"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1027642589668004e-05,
+        "status": "PASS",
+        "common_volume_m3": 0.0,
+        "distance_m": 0.0,
+        "witness": {
+          "p1": [
+            0.07,
+            4.2,
+            3.0
+          ],
+          "p2": [
+            0.07,
+            4.2,
+            3.0
+          ]
+        },
+        "clearance_margin_m": 0.0,
+        "reason": "ZERO_VOLUME_CONTACT_CONFINED_TO_EXPLICIT_JOINT_DISK",
+        "interface": {
+          "point_a": [
+            0.0,
+            4.2,
+            3.0
+          ],
+          "point_b": [
+            0.0,
+            4.2,
+            3.0
+          ],
+          "axis_a": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "axis_b": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "radius_a": 0.07,
+          "radius_b": 0.07,
+          "flow_axis_a": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "flow_axis_b": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+          "flow_a": "SOURCE",
+          "flow_b": "SINK",
+          "relationship_guid": "3eQngLPfbH2vgNIpYYlNAG"
+        }
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:123",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:233"
+        ],
+        "participant_guids": [
+          "3npHVDTVvNGvHcXyfylkxa",
+          "1vdKsoO9bTKucY0UjyGTOV"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 2.1339422674477397,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:123",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:264"
+        ],
+        "participant_guids": [
+          "3npHVDTVvNGvHcXyfylkxa",
+          "0GtUP9P_zKAQ5SLPPNb3Qw"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 1.85998,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:185",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:75"
+        ],
+        "participant_guids": [
+          "20sWPAye1Nken6U68l$Kyk",
+          "3ILJsTu4nNQAd301cXwJWy"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1055285179260802e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 1.59998,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:185",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:233"
+        ],
+        "participant_guids": [
+          "20sWPAye1Nken6U68l$Kyk",
+          "1vdKsoO9bTKucY0UjyGTOV"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.10276425895928e-05,
+        "status": "PASS",
+        "common_volume_m3": 0.0,
+        "distance_m": 0.0,
+        "witness": {
+          "p1": [
+            2.2,
+            4.07,
+            3.0
+          ],
+          "p2": [
+            2.2,
+            4.07,
+            3.0
+          ]
+        },
+        "clearance_margin_m": 0.0,
+        "reason": "ZERO_VOLUME_CONTACT_CONFINED_TO_EXPLICIT_JOINT_DISK",
+        "interface": {
+          "point_a": [
+            2.2,
+            4.0,
+            3.0
+          ],
+          "point_b": [
+            2.2,
+            4.0,
+            3.0
+          ],
+          "axis_a": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "axis_b": [
+            -1.0,
+            -0.0,
+            -0.0
+          ],
+          "radius_a": 0.07,
+          "radius_b": 0.07,
+          "flow_axis_a": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "flow_axis_b": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+          "flow_a": "SOURCE",
+          "flow_b": "SINK",
+          "relationship_guid": "1q42uo2e9RVR5pjBT5OaVp"
+        }
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:185",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:264"
+        ],
+        "participant_guids": [
+          "20sWPAye1Nken6U68l$Kyk",
+          "0GtUP9P_zKAQ5SLPPNb3Qw"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.10276425895928e-05,
+        "status": "PASS",
+        "common_volume_m3": 0.0,
+        "distance_m": 0.0,
+        "witness": {
+          "p1": [
+            2.07,
+            4.2,
+            3.0
+          ],
+          "p2": [
+            2.07,
+            4.2,
+            3.0
+          ]
+        },
+        "clearance_margin_m": 0.0,
+        "reason": "ZERO_VOLUME_CONTACT_CONFINED_TO_EXPLICIT_JOINT_DISK",
+        "interface": {
+          "point_a": [
+            2.0,
+            4.2,
+            3.0
+          ],
+          "point_b": [
+            2.0,
+            4.2,
+            3.0
+          ],
+          "axis_a": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "axis_b": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "radius_a": 0.07,
+          "radius_b": 0.07,
+          "flow_axis_a": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "flow_axis_b": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "axis_convention": "IFC4_AND_IFC2X3_CV2_FLOW_DIRECTION",
+          "flow_a": "SOURCE",
+          "flow_b": "SINK",
+          "relationship_guid": "3RIwcHdDjVzRIGu4zuqJmN"
+        }
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:75",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:233"
+        ],
+        "participant_guids": [
+          "3ILJsTu4nNQAd301cXwJWy",
+          "1vdKsoO9bTKucY0UjyGTOV"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1027642589668004e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 1.99998,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:75",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:264"
+        ],
+        "participant_guids": [
+          "3ILJsTu4nNQAd301cXwJWy",
+          "0GtUP9P_zKAQ5SLPPNb3Qw"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1027642589668004e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 1.7299799999999999,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      },
+      {
+        "participants": [
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:233",
+          "8b22190b516bb2e5edffe40c86398248b94aeaef0687efcdb6a943e4c16bdc9d:264"
+        ],
+        "participant_guids": [
+          "1vdKsoO9bTKucY0UjyGTOV",
+          "0GtUP9P_zKAQ5SLPPNb3Qw"
+        ],
+        "required_clearance_m": 0.0,
+        "numerical_budget_m": 2.1000000000000002e-05,
+        "status": "PASS",
+        "common_volume_m3": null,
+        "distance_m": null,
+        "reason": "Conservative native CAD bounding boxes separated beyond clearance and numerical budget",
+        "distance_lower_bound_m": 0.1838194788372555,
+        "stage": "BROAD_PHASE_PROVEN_SEPARATION",
+        "support_kinds": [
+          "native_solid",
+          "native_solid"
+        ],
+        "scope": "All represented obstacle support, including interior completion within checked outer enclosure"
+      }
+    ],
+    "connectivity_status": "NOT_RUN",
+    "contract": "Independent OCP Boolean common-volume plus shape distance on valid native closed solids; ambiguous near-contact never passes",
+    "proof_level": "NUMERICAL_CAD_CHECK; kernel tolerance accounting is not a formally certified interval bound",
+    "common_mode_risk": "Shared IFC parser and upstream OpenCASCADE representation; different OCP kernel binding rechecks native topology",
+    "performance": {
+      "cad_load_seconds": 0.056135699996957555,
+      "total_seconds": 0.12261140000191517,
+      "source_cache": [
+        {
+          "physical_inventory": {
+            "version": "oma.physical-source-inventory/1",
+            "implementation_sha256": "31e78e4a1fe01813b22a09676077664c8240946ca84297a3fbe42fa3747fd0a5",
+            "source_sha256": "bd448875ed5f3a83c3ef96b73209d3c7a7b8736607a54dd0a4ac375d777ebfd7",
+            "physical_step_ids": [
+              15
+            ],
+            "physical_product_count": 1,
+            "assemblies": {},
+            "errors": [],
+            "assembly_status_counts": {},
+            "scope": "COMPLETE_SOURCE_DECLARATIONS; EACH_ASSEMBLY_LEAF_REQUIRES_GEOMETRY_OR_EXPLICIT_FAILURE_ACCOUNTING",
+            "root": "0a05907d19ac8585eb56c69507b930a734f50d8c16648c29a0072f59bbf20367"
+          },
+          "selected_physical_count": 1,
+          "accounted_assembly_step_ids": [],
+          "source_load_seconds": 0.019530999998096377,
+          "federation_transform_seconds": 0.001950100006069988
+        }
+      ],
+      "broadphase": {
+        "backend": "cpu",
+        "independent_cpu_omission_guard": true,
+        "index_omitted_pairs": 7,
+        "cpu_certified_omitted_pairs": 7,
+        "false_negative_guard_reinsertions": 0,
+        "fallback_reason": null,
+        "timings": {
+          "setup_seconds": 2.00001522898674e-07,
+          "upload_seconds": 0.0,
+          "query_seconds": 2.6599998818710446e-05,
+          "queries": 7,
+          "comparisons": 7
+        }
+      },
+      "pairs_entering_individual_check": 0
+    }
+  },
+  "zone": {
+    "declared_bounds_m": {
+      "min": [
+        -1.3,
+        3.7,
+        2.7
+      ],
+      "max": [
+        3.3,
+        5.3,
+        3.3
+      ]
+    },
+    "status": "PASS",
+    "parts": [
+      {
+        "guid": "3npHVDTVvNGvHcXyfylkxa",
+        "bounds_m": [
+          -0.07001,
+          4.199990000000001,
+          2.92999,
+          0.07001,
+          5.00001,
+          3.07001
+        ],
+        "margin_m": 0.22998999999999992,
+        "kernel_tolerance_m": 1e-05,
+        "status": "PASS"
+      },
+      {
+        "guid": "3djI_VAjXLnRrI7nkxtUgO",
+        "bounds_m": [
+          0.19998999999999995,
+          3.92999,
+          2.92999,
+          1.80001,
+          4.07001,
+          3.07001
+        ],
+        "margin_m": 0.22998999999999992,
+        "kernel_tolerance_m": 1e-05,
+        "status": "PASS"
+      },
+      {
+        "guid": "1hWNtkSG1Ljx$dislpiplE",
+        "bounds_m": [
+          -1.00001,
+          3.92999,
+          2.92999,
+          -0.19998999999999995,
+          4.07001,
+          3.07001
+        ],
+        "margin_m": 0.22998999999999992,
+        "kernel_tolerance_m": 1e-05,
+        "status": "PASS"
+      },
+      {
+        "guid": "1vdKsoO9bTKucY0UjyGTOV",
+        "bounds_m": [
+          2.19999,
+          3.92999,
+          2.92999,
+          3.00001,
+          4.07001,
+          3.07001
+        ],
+        "margin_m": 0.22998999999999992,
+        "kernel_tolerance_m": 1e-05,
+        "status": "PASS"
+      },
+      {
+        "guid": "3ILJsTu4nNQAd301cXwJWy",
+        "bounds_m": [
+          -0.20001000000000002,
+          3.92999,
+          2.92999,
+          0.20001000000000002,
+          4.20001,
+          3.07001
+        ],
+        "margin_m": 0.22998999999999992,
+        "kernel_tolerance_m": 1.0027642589668e-05,
+        "status": "PASS"
+      },
+      {
+        "guid": "20sWPAye1Nken6U68l$Kyk",
+        "bounds_m": [
+          1.79999,
+          3.92999,
+          2.92999,
+          2.2000100000000002,
+          4.20001,
+          3.07001
+        ],
+        "margin_m": 0.22998999999999992,
+        "kernel_tolerance_m": 1.00276425895928e-05,
+        "status": "PASS"
+      },
+      {
+        "guid": "0GtUP9P_zKAQ5SLPPNb3Qw",
+        "bounds_m": [
+          1.9299899999999999,
+          4.199990000000001,
+          2.92999,
+          2.07001,
+          5.00001,
+          3.07001
+        ],
+        "margin_m": 0.22998999999999992,
+        "kernel_tolerance_m": 1e-05,
+        "status": "PASS"
+      }
+    ]
+  },
+  "native_connection_signs": [
+    {
+      "connection": {
+        "source": {
+          "component": "trunk",
+          "port": "b"
+        },
+        "sink": {
+          "component": "tee-1",
+          "port": "a"
+        }
+      },
+      "source_port_guid": "0eNSCGTlTSyPIA7f92HeSI",
+      "sink_port_guid": "0kNYhSrU5GuwoHepsoYUtX",
+      "cap_distance_m": 0.0,
+      "physical_normal_dot": -1.0,
+      "encoded_flow_axis_dot": 1.0
+    },
+    {
+      "connection": {
+        "source": {
+          "component": "tee-1",
+          "port": "branch"
+        },
+        "sink": {
+          "component": "arm-a",
+          "port": "a"
+        }
+      },
+      "source_port_guid": "17X1FKprzNyvQrCM0mOumg",
+      "sink_port_guid": "3Pp9_HkyDQoBYT$8tPorsF",
+      "cap_distance_m": 0.0,
+      "physical_normal_dot": -1.0,
+      "encoded_flow_axis_dot": 1.0
+    },
+    {
+      "connection": {
+        "source": {
+          "component": "tee-1",
+          "port": "b"
+        },
+        "sink": {
+          "component": "inter-tee",
+          "port": "a"
+        }
+      },
+      "source_port_guid": "1ZoOHzIenNPgVkWGHXMPqm",
+      "sink_port_guid": "3Wjr4c2qDQt8moR9321cx8",
+      "cap_distance_m": 0.0,
+      "physical_normal_dot": -1.0,
+      "encoded_flow_axis_dot": 1.0
+    },
+    {
+      "connection": {
+        "source": {
+          "component": "inter-tee",
+          "port": "b"
+        },
+        "sink": {
+          "component": "tee-2",
+          "port": "a"
+        }
+      },
+      "source_port_guid": "2ln46Jr_LI4PU4N1aYHXs$",
+      "sink_port_guid": "2o8TjBtubHVx6HwFICPNGF",
+      "cap_distance_m": 0.0,
+      "physical_normal_dot": -1.0,
+      "encoded_flow_axis_dot": 1.0
+    },
+    {
+      "connection": {
+        "source": {
+          "component": "tee-2",
+          "port": "b"
+        },
+        "sink": {
+          "component": "arm-b",
+          "port": "a"
+        }
+      },
+      "source_port_guid": "35wCXPR4zSNBKXfdRsOsYz",
+      "sink_port_guid": "2iEakLi31Maww0JkufyPhR",
+      "cap_distance_m": 0.0,
+      "physical_normal_dot": -1.0,
+      "encoded_flow_axis_dot": 1.0
+    },
+    {
+      "connection": {
+        "source": {
+          "component": "tee-2",
+          "port": "branch"
+        },
+        "sink": {
+          "component": "arm-c",
+          "port": "a"
+        }
+      },
+      "source_port_guid": "30irIAX09HdAW$egMBArf2",
+      "sink_port_guid": "2R5a0TzHPUzPwTszfBxyGm",
+      "cap_distance_m": 0.0,
+      "physical_normal_dot": -1.0,
+      "encoded_flow_axis_dot": 1.0
+    }
+  ],
+  "source_unchanged": true
+}

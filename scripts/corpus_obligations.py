@@ -15,6 +15,10 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE", "oma-integration", [4592, 4609, 5530, 5531, 5532, 5533, 5534, 5535, 5536, 5537], ["DEF-RTR56", "ALG-RTR19", "ALG-RTR20", "ALG-RTR21", "ALG-RTR22"],
+         ["oma.routing.passive_tree_pressure.derive_passive_tree_model", "oma.routing.passive_tree_pressure.evaluate_passive_tree"], ["oma.routing.passive_tree_pressure.verify_passive_tree_envelope", "oma.routing.network_checker.verify_network_candidate"], "tests/test_passive_tree_pressure.py",
+         "A new exact boundary contract explicitly assigns every tee one positive inlet-flow-referenced total loss common to its two outlets. Fresh native component lengths, radius enclosures and every transformed physical cap position determine a complete grounded graph quotient. Independent adjacency reconstruction and direct dimensional extrema replay each port group and per-component resistance. Independently verified passive pressure bounds induce every physical port flow, total pressure, velocity, exact minimum delivery and complete continuity identity. Native geometry and operating proof are separate mandatory checks; acceptance and fresh exported-byte checks bind current candidate, mission, rules, source, geometry and executable roots. Exact rational minima remain authoritative while legacy Demand floats are descriptive projections only.",
+         [], "Explicit ideal-bore fixed-loss pressure-pipe trees only. Actual inner bore, wall thickness, catalog applicability and supplied boundary controls remain external. Unequal-outlet tee laws, zero resistance, duplicate boundary quotient nodes and a complete arbitrary physical fiber are not supported. A valid signed operating envelope may still fail required forward flow or service; unknown signs, nonpositive native bore or budget exhaustion cannot pass. Small admitted section differences do not prove additional transition losses absent. Hot arithmetic uses bounded ordinary-Run polling with forced start/end controls; no control cache has publication authority. No global topology optimum or complete original source algorithm is claimed."),
         ("GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES", "1-10", [16069, 16077, 16118, 16135, 16139, 16203, 16360, 16397, 16836, 16853, 17130, 17158, 17615, 17681], ["ALG-PO1", "ALG-PO2", "ALG-PO7", "THM-PO7", "THM-PO8", "THM-PO12"],
          ["oma.optimization.passive_pressure.compile_passive_pressure"], ["oma.optimization.passive_pressure.verify_passive_pressure"], "tests/test_passive_pressure.py",
          "Explicit bounded signed quadratic edge model on any finite graph whose every component contains a Dirichlet boundary. Strict positive resistance boxes, full boundary-head boxes and exact zero internal injection define the admitted relation. Grounded strict-convex/coercive pressure energy proves unique existence for each parameter tuple, including loops, reversal and zero flow. Independently checked rational sub/supersolution barriers, signed resistance extrema, square-root inequalities and complete incidence sums enclose all pressures, edge flows and boundary injections. The producer may refine barriers but the verifier never invokes its search or radical producer. Model/query/domain/topology/assumption roots, every edge and node denominator, width claims and final callback mutation guards are independently checked.",
@@ -201,13 +205,28 @@ def main():
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
     coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
     for row in register:
+        if row["obligation"] == "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE":
+            row["related_sources"] = [{"document": "1-10", "sha256": identities["1-10"],
+                "paragraphs": [16069, 16077, 16836, 16853], "objects": ["ALG-PO1", "ALG-PO2", "ALG-PO7"]}]
+            row["automated_tests"].extend(["tests/test_passive_tree_integration.py", "tests/test_three_sink_native_geometry.py", "tests/test_worker_control_polling.py"])
+            row["documentation"] = "docs/math/passive-native-tree.md"
+            row["evidence"] = "evidence/math/passive-native-tree/latest.json"
+            row["full_source_algorithms_implemented"] = False
+            row["real_model_benchmark"] = {"status": "NATIVE_THREE_SINK_ACCEPT_AND_FRESH_EXPORT_CHECK_PASS",
+                "evidence": "evidence/math/passive-native-tree/native-workflows/",
+                "scope": "Seven actual components, two tees, sixteen ports, twenty-one unique component pairs, all three exact minimum deliveries and seventeen continuity identities. Complete service is independently checked; physical model applicability remains declared."}
+            row["real_model_benchmark"]["office_campaign"] = {
+                "status": "ONE_DECLARED_COMMON_TEE_MISSION_ACCEPTED_AND_FRESH_EXPORT_RECHECKED",
+                "evidence": "evidence/benchmarks/passive-pressure/office/f64e250b57bb480f9dfe352892b61b3f/README.md",
+                "source_checkpoint": "4044a58d563922530546897240791354f7557e40471f6b4222b23f065f5610ef",
+                "scope": "58.5-second workflow covers all 5621 component/obstacle pairs, 21 unique component pairs, 16 ports, three deliveries and 17 continuity identities. Canonical parsed original entities are preserved; raw STEP formatting is not byte-identical. One hypothetical service model and one alternative; no improvement or unrestricted topology claim."}
         if row["obligation"] == "GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES":
             row["related_sources"] = [{"document": "oma-integration", "sha256": identities["oma-integration"],
                 "paragraphs": [4592, 4609, 5530, 5531, 5532, 5533], "objects": ["DEF-RTR56", "ALG-RTR19", "ALG-RTR20"]}]
             row["full_source_algorithms_implemented"] = False
             row["documentation"] = "docs/math/passive-pressure.md"
             row["evidence"] = "evidence/math/passive-pressure/latest.json"
-            row["real_model_benchmark"] = {"status": "NOT_IMPLEMENTED_NATIVE_PASSIVE_ADAPTER",
+            row["real_model_benchmark"] = {"status": "SEPARATE_EXPLICIT_COMMON_TEE_NATIVE_ADAPTER_AVAILABLE",
                 "evidence": "evidence/math/passive-pressure/independent-implementation-review/result.json",
                 "scope": "119 exact declared kernel cases, 32 independently manufactured rational equilibria, 210 coherent/inventory/callback attacks and five budget cases. Retained finite parameter references supplement the exact comparison proof; they do not establish physical model applicability."}
             row["consumer_scope"] = {"native_graph_adapter": False, "existing_native_tee_missions_reinterpreted": False,

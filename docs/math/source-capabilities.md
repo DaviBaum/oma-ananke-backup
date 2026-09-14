@@ -68,10 +68,10 @@ The machine-readable index separates explicit local bodies from references, reta
 | oma-integration | CMP | 81 | 81 | 3 |
 | oma-integration | DYN | 74 | 74 | 13 |
 | oma-integration | JCD | 52 | 52 | 7 |
-| oma-integration | RTR | 46 | 92 | 26 |
+| oma-integration | RTR | 46 | 92 | 27 |
 | oma-integration | SIR | 31 | 31 | 9 |
 
-The 36 relied-on executable obligations and their actual callable/checker/test/benchmark bindings are in `evidence/math/traceability_register.json`. All remaining local body mechanisms have explicit open dispositions in `evidence/math/source_algorithm_capabilities.json`.
+The 37 relied-on executable obligations and their actual callable/checker/test/benchmark bindings are in `evidence/math/traceability_register.json`. All remaining local body mechanisms have explicit open dispositions in `evidence/math/source_algorithm_capabilities.json`.
 
 The index distinguishes required engine mathematics, required supporting principles, historical or conditional domain reference, and explicitly excluded MCP runtime. Broader commercial, legal, human, lifecycle and operational programs are not automatically mandatory because they occur in the source. Their evidence or boundary obligations apply whenever a mission actually relies on such a claim.
 

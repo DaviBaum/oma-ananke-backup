@@ -1,0 +1,22 @@
+--- f606e781935fa758da335c0519b84cc5df4461c8fc7a3a87154cf1d945469188
++++ 4044a58d563922530546897240791354f7557e40471f6b4222b23f065f5610ef
+@@ -186,13 +186,18 @@
+                     "ports": {p: {"position_m": [bounds(v) for v in slot_position((c.id, p))]} for p in c.ports}}
+                     for c in selected.components}}
+             metrics_root = store.put(metrics)
++            control.checkpoint("network_passive_envelope_start")
+             calculation = evaluate_passive_tree(request.passive_tree, selected, metrics,
+                 context={"candidate_root": candidate["state_root"], "baseline_root": run["base_root"],
+                     "source_sha256": source["sha256"], "export_sha256": materialized["export_sha256"],
+                     "native_semantics_root": semantic_root, "native_metrics_root": metrics_root,
+                     "native_cad_root": cad_root, "checker_version": CHECKER_VERSION,
+                     "mission_hash": digest(state["mission"]), "rule_hash": state["mission"]["rule_hash"],
+-                    "native_metric_absolute_tolerance_m": str(budget)}, checkpoint=control.checkpoint)
++                    "native_metric_absolute_tolerance_m": str(budget)}, checkpoint=control.search_checkpoint)
++            # Hot arithmetic may reuse only a recent ordinary Run observation.
++            # Step/pause/cancel remain explicit, and this forced boundary cannot
++            # reuse that observation before persisting a calculated result.
++            control.checkpoint("network_passive_envelope_complete")
+             calculation_root = store.put(calculation)
+             checked = calculation.get("independent_check", {})
+             operating = ("PASS" if calculation.get("proof_complete") is True and checked.get("status") == "PASS"

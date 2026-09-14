@@ -1,0 +1,79 @@
+{
+  "status": "READ_ONLY_INTEGRATION_REVIEW_NO_CONCRETE_FALSE_PASS_FOUND",
+  "sources": [
+    {
+      "path": "oma/routing/network_scenario.py",
+      "sha256": "6d9451a6c62f7e998b2e66a0b935812359eaa380e1782a3e3ed7c4dce17f0a6f",
+      "same_as_f606": true
+    },
+    {
+      "path": "oma/routing/network_checker.py",
+      "sha256": "74c9c132eaa7c77cf74f8a94d4d3d5f4fbec9ca83fd17beabb570cdeef0d6af1",
+      "same_as_f606": true
+    },
+    {
+      "path": "oma/routing/selection.py",
+      "sha256": "4c670cfb8b307506f22e3155784f81276720f2baaeb5ea00bf324685033d0192",
+      "same_as_f606": true
+    },
+    {
+      "path": "oma/routing/network_export.py",
+      "sha256": "59c563da75c7e311621971ac5cbe9553200444b8dd68778c43c28ae270de0626",
+      "same_as_f606": true
+    },
+    {
+      "path": "oma/project_assurance.py",
+      "sha256": "fc8466298c176debd4b6432103d01756bb0b34377afe4c6a1aea1804275586e0",
+      "same_as_f606": true
+    }
+  ],
+  "corrected_zero_denominator_probes": [
+    {
+      "status": "BLOCKED",
+      "verdict": "UNKNOWN",
+      "reason": "1 validation error for PassiveTreeBoundary\ndensity_kg_m3\n  Value error, Malformed or zero-denominator contract rational [type=value_error, input_value='1/0', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error",
+      "scope": "SUPPLIED_NATIVE_METRICS_COMMON_TEE_OUTLET_PASSIVE_TREE",
+      "proof_complete": false,
+      "work": 2845,
+      "limitations": {
+        "native_geometry_and_metric_authenticity_proved": false,
+        "actual_inner_bore_or_wall_measured": false,
+        "physical_loss_or_boundary_applicability_proved": false,
+        "existing_unequal_tee_model_reinterpreted": false,
+        "native_geometry_acceptance_authority": false,
+        "tight_correlated_solution_hull": false,
+        "duplicate_boundary_quotient_nodes_supported": false,
+        "static_pressure_reported": false
+      }
+    },
+    {
+      "status": "BLOCKED",
+      "verdict": "UNKNOWN",
+      "reason": "Malformed or zero-denominator metric rational",
+      "scope": "SUPPLIED_NATIVE_METRICS_COMMON_TEE_OUTLET_PASSIVE_TREE",
+      "proof_complete": false,
+      "work": 4220,
+      "limitations": {
+        "native_geometry_and_metric_authenticity_proved": false,
+        "actual_inner_bore_or_wall_measured": false,
+        "physical_loss_or_boundary_applicability_proved": false,
+        "existing_unequal_tee_model_reinterpreted": false,
+        "native_geometry_acceptance_authority": false,
+        "tight_correlated_solution_hull": false,
+        "duplicate_boundary_quotient_nodes_supported": false,
+        "static_pressure_reported": false
+      }
+    }
+  ],
+  "findings": [
+    "Optional passive boundary remains absent from legacy serialization; distinct models and legacy flow/static fields are mutually exclusive.",
+    "Exact minimum values enter scenario and rule hashes; float Demand fields are explicitly descriptive.",
+    "Native metric inputs are freshly reconstructed from complete IFC semantic parts and all cap positions; source-world positions are transformed once into the persisted federation frame.",
+    "Radius and length use declared numerical tolerance; each positive inferred bore and full port denominator are rechecked by the adapter.",
+    "Native/source/self/zone failures remain separate failed mandatory checks; an abstract pressure envelope never overrides them.",
+    "Operating point and service obligations are independently required at report admission and exported-candidate recheck; invalid service cannot become a checked incumbent.",
+    "Export constructs a new checked physical candidate for actual copied IFC bytes, and the model context binds new state/metric/semantic/CAD/mission/rule roots.",
+    "Assurance separately lists the new exact common-tee boundary and its explicit physical applicability assumptions."
+  ],
+  "scope": "Read-only private integration review plus corrected parser probes; parent owns full native accept/export integration tests. Existing native parser/cache/numerical trust premises remain; no hostile concurrent filesystem or real loss applicability proof."
+}

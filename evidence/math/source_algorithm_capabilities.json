@@ -624,7 +624,7 @@
       "local_algorithm_id_count": 46,
       "body_heading_occurrences": 92,
       "reference_only_id_count": 0,
-      "bounded_related_components": 26,
+      "bounded_related_components": 27,
       "full_source_algorithms_implemented": 0
     },
     {
@@ -13560,7 +13560,10 @@
         "oma.routing.network_flow.evaluate_network_flow",
         "oma.routing.network_pressure.derive_two_sink_pressure_model",
         "oma.routing.network_pressure.evaluate_pressure_network",
-        "oma.routing.network_pressure.partition_two_sink_tree"
+        "oma.routing.network_pressure.partition_two_sink_tree",
+        "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+        "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+        "oma.routing.passive_tree_pressure.verify_passive_tree_envelope"
       ],
       "callable_probe": [
         {
@@ -13602,10 +13605,23 @@
         {
           "path": "oma.routing.network_pressure.partition_two_sink_tree",
           "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.verify_passive_tree_envelope",
+          "callable": true
         }
       ],
       "actual_adapter_contract": "Declared fixed-flow tree/path physics plus a separate total-pressure one-tee/two-outlet model. Complete component-specific native radius, length and position enclosures feed velocity and head calculations; fixed-flow nominal-diameter false PASS is corrected. Minimum delivery and each physical port velocity remain distinct service gates. No general nonlinear flow discovery or full physical fiber",
       "relied_on_obligations": [
+        "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE",
         "GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES",
         "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER"
       ],
@@ -13617,8 +13633,12 @@
         "tests/test_network_scenario.py",
         "tests/test_optimization_physical.py",
         "tests/test_passive_pressure.py",
+        "tests/test_passive_tree_integration.py",
+        "tests/test_passive_tree_pressure.py",
         "tests/test_physical_report_admission.py",
-        "tests/test_two_sink_pressure.py"
+        "tests/test_three_sink_native_geometry.py",
+        "tests/test_two_sink_pressure.py",
+        "tests/test_worker_control_polling.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
       "reference_only_note": null
@@ -13701,7 +13721,10 @@
         "oma.routing.network_checker.verify_network_candidate",
         "oma.routing.network_pressure.derive_two_sink_pressure_model",
         "oma.routing.network_pressure.evaluate_pressure_network",
-        "oma.routing.network_pressure.partition_two_sink_tree"
+        "oma.routing.network_pressure.partition_two_sink_tree",
+        "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+        "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+        "oma.routing.passive_tree_pressure.verify_passive_tree_envelope"
       ],
       "callable_probe": [
         {
@@ -13743,10 +13766,23 @@
         {
           "path": "oma.routing.network_pressure.partition_two_sink_tree",
           "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.verify_passive_tree_envelope",
+          "callable": true
         }
       ],
-      "actual_adapter_contract": "Exact finite elevation constraints, uniformly forward two-sink quadratic relation and grounded positive-K signed quadratic graph enclosures with complete independent barrier/incidence checks. The latter covers its declared trees/loops, zero and reversed flow but has no native adapter or transfer to existing unequal tee losses. Actual native checks and declared external model premises remain mandatory; no general physical fiber solver or kernel acceptance authority",
+      "actual_adapter_contract": "Exact finite elevation constraints, uniformly forward two-sink quadratic relation and grounded positive-K signed quadratic graph enclosures with complete independent barrier/incidence checks. The kernel covers declared trees/loops, zero and reversed flow; a separate complete native tree adapter implements explicit common outlet tee losses with every port flow/pressure/velocity and exact minimum delivery. Existing unequal tee models are not transferred. Actual native checks and declared external model premises remain mandatory; no general physical fiber solver or kernel acceptance authority",
       "relied_on_obligations": [
+        "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE",
         "GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES",
         "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER"
       ],
@@ -13756,8 +13792,12 @@
         "tests/test_network_pressure_native_section.py",
         "tests/test_optimization_physical.py",
         "tests/test_passive_pressure.py",
+        "tests/test_passive_tree_integration.py",
+        "tests/test_passive_tree_pressure.py",
         "tests/test_physical_report_admission.py",
-        "tests/test_two_sink_pressure.py"
+        "tests/test_three_sink_native_geometry.py",
+        "tests/test_two_sink_pressure.py",
+        "tests/test_worker_control_polling.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
       "reference_only_note": null
@@ -13790,13 +13830,42 @@
       "review_evidence": "evidence/math/combined_review_coverage.json",
       "scope_classification": "REQUIRED_ENGINE_MATHEMATICS",
       "scope_reason": "Source mechanism concerns the standalone state, routing, authorized co-design, verification or local compiler workflow; implementation may still be partial or absent.",
-      "implementation_disposition": "FULL_SOURCE_MECHANISM_NOT_IMPLEMENTED",
+      "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
-      "bounded_related_callables": [],
-      "callable_probe": [],
+      "bounded_related_callables": [
+        "oma.routing.network_checker.verify_network_candidate",
+        "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+        "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+        "oma.routing.passive_tree_pressure.verify_passive_tree_envelope"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.routing.network_checker.verify_network_candidate",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.verify_passive_tree_envelope",
+          "callable": true
+        }
+      ],
       "actual_adapter_contract": null,
-      "relied_on_obligations": [],
-      "automated_tests": [],
+      "relied_on_obligations": [
+        "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE"
+      ],
+      "automated_tests": [
+        "tests/test_passive_tree_integration.py",
+        "tests/test_passive_tree_pressure.py",
+        "tests/test_three_sink_native_geometry.py",
+        "tests/test_worker_control_polling.py"
+      ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
       "reference_only_note": null
     },
@@ -13844,6 +13913,9 @@
         "oma.routing.fitting_budget.check_joint_fitting_budget",
         "oma.routing.joint_checker.verify_joint_candidate",
         "oma.routing.network_checker.verify_network_candidate",
+        "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+        "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+        "oma.routing.passive_tree_pressure.verify_passive_tree_envelope",
         "oma.routing.proposals.project_proposals"
       ],
       "callable_probe": [
@@ -13900,12 +13972,25 @@
           "callable": true
         },
         {
+          "path": "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.verify_passive_tree_envelope",
+          "callable": true
+        },
+        {
           "path": "oma.routing.proposals.project_proposals",
           "callable": true
         }
       ],
       "actual_adapter_contract": "Actual candidate geometry/semantics/report checks; no unrestricted source column schema closure",
       "relied_on_obligations": [
+        "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE",
         "RESIDUAL_WHOLE_WORD_FABRICATION_FRONTIER_AND_JOINT_PROPOSALS",
         "EXACT_COUNT_FABRICATION_FRONTIER_AND_SOURCE_PROPOSALS",
         "FINITE_FABRICATION_GRAPH_COST_PRICING"
@@ -13920,7 +14005,11 @@
         "tests/test_optimization_fabrication_alternatives.py",
         "tests/test_optimization_fabrication_frontier.py",
         "tests/test_optimization_fabrication_pricing.py",
-        "tests/test_routing_integration.py"
+        "tests/test_passive_tree_integration.py",
+        "tests/test_passive_tree_pressure.py",
+        "tests/test_routing_integration.py",
+        "tests/test_three_sink_native_geometry.py",
+        "tests/test_worker_control_polling.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
       "reference_only_note": null
@@ -18476,7 +18565,10 @@
         "oma.routing.network_checker.verify_network_candidate",
         "oma.routing.network_pressure.derive_two_sink_pressure_model",
         "oma.routing.network_pressure.evaluate_pressure_network",
-        "oma.routing.network_pressure.partition_two_sink_tree"
+        "oma.routing.network_pressure.partition_two_sink_tree",
+        "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+        "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+        "oma.routing.passive_tree_pressure.verify_passive_tree_envelope"
       ],
       "callable_probe": [
         {
@@ -18534,10 +18626,23 @@
         {
           "path": "oma.routing.network_pressure.partition_two_sink_tree",
           "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.verify_passive_tree_envelope",
+          "callable": true
         }
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE",
         "GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES",
         "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER",
         "ORIGINAL_EXACT_LINEAR_PORTS"
@@ -18548,8 +18653,12 @@
         "tests/test_network_pressure_native_section.py",
         "tests/test_optimization_ports.py",
         "tests/test_passive_pressure.py",
+        "tests/test_passive_tree_integration.py",
+        "tests/test_passive_tree_pressure.py",
         "tests/test_physical_report_admission.py",
-        "tests/test_two_sink_pressure.py"
+        "tests/test_three_sink_native_geometry.py",
+        "tests/test_two_sink_pressure.py",
+        "tests/test_worker_control_polling.py"
       ],
       "limitations_and_missing_requirements": "Exact supplied rational linear port relations, a uniformly forward two-sink pressure relation and grounded positive-K signed quadratic graph enclosures are implemented with independent checks. The graph kernel covers its declared trees/loops, zero and reversed flow; native graph applicability is not established. Existing native two-sink and fixed-flow adapters retain loss and component-specific metric assumptions. General coupled nonlinear, dynamic, PDE and full physical applicability contracts remain open.",
       "reference_only_note": null
@@ -18586,7 +18695,10 @@
         "oma.routing.network_checker.verify_network_candidate",
         "oma.routing.network_pressure.derive_two_sink_pressure_model",
         "oma.routing.network_pressure.evaluate_pressure_network",
-        "oma.routing.network_pressure.partition_two_sink_tree"
+        "oma.routing.network_pressure.partition_two_sink_tree",
+        "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+        "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+        "oma.routing.passive_tree_pressure.verify_passive_tree_envelope"
       ],
       "callable_probe": [
         {
@@ -18620,10 +18732,23 @@
         {
           "path": "oma.routing.network_pressure.partition_two_sink_tree",
           "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.verify_passive_tree_envelope",
+          "callable": true
         }
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE",
         "GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES",
         "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER"
       ],
@@ -18632,8 +18757,12 @@
         "tests/test_network_pressure_integration.py",
         "tests/test_network_pressure_native_section.py",
         "tests/test_passive_pressure.py",
+        "tests/test_passive_tree_integration.py",
+        "tests/test_passive_tree_pressure.py",
         "tests/test_physical_report_admission.py",
-        "tests/test_two_sink_pressure.py"
+        "tests/test_three_sink_native_geometry.py",
+        "tests/test_two_sink_pressure.py",
+        "tests/test_worker_control_polling.py"
       ],
       "limitations_and_missing_requirements": "Exact supplied rational linear port relations, a uniformly forward two-sink pressure relation and grounded positive-K signed quadratic graph enclosures are implemented with independent checks. The graph kernel covers its declared trees/loops, zero and reversed flow; native graph applicability is not established. Existing native two-sink and fixed-flow adapters retain loss and component-specific metric assumptions. General coupled nonlinear, dynamic, PDE and full physical applicability contracts remain open.",
       "reference_only_note": null
@@ -18819,7 +18948,10 @@
         "oma.routing.network_checker.verify_network_candidate",
         "oma.routing.network_pressure.derive_two_sink_pressure_model",
         "oma.routing.network_pressure.evaluate_pressure_network",
-        "oma.routing.network_pressure.partition_two_sink_tree"
+        "oma.routing.network_pressure.partition_two_sink_tree",
+        "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+        "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+        "oma.routing.passive_tree_pressure.verify_passive_tree_envelope"
       ],
       "callable_probe": [
         {
@@ -18877,10 +19009,23 @@
         {
           "path": "oma.routing.network_pressure.partition_two_sink_tree",
           "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.verify_passive_tree_envelope",
+          "callable": true
         }
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE",
         "GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES",
         "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER",
         "ORIGINAL_EXACT_LINEAR_PORTS"
@@ -18891,8 +19036,12 @@
         "tests/test_network_pressure_native_section.py",
         "tests/test_optimization_ports.py",
         "tests/test_passive_pressure.py",
+        "tests/test_passive_tree_integration.py",
+        "tests/test_passive_tree_pressure.py",
         "tests/test_physical_report_admission.py",
-        "tests/test_two_sink_pressure.py"
+        "tests/test_three_sink_native_geometry.py",
+        "tests/test_two_sink_pressure.py",
+        "tests/test_worker_control_polling.py"
       ],
       "limitations_and_missing_requirements": "Exact supplied rational linear port relations, a uniformly forward two-sink pressure relation and grounded positive-K signed quadratic graph enclosures are implemented with independent checks. The graph kernel covers its declared trees/loops, zero and reversed flow; native graph applicability is not established. Existing native two-sink and fixed-flow adapters retain loss and component-specific metric assumptions. General coupled nonlinear, dynamic, PDE and full physical applicability contracts remain open.",
       "reference_only_note": null

@@ -6,6 +6,112 @@
   "full_engine_mathematics_implemented": false,
   "obligations": [
     {
+      "obligation": "NATIVE_COMMON_OUTLET_PASSIVE_TREE_MODEL_AND_SERVICE_ENVELOPE",
+      "source": {
+        "document": "oma-integration",
+        "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+        "paragraphs": [
+          4592,
+          4609,
+          5530,
+          5531,
+          5532,
+          5533,
+          5534,
+          5535,
+          5536,
+          5537
+        ],
+        "objects": [
+          "DEF-RTR56",
+          "ALG-RTR19",
+          "ALG-RTR20",
+          "ALG-RTR21",
+          "ALG-RTR22"
+        ]
+      },
+      "interpretation_and_assumptions": "A new exact boundary contract explicitly assigns every tee one positive inlet-flow-referenced total loss common to its two outlets. Fresh native component lengths, radius enclosures and every transformed physical cap position determine a complete grounded graph quotient. Independent adjacency reconstruction and direct dimensional extrema replay each port group and per-component resistance. Independently verified passive pressure bounds induce every physical port flow, total pressure, velocity, exact minimum delivery and complete continuity identity. Native geometry and operating proof are separate mandatory checks; acceptance and fresh exported-byte checks bind current candidate, mission, rules, source, geometry and executable roots. Exact rational minima remain authoritative while legacy Demand floats are descriptive projections only.",
+      "implementations": [
+        "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+        "oma.routing.passive_tree_pressure.evaluate_passive_tree"
+      ],
+      "independent_checkers": [
+        "oma.routing.passive_tree_pressure.verify_passive_tree_envelope",
+        "oma.routing.network_checker.verify_network_candidate"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.routing.passive_tree_pressure.derive_passive_tree_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.evaluate_passive_tree",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.passive_tree_pressure.verify_passive_tree_envelope",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_checker.verify_network_candidate",
+          "callable": true
+        }
+      ],
+      "automated_tests": [
+        "tests/test_passive_tree_pressure.py",
+        "tests/test_passive_tree_integration.py",
+        "tests/test_three_sink_native_geometry.py",
+        "tests/test_worker_control_polling.py"
+      ],
+      "real_model_benchmark": {
+        "status": "NATIVE_THREE_SINK_ACCEPT_AND_FRESH_EXPORT_CHECK_PASS",
+        "evidence": "evidence/math/passive-native-tree/native-workflows/",
+        "scope": "Seven actual components, two tees, sixteen ports, twenty-one unique component pairs, all three exact minimum deliveries and seventeen continuity identities. Complete service is independently checked; physical model applicability remains declared.",
+        "office_campaign": {
+          "status": "ONE_DECLARED_COMMON_TEE_MISSION_ACCEPTED_AND_FRESH_EXPORT_RECHECKED",
+          "evidence": "evidence/benchmarks/passive-pressure/office/f64e250b57bb480f9dfe352892b61b3f/README.md",
+          "source_checkpoint": "4044a58d563922530546897240791354f7557e40471f6b4222b23f065f5610ef",
+          "scope": "58.5-second workflow covers all 5621 component/obstacle pairs, 21 unique component pairs, 16 ports, three deliveries and 17 continuity identities. Canonical parsed original entities are preserved; raw STEP formatting is not byte-identical. One hypothetical service model and one alternative; no improvement or unrestricted topology claim."
+        }
+      },
+      "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
+      "amendments": [],
+      "certificate_and_limitations": "Explicit ideal-bore fixed-loss pressure-pipe trees only. Actual inner bore, wall thickness, catalog applicability and supplied boundary controls remain external. Unequal-outlet tee laws, zero resistance, duplicate boundary quotient nodes and a complete arbitrary physical fiber are not supported. A valid signed operating envelope may still fail required forward flow or service; unknown signs, nonpositive native bore or budget exhaustion cannot pass. Small admitted section differences do not prove additional transition losses absent. Hot arithmetic uses bounded ordinary-Run polling with forced start/end controls; no control cache has publication authority. No global topology optimum or complete original source algorithm is claimed.",
+      "cache_invalidation": [
+        "source-state",
+        "geometry",
+        "envelope",
+        "net-obligations",
+        "catalog",
+        "rules",
+        "objective",
+        "scenarios",
+        "theory",
+        "checker",
+        "solver-version"
+      ],
+      "related_sources": [
+        {
+          "document": "1-10",
+          "sha256": "0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970",
+          "paragraphs": [
+            16069,
+            16077,
+            16836,
+            16853
+          ],
+          "objects": [
+            "ALG-PO1",
+            "ALG-PO2",
+            "ALG-PO7"
+          ]
+        }
+      ],
+      "documentation": "docs/math/passive-native-tree.md",
+      "evidence": "evidence/math/passive-native-tree/latest.json",
+      "full_source_algorithms_implemented": false
+    },
+    {
       "obligation": "GROUNDED_PASSIVE_QUADRATIC_NETWORK_COMPARISON_ENVELOPES",
       "source": {
         "document": "1-10",
@@ -56,7 +162,7 @@
         "tests/test_passive_pressure.py"
       ],
       "real_model_benchmark": {
-        "status": "NOT_IMPLEMENTED_NATIVE_PASSIVE_ADAPTER",
+        "status": "SEPARATE_EXPLICIT_COMMON_TEE_NATIVE_ADAPTER_AVAILABLE",
         "evidence": "evidence/math/passive-pressure/independent-implementation-review/result.json",
         "scope": "119 exact declared kernel cases, 32 independently manufactured rational equilibria, 210 coherent/inventory/callback attacks and five budget cases. Retained finite parameter references supplement the exact comparison proof; they do not establish physical model applicability."
       },
