@@ -1,0 +1,21 @@
+--- a/src/ifcwrap/IfcGeomWrapper.i
++++ b/src/ifcwrap/IfcGeomWrapper.i
+@@ -1156,6 +1156,9 @@
+ 
+ #endif
+ 
++%template(OpaqueCoordinate_3) IfcGeom::OpaqueCoordinate<3>;
++%template(OpaqueCoordinate_4) IfcGeom::OpaqueCoordinate<4>;
++
+ #ifdef IFOPSH_WITH_CGAL
+ 
+ %ignore hlr_writer;
+@@ -1176,8 +1179,6 @@
+ %template(svg_loop) std::vector<std::array<double, 2>>;
+ %template(svg_loops) std::vector<std::vector<std::array<double, 2>>>;
+ 
+-%template(OpaqueCoordinate_3) IfcGeom::OpaqueCoordinate<3>;
+-%template(OpaqueCoordinate_4) IfcGeom::OpaqueCoordinate<4>;
+ 
+ %newobject create_epeck;
+ 
