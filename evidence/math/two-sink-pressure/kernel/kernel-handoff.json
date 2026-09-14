@@ -1,0 +1,67 @@
+{
+  "schema": "oma.staged-kernel-handoff/1",
+  "module": "oma.optimization.two_sink_pressure",
+  "stage": ".oma/development/two-sink-pressure",
+  "immutable_base_build": "43d9e1f2008588386493ad1ab75c4b38f21522057c4c28d8ba3d007385809873",
+  "production_modified_by_this_task": false,
+  "current_kernel_sha256": "f8d739cc404db60c40aed2e386dd76c6820fc37a306c5fac354eb95b52486fd6",
+  "tests": [
+    {
+      "build": "ca7109da654653a4423db7d68f58a08fc99e488715080b1c7dceb99e088e9fcb",
+      "status": "PASS",
+      "test_count": 118,
+      "seconds": 0.34,
+      "xml": "evidence/kernel-initial.xml",
+      "scope": "Historical initial checkpoint, superseded for final callback binding"
+    },
+    {
+      "build": "bbb0f8c3ab4d142679e377e6539fab3a74d4075f321765ac5e9d1e6255d1d53f",
+      "status": "PASS",
+      "test_count": 123,
+      "seconds": 0.35,
+      "xml": "evidence/kernel-corrected.xml",
+      "scope": "Corrected bounded pressure kernel tests only; staged native adapter has separate parent-owned evidence"
+    }
+  ],
+  "independent_review": {
+    "reviewer": "/root/ifc_pipeline",
+    "evidence_workspace_relative": "evidence/math/two-sink-pressure-independent/c4590116cb7c4828b814c2b7587a2ad0",
+    "oracle": "100-digit independent bisection of original path-derived flow equations",
+    "boxes": 12,
+    "parameter_cases": 1920,
+    "oracle_status": "ALL_CHECKED_SPLIT_TOTAL_AND_BRANCH_ENCLOSURES_MATCH",
+    "oracle_source_sha256": "72bd8581ab8cd735aef840f04d0e0c296ae67fca9b1e0dd08951424abe988d93",
+    "finding": "Late caller callback could mutate original model after fields used by final hash had been copied",
+    "correction": "Explicit final checkpoint followed by bounded root guard with no caller callbacks",
+    "corrected_replay": "PASS; no late callbacks and current caller model unchanged",
+    "mathematical_logic_changed_after_oracle": false,
+    "original_evidence_preserved": true
+  },
+  "source_basis": [
+    {
+      "path": "math1/math1/1-10.pages",
+      "sha256": "0ad4cd0c72cdb8fac573b3bfd262d86d9580a8218a98657c828b01eaba92d970",
+      "native_ranges": ["16069-16135", "16139-16203", "16360-16397", "16836-16853", "17130-17158", "17615-17681"],
+      "table": "1736791",
+      "source_mechanisms": ["ALG-PO1", "ALG-PO2", "ALG-PO7", "THM-PO7", "THM-PO8", "THM-PO12", "THM-PO14"]
+    },
+    {
+      "path": "math1/math1/the 5 things that combine ceiling router with ananke.docx",
+      "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+      "native_ranges": ["word/document.xml::p[4592]-p[4609]", "word/document.xml::p[5530]-p[5533]"],
+      "source_mechanisms": ["DEF-RTR56", "ALG-RTR19", "ALG-RTR20"]
+    }
+  ],
+  "claim": "For every admitted parameter tuple, exactly one forward split and positive total flow satisfy the declared two-sink equations; all such operating points lie in the checked enclosures",
+  "precision": "Actual widths reported; coarse certified enclosure does not imply requested target met",
+  "scope": "Explicit Cartesian interval box and fixed quadratic loss regime, source-root identities supplied by caller",
+  "nonclaims": [
+    "No native geometry, loss catalog, model discrepancy or boundary control truth certified by kernel",
+    "No arbitrary nonlinear, cyclic, flow-reversing or multi-tee network solver",
+    "No physical infeasibility or route acceptance authority",
+    "No independent marginal point is asserted to solve the correlated equations",
+    "No full-source algorithm completion",
+    "No atomic-object guarantee against concurrent external mutation",
+    "No production integration performed by the kernel task"
+  ]
+}

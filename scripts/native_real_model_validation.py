@@ -123,13 +123,77 @@ def managed_recheck(store, candidate_id, *, deadline, environment):
         raise
 
 
-def child(directory, candidate_id=CANDIDATE, source_checkpoint="94e74251a39d1f0d8cc77feb9d2df686e3927eb49473b67d09d8bdf66843c93f", expected_export_sha256=None, prior_checker_version=None):
+def network_validation_evidence(store, state, report, directory, prefix, *, retain=True):
+    """Retain exact native and optional pressure evidence for one checked tree."""
+    from itertools import combinations
+    rows = {r["id"]: r for r in report["results"]}
+    assert len(rows) == len(report["results"])
+    network, = state["physical_networks"]
+    assert not state.get("routes")
+    artifacts = {}
+    for identity, name in (("network-native-semantics", "semantics"), ("network-all-source-clearance", "cad")):
+        assert rows[identity]["status"] == "PASS"
+        root = rows[identity]["witness"]["artifact"]
+        artifacts[name] = store.get(root)
+        if retain:
+            json_write(directory / f"{prefix}-{name}.json", artifacts[name])
+    semantics, cad = artifacts["semantics"], artifacts["cad"]
+    parts = semantics["parts"]
+    component_ids = [p["component_id"] for p in parts]
+    guids = [p["ifc_guid"] for p in parts]
+    count = len(parts)
+    assert count > 0 and len(set(component_ids)) == len(set(guids)) == count
+    assert len(network["component_ids"]) == count and set(component_ids) == set(network["component_ids"])
+    assert semantics["status"] == "PASS" and semantics["physical_components"] == count
+    assert cad["coordination_status"] == cad["self_interference_status"] == "PASS"
+    assert len(cad["route_guids"]) == count and set(cad["route_guids"]) == set(guids) and cad["route_count"] == count
+    assert type(cad["obstacle_count"]) is int and cad["obstacle_count"] >= 0
+    assert cad["pairs_accounted"] == count * cad["obstacle_count"]
+    assert not any(cad[k] for k in ("failed_pairs", "unknown_pairs", "blocked_pairs"))
+    assert sorted(s["sha256"] for s in cad["sources"]) == sorted(s["sha256"] for s in state["sources"])
+    materialized = store.get(network["geometry_artifact"])
+    assert cad["export_sha256"] == materialized["export_sha256"]
+    assert len(cad["self_pair_results"]) == count * (count - 1) // 2
+    assert all(p["status"] == "PASS" for p in cad["self_pair_results"])
+    pairs = [p["participant_guids"] for p in cad["self_pair_results"]]
+    assert all(len(pair) == 2 and len(set(pair)) == 2 for pair in pairs)
+    assert {frozenset(pair) for pair in pairs} == {frozenset(pair) for pair in combinations(guids, 2)}
+    result = {"component_ids": sorted(component_ids), "part_guids": sorted(guids),
+        "native_semantics_root": rows["network-native-semantics"]["witness"]["artifact"],
+        "native_cad_root": rows["network-all-source-clearance"]["witness"]["artifact"],
+        "physical_components": count, "physical_ports": semantics["physical_ports"],
+        "original_obstacles": cad["obstacle_count"], "source_pairs": cad["pairs_accounted"],
+        "component_pairs": len(cad["self_pair_results"]), "complete_native_status": "PASS"}
+    scenario = state["derived_artifacts"]["network_contract"]["scenario"]
+    if scenario.get("pressure_driven") is not None:
+        assert rows["network-pressure-operating-point"]["status"] == rows["network-demand-conditioned-service"]["status"] == "PASS"
+        root = rows["network-pressure-operating-point"]["witness"]["artifact"]
+        pressure = store.get(root)
+        if retain:
+            json_write(directory / f"{prefix}-pressure.json", pressure)
+        assert pressure["operating_point_status"] == pressure["verdict"] == pressure["independent_check"]["status"] == "PASS"
+        assert pressure["unique_physical_components"] == count
+        assert set(pressure["deliveries"]) == {s["id"] for s in scenario["sinks"]}
+        assert all(d["status"] == "PASS" for d in pressure["deliveries"].values())
+        assert set(pressure["component_velocities"]) == set(component_ids)
+        for part in parts:
+            velocities = pressure["component_velocities"][part["component_id"]]
+            assert set(velocities) == set(part["caps"])
+            assert all(v["status"] == "PASS" for v in velocities.values())
+        assert sum(map(len, pressure["component_velocities"].values())) == semantics["physical_ports"]
+        result.update(pressure_root=root, operating_point_status="PASS", service_status="PASS",
+            pressure_model_root=pressure["independent_check"]["model_root"], deliveries=pressure["deliveries"],
+            component_velocity_count=sum(map(len, pressure["component_velocities"].values())))
+    return result
+
+
+def child(directory, candidate_id=CANDIDATE, source_checkpoint="94e74251a39d1f0d8cc77feb9d2df686e3927eb49473b67d09d8bdf66843c93f", expected_export_sha256=None, prior_checker_version=None, *, original_store=None):
     from oma.build_identity import checker_version
     from oma.store import Store
 
     class Original(Store):
         def __init__(self):
-            self.directory = ROOT / ".oma"
+            self.directory = Path(original_store if original_store is not None else ROOT / ".oma").resolve()
             self.database = self.directory / "oma.sqlite3"
             self.blobs = self.directory / "blobs"
 
@@ -147,12 +211,20 @@ def child(directory, candidate_id=CANDIDATE, source_checkpoint="94e74251a39d1f0d
 
     directory = Path(directory).resolve()
     assert directory.is_relative_to(DEST.resolve()) and not directory.exists()
+    assert not directory.is_relative_to(original.directory), "Validation output cannot be inside the read-only original Store"
+    original_candidate = original.candidate(candidate_id)
+    original_run = original.run(original_candidate["run_id"])
+    original_head = original.project(original_candidate["project_id"])
     store, copied_inputs = isolate_candidate(original, directory, candidate_id)
     candidate = store.candidate(candidate_id)
-    original_head = original.project(candidate["project_id"])
+    assert candidate == original_candidate
     state = store.get(candidate["state_root"])
-    assert candidate["kind"] in {"physical_route", "physical_route_set"}
-    materializations = [store.get(r["geometry_artifact"]) for r in state["routes"]]
+    assert candidate["kind"] in {"physical_route", "physical_route_set", "physical_network"}
+    records = state["physical_networks"] if candidate["kind"] == "physical_network" else state["routes"]
+    assert records and len({r["id"] for r in records}) == len(records)
+    if candidate["kind"] == "physical_network":
+        assert len(records) == 1 and not state.get("routes")
+    materializations = [store.get(r["geometry_artifact"]) for r in records]
     assert materializations
     files = {str(original.resolve_path(s["immutable_path"])): s["sha256"] for s in state["sources"]}
     files.update({str(original.resolve_path(m["export_path"])): m["export_sha256"] for m in materializations})
@@ -167,13 +239,17 @@ def child(directory, candidate_id=CANDIDATE, source_checkpoint="94e74251a39d1f0d
     start = time.monotonic()
     result = {"status": "RUNNING", "candidate_id": candidate_id, "source_checkpoint": source_checkpoint,
               "candidate_root": candidate["state_root"], "checker_version": checker_version(),
+              "physical_kind": candidate["kind"], "physical_record_ids": [r["id"] for r in records],
+              "original_store": str(original.directory),
               "prior_report_root": candidate["report_root"], "prior_checker_version": previous["checker_version"],
               "requested_prior_checker_version": prior_checker_version, "source_and_exported_files": files,
               "isolated_store": str(directory), "active_store_write_mode": "READ_ONLY",
               "copied_input_evidence": str(directory / "validation-input-copy.json"),
-              "scope": "Existing real Office exported route set, same fixed mission and bytes; complete independent candidate check under candidate native runtime"}
+              "scope": "Existing real Office exported physical design, same fixed mission and bytes; complete independent candidate check under candidate native runtime"}
     json_write(directory / "real-model-result.json", result)
     try:
+        if candidate["kind"] == "physical_network":
+            result["prior_network_evidence"] = network_validation_evidence(store, state, previous, directory, "prior")
         execution = managed_recheck(store, candidate_id, deadline=start + 1100., environment=os.environ.copy())
         result["execution"] = execution
         assert execution["status"] == "COMPLETED" and execution["report_published"], execution
@@ -185,11 +261,22 @@ def child(directory, candidate_id=CANDIDATE, source_checkpoint="94e74251a39d1f0d
         assert checked["checker_version"] == checker_version() and checked["checker_version"] != previous["checker_version"]
         assert checked["objective"] == previous["objective"]
         assert {r["id"]: r["status"] for r in checked["results"]} == {r["id"]: r["status"] for r in previous["results"]}
+        if candidate["kind"] == "physical_network":
+            current = network_validation_evidence(store, state, checked, directory, "current")
+            result["network_evidence"] = current
+            prior = result["prior_network_evidence"]
+            assert {k: current[k] for k in ("component_ids", "part_guids", "physical_components", "physical_ports", "original_obstacles", "source_pairs", "component_pairs")} == {
+                k: prior[k] for k in ("component_ids", "part_guids", "physical_components", "physical_ports", "original_obstacles", "source_pairs", "component_pairs")}
+            if "pressure_root" in current:
+                assert current["pressure_model_root"] != prior["pressure_model_root"]
+                assert current["deliveries"] == prior["deliveries"]
         assert all(sha(Path(p)) == h for p, h in files.items())
         assert all(sha(Path(a["original_resolved_path"])) == a["sha256"]
                    and sha(directory / a["copied_path"]) == a["sha256"] for a in copied_inputs["assets"])
         assert original.project(candidate["project_id"]) == original_head
+        assert original.candidate(candidate_id) == original_candidate and original.run(candidate["run_id"]) == original_run
         result.update(status="REAL_EXPORTED_OFFICE_RECHECK_PASS", original_bytes_and_head_unchanged=True,
+                      original_candidate_and_run_unchanged=True,
                       same_objective_and_obligation_dispositions=True)
     except BaseException as exc:
         result.update(status="INCOMPLETE_OR_FAILED", error=repr(exc))
@@ -207,20 +294,32 @@ def main():
     parser.add_argument("--source-checkpoint", default="94e74251a39d1f0d8cc77feb9d2df686e3927eb49473b67d09d8bdf66843c93f")
     parser.add_argument("--expected-export-sha256")
     parser.add_argument("--prior-checker-version", help="Optional exact immutable prior report identity; independent of the current source checkpoint")
+    parser.add_argument("--original-store", type=Path, help="Explicit read-only original Store directory; defaults to the workspace .oma")
     parser.add_argument("--checkpoint-validation", type=Path)
     parser.add_argument("--portable-validation", type=Path)
     parser.add_argument("--output-directory", type=Path)
+    parser.add_argument("--validation-role", choices=("joint_fitting_budget", "pressure_network"))
     args = parser.parse_args()
     if args.child_directory:
-        return child(args.child_directory, args.candidate_id, args.source_checkpoint, args.expected_export_sha256, args.prior_checker_version)
+        return child(args.child_directory, args.candidate_id, args.source_checkpoint, args.expected_export_sha256, args.prior_checker_version,
+                     original_store=args.original_store)
     env = os.environ.copy()
     python = DEST / "test-venv/Scripts/python.exe"
     if args.portable_validation:
+        from native_package_evidence import verify_payload, real_model_inputs, REAL_MODEL_ROLES, verify_real_model_receipt
         assert args.checkpoint_validation is None
         portable = json.loads(args.portable_validation.read_text())
         assert portable["status"] == "ISOLATED_NATIVE_PORTABLE_OFFLINE_WORKFLOW_PASS"
         assert portable["source_checkpoint"] == args.source_checkpoint
-        package = Path(portable["package"])
+        package = Path(portable["package"]).resolve()
+        verify_payload(package, portable)
+        if portable.get('real_model_validation_inputs_sha256'):
+            assert args.validation_role is not None
+            target = real_model_inputs(package, portable)['roles'][args.validation_role]
+            assert target['candidate_id'] == args.candidate_id
+            assert target['expected_export_sha256'] == args.expected_export_sha256
+            assert target['prior_checker_version'] == args.prior_checker_version
+            assert Path(target['original_store']).resolve() == (args.original_store or ROOT / '.oma').resolve()
         python = package / "runtime/python.exe"
         env.update(PYTHONPATH=str(package / "src"), OMA_EXECUTABLE_BUILD=portable["identity"]["checker_version"],
                    PYTHONDONTWRITEBYTECODE="1", PYTHONNOUSERSITE="1", OMA_OFFLINE_DENY_NETWORK="1")
@@ -238,10 +337,24 @@ def main():
         command.extend(["--expected-export-sha256", args.expected_export_sha256])
     if args.prior_checker_version:
         command.extend(["--prior-checker-version", args.prior_checker_version])
+    if args.original_store is not None:
+        command.extend(["--original-store", args.original_store.resolve()])
+    driver_sha256 = sha(Path(__file__))
     record = run("real-office-export-recheck", command, cwd=ROOT, env=env, budget=1200)
     result = json.loads((directory / "real-model-result.json").read_text())
-    result.update(command_record=str(record / "record.json"), script_sha256=sha(Path(__file__)))
-    json_write((args.output_directory or EVIDENCE) / "real-office-validation.json", result)
+    assert sha(Path(__file__)) == driver_sha256
+    result.update(command_record=str(record / "record.json"), script_sha256=driver_sha256)
+    filename = 'real-office-validation.json'
+    if args.portable_validation:
+        verify_payload(package, portable)
+        result.update(package=str(package), portable_validation_result_sha256=sha(args.portable_validation),
+                      validated_payload_manifest_sha256=portable['validated_payload_manifest_sha256'])
+        if portable.get('real_model_validation_inputs_sha256'):
+            result.update(validation_role=args.validation_role,
+                          real_model_validation_inputs_sha256=portable['real_model_validation_inputs_sha256'])
+            result['seal_native_scope'] = verify_real_model_receipt(package, portable, args.portable_validation, args.validation_role, result)
+            filename = REAL_MODEL_ROLES[args.validation_role][0]
+    json_write((args.output_directory or EVIDENCE) / filename, result)
 
 
 if __name__ == "__main__":

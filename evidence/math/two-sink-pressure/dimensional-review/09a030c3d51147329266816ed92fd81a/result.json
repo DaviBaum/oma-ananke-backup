@@ -1,0 +1,2754 @@
+{
+  "status": "PASS",
+  "checker_version": "oma-independent-checker/2:b61a7a9f20f0f5dccc7f4f69207037e36110e895fdd3835f232d4f3f62d6d895",
+  "script_sha256": "1beee5a17cb7ce4478e51aa3de0dff1ec8bc635506b47568c3d09fa92ff317de",
+  "kernel_sha256": "f8d739cc404db60c40aed2e386dd76c6820fc37a306c5fac354eb95b52486fd6",
+  "adapter_sha256": "ff4ee882d3b9a498f8b3a1e52e8cee8ce1678ea589eb6d6aea850c8d6eddcade",
+  "scope": "Synthetic independently supplied component metric boxes; no actual native dimensional/connection acceptance authority",
+  "reference_scaling": [
+    {
+      "reference_diameter": "1/20",
+      "normalized_model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "a",
+          "b"
+        ],
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        },
+        "parameters": {
+          "P1": {
+            "lower": "4515692656985/677503346688",
+            "upper": "4515692656985/677503346688"
+          },
+          "P2": {
+            "lower": "63458540376805/6492092073984",
+            "upper": "63458540376805/6492092073984"
+          },
+          "beta": {
+            "lower": "160000",
+            "upper": "160000"
+          },
+          "A1": {
+            "lower": "47979571/806215680",
+            "upper": "47979571/806215680"
+          },
+          "A2": {
+            "lower": "73173811/806215680",
+            "upper": "73173811/806215680"
+          },
+          "B1": {
+            "lower": "750/16807",
+            "upper": "750/16807"
+          },
+          "B2": {
+            "lower": "3125/161051",
+            "upper": "3125/161051"
+          }
+        }
+      },
+      "result": {
+        "status": "CERTIFIED",
+        "model_root": "dd05358ad97a47a7c18ea3c75100ef9fda7d565582370a685c637ccc0eb05831",
+        "certificate": {
+          "accuracy": {
+            "achieved_split_width": "1/2097152",
+            "branch_flow_widths_m3_s": {
+              "a": "475443065548960549/38685626227668133590597632",
+              "b": "241290155899703477/19342813113834066795298816"
+            },
+            "flow_accuracy_target": "NOT_REQUESTED",
+            "includes_parameter_uncertainty": true,
+            "requested_split_width": "1/1000000",
+            "target_split_width_met": true,
+            "total_flow_width_m3_s": "17016496755/18446744073709551616"
+          },
+          "branch_ids": [
+            "a",
+            "b"
+          ],
+          "correlation": {
+            "branch_ids": [
+              "a",
+              "b"
+            ],
+            "conservation": "Q=q1+q2",
+            "marginal_intervals_are_independent": false,
+            "parameterization": "q1=t*Q;q2=(1-t)*Q",
+            "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+          },
+          "enclosures": {
+            "branch_flows_m3_s": {
+              "a": {
+                "lower": "48356985432695071429605/4835703278458516698824704",
+                "upper": "386856358904626120397389/38685626227668133590597632"
+              },
+              "b": {
+                "lower": "290142143180465460859877/19342813113834066795298816",
+                "upper": "145071192235310680281677/9671406556917033397649408"
+              }
+            },
+            "split_fraction": {
+              "lower": "209715/524288",
+              "upper": "838861/2097152"
+            },
+            "total_flow_m3_s": {
+              "lower": "230584295032282247/9223372036854775808",
+              "upper": "461168607081061249/18446744073709551616"
+            },
+            "total_flow_squared_m6_s2": {
+              "lower": "3788037554792562688/6060860397254958326425",
+              "upper": "106465763894637887488/170345218361585663527675"
+            }
+          },
+          "model_root": "dd05358ad97a47a7c18ea3c75100ef9fda7d565582370a685c637ccc0eb05831",
+          "physical_acceptance_authority": false,
+          "query_root": "534d8a97d22c60a2fce4e9769f86141b2084540fe800013c0555c40ff9c7efe7",
+          "regime_proof": {
+            "g_at_one": {
+              "lower": "5006559408499475/12123621276383232",
+              "upper": "5006559408499475/12123621276383232"
+            },
+            "g_at_zero": {
+              "lower": "-2080801269898325/13639073935931136",
+              "upper": "-2080801269898325/13639073935931136"
+            },
+            "strict_derivative_lower_bound": "14111539553078125/54556295743724544"
+          },
+          "schema": "oma.two-sink-pressure-certificate/1",
+          "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+        },
+        "certificate_root": "901e468660505ae6dfa4bef1d6bae8c2b75dac3c3778a65cfeb8f47f31635cd8",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 1302,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      },
+      "independent_check": {
+        "status": "PASS",
+        "model_root": "dd05358ad97a47a7c18ea3c75100ef9fda7d565582370a685c637ccc0eb05831",
+        "certificate_root": "901e468660505ae6dfa4bef1d6bae8c2b75dac3c3778a65cfeb8f47f31635cd8",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "a": {
+              "lower": "48356985432695071429605/4835703278458516698824704",
+              "upper": "386856358904626120397389/38685626227668133590597632"
+            },
+            "b": {
+              "lower": "290142143180465460859877/19342813113834066795298816",
+              "upper": "145071192235310680281677/9671406556917033397649408"
+            }
+          },
+          "split_fraction": {
+            "lower": "209715/524288",
+            "upper": "838861/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "230584295032282247/9223372036854775808",
+            "upper": "461168607081061249/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "3788037554792562688/6060860397254958326425",
+            "upper": "106465763894637887488/170345218361585663527675"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "1/2097152",
+          "target_split_width_met": true,
+          "total_flow_width_m3_s": "17016496755/18446744073709551616",
+          "branch_flow_widths_m3_s": {
+            "a": "475443065548960549/38685626227668133590597632",
+            "b": "241290155899703477/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "a",
+            "b"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "reference_diameter": "1/10",
+      "normalized_model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "a",
+          "b"
+        ],
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        },
+        "parameters": {
+          "P1": {
+            "lower": "4515692656985/677503346688",
+            "upper": "4515692656985/677503346688"
+          },
+          "P2": {
+            "lower": "63458540376805/6492092073984",
+            "upper": "63458540376805/6492092073984"
+          },
+          "beta": {
+            "lower": "10000",
+            "upper": "10000"
+          },
+          "A1": {
+            "lower": "47979571/50388480",
+            "upper": "47979571/50388480"
+          },
+          "A2": {
+            "lower": "73173811/50388480",
+            "upper": "73173811/50388480"
+          },
+          "B1": {
+            "lower": "12000/16807",
+            "upper": "12000/16807"
+          },
+          "B2": {
+            "lower": "50000/161051",
+            "upper": "50000/161051"
+          }
+        }
+      },
+      "result": {
+        "status": "CERTIFIED",
+        "model_root": "235d8d82c72d7201dc38fd9d0acce98c859734f44bc6dc3a4f450d8a08715508",
+        "certificate": {
+          "accuracy": {
+            "achieved_split_width": "1/2097152",
+            "branch_flow_widths_m3_s": {
+              "a": "475443065548960549/38685626227668133590597632",
+              "b": "241290155899703477/19342813113834066795298816"
+            },
+            "flow_accuracy_target": "NOT_REQUESTED",
+            "includes_parameter_uncertainty": true,
+            "requested_split_width": "1/1000000",
+            "target_split_width_met": true,
+            "total_flow_width_m3_s": "17016496755/18446744073709551616"
+          },
+          "branch_ids": [
+            "a",
+            "b"
+          ],
+          "correlation": {
+            "branch_ids": [
+              "a",
+              "b"
+            ],
+            "conservation": "Q=q1+q2",
+            "marginal_intervals_are_independent": false,
+            "parameterization": "q1=t*Q;q2=(1-t)*Q",
+            "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+          },
+          "enclosures": {
+            "branch_flows_m3_s": {
+              "a": {
+                "lower": "48356985432695071429605/4835703278458516698824704",
+                "upper": "386856358904626120397389/38685626227668133590597632"
+              },
+              "b": {
+                "lower": "290142143180465460859877/19342813113834066795298816",
+                "upper": "145071192235310680281677/9671406556917033397649408"
+              }
+            },
+            "split_fraction": {
+              "lower": "209715/524288",
+              "upper": "838861/2097152"
+            },
+            "total_flow_m3_s": {
+              "lower": "230584295032282247/9223372036854775808",
+              "upper": "461168607081061249/18446744073709551616"
+            },
+            "total_flow_squared_m6_s2": {
+              "lower": "3788037554792562688/6060860397254958326425",
+              "upper": "106465763894637887488/170345218361585663527675"
+            }
+          },
+          "model_root": "235d8d82c72d7201dc38fd9d0acce98c859734f44bc6dc3a4f450d8a08715508",
+          "physical_acceptance_authority": false,
+          "query_root": "7c43d342fe40417f598af200899ee8465e2ac0f8c7552cea45c68fc8becbd3bc",
+          "regime_proof": {
+            "g_at_one": {
+              "lower": "5006559408499475/757726329773952",
+              "upper": "5006559408499475/757726329773952"
+            },
+            "g_at_zero": {
+              "lower": "-2080801269898325/852442120995696",
+              "upper": "-2080801269898325/852442120995696"
+            },
+            "strict_derivative_lower_bound": "14111539553078125/3409768483982784"
+          },
+          "schema": "oma.two-sink-pressure-certificate/1",
+          "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+        },
+        "certificate_root": "a6d8f604959f5a0944486092bdb46c592b40efbaeb80f4b4ec8e3a17116d2448",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 1302,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      },
+      "independent_check": {
+        "status": "PASS",
+        "model_root": "235d8d82c72d7201dc38fd9d0acce98c859734f44bc6dc3a4f450d8a08715508",
+        "certificate_root": "a6d8f604959f5a0944486092bdb46c592b40efbaeb80f4b4ec8e3a17116d2448",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "a": {
+              "lower": "48356985432695071429605/4835703278458516698824704",
+              "upper": "386856358904626120397389/38685626227668133590597632"
+            },
+            "b": {
+              "lower": "290142143180465460859877/19342813113834066795298816",
+              "upper": "145071192235310680281677/9671406556917033397649408"
+            }
+          },
+          "split_fraction": {
+            "lower": "209715/524288",
+            "upper": "838861/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "230584295032282247/9223372036854775808",
+            "upper": "461168607081061249/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "3788037554792562688/6060860397254958326425",
+            "upper": "106465763894637887488/170345218361585663527675"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "1/2097152",
+          "target_split_width_met": true,
+          "total_flow_width_m3_s": "17016496755/18446744073709551616",
+          "branch_flow_widths_m3_s": {
+            "a": "475443065548960549/38685626227668133590597632",
+            "b": "241290155899703477/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "a",
+            "b"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "reference_diameter": "1/5",
+      "normalized_model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "a",
+          "b"
+        ],
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        },
+        "parameters": {
+          "P1": {
+            "lower": "4515692656985/677503346688",
+            "upper": "4515692656985/677503346688"
+          },
+          "P2": {
+            "lower": "63458540376805/6492092073984",
+            "upper": "63458540376805/6492092073984"
+          },
+          "beta": {
+            "lower": "625",
+            "upper": "625"
+          },
+          "A1": {
+            "lower": "47979571/3149280",
+            "upper": "47979571/3149280"
+          },
+          "A2": {
+            "lower": "73173811/3149280",
+            "upper": "73173811/3149280"
+          },
+          "B1": {
+            "lower": "192000/16807",
+            "upper": "192000/16807"
+          },
+          "B2": {
+            "lower": "800000/161051",
+            "upper": "800000/161051"
+          }
+        }
+      },
+      "result": {
+        "status": "CERTIFIED",
+        "model_root": "fbcb9cd803ddf5cf53f141d566eb44181c87d7d06502ec53b386b62f806c5830",
+        "certificate": {
+          "accuracy": {
+            "achieved_split_width": "1/2097152",
+            "branch_flow_widths_m3_s": {
+              "a": "475443065548960549/38685626227668133590597632",
+              "b": "241290155899703477/19342813113834066795298816"
+            },
+            "flow_accuracy_target": "NOT_REQUESTED",
+            "includes_parameter_uncertainty": true,
+            "requested_split_width": "1/1000000",
+            "target_split_width_met": true,
+            "total_flow_width_m3_s": "17016496755/18446744073709551616"
+          },
+          "branch_ids": [
+            "a",
+            "b"
+          ],
+          "correlation": {
+            "branch_ids": [
+              "a",
+              "b"
+            ],
+            "conservation": "Q=q1+q2",
+            "marginal_intervals_are_independent": false,
+            "parameterization": "q1=t*Q;q2=(1-t)*Q",
+            "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+          },
+          "enclosures": {
+            "branch_flows_m3_s": {
+              "a": {
+                "lower": "48356985432695071429605/4835703278458516698824704",
+                "upper": "386856358904626120397389/38685626227668133590597632"
+              },
+              "b": {
+                "lower": "290142143180465460859877/19342813113834066795298816",
+                "upper": "145071192235310680281677/9671406556917033397649408"
+              }
+            },
+            "split_fraction": {
+              "lower": "209715/524288",
+              "upper": "838861/2097152"
+            },
+            "total_flow_m3_s": {
+              "lower": "230584295032282247/9223372036854775808",
+              "upper": "461168607081061249/18446744073709551616"
+            },
+            "total_flow_squared_m6_s2": {
+              "lower": "3788037554792562688/6060860397254958326425",
+              "upper": "106465763894637887488/170345218361585663527675"
+            }
+          },
+          "model_root": "fbcb9cd803ddf5cf53f141d566eb44181c87d7d06502ec53b386b62f806c5830",
+          "physical_acceptance_authority": false,
+          "query_root": "bbc26572f18fc5388a63dbec8f17fd8d2c687e6d80e45caedfd9e80dbfcb5d0d",
+          "regime_proof": {
+            "g_at_one": {
+              "lower": "5006559408499475/47357895610872",
+              "upper": "5006559408499475/47357895610872"
+            },
+            "g_at_zero": {
+              "lower": "-2080801269898325/53277632562231",
+              "upper": "-2080801269898325/53277632562231"
+            },
+            "strict_derivative_lower_bound": "14111539553078125/213110530248924"
+          },
+          "schema": "oma.two-sink-pressure-certificate/1",
+          "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+        },
+        "certificate_root": "4dd12b876c7a00c113b3e44a7757fd8778196711aa2122fd3a51e657974419f3",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 1302,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      },
+      "independent_check": {
+        "status": "PASS",
+        "model_root": "fbcb9cd803ddf5cf53f141d566eb44181c87d7d06502ec53b386b62f806c5830",
+        "certificate_root": "4dd12b876c7a00c113b3e44a7757fd8778196711aa2122fd3a51e657974419f3",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "a": {
+              "lower": "48356985432695071429605/4835703278458516698824704",
+              "upper": "386856358904626120397389/38685626227668133590597632"
+            },
+            "b": {
+              "lower": "290142143180465460859877/19342813113834066795298816",
+              "upper": "145071192235310680281677/9671406556917033397649408"
+            }
+          },
+          "split_fraction": {
+            "lower": "209715/524288",
+            "upper": "838861/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "230584295032282247/9223372036854775808",
+            "upper": "461168607081061249/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "3788037554792562688/6060860397254958326425",
+            "upper": "106465763894637887488/170345218361585663527675"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "1/2097152",
+          "target_split_width_met": true,
+          "total_flow_width_m3_s": "17016496755/18446744073709551616",
+          "branch_flow_widths_m3_s": {
+            "a": "475443065548960549/38685626227668133590597632",
+            "b": "241290155899703477/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "a",
+            "b"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    }
+  ],
+  "adapter_cases": [
+    {
+      "kind": "common_straight",
+      "scenario": {
+        "mission_type": "shared_network",
+        "system_type": "PRESSURE_PIPE",
+        "start_m": [
+          -1,
+          4,
+          3
+        ],
+        "sinks": [
+          {
+            "id": "sink-a",
+            "demand_id": "demand-a",
+            "end_m": [
+              1,
+              4,
+              3
+            ],
+            "required_flow_m3_s": 1e-06
+          },
+          {
+            "id": "sink-b",
+            "demand_id": "demand-b",
+            "end_m": [
+              0,
+              5,
+              3
+            ],
+            "required_flow_m3_s": 1e-06
+          }
+        ],
+        "diameter_m": 0.1,
+        "insulation_m": 0.02,
+        "clearance_m": 0.01,
+        "minimum_straight_m": 0.05,
+        "minimum_bend_radius_m": 0.1,
+        "allowed_zone": {
+          "min": [
+            -2,
+            3,
+            2
+          ],
+          "max": [
+            2,
+            6,
+            4
+          ]
+        },
+        "scenario_terminals": true,
+        "target_modality": "ENGINEERING_SERVICE",
+        "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+        "network_alternatives": [
+          {
+            "schema": "oma-physical-network/1",
+            "network_id": "example-shared-two-sink-network",
+            "system_type": "PRESSURE_PIPE",
+            "components": [
+              {
+                "id": "trunk",
+                "kind": "segment",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "geometry": {
+                  "start_m": [
+                    -1,
+                    4,
+                    3
+                  ],
+                  "end_m": [
+                    -0.2,
+                    4,
+                    3
+                  ]
+                },
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                }
+              },
+              {
+                "id": "junction",
+                "kind": "tee",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "geometry": {
+                  "frame_m": [
+                    [
+                      1,
+                      0,
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      1,
+                      0,
+                      4
+                    ],
+                    [
+                      0,
+                      0,
+                      1,
+                      3
+                    ],
+                    [
+                      0,
+                      0,
+                      0,
+                      1
+                    ]
+                  ],
+                  "trunk_takeout_m": 0.2,
+                  "branch_takeout_m": 0.2
+                },
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE",
+                  "branch": "SOURCE"
+                }
+              },
+              {
+                "id": "arm-a",
+                "kind": "segment",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "geometry": {
+                  "start_m": [
+                    0.2,
+                    4,
+                    3
+                  ],
+                  "end_m": [
+                    1,
+                    4,
+                    3
+                  ]
+                },
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                }
+              },
+              {
+                "id": "arm-b",
+                "kind": "segment",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "geometry": {
+                  "start_m": [
+                    0,
+                    4.2,
+                    3
+                  ],
+                  "end_m": [
+                    0,
+                    5,
+                    3
+                  ]
+                },
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                }
+              }
+            ],
+            "connections": [
+              {
+                "source": {
+                  "component": "trunk",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "junction",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "junction",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "arm-a",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "junction",
+                  "port": "branch"
+                },
+                "sink": {
+                  "component": "arm-b",
+                  "port": "a"
+                }
+              }
+            ],
+            "source": {
+              "component": "trunk",
+              "port": "a"
+            },
+            "sinks": [
+              {
+                "id": "sink-a",
+                "endpoint": {
+                  "component": "arm-a",
+                  "port": "b"
+                }
+              },
+              {
+                "id": "sink-b",
+                "endpoint": {
+                  "component": "arm-b",
+                  "port": "b"
+                }
+              }
+            ],
+            "demand_paths": [
+              {
+                "demand_id": "demand-a",
+                "sink_id": "sink-a",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "junction",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "arm-a",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              },
+              {
+                "demand_id": "demand-b",
+                "sink_id": "sink-b",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "junction",
+                    "entry_port": "a",
+                    "exit_port": "branch"
+                  },
+                  {
+                    "component": "arm-b",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "pressure_driven": {
+          "source_total_pressure_pa": 200.0,
+          "sink_total_pressures_pa": {
+            "sink-a": 100.0,
+            "sink-b": 90.0
+          },
+          "density_kg_m3": 1000.0,
+          "darcy_friction": 0.02,
+          "maximum_velocity_m_s": 100.0,
+          "gravity_m_s2": 9.80665,
+          "elbow_loss_coefficient": 0.2,
+          "tee_straight_loss_coefficient": 0.2,
+          "tee_branch_loss_coefficient": 0.2,
+          "applicability": "Synthetic bounded coefficient audit; no native dimensional correspondence asserted",
+          "boundary_control_assumption": "Synthetic fixed total pressures",
+          "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+          "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+          "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+          "friction_convention": "DARCY",
+          "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+          "tee_loss_reference": "INLET_VELOCITY_TOTAL_IRREVERSIBLE_LOSS",
+          "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+        }
+      },
+      "outer_radius_intervals": {
+        "trunk": {
+          "lower": "6851/100000",
+          "upper": "6949/100000",
+          "arithmetic": "exact_rational_enclosure"
+        },
+        "junction": {
+          "lower": "13999/200000",
+          "upper": "14201/200000",
+          "arithmetic": "exact_rational_enclosure"
+        },
+        "arm-a": {
+          "lower": "13801/200000",
+          "upper": "13999/200000",
+          "arithmetic": "exact_rational_enclosure"
+        },
+        "arm-b": {
+          "lower": "7049/100000",
+          "upper": "7151/100000",
+          "arithmetic": "exact_rational_enclosure"
+        }
+      },
+      "length_intervals": {
+        "trunk": {
+          "lower": "99/125",
+          "upper": "101/125",
+          "arithmetic": "exact_rational_enclosure"
+        },
+        "junction": {
+          "lower": "297/500",
+          "upper": "303/500",
+          "arithmetic": "exact_rational_enclosure"
+        },
+        "arm-a": {
+          "lower": "297/500",
+          "upper": "303/500",
+          "arithmetic": "exact_rational_enclosure"
+        },
+        "arm-b": {
+          "lower": "1089/1000",
+          "upper": "1111/1000",
+          "arithmetic": "exact_rational_enclosure"
+        }
+      },
+      "original_equation_samples": 160,
+      "corner_cases": 128,
+      "interior_cases": 32,
+      "maximum_pressure_residual_pa": "2.276049834E-89",
+      "adapter_result": {
+        "model": "one_tee_two_outlet_pressure_driven",
+        "model_input": {
+          "schema": "oma.two-sink-pressure-model/1",
+          "branch_ids": [
+            "sink-a",
+            "sink-b"
+          ],
+          "parameters": {
+            "beta": {
+              "lower": "50415131933712086118129945592075600256577797532527653009122672288237521076655524668134218268658435467032787581785235163381003913064796722137453938603871209174217608960421717382358222405026247891918398044235984500022894697509276516500508556658819221932291696394539778722550772737285149007347567762238327304658014327287673950195312500/6219717600180818399704268379838805593985623809479737381412754678798179217553529867039075435475798818121507590128631028019468514407868970462220900796834991038587760381274718869711303592632112506226351927172771161072045320378796375233264957926300808152769060048461197041806306012633290439434052102330628813363281069735615521441",
+              "upper": "4211070159628053345084685650910313718846050684873720443126146738459459236590880493249970808697825349616011518775458803130792610375747367370203153935774578108025745636618828965867988710925297752411120210063633164027309197231778524049823703028757336222145998436573515141994665032920094900790943144575084744474224862642586231231689453125000000/519519957259513790387376095086620795947276441709178575421163285940078923793841519508083213598713427654213001425567634989854826125277299918293322464557495835728745747033841828349408425403653591695687246871941989887246739313715819303735939216247567454608196234746044753228690410412665709627340478917192564029564960846398999133136032849"
+            },
+            "P1": {
+              "lower": "100",
+              "upper": "100"
+            },
+            "A1": {
+              "lower": "1074949493000000000000000/3058802175536116276394449",
+              "upper": "108480601807000000000000000/279538653089307216579009651"
+            },
+            "B1": {
+              "lower": "40000000000000000/336532020198653367",
+              "upper": "4040000000000000000/30146069166960149667"
+            },
+            "P2": {
+              "lower": "110",
+              "upper": "110"
+            },
+            "A2": {
+              "lower": "1074949493000000000000000/3058802175536116276394449",
+              "upper": "108480601807000000000000000/279538653089307216579009651"
+            },
+            "B2": {
+              "lower": "75625000000000000/402916673710305639",
+              "upper": "63125000000000000/298286891513863659"
+            }
+          },
+          "context_root": "d15785d70444c186c2563657d83969d8714bd85b8dcb978fac5babcef2c72ceb",
+          "physical_model_root": "6a4721714cd86f29b67dbf9aec00fb9fea56cc4468a7489930a64685f628db62",
+          "assumptions": {
+            "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+            "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+            "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+            "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+            "units": {
+              "P1": "Pa",
+              "P2": "Pa",
+              "beta": "Pa*s^2/m^6",
+              "A1": "1",
+              "A2": "1",
+              "B1": "1",
+              "B2": "1",
+              "Q": "m^3/s"
+            },
+            "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+          }
+        },
+        "derivation": {
+          "schema": "oma.native-two-sink-pressure-derivation/1",
+          "network": {
+            "schema": "oma-physical-network/1",
+            "network_id": "example-shared-two-sink-network",
+            "system_type": "PRESSURE_PIPE",
+            "components": [
+              {
+                "id": "trunk",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    -1.0,
+                    4.0,
+                    3.0
+                  ],
+                  "end_m": [
+                    -0.2,
+                    4.0,
+                    3.0
+                  ]
+                }
+              },
+              {
+                "id": "junction",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE",
+                  "branch": "SOURCE"
+                },
+                "kind": "tee",
+                "geometry": {
+                  "frame_m": [
+                    [
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      1.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0,
+                      3.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "trunk_takeout_m": 0.2,
+                  "branch_takeout_m": 0.2
+                }
+              },
+              {
+                "id": "arm-a",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    0.2,
+                    4.0,
+                    3.0
+                  ],
+                  "end_m": [
+                    1.0,
+                    4.0,
+                    3.0
+                  ]
+                }
+              },
+              {
+                "id": "arm-b",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    0.0,
+                    4.2,
+                    3.0
+                  ],
+                  "end_m": [
+                    0.0,
+                    5.0,
+                    3.0
+                  ]
+                }
+              }
+            ],
+            "connections": [
+              {
+                "source": {
+                  "component": "trunk",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "junction",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "junction",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "arm-a",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "junction",
+                  "port": "branch"
+                },
+                "sink": {
+                  "component": "arm-b",
+                  "port": "a"
+                }
+              }
+            ],
+            "source": {
+              "component": "trunk",
+              "port": "a"
+            },
+            "sinks": [
+              {
+                "id": "sink-a",
+                "endpoint": {
+                  "component": "arm-a",
+                  "port": "b"
+                }
+              },
+              {
+                "id": "sink-b",
+                "endpoint": {
+                  "component": "arm-b",
+                  "port": "b"
+                }
+              }
+            ],
+            "demand_paths": [
+              {
+                "demand_id": "demand-a",
+                "sink_id": "sink-a",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "junction",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "arm-a",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              },
+              {
+                "demand_id": "demand-b",
+                "sink_id": "sink-b",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "junction",
+                    "entry_port": "a",
+                    "exit_port": "branch"
+                  },
+                  {
+                    "component": "arm-b",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              }
+            ]
+          },
+          "boundary": {
+            "schema": "oma.two-sink-pressure-boundary/1",
+            "source_total_pressure_pa": 200.0,
+            "sink_total_pressures_pa": {
+              "sink-a": 100.0,
+              "sink-b": 90.0
+            },
+            "density_kg_m3": 1000.0,
+            "darcy_friction": 0.02,
+            "maximum_velocity_m_s": 100.0,
+            "gravity_m_s2": 9.80665,
+            "elbow_loss_coefficient": 0.2,
+            "tee_straight_loss_coefficient": 0.2,
+            "tee_branch_loss_coefficient": 0.2,
+            "applicability": "Synthetic bounded coefficient audit; no native dimensional correspondence asserted",
+            "boundary_control_assumption": "Synthetic fixed total pressures",
+            "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+            "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+            "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+            "friction_convention": "DARCY",
+            "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+            "tee_loss_reference": "INLET_VELOCITY_TOTAL_IRREVERSIBLE_LOSS",
+            "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+          },
+          "partition": {
+            "tee": "junction",
+            "common_trunk": [
+              "trunk"
+            ],
+            "branches": {
+              "sink-a": [
+                "arm-a"
+              ],
+              "sink-b": [
+                "arm-b"
+              ]
+            },
+            "tee_exit_ports": {
+              "sink-a": "b",
+              "sink-b": "branch"
+            },
+            "component_ids": [
+              "arm-a",
+              "arm-b",
+              "junction",
+              "trunk"
+            ]
+          },
+          "component_lengths_m": {
+            "arm-a": {
+              "lower": "297/500",
+              "upper": "303/500"
+            },
+            "arm-b": {
+              "lower": "1089/1000",
+              "upper": "1111/1000"
+            },
+            "junction": {
+              "lower": "297/500",
+              "upper": "303/500"
+            },
+            "trunk": {
+              "lower": "99/125",
+              "upper": "101/125"
+            }
+          },
+          "terminal_positions_m": {
+            "source": [
+              {
+                "lower": "-1",
+                "upper": "-1"
+              },
+              {
+                "lower": "4",
+                "upper": "4"
+              },
+              {
+                "lower": "3",
+                "upper": "3"
+              }
+            ],
+            "sinks": {
+              "sink-a": [
+                {
+                  "lower": "1",
+                  "upper": "1"
+                },
+                {
+                  "lower": "4",
+                  "upper": "4"
+                },
+                {
+                  "lower": "3",
+                  "upper": "3"
+                }
+              ],
+              "sink-b": [
+                {
+                  "lower": "0",
+                  "upper": "0"
+                },
+                {
+                  "lower": "5",
+                  "upper": "5"
+                },
+                {
+                  "lower": "3",
+                  "upper": "3"
+                }
+              ]
+            }
+          },
+          "reference_section_area_m2": {
+            "lower": "22792980438273398175749826186994191266184145556342642580289816332656445640720023062956728147291642026341504755706944651796062415837472741333294756644030470198331816457/2902092403638469036501200715084511364305422144469870619848192879965561427879938578972549284456451779854194101881133160577230507607617155940715747419744729995727539062500",
+            "upper": "2493936166019655443679844779830774955746363756617414191826473124021968745332671964115013364887371154499745432494759611478088240137280827400567212193683565341844271/317537814862142320304835427763487964617371691723476328741639773459581571125323718397409587154511013884363248835928682159060427383057145789280184544622898101806640625"
+          },
+          "reference_diameter_m": "1/10",
+          "component_outer_radii_m": {
+            "arm-a": {
+              "lower": "13801/200000",
+              "upper": "13999/200000"
+            },
+            "arm-b": {
+              "lower": "7049/100000",
+              "upper": "7151/100000"
+            },
+            "junction": {
+              "lower": "13999/200000",
+              "upper": "14201/200000"
+            },
+            "trunk": {
+              "lower": "6851/100000",
+              "upper": "6949/100000"
+            }
+          },
+          "component_hydraulic_diameters_m": {
+            "arm-a": {
+              "lower": "9801/100000",
+              "upper": "9999/100000"
+            },
+            "arm-b": {
+              "lower": "5049/50000",
+              "upper": "5151/50000"
+            },
+            "junction": {
+              "lower": "9999/100000",
+              "upper": "10201/100000"
+            },
+            "trunk": {
+              "lower": "4851/50000",
+              "upper": "4949/50000"
+            }
+          },
+          "component_section_areas_m2": {
+            "arm-a": {
+              "lower": "243276067389038639741850686593557044705259312740910807283138913475362382036194974237602354010478262631688492952534619575623743226271523597872500259846407333232682794940517073/32245471151538544850013341278716792936726912716331895776091031999617349198665984210806103160627241998379934465345924006413672306751301732674619415774941444396972656250000000000",
+              "upper": "27704860041397924142085147196369517767366267125885869724024997196243284353369920922765666704050303657139522537841277605593208191890397473421059697299077228506795061824919/3528197942912692447831504752927644051304129908038625874907108593995350790281374648860106523939011265381813875954763135100671415367301619880890939384698867797851562500000000"
+            },
+            "arm-b": {
+              "lower": "3797698021683798783848908789798411166197803780161142078800148327898219003319848082680661173717291519502942497881623997048304531539592195742729572467758424853035452262615969/474198105169684483088431489392894013775395775240174937883691647053196311745088003100089752362165323505587271549204764800201063334577966656979697290807962417602539062500000000",
+              "upper": "432490928102630588076627642183913500500667163581322116903971489748517753909355974000933272698673243499882353666943727543695628339886829245324164236992022850886607944007/51885263866363124232816246366583000754472498647626851101575126382284570445314333071472154763808989196791380528746516692656932578930906174718984402716159820556640625000000"
+            },
+            "junction": {
+              "lower": "253204689667950531987207310880611714420809126545253662391113157469867529757292616283826304791438501898362852424120564665946108014610326723997283455840547006051076134189186273/32245471151538544850013341278716792936726912716331895776091031999617349198665984210806103160627241998379934465345924006413672306751301732674619415774941444396972656250000000000",
+              "upper": "259519997504407919351157563406947154035723866805474524384553715701448800448784722987265900870539162173076464103323115569014064982069737948914811728326801476582016919812671/31753781486214232030483542776348796461737169172347632874163977345958157112532371839740958715451101388436324883592868215906042738305714578928018454462289810180664062500000000"
+            },
+            "trunk": {
+              "lower": "1216256229166706800056186475164197040154852191031999750726844889326880595834461150662433970667629310167609035269278273564489686571503382950285941509282109920253184057961977/164517709956829310459251741217942821105749554675162733551484857140904842850336654136765832452179806114183339108907775542926899524241335370788874570280313491821289062500000000",
+              "upper": "1246591498648758753867926733353633030854864177381457866370270764569257055385790748590925315425587584205543254687073097037710928744379684295346120447800536452555517015079/162009089215378734849405830491575492151720250879324657521244782377337536288430468570106932221689292798144514712208511305643075195437319280244992114603519439697265625000000"
+            }
+          },
+          "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+          "native_inner_bore_or_wall_thickness_measured": false,
+          "section_model_scope": "Ideal circular bore from native outer envelope minus declared insulation; unchanged section-correspondence gates and declared loss applicability remain prerequisites; no reducer or unmodeled junction-loss authorization",
+          "elevation_pressure_pa": {
+            "sink-a": {
+              "lower": "0",
+              "upper": "0"
+            },
+            "sink-b": {
+              "lower": "0",
+              "upper": "0"
+            }
+          },
+          "parameters": {
+            "beta": {
+              "lower": "50415131933712086118129945592075600256577797532527653009122672288237521076655524668134218268658435467032787581785235163381003913064796722137453938603871209174217608960421717382358222405026247891918398044235984500022894697509276516500508556658819221932291696394539778722550772737285149007347567762238327304658014327287673950195312500/6219717600180818399704268379838805593985623809479737381412754678798179217553529867039075435475798818121507590128631028019468514407868970462220900796834991038587760381274718869711303592632112506226351927172771161072045320378796375233264957926300808152769060048461197041806306012633290439434052102330628813363281069735615521441",
+              "upper": "4211070159628053345084685650910313718846050684873720443126146738459459236590880493249970808697825349616011518775458803130792610375747367370203153935774578108025745636618828965867988710925297752411120210063633164027309197231778524049823703028757336222145998436573515141994665032920094900790943144575084744474224862642586231231689453125000000/519519957259513790387376095086620795947276441709178575421163285940078923793841519508083213598713427654213001425567634989854826125277299918293322464557495835728745747033841828349408425403653591695687246871941989887246739313715819303735939216247567454608196234746044753228690410412665709627340478917192564029564960846398999133136032849"
+            },
+            "P1": {
+              "lower": "100",
+              "upper": "100"
+            },
+            "A1": {
+              "lower": "1074949493000000000000000/3058802175536116276394449",
+              "upper": "108480601807000000000000000/279538653089307216579009651"
+            },
+            "B1": {
+              "lower": "40000000000000000/336532020198653367",
+              "upper": "4040000000000000000/30146069166960149667"
+            },
+            "P2": {
+              "lower": "110",
+              "upper": "110"
+            },
+            "A2": {
+              "lower": "1074949493000000000000000/3058802175536116276394449",
+              "upper": "108480601807000000000000000/279538653089307216579009651"
+            },
+            "B2": {
+              "lower": "75625000000000000/402916673710305639",
+              "upper": "63125000000000000/298286891513863659"
+            }
+          },
+          "tee_darcy_length_charged": false,
+          "coefficient_uncertainty": "CARTESIAN_OUTER_BOX_CONTAINS_CORRELATED_NATIVE_METRIC_MODEL",
+          "native_metric_bounds_are_supplied": true,
+          "native_geometry_rechecked_by_this_function": false
+        },
+        "producer": {
+          "status": "CERTIFIED",
+          "model_root": "f6046a9ed50e47d6a1909ad844b38735f84a690a0a8674e69c0aab89f480bd84",
+          "certificate": {
+            "accuracy": {
+              "achieved_split_width": "133769/524288",
+              "branch_flow_widths_m3_s": {
+                "sink-a": "31649277548029588952795/19342813113834066795298816",
+                "sink-b": "32821442992833076111391/19342813113834066795298816"
+              },
+              "flow_accuracy_target": "NOT_REQUESTED",
+              "includes_parameter_uncertainty": true,
+              "requested_split_width": "1/1000000",
+              "target_split_width_met": false,
+              "total_flow_width_m3_s": "8850272151275159/18446744073709551616"
+            },
+            "branch_ids": [
+              "sink-a",
+              "sink-b"
+            ],
+            "correlation": {
+              "branch_ids": [
+                "sink-a",
+                "sink-b"
+              ],
+              "conservation": "Q=q1+q2",
+              "marginal_intervals_are_independent": false,
+              "parameterization": "q1=t*Q;q2=(1-t)*Q",
+              "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+            },
+            "enclosures": {
+              "branch_flows_m3_s": {
+                "sink-a": {
+                  "lower": "32014630591570670524695/19342813113834066795298816",
+                  "upper": "31831954069800129738745/9671406556917033397649408"
+                },
+                "sink-b": {
+                  "lower": "45089514830616933323835/19342813113834066795298816",
+                  "upper": "38955478911725004717613/9671406556917033397649408"
+                }
+              },
+              "split_fraction": {
+                "lower": "324297/1048576",
+                "upper": "591835/1048576"
+              },
+              "total_flow_m3_s": {
+                "lower": "98720094825331935/18446744073709551616",
+                "upper": "53785183488303547/9223372036854775808"
+              },
+              "total_flow_squared_m6_s2": {
+                "lower": "620528260345772296433114570686214847573861568460897049612918396985104148943220969474016934475207561536354196690451862711330534101308817238437973088323807313455436984997337188413951654948469081892383667297396958625039104273361644472704352502355307603570677611635100757047646776591899393504461371680713360272530131916310832823702093759772147430263669481012147385245892608/21666555935785940154583038609070079848422106840597254076826797208275119390121536252735687162290213777276050693804547778896375168476959808455627245867667737874689873470195189901736486362483041255606077167412162467678182751267658517456173784381375946924521108459030371476917480370583579358316699948771291746643770207943839542042040375614819769367613844224251806735992431640625",
+                "upper": "486587045042880050246498863742866425567779036047377896252511846208374972746126269326674148437340143307216328058643660471040918733420207617336060933936101618566936347907900634403672462174392258335731817630155635312819553635405763290030626050716048661552297719997561956847238751442071835487537438684779644289711959623753403928737336048825170001113213751525376/14309178014093053977499453241543772679373754697747507074823961762056265101209509865878443766926053544750503767837027369638939614243950613873916233206484048995882175099550931727530010636504274798733027335670669226156707716197518311888981572674740149925232511152748587630104252007451630326980803281954530457976596577774372302804817280730276252143085002899169921875"
+              }
+            },
+            "model_root": "f6046a9ed50e47d6a1909ad844b38735f84a690a0a8674e69c0aab89f480bd84",
+            "physical_acceptance_authority": false,
+            "query_root": "f76a4e53f5010274f8ccec13c3bda84c09211d84bdcd224cc8fc99ec2077adf4",
+            "regime_proof": {
+              "g_at_one": {
+                "lower": "375963332501349563270000000000000000/29088904335473197769405592465930051",
+                "upper": "186822950329312514154847673810000000000000000/8382805631978176571769573658337540378908953"
+              },
+              "g_at_zero": {
+                "lower": "-213900090857807539981605074867500000000000000/10036406519661628264161804661361224794717801",
+                "upper": "-42145022470308771840825347500000000000000/3754734949368360742297719663808913129337"
+              },
+              "strict_derivative_lower_bound": "800000000000000000/30593820018059397"
+            },
+            "schema": "oma.two-sink-pressure-certificate/1",
+            "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+          },
+          "certificate_root": "75cc5808c5ef96e84254f7be9a56d89ef548a8db846a0632490b2eb2cb7bbeac",
+          "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+          "work": 1302,
+          "physical_acceptance_authority": false,
+          "infeasibility_claim": false
+        },
+        "independent_check": {
+          "status": "PASS",
+          "model_root": "f6046a9ed50e47d6a1909ad844b38735f84a690a0a8674e69c0aab89f480bd84",
+          "certificate_root": "75cc5808c5ef96e84254f7be9a56d89ef548a8db846a0632490b2eb2cb7bbeac",
+          "enclosures": {
+            "branch_flows_m3_s": {
+              "sink-a": {
+                "lower": "32014630591570670524695/19342813113834066795298816",
+                "upper": "31831954069800129738745/9671406556917033397649408"
+              },
+              "sink-b": {
+                "lower": "45089514830616933323835/19342813113834066795298816",
+                "upper": "38955478911725004717613/9671406556917033397649408"
+              }
+            },
+            "split_fraction": {
+              "lower": "324297/1048576",
+              "upper": "591835/1048576"
+            },
+            "total_flow_m3_s": {
+              "lower": "98720094825331935/18446744073709551616",
+              "upper": "53785183488303547/9223372036854775808"
+            },
+            "total_flow_squared_m6_s2": {
+              "lower": "620528260345772296433114570686214847573861568460897049612918396985104148943220969474016934475207561536354196690451862711330534101308817238437973088323807313455436984997337188413951654948469081892383667297396958625039104273361644472704352502355307603570677611635100757047646776591899393504461371680713360272530131916310832823702093759772147430263669481012147385245892608/21666555935785940154583038609070079848422106840597254076826797208275119390121536252735687162290213777276050693804547778896375168476959808455627245867667737874689873470195189901736486362483041255606077167412162467678182751267658517456173784381375946924521108459030371476917480370583579358316699948771291746643770207943839542042040375614819769367613844224251806735992431640625",
+              "upper": "486587045042880050246498863742866425567779036047377896252511846208374972746126269326674148437340143307216328058643660471040918733420207617336060933936101618566936347907900634403672462174392258335731817630155635312819553635405763290030626050716048661552297719997561956847238751442071835487537438684779644289711959623753403928737336048825170001113213751525376/14309178014093053977499453241543772679373754697747507074823961762056265101209509865878443766926053544750503767837027369638939614243950613873916233206484048995882175099550931727530010636504274798733027335670669226156707716197518311888981572674740149925232511152748587630104252007451630326980803281954530457976596577774372302804817280730276252143085002899169921875"
+            }
+          },
+          "accuracy": {
+            "requested_split_width": "1/1000000",
+            "achieved_split_width": "133769/524288",
+            "target_split_width_met": false,
+            "total_flow_width_m3_s": "8850272151275159/18446744073709551616",
+            "branch_flow_widths_m3_s": {
+              "sink-a": "31649277548029588952795/19342813113834066795298816",
+              "sink-b": "32821442992833076111391/19342813113834066795298816"
+            },
+            "flow_accuracy_target": "NOT_REQUESTED",
+            "includes_parameter_uncertainty": true
+          },
+          "correlation": {
+            "branch_ids": [
+              "sink-a",
+              "sink-b"
+            ],
+            "parameterization": "q1=t*Q;q2=(1-t)*Q",
+            "conservation": "Q=q1+q2",
+            "marginal_intervals_are_independent": false,
+            "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+          },
+          "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+          "work": 450,
+          "physical_acceptance_authority": false,
+          "infeasibility_claim": false
+        },
+        "operating_point_status": "PASS",
+        "scope": "Unique forward operating point for each admitted fixed-loss model; supplied total-pressure boundaries and native metric enclosures",
+        "catalog_and_boundary_applicability": "DECLARED_ASSUMPTIONS",
+        "general_nonlinear_network_solution": false,
+        "verdict": "PASS",
+        "deliveries": {
+          "sink-a": {
+            "required_minimum_flow_m3_s": "1/1000000",
+            "flow_m3_s": {
+              "lower": "32014630591570670524695/19342813113834066795298816",
+              "upper": "31831954069800129738745/9671406556917033397649408"
+            },
+            "status": "PASS"
+          },
+          "sink-b": {
+            "required_minimum_flow_m3_s": "1/1000000",
+            "flow_m3_s": {
+              "lower": "45089514830616933323835/19342813113834066795298816",
+              "upper": "38955478911725004717613/9671406556917033397649408"
+            },
+            "status": "PASS"
+          }
+        },
+        "component_velocities": {
+          "trunk": {
+            "a": {
+              "velocity_m_s": {
+                "lower": "249899260154810156869540350334194476143876368197923454436461921851899451566627436605750604326559896113547226747621623761815091767162753138352872771255075434737591422162950038909912109375/359305536563057797876220810679539299830619739122585551485727223863157166559514689180566781140830531593461388207288662734675940978374123058878479449427208011491663179483388582883309387776",
+                "upper": "4937843313115830289649351626837344709462378202843807377454937811639724674656089345787185092456924506452554127707406882189025524567516159867136729184899923694729295675642788410186767578125/6260035543385400381066003647069187906398092224412638788349832459548215836102478794404129087641935358447526111566182805160418555578649960228733306393252419954340827504016033917852868149248"
+              },
+              "status": "PASS"
+            },
+            "b": {
+              "velocity_m_s": {
+                "lower": "249899260154810156869540350334194476143876368197923454436461921851899451566627436605750604326559896113547226747621623761815091767162753138352872771255075434737591422162950038909912109375/359305536563057797876220810679539299830619739122585551485727223863157166559514689180566781140830531593461388207288662734675940978374123058878479449427208011491663179483388582883309387776",
+                "upper": "4937843313115830289649351626837344709462378202843807377454937811639724674656089345787185092456924506452554127707406882189025524567516159867136729184899923694729295675642788410186767578125/6260035543385400381066003647069187906398092224412638788349832459548215836102478794404129087641935358447526111566182805160418555578649960228733306393252419954340827504016033917852868149248"
+              },
+              "status": "PASS"
+            }
+          },
+          "junction": {
+            "a": {
+              "velocity_m_s": {
+                "lower": "12245063747585697686607477166375529331049942041698249267386634170743073126764744393681779612001434909563814110633459564328939496590974903779290765791498696302141979685984551906585693359375/18700386624896696919057798417050920395776285504028036789315833727694215592212292573117151706212307412167855209706896166104230989389767496549078412569423208802175796397500239459146117677056",
+                "upper": "1693680256398729789349727608005209235345595723575425930467043669392425563407038645605004486712725105713226065803640560590835754926658042834427898110420673827292148416745476424694061279296875/2280665092074088188830510828705456636898819242186904581427022889994691062288620935061304315108406521125829066574522528408622488766350294439046730661341711998365385048873841499857753856802816"
+              },
+              "status": "PASS"
+            },
+            "b": {
+              "velocity_m_s": {
+                "lower": "3971037438150799002673745022624085035471503054296617142665683301669466385790426312637820082833229336866816224636099036333182091925963388370912657473885652714695737586225732229650020599365234375/19608776605587678868597950032957585904921514348671702704393639666850689808819596897148890467493276457021320944373618354268910113930364842461446445538395510592950287883305211091113599489336672256",
+                "upper": "1002379254545742244879796038883763007800760645062262205557962790074866183319004716821637830393625662939787148654897611177277279017018662780913635078180819494575448658224559039808809757232666015625/2391450679586679096691141722720652898492816285695375658374421953899073175330352985602842233519112476296037339312446534748599734780664526341717864649947047000397981993007937224554844108150869590016"
+              },
+              "status": "PASS"
+            },
+            "branch": {
+              "velocity_m_s": {
+                "lower": "5592822661136039147078785728447525642193081578067300068635438677779361962991656119114609701765147382029086020704836954871164154612458468527057043658374906047736629943756270222365856170654296875/19608776605587678868597950032957585904921514348671702704393639666850689808819596897148890467493276457021320944373618354268910113930364842461446445538395510592950287883305211091113599489336672256",
+                "upper": "1226697042424215613100431362198404939766872725075485917492739921823876594638886543200147044631805826840869661714194981584169929742524960606076603615517375218957329963131996919400990009307861328125/2391450679586679096691141722720652898492816285695375658374421953899073175330352985602842233519112476296037339312446534748599734780664526341717864649947047000397981993007937224554844108150869590016"
+              },
+              "status": "PASS"
+            }
+          },
+          "arm-a": {
+            "a": {
+              "velocity_m_s": {
+                "lower": "49025153557417271637947469415112160931746951287612557316860287674931683775190448304170618306583078232923657094272827609051630764518066523097687129307230280428342439336120150983333587646484375/232591115505941490353921375746286432163072565061197532323461464531804084586527911435645107986147088648130559187256918034167054581469870202709050084319758531687774221535136804433363938654027776",
+                "upper": "1002379254545742244879796038883763007800760645062262205557962790074866183319004716821637830393625662939787148654897611177277279017018662780913635078180819494575448658224559039808809757232666015625/2297677493444666388262903639288806887376540772091008413658240326454741318636681659826826461201923476147187723027280510447115576961601119760334946714452603436025940742424349841962751407115642863616"
+              },
+              "status": "PASS"
+            },
+            "b": {
+              "velocity_m_s": {
+                "lower": "49025153557417271637947469415112160931746951287612557316860287674931683775190448304170618306583078232923657094272827609051630764518066523097687129307230280428342439336120150983333587646484375/232591115505941490353921375746286432163072565061197532323461464531804084586527911435645107986147088648130559187256918034167054581469870202709050084319758531687774221535136804433363938654027776",
+                "upper": "1002379254545742244879796038883763007800760645062262205557962790074866183319004716821637830393625662939787148654897611177277279017018662780913635078180819494575448658224559039808809757232666015625/2297677493444666388262903639288806887376540772091008413658240326454741318636681659826826461201923476147187723027280510447115576961601119760334946714452603436025940742424349841962751407115642863616"
+              },
+              "status": "PASS"
+            }
+          },
+          "arm-b": {
+            "a": {
+              "velocity_m_s": {
+                "lower": "36554396478013327758684874042140690471850206392596732474741429266531777535893177249115096089968283542673764841208084672360550030146787375993836886656045137566906078063766472041606903076171875/130712362433091085488154161576425432951148218381499439652854376761675022742842132046478242504611587008866760534987358895234377781321910527142276080444161819460897909623052088441890477921271808",
+                "upper": "72158649554365624300025374246964996456874866180910936323102348342580976155228620188243943801870930990639391865540881269657054690736762388592741389148080895232784115478352759964764118194580078125/143472974797279443895204267650724397007901535814681884415757889989827740741317128437304131645299170227739912916304017181270761463167012069515864441306498653489223113392888695365901832583896891392"
+              },
+              "status": "PASS"
+            },
+            "b": {
+              "velocity_m_s": {
+                "lower": "36554396478013327758684874042140690471850206392596732474741429266531777535893177249115096089968283542673764841208084672360550030146787375993836886656045137566906078063766472041606903076171875/130712362433091085488154161576425432951148218381499439652854376761675022742842132046478242504611587008866760534987358895234377781321910527142276080444161819460897909623052088441890477921271808",
+                "upper": "72158649554365624300025374246964996456874866180910936323102348342580976155228620188243943801870930990639391865540881269657054690736762388592741389148080895232784115478352759964764118194580078125/143472974797279443895204267650724397007901535814681884415757889989827740741317128437304131645299170227739912916304017181270761463167012069515864441306498653489223113392888695365901832583896891392"
+              },
+              "status": "PASS"
+            }
+          }
+        },
+        "source_flow_m3_s": {
+          "lower": "98720094825331935/18446744073709551616",
+          "upper": "53785183488303547/9223372036854775808"
+        },
+        "unique_physical_components": 4,
+        "conservation": "Q=q1+q2 in the independently checked parametric relation",
+        "input_binding": "UNCHANGED_AFTER_FINAL_CHECKPOINT"
+      }
+    },
+    {
+      "kind": "common_elbow",
+      "scenario": {
+        "mission_type": "shared_network",
+        "system_type": "PRESSURE_PIPE",
+        "start_m": [
+          -0.8,
+          3.4,
+          3
+        ],
+        "sinks": [
+          {
+            "id": "sink-a",
+            "demand_id": "demand-a",
+            "end_m": [
+              1,
+              4,
+              3
+            ],
+            "required_flow_m3_s": 1e-06
+          },
+          {
+            "id": "sink-b",
+            "demand_id": "demand-b",
+            "end_m": [
+              0,
+              5,
+              3
+            ],
+            "required_flow_m3_s": 1e-06
+          }
+        ],
+        "diameter_m": 0.1,
+        "insulation_m": 0.02,
+        "clearance_m": 0.01,
+        "minimum_straight_m": 0.05,
+        "minimum_bend_radius_m": 0.1,
+        "allowed_zone": {
+          "min": [
+            -2,
+            3,
+            2
+          ],
+          "max": [
+            2,
+            6,
+            4
+          ]
+        },
+        "scenario_terminals": true,
+        "target_modality": "ENGINEERING_SERVICE",
+        "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+        "network_alternatives": [
+          {
+            "schema": "oma-physical-network/1",
+            "network_id": "example-shared-two-sink-network",
+            "system_type": "PRESSURE_PIPE",
+            "components": [
+              {
+                "id": "trunk",
+                "kind": "elbow",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "geometry": {
+                  "center_m": [
+                    -0.2,
+                    3.4,
+                    3
+                  ],
+                  "start_m": [
+                    -0.8,
+                    3.4,
+                    3
+                  ],
+                  "end_m": [
+                    -0.2,
+                    4,
+                    3
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    -1
+                  ],
+                  "bend_radius_m": 0.6,
+                  "angle_rad": 1.5707963267948966
+                },
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                }
+              },
+              {
+                "id": "junction",
+                "kind": "tee",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "geometry": {
+                  "frame_m": [
+                    [
+                      1,
+                      0,
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      1,
+                      0,
+                      4
+                    ],
+                    [
+                      0,
+                      0,
+                      1,
+                      3
+                    ],
+                    [
+                      0,
+                      0,
+                      0,
+                      1
+                    ]
+                  ],
+                  "trunk_takeout_m": 0.2,
+                  "branch_takeout_m": 0.2
+                },
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE",
+                  "branch": "SOURCE"
+                }
+              },
+              {
+                "id": "arm-a",
+                "kind": "segment",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "geometry": {
+                  "start_m": [
+                    0.2,
+                    4,
+                    3
+                  ],
+                  "end_m": [
+                    1,
+                    4,
+                    3
+                  ]
+                },
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                }
+              },
+              {
+                "id": "arm-b",
+                "kind": "segment",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "geometry": {
+                  "start_m": [
+                    0,
+                    4.2,
+                    3
+                  ],
+                  "end_m": [
+                    0,
+                    5,
+                    3
+                  ]
+                },
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                }
+              }
+            ],
+            "connections": [
+              {
+                "source": {
+                  "component": "trunk",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "junction",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "junction",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "arm-a",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "junction",
+                  "port": "branch"
+                },
+                "sink": {
+                  "component": "arm-b",
+                  "port": "a"
+                }
+              }
+            ],
+            "source": {
+              "component": "trunk",
+              "port": "a"
+            },
+            "sinks": [
+              {
+                "id": "sink-a",
+                "endpoint": {
+                  "component": "arm-a",
+                  "port": "b"
+                }
+              },
+              {
+                "id": "sink-b",
+                "endpoint": {
+                  "component": "arm-b",
+                  "port": "b"
+                }
+              }
+            ],
+            "demand_paths": [
+              {
+                "demand_id": "demand-a",
+                "sink_id": "sink-a",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "junction",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "arm-a",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              },
+              {
+                "demand_id": "demand-b",
+                "sink_id": "sink-b",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "junction",
+                    "entry_port": "a",
+                    "exit_port": "branch"
+                  },
+                  {
+                    "component": "arm-b",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "pressure_driven": {
+          "source_total_pressure_pa": 200.0,
+          "sink_total_pressures_pa": {
+            "sink-a": 100.0,
+            "sink-b": 90.0
+          },
+          "density_kg_m3": 1000.0,
+          "darcy_friction": 0.02,
+          "maximum_velocity_m_s": 100.0,
+          "gravity_m_s2": 9.80665,
+          "elbow_loss_coefficient": 0.2,
+          "tee_straight_loss_coefficient": 0.2,
+          "tee_branch_loss_coefficient": 0.2,
+          "applicability": "Synthetic bounded coefficient audit; no native dimensional correspondence asserted",
+          "boundary_control_assumption": "Synthetic fixed total pressures",
+          "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+          "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+          "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+          "friction_convention": "DARCY",
+          "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+          "tee_loss_reference": "INLET_VELOCITY_TOTAL_IRREVERSIBLE_LOSS",
+          "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+        }
+      },
+      "outer_radius_intervals": {
+        "trunk": {
+          "lower": "6851/100000",
+          "upper": "6949/100000",
+          "arithmetic": "exact_rational_enclosure"
+        },
+        "junction": {
+          "lower": "13999/200000",
+          "upper": "14201/200000",
+          "arithmetic": "exact_rational_enclosure"
+        },
+        "arm-a": {
+          "lower": "13801/200000",
+          "upper": "13999/200000",
+          "arithmetic": "exact_rational_enclosure"
+        },
+        "arm-b": {
+          "lower": "7049/100000",
+          "upper": "7151/100000",
+          "arithmetic": "exact_rational_enclosure"
+        }
+      },
+      "length_intervals": {
+        "trunk": {
+          "lower": "933053018116168521/1000000000000000000",
+          "upper": "951902574037707279/1000000000000000000",
+          "arithmetic": "exact_rational_enclosure"
+        },
+        "junction": {
+          "lower": "297/500",
+          "upper": "303/500",
+          "arithmetic": "exact_rational_enclosure"
+        },
+        "arm-a": {
+          "lower": "297/500",
+          "upper": "303/500",
+          "arithmetic": "exact_rational_enclosure"
+        },
+        "arm-b": {
+          "lower": "1089/1000",
+          "upper": "1111/1000",
+          "arithmetic": "exact_rational_enclosure"
+        }
+      },
+      "original_equation_samples": 160,
+      "corner_cases": 128,
+      "interior_cases": 32,
+      "maximum_pressure_residual_pa": "1.451654112E-89",
+      "adapter_result": {
+        "model": "one_tee_two_outlet_pressure_driven",
+        "model_input": {
+          "schema": "oma.two-sink-pressure-model/1",
+          "branch_ids": [
+            "sink-a",
+            "sink-b"
+          ],
+          "parameters": {
+            "beta": {
+              "lower": "50415131933712086118129945592075600256577797532527653009122672288237521076655524668134218268658435467032787581785235163381003913064796722137453938603871209174217608960421717382358222405026247891918398044235984500022894697509276516500508556658819221932291696394539778722550772737285149007347567762238327304658014327287673950195312500/6219717600180818399704268379838805593985623809479737381412754678798179217553529867039075435475798818121507590128631028019468514407868970462220900796834991038587760381274718869711303592632112506226351927172771161072045320378796375233264957926300808152769060048461197041806306012633290439434052102330628813363281069735615521441",
+              "upper": "4211070159628053345084685650910313718846050684873720443126146738459459236590880493249970808697825349616011518775458803130792610375747367370203153935774578108025745636618828965867988710925297752411120210063633164027309197231778524049823703028757336222145998436573515141994665032920094900790943144575084744474224862642586231231689453125000000/519519957259513790387376095086620795947276441709178575421163285940078923793841519508083213598713427654213001425567634989854826125277299918293322464557495835728745747033841828349408425403653591695687246871941989887246739313715819303735939216247567454608196234746044753228690410412665709627340478917192564029564960846398999133136032849"
+            },
+            "P1": {
+              "lower": "100",
+              "upper": "100"
+            },
+            "A1": {
+              "lower": "14425190921090532716774105/24470417404288930211155592",
+              "upper": "482504872501160014288931465/745436408238152577544025736"
+            },
+            "B1": {
+              "lower": "40000000000000000/336532020198653367",
+              "upper": "4040000000000000000/30146069166960149667"
+            },
+            "P2": {
+              "lower": "110",
+              "upper": "110"
+            },
+            "A2": {
+              "lower": "14425190921090532716774105/24470417404288930211155592",
+              "upper": "482504872501160014288931465/745436408238152577544025736"
+            },
+            "B2": {
+              "lower": "75625000000000000/402916673710305639",
+              "upper": "63125000000000000/298286891513863659"
+            }
+          },
+          "context_root": "08928f25625fd625f53a7d451e9c5f0b6f7a556aae01c539d053243eff8da5a4",
+          "physical_model_root": "df1e63a423abe354bf8c6cf9c75e38732c075be575b6be25924ababbcedffa31",
+          "assumptions": {
+            "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+            "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+            "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+            "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+            "units": {
+              "P1": "Pa",
+              "P2": "Pa",
+              "beta": "Pa*s^2/m^6",
+              "A1": "1",
+              "A2": "1",
+              "B1": "1",
+              "B2": "1",
+              "Q": "m^3/s"
+            },
+            "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+          }
+        },
+        "derivation": {
+          "schema": "oma.native-two-sink-pressure-derivation/1",
+          "network": {
+            "schema": "oma-physical-network/1",
+            "network_id": "example-shared-two-sink-network",
+            "system_type": "PRESSURE_PIPE",
+            "components": [
+              {
+                "id": "trunk",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "elbow",
+                "geometry": {
+                  "center_m": [
+                    -0.2,
+                    3.4,
+                    3.0
+                  ],
+                  "start_m": [
+                    -0.8,
+                    3.4,
+                    3.0
+                  ],
+                  "end_m": [
+                    -0.2,
+                    4.0,
+                    3.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    -1.0
+                  ],
+                  "bend_radius_m": 0.6,
+                  "angle_rad": 1.5707963267948966
+                }
+              },
+              {
+                "id": "junction",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE",
+                  "branch": "SOURCE"
+                },
+                "kind": "tee",
+                "geometry": {
+                  "frame_m": [
+                    [
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      1.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0,
+                      3.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "trunk_takeout_m": 0.2,
+                  "branch_takeout_m": 0.2
+                }
+              },
+              {
+                "id": "arm-a",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    0.2,
+                    4.0,
+                    3.0
+                  ],
+                  "end_m": [
+                    1.0,
+                    4.0,
+                    3.0
+                  ]
+                }
+              },
+              {
+                "id": "arm-b",
+                "system_type": "PRESSURE_PIPE",
+                "diameter_m": 0.1,
+                "insulation_m": 0.02,
+                "ports": {
+                  "a": "SINK",
+                  "b": "SOURCE"
+                },
+                "kind": "segment",
+                "geometry": {
+                  "start_m": [
+                    0.0,
+                    4.2,
+                    3.0
+                  ],
+                  "end_m": [
+                    0.0,
+                    5.0,
+                    3.0
+                  ]
+                }
+              }
+            ],
+            "connections": [
+              {
+                "source": {
+                  "component": "trunk",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "junction",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "junction",
+                  "port": "b"
+                },
+                "sink": {
+                  "component": "arm-a",
+                  "port": "a"
+                }
+              },
+              {
+                "source": {
+                  "component": "junction",
+                  "port": "branch"
+                },
+                "sink": {
+                  "component": "arm-b",
+                  "port": "a"
+                }
+              }
+            ],
+            "source": {
+              "component": "trunk",
+              "port": "a"
+            },
+            "sinks": [
+              {
+                "id": "sink-a",
+                "endpoint": {
+                  "component": "arm-a",
+                  "port": "b"
+                }
+              },
+              {
+                "id": "sink-b",
+                "endpoint": {
+                  "component": "arm-b",
+                  "port": "b"
+                }
+              }
+            ],
+            "demand_paths": [
+              {
+                "demand_id": "demand-a",
+                "sink_id": "sink-a",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "junction",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "arm-a",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              },
+              {
+                "demand_id": "demand-b",
+                "sink_id": "sink-b",
+                "steps": [
+                  {
+                    "component": "trunk",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  },
+                  {
+                    "component": "junction",
+                    "entry_port": "a",
+                    "exit_port": "branch"
+                  },
+                  {
+                    "component": "arm-b",
+                    "entry_port": "a",
+                    "exit_port": "b"
+                  }
+                ]
+              }
+            ]
+          },
+          "boundary": {
+            "schema": "oma.two-sink-pressure-boundary/1",
+            "source_total_pressure_pa": 200.0,
+            "sink_total_pressures_pa": {
+              "sink-a": 100.0,
+              "sink-b": 90.0
+            },
+            "density_kg_m3": 1000.0,
+            "darcy_friction": 0.02,
+            "maximum_velocity_m_s": 100.0,
+            "gravity_m_s2": 9.80665,
+            "elbow_loss_coefficient": 0.2,
+            "tee_straight_loss_coefficient": 0.2,
+            "tee_branch_loss_coefficient": 0.2,
+            "applicability": "Synthetic bounded coefficient audit; no native dimensional correspondence asserted",
+            "boundary_control_assumption": "Synthetic fixed total pressures",
+            "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+            "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+            "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+            "friction_convention": "DARCY",
+            "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+            "tee_loss_reference": "INLET_VELOCITY_TOTAL_IRREVERSIBLE_LOSS",
+            "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+          },
+          "partition": {
+            "tee": "junction",
+            "common_trunk": [
+              "trunk"
+            ],
+            "branches": {
+              "sink-a": [
+                "arm-a"
+              ],
+              "sink-b": [
+                "arm-b"
+              ]
+            },
+            "tee_exit_ports": {
+              "sink-a": "b",
+              "sink-b": "branch"
+            },
+            "component_ids": [
+              "arm-a",
+              "arm-b",
+              "junction",
+              "trunk"
+            ]
+          },
+          "component_lengths_m": {
+            "arm-a": {
+              "lower": "297/500",
+              "upper": "303/500"
+            },
+            "arm-b": {
+              "lower": "1089/1000",
+              "upper": "1111/1000"
+            },
+            "junction": {
+              "lower": "297/500",
+              "upper": "303/500"
+            },
+            "trunk": {
+              "lower": "933053018116168521/1000000000000000000",
+              "upper": "951902574037707279/1000000000000000000"
+            }
+          },
+          "terminal_positions_m": {
+            "source": [
+              {
+                "lower": "-4/5",
+                "upper": "-4/5"
+              },
+              {
+                "lower": "17/5",
+                "upper": "17/5"
+              },
+              {
+                "lower": "3",
+                "upper": "3"
+              }
+            ],
+            "sinks": {
+              "sink-a": [
+                {
+                  "lower": "1",
+                  "upper": "1"
+                },
+                {
+                  "lower": "4",
+                  "upper": "4"
+                },
+                {
+                  "lower": "3",
+                  "upper": "3"
+                }
+              ],
+              "sink-b": [
+                {
+                  "lower": "0",
+                  "upper": "0"
+                },
+                {
+                  "lower": "5",
+                  "upper": "5"
+                },
+                {
+                  "lower": "3",
+                  "upper": "3"
+                }
+              ]
+            }
+          },
+          "reference_section_area_m2": {
+            "lower": "22792980438273398175749826186994191266184145556342642580289816332656445640720023062956728147291642026341504755706944651796062415837472741333294756644030470198331816457/2902092403638469036501200715084511364305422144469870619848192879965561427879938578972549284456451779854194101881133160577230507607617155940715747419744729995727539062500",
+            "upper": "2493936166019655443679844779830774955746363756617414191826473124021968745332671964115013364887371154499745432494759611478088240137280827400567212193683565341844271/317537814862142320304835427763487964617371691723476328741639773459581571125323718397409587154511013884363248835928682159060427383057145789280184544622898101806640625"
+          },
+          "reference_diameter_m": "1/10",
+          "component_outer_radii_m": {
+            "arm-a": {
+              "lower": "13801/200000",
+              "upper": "13999/200000"
+            },
+            "arm-b": {
+              "lower": "7049/100000",
+              "upper": "7151/100000"
+            },
+            "junction": {
+              "lower": "13999/200000",
+              "upper": "14201/200000"
+            },
+            "trunk": {
+              "lower": "6851/100000",
+              "upper": "6949/100000"
+            }
+          },
+          "component_hydraulic_diameters_m": {
+            "arm-a": {
+              "lower": "9801/100000",
+              "upper": "9999/100000"
+            },
+            "arm-b": {
+              "lower": "5049/50000",
+              "upper": "5151/50000"
+            },
+            "junction": {
+              "lower": "9999/100000",
+              "upper": "10201/100000"
+            },
+            "trunk": {
+              "lower": "4851/50000",
+              "upper": "4949/50000"
+            }
+          },
+          "component_section_areas_m2": {
+            "arm-a": {
+              "lower": "243276067389038639741850686593557044705259312740910807283138913475362382036194974237602354010478262631688492952534619575623743226271523597872500259846407333232682794940517073/32245471151538544850013341278716792936726912716331895776091031999617349198665984210806103160627241998379934465345924006413672306751301732674619415774941444396972656250000000000",
+              "upper": "27704860041397924142085147196369517767366267125885869724024997196243284353369920922765666704050303657139522537841277605593208191890397473421059697299077228506795061824919/3528197942912692447831504752927644051304129908038625874907108593995350790281374648860106523939011265381813875954763135100671415367301619880890939384698867797851562500000000"
+            },
+            "arm-b": {
+              "lower": "3797698021683798783848908789798411166197803780161142078800148327898219003319848082680661173717291519502942497881623997048304531539592195742729572467758424853035452262615969/474198105169684483088431489392894013775395775240174937883691647053196311745088003100089752362165323505587271549204764800201063334577966656979697290807962417602539062500000000",
+              "upper": "432490928102630588076627642183913500500667163581322116903971489748517753909355974000933272698673243499882353666943727543695628339886829245324164236992022850886607944007/51885263866363124232816246366583000754472498647626851101575126382284570445314333071472154763808989196791380528746516692656932578930906174718984402716159820556640625000000"
+            },
+            "junction": {
+              "lower": "253204689667950531987207310880611714420809126545253662391113157469867529757292616283826304791438501898362852424120564665946108014610326723997283455840547006051076134189186273/32245471151538544850013341278716792936726912716331895776091031999617349198665984210806103160627241998379934465345924006413672306751301732674619415774941444396972656250000000000",
+              "upper": "259519997504407919351157563406947154035723866805474524384553715701448800448784722987265900870539162173076464103323115569014064982069737948914811728326801476582016919812671/31753781486214232030483542776348796461737169172347632874163977345958157112532371839740958715451101388436324883592868215906042738305714578928018454462289810180664062500000000"
+            },
+            "trunk": {
+              "lower": "1216256229166706800056186475164197040154852191031999750726844889326880595834461150662433970667629310167609035269278273564489686571503382950285941509282109920253184057961977/164517709956829310459251741217942821105749554675162733551484857140904842850336654136765832452179806114183339108907775542926899524241335370788874570280313491821289062500000000",
+              "upper": "1246591498648758753867926733353633030854864177381457866370270764569257055385790748590925315425587584205543254687073097037710928744379684295346120447800536452555517015079/162009089215378734849405830491575492151720250879324657521244782377337536288430468570106932221689292798144514712208511305643075195437319280244992114603519439697265625000000"
+            }
+          },
+          "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+          "native_inner_bore_or_wall_thickness_measured": false,
+          "section_model_scope": "Ideal circular bore from native outer envelope minus declared insulation; unchanged section-correspondence gates and declared loss applicability remain prerequisites; no reducer or unmodeled junction-loss authorization",
+          "elevation_pressure_pa": {
+            "sink-a": {
+              "lower": "0",
+              "upper": "0"
+            },
+            "sink-b": {
+              "lower": "0",
+              "upper": "0"
+            }
+          },
+          "parameters": {
+            "beta": {
+              "lower": "50415131933712086118129945592075600256577797532527653009122672288237521076655524668134218268658435467032787581785235163381003913064796722137453938603871209174217608960421717382358222405026247891918398044235984500022894697509276516500508556658819221932291696394539778722550772737285149007347567762238327304658014327287673950195312500/6219717600180818399704268379838805593985623809479737381412754678798179217553529867039075435475798818121507590128631028019468514407868970462220900796834991038587760381274718869711303592632112506226351927172771161072045320378796375233264957926300808152769060048461197041806306012633290439434052102330628813363281069735615521441",
+              "upper": "4211070159628053345084685650910313718846050684873720443126146738459459236590880493249970808697825349616011518775458803130792610375747367370203153935774578108025745636618828965867988710925297752411120210063633164027309197231778524049823703028757336222145998436573515141994665032920094900790943144575084744474224862642586231231689453125000000/519519957259513790387376095086620795947276441709178575421163285940078923793841519508083213598713427654213001425567634989854826125277299918293322464557495835728745747033841828349408425403653591695687246871941989887246739313715819303735939216247567454608196234746044753228690410412665709627340478917192564029564960846398999133136032849"
+            },
+            "P1": {
+              "lower": "100",
+              "upper": "100"
+            },
+            "A1": {
+              "lower": "14425190921090532716774105/24470417404288930211155592",
+              "upper": "482504872501160014288931465/745436408238152577544025736"
+            },
+            "B1": {
+              "lower": "40000000000000000/336532020198653367",
+              "upper": "4040000000000000000/30146069166960149667"
+            },
+            "P2": {
+              "lower": "110",
+              "upper": "110"
+            },
+            "A2": {
+              "lower": "14425190921090532716774105/24470417404288930211155592",
+              "upper": "482504872501160014288931465/745436408238152577544025736"
+            },
+            "B2": {
+              "lower": "75625000000000000/402916673710305639",
+              "upper": "63125000000000000/298286891513863659"
+            }
+          },
+          "tee_darcy_length_charged": false,
+          "coefficient_uncertainty": "CARTESIAN_OUTER_BOX_CONTAINS_CORRELATED_NATIVE_METRIC_MODEL",
+          "native_metric_bounds_are_supplied": true,
+          "native_geometry_rechecked_by_this_function": false
+        },
+        "producer": {
+          "status": "CERTIFIED",
+          "model_root": "8d28f9d16cff145410fd88d9bca199546b662fefa44a2f08c5e8bb67afa2dabe",
+          "certificate": {
+            "accuracy": {
+              "achieved_split_width": "795663/2097152",
+              "branch_flow_widths_m3_s": {
+                "sink-a": "69180689068744474002401/38685626227668133590597632",
+                "sink-b": "18141169014392863775691/9671406556917033397649408"
+              },
+              "flow_accuracy_target": "NOT_REQUESTED",
+              "includes_parameter_uncertainty": true,
+              "requested_split_width": "1/1000000",
+              "target_split_width_met": false,
+              "total_flow_width_m3_s": "6052701974517349/18446744073709551616"
+            },
+            "branch_ids": [
+              "sink-a",
+              "sink-b"
+            ],
+            "correlation": {
+              "branch_ids": [
+                "sink-a",
+                "sink-b"
+              ],
+              "conservation": "Q=q1+q2",
+              "marginal_intervals_are_independent": false,
+              "parameterization": "q1=t*Q;q2=(1-t)*Q",
+              "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+            },
+            "enclosures": {
+              "branch_flows_m3_s": {
+                "sink-a": {
+                  "lower": "28979941345355182325855/38685626227668133590597632",
+                  "upper": "1533759850220307130129/604462909807314587353088"
+                },
+                "sink-b": {
+                  "lower": "4539267754243621019265/2417851639229258349412352",
+                  "upper": "36298240031367347852751/9671406556917033397649408"
+                }
+              },
+              "split_fraction": {
+                "lower": "371201/2097152",
+                "upper": "72929/131072"
+              },
+              "total_flow_m3_s": {
+                "lower": "78070752356149855/18446744073709551616",
+                "upper": "21030863582666801/4611686018427387904"
+              },
+              "total_flow_squared_m6_s2": {
+                "lower": "9695754067902692131767415166972106993341587007201516400201849952892252327237827648031514601175118149005534323288310354864539595332950269350593329505059489272741202890583393568967994608569829404568494801521827478516236004271275694886005507849301681305791837681798449328869480884248428023507208932511146254258283311192356762870345214996439803597869835640814802894467072/541307827108489228731359126105645050092333158908131450044985153833311242158314663992142442318293992397403675137398644899692231863322728784833710510377278372496166457201966016345176487885333797277407638918725793541816999705723261563151960167900312740965415410083991908606264119599316313104402334187808894113434318467720862637547149000261104134779088781215250492095947265625",
+                "upper": "52551400864631045426621877284229573961320135893116812795271279390504497056581637087280808031232735477179363430333515330872419223209382422672294580865098974805229125574053268515596625914834363900259036304056808613784511792623822435323307613477333255447648153759736691339501785155743758232654043377956201583288891639365367624303632293273118360120227085164740608/2526908679842646987917559630414704405584958527284872250452797357633736415572065713861907983441924214511779300428745633132979201589424320798505054942639262384933985383932607873705257486829298446406326769045704112776599260246737926329175395917106773276031262696482459344657303616601516397941452842124583873673402955413450272394160212030556067475117743015289306640625"
+              }
+            },
+            "model_root": "8d28f9d16cff145410fd88d9bca199546b662fefa44a2f08c5e8bb67afa2dabe",
+            "physical_acceptance_authority": false,
+            "query_root": "e4c2ea103db21f0323130d2d4a4654a3e34fa60bdfebee9f8b1d8fd3c4729b41",
+            "regime_proof": {
+              "g_at_one": {
+                "lower": "511621764749363924632544352708397325/38785205780630930359207456621240068",
+                "upper": "905097228395125440799108625850460006696015925/33531222527912706287078294633350161515635812"
+              },
+              "g_at_zero": {
+                "lower": "-844900452684391802990242728364458049402439275/40145626078646513056647218645444899178871204",
+                "upper": "-32632534208512040780108383537780478335225/5006313265824480989730292885078550839116"
+              },
+              "strict_derivative_lower_bound": "800000000000000000/30593820018059397"
+            },
+            "schema": "oma.two-sink-pressure-certificate/1",
+            "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+          },
+          "certificate_root": "0f7fa87c196a08aae5fb99ed5dad5306f0a0486ace208e9831c51055076455fe",
+          "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+          "work": 1302,
+          "physical_acceptance_authority": false,
+          "infeasibility_claim": false
+        },
+        "independent_check": {
+          "status": "PASS",
+          "model_root": "8d28f9d16cff145410fd88d9bca199546b662fefa44a2f08c5e8bb67afa2dabe",
+          "certificate_root": "0f7fa87c196a08aae5fb99ed5dad5306f0a0486ace208e9831c51055076455fe",
+          "enclosures": {
+            "branch_flows_m3_s": {
+              "sink-a": {
+                "lower": "28979941345355182325855/38685626227668133590597632",
+                "upper": "1533759850220307130129/604462909807314587353088"
+              },
+              "sink-b": {
+                "lower": "4539267754243621019265/2417851639229258349412352",
+                "upper": "36298240031367347852751/9671406556917033397649408"
+              }
+            },
+            "split_fraction": {
+              "lower": "371201/2097152",
+              "upper": "72929/131072"
+            },
+            "total_flow_m3_s": {
+              "lower": "78070752356149855/18446744073709551616",
+              "upper": "21030863582666801/4611686018427387904"
+            },
+            "total_flow_squared_m6_s2": {
+              "lower": "9695754067902692131767415166972106993341587007201516400201849952892252327237827648031514601175118149005534323288310354864539595332950269350593329505059489272741202890583393568967994608569829404568494801521827478516236004271275694886005507849301681305791837681798449328869480884248428023507208932511146254258283311192356762870345214996439803597869835640814802894467072/541307827108489228731359126105645050092333158908131450044985153833311242158314663992142442318293992397403675137398644899692231863322728784833710510377278372496166457201966016345176487885333797277407638918725793541816999705723261563151960167900312740965415410083991908606264119599316313104402334187808894113434318467720862637547149000261104134779088781215250492095947265625",
+              "upper": "52551400864631045426621877284229573961320135893116812795271279390504497056581637087280808031232735477179363430333515330872419223209382422672294580865098974805229125574053268515596625914834363900259036304056808613784511792623822435323307613477333255447648153759736691339501785155743758232654043377956201583288891639365367624303632293273118360120227085164740608/2526908679842646987917559630414704405584958527284872250452797357633736415572065713861907983441924214511779300428745633132979201589424320798505054942639262384933985383932607873705257486829298446406326769045704112776599260246737926329175395917106773276031262696482459344657303616601516397941452842124583873673402955413450272394160212030556067475117743015289306640625"
+            }
+          },
+          "accuracy": {
+            "requested_split_width": "1/1000000",
+            "achieved_split_width": "795663/2097152",
+            "target_split_width_met": false,
+            "total_flow_width_m3_s": "6052701974517349/18446744073709551616",
+            "branch_flow_widths_m3_s": {
+              "sink-a": "69180689068744474002401/38685626227668133590597632",
+              "sink-b": "18141169014392863775691/9671406556917033397649408"
+            },
+            "flow_accuracy_target": "NOT_REQUESTED",
+            "includes_parameter_uncertainty": true
+          },
+          "correlation": {
+            "branch_ids": [
+              "sink-a",
+              "sink-b"
+            ],
+            "parameterization": "q1=t*Q;q2=(1-t)*Q",
+            "conservation": "Q=q1+q2",
+            "marginal_intervals_are_independent": false,
+            "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+          },
+          "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+          "work": 450,
+          "physical_acceptance_authority": false,
+          "infeasibility_claim": false
+        },
+        "operating_point_status": "PASS",
+        "scope": "Unique forward operating point for each admitted fixed-loss model; supplied total-pressure boundaries and native metric enclosures",
+        "catalog_and_boundary_applicability": "DECLARED_ASSUMPTIONS",
+        "general_nonlinear_network_solution": false,
+        "verdict": "PASS",
+        "deliveries": {
+          "sink-a": {
+            "required_minimum_flow_m3_s": "1/1000000",
+            "flow_m3_s": {
+              "lower": "28979941345355182325855/38685626227668133590597632",
+              "upper": "1533759850220307130129/604462909807314587353088"
+            },
+            "status": "PASS"
+          },
+          "sink-b": {
+            "required_minimum_flow_m3_s": "1/1000000",
+            "flow_m3_s": {
+              "lower": "4539267754243621019265/2417851639229258349412352",
+              "upper": "36298240031367347852751/9671406556917033397649408"
+            },
+            "status": "PASS"
+          }
+        },
+        "component_velocities": {
+          "trunk": {
+            "a": {
+              "velocity_m_s": {
+                "lower": "138491716489786499509908463191585950669937897809722567187074450446643722396859390506332805687039626887140810631667125550000928032706074781906131765385481457997229881584644317626953125/251790845524217097320407015192389137933160293708889664671147318754840340966723678472716735207309412469139024672241529596829671323317535430188142571427615985628355416596628299147378688",
+                "upper": "13515427793104769183767862814039302818934042075338799538197053085796843579121057445476896579279342323310723699349329817045040713016950881868108810458795066011816743412055075168609619140625/21910124401848901333731012764742157672393322785444235759224413608418755426358675780414451806746773754566341390481639818061464944525274860800566572376383469840192896264056118712485038522368"
+              },
+              "status": "PASS"
+            },
+            "b": {
+              "velocity_m_s": {
+                "lower": "138491716489786499509908463191585950669937897809722567187074450446643722396859390506332805687039626887140810631667125550000928032706074781906131765385481457997229881584644317626953125/251790845524217097320407015192389137933160293708889664671147318754840340966723678472716735207309412469139024672241529596829671323317535430188142571427615985628355416596628299147378688",
+                "upper": "13515427793104769183767862814039302818934042075338799538197053085796843579121057445476896579279342323310723699349329817045040713016950881868108810458795066011816743412055075168609619140625/21910124401848901333731012764742157672393322785444235759224413608418755426358675780414451806746773754566341390481639818061464944525274860800566572376383469840192896264056118712485038522368"
+              },
+              "status": "PASS"
+            }
+          },
+          "junction": {
+            "a": {
+              "velocity_m_s": {
+                "lower": "6786094107999538475985514696387711582826956992676405792166648071885542397446110134810307478664941717469899720951689151950045473602597664313400456503888591441864264197647571563720703125/13104685791798666376354448785599804061511062021042772802603947952133297541844633898470323550253894472437179544293550221516629985556949892466067563118026074843851293901541863671440867328",
+                "upper": "662255961862133690004625277887925838127768061691601177371655601204045335376931814828367932384687773842225461268117161035206994937830593211537331712480958234579020427190698683261871337890625/1140332546037044094415255414352728318449409621093452290713511444997345531144310467530652157554203260562914533287261264204311244383175147219523365330670855999182692524436920749928876928401408"
+              },
+              "status": "PASS"
+            },
+            "b": {
+              "velocity_m_s": {
+                "lower": "2519004918983536681824299040813814927256949262638474506458051930931985223474393528151720946387905030466544246316987964893008829846757855590798562854699949031811456734430976212024688720703125/27482518017642156788504484979618200287206046739553893068526474655712249206474557669444835974062055300660575955674307434154043607470728580884998522128094618910932428708206322482289557798649856",
+                "upper": "48297665042643547878347316891088543448819996971106782264537471340209822263704260323618044940882894658539660664822516437136610933821047332324206064459523803089613380734590464271605014801025390625/149465667474167443543196357670040806155801017855960978648401372118692073458147061600177639594944529768502333707027908421787483423791532896357366540621690437524873874562996076534677756759429349376"
+              },
+              "status": "PASS"
+            },
+            "branch": {
+              "velocity_m_s": {
+                "lower": "394563869721417165609225780992070714560307760425184261973945418843641091614709181568275707732015706278852379475294062361831493971675835996174042742505594372204313913243822753429412841796875/1717657376102634799281530311226137517950377921222118316782904665982015575404659854340302248378878456291285997229644214634627725466920536305312407633005913681933276794262895155143097362415616",
+                "upper": "381007113210637168132391000998647829414153137948226914561928785517907750213050280911612153755761415983587625700389360735292182706647883394682023068829407448643298295110071194358170032501220703125/797150226528893032230380574240217632830938761898458552791473984633024391776784328534280744506370825432012446437482178249533244926888175447239288216649015666799327331002645741518281369383623196672"
+              },
+              "status": "PASS"
+            }
+          },
+          "arm-a": {
+            "a": {
+              "velocity_m_s": {
+                "lower": "279889435442615186869366560090423880806327695848719389606450214547998358163821503127968994043100558940727138479665329432556536649639761732310951428299994336867939637158997356891632080078125/2933875318224910179657032069679856887831328781430662636175407401242097773340926703462937591976627607334513010070514733437285902218961221898222075345308797176159730895327584078346566850576384",
+                "upper": "48297665042643547878347316891088543448819996971106782264537471340209822263704260323618044940882894658539660664822516437136610933821047332324206064459523803089613380734590464271605014801025390625/143604843340291649266431477455550430461033798255688025853640020403421332414792603739176653825120217259199232689205031902944723560100069985020934169653287714751621296401521865122671962944727678976"
+              },
+              "status": "PASS"
+            },
+            "b": {
+              "velocity_m_s": {
+                "lower": "279889435442615186869366560090423880806327695848719389606450214547998358163821503127968994043100558940727138479665329432556536649639761732310951428299994336867939637158997356891632080078125/2933875318224910179657032069679856887831328781430662636175407401242097773340926703462937591976627607334513010070514733437285902218961221898222075345308797176159730895327584078346566850576384",
+                "upper": "48297665042643547878347316891088543448819996971106782264537471340209822263704260323618044940882894658539660664822516437136610933821047332324206064459523803089613380734590464271605014801025390625/143604843340291649266431477455550430461033798255688025853640020403421332414792603739176653825120217259199232689205031902944723560100069985020934169653287714751621296401521865122671962944727678976"
+              },
+              "status": "PASS"
+            }
+          },
+          "arm-b": {
+            "a": {
+              "velocity_m_s": {
+                "lower": "2578848821708608925550495300601769376211161832844341581529055025121837200096138441622717044000102655417335813564013479489094731841018535922706161715722839034015123615972697734832763671875/11449926632190879948156461245307063152693431883452999268820460473167048243066059219207974991644322618155812941046545102946248929688324327885623342715851595958382788158991948882436096524288",
+                "upper": "22412183130037480478375941235214578200832537526366289091878163853994573541944134171271303162103612704916919158846432984428951923920463729098942533460553379331958723241768893785774707794189453125/47824324932426481298401422550241465669300511938227294805252629996609246913772376145768043881766390075913304305434672393756920487722337356505288147102166217829741037797629565121967277527965630464"
+              },
+              "status": "PASS"
+            },
+            "b": {
+              "velocity_m_s": {
+                "lower": "2578848821708608925550495300601769376211161832844341581529055025121837200096138441622717044000102655417335813564013479489094731841018535922706161715722839034015123615972697734832763671875/11449926632190879948156461245307063152693431883452999268820460473167048243066059219207974991644322618155812941046545102946248929688324327885623342715851595958382788158991948882436096524288",
+                "upper": "22412183130037480478375941235214578200832537526366289091878163853994573541944134171271303162103612704916919158846432984428951923920463729098942533460553379331958723241768893785774707794189453125/47824324932426481298401422550241465669300511938227294805252629996609246913772376145768043881766390075913304305434672393756920487722337356505288147102166217829741037797629565121967277527965630464"
+              },
+              "status": "PASS"
+            }
+          }
+        },
+        "source_flow_m3_s": {
+          "lower": "78070752356149855/18446744073709551616",
+          "upper": "21030863582666801/4611686018427387904"
+        },
+        "unique_physical_components": 4,
+        "conservation": "Q=q1+q2 in the independently checked parametric relation",
+        "input_binding": "UNCHANGED_AFTER_FINAL_CHECKPOINT"
+      }
+    }
+  ],
+  "native_geometry_tested": false,
+  "parameter_cases": 320,
+  "velocity_checks": 2880,
+  "coefficient_checks": 1280,
+  "model_scope": "Ideal circular bore from independently supplied outer metric intervals minus exact declared insulation; K applicability external; no reducers"
+}

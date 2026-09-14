@@ -111,7 +111,7 @@
       "local_algorithm_id_count": 8,
       "body_heading_occurrences": 10,
       "reference_only_id_count": 0,
-      "bounded_related_components": 2,
+      "bounded_related_components": 3,
       "full_source_algorithms_implemented": 0
     },
     {
@@ -3942,7 +3942,7 @@
       "actual_adapter_contract": null,
       "relied_on_obligations": [],
       "automated_tests": [],
-      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks are implemented; general nonlinear, dynamic, PDE and physical model-applicability contracts are not implemented. Reconstructed canonical identifiers and templates remain separate from materially different original Pages bodies.",
+      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks, plus a bounded uniformly monotone one-tee/two-outlet pressure relation with rational flow enclosures, are implemented. The separate native adapter retains total-pressure/loss/metric applicability assumptions. General nonlinear, dynamic, PDE and full physical model-applicability contracts are not implemented. Reconstructed canonical identifiers and templates remain separate from materially different original Pages bodies.",
       "reference_only_note": null
     },
     {
@@ -3996,7 +3996,7 @@
       "actual_adapter_contract": null,
       "relied_on_obligations": [],
       "automated_tests": [],
-      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks are implemented; general nonlinear, dynamic, PDE and physical model-applicability contracts are not implemented. Reconstructed canonical identifiers and templates remain separate from materially different original Pages bodies.",
+      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks, plus a bounded uniformly monotone one-tee/two-outlet pressure relation with rational flow enclosures, are implemented. The separate native adapter retains total-pressure/loss/metric applicability assumptions. General nonlinear, dynamic, PDE and full physical model-applicability contracts are not implemented. Reconstructed canonical identifiers and templates remain separate from materially different original Pages bodies.",
       "reference_only_note": null
     },
     {
@@ -4050,7 +4050,7 @@
       "actual_adapter_contract": null,
       "relied_on_obligations": [],
       "automated_tests": [],
-      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks are implemented; general nonlinear, dynamic, PDE and physical model-applicability contracts are not implemented. Reconstructed canonical identifiers and templates remain separate from materially different original Pages bodies.",
+      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks, plus a bounded uniformly monotone one-tee/two-outlet pressure relation with rational flow enclosures, are implemented. The separate native adapter retains total-pressure/loss/metric applicability assumptions. General nonlinear, dynamic, PDE and full physical model-applicability contracts are not implemented. Reconstructed canonical identifiers and templates remain separate from materially different original Pages bodies.",
       "reference_only_note": null
     },
     {
@@ -13528,7 +13528,13 @@
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
         "oma.optimization.physical.evaluate_fluid_path",
-        "oma.routing.network_flow.evaluate_network_flow"
+        "oma.optimization.two_sink_pressure.compile_two_sink_pressure",
+        "oma.optimization.two_sink_pressure.verify_two_sink_pressure",
+        "oma.routing.network_checker.verify_network_candidate",
+        "oma.routing.network_flow.evaluate_network_flow",
+        "oma.routing.network_pressure.derive_two_sink_pressure_model",
+        "oma.routing.network_pressure.evaluate_pressure_network",
+        "oma.routing.network_pressure.partition_two_sink_tree"
       ],
       "callable_probe": [
         {
@@ -13536,15 +13542,46 @@
           "callable": true
         },
         {
+          "path": "oma.optimization.two_sink_pressure.compile_two_sink_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.two_sink_pressure.verify_two_sink_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_checker.verify_network_candidate",
+          "callable": true
+        },
+        {
           "path": "oma.routing.network_flow.evaluate_network_flow",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.derive_two_sink_pressure_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.evaluate_pressure_network",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.partition_two_sink_tree",
           "callable": true
         }
       ],
-      "actual_adapter_contract": "Declared fixed-flow directed-tree/path physics; no nonlinear operating-flow discovery",
-      "relied_on_obligations": [],
+      "actual_adapter_contract": "Declared fixed-flow tree/path physics plus a separate optional total-pressure one-tee/two-outlet model. Complete native component partition and metric/position intervals feed a checked quadratic operating relation; minimum delivery and every physical port velocity remain distinct service gates. No general nonlinear flow discovery or full physical fiber",
+      "relied_on_obligations": [
+        "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER"
+      ],
       "automated_tests": [
+        "tests/test_network_pressure.py",
+        "tests/test_network_pressure_integration.py",
+        "tests/test_network_pressure_native_section.py",
         "tests/test_network_scenario.py",
-        "tests/test_optimization_physical.py"
+        "tests/test_optimization_physical.py",
+        "tests/test_physical_report_admission.py",
+        "tests/test_two_sink_pressure.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
       "reference_only_note": null
@@ -13619,7 +13656,13 @@
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
         "oma.optimization.physical.solve_gravity_elevations",
-        "oma.optimization.physical.verify_gravity_result"
+        "oma.optimization.physical.verify_gravity_result",
+        "oma.optimization.two_sink_pressure.compile_two_sink_pressure",
+        "oma.optimization.two_sink_pressure.verify_two_sink_pressure",
+        "oma.routing.network_checker.verify_network_candidate",
+        "oma.routing.network_pressure.derive_two_sink_pressure_model",
+        "oma.routing.network_pressure.evaluate_pressure_network",
+        "oma.routing.network_pressure.partition_two_sink_tree"
       ],
       "callable_probe": [
         {
@@ -13629,12 +13672,43 @@
         {
           "path": "oma.optimization.physical.verify_gravity_result",
           "callable": true
+        },
+        {
+          "path": "oma.optimization.two_sink_pressure.compile_two_sink_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.two_sink_pressure.verify_two_sink_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_checker.verify_network_candidate",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.derive_two_sink_pressure_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.evaluate_pressure_network",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.partition_two_sink_tree",
+          "callable": true
         }
       ],
-      "actual_adapter_contract": "Exact finite fixed-topology elevation constraints; general physical fiber remains open",
-      "relied_on_obligations": [],
+      "actual_adapter_contract": "Exact finite elevation constraints and an independently checked uniformly forward two-sink quadratic relation with rational interval enclosures. Actual native checks and the declared external model premises remain mandatory; no general physical fiber solver or kernel acceptance authority",
+      "relied_on_obligations": [
+        "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER"
+      ],
       "automated_tests": [
-        "tests/test_optimization_physical.py"
+        "tests/test_network_pressure.py",
+        "tests/test_network_pressure_integration.py",
+        "tests/test_network_pressure_native_section.py",
+        "tests/test_optimization_physical.py",
+        "tests/test_physical_report_admission.py",
+        "tests/test_two_sink_pressure.py"
       ],
       "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
       "reference_only_note": null
@@ -18258,7 +18332,13 @@
         "oma.optimization.ports.compile_linear_port",
         "oma.optimization.ports.reconstruct_linear_port",
         "oma.optimization.ports.verify_kron_network",
-        "oma.optimization.ports.verify_linear_port"
+        "oma.optimization.ports.verify_linear_port",
+        "oma.optimization.two_sink_pressure.compile_two_sink_pressure",
+        "oma.optimization.two_sink_pressure.verify_two_sink_pressure",
+        "oma.routing.network_checker.verify_network_candidate",
+        "oma.routing.network_pressure.derive_two_sink_pressure_model",
+        "oma.routing.network_pressure.evaluate_pressure_network",
+        "oma.routing.network_pressure.partition_two_sink_tree"
       ],
       "callable_probe": [
         {
@@ -18284,16 +18364,46 @@
         {
           "path": "oma.optimization.ports.verify_linear_port",
           "callable": true
+        },
+        {
+          "path": "oma.optimization.two_sink_pressure.compile_two_sink_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.two_sink_pressure.verify_two_sink_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_checker.verify_network_candidate",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.derive_two_sink_pressure_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.evaluate_pressure_network",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.partition_two_sink_tree",
+          "callable": true
         }
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER",
         "ORIGINAL_EXACT_LINEAR_PORTS"
       ],
       "automated_tests": [
-        "tests/test_optimization_ports.py"
+        "tests/test_network_pressure.py",
+        "tests/test_network_pressure_integration.py",
+        "tests/test_network_pressure_native_section.py",
+        "tests/test_optimization_ports.py",
+        "tests/test_physical_report_admission.py",
+        "tests/test_two_sink_pressure.py"
       ],
-      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks are implemented; general nonlinear, dynamic, PDE and physical model-applicability contracts are not implemented.",
+      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks, plus a bounded uniformly monotone one-tee/two-outlet pressure relation with rational flow enclosures, are implemented. The separate native adapter retains total-pressure/loss/metric applicability assumptions. General nonlinear, dynamic, PDE and full physical model-applicability contracts are not implemented.",
       "reference_only_note": null
     },
     {
@@ -18318,14 +18428,54 @@
       "review_evidence": "evidence/math/combined_review_coverage.json",
       "scope_classification": "REQUIRED_SUPPORTING_MATHEMATICS",
       "scope_reason": "Finite semantics, compression, routing, evidence or authorized-choice foundation; only the admitted engine model and its applicability contract are invoked, not every broad domain program.",
-      "implementation_disposition": "FULL_SOURCE_MECHANISM_NOT_IMPLEMENTED",
+      "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
-      "bounded_related_callables": [],
-      "callable_probe": [],
+      "bounded_related_callables": [
+        "oma.optimization.two_sink_pressure.compile_two_sink_pressure",
+        "oma.optimization.two_sink_pressure.verify_two_sink_pressure",
+        "oma.routing.network_checker.verify_network_candidate",
+        "oma.routing.network_pressure.derive_two_sink_pressure_model",
+        "oma.routing.network_pressure.evaluate_pressure_network",
+        "oma.routing.network_pressure.partition_two_sink_tree"
+      ],
+      "callable_probe": [
+        {
+          "path": "oma.optimization.two_sink_pressure.compile_two_sink_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.two_sink_pressure.verify_two_sink_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_checker.verify_network_candidate",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.derive_two_sink_pressure_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.evaluate_pressure_network",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.partition_two_sink_tree",
+          "callable": true
+        }
+      ],
       "actual_adapter_contract": null,
-      "relied_on_obligations": [],
-      "automated_tests": [],
-      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks are implemented; general nonlinear, dynamic, PDE and physical model-applicability contracts are not implemented.",
+      "relied_on_obligations": [
+        "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER"
+      ],
+      "automated_tests": [
+        "tests/test_network_pressure.py",
+        "tests/test_network_pressure_integration.py",
+        "tests/test_network_pressure_native_section.py",
+        "tests/test_physical_report_admission.py",
+        "tests/test_two_sink_pressure.py"
+      ],
+      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks, plus a bounded uniformly monotone one-tee/two-outlet pressure relation with rational flow enclosures, are implemented. The separate native adapter retains total-pressure/loss/metric applicability assumptions. General nonlinear, dynamic, PDE and full physical model-applicability contracts are not implemented.",
       "reference_only_note": null
     },
     {
@@ -18357,7 +18507,7 @@
       "actual_adapter_contract": null,
       "relied_on_obligations": [],
       "automated_tests": [],
-      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks are implemented; general nonlinear, dynamic, PDE and physical model-applicability contracts are not implemented.",
+      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks, plus a bounded uniformly monotone one-tee/two-outlet pressure relation with rational flow enclosures, are implemented. The separate native adapter retains total-pressure/loss/metric applicability assumptions. General nonlinear, dynamic, PDE and full physical model-applicability contracts are not implemented.",
       "reference_only_note": null
     },
     {
@@ -18396,7 +18546,7 @@
       "actual_adapter_contract": null,
       "relied_on_obligations": [],
       "automated_tests": [],
-      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks are implemented; general nonlinear, dynamic, PDE and physical model-applicability contracts are not implemented.",
+      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks, plus a bounded uniformly monotone one-tee/two-outlet pressure relation with rational flow enclosures, are implemented. The separate native adapter retains total-pressure/loss/metric applicability assumptions. General nonlinear, dynamic, PDE and full physical model-applicability contracts are not implemented.",
       "reference_only_note": null
     },
     {
@@ -18429,7 +18579,7 @@
       "actual_adapter_contract": null,
       "relied_on_obligations": [],
       "automated_tests": [],
-      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks are implemented; general nonlinear, dynamic, PDE and physical model-applicability contracts are not implemented.",
+      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks, plus a bounded uniformly monotone one-tee/two-outlet pressure relation with rational flow enclosures, are implemented. The separate native adapter retains total-pressure/loss/metric applicability assumptions. General nonlinear, dynamic, PDE and full physical model-applicability contracts are not implemented.",
       "reference_only_note": null
     },
     {
@@ -18461,7 +18611,7 @@
       "actual_adapter_contract": null,
       "relied_on_obligations": [],
       "automated_tests": [],
-      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks are implemented; general nonlinear, dynamic, PDE and physical model-applicability contracts are not implemented.",
+      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks, plus a bounded uniformly monotone one-tee/two-outlet pressure relation with rational flow enclosures, are implemented. The separate native adapter retains total-pressure/loss/metric applicability assumptions. General nonlinear, dynamic, PDE and full physical model-applicability contracts are not implemented.",
       "reference_only_note": null
     },
     {
@@ -18501,7 +18651,13 @@
         "oma.optimization.ports.compile_linear_port",
         "oma.optimization.ports.reconstruct_linear_port",
         "oma.optimization.ports.verify_kron_network",
-        "oma.optimization.ports.verify_linear_port"
+        "oma.optimization.ports.verify_linear_port",
+        "oma.optimization.two_sink_pressure.compile_two_sink_pressure",
+        "oma.optimization.two_sink_pressure.verify_two_sink_pressure",
+        "oma.routing.network_checker.verify_network_candidate",
+        "oma.routing.network_pressure.derive_two_sink_pressure_model",
+        "oma.routing.network_pressure.evaluate_pressure_network",
+        "oma.routing.network_pressure.partition_two_sink_tree"
       ],
       "callable_probe": [
         {
@@ -18527,16 +18683,46 @@
         {
           "path": "oma.optimization.ports.verify_linear_port",
           "callable": true
+        },
+        {
+          "path": "oma.optimization.two_sink_pressure.compile_two_sink_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.optimization.two_sink_pressure.verify_two_sink_pressure",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_checker.verify_network_candidate",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.derive_two_sink_pressure_model",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.evaluate_pressure_network",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.network_pressure.partition_two_sink_tree",
+          "callable": true
         }
       ],
       "actual_adapter_contract": null,
       "relied_on_obligations": [
+        "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER",
         "ORIGINAL_EXACT_LINEAR_PORTS"
       ],
       "automated_tests": [
-        "tests/test_optimization_ports.py"
+        "tests/test_network_pressure.py",
+        "tests/test_network_pressure_integration.py",
+        "tests/test_network_pressure_native_section.py",
+        "tests/test_optimization_ports.py",
+        "tests/test_physical_report_admission.py",
+        "tests/test_two_sink_pressure.py"
       ],
-      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks are implemented; general nonlinear, dynamic, PDE and physical model-applicability contracts are not implemented.",
+      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks, plus a bounded uniformly monotone one-tee/two-outlet pressure relation with rational flow enclosures, are implemented. The separate native adapter retains total-pressure/loss/metric applicability assumptions. General nonlinear, dynamic, PDE and full physical model-applicability contracts are not implemented.",
       "reference_only_note": null
     },
     {
@@ -18568,7 +18754,7 @@
       "actual_adapter_contract": null,
       "relied_on_obligations": [],
       "automated_tests": [],
-      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks are implemented; general nonlinear, dynamic, PDE and physical model-applicability contracts are not implemented.",
+      "limitations_and_missing_requirements": "Exact supplied rational linear port relations and independent matrix checks, plus a bounded uniformly monotone one-tee/two-outlet pressure relation with rational flow enclosures, are implemented. The separate native adapter retains total-pressure/loss/metric applicability assumptions. General nonlinear, dynamic, PDE and full physical model-applicability contracts are not implemented.",
       "reference_only_note": null
     },
     {

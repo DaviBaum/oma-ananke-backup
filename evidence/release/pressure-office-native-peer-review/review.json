@@ -1,0 +1,47 @@
+{
+  "status": "RETAINED_NATIVE_RECHECK_VERIFIED_WITH_SUMMARY_VALIDATOR_FINDING",
+  "reviewed_at": "2026-09-14T21:34:17.857588+00:00",
+  "reviewed_script_sha256": "97e7ee7d0f336db93b373c40b1e705dfd2130e542744d9485fdb691892b8bb7c",
+  "reviewed_test_sha256": "8ea114562710a7f38e3a6e8db4092895a3c7f2fc0d107080d5e870388bd9d944",
+  "retained_result_sha256": "9935ca0f21927dbf7369a15fbc7fd21deb812e61ad9bec1c5b8f07ef4eebfd54",
+  "source_checkpoint": "bac10b7f20d44219f13fe5df2a70600f22b4fe69a4021dbe0e8e2172f76743ac",
+  "candidate_id": "cde5e507fca2488d9a957364f6d5a763",
+  "candidate_root": "5fd6dabcb811664792f7dfcb1045ae21ab85cf867a1fffb85b25fe51f8364ce7",
+  "current_report_root": "8b1e81e5363c8cc1c268f44f7ec2e90155cf68c12c91291e4f3637d4ce2a27be",
+  "prior_report_root": "4e671a374a33fd0f1cfacc8dc291da021d7ac187dfe0cdb68f80abbf1c2c68b4",
+  "original_store_read_only": true,
+  "isolated_store": "C:\\Users\\Davi\\Downloads\\oma\\.release\\native-build\\real-model-validation\\d3e1c124c6604535bd102c7d7fee0698",
+  "no_geometry_regeneration": true,
+  "expected_export_sha256": "c116e3cf909e97719a613888043ca2b214aba538575e17f79dd3639bb5a12e58",
+  "required_checks": 13,
+  "native_components": 4,
+  "physical_ports": 9,
+  "original_obstacles": 803,
+  "source_pairs": 3212,
+  "complete_unique_self_pairs": 6,
+  "pressure_model_root_changed": true,
+  "exact_deliveries_preserved": true,
+  "original_head": {
+    "id": "7ace4d6c0e7b4b78babcfc6b944014ef",
+    "name": "Office pressure-driven two-outlet validation",
+    "revision": 1,
+    "state_root": "5fbffe1958c91868b59379f535874bae7a93d60709e804a7fce05465212445a5",
+    "status": "ACCEPTED",
+    "created_at": "2026-09-14T21:14:25.585566+00:00"
+  },
+  "original_run_and_candidate_unchanged": true,
+  "copied_asset_pairs_rehashed": 11,
+  "findings": [
+    {
+      "id": "SUMMARY-DUPLICATE-PAIR",
+      "scope": "Evidence helper only; actual retained fresh native evidence has all six unique pairs",
+      "reproduction": "Replace six self-pair rows with six copies of the first PASS pair through a read-only test proxy; network_validation_evidence still returns complete_native_status PASS",
+      "missing_pairs": 5,
+      "recommendation": "Require unique unordered participant GUID pairs equal to all combinations of actual unique native part GUIDs; reject duplicate route/component identifier lists too",
+      "ordinary_API_or_fresh_checker_exploit": false
+    }
+  ],
+  "compatibility": "Existing default .oma remains supported; explicit original Store is read-only, output is resolved and disjoint, one shared network/no routes is an explicit bounded scope. Same objective/obligation/disposition and distinct checker assertions intentionally reject changed requirements or incomplete historical evidence.",
+  "test_review": "Three new tests exercise actual exported pressure IFC from an explicit Store, incorrect expected IFC hash before checker launch, and missing part/sink/velocity summaries. Together with the four prior tests they cover true managed publication and incomplete-child exclusion; no native rerun performed by this review.",
+  "audit_script_sha256": "9596527d684b2d0e789242e349986916b272ba0533b392d944f08b470567dfbc"
+}

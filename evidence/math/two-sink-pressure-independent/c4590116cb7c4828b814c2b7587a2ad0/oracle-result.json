@@ -1,0 +1,2220 @@
+{
+  "status": "BOUNDED_INDEPENDENT_ORACLE_PASS",
+  "source_sha256": "72bd8581ab8cd735aef840f04d0e0c296ae67fca9b1e0dd08951424abe988d93",
+  "boxes": 12,
+  "certified_boxes": 12,
+  "unknown_boxes": 0,
+  "sample_count": 1920,
+  "results": [
+    {
+      "model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "parameters": {
+          "P1": {
+            "lower": "163/10",
+            "upper": "18"
+          },
+          "P2": {
+            "lower": "12",
+            "upper": "96/5"
+          },
+          "beta": {
+            "lower": "39/2",
+            "upper": "199/10"
+          },
+          "A1": {
+            "lower": "0",
+            "upper": "0"
+          },
+          "A2": {
+            "lower": "0",
+            "upper": "0"
+          },
+          "B1": {
+            "lower": "7",
+            "upper": "161/10"
+          },
+          "B2": {
+            "lower": "83/10",
+            "upper": "14"
+          }
+        },
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        }
+      },
+      "status": "SAMPLED_EQUATIONS_AND_ALL_ENCLOSURES_MATCH",
+      "samples": 160,
+      "max_pressure_equation_residual": "4.137544177514650528664137E-74",
+      "certificate": {
+        "accuracy": {
+          "achieved_split_width": "494549/2097152",
+          "branch_flow_widths_m3_s": {
+            "one": "11879463060242710153034375/38685626227668133590597632",
+            "two": "11441893264268384893274723/38685626227668133590597632"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true,
+          "requested_split_width": "1/1000000",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "1623442841571038911/4611686018427387904"
+        },
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "5480052648797933841122739/38685626227668133590597632",
+              "upper": "8679757854520321997078557/19342813113834066795298816"
+            },
+            "two": {
+              "lower": "2518909268547030930669015/19342813113834066795298816",
+              "upper": "16479711801362446754612753/38685626227668133590597632"
+            }
+          },
+          "split_fraction": {
+            "lower": "834993/2097152",
+            "upper": "664771/1048576"
+          },
+          "total_flow_m3_s": {
+            "lower": "6562992323046940323/18446744073709551616",
+            "upper": "13056763689331095967/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "1792203953274880/14158690336927199",
+            "upper": "3784/7553"
+          }
+        },
+        "model_root": "34d50f732d17f1b314ce5b6d9455716fac37913bdf8e1c039b2500891239952c",
+        "physical_acceptance_authority": false,
+        "query_root": "c0381e54d059a4bf5b6a5a7b826af663644e306a861d5b8a529e3c42d21f4cf1",
+        "regime_proof": {
+          "g_at_one": {
+            "lower": "84",
+            "upper": "7728/25"
+          },
+          "g_at_zero": {
+            "lower": "-252",
+            "upper": "-13529/100"
+          },
+          "strict_derivative_lower_bound": "168"
+        },
+        "schema": "oma.two-sink-pressure-certificate/1",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+      },
+      "checker": {
+        "status": "PASS",
+        "model_root": "34d50f732d17f1b314ce5b6d9455716fac37913bdf8e1c039b2500891239952c",
+        "certificate_root": "a006ebdabddfda2eda494d1a8772d89531021ecbda327b51979dc4beaeb1414f",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "5480052648797933841122739/38685626227668133590597632",
+              "upper": "8679757854520321997078557/19342813113834066795298816"
+            },
+            "two": {
+              "lower": "2518909268547030930669015/19342813113834066795298816",
+              "upper": "16479711801362446754612753/38685626227668133590597632"
+            }
+          },
+          "split_fraction": {
+            "lower": "834993/2097152",
+            "upper": "664771/1048576"
+          },
+          "total_flow_m3_s": {
+            "lower": "6562992323046940323/18446744073709551616",
+            "upper": "13056763689331095967/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "1792203953274880/14158690336927199",
+            "upper": "3784/7553"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "494549/2097152",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "1623442841571038911/4611686018427387904",
+          "branch_flow_widths_m3_s": {
+            "one": "11879463060242710153034375/38685626227668133590597632",
+            "two": "11441893264268384893274723/38685626227668133590597632"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "parameters": {
+          "P1": {
+            "lower": "57/5",
+            "upper": "20"
+          },
+          "P2": {
+            "lower": "39/5",
+            "upper": "21/2"
+          },
+          "beta": {
+            "lower": "11/2",
+            "upper": "61/10"
+          },
+          "A1": {
+            "lower": "1/100",
+            "upper": "1/100"
+          },
+          "A2": {
+            "lower": "1/100",
+            "upper": "1/100"
+          },
+          "B1": {
+            "lower": "9/5",
+            "upper": "93/5"
+          },
+          "B2": {
+            "lower": "3",
+            "upper": "36/5"
+          }
+        },
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        }
+      },
+      "status": "SAMPLED_EQUATIONS_AND_ALL_ENCLOSURES_MATCH",
+      "samples": 160,
+      "max_pressure_equation_residual": "4.461267383073520184731633E-74",
+      "certificate": {
+        "accuracy": {
+          "achieved_split_width": "491091/1048576",
+          "branch_flow_widths_m3_s": {
+            "one": "3828729009903136638154983/2417851639229258349412352",
+            "two": "28697808720693186753163965/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true,
+          "requested_split_width": "1/1000000",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "31507744068427507821/18446744073709551616"
+        },
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "1703633380744910872371921/9671406556917033397649408",
+              "upper": "17018549420357457424991853/9671406556917033397649408"
+            },
+            "two": {
+              "lower": "2731995785388198679715343/19342813113834066795298816",
+              "upper": "7857451126520346358219827/4835703278458516698824704"
+            }
+          },
+          "split_fraction": {
+            "lower": "154701/524288",
+            "upper": "800493/1048576"
+          },
+          "total_flow_m3_s": {
+            "lower": "11012426427398083221/18446744073709551616",
+            "upper": "21260085247912795521/9223372036854775808"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "134002979635200/376000013332129",
+            "upper": "526/99"
+          }
+        },
+        "model_root": "a077266002f288f36d87d95b47c9743a192882dfcba776a92cc114c3b1eb072a",
+        "physical_acceptance_authority": false,
+        "query_root": "b5f4865080802cc3b3087d54bdfeb84a6dba276f06cd261563960d5da1aaddc7",
+        "regime_proof": {
+          "g_at_one": {
+            "lower": "6959/500",
+            "upper": "195291/1000"
+          },
+          "g_at_zero": {
+            "lower": "-72061/500",
+            "upper": "-34209/1000"
+          },
+          "strict_derivative_lower_bound": "702/25"
+        },
+        "schema": "oma.two-sink-pressure-certificate/1",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+      },
+      "checker": {
+        "status": "PASS",
+        "model_root": "a077266002f288f36d87d95b47c9743a192882dfcba776a92cc114c3b1eb072a",
+        "certificate_root": "bdebd981c32cb8ff1c8e96e848c2bcae59eee23a321f0cf6b4d69439477c97b9",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "1703633380744910872371921/9671406556917033397649408",
+              "upper": "17018549420357457424991853/9671406556917033397649408"
+            },
+            "two": {
+              "lower": "2731995785388198679715343/19342813113834066795298816",
+              "upper": "7857451126520346358219827/4835703278458516698824704"
+            }
+          },
+          "split_fraction": {
+            "lower": "154701/524288",
+            "upper": "800493/1048576"
+          },
+          "total_flow_m3_s": {
+            "lower": "11012426427398083221/18446744073709551616",
+            "upper": "21260085247912795521/9223372036854775808"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "134002979635200/376000013332129",
+            "upper": "526/99"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "491091/1048576",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "31507744068427507821/18446744073709551616",
+          "branch_flow_widths_m3_s": {
+            "one": "3828729009903136638154983/2417851639229258349412352",
+            "two": "28697808720693186753163965/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "parameters": {
+          "P1": {
+            "lower": "77/10",
+            "upper": "197/10"
+          },
+          "P2": {
+            "lower": "23/5",
+            "upper": "69/10"
+          },
+          "beta": {
+            "lower": "23/10",
+            "upper": "63/10"
+          },
+          "A1": {
+            "lower": "1/100",
+            "upper": "1/100"
+          },
+          "A2": {
+            "lower": "0",
+            "upper": "1/100"
+          },
+          "B1": {
+            "lower": "23/5",
+            "upper": "139/10"
+          },
+          "B2": {
+            "lower": "11/2",
+            "upper": "69/5"
+          }
+        },
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        }
+      },
+      "status": "SAMPLED_EQUATIONS_AND_ALL_ENCLOSURES_MATCH",
+      "samples": 160,
+      "max_pressure_equation_residual": "5.654020154807163393530808E-74",
+      "certificate": {
+        "accuracy": {
+          "achieved_split_width": "805701/2097152",
+          "branch_flow_widths_m3_s": {
+            "one": "30280851997885668837283699/19342813113834066795298816",
+            "two": "23917403742652021528869267/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true,
+          "requested_split_width": "1/1000000",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "522316114277444437/288230376151711744"
+        },
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "2946917626904793068439409/19342813113834066795298816",
+              "upper": "8306942406197615476430777/4835703278458516698824704"
+            },
+            "two": {
+              "lower": "401250168420832458469287/4835703278458516698824704",
+              "upper": "25522404416335351362746415/19342813113834066795298816"
+            }
+          },
+          "split_fraction": {
+            "lower": "836087/2097152",
+            "upper": "410447/524288"
+          },
+          "total_flow_m3_s": {
+            "lower": "3524654284667496407/9223372036854775808",
+            "upper": "20238769941545718391/9223372036854775808"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "5057753487769600/34634112277930263",
+            "upper": "28018/5819"
+          }
+        },
+        "model_root": "9e51d0d4bd94ca48f1d653f286b45661718bc08f4c6ef848975e12b3fdd9eccc",
+        "physical_acceptance_authority": false,
+        "query_root": "8ef062d55309290ffc909e5c00462baad326398fba2bd441d7a7a7dbbfaef84e",
+        "regime_proof": {
+          "g_at_one": {
+            "lower": "21009/1000",
+            "upper": "95979/1000"
+          },
+          "g_at_zero": {
+            "lower": "-272011/1000",
+            "upper": "-42281/1000"
+          },
+          "strict_derivative_lower_bound": "1058/25"
+        },
+        "schema": "oma.two-sink-pressure-certificate/1",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+      },
+      "checker": {
+        "status": "PASS",
+        "model_root": "9e51d0d4bd94ca48f1d653f286b45661718bc08f4c6ef848975e12b3fdd9eccc",
+        "certificate_root": "4495c0b1a35843931200176afe1ddd6b2226cb117fbd4b79baa13b915f34fd0c",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "2946917626904793068439409/19342813113834066795298816",
+              "upper": "8306942406197615476430777/4835703278458516698824704"
+            },
+            "two": {
+              "lower": "401250168420832458469287/4835703278458516698824704",
+              "upper": "25522404416335351362746415/19342813113834066795298816"
+            }
+          },
+          "split_fraction": {
+            "lower": "836087/2097152",
+            "upper": "410447/524288"
+          },
+          "total_flow_m3_s": {
+            "lower": "3524654284667496407/9223372036854775808",
+            "upper": "20238769941545718391/9223372036854775808"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "5057753487769600/34634112277930263",
+            "upper": "28018/5819"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "805701/2097152",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "522316114277444437/288230376151711744",
+          "branch_flow_widths_m3_s": {
+            "one": "30280851997885668837283699/19342813113834066795298816",
+            "two": "23917403742652021528869267/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "parameters": {
+          "P1": {
+            "lower": "4",
+            "upper": "37/5"
+          },
+          "P2": {
+            "lower": "3",
+            "upper": "99/10"
+          },
+          "beta": {
+            "lower": "27/10",
+            "upper": "98/5"
+          },
+          "A1": {
+            "lower": "0",
+            "upper": "1/100"
+          },
+          "A2": {
+            "lower": "0",
+            "upper": "0"
+          },
+          "B1": {
+            "lower": "3",
+            "upper": "43/10"
+          },
+          "B2": {
+            "lower": "71/10",
+            "upper": "149/10"
+          }
+        },
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        }
+      },
+      "status": "SAMPLED_EQUATIONS_AND_ALL_ENCLOSURES_MATCH",
+      "samples": 160,
+      "max_pressure_equation_residual": "2.0536038679303176962279653E-74",
+      "certificate": {
+        "accuracy": {
+          "achieved_split_width": "691291/2097152",
+          "branch_flow_widths_m3_s": {
+            "one": "5754851084587999551818111/4835703278458516698824704",
+            "two": "4212577281943248144609215/4835703278458516698824704"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true,
+          "requested_split_width": "1/1000000",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "50858284070608557/36028797018963968"
+        },
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "151460743415955335727101/1208925819614629174706176",
+              "upper": "6360694058251820894726515/4835703278458516698824704"
+            },
+            "two": {
+              "lower": "300404242680586385355597/4835703278458516698824704",
+              "upper": "1128245381155958632491203/1208925819614629174706176"
+            }
+          },
+          "split_fraction": {
+            "lower": "234961/524288",
+            "upper": "1631135/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "644620781389061741/2305843009213693952",
+            "upper": "3899550961908009389/2305843009213693952"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "2199023255552000/28137187764472423",
+            "upper": "16448/5751"
+          }
+        },
+        "model_root": "8b5e4b7d03124572caceebea6d57401f4e24afd9c6e64c14180135891b56aa73",
+        "physical_acceptance_authority": false,
+        "query_root": "1b5914e91679c14cc8ece862c9837687895adad0d7a91831e4f92ac8578b5ba9",
+        "regime_proof": {
+          "g_at_one": {
+            "lower": "9",
+            "upper": "42669/1000"
+          },
+          "g_at_zero": {
+            "lower": "-5513/50",
+            "upper": "-28301/1000"
+          },
+          "strict_derivative_lower_bound": "18"
+        },
+        "schema": "oma.two-sink-pressure-certificate/1",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+      },
+      "checker": {
+        "status": "PASS",
+        "model_root": "8b5e4b7d03124572caceebea6d57401f4e24afd9c6e64c14180135891b56aa73",
+        "certificate_root": "9f76930090a931d6581ce3fae402780968d03620560989686878dd516714cef6",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "151460743415955335727101/1208925819614629174706176",
+              "upper": "6360694058251820894726515/4835703278458516698824704"
+            },
+            "two": {
+              "lower": "300404242680586385355597/4835703278458516698824704",
+              "upper": "1128245381155958632491203/1208925819614629174706176"
+            }
+          },
+          "split_fraction": {
+            "lower": "234961/524288",
+            "upper": "1631135/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "644620781389061741/2305843009213693952",
+            "upper": "3899550961908009389/2305843009213693952"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "2199023255552000/28137187764472423",
+            "upper": "16448/5751"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "691291/2097152",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "50858284070608557/36028797018963968",
+          "branch_flow_widths_m3_s": {
+            "one": "5754851084587999551818111/4835703278458516698824704",
+            "two": "4212577281943248144609215/4835703278458516698824704"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "parameters": {
+          "P1": {
+            "lower": "15",
+            "upper": "20"
+          },
+          "P2": {
+            "lower": "99/10",
+            "upper": "14"
+          },
+          "beta": {
+            "lower": "81/5",
+            "upper": "169/10"
+          },
+          "A1": {
+            "lower": "0",
+            "upper": "0"
+          },
+          "A2": {
+            "lower": "0",
+            "upper": "1/100"
+          },
+          "B1": {
+            "lower": "36/5",
+            "upper": "64/5"
+          },
+          "B2": {
+            "lower": "38/5",
+            "upper": "81/10"
+          }
+        },
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        }
+      },
+      "status": "SAMPLED_EQUATIONS_AND_ALL_ENCLOSURES_MATCH",
+      "samples": 160,
+      "max_pressure_equation_residual": "4.240124056009985316656903E-74",
+      "certificate": {
+        "accuracy": {
+          "achieved_split_width": "332263/2097152",
+          "branch_flow_widths_m3_s": {
+            "one": "2327695318532724984611643/9671406556917033397649408",
+            "two": "8827102175194457290684191/38685626227668133590597632"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true,
+          "requested_split_width": "1/1000000",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "5031562784762586189/18446744073709551616"
+        },
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "1035164648215057366316019/4835703278458516698824704",
+              "upper": "4398024614962839717243681/9671406556917033397649408"
+            },
+            "two": {
+              "lower": "232055971295731574145645/1208925819614629174706176",
+              "upper": "16252893256657867663344831/38685626227668133590597632"
+            }
+          },
+          "split_fraction": {
+            "lower": "930509/2097152",
+            "upper": "315693/524288"
+          },
+          "total_flow_m3_s": {
+            "lower": "1112471398143443391/2305843009213693952",
+            "upper": "13931333969910133317/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "21770330229964800/93529105283525093",
+            "upper": "7900/13851"
+          }
+        },
+        "model_root": "7a62ceb04e65bed273af0c96ecce0c31037a56302d688b21fff451156d185fe7",
+        "physical_acceptance_authority": false,
+        "query_root": "76dbc4e7d205303de3294747e2472d6c7e799a581b037ccca2f0e6b94488b0c1",
+        "regime_proof": {
+          "g_at_one": {
+            "lower": "1777/25",
+            "upper": "896/5"
+          },
+          "g_at_zero": {
+            "lower": "-811/5",
+            "upper": "-114"
+          },
+          "strict_derivative_lower_bound": "3564/25"
+        },
+        "schema": "oma.two-sink-pressure-certificate/1",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+      },
+      "checker": {
+        "status": "PASS",
+        "model_root": "7a62ceb04e65bed273af0c96ecce0c31037a56302d688b21fff451156d185fe7",
+        "certificate_root": "741fb39034b7f2ef3d04c697334a09f0f5d37648ab3a486bd10115365947cb39",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "1035164648215057366316019/4835703278458516698824704",
+              "upper": "4398024614962839717243681/9671406556917033397649408"
+            },
+            "two": {
+              "lower": "232055971295731574145645/1208925819614629174706176",
+              "upper": "16252893256657867663344831/38685626227668133590597632"
+            }
+          },
+          "split_fraction": {
+            "lower": "930509/2097152",
+            "upper": "315693/524288"
+          },
+          "total_flow_m3_s": {
+            "lower": "1112471398143443391/2305843009213693952",
+            "upper": "13931333969910133317/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "21770330229964800/93529105283525093",
+            "upper": "7900/13851"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "332263/2097152",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "5031562784762586189/18446744073709551616",
+          "branch_flow_widths_m3_s": {
+            "one": "2327695318532724984611643/9671406556917033397649408",
+            "two": "8827102175194457290684191/38685626227668133590597632"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "parameters": {
+          "P1": {
+            "lower": "99/10",
+            "upper": "29/2"
+          },
+          "P2": {
+            "lower": "62/5",
+            "upper": "171/10"
+          },
+          "beta": {
+            "lower": "2/5",
+            "upper": "147/10"
+          },
+          "A1": {
+            "lower": "1/100",
+            "upper": "1/100"
+          },
+          "A2": {
+            "lower": "1/100",
+            "upper": "1/100"
+          },
+          "B1": {
+            "lower": "59/10",
+            "upper": "58/5"
+          },
+          "B2": {
+            "lower": "31/2",
+            "upper": "83/5"
+          }
+        },
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        }
+      },
+      "status": "SAMPLED_EQUATIONS_AND_ALL_ENCLOSURES_MATCH",
+      "samples": 160,
+      "max_pressure_equation_residual": "3.444024813373807341802899E-74",
+      "certificate": {
+        "accuracy": {
+          "achieved_split_width": "185541/1048576",
+          "branch_flow_widths_m3_s": {
+            "one": "48790315012948108639270107/19342813113834066795298816",
+            "two": "40533213764594665147144247/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true,
+          "requested_split_width": "1/1000000",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "17507953963685686553/4611686018427387904"
+        },
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "1913913309161742394649625/9671406556917033397649408",
+              "upper": "52618141631271593428569357/19342813113834066795298816"
+            },
+            "two": {
+              "lower": "2907648223246455666045375/19342813113834066795298816",
+              "upper": "21720430993920560406594811/9671406556917033397649408"
+            }
+          },
+          "split_fraction": {
+            "lower": "245235/524288",
+            "upper": "676011/1048576"
+          },
+          "total_flow_m3_s": {
+            "lower": "7804405199754286275/18446744073709551616",
+            "upper": "77836221054497032487/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "852121511526400/4760596301313237",
+            "upper": "32564/1829"
+          }
+        },
+        "model_root": "ce81177950a7db1430b4ec545b9f2b52e049f13d5e7d6ceb8e70e4966db85735",
+        "physical_acceptance_authority": false,
+        "query_root": "aa4021630b5e5878084eee72b7a6c04003a787c0d606fd06ef0f8c266c0a4688",
+        "regime_proof": {
+          "g_at_one": {
+            "lower": "73139/1000",
+            "upper": "24804/125"
+          },
+          "g_at_zero": {
+            "lower": "-240721/1000",
+            "upper": "-76689/500"
+          },
+          "strict_derivative_lower_bound": "3658/25"
+        },
+        "schema": "oma.two-sink-pressure-certificate/1",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+      },
+      "checker": {
+        "status": "PASS",
+        "model_root": "ce81177950a7db1430b4ec545b9f2b52e049f13d5e7d6ceb8e70e4966db85735",
+        "certificate_root": "ef1be411290245b023879e607cf28208aafa55a3f64a659dbfddf3fd875fd7d3",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "1913913309161742394649625/9671406556917033397649408",
+              "upper": "52618141631271593428569357/19342813113834066795298816"
+            },
+            "two": {
+              "lower": "2907648223246455666045375/19342813113834066795298816",
+              "upper": "21720430993920560406594811/9671406556917033397649408"
+            }
+          },
+          "split_fraction": {
+            "lower": "245235/524288",
+            "upper": "676011/1048576"
+          },
+          "total_flow_m3_s": {
+            "lower": "7804405199754286275/18446744073709551616",
+            "upper": "77836221054497032487/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "852121511526400/4760596301313237",
+            "upper": "32564/1829"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "185541/1048576",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "17507953963685686553/4611686018427387904",
+          "branch_flow_widths_m3_s": {
+            "one": "48790315012948108639270107/19342813113834066795298816",
+            "two": "40533213764594665147144247/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "parameters": {
+          "P1": {
+            "lower": "42/5",
+            "upper": "49/5"
+          },
+          "P2": {
+            "lower": "6",
+            "upper": "23/2"
+          },
+          "beta": {
+            "lower": "49/5",
+            "upper": "139/10"
+          },
+          "A1": {
+            "lower": "0",
+            "upper": "1/100"
+          },
+          "A2": {
+            "lower": "0",
+            "upper": "1/100"
+          },
+          "B1": {
+            "lower": "28/5",
+            "upper": "35/2"
+          },
+          "B2": {
+            "lower": "10",
+            "upper": "109/10"
+          }
+        },
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        }
+      },
+      "status": "SAMPLED_EQUATIONS_AND_ALL_ENCLOSURES_MATCH",
+      "samples": 160,
+      "max_pressure_equation_residual": "2.584607298178536673546331E-74",
+      "certificate": {
+        "accuracy": {
+          "achieved_split_width": "523137/2097152",
+          "branch_flow_widths_m3_s": {
+            "one": "14133429915974878275588039/38685626227668133590597632",
+            "two": "6779694950040328611440163/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true,
+          "requested_split_width": "1/1000000",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "8160584790159945591/18446744073709551616"
+        },
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "4958287112795479091128961/38685626227668133590597632",
+              "upper": "2386464628596294670839625/4835703278458516698824704"
+            },
+            "two": {
+              "lower": "1133517989919379422837981/9671406556917033397649408",
+              "upper": "9046730929879087457116125/19342813113834066795298816"
+            }
+          },
+          "split_fraction": {
+            "lower": "822179/2097152",
+            "upper": "336329/524288"
+          },
+          "total_flow_m3_s": {
+            "lower": "6030666208691147659/18446744073709551616",
+            "upper": "7095625499425546625/9223372036854775808"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "13194139533312000/123449670430997123",
+            "upper": "29/49"
+          }
+        },
+        "model_root": "3057dbb526f5145ac6b240ec52c961c14250ac8ff3a7281ca0dd38e624d3c3b0",
+        "physical_acceptance_authority": false,
+        "query_root": "961b0bb6e07261e3d3b75af8996860bcb55d2c4d2813cb39ab9b82651ce4f912",
+        "regime_proof": {
+          "g_at_one": {
+            "lower": "16751/500",
+            "upper": "40273/200"
+          },
+          "g_at_zero": {
+            "lower": "-53459/500",
+            "upper": "-16777/200"
+          },
+          "strict_derivative_lower_bound": "336/5"
+        },
+        "schema": "oma.two-sink-pressure-certificate/1",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+      },
+      "checker": {
+        "status": "PASS",
+        "model_root": "3057dbb526f5145ac6b240ec52c961c14250ac8ff3a7281ca0dd38e624d3c3b0",
+        "certificate_root": "4d9b3e363107d2d79f4b2eca5e3d1d28229856a5055fa5c88ad7ef7afb6926ab",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "4958287112795479091128961/38685626227668133590597632",
+              "upper": "2386464628596294670839625/4835703278458516698824704"
+            },
+            "two": {
+              "lower": "1133517989919379422837981/9671406556917033397649408",
+              "upper": "9046730929879087457116125/19342813113834066795298816"
+            }
+          },
+          "split_fraction": {
+            "lower": "822179/2097152",
+            "upper": "336329/524288"
+          },
+          "total_flow_m3_s": {
+            "lower": "6030666208691147659/18446744073709551616",
+            "upper": "7095625499425546625/9223372036854775808"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "13194139533312000/123449670430997123",
+            "upper": "29/49"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "523137/2097152",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "8160584790159945591/18446744073709551616",
+          "branch_flow_widths_m3_s": {
+            "one": "14133429915974878275588039/38685626227668133590597632",
+            "two": "6779694950040328611440163/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "parameters": {
+          "P1": {
+            "lower": "91/10",
+            "upper": "64/5"
+          },
+          "P2": {
+            "lower": "12",
+            "upper": "61/5"
+          },
+          "beta": {
+            "lower": "39/5",
+            "upper": "109/10"
+          },
+          "A1": {
+            "lower": "0",
+            "upper": "1/100"
+          },
+          "A2": {
+            "lower": "0",
+            "upper": "1/100"
+          },
+          "B1": {
+            "lower": "17/10",
+            "upper": "89/10"
+          },
+          "B2": {
+            "lower": "46/5",
+            "upper": "96/5"
+          }
+        },
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        }
+      },
+      "status": "SAMPLED_EQUATIONS_AND_ALL_ENCLOSURES_MATCH",
+      "samples": 160,
+      "max_pressure_equation_residual": "3.859668384135166546433598E-74",
+      "certificate": {
+        "accuracy": {
+          "achieved_split_width": "162703/524288",
+          "branch_flow_widths_m3_s": {
+            "one": "18601138576035224809595559/19342813113834066795298816",
+            "two": "13604430606595104093051559/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true,
+          "requested_split_width": "1/1000000",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "19518390505625471549/18446744073709551616"
+        },
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "2026478909664203979406875/9671406556917033397649408",
+              "upper": "22654096395363632768409309/19342813113834066795298816"
+            },
+            "two": {
+              "lower": "966849630021167083406875/9671406556917033397649408",
+              "upper": "15538129866637438259865309/19342813113834066795298816"
+            }
+          },
+          "split_fraction": {
+            "lower": "489585/1048576",
+            "upper": "814991/1048576"
+          },
+          "total_flow_m3_s": {
+            "lower": "4139176873605612875/9223372036854775808",
+            "upper": "27796744252836697299/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "103079215104000/511826286632963",
+            "upper": "34625/15249"
+          }
+        },
+        "model_root": "be55ac1a422bbb83eb62836986c6b57ff2febccee6d9d27ca275cfc6b40e9998",
+        "physical_acceptance_authority": false,
+        "query_root": "589d8499e783b162dc4c5d484fe473150f3acf83e0904a1cb8cde78a0c59c7be",
+        "regime_proof": {
+          "g_at_one": {
+            "lower": "2534/125",
+            "upper": "54351/500"
+          },
+          "g_at_zero": {
+            "lower": "-30736/125",
+            "upper": "-41799/500"
+          },
+          "strict_derivative_lower_bound": "204/5"
+        },
+        "schema": "oma.two-sink-pressure-certificate/1",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+      },
+      "checker": {
+        "status": "PASS",
+        "model_root": "be55ac1a422bbb83eb62836986c6b57ff2febccee6d9d27ca275cfc6b40e9998",
+        "certificate_root": "f5d210fca209963dc7fd6e3446dae1d594cc02bad1f3041fbeb15039eead7dbe",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "2026478909664203979406875/9671406556917033397649408",
+              "upper": "22654096395363632768409309/19342813113834066795298816"
+            },
+            "two": {
+              "lower": "966849630021167083406875/9671406556917033397649408",
+              "upper": "15538129866637438259865309/19342813113834066795298816"
+            }
+          },
+          "split_fraction": {
+            "lower": "489585/1048576",
+            "upper": "814991/1048576"
+          },
+          "total_flow_m3_s": {
+            "lower": "4139176873605612875/9223372036854775808",
+            "upper": "27796744252836697299/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "103079215104000/511826286632963",
+            "upper": "34625/15249"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "162703/524288",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "19518390505625471549/18446744073709551616",
+          "branch_flow_widths_m3_s": {
+            "one": "18601138576035224809595559/19342813113834066795298816",
+            "two": "13604430606595104093051559/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "parameters": {
+          "P1": {
+            "lower": "2",
+            "upper": "4"
+          },
+          "P2": {
+            "lower": "16/5",
+            "upper": "61/10"
+          },
+          "beta": {
+            "lower": "54/5",
+            "upper": "99/5"
+          },
+          "A1": {
+            "lower": "0",
+            "upper": "1/100"
+          },
+          "A2": {
+            "lower": "0",
+            "upper": "1/100"
+          },
+          "B1": {
+            "lower": "10",
+            "upper": "133/10"
+          },
+          "B2": {
+            "lower": "103/10",
+            "upper": "199/10"
+          }
+        },
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        }
+      },
+      "status": "SAMPLED_EQUATIONS_AND_ALL_ENCLOSURES_MATCH",
+      "samples": 160,
+      "max_pressure_equation_residual": "1.3615194337117422636261409E-74",
+      "certificate": {
+        "accuracy": {
+          "achieved_split_width": "18223/65536",
+          "branch_flow_widths_m3_s": {
+            "one": "4158126457417785408880513/19342813113834066795298816",
+            "two": "4453540317071356011958975/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true,
+          "requested_split_width": "1/1000000",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "2642389485085337869/9223372036854775808"
+        },
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "1838691760173520673224629/38685626227668133590597632",
+              "upper": "10154944675009091490985655/38685626227668133590597632"
+            },
+            "two": {
+              "lower": "2131887342321060163125867/38685626227668133590597632",
+              "upper": "11038967976463772187043817/38685626227668133590597632"
+            }
+          },
+          "split_fraction": {
+            "lower": "701109/2097152",
+            "upper": "1284245/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "2622547649757057281/18446744073709551616",
+            "upper": "7907326619927733019/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "2199023255552000/108798395762645523",
+            "upper": "511/2781"
+          }
+        },
+        "model_root": "ad71133beb114920d5856a6593357f76ee4e70d6cb3d623402fcde6131ed9a34",
+        "physical_acceptance_authority": false,
+        "query_root": "eca38cd167258c1aef5e99719ade08c211c86c5ef7a76c06c2d91a9e4c1d3fa2",
+        "regime_proof": {
+          "g_at_one": {
+            "lower": "799/25",
+            "upper": "81191/1000"
+          },
+          "g_at_zero": {
+            "lower": "-1991/25",
+            "upper": "-20539/1000"
+          },
+          "strict_derivative_lower_bound": "206/5"
+        },
+        "schema": "oma.two-sink-pressure-certificate/1",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+      },
+      "checker": {
+        "status": "PASS",
+        "model_root": "ad71133beb114920d5856a6593357f76ee4e70d6cb3d623402fcde6131ed9a34",
+        "certificate_root": "6f01dc320036ae0b5d53637f2a165fc67586f65d2e324281abab72b9abf237aa",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "1838691760173520673224629/38685626227668133590597632",
+              "upper": "10154944675009091490985655/38685626227668133590597632"
+            },
+            "two": {
+              "lower": "2131887342321060163125867/38685626227668133590597632",
+              "upper": "11038967976463772187043817/38685626227668133590597632"
+            }
+          },
+          "split_fraction": {
+            "lower": "701109/2097152",
+            "upper": "1284245/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "2622547649757057281/18446744073709551616",
+            "upper": "7907326619927733019/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "2199023255552000/108798395762645523",
+            "upper": "511/2781"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "18223/65536",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "2642389485085337869/9223372036854775808",
+          "branch_flow_widths_m3_s": {
+            "one": "4158126457417785408880513/19342813113834066795298816",
+            "two": "4453540317071356011958975/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "parameters": {
+          "P1": {
+            "lower": "59/5",
+            "upper": "163/10"
+          },
+          "P2": {
+            "lower": "21/5",
+            "upper": "96/5"
+          },
+          "beta": {
+            "lower": "15",
+            "upper": "177/10"
+          },
+          "A1": {
+            "lower": "0",
+            "upper": "1/100"
+          },
+          "A2": {
+            "lower": "0",
+            "upper": "0"
+          },
+          "B1": {
+            "lower": "67/10",
+            "upper": "17/2"
+          },
+          "B2": {
+            "lower": "5/2",
+            "upper": "21/2"
+          }
+        },
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        }
+      },
+      "status": "SAMPLED_EQUATIONS_AND_ALL_ENCLOSURES_MATCH",
+      "samples": 160,
+      "max_pressure_equation_residual": "4.219522177280251463017299E-74",
+      "certificate": {
+        "accuracy": {
+          "achieved_split_width": "869397/2097152",
+          "branch_flow_widths_m3_s": {
+            "one": "27445388665287536848923219/38685626227668133590597632",
+            "two": "13597358688834308134793049/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true,
+          "requested_split_width": "1/1000000",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "14167822733223341397/18446744073709551616"
+        },
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "564536533904268939350743/4835703278458516698824704",
+              "upper": "31961680936521688363729163/38685626227668133590597632"
+            },
+            "two": {
+              "lower": "2193987086700584789693793/19342813113834066795298816",
+              "upper": "7895672887767446462243421/9671406556917033397649408"
+            }
+          },
+          "split_fraction": {
+            "lower": "155681/524288",
+            "upper": "1492121/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "3626239129400947703/9223372036854775808",
+            "upper": "21420300992025236803/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "439804651110400/2845289045033931",
+            "upper": "33878/25125"
+          }
+        },
+        "model_root": "1eb2770b6a903602cf069ed37e9953145d8f59cc5021d66b6ced1b876034c978",
+        "physical_acceptance_authority": false,
+        "query_root": "1db52da2b4321aa46c88a0edbb9b63ae313a1fbd4afae8326d9229b19d207a2a",
+        "regime_proof": {
+          "g_at_one": {
+            "lower": "1407/50",
+            "upper": "20424/125"
+          },
+          "g_at_zero": {
+            "lower": "-3423/20",
+            "upper": "-7327/250"
+          },
+          "strict_derivative_lower_bound": "1407/25"
+        },
+        "schema": "oma.two-sink-pressure-certificate/1",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+      },
+      "checker": {
+        "status": "PASS",
+        "model_root": "1eb2770b6a903602cf069ed37e9953145d8f59cc5021d66b6ced1b876034c978",
+        "certificate_root": "8fc1b497b60e555e06db6f20913ee83ca839461ece6bc83f9776ae33ff41db60",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "564536533904268939350743/4835703278458516698824704",
+              "upper": "31961680936521688363729163/38685626227668133590597632"
+            },
+            "two": {
+              "lower": "2193987086700584789693793/19342813113834066795298816",
+              "upper": "7895672887767446462243421/9671406556917033397649408"
+            }
+          },
+          "split_fraction": {
+            "lower": "155681/524288",
+            "upper": "1492121/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "3626239129400947703/9223372036854775808",
+            "upper": "21420300992025236803/18446744073709551616"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "439804651110400/2845289045033931",
+            "upper": "33878/25125"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "869397/2097152",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "14167822733223341397/18446744073709551616",
+          "branch_flow_widths_m3_s": {
+            "one": "27445388665287536848923219/38685626227668133590597632",
+            "two": "13597358688834308134793049/19342813113834066795298816"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "parameters": {
+          "P1": {
+            "lower": "8",
+            "upper": "96/5"
+          },
+          "P2": {
+            "lower": "37/5",
+            "upper": "77/10"
+          },
+          "beta": {
+            "lower": "28/5",
+            "upper": "93/10"
+          },
+          "A1": {
+            "lower": "0",
+            "upper": "0"
+          },
+          "A2": {
+            "lower": "0",
+            "upper": "0"
+          },
+          "B1": {
+            "lower": "103/10",
+            "upper": "59/5"
+          },
+          "B2": {
+            "lower": "19/10",
+            "upper": "187/10"
+          }
+        },
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        }
+      },
+      "status": "SAMPLED_EQUATIONS_AND_ALL_ENCLOSURES_MATCH",
+      "samples": 160,
+      "max_pressure_equation_residual": "4.149909911753698323399855E-74",
+      "certificate": {
+        "accuracy": {
+          "achieved_split_width": "826905/2097152",
+          "branch_flow_widths_m3_s": {
+            "one": "17034382940974898489636871/19342813113834066795298816",
+            "two": "8774701355304525915759643/9671406556917033397649408"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true,
+          "requested_split_width": "1/1000000",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "9769890346849157581/9223372036854775808"
+        },
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "276813728639706014057793/2417851639229258349412352",
+              "upper": "19248892770092546602099215/19342813113834066795298816"
+            },
+            "two": {
+              "lower": "601567834058805432251351/4835703278458516698824704",
+              "upper": "9977837023422136780262345/9671406556917033397649408"
+            }
+          },
+          "split_fraction": {
+            "lower": "304383/1048576",
+            "upper": "1435671/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "909425719043790271/2305843009213693952",
+            "upper": "13407593223024318665/9223372036854775808"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "1759218604441600/11309536745462367",
+            "upper": "57895/27398"
+          }
+        },
+        "model_root": "0b4f5b2c25ef65aedb323046f3b43f9b04386ef762c5615cd537ccf5a650384d",
+        "physical_acceptance_authority": false,
+        "query_root": "0c4bc693a0d049eb15c3e005a9d622421d726cc040d99d9ac2a40eddf3fdae4d",
+        "regime_proof": {
+          "g_at_one": {
+            "lower": "3811/50",
+            "upper": "4543/50"
+          },
+          "g_at_zero": {
+            "lower": "-8976/25",
+            "upper": "-76/5"
+          },
+          "strict_derivative_lower_bound": "152/5"
+        },
+        "schema": "oma.two-sink-pressure-certificate/1",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+      },
+      "checker": {
+        "status": "PASS",
+        "model_root": "0b4f5b2c25ef65aedb323046f3b43f9b04386ef762c5615cd537ccf5a650384d",
+        "certificate_root": "d8642b410958cd9841006b3eaf5a517a29535e138328d5e33a11a02ecf9f35a7",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "276813728639706014057793/2417851639229258349412352",
+              "upper": "19248892770092546602099215/19342813113834066795298816"
+            },
+            "two": {
+              "lower": "601567834058805432251351/4835703278458516698824704",
+              "upper": "9977837023422136780262345/9671406556917033397649408"
+            }
+          },
+          "split_fraction": {
+            "lower": "304383/1048576",
+            "upper": "1435671/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "909425719043790271/2305843009213693952",
+            "upper": "13407593223024318665/9223372036854775808"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "1759218604441600/11309536745462367",
+            "upper": "57895/27398"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "826905/2097152",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "9769890346849157581/9223372036854775808",
+          "branch_flow_widths_m3_s": {
+            "one": "17034382940974898489636871/19342813113834066795298816",
+            "two": "8774701355304525915759643/9671406556917033397649408"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    },
+    {
+      "model": {
+        "schema": "oma.two-sink-pressure-model/1",
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "parameters": {
+          "P1": {
+            "lower": "29/2",
+            "upper": "153/10"
+          },
+          "P2": {
+            "lower": "161/10",
+            "upper": "98/5"
+          },
+          "beta": {
+            "lower": "51/10",
+            "upper": "68/5"
+          },
+          "A1": {
+            "lower": "0",
+            "upper": "1/100"
+          },
+          "A2": {
+            "lower": "0",
+            "upper": "1/100"
+          },
+          "B1": {
+            "lower": "139/10",
+            "upper": "83/5"
+          },
+          "B2": {
+            "lower": "39/5",
+            "upper": "17/2"
+          }
+        },
+        "context_root": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "physical_model_root": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "assumptions": {
+          "parameter_domain": "CARTESIAN_INTERVAL_BOX",
+          "pressure_quantity": "TOTAL_PRESSURE_PLUS_GRAVITATIONAL_POTENTIAL_DROP_PA",
+          "loss_law": "P_i=beta*Q^2*(A_i+B_i*t_i^2)",
+          "regime": "Q>0;0<t<1;q1=t*Q;q2=(1-t)*Q",
+          "units": {
+            "P1": "Pa",
+            "P2": "Pa",
+            "beta": "Pa*s^2/m^6",
+            "A1": "1",
+            "A2": "1",
+            "B1": "1",
+            "B2": "1",
+            "Q": "m^3/s"
+          },
+          "physical_applicability": "DECLARED_BY_CALLER_NOT_PROVED_BY_KERNEL"
+        }
+      },
+      "status": "SAMPLED_EQUATIONS_AND_ALL_ENCLOSURES_MATCH",
+      "samples": 160,
+      "max_pressure_equation_residual": "4.548952307163881963014544E-74",
+      "certificate": {
+        "accuracy": {
+          "achieved_split_width": "16415/262144",
+          "branch_flow_widths_m3_s": {
+            "one": "11460207049172872343977395/38685626227668133590597632",
+            "two": "16012294950459739566823765/38685626227668133590597632"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true,
+          "requested_split_width": "1/1000000",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "11041199715939253285/18446744073709551616"
+        },
+        "branch_ids": [
+          "one",
+          "two"
+        ],
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "8480811900557706031369275/38685626227668133590597632",
+              "upper": "9970509474865289187673335/19342813113834066795298816"
+            },
+            "two": {
+              "lower": "12982097461995358064486957/38685626227668133590597632",
+              "upper": "14497196206227548815655361/19342813113834066795298816"
+            }
+          },
+          "split_fraction": {
+            "lower": "776775/2097152",
+            "upper": "908095/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "10917977407302894701/18446744073709551616",
+            "upper": "10979588561621073993/9223372036854775808"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "4425534301798400/12633415320226409",
+            "upper": "391780/276471"
+          }
+        },
+        "model_root": "1036ea27f23ea6ccc0e844426d809accc1931ff5c319b27236ed1efb7fb66f7f",
+        "physical_acceptance_authority": false,
+        "query_root": "b69dd6b0120357777b0078cfc955bfc81710fb36578fb628999eb7bf7f38f2c0",
+        "regime_proof": {
+          "g_at_one": {
+            "lower": "223637/1000",
+            "upper": "81389/250"
+          },
+          "g_at_zero": {
+            "lower": "-130203/1000",
+            "upper": "-14113/125"
+          },
+          "strict_derivative_lower_bound": "1131/5"
+        },
+        "schema": "oma.two-sink-pressure-certificate/1",
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX"
+      },
+      "checker": {
+        "status": "PASS",
+        "model_root": "1036ea27f23ea6ccc0e844426d809accc1931ff5c319b27236ed1efb7fb66f7f",
+        "certificate_root": "d14a37bfee3942abbeea8b0fcc854dda6fe9102d0202a69e4729f15f3217ecb5",
+        "enclosures": {
+          "branch_flows_m3_s": {
+            "one": {
+              "lower": "8480811900557706031369275/38685626227668133590597632",
+              "upper": "9970509474865289187673335/19342813113834066795298816"
+            },
+            "two": {
+              "lower": "12982097461995358064486957/38685626227668133590597632",
+              "upper": "14497196206227548815655361/19342813113834066795298816"
+            }
+          },
+          "split_fraction": {
+            "lower": "776775/2097152",
+            "upper": "908095/2097152"
+          },
+          "total_flow_m3_s": {
+            "lower": "10917977407302894701/18446744073709551616",
+            "upper": "10979588561621073993/9223372036854775808"
+          },
+          "total_flow_squared_m6_s2": {
+            "lower": "4425534301798400/12633415320226409",
+            "upper": "391780/276471"
+          }
+        },
+        "accuracy": {
+          "requested_split_width": "1/1000000",
+          "achieved_split_width": "16415/262144",
+          "target_split_width_met": false,
+          "total_flow_width_m3_s": "11041199715939253285/18446744073709551616",
+          "branch_flow_widths_m3_s": {
+            "one": "11460207049172872343977395/38685626227668133590597632",
+            "two": "16012294950459739566823765/38685626227668133590597632"
+          },
+          "flow_accuracy_target": "NOT_REQUESTED",
+          "includes_parameter_uncertainty": true
+        },
+        "correlation": {
+          "branch_ids": [
+            "one",
+            "two"
+          ],
+          "parameterization": "q1=t*Q;q2=(1-t)*Q",
+          "conservation": "Q=q1+q2",
+          "marginal_intervals_are_independent": false,
+          "scope": "Every actual model solution obeys this relation; arbitrary marginal-box points need not solve the model"
+        },
+        "scope": "UNIQUE_FORWARD_TWO_SINK_QUADRATIC_OPERATING_POINT_FOR_EVERY_PARAMETER_IN_DECLARED_BOX",
+        "work": 450,
+        "physical_acceptance_authority": false,
+        "infeasibility_claim": false
+      }
+    }
+  ],
+  "seconds": 1.375,
+  "scope": "Numerical 100-decimal-digit bisection of original path equations; finite samples are consistency evidence, not universal proof or physical native applicability"
+}

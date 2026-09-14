@@ -1,0 +1,53 @@
+{
+  "status": "REVIEW_COMPLETE_WITH_ADMISSION_FINDING_OPEN",
+  "source_checkpoint": "b61a7a9f20f0f5dccc7f4f69207037e36110e895fdd3835f232d4f3f62d6d895",
+  "reviewed_source_sha256": {
+    "oma/routing/network_pressure.py": "ff4ee882d3b9a498f8b3a1e52e8cee8ce1678ea589eb6d6aea850c8d6eddcade",
+    "oma/routing/network_scenario.py": "703ddc2ea60418cbd610bf8978068f557d1422f5f75473204d642d5a72e65a44",
+    "oma/routing/network_checker.py": "87214c2ef90aa2cbd53eaeaa078d2f4e326468a6eb61526bc7b7a0008b5e314e",
+    "oma/routing/selection.py": "59e936592e8d6f2639ecd0cce173d29877404cbf570a6dae3b7b343505a14840",
+    "oma/project_assurance.py": "bfe052e896828e00c83bbbaa65c13b76c750a9c80ea970325800bcaba7da2dc9",
+    "oma/routing/network_export.py": "c4653ce6b777afc0457ce62e89bf263d7755157e4da4dc604eed372ee028a298"
+  },
+  "scope": "Independent bounded review of physical model binding, native metric uncertainty, demanded deliveries, selection, acceptance and export gates; not general engineering adequacy",
+  "confirmed_checks": [
+    "Directed physical tree and every unique component partitioned into shared trunk, one tee and exclusive outlet branches",
+    "All selected demand/network identities and requested fixed boundary semantics bound to immutable mission",
+    "Total pressure excludes elevation; native terminal elevation enclosures enter once",
+    "Tee coefficients include total fitting loss at inlet velocity; tee Darcy length not charged twice",
+    "Independent rational operating certificate rechecked before delivery and per-port velocity authority",
+    "Fixed-flow scenario/rule serialization omits absent optional pressure mode",
+    "Checked exports perform fresh native/operating verification and require full check-set correspondence"
+  ],
+  "findings": [
+    {
+      "id": "NATIVE_PRESSURE_AREA_BINDING",
+      "status": "CORRECTED_AND_INDEPENDENTLY_REPLAYED",
+      "old_attempt": "native-radius-465813329ada4885aaeb089d31320d82",
+      "corrected_attempt": "native-radius-corrected-2c58cb725aa045a3b421324a25ae8cb3",
+      "correction": "Native component radius intervals, explicit ideal bore interpretation, componentwise diameter/area loss scaling and per-port areas",
+      "corrected_result": "Geometry PASS; operating/delivery/candidate UNKNOWN; original source bytes and fixed mission preserved except required new interpretation field"
+    },
+    {
+      "id": "PHYSICAL_PASS_OBLIGATION_ADMISSION",
+      "status": "OPEN_ROOT_NOTIFIED",
+      "reproduction": "81a7d567cf424654ba3ea883af348d16",
+      "behavior": "Same-build genuine native report with only operating-point result removed is accepted via unmanaged record_verification and managed trusted finish, then revision publication",
+      "boundary": "Incorrect trusted report producer or trusted parent-completion caller; not ordinary API exploit",
+      "recommended_correction": "Reconstruct and enforce required physical check inventory at PASS publication and acceptance; retain selection and fresh-export checks"
+    }
+  ],
+  "regression": {
+    "path": ".oma/development/two-sink-pressure/tests/test_network_pressure_native_section.py",
+    "source_sha256": "5e32e97df867c0e0c03c00952cefdc3710cef002a75676efd1c7f370232a66e7",
+    "result": "1 PASS,7.47s,b61a",
+    "junit": "native-section-regression.xml"
+  },
+  "independent_componentwise_oracle": {
+    "path": "component-area-oracle-b8c926428da84cf290feb431039ec0ff",
+    "cases": 80,
+    "velocity_bounds": 720,
+    "scope": "Numerical consistency on16radiuscorners+64interior points; no universal proof claim"
+  },
+  "production_modified": false
+}

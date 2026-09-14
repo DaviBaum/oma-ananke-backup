@@ -15,6 +15,10 @@ def main():
     sources = json.loads((ROOT / "evidence/math/source_inventory.json").read_text(encoding="utf-8"))["sources"]
     identities = {s["document_id"]: s["sha256"] for s in sources}
     entries = [
+        ("UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER", "1-10", [16069, 16077, 16118, 16135, 16139, 16203, 16836, 16853, 17130, 17158, 17615, 17681], ["ALG-PO1", "ALG-PO2", "ALG-PO7", "THM-PO7", "THM-PO8", "THM-PO12"],
+         ["oma.optimization.two_sink_pressure.compile_two_sink_pressure", "oma.routing.network_pressure.partition_two_sink_tree", "oma.routing.network_pressure.derive_two_sink_pressure_model", "oma.routing.network_pressure.evaluate_pressure_network"], ["oma.optimization.two_sink_pressure.verify_two_sink_pressure", "oma.routing.network_checker.verify_network_candidate"], "tests/test_two_sink_pressure.py",
+         "Bounded nonlinear port relation for exactly one tee and two forward outlets. Every parameter tuple in the complete rational Cartesian box has one unique interior split when independently checked adverse endpoint signs and a strict derivative lower bound hold. Independently reconstructed squared-flow, square-root and conserved-branch bounds enclose every such operating point; actual widths are reported. The native adapter independently reparses the full component/path partition, derives coefficient and elevation intervals from current native metric inputs, binds total-pressure boundary assumptions, and checks both minimum deliveries plus all physical port velocities. Tee total loss is referenced to inlet flow and its skeleton receives no additional Darcy charge.",
+         [], "Fixed steady incompressible quadratic loss model only. P1/P2/beta/B1/B2 are positive throughout; A1/A2 are nonnegative. Caller-declared boundary control, loss/catalog applicability and conservative native metric enclosure premises remain external. The coefficient box may enclose correlated inputs without claiming physical independence. No general nonlinear/cyclic/multi-tee/reverse-flow solution, physical infeasibility, global route optimum or kernel acceptance authority. Coarse complete envelopes report unmet target width; hard work/bit/byte budgets or absent uniform regime yield UNKNOWN. Native geometry, source identity, managed acceptance and exported-file checks remain separate and mandatory."),
         ("EXACT_COUNT_FABRICATION_FRONTIER_AND_SOURCE_PROPOSALS", "oma-integration", [5522, 5523, 5536, 5537, 5544, 5545, 5548, 5549, 5568, 5569], ["ALG-RTR15", "ALG-RTR22", "ALG-RTR26", "ALG-RTR28", "ALG-RTR38"],
          ["oma.optimization.fabrication_frontier.compile_fabrication_frontier", "oma.routing.certified_fabrication.build_certified_fabrication_proposals", "oma.routing.proposals.project_proposals"], ["oma.optimization.fabrication_frontier.verify_fabrication_frontier", "oma.optimization.fabrication.verify_orthogonal_fabrication", "oma.routing.fitting_budget.check_joint_fitting_budget"], "tests/test_optimization_fabrication_frontier.py",
          "Bounded specialization of the source fabrication lift, column-cost and pricing-closure obligations. Product states add exact quarter-turn count k; each fixed k has constant pi coefficient wL*R*k/2, so nonnegative rational deferred costs admit exact Dijkstra. Independent grounded predecessor reachability, full outgoing closure, all rational edge/terminal inequalities and one realizing path certify every count 0..K. K is at most 32; graph walks may repeat vertices or visit the goal before returning. Actual source consumer binds full immutable joint budget B and cap min(B,32), authenticated source/frame coverage, objective and executable, then independently checks each binary64 fixed-fabrication path before proposing it.",
@@ -189,6 +193,30 @@ def main():
     suite = ET.parse(test_path).getroot().find("testsuite") if test_path.exists() else None
     coverage = json.loads((ROOT / "evidence/math/combined_review_coverage.json").read_text(encoding="utf-8"))
     for row in register:
+        if row["obligation"] == "UNIFORM_TWO_SINK_PRESSURE_PORT_ENVELOPE_AND_NATIVE_ADAPTER":
+            row["related_sources"] = [{"document": "oma-integration", "sha256": identities["oma-integration"],
+                "paragraphs": [4592, 4609, 5530, 5531, 5532, 5533], "objects": ["DEF-RTR56", "ALG-RTR19", "ALG-RTR20"]}]
+            row["automated_tests"].extend(["tests/test_network_pressure.py", "tests/test_network_pressure_integration.py", "tests/test_network_pressure_native_section.py", "tests/test_physical_report_admission.py"])
+            row["full_source_algorithms_implemented"] = False
+            row["documentation"] = "docs/math/two-sink-pressure.md"
+            row["real_model_benchmark"] = {"status": "STAGED_ANALYTIC_NATIVE_MANAGED_ACCEPTANCE_AND_EXPORT; REAL_OFFICE_NOT_RUN",
+                "evidence": "evidence/math/two-sink-pressure/latest.json",
+                "scope": "Kernel, native component-area correction and report-admission checkpoints are separately identified. Real Office pressure mission b44b3123cdb641709b2aa32ae5bd526c selects and accepts the direct tee layout, then checks the exported IFC against all 3212 component/source pairs. The offset layout passes all6424 native pairs but fails minimum branch delivery. Boundaries are frozen hypothetical inputs, not actual building operating data; no general topology or whole-building claim.",
+                "office_evidence": "evidence/benchmarks/pressure-driven/office/b44b3123cdb641709b2aa32ae5bd526c/result.json"}
+            row["independent_review"] = "evidence/math/two-sink-pressure/independent-review/corrected-result.json"
+            row["native_dimensional_applicability_review"] = "CORRECTED_SCOPED_ADAPTER: independently parsed per-component outer-radius intervals, with explicit native numerical uncertainty, minus declared insulation define ideal bore intervals. Dimensionless reference-to-component diameter fourth-power factors and each component's area are used. Native wall/bore measurement, arbitrary reducers and catalog applicability remain unproved external premises. The original nominal-area false PASS and corrected UNKNOWN replay are retained in the portable evidence index."
+            row["consumer_scope"] = {"mission_field": "SharedNetworkScenario.pressure_driven", "default": None,
+                "pressure_convention": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+                "network_domain": "ONE_TEE_TWO_FORWARD_OUTLETS_COMPLETE_COMPONENT_PARTITION",
+                "existing_fixed_flow_request_hashes_preserved": True,
+                "static_budget_or_fixed_flow_contract_coexistence": False,
+                "native_metric_enclosure_truth": "EXPLICIT_NUMERICAL_APPLICABILITY_PREMISE",
+                "kernel_proof_grants_physical_acceptance": False,
+                "required_independent_check": "network-pressure-operating-point",
+                "real_office_benchmark": "FROZEN_HYPOTHETICAL_PRESSURE_MISSION_NATIVE_ACCEPT_EXPORT_RECHECK_PASS",
+                "ideal_bore_interpretation": "NATIVE_OUTER_ENVELOPE_MINUS_DECLARED_INSULATION_NOT_MEASURED_WALL_GEOMETRY",
+                "per_component_native_section_uncertainty": True,
+                "complete_report_inventory_required_at_publication_and_acceptance": True}
         if row["obligation"] == "EXACT_COUNT_FABRICATION_FRONTIER_AND_SOURCE_PROPOSALS":
             row["automated_tests"].extend(["tests/test_certified_fabrication_frontier.py", "tests/test_joint_fitting_budget.py", "tests/test_joint_fitting_budget_adversarial.py"])
             row["real_model_benchmark"] = {"status": "ACTUAL_ANALYTIC_SOURCE_ADAPTER_AND_SEPARATE_NATIVE_WALL_CORRESPONDENCE",
@@ -225,7 +253,7 @@ def main():
              "obligations": register, "pending_source_mechanisms": pending,
              "unit_test_run": {"path": str(test_path.relative_to(ROOT)), "tests": int(suite.get("tests")) if suite is not None else None,
                                "failures": int(suite.get("failures")) if suite is not None else None},
-             "additional_adapter_test_runs": ["evidence/math/certified-cells-adapter-tests.xml", "evidence/math/opening-inverse-regression.xml", "evidence/math/fabrication-tests.xml", "evidence/math/fabrication-search-tests.xml", "evidence/math/fabrication-pricing-tests.xml", "evidence/release/fabrication-pricing-adversarial.xml", "evidence/math/fabrication-grid-tests.xml", "evidence/release/fabrication-grid-native-zone-adversarial.xml", "evidence/release/certified-fabrication-frontier.xml", "evidence/math/route-metadata-tests.xml"],
+             "additional_adapter_test_runs": ["evidence/math/certified-cells-adapter-tests.xml", "evidence/math/opening-inverse-regression.xml", "evidence/math/fabrication-tests.xml", "evidence/math/fabrication-search-tests.xml", "evidence/math/fabrication-pricing-tests.xml", "evidence/release/fabrication-pricing-adversarial.xml", "evidence/math/fabrication-grid-tests.xml", "evidence/release/fabrication-grid-native-zone-adversarial.xml", "evidence/release/certified-fabrication-frontier.xml", "evidence/math/route-metadata-tests.xml", "evidence/math/two-sink-pressure/kernel/kernel-corrected.xml", "evidence/math/two-sink-pressure/native-initial/tests.xml"],
              "command": ".venv\\Scripts\\python.exe -m pytest tests/test_exact.py tests/test_dependencies.py tests/test_optimization_master.py tests/test_optimization_physical.py tests/test_optimization_certificates.py tests/test_ifc_enclosure.py tests/test_optimization_finite.py tests/test_optimization_policy.py tests/test_optimization_codesign.py tests/test_optimization_fdqa.py tests/test_optimization_separator.py tests/test_optimization_symbolic.py tests/test_optimization_ports.py tests/test_optimization_bisimulation.py tests/test_optimization_physical_menu.py tests/test_optimization_rectilinear_opening.py tests/test_optimization_route_cells.py -q --junitxml=evidence/math/implemented-obligation-tests.xml"}
     destination = ROOT / "evidence/math/traceability_register.json"
     destination.write_text(json.dumps(proof, indent=2) + "\n", encoding="utf-8")

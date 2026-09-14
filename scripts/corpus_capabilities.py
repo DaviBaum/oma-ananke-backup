@@ -26,7 +26,7 @@ FAMILY_LIMITS = {
     "DS": "Finite explicit regional merge tables, exact context closure and original menu multiplicities are supported; automatic decomposition discovery and arbitrary physical separator sufficiency are not established.",
     "AB": "Finite table quotients and bounded Boolean-circuit symbolic refinement are implemented; arbitrary theorem/SMT interfaces, complete engineering CEGAR and physical context completeness are not established.",
     "ER": "Some exact interval checks and finite supplied outcomes exist; the full discrepancy, cover, adaptive enclosure and resource-rational refinement system is not implemented.",
-    "PO": "Exact supplied rational linear port relations and independent matrix checks are implemented; general nonlinear, dynamic, PDE and physical model-applicability contracts are not implemented.",
+    "PO": "Exact supplied rational linear port relations and independent matrix checks, plus a bounded uniformly monotone one-tee/two-outlet pressure relation with rational flow enclosures, are implemented. The separate native adapter retains total-pressure/loss/metric applicability assumptions. General nonlinear, dynamic, PDE and full physical model-applicability contracts are not implemented.",
     "CS": "Complete supplied finite nondeterministic relations admit a checked strong bisimulation; general causal physical transition discovery, evidence effects and full CSSP closure are not implemented.",
     "ASS": "Grounded finite positive assurance derivations, minimal support antichains, cuts and actual report foundations are implemented; no whole-project assurance closure is inferred from a local route report.",
     "SOV": "Frozen authorized candidate definitions and protected-state gates are present; complete menu-sensitive intent languages, global option preservation after every authorized amendment and general sovereign rewrite search are not implemented.",
@@ -40,8 +40,8 @@ ADAPTERS = {
     "ALG-RTR16": (["oma.routing.engine.route_project_run"], "Finite generated physical routes with independent checking; not a complete certified continuous route graph", ["tests/test_routing_integration.py"]),
     "ALG-RTR17": (["oma.routing.network_engine.network_project_run"], "Explicit bounded shared-tree component candidates; no complete multi-terminal topology pricing", ["tests/test_network_integration.py"]),
     "ALG-RTR18": (["oma.ifc.network_semantics.check_network_semantics"], "Independent actual native component/port connectivity and approved component geometry checks", ["tests/test_network_integration.py"]),
-    "ALG-RTR19": (["oma.routing.network_flow.evaluate_network_flow", "oma.optimization.physical.evaluate_fluid_path"], "Declared fixed-flow directed-tree/path physics; no nonlinear operating-flow discovery", ["tests/test_network_scenario.py", "tests/test_optimization_physical.py"]),
-    "ALG-RTR20": (["oma.optimization.physical.solve_gravity_elevations", "oma.optimization.physical.verify_gravity_result"], "Exact finite fixed-topology elevation constraints; general physical fiber remains open", ["tests/test_optimization_physical.py"]),
+    "ALG-RTR19": (["oma.routing.network_flow.evaluate_network_flow", "oma.optimization.physical.evaluate_fluid_path", "oma.routing.network_pressure.partition_two_sink_tree", "oma.routing.network_pressure.derive_two_sink_pressure_model", "oma.routing.network_pressure.evaluate_pressure_network"], "Declared fixed-flow tree/path physics plus a separate optional total-pressure one-tee/two-outlet model. Complete native component partition and metric/position intervals feed a checked quadratic operating relation; minimum delivery and every physical port velocity remain distinct service gates. No general nonlinear flow discovery or full physical fiber", ["tests/test_network_scenario.py", "tests/test_optimization_physical.py", "tests/test_network_pressure.py", "tests/test_network_pressure_integration.py"]),
+    "ALG-RTR20": (["oma.optimization.physical.solve_gravity_elevations", "oma.optimization.physical.verify_gravity_result", "oma.optimization.two_sink_pressure.compile_two_sink_pressure", "oma.optimization.two_sink_pressure.verify_two_sink_pressure", "oma.routing.network_checker.verify_network_candidate"], "Exact finite elevation constraints and an independently checked uniformly forward two-sink quadratic relation with rational interval enclosures. Actual native checks and the declared external model premises remain mandatory; no general physical fiber solver or kernel acceptance authority", ["tests/test_optimization_physical.py", "tests/test_two_sink_pressure.py", "tests/test_network_pressure.py", "tests/test_network_pressure_integration.py"]),
     "ALG-RTR22": (["oma.routing.checker.verify_route_candidate", "oma.routing.network_checker.verify_network_candidate"], "Actual candidate geometry/semantics/report checks; no unrestricted source column schema closure", ["tests/test_routing_integration.py", "tests/test_network_integration.py"]),
     "ALG-RTR23": (["oma.optimization.master.generate_columns"], "Generate from an explicit complete serialized finite pool only", ["tests/test_optimization_master.py"]),
     "ALG-RTR24": (["oma.optimization.master.solve_master"], "Exact finite route-column master with explicit conflicts and capacities", ["tests/test_optimization_master.py"]),
@@ -142,9 +142,14 @@ def main():
     register = read(OUT / "traceability_register.json")
     related = defaultdict(list)
     for obligation in register["obligations"]:
-        for name in obligation["source"]["objects"]:
-            for expanded in object_names(name):
-                related[obligation["source"]["document"], expanded].append(obligation)
+        # Explicit extra source identities may share a bounded implementation;
+        # never resolve original/reconstructed names by spelling alone.
+        for source_binding in [obligation["source"], *obligation.get("related_sources", [])]:
+            if inventory[source_binding["document"]]["sha256"] != source_binding["sha256"]:
+                raise ValueError("Related source binding differs from its inventory identity")
+            for name in source_binding["objects"]:
+                for expanded in object_names(name):
+                    related[source_binding["document"], expanded].append(obligation)
     # These extra adapters were independently read, but their complete original
     # domain programs are not asserted by the existence of these exact callables.
     extras = {
