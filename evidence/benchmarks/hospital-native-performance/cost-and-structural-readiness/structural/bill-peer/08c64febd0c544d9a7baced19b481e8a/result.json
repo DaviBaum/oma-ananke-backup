@@ -1,0 +1,70 @@
+{
+  "status": "READ_ONLY_NOMINAL_BILL_AND_SYMBOLIC_FORMULA_REVIEW_PASS",
+  "bill_result_sha256": "c6b2708ac70083509daabf5c27aeaeea4f6a332bd0af1e115449f91219a0c617",
+  "rows": [
+    {
+      "candidate": "b554059c321e49a08923a5d24971c799",
+      "role": "alternative",
+      "quantities": {
+        "P": "37/8",
+        "T": "1",
+        "E": "0",
+        "J": "3"
+      },
+      "straight_piece_count": 3,
+      "actual_retained_IFC_port_connections": 3,
+      "source_ifc_sha256": "230afa4d72a59c9ce18cdd9a7bc7c5c3e409a46078de6e14b19741b4cf92cf09",
+      "export_ifc_sha256": "a4eee4d040548a63cf23086b05cf8ede982a346958647d83bf574d0c2dfb83b1"
+    },
+    {
+      "candidate": "15e6828e1fea4e929a72f4d07362c552",
+      "role": "alternative",
+      "quantities": {
+        "P": "37/8",
+        "T": "1",
+        "E": "4",
+        "J": "11"
+      },
+      "straight_piece_count": 7,
+      "actual_retained_IFC_port_connections": 11,
+      "source_ifc_sha256": "230afa4d72a59c9ce18cdd9a7bc7c5c3e409a46078de6e14b19741b4cf92cf09",
+      "export_ifc_sha256": "c5cc4d31f512d6bc3e06b6b66e1a1e3b8cfb41486dcbb11404e958aafa840e94"
+    },
+    {
+      "candidate": "6555a240ff294e63ac1dc61f6c42a750",
+      "role": "fresh_export",
+      "quantities": {
+        "P": "37/8",
+        "T": "1",
+        "E": "0",
+        "J": "3"
+      },
+      "straight_piece_count": 3,
+      "actual_retained_IFC_port_connections": 3,
+      "source_ifc_sha256": "230afa4d72a59c9ce18cdd9a7bc7c5c3e409a46078de6e14b19741b4cf92cf09",
+      "export_ifc_sha256": "a4eee4d040548a63cf23086b05cf8ede982a346958647d83bf574d0c2dfb83b1"
+    }
+  ],
+  "difference_other_minus_selected": {
+    "P": "0",
+    "T": "0",
+    "E": "4",
+    "J": "8"
+  },
+  "selected_formula": "4.625 P + T + 3 J + C",
+  "other_formula": "4.625 P + T + 4 E + 11 J + C",
+  "conditional_difference": "4 E + 8 J",
+  "conditional_relative_savings": "(4 E + 8 J)/(4.625 P + T + 4 E + 11 J + C), only for positive denominator and common excluded cost C",
+  "assumptions": [
+    "Common nonnegative rates for identical items. E is elbow supply only.",
+    "J is separate work per model interface only if an installation mapping supports it; otherwise set aside J. Do not double-count joint work already included in installed component rates.",
+    "C must actually be equal for cancellation. Cutting/waste, seven versus three stock pieces, prefabrication, supports and other excluded costs can differ."
+  ],
+  "distinctions": [
+    "Both networks use 37/8 m nominal straight pieces. The 13.6% full-centreline reduction is not a 13.6% straight-pipe purchase reduction.",
+    "3 and 11 are exact retained IFC internal port relationships, not verified site weld/coupler/joint counts.",
+    "No authenticated price, procurement allowance or installed construction saving; no whole-hospital or structural safety claim.",
+    "Review reused prior pinned native evidence and rehashed current IFC bytes; no new native geometry or producer run."
+  ],
+  "all_inputs_unchanged": true
+}

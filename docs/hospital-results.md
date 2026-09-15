@@ -27,6 +27,8 @@ The exported selected IFC passed a **separate completed managed execution**: fou
 
 ## What changed
 
+The follow-up [component-cost and structural-input audit](hospital-cost-and-structural-readiness.md) distinguishes centerline length from purchased straight pipe: both alternatives use 4.625 m of nominal straight stock and one tee; the selected alternative removes four elbows and eight modeled internal interfaces. No whole-hospital currency saving or structural safety approval follows from this benchmark. The seven source IFC4 files contain no embedded cost entities, and the structural files lack the load/support/analysis inputs needed for a buildability determination.
+
 - The exact source enclosure checker captures immutable project identities once instead of repeatedly scanning all 1,346,650 source records. Identity-frame support avoids unnecessary directed-rounding matrix arithmetic while preserving enclosure results.
 - The selected federation reference uses an exact identity transform after the existing datum prerequisites, avoiding numerical transform noise and unnecessary reference-model reconstruction.
 - Every source product is still inventoried. Only obstacles whose independently reconstructed source enclosures prove sufficient separation avoid native conversion; near or unsupported objects retain the native checks and complete pair denominator.
