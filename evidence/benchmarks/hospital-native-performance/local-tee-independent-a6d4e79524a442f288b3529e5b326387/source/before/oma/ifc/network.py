@@ -77,17 +77,13 @@ def export_network(source_path, export_path, spec, fresh_recheck=False):
         identity, kind = component["id"], component["kind"]
         data, expected = component["geometry"], facts["components"][identity]
         radius = expected["radius_m"]
-        # Evaluate tee Booleans near their local origin. Keeping building-scale
-        # coordinates inside the CSG operands makes native intersection edges
-        # sensitive to translation, despite representing the same fitting.
-        origin = p(rigid_frame(data["frame_m"])[:3,3]) if kind == "tee" else np.zeros(3)
         fitting = kind != "segment"
         if model.schema == "IFC2X3":
             entity_type = "IfcFlowFitting" if fitting else "IfcFlowSegment"
         else:
             family = "Duct" if component["system_type"] == "ROUND_DUCT" else "Pipe"
             entity_type = "Ifc"+family+("Fitting" if fitting else "Segment")
-        element = rooted(entity_type, identity, Name=f"{spec['network_id']}/{identity}", ObjectType="OMA_NETWORK_"+kind.upper(), ObjectPlacement=local(origin))
+        element = rooted(entity_type, identity, Name=f"{spec['network_id']}/{identity}", ObjectType="OMA_NETWORK_"+kind.upper(), ObjectPlacement=local())
         if hasattr(element, "PredefinedType"):
             element.PredefinedType = "JUNCTION" if kind == "tee" else "BEND" if kind == "elbow" else "RIGIDSEGMENT"
         elif fitting:
@@ -107,9 +103,10 @@ def export_network(source_path, export_path, spec, fresh_recheck=False):
                 Angle=float(data["angle_rad"])/angle_scale)
         else:
             frame = rigid_frame(data["frame_m"])
+            center = frame[:3,3]
             trunk, branch = data["trunk_takeout_m"], data["branch_takeout_m"]
-            first = cylinder(-trunk*v(frame[:3,0]), trunk*v(frame[:3,0]), radius)
-            second = cylinder(np.zeros(3), branch*v(frame[:3,1]), radius)
+            first = cylinder(p(center-trunk*frame[:3,0]), p(center+trunk*frame[:3,0]), radius)
+            second = cylinder(p(center), p(center+branch*frame[:3,1]), radius)
             solid = model.create_entity("IfcBooleanResult", Operator="UNION", FirstOperand=first, SecondOperand=second)
         representation = model.create_entity("IfcShapeRepresentation", ContextOfItems=context, RepresentationIdentifier="Body",
             RepresentationType="CSG" if kind == "tee" else "SweptSolid", Items=[solid])
@@ -118,7 +115,7 @@ def export_network(source_path, export_path, spec, fresh_recheck=False):
         for slot, cap in expected["caps"].items():
             role = component["ports"][slot]
             port = rooted("IfcDistributionPort", identity+":port:"+slot, Name=f"{identity}/{slot}", FlowDirection=role,
-                ObjectPlacement=local(p(cap["position_m"])-origin, encoded_flow_axis(v(cap["outward_normal"]), role), element.ObjectPlacement))
+                ObjectPlacement=local(p(cap["position_m"]), encoded_flow_axis(v(cap["outward_normal"]), role), element.ObjectPlacement))
             if model.schema == "IFC2X3":
                 rooted("IfcRelConnectsPortToElement", identity+":owns:"+slot, RelatingPort=port, RelatedElement=element)
             else:
