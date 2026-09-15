@@ -1,0 +1,70 @@
+{
+  "status": "RECOMMENDATION_NOT_NATIVE_VALIDATION",
+  "source_sha256": "116390796eab23e2921915d982130ee9739439d8696d11e1694c96b76e79e063",
+  "read_only_current_adapter_sha256": "84214a9f438710ced74a413dc6f8a7bafbd269a360bcf9aed3b77b53c54fe366",
+  "benchmark_receipt_sha256": "f6666b9c961cf2142e155879f5d1d0b192afd18f366f1589a56d0a3c5171b797",
+  "upstream_input_hashes": {
+    "authoring.json": "f95e136307cdf021d5e0989622c55543c97fb6de5eb510968d478bde61dd6564",
+    "checked.json": "7535e6569bb8957c255fbfde9e8d25f026dd04c03732048bb5b55dbf8b41d2a3",
+    "context.json": "0fdcfd14539e987b718351158f042106e1c5531c2996463d7f8c904db08ba271",
+    "generated.json": "514a9015b405585e0fbd674458ece016c972f46d4aed36f540fb31842c237f7c",
+    "requirements.json": "d1f806f81a70c9ab3c2c70ebc998dd03c430c00f16b674b8202a1fe8bc57c6db",
+    "search.json": "db72738cc3ea2e6f9da0e63e7c8fea43346115f75c6dad02330e6d452fb934ad"
+  },
+  "counts": {
+    "original_request_one_snapshot": {
+      "items": 350,
+      "work": 558,
+      "canonical_bytes": 5241
+    },
+    "generated_final_snapshot": {
+      "items": 200540,
+      "work": 303652,
+      "canonical_bytes": 2978287
+    },
+    "generator_reported_work": 32652,
+    "catalogue_provenance_reported_work": 2475770
+  },
+  "queries": [
+    {
+      "k": 1,
+      "compiled_work": 12281775,
+      "checked_work": 13442380,
+      "accounted_phase_subtotal": 28537345,
+      "mission_conversion_and_parent_overhead_excluded": true,
+      "certificate_bytes": 9551978,
+      "max_label_pairs_observed": 1929941
+    },
+    {
+      "k": 2,
+      "compiled_work": 15662515,
+      "checked_work": 19436074,
+      "accounted_phase_subtotal": 37911779,
+      "mission_conversion_and_parent_overhead_excluded": true,
+      "certificate_bytes": 17859221,
+      "max_label_pairs_observed": 2188108
+    }
+  ],
+  "recommended_explicit_compact_policy": {
+    "total_max_work": 40000000,
+    "nested_work": "min(current_remaining, callee_hard_maximum)",
+    "kernel_per_stage_hard_max_work": 20000000,
+    "max_transitions": 2000000,
+    "max_label_pairs": 10000000,
+    "max_connectors": 512,
+    "k1_output_and_proof_bytes": 16777216,
+    "k2_output_and_proof_bytes": 33554432,
+    "default_limits_unchanged": true,
+    "full_ledger_limits_unchanged": true
+  },
+  "requirements": [
+    "Bind explicit total work/method/K/output limits into the immutable generation-job request.",
+    "Consume each nested returned work in the one parent accumulator, including final no-callback kernel tails; do not count callbacks as work a second time.",
+    "Raise budget UNKNOWN before a nested call if no work remains; never pass0 or a value greater than that callee hard limit.",
+    "Charge original-input capture, generation, catalogue verification, compilation, verification, proposal conversion and final input/generated snapshots.",
+    "Keep current cancellation/deadline checkpoints and the final no-callback input/root guard.",
+    "Bound complete returned artifact bytes separately; a certificate-byte PASS does not prove the enclosing generated artifact fits.",
+    "Native geometry, pressure/service and acceptance remain separately checked. No wall-time or physical feasibility guarantee follows."
+  ],
+  "scope": "Exact observed phase counts plus independent snapshot-count calculation. Parent composite and native execution remain required."
+}

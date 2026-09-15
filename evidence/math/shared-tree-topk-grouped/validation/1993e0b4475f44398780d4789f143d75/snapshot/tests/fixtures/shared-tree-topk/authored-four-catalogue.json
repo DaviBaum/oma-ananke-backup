@@ -1,0 +1,3012 @@
+{
+  "schema": "oma.shared-tree-catalogue/1",
+  "context_root": "4eb6b7be044c7fce9ae8cc074b71b4623452c092b82b7825237c647d27980750",
+  "source_roots": {
+    "authored_requirements": "0ecfcdff4fbda9410d5502eed9adb0342680851147f37da4894dc2ef61c2b1cb",
+    "normalized_requirements": "fc353743028f70a4c046dbd0ab12242f7883e668f16f75f0901dce3404fbacd4",
+    "search": "fe1953f775b60ad1a2391a9b6f805b0fd5d071074d532b3047075664a5d89801"
+  },
+  "cost_policy_root": "4fee9b6fbae11e722995842a1bc89c00a8df15ee4ac5efd5bd88a8d98273515e",
+  "section": {
+    "diameter_m": "1/16",
+    "insulation_m": "1/32"
+  },
+  "source": {
+    "id": "source",
+    "cap": {
+      "position_m": [
+        "-2",
+        "0",
+        "3"
+      ],
+      "flow_direction": [
+        1,
+        0,
+        0
+      ]
+    }
+  },
+  "sinks": [
+    {
+      "id": "sink-main",
+      "demand_id": "demand-main",
+      "cap": {
+        "position_m": [
+          "6",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "sink-0",
+      "demand_id": "demand-0",
+      "cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "id": "sink-1",
+      "demand_id": "demand-1",
+      "cap": {
+        "position_m": [
+          "2",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "id": "sink-2",
+      "demand_id": "demand-2",
+      "cap": {
+        "position_m": [
+          "4",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      }
+    }
+  ],
+  "tee_instances": [
+    {
+      "axis_x": [
+        1,
+        0,
+        0
+      ],
+      "axis_y": [
+        0,
+        1,
+        0
+      ],
+      "branch_takeout_m": "1/4",
+      "center_m": [
+        "0",
+        "0",
+        "3"
+      ],
+      "id": "tee-0",
+      "trunk_takeout_m": "1/4",
+      "catalogue_root": "cd6b31c5039c0faa0c33f3a8cc0757b4336919dc369ec2ded82b67058b79f180",
+      "loss_contract_root": "5c9fa99873f17628644f20fc7b1c6416f3c8ddf22ac0bf2abeaa777f82294e08",
+      "nominal_cost": [
+        "3/4",
+        "0"
+      ]
+    },
+    {
+      "axis_x": [
+        1,
+        0,
+        0
+      ],
+      "axis_y": [
+        0,
+        1,
+        0
+      ],
+      "branch_takeout_m": "1/4",
+      "center_m": [
+        "2",
+        "0",
+        "3"
+      ],
+      "id": "tee-1",
+      "trunk_takeout_m": "1/4",
+      "catalogue_root": "20cc00ad917a5bd401952efc049dd673a0ba2aee6324c77ab22880c7051acdfc",
+      "loss_contract_root": "41e3cd50d4eb0624732a4793d490c0022505677722c02ba00db7d9ecfe463779",
+      "nominal_cost": [
+        "3/4",
+        "0"
+      ]
+    },
+    {
+      "axis_x": [
+        1,
+        0,
+        0
+      ],
+      "axis_y": [
+        0,
+        1,
+        0
+      ],
+      "branch_takeout_m": "1/4",
+      "center_m": [
+        "4",
+        "0",
+        "3"
+      ],
+      "id": "tee-2",
+      "trunk_takeout_m": "1/4",
+      "catalogue_root": "d98bcd0d81ab7c37f3fe13e58891a90fb6ab71abf84347f01fd71900694bf30c",
+      "loss_contract_root": "1294eb8441663a9eaaeb844464c20989a535fe1d78382b139ebf895da4b6f1de",
+      "nominal_cost": [
+        "3/4",
+        "0"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "connector-85edc313e625ec7a9c38e5e9",
+      "from": {
+        "node": "source",
+        "port": "out"
+      },
+      "to": {
+        "node": "tee-0",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "-2",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "-1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "3f15185feaa0ad2c9b3bd3f1803980ed4e494a201e83fa1cf9f30b7fe74cbafd",
+      "fabrication_root": "17f3b311fc900ffd9462487a906adf31486afa234125b8f2e1fe0dff95ef40e7",
+      "nominal_cost": [
+        "7/4",
+        "0"
+      ]
+    },
+    {
+      "id": "connector-07f9100e1349f97ac83bfa9d",
+      "from": {
+        "node": "source",
+        "port": "out"
+      },
+      "to": {
+        "node": "tee-1",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "-2",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "7/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "0ebd907a53c72191b2a3fc26caeb9f7987cd884c3eff3aae3cf8ae91fe560dee",
+      "fabrication_root": "f39ba3fee079ce3045693e19210874f2970614262d3803c731f455e3b568939c",
+      "nominal_cost": [
+        "15/4",
+        "0"
+      ]
+    },
+    {
+      "id": "connector-bd3ed38b6a56ef9d2c42a7fc",
+      "from": {
+        "node": "source",
+        "port": "out"
+      },
+      "to": {
+        "node": "tee-1",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "-2",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "7/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "198bbd977cb73c03eb4fb028a7f5e19ccdad45b5711f4f21fde8ca436b114aa7",
+      "fabrication_root": "b6d5eb65242f9e670330cdb946b142a26452249b2a3a27720ea78292a0324e88",
+      "nominal_cost": [
+        "25/4",
+        "1/2"
+      ]
+    },
+    {
+      "id": "connector-a3756efe023daef17eaf1d86",
+      "from": {
+        "node": "source",
+        "port": "out"
+      },
+      "to": {
+        "node": "tee-2",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "-2",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "15/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "4e1abd514856393fef3c193c183365b81f91e839561ff1ead9aa0cb05e3b2326",
+      "fabrication_root": "35c9266e0e3a409c881de7ad186ba62a0c725f7f77cdac2bc5c0e5c1bae1446b",
+      "nominal_cost": [
+        "23/4",
+        "0"
+      ]
+    },
+    {
+      "id": "connector-00de3f545c4800c6091b645e",
+      "from": {
+        "node": "source",
+        "port": "out"
+      },
+      "to": {
+        "node": "tee-2",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "-2",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "15/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "a80386ac0985a46433d4c79f4091bff050b39bc7d15ee5a43df554a239d3153b",
+      "fabrication_root": "b6a13ea6fa2b9cd2b87b46f2d90d1204dcef07f7fd74eadc3017cf5d3bd6d61c",
+      "nominal_cost": [
+        "33/4",
+        "1/2"
+      ]
+    },
+    {
+      "id": "connector-7d11bed117588215abe8f19d",
+      "from": {
+        "node": "tee-0",
+        "port": "b"
+      },
+      "to": {
+        "node": "tee-1",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "7/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "ffbf64133daa4343313ee0c255dc5f5840827cfc2dd0241d55653fe7b0b20dc4",
+      "fabrication_root": "fa42854764d1389a03b9cdf5e4ace68688873388e0ebb4eba2a8deba02749303",
+      "nominal_cost": [
+        "3/2",
+        "0"
+      ]
+    },
+    {
+      "id": "connector-cc0dca895c030b92c7b9effd",
+      "from": {
+        "node": "tee-0",
+        "port": "b"
+      },
+      "to": {
+        "node": "tee-2",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "15/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "8b06c59407030768f74ac4f5caf61c2c9755688905de14c5849bb06cf51f5c45",
+      "fabrication_root": "d5a1ed4486ec0bfa0deffd757fd7f9a4ca949b63f10ef8f46f480337f1abbda5",
+      "nominal_cost": [
+        "7/2",
+        "0"
+      ]
+    },
+    {
+      "id": "connector-21a86299e588641f431197ca",
+      "from": {
+        "node": "tee-0",
+        "port": "b"
+      },
+      "to": {
+        "node": "tee-2",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "15/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "60f993041880c8e6c442b88cc4709a7221d9eb35fadc44686684c61f86e419a6",
+      "fabrication_root": "2d3150b64d65a0b4f0e3cefa26a63826ac6bc209339639e4f6fd2cbe72291a79",
+      "nominal_cost": [
+        "6",
+        "1/2"
+      ]
+    },
+    {
+      "id": "connector-7fa3efc69553b93f252ac732",
+      "from": {
+        "node": "tee-0",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-main",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "6",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "84e59d97a8106ef67cf654d8d1d6be69dbb184a0c139f99523471ae9654403be",
+      "fabrication_root": "77fa7741810c829841972de0dfac6ca989a0df4c8ee8b5006d03e70fc32bf706",
+      "nominal_cost": [
+        "23/4",
+        "0"
+      ]
+    },
+    {
+      "id": "connector-c0b705cd4705871e13179e36",
+      "from": {
+        "node": "tee-0",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-main",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "6",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "6b7ce2ea16275df92e4085e741d8b3eb11d64d6aaa82a1a0ed28f75242e90265",
+      "fabrication_root": "7c53bb8deae55e52b8d9720481fa0ad094b901540a07a20cbd5298ec9ae0c746",
+      "nominal_cost": [
+        "33/4",
+        "1/2"
+      ]
+    },
+    {
+      "id": "connector-d5e03c7eb59fb50011f55da0",
+      "from": {
+        "node": "tee-0",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-0",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "df2238c4b4e717e3a154c447328bdc3ff9c86588864a7abe58c1d20326a6431f",
+      "fabrication_root": "011aa77f530a6fc6f69f8c11e3f669165d97a658cc1636d12c0d09aabb3d6fcc",
+      "nominal_cost": [
+        "13/4",
+        "1/8"
+      ]
+    },
+    {
+      "id": "connector-7831d62a3867df5e8cd53d78",
+      "from": {
+        "node": "tee-0",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-1",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "2",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "f1f5461b1051e887fa510e83eb891d01c4cd9750cd050330fcd43c2ec7f031c1",
+      "fabrication_root": "252d1c7b9e7deb2cab8b2095cf5db8311caf7a56f4e9d0658f410a0816104648",
+      "nominal_cost": [
+        "17/4",
+        "1/8"
+      ]
+    },
+    {
+      "id": "connector-68b2116331c2c70e68797013",
+      "from": {
+        "node": "tee-0",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-1",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "2",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "1f129d506a442d3b9c13b44e325a95ebd87d6e71188faa914b9bd5c0638d5fb8",
+      "fabrication_root": "b2f412c9dbfba111345357ac9acb609b4f52e2e21dfcc847ace8ec300aa49cba",
+      "nominal_cost": [
+        "13/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-a88af72dd261224f065877f6",
+      "from": {
+        "node": "tee-0",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-2",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "4",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "7ded9dae484ab621c5ad99920bbb0051b34f0f1034cd262e23e0be0729065274",
+      "fabrication_root": "afe037288f5508726b58be6b8683720e4446e44b7a0a0c136b541e5f4b0828b4",
+      "nominal_cost": [
+        "25/4",
+        "1/8"
+      ]
+    },
+    {
+      "id": "connector-04b3815ad42e97ccf532f027",
+      "from": {
+        "node": "tee-0",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-2",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "4",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "b8a7a6aac4cc60de136245468eab9754cb92af29e7b5a6b8adbdbdd6397aa862",
+      "fabrication_root": "4be7938f7d5eff699bd3c38a52820dd0c0568de4081887e6d6d6f61f443cd104",
+      "nominal_cost": [
+        "21/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-8595fe8ed09e1392f310b008",
+      "from": {
+        "node": "tee-0",
+        "port": "branch"
+      },
+      "to": {
+        "node": "tee-1",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "7/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "4fdd32a914d04b38df48f5504685e8acd166dbf39a0336cb1a3e9834fd92e122",
+      "fabrication_root": "56cfe92c523b002784dec185febeca24d3bbf40a1ad38c71fc1630efb9cd4633",
+      "nominal_cost": [
+        "2",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-77a7892a2c496dff3f3987f0",
+      "from": {
+        "node": "tee-0",
+        "port": "branch"
+      },
+      "to": {
+        "node": "tee-1",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "7/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "93f2fc0eb3b7216f8d6cc5d4f9ccfc8edb1ed500fc69780329e7335f0441434e",
+      "fabrication_root": "644d5e5c88a58845a95c25b603d0a80a5c3eeef54aa51065d4bf143a8c3786cd",
+      "nominal_cost": [
+        "9/2",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-a719fd838872990d360cafed",
+      "from": {
+        "node": "tee-0",
+        "port": "branch"
+      },
+      "to": {
+        "node": "tee-2",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "15/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "dbd95271eb58af56ecc4c95e6bf93d530e33c6575e50bdb13995f3fe25c8d30a",
+      "fabrication_root": "a3fcb774bc8d2c19a49fccd3519f0ac889aab509f721bd56ebfacc4ea88c55d8",
+      "nominal_cost": [
+        "4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-8ac86bda2dfa1c318382312a",
+      "from": {
+        "node": "tee-0",
+        "port": "branch"
+      },
+      "to": {
+        "node": "tee-2",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "15/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "ab07e7b6b7b182b4ba10a29795c32d5905ae86c9d753dbcfa550fe6cb6bb0707",
+      "fabrication_root": "768c2590c419ac87baa43b76667723ebc25ac19c66c26cc0616fdf9945c69ef1",
+      "nominal_cost": [
+        "13/2",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-0ca56f28954f9e7642170917",
+      "from": {
+        "node": "tee-0",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-main",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "6",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "69ade52106d48bbf1756af8cec91650508331900e27715719ab8a3d31e91e641",
+      "fabrication_root": "d95050105bbfaf06fc0325ae77513023597ae73423271a55c2ccc77edfa7920f",
+      "nominal_cost": [
+        "25/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-673b339f2a0acf8576908492",
+      "from": {
+        "node": "tee-0",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-main",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "6",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "5bd326d7b84a94961091ff116dbba021c83c1d3268e4dffe80466a79a17aacee",
+      "fabrication_root": "52cb9899677dbf82296f55911e909d3d2b6ea6e61c29302377c494ddb09d36f8",
+      "nominal_cost": [
+        "35/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-04cb013e8d0aa10459b82c40",
+      "from": {
+        "node": "tee-0",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-0",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "cb23727074ee58a5b88198123b372714801ed783b2aed7f74cde0b5483eb20e5",
+      "fabrication_root": "2be0863e83d95dd457b776404c64e29e67c78065d405d95cc15c540d89a4ed76",
+      "nominal_cost": [
+        "11/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-5f4d533bfcbd34340c589965",
+      "from": {
+        "node": "tee-0",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-0",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "d22726ff1a1292d76a67d61d5847c7d8b565e5ba8d8502d0869a4722f66e9f12",
+      "fabrication_root": "35bd38c0f9d255b6d0fbe4aaf0171655079af1b6285e11f0a88a041eddecb93e",
+      "nominal_cost": [
+        "11/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-def134fd62400f280a289ef3",
+      "from": {
+        "node": "tee-0",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-1",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "2",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "2a35b71123816e596aaf375fb62f20d8c5c6c69ba1b27674a7ec9014ba8e145a",
+      "fabrication_root": "03e4f968bda9ba1107626566c797c0f1a4fd099cc8c08b9fa29ad1af8a440cd2",
+      "nominal_cost": [
+        "15/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-783877b6bf075c26ec3afc94",
+      "from": {
+        "node": "tee-0",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-1",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "2",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "2caf0fff5633c47e66dc5e311afa39afda0d3218e108ecfc31a02971e65af921",
+      "fabrication_root": "5a5e4fb81478fb4b8e76272293d76209a14b53c02df25c34e539ece860be73df",
+      "nominal_cost": [
+        "15/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-e7499f13ab306b2d80f6d61c",
+      "from": {
+        "node": "tee-0",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-2",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "4",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "fc1844981f2cc9ef220e31ceeabf69efddbcdbb619c9efa0ddfb8f22e6dc2e16",
+      "fabrication_root": "22750512875cac51d808825e68dd3cf8f98d98ccd549c6ca4e528e0e5e6d8954",
+      "nominal_cost": [
+        "23/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-34b7d21b98b2e3755a2152a0",
+      "from": {
+        "node": "tee-0",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-2",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "4",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "db8fc24a30baa2f4bb4f7a1b496ae8f5378d45d4eafe35b70dafcef5e11e9261",
+      "fabrication_root": "e4f51372cfe8b82371aadeb2524854af52bceb066a4645b8a92a33d5609ef0fd",
+      "nominal_cost": [
+        "23/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-ab19b201f1434c89a6568c9c",
+      "from": {
+        "node": "tee-1",
+        "port": "b"
+      },
+      "to": {
+        "node": "tee-0",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "9/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "-1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "1d37455ec0fd0672dc3f6598d99d299ad4d8d629d0d526029f9a6a22eedc2289",
+      "fabrication_root": "6ea16aa60ef8e53f71eacb390d65fb70960605d3730fe4465ff0d379d9486b21",
+      "nominal_cost": [
+        "8",
+        "1/2"
+      ]
+    },
+    {
+      "id": "connector-91dd85b1e98941d48fcb1f31",
+      "from": {
+        "node": "tee-1",
+        "port": "b"
+      },
+      "to": {
+        "node": "tee-2",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "9/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "15/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "de8c8718ee3f27c47cccb70335b7ce7e2fdf39ce165170a0c1189c9fb3680cd3",
+      "fabrication_root": "0f8b438a4f2c2e29e9e843c011ad3fbd368032b1521341e62b416cc32c8145c3",
+      "nominal_cost": [
+        "3/2",
+        "0"
+      ]
+    },
+    {
+      "id": "connector-ae1b936d5efec2aa6452c2c0",
+      "from": {
+        "node": "tee-1",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-main",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "9/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "6",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "bcded99c9c3cf653fb6a4c049775f8ee0aea7f99ec9afe10a9f2abca5c95701c",
+      "fabrication_root": "5539770d44c38f62c0c5c486efd53f138e3767399d1dea8a3f536f046065bdd4",
+      "nominal_cost": [
+        "15/4",
+        "0"
+      ]
+    },
+    {
+      "id": "connector-98b64796994b55623fb91402",
+      "from": {
+        "node": "tee-1",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-main",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "9/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "6",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "9bb007e734117aeefdf936128782275d6f0b5843b951f472167b1bd2979d3249",
+      "fabrication_root": "5a24e9ce9928aea2ffec7b5985db748000fe68c28dc30aee26e9a456c2265cbc",
+      "nominal_cost": [
+        "25/4",
+        "1/2"
+      ]
+    },
+    {
+      "id": "connector-6b88732681f8447d6d6611c7",
+      "from": {
+        "node": "tee-1",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-0",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "9/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "8cfdd77030d950bd73979c289d7750d9200e58618d54717506c0eb5e3d181bdf",
+      "fabrication_root": "aec1b955fb0b04616a2737c0cd9f185c3f3dad4e8a8be1d1b0d61f784cf950e3",
+      "nominal_cost": [
+        "17/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-cb19f1e298fea5b66bd443e0",
+      "from": {
+        "node": "tee-1",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-1",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "9/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "2",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "21e9e92167c87376ef422fdb943e046bf34f67a9a13f95a56a0582186db45d2d",
+      "fabrication_root": "3ddb655fac2182cc9c24c5d2da4bc6f2bec7028f80eb5552552d3586bd7d4b84",
+      "nominal_cost": [
+        "13/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-18fa796629f7e7cb20a235ad",
+      "from": {
+        "node": "tee-1",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-2",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "9/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "4",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "7c58db6d70c871bd782f489fd057926f7aac73e1a5d6c3693dd05f75ad94fcf3",
+      "fabrication_root": "727a65368506656fd96e87ae68e20a4375465551608b95cb285ed836b1db8876",
+      "nominal_cost": [
+        "17/4",
+        "1/8"
+      ]
+    },
+    {
+      "id": "connector-cff30deb202f070389484076",
+      "from": {
+        "node": "tee-1",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-2",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "9/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "4",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "aaf853fa2ee2aafa9de936891673f750de59da0105e7f25f2f945e8b33258eb4",
+      "fabrication_root": "bd2a9aeb267163ae0dddc97a7ad05a036a9a850a145c0d3e0f61b6bc8d9f9b87",
+      "nominal_cost": [
+        "13/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-4705f6b1889b5e3c1f9e3b27",
+      "from": {
+        "node": "tee-1",
+        "port": "branch"
+      },
+      "to": {
+        "node": "tee-0",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "2",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "-1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "af819d5b4f2659be6df7c00a3e1649e32ffe300bc566c9c1866bc306d822d5bd",
+      "fabrication_root": "021732b35921d7f9ba382b61fca73f7e51485af188d897077f751d44dfa203c8",
+      "nominal_cost": [
+        "4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-859357f6d4377e105f2eff05",
+      "from": {
+        "node": "tee-1",
+        "port": "branch"
+      },
+      "to": {
+        "node": "tee-0",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "2",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "-1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "ecb82f46e1ae257d555c23794f5229961de8a0ab412d2478afcfab585d224758",
+      "fabrication_root": "f106d3a58dc9dc230369103e5bf79bbfc06e76ecf6cfe6eced77bfdf12110d92",
+      "nominal_cost": [
+        "13/2",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-66700d7863d23d3881272f1c",
+      "from": {
+        "node": "tee-1",
+        "port": "branch"
+      },
+      "to": {
+        "node": "tee-2",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "2",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "15/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "d976851fb0916eccdcd54bf41d5ce1590ba3b1fec1c285acf147a78138febce3",
+      "fabrication_root": "945aebb429f3a28dd7e1d321282117c70d392c7f87db67be0c96605aa1cb8ed7",
+      "nominal_cost": [
+        "2",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-24c5c78109175466f03c2e25",
+      "from": {
+        "node": "tee-1",
+        "port": "branch"
+      },
+      "to": {
+        "node": "tee-2",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "2",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "15/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "8f06208100da1bf20be0aef11dbef2ac40bf7790c15c9fa6163547388fb63af8",
+      "fabrication_root": "ba001c24ae4441a76c57f2c59250cb73b0e0a90791c1a1111d774a5e91b5b28e",
+      "nominal_cost": [
+        "9/2",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-cacc73be875ebcd1b8ba98c9",
+      "from": {
+        "node": "tee-1",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-main",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "2",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "6",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "e3b7a9c950b5947418b2dd0af704741fab3151c7fcc1501053934c57139f0ede",
+      "fabrication_root": "19619cd184f6ffbff1a9fae977ee09c065b5504ee782c8582e8ed6fa57b21df2",
+      "nominal_cost": [
+        "17/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-2b7acedba48687f859970bd4",
+      "from": {
+        "node": "tee-1",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-main",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "2",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "6",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "7932993e224fe8893566ed8c4a8331ac49d2370f9dc6c6da521a5f0002e06f70",
+      "fabrication_root": "03140216fef296959b7f95a4d3280541f3c01f1510784c9597434d5cc119562e",
+      "nominal_cost": [
+        "27/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-b4e0b75b2c20ef382d8879c4",
+      "from": {
+        "node": "tee-1",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-0",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "2",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "3998ba765512c04e5cce9dd6fe32f4b55e795c20838c55308a70dc5a4fe95e78",
+      "fabrication_root": "2cc19d7148b5cdbb14bc77d64f4abde7165c2e3750a995a9dbd96cec1f549393",
+      "nominal_cost": [
+        "11/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-f9a6c0cc683a7b041cb9dc31",
+      "from": {
+        "node": "tee-1",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-0",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "2",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "e84f4cbdeea4f91f4c6c043f80a7b9073eb06a4289cfe2b3dd9125b223cac759",
+      "fabrication_root": "6e09e052ef4824628a750560102405c5635f2b390165903828eebc6a7ae67cac",
+      "nominal_cost": [
+        "11/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-ab082257969acef2995cd924",
+      "from": {
+        "node": "tee-1",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-1",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "2",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "2",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "4e2e63a7d2a87343f247a8eda8b10c7f5ce0938725f1dc21b983dfe04032a822",
+      "fabrication_root": "f114b3c85635d2a799956901764b6aa7c819cbbb270f2094e3283514ce994693",
+      "nominal_cost": [
+        "11/4",
+        "0"
+      ]
+    },
+    {
+      "id": "connector-6d6e7598c07ab18be3e68b8d",
+      "from": {
+        "node": "tee-1",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-2",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "2",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "4",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "298c796001bf2ccaef44f328cff49be5cd08086bec4266c609cd4e24c9d2ee59",
+      "fabrication_root": "3ad17185ad89549b1de51102b116f611de6f489f2332172e7dd865985195913e",
+      "nominal_cost": [
+        "15/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-341321c2bf853ba09e453dc9",
+      "from": {
+        "node": "tee-1",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-2",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "2",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "4",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "bcb46469767bf79cfc0b09068cc3d40297253008ba1321816a23b884e2de1b37",
+      "fabrication_root": "8364b8d8ed94bfd62828e437740e065aba549749db74c8b95b2c25f97b097320",
+      "nominal_cost": [
+        "15/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-df167d8233e0ebcb502b5f2a",
+      "from": {
+        "node": "tee-2",
+        "port": "b"
+      },
+      "to": {
+        "node": "tee-0",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "17/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "-1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "b592104880e3d45d2652c8bc107c85946f99fc94b7a57253a8d60b7c157037b4",
+      "fabrication_root": "0981567e81178f55d8f2a43851e2cc6122c37828a1564bc98eb80967f70df3bd",
+      "nominal_cost": [
+        "10",
+        "1/2"
+      ]
+    },
+    {
+      "id": "connector-adad9cd93bb25f2d203356ed",
+      "from": {
+        "node": "tee-2",
+        "port": "b"
+      },
+      "to": {
+        "node": "tee-1",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "17/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "7/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "7597298ff012b40d7f08f75ce141ad7231b06ae43cd21ac9ea7871b7eca92773",
+      "fabrication_root": "15b1b2c1c8cb57a021e3a0fb9af3c75f786c891f4f1d6339554d7455a23705cf",
+      "nominal_cost": [
+        "8",
+        "1/2"
+      ]
+    },
+    {
+      "id": "connector-8bfebaf0aecd99f6f995999c",
+      "from": {
+        "node": "tee-2",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-main",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "17/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "6",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "6b720087b35f29201ace9571dcf590c5a7d5310b0dd3e7098d3695cea9aa229c",
+      "fabrication_root": "fa4fb23259eeb38adc6ca20581af02237b622913cff4c201b9e938ca51317706",
+      "nominal_cost": [
+        "7/4",
+        "0"
+      ]
+    },
+    {
+      "id": "connector-b8d5b535e469847a6225f6b4",
+      "from": {
+        "node": "tee-2",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-0",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "17/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "dc610ebb35a3d0ca5d572d16bd00f6fcc226a897773129daabd60954bbb9c4e4",
+      "fabrication_root": "7a9410178db18fca0cc8b1097237a74d342222fa85ac851213a33275be781e25",
+      "nominal_cost": [
+        "25/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-c40ce824c927026e75f8fef1",
+      "from": {
+        "node": "tee-2",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-1",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "17/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "2",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "51c7f4f3973cc059e6e98b0cbb756d3465940a35c03b59a85016a877dfd57247",
+      "fabrication_root": "fa3171caf1ae3fb2f72a263d8a42fd7e529d6fdb3a0478e0842a4fb77e571df8",
+      "nominal_cost": [
+        "21/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-318552329b6d30fd21601da9",
+      "from": {
+        "node": "tee-2",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-2",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "17/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "4",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "f6e1121a08fb2cd3cb65fc1f865e0ce394ca64b17f77b6e5d51ee6db28344dfd",
+      "fabrication_root": "8a848556ff0b74901fdf54955d27c4ccd014ad30e1d72681136d01e8297853cd",
+      "nominal_cost": [
+        "13/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-82899e7cbb9165bb7788af35",
+      "from": {
+        "node": "tee-2",
+        "port": "branch"
+      },
+      "to": {
+        "node": "tee-0",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "4",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "-1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "be920d84364389f7413aae0a1647ff231999896be9315ec4e64a3fe2c6a7368a",
+      "fabrication_root": "5552fd477014a5f3622e9a7c4c7d0160c3564f457f3908663cdc35fe778a872b",
+      "nominal_cost": [
+        "6",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-e6ccc890338a72571ebd3508",
+      "from": {
+        "node": "tee-2",
+        "port": "branch"
+      },
+      "to": {
+        "node": "tee-0",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "4",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "-1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "11310d7e01324b7dddbcda8df65e19053ae60f105276db15ab43edd1fd311210",
+      "fabrication_root": "632d620bbc50c4073f8b3b9191be980848594ccfc68cdfe0e3bb4aef93b5f62d",
+      "nominal_cost": [
+        "17/2",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-b184218f1ec1ce86ff83b3ee",
+      "from": {
+        "node": "tee-2",
+        "port": "branch"
+      },
+      "to": {
+        "node": "tee-1",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "4",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "7/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "8c041586a7ab40f57cebd8eaaf4533ee7711cb3ab6cd297549d4f05c31582850",
+      "fabrication_root": "2c13c273adff40f036e0fa944d82d54f36d977db17b5552b714428ffe5b0db38",
+      "nominal_cost": [
+        "4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-ac9dc2bf1eadf6ccb31f6392",
+      "from": {
+        "node": "tee-2",
+        "port": "branch"
+      },
+      "to": {
+        "node": "tee-1",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "4",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "7/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "85b90e1e25b8922d4ea7fefd09001f1c87f0fdf45fa88886b81ae6720a0dd400",
+      "fabrication_root": "eb66e8ade5a83eba09569b03af19dcb0ee12fb5be21d1dc1759441c372f7991f",
+      "nominal_cost": [
+        "13/2",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-8e3a68e8a60b2ca5276d10e9",
+      "from": {
+        "node": "tee-2",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-main",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "4",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "6",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "812b86bb918e1f79d64290d8b9202759d2b764a9748458d851035bc3087b7d48",
+      "fabrication_root": "9982b042fde9db90957d304ca30597b32839d9a73890271c9f610e9645fdc145",
+      "nominal_cost": [
+        "9/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-f831214733bbb5994b0d397c",
+      "from": {
+        "node": "tee-2",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-main",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "4",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "6",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "ac806ab16f8da5ecdc099ae33fd931c2689d0590684df6bca1c456601b6ed2a2",
+      "fabrication_root": "d7bdc12a0e04dc523596e662a965ec883bd8f097605e8b0956631b2c53ae0aeb",
+      "nominal_cost": [
+        "19/4",
+        "3/8"
+      ]
+    },
+    {
+      "id": "connector-3039c40f1c623b1dafab4c25",
+      "from": {
+        "node": "tee-2",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-0",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "4",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "6a5fd86a6d0bd7f4b04947d3e92ac8586dcceee0ed8d593c9536390bff49f1aa",
+      "fabrication_root": "3b826683260a736b447d837033cd4cb9e42718dc1093b1069b13eb7306ade5df",
+      "nominal_cost": [
+        "19/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-b2e6e508aa901f1c58278dfe",
+      "from": {
+        "node": "tee-2",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-0",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "4",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "e6478c5141c2271e9a0158cadd90c8f0156691a164b513bd06b8de7c1dd5f264",
+      "fabrication_root": "7900f685877996a67df66bd9c6159e03f48603853cfba68d39ab289c575a9374",
+      "nominal_cost": [
+        "19/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-e64f9d05784d1faedae6ea59",
+      "from": {
+        "node": "tee-2",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-1",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "4",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "2",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "5f577d382ed9f26755031d30c14941df5ce7c71828ddd99e31da448712fb4bf7",
+      "fabrication_root": "a6e66f595dd10bbd19859d253da59586fb2c7cbfbc6be4d40c3761c1b82f58e6",
+      "nominal_cost": [
+        "15/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-b00f840bc48b4877199d1427",
+      "from": {
+        "node": "tee-2",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-1",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "4",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "2",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "815febdfef0d8018bafbadba3340696bb58fb89a3847e0771275f1cb4687ed99",
+      "fabrication_root": "e3c3f6daec04e3d71f413f0f2c95de48cb0810d6edd7bdc41383c4320d42ef6f",
+      "nominal_cost": [
+        "15/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "connector-da739e797b947d00fa67ccaf",
+      "from": {
+        "node": "tee-2",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-2",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "4",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "4",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "e2397e8e4a19b564394c0bc07b14958db8821d646ab119c342ecdbe3904c0f61",
+      "fabrication_root": "74c4c26d2175e34144c6bafaef0e24006ed819ba3ce8d4238e98cecba7006ffc",
+      "nominal_cost": [
+        "11/4",
+        "0"
+      ]
+    }
+  ]
+}

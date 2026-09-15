@@ -1,0 +1,217 @@
+{
+  "mission_type": "shared_network",
+  "system_type": "PRESSURE_PIPE",
+  "start_m": [
+    -2,
+    0,
+    3
+  ],
+  "sinks": [
+    {
+      "id": "sink-main",
+      "demand_id": "demand-main",
+      "end_m": [
+        12,
+        0,
+        3
+      ]
+    },
+    {
+      "id": "sink-0",
+      "demand_id": "demand-0",
+      "end_m": [
+        1,
+        3,
+        3
+      ]
+    },
+    {
+      "id": "sink-1",
+      "demand_id": "demand-1",
+      "end_m": [
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "id": "sink-2",
+      "demand_id": "demand-2",
+      "end_m": [
+        4,
+        3,
+        3
+      ]
+    },
+    {
+      "id": "sink-3",
+      "demand_id": "demand-3",
+      "end_m": [
+        6,
+        3,
+        3
+      ]
+    },
+    {
+      "id": "sink-4",
+      "demand_id": "demand-4",
+      "end_m": [
+        8,
+        3,
+        3
+      ]
+    },
+    {
+      "id": "sink-5",
+      "demand_id": "demand-5",
+      "end_m": [
+        10,
+        3,
+        3
+      ]
+    }
+  ],
+  "diameter_m": 0.0625,
+  "insulation_m": 0.03125,
+  "clearance_m": 0.0625,
+  "minimum_straight_m": 0.125,
+  "minimum_bend_radius_m": 0.25,
+  "allowed_zone": {
+    "min": [
+      -3,
+      -2,
+      2
+    ],
+    "max": [
+      14,
+      4,
+      4
+    ]
+  },
+  "scenario_terminals": true,
+  "target_modality": "ENGINEERING_SERVICE",
+  "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+  "objective_weights": {
+    "length_m": 1
+  },
+  "assumptions": [
+    "Predeclared synthetic equal-bore comb experiment; no building-equipment or measured-boundary claim."
+  ],
+  "coupled_tree": {
+    "schema": "oma.coupled-tree-boundary/1",
+    "source_total_pressure_pa": {
+      "lower": "4000",
+      "upper": "4000"
+    },
+    "sink_total_pressures_pa": {
+      "sink-0": {
+        "lower": "1621243171/500000",
+        "upper": "3242486343/1000000"
+      },
+      "sink-1": {
+        "lower": "697315971/250000",
+        "upper": "557852777/200000"
+      },
+      "sink-2": {
+        "lower": "1228979651/500000",
+        "upper": "2457959303/1000000"
+      },
+      "sink-3": {
+        "lower": "448990601/200000",
+        "upper": "1122476503/500000"
+      },
+      "sink-4": {
+        "lower": "1065061939/500000",
+        "upper": "2130123879/1000000"
+      },
+      "sink-5": {
+        "lower": "2088147067/1000000",
+        "upper": "522036767/250000"
+      },
+      "sink-main": {
+        "lower": "84719273/40000",
+        "upper": "1058990913/500000"
+      }
+    },
+    "minimum_sink_flows_m3_s": {
+      "sink-main": "2/4375",
+      "sink-0": "2/4375",
+      "sink-1": "2/4375",
+      "sink-2": "2/4375",
+      "sink-3": "2/4375",
+      "sink-4": "2/4375",
+      "sink-5": "2/4375"
+    },
+    "flow_search_box_m3_s": {
+      "sink-main": {
+        "lower": "99/175000",
+        "upper": "101/175000"
+      },
+      "sink-0": {
+        "lower": "99/175000",
+        "upper": "101/175000"
+      },
+      "sink-1": {
+        "lower": "99/175000",
+        "upper": "101/175000"
+      },
+      "sink-2": {
+        "lower": "99/175000",
+        "upper": "101/175000"
+      },
+      "sink-3": {
+        "lower": "99/175000",
+        "upper": "101/175000"
+      },
+      "sink-4": {
+        "lower": "99/175000",
+        "upper": "101/175000"
+      },
+      "sink-5": {
+        "lower": "99/175000",
+        "upper": "101/175000"
+      }
+    },
+    "density_kg_m3": "1000",
+    "darcy_friction": "1/50",
+    "maximum_velocity_m_s": "2",
+    "gravity_m_s2": "9.80665",
+    "elbow_loss_coefficient": "1/5",
+    "tee_outlet_loss_coefficients": {
+      "tee-0": {
+        "b": "1/5",
+        "branch": "3/10"
+      },
+      "tee-1": {
+        "b": "1/4",
+        "branch": "2/5"
+      },
+      "tee-2": {
+        "b": "3/10",
+        "branch": "1/2"
+      },
+      "tee-3": {
+        "b": "7/20",
+        "branch": "3/5"
+      },
+      "tee-4": {
+        "b": "2/5",
+        "branch": "7/10"
+      },
+      "tee-5": {
+        "b": "9/20",
+        "branch": "4/5"
+      }
+    },
+    "applicability": "New hypothetical ideal steady incompressible bore model. Each tee outlet has its own strictly positive TOTAL loss coefficient referenced to full inlet flow. Internal tee distributed loss is included; no tee skeleton Darcy term. Existing common-loss missions are unchanged.",
+    "boundary_control_assumption": "Hypothetical regulated total-pressure intervals authored by independent exact Machin arithmetic on an explicit comb model before catalogue generation; the analytic target flow is not a prescribed delivered flow.",
+    "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+    "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+    "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+    "friction_convention": "DARCY",
+    "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+    "tee_loss_reference": "OUTLET_SPECIFIC_TOTAL_LOSS_AT_TOTAL_INLET_FLOW",
+    "connection_model": "NO_EXTRA_LOSS_AT_CHECKED_MATCHING_CONNECTED_CAPS",
+    "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+  }
+}

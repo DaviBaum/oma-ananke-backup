@@ -1,0 +1,380 @@
+{
+  "schema": "oma-physical-network/1",
+  "network_id": "explicit-unequal-outlet-three-sink-native-reference",
+  "system_type": "PRESSURE_PIPE",
+  "components": [
+    {
+      "id": "trunk",
+      "kind": "segment",
+      "system_type": "PRESSURE_PIPE",
+      "diameter_m": 0.1,
+      "insulation_m": 0.02,
+      "geometry": {
+        "start_m": [
+          -1,
+          4,
+          3
+        ],
+        "end_m": [
+          -0.2,
+          4,
+          3
+        ]
+      },
+      "ports": {
+        "a": "SINK",
+        "b": "SOURCE"
+      }
+    },
+    {
+      "id": "tee-1",
+      "kind": "tee",
+      "system_type": "PRESSURE_PIPE",
+      "diameter_m": 0.1,
+      "insulation_m": 0.02,
+      "geometry": {
+        "frame_m": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "trunk_takeout_m": 0.2,
+        "branch_takeout_m": 0.2
+      },
+      "ports": {
+        "a": "SINK",
+        "b": "SOURCE",
+        "branch": "SOURCE"
+      }
+    },
+    {
+      "id": "arm-a",
+      "kind": "segment",
+      "system_type": "PRESSURE_PIPE",
+      "diameter_m": 0.1,
+      "insulation_m": 0.02,
+      "geometry": {
+        "start_m": [
+          0,
+          4.2,
+          3
+        ],
+        "end_m": [
+          0,
+          5,
+          3
+        ]
+      },
+      "ports": {
+        "a": "SINK",
+        "b": "SOURCE"
+      }
+    },
+    {
+      "id": "inter-tee",
+      "kind": "segment",
+      "system_type": "PRESSURE_PIPE",
+      "diameter_m": 0.1,
+      "insulation_m": 0.02,
+      "geometry": {
+        "start_m": [
+          0.2,
+          4,
+          3
+        ],
+        "end_m": [
+          1.8,
+          4,
+          3
+        ]
+      },
+      "ports": {
+        "a": "SINK",
+        "b": "SOURCE"
+      }
+    },
+    {
+      "id": "tee-2",
+      "kind": "tee",
+      "system_type": "PRESSURE_PIPE",
+      "diameter_m": 0.1,
+      "insulation_m": 0.02,
+      "geometry": {
+        "frame_m": [
+          [
+            1,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "trunk_takeout_m": 0.2,
+        "branch_takeout_m": 0.2
+      },
+      "ports": {
+        "a": "SINK",
+        "b": "SOURCE",
+        "branch": "SOURCE"
+      }
+    },
+    {
+      "id": "arm-b",
+      "kind": "segment",
+      "system_type": "PRESSURE_PIPE",
+      "diameter_m": 0.1,
+      "insulation_m": 0.02,
+      "geometry": {
+        "start_m": [
+          2.2,
+          4,
+          3
+        ],
+        "end_m": [
+          3,
+          4,
+          3
+        ]
+      },
+      "ports": {
+        "a": "SINK",
+        "b": "SOURCE"
+      }
+    },
+    {
+      "id": "arm-c",
+      "kind": "segment",
+      "system_type": "PRESSURE_PIPE",
+      "diameter_m": 0.1,
+      "insulation_m": 0.02,
+      "geometry": {
+        "start_m": [
+          2,
+          4.2,
+          3
+        ],
+        "end_m": [
+          2,
+          5,
+          3
+        ]
+      },
+      "ports": {
+        "a": "SINK",
+        "b": "SOURCE"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "source": {
+        "component": "trunk",
+        "port": "b"
+      },
+      "sink": {
+        "component": "tee-1",
+        "port": "a"
+      }
+    },
+    {
+      "source": {
+        "component": "tee-1",
+        "port": "branch"
+      },
+      "sink": {
+        "component": "arm-a",
+        "port": "a"
+      }
+    },
+    {
+      "source": {
+        "component": "tee-1",
+        "port": "b"
+      },
+      "sink": {
+        "component": "inter-tee",
+        "port": "a"
+      }
+    },
+    {
+      "source": {
+        "component": "inter-tee",
+        "port": "b"
+      },
+      "sink": {
+        "component": "tee-2",
+        "port": "a"
+      }
+    },
+    {
+      "source": {
+        "component": "tee-2",
+        "port": "b"
+      },
+      "sink": {
+        "component": "arm-b",
+        "port": "a"
+      }
+    },
+    {
+      "source": {
+        "component": "tee-2",
+        "port": "branch"
+      },
+      "sink": {
+        "component": "arm-c",
+        "port": "a"
+      }
+    }
+  ],
+  "source": {
+    "component": "trunk",
+    "port": "a"
+  },
+  "sinks": [
+    {
+      "id": "sink-a",
+      "endpoint": {
+        "component": "arm-a",
+        "port": "b"
+      }
+    },
+    {
+      "id": "sink-b",
+      "endpoint": {
+        "component": "arm-b",
+        "port": "b"
+      }
+    },
+    {
+      "id": "sink-c",
+      "endpoint": {
+        "component": "arm-c",
+        "port": "b"
+      }
+    }
+  ],
+  "demand_paths": [
+    {
+      "demand_id": "demand-a",
+      "sink_id": "sink-a",
+      "steps": [
+        {
+          "component": "trunk",
+          "entry_port": "a",
+          "exit_port": "b"
+        },
+        {
+          "component": "tee-1",
+          "entry_port": "a",
+          "exit_port": "branch"
+        },
+        {
+          "component": "arm-a",
+          "entry_port": "a",
+          "exit_port": "b"
+        }
+      ]
+    },
+    {
+      "demand_id": "demand-b",
+      "sink_id": "sink-b",
+      "steps": [
+        {
+          "component": "trunk",
+          "entry_port": "a",
+          "exit_port": "b"
+        },
+        {
+          "component": "tee-1",
+          "entry_port": "a",
+          "exit_port": "b"
+        },
+        {
+          "component": "inter-tee",
+          "entry_port": "a",
+          "exit_port": "b"
+        },
+        {
+          "component": "tee-2",
+          "entry_port": "a",
+          "exit_port": "b"
+        },
+        {
+          "component": "arm-b",
+          "entry_port": "a",
+          "exit_port": "b"
+        }
+      ]
+    },
+    {
+      "demand_id": "demand-c",
+      "sink_id": "sink-c",
+      "steps": [
+        {
+          "component": "trunk",
+          "entry_port": "a",
+          "exit_port": "b"
+        },
+        {
+          "component": "tee-1",
+          "entry_port": "a",
+          "exit_port": "b"
+        },
+        {
+          "component": "inter-tee",
+          "entry_port": "a",
+          "exit_port": "b"
+        },
+        {
+          "component": "tee-2",
+          "entry_port": "a",
+          "exit_port": "branch"
+        },
+        {
+          "component": "arm-c",
+          "entry_port": "a",
+          "exit_port": "b"
+        }
+      ]
+    }
+  ]
+}
