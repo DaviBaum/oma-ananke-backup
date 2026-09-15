@@ -1,0 +1,5288 @@
+{
+  "status": "PROPOSALS_READY",
+  "mission": {
+    "mission_type": "shared_network",
+    "source_id": null,
+    "system_type": "PRESSURE_PIPE",
+    "start_m": [
+      -2.0,
+      0.0,
+      3.0
+    ],
+    "sinks": [
+      {
+        "id": "sink-main",
+        "demand_id": "demand-main",
+        "end_m": [
+          2.0,
+          0.0,
+          3.0
+        ],
+        "required_flow_m3_s": 0.002,
+        "available_static_pressure_pa": 2000.0
+      },
+      {
+        "id": "sink-0",
+        "demand_id": "demand-0",
+        "end_m": [
+          1.0,
+          3.0,
+          3.0
+        ],
+        "required_flow_m3_s": 0.002,
+        "available_static_pressure_pa": 2000.0
+      }
+    ],
+    "diameter_m": 0.0625,
+    "insulation_m": 0.03125,
+    "clearance_m": 0.0625,
+    "minimum_straight_m": 0.125,
+    "minimum_bend_radius_m": 0.25,
+    "allowed_zone": {
+      "min": [
+        -3.0,
+        -2.0,
+        2.0
+      ],
+      "max": [
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "scenario_terminals": true,
+    "target_modality": "ENGINEERING_SERVICE",
+    "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+    "network_alternatives": [
+      {
+        "schema": "oma-physical-network/1",
+        "network_id": "generated-afda2fbe9e42a82706728e47",
+        "system_type": "PRESSURE_PIPE",
+        "components": [
+          {
+            "id": "tee-0",
+            "system_type": "PRESSURE_PIPE",
+            "diameter_m": 0.0625,
+            "insulation_m": 0.03125,
+            "ports": {
+              "a": "SINK",
+              "b": "SOURCE",
+              "branch": "SOURCE"
+            },
+            "kind": "tee",
+            "geometry": {
+              "frame_m": [
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0,
+                  3.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              ],
+              "trunk_takeout_m": 0.25,
+              "branch_takeout_m": 0.25
+            }
+          },
+          {
+            "id": "connector-04cb013e8d0aa10459b82c40-p0",
+            "system_type": "PRESSURE_PIPE",
+            "diameter_m": 0.0625,
+            "insulation_m": 0.03125,
+            "ports": {
+              "a": "SINK",
+              "b": "SOURCE"
+            },
+            "kind": "segment",
+            "geometry": {
+              "start_m": [
+                0.0,
+                0.25,
+                3.0
+              ],
+              "end_m": [
+                0.0,
+                0.75,
+                3.0
+              ]
+            }
+          },
+          {
+            "id": "connector-04cb013e8d0aa10459b82c40-p1",
+            "system_type": "PRESSURE_PIPE",
+            "diameter_m": 0.0625,
+            "insulation_m": 0.03125,
+            "ports": {
+              "a": "SINK",
+              "b": "SOURCE"
+            },
+            "kind": "elbow",
+            "geometry": {
+              "center_m": [
+                0.25,
+                0.75,
+                3.0
+              ],
+              "start_m": [
+                0.0,
+                0.75,
+                3.0
+              ],
+              "end_m": [
+                0.25,
+                1.0,
+                3.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "bend_radius_m": 0.25,
+              "angle_rad": 1.5707963267948966
+            }
+          },
+          {
+            "id": "connector-04cb013e8d0aa10459b82c40-p2",
+            "system_type": "PRESSURE_PIPE",
+            "diameter_m": 0.0625,
+            "insulation_m": 0.03125,
+            "ports": {
+              "a": "SINK",
+              "b": "SOURCE"
+            },
+            "kind": "segment",
+            "geometry": {
+              "start_m": [
+                0.25,
+                1.0,
+                3.0
+              ],
+              "end_m": [
+                0.75,
+                1.0,
+                3.0
+              ]
+            }
+          },
+          {
+            "id": "connector-04cb013e8d0aa10459b82c40-p3",
+            "system_type": "PRESSURE_PIPE",
+            "diameter_m": 0.0625,
+            "insulation_m": 0.03125,
+            "ports": {
+              "a": "SINK",
+              "b": "SOURCE"
+            },
+            "kind": "elbow",
+            "geometry": {
+              "center_m": [
+                0.75,
+                1.25,
+                3.0
+              ],
+              "start_m": [
+                0.75,
+                1.0,
+                3.0
+              ],
+              "end_m": [
+                1.0,
+                1.25,
+                3.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "bend_radius_m": 0.25,
+              "angle_rad": 1.5707963267948966
+            }
+          },
+          {
+            "id": "connector-04cb013e8d0aa10459b82c40-p4",
+            "system_type": "PRESSURE_PIPE",
+            "diameter_m": 0.0625,
+            "insulation_m": 0.03125,
+            "ports": {
+              "a": "SINK",
+              "b": "SOURCE"
+            },
+            "kind": "segment",
+            "geometry": {
+              "start_m": [
+                1.0,
+                1.25,
+                3.0
+              ],
+              "end_m": [
+                1.0,
+                3.0,
+                3.0
+              ]
+            }
+          },
+          {
+            "id": "connector-85edc313e625ec7a9c38e5e9-p0",
+            "system_type": "PRESSURE_PIPE",
+            "diameter_m": 0.0625,
+            "insulation_m": 0.03125,
+            "ports": {
+              "a": "SINK",
+              "b": "SOURCE"
+            },
+            "kind": "segment",
+            "geometry": {
+              "start_m": [
+                -2.0,
+                0.0,
+                3.0
+              ],
+              "end_m": [
+                -0.25,
+                0.0,
+                3.0
+              ]
+            }
+          },
+          {
+            "id": "connector-8a4b24a75e1d15f3661091c1-p0",
+            "system_type": "PRESSURE_PIPE",
+            "diameter_m": 0.0625,
+            "insulation_m": 0.03125,
+            "ports": {
+              "a": "SINK",
+              "b": "SOURCE"
+            },
+            "kind": "segment",
+            "geometry": {
+              "start_m": [
+                0.25,
+                0.0,
+                3.0
+              ],
+              "end_m": [
+                2.0,
+                0.0,
+                3.0
+              ]
+            }
+          }
+        ],
+        "connections": [
+          {
+            "source": {
+              "component": "connector-04cb013e8d0aa10459b82c40-p0",
+              "port": "b"
+            },
+            "sink": {
+              "component": "connector-04cb013e8d0aa10459b82c40-p1",
+              "port": "a"
+            }
+          },
+          {
+            "source": {
+              "component": "connector-04cb013e8d0aa10459b82c40-p1",
+              "port": "b"
+            },
+            "sink": {
+              "component": "connector-04cb013e8d0aa10459b82c40-p2",
+              "port": "a"
+            }
+          },
+          {
+            "source": {
+              "component": "connector-04cb013e8d0aa10459b82c40-p2",
+              "port": "b"
+            },
+            "sink": {
+              "component": "connector-04cb013e8d0aa10459b82c40-p3",
+              "port": "a"
+            }
+          },
+          {
+            "source": {
+              "component": "connector-04cb013e8d0aa10459b82c40-p3",
+              "port": "b"
+            },
+            "sink": {
+              "component": "connector-04cb013e8d0aa10459b82c40-p4",
+              "port": "a"
+            }
+          },
+          {
+            "source": {
+              "component": "tee-0",
+              "port": "branch"
+            },
+            "sink": {
+              "component": "connector-04cb013e8d0aa10459b82c40-p0",
+              "port": "a"
+            }
+          },
+          {
+            "source": {
+              "component": "connector-85edc313e625ec7a9c38e5e9-p0",
+              "port": "b"
+            },
+            "sink": {
+              "component": "tee-0",
+              "port": "a"
+            }
+          },
+          {
+            "source": {
+              "component": "tee-0",
+              "port": "b"
+            },
+            "sink": {
+              "component": "connector-8a4b24a75e1d15f3661091c1-p0",
+              "port": "a"
+            }
+          }
+        ],
+        "source": {
+          "component": "connector-85edc313e625ec7a9c38e5e9-p0",
+          "port": "a"
+        },
+        "sinks": [
+          {
+            "id": "sink-main",
+            "endpoint": {
+              "component": "connector-8a4b24a75e1d15f3661091c1-p0",
+              "port": "b"
+            }
+          },
+          {
+            "id": "sink-0",
+            "endpoint": {
+              "component": "connector-04cb013e8d0aa10459b82c40-p4",
+              "port": "b"
+            }
+          }
+        ],
+        "demand_paths": [
+          {
+            "demand_id": "demand-main",
+            "sink_id": "sink-main",
+            "steps": [
+              {
+                "component": "connector-85edc313e625ec7a9c38e5e9-p0",
+                "entry_port": "a",
+                "exit_port": "b"
+              },
+              {
+                "component": "tee-0",
+                "entry_port": "a",
+                "exit_port": "b"
+              },
+              {
+                "component": "connector-8a4b24a75e1d15f3661091c1-p0",
+                "entry_port": "a",
+                "exit_port": "b"
+              }
+            ]
+          },
+          {
+            "demand_id": "demand-0",
+            "sink_id": "sink-0",
+            "steps": [
+              {
+                "component": "connector-85edc313e625ec7a9c38e5e9-p0",
+                "entry_port": "a",
+                "exit_port": "b"
+              },
+              {
+                "component": "tee-0",
+                "entry_port": "a",
+                "exit_port": "branch"
+              },
+              {
+                "component": "connector-04cb013e8d0aa10459b82c40-p0",
+                "entry_port": "a",
+                "exit_port": "b"
+              },
+              {
+                "component": "connector-04cb013e8d0aa10459b82c40-p1",
+                "entry_port": "a",
+                "exit_port": "b"
+              },
+              {
+                "component": "connector-04cb013e8d0aa10459b82c40-p2",
+                "entry_port": "a",
+                "exit_port": "b"
+              },
+              {
+                "component": "connector-04cb013e8d0aa10459b82c40-p3",
+                "entry_port": "a",
+                "exit_port": "b"
+              },
+              {
+                "component": "connector-04cb013e8d0aa10459b82c40-p4",
+                "entry_port": "a",
+                "exit_port": "b"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "physics": {
+      "density_kg_m3": 1000.0,
+      "darcy_friction": 0.02,
+      "maximum_velocity_m_s": 2.0,
+      "gravity_m_s2": 9.81,
+      "elbow_loss_coefficient": 0.2,
+      "tee_straight_loss_coefficient": 0.2,
+      "tee_branch_loss_coefficient": 0.3,
+      "source_kinetic_energy_correction": 1.0,
+      "sink_kinetic_energy_correction": 1.0,
+      "applicability": "Hypothetical fixed ideal bore and loss coefficients for synthetic fixture",
+      "fixed_flow_control_assumption": "Hypothetical independently regulated terminal flows",
+      "friction_convention": "DARCY",
+      "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+      "tee_loss_reference": "INLET_VELOCITY_TOTAL_IRREVERSIBLE_LOSS",
+      "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+    },
+    "objective_weights": {
+      "length_m": 1.0
+    },
+    "assumptions": [
+      "Predeclared synthetic equal-bore comb experiment; no building-equipment or measured-boundary claim."
+    ]
+  },
+  "input_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+  "generation": {
+    "status": "CATALOGUE_PROPOSED",
+    "input_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+    "catalogue": {
+      "schema": "oma.shared-tree-catalogue/1",
+      "context_root": "4eb6b7be044c7fce9ae8cc074b71b4623452c092b82b7825237c647d27980750",
+      "source_roots": {
+        "authored_requirements": "633df8412e71c231bd3274e68558d2331581903a273fabcade04dfd078ecbeae",
+        "normalized_requirements": "5e5dfde20d9e91b1cff1d413937a8605f4f9fb2ed72b6fe78ca9fb721c66e42f",
+        "search": "b54e45b6c54aede9b17666b361b8dc7cd96cfbb8dddc95282f98f08b1b88742c"
+      },
+      "cost_policy_root": "4fee9b6fbae11e722995842a1bc89c00a8df15ee4ac5efd5bd88a8d98273515e",
+      "section": {
+        "diameter_m": "1/16",
+        "insulation_m": "1/32"
+      },
+      "source": {
+        "id": "source",
+        "cap": {
+          "position_m": [
+            "-2",
+            "0",
+            "3"
+          ],
+          "flow_direction": [
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      "sinks": [
+        {
+          "id": "sink-main",
+          "demand_id": "demand-main",
+          "cap": {
+            "position_m": [
+              "2",
+              "0",
+              "3"
+            ],
+            "flow_direction": [
+              1,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "cap": {
+            "position_m": [
+              "1",
+              "3",
+              "3"
+            ],
+            "flow_direction": [
+              0,
+              1,
+              0
+            ]
+          }
+        }
+      ],
+      "tee_instances": [
+        {
+          "axis_x": [
+            1,
+            0,
+            0
+          ],
+          "axis_y": [
+            0,
+            1,
+            0
+          ],
+          "branch_takeout_m": "1/4",
+          "center_m": [
+            "0",
+            "0",
+            "3"
+          ],
+          "id": "tee-0",
+          "trunk_takeout_m": "1/4",
+          "catalogue_root": "cd6b31c5039c0faa0c33f3a8cc0757b4336919dc369ec2ded82b67058b79f180",
+          "loss_contract_root": "c5c6a1a8d9b10ce3df1507288522dfdad18073a645dad2dfbfbc127624512990",
+          "nominal_cost": [
+            "3/4",
+            "0"
+          ]
+        }
+      ],
+      "connectors": [
+        {
+          "id": "connector-85edc313e625ec7a9c38e5e9",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          },
+          "start_cap": {
+            "position_m": [
+              "-2",
+              "0",
+              "3"
+            ],
+            "flow_direction": [
+              1,
+              0,
+              0
+            ]
+          },
+          "end_cap": {
+            "position_m": [
+              "-1/4",
+              "0",
+              "3"
+            ],
+            "flow_direction": [
+              1,
+              0,
+              0
+            ]
+          },
+          "section": {
+            "diameter_m": "1/16",
+            "insulation_m": "1/32"
+          },
+          "geometry_root": "3f15185feaa0ad2c9b3bd3f1803980ed4e494a201e83fa1cf9f30b7fe74cbafd",
+          "fabrication_root": "1e5a811e9796645421f3f4ceed8a999c288a52e4c270dc42e7d74580f2f017e4",
+          "nominal_cost": [
+            "7/4",
+            "0"
+          ]
+        },
+        {
+          "id": "connector-8a4b24a75e1d15f3661091c1",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "start_cap": {
+            "position_m": [
+              "1/4",
+              "0",
+              "3"
+            ],
+            "flow_direction": [
+              1,
+              0,
+              0
+            ]
+          },
+          "end_cap": {
+            "position_m": [
+              "2",
+              "0",
+              "3"
+            ],
+            "flow_direction": [
+              1,
+              0,
+              0
+            ]
+          },
+          "section": {
+            "diameter_m": "1/16",
+            "insulation_m": "1/32"
+          },
+          "geometry_root": "3126a3ce458074063ee9d322e4530d94d89f9ccf2120c8170041fd65cd0b1631",
+          "fabrication_root": "d4ee1e732a80db1baeae290d14cc1e49b3f07a4727d83646713268f43f82c4df",
+          "nominal_cost": [
+            "7/4",
+            "0"
+          ]
+        },
+        {
+          "id": "connector-d5e03c7eb59fb50011f55da0",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "start_cap": {
+            "position_m": [
+              "1/4",
+              "0",
+              "3"
+            ],
+            "flow_direction": [
+              1,
+              0,
+              0
+            ]
+          },
+          "end_cap": {
+            "position_m": [
+              "1",
+              "3",
+              "3"
+            ],
+            "flow_direction": [
+              0,
+              1,
+              0
+            ]
+          },
+          "section": {
+            "diameter_m": "1/16",
+            "insulation_m": "1/32"
+          },
+          "geometry_root": "df2238c4b4e717e3a154c447328bdc3ff9c86588864a7abe58c1d20326a6431f",
+          "fabrication_root": "e46e87611623ba69a3a5d36a1513011321c697fe229ec06f2dbd1442119799a7",
+          "nominal_cost": [
+            "13/4",
+            "1/8"
+          ]
+        },
+        {
+          "id": "connector-bced3a23695fa27810cc941b",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "start_cap": {
+            "position_m": [
+              "0",
+              "1/4",
+              "3"
+            ],
+            "flow_direction": [
+              0,
+              1,
+              0
+            ]
+          },
+          "end_cap": {
+            "position_m": [
+              "2",
+              "0",
+              "3"
+            ],
+            "flow_direction": [
+              1,
+              0,
+              0
+            ]
+          },
+          "section": {
+            "diameter_m": "1/16",
+            "insulation_m": "1/32"
+          },
+          "geometry_root": "b66b82a9a4f92a2214dc2707c80d31daca7d3bce8e8a75ce3ca114d80d77cb43",
+          "fabrication_root": "8dddb478ac259e4642d1ab3e48ca8988abe7e77b38a9e5eb655bc397b908fb3e",
+          "nominal_cost": [
+            "9/4",
+            "3/8"
+          ]
+        },
+        {
+          "id": "connector-613046a1eec9893318471195",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "start_cap": {
+            "position_m": [
+              "0",
+              "1/4",
+              "3"
+            ],
+            "flow_direction": [
+              0,
+              1,
+              0
+            ]
+          },
+          "end_cap": {
+            "position_m": [
+              "2",
+              "0",
+              "3"
+            ],
+            "flow_direction": [
+              1,
+              0,
+              0
+            ]
+          },
+          "section": {
+            "diameter_m": "1/16",
+            "insulation_m": "1/32"
+          },
+          "geometry_root": "b025e2d197395585ea8bd6d2d5042c166b36dc39cda5ff3acd237d06c2aac447",
+          "fabrication_root": "a6167461ec5691eb094dee84622f157a26177738ab353c05af1dc437a0445e6c",
+          "nominal_cost": [
+            "19/4",
+            "3/8"
+          ]
+        },
+        {
+          "id": "connector-04cb013e8d0aa10459b82c40",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "start_cap": {
+            "position_m": [
+              "0",
+              "1/4",
+              "3"
+            ],
+            "flow_direction": [
+              0,
+              1,
+              0
+            ]
+          },
+          "end_cap": {
+            "position_m": [
+              "1",
+              "3",
+              "3"
+            ],
+            "flow_direction": [
+              0,
+              1,
+              0
+            ]
+          },
+          "section": {
+            "diameter_m": "1/16",
+            "insulation_m": "1/32"
+          },
+          "geometry_root": "cb23727074ee58a5b88198123b372714801ed783b2aed7f74cde0b5483eb20e5",
+          "fabrication_root": "22ae998930ca64b09ee821c483a08f5708ee301fe4c17d43d63d972049eea5fb",
+          "nominal_cost": [
+            "11/4",
+            "1/4"
+          ]
+        },
+        {
+          "id": "connector-5f4d533bfcbd34340c589965",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "start_cap": {
+            "position_m": [
+              "0",
+              "1/4",
+              "3"
+            ],
+            "flow_direction": [
+              0,
+              1,
+              0
+            ]
+          },
+          "end_cap": {
+            "position_m": [
+              "1",
+              "3",
+              "3"
+            ],
+            "flow_direction": [
+              0,
+              1,
+              0
+            ]
+          },
+          "section": {
+            "diameter_m": "1/16",
+            "insulation_m": "1/32"
+          },
+          "geometry_root": "d22726ff1a1292d76a67d61d5847c7d8b565e5ba8d8502d0869a4722f66e9f12",
+          "fabrication_root": "8e34b178e3572546e62d398e8034f8ed3f160ba030fd4745f49c27a6eb022560",
+          "nominal_cost": [
+            "11/4",
+            "1/4"
+          ]
+        }
+      ]
+    },
+    "tee_components": {
+      "tee-0": {
+        "id": "tee-0",
+        "kind": "tee",
+        "system_type": "PRESSURE_PIPE",
+        "diameter_m": 0.0625,
+        "insulation_m": 0.03125,
+        "ports": {
+          "a": "SINK",
+          "b": "SOURCE",
+          "branch": "SOURCE"
+        },
+        "geometry": {
+          "frame_m": [
+            [
+              1,
+              0,
+              0,
+              0.0
+            ],
+            [
+              0,
+              1,
+              0,
+              0.0
+            ],
+            [
+              0,
+              0,
+              1,
+              3.0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ],
+          "trunk_takeout_m": 0.25,
+          "branch_takeout_m": 0.25
+        }
+      }
+    },
+    "normalized_requirements": {
+      "mission_type": "shared_network",
+      "source_id": null,
+      "replace_network_id": null,
+      "system_type": "PRESSURE_PIPE",
+      "start_m": [
+        -2.0,
+        0.0,
+        3.0
+      ],
+      "sinks": [
+        {
+          "id": "sink-main",
+          "demand_id": "demand-main",
+          "end_m": [
+            2.0,
+            0.0,
+            3.0
+          ],
+          "required_flow_m3_s": 0.002,
+          "available_static_pressure_pa": 2000.0
+        },
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "end_m": [
+            1.0,
+            3.0,
+            3.0
+          ],
+          "required_flow_m3_s": 0.002,
+          "available_static_pressure_pa": 2000.0
+        }
+      ],
+      "diameter_m": 0.0625,
+      "insulation_m": 0.03125,
+      "clearance_m": 0.0625,
+      "minimum_straight_m": 0.125,
+      "minimum_bend_radius_m": 0.25,
+      "allowed_zone": {
+        "min": [
+          -3.0,
+          -2.0,
+          2.0
+        ],
+        "max": [
+          4.0,
+          4.0,
+          4.0
+        ]
+      },
+      "scenario_terminals": true,
+      "target_modality": "ENGINEERING_SERVICE",
+      "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+      "physics": {
+        "density_kg_m3": 1000.0,
+        "darcy_friction": 0.02,
+        "maximum_velocity_m_s": 2.0,
+        "gravity_m_s2": 9.81,
+        "elbow_loss_coefficient": 0.2,
+        "tee_straight_loss_coefficient": 0.2,
+        "tee_branch_loss_coefficient": 0.3,
+        "source_kinetic_energy_correction": 1.0,
+        "sink_kinetic_energy_correction": 1.0,
+        "applicability": "Hypothetical fixed ideal bore and loss coefficients for synthetic fixture",
+        "fixed_flow_control_assumption": "Hypothetical independently regulated terminal flows",
+        "friction_convention": "DARCY",
+        "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+        "tee_loss_reference": "INLET_VELOCITY_TOTAL_IRREVERSIBLE_LOSS",
+        "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+      },
+      "pressure_driven": null,
+      "passive_tree": null,
+      "coupled_tree": null,
+      "objective_weights": {
+        "length_m": 1.0
+      },
+      "assumptions": [
+        "Predeclared synthetic equal-bore comb experiment; no building-equipment or measured-boundary claim."
+      ]
+    },
+    "connector_macros": {
+      "connector-85edc313e625ec7a9c38e5e9": {
+        "geometry": {
+          "points_m": [
+            [
+              "-2",
+              "0",
+              "3"
+            ],
+            [
+              "-1/4",
+              "0",
+              "3"
+            ]
+          ],
+          "components": [
+            {
+              "id": "connector-85edc313e625ec7a9c38e5e9-p0",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  -2.0,
+                  0.0,
+                  3.0
+                ],
+                "end_m": [
+                  -0.25,
+                  0.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        },
+        "certificate": {
+          "schema": "oma.orthogonal-fabrication-certificate/1",
+          "root": "b172216e7cb030b9719073c22f6a19067a5cd22d097cfcab803c90003473dace",
+          "manifest": {
+            "schema": "oma.orthogonal-fabrication-input/1",
+            "scenario": {
+              "start": [
+                -2.0,
+                0.0,
+                3.0
+              ],
+              "end": [
+                -0.25,
+                0.0,
+                3.0
+              ],
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "bend_radius_m": 0.25,
+              "minimum_straight_m": 0.125,
+              "clearance_m": 0.0625,
+              "allowed_zone": {
+                "min": [
+                  -3.0,
+                  -2.0,
+                  2.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  4.0
+                ]
+              },
+              "source_id": null,
+              "source_port_guid": null,
+              "sink_port_guid": null,
+              "scenario_terminals": true,
+              "min_slope": null,
+              "provenance": "user_supplied_scenario",
+              "source": "api",
+              "assumptions": [],
+              "target_modality": "LOCAL_GEOMETRIC_COORDINATION",
+              "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+              "physics": null,
+              "objective_weights": {
+                "length_m": 1.0,
+                "fitting_count": 0.0
+              },
+              "search_step_m": 0.25,
+              "max_candidates": 12
+            },
+            "points_m": [
+              [
+                "-2",
+                "0",
+                "3"
+              ],
+              [
+                "-1/4",
+                "0",
+                "3"
+              ]
+            ],
+            "context_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+            "point_count": 2,
+            "max_points": 16,
+            "input_binding": "COMPLETE_NORMALIZED_INPUT",
+            "outer_obstacles": [],
+            "outer_model_root": null,
+            "outer_model_supplied": false,
+            "outer_radius_m": "1/16",
+            "bend_radius_m": "1/4",
+            "strict_minimum_remaining_straight_m": "1/8",
+            "size_transition": "FIXED_DIAMETER_INSULATION_AND_CLEARANCE; NO_REDUCERS",
+            "arithmetic": "EXACT_BINARY_INPUT_VALUES_AND_RATIONAL_DERIVED_SUMS; ANGLE_IS_SYMBOLIC_PI_OVER_TWO"
+          },
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          },
+          "components": [
+            {
+              "kind": "segment",
+              "index": 0,
+              "start": [
+                "-2",
+                "0",
+                "3"
+              ],
+              "end": [
+                "-1/4",
+                "0",
+                "3"
+              ],
+              "length_m": "7/4",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "-2",
+                  "-1/16",
+                  "47/16"
+                ],
+                [
+                  "-1/4",
+                  "1/16",
+                  "49/16"
+                ]
+              ]
+            }
+          ],
+          "transitions": [],
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "status": "PASS",
+          "certificate_root": "1e5a811e9796645421f3f4ceed8a999c288a52e4c270dc42e7d74580f2f017e4"
+        },
+        "independent_check": {
+          "status": "PASS",
+          "fabrication_status": "PASS",
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "root": "b172216e7cb030b9719073c22f6a19067a5cd22d097cfcab803c90003473dace",
+          "certificate_root": "1e5a811e9796645421f3f4ceed8a999c288a52e4c270dc42e7d74580f2f017e4",
+          "components_checked": 1,
+          "transitions_checked": 0,
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          }
+        }
+      },
+      "connector-8a4b24a75e1d15f3661091c1": {
+        "geometry": {
+          "points_m": [
+            [
+              "1/4",
+              "0",
+              "3"
+            ],
+            [
+              "2",
+              "0",
+              "3"
+            ]
+          ],
+          "components": [
+            {
+              "id": "connector-8a4b24a75e1d15f3661091c1-p0",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.25,
+                  0.0,
+                  3.0
+                ],
+                "end_m": [
+                  2.0,
+                  0.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        },
+        "certificate": {
+          "schema": "oma.orthogonal-fabrication-certificate/1",
+          "root": "013f9c4525a4df06468f8c8339f72f102cc3205d1eaa32e753ecce6f443306df",
+          "manifest": {
+            "schema": "oma.orthogonal-fabrication-input/1",
+            "scenario": {
+              "start": [
+                0.25,
+                0.0,
+                3.0
+              ],
+              "end": [
+                2.0,
+                0.0,
+                3.0
+              ],
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "bend_radius_m": 0.25,
+              "minimum_straight_m": 0.125,
+              "clearance_m": 0.0625,
+              "allowed_zone": {
+                "min": [
+                  -3.0,
+                  -2.0,
+                  2.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  4.0
+                ]
+              },
+              "source_id": null,
+              "source_port_guid": null,
+              "sink_port_guid": null,
+              "scenario_terminals": true,
+              "min_slope": null,
+              "provenance": "user_supplied_scenario",
+              "source": "api",
+              "assumptions": [],
+              "target_modality": "LOCAL_GEOMETRIC_COORDINATION",
+              "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+              "physics": null,
+              "objective_weights": {
+                "length_m": 1.0,
+                "fitting_count": 0.0
+              },
+              "search_step_m": 0.25,
+              "max_candidates": 12
+            },
+            "points_m": [
+              [
+                "1/4",
+                "0",
+                "3"
+              ],
+              [
+                "2",
+                "0",
+                "3"
+              ]
+            ],
+            "context_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+            "point_count": 2,
+            "max_points": 16,
+            "input_binding": "COMPLETE_NORMALIZED_INPUT",
+            "outer_obstacles": [],
+            "outer_model_root": null,
+            "outer_model_supplied": false,
+            "outer_radius_m": "1/16",
+            "bend_radius_m": "1/4",
+            "strict_minimum_remaining_straight_m": "1/8",
+            "size_transition": "FIXED_DIAMETER_INSULATION_AND_CLEARANCE; NO_REDUCERS",
+            "arithmetic": "EXACT_BINARY_INPUT_VALUES_AND_RATIONAL_DERIVED_SUMS; ANGLE_IS_SYMBOLIC_PI_OVER_TWO"
+          },
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          },
+          "components": [
+            {
+              "kind": "segment",
+              "index": 0,
+              "start": [
+                "1/4",
+                "0",
+                "3"
+              ],
+              "end": [
+                "2",
+                "0",
+                "3"
+              ],
+              "length_m": "7/4",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "1/4",
+                  "-1/16",
+                  "47/16"
+                ],
+                [
+                  "2",
+                  "1/16",
+                  "49/16"
+                ]
+              ]
+            }
+          ],
+          "transitions": [],
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "status": "PASS",
+          "certificate_root": "d4ee1e732a80db1baeae290d14cc1e49b3f07a4727d83646713268f43f82c4df"
+        },
+        "independent_check": {
+          "status": "PASS",
+          "fabrication_status": "PASS",
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "root": "013f9c4525a4df06468f8c8339f72f102cc3205d1eaa32e753ecce6f443306df",
+          "certificate_root": "d4ee1e732a80db1baeae290d14cc1e49b3f07a4727d83646713268f43f82c4df",
+          "components_checked": 1,
+          "transitions_checked": 0,
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          }
+        }
+      },
+      "connector-d5e03c7eb59fb50011f55da0": {
+        "geometry": {
+          "points_m": [
+            [
+              "1/4",
+              "0",
+              "3"
+            ],
+            [
+              "1",
+              "0",
+              "3"
+            ],
+            [
+              "1",
+              "3",
+              "3"
+            ]
+          ],
+          "components": [
+            {
+              "id": "connector-d5e03c7eb59fb50011f55da0-p0",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.25,
+                  0.0,
+                  3.0
+                ],
+                "end_m": [
+                  0.75,
+                  0.0,
+                  3.0
+                ]
+              }
+            },
+            {
+              "id": "connector-d5e03c7eb59fb50011f55da0-p1",
+              "kind": "elbow",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.75,
+                  0.0,
+                  3.0
+                ],
+                "end_m": [
+                  1.0,
+                  0.25,
+                  3.0
+                ],
+                "center_m": [
+                  0.75,
+                  0.25,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "bend_radius_m": 0.25,
+                "angle_rad": 1.5707963267948966
+              }
+            },
+            {
+              "id": "connector-d5e03c7eb59fb50011f55da0-p2",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  1.0,
+                  0.25,
+                  3.0
+                ],
+                "end_m": [
+                  1.0,
+                  3.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        },
+        "certificate": {
+          "schema": "oma.orthogonal-fabrication-certificate/1",
+          "root": "bc7b24a33deaa205be6d9a2e6afb6b24ba4a565bd72d84f7f1de7158b9f6d0b6",
+          "manifest": {
+            "schema": "oma.orthogonal-fabrication-input/1",
+            "scenario": {
+              "start": [
+                0.25,
+                0.0,
+                3.0
+              ],
+              "end": [
+                1.0,
+                3.0,
+                3.0
+              ],
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "bend_radius_m": 0.25,
+              "minimum_straight_m": 0.125,
+              "clearance_m": 0.0625,
+              "allowed_zone": {
+                "min": [
+                  -3.0,
+                  -2.0,
+                  2.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  4.0
+                ]
+              },
+              "source_id": null,
+              "source_port_guid": null,
+              "sink_port_guid": null,
+              "scenario_terminals": true,
+              "min_slope": null,
+              "provenance": "user_supplied_scenario",
+              "source": "api",
+              "assumptions": [],
+              "target_modality": "LOCAL_GEOMETRIC_COORDINATION",
+              "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+              "physics": null,
+              "objective_weights": {
+                "length_m": 1.0,
+                "fitting_count": 0.0
+              },
+              "search_step_m": 0.25,
+              "max_candidates": 12
+            },
+            "points_m": [
+              [
+                "1/4",
+                "0",
+                "3"
+              ],
+              [
+                "1",
+                "0",
+                "3"
+              ],
+              [
+                "1",
+                "3",
+                "3"
+              ]
+            ],
+            "context_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+            "point_count": 3,
+            "max_points": 16,
+            "input_binding": "COMPLETE_NORMALIZED_INPUT",
+            "outer_obstacles": [],
+            "outer_model_root": null,
+            "outer_model_supplied": false,
+            "outer_radius_m": "1/16",
+            "bend_radius_m": "1/4",
+            "strict_minimum_remaining_straight_m": "1/8",
+            "size_transition": "FIXED_DIAMETER_INSULATION_AND_CLEARANCE; NO_REDUCERS",
+            "arithmetic": "EXACT_BINARY_INPUT_VALUES_AND_RATIONAL_DERIVED_SUMS; ANGLE_IS_SYMBOLIC_PI_OVER_TWO"
+          },
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          },
+          "components": [
+            {
+              "kind": "segment",
+              "index": 0,
+              "start": [
+                "1/4",
+                "0",
+                "3"
+              ],
+              "end": [
+                "3/4",
+                "0",
+                "3"
+              ],
+              "length_m": "1/2",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "1/4",
+                  "-1/16",
+                  "47/16"
+                ],
+                [
+                  "3/4",
+                  "1/16",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "elbow",
+              "index": 1,
+              "start": [
+                "3/4",
+                "0",
+                "3"
+              ],
+              "end": [
+                "1",
+                "1/4",
+                "3"
+              ],
+              "center": [
+                "3/4",
+                "1/4",
+                "3"
+              ],
+              "incoming": [
+                "1",
+                "0",
+                "0"
+              ],
+              "outgoing": [
+                "0",
+                "1",
+                "0"
+              ],
+              "normal": [
+                "0",
+                "0",
+                "1"
+              ],
+              "bend_radius_m": "1/4",
+              "angle_pi": "1/2",
+              "length_pi_m": "1/8",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "3/4",
+                  "-1/16",
+                  "47/16"
+                ],
+                [
+                  "17/16",
+                  "1/4",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "segment",
+              "index": 1,
+              "start": [
+                "1",
+                "1/4",
+                "3"
+              ],
+              "end": [
+                "1",
+                "3",
+                "3"
+              ],
+              "length_m": "11/4",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "15/16",
+                  "1/4",
+                  "47/16"
+                ],
+                [
+                  "17/16",
+                  "3",
+                  "49/16"
+                ]
+              ]
+            }
+          ],
+          "transitions": [
+            {
+              "corner": 1,
+              "incoming": [
+                "1",
+                "0",
+                "0"
+              ],
+              "outgoing": [
+                "0",
+                "1",
+                "0"
+              ],
+              "turn": "QUARTER_BEND",
+              "trim_debt_m": "1/4",
+              "incoming_remaining_straight_m": "1/2",
+              "fixed_size_root": "f3a4517e5322f524336e36b65d9a38517849b785617dd64305482d8f8e7c5482",
+              "support_phase": "NOT_MODELLED",
+              "slope_state": "NOT_MODELLED"
+            }
+          ],
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "status": "PASS",
+          "certificate_root": "e46e87611623ba69a3a5d36a1513011321c697fe229ec06f2dbd1442119799a7"
+        },
+        "independent_check": {
+          "status": "PASS",
+          "fabrication_status": "PASS",
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "root": "bc7b24a33deaa205be6d9a2e6afb6b24ba4a565bd72d84f7f1de7158b9f6d0b6",
+          "certificate_root": "e46e87611623ba69a3a5d36a1513011321c697fe229ec06f2dbd1442119799a7",
+          "components_checked": 3,
+          "transitions_checked": 1,
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          }
+        }
+      },
+      "connector-bced3a23695fa27810cc941b": {
+        "geometry": {
+          "points_m": [
+            [
+              "0",
+              "1/4",
+              "3"
+            ],
+            [
+              "0",
+              "1",
+              "3"
+            ],
+            [
+              "5/4",
+              "1",
+              "3"
+            ],
+            [
+              "5/4",
+              "0",
+              "3"
+            ],
+            [
+              "2",
+              "0",
+              "3"
+            ]
+          ],
+          "components": [
+            {
+              "id": "connector-bced3a23695fa27810cc941b-p0",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.0,
+                  0.25,
+                  3.0
+                ],
+                "end_m": [
+                  0.0,
+                  0.75,
+                  3.0
+                ]
+              }
+            },
+            {
+              "id": "connector-bced3a23695fa27810cc941b-p1",
+              "kind": "elbow",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.0,
+                  0.75,
+                  3.0
+                ],
+                "end_m": [
+                  0.25,
+                  1.0,
+                  3.0
+                ],
+                "center_m": [
+                  0.25,
+                  0.75,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "bend_radius_m": 0.25,
+                "angle_rad": 1.5707963267948966
+              }
+            },
+            {
+              "id": "connector-bced3a23695fa27810cc941b-p2",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.25,
+                  1.0,
+                  3.0
+                ],
+                "end_m": [
+                  1.0,
+                  1.0,
+                  3.0
+                ]
+              }
+            },
+            {
+              "id": "connector-bced3a23695fa27810cc941b-p3",
+              "kind": "elbow",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  1.0,
+                  1.0,
+                  3.0
+                ],
+                "end_m": [
+                  1.25,
+                  0.75,
+                  3.0
+                ],
+                "center_m": [
+                  1.0,
+                  0.75,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "bend_radius_m": 0.25,
+                "angle_rad": 1.5707963267948966
+              }
+            },
+            {
+              "id": "connector-bced3a23695fa27810cc941b-p4",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  1.25,
+                  0.75,
+                  3.0
+                ],
+                "end_m": [
+                  1.25,
+                  0.25,
+                  3.0
+                ]
+              }
+            },
+            {
+              "id": "connector-bced3a23695fa27810cc941b-p5",
+              "kind": "elbow",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  1.25,
+                  0.25,
+                  3.0
+                ],
+                "end_m": [
+                  1.5,
+                  0.0,
+                  3.0
+                ],
+                "center_m": [
+                  1.5,
+                  0.25,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "bend_radius_m": 0.25,
+                "angle_rad": 1.5707963267948966
+              }
+            },
+            {
+              "id": "connector-bced3a23695fa27810cc941b-p6",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  1.5,
+                  0.0,
+                  3.0
+                ],
+                "end_m": [
+                  2.0,
+                  0.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        },
+        "certificate": {
+          "schema": "oma.orthogonal-fabrication-certificate/1",
+          "root": "0131cbad58622473c37537830461c8dafa2386186d44e899942219c66d0fd03b",
+          "manifest": {
+            "schema": "oma.orthogonal-fabrication-input/1",
+            "scenario": {
+              "start": [
+                0.0,
+                0.25,
+                3.0
+              ],
+              "end": [
+                2.0,
+                0.0,
+                3.0
+              ],
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "bend_radius_m": 0.25,
+              "minimum_straight_m": 0.125,
+              "clearance_m": 0.0625,
+              "allowed_zone": {
+                "min": [
+                  -3.0,
+                  -2.0,
+                  2.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  4.0
+                ]
+              },
+              "source_id": null,
+              "source_port_guid": null,
+              "sink_port_guid": null,
+              "scenario_terminals": true,
+              "min_slope": null,
+              "provenance": "user_supplied_scenario",
+              "source": "api",
+              "assumptions": [],
+              "target_modality": "LOCAL_GEOMETRIC_COORDINATION",
+              "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+              "physics": null,
+              "objective_weights": {
+                "length_m": 1.0,
+                "fitting_count": 0.0
+              },
+              "search_step_m": 0.25,
+              "max_candidates": 12
+            },
+            "points_m": [
+              [
+                "0",
+                "1/4",
+                "3"
+              ],
+              [
+                "0",
+                "1",
+                "3"
+              ],
+              [
+                "5/4",
+                "1",
+                "3"
+              ],
+              [
+                "5/4",
+                "0",
+                "3"
+              ],
+              [
+                "2",
+                "0",
+                "3"
+              ]
+            ],
+            "context_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+            "point_count": 5,
+            "max_points": 16,
+            "input_binding": "COMPLETE_NORMALIZED_INPUT",
+            "outer_obstacles": [],
+            "outer_model_root": null,
+            "outer_model_supplied": false,
+            "outer_radius_m": "1/16",
+            "bend_radius_m": "1/4",
+            "strict_minimum_remaining_straight_m": "1/8",
+            "size_transition": "FIXED_DIAMETER_INSULATION_AND_CLEARANCE; NO_REDUCERS",
+            "arithmetic": "EXACT_BINARY_INPUT_VALUES_AND_RATIONAL_DERIVED_SUMS; ANGLE_IS_SYMBOLIC_PI_OVER_TWO"
+          },
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          },
+          "components": [
+            {
+              "kind": "segment",
+              "index": 0,
+              "start": [
+                "0",
+                "1/4",
+                "3"
+              ],
+              "end": [
+                "0",
+                "3/4",
+                "3"
+              ],
+              "length_m": "1/2",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "-1/16",
+                  "1/4",
+                  "47/16"
+                ],
+                [
+                  "1/16",
+                  "3/4",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "elbow",
+              "index": 1,
+              "start": [
+                "0",
+                "3/4",
+                "3"
+              ],
+              "end": [
+                "1/4",
+                "1",
+                "3"
+              ],
+              "center": [
+                "1/4",
+                "3/4",
+                "3"
+              ],
+              "incoming": [
+                "0",
+                "1",
+                "0"
+              ],
+              "outgoing": [
+                "1",
+                "0",
+                "0"
+              ],
+              "normal": [
+                "0",
+                "0",
+                "-1"
+              ],
+              "bend_radius_m": "1/4",
+              "angle_pi": "1/2",
+              "length_pi_m": "1/8",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "-1/16",
+                  "3/4",
+                  "47/16"
+                ],
+                [
+                  "1/4",
+                  "17/16",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "segment",
+              "index": 1,
+              "start": [
+                "1/4",
+                "1",
+                "3"
+              ],
+              "end": [
+                "1",
+                "1",
+                "3"
+              ],
+              "length_m": "3/4",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "1/4",
+                  "15/16",
+                  "47/16"
+                ],
+                [
+                  "1",
+                  "17/16",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "elbow",
+              "index": 2,
+              "start": [
+                "1",
+                "1",
+                "3"
+              ],
+              "end": [
+                "5/4",
+                "3/4",
+                "3"
+              ],
+              "center": [
+                "1",
+                "3/4",
+                "3"
+              ],
+              "incoming": [
+                "1",
+                "0",
+                "0"
+              ],
+              "outgoing": [
+                "0",
+                "-1",
+                "0"
+              ],
+              "normal": [
+                "0",
+                "0",
+                "-1"
+              ],
+              "bend_radius_m": "1/4",
+              "angle_pi": "1/2",
+              "length_pi_m": "1/8",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "1",
+                  "3/4",
+                  "47/16"
+                ],
+                [
+                  "21/16",
+                  "17/16",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "segment",
+              "index": 2,
+              "start": [
+                "5/4",
+                "3/4",
+                "3"
+              ],
+              "end": [
+                "5/4",
+                "1/4",
+                "3"
+              ],
+              "length_m": "1/2",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "19/16",
+                  "1/4",
+                  "47/16"
+                ],
+                [
+                  "21/16",
+                  "3/4",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "elbow",
+              "index": 3,
+              "start": [
+                "5/4",
+                "1/4",
+                "3"
+              ],
+              "end": [
+                "3/2",
+                "0",
+                "3"
+              ],
+              "center": [
+                "3/2",
+                "1/4",
+                "3"
+              ],
+              "incoming": [
+                "0",
+                "-1",
+                "0"
+              ],
+              "outgoing": [
+                "1",
+                "0",
+                "0"
+              ],
+              "normal": [
+                "0",
+                "0",
+                "1"
+              ],
+              "bend_radius_m": "1/4",
+              "angle_pi": "1/2",
+              "length_pi_m": "1/8",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "19/16",
+                  "-1/16",
+                  "47/16"
+                ],
+                [
+                  "3/2",
+                  "1/4",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "segment",
+              "index": 3,
+              "start": [
+                "3/2",
+                "0",
+                "3"
+              ],
+              "end": [
+                "2",
+                "0",
+                "3"
+              ],
+              "length_m": "1/2",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "3/2",
+                  "-1/16",
+                  "47/16"
+                ],
+                [
+                  "2",
+                  "1/16",
+                  "49/16"
+                ]
+              ]
+            }
+          ],
+          "transitions": [
+            {
+              "corner": 1,
+              "incoming": [
+                "0",
+                "1",
+                "0"
+              ],
+              "outgoing": [
+                "1",
+                "0",
+                "0"
+              ],
+              "turn": "QUARTER_BEND",
+              "trim_debt_m": "1/4",
+              "incoming_remaining_straight_m": "1/2",
+              "fixed_size_root": "f3a4517e5322f524336e36b65d9a38517849b785617dd64305482d8f8e7c5482",
+              "support_phase": "NOT_MODELLED",
+              "slope_state": "NOT_MODELLED"
+            },
+            {
+              "corner": 2,
+              "incoming": [
+                "1",
+                "0",
+                "0"
+              ],
+              "outgoing": [
+                "0",
+                "-1",
+                "0"
+              ],
+              "turn": "QUARTER_BEND",
+              "trim_debt_m": "1/4",
+              "incoming_remaining_straight_m": "3/4",
+              "fixed_size_root": "f3a4517e5322f524336e36b65d9a38517849b785617dd64305482d8f8e7c5482",
+              "support_phase": "NOT_MODELLED",
+              "slope_state": "NOT_MODELLED"
+            },
+            {
+              "corner": 3,
+              "incoming": [
+                "0",
+                "-1",
+                "0"
+              ],
+              "outgoing": [
+                "1",
+                "0",
+                "0"
+              ],
+              "turn": "QUARTER_BEND",
+              "trim_debt_m": "1/4",
+              "incoming_remaining_straight_m": "1/2",
+              "fixed_size_root": "f3a4517e5322f524336e36b65d9a38517849b785617dd64305482d8f8e7c5482",
+              "support_phase": "NOT_MODELLED",
+              "slope_state": "NOT_MODELLED"
+            }
+          ],
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "status": "PASS",
+          "certificate_root": "8dddb478ac259e4642d1ab3e48ca8988abe7e77b38a9e5eb655bc397b908fb3e"
+        },
+        "independent_check": {
+          "status": "PASS",
+          "fabrication_status": "PASS",
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "root": "0131cbad58622473c37537830461c8dafa2386186d44e899942219c66d0fd03b",
+          "certificate_root": "8dddb478ac259e4642d1ab3e48ca8988abe7e77b38a9e5eb655bc397b908fb3e",
+          "components_checked": 7,
+          "transitions_checked": 3,
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          }
+        }
+      },
+      "connector-613046a1eec9893318471195": {
+        "geometry": {
+          "points_m": [
+            [
+              "0",
+              "1/4",
+              "3"
+            ],
+            [
+              "0",
+              "9/4",
+              "3"
+            ],
+            [
+              "5/4",
+              "9/4",
+              "3"
+            ],
+            [
+              "5/4",
+              "0",
+              "3"
+            ],
+            [
+              "2",
+              "0",
+              "3"
+            ]
+          ],
+          "components": [
+            {
+              "id": "connector-613046a1eec9893318471195-p0",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.0,
+                  0.25,
+                  3.0
+                ],
+                "end_m": [
+                  0.0,
+                  2.0,
+                  3.0
+                ]
+              }
+            },
+            {
+              "id": "connector-613046a1eec9893318471195-p1",
+              "kind": "elbow",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.0,
+                  2.0,
+                  3.0
+                ],
+                "end_m": [
+                  0.25,
+                  2.25,
+                  3.0
+                ],
+                "center_m": [
+                  0.25,
+                  2.0,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "bend_radius_m": 0.25,
+                "angle_rad": 1.5707963267948966
+              }
+            },
+            {
+              "id": "connector-613046a1eec9893318471195-p2",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.25,
+                  2.25,
+                  3.0
+                ],
+                "end_m": [
+                  1.0,
+                  2.25,
+                  3.0
+                ]
+              }
+            },
+            {
+              "id": "connector-613046a1eec9893318471195-p3",
+              "kind": "elbow",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  1.0,
+                  2.25,
+                  3.0
+                ],
+                "end_m": [
+                  1.25,
+                  2.0,
+                  3.0
+                ],
+                "center_m": [
+                  1.0,
+                  2.0,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "bend_radius_m": 0.25,
+                "angle_rad": 1.5707963267948966
+              }
+            },
+            {
+              "id": "connector-613046a1eec9893318471195-p4",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  1.25,
+                  2.0,
+                  3.0
+                ],
+                "end_m": [
+                  1.25,
+                  0.25,
+                  3.0
+                ]
+              }
+            },
+            {
+              "id": "connector-613046a1eec9893318471195-p5",
+              "kind": "elbow",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  1.25,
+                  0.25,
+                  3.0
+                ],
+                "end_m": [
+                  1.5,
+                  0.0,
+                  3.0
+                ],
+                "center_m": [
+                  1.5,
+                  0.25,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "bend_radius_m": 0.25,
+                "angle_rad": 1.5707963267948966
+              }
+            },
+            {
+              "id": "connector-613046a1eec9893318471195-p6",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  1.5,
+                  0.0,
+                  3.0
+                ],
+                "end_m": [
+                  2.0,
+                  0.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        },
+        "certificate": {
+          "schema": "oma.orthogonal-fabrication-certificate/1",
+          "root": "92736acd86c4e493e93acf30dea19fca81056c808c50a39e1c0f261a70698389",
+          "manifest": {
+            "schema": "oma.orthogonal-fabrication-input/1",
+            "scenario": {
+              "start": [
+                0.0,
+                0.25,
+                3.0
+              ],
+              "end": [
+                2.0,
+                0.0,
+                3.0
+              ],
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "bend_radius_m": 0.25,
+              "minimum_straight_m": 0.125,
+              "clearance_m": 0.0625,
+              "allowed_zone": {
+                "min": [
+                  -3.0,
+                  -2.0,
+                  2.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  4.0
+                ]
+              },
+              "source_id": null,
+              "source_port_guid": null,
+              "sink_port_guid": null,
+              "scenario_terminals": true,
+              "min_slope": null,
+              "provenance": "user_supplied_scenario",
+              "source": "api",
+              "assumptions": [],
+              "target_modality": "LOCAL_GEOMETRIC_COORDINATION",
+              "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+              "physics": null,
+              "objective_weights": {
+                "length_m": 1.0,
+                "fitting_count": 0.0
+              },
+              "search_step_m": 0.25,
+              "max_candidates": 12
+            },
+            "points_m": [
+              [
+                "0",
+                "1/4",
+                "3"
+              ],
+              [
+                "0",
+                "9/4",
+                "3"
+              ],
+              [
+                "5/4",
+                "9/4",
+                "3"
+              ],
+              [
+                "5/4",
+                "0",
+                "3"
+              ],
+              [
+                "2",
+                "0",
+                "3"
+              ]
+            ],
+            "context_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+            "point_count": 5,
+            "max_points": 16,
+            "input_binding": "COMPLETE_NORMALIZED_INPUT",
+            "outer_obstacles": [],
+            "outer_model_root": null,
+            "outer_model_supplied": false,
+            "outer_radius_m": "1/16",
+            "bend_radius_m": "1/4",
+            "strict_minimum_remaining_straight_m": "1/8",
+            "size_transition": "FIXED_DIAMETER_INSULATION_AND_CLEARANCE; NO_REDUCERS",
+            "arithmetic": "EXACT_BINARY_INPUT_VALUES_AND_RATIONAL_DERIVED_SUMS; ANGLE_IS_SYMBOLIC_PI_OVER_TWO"
+          },
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          },
+          "components": [
+            {
+              "kind": "segment",
+              "index": 0,
+              "start": [
+                "0",
+                "1/4",
+                "3"
+              ],
+              "end": [
+                "0",
+                "2",
+                "3"
+              ],
+              "length_m": "7/4",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "-1/16",
+                  "1/4",
+                  "47/16"
+                ],
+                [
+                  "1/16",
+                  "2",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "elbow",
+              "index": 1,
+              "start": [
+                "0",
+                "2",
+                "3"
+              ],
+              "end": [
+                "1/4",
+                "9/4",
+                "3"
+              ],
+              "center": [
+                "1/4",
+                "2",
+                "3"
+              ],
+              "incoming": [
+                "0",
+                "1",
+                "0"
+              ],
+              "outgoing": [
+                "1",
+                "0",
+                "0"
+              ],
+              "normal": [
+                "0",
+                "0",
+                "-1"
+              ],
+              "bend_radius_m": "1/4",
+              "angle_pi": "1/2",
+              "length_pi_m": "1/8",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "-1/16",
+                  "2",
+                  "47/16"
+                ],
+                [
+                  "1/4",
+                  "37/16",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "segment",
+              "index": 1,
+              "start": [
+                "1/4",
+                "9/4",
+                "3"
+              ],
+              "end": [
+                "1",
+                "9/4",
+                "3"
+              ],
+              "length_m": "3/4",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "1/4",
+                  "35/16",
+                  "47/16"
+                ],
+                [
+                  "1",
+                  "37/16",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "elbow",
+              "index": 2,
+              "start": [
+                "1",
+                "9/4",
+                "3"
+              ],
+              "end": [
+                "5/4",
+                "2",
+                "3"
+              ],
+              "center": [
+                "1",
+                "2",
+                "3"
+              ],
+              "incoming": [
+                "1",
+                "0",
+                "0"
+              ],
+              "outgoing": [
+                "0",
+                "-1",
+                "0"
+              ],
+              "normal": [
+                "0",
+                "0",
+                "-1"
+              ],
+              "bend_radius_m": "1/4",
+              "angle_pi": "1/2",
+              "length_pi_m": "1/8",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "1",
+                  "2",
+                  "47/16"
+                ],
+                [
+                  "21/16",
+                  "37/16",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "segment",
+              "index": 2,
+              "start": [
+                "5/4",
+                "2",
+                "3"
+              ],
+              "end": [
+                "5/4",
+                "1/4",
+                "3"
+              ],
+              "length_m": "7/4",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "19/16",
+                  "1/4",
+                  "47/16"
+                ],
+                [
+                  "21/16",
+                  "2",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "elbow",
+              "index": 3,
+              "start": [
+                "5/4",
+                "1/4",
+                "3"
+              ],
+              "end": [
+                "3/2",
+                "0",
+                "3"
+              ],
+              "center": [
+                "3/2",
+                "1/4",
+                "3"
+              ],
+              "incoming": [
+                "0",
+                "-1",
+                "0"
+              ],
+              "outgoing": [
+                "1",
+                "0",
+                "0"
+              ],
+              "normal": [
+                "0",
+                "0",
+                "1"
+              ],
+              "bend_radius_m": "1/4",
+              "angle_pi": "1/2",
+              "length_pi_m": "1/8",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "19/16",
+                  "-1/16",
+                  "47/16"
+                ],
+                [
+                  "3/2",
+                  "1/4",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "segment",
+              "index": 3,
+              "start": [
+                "3/2",
+                "0",
+                "3"
+              ],
+              "end": [
+                "2",
+                "0",
+                "3"
+              ],
+              "length_m": "1/2",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "3/2",
+                  "-1/16",
+                  "47/16"
+                ],
+                [
+                  "2",
+                  "1/16",
+                  "49/16"
+                ]
+              ]
+            }
+          ],
+          "transitions": [
+            {
+              "corner": 1,
+              "incoming": [
+                "0",
+                "1",
+                "0"
+              ],
+              "outgoing": [
+                "1",
+                "0",
+                "0"
+              ],
+              "turn": "QUARTER_BEND",
+              "trim_debt_m": "1/4",
+              "incoming_remaining_straight_m": "7/4",
+              "fixed_size_root": "f3a4517e5322f524336e36b65d9a38517849b785617dd64305482d8f8e7c5482",
+              "support_phase": "NOT_MODELLED",
+              "slope_state": "NOT_MODELLED"
+            },
+            {
+              "corner": 2,
+              "incoming": [
+                "1",
+                "0",
+                "0"
+              ],
+              "outgoing": [
+                "0",
+                "-1",
+                "0"
+              ],
+              "turn": "QUARTER_BEND",
+              "trim_debt_m": "1/4",
+              "incoming_remaining_straight_m": "3/4",
+              "fixed_size_root": "f3a4517e5322f524336e36b65d9a38517849b785617dd64305482d8f8e7c5482",
+              "support_phase": "NOT_MODELLED",
+              "slope_state": "NOT_MODELLED"
+            },
+            {
+              "corner": 3,
+              "incoming": [
+                "0",
+                "-1",
+                "0"
+              ],
+              "outgoing": [
+                "1",
+                "0",
+                "0"
+              ],
+              "turn": "QUARTER_BEND",
+              "trim_debt_m": "1/4",
+              "incoming_remaining_straight_m": "7/4",
+              "fixed_size_root": "f3a4517e5322f524336e36b65d9a38517849b785617dd64305482d8f8e7c5482",
+              "support_phase": "NOT_MODELLED",
+              "slope_state": "NOT_MODELLED"
+            }
+          ],
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "status": "PASS",
+          "certificate_root": "a6167461ec5691eb094dee84622f157a26177738ab353c05af1dc437a0445e6c"
+        },
+        "independent_check": {
+          "status": "PASS",
+          "fabrication_status": "PASS",
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "root": "92736acd86c4e493e93acf30dea19fca81056c808c50a39e1c0f261a70698389",
+          "certificate_root": "a6167461ec5691eb094dee84622f157a26177738ab353c05af1dc437a0445e6c",
+          "components_checked": 7,
+          "transitions_checked": 3,
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          }
+        }
+      },
+      "connector-04cb013e8d0aa10459b82c40": {
+        "geometry": {
+          "points_m": [
+            [
+              "0",
+              "1/4",
+              "3"
+            ],
+            [
+              "0",
+              "1",
+              "3"
+            ],
+            [
+              "1",
+              "1",
+              "3"
+            ],
+            [
+              "1",
+              "3",
+              "3"
+            ]
+          ],
+          "components": [
+            {
+              "id": "connector-04cb013e8d0aa10459b82c40-p0",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.0,
+                  0.25,
+                  3.0
+                ],
+                "end_m": [
+                  0.0,
+                  0.75,
+                  3.0
+                ]
+              }
+            },
+            {
+              "id": "connector-04cb013e8d0aa10459b82c40-p1",
+              "kind": "elbow",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.0,
+                  0.75,
+                  3.0
+                ],
+                "end_m": [
+                  0.25,
+                  1.0,
+                  3.0
+                ],
+                "center_m": [
+                  0.25,
+                  0.75,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "bend_radius_m": 0.25,
+                "angle_rad": 1.5707963267948966
+              }
+            },
+            {
+              "id": "connector-04cb013e8d0aa10459b82c40-p2",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.25,
+                  1.0,
+                  3.0
+                ],
+                "end_m": [
+                  0.75,
+                  1.0,
+                  3.0
+                ]
+              }
+            },
+            {
+              "id": "connector-04cb013e8d0aa10459b82c40-p3",
+              "kind": "elbow",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.75,
+                  1.0,
+                  3.0
+                ],
+                "end_m": [
+                  1.0,
+                  1.25,
+                  3.0
+                ],
+                "center_m": [
+                  0.75,
+                  1.25,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "bend_radius_m": 0.25,
+                "angle_rad": 1.5707963267948966
+              }
+            },
+            {
+              "id": "connector-04cb013e8d0aa10459b82c40-p4",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  1.0,
+                  1.25,
+                  3.0
+                ],
+                "end_m": [
+                  1.0,
+                  3.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        },
+        "certificate": {
+          "schema": "oma.orthogonal-fabrication-certificate/1",
+          "root": "88b1bdbd2e64d9e2f58194d3315bd41e5b5dab628edd272d961fa55faaeaf57f",
+          "manifest": {
+            "schema": "oma.orthogonal-fabrication-input/1",
+            "scenario": {
+              "start": [
+                0.0,
+                0.25,
+                3.0
+              ],
+              "end": [
+                1.0,
+                3.0,
+                3.0
+              ],
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "bend_radius_m": 0.25,
+              "minimum_straight_m": 0.125,
+              "clearance_m": 0.0625,
+              "allowed_zone": {
+                "min": [
+                  -3.0,
+                  -2.0,
+                  2.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  4.0
+                ]
+              },
+              "source_id": null,
+              "source_port_guid": null,
+              "sink_port_guid": null,
+              "scenario_terminals": true,
+              "min_slope": null,
+              "provenance": "user_supplied_scenario",
+              "source": "api",
+              "assumptions": [],
+              "target_modality": "LOCAL_GEOMETRIC_COORDINATION",
+              "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+              "physics": null,
+              "objective_weights": {
+                "length_m": 1.0,
+                "fitting_count": 0.0
+              },
+              "search_step_m": 0.25,
+              "max_candidates": 12
+            },
+            "points_m": [
+              [
+                "0",
+                "1/4",
+                "3"
+              ],
+              [
+                "0",
+                "1",
+                "3"
+              ],
+              [
+                "1",
+                "1",
+                "3"
+              ],
+              [
+                "1",
+                "3",
+                "3"
+              ]
+            ],
+            "context_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+            "point_count": 4,
+            "max_points": 16,
+            "input_binding": "COMPLETE_NORMALIZED_INPUT",
+            "outer_obstacles": [],
+            "outer_model_root": null,
+            "outer_model_supplied": false,
+            "outer_radius_m": "1/16",
+            "bend_radius_m": "1/4",
+            "strict_minimum_remaining_straight_m": "1/8",
+            "size_transition": "FIXED_DIAMETER_INSULATION_AND_CLEARANCE; NO_REDUCERS",
+            "arithmetic": "EXACT_BINARY_INPUT_VALUES_AND_RATIONAL_DERIVED_SUMS; ANGLE_IS_SYMBOLIC_PI_OVER_TWO"
+          },
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          },
+          "components": [
+            {
+              "kind": "segment",
+              "index": 0,
+              "start": [
+                "0",
+                "1/4",
+                "3"
+              ],
+              "end": [
+                "0",
+                "3/4",
+                "3"
+              ],
+              "length_m": "1/2",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "-1/16",
+                  "1/4",
+                  "47/16"
+                ],
+                [
+                  "1/16",
+                  "3/4",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "elbow",
+              "index": 1,
+              "start": [
+                "0",
+                "3/4",
+                "3"
+              ],
+              "end": [
+                "1/4",
+                "1",
+                "3"
+              ],
+              "center": [
+                "1/4",
+                "3/4",
+                "3"
+              ],
+              "incoming": [
+                "0",
+                "1",
+                "0"
+              ],
+              "outgoing": [
+                "1",
+                "0",
+                "0"
+              ],
+              "normal": [
+                "0",
+                "0",
+                "-1"
+              ],
+              "bend_radius_m": "1/4",
+              "angle_pi": "1/2",
+              "length_pi_m": "1/8",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "-1/16",
+                  "3/4",
+                  "47/16"
+                ],
+                [
+                  "1/4",
+                  "17/16",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "segment",
+              "index": 1,
+              "start": [
+                "1/4",
+                "1",
+                "3"
+              ],
+              "end": [
+                "3/4",
+                "1",
+                "3"
+              ],
+              "length_m": "1/2",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "1/4",
+                  "15/16",
+                  "47/16"
+                ],
+                [
+                  "3/4",
+                  "17/16",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "elbow",
+              "index": 2,
+              "start": [
+                "3/4",
+                "1",
+                "3"
+              ],
+              "end": [
+                "1",
+                "5/4",
+                "3"
+              ],
+              "center": [
+                "3/4",
+                "5/4",
+                "3"
+              ],
+              "incoming": [
+                "1",
+                "0",
+                "0"
+              ],
+              "outgoing": [
+                "0",
+                "1",
+                "0"
+              ],
+              "normal": [
+                "0",
+                "0",
+                "1"
+              ],
+              "bend_radius_m": "1/4",
+              "angle_pi": "1/2",
+              "length_pi_m": "1/8",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "3/4",
+                  "15/16",
+                  "47/16"
+                ],
+                [
+                  "17/16",
+                  "5/4",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "segment",
+              "index": 2,
+              "start": [
+                "1",
+                "5/4",
+                "3"
+              ],
+              "end": [
+                "1",
+                "3",
+                "3"
+              ],
+              "length_m": "7/4",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "15/16",
+                  "5/4",
+                  "47/16"
+                ],
+                [
+                  "17/16",
+                  "3",
+                  "49/16"
+                ]
+              ]
+            }
+          ],
+          "transitions": [
+            {
+              "corner": 1,
+              "incoming": [
+                "0",
+                "1",
+                "0"
+              ],
+              "outgoing": [
+                "1",
+                "0",
+                "0"
+              ],
+              "turn": "QUARTER_BEND",
+              "trim_debt_m": "1/4",
+              "incoming_remaining_straight_m": "1/2",
+              "fixed_size_root": "f3a4517e5322f524336e36b65d9a38517849b785617dd64305482d8f8e7c5482",
+              "support_phase": "NOT_MODELLED",
+              "slope_state": "NOT_MODELLED"
+            },
+            {
+              "corner": 2,
+              "incoming": [
+                "1",
+                "0",
+                "0"
+              ],
+              "outgoing": [
+                "0",
+                "1",
+                "0"
+              ],
+              "turn": "QUARTER_BEND",
+              "trim_debt_m": "1/4",
+              "incoming_remaining_straight_m": "1/2",
+              "fixed_size_root": "f3a4517e5322f524336e36b65d9a38517849b785617dd64305482d8f8e7c5482",
+              "support_phase": "NOT_MODELLED",
+              "slope_state": "NOT_MODELLED"
+            }
+          ],
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "status": "PASS",
+          "certificate_root": "22ae998930ca64b09ee821c483a08f5708ee301fe4c17d43d63d972049eea5fb"
+        },
+        "independent_check": {
+          "status": "PASS",
+          "fabrication_status": "PASS",
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "root": "88b1bdbd2e64d9e2f58194d3315bd41e5b5dab628edd272d961fa55faaeaf57f",
+          "certificate_root": "22ae998930ca64b09ee821c483a08f5708ee301fe4c17d43d63d972049eea5fb",
+          "components_checked": 5,
+          "transitions_checked": 2,
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          }
+        }
+      },
+      "connector-5f4d533bfcbd34340c589965": {
+        "geometry": {
+          "points_m": [
+            [
+              "0",
+              "1/4",
+              "3"
+            ],
+            [
+              "0",
+              "9/4",
+              "3"
+            ],
+            [
+              "1",
+              "9/4",
+              "3"
+            ],
+            [
+              "1",
+              "3",
+              "3"
+            ]
+          ],
+          "components": [
+            {
+              "id": "connector-5f4d533bfcbd34340c589965-p0",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.0,
+                  0.25,
+                  3.0
+                ],
+                "end_m": [
+                  0.0,
+                  2.0,
+                  3.0
+                ]
+              }
+            },
+            {
+              "id": "connector-5f4d533bfcbd34340c589965-p1",
+              "kind": "elbow",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.0,
+                  2.0,
+                  3.0
+                ],
+                "end_m": [
+                  0.25,
+                  2.25,
+                  3.0
+                ],
+                "center_m": [
+                  0.25,
+                  2.0,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "bend_radius_m": 0.25,
+                "angle_rad": 1.5707963267948966
+              }
+            },
+            {
+              "id": "connector-5f4d533bfcbd34340c589965-p2",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.25,
+                  2.25,
+                  3.0
+                ],
+                "end_m": [
+                  0.75,
+                  2.25,
+                  3.0
+                ]
+              }
+            },
+            {
+              "id": "connector-5f4d533bfcbd34340c589965-p3",
+              "kind": "elbow",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  0.75,
+                  2.25,
+                  3.0
+                ],
+                "end_m": [
+                  1.0,
+                  2.5,
+                  3.0
+                ],
+                "center_m": [
+                  0.75,
+                  2.5,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "bend_radius_m": 0.25,
+                "angle_rad": 1.5707963267948966
+              }
+            },
+            {
+              "id": "connector-5f4d533bfcbd34340c589965-p4",
+              "kind": "segment",
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "ports": {
+                "a": "SINK",
+                "b": "SOURCE"
+              },
+              "geometry": {
+                "start_m": [
+                  1.0,
+                  2.5,
+                  3.0
+                ],
+                "end_m": [
+                  1.0,
+                  3.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        },
+        "certificate": {
+          "schema": "oma.orthogonal-fabrication-certificate/1",
+          "root": "7921cbf15cd1393dca14cbd72a53044dbde70be3a56ae9dc7ed5b13e86b4caf3",
+          "manifest": {
+            "schema": "oma.orthogonal-fabrication-input/1",
+            "scenario": {
+              "start": [
+                0.0,
+                0.25,
+                3.0
+              ],
+              "end": [
+                1.0,
+                3.0,
+                3.0
+              ],
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "bend_radius_m": 0.25,
+              "minimum_straight_m": 0.125,
+              "clearance_m": 0.0625,
+              "allowed_zone": {
+                "min": [
+                  -3.0,
+                  -2.0,
+                  2.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  4.0
+                ]
+              },
+              "source_id": null,
+              "source_port_guid": null,
+              "sink_port_guid": null,
+              "scenario_terminals": true,
+              "min_slope": null,
+              "provenance": "user_supplied_scenario",
+              "source": "api",
+              "assumptions": [],
+              "target_modality": "LOCAL_GEOMETRIC_COORDINATION",
+              "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+              "physics": null,
+              "objective_weights": {
+                "length_m": 1.0,
+                "fitting_count": 0.0
+              },
+              "search_step_m": 0.25,
+              "max_candidates": 12
+            },
+            "points_m": [
+              [
+                "0",
+                "1/4",
+                "3"
+              ],
+              [
+                "0",
+                "9/4",
+                "3"
+              ],
+              [
+                "1",
+                "9/4",
+                "3"
+              ],
+              [
+                "1",
+                "3",
+                "3"
+              ]
+            ],
+            "context_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+            "point_count": 4,
+            "max_points": 16,
+            "input_binding": "COMPLETE_NORMALIZED_INPUT",
+            "outer_obstacles": [],
+            "outer_model_root": null,
+            "outer_model_supplied": false,
+            "outer_radius_m": "1/16",
+            "bend_radius_m": "1/4",
+            "strict_minimum_remaining_straight_m": "1/8",
+            "size_transition": "FIXED_DIAMETER_INSULATION_AND_CLEARANCE; NO_REDUCERS",
+            "arithmetic": "EXACT_BINARY_INPUT_VALUES_AND_RATIONAL_DERIVED_SUMS; ANGLE_IS_SYMBOLIC_PI_OVER_TWO"
+          },
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          },
+          "components": [
+            {
+              "kind": "segment",
+              "index": 0,
+              "start": [
+                "0",
+                "1/4",
+                "3"
+              ],
+              "end": [
+                "0",
+                "2",
+                "3"
+              ],
+              "length_m": "7/4",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "-1/16",
+                  "1/4",
+                  "47/16"
+                ],
+                [
+                  "1/16",
+                  "2",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "elbow",
+              "index": 1,
+              "start": [
+                "0",
+                "2",
+                "3"
+              ],
+              "end": [
+                "1/4",
+                "9/4",
+                "3"
+              ],
+              "center": [
+                "1/4",
+                "2",
+                "3"
+              ],
+              "incoming": [
+                "0",
+                "1",
+                "0"
+              ],
+              "outgoing": [
+                "1",
+                "0",
+                "0"
+              ],
+              "normal": [
+                "0",
+                "0",
+                "-1"
+              ],
+              "bend_radius_m": "1/4",
+              "angle_pi": "1/2",
+              "length_pi_m": "1/8",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "-1/16",
+                  "2",
+                  "47/16"
+                ],
+                [
+                  "1/4",
+                  "37/16",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "segment",
+              "index": 1,
+              "start": [
+                "1/4",
+                "9/4",
+                "3"
+              ],
+              "end": [
+                "3/4",
+                "9/4",
+                "3"
+              ],
+              "length_m": "1/2",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "1/4",
+                  "35/16",
+                  "47/16"
+                ],
+                [
+                  "3/4",
+                  "37/16",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "elbow",
+              "index": 2,
+              "start": [
+                "3/4",
+                "9/4",
+                "3"
+              ],
+              "end": [
+                "1",
+                "5/2",
+                "3"
+              ],
+              "center": [
+                "3/4",
+                "5/2",
+                "3"
+              ],
+              "incoming": [
+                "1",
+                "0",
+                "0"
+              ],
+              "outgoing": [
+                "0",
+                "1",
+                "0"
+              ],
+              "normal": [
+                "0",
+                "0",
+                "1"
+              ],
+              "bend_radius_m": "1/4",
+              "angle_pi": "1/2",
+              "length_pi_m": "1/8",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "3/4",
+                  "35/16",
+                  "47/16"
+                ],
+                [
+                  "17/16",
+                  "5/2",
+                  "49/16"
+                ]
+              ]
+            },
+            {
+              "kind": "segment",
+              "index": 2,
+              "start": [
+                "1",
+                "5/2",
+                "3"
+              ],
+              "end": [
+                "1",
+                "3",
+                "3"
+              ],
+              "length_m": "1/2",
+              "outer_radius_m": "1/16",
+              "body_bounds_m": [
+                [
+                  "15/16",
+                  "5/2",
+                  "47/16"
+                ],
+                [
+                  "17/16",
+                  "3",
+                  "49/16"
+                ]
+              ]
+            }
+          ],
+          "transitions": [
+            {
+              "corner": 1,
+              "incoming": [
+                "0",
+                "1",
+                "0"
+              ],
+              "outgoing": [
+                "1",
+                "0",
+                "0"
+              ],
+              "turn": "QUARTER_BEND",
+              "trim_debt_m": "1/4",
+              "incoming_remaining_straight_m": "7/4",
+              "fixed_size_root": "f3a4517e5322f524336e36b65d9a38517849b785617dd64305482d8f8e7c5482",
+              "support_phase": "NOT_MODELLED",
+              "slope_state": "NOT_MODELLED"
+            },
+            {
+              "corner": 2,
+              "incoming": [
+                "1",
+                "0",
+                "0"
+              ],
+              "outgoing": [
+                "0",
+                "1",
+                "0"
+              ],
+              "turn": "QUARTER_BEND",
+              "trim_debt_m": "1/4",
+              "incoming_remaining_straight_m": "1/2",
+              "fixed_size_root": "f3a4517e5322f524336e36b65d9a38517849b785617dd64305482d8f8e7c5482",
+              "support_phase": "NOT_MODELLED",
+              "slope_state": "NOT_MODELLED"
+            }
+          ],
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "status": "PASS",
+          "certificate_root": "8e34b178e3572546e62d398e8034f8ed3f160ba030fd4745f49c27a6eb022560"
+        },
+        "independent_check": {
+          "status": "PASS",
+          "fabrication_status": "PASS",
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "root": "7921cbf15cd1393dca14cbd72a53044dbde70be3a56ae9dc7ed5b13e86b4caf3",
+          "certificate_root": "8e34b178e3572546e62d398e8034f8ed3f160ba030fd4745f49c27a6eb022560",
+          "components_checked": 5,
+          "transitions_checked": 2,
+          "disposition": {
+            "status": "PASS",
+            "failures": [],
+            "unresolved": []
+          },
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          }
+        }
+      }
+    },
+    "attempts": [
+      {
+        "from": {
+          "node": "source",
+          "port": "out"
+        },
+        "to": {
+          "node": "tee-0",
+          "port": "a"
+        },
+        "points_m": [
+          [
+            "-2",
+            "0",
+            "3"
+          ],
+          [
+            "-1/4",
+            "0",
+            "3"
+          ]
+        ],
+        "status": "NOMINAL_MACRO_ADMITTED",
+        "connector_id": "connector-85edc313e625ec7a9c38e5e9"
+      },
+      {
+        "from": {
+          "node": "source",
+          "port": "out"
+        },
+        "to": {
+          "node": "tee-0",
+          "port": "a"
+        },
+        "points_m": [
+          [
+            "-2",
+            "0",
+            "3"
+          ],
+          [
+            "-5/4",
+            "0",
+            "3"
+          ],
+          [
+            "-5/4",
+            "9/4",
+            "3"
+          ],
+          [
+            "-1",
+            "9/4",
+            "3"
+          ],
+          [
+            "-1",
+            "0",
+            "3"
+          ],
+          [
+            "-1/4",
+            "0",
+            "3"
+          ]
+        ],
+        "status": "NOMINAL_TEMPLATE_NOT_ADMITTED",
+        "certificate": {
+          "schema": "oma.orthogonal-fabrication-certificate/1",
+          "root": "bb3ef233906c3d97842b3b8ff4c7cc9f113ff256a02eccd48c2f05b636aa370e",
+          "manifest": {
+            "schema": "oma.orthogonal-fabrication-input/1",
+            "scenario": {
+              "start": [
+                -2.0,
+                0.0,
+                3.0
+              ],
+              "end": [
+                -0.25,
+                0.0,
+                3.0
+              ],
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "bend_radius_m": 0.25,
+              "minimum_straight_m": 0.125,
+              "clearance_m": 0.0625,
+              "allowed_zone": {
+                "min": [
+                  -3.0,
+                  -2.0,
+                  2.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  4.0
+                ]
+              },
+              "source_id": null,
+              "source_port_guid": null,
+              "sink_port_guid": null,
+              "scenario_terminals": true,
+              "min_slope": null,
+              "provenance": "user_supplied_scenario",
+              "source": "api",
+              "assumptions": [],
+              "target_modality": "LOCAL_GEOMETRIC_COORDINATION",
+              "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+              "physics": null,
+              "objective_weights": {
+                "length_m": 1.0,
+                "fitting_count": 0.0
+              },
+              "search_step_m": 0.25,
+              "max_candidates": 12
+            },
+            "points_m": [
+              [
+                "-2",
+                "0",
+                "3"
+              ],
+              [
+                "-5/4",
+                "0",
+                "3"
+              ],
+              [
+                "-5/4",
+                "9/4",
+                "3"
+              ],
+              [
+                "-1",
+                "9/4",
+                "3"
+              ],
+              [
+                "-1",
+                "0",
+                "3"
+              ],
+              [
+                "-1/4",
+                "0",
+                "3"
+              ]
+            ],
+            "context_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+            "point_count": 6,
+            "max_points": 16,
+            "input_binding": "COMPLETE_NORMALIZED_INPUT",
+            "outer_obstacles": [],
+            "outer_model_root": null,
+            "outer_model_supplied": false,
+            "outer_radius_m": "1/16",
+            "bend_radius_m": "1/4",
+            "strict_minimum_remaining_straight_m": "1/8",
+            "size_transition": "FIXED_DIAMETER_INSULATION_AND_CLEARANCE; NO_REDUCERS",
+            "arithmetic": "EXACT_BINARY_INPUT_VALUES_AND_RATIONAL_DERIVED_SUMS; ANGLE_IS_SYMBOLIC_PI_OVER_TWO"
+          },
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          },
+          "components": [],
+          "transitions": [],
+          "disposition": {
+            "status": "FAIL",
+            "early": {
+              "status": "FAIL",
+              "code": "INSUFFICIENT_REMAINING_STRAIGHT",
+              "segment": 2,
+              "available_m": "-1/4",
+              "strict_required_m": "1/8"
+            }
+          },
+          "status": "FAIL",
+          "certificate_root": "2aeaca354e01537f082793395651f6bc4bf8baaa518fc2008222e130528b8452"
+        },
+        "check": {
+          "status": "PASS",
+          "fabrication_status": "FAIL",
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "root": "bb3ef233906c3d97842b3b8ff4c7cc9f113ff256a02eccd48c2f05b636aa370e",
+          "certificate_root": "2aeaca354e01537f082793395651f6bc4bf8baaa518fc2008222e130528b8452",
+          "components_checked": 0,
+          "transitions_checked": 0,
+          "disposition": {
+            "status": "FAIL",
+            "early": {
+              "status": "FAIL",
+              "code": "INSUFFICIENT_REMAINING_STRAIGHT",
+              "segment": 2,
+              "available_m": "-1/4",
+              "strict_required_m": "1/8"
+            }
+          },
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          }
+        }
+      },
+      {
+        "from": {
+          "node": "tee-0",
+          "port": "b"
+        },
+        "to": {
+          "node": "sink-main",
+          "port": "in"
+        },
+        "points_m": [
+          [
+            "1/4",
+            "0",
+            "3"
+          ],
+          [
+            "2",
+            "0",
+            "3"
+          ]
+        ],
+        "status": "NOMINAL_MACRO_ADMITTED",
+        "connector_id": "connector-8a4b24a75e1d15f3661091c1"
+      },
+      {
+        "from": {
+          "node": "tee-0",
+          "port": "b"
+        },
+        "to": {
+          "node": "sink-main",
+          "port": "in"
+        },
+        "points_m": [
+          [
+            "1/4",
+            "0",
+            "3"
+          ],
+          [
+            "1",
+            "0",
+            "3"
+          ],
+          [
+            "1",
+            "9/4",
+            "3"
+          ],
+          [
+            "5/4",
+            "9/4",
+            "3"
+          ],
+          [
+            "5/4",
+            "0",
+            "3"
+          ],
+          [
+            "2",
+            "0",
+            "3"
+          ]
+        ],
+        "status": "NOMINAL_TEMPLATE_NOT_ADMITTED",
+        "certificate": {
+          "schema": "oma.orthogonal-fabrication-certificate/1",
+          "root": "0f7534b421706205f6814812263cf9bac431f99a7aeb794f931da1efec2f920d",
+          "manifest": {
+            "schema": "oma.orthogonal-fabrication-input/1",
+            "scenario": {
+              "start": [
+                0.25,
+                0.0,
+                3.0
+              ],
+              "end": [
+                2.0,
+                0.0,
+                3.0
+              ],
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "bend_radius_m": 0.25,
+              "minimum_straight_m": 0.125,
+              "clearance_m": 0.0625,
+              "allowed_zone": {
+                "min": [
+                  -3.0,
+                  -2.0,
+                  2.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  4.0
+                ]
+              },
+              "source_id": null,
+              "source_port_guid": null,
+              "sink_port_guid": null,
+              "scenario_terminals": true,
+              "min_slope": null,
+              "provenance": "user_supplied_scenario",
+              "source": "api",
+              "assumptions": [],
+              "target_modality": "LOCAL_GEOMETRIC_COORDINATION",
+              "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+              "physics": null,
+              "objective_weights": {
+                "length_m": 1.0,
+                "fitting_count": 0.0
+              },
+              "search_step_m": 0.25,
+              "max_candidates": 12
+            },
+            "points_m": [
+              [
+                "1/4",
+                "0",
+                "3"
+              ],
+              [
+                "1",
+                "0",
+                "3"
+              ],
+              [
+                "1",
+                "9/4",
+                "3"
+              ],
+              [
+                "5/4",
+                "9/4",
+                "3"
+              ],
+              [
+                "5/4",
+                "0",
+                "3"
+              ],
+              [
+                "2",
+                "0",
+                "3"
+              ]
+            ],
+            "context_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+            "point_count": 6,
+            "max_points": 16,
+            "input_binding": "COMPLETE_NORMALIZED_INPUT",
+            "outer_obstacles": [],
+            "outer_model_root": null,
+            "outer_model_supplied": false,
+            "outer_radius_m": "1/16",
+            "bend_radius_m": "1/4",
+            "strict_minimum_remaining_straight_m": "1/8",
+            "size_transition": "FIXED_DIAMETER_INSULATION_AND_CLEARANCE; NO_REDUCERS",
+            "arithmetic": "EXACT_BINARY_INPUT_VALUES_AND_RATIONAL_DERIVED_SUMS; ANGLE_IS_SYMBOLIC_PI_OVER_TWO"
+          },
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          },
+          "components": [],
+          "transitions": [],
+          "disposition": {
+            "status": "FAIL",
+            "early": {
+              "status": "FAIL",
+              "code": "INSUFFICIENT_REMAINING_STRAIGHT",
+              "segment": 2,
+              "available_m": "-1/4",
+              "strict_required_m": "1/8"
+            }
+          },
+          "status": "FAIL",
+          "certificate_root": "197ab73962e442584ee40a06be7f87066bcd46c349ead62717adcf92c43d8ba4"
+        },
+        "check": {
+          "status": "PASS",
+          "fabrication_status": "FAIL",
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "root": "0f7534b421706205f6814812263cf9bac431f99a7aeb794f931da1efec2f920d",
+          "certificate_root": "197ab73962e442584ee40a06be7f87066bcd46c349ead62717adcf92c43d8ba4",
+          "components_checked": 0,
+          "transitions_checked": 0,
+          "disposition": {
+            "status": "FAIL",
+            "early": {
+              "status": "FAIL",
+              "code": "INSUFFICIENT_REMAINING_STRAIGHT",
+              "segment": 2,
+              "available_m": "-1/4",
+              "strict_required_m": "1/8"
+            }
+          },
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          }
+        }
+      },
+      {
+        "from": {
+          "node": "tee-0",
+          "port": "b"
+        },
+        "to": {
+          "node": "sink-0",
+          "port": "in"
+        },
+        "points_m": [
+          [
+            "1/4",
+            "0",
+            "3"
+          ],
+          [
+            "1",
+            "0",
+            "3"
+          ],
+          [
+            "1",
+            "3",
+            "3"
+          ]
+        ],
+        "status": "NOMINAL_MACRO_ADMITTED",
+        "connector_id": "connector-d5e03c7eb59fb50011f55da0"
+      },
+      {
+        "from": {
+          "node": "tee-0",
+          "port": "branch"
+        },
+        "to": {
+          "node": "sink-main",
+          "port": "in"
+        },
+        "points_m": [
+          [
+            "0",
+            "1/4",
+            "3"
+          ],
+          [
+            "0",
+            "1",
+            "3"
+          ],
+          [
+            "5/4",
+            "1",
+            "3"
+          ],
+          [
+            "5/4",
+            "0",
+            "3"
+          ],
+          [
+            "2",
+            "0",
+            "3"
+          ]
+        ],
+        "status": "NOMINAL_MACRO_ADMITTED",
+        "connector_id": "connector-bced3a23695fa27810cc941b"
+      },
+      {
+        "from": {
+          "node": "tee-0",
+          "port": "branch"
+        },
+        "to": {
+          "node": "sink-main",
+          "port": "in"
+        },
+        "points_m": [
+          [
+            "0",
+            "1/4",
+            "3"
+          ],
+          [
+            "0",
+            "1",
+            "3"
+          ],
+          [
+            "0",
+            "0",
+            "3"
+          ],
+          [
+            "2",
+            "0",
+            "3"
+          ]
+        ],
+        "status": "NOMINAL_TEMPLATE_NOT_ADMITTED",
+        "certificate": {
+          "schema": "oma.orthogonal-fabrication-certificate/1",
+          "root": "97d19fe10bdf8ca197a8ce2b967fa6fa008440e48c07a0037557d081e3f6638f",
+          "manifest": {
+            "schema": "oma.orthogonal-fabrication-input/1",
+            "scenario": {
+              "start": [
+                0.0,
+                0.25,
+                3.0
+              ],
+              "end": [
+                2.0,
+                0.0,
+                3.0
+              ],
+              "system_type": "PRESSURE_PIPE",
+              "diameter_m": 0.0625,
+              "insulation_m": 0.03125,
+              "bend_radius_m": 0.25,
+              "minimum_straight_m": 0.125,
+              "clearance_m": 0.0625,
+              "allowed_zone": {
+                "min": [
+                  -3.0,
+                  -2.0,
+                  2.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  4.0
+                ]
+              },
+              "source_id": null,
+              "source_port_guid": null,
+              "sink_port_guid": null,
+              "scenario_terminals": true,
+              "min_slope": null,
+              "provenance": "user_supplied_scenario",
+              "source": "api",
+              "assumptions": [],
+              "target_modality": "LOCAL_GEOMETRIC_COORDINATION",
+              "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+              "physics": null,
+              "objective_weights": {
+                "length_m": 1.0,
+                "fitting_count": 0.0
+              },
+              "search_step_m": 0.25,
+              "max_candidates": 12
+            },
+            "points_m": [
+              [
+                "0",
+                "1/4",
+                "3"
+              ],
+              [
+                "0",
+                "1",
+                "3"
+              ],
+              [
+                "0",
+                "0",
+                "3"
+              ],
+              [
+                "2",
+                "0",
+                "3"
+              ]
+            ],
+            "context_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+            "point_count": 4,
+            "max_points": 16,
+            "input_binding": "COMPLETE_NORMALIZED_INPUT",
+            "outer_obstacles": [],
+            "outer_model_root": null,
+            "outer_model_supplied": false,
+            "outer_radius_m": "1/16",
+            "bend_radius_m": "1/4",
+            "strict_minimum_remaining_straight_m": "1/8",
+            "size_transition": "FIXED_DIAMETER_INSULATION_AND_CLEARANCE; NO_REDUCERS",
+            "arithmetic": "EXACT_BINARY_INPUT_VALUES_AND_RATIONAL_DERIVED_SUMS; ANGLE_IS_SYMBOLIC_PI_OVER_TWO"
+          },
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          },
+          "components": [],
+          "transitions": [],
+          "disposition": {
+            "status": "FAIL",
+            "early": {
+              "status": "FAIL",
+              "code": "NO_TANGENT_QUARTER_BEND_FOR_UTURN",
+              "corner": 1
+            }
+          },
+          "status": "FAIL",
+          "certificate_root": "b155aeac96549fcfa50bed04748098ec2a4bf6522d5a9a0961a18aca52d84c63"
+        },
+        "check": {
+          "status": "PASS",
+          "fabrication_status": "FAIL",
+          "scope": "EXACT_FIXED_ORTHOGONAL_POLYLINE_CONSTANT_ROUND_FILLET_REALIZATION",
+          "root": "97d19fe10bdf8ca197a8ce2b967fa6fa008440e48c07a0037557d081e3f6638f",
+          "certificate_root": "b155aeac96549fcfa50bed04748098ec2a4bf6522d5a9a0961a18aca52d84c63",
+          "components_checked": 0,
+          "transitions_checked": 0,
+          "disposition": {
+            "status": "FAIL",
+            "early": {
+              "status": "FAIL",
+              "code": "NO_TANGENT_QUARTER_BEND_FOR_UTURN",
+              "corner": 1
+            }
+          },
+          "limitations": {
+            "full_fabrication_graph_or_homotopy_complete": false,
+            "manufacturer_catalog_or_supports_checked": false,
+            "nonadjacent_component_self_interference_checked": false,
+            "gravity_slope_or_service_physics_checked": false,
+            "obstacle_outer_cover_authenticity_checked": false,
+            "native_IFC_geometry_equality_checked": false,
+            "candidate_acceptance_authority": false,
+            "automatic_numerical_writer_pruning_authority": false,
+            "physical_route_universe_infeasibility_claim": false
+          }
+        }
+      },
+      {
+        "from": {
+          "node": "tee-0",
+          "port": "branch"
+        },
+        "to": {
+          "node": "sink-main",
+          "port": "in"
+        },
+        "points_m": [
+          [
+            "0",
+            "1/4",
+            "3"
+          ],
+          [
+            "0",
+            "9/4",
+            "3"
+          ],
+          [
+            "5/4",
+            "9/4",
+            "3"
+          ],
+          [
+            "5/4",
+            "0",
+            "3"
+          ],
+          [
+            "2",
+            "0",
+            "3"
+          ]
+        ],
+        "status": "NOMINAL_MACRO_ADMITTED",
+        "connector_id": "connector-613046a1eec9893318471195"
+      },
+      {
+        "from": {
+          "node": "tee-0",
+          "port": "branch"
+        },
+        "to": {
+          "node": "sink-0",
+          "port": "in"
+        },
+        "points_m": [
+          [
+            "0",
+            "1/4",
+            "3"
+          ],
+          [
+            "0",
+            "1",
+            "3"
+          ],
+          [
+            "1",
+            "1",
+            "3"
+          ],
+          [
+            "1",
+            "3",
+            "3"
+          ]
+        ],
+        "status": "NOMINAL_MACRO_ADMITTED",
+        "connector_id": "connector-04cb013e8d0aa10459b82c40"
+      },
+      {
+        "from": {
+          "node": "tee-0",
+          "port": "branch"
+        },
+        "to": {
+          "node": "sink-0",
+          "port": "in"
+        },
+        "points_m": [
+          [
+            "0",
+            "1/4",
+            "3"
+          ],
+          [
+            "0",
+            "9/4",
+            "3"
+          ],
+          [
+            "1",
+            "9/4",
+            "3"
+          ],
+          [
+            "1",
+            "3",
+            "3"
+          ]
+        ],
+        "status": "NOMINAL_MACRO_ADMITTED",
+        "connector_id": "connector-5f4d533bfcbd34340c589965"
+      }
+    ],
+    "limitations": {
+      "continuous_or_all_topologies_complete": false,
+      "native_geometry_or_service_checked": false,
+      "nominal_cost_is_native_lower_bound": false,
+      "physical_infeasibility_from_empty_catalogue": false,
+      "candidate_acceptance_authority": false,
+      "coordinates": "EXACT_BINARY64_REPRESENTABLE_DYADIC_PROPOSAL_GEOMETRY"
+    },
+    "work": 951
+  },
+  "catalogue_check": {
+    "schema": "oma.shared-tree-generated-catalogue-check/1",
+    "status": "PASS",
+    "proof_complete": true,
+    "scope": "SUPPLIED_CATALOGUE_CURRENT_INPUT_TEMPLATE_MEMBERSHIP_AND_NOMINAL_MACRO_PROVENANCE_ONLY",
+    "input_root": "b0f6f39727fbc3c2b310ab178f957ab180b183bedec90d4771720acd15104c61",
+    "generated_root": "756cbc0627431232ca946354d51c17e94295c0bc02f8ed345fc755ceba0191d4",
+    "catalogue_root": "356c58f08b1da144144bebe4c75e50e97e9f94fdcdbeb738aa4c4d589227eac8",
+    "normalized_requirements_root": "5e5dfde20d9e91b1cff1d413937a8605f4f9fb2ed72b6fe78ca9fb721c66e42f",
+    "context_root": "4eb6b7be044c7fce9ae8cc074b71b4623452c092b82b7825237c647d27980750",
+    "counts": {
+      "tees": 1,
+      "terminals": 3,
+      "connector_macros": 7,
+      "physical_components_in_catalogue": 30,
+      "admitted_attempts": 7,
+      "untrusted_diagnostic_attempts": 3
+    },
+    "limitations": {
+      "native_acceptance_authority": false,
+      "all_templates_enumerated": false,
+      "diagnostic_rejections_certified": false,
+      "geometry_source_authenticity_external": true
+    },
+    "work": 47011
+  },
+  "synthesis": {
+    "status": "CERTIFIED",
+    "proof_complete": true,
+    "certificate_root": "0ebcaaf45edf38c1ab9db3fdf3c4d8dac59bee94f55dddadb5968a17bdaa2c83",
+    "input_root": "356c58f08b1da144144bebe4c75e50e97e9f94fdcdbeb738aa4c4d589227eac8",
+    "problem_root": "7347efe1731bd57a79f5c9dcfb35a6e331ca3372257cd859b26b4cc4576674b8",
+    "scope": "EXACT_NOMINAL_TOP_K_AND_COUNT_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+    "proposals": [
+      {
+        "tee_ids": [
+          "tee-0"
+        ],
+        "connector_ids": [
+          "connector-04cb013e8d0aa10459b82c40",
+          "connector-85edc313e625ec7a9c38e5e9",
+          "connector-8a4b24a75e1d15f3661091c1"
+        ],
+        "nominal_cost": [
+          "7",
+          "1/4"
+        ],
+        "assignment_root": "afda2fbe9e42a82706728e470f8e60f0d9ffe73165dc489e116d737bd8831c33",
+        "source": {
+          "node": "source",
+          "port": "out"
+        },
+        "sinks": [
+          {
+            "id": "sink-0",
+            "demand_id": "demand-0",
+            "endpoint": {
+              "node": "sink-0",
+              "port": "in"
+            },
+            "connector_path": [
+              "connector-85edc313e625ec7a9c38e5e9",
+              "connector-04cb013e8d0aa10459b82c40"
+            ]
+          },
+          {
+            "id": "sink-main",
+            "demand_id": "demand-main",
+            "endpoint": {
+              "node": "sink-main",
+              "port": "in"
+            },
+            "connector_path": [
+              "connector-85edc313e625ec7a9c38e5e9",
+              "connector-8a4b24a75e1d15f3661091c1"
+            ]
+          }
+        ],
+        "connections": [
+          {
+            "connector_id": "connector-04cb013e8d0aa10459b82c40",
+            "from": {
+              "node": "tee-0",
+              "port": "branch"
+            },
+            "to": {
+              "node": "sink-0",
+              "port": "in"
+            }
+          },
+          {
+            "connector_id": "connector-85edc313e625ec7a9c38e5e9",
+            "from": {
+              "node": "source",
+              "port": "out"
+            },
+            "to": {
+              "node": "tee-0",
+              "port": "a"
+            }
+          },
+          {
+            "connector_id": "connector-8a4b24a75e1d15f3661091c1",
+            "from": {
+              "node": "tee-0",
+              "port": "b"
+            },
+            "to": {
+              "node": "sink-main",
+              "port": "in"
+            }
+          }
+        ]
+      }
+    ],
+    "counts": {
+      "state_domain": 1,
+      "reachable_states": 1,
+      "stored_labels": 1,
+      "complete_assignments": "4",
+      "returned_proposals": 1,
+      "transitions": 3,
+      "label_pairs": 7,
+      "induced_disconnected_states": 0
+    },
+    "work": 3832,
+    "certificate": {
+      "schema": "oma.shared-tree-topk-certificate/1",
+      "input_root": "356c58f08b1da144144bebe4c75e50e97e9f94fdcdbeb738aa4c4d589227eac8",
+      "problem_root": "7347efe1731bd57a79f5c9dcfb35a6e331ca3372257cd859b26b4cc4576674b8",
+      "k": 1,
+      "scope": "EXACT_NOMINAL_TOP_K_AND_COUNT_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+      "limitations": [
+        "Geometry, fabrication and loss roots bind identities; their physical truth is external.",
+        "Nominal catalogue cost is not an independently measured native objective or lower bound.",
+        "Every proposed complete tree still requires current native geometry and applicable service checks.",
+        "No physical infeasibility, unrestricted connector/placement completeness or continuous optimum.",
+        "State substitution concerns discrete catalogue incidence only, not cross-macro geometry or physics.",
+        "Distinct connector-ID trees can have identical physical geometry; no unique-geometry enumeration is claimed."
+      ],
+      "state_domain_count": 1,
+      "states": [
+        {
+          "state": [
+            "tee-0",
+            3,
+            1
+          ],
+          "tree_count": "4",
+          "labels": [
+            {
+              "connector_ids": [
+                "connector-04cb013e8d0aa10459b82c40",
+                "connector-8a4b24a75e1d15f3661091c1"
+              ],
+              "nominal_cost": [
+                "21/4",
+                "1/4"
+              ],
+              "label_root": "c7c31d4f799b9ad604a46d8a08a901a4f05d200be11d93e381b4d789deae8c4b"
+            }
+          ]
+        }
+      ],
+      "total_tree_count": "4",
+      "ranked_prefix": [
+        {
+          "tee_ids": [
+            "tee-0"
+          ],
+          "connector_ids": [
+            "connector-04cb013e8d0aa10459b82c40",
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-8a4b24a75e1d15f3661091c1"
+          ],
+          "nominal_cost": [
+            "7",
+            "1/4"
+          ],
+          "assignment_root": "afda2fbe9e42a82706728e470f8e60f0d9ffe73165dc489e116d737bd8831c33"
+        }
+      ],
+      "certificate_root": "0ebcaaf45edf38c1ab9db3fdf3c4d8dac59bee94f55dddadb5968a17bdaa2c83"
+    }
+  },
+  "independent_check": {
+    "status": "PASS",
+    "proof_complete": true,
+    "certificate_root": "0ebcaaf45edf38c1ab9db3fdf3c4d8dac59bee94f55dddadb5968a17bdaa2c83",
+    "input_root": "356c58f08b1da144144bebe4c75e50e97e9f94fdcdbeb738aa4c4d589227eac8",
+    "problem_root": "7347efe1731bd57a79f5c9dcfb35a6e331ca3372257cd859b26b4cc4576674b8",
+    "scope": "EXACT_NOMINAL_TOP_K_AND_COUNT_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+    "proposals": [
+      {
+        "tee_ids": [
+          "tee-0"
+        ],
+        "connector_ids": [
+          "connector-04cb013e8d0aa10459b82c40",
+          "connector-85edc313e625ec7a9c38e5e9",
+          "connector-8a4b24a75e1d15f3661091c1"
+        ],
+        "nominal_cost": [
+          "7",
+          "1/4"
+        ],
+        "assignment_root": "afda2fbe9e42a82706728e470f8e60f0d9ffe73165dc489e116d737bd8831c33",
+        "source": {
+          "node": "source",
+          "port": "out"
+        },
+        "sinks": [
+          {
+            "id": "sink-0",
+            "demand_id": "demand-0",
+            "endpoint": {
+              "node": "sink-0",
+              "port": "in"
+            },
+            "connector_path": [
+              "connector-85edc313e625ec7a9c38e5e9",
+              "connector-04cb013e8d0aa10459b82c40"
+            ]
+          },
+          {
+            "id": "sink-main",
+            "demand_id": "demand-main",
+            "endpoint": {
+              "node": "sink-main",
+              "port": "in"
+            },
+            "connector_path": [
+              "connector-85edc313e625ec7a9c38e5e9",
+              "connector-8a4b24a75e1d15f3661091c1"
+            ]
+          }
+        ],
+        "connections": [
+          {
+            "connector_id": "connector-04cb013e8d0aa10459b82c40",
+            "from": {
+              "node": "tee-0",
+              "port": "branch"
+            },
+            "to": {
+              "node": "sink-0",
+              "port": "in"
+            }
+          },
+          {
+            "connector_id": "connector-85edc313e625ec7a9c38e5e9",
+            "from": {
+              "node": "source",
+              "port": "out"
+            },
+            "to": {
+              "node": "tee-0",
+              "port": "a"
+            }
+          },
+          {
+            "connector_id": "connector-8a4b24a75e1d15f3661091c1",
+            "from": {
+              "node": "tee-0",
+              "port": "b"
+            },
+            "to": {
+              "node": "sink-main",
+              "port": "in"
+            }
+          }
+        ]
+      }
+    ],
+    "counts": {
+      "state_domain": 1,
+      "reachable_states": 1,
+      "stored_labels": 1,
+      "complete_assignments": "4",
+      "returned_proposals": 1,
+      "transitions": 3,
+      "label_pairs": 7,
+      "induced_disconnected_states": 0
+    },
+    "work": 3998
+  },
+  "proof_complete": true,
+  "proof_scope": "SUPPLIED_CATALOGUE_MACRO_PROVENANCE_AND_COMPLETE_NOMINAL_FINITE_GRAPH_RANK_ONLY",
+  "work": 61762,
+  "limitations": {
+    "continuous_or_all_topologies_complete": false,
+    "native_geometry_or_service_checked": false,
+    "nominal_cost_is_native_lower_bound": false,
+    "physical_infeasibility_from_empty_catalogue": false,
+    "candidate_acceptance_authority": false,
+    "coordinates": "EXACT_BINARY64_REPRESENTABLE_DYADIC_PROPOSAL_GEOMETRY"
+  }
+}

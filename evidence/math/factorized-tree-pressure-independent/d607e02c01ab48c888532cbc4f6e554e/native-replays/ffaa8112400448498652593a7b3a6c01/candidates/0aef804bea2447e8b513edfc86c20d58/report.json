@@ -1,0 +1,160 @@
+{
+  "candidate_root": "4cd277b4459433baa44ebd77287247ac4ab23bc3e827839ce22040fd55881a44",
+  "checker_version": "oma-independent-checker/2:73d7eed7accfd706f9972e1548e750009127e24c6106cc25d98c812239a836ee",
+  "common_mode_risks": [
+    "Shared IFC parser and numerical OCP kernel; analytic component reconstruction independently cross-checks native volumes",
+    "Length and coordinate arithmetic uses the explicit engineering tolerance; this is not a formally interval-certified CAD kernel",
+    "Supplied pressure or flow boundary controls, Darcy friction and fitting loss applicability are engineering assumptions; certified operating bounds apply only to their declared model",
+    "Finite topology alternatives do not establish global continuous or unrestricted topology optimality"
+  ],
+  "created_at": "2026-09-15T01:31:26.069749+00:00",
+  "mission_hash": "3ef409059633a4c948fab535f72d487a002076c06a2666929432ac2932f28a29",
+  "objective": {
+    "fitting_count": 6.0,
+    "length_m": 22.78539816339745
+  },
+  "results": [
+    {
+      "id": "fixed-network-requirements",
+      "participants": [],
+      "reason": "Full scenario, demands, constraints, component alternatives and objective policy bind the original immutable run request",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "PASS",
+      "witness": {}
+    },
+    {
+      "id": "unique-network-demand-coverage",
+      "participants": [],
+      "reason": "Every fixed demand shares one uniquely inventoried component tree; no duplicated trunk or missing branch",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "PASS",
+      "witness": {}
+    },
+    {
+      "id": "protected-network-baseline",
+      "participants": [],
+      "reason": "All original source, entity, connectivity, policy and previous obligation content is preserved",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "PASS",
+      "witness": {}
+    },
+    {
+      "id": "network-source-and-datum-binding",
+      "participants": [],
+      "reason": "Actual materialization uses the selected full graph and the immutable source's declared federation transform",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "PASS",
+      "witness": {}
+    },
+    {
+      "id": "network-artifact-integrity",
+      "participants": [],
+      "reason": "Every original source and complete physical replacement was freshly hash checked",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "PASS",
+      "witness": {}
+    },
+    {
+      "id": "network-native-semantics",
+      "participants": [],
+      "reason": "Fresh IFC parts, complete Body items, actual cap ports, flow roles, directed tree, system membership and analytic/native volumes checked",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "PASS",
+      "witness": {
+        "artifact": "3315fb2feb3803e616c7f297aac2674f9f3fd0a90f342a3ecd4675c3d612b06f",
+        "connections": 16,
+        "errors": [],
+        "physical_components": 17,
+        "physical_ports": 38
+      }
+    },
+    {
+      "id": "network-objective",
+      "participants": [],
+      "reason": "Length and fitting count sum each unique physical component once; demand-path lengths are separate",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "PASS",
+      "witness": {
+        "artifact": "3315fb2feb3803e616c7f297aac2674f9f3fd0a90f342a3ecd4675c3d612b06f",
+        "demand_path_lengths_m": {
+          "demand-0": 5.785398163397448,
+          "demand-1": 7.0,
+          "demand-2": 9.0,
+          "demand-3": 11.0,
+          "demand-main": 10.0
+        },
+        "fitting_count": 6.0,
+        "unique_length_m": 22.78539816339745
+      }
+    },
+    {
+      "id": "network-native-counterexample",
+      "participants": [
+        "f2a8b88e7888a1597b1b08b1cbcf2607db56fb6748a32d3dc7936328e6e3940a:386",
+        "c74a48652fc6cb0de60c826fc12cdf8fee61e327f42a387a29ddcdc77c1a8ae4:38"
+      ],
+      "reason": "One freshly reopened original obstacle has positive native common volume with a new component",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "FAIL",
+      "witness": {
+        "artifact": "27315782164c98afe796c54c5892bfa64de5e6a916d5e3ffd76d8fdb28e0c744",
+        "other_point": [
+          1.0625,
+          1.625,
+          3.0
+        ],
+        "point": [
+          1.0625,
+          1.625,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "network-all-source-clearance",
+      "participants": [],
+      "reason": "Full source denominator not checked after a conclusive forbidden-volume counterexample",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "NOT_RUN",
+      "witness": {
+        "artifact": "27315782164c98afe796c54c5892bfa64de5e6a916d5e3ffd76d8fdb28e0c744"
+      }
+    },
+    {
+      "id": "network-all-component-pairs",
+      "participants": [],
+      "reason": "Stopped after a conclusive physical counterexample; no remaining feasibility claim",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "NOT_RUN",
+      "witness": {}
+    },
+    {
+      "id": "network-permitted-zone",
+      "participants": [],
+      "reason": "Stopped after a conclusive physical counterexample; no remaining feasibility claim",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "NOT_RUN",
+      "witness": {}
+    },
+    {
+      "id": "network-demand-conditioned-service",
+      "participants": [],
+      "reason": "Stopped after a conclusive physical counterexample; no remaining feasibility claim",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "NOT_RUN",
+      "witness": {}
+    },
+    {
+      "id": "network-pressure-operating-point",
+      "participants": [],
+      "reason": "Operating relation was not evaluated after the physical counterexample",
+      "scope": "One complete shared physical network and every imported source obstacle",
+      "status": "NOT_RUN",
+      "witness": {}
+    }
+  ],
+  "rule_hash": "443968941db5688121d73d9e19debe35c7f0fe1998f8b83fb53e584282882d0f",
+  "schema_version": 1,
+  "scope": "SHARED_PHYSICAL_NETWORK: complete local component tree, fixed total-pressure boundaries and minimum deliveries and all source obstacles; whole-building adequacy not certified",
+  "status": "FAIL"
+}
