@@ -1,0 +1,1197 @@
+.....................................FFFFFFFFFFFFFFFFFFFFFFFF.FFFFFF     [100%]
+================================== FAILURES ===================================
+_ test_invalid_compact_policy_never_reaches_generation[max_transitions-None] __
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E72C33E0>
+key = 'max_transitions', bad = None
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+_ test_invalid_compact_policy_never_reaches_generation[max_transitions-True] __
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E72C2BD0>
+key = 'max_transitions', bad = True
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+___ test_invalid_compact_policy_never_reaches_generation[max_transitions-0] ___
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E726DD90>
+key = 'max_transitions', bad = 0
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+__ test_invalid_compact_policy_never_reaches_generation[max_transitions--1] ___
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne3')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E726F680>
+key = 'max_transitions', bad = -1
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+___ test_invalid_compact_policy_never_reaches_generation[max_transitions-1] ___
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne4')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E726E210>
+key = 'max_transitions', bad = '1'
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+_ test_invalid_compact_policy_never_reaches_generation[max_transitions-bad5] __
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne5')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E726D910>
+key = 'max_transitions', bad = {}
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+_ test_invalid_compact_policy_never_reaches_generation[max_transitions-bad6] __
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne6')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E72C3CB0>
+key = 'max_transitions', bad = []
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+_ test_invalid_compact_policy_never_reaches_generation[max_label_pairs-None] __
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne7')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E72ED910>
+key = 'max_label_pairs', bad = None
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+_ test_invalid_compact_policy_never_reaches_generation[max_label_pairs-True] __
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne8')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E72C2C00>
+key = 'max_label_pairs', bad = True
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+___ test_invalid_compact_policy_never_reaches_generation[max_label_pairs-0] ___
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne9')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E502DC10>
+key = 'max_label_pairs', bad = 0
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+__ test_invalid_compact_policy_never_reaches_generation[max_label_pairs--1] ___
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne10')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E72C1F40>
+key = 'max_label_pairs', bad = -1
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+___ test_invalid_compact_policy_never_reaches_generation[max_label_pairs-1] ___
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne11')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E72C1BE0>
+key = 'max_label_pairs', bad = '1'
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+_ test_invalid_compact_policy_never_reaches_generation[max_label_pairs-bad12] _
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne12')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E71511F0>
+key = 'max_label_pairs', bad = {}
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+_ test_invalid_compact_policy_never_reaches_generation[max_label_pairs-bad13] _
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne13')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E72C2030>
+key = 'max_label_pairs', bad = []
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+____ test_invalid_compact_policy_never_reaches_generation[max_bytes-None] _____
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne14')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E502F470>
+key = 'max_bytes', bad = None
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+____ test_invalid_compact_policy_never_reaches_generation[max_bytes-True] _____
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne15')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E71516A0>
+key = 'max_bytes', bad = True
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+______ test_invalid_compact_policy_never_reaches_generation[max_bytes-0] ______
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne16')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E50F97F0>
+key = 'max_bytes', bad = 0
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+_____ test_invalid_compact_policy_never_reaches_generation[max_bytes--1] ______
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne17')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E71517C0>
+key = 'max_bytes', bad = -1
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+______ test_invalid_compact_policy_never_reaches_generation[max_bytes-1] ______
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne18')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E502F320>
+key = 'max_bytes', bad = '1'
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+____ test_invalid_compact_policy_never_reaches_generation[max_bytes-bad19] ____
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne19')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E50F9580>
+key = 'max_bytes', bad = {}
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+____ test_invalid_compact_policy_never_reaches_generation[max_bytes-bad20] ____
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne20')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E50FAE40>
+key = 'max_bytes', bad = []
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+_ test_invalid_compact_policy_never_reaches_generation[max_transitions-2000001] _
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne21')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E50F9A30>
+key = 'max_transitions', bad = 2000001
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+_ test_invalid_compact_policy_never_reaches_generation[max_label_pairs-10000001] _
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne22')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E72C1280>
+key = 'max_label_pairs', bad = 10000001
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+__ test_invalid_compact_policy_never_reaches_generation[max_bytes-33554433] ___
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_invalid_compact_policy_ne23')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E71514F0>
+key = 'max_bytes', bad = 33554433
+
+    @pytest.mark.parametrize('key,bad',[(k,v) for k in L for v in [None,True,0,-1,'1',{},[]]]+[(k,v+1) for k,v in L.items()])
+    def test_invalid_compact_policy_never_reaches_generation(tmp_path,monkeypatch,key,bad):
+        limits={**L,key:bad};store=Store(tmp_path/'store');project=store.create_project('guard',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':limits}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+___________ test_explicit_policy_requires_complete_inventory[None] ____________
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_explicit_policy_requires_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E50D2930>
+policy = None
+
+    @pytest.mark.parametrize('policy',[None,{},False,{'max_transitions':1},dict(L,unknown=1)])
+    def test_explicit_policy_requires_complete_inventory(tmp_path,monkeypatch,policy):
+        store=Store(tmp_path/'store');project=store.create_project('shape',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':policy}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+__________ test_explicit_policy_requires_complete_inventory[policy1] __________
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_explicit_policy_requires_1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E502F080>
+policy = {}
+
+    @pytest.mark.parametrize('policy',[None,{},False,{'max_transitions':1},dict(L,unknown=1)])
+    def test_explicit_policy_requires_complete_inventory(tmp_path,monkeypatch,policy):
+        store=Store(tmp_path/'store');project=store.create_project('shape',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':policy}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+___________ test_explicit_policy_requires_complete_inventory[False] ___________
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_explicit_policy_requires_2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E50F96D0>
+policy = False
+
+    @pytest.mark.parametrize('policy',[None,{},False,{'max_transitions':1},dict(L,unknown=1)])
+    def test_explicit_policy_requires_complete_inventory(tmp_path,monkeypatch,policy):
+        store=Store(tmp_path/'store');project=store.create_project('shape',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':policy}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+__________ test_explicit_policy_requires_complete_inventory[policy3] __________
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_explicit_policy_requires_3')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E50D2690>
+policy = {'max_transitions': 1}
+
+    @pytest.mark.parametrize('policy',[None,{},False,{'max_transitions':1},dict(L,unknown=1)])
+    def test_explicit_policy_requires_complete_inventory(tmp_path,monkeypatch,policy):
+        store=Store(tmp_path/'store');project=store.create_project('shape',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':policy}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+__________ test_explicit_policy_requires_complete_inventory[policy4] __________
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/temp/test_explicit_policy_requires_4')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000242E714C8F0>
+policy = {'max_transitions': 2000000, 'max_label_pairs': 10000000, 'max_bytes': 33554432, 'unknown': 1}
+
+    @pytest.mark.parametrize('policy',[None,{},False,{'max_transitions':1},dict(L,unknown=1)])
+    def test_explicit_policy_requires_complete_inventory(tmp_path,monkeypatch,policy):
+        store=Store(tmp_path/'store');project=store.create_project('shape',{'sources':[{'id':'fixture'}],'entities':[]})
+>       r,s,_,_=fixture();query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+                ^^^^^^^^^
+            'proof_method':'COMPACT_TOP_K','compact_limits':policy}
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+_________________ test_full_ledger_cannot_use_compact_limits __________________
+
+    def test_full_ledger_cannot_use_compact_limits():
+>       r,s,c,_=fixture()
+                ^^^^^^^^^
+
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\general_tree_fixture.py:42: in fixture
+    b=json.loads((Path(__file__).parent/'fixtures/coupled-native-tree/boundary.json').read_text(encoding='utf-8'))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/evidence/math/shared-tree-topk-integration-review/corrected-3841ab5cb0f648f2b2c7153195a82db6/tests/fixtures/coupled-native-tree/boundary.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\evidence\\math\\shared-tree-topk-integration-review\\corrected-3841ab5cb0f648f2b2c7153195a82db6\\tests\\fixtures\\coupled-native-tree\\boundary.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+=========================== short test summary info ===========================
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_transitions-None]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_transitions-True]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_transitions-0]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_transitions--1]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_transitions-1]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_transitions-bad5]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_transitions-bad6]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_label_pairs-None]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_label_pairs-True]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_label_pairs-0]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_label_pairs--1]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_label_pairs-1]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_label_pairs-bad12]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_label_pairs-bad13]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_bytes-None]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_bytes-True]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_bytes-0]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_bytes--1]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_bytes-1]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_bytes-bad19]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_bytes-bad20]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_transitions-2000001]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_label_pairs-10000001]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_invalid_compact_policy_never_reaches_generation[max_bytes-33554433]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_explicit_policy_requires_complete_inventory[None]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_explicit_policy_requires_complete_inventory[policy1]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_explicit_policy_requires_complete_inventory[False]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_explicit_policy_requires_complete_inventory[policy3]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_explicit_policy_requires_complete_inventory[policy4]
+FAILED evidence\math\shared-tree-topk-integration-review\corrected-3841ab5cb0f648f2b2c7153195a82db6\tests\test_compact_proof_policy.py::test_full_ledger_cannot_use_compact_limits
+30 failed, 38 passed, 1 deselected in 7.38s

@@ -1,0 +1,28 @@
+{
+  "status": "READ_ONLY_REVIEW_COMPLETE",
+  "source_files": {
+    "src/oma/routing/shared_tree_proposals.py": "005b0b875abb41a7304cd66e5cb8f1a4d50c0a40c796eb370d7cfe99aea911da",
+    "src/oma/routing/shared_tree_job.py": "da164fab3e4e0bcb85826248e5d4249d72cba0809c81ef6f11d55e543fd4831e"
+  },
+  "independent_peer": "/root/export_backend",
+  "peer_statement": "No concrete binding or shared-work gap found in final two files; independent read-only review, no additional execution claims.",
+  "checked_invariants": [
+    "Every child receives a positive remaining shared grant and its separate hard ceiling; reported child work is debited before authority checks. No implicit reset to the original grant.",
+    "Catalogue and synthesis check result hashes are captured before servicing a deferred callback; final no-callback checks compare these retained hashes and the current certificate body/root.",
+    "Captured raw query is compared with the immutable stored request; effective method and policies are read again from the captured query, not pre-capture aliases.",
+    "Final strict JSON scans charge value/key visits and encoded bytes, enforce shape and byte bounds, and admit no later caller callback.",
+    "Whole job packet is hashed before the final publication callback and rehashed afterward; Store.put root must match. Final event metadata is detached from mutable returned result fields after the immutable blob is stored.",
+    "Final raw and persisted request hashes and fixed run identity are checked after the final forced control/deadline checkpoint.",
+    "No physical/native or service acceptance authority was added. Final tails do not assert atomic cross-thread/filesystem behavior."
+  ],
+  "actual_budget_evidence": {
+    "four_full_ledger_total": 9706419,
+    "four_limit": 10000000,
+    "eight_compact_total": 44065040,
+    "eight_limit": 48000000,
+    "eight_compiler_total": 41009161,
+    "eight_job_overhead": 3055879
+  },
+  "execution_scope": "Existing retained exact 106-case receipt and actual4/8 generation jobs only; this supplement adds no test count or native rerun.",
+  "findings": []
+}

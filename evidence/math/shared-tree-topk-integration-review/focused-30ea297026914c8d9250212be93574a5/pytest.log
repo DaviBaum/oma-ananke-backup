@@ -1,0 +1,63 @@
+........................................................................ [ 71%]
+............................F                                            [100%]
+================================== FAILURES ===================================
+_______ test_huge_dictionary_keys_and_stub_lists_fail_before_iteration ________
+
+    def test_huge_dictionary_keys_and_stub_lists_fail_before_iteration():
+        class HugeDict(dict):
+            def __len__(self):return 10**9
+            def __iter__(self):raise AssertionError('traversed huge keys')
+>       with pytest.raises(p._Unavailable):p._snapshot(HugeDict(),p._Budget(100,None),1024)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_shared_tree_proposals.py:227: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\oma\routing\shared_tree_proposals.py:113: in _snapshot
+    captured,root,_=_bounded_json(value,budget,max_bytes,max_items=max_items,callbacks=True,copy_value=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\oma\routing\shared_tree_proposals.py:108: in _bounded_json
+    copied=visit(value,0)
+           ^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+item = {}, depth = 0
+
+    def visit(item,depth):
+        nonlocal items
+        budget.use(callbacks=callbacks);items+=1
+        if depth>32 or items>max_items:raise _Unavailable('INPUT_STRUCTURE_BUDGET')
+        kind=type(item)
+        if kind is dict:
+            if len(item)>4096:raise _Unavailable('INPUT_STRUCTURE_BUDGET')
+            if any(type(key) is not str or len(key)>65536 for key in item):
+                raise ValueError('Bounded string JSON keys required')
+            keys=sorted(item);emit(b'{');result={} if copy_value else None
+            for index,key in enumerate(keys):
+                budget.use(callbacks=callbacks)
+                if index:emit(b',')
+                emit(json.dumps(key,ensure_ascii=False).encode('utf-8'));emit(b':')
+                child=visit(item[key],depth+1)
+                if copy_value:result[key]=child
+            emit(b'}');return result
+        if kind in (list,tuple):
+            if len(item)>max_list_items:raise _Unavailable('INPUT_STRUCTURE_BUDGET')
+            emit(b'[');result=[] if copy_value else None
+            for index in range(len(item)):
+                if index:emit(b',')
+                child=visit(item[index],depth+1)
+                if copy_value:result.append(child)
+            emit(b']');return result
+        if kind is str:
+            if len(item)>65536:raise _Unavailable('INPUT_STRING_BUDGET')
+        elif kind is int:
+            if item.bit_length()>512:raise _Unavailable('INTEGER_BUDGET')
+        elif kind is float:
+            if not math.isfinite(item):raise ValueError('Finite JSON numbers required')
+>       elif item is not None and kind is not bool:raise ValueError('Strict JSON input required')
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: Strict JSON input required
+
+src\oma\routing\shared_tree_proposals.py:105: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_shared_tree_proposals.py::test_huge_dictionary_keys_and_stub_lists_fail_before_iteration
+1 failed, 100 passed in 10.35s

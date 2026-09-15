@@ -1,0 +1,277 @@
+{
+  "id": "4eb8a32f56994b8f8f54bba1df1ec25a",
+  "project_id": "606df9b75ed7467c9825b40343863154",
+  "base_revision": 0,
+  "base_root": "f0f14d036c07a70db860705cea1cdbc9730f571e6d6f682cbc66ddaae58469c8",
+  "status": "QUEUED",
+  "desired_action": "run",
+  "operation": "propose_network",
+  "request": {
+    "budget_seconds": 300,
+    "mission": {
+      "generation_budget": {
+        "max_partial_trees": 200000,
+        "max_work": 10000000
+      },
+      "max_results": 2,
+      "proof_method": "FULL_LEDGER",
+      "requirements": {
+        "allowed_zone": {
+          "max": [
+            8,
+            4,
+            4
+          ],
+          "min": [
+            -3,
+            -2,
+            2
+          ]
+        },
+        "assumptions": [
+          "Predeclared synthetic equal-bore comb experiment; no building-equipment or measured-boundary claim."
+        ],
+        "clearance_m": 0.0625,
+        "coupled_tree": {
+          "applicability": "New hypothetical ideal steady incompressible bore model. Each tee outlet has its own strictly positive TOTAL loss coefficient referenced to full inlet flow. Internal tee distributed loss is included; no tee skeleton Darcy term. Existing common-loss missions are unchanged.",
+          "boundary_control_assumption": "Hypothetical regulated total-pressure intervals authored by independent exact Machin arithmetic on an explicit comb model before catalogue generation; the analytic target flow is not a prescribed delivered flow.",
+          "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY",
+          "connection_model": "NO_EXTRA_LOSS_AT_CHECKED_MATCHING_CONNECTED_CAPS",
+          "darcy_friction": "1/50",
+          "density_kg_m3": "1000",
+          "elbow_loss_coefficient": "1/5",
+          "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+          "flow_search_box_m3_s": {
+            "sink-0": {
+              "lower": "99/100000",
+              "upper": "101/100000"
+            },
+            "sink-1": {
+              "lower": "99/100000",
+              "upper": "101/100000"
+            },
+            "sink-2": {
+              "lower": "99/100000",
+              "upper": "101/100000"
+            },
+            "sink-main": {
+              "lower": "99/100000",
+              "upper": "101/100000"
+            }
+          },
+          "friction_convention": "DARCY",
+          "gravity_m_s2": "9.80665",
+          "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+          "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+          "maximum_velocity_m_s": "2",
+          "minimum_sink_flows_m3_s": {
+            "sink-0": "1/1250",
+            "sink-1": "1/1250",
+            "sink-2": "1/1250",
+            "sink-main": "1/1250"
+          },
+          "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+          "schema": "oma.coupled-tree-boundary/1",
+          "sink_total_pressures_pa": {
+            "sink-0": {
+              "lower": "237540409/200000",
+              "upper": "593851023/500000"
+            },
+            "sink-1": {
+              "lower": "886573763/1000000",
+              "upper": "221643441/250000"
+            },
+            "sink-2": {
+              "lower": "375025779/500000",
+              "upper": "750051559/1000000"
+            },
+            "sink-main": {
+              "lower": "25298363/31250",
+              "upper": "809547617/1000000"
+            }
+          },
+          "source_total_pressure_pa": {
+            "lower": "2000",
+            "upper": "2000"
+          },
+          "tee_loss_reference": "OUTLET_SPECIFIC_TOTAL_LOSS_AT_TOTAL_INLET_FLOW",
+          "tee_outlet_loss_coefficients": {
+            "tee-0": {
+              "b": "1/5",
+              "branch": "3/10"
+            },
+            "tee-1": {
+              "b": "1/4",
+              "branch": "2/5"
+            },
+            "tee-2": {
+              "b": "3/10",
+              "branch": "1/2"
+            }
+          }
+        },
+        "diameter_m": 0.0625,
+        "insulation_m": 0.03125,
+        "minimum_bend_radius_m": 0.25,
+        "minimum_straight_m": 0.125,
+        "mission_type": "shared_network",
+        "objective_weights": {
+          "length_m": 1
+        },
+        "scenario_terminals": true,
+        "sinks": [
+          {
+            "demand_id": "demand-main",
+            "end_m": [
+              6,
+              0,
+              3
+            ],
+            "id": "sink-main"
+          },
+          {
+            "demand_id": "demand-0",
+            "end_m": [
+              1,
+              3,
+              3
+            ],
+            "id": "sink-0"
+          },
+          {
+            "demand_id": "demand-1",
+            "end_m": [
+              2,
+              3,
+              3
+            ],
+            "id": "sink-1"
+          },
+          {
+            "demand_id": "demand-2",
+            "end_m": [
+              4,
+              3,
+              3
+            ],
+            "id": "sink-2"
+          }
+        ],
+        "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+        "start_m": [
+          -2,
+          0,
+          3
+        ],
+        "system_type": "PRESSURE_PIPE",
+        "target_modality": "ENGINEERING_SERVICE"
+      },
+      "schema": "oma.shared-tree-proposal-job/1",
+      "search": {
+        "detour_planes": [
+          {
+            "axis": 1,
+            "value_m": "9/4"
+          }
+        ],
+        "schema": "oma.shared-tree-native-search/1",
+        "sink_directions": {
+          "sink-0": [
+            0,
+            1,
+            0
+          ],
+          "sink-1": [
+            0,
+            1,
+            0
+          ],
+          "sink-2": [
+            0,
+            1,
+            0
+          ],
+          "sink-main": [
+            1,
+            0,
+            0
+          ]
+        },
+        "source_direction": [
+          1,
+          0,
+          0
+        ],
+        "stub_lengths_m": [
+          "3/4"
+        ],
+        "tee_instances": [
+          {
+            "axis_x": [
+              1,
+              0,
+              0
+            ],
+            "axis_y": [
+              0,
+              1,
+              0
+            ],
+            "branch_takeout_m": "1/4",
+            "center_m": [
+              0,
+              0,
+              3
+            ],
+            "id": "tee-0",
+            "trunk_takeout_m": "1/4"
+          },
+          {
+            "axis_x": [
+              1,
+              0,
+              0
+            ],
+            "axis_y": [
+              0,
+              1,
+              0
+            ],
+            "branch_takeout_m": "1/4",
+            "center_m": [
+              2,
+              0,
+              3
+            ],
+            "id": "tee-1",
+            "trunk_takeout_m": "1/4"
+          },
+          {
+            "axis_x": [
+              1,
+              0,
+              0
+            ],
+            "axis_y": [
+              0,
+              1,
+              0
+            ],
+            "branch_takeout_m": "1/4",
+            "center_m": [
+              4,
+              0,
+              3
+            ],
+            "id": "tee-2",
+            "trunk_takeout_m": "1/4"
+          }
+        ]
+      }
+    },
+    "operation": "propose_network"
+  },
+  "created_at": "2026-09-15T01:46:26.633105+00:00",
+  "updated_at": "2026-09-15T01:46:26.633105+00:00",
+  "detail": ""
+}
