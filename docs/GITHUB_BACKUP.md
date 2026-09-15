@@ -2,7 +2,7 @@
 
 The private backup repository is [DaviBaum/oma-ananke-backup](https://github.com/DaviBaum/oma-ananke-backup). It retains the application's full Git history, implementation, tests, source-math traceability and committed validation evidence. The local `origin` remote points to it.
 
-Large recovery files are uploaded separately to the private [backup-2026-09-15 prerelease](https://github.com/DaviBaum/oma-ananke-backup/releases/tag/backup-2026-09-15). The upload manifest records each finished asset's exact bytes and SHA-256. This is a backup release, not a claim that the complete production directive is finished.
+The private [backup-2026-09-15 prerelease](https://github.com/DaviBaum/oma-ananke-backup/releases/tag/backup-2026-09-15) is complete: 13 assets totaling 4,152,478,214 bytes. Archive members were independently reread and hashed, and uploaded asset sizes and SHA-256 digests match GitHub's records. Download `BACKUP-COMPLETE.json` for the recovery index. The [completed handoff](../evidence/release/github-backup/1a202fcf467a47368a4b3abc1167eb94/completed-handoff.json) retains the verification evidence. This is a backup release, not a claim that the complete production directive is finished.
 
 The recovery set includes the original mathematical source documents, hospital IFC source files with their attribution/license/card, the existing sealed portable runtime, a verified snapshot of the live project Store, and the uncommitted UI work preserved separately. Reproducible caches and installed development dependencies are not the project backup's source of truth.
 
