@@ -35,13 +35,11 @@
         "oma.optimization.shared_tree_synthesis.compile_shared_tree_catalogue",
         "oma.routing.shared_tree_proposals.build_connector_catalogue",
         "oma.routing.shared_tree_proposals.compile_shared_tree_proposals",
-        "oma.routing.shared_tree_job.propose_shared_tree_run",
-        "oma.optimization.shared_tree_topk.compile_shared_tree_topk_catalogue"
+        "oma.routing.shared_tree_job.propose_shared_tree_run"
       ],
       "independent_checkers": [
         "oma.optimization.shared_tree_synthesis.verify_shared_tree_catalogue",
-        "oma.routing.shared_tree_catalogue_check.verify_generated_catalogue",
-        "oma.optimization.shared_tree_topk.verify_shared_tree_topk_catalogue"
+        "oma.routing.shared_tree_catalogue_check.verify_generated_catalogue"
       ],
       "callable_probe": [
         {
@@ -67,14 +65,6 @@
         {
           "path": "oma.routing.shared_tree_catalogue_check.verify_generated_catalogue",
           "callable": true
-        },
-        {
-          "path": "oma.optimization.shared_tree_topk.compile_shared_tree_topk_catalogue",
-          "callable": true
-        },
-        {
-          "path": "oma.optimization.shared_tree_topk.verify_shared_tree_topk_catalogue",
-          "callable": true
         }
       ],
       "automated_tests": [
@@ -87,12 +77,7 @@
         "tests/test_shared_tree_coupled_proposals.py",
         "tests/test_shared_tree_coupled_workflow.py",
         "tests/test_general_shared_tree_synthesis.py",
-        "tests/test_general_tree_native.py",
-        "tests/test_shared_tree_topk.py",
-        "tests/test_shared_tree_topk_grouped.py",
-        "tests/test_compact_tree_native.py",
-        "tests/test_compact_proof_policy.py",
-        "tests/test_compact_binding_integrity.py"
+        "tests/test_general_tree_native.py"
       ],
       "real_model_benchmark": {
         "status": "GENERATED_FIXED_FLOW_OFFICE_AND_ANALYTIC_COUPLED_ACCEPTANCE_EXPORT_PASS",
@@ -103,10 +88,9 @@
       "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
       "amendments": [
         "Bounded two/three-sink finite catalogue specialization, not completion of general original route skeleton algorithms.",
-        "EDF checkpoint extends exact finite full-ledger synthesis to four through eight sinks. Both complete native environments pass3012 tests; four-sink native geometry, local/global operating proof, service, acceptance and fresh export independently replay. Dense larger catalogues may exhaust explicit budgets. Compact/factorized extensions are not yet in this checkpoint.",
-        "Frozen f73 alternative method: complete positive-count root/sink-mask/tee-mask recurrence, independent missing-state/split/source closure, grouped parallel connector multiplicities and exact top-K substitution. Existing full-ledger schema/default remains unchanged. All counts concern nominal connector-ID trees;2-8 is a bounded domain, not a runtime/physical-completeness guarantee."
+        "EDF checkpoint extends exact finite full-ledger synthesis to four through eight sinks. Both complete native environments pass3012 tests; four-sink native geometry, local/global operating proof, service, acceptance and fresh export independently replay. Dense larger catalogues may exhaust explicit budgets. Compact/factorized extensions are not yet in this checkpoint."
       ],
-      "certificate_and_limitations": "Finite nominal graph coverage only. Authored connector-language membership does not certify complete geometric template generation. No native cost bound, unrestricted topology optimum, continuous Steiner closure, physical infeasibility from empty catalogue, or acceptance authority from generation. Every actual candidate still requires fresh current native/service/admission checks. Fixed-ID unequal pressure scope excludes role/site remapping and other generated pressure profiles. Explicit COMPACT_TOP_K uses oma.shared-tree-topk-certificate/1; first K labels and full integer counts are checked without enumerating all complete trees. Equal-cost order uses sorted connector IDs; equal geometry may repeat. No physical equivalence follows from shared caps/masks. Default work2M, full-ledger ceiling10M, compact explicit 48M; tested8 K2 requires32MiB and completes44,065,040 cumulative job work. Any unclosed proof/budget yields UNKNOWN without partial prefix/count authority.",
+      "certificate_and_limitations": "Finite nominal graph coverage only. Authored connector-language membership does not certify complete geometric template generation. No native cost bound, unrestricted topology optimum, continuous Steiner closure, physical infeasibility from empty catalogue, or acceptance authority from generation. Every actual candidate still requires fresh current native/service/admission checks. Fixed-ID unequal pressure scope excludes role/site remapping and other generated pressure profiles.",
       "cache_invalidation": [
         "source-state",
         "geometry",
@@ -123,19 +107,7 @@
       "documentation": "docs/shared-tree-generation.md",
       "evidence": "evidence/math/shared-tree-generation/latest.json",
       "full_source_algorithms_implemented": false,
-      "current_checkpoint": "evidence/math/general-tree-generation/latest.json",
-      "compact_checkpoint_evidence": {
-        "source": "f73a8793ae0df76d9ec53400cec18b05d2731f63c735b225c2246fee62df6b21",
-        "kernel": "evidence/math/shared-tree-topk-grouped/handoff.json",
-        "publication": "evidence/math/shared-tree-topk-integration-review/handoff.json",
-        "native_selected_and_fresh_export": "evidence/math/compact-seven-eight-replay/0f20d2a42b89409e9da2bdcf9ef1dbb8/handoff.json",
-        "documentation": "docs/math/shared-tree-topk.md",
-        "full_original_custom_3275_conjunction": "PASS",
-        "original_3275_full_pass": "evidence/release/compact-tree-original-full-d6d1204384b8/handoff.json",
-        "custom_3275_full_pass": "evidence/release/factorized-tree-custom-completed-0cf1c8bf0868/handoff.json",
-        "completed_live_upgrade": "evidence/release/validated-backend-f73-update/dd31cd72c26c467d9c1b7de0af7c126b/handoff.json",
-        "f73_portable_bundle": "PENDING"
-      }
+      "current_checkpoint": "evidence/math/general-tree-generation/latest.json"
     },
     {
       "obligation": "NATIVE_UNEQUAL_OUTLET_TREE_MODEL_GLOBAL_OPERATING_AND_SERVICE_ENVELOPE",
@@ -340,12 +312,10 @@
       },
       "interpretation_and_assumptions": "The declared complete polynomial system has one leaf-flow variable per outlet, named nonnegative coefficient intervals and laminar descendant/applicability sets. Every term contributes a coefficient times its full descendant-flow sum squared to every applicable leaf equation. Unequal tee outlet losses therefore need not give a symmetric Jacobian. For each same parameter tuple the independently reconstructed center residual and full interval Jacobian define T(q)=q-R*F(q), with an exact inverse witness proving R invertible. Full signed interval matrix arithmetic proves strict inclusion of the mean-value image inside the supplied positive box and an induced infinity-norm contraction below one. Banach then proves exactly one positive root inside that box for every admitted tuple. Complete term/equation/matrix/parameter/box inventories and final guards prevent incomplete or stale proof authority.",
       "implementations": [
-        "oma.optimization.coupled_tree_pressure.compile_coupled_tree_pressure",
-        "oma.optimization.factorized_tree_pressure.compile_factorized_tree_pressure"
+        "oma.optimization.coupled_tree_pressure.compile_coupled_tree_pressure"
       ],
       "independent_checkers": [
-        "oma.optimization.coupled_tree_pressure.verify_coupled_tree_pressure",
-        "oma.optimization.factorized_tree_pressure.verify_factorized_tree_pressure"
+        "oma.optimization.coupled_tree_pressure.verify_coupled_tree_pressure"
       ],
       "callable_probe": [
         {
@@ -355,21 +325,10 @@
         {
           "path": "oma.optimization.coupled_tree_pressure.verify_coupled_tree_pressure",
           "callable": true
-        },
-        {
-          "path": "oma.optimization.factorized_tree_pressure.compile_factorized_tree_pressure",
-          "callable": true
-        },
-        {
-          "path": "oma.optimization.factorized_tree_pressure.verify_factorized_tree_pressure",
-          "callable": true
         }
       ],
       "automated_tests": [
-        "tests/test_coupled_tree_pressure.py",
-        "tests/test_factorized_tree_pressure.py",
-        "tests/test_factorized_pressure_native_models.py",
-        "tests/test_compact_tree_native.py"
+        "tests/test_coupled_tree_pressure.py"
       ],
       "real_model_benchmark": {
         "status": "DECLARED_POLYNOMIAL_MODEL_AND_INDEPENDENT_MATRIX_AUDIT_PASS",
@@ -377,10 +336,8 @@
         "scope": "124 kernel tests, an independent exact manufactured-box proof and 4096 supplementary numerical parameter corners, 24 independently reconstructed models/96 exact parameter-root instances and 293 rejected attacks. Combined 427-case compatibility passes. No actual native unequal-tree adapter or service decision is claimed by this module."
       },
       "status": "IMPLEMENTED_SCOPED_UNIT_TESTED",
-      "amendments": [
-        "Additional sufficient test, schema oma.factorized-tree-positive-box-certificate/1: collect exact signed RF polynomial weights by row, named coefficient and unordered flow pair before interval evaluation. Independent complete incidence reconstruction checks every weight, original equations/Jacobian, exact inverse witnesses, same-model center image, derivative enclosure, norm and strict original-box inclusion. Equal-valued distinct coefficient IDs are not merged. This is not a new physical equation or stronger-than-checked global theorem."
-      ],
-      "certificate_and_limitations": "Uniqueness is only inside the supplied nondegenerate positive box. This module does not exclude other equilibria outside it, certify the native tree/component correspondence, justify physical loss or boundary data, or grant service/acceptance authority. Failure to invert, contract or strictly include is UNKNOWN, never infeasibility. Shared parameter identities may be conservatively over-enclosed; no common root for every parameter tuple or tight hull is asserted. Variable/term/matrix/work/bit/input/certificate limits are explicit. Full original source algorithm completion remains false. The native adapter may try factorized ordering only after an original numerical contraction/inclusion failure; no retry/reset after invalid inputs, cancellation or resource failure. The same original model, parameter identities and box remain bound. A separate global nonnegative uniqueness proof remains mandatory for native service; no parameter midpoint or guessed-box exclusion is substituted.",
+      "amendments": [],
+      "certificate_and_limitations": "Uniqueness is only inside the supplied nondegenerate positive box. This module does not exclude other equilibria outside it, certify the native tree/component correspondence, justify physical loss or boundary data, or grant service/acceptance authority. Failure to invert, contract or strictly include is UNKNOWN, never infeasibility. Shared parameter identities may be conservatively over-enclosed; no common root for every parameter tuple or tight hull is asserted. Variable/term/matrix/work/bit/input/certificate limits are explicit. Full original source algorithm completion remains false.",
       "cache_invalidation": [
         "source-state",
         "geometry",
@@ -404,16 +361,6 @@
         "default_leaves": 16,
         "default_terms": 128,
         "default_matrix_entries": 256
-      },
-      "factorized_checkpoint_evidence": {
-        "source": "f73a8793ae0df76d9ec53400cec18b05d2731f63c735b225c2246fee62df6b21",
-        "native_selected_and_fresh_export": "evidence/math/compact-seven-eight-replay/0f20d2a42b89409e9da2bdcf9ef1dbb8/handoff.json",
-        "documentation": "docs/math/factorized-tree-pressure.md",
-        "full_original_custom_3275_conjunction": "PASS",
-        "original_3275_full_pass": "evidence/release/compact-tree-original-full-d6d1204384b8/handoff.json",
-        "custom_3275_full_pass": "evidence/release/factorized-tree-custom-completed-0cf1c8bf0868/handoff.json",
-        "completed_live_upgrade": "evidence/release/validated-backend-f73-update/dd31cd72c26c467d9c1b7de0af7c126b/handoff.json",
-        "f73_portable_bundle": "PENDING"
       }
     },
     {

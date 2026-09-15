@@ -3,10 +3,13 @@
 A local IFC engineering workbench under active implementation. Runs on Windows 11,
 Python 3.12 and the tested RTX 3090. No hosted model, paid solver, account or cloud
 runtime is required. **The complete production directive is not yet fulfilled.**
-The authoritative capability and coverage status is in `docs/capabilities.json`.
+The authoritative capability and coverage status is in [the capability register](docs/capabilities.json).
+See [the current checkpoint](docs/PROGRESS.md) for the running validated backend,
+completed native tests, hospital results and portable recovery downloads.
 
 Double-click **OMA.cmd**, or run `./Start-OMA.ps1`. The service binds only to
-`http://127.0.0.1:8765`. Initial installation uses `./Install-OMA.ps1`; after
+`http://127.0.0.1:8765` by default. The existing validated session runs at
+`http://127.0.0.1:8768`. Initial installation uses `./Install-OMA.ps1`; after
 dependencies and desired IFC files are acquired, the core workflow runs offline.
 
 The workbench imports actual IFC geometry, displays source identity and missing
@@ -41,6 +44,13 @@ requirements. Exact finite optimization selects independently checked physical
 alternatives. Source-bound route-cell mathematics supplies additional checked
 geometric proposals; fabricated fittings still require a fresh physical check.
 Complete continuous routing, broader topology and all ANANKE theory remain open.
+
+The [generation API](docs/shared-tree-generation.md) also builds two- through
+eight-terminal branching alternatives from individual tee sites and connector
+choices. Its optional compact proof verifies exact finite counts and nominal
+top-K results. Generated candidates still require native geometry and pressure
+service checks before acceptance and fresh exported-IFC verification. Complete
+five- and eight-terminal request examples are linked from the API guide.
 
 One explicitly permitted rectangular wall/slab opening can be authored with its
 route, inspected as actual cut geometry, accepted, exported and rechecked. The
