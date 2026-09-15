@@ -1,0 +1,21 @@
+{
+  "status": "CONTROLLED_SECOND_INTERRUPT_STATIC_REVIEW_PASS_NO_EXECUTION",
+  "reviewed_dependency_files": {
+    "C:\\Users\\Davi\\Downloads\\oma\\.venv\\Lib\\site-packages\\uvicorn\\server.py": "7c1dbd656835c9cdd6f92078ffc80bcc6007824ab322aff15435bd89c068e0be",
+    "C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\runners.py": "14dd7723373ceed13e9f45fdb578e0e1aea46d62d63023dd5cbc118ca9f57a19",
+    "C:\\Users\\Davi\\Downloads\\oma\\.oma\\validated-runtimes\\f73a8793ae0d-dd31cd72c26c\\src\\oma\\api.py": "486325b3869a3d5cbf824f06c9b12851df817af1529df1a1b0443a60ca007aa0",
+    "C:\\Users\\Davi\\Downloads\\oma\\.oma\\validated-runtimes\\f73a8793ae0d-dd31cd72c26c\\src\\oma\\service.py": "c46b901c86e6a67842bd3fd677b7aaec7ad71b2ce95eec3f09bb848af81d11a7"
+  },
+  "supplemental_script_sha256": "cd1caac2f72773acf67bb079de37d0864eeeceb596f7688083bed7b5dcd43a9a",
+  "review": "Installed Uvicorn sets force_exit on a second SIGINT after should_exit. Connection/task wait loops stop; normal lifespan.shutdown is skipped. asyncio runner subsequently cancels pending tasks. This is a forced connection/task drain, not graceful application lifecycle completion.",
+  "applicability": "Only the exact already-shutting-down idle owned console, released listener, no live run owner/child worker, unchanged completed validation packet and exact complete Store snapshots before/after. One extra CTRL_C only; no process termination API or retries.",
+  "result_status": "OWNED_FORCED_CONNECTION_DRAIN_COMPLETED",
+  "active_runtime_modified": false,
+  "signals_sent_by_this_preparation": 0,
+  "syntax_parsed": [
+    "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-live-upgrade\\second_interrupt_owned.py",
+    "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-live-upgrade\\prepared\\shutdown_guard.py",
+    "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-live-upgrade\\prepared\\verify_after.py"
+  ],
+  "root_execution_required": true
+}

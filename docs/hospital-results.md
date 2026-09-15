@@ -46,3 +46,5 @@ A cold clearance probe completed in **305.41 seconds**, accounting for the same 
 - [Seven-model alignment and installed-service audit](../evidence/benchmarks/hospital-native-performance/alignment-and-installed-service/handoff.json). Approved discipline alignment and actual service contracts remain missing; they cannot be inferred from these routing results.
 
 The original inputs, executed scripts, frozen application code, current IFC bytes, reports, execution receipts and lossless file mappings accompany the retained evidence. Existing portable releases remain separate immutable recovery checkpoints; this result does not create a new portable package. Full original OMA/ANANKE mathematics and complete production readiness remain unfinished.
+
+The tested source is [running locally](../evidence/release/validated-backend-hospital-update/19be511c32ca447da2c213f0ce377940/handoff.json) at `http://127.0.0.1:8768`. The upgrade preserved all existing project data and interface assets. The Hospital campaign itself remains an isolated, retained benchmark Store, with its actual exported IFCs available in the campaign evidence.

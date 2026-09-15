@@ -1,0 +1,25 @@
+{
+  "status": "TWO_CONTROLLED_INTERRUPT_ATTEMPTS_DID_NOT_COMPLETE",
+  "scope": "Observed root tool outcomes during the authorized local backend replacement; no engineering campaign result is changed",
+  "old_launcher_pid": 50052,
+  "old_server_pid": 52664,
+  "first_attempt": {
+    "executed_script": ".oma/development/hospital-live-upgrade/prepared/stop_owned.py",
+    "tool_session_id": 25607,
+    "exit_code": 1,
+    "wait_seconds": 20,
+    "error": "AssertionError: Graceful shutdown did not complete; no force termination attempted",
+    "observed_log": "Waiting for connections to close. (CTRL+C to force quit)"
+  },
+  "second_attempt": {
+    "executed_script": "second-interrupt/executed-second-interrupt.py",
+    "tool_session_id": 94286,
+    "exit_code": 1,
+    "wait_seconds": 30,
+    "error": "RuntimeError: Second interrupt did not finish; no further signal or kill attempted",
+    "wait_receipt": "second-interrupt/wait-result.json"
+  },
+  "browser_connection_handling": "The local workbench tab was assigned to another browser automation session; no tab action was performed",
+  "normal_lifespan_shutdown": "NOT_ESTABLISHED",
+  "next_action": "Separately guarded recovery of the exact idle owned processes, with explicit forced-termination disposition and complete Store invariants"
+}
