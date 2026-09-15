@@ -1,0 +1,31 @@
+# Current backend checkpoint
+
+Updated 2026-09-15. **Full original mathematics and full production readiness remain incomplete.**
+
+The backend is running at **http://127.0.0.1:8768** on frozen source `f73a8793ae0df76d9ec53400cec18b05d2731f63c735b225c2246fee62df6b21`. The [completed upgrade](../evidence/release/validated-backend-f73-update/dd31cd72c26c467d9c1b7de0af7c126b/handoff.json) binds the 114 application files and records unchanged contents of all 14 database tables and 13,190 artifact files (7,121,573,826 bytes): 31 projects, 73 revisions, 55 runs, 99 candidates and 22 original source files. All six interface assets are unchanged. The workbench remains available; UI refinement is paused while backend work continues.
+
+## Implemented and checked
+
+The `propose_network` API generates two- through eight-sink trees from fixed terminals, labelled tee sites and bounded connector choices. It does not require authored complete trees. Each shared trunk or fitting is counted once. The independent catalogue checker verifies admitted macro geometry and fabrication provenance. The default FULL_LEDGER proof closes the supplied assignment ledger; explicitly selected COMPACT_TOP_K instead closes the full finite count and first-K recurrence. Both rank nominal connector-ID trees, without claiming geometric feasibility or a global physical optimum.
+
+Generation retains its 2M default work limit. FULL_LEDGER permits at most 10M; COMPACT_TOP_K permits an explicit 48M cumulative grant. The measured eight-sink K=2 job uses explicit limits of 2M transitions, 10M label pairs and 32MiB output, completing at 44,065,040 work. Its finite catalogue contains 166,262,214,109,624 connector-ID assignments. Different assignments can materialize the same geometry. Exhausted or incomplete proofs publish no authoritative partial count or prefix.
+
+Generated unequal-outlet pressure trees preserve every named coefficient, total-pressure boundary, minimum delivery, velocity limit and computational flow box. The additional factorized proof retains shared parameter identity and certifies the same original equations and box. Native service still requires current component metrics, a complete independently checked local proof, separate global nonnegative uniqueness, and every physical port/delivery check. These claims remain conditional on declared ideal-bore, loss and boundary applicability.
+
+Use the [API workflow and synthetic request examples](shared-tree-generation.md). Generation leaves the project revision unchanged. Submit its returned mission to the ordinary optimize, native-check, acceptance and export workflow.
+
+## Validation
+
+Both the [original native environment](../evidence/release/compact-tree-original-full-d6d1204384b8/handoff.json) and [separate custom native environment](../evidence/release/factorized-tree-custom-completed-0cf1c8bf0868/handoff.json) pass all **3,275 tests**, without failures or skips. Exact source, test/support and node inventories are retained with six expected derived outputs. Earlier failed attempts retain their original evidence.
+
+Declared analytic generated fixtures for four through eight sinks complete native geometry, pressure/service checks, revision-2 acceptance and fresh exported-IFC rechecking. The independent [selected/export replay](../evidence/math/compact-seven-eight-replay/0f20d2a42b89409e9da2bdcf9ef1dbb8/handoff.json) checks all saved authority and physical-byte bindings with pressure producers disabled: seven sinks have 23 components, 52 ports, 46 source pairs and 253 self pairs; eight have 26 components, 59 ports, 52 source pairs and 325 self pairs. These fixtures do not establish a whole-building result.
+
+Contracts and focused evidence: [compact synthesis](math/shared-tree-topk.md), [factorized pressure](math/factorized-tree-pressure.md), and [publication/budget guards](../evidence/math/shared-tree-topk-integration-review/handoff.json). The historical EDF 3,012-test checkpoint and earlier Office cases retain their distinct software and mission identities.
+
+## Runnable package and remaining limits
+
+The live f73 runtime and the published EDF portable archive are different checkpoints. The [EDF release](https://github.com/DaviBaum/oma-ananke-backup/releases/tag/validated-general-tree-2026-09-15) remains the verified recovery package: its 1,174,186,526-byte ZIP, manifest and restore instructions have matching remote sizes and SHA-256 digests. The f73 bundle is still pending. See [backup/restore instructions](GITHUB_BACKUP.md).
+
+Hospital remains unresolved. The [seven-source federation](../evidence/benchmarks/hospital-generated-tree/full-federation-1e87dd6ad9af48b5962cd500603fdfdc/README.md) lacks resolved discipline alignment. The separate [architecture-only run](../evidence/benchmarks/hospital-generated-tree/architecture-d3e1be8f981146fcadede8107addadbe/README.md) exhausted its 1,800-second native-clearance budget and accepted or exported nothing. A private inspection optimization does not supersede that outcome.
+
+The register retains 42 bounded executable obligations; every original full-algorithm flag remains false. Open work includes continuous geometry/fabrication and unrestricted topology coverage, topology-native branch-and-price, broader physical models, architectural rewrite/Benders closure, original P7/P26 source gaps and remaining distribution gates. See the [directive](PRODUCTION_DIRECTIVE.md), [capabilities](capabilities.json) and [source coverage](math/source-capabilities.md).

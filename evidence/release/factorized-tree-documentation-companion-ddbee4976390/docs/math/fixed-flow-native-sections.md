@@ -1,0 +1,19 @@
+# Native section bounds in prescribed-flow networks
+
+The prescribed-flow tree calculation now carries every current native component's radius uncertainty into its ideal hydraulic bore, area, velocity and pressure terms. This corrects an actual native false service PASS without changing existing mission hashes or the separate pressure-driven operating model.
+
+For component c, the declared insulation thickness I and supplied native outer-radius interval R_c define D_c = 2(R_c - I) and A_c = pi D_c^2/4. Every D_c must remain strictly positive. Missing radius coverage is BLOCKED; an unresolved positive bore is UNKNOWN. The current native checker supplies each independently parsed radius with the full numerical policy budget, at least one micrometre on each side. The mathematical calculation does not silently substitute nominal diameter when those bounds are missing.
+
+Each physical port's prescribed flow is divided by its own component area. Every non-tee component contributes rho/2 times its own inlet velocity squared, multiplied by f L_c/D_c plus the declared excess elbow coefficient where applicable. Tee total-loss coefficients use the tee's own inlet velocity; its skeleton length receives no additional Darcy charge. Each complete source-to-sink path adds gravitational pressure and rho/2 times the difference between its sink and source kinetic-pressure corrections. Adding interior kinetic changes again would double count the endpoint energy balance.
+
+These remain conditional engineering calculations: the interpreted ideal bore is the native outer envelope minus declared insulation. Actual wall thickness and an actual inner bore are not measured. The declared equal-round component/loss model and numerical enclosure applicability remain premises; the calculation does not establish reducer, transition-loss or catalogue applicability. Prescribed simultaneous flows do not establish a pressure-driven operating point.
+
+## Reproduced failure and correction
+
+On frozen build 1abe9a07, a native radius difference of minus 9e-11 m passes the existing 1e-10 m correspondence comparison. With nominal diameter 1e-5 m and insulation 0.02 m, the earlier calculation reports nominal source velocity approximately 1 m/s. The actual native ideal bore implies 1.000036000972 m/s, above the declared 1.00002 m/s limit. All 11 report checks passed and the candidate became CHECKED. The original IFC, native results, report and immutable state are retained in [the original counterexample](../../evidence/math/fixed-flow-native-section/original/independent-completion.json).
+
+The corrected build 4f524101 rechecks exactly those saved IFC bytes under the unchanged original mission and candidate state. All ten geometry, identity and objective checks still pass; service and overall verdict become UNKNOWN because the full section enclosure cannot establish the limit. Store acceptance rejects the candidate. Original project, candidate, database, source and exported bytes remain unchanged. See [the saved-byte replay](../../evidence/math/fixed-flow-native-section/saved-byte-recheck/independent-completion.json).
+
+The focused regression passes 172 exact cases in 94.10 seconds, including native velocity and pressure-limit regressions and 160 independently evaluated parameter samples. A separate reviewer checks all 128 corners of a second section/elevation box, covering four components, nine port velocities and both complete static-pressure expressions. The source/test snapshots and initial audit-wrapper errors are retained separately; wrapper recovery did not repeat completed native checks. [Evidence index](../../evidence/math/fixed-flow-native-section/latest.json).
+
+The correction is integrated into the working backend. Full regression and standalone validation of the next combined checkpoint remain separate gates.
