@@ -1,0 +1,491 @@
+{
+  "schema": "oma.generated-coupled-tree-design-oracle/1",
+  "status": "PASS",
+  "source_files": [
+    {
+      "path": "oma/routing/shared_tree_requirements.py",
+      "sha256": "265ba1d998b3e6749cd8145efcdfa54367d7daee7037d7111abaad708757d59b"
+    },
+    {
+      "path": "oma/routing/shared_tree_proposals.py",
+      "sha256": "9bc0e4f2e860f84957a7a39033766721e49209f271bd1f40d9c77eca8184cabc"
+    },
+    {
+      "path": "oma/routing/shared_tree_catalogue_check.py",
+      "sha256": "688cb03a0c75f23ee07e3e4b668980ec7d94267337b6c0f9b7ac4e5309045f7b"
+    },
+    {
+      "path": "oma/routing/network_scenario.py",
+      "sha256": "45c3e12b0db2b0372b1e97b1879a113a8de5da66c2715c844049f1f9c5e2f2d6"
+    },
+    {
+      "path": "oma/routing/coupled_tree_scenario.py",
+      "sha256": "a37d44faa7f834806f44f9d353d355f9e30b434a38903b43207d767df82e8d86"
+    },
+    {
+      "path": "oma/routing/coupled_tree_pressure.py",
+      "sha256": "bc1ce17fe8c0bc97287cb8d2ef3212de8fdddbfbf03456898635ff77eb6aecae"
+    },
+    {
+      "path": "oma/routing/network_checker.py",
+      "sha256": "d247efb5afffa7e2983f17e363aac6b108f213ccd57c7b7446f6b3a19e5ea3ae"
+    },
+    {
+      "path": "oma/routing/selection.py",
+      "sha256": "c71c30261402d1ba665c5db1be85c2bc71e4214272b0c990a1c7367bbb1b2598"
+    },
+    {
+      "path": "oma/optimization/shared_tree_synthesis.py",
+      "sha256": "0034130d057fbb012d031fb31a69ce89aac857ce6aeaf4d8a73f55c2d1a23d43"
+    },
+    {
+      "path": "oma/optimization/coupled_tree_pressure.py",
+      "sha256": "ce5a264c7815b860b9ce0b8001e1b35cc3ecf7f4acacafc4925f7a6e37060c90"
+    },
+    {
+      "path": "oma/optimization/coupled_tree_univalence.py",
+      "sha256": "f433e0c007912aa9501306b2bfc95f0809a135e46b5ad898421410eabe10e4df"
+    }
+  ],
+  "source_manifest_root": "219be1045c001e09406544364c0d66c02f2762bc4d5b3fdcf30a7cd87e4fb55a",
+  "topological_templates": 24,
+  "source_of_count": "Two ordered distinct tee roles, two root child outlets, six sink permutations",
+  "role_outlet_coefficients": {
+    "tee-A": {
+      "b": "1/5",
+      "branch": "3/10"
+    },
+    "tee-C": {
+      "b": "1/4",
+      "branch": "2/5"
+    }
+  },
+  "manufactured_leaf_flows_m3_s": {
+    "sink-a": "3/1000",
+    "sink-b": "1/500",
+    "sink-c": "1/1000"
+  },
+  "templates": [
+    {
+      "root": "tee-A",
+      "child": "tee-C",
+      "child_enters_from_root_port": "b",
+      "root_direct_sink": "sink-a",
+      "child_b_sink": "sink-b",
+      "child_branch_sink": "sink-c",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "117/5000000",
+        "sink-b": "7/400000",
+        "sink-c": "317/20000000"
+      }
+    },
+    {
+      "root": "tee-A",
+      "child": "tee-C",
+      "child_enters_from_root_port": "b",
+      "root_direct_sink": "sink-a",
+      "child_b_sink": "sink-c",
+      "child_branch_sink": "sink-b",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "117/5000000",
+        "sink-b": "377/20000000",
+        "sink-c": "29/2000000"
+      }
+    },
+    {
+      "root": "tee-A",
+      "child": "tee-C",
+      "child_enters_from_root_port": "b",
+      "root_direct_sink": "sink-b",
+      "child_b_sink": "sink-a",
+      "child_branch_sink": "sink-c",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "123/5000000",
+        "sink-b": "23/1250000",
+        "sink-c": "19/1000000"
+      }
+    },
+    {
+      "root": "tee-A",
+      "child": "tee-C",
+      "child_enters_from_root_port": "b",
+      "root_direct_sink": "sink-b",
+      "child_b_sink": "sink-c",
+      "child_branch_sink": "sink-a",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "27/1000000",
+        "sink-b": "23/1250000",
+        "sink-c": "83/5000000"
+      }
+    },
+    {
+      "root": "tee-A",
+      "child": "tee-C",
+      "child_enters_from_root_port": "b",
+      "root_direct_sink": "sink-c",
+      "child_b_sink": "sink-a",
+      "child_branch_sink": "sink-b",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "273/10000000",
+        "sink-b": "521/20000000",
+        "sink-c": "77/5000000"
+      }
+    },
+    {
+      "root": "tee-A",
+      "child": "tee-C",
+      "child_enters_from_root_port": "b",
+      "root_direct_sink": "sink-c",
+      "child_b_sink": "sink-b",
+      "child_branch_sink": "sink-a",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "621/20000000",
+        "sink-b": "223/10000000",
+        "sink-c": "77/5000000"
+      }
+    },
+    {
+      "root": "tee-A",
+      "child": "tee-C",
+      "child_enters_from_root_port": "branch",
+      "root_direct_sink": "sink-a",
+      "child_b_sink": "sink-b",
+      "child_branch_sink": "sink-c",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "99/5000000",
+        "sink-b": "211/10000000",
+        "sink-c": "389/20000000"
+      }
+    },
+    {
+      "root": "tee-A",
+      "child": "tee-C",
+      "child_enters_from_root_port": "branch",
+      "root_direct_sink": "sink-a",
+      "child_b_sink": "sink-c",
+      "child_branch_sink": "sink-b",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "99/5000000",
+        "sink-b": "449/20000000",
+        "sink-c": "181/10000000"
+      }
+    },
+    {
+      "root": "tee-A",
+      "child": "tee-C",
+      "child_enters_from_root_port": "branch",
+      "root_direct_sink": "sink-b",
+      "child_b_sink": "sink-a",
+      "child_branch_sink": "sink-c",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "141/5000000",
+        "sink-b": "37/2500000",
+        "sink-c": "113/5000000"
+      }
+    },
+    {
+      "root": "tee-A",
+      "child": "tee-C",
+      "child_enters_from_root_port": "branch",
+      "root_direct_sink": "sink-b",
+      "child_b_sink": "sink-c",
+      "child_branch_sink": "sink-a",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "153/5000000",
+        "sink-b": "37/2500000",
+        "sink-c": "101/5000000"
+      }
+    },
+    {
+      "root": "tee-A",
+      "child": "tee-C",
+      "child_enters_from_root_port": "branch",
+      "root_direct_sink": "sink-c",
+      "child_b_sink": "sink-a",
+      "child_branch_sink": "sink-b",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "309/10000000",
+        "sink-b": "593/20000000",
+        "sink-c": "59/5000000"
+      }
+    },
+    {
+      "root": "tee-A",
+      "child": "tee-C",
+      "child_enters_from_root_port": "branch",
+      "root_direct_sink": "sink-c",
+      "child_b_sink": "sink-b",
+      "child_branch_sink": "sink-a",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "693/20000000",
+        "sink-b": "259/10000000",
+        "sink-c": "59/5000000"
+      }
+    },
+    {
+      "root": "tee-C",
+      "child": "tee-A",
+      "child_enters_from_root_port": "b",
+      "root_direct_sink": "sink-a",
+      "child_b_sink": "sink-b",
+      "child_branch_sink": "sink-c",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "27/1000000",
+        "sink-b": "377/20000000",
+        "sink-c": "67/4000000"
+      }
+    },
+    {
+      "root": "tee-C",
+      "child": "tee-A",
+      "child_enters_from_root_port": "b",
+      "root_direct_sink": "sink-a",
+      "child_b_sink": "sink-c",
+      "child_branch_sink": "sink-b",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "27/1000000",
+        "sink-b": "79/4000000",
+        "sink-c": "317/20000000"
+      }
+    },
+    {
+      "root": "tee-C",
+      "child": "tee-A",
+      "child_enters_from_root_port": "b",
+      "root_direct_sink": "sink-b",
+      "child_b_sink": "sink-a",
+      "child_branch_sink": "sink-c",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "2/78125",
+        "sink-b": "11/500000",
+        "sink-c": "3/156250"
+      }
+    },
+    {
+      "root": "tee-C",
+      "child": "tee-A",
+      "child_enters_from_root_port": "b",
+      "root_direct_sink": "sink-b",
+      "child_b_sink": "sink-c",
+      "child_branch_sink": "sink-a",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "17/625000",
+        "sink-b": "11/500000",
+        "sink-c": "11/625000"
+      }
+    },
+    {
+      "root": "tee-C",
+      "child": "tee-A",
+      "child_enters_from_root_port": "b",
+      "root_direct_sink": "sink-c",
+      "child_b_sink": "sink-a",
+      "child_branch_sink": "sink-b",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "557/20000000",
+        "sink-b": "507/20000000",
+        "sink-c": "19/1000000"
+      }
+    },
+    {
+      "root": "tee-C",
+      "child": "tee-A",
+      "child_enters_from_root_port": "b",
+      "root_direct_sink": "sink-c",
+      "child_b_sink": "sink-b",
+      "child_branch_sink": "sink-a",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "607/20000000",
+        "sink-b": "457/20000000",
+        "sink-c": "19/1000000"
+      }
+    },
+    {
+      "root": "tee-C",
+      "child": "tee-A",
+      "child_enters_from_root_port": "branch",
+      "root_direct_sink": "sink-a",
+      "child_b_sink": "sink-b",
+      "child_branch_sink": "sink-c",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "27/1250000",
+        "sink-b": "97/4000000",
+        "sink-c": "443/20000000"
+      }
+    },
+    {
+      "root": "tee-C",
+      "child": "tee-A",
+      "child_enters_from_root_port": "branch",
+      "root_direct_sink": "sink-a",
+      "child_b_sink": "sink-c",
+      "child_branch_sink": "sink-b",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "27/1250000",
+        "sink-b": "503/20000000",
+        "sink-c": "17/800000"
+      }
+    },
+    {
+      "root": "tee-C",
+      "child": "tee-A",
+      "child_enters_from_root_port": "branch",
+      "root_direct_sink": "sink-b",
+      "child_b_sink": "sink-a",
+      "child_branch_sink": "sink-c",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "31/1000000",
+        "sink-b": "83/5000000",
+        "sink-c": "123/5000000"
+      }
+    },
+    {
+      "root": "tee-C",
+      "child": "tee-A",
+      "child_enters_from_root_port": "branch",
+      "root_direct_sink": "sink-b",
+      "child_b_sink": "sink-c",
+      "child_branch_sink": "sink-a",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "163/5000000",
+        "sink-b": "83/5000000",
+        "sink-c": "23/1000000"
+      }
+    },
+    {
+      "root": "tee-C",
+      "child": "tee-A",
+      "child_enters_from_root_port": "branch",
+      "root_direct_sink": "sink-c",
+      "child_b_sink": "sink-a",
+      "child_branch_sink": "sink-b",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "133/4000000",
+        "sink-b": "123/4000000",
+        "sink-c": "17/1250000"
+      }
+    },
+    {
+      "root": "tee-C",
+      "child": "tee-A",
+      "child_enters_from_root_port": "branch",
+      "root_direct_sink": "sink-c",
+      "child_b_sink": "sink-b",
+      "child_branch_sink": "sink-a",
+      "tee_ids": [
+        "tee-A",
+        "tee-C"
+      ],
+      "head_at_manufactured_flow": {
+        "sink-a": "143/4000000",
+        "sink-b": "113/4000000",
+        "sink-c": "17/1250000"
+      }
+    }
+  ],
+  "coefficient_swap_counterexample": {
+    "bound_available_heads": {
+      "sink-a": "117/5000000",
+      "sink-b": "7/400000",
+      "sink-c": "317/20000000"
+    },
+    "wrong_role_permutation_residual": {
+      "sink-a": "9/2500000",
+      "sink-b": "27/20000000",
+      "sink-c": "9/10000000"
+    }
+  },
+  "scope": "Exact abstract path-accounting/design example only; ignores cap geometry and native metric authority. No root existence theorem, physical feasible template count or pressure acceptance claim."
+}

@@ -13455,20 +13455,50 @@
       "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
-        "oma.routing.network_engine.network_project_run"
+        "oma.routing.network_engine.network_project_run",
+        "oma.optimization.shared_tree_synthesis.compile_shared_tree_catalogue",
+        "oma.routing.shared_tree_proposals.build_connector_catalogue",
+        "oma.routing.shared_tree_proposals.compile_shared_tree_proposals",
+        "oma.routing.shared_tree_job.propose_shared_tree_run"
       ],
       "callable_probe": [
         {
           "path": "oma.routing.network_engine.network_project_run",
           "callable": true
+        },
+        {
+          "path": "oma.optimization.shared_tree_synthesis.compile_shared_tree_catalogue",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.shared_tree_proposals.build_connector_catalogue",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.shared_tree_proposals.compile_shared_tree_proposals",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.shared_tree_job.propose_shared_tree_run",
+          "callable": true
         }
       ],
-      "actual_adapter_contract": "Explicit bounded shared-tree component candidates; no complete multi-terminal topology pricing",
-      "relied_on_obligations": [],
-      "automated_tests": [
-        "tests/test_network_integration.py"
+      "actual_adapter_contract": "Generated two/three-sink finite shared-tree alternatives from terminal requirements, fixed tee instances and bounded directed fabrication macros; independently checked supplied-catalogue provenance and complete nominal graph rank, then separate native/service/accept/export. Fixed-ID unequal-outlet pressure requirements remain unchanged.",
+      "relied_on_obligations": [
+        "FINITE_SHARED_TREE_CATALOGUE_SYNTHESIS_AND_NATIVE_PROPOSAL_PROVENANCE"
       ],
-      "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
+      "automated_tests": [
+        "tests/test_network_integration.py",
+        "tests/test_shared_tree_synthesis.py",
+        "tests/test_shared_tree_catalogue_check.py",
+        "tests/test_shared_tree_proposals.py",
+        "tests/test_shared_tree_job.py",
+        "tests/test_shared_tree_generated_workflow.py",
+        "tests/test_shared_tree_coupled_catalogue_check.py",
+        "tests/test_shared_tree_coupled_proposals.py",
+        "tests/test_shared_tree_coupled_workflow.py"
+      ],
+      "limitations_and_missing_requirements": "Complete all-template geometric generation, general multi-terminal topology pricing, continuous inner/outer graph completeness, 3D homotopy, topology-native branch-and-price and unrestricted fabrication/physics remain unimplemented. Nominal finite ranking is not physical global optimality. Other generated pressure profiles and multiple sites per persistent hydraulic tee role remain unsupported.",
       "reference_only_note": null
     },
     {
@@ -13502,20 +13532,40 @@
       "implementation_disposition": "PARTIAL_BOUNDED_COMPONENT_AVAILABLE",
       "full_algorithm_implemented": false,
       "bounded_related_callables": [
-        "oma.ifc.network_semantics.check_network_semantics"
+        "oma.ifc.network_semantics.check_network_semantics",
+        "oma.optimization.shared_tree_synthesis.verify_shared_tree_catalogue",
+        "oma.routing.shared_tree_catalogue_check.verify_generated_catalogue"
       ],
       "callable_probe": [
         {
           "path": "oma.ifc.network_semantics.check_network_semantics",
           "callable": true
+        },
+        {
+          "path": "oma.optimization.shared_tree_synthesis.verify_shared_tree_catalogue",
+          "callable": true
+        },
+        {
+          "path": "oma.routing.shared_tree_catalogue_check.verify_generated_catalogue",
+          "callable": true
         }
       ],
-      "actual_adapter_contract": "Independent actual native component/port connectivity and approved component geometry checks",
-      "relied_on_obligations": [],
-      "automated_tests": [
-        "tests/test_network_integration.py"
+      "actual_adapter_contract": "Generated two/three-sink finite shared-tree alternatives from terminal requirements, fixed tee instances and bounded directed fabrication macros; independently checked supplied-catalogue provenance and complete nominal graph rank, then separate native/service/accept/export. Fixed-ID unequal-outlet pressure requirements remain unchanged.",
+      "relied_on_obligations": [
+        "FINITE_SHARED_TREE_CATALOGUE_SYNTHESIS_AND_NATIVE_PROPOSAL_PROVENANCE"
       ],
-      "limitations_and_missing_requirements": "Finite master/pricing and independent native geometry checks exist; continuous inner/outer graph completeness, 3D homotopy presentation, topology-native branch-and-price and unrestricted fabrication/physics lifts are not implemented.",
+      "automated_tests": [
+        "tests/test_network_integration.py",
+        "tests/test_shared_tree_synthesis.py",
+        "tests/test_shared_tree_catalogue_check.py",
+        "tests/test_shared_tree_proposals.py",
+        "tests/test_shared_tree_job.py",
+        "tests/test_shared_tree_generated_workflow.py",
+        "tests/test_shared_tree_coupled_catalogue_check.py",
+        "tests/test_shared_tree_coupled_proposals.py",
+        "tests/test_shared_tree_coupled_workflow.py"
+      ],
+      "limitations_and_missing_requirements": "Complete all-template geometric generation, general multi-terminal topology pricing, continuous inner/outer graph completeness, 3D homotopy, topology-native branch-and-price and unrestricted fabrication/physics remain unimplemented. Nominal finite ranking is not physical global optimality. Other generated pressure profiles and multiple sites per persistent hydraulic tee role remain unsupported.",
       "reference_only_note": null
     },
     {

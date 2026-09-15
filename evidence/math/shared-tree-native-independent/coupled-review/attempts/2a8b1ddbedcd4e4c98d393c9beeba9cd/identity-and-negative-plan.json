@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "predeclared_fixture_author_matches": true,
+  "tee_loss_bindings": [
+    {
+      "tee_id": "tee-a",
+      "loss_contract_root": "67819d44eb80fc54805f3b29cef0b6b3dc70485e353bc744e19fc97c23f508c9",
+      "boundary_root": "d668165ce84c301c1f8de7cd29d1ff9a65d173f18d37431ce4e8e5994e8ef9f6"
+    },
+    {
+      "tee_id": "tee-c",
+      "loss_contract_root": "e3f784440f4f253e6c0a0fba373edff1281621699ddd646150447b72fb2fb29d",
+      "boundary_root": "d668165ce84c301c1f8de7cd29d1ff9a65d173f18d37431ce4e8e5994e8ef9f6"
+    }
+  ],
+  "future_integration_attack_cases": [
+    {
+      "mutation": "Rename one tee coefficient key without renaming its fixed physical site",
+      "required_disposition": "Input or provenance rejection; do not remap by order"
+    },
+    {
+      "mutation": "Swap branch/b outlet coefficients and preserve old loss roots",
+      "required_disposition": "Current loss contract binding rejection"
+    },
+    {
+      "mutation": "Coherently rehash a new coefficient or sink pressure but reuse old generated/fabrication/operating proofs",
+      "required_disposition": "Current input/parameter/model identity rejection"
+    },
+    {
+      "mutation": "Duplicate one fixed site or omit one coefficient identity",
+      "required_disposition": "Exact sites = sinks minus one and complete distinct identity rejection"
+    },
+    {
+      "mutation": "Replace an assignment connector with another cap-compatible macro and retain old certificate/assignment root",
+      "required_disposition": "Independent full finite assignment/provenance rejection"
+    },
+    {
+      "mutation": "Add legacy required_flow_m3_s or available_static_pressure_pa alongside the coupled boundary",
+      "required_disposition": "Ambiguous control-model input rejection"
+    },
+    {
+      "mutation": "Maintain valid algebra but choose a geometrically blocked or service-failing generated alternative",
+      "required_disposition": "Native or pressure/service rejection; nominal rank supplies no acceptance authority"
+    }
+  ],
+  "cases_executed_as_native_tests": false,
+  "source_review": "Root producer requires PRESSURE_PIPE/ENGINEERING_SERVICE and coupled-only boundary, forbids legacy delivery/static fields, exactly sinks-minus-one sites with matching coefficient IDs, and per-tee loss root includes tee identity and full boundary root. New independent coupled provenance checker remains a separate pending gate."
+}

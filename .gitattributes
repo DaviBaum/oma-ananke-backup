@@ -1,4 +1,9 @@
 * text=auto eol=lf
+# Release certificates identify exact application and test bytes, including
+# existing mixed line endings. Preserve those bytes across git checkouts.
+src/oma/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+tests/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+scripts/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 *.png -text
 *.npz -text
 *.ifc -text -diff

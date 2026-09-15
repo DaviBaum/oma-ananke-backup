@@ -1,0 +1,18 @@
+--- 
++++ 
+@@ -203,10 +203,12 @@
+             operating = ("PASS" if calculation.get("proof_complete") is True and checked.get("status") == "PASS"
+                 and checked.get("local_check", {}).get("status") == "PASS" and checked.get("global_check", {}).get("status") == "PASS"
+                 else "BLOCKED" if calculation.get("status") == "BLOCKED" else "UNKNOWN")
+-            add("network-pressure-operating-point", operating,
+-                "Independent local pressure enclosure and global nonnegative uniqueness, complete native path terms and outlet-specific inlet-flow losses checked",
++            operating_reason = ("Independent local pressure enclosure and global nonnegative uniqueness, complete native path terms and outlet-specific inlet-flow losses checked"
++                if operating == "PASS" else "Operating relation unverified: " + str(calculation.get("reason") or "The required independent local and global proofs did not both pass"))
++            add("network-pressure-operating-point", operating, operating_reason,
+                 {"artifact": calculation_root, "native_metrics_artifact": metrics_root, "model_root": checked.get("model_root")})
+-            reason = "Every physical port's forward flow and speed, all exact minimum deliveries and complete continuity identities checked under the explicit coupled tree model"
++            reason = ("Every physical port's forward flow and speed, all exact minimum deliveries and complete continuity identities checked under the explicit coupled tree model"
++                if operating == "PASS" else "Pressure-driven service remains unverified because the operating relation is unverified")
+         elif request.passive_tree is not None:
+             from .passive_tree_pressure import evaluate_passive_tree, METRIC_SCHEMA
+             def bounds(value):

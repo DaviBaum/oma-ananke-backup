@@ -1,0 +1,76 @@
+{
+  "mission_type": "shared_network",
+  "system_type": "PRESSURE_PIPE",
+  "start_m": [
+    -2,
+    0,
+    3
+  ],
+  "sinks": [
+    {
+      "id": "sink-a",
+      "demand_id": "demand-a",
+      "end_m": [
+        3,
+        0,
+        3
+      ],
+      "required_flow_m3_s": 0.001,
+      "available_static_pressure_pa": 100
+    },
+    {
+      "id": "sink-b",
+      "demand_id": "demand-b",
+      "end_m": [
+        1,
+        3,
+        3
+      ],
+      "required_flow_m3_s": 0.001,
+      "available_static_pressure_pa": 100
+    }
+  ],
+  "diameter_m": 0.125,
+  "insulation_m": 0.03125,
+  "clearance_m": 0.0625,
+  "minimum_straight_m": 0.125,
+  "minimum_bend_radius_m": 0.25,
+  "allowed_zone": {
+    "min": [
+      -3,
+      -2,
+      2
+    ],
+    "max": [
+      5,
+      4,
+      4
+    ]
+  },
+  "scenario_terminals": true,
+  "target_modality": "ENGINEERING_SERVICE",
+  "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+  "physics": {
+    "density_kg_m3": 1000,
+    "darcy_friction": 0.02,
+    "maximum_velocity_m_s": 2,
+    "gravity_m_s2": 9.81,
+    "elbow_loss_coefficient": 0.2,
+    "tee_straight_loss_coefficient": 0.2,
+    "tee_branch_loss_coefficient": 0.3,
+    "source_kinetic_energy_correction": 1,
+    "sink_kinetic_energy_correction": 1,
+    "applicability": "Hypothetical constant ideal-bore pipe and fixed loss model for analytic fixture",
+    "fixed_flow_control_assumption": "Hypothetical independently prescribed positive terminal deliveries",
+    "friction_convention": "DARCY",
+    "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+    "tee_loss_reference": "INLET_VELOCITY_TOTAL_IRREVERSIBLE_LOSS",
+    "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+  },
+  "objective_weights": {
+    "length_m": 1
+  },
+  "assumptions": [
+    "Explicit analytic fixed-flow fixture"
+  ]
+}

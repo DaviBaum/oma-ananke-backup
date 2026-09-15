@@ -1,0 +1,256 @@
+{
+  "status": "PASS",
+  "proof_complete": true,
+  "certificate_root": "10f3c528108b9c26e31af49eae523fe978f802bd6ac1a2bfaf36bf6f700b8b45",
+  "input_root": "f1b98819a290ac2dc1fa4d3c642c458dc8053823943a7c384a8e2b63f43ad3da",
+  "problem_root": "6d5e5d4bc76d326eab8c8c4bce74386925a42082567674a358a5b91410146c3d",
+  "scope": "EXACT_CAP_SECTION_TOPOLOGY_AND_NOMINAL_RANK_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+  "proposals": [
+    {
+      "tee_ids": [
+        "tee-a",
+        "tee-c"
+      ],
+      "connector_ids": [
+        "connector-01eb8c0a7de055b083acfad7",
+        "connector-11c22a5ea00c88e524ebe33b",
+        "connector-2103dab94f9c5f495e6ea0de",
+        "connector-37d62ea456ab80108cc6b0e7",
+        "connector-69f4ba41780805cfabb9fa7e"
+      ],
+      "nominal_cost": [
+        "12",
+        "1/4"
+      ],
+      "assignment_root": "c19f8538c51a30645306358e208d6c7b9eabee4c04c7a8bac68817f4d8241952",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-a",
+          "demand_id": "demand-a",
+          "endpoint": {
+            "node": "sink-a",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-11c22a5ea00c88e524ebe33b",
+            "connector-69f4ba41780805cfabb9fa7e",
+            "connector-01eb8c0a7de055b083acfad7"
+          ]
+        },
+        {
+          "id": "sink-b",
+          "demand_id": "demand-b",
+          "endpoint": {
+            "node": "sink-b",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-11c22a5ea00c88e524ebe33b",
+            "connector-37d62ea456ab80108cc6b0e7"
+          ]
+        },
+        {
+          "id": "sink-c",
+          "demand_id": "demand-c",
+          "endpoint": {
+            "node": "sink-c",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-11c22a5ea00c88e524ebe33b",
+            "connector-69f4ba41780805cfabb9fa7e",
+            "connector-2103dab94f9c5f495e6ea0de"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "connector-01eb8c0a7de055b083acfad7",
+          "from": {
+            "node": "tee-c",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-a",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-11c22a5ea00c88e524ebe33b",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-a",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-2103dab94f9c5f495e6ea0de",
+          "from": {
+            "node": "tee-c",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-c",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-37d62ea456ab80108cc6b0e7",
+          "from": {
+            "node": "tee-a",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-b",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-69f4ba41780805cfabb9fa7e",
+          "from": {
+            "node": "tee-a",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-c",
+            "port": "a"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-a",
+        "tee-c"
+      ],
+      "connector_ids": [
+        "connector-01eb8c0a7de055b083acfad7",
+        "connector-11c22a5ea00c88e524ebe33b",
+        "connector-2103dab94f9c5f495e6ea0de",
+        "connector-69f4ba41780805cfabb9fa7e",
+        "connector-927ae894f80dd1f94f2beb37"
+      ],
+      "nominal_cost": [
+        "12",
+        "1/4"
+      ],
+      "assignment_root": "8bb44fd774a0c5ce5f3bdf1487449317ebddac4306877c24a8eb2a2356d946a3",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-a",
+          "demand_id": "demand-a",
+          "endpoint": {
+            "node": "sink-a",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-11c22a5ea00c88e524ebe33b",
+            "connector-69f4ba41780805cfabb9fa7e",
+            "connector-01eb8c0a7de055b083acfad7"
+          ]
+        },
+        {
+          "id": "sink-b",
+          "demand_id": "demand-b",
+          "endpoint": {
+            "node": "sink-b",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-11c22a5ea00c88e524ebe33b",
+            "connector-927ae894f80dd1f94f2beb37"
+          ]
+        },
+        {
+          "id": "sink-c",
+          "demand_id": "demand-c",
+          "endpoint": {
+            "node": "sink-c",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-11c22a5ea00c88e524ebe33b",
+            "connector-69f4ba41780805cfabb9fa7e",
+            "connector-2103dab94f9c5f495e6ea0de"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "connector-01eb8c0a7de055b083acfad7",
+          "from": {
+            "node": "tee-c",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-a",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-11c22a5ea00c88e524ebe33b",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-a",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-2103dab94f9c5f495e6ea0de",
+          "from": {
+            "node": "tee-c",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-c",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-69f4ba41780805cfabb9fa7e",
+          "from": {
+            "node": "tee-a",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-c",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-927ae894f80dd1f94f2beb37",
+          "from": {
+            "node": "tee-a",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-b",
+            "port": "in"
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "tee_instances": 2,
+    "connectors": 28,
+    "complete_assignments": 202,
+    "returned_proposals": 2,
+    "checked_partial_incidence_states": 404
+  },
+  "work": 47619
+}

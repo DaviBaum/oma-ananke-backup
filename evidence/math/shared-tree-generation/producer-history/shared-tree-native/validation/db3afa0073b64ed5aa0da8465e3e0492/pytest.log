@@ -1,0 +1,33 @@
+F...................                                                     [100%]
+================================== FAILURES ===================================
+_ test_generated_tree_avoids_actual_obstacle_then_accepts_and_freshly_exports _
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/.oma/development/shared-tree-native/validation/db3afa0073b64ed5aa0da8465e3e0492/native-stores/test_generated_tree_avoids_act0')
+
+    def test_generated_tree_avoids_actual_obstacle_then_accepts_and_freshly_exports(tmp_path):
+        original=tmp_path/'original.ifc';make_original(original);original_sha=sha256_file(original)
+        store=Store(tmp_path/'store');project=store.create_project('Generated shared tree',{'sources':[],'entities':[]})
+        imported=store.create_run(project['id'],{'operation':'import','paths':[str(original)]})
+        import_sources(store,imported,WorkerControl(store,imported['id']))
+        project=store.project(project['id']);baseline=store.get(project['state_root'])
+        r,s,_=fixture();r['source_id']=baseline['sources'][0]['id']
+        authored_root=digest({'requirements':r,'search':s})
+        generation=compile_shared_tree_proposals(r,s,context={'base_root':project['state_root'],
+            'source_sha256':original_sha,'checker_version':checker_version()},max_results=8)
+        assert generation['status']=='PROPOSALS_READY',generation
+        assert len(generation['mission']['network_alternatives'])>=2
+        generation_root=store.put(generation)
+        run=store.create_run(project['id'],{'operation':'optimize','mission':generation['mission'],'budget_seconds':180})
+        route_project_run(store,run,WorkerControl(store,run['id']))
+        candidates=store.candidates(project['id'])
+>       assert store.run(run['id'])['status']=='COMPLETED',store.run(run['id'])
+E       AssertionError: {'id': 'b1e693a1da344500b8b82c396bb25141', 'project_id': 'ff62e690a761490fb5d381e2f545ed3c', 'base_revision': 1, 'base_root': '20334bd8404a48413ae12b196bd133c14950d74b8b481be9232369a97ca49909', ...}
+E       assert 'NO_INCUMBENT_FOUND' == 'COMPLETED'
+E         
+E         - COMPLETED
+E         + NO_INCUMBENT_FOUND
+
+.oma\development\shared-tree-native\validation\db3afa0073b64ed5aa0da8465e3e0492\tests\test_shared_tree_generated_workflow.py:30: AssertionError
+=========================== short test summary info ===========================
+FAILED .oma/development/shared-tree-native/validation/db3afa0073b64ed5aa0da8465e3e0492/tests/test_shared_tree_generated_workflow.py::test_generated_tree_avoids_actual_obstacle_then_accepts_and_freshly_exports
+1 failed, 19 passed in 21.85s

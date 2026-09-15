@@ -1,0 +1,28 @@
+{
+  "source_sha256": "0034130d057fbb012d031fb31a69ce89aac857ce6aeaf4d8a73f55c2d1a23d43",
+  "status": "PASS",
+  "cases": [
+    {
+      "input": "1e100000000",
+      "status": "REJECTED_BEFORE_FRACTION",
+      "reason": "Exact rational strings required"
+    },
+    {
+      "input": "1e1_000_000",
+      "status": "REJECTED_BEFORE_FRACTION",
+      "reason": "Exact rational strings required"
+    },
+    {
+      "input": "1e-1_000_000",
+      "status": "REJECTED_BEFORE_FRACTION",
+      "reason": "Exact rational strings required"
+    },
+    {
+      "input": "2000decimaldigits",
+      "status": "REJECTED_BEFORE_FRACTION",
+      "reason": "RATIONAL_BIT_BUDGET"
+    }
+  ],
+  "production_changed": false,
+  "module_amendment_needed": false
+}

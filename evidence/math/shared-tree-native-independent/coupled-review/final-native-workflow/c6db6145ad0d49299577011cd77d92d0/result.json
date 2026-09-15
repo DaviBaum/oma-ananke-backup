@@ -1,0 +1,1500 @@
+{
+  "status": "PASS",
+  "checker_version": "oma-independent-checker/2:33a20d125bba02a298d12048a5b6227e51a98d8a043b999097d94a8d88b67b95",
+  "validation_cases": 54,
+  "source_file_count": 112,
+  "validation_receipt_sha256": "290f50bf96ea2ef81c77f1da9f7e81b72e23b437229da1314d3af26830d6d4e1",
+  "test_xml_sha256": "a29b3adaa2e919e7b6798666bf71889ab2e43581af7535f3f23963eeba69ef03",
+  "declared_input_count": 8,
+  "positive": {
+    "status": "PASS",
+    "generation_root": "61a05c8e04f0a2bc1cbd24ea5f76048290c6fcc617d2fb01828db8e9261ccb5a",
+    "authored_query": {
+      "max_results": 2,
+      "requirements": {
+        "allowed_zone": {
+          "max": [
+            5,
+            4,
+            4
+          ],
+          "min": [
+            -3,
+            -2,
+            2
+          ]
+        },
+        "assumptions": [
+          "Hypothetical fixed-site unequal-tee pressure-generation experiment; analytic target flows do not prescribe deliveries."
+        ],
+        "clearance_m": 0.0625,
+        "coupled_tree": {
+          "applicability": "New hypothetical ideal steady incompressible bore model. Each tee outlet has its own strictly positive TOTAL loss coefficient referenced to full inlet flow. Internal tee distributed loss is included; no tee skeleton Darcy term. Existing common-loss missions are unchanged.",
+          "boundary_control_assumption": "Explicit hypothetical total-pressure intervals manufactured before generation from an analytic nominal 1 L/s-per-sink target on the fixed tee sites; generated alternatives are pressure-driven and must prove their own full operating relation.",
+          "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY",
+          "connection_model": "NO_EXTRA_LOSS_AT_CHECKED_MATCHING_CONNECTED_CAPS",
+          "darcy_friction": "1/50",
+          "density_kg_m3": "1000",
+          "elbow_loss_coefficient": "1/5",
+          "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+          "flow_search_box_m3_s": {
+            "sink-a": {
+              "lower": "98/100000",
+              "upper": "102/100000"
+            },
+            "sink-b": {
+              "lower": "98/100000",
+              "upper": "102/100000"
+            },
+            "sink-c": {
+              "lower": "98/100000",
+              "upper": "102/100000"
+            }
+          },
+          "friction_convention": "DARCY",
+          "gravity_m_s2": "9.80665",
+          "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+          "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+          "maximum_velocity_m_s": "2",
+          "minimum_sink_flows_m3_s": {
+            "sink-a": "1/1250",
+            "sink-b": "1/1250",
+            "sink-c": "1/1250"
+          },
+          "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+          "schema": "oma.coupled-tree-boundary/1",
+          "sink_total_pressures_pa": {
+            "sink-a": {
+              "lower": "5569381/31250",
+              "upper": "178220193/1000000"
+            },
+            "sink-b": {
+              "lower": "11216439/62500",
+              "upper": "7178521/40000"
+            },
+            "sink-c": {
+              "lower": "87848461/500000",
+              "upper": "175696923/1000000"
+            }
+          },
+          "source_total_pressure_pa": {
+            "lower": "200",
+            "upper": "200"
+          },
+          "tee_loss_reference": "OUTLET_SPECIFIC_TOTAL_LOSS_AT_TOTAL_INLET_FLOW",
+          "tee_outlet_loss_coefficients": {
+            "tee-a": {
+              "b": "1/5",
+              "branch": "3/10"
+            },
+            "tee-c": {
+              "b": "1/4",
+              "branch": "2/5"
+            }
+          }
+        },
+        "diameter_m": 0.125,
+        "insulation_m": 0.03125,
+        "minimum_bend_radius_m": 0.25,
+        "minimum_straight_m": 0.125,
+        "mission_type": "shared_network",
+        "objective_weights": {
+          "length_m": 1
+        },
+        "scenario_terminals": true,
+        "sinks": [
+          {
+            "demand_id": "demand-a",
+            "end_m": [
+              4,
+              0,
+              3
+            ],
+            "id": "sink-a"
+          },
+          {
+            "demand_id": "demand-b",
+            "end_m": [
+              1,
+              3,
+              3
+            ],
+            "id": "sink-b"
+          },
+          {
+            "demand_id": "demand-c",
+            "end_m": [
+              2,
+              3,
+              3
+            ],
+            "id": "sink-c"
+          }
+        ],
+        "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+        "start_m": [
+          -2,
+          0,
+          3
+        ],
+        "system_type": "PRESSURE_PIPE",
+        "target_modality": "ENGINEERING_SERVICE"
+      },
+      "schema": "oma.shared-tree-proposal-job/1",
+      "search": {
+        "detour_planes": [
+          {
+            "axis": 1,
+            "value_m": "9/4"
+          }
+        ],
+        "schema": "oma.shared-tree-native-search/1",
+        "sink_directions": {
+          "sink-a": [
+            1,
+            0,
+            0
+          ],
+          "sink-b": [
+            0,
+            1,
+            0
+          ],
+          "sink-c": [
+            0,
+            1,
+            0
+          ]
+        },
+        "source_direction": [
+          1,
+          0,
+          0
+        ],
+        "stub_lengths_m": [
+          "3/4"
+        ],
+        "tee_instances": [
+          {
+            "axis_x": [
+              1,
+              0,
+              0
+            ],
+            "axis_y": [
+              0,
+              1,
+              0
+            ],
+            "branch_takeout_m": "1/4",
+            "center_m": [
+              0,
+              0,
+              3
+            ],
+            "id": "tee-a",
+            "trunk_takeout_m": "1/4"
+          },
+          {
+            "axis_x": [
+              1,
+              0,
+              0
+            ],
+            "axis_y": [
+              0,
+              1,
+              0
+            ],
+            "branch_takeout_m": "1/4",
+            "center_m": [
+              2,
+              0,
+              3
+            ],
+            "id": "tee-c",
+            "trunk_takeout_m": "1/4"
+          }
+        ]
+      }
+    },
+    "catalogue_provenance": {
+      "schema": "oma.shared-tree-generated-catalogue-check/1",
+      "status": "PASS",
+      "proof_complete": true,
+      "scope": "SUPPLIED_CATALOGUE_CURRENT_INPUT_TEMPLATE_MEMBERSHIP_AND_NOMINAL_MACRO_PROVENANCE_ONLY",
+      "input_root": "93092df683ed06bef3120cb1876f88690f00d4f4a6a73408f9249bcf99daa68a",
+      "generated_root": "a80a829ce88c094ec3800118ca8f9a931f0bd95dac0880ea1caedd1258225a21",
+      "catalogue_root": "f1b98819a290ac2dc1fa4d3c642c458dc8053823943a7c384a8e2b63f43ad3da",
+      "normalized_requirements_root": "5465d914493359efc6c37251eeb81c42dff24f2dd2a19bd1a4610773fcd360c7",
+      "context_root": "51a067d908623a531de041d36f96000fca719bb30514065b90c99c13e9157798",
+      "counts": {
+        "tees": 2,
+        "terminals": 4,
+        "connector_macros": 28,
+        "physical_components_in_catalogue": 148,
+        "admitted_attempts": 28,
+        "untrusted_diagnostic_attempts": 10
+      },
+      "limitations": {
+        "native_acceptance_authority": false,
+        "all_templates_enumerated": false,
+        "diagnostic_rejections_certified": false,
+        "geometry_source_authenticity_external": true
+      },
+      "work": 198005
+    },
+    "finite_proof": {
+      "status": "PASS",
+      "proof_complete": true,
+      "certificate_root": "10f3c528108b9c26e31af49eae523fe978f802bd6ac1a2bfaf36bf6f700b8b45",
+      "input_root": "f1b98819a290ac2dc1fa4d3c642c458dc8053823943a7c384a8e2b63f43ad3da",
+      "problem_root": "6d5e5d4bc76d326eab8c8c4bce74386925a42082567674a358a5b91410146c3d",
+      "scope": "EXACT_CAP_SECTION_TOPOLOGY_AND_NOMINAL_RANK_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+      "proposals": [
+        {
+          "tee_ids": [
+            "tee-a",
+            "tee-c"
+          ],
+          "connector_ids": [
+            "connector-01eb8c0a7de055b083acfad7",
+            "connector-11c22a5ea00c88e524ebe33b",
+            "connector-2103dab94f9c5f495e6ea0de",
+            "connector-37d62ea456ab80108cc6b0e7",
+            "connector-69f4ba41780805cfabb9fa7e"
+          ],
+          "nominal_cost": [
+            "12",
+            "1/4"
+          ],
+          "assignment_root": "c19f8538c51a30645306358e208d6c7b9eabee4c04c7a8bac68817f4d8241952",
+          "source": {
+            "node": "source",
+            "port": "out"
+          },
+          "sinks": [
+            {
+              "id": "sink-a",
+              "demand_id": "demand-a",
+              "endpoint": {
+                "node": "sink-a",
+                "port": "in"
+              },
+              "connector_path": [
+                "connector-11c22a5ea00c88e524ebe33b",
+                "connector-69f4ba41780805cfabb9fa7e",
+                "connector-01eb8c0a7de055b083acfad7"
+              ]
+            },
+            {
+              "id": "sink-b",
+              "demand_id": "demand-b",
+              "endpoint": {
+                "node": "sink-b",
+                "port": "in"
+              },
+              "connector_path": [
+                "connector-11c22a5ea00c88e524ebe33b",
+                "connector-37d62ea456ab80108cc6b0e7"
+              ]
+            },
+            {
+              "id": "sink-c",
+              "demand_id": "demand-c",
+              "endpoint": {
+                "node": "sink-c",
+                "port": "in"
+              },
+              "connector_path": [
+                "connector-11c22a5ea00c88e524ebe33b",
+                "connector-69f4ba41780805cfabb9fa7e",
+                "connector-2103dab94f9c5f495e6ea0de"
+              ]
+            }
+          ],
+          "connections": [
+            {
+              "connector_id": "connector-01eb8c0a7de055b083acfad7",
+              "from": {
+                "node": "tee-c",
+                "port": "b"
+              },
+              "to": {
+                "node": "sink-a",
+                "port": "in"
+              }
+            },
+            {
+              "connector_id": "connector-11c22a5ea00c88e524ebe33b",
+              "from": {
+                "node": "source",
+                "port": "out"
+              },
+              "to": {
+                "node": "tee-a",
+                "port": "a"
+              }
+            },
+            {
+              "connector_id": "connector-2103dab94f9c5f495e6ea0de",
+              "from": {
+                "node": "tee-c",
+                "port": "branch"
+              },
+              "to": {
+                "node": "sink-c",
+                "port": "in"
+              }
+            },
+            {
+              "connector_id": "connector-37d62ea456ab80108cc6b0e7",
+              "from": {
+                "node": "tee-a",
+                "port": "branch"
+              },
+              "to": {
+                "node": "sink-b",
+                "port": "in"
+              }
+            },
+            {
+              "connector_id": "connector-69f4ba41780805cfabb9fa7e",
+              "from": {
+                "node": "tee-a",
+                "port": "b"
+              },
+              "to": {
+                "node": "tee-c",
+                "port": "a"
+              }
+            }
+          ]
+        },
+        {
+          "tee_ids": [
+            "tee-a",
+            "tee-c"
+          ],
+          "connector_ids": [
+            "connector-01eb8c0a7de055b083acfad7",
+            "connector-11c22a5ea00c88e524ebe33b",
+            "connector-2103dab94f9c5f495e6ea0de",
+            "connector-69f4ba41780805cfabb9fa7e",
+            "connector-927ae894f80dd1f94f2beb37"
+          ],
+          "nominal_cost": [
+            "12",
+            "1/4"
+          ],
+          "assignment_root": "8bb44fd774a0c5ce5f3bdf1487449317ebddac4306877c24a8eb2a2356d946a3",
+          "source": {
+            "node": "source",
+            "port": "out"
+          },
+          "sinks": [
+            {
+              "id": "sink-a",
+              "demand_id": "demand-a",
+              "endpoint": {
+                "node": "sink-a",
+                "port": "in"
+              },
+              "connector_path": [
+                "connector-11c22a5ea00c88e524ebe33b",
+                "connector-69f4ba41780805cfabb9fa7e",
+                "connector-01eb8c0a7de055b083acfad7"
+              ]
+            },
+            {
+              "id": "sink-b",
+              "demand_id": "demand-b",
+              "endpoint": {
+                "node": "sink-b",
+                "port": "in"
+              },
+              "connector_path": [
+                "connector-11c22a5ea00c88e524ebe33b",
+                "connector-927ae894f80dd1f94f2beb37"
+              ]
+            },
+            {
+              "id": "sink-c",
+              "demand_id": "demand-c",
+              "endpoint": {
+                "node": "sink-c",
+                "port": "in"
+              },
+              "connector_path": [
+                "connector-11c22a5ea00c88e524ebe33b",
+                "connector-69f4ba41780805cfabb9fa7e",
+                "connector-2103dab94f9c5f495e6ea0de"
+              ]
+            }
+          ],
+          "connections": [
+            {
+              "connector_id": "connector-01eb8c0a7de055b083acfad7",
+              "from": {
+                "node": "tee-c",
+                "port": "b"
+              },
+              "to": {
+                "node": "sink-a",
+                "port": "in"
+              }
+            },
+            {
+              "connector_id": "connector-11c22a5ea00c88e524ebe33b",
+              "from": {
+                "node": "source",
+                "port": "out"
+              },
+              "to": {
+                "node": "tee-a",
+                "port": "a"
+              }
+            },
+            {
+              "connector_id": "connector-2103dab94f9c5f495e6ea0de",
+              "from": {
+                "node": "tee-c",
+                "port": "branch"
+              },
+              "to": {
+                "node": "sink-c",
+                "port": "in"
+              }
+            },
+            {
+              "connector_id": "connector-69f4ba41780805cfabb9fa7e",
+              "from": {
+                "node": "tee-a",
+                "port": "b"
+              },
+              "to": {
+                "node": "tee-c",
+                "port": "a"
+              }
+            },
+            {
+              "connector_id": "connector-927ae894f80dd1f94f2beb37",
+              "from": {
+                "node": "tee-a",
+                "port": "branch"
+              },
+              "to": {
+                "node": "sink-b",
+                "port": "in"
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "tee_instances": 2,
+        "connectors": 28,
+        "complete_assignments": 202,
+        "returned_proposals": 2,
+        "checked_partial_incidence_states": 404
+      },
+      "work": 47619
+    },
+    "cases": [
+      {
+        "candidate_id": "326eed257fae4d2298fd317de2ba9ad4",
+        "status": "REJECTED",
+        "state_root": "958459e7788894f39f91e94471c88301462b26e7a3dbe58e5356c881a9ce38ad",
+        "report_root": "95b2b6a864a16637e9ea06fab6f46bf7dd53f8643a3c79c91c8c4ff4d42fb49e",
+        "checks": {
+          "fixed-network-requirements": "PASS",
+          "unique-network-demand-coverage": "PASS",
+          "protected-network-baseline": "PASS",
+          "network-source-and-datum-binding": "PASS",
+          "network-artifact-integrity": "PASS",
+          "network-native-semantics": "PASS",
+          "network-objective": "PASS",
+          "network-native-counterexample": "FAIL",
+          "network-all-source-clearance": "NOT_RUN",
+          "network-all-component-pairs": "NOT_RUN",
+          "network-permitted-zone": "NOT_RUN",
+          "network-demand-conditioned-service": "NOT_RUN",
+          "network-pressure-operating-point": "NOT_RUN"
+        },
+        "export_sha256": "1da7059feb05b9fd0a3074ffb95b69e92c9c5526b05c14fb69dd80255194387f",
+        "parsed_original_entities": 49,
+        "changed_parsed_entities": [],
+        "objective": {
+          "fitting_count": 4.0,
+          "length_m": 12.78539816339745
+        },
+        "nonpassing": {
+          "network-native-counterexample": {
+            "id": "network-native-counterexample",
+            "participants": [
+              "1da7059feb05b9fd0a3074ffb95b69e92c9c5526b05c14fb69dd80255194387f:383",
+              "c14614c17329bd3c4eb586d38ade7ad2fcaade54bb3c30221599e669c211b655:38"
+            ],
+            "reason": "One freshly reopened original obstacle has positive native common volume with a new component",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "FAIL",
+            "witness": {
+              "artifact": "dffa240937316e945fb140ce649a0331d164f53d09671cdf244e8cd04cf75be1",
+              "other_point": [
+                1.09375,
+                1.625,
+                3.0
+              ],
+              "point": [
+                1.09375,
+                1.625,
+                3.0
+              ]
+            }
+          },
+          "network-all-source-clearance": {
+            "id": "network-all-source-clearance",
+            "participants": [],
+            "reason": "Full source denominator not checked after a conclusive forbidden-volume counterexample",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "NOT_RUN",
+            "witness": {
+              "artifact": "dffa240937316e945fb140ce649a0331d164f53d09671cdf244e8cd04cf75be1"
+            }
+          },
+          "network-all-component-pairs": {
+            "id": "network-all-component-pairs",
+            "participants": [],
+            "reason": "Stopped after a conclusive physical counterexample; no remaining feasibility claim",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "NOT_RUN",
+            "witness": {}
+          },
+          "network-permitted-zone": {
+            "id": "network-permitted-zone",
+            "participants": [],
+            "reason": "Stopped after a conclusive physical counterexample; no remaining feasibility claim",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "NOT_RUN",
+            "witness": {}
+          },
+          "network-demand-conditioned-service": {
+            "id": "network-demand-conditioned-service",
+            "participants": [],
+            "reason": "Stopped after a conclusive physical counterexample; no remaining feasibility claim",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "NOT_RUN",
+            "witness": {}
+          },
+          "network-pressure-operating-point": {
+            "id": "network-pressure-operating-point",
+            "participants": [],
+            "reason": "Operating relation was not evaluated after the physical counterexample",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "NOT_RUN",
+            "witness": {}
+          }
+        }
+      },
+      {
+        "candidate_id": "52fcb435d817468cbc0caf88764936c3",
+        "status": "CHECKED",
+        "state_root": "5314ae223ebbad08a73f769389f9b17524f650bf5f6358f9f23ebefb841683aa",
+        "report_root": "3fe52717b018935a335ddbebb3c3518714d3bc5ae661f50d07ee39e285e96e6a",
+        "checks": {
+          "fixed-network-requirements": "PASS",
+          "unique-network-demand-coverage": "PASS",
+          "protected-network-baseline": "PASS",
+          "network-source-and-datum-binding": "PASS",
+          "network-artifact-integrity": "PASS",
+          "network-native-semantics": "PASS",
+          "network-objective": "PASS",
+          "network-all-source-clearance": "PASS",
+          "network-all-component-pairs": "PASS",
+          "network-permitted-zone": "PASS",
+          "network-pressure-operating-point": "PASS",
+          "network-demand-conditioned-service": "PASS"
+        },
+        "export_sha256": "9bbbebf807a656cfd2edf2624bae37be743ca05cc5fe887f76137a340440ece0",
+        "parsed_original_entities": 49,
+        "changed_parsed_entities": [],
+        "objective": {
+          "fitting_count": 4.0,
+          "length_m": 12.78539816339745
+        },
+        "native": {
+          "components": 11,
+          "ports": 24,
+          "source_obstacles": 2,
+          "source_pairs": 22,
+          "self_pairs": 55,
+          "status": "PASS"
+        },
+        "pressure": {
+          "model_root": "5ff1cec41915ed75274631f7b1e561b540957f75cb3045d847cc504476197b70",
+          "local_certificate_root": "9befd05f3ff2447198aecb1608ce1fa2782befad710c18098ebfcd58d57b2b10",
+          "global_certificate_root": "6c33f154e796ffe78547f35a1f6771225579ee7aeb3514531f468493f9fa9f3c",
+          "counts": {
+            "physical_ports": 24,
+            "deliveries": 3,
+            "conservation_identities": 25,
+            "head_path_identities": 27
+          },
+          "deliveries": [
+            {
+              "sink": "sink-a",
+              "minimum_m3_s": "1/1250",
+              "flow_m3_s": {
+                "lower": "5520989065054544292976510687794827998017138176069363751923/5628266439054584721486695145515647039037022975976705477687500",
+                "upper": "3823696722122594269338007243325860273766431075057019483843/3752177626036389814324463430343764692691348650651136985125000"
+              },
+              "status": "PASS"
+            },
+            {
+              "sink": "sink-b",
+              "minimum_m3_s": "1/1250",
+              "flow_m3_s": {
+                "lower": "15550745740459029510815749119694825001365546724349130702497/15634073441818290893018597626432352886213952711046404104687500",
+                "upper": "282913189520302365119591885235410444677259784528404046239429/281413321952729236074334757275782351951851148798835273884375000"
+              },
+              "status": "PASS"
+            },
+            {
+              "sink": "sink-c",
+              "minimum_m3_s": "1/1250",
+              "flow_m3_s": {
+                "lower": "1475784095402101192292819362013496504247769021028241002977/1500871050414555925729785372137505877076539460260454794050000",
+                "upper": "4577873362433823284025622001020366218682114188827991373219/4502613151243667777189356116412517631229618380781364382150000"
+              },
+              "status": "PASS"
+            }
+          ]
+        }
+      },
+      {
+        "candidate_id": "c4d2e6fde0924fdfac05413954e7c900",
+        "status": "CHECKED",
+        "state_root": "4aa7822c0ee44531e993f541757315e2bebb05b9e279937c6bf4a848ee2b91a7",
+        "report_root": "ceef465b0125c8ff71695a26a575d7b113279f32b0d84fae42b08307fa5b7a92",
+        "checks": {
+          "fixed-network-requirements": "PASS",
+          "unique-network-demand-coverage": "PASS",
+          "protected-network-baseline": "PASS",
+          "network-source-and-datum-binding": "PASS",
+          "network-artifact-integrity": "PASS",
+          "network-export-federation-correspondence": "PASS",
+          "network-native-semantics": "PASS",
+          "network-objective": "PASS",
+          "network-all-source-clearance": "PASS",
+          "network-all-component-pairs": "PASS",
+          "network-permitted-zone": "PASS",
+          "network-pressure-operating-point": "PASS",
+          "network-demand-conditioned-service": "PASS"
+        },
+        "export_sha256": "9bbbebf807a656cfd2edf2624bae37be743ca05cc5fe887f76137a340440ece0",
+        "parsed_original_entities": 49,
+        "changed_parsed_entities": [],
+        "objective": {
+          "fitting_count": 4.0,
+          "length_m": 12.78539816339745
+        },
+        "native": {
+          "components": 11,
+          "ports": 24,
+          "source_obstacles": 2,
+          "source_pairs": 22,
+          "self_pairs": 55,
+          "status": "PASS"
+        },
+        "pressure": {
+          "model_root": "9466684ffc0e78ee639382de0ea5c45c722238ca4d8c37197de60287ff3e66b8",
+          "local_certificate_root": "17483f74753a9f2acee49a0f780a086d765b97096ce70a4dba779bed2a3ad9a1",
+          "global_certificate_root": "4e038651388f41bef3ab9ab02a605cd6e11ad1a61a18c2978e089b86fd581371",
+          "counts": {
+            "physical_ports": 24,
+            "deliveries": 3,
+            "conservation_identities": 25,
+            "head_path_identities": 27
+          },
+          "deliveries": [
+            {
+              "sink": "sink-a",
+              "minimum_m3_s": "1/1250",
+              "flow_m3_s": {
+                "lower": "5520989065054544292976510687794827998017138176069363751923/5628266439054584721486695145515647039037022975976705477687500",
+                "upper": "3823696722122594269338007243325860273766431075057019483843/3752177626036389814324463430343764692691348650651136985125000"
+              },
+              "status": "PASS"
+            },
+            {
+              "sink": "sink-b",
+              "minimum_m3_s": "1/1250",
+              "flow_m3_s": {
+                "lower": "15550745740459029510815749119694825001365546724349130702497/15634073441818290893018597626432352886213952711046404104687500",
+                "upper": "282913189520302365119591885235410444677259784528404046239429/281413321952729236074334757275782351951851148798835273884375000"
+              },
+              "status": "PASS"
+            },
+            {
+              "sink": "sink-c",
+              "minimum_m3_s": "1/1250",
+              "flow_m3_s": {
+                "lower": "1475784095402101192292819362013496504247769021028241002977/1500871050414555925729785372137505877076539460260454794050000",
+                "upper": "4577873362433823284025622001020366218682114188827991373219/4502613151243667777189356116412517631229618380781364382150000"
+              },
+              "status": "PASS"
+            }
+          ]
+        }
+      }
+    ],
+    "source_and_actual_files": {
+      "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\shared-tree-coupled\\validation\\0b39284a65564d34b94af6500453051b\\native-stores\\test_generated_two_tee_pressur0\\store\\candidates\\858fe4f69c2945dca592fa158b4652fb\\network-000\\network.ifc": "1da7059feb05b9fd0a3074ffb95b69e92c9c5526b05c14fb69dd80255194387f",
+      "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\shared-tree-coupled\\validation\\0b39284a65564d34b94af6500453051b\\native-stores\\test_generated_two_tee_pressur0\\store\\imports\\c14614c17329bd3c4eb586d38ade7ad2fcaade54bb3c30221599e669c211b655\\original.ifc": "c14614c17329bd3c4eb586d38ade7ad2fcaade54bb3c30221599e669c211b655",
+      "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\shared-tree-coupled\\validation\\0b39284a65564d34b94af6500453051b\\native-stores\\test_generated_two_tee_pressur0\\store\\candidates\\858fe4f69c2945dca592fa158b4652fb\\network-001\\network.ifc": "9bbbebf807a656cfd2edf2624bae37be743ca05cc5fe887f76137a340440ece0",
+      "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\shared-tree-coupled\\validation\\0b39284a65564d34b94af6500453051b\\native-stores\\test_generated_two_tee_pressur0\\store\\exports\\b15e5b01005c4a4ab4d0bdd278d942ad\\01_original.ifc": "9bbbebf807a656cfd2edf2624bae37be743ca05cc5fe887f76137a340440ece0"
+    },
+    "original_store_unchanged": true,
+    "accepted_revision": 2,
+    "selected_candidate_id": "52fcb435d817468cbc0caf88764936c3",
+    "fresh_export_candidate_id": "c4d2e6fde0924fdfac05413954e7c900",
+    "export_manifest_root": "e9ae083fd818f7a2e0233c42776f183686a6c35292428bd24eb8b68c32074c4b"
+  },
+  "reverse": {
+    "status": "PASS",
+    "generation_root": "05675a0feb6bc3eaaf3f443eab52f6f7834d10e7f635ffe72e24fa1dde9b21e2",
+    "authored_query": {
+      "max_results": 2,
+      "requirements": {
+        "allowed_zone": {
+          "max": [
+            5,
+            4,
+            4
+          ],
+          "min": [
+            -3,
+            -2,
+            2
+          ]
+        },
+        "assumptions": [
+          "Hypothetical fixed-site unequal-tee pressure-generation experiment; analytic target flows do not prescribe deliveries."
+        ],
+        "clearance_m": 0.0625,
+        "coupled_tree": {
+          "applicability": "New hypothetical ideal steady incompressible bore model. Each tee outlet has its own strictly positive TOTAL loss coefficient referenced to full inlet flow. Internal tee distributed loss is included; no tee skeleton Darcy term. Existing common-loss missions are unchanged.",
+          "boundary_control_assumption": "Explicit hypothetical total-pressure intervals manufactured before generation from an analytic nominal 1 L/s-per-sink target on the fixed tee sites; generated alternatives are pressure-driven and must prove their own full operating relation.",
+          "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY",
+          "connection_model": "NO_EXTRA_LOSS_AT_CHECKED_MATCHING_CONNECTED_CAPS",
+          "darcy_friction": "1/50",
+          "density_kg_m3": "1000",
+          "elbow_loss_coefficient": "1/5",
+          "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+          "flow_search_box_m3_s": {
+            "sink-a": {
+              "lower": "98/100000",
+              "upper": "102/100000"
+            },
+            "sink-b": {
+              "lower": "98/100000",
+              "upper": "102/100000"
+            },
+            "sink-c": {
+              "lower": "98/100000",
+              "upper": "102/100000"
+            }
+          },
+          "friction_convention": "DARCY",
+          "gravity_m_s2": "9.80665",
+          "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+          "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+          "maximum_velocity_m_s": "2",
+          "minimum_sink_flows_m3_s": {
+            "sink-a": "1/1250",
+            "sink-b": "1/1250",
+            "sink-c": "1/1250"
+          },
+          "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+          "schema": "oma.coupled-tree-boundary/1",
+          "sink_total_pressures_pa": {
+            "sink-a": {
+              "lower": "201",
+              "upper": "201"
+            },
+            "sink-b": {
+              "lower": "11216439/62500",
+              "upper": "7178521/40000"
+            },
+            "sink-c": {
+              "lower": "87848461/500000",
+              "upper": "175696923/1000000"
+            }
+          },
+          "source_total_pressure_pa": {
+            "lower": "200",
+            "upper": "200"
+          },
+          "tee_loss_reference": "OUTLET_SPECIFIC_TOTAL_LOSS_AT_TOTAL_INLET_FLOW",
+          "tee_outlet_loss_coefficients": {
+            "tee-a": {
+              "b": "1/5",
+              "branch": "3/10"
+            },
+            "tee-c": {
+              "b": "1/4",
+              "branch": "2/5"
+            }
+          }
+        },
+        "diameter_m": 0.125,
+        "insulation_m": 0.03125,
+        "minimum_bend_radius_m": 0.25,
+        "minimum_straight_m": 0.125,
+        "mission_type": "shared_network",
+        "objective_weights": {
+          "length_m": 1
+        },
+        "scenario_terminals": true,
+        "sinks": [
+          {
+            "demand_id": "demand-a",
+            "end_m": [
+              4,
+              0,
+              3
+            ],
+            "id": "sink-a"
+          },
+          {
+            "demand_id": "demand-b",
+            "end_m": [
+              1,
+              3,
+              3
+            ],
+            "id": "sink-b"
+          },
+          {
+            "demand_id": "demand-c",
+            "end_m": [
+              2,
+              3,
+              3
+            ],
+            "id": "sink-c"
+          }
+        ],
+        "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+        "start_m": [
+          -2,
+          0,
+          3
+        ],
+        "system_type": "PRESSURE_PIPE",
+        "target_modality": "ENGINEERING_SERVICE"
+      },
+      "schema": "oma.shared-tree-proposal-job/1",
+      "search": {
+        "detour_planes": [
+          {
+            "axis": 1,
+            "value_m": "9/4"
+          }
+        ],
+        "schema": "oma.shared-tree-native-search/1",
+        "sink_directions": {
+          "sink-a": [
+            1,
+            0,
+            0
+          ],
+          "sink-b": [
+            0,
+            1,
+            0
+          ],
+          "sink-c": [
+            0,
+            1,
+            0
+          ]
+        },
+        "source_direction": [
+          1,
+          0,
+          0
+        ],
+        "stub_lengths_m": [
+          "3/4"
+        ],
+        "tee_instances": [
+          {
+            "axis_x": [
+              1,
+              0,
+              0
+            ],
+            "axis_y": [
+              0,
+              1,
+              0
+            ],
+            "branch_takeout_m": "1/4",
+            "center_m": [
+              0,
+              0,
+              3
+            ],
+            "id": "tee-a",
+            "trunk_takeout_m": "1/4"
+          },
+          {
+            "axis_x": [
+              1,
+              0,
+              0
+            ],
+            "axis_y": [
+              0,
+              1,
+              0
+            ],
+            "branch_takeout_m": "1/4",
+            "center_m": [
+              2,
+              0,
+              3
+            ],
+            "id": "tee-c",
+            "trunk_takeout_m": "1/4"
+          }
+        ]
+      }
+    },
+    "catalogue_provenance": {
+      "schema": "oma.shared-tree-generated-catalogue-check/1",
+      "status": "PASS",
+      "proof_complete": true,
+      "scope": "SUPPLIED_CATALOGUE_CURRENT_INPUT_TEMPLATE_MEMBERSHIP_AND_NOMINAL_MACRO_PROVENANCE_ONLY",
+      "input_root": "449229c9c6df4f43e077ab3f64ad2febc21383ab4ec1b4ceb1e43d92865907b6",
+      "generated_root": "4e036c642873b525284a841542d64182784626ac4d466533b8e9eb28dd3c3b84",
+      "catalogue_root": "d89057d0ed73c4ece96e18c92892a9b340c7a01526558d4cfcbb25295a26a7f4",
+      "normalized_requirements_root": "97586c9b32543814f8d8a0c60c76e49871dffd51ad1b43a92ef7aaf97dbc40ed",
+      "context_root": "326ededc5c7b398883080db10d0a8d932766e24238a8dab58e9a7a48722f945e",
+      "counts": {
+        "tees": 2,
+        "terminals": 4,
+        "connector_macros": 28,
+        "physical_components_in_catalogue": 148,
+        "admitted_attempts": 28,
+        "untrusted_diagnostic_attempts": 10
+      },
+      "limitations": {
+        "native_acceptance_authority": false,
+        "all_templates_enumerated": false,
+        "diagnostic_rejections_certified": false,
+        "geometry_source_authenticity_external": true
+      },
+      "work": 198005
+    },
+    "finite_proof": {
+      "status": "PASS",
+      "proof_complete": true,
+      "certificate_root": "4cf5e886378799dd08f637278f9095f5d9ad13bcc8bb0cbcb9aa0f1d28f3e2bb",
+      "input_root": "d89057d0ed73c4ece96e18c92892a9b340c7a01526558d4cfcbb25295a26a7f4",
+      "problem_root": "1f7480ce6ff85c38d472765d07888709ecd027edc5ea6c04e97273f31b72e61f",
+      "scope": "EXACT_CAP_SECTION_TOPOLOGY_AND_NOMINAL_RANK_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+      "proposals": [
+        {
+          "tee_ids": [
+            "tee-a",
+            "tee-c"
+          ],
+          "connector_ids": [
+            "connector-01eb8c0a7de055b083acfad7",
+            "connector-11c22a5ea00c88e524ebe33b",
+            "connector-2103dab94f9c5f495e6ea0de",
+            "connector-37d62ea456ab80108cc6b0e7",
+            "connector-69f4ba41780805cfabb9fa7e"
+          ],
+          "nominal_cost": [
+            "12",
+            "1/4"
+          ],
+          "assignment_root": "e1fde7f40869d41cbdc077d6da32831d20d9ffaa9220a68972858bc19a2d199a",
+          "source": {
+            "node": "source",
+            "port": "out"
+          },
+          "sinks": [
+            {
+              "id": "sink-a",
+              "demand_id": "demand-a",
+              "endpoint": {
+                "node": "sink-a",
+                "port": "in"
+              },
+              "connector_path": [
+                "connector-11c22a5ea00c88e524ebe33b",
+                "connector-69f4ba41780805cfabb9fa7e",
+                "connector-01eb8c0a7de055b083acfad7"
+              ]
+            },
+            {
+              "id": "sink-b",
+              "demand_id": "demand-b",
+              "endpoint": {
+                "node": "sink-b",
+                "port": "in"
+              },
+              "connector_path": [
+                "connector-11c22a5ea00c88e524ebe33b",
+                "connector-37d62ea456ab80108cc6b0e7"
+              ]
+            },
+            {
+              "id": "sink-c",
+              "demand_id": "demand-c",
+              "endpoint": {
+                "node": "sink-c",
+                "port": "in"
+              },
+              "connector_path": [
+                "connector-11c22a5ea00c88e524ebe33b",
+                "connector-69f4ba41780805cfabb9fa7e",
+                "connector-2103dab94f9c5f495e6ea0de"
+              ]
+            }
+          ],
+          "connections": [
+            {
+              "connector_id": "connector-01eb8c0a7de055b083acfad7",
+              "from": {
+                "node": "tee-c",
+                "port": "b"
+              },
+              "to": {
+                "node": "sink-a",
+                "port": "in"
+              }
+            },
+            {
+              "connector_id": "connector-11c22a5ea00c88e524ebe33b",
+              "from": {
+                "node": "source",
+                "port": "out"
+              },
+              "to": {
+                "node": "tee-a",
+                "port": "a"
+              }
+            },
+            {
+              "connector_id": "connector-2103dab94f9c5f495e6ea0de",
+              "from": {
+                "node": "tee-c",
+                "port": "branch"
+              },
+              "to": {
+                "node": "sink-c",
+                "port": "in"
+              }
+            },
+            {
+              "connector_id": "connector-37d62ea456ab80108cc6b0e7",
+              "from": {
+                "node": "tee-a",
+                "port": "branch"
+              },
+              "to": {
+                "node": "sink-b",
+                "port": "in"
+              }
+            },
+            {
+              "connector_id": "connector-69f4ba41780805cfabb9fa7e",
+              "from": {
+                "node": "tee-a",
+                "port": "b"
+              },
+              "to": {
+                "node": "tee-c",
+                "port": "a"
+              }
+            }
+          ]
+        },
+        {
+          "tee_ids": [
+            "tee-a",
+            "tee-c"
+          ],
+          "connector_ids": [
+            "connector-01eb8c0a7de055b083acfad7",
+            "connector-11c22a5ea00c88e524ebe33b",
+            "connector-2103dab94f9c5f495e6ea0de",
+            "connector-69f4ba41780805cfabb9fa7e",
+            "connector-927ae894f80dd1f94f2beb37"
+          ],
+          "nominal_cost": [
+            "12",
+            "1/4"
+          ],
+          "assignment_root": "87433f8a00d22d181e94a26ba646697937b98067d0e0ce2c67ba0214c23e683a",
+          "source": {
+            "node": "source",
+            "port": "out"
+          },
+          "sinks": [
+            {
+              "id": "sink-a",
+              "demand_id": "demand-a",
+              "endpoint": {
+                "node": "sink-a",
+                "port": "in"
+              },
+              "connector_path": [
+                "connector-11c22a5ea00c88e524ebe33b",
+                "connector-69f4ba41780805cfabb9fa7e",
+                "connector-01eb8c0a7de055b083acfad7"
+              ]
+            },
+            {
+              "id": "sink-b",
+              "demand_id": "demand-b",
+              "endpoint": {
+                "node": "sink-b",
+                "port": "in"
+              },
+              "connector_path": [
+                "connector-11c22a5ea00c88e524ebe33b",
+                "connector-927ae894f80dd1f94f2beb37"
+              ]
+            },
+            {
+              "id": "sink-c",
+              "demand_id": "demand-c",
+              "endpoint": {
+                "node": "sink-c",
+                "port": "in"
+              },
+              "connector_path": [
+                "connector-11c22a5ea00c88e524ebe33b",
+                "connector-69f4ba41780805cfabb9fa7e",
+                "connector-2103dab94f9c5f495e6ea0de"
+              ]
+            }
+          ],
+          "connections": [
+            {
+              "connector_id": "connector-01eb8c0a7de055b083acfad7",
+              "from": {
+                "node": "tee-c",
+                "port": "b"
+              },
+              "to": {
+                "node": "sink-a",
+                "port": "in"
+              }
+            },
+            {
+              "connector_id": "connector-11c22a5ea00c88e524ebe33b",
+              "from": {
+                "node": "source",
+                "port": "out"
+              },
+              "to": {
+                "node": "tee-a",
+                "port": "a"
+              }
+            },
+            {
+              "connector_id": "connector-2103dab94f9c5f495e6ea0de",
+              "from": {
+                "node": "tee-c",
+                "port": "branch"
+              },
+              "to": {
+                "node": "sink-c",
+                "port": "in"
+              }
+            },
+            {
+              "connector_id": "connector-69f4ba41780805cfabb9fa7e",
+              "from": {
+                "node": "tee-a",
+                "port": "b"
+              },
+              "to": {
+                "node": "tee-c",
+                "port": "a"
+              }
+            },
+            {
+              "connector_id": "connector-927ae894f80dd1f94f2beb37",
+              "from": {
+                "node": "tee-a",
+                "port": "branch"
+              },
+              "to": {
+                "node": "sink-b",
+                "port": "in"
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "tee_instances": 2,
+        "connectors": 28,
+        "complete_assignments": 202,
+        "returned_proposals": 2,
+        "checked_partial_incidence_states": 404
+      },
+      "work": 47619
+    },
+    "cases": [
+      {
+        "candidate_id": "39e4dbca7278439cb2e7bd9a3eca0821",
+        "status": "REJECTED",
+        "state_root": "085a8f4702c6c515e69f56803db9defaa4a5057a9c96643042652e1f3e38cc06",
+        "report_root": "5187c4135d08c29afa1cf62b9089f806f4f971d456e270dc97d7945ad242a883",
+        "checks": {
+          "fixed-network-requirements": "PASS",
+          "unique-network-demand-coverage": "PASS",
+          "protected-network-baseline": "PASS",
+          "network-source-and-datum-binding": "PASS",
+          "network-artifact-integrity": "PASS",
+          "network-native-semantics": "PASS",
+          "network-objective": "PASS",
+          "network-native-counterexample": "FAIL",
+          "network-all-source-clearance": "NOT_RUN",
+          "network-all-component-pairs": "NOT_RUN",
+          "network-permitted-zone": "NOT_RUN",
+          "network-demand-conditioned-service": "NOT_RUN",
+          "network-pressure-operating-point": "NOT_RUN"
+        },
+        "export_sha256": "c8843c93449b87455269d50fa927c67708e376ef95d45fa6177afc23349f7711",
+        "parsed_original_entities": 49,
+        "changed_parsed_entities": [],
+        "objective": {
+          "fitting_count": 4.0,
+          "length_m": 12.78539816339745
+        },
+        "nonpassing": {
+          "network-native-counterexample": {
+            "id": "network-native-counterexample",
+            "participants": [
+              "c8843c93449b87455269d50fa927c67708e376ef95d45fa6177afc23349f7711:383",
+              "91d92d6b2d5db8c9d41e93b4bf3167e0b9fd071e1a89bac7978fd3a715fe5f2c:38"
+            ],
+            "reason": "One freshly reopened original obstacle has positive native common volume with a new component",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "FAIL",
+            "witness": {
+              "artifact": "fe83827ff3cb4d5c65876dc5e279e98b67eb31e48399f7a9745f847bf80481b7",
+              "other_point": [
+                1.09375,
+                1.625,
+                3.0
+              ],
+              "point": [
+                1.09375,
+                1.625,
+                3.0
+              ]
+            }
+          },
+          "network-all-source-clearance": {
+            "id": "network-all-source-clearance",
+            "participants": [],
+            "reason": "Full source denominator not checked after a conclusive forbidden-volume counterexample",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "NOT_RUN",
+            "witness": {
+              "artifact": "fe83827ff3cb4d5c65876dc5e279e98b67eb31e48399f7a9745f847bf80481b7"
+            }
+          },
+          "network-all-component-pairs": {
+            "id": "network-all-component-pairs",
+            "participants": [],
+            "reason": "Stopped after a conclusive physical counterexample; no remaining feasibility claim",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "NOT_RUN",
+            "witness": {}
+          },
+          "network-permitted-zone": {
+            "id": "network-permitted-zone",
+            "participants": [],
+            "reason": "Stopped after a conclusive physical counterexample; no remaining feasibility claim",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "NOT_RUN",
+            "witness": {}
+          },
+          "network-demand-conditioned-service": {
+            "id": "network-demand-conditioned-service",
+            "participants": [],
+            "reason": "Stopped after a conclusive physical counterexample; no remaining feasibility claim",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "NOT_RUN",
+            "witness": {}
+          },
+          "network-pressure-operating-point": {
+            "id": "network-pressure-operating-point",
+            "participants": [],
+            "reason": "Operating relation was not evaluated after the physical counterexample",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "NOT_RUN",
+            "witness": {}
+          }
+        }
+      },
+      {
+        "candidate_id": "1afcc9fca2ae4337aa73ce27ffeddc8e",
+        "status": "UNKNOWN",
+        "state_root": "fc9b76faedd92ede914c37ef1985cf7ebd5ffd2722c2f3fca6526e193fb2e46a",
+        "report_root": "c645cab33b75022ecb43e1b4e1f907b3477da58a0f3e5e2074471edde98a2476",
+        "checks": {
+          "fixed-network-requirements": "PASS",
+          "unique-network-demand-coverage": "PASS",
+          "protected-network-baseline": "PASS",
+          "network-source-and-datum-binding": "PASS",
+          "network-artifact-integrity": "PASS",
+          "network-native-semantics": "PASS",
+          "network-objective": "PASS",
+          "network-all-source-clearance": "PASS",
+          "network-all-component-pairs": "PASS",
+          "network-permitted-zone": "PASS",
+          "network-pressure-operating-point": "UNKNOWN",
+          "network-demand-conditioned-service": "UNKNOWN"
+        },
+        "export_sha256": "18b180dbf8faade63c8c4cf04a1931b0bca41f34471d37f19cb325fd1bd15cd8",
+        "parsed_original_entities": 49,
+        "changed_parsed_entities": [],
+        "objective": {
+          "fitting_count": 4.0,
+          "length_m": 12.78539816339745
+        },
+        "native": {
+          "components": 11,
+          "ports": 24,
+          "source_obstacles": 2,
+          "source_pairs": 22,
+          "self_pairs": 55,
+          "status": "PASS"
+        },
+        "nonpassing": {
+          "network-pressure-operating-point": {
+            "id": "network-pressure-operating-point",
+            "participants": [],
+            "reason": "Operating relation unverified: Local positive-box existence was not established",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "UNKNOWN",
+            "witness": {
+              "artifact": "56e708bf7410905135576ec4a9691f6e7eaaa2ef0534e6043c21d3672e64a2ac",
+              "model_root": null,
+              "native_metrics_artifact": "e2c832424ad75b5ebbcb5843fb0e854b65a31e25593b9465d9b754bd58654138"
+            }
+          },
+          "network-demand-conditioned-service": {
+            "id": "network-demand-conditioned-service",
+            "participants": [],
+            "reason": "Pressure-driven service remains unverified because the operating relation is unverified",
+            "scope": "One complete shared physical network and every imported source obstacle",
+            "status": "UNKNOWN",
+            "witness": {
+              "calculation": {
+                "limitations": {
+                  "actual_inner_bore_or_wall_measured": false,
+                  "flow_search_box_alone_excludes_other_equilibria": false,
+                  "native_geometry_acceptance_authority": false,
+                  "native_geometry_and_metric_authenticity_proved": false,
+                  "negative_flow_regimes_or_other_loss_laws_covered": false,
+                  "old_common_tee_or_fixed_flow_mission_reinterpreted": false,
+                  "physical_loss_or_boundary_applicability_proved": false,
+                  "static_pressure_reported": false,
+                  "tight_correlated_solution_hull": false
+                },
+                "local_producer": {
+                  "limitations": {
+                    "failed_certificate_is_infeasibility": false,
+                    "global_uniqueness_outside_supplied_box": false,
+                    "minimum_delivery_velocity_or_native_acceptance_authority": false,
+                    "native_tree_or_complete_physical_component_coverage_proved": false,
+                    "one_common_solution_for_all_parameter_choices": false,
+                    "other_equilibria_excluded": false,
+                    "physical_model_truth_or_loss_coefficient_applicability_proved": false,
+                    "tight_solution_hull": false
+                  },
+                  "proof_complete": false,
+                  "reason": "STRICT_BOX_INCLUSION_NOT_ESTABLISHED",
+                  "scope": "ONE_ROOT_INSIDE_SUPPLIED_POSITIVE_BOX_FOR_EACH_SAME_PARAMETER_TUPLE",
+                  "status": "UNKNOWN",
+                  "work": 4276
+                },
+                "proof_complete": false,
+                "reason": "Local positive-box existence was not established",
+                "scope": "SUPPLIED_NATIVE_METRICS_UNEQUAL_INLET_FLOW_TEE_TREE_UNIQUE_NONNEGATIVE_EQUILIBRIUM",
+                "status": "UNKNOWN",
+                "verdict": "UNKNOWN"
+              },
+              "metric_tolerance_m": "1/1000000"
+            }
+          }
+        }
+      }
+    ],
+    "source_and_actual_files": {
+      "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\shared-tree-coupled\\validation\\0b39284a65564d34b94af6500453051b\\native-stores\\test_nominal_generated_pressur0\\store\\candidates\\e101c45e1d8f430ba3aa9aa6e71231d5\\network-000\\network.ifc": "c8843c93449b87455269d50fa927c67708e376ef95d45fa6177afc23349f7711",
+      "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\shared-tree-coupled\\validation\\0b39284a65564d34b94af6500453051b\\native-stores\\test_nominal_generated_pressur0\\store\\imports\\91d92d6b2d5db8c9d41e93b4bf3167e0b9fd071e1a89bac7978fd3a715fe5f2c\\original.ifc": "91d92d6b2d5db8c9d41e93b4bf3167e0b9fd071e1a89bac7978fd3a715fe5f2c",
+      "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\shared-tree-coupled\\validation\\0b39284a65564d34b94af6500453051b\\native-stores\\test_nominal_generated_pressur0\\store\\candidates\\e101c45e1d8f430ba3aa9aa6e71231d5\\network-001\\network.ifc": "18b180dbf8faade63c8c4cf04a1931b0bca41f34471d37f19cb325fd1bd15cd8"
+    },
+    "original_store_unchanged": true,
+    "accepted_revision": 1,
+    "selected_candidate_id": null,
+    "fresh_export_candidate_id": null,
+    "export_manifest_root": null
+  },
+  "prior119_comparison": {
+    "all_authored_physical_requirements_search_and_parameters_equal": true,
+    "only_authored_change": "flow_search_box_m3_s",
+    "old_box": {
+      "sink-a": {
+        "lower": "99/100000",
+        "upper": "101/100000"
+      },
+      "sink-b": {
+        "lower": "99/100000",
+        "upper": "101/100000"
+      },
+      "sink-c": {
+        "lower": "99/100000",
+        "upper": "101/100000"
+      }
+    },
+    "new_box": {
+      "sink-a": {
+        "lower": "98/100000",
+        "upper": "102/100000"
+      },
+      "sink-b": {
+        "lower": "98/100000",
+        "upper": "102/100000"
+      },
+      "sink-c": {
+        "lower": "98/100000",
+        "upper": "102/100000"
+      }
+    },
+    "source_changed_files": [
+      "oma/routing/network_checker.py"
+    ],
+    "prior_failure_retained": "3a0b4376378449f1b52402ffb412f546",
+    "prior_nominal_oracle_still_applicable": true
+  },
+  "native_geometry_rerun": false,
+  "proof_producers_disabled": true,
+  "elapsed_seconds": 1.125,
+  "scope": "Read-only actual generated catalogue/job-handler, native geometry and managed verification, independent existing local/global/service certificate replay, accepted revision and fresh exported bytes. The proposal handler itself ran directly in the retained test process, not a separate API worker."
+}

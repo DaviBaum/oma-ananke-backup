@@ -1,0 +1,11 @@
+--- base145/tests/test_shared_tree_job.py
++++ combined/tests/test_shared_tree_job.py
+@@ -79,7 +79,7 @@
+     if fault=='unknown_requirements':query['requirements']['network_alternatives']=[]
+     if fault=='wrong_source':query['requirements']['source_id']='missing'
+     if fault=='nonrepresentable':query['search']['tee_instances'][0]['trunk_takeout_m']='1/3'
+-    if fault=='pressure_identity':query['requirements']['coupled_tree']={'not':'implemented'}
++    if fault=='pressure_identity':query['requirements']['passive_tree']={'not':'implemented'}
+     request={'operation':'propose_network','mission':query,'budget_seconds':30}
+     run=store.create_run(project['id'],request)
+     job.propose_shared_tree_run(store,run,WorkerControl(store,run['id']))

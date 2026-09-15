@@ -2,6 +2,8 @@
 
 The workbench's shared-network mission checks one physical component tree against an imported building. A trunk or tee used by two demands is authored, displayed and charged once. Each demand retains its own fixed sink, section, flow and pressure requirement.
 
+The backend also generates bounded two/three-sink alternatives from individual tee sites; see [generated shared-tree API](shared-tree-generation.md). Its nominal proof does not replace the physical checks below.
+
 The present family supports one source, at least two sinks, equal circular sections, straight segments, circular elbows and orthogonal three-port tees. Every connection and oriented demand path is explicit. The schema rejects duplicated components, disconnected branches, cycles, unused ports, inconsistent flow directions, changes to fixed terminals or sections, and undersized fitting takeouts. Each complete alternative is materialized in a copy of the original IFC. An independently checked finite co-design selection compares the actual feasible alternatives; no unrestricted continuous or topology optimum follows.
 
 An initial network mission requires a baseline with no previous engineered mission. An explicit revision may replace one existing tree while preserving all its fixed requirements, as described below. Operations that would silently discard an existing route or network are blocked. Mixed-network edits, reducers, arbitrary fittings, multiple supplies, loops, drainage collection and original equipment-port attachment are still open capabilities.

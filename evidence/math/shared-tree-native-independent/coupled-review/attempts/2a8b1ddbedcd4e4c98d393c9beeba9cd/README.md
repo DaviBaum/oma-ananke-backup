@@ -1,0 +1,7 @@
+The independently reconstructed nominal source-to-leaf losses match all three predeclared total-pressure intervals. Nominal heads are sink-a178.2201929009 Pa, sink-b179.4630240397 Pa and sink-c175.6969225663 Pa from source200 Pa and three1 L/s target flows. Independent Machin rational pi bounds were used; no application arithmetic or solver was imported.
+
+The examined A/C catalogue reference has11 nominal components:7 straight segments,2 quarter-circle elbows and2 tees. Its13 loss terms are9 pipe/elbow terms and4 outlet-specific tee terms. Both elbow excess terms and both curved Darcy terms occur exactly once. Tee outlet coefficients use full inlet flow (3 L/s at A,2 L/s at C); tee skeleton receives no separate Darcy charge. All nominal ports are at z=3m, so endpoint elevation changes vanish; total pressure has no extra kinetic correction.
+
+Six deliberately wrong nominal variants leave the declared head intervals: outlet-flow tee scaling, omitted curved friction, doubled elbow excess, added tee skeleton friction, outer-diameter bore substitution, and a static-pressure kinetic substitution. Seven additional integration attack cases are declared but were not executed here.
+
+This is a nominal algebra and identity audit only. It does not establish native physical feasibility, native metric uncertainty containment, actual pressure operating/service proof, or acceptance. Managed generation was not started, and no original fixture or application file was changed.

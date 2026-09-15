@@ -1,0 +1,1 @@
+Continuation stopped before native work: incorrectly compared create_project normalized root with imported original baseline root. Correct binding is the existing generation run base_root. No request, generated packet, or candidate changed.

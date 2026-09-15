@@ -1,0 +1,306 @@
+{
+  "added_parts": [
+    {
+      "component_id": "tee-b",
+      "ifc_guid": "3_sxCUj_TLSuduCYd034_2",
+      "kind": "tee",
+      "ports": {
+        "a": "1rcPxfgYbVSB9FsuSMiHiT",
+        "b": "2HKk_6tJzRre$RAkRCGcwH",
+        "branch": "1KPDVAQ4fSKxj34R6rZnma"
+      },
+      "step_id": 66
+    },
+    {
+      "component_id": "connector-37e55b99f579cdbe17b5deeb-p0",
+      "ifc_guid": "0Qk_FHiRjSh8ujyy3bYWJf",
+      "kind": "segment",
+      "ports": {
+        "a": "0gN9_iAEHO1ekgOuQnMVMM",
+        "b": "2JQaQxPobSyBacNv2HrFGf"
+      },
+      "step_id": 114
+    },
+    {
+      "component_id": "connector-b7cb8e05d9468bb9a21f3b36-p0",
+      "ifc_guid": "3Bx0GJkajMVABuJIzPQ8DW",
+      "kind": "segment",
+      "ports": {
+        "a": "0qtBsjdQ1QdxPbuyIxRtRH",
+        "b": "3jfAZQZqDQIeMm4_QyO9a3"
+      },
+      "step_id": 145
+    },
+    {
+      "component_id": "connector-e8524dba6c6536696b0087e1-p0",
+      "ifc_guid": "02ON6QyzTSyPgl7cmrxrYD",
+      "kind": "segment",
+      "ports": {
+        "a": "2hlxmb10vKKgni7_cUnGKv",
+        "b": "0Tv96mZjvRjA7E_9SPr$Nc"
+      },
+      "step_id": 176
+    }
+  ],
+  "demand_path_lengths_m": {
+    "demand-a": 5.0,
+    "demand-b": 6.0
+  },
+  "explicit_internal_connections": 3,
+  "export_path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\shared-tree-native\\validation\\f9c75d13b1334319a6d4822e3acc05da\\native-stores\\test_generated_tree_avoids_act0\\store\\candidates\\9e737d3ffa744b199b9c588144f27bfc\\network-000\\network.ifc",
+  "export_sha256": "2c6d48b9e5ec1200d7421c047a9fa6e7b60cb55328c5061e5b30153c010fa735",
+  "fitting_count": 1,
+  "ifc_schema": "IFC4",
+  "network_id": "generated-817514b83880d98cf670b024",
+  "network_spec": {
+    "components": [
+      {
+        "diameter_m": 0.125,
+        "geometry": {
+          "branch_takeout_m": 0.25,
+          "frame_m": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              3.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "trunk_takeout_m": 0.25
+        },
+        "id": "tee-b",
+        "insulation_m": 0.03125,
+        "kind": "tee",
+        "ports": {
+          "a": "SINK",
+          "b": "SOURCE",
+          "branch": "SOURCE"
+        },
+        "system_type": "PRESSURE_PIPE"
+      },
+      {
+        "diameter_m": 0.125,
+        "geometry": {
+          "end_m": [
+            1.0,
+            3.0,
+            3.0
+          ],
+          "start_m": [
+            1.0,
+            0.25,
+            3.0
+          ]
+        },
+        "id": "connector-37e55b99f579cdbe17b5deeb-p0",
+        "insulation_m": 0.03125,
+        "kind": "segment",
+        "ports": {
+          "a": "SINK",
+          "b": "SOURCE"
+        },
+        "system_type": "PRESSURE_PIPE"
+      },
+      {
+        "diameter_m": 0.125,
+        "geometry": {
+          "end_m": [
+            0.75,
+            0.0,
+            3.0
+          ],
+          "start_m": [
+            -2.0,
+            0.0,
+            3.0
+          ]
+        },
+        "id": "connector-b7cb8e05d9468bb9a21f3b36-p0",
+        "insulation_m": 0.03125,
+        "kind": "segment",
+        "ports": {
+          "a": "SINK",
+          "b": "SOURCE"
+        },
+        "system_type": "PRESSURE_PIPE"
+      },
+      {
+        "diameter_m": 0.125,
+        "geometry": {
+          "end_m": [
+            3.0,
+            0.0,
+            3.0
+          ],
+          "start_m": [
+            1.25,
+            0.0,
+            3.0
+          ]
+        },
+        "id": "connector-e8524dba6c6536696b0087e1-p0",
+        "insulation_m": 0.03125,
+        "kind": "segment",
+        "ports": {
+          "a": "SINK",
+          "b": "SOURCE"
+        },
+        "system_type": "PRESSURE_PIPE"
+      }
+    ],
+    "connections": [
+      {
+        "sink": {
+          "component": "connector-37e55b99f579cdbe17b5deeb-p0",
+          "port": "a"
+        },
+        "source": {
+          "component": "tee-b",
+          "port": "branch"
+        }
+      },
+      {
+        "sink": {
+          "component": "tee-b",
+          "port": "a"
+        },
+        "source": {
+          "component": "connector-b7cb8e05d9468bb9a21f3b36-p0",
+          "port": "b"
+        }
+      },
+      {
+        "sink": {
+          "component": "connector-e8524dba6c6536696b0087e1-p0",
+          "port": "a"
+        },
+        "source": {
+          "component": "tee-b",
+          "port": "b"
+        }
+      }
+    ],
+    "demand_paths": [
+      {
+        "demand_id": "demand-a",
+        "sink_id": "sink-a",
+        "steps": [
+          {
+            "component": "connector-b7cb8e05d9468bb9a21f3b36-p0",
+            "entry_port": "a",
+            "exit_port": "b"
+          },
+          {
+            "component": "tee-b",
+            "entry_port": "a",
+            "exit_port": "b"
+          },
+          {
+            "component": "connector-e8524dba6c6536696b0087e1-p0",
+            "entry_port": "a",
+            "exit_port": "b"
+          }
+        ]
+      },
+      {
+        "demand_id": "demand-b",
+        "sink_id": "sink-b",
+        "steps": [
+          {
+            "component": "connector-b7cb8e05d9468bb9a21f3b36-p0",
+            "entry_port": "a",
+            "exit_port": "b"
+          },
+          {
+            "component": "tee-b",
+            "entry_port": "a",
+            "exit_port": "branch"
+          },
+          {
+            "component": "connector-37e55b99f579cdbe17b5deeb-p0",
+            "entry_port": "a",
+            "exit_port": "b"
+          }
+        ]
+      }
+    ],
+    "network_id": "generated-817514b83880d98cf670b024",
+    "schema": "oma-physical-network/1",
+    "sinks": [
+      {
+        "endpoint": {
+          "component": "connector-e8524dba6c6536696b0087e1-p0",
+          "port": "b"
+        },
+        "id": "sink-a"
+      },
+      {
+        "endpoint": {
+          "component": "connector-37e55b99f579cdbe17b5deeb-p0",
+          "port": "b"
+        },
+        "id": "sink-b"
+      }
+    ],
+    "source": {
+      "component": "connector-b7cb8e05d9468bb9a21f3b36-p0",
+      "port": "a"
+    },
+    "source_to_federation_matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "system_type": "PRESSURE_PIPE"
+  },
+  "original_records_changed": [],
+  "original_step_records": 49,
+  "physical_component_count": 4,
+  "physical_port_count": 9,
+  "port_axis_convention": "IFC_FLOW_AXIS_V1",
+  "schema": "oma-network-materialization/1",
+  "source_path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\shared-tree-native\\validation\\f9c75d13b1334319a6d4822e3acc05da\\native-stores\\test_generated_tree_avoids_act0\\store\\imports\\e38c188b57c502032dbf957c9f369a4747e325620a935b8f580fcce3357a3b3d\\original.ifc",
+  "source_sha256": "e38c188b57c502032dbf957c9f369a4747e325620a935b8f580fcce3357a3b3d",
+  "source_system_guid": "3Ic6IvfAvToRCpryKyAVv6",
+  "status": "DRAFT",
+  "unique_length_m": 8.0
+}

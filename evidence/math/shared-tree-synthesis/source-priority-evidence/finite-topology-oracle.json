@@ -1,0 +1,198 @@
+{
+  "scope": "Independent finite slot-incidence and shared-cost oracle only; no geometric embedding or native feasibility assertion",
+  "subsets_checked": 1024,
+  "valid_complete_trees": 2,
+  "arcs": [
+    {
+      "id": "sJ",
+      "from": [
+        "source",
+        "out"
+      ],
+      "to": [
+        "J",
+        "a"
+      ],
+      "nominal_rational_cost": "4"
+    },
+    {
+      "id": "Ja",
+      "from": [
+        "J",
+        "branch"
+      ],
+      "to": [
+        "sink-a",
+        "in"
+      ],
+      "nominal_rational_cost": "1/10"
+    },
+    {
+      "id": "JK",
+      "from": [
+        "J",
+        "b"
+      ],
+      "to": [
+        "K",
+        "a"
+      ],
+      "nominal_rational_cost": "1/10"
+    },
+    {
+      "id": "Kb",
+      "from": [
+        "K",
+        "b"
+      ],
+      "to": [
+        "sink-b",
+        "in"
+      ],
+      "nominal_rational_cost": "1/10"
+    },
+    {
+      "id": "Kc",
+      "from": [
+        "K",
+        "branch"
+      ],
+      "to": [
+        "sink-c",
+        "in"
+      ],
+      "nominal_rational_cost": "1/10"
+    },
+    {
+      "id": "sL",
+      "from": [
+        "source",
+        "out"
+      ],
+      "to": [
+        "L",
+        "a"
+      ],
+      "nominal_rational_cost": "1"
+    },
+    {
+      "id": "Lb",
+      "from": [
+        "L",
+        "b"
+      ],
+      "to": [
+        "sink-b",
+        "in"
+      ],
+      "nominal_rational_cost": "1"
+    },
+    {
+      "id": "LM",
+      "from": [
+        "L",
+        "branch"
+      ],
+      "to": [
+        "M",
+        "a"
+      ],
+      "nominal_rational_cost": "1"
+    },
+    {
+      "id": "Ma",
+      "from": [
+        "M",
+        "b"
+      ],
+      "to": [
+        "sink-a",
+        "in"
+      ],
+      "nominal_rational_cost": "1"
+    },
+    {
+      "id": "Mc",
+      "from": [
+        "M",
+        "branch"
+      ],
+      "to": [
+        "sink-c",
+        "in"
+      ],
+      "nominal_rational_cost": "1"
+    }
+  ],
+  "tee_nominal_costs": {
+    "J": "0",
+    "K": "0",
+    "L": "0",
+    "M": "0"
+  },
+  "solutions": [
+    {
+      "connectors": [
+        "JK",
+        "Ja",
+        "Kb",
+        "Kc",
+        "sJ"
+      ],
+      "tees": [
+        "J",
+        "K"
+      ],
+      "sink_paths": {
+        "sink-a": [
+          "sJ",
+          "Ja"
+        ],
+        "sink-b": [
+          "sJ",
+          "JK",
+          "Kb"
+        ],
+        "sink-c": [
+          "sJ",
+          "JK",
+          "Kc"
+        ]
+      },
+      "unique_cost": "22/5",
+      "incorrect_sum_of_demand_path_costs": "25/2"
+    },
+    {
+      "connectors": [
+        "LM",
+        "Lb",
+        "Ma",
+        "Mc",
+        "sL"
+      ],
+      "tees": [
+        "L",
+        "M"
+      ],
+      "sink_paths": {
+        "sink-a": [
+          "sL",
+          "LM",
+          "Ma"
+        ],
+        "sink-b": [
+          "sL",
+          "Lb"
+        ],
+        "sink-c": [
+          "sL",
+          "LM",
+          "Mc"
+        ]
+      },
+      "unique_cost": "5",
+      "incorrect_sum_of_demand_path_costs": "8"
+    }
+  ],
+  "finding": "Summing per-demand paths reverses the two tree rankings because shared connectors are charged repeatedly."
+}

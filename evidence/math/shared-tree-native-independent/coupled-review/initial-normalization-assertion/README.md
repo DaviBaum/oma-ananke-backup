@@ -1,0 +1,1 @@
+Read-only audit binding initially compared raw decimal gravity spelling 9.80665 against the canonical rational boundary root. The exact value is196133/20000. Corrected audit independently normalizes that rational and requires every other boundary field identical; no input or native result changed.

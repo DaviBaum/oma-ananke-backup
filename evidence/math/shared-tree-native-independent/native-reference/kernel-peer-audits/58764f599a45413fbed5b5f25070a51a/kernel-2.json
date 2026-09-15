@@ -1,0 +1,409 @@
+{
+  "producer": {
+    "status": "CERTIFIED",
+    "proof_complete": true,
+    "certificate": {
+      "schema": "oma.shared-tree-synthesis-certificate/1",
+      "input_root": "b0b457db9daf14baafa83bb13dc24e44b58bf378d227db342bbd2b352fd20449",
+      "problem_root": "80cbbd523abf044a2b2a08d3563fc6b3e1bdb90ee3288f3f2fc6d876b88f1f78",
+      "scope": "EXACT_CAP_SECTION_TOPOLOGY_AND_NOMINAL_RANK_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+      "limitations": [
+        "Geometry, fabrication and loss roots bind identities; their physical truth is external.",
+        "Nominal catalogue cost is not an independently measured native objective or lower bound.",
+        "Every proposed complete tree still requires current native geometry and applicable service checks.",
+        "No physical infeasibility, unrestricted connector/placement completeness or continuous optimum."
+      ],
+      "max_results": 32,
+      "assignment_count": 2,
+      "assignments": [
+        {
+          "tee_ids": [
+            "A"
+          ],
+          "connector_ids": [
+            "A-a",
+            "A-b",
+            "source-A"
+          ],
+          "nominal_cost": [
+            "8",
+            "1/4"
+          ],
+          "assignment_root": "9c2bd63db5722f9e26757576c9ea9e7c837c46f308a39da22e80d1cc0d7c7fc9"
+        },
+        {
+          "tee_ids": [
+            "B"
+          ],
+          "connector_ids": [
+            "B-a",
+            "B-b",
+            "source-B"
+          ],
+          "nominal_cost": [
+            "8",
+            "0"
+          ],
+          "assignment_root": "d0f1356d28e990c7d9ab8e0f71cbab7af960bb54e443914a345886c96e7d0681"
+        }
+      ],
+      "ranked_prefix": [
+        "d0f1356d28e990c7d9ab8e0f71cbab7af960bb54e443914a345886c96e7d0681",
+        "9c2bd63db5722f9e26757576c9ea9e7c837c46f308a39da22e80d1cc0d7c7fc9"
+      ],
+      "certificate_root": "bc6364c3de70375619274389df2980c17d6455c1df673b25e808b020e2ad7031"
+    },
+    "certificate_root": "bc6364c3de70375619274389df2980c17d6455c1df673b25e808b020e2ad7031",
+    "input_root": "b0b457db9daf14baafa83bb13dc24e44b58bf378d227db342bbd2b352fd20449",
+    "problem_root": "80cbbd523abf044a2b2a08d3563fc6b3e1bdb90ee3288f3f2fc6d876b88f1f78",
+    "proposals": [
+      {
+        "tee_ids": [
+          "B"
+        ],
+        "connector_ids": [
+          "B-a",
+          "B-b",
+          "source-B"
+        ],
+        "nominal_cost": [
+          "8",
+          "0"
+        ],
+        "assignment_root": "d0f1356d28e990c7d9ab8e0f71cbab7af960bb54e443914a345886c96e7d0681",
+        "source": {
+          "node": "source",
+          "port": "out"
+        },
+        "sinks": [
+          {
+            "id": "sink-a",
+            "demand_id": "demand-a",
+            "endpoint": {
+              "node": "sink-a",
+              "port": "in"
+            },
+            "connector_path": [
+              "source-B",
+              "B-a"
+            ]
+          },
+          {
+            "id": "sink-b",
+            "demand_id": "demand-b",
+            "endpoint": {
+              "node": "sink-b",
+              "port": "in"
+            },
+            "connector_path": [
+              "source-B",
+              "B-b"
+            ]
+          }
+        ],
+        "connections": [
+          {
+            "connector_id": "B-a",
+            "from": {
+              "node": "B",
+              "port": "branch"
+            },
+            "to": {
+              "node": "sink-a",
+              "port": "in"
+            }
+          },
+          {
+            "connector_id": "B-b",
+            "from": {
+              "node": "B",
+              "port": "b"
+            },
+            "to": {
+              "node": "sink-b",
+              "port": "in"
+            }
+          },
+          {
+            "connector_id": "source-B",
+            "from": {
+              "node": "source",
+              "port": "out"
+            },
+            "to": {
+              "node": "B",
+              "port": "a"
+            }
+          }
+        ]
+      },
+      {
+        "tee_ids": [
+          "A"
+        ],
+        "connector_ids": [
+          "A-a",
+          "A-b",
+          "source-A"
+        ],
+        "nominal_cost": [
+          "8",
+          "1/4"
+        ],
+        "assignment_root": "9c2bd63db5722f9e26757576c9ea9e7c837c46f308a39da22e80d1cc0d7c7fc9",
+        "source": {
+          "node": "source",
+          "port": "out"
+        },
+        "sinks": [
+          {
+            "id": "sink-a",
+            "demand_id": "demand-a",
+            "endpoint": {
+              "node": "sink-a",
+              "port": "in"
+            },
+            "connector_path": [
+              "source-A",
+              "A-a"
+            ]
+          },
+          {
+            "id": "sink-b",
+            "demand_id": "demand-b",
+            "endpoint": {
+              "node": "sink-b",
+              "port": "in"
+            },
+            "connector_path": [
+              "source-A",
+              "A-b"
+            ]
+          }
+        ],
+        "connections": [
+          {
+            "connector_id": "A-a",
+            "from": {
+              "node": "A",
+              "port": "branch"
+            },
+            "to": {
+              "node": "sink-a",
+              "port": "in"
+            }
+          },
+          {
+            "connector_id": "A-b",
+            "from": {
+              "node": "A",
+              "port": "b"
+            },
+            "to": {
+              "node": "sink-b",
+              "port": "in"
+            }
+          },
+          {
+            "connector_id": "source-A",
+            "from": {
+              "node": "source",
+              "port": "out"
+            },
+            "to": {
+              "node": "A",
+              "port": "a"
+            }
+          }
+        ]
+      }
+    ],
+    "scope": "EXACT_CAP_SECTION_TOPOLOGY_AND_NOMINAL_RANK_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+    "counts": {
+      "tee_instances": 2,
+      "connectors": 6,
+      "topology_templates": 4,
+      "complete_assignments": 2,
+      "returned_proposals": 2
+    },
+    "work": 3558
+  },
+  "independent_verifier": {
+    "status": "PASS",
+    "proof_complete": true,
+    "certificate_root": "bc6364c3de70375619274389df2980c17d6455c1df673b25e808b020e2ad7031",
+    "input_root": "b0b457db9daf14baafa83bb13dc24e44b58bf378d227db342bbd2b352fd20449",
+    "problem_root": "80cbbd523abf044a2b2a08d3563fc6b3e1bdb90ee3288f3f2fc6d876b88f1f78",
+    "scope": "EXACT_CAP_SECTION_TOPOLOGY_AND_NOMINAL_RANK_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+    "proposals": [
+      {
+        "tee_ids": [
+          "B"
+        ],
+        "connector_ids": [
+          "B-a",
+          "B-b",
+          "source-B"
+        ],
+        "nominal_cost": [
+          "8",
+          "0"
+        ],
+        "assignment_root": "d0f1356d28e990c7d9ab8e0f71cbab7af960bb54e443914a345886c96e7d0681",
+        "source": {
+          "node": "source",
+          "port": "out"
+        },
+        "sinks": [
+          {
+            "id": "sink-a",
+            "demand_id": "demand-a",
+            "endpoint": {
+              "node": "sink-a",
+              "port": "in"
+            },
+            "connector_path": [
+              "source-B",
+              "B-a"
+            ]
+          },
+          {
+            "id": "sink-b",
+            "demand_id": "demand-b",
+            "endpoint": {
+              "node": "sink-b",
+              "port": "in"
+            },
+            "connector_path": [
+              "source-B",
+              "B-b"
+            ]
+          }
+        ],
+        "connections": [
+          {
+            "connector_id": "B-a",
+            "from": {
+              "node": "B",
+              "port": "branch"
+            },
+            "to": {
+              "node": "sink-a",
+              "port": "in"
+            }
+          },
+          {
+            "connector_id": "B-b",
+            "from": {
+              "node": "B",
+              "port": "b"
+            },
+            "to": {
+              "node": "sink-b",
+              "port": "in"
+            }
+          },
+          {
+            "connector_id": "source-B",
+            "from": {
+              "node": "source",
+              "port": "out"
+            },
+            "to": {
+              "node": "B",
+              "port": "a"
+            }
+          }
+        ]
+      },
+      {
+        "tee_ids": [
+          "A"
+        ],
+        "connector_ids": [
+          "A-a",
+          "A-b",
+          "source-A"
+        ],
+        "nominal_cost": [
+          "8",
+          "1/4"
+        ],
+        "assignment_root": "9c2bd63db5722f9e26757576c9ea9e7c837c46f308a39da22e80d1cc0d7c7fc9",
+        "source": {
+          "node": "source",
+          "port": "out"
+        },
+        "sinks": [
+          {
+            "id": "sink-a",
+            "demand_id": "demand-a",
+            "endpoint": {
+              "node": "sink-a",
+              "port": "in"
+            },
+            "connector_path": [
+              "source-A",
+              "A-a"
+            ]
+          },
+          {
+            "id": "sink-b",
+            "demand_id": "demand-b",
+            "endpoint": {
+              "node": "sink-b",
+              "port": "in"
+            },
+            "connector_path": [
+              "source-A",
+              "A-b"
+            ]
+          }
+        ],
+        "connections": [
+          {
+            "connector_id": "A-a",
+            "from": {
+              "node": "A",
+              "port": "branch"
+            },
+            "to": {
+              "node": "sink-a",
+              "port": "in"
+            }
+          },
+          {
+            "connector_id": "A-b",
+            "from": {
+              "node": "A",
+              "port": "b"
+            },
+            "to": {
+              "node": "sink-b",
+              "port": "in"
+            }
+          },
+          {
+            "connector_id": "source-A",
+            "from": {
+              "node": "source",
+              "port": "out"
+            },
+            "to": {
+              "node": "A",
+              "port": "a"
+            }
+          }
+        ]
+      }
+    ],
+    "counts": {
+      "tee_instances": 2,
+      "connectors": 6,
+      "complete_assignments": 2,
+      "returned_proposals": 2,
+      "checked_partial_incidence_states": 7
+    },
+    "work": 3699
+  }
+}

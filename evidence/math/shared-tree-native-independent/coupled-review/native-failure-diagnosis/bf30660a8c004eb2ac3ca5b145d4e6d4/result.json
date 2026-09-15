@@ -1,0 +1,573 @@
+{
+  "status": "DIAGNOSIS_COMPLETE",
+  "validation_status": "FAIL",
+  "checker_version": "oma-independent-checker/2:119dea956da0ae82f65ab2ed66869ff1a85c3defd4c3115921555b046ceab00b",
+  "source_files": {
+    "oma/api.py": "486325b3869a3d5cbf824f06c9b12851df817af1529df1a1b0443a60ca007aa0",
+    "oma/assurance.py": "206a886df33d757f81b53f29ca880b6f6b0a878ad3a453cc650570f39ccddc44",
+    "oma/backup.py": "27098588dc6750b78539ee8f77482f90251a12fd7ea9c2c1a7c25ececcdebc0a",
+    "oma/broadphase.py": "44184c64145f9a5de9c053e5ac32824a74d3193a9f63eb4c3583327b63f4057b",
+    "oma/build_identity.py": "5bcb854d5e9c147105bc8c23e641919c4474b919d5e74a325904594e1a677575",
+    "oma/cli.py": "ca6abdeaa13aba005a2df6763a73f79a841d9bfb25a50b25824d123ce1770bec",
+    "oma/dependencies.py": "301d3f65d8dac3387a54b96600c0b224041cc2ed0796783d5773e75fb258d79d",
+    "oma/exact.py": "0ab709cb0ed2c03f0bf74ec59b4b74180f5dee093da4c48d4c678ba94f7b8d20",
+    "oma/exporting.py": "c2ae165b372ab3d4f21e6df9d81259055eb0df9d7f3c8b513adda3b83242d496",
+    "oma/export_checks.py": "15eb7c9ea603893dca055333db4f59d15a2400f41ced8b0d68652bb1e9c327f5",
+    "oma/geometry_edits.py": "10cc839e54639634a43765ef33f46ba1423cff66503717823013a903fd9a8fd2",
+    "oma/geometry_stream.py": "77b28f787db28c6606480bbd2ab1a9bcf85086cbd790350227b0d3637f919ac0",
+    "oma/hardware.py": "5a13eeaa736d232cbd4bda55a637635a9d9265873608c742e4c97e837c196bfa",
+    "oma/models.py": "7d4eab69bc0b677473f3e8f09b396812dd5018c1bcc7debbef174ea9f32704bc",
+    "oma/normalization.py": "353155747aeeb7635143e209ceeb624f19566820a57a096f901483021bc582d3",
+    "oma/opening_inspection.py": "42f1d0d52175083082027ee118f2eb875d3703879f928f9507f396e34261acda",
+    "oma/physical_inputs.py": "71c8ba08520459b308598e8f117353a9f4f089b4caa120677d1f07d58479ce65",
+    "oma/project_assurance.py": "424609e59fd65a5a8692211e7bdaf8b61d0fbf2e994ac5910b5a7da3051d87c5",
+    "oma/project_dependencies.py": "110c62696393ba9e3e1be6260484f9239c029224a7e1292d43defa970d9a9d08",
+    "oma/service.py": "c46b901c86e6a67842bd3fd677b7aaec7ad71b2ce95eec3f09bb848af81d11a7",
+    "oma/store.py": "b35a40f43f0636048ad2b0516091a9b6160905e542d2344b67308e9c388baa71",
+    "oma/uploads.py": "ba347fae0027ed395e8f0d24d2fc83d5bce296a6131bcad3a9236ebb48a40a18",
+    "oma/validation_advisories.py": "870cd5aa77c1d16445369eeb1478127c78181f327bd392db3e0b9eb8256aeb88",
+    "oma/verification.py": "f2cbc490864a9f07455352571c2583876716962fd92c99eeea6c27528dfd333d",
+    "oma/windows_job.py": "00d79333a32cf93f0ec5d74f07fece45f4f59ba4a2fdef40a04fd4ca49a35366",
+    "oma/worker.py": "25640f727808181f2093de6431b61e0f38822c1b761b530c590a47f12a93e2ec",
+    "oma/__init__.py": "db2cbf50224a1c63781b1fd06b69300ecb35aab94ae38b46b09dcfcd7672a834",
+    "oma/ifc/audit.py": "b57f4602239b7b0bc4721d520afda4175605e7c017024e551e8750998db80e9b",
+    "oma/ifc/cad.py": "699ab61c5ea04e7c78ca72434fce2fd687e6c9b62be2233d9573d1ba61392e15",
+    "oma/ifc/cad_cache.py": "987f9355fd7634e9386e385139e69c2b951ea34ce4c7c3b47fba33d86c157e36",
+    "oma/ifc/check.py": "a435ba2ae8e8c22482bdc537aea0746065a389d0c4b3cebe3d487510d589271a",
+    "oma/ifc/enclosure.py": "9fa5eda8395d9549637531cebff3fb0c4afc948be5e3f9ba66e13bf076b68ff9",
+    "oma/ifc/export.py": "a1b64997467f5dc1506693297deb81e042ef071f9903f52dbe9fc4a1e227e68e",
+    "oma/ifc/federation.py": "2a76a16d0736f0e057397732837df20c0167d054a24e1f20a1334655b3762b03",
+    "oma/ifc/inventory.py": "31e78e4a1fe01813b22a09676077664c8240946ca84297a3fbe42fa3747fd0a5",
+    "oma/ifc/negative_witness.py": "61f875da1d3bf4fd4b6b93919e501510d1731841b64eb0f9f203fe30c540b6bc",
+    "oma/ifc/network.py": "3e8dfc60793b2b0c4f99bee655761f7ab7c3382de52cb96ac7407223d9bce44b",
+    "oma/ifc/network_contract.py": "8192ff679e5f9f262029fc8d31176ad66be14a4b340a4899e5698f1706586d8a",
+    "oma/ifc/network_semantics.py": "0e47957b4c3e6a5b84ba63eeb74cfbba5e4e5238e52afa337c13495ccdab22d3",
+    "oma/ifc/openings.py": "07d9e859ff536be4982aff5a4b26178867ba3df1ce75414c84d5c3fdf4352c4d",
+    "oma/ifc/orthogonal_fillet.py": "01ba350ed1615a402caba635139a9914d7f45627bad8d41184de7f5ca0e32a76",
+    "oma/ifc/ports.py": "edc0a1b8d4083f97927ea2b6ccca7274c6c794db78fb5d3b2ebc7a4daefdddd1",
+    "oma/ifc/protected_semantics.py": "f4d5ba70cc72193043e085e19e0c77c118dc08e6b6b8d227847b7474f5ee2652",
+    "oma/ifc/recheck.py": "047410e8df09892517c5145dbfe4d0d35cfc9532ab37cef18fd8990bbd62d38a",
+    "oma/ifc/__init__.py": "7cfa118afe76246c389d7a145bd30048f9d9d7b34dfa310a8b1e7a598e1d0e64",
+    "oma/optimization/bisimulation.py": "f0935c7f03f98839d75a060523bb80923a1272c0991ad6352403e775e16efabe",
+    "oma/optimization/certificates.py": "cd835c40662763e2e0f40e42e93ae39174a06148cd50b9d13cbff2af5966ff7f",
+    "oma/optimization/checker.py": "2d59dde32f07463991826fdce0dba9d078326eb688f8b960782ff18fff2296b0",
+    "oma/optimization/codesign.py": "6507241902734ed8da44517f10060247a7300a908a3ccb7802804b94512e6603",
+    "oma/optimization/coupled_tree_pressure.py": "ce5a264c7815b860b9ce0b8001e1b35cc3ecf7f4acacafc4925f7a6e37060c90",
+    "oma/optimization/coupled_tree_univalence.py": "f433e0c007912aa9501306b2bfc95f0809a135e46b5ad898421410eabe10e4df",
+    "oma/optimization/fabrication.py": "458f1ccbef70da1479a38f7cc823a4eaf5814b9f8c26f070df8f6c2ea2664180",
+    "oma/optimization/fabrication_alternatives.py": "16857629268db3b601340d84c6dd9c563452ecdf9daf0e5bd212d387be2d7910",
+    "oma/optimization/fabrication_frontier.py": "569aebbfba5a4d26aa7a42ab552edf8a4520ee13037fdd0e53c05ff057b09b36",
+    "oma/optimization/fabrication_pricing.py": "b0077cc2e01d847c6123d2bc83e504758c0bb7712b6415167411f34c94a5c268",
+    "oma/optimization/fabrication_search.py": "78d3d69f4555754e37e1766a9f25acf233462020a55c4e5cbdc2ac127be25bfb",
+    "oma/optimization/fdqa.py": "71622f541c9be26298311cc690fd48c3b236f22f2fe07d7316103f5e67c30dfa",
+    "oma/optimization/finite.py": "d0765e4061da5f110c07b4cde4fa7aefe16c6a978727e1c9de9be33c6ab0c816",
+    "oma/optimization/master.py": "103b3c9df73b8fd7256d3a16acf8de012545ac0cf3d83182c564cc884422cd48",
+    "oma/optimization/passive_pressure.py": "10fd4677d37952d4e0b41a1bf90aeba9bbdef5506e7e5c33ec8773dd456ec51e",
+    "oma/optimization/passive_residual.py": "553b92f34237b74018f3de7825c183149c3e5d0c07a271a26ca180592b6ee0fc",
+    "oma/optimization/physical.py": "20d8ebade5683ee0c642ec57c5b297e1c06801d6d3eaf08106287564e2ed83fd",
+    "oma/optimization/physical_menu.py": "30bc94a2b819fb0bd26fb4e6efb7976e228428d80c294ccb6a0e30c8186ef87e",
+    "oma/optimization/policy.py": "aebc0230cbcb30e1d274d8bba9c8518908c02e8cd9eb546ea93f6335e81592d4",
+    "oma/optimization/ports.py": "e50f4aa98a71f219b01b98aebe27113250879939c39353ae24288b4dd3fed811",
+    "oma/optimization/rectilinear_opening.py": "19a9c7a3193cc91d03e5729c18c513f1de0fcd99711878cb81003848ee3893d8",
+    "oma/optimization/route_cells.py": "4d6c16d20ae0db7f56a93ac66c83915c2d3a01c32e3f695ab986175546153a6c",
+    "oma/optimization/separator.py": "fc4ed186e4f2af871b8cb645655b91ba2476af4b1a488aa53b34884c646772bd",
+    "oma/optimization/shared_tree_synthesis.py": "0034130d057fbb012d031fb31a69ce89aac857ce6aeaf4d8a73f55c2d1a23d43",
+    "oma/optimization/symbolic.py": "26beaba9959042b608aa202c7425268daae6e1c1ed9aa074a9b6afa8c55c7aa0",
+    "oma/optimization/two_sink_pressure.py": "f8d739cc404db60c40aed2e386dd76c6820fc37a306c5fac354eb95b52486fd6",
+    "oma/optimization/__init__.py": "5eab05980fb0387642c47754f1e67569b9e72f767c3a561c5998bbc7186f9613",
+    "oma/routing/certified_cells.py": "9ff98bd461812fae725953d0e6c6e35ca47ca32b6465f21376f5727b0bc5862e",
+    "oma/routing/certified_fabrication.py": "3a1616d69a2d00c83587128e362b895dda57cf88e84082742624f9f5562d6be7",
+    "oma/routing/checker.py": "91118ac91e230ed4fce2f60eab8a0f89a5d9ba4b919287e6d466799ee9e5b23a",
+    "oma/routing/check_execution.py": "50f3d20752525833b262ae13f81c0acd85c33cdcc982e64c10336d2b0ef795d8",
+    "oma/routing/coupled_tree_pressure.py": "bc1ce17fe8c0bc97287cb8d2ef3212de8fdddbfbf03456898635ff77eb6aecae",
+    "oma/routing/coupled_tree_scenario.py": "a37d44faa7f834806f44f9d353d355f9e30b434a38903b43207d767df82e8d86",
+    "oma/routing/engine.py": "310b3ae8a932b941a07f662918f1c75f4dd28106e6ca53ce7de8672fa220fb60",
+    "oma/routing/fabrication_evidence.py": "3d7cba0f9bd5eba4d6a913e867e56cfb78a460afcd2026f9050e386349a1441e",
+    "oma/routing/fabrication_grid.py": "b721d9e5db69a3a89b4be8d6d6d3facec001991ab881dda17ba05f1214c9d63e",
+    "oma/routing/fabrication_residual.py": "152dfbd0cf8299cc35c2418a292365556da2c88d0e5c9cd21db703f735051515",
+    "oma/routing/fitting_budget.py": "245cffcd3b2faaff67d4607ca45f2ea7568077c64f94a8b1ca5b81c77d3acb52",
+    "oma/routing/generator.py": "ae56ab9e1c481ad16dc6ad63a037a188ce83a369ee0b5bb8e6017cb9e251d50c",
+    "oma/routing/joint.py": "474323771515c05a60831f0cca8bcba3d35f2a5512bdb2f7282244999bff2d5e",
+    "oma/routing/joint_checker.py": "0a00bb6c5a8a57dc7104483d40339ea33eaf4c65057e45d305c8b3a6f667073f",
+    "oma/routing/joint_export.py": "8804c35b00b7d0036f3070a5890668882e23be147e7a2ce55878e1849359d3d1",
+    "oma/routing/joint_materialize.py": "b7a7c91b32006aba2ca7c200bd9158846e2164cc5ba3065a248b205864573bda",
+    "oma/routing/joint_negative_probe.py": "482d6dda38bbca4c2bd479dbfefa8cb44f8933bf75570ac78f86dc30ded9dbd3",
+    "oma/routing/joint_scenario.py": "606867b488d3b553e74979b811a09103ffb7b70fba18341cca5b9f8ce6fe26c6",
+    "oma/routing/native_zone.py": "a86b2ab363b63ad481f789534510103e017a7fba9df820d7360a1bbf259276b1",
+    "oma/routing/negative_probe.py": "a8818630c1d83f89cc121992e6e212c73f776c642b868c6ed12967aea5d2e6e8",
+    "oma/routing/network_checker.py": "d247efb5afffa7e2983f17e363aac6b108f213ccd57c7b7446f6b3a19e5ea3ae",
+    "oma/routing/network_engine.py": "b754bb8cb5b4b3169f861d3097d9ee5d2e7517716295682f39e03420e312c479",
+    "oma/routing/network_export.py": "5536aff3de6ef102263facc6ba6338a621e81bd98197c3648ab7c39f1d1346ca",
+    "oma/routing/network_flow.py": "54a04e1489c5c1b9e0c28508686c672fa467a3be2a1e8e71786daf326898051b",
+    "oma/routing/network_pressure.py": "ff4ee882d3b9a498f8b3a1e52e8cee8ce1678ea589eb6d6aea850c8d6eddcade",
+    "oma/routing/network_scenario.py": "45c3e12b0db2b0372b1e97b1879a113a8de5da66c2715c844049f1f9c5e2f2d6",
+    "oma/routing/objectives.py": "51260381ca3a175282ff3a763511cf8c01823dc7768992dc089052288bc638cc",
+    "oma/routing/opening.py": "9f657152cbee1eee60b5280c356bccafe8371c57f388b0ce7d3eb120d69a75f2",
+    "oma/routing/opening_scenario.py": "b7f53358841f5c6106698be3fe4f9e9a21515dc76bfcdc2bc3e184e7ecb00972",
+    "oma/routing/passive_tree_pressure.py": "cfe2edb0bd3d5557508fb01ac0e5d9dd7ca38aa07350d799c83a9e5654a7168b",
+    "oma/routing/passive_tree_scenario.py": "345d5dd367d2785ac2b6bc9d230ccdc3841e42ffaf86b2226a75e53fd1bc73e5",
+    "oma/routing/physical_archive.py": "48b2c43ecccb2d2c3998f464d0e6b06be3f040d9b8246379fb299fb1d56128f7",
+    "oma/routing/proposals.py": "d365a3e1d41a2f4d6c6b23d811b5a1b042ba2c783f607d4a01709f0ef0e22819",
+    "oma/routing/scenario.py": "61ca27b80b565cb69c44d87b4adebd77428ef8b84397ddcca2f3045b9e7f5ab5",
+    "oma/routing/selection.py": "c71c30261402d1ba665c5db1be85c2bc71e4214272b0c990a1c7367bbb1b2598",
+    "oma/routing/shared_tree_catalogue_check.py": "c800938e03909fcbe8a014e21b46c9640ddf5736fe3684f345bdd57a5bfb7fd4",
+    "oma/routing/shared_tree_job.py": "cf6e662ef53ff9d5b9baa951e676bbe901d9cfcf11b8b2b4c549f94a4862435a",
+    "oma/routing/shared_tree_proposals.py": "8acee79562fd2a4da02ac507897ed7c70e124ed75c3fee20e07c9f0fa74e9dee",
+    "oma/routing/shared_tree_requirements.py": "265ba1d998b3e6749cd8145efcdfa54367d7daee7037d7111abaad708757d59b",
+    "oma/routing/__init__.py": "76e529ff324d3d5b9804383053979ef4397b622ff4701b303dd4390e1fecb621"
+  },
+  "validation_receipt_sha256": "883c36f4e3fbebfc1de3101b2bc08fce89947e56af0daf8bf0540ef1b8874b53",
+  "cases": [
+    {
+      "candidate_id": "99c0e87f55984c84ba8ae61431d30b00",
+      "status": "REJECTED",
+      "report_root": "eaf03ad1c15b6c7a1b29423ea6b3555ef1a8985afe5ac457aa6493f40a428d5e",
+      "checks": {
+        "fixed-network-requirements": "PASS",
+        "unique-network-demand-coverage": "PASS",
+        "protected-network-baseline": "PASS",
+        "network-source-and-datum-binding": "PASS",
+        "network-artifact-integrity": "PASS",
+        "network-native-semantics": "PASS",
+        "network-objective": "PASS",
+        "network-native-counterexample": "FAIL",
+        "network-all-source-clearance": "NOT_RUN",
+        "network-all-component-pairs": "NOT_RUN",
+        "network-permitted-zone": "NOT_RUN",
+        "network-demand-conditioned-service": "NOT_RUN",
+        "network-pressure-operating-point": "NOT_RUN"
+      },
+      "nonpassing": {
+        "network-native-counterexample": {
+          "id": "network-native-counterexample",
+          "participants": [
+            "a9414875ba5f71d0b8218708e60d1ace63cca1f53bd61e1cf0c2844b612f9e96:383",
+            "96d47641041ae72d0f15e2da44c1af42af8b497a6923533a3dc7cef30c220404:38"
+          ],
+          "reason": "One freshly reopened original obstacle has positive native common volume with a new component",
+          "scope": "One complete shared physical network and every imported source obstacle",
+          "status": "FAIL",
+          "witness": {
+            "artifact": "9c0b5a6bac436a0550b4c979b7962c3cb9b5b64ac8cf071f3f76ef67d40003bc",
+            "other_point": [
+              1.09375,
+              1.625,
+              3.0
+            ],
+            "point": [
+              1.09375,
+              1.625,
+              3.0
+            ]
+          }
+        },
+        "network-all-source-clearance": {
+          "id": "network-all-source-clearance",
+          "participants": [],
+          "reason": "Full source denominator not checked after a conclusive forbidden-volume counterexample",
+          "scope": "One complete shared physical network and every imported source obstacle",
+          "status": "NOT_RUN",
+          "witness": {
+            "artifact": "9c0b5a6bac436a0550b4c979b7962c3cb9b5b64ac8cf071f3f76ef67d40003bc"
+          }
+        },
+        "network-all-component-pairs": {
+          "id": "network-all-component-pairs",
+          "participants": [],
+          "reason": "Stopped after a conclusive physical counterexample; no remaining feasibility claim",
+          "scope": "One complete shared physical network and every imported source obstacle",
+          "status": "NOT_RUN",
+          "witness": {}
+        },
+        "network-permitted-zone": {
+          "id": "network-permitted-zone",
+          "participants": [],
+          "reason": "Stopped after a conclusive physical counterexample; no remaining feasibility claim",
+          "scope": "One complete shared physical network and every imported source obstacle",
+          "status": "NOT_RUN",
+          "witness": {}
+        },
+        "network-demand-conditioned-service": {
+          "id": "network-demand-conditioned-service",
+          "participants": [],
+          "reason": "Stopped after a conclusive physical counterexample; no remaining feasibility claim",
+          "scope": "One complete shared physical network and every imported source obstacle",
+          "status": "NOT_RUN",
+          "witness": {}
+        },
+        "network-pressure-operating-point": {
+          "id": "network-pressure-operating-point",
+          "participants": [],
+          "reason": "Operating relation was not evaluated after the physical counterexample",
+          "scope": "One complete shared physical network and every imported source obstacle",
+          "status": "NOT_RUN",
+          "witness": {}
+        }
+      }
+    },
+    {
+      "candidate_id": "4da629335f274aaa952503accba8b714",
+      "status": "UNKNOWN",
+      "report_root": "ddf588a76a6b7ad5ad4c122b96af741569977cf5aec7163604b7b27f765ea1c1",
+      "checks": {
+        "fixed-network-requirements": "PASS",
+        "unique-network-demand-coverage": "PASS",
+        "protected-network-baseline": "PASS",
+        "network-source-and-datum-binding": "PASS",
+        "network-artifact-integrity": "PASS",
+        "network-native-semantics": "PASS",
+        "network-objective": "PASS",
+        "network-all-source-clearance": "PASS",
+        "network-all-component-pairs": "PASS",
+        "network-permitted-zone": "PASS",
+        "network-pressure-operating-point": "UNKNOWN",
+        "network-demand-conditioned-service": "UNKNOWN"
+      },
+      "nonpassing": {
+        "network-pressure-operating-point": {
+          "id": "network-pressure-operating-point",
+          "participants": [],
+          "reason": "Independent local pressure enclosure and global nonnegative uniqueness, complete native path terms and outlet-specific inlet-flow losses checked",
+          "scope": "One complete shared physical network and every imported source obstacle",
+          "status": "UNKNOWN",
+          "witness": {
+            "artifact": "56e708bf7410905135576ec4a9691f6e7eaaa2ef0534e6043c21d3672e64a2ac",
+            "model_root": null,
+            "native_metrics_artifact": "732ad7aa7161825dd545870341c0064ec9c4b1ddb622da0c152b84e5b542f8a0"
+          }
+        },
+        "network-demand-conditioned-service": {
+          "id": "network-demand-conditioned-service",
+          "participants": [],
+          "reason": "Every physical port's forward flow and speed, all exact minimum deliveries and complete continuity identities checked under the explicit coupled tree model",
+          "scope": "One complete shared physical network and every imported source obstacle",
+          "status": "UNKNOWN",
+          "witness": {
+            "calculation": {
+              "limitations": {
+                "actual_inner_bore_or_wall_measured": false,
+                "flow_search_box_alone_excludes_other_equilibria": false,
+                "native_geometry_acceptance_authority": false,
+                "native_geometry_and_metric_authenticity_proved": false,
+                "negative_flow_regimes_or_other_loss_laws_covered": false,
+                "old_common_tee_or_fixed_flow_mission_reinterpreted": false,
+                "physical_loss_or_boundary_applicability_proved": false,
+                "static_pressure_reported": false,
+                "tight_correlated_solution_hull": false
+              },
+              "local_producer": {
+                "limitations": {
+                  "failed_certificate_is_infeasibility": false,
+                  "global_uniqueness_outside_supplied_box": false,
+                  "minimum_delivery_velocity_or_native_acceptance_authority": false,
+                  "native_tree_or_complete_physical_component_coverage_proved": false,
+                  "one_common_solution_for_all_parameter_choices": false,
+                  "other_equilibria_excluded": false,
+                  "physical_model_truth_or_loss_coefficient_applicability_proved": false,
+                  "tight_solution_hull": false
+                },
+                "proof_complete": false,
+                "reason": "STRICT_BOX_INCLUSION_NOT_ESTABLISHED",
+                "scope": "ONE_ROOT_INSIDE_SUPPLIED_POSITIVE_BOX_FOR_EACH_SAME_PARAMETER_TUPLE",
+                "status": "UNKNOWN",
+                "work": 4276
+              },
+              "proof_complete": false,
+              "reason": "Local positive-box existence was not established",
+              "scope": "SUPPLIED_NATIVE_METRICS_UNEQUAL_INLET_FLOW_TEE_TREE_UNIQUE_NONNEGATIVE_EQUILIBRIUM",
+              "status": "UNKNOWN",
+              "verdict": "UNKNOWN"
+            },
+            "metric_tolerance_m": "1/1000000"
+          }
+        }
+      }
+    }
+  ],
+  "original_input_files": {
+    "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\shared-tree-coupled\\validation\\3a0b4376378449f1b52402ffb412f546\\native-stores\\test_generated_two_tee_pressur0\\store\\candidates\\f1b1edf20e73471d8bef13b84f74b343\\network-000\\network.ifc": "a9414875ba5f71d0b8218708e60d1ace63cca1f53bd61e1cf0c2844b612f9e96",
+    "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\shared-tree-coupled\\validation\\3a0b4376378449f1b52402ffb412f546\\native-stores\\test_generated_two_tee_pressur0\\store\\imports\\96d47641041ae72d0f15e2da44c1af42af8b497a6923533a3dc7cef30c220404\\original.ifc": "96d47641041ae72d0f15e2da44c1af42af8b497a6923533a3dc7cef30c220404",
+    "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\shared-tree-coupled\\validation\\3a0b4376378449f1b52402ffb412f546\\native-stores\\test_generated_two_tee_pressur0\\store\\candidates\\f1b1edf20e73471d8bef13b84f74b343\\network-001\\network.ifc": "ddc2887f70a7b2787947484ee8820a736e25683276f1357bec7707cdae404a5f"
+  },
+  "original_store_rows_and_files_unchanged": true,
+  "native_or_pressure_producer_rerun": false,
+  "requirements_or_flow_box_changed": false,
+  "clear_candidate_model_root": "414c43242a0feaa2a90d72fb98795cd62a86577343d2edb81b250f13d5469b7f",
+  "clear_candidate_diagnostic": {
+    "method": "Independent Fraction F/J/midpoint inverse/B/K reconstruction on original unchanged model and box",
+    "model_root": "414c43242a0feaa2a90d72fb98795cd62a86577343d2edb81b250f13d5469b7f",
+    "flow_box_root": "7a51f242349bf6b0a5df1fbcf5d4bc1d717ad6a1a1c001b10095a47d8bc54c0f",
+    "jacobian": [
+      [
+        [
+          "975701355055482180609/54975581388800000",
+          "995559501014099499529/54975581388800000"
+        ],
+        [
+          "520374144685364770977/54975581388800000",
+          "66370622093280883719/6871947673600000"
+        ],
+        [
+          "874518192234930748131/54975581388800000",
+          "22307889955426463739/1374389534720000"
+        ]
+      ],
+      [
+        [
+          "1571966181993050019/137438953472000",
+          "320790805461904589913/27487790694400000"
+        ],
+        [
+          "244437270403191948027/13743895347200000",
+          "997646806193210583863/54975581388800000"
+        ],
+        [
+          "1571966181993050019/137438953472000",
+          "320790805461904589913/27487790694400000"
+        ]
+      ],
+      [
+        [
+          "982930520346785984853/54975581388800000",
+          "125366529049327582429/6871947673600000"
+        ],
+        [
+          "520374144685364770977/54975581388800000",
+          "66370622093280883719/6871947673600000"
+        ],
+        [
+          "28548316659748216221/1374389534720000",
+          "233034523472681896527/10995116277760000"
+        ]
+      ]
+    ],
+    "midpoint_jacobian": [
+      [
+        "123203712534378157/6871947673600",
+        "84107067755655807/8796093022208",
+        "17668324996421322329/1099511627776000"
+      ],
+      [
+        "6351835845283344813/549755813888000",
+        "3950788900010348931/219902325555200",
+        "6351835845283344813/549755813888000"
+      ],
+      [
+        "19858613217531036079/1099511627776000",
+        "84107067755655807/8796093022208",
+        "4614207189206127259/219902325555200"
+      ]
+    ],
+    "inverse": [
+      [
+        "23616438963710422593827545955770463115249178378240000/90052263024873355543787122328250352624592367615627287643",
+        "-462615624202398532955947066886856464574867046400000/10005807002763706171531902480916705847176929735069698627",
+        "-15793424562390686179321445256102236273118080401408000/90052263024873355543787122328250352624592367615627287643"
+      ],
+      [
+        "-2991372652281245721354288672139539433615622825574400/90052263024873355543787122328250352624592367615627287643",
+        "2539176298963070069848692834244031898144142996275200/30017421008291118514595707442750117541530789205209095881",
+        "-1903600778756073367988828688460579452795983652454400/90052263024873355543787122328250352624592367615627287643"
+      ],
+      [
+        "-18964916884781417729949109953589631392277130641408000/90052263024873355543787122328250352624592367615627287643",
+        "12503124736653042147930666215389167934347673600000/10005807002763706171531902480916705847176929735069698627",
+        "18753484067212895458330954978769173222078954864640000/90052263024873355543787122328250352624592367615627287643"
+      ]
+    ],
+    "B": [
+      [
+        [
+          "-190574443274978734196947545580644644551014868162668588818/2251306575621833888594678058206258815614809190390682191075",
+          "381141641751505182168391458171230667994836674481278664821/4502613151243667777189356116412517631229618380781364382150"
+        ],
+        [
+          "-25275277297651049166190938251136323813120368023934393121/500290350138185308576595124045835292358846486753484931350",
+          "25275269973953714043414031676165581737487367452929999429/500290350138185308576595124045835292358846486753484931350"
+        ],
+        [
+          "-12742366994429598893690298858272663308836195882916557856/150087105041455592572978537213750587707653946026045479405",
+          "4247455678729654735596392021943313978758218992026241761/50029035013818530857659512404583529235884648675348493135"
+        ]
+      ],
+      [
+        [
+          "-24625278108454649465427968476767602665640568610177026198/1250725875345463271441487810114588230897116216883712328375",
+          "221627754336720256184098828777695874041288832215422633096/11256532878109169442973390291031294078074045951953410955375"
+        ],
+        [
+          "-154174885305763341412284127921134182698524847038524466167/7504355252072779628648926860687529385382697301302273970250",
+          "25694004979725124295364871680250012041392141803495310173/1250725875345463271441487810114588230897116216883712328375"
+        ],
+        [
+          "-24625262217840220306177963048992075497874178894194747187/1250725875345463271441487810114588230897116216883712328375",
+          "14775173895465851351156585262723190124301647230639022933/750435525207277962864892686068752938538269730130227397025"
+        ]
+      ],
+      [
+        [
+          "-342492523397654699235472862583504792701355149686530257833/4502613151243667777189356116412517631229618380781364382150",
+          "342493128088966123712680466173613143896283030696353457487/4502613151243667777189356116412517631229618380781364382150"
+        ],
+        [
+          "-10148654779806054092196184899423673129573535186684712348/250145175069092654288297562022917646179423243376742465675",
+          "10148654878774935085363034721936784227677806327909084427/250145175069092654288297562022917646179423243376742465675"
+        ],
+        [
+          "-39148870436620808274682204432534864946452594068679943003/500290350138185308576595124045835292358846486753484931350",
+          "11744439812224179314442206486821688235026763896787649601/150087105041455592572978537213750587707653946026045479405"
+        ]
+      ]
+    ],
+    "norm_upper": "198179478662897167418657763479282892301670551564621694843/900522630248733555437871223282503526245923676156272876430",
+    "norm_upper_float": 0.22007162508304534,
+    "contraction": true,
+    "coordinates": {
+      "sink-a": {
+        "original_box": [
+          "99/100000",
+          "101/100000"
+        ],
+        "center": "1/1000",
+        "center_residual_pa": [
+          "-23326370099841417/1099511627776000000",
+          "23325647532644741/1099511627776000000"
+        ],
+        "center_image": [
+          "11140708024668813183835091580684764754178542726755755346/11256532878109169442973390291031294078074045951953410955375",
+          "727831057395715725448444897592478212041921718435457959/720418104198986844350296978626002820996738940925018301144"
+        ],
+        "interval_remainder": [
+          "-198179478662897167418657763479282892301670551564621694843/90052263024873355543787122328250352624592367615627287643000000",
+          "198179478662897167418657763479282892301670551564621694843/90052263024873355543787122328250352624592367615627287643000000"
+        ],
+        "K": [
+          "88927484718687608303262074881998835141126671262481421073157/90052263024873355543787122328250352624592367615627287643000000",
+          "30392353884375787616158089987513019799180628451998955523281/30017421008291118514595707442750117541530789205209095881000000"
+        ],
+        "margins": [
+          "-224255675937013685087176222969013957219772676989593693413/90052263024873355543787122328250352624592367615627287643000000",
+          "-74758666001757916416425470335401082234531354737768683471/30017421008291118514595707442750117541530789205209095881000000"
+        ],
+        "strict_inclusion": false,
+        "float_diagnostic": {
+          "center_residual_pa": [
+            -0.02121521001740022,
+            0.021214552846363168
+          ],
+          "center_image_m3_s": [
+            0.0009897104326265858,
+            0.0010102897930431261
+          ],
+          "K_m3_s": [
+            0.0009875097163757553,
+            0.0010124905092939566
+          ],
+          "margins_m3_s": [
+            -2.490283624244645e-06,
+            -2.490509293956626e-06
+          ],
+          "row_norm": 0.22007162508304534
+        }
+      },
+      "sink-b": {
+        "original_box": [
+          "99/100000",
+          "101/100000"
+        ],
+        "center": "1/1000",
+        "center_residual_pa": [
+          "-5799646733904527/274877906944000000",
+          "4639948983948403/219902325555200000"
+        ],
+        "center_image": [
+          "74822801660219234438520644908780715091983231335608351901/75043552520727796286489268606875293853826973013022739702500",
+          "451585770596388427471716721571183380971044012893051326809/450261315124366777718935611641251763122961838078136438215000"
+        ],
+        "interval_remainder": [
+          "-1349035381454706077139747599200489999907201622465589352683/2251306575621833888594678058206258815614809190390682191075000000",
+          "1349035381454706077139747599200489999907201622465589352683/2251306575621833888594678058206258815614809190390682191075000000"
+        ],
+        "K": [
+          "2243335014425122327078479599664220962759589738445784967677317/2251306575621833888594678058206258815614809190390682191075000000",
+          "2259277888363396843435723355455117394855127266087722223397683/2251306575621833888594678058206258815614809190390682191075000000"
+        ],
+        "margins": [
+          "14541504559506777369748322040024735300928639959009598513067/2251306575621833888594678058206258815614809190390682191075000000",
+          "14541753014655384044901483333204008915830016206866789588067/2251306575621833888594678058206258815614809190390682191075000000"
+        ],
+        "strict_inclusion": true,
+        "float_diagnostic": {
+          "center_residual_pa": [
+            -0.02109899190656334,
+            0.02110004508698877
+          ],
+          "center_image_m3_s": [
+            0.0009970583634024044,
+            0.0010029415262371715
+          ],
+          "K_m3_s": [
+            0.0009964591400909004,
+            0.0010035407495486753
+          ],
+          "margins_m3_s": [
+            6.459140090900443e-06,
+            6.459250451324606e-06
+          ],
+          "row_norm": 0.0599223311503938
+        }
+      },
+      "sink-c": {
+        "original_box": [
+          "99/100000",
+          "101/100000"
+        ],
+        "center": "1/1000",
+        "center_residual_pa": [
+          "-2351289889357167/109951162777600000",
+          "23512927929219919/1099511627776000000"
+        ],
+        "center_image": [
+          "89246502912090724186387927256184140577730149138378066247/90052263024873355543787122328250352624592367615627287643000",
+          "22714502515177953257923418621258243512694568974969055349/22513065756218338885946780582062588156148091903906821910750"
+        ],
+        "interval_remainder": [
+          "-4387543749182511148606774655306445222562784456084182321/2251306575621833888594678058206258815614809190390682191075000",
+          "4387543749182511148606774655306445222562784456084182321/2251306575621833888594678058206258815614809190390682191075000"
+        ],
+        "K": [
+          "371129171508847598918515234458216178203448490667227912309/375217762603638981432446343034376469269134865065113698512500",
+          "2275837795266977836940948636781130796492019681952989717221/2251306575621833888594678058206258815614809190390682191075000"
+        ],
+        "margins": [
+          "-2691307750039941596853161166532210983960205977877193747/3001742100829111851459570744275011754153078920520909588100000",
+          "-8072615555702437841295191971237570884249598633602816941/9005226302487335554378712232825035262459236761562728764300000"
+        ],
+        "strict_inclusion": false,
+        "float_diagnostic": {
+          "center_residual_pa": [
+            -0.02138485696702598,
+            0.021384883374794224
+          ],
+          "center_image_m3_s": [
+            0.0009910523057864735,
+            0.0010089475489984733
+          ],
+          "K_m3_s": [
+            0.0009891034180620325,
+            0.0010108964367229142
+          ],
+          "margins_m3_s": [
+            -8.965819379674805e-07,
+            -8.964367229141925e-07
+          ],
+          "row_norm": 0.19488877244409178
+        }
+      }
+    },
+    "strict_inclusion": false,
+    "pressure_producer_or_solver_called": false
+  },
+  "elapsed_seconds": 0.34399999999732245,
+  "conclusion": "One candidate has a conclusive native obstacle overlap; the other passes full native geometry but its unchanged local interval fixed-point box fails strict inclusion while contraction passes. This is unresolved local certification, not physical infeasibility or demonstrated delivery failure."
+}

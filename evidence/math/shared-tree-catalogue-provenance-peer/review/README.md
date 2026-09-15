@@ -1,0 +1,3 @@
+PASS: the independent frozen688cb03a checker accepted both exact historical2b6e and actual Office4b generation packets. Seventeen modified geometry/section/cost/site/terminal/inventory/root/callback packets failed closed with producer functions disabled. Exact reported work budget passes, one less is UNKNOWN; cancellation preserves the exception identity. Empty supplied macro inventory can pass its expressly limited provenance check; neither complete template enumeration nor native feasibility follows.
+
+The checker is a standalone snapshot loaded explicitly over frozen4b dependencies. Exact dependency hashes and executed audit source are retained. All original generation/native artifacts were read only; no native or producer rerun.

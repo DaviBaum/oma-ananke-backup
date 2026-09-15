@@ -1,0 +1,214 @@
+{
+  "schema": "oma-physical-network/1",
+  "network_id": "reference-B",
+  "system_type": "PRESSURE_PIPE",
+  "components": [
+    {
+      "id": "B",
+      "kind": "tee",
+      "system_type": "PRESSURE_PIPE",
+      "diameter_m": 0.125,
+      "insulation_m": 0.03125,
+      "geometry": {
+        "frame_m": [
+          [
+            1,
+            0,
+            0,
+            1.0
+          ],
+          [
+            0,
+            1,
+            0,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1,
+            3.0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "trunk_takeout_m": 0.25,
+        "branch_takeout_m": 0.25
+      },
+      "ports": {
+        "a": "SINK",
+        "b": "SOURCE",
+        "branch": "SOURCE"
+      }
+    },
+    {
+      "id": "B-a-0",
+      "kind": "segment",
+      "system_type": "PRESSURE_PIPE",
+      "diameter_m": 0.125,
+      "insulation_m": 0.03125,
+      "geometry": {
+        "start_m": [
+          1.0,
+          0.25,
+          3.0
+        ],
+        "end_m": [
+          1.0,
+          3.0,
+          3.0
+        ]
+      },
+      "ports": {
+        "a": "SINK",
+        "b": "SOURCE"
+      }
+    },
+    {
+      "id": "B-b-0",
+      "kind": "segment",
+      "system_type": "PRESSURE_PIPE",
+      "diameter_m": 0.125,
+      "insulation_m": 0.03125,
+      "geometry": {
+        "start_m": [
+          1.25,
+          0.0,
+          3.0
+        ],
+        "end_m": [
+          3.0,
+          0.0,
+          3.0
+        ]
+      },
+      "ports": {
+        "a": "SINK",
+        "b": "SOURCE"
+      }
+    },
+    {
+      "id": "source-B-0",
+      "kind": "segment",
+      "system_type": "PRESSURE_PIPE",
+      "diameter_m": 0.125,
+      "insulation_m": 0.03125,
+      "geometry": {
+        "start_m": [
+          -2.0,
+          0.0,
+          3.0
+        ],
+        "end_m": [
+          0.75,
+          0.0,
+          3.0
+        ]
+      },
+      "ports": {
+        "a": "SINK",
+        "b": "SOURCE"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "source": {
+        "component": "B",
+        "port": "branch"
+      },
+      "sink": {
+        "component": "B-a-0",
+        "port": "a"
+      }
+    },
+    {
+      "source": {
+        "component": "B",
+        "port": "b"
+      },
+      "sink": {
+        "component": "B-b-0",
+        "port": "a"
+      }
+    },
+    {
+      "source": {
+        "component": "source-B-0",
+        "port": "b"
+      },
+      "sink": {
+        "component": "B",
+        "port": "a"
+      }
+    }
+  ],
+  "source": {
+    "component": "source-B-0",
+    "port": "a"
+  },
+  "sinks": [
+    {
+      "id": "sink-a",
+      "endpoint": {
+        "component": "B-a-0",
+        "port": "b"
+      }
+    },
+    {
+      "id": "sink-b",
+      "endpoint": {
+        "component": "B-b-0",
+        "port": "b"
+      }
+    }
+  ],
+  "demand_paths": [
+    {
+      "demand_id": "demand-a",
+      "sink_id": "sink-a",
+      "steps": [
+        {
+          "component": "source-B-0",
+          "entry_port": "a",
+          "exit_port": "b"
+        },
+        {
+          "component": "B",
+          "entry_port": "a",
+          "exit_port": "branch"
+        },
+        {
+          "component": "B-a-0",
+          "entry_port": "a",
+          "exit_port": "b"
+        }
+      ]
+    },
+    {
+      "demand_id": "demand-b",
+      "sink_id": "sink-b",
+      "steps": [
+        {
+          "component": "source-B-0",
+          "entry_port": "a",
+          "exit_port": "b"
+        },
+        {
+          "component": "B",
+          "entry_port": "a",
+          "exit_port": "b"
+        },
+        {
+          "component": "B-b-0",
+          "entry_port": "a",
+          "exit_port": "b"
+        }
+      ]
+    }
+  ]
+}

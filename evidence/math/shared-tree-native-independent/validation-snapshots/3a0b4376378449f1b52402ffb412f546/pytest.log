@@ -1,0 +1,19 @@
+....................F.................................                   [100%]
+================================== FAILURES ===================================
+_ test_generated_two_tee_pressure_model_operates_accepts_and_freshly_exports __
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/.oma/development/shared-tree-coupled/validation/3a0b4376378449f1b52402ffb412f546/native-stores/test_generated_two_tee_pressur0')
+
+    def test_generated_two_tee_pressure_model_operates_accepts_and_freshly_exports(tmp_path):
+        store,project,run,original=generated_run(tmp_path)
+>       assert store.run(run['id'])['status']=='COMPLETED',store.run(run['id'])
+E       AssertionError: {'id': 'f1b1edf20e73471d8bef13b84f74b343', 'project_id': '66cdbc7ba7354cf2b9371d5abb5d3785', 'base_revision': 1, 'base_root': '91e95a9f1f1c5b02d0f56c7a5624a8aada9aaf52bbf248d59248c04455f29330', ...}
+E       assert 'NO_INCUMBENT_FOUND' == 'COMPLETED'
+E         
+E         - COMPLETED
+E         + NO_INCUMBENT_FOUND
+
+tests\test_shared_tree_coupled_workflow.py:42: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_shared_tree_coupled_workflow.py::test_generated_two_tee_pressure_model_operates_accepts_and_freshly_exports
+1 failed, 53 passed in 18.36s

@@ -16,7 +16,7 @@ The offline analytic import/check/accept/export workflow passes. Separate probes
 
 The custom IfcOpenShell extension has SHA-256 `398b43db6952d07645d4fbea2c23c73cb83696369871e22880b85a8c35bfd875`. It was built from pinned commit `1c5b825d8ef05ab9d14a15dac12e9eae2f5a37c2`, OCCT 7.8.1, Boost 1.86, Eigen 3.3.9 and SWIG 4.2.1, with CGAL disabled and the retained minimal SWIG coordinate-template patch. The original environment and previous portable packages remain separate.
 
-The same validated application source is running at `http://127.0.0.1:8768` against the existing local Store. The recorded upgrade confirms unchanged source IFCs, project/revision/run/candidate inventories and served interface assets. It uses a frozen source copy with recovery disabled. The new generated-tree work remains a later development checkpoint and is not included in this package.
+The latest generated-tree backend is now running at `http://127.0.0.1:8768` against the existing local Store; see [current checkpoint](PROGRESS.md). This sealed package remains the earlier5e8 source. The recorded upgrade confirms unchanged source IFCs, project/revision/run/candidate inventories and served interface assets. It uses a frozen source copy with recovery disabled. The validated33a generated-tree checkpoint is not included in this older sealed package.
 
 This is a validated local package checkpoint. Full directive coverage, all original mathematics, full production completion and public redistribution clearance remain incomplete.
 

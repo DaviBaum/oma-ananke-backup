@@ -1,0 +1,50 @@
+--- b965/shared_tree_proposals.py
++++ reviewed/shared_tree_proposals.py
+@@ -226,14 +226,15 @@
+         originals={'requirements':requirements,'search':search,'context':context}
+         snapshot=_snapshot(originals,budget,max_bytes);input_root=digest(snapshot)
+         r,s,c=(snapshot[k] for k in ('requirements','search','context'))
++        if not isinstance(r,dict) or not isinstance(s,dict):raise ValueError('Requirement and search objects required')
+         if 'network_alternatives' in r: raise ValueError('Search input supplies requirements, not complete network alternatives')
+-        if any(r.get(k) is not None for k in ('pressure_driven','passive_tree','coupled_tree')):
++        if any(r.get(k) is not None for k in ('pressure_driven','passive_tree')):
+             raise _Unavailable('GENERATED_PRESSURE_TEE_IDENTITY_PROFILE_NOT_IMPLEMENTED')
+         authored_requirements_root=digest(r)
+         r=normalize_shared_tree_requirements(r)
+         if set(s)!={'schema','source_direction','sink_directions','tee_instances','stub_lengths_m','detour_planes'} or s['schema']!=SCHEMA:
+             raise ValueError('Complete exact search schema required')
+-        if any(r.get(k) is not None for k in ('pressure_driven','passive_tree','coupled_tree')):
++        if any(r.get(k) is not None for k in ('pressure_driven','passive_tree')):
+             raise _Unavailable('GENERATED_PRESSURE_TEE_IDENTITY_PROFILE_NOT_IMPLEMENTED')
+         if not isinstance(c,dict) or not c: raise ValueError('Current source/application context required')
+         sinks=r['sinks']
+@@ -242,6 +243,16 @@
+         if len(set(sink_ids))!=len(sink_ids) or set(s['sink_directions'])!=set(sink_ids):raise ValueError('Complete unique sink directions required')
+         tees=s['tee_instances']
+         if not isinstance(tees,list) or not 1<=len(tees)<=8:raise _Unavailable('TEE_INSTANCE_BUDGET')
++        boundary=r.get('coupled_tree')
++        if boundary is not None:
++            if r.get('physics') is not None or r['system_type']!='PRESSURE_PIPE' or r['target_modality']!='ENGINEERING_SERVICE':
++                raise ValueError('Generated coupled trees require only the explicit pressure-pipe service boundary')
++            if any(x.get('required_flow_m3_s') is not None or x.get('available_static_pressure_pa') is not None for x in sinks):
++                raise ValueError('Generated coupled sink deliveries and pressure belong only in the exact boundary')
++            if set(boundary['sink_total_pressures_pa'])!=set(sink_ids):
++                raise ValueError('Exact boundary must cover every generated sink')
++            if len(tees)!=len(sinks)-1 or {t['id'] for t in tees}!=set(boundary['tee_outlet_loss_coefficients']):
++                raise ValueError('Generated coupled trees require one fixed tee site per declared loss identity and exactly sinks minus one tees')
+         source={'id':'source','cap':_cap(_point(r['start_m']),_axis(s['source_direction']))}
+         terminal_rows=[{'id':x['id'],'demand_id':_identifier(x['demand_id']),
+             'cap':_cap(_point(x['end_m']),_axis(s['sink_directions'][x['id']]))} for x in sinks]
+@@ -268,8 +279,11 @@
+             caps={'a':_cap(_add(center,x,-trunk),x),'b':_cap(_add(center,x,trunk),x),'branch':_cap(_add(center,y,branch),y)}
+             for cap in caps.values():_fp(_point(cap['position_m']))
+             nodes[identity]=caps;tee_components[identity]=component
++            loss_root=digest(r.get('physics')) if boundary is None else digest({
++                'model':'oma.coupled-tree-boundary/1','tee_id':identity,
++                'outlet_coefficients':boundary['tee_outlet_loss_coefficients'][identity],'boundary_root':digest(boundary)})
+             tee_rows.append({**tee,'center_m':_qp(center),'trunk_takeout_m':str(trunk),'branch_takeout_m':str(branch),
+-                'catalogue_root':digest(component),'loss_contract_root':digest(r.get('physics')),
++                'catalogue_root':digest(component),'loss_contract_root':loss_root,
+                 'nominal_cost':[str(weights[0]*(2*trunk+branch)+weights[1]),'0']})
+         outgoing=[('source','out')]+[(t['id'],port) for t in tee_rows for port in ('b','branch')]
+         incoming=[(t['id'],'a') for t in tee_rows]+[(t['id'],'in') for t in terminal_rows]

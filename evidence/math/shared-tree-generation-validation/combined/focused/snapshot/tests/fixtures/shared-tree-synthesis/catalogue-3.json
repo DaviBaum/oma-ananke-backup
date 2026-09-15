@@ -1,0 +1,725 @@
+{
+  "schema": "oma.shared-tree-catalogue/1",
+  "context_root": "acb1fa20454c9b9f60a1876bf1164b5c3d68f0bc4f0e97fe5ed5e125fae9935d",
+  "source_roots": {
+    "original_ifc": "88d228ba0c64aaa60f0a665217241f531d6eab3849753f7c330bfa0a7af39d3c"
+  },
+  "cost_policy_root": "5fd5b57dee552c0749e882364a78fa1ea09f37ec9ed645a55d353d9d59689d52",
+  "section": {
+    "diameter_m": "1/8",
+    "insulation_m": "1/32"
+  },
+  "source": {
+    "id": "source",
+    "cap": {
+      "position_m": [
+        "-2",
+        "0",
+        "3"
+      ],
+      "flow_direction": [
+        1,
+        0,
+        0
+      ]
+    }
+  },
+  "sinks": [
+    {
+      "id": "sink-a",
+      "demand_id": "demand-a",
+      "cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "id": "sink-b",
+      "demand_id": "demand-b",
+      "cap": {
+        "position_m": [
+          "4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "sink-c",
+      "demand_id": "demand-c",
+      "cap": {
+        "position_m": [
+          "2",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      }
+    }
+  ],
+  "tee_instances": [
+    {
+      "id": "A",
+      "catalogue_root": "0ce3ece4876b09e6629e72a400937f544a171fc2dc2c1a51be24e1e2370aafe7",
+      "loss_contract_root": "93815b945be7c00c7338f28411c0b300b5ac847efe04a578a39d5a45472a20e1",
+      "center_m": [
+        "0",
+        "0",
+        "3"
+      ],
+      "axis_x": [
+        1,
+        0,
+        0
+      ],
+      "axis_y": [
+        0,
+        1,
+        0
+      ],
+      "trunk_takeout_m": "1/4",
+      "branch_takeout_m": "1/4",
+      "nominal_cost": [
+        "3/4",
+        "0"
+      ]
+    },
+    {
+      "id": "B",
+      "catalogue_root": "165a28e8b2b57c9e10828b313bcd709039f551b93eb398e707c94bf8acde54fa",
+      "loss_contract_root": "93815b945be7c00c7338f28411c0b300b5ac847efe04a578a39d5a45472a20e1",
+      "center_m": [
+        "1",
+        "0",
+        "3"
+      ],
+      "axis_x": [
+        1,
+        0,
+        0
+      ],
+      "axis_y": [
+        0,
+        1,
+        0
+      ],
+      "trunk_takeout_m": "1/4",
+      "branch_takeout_m": "1/4",
+      "nominal_cost": [
+        "3/4",
+        "0"
+      ]
+    },
+    {
+      "id": "C",
+      "catalogue_root": "b7b4e61598c21a7e8c89a5fe13c6babc464276cc7235b528c4aeb8c17cdc0798",
+      "loss_contract_root": "93815b945be7c00c7338f28411c0b300b5ac847efe04a578a39d5a45472a20e1",
+      "center_m": [
+        "2",
+        "0",
+        "3"
+      ],
+      "axis_x": [
+        1,
+        0,
+        0
+      ],
+      "axis_y": [
+        0,
+        1,
+        0
+      ],
+      "trunk_takeout_m": "1/4",
+      "branch_takeout_m": "1/4",
+      "nominal_cost": [
+        "3/4",
+        "0"
+      ]
+    },
+    {
+      "id": "D",
+      "catalogue_root": "b12c3268d9952a8710d4a31696319ebc1e94c6fa4050c53042f6116d57d52b7a",
+      "loss_contract_root": "93815b945be7c00c7338f28411c0b300b5ac847efe04a578a39d5a45472a20e1",
+      "center_m": [
+        "3",
+        "0",
+        "3"
+      ],
+      "axis_x": [
+        1,
+        0,
+        0
+      ],
+      "axis_y": [
+        0,
+        1,
+        0
+      ],
+      "trunk_takeout_m": "1/4",
+      "branch_takeout_m": "1/4",
+      "nominal_cost": [
+        "3/4",
+        "0"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "source-A",
+      "from": {
+        "node": "source",
+        "port": "out"
+      },
+      "to": {
+        "node": "A",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "-2",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "-1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/8",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "1b29909c33122a07a4b5ff44e669f683b5ed4405089f22b3698f9bcc8e240342",
+      "fabrication_root": "11e97f5acfe731fee8ba83ef12403ebbef95d5d0a792db9a344860359b1bff40",
+      "nominal_cost": [
+        "7/4",
+        "0"
+      ]
+    },
+    {
+      "id": "source-B",
+      "from": {
+        "node": "source",
+        "port": "out"
+      },
+      "to": {
+        "node": "B",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "-2",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "3/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/8",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "702d14d5eef0e7f179f3521d0f8957367f6d54a4f74fd5b4e13d44bf0835daeb",
+      "fabrication_root": "84fe3e9c258ca28485075e39755d03c79abfd6989344938e17e0bf14047c225a",
+      "nominal_cost": [
+        "11/4",
+        "0"
+      ]
+    },
+    {
+      "id": "A-a",
+      "from": {
+        "node": "A",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-a",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "0",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/8",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "92e97dba6406df4886527da971023b5dcc41c303bd8c6ddca7cd3713c0343063",
+      "fabrication_root": "f37a5e1576804a09a583cc248f799f286381de65a5ab6cdb1305b98877da4291",
+      "nominal_cost": [
+        "11/4",
+        "1/4"
+      ]
+    },
+    {
+      "id": "B-a",
+      "from": {
+        "node": "B",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-a",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "1",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/8",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "0aaedf4bbfd4551d9fe6e89a03bd5289dc34d87d3efd64f4946b50a6ae32a302",
+      "fabrication_root": "71d5bcdc19122a3ba7fc1382a7584b779b6f23238ac763d97f5dbfeabf6223be",
+      "nominal_cost": [
+        "11/4",
+        "0"
+      ]
+    },
+    {
+      "id": "A-C",
+      "from": {
+        "node": "A",
+        "port": "b"
+      },
+      "to": {
+        "node": "C",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "1/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "7/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/8",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "10832f3f0ffb4e66498d333d5e3af87653304b938c69d376f6a66809a67a1331",
+      "fabrication_root": "f28e0af9fe862807f215cdb72fbe03b7082a0aa63b9047c5684634c034e270ab",
+      "nominal_cost": [
+        "3/2",
+        "0"
+      ]
+    },
+    {
+      "id": "B-C",
+      "from": {
+        "node": "B",
+        "port": "b"
+      },
+      "to": {
+        "node": "C",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "5/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "7/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/8",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "8a1ca784712a694ebb8fe18a3d0b0e31c3e7c88a1bcc86b41ca62e3ab1eb6138",
+      "fabrication_root": "8c97db5d4eefce583f6efee47ccbdde58cb31db3dc0224759b310f5958f12133",
+      "nominal_cost": [
+        "1/2",
+        "0"
+      ]
+    },
+    {
+      "id": "C-b",
+      "from": {
+        "node": "C",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-b",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "9/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/8",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "8b37438f14651c78ca8bcbacb77ffb567cf4fb25bc527e46b9bfd283d5d46404",
+      "fabrication_root": "2f877ae3382517bbf16e3d6cca59448f3130833f19225212a01d414151f628fd",
+      "nominal_cost": [
+        "7/4",
+        "0"
+      ]
+    },
+    {
+      "id": "C-c",
+      "from": {
+        "node": "C",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-c",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "2",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "2",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/8",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "e5b6d4e591369f44257aa6f6df3623edcca002785a15dbabd8ac0f3b13d7c3a7",
+      "fabrication_root": "09d2afaa9506701f37259f3e0debd596cc5453e1b6d7ef59970c43eebef23326",
+      "nominal_cost": [
+        "11/4",
+        "0"
+      ]
+    },
+    {
+      "id": "source-C",
+      "from": {
+        "node": "source",
+        "port": "out"
+      },
+      "to": {
+        "node": "C",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "-2",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "7/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/8",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "47e7284496b9e2eaedddc69302d301cbe0ff3ed1b92af726ad37a372e76dc6c7",
+      "fabrication_root": "01248a322b873b7a4529004cb1cf3aa7cc331de842a0fff28bdb5e0347c781e6",
+      "nominal_cost": [
+        "15/4",
+        "0"
+      ]
+    },
+    {
+      "id": "C-D",
+      "from": {
+        "node": "C",
+        "port": "b"
+      },
+      "to": {
+        "node": "D",
+        "port": "a"
+      },
+      "start_cap": {
+        "position_m": [
+          "9/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "11/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/8",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "9ccef2be3654918ead90b5d72cd432e5414ff7c5fe8f964516f839d0f370ab67",
+      "fabrication_root": "640d79a733c7d1a49f2f293eff9c4e2bd3c8feb0e290a3d12ec9424443ca57d8",
+      "nominal_cost": [
+        "1/2",
+        "0"
+      ]
+    },
+    {
+      "id": "D-b",
+      "from": {
+        "node": "D",
+        "port": "b"
+      },
+      "to": {
+        "node": "sink-b",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "13/4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "4",
+          "0",
+          "3"
+        ],
+        "flow_direction": [
+          1,
+          0,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/8",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "f6b74d1d6495d39eaa84966e28360695d17f3201b17e2fe307c581fee622a31b",
+      "fabrication_root": "c75d95686ce01e550a6ef4634ed88556c19ffe5cee39d9c090aeb367d15637e6",
+      "nominal_cost": [
+        "3/4",
+        "0"
+      ]
+    },
+    {
+      "id": "D-a",
+      "from": {
+        "node": "D",
+        "port": "branch"
+      },
+      "to": {
+        "node": "sink-a",
+        "port": "in"
+      },
+      "start_cap": {
+        "position_m": [
+          "3",
+          "1/4",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "end_cap": {
+        "position_m": [
+          "1",
+          "3",
+          "3"
+        ],
+        "flow_direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "section": {
+        "diameter_m": "1/8",
+        "insulation_m": "1/32"
+      },
+      "geometry_root": "676175981270ee32ff229609453598aa51dbdc4564fa15a6c436bfb5062bd468",
+      "fabrication_root": "536ca65284355192a3897f9913eb49f652673ec1910818596c737cf2fe31130f",
+      "nominal_cost": [
+        "17/4",
+        "5/8"
+      ]
+    }
+  ]
+}

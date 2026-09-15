@@ -1,0 +1,26 @@
+.F..............                                                         [100%]
+================================== FAILURES ===================================
+_______ test_two_site_catalogue_has_real_direct_and_two_bend_connectors _______
+
+    def test_two_site_catalogue_has_real_direct_and_two_bend_connectors():
+        r,s,c=fixture();result=p.build_connector_catalogue(r,s,context=c)
+        assert result['status']=='CATALOGUE_PROPOSED',result
+        catalogue=result['catalogue'];rows=catalogue['connectors']
+        assert len(catalogue['tee_instances'])==2 and len(catalogue['sinks'])==2
+        assert any(x['from']=={'node':'tee-b','port':'branch'} and x['to']=={'node':'sink-b','port':'in'} and x['nominal_cost']==['11/4','0'] for x in rows)
+        assert any(x['from']=={'node':'tee-a','port':'branch'} and x['to']=={'node':'sink-b','port':'in'} and Q(x['nominal_cost'][1])==Q(1,4) for x in rows)
+        assert not result['limitations']['native_geometry_or_service_checked']
+        for row in rows:
+            macro=result['connector_macros'][row['id']]
+            assert macro['independent_check']['status']=='PASS'
+            assert p.digest(macro['geometry'])==row['geometry_root']
+            components=macro['geometry']['components']
+            assert components[0]['geometry']['start_m']==list(map(float,row['start_cap']['position_m']))
+>           assert components[-1]['geometry']['end_m']==list(map(float,row['end_cap']['position_m']))
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           ValueError: could not convert string to float: '-1/4'
+
+.oma\development\shared-tree-native\tests\test_shared_tree_proposals.py:56: ValueError
+=========================== short test summary info ===========================
+FAILED .oma/development/shared-tree-native/tests/test_shared_tree_proposals.py::test_two_site_catalogue_has_real_direct_and_two_bend_connectors
+1 failed, 15 passed in 0.62s
