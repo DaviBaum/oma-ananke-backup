@@ -1,0 +1,86 @@
+...........FF                                                            [100%]
+================================== FAILURES ===================================
+________ test_four_sink_generated_pressure_accepts_and_freshly_exports ________
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/.oma/development/general-shared-tree-native/validation/0efc7bd0ad4444e6acbb5d167f1ce01b/native-stores/test_four_sink_generated_press0')
+
+    def test_four_sink_generated_pressure_accepts_and_freshly_exports(tmp_path):
+>       store,project,run,original=generated_run(tmp_path)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_general_tree_native.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/.oma/development/general-shared-tree-native/validation/0efc7bd0ad4444e6acbb5d167f1ce01b/native-stores/test_four_sink_generated_press0')
+reverse = False
+
+    def generated_run(tmp_path,reverse=False):
+        original=tmp_path/'original.ifc';make_original(original);original_sha=sha256_file(original)
+        store=Store(tmp_path/'store');project=store.create_project('Four-sink generated pressure',{'sources':[],'entities':[]})
+        imported=store.create_run(project['id'],{'operation':'import','paths':[str(original)]})
+        import_sources(store,imported,WorkerControl(store,imported['id']));project=store.project(project['id'])
+        r,s,_,_=fixture()
+        if reverse:r['coupled_tree']['sink_total_pressures_pa']['sink-main']={'lower':'2001','upper':'2001'}
+        original_boundary=deepcopy(r['coupled_tree'])
+        query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+            'generation_budget':{'max_work':10000000,'max_partial_trees':200000}}
+        proposal=store.create_run(project['id'],{'operation':'propose_network','mission':query,'budget_seconds':120})
+        job.propose_shared_tree_run(store,proposal,WorkerControl(store,proposal['id']))
+        assert store.run(proposal['id'])['status']=='COMPLETED',store.run(proposal['id'])
+        event=next(e for e in store.events(project['id'],0,10000) if e.get('run_id')==proposal['id'] and e['stage']=='network_generation_complete')
+        artifact=store.get(event['payload']['proposal_artifact_root']);result=artifact['result']
+        assert result['status']=='PROPOSALS_READY' and result['catalogue_check']['status']=='PASS'
+        assert len(result['mission']['sinks'])==4 and len(result['mission']['network_alternatives'])==2
+>       assert result['mission']['coupled_tree']==original_boundary
+E       AssertionError: assert {'applicabili...ED_CAPS', ...} == {'schema': 'o...1/1250'}, ...}
+E         
+E         Omitting 20 identical items, use -vv to show
+E         Differing items:
+E         {'gravity_m_s2': '196133/20000'} != {'gravity_m_s2': '9.80665'}
+E         Use -v to get more diff
+
+tests\test_general_tree_native.py:67: AssertionError
+________________ test_four_sink_reverse_pressure_cannot_accept ________________
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/.oma/development/general-shared-tree-native/validation/0efc7bd0ad4444e6acbb5d167f1ce01b/native-stores/test_four_sink_reverse_pressur0')
+
+    def test_four_sink_reverse_pressure_cannot_accept(tmp_path):
+>       store,project,run,_=generated_run(tmp_path,reverse=True)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_general_tree_native.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/.oma/development/general-shared-tree-native/validation/0efc7bd0ad4444e6acbb5d167f1ce01b/native-stores/test_four_sink_reverse_pressur0')
+reverse = True
+
+    def generated_run(tmp_path,reverse=False):
+        original=tmp_path/'original.ifc';make_original(original);original_sha=sha256_file(original)
+        store=Store(tmp_path/'store');project=store.create_project('Four-sink generated pressure',{'sources':[],'entities':[]})
+        imported=store.create_run(project['id'],{'operation':'import','paths':[str(original)]})
+        import_sources(store,imported,WorkerControl(store,imported['id']));project=store.project(project['id'])
+        r,s,_,_=fixture()
+        if reverse:r['coupled_tree']['sink_total_pressures_pa']['sink-main']={'lower':'2001','upper':'2001'}
+        original_boundary=deepcopy(r['coupled_tree'])
+        query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
+            'generation_budget':{'max_work':10000000,'max_partial_trees':200000}}
+        proposal=store.create_run(project['id'],{'operation':'propose_network','mission':query,'budget_seconds':120})
+        job.propose_shared_tree_run(store,proposal,WorkerControl(store,proposal['id']))
+        assert store.run(proposal['id'])['status']=='COMPLETED',store.run(proposal['id'])
+        event=next(e for e in store.events(project['id'],0,10000) if e.get('run_id')==proposal['id'] and e['stage']=='network_generation_complete')
+        artifact=store.get(event['payload']['proposal_artifact_root']);result=artifact['result']
+        assert result['status']=='PROPOSALS_READY' and result['catalogue_check']['status']=='PASS'
+        assert len(result['mission']['sinks'])==4 and len(result['mission']['network_alternatives'])==2
+>       assert result['mission']['coupled_tree']==original_boundary
+E       AssertionError: assert {'applicabili...ED_CAPS', ...} == {'schema': 'o...1/1250'}, ...}
+E         
+E         Omitting 20 identical items, use -vv to show
+E         Differing items:
+E         {'gravity_m_s2': '196133/20000'} != {'gravity_m_s2': '9.80665'}
+E         Use -v to get more diff
+
+tests\test_general_tree_native.py:67: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_general_tree_native.py::test_four_sink_generated_pressure_accepts_and_freshly_exports
+FAILED tests/test_general_tree_native.py::test_four_sink_reverse_pressure_cannot_accept
+2 failed, 11 passed in 22.97s

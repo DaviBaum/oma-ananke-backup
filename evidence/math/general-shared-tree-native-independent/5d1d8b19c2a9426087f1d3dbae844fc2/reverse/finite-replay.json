@@ -1,0 +1,337 @@
+{
+  "status": "PASS",
+  "proof_complete": true,
+  "certificate_root": "c0e10a10861d23cb20687e1a88f2f8f8179e629af024b3b375b858a59941c352",
+  "input_root": "a1c4b3b0ab7bac4c043f3ceac36491b83e000f1af7b71ade2f9f5190ebd6688b",
+  "problem_root": "23fe238a4b31a6917d1c191ffb63b87a88c8a3087c760d36c6da51590ccd017e",
+  "scope": "EXACT_CAP_SECTION_TOPOLOGY_AND_NOMINAL_RANK_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+  "proposals": [
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "connector-04cb013e8d0aa10459b82c40",
+        "connector-7d11bed117588215abe8f19d",
+        "connector-85edc313e625ec7a9c38e5e9",
+        "connector-8bfebaf0aecd99f6f995999c",
+        "connector-91dd85b1e98941d48fcb1f31",
+        "connector-ab082257969acef2995cd924",
+        "connector-da739e797b947d00fa67ccaf"
+      ],
+      "nominal_cost": [
+        "17",
+        "1/4"
+      ],
+      "assignment_root": "cffc165c31a27552fd24c6e96807974b6097358914070c44b8c90c1396d94fe0",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-04cb013e8d0aa10459b82c40"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-ab082257969acef2995cd924"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-da739e797b947d00fa67ccaf"
+          ]
+        },
+        {
+          "id": "sink-main",
+          "demand_id": "demand-main",
+          "endpoint": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-8bfebaf0aecd99f6f995999c"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "connector-04cb013e8d0aa10459b82c40",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-7d11bed117588215abe8f19d",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-85edc313e625ec7a9c38e5e9",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-8bfebaf0aecd99f6f995999c",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-91dd85b1e98941d48fcb1f31",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-ab082257969acef2995cd924",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-da739e797b947d00fa67ccaf",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "connector-5f4d533bfcbd34340c589965",
+        "connector-7d11bed117588215abe8f19d",
+        "connector-85edc313e625ec7a9c38e5e9",
+        "connector-8bfebaf0aecd99f6f995999c",
+        "connector-91dd85b1e98941d48fcb1f31",
+        "connector-ab082257969acef2995cd924",
+        "connector-da739e797b947d00fa67ccaf"
+      ],
+      "nominal_cost": [
+        "17",
+        "1/4"
+      ],
+      "assignment_root": "9f2cf4f9715035aaba45c0c3afb34fd21795e295312341dc9e281ce36159b865",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-5f4d533bfcbd34340c589965"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-ab082257969acef2995cd924"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-da739e797b947d00fa67ccaf"
+          ]
+        },
+        {
+          "id": "sink-main",
+          "demand_id": "demand-main",
+          "endpoint": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-8bfebaf0aecd99f6f995999c"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "connector-5f4d533bfcbd34340c589965",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-7d11bed117588215abe8f19d",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-85edc313e625ec7a9c38e5e9",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-8bfebaf0aecd99f6f995999c",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-91dd85b1e98941d48fcb1f31",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-ab082257969acef2995cd924",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-da739e797b947d00fa67ccaf",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "tee_instances": 3,
+    "connectors": 63,
+    "complete_assignments": 18048,
+    "returned_proposals": 2,
+    "checked_partial_incidence_states": 35856,
+    "checked_partial_tree_attempts": 189947
+  },
+  "work": 3952806
+}

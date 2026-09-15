@@ -1,0 +1,130 @@
+{
+  "projects": [
+    {
+      "id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "name": "Four-sink generated pressure",
+      "revision": 1,
+      "state_root": "8569f01455baebd47ca1400651a272da7b3f08bc7509a5e8d2dd266dfda29fc7",
+      "status": "BASELINE",
+      "created_at": "2026-09-15T00:59:21.958589+00:00"
+    }
+  ],
+  "runs": [
+    {
+      "id": "5c92972528094bfc9dde03e20797caec",
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "base_revision": 0,
+      "base_root": "9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d",
+      "status": "COMPLETED",
+      "desired_action": "run",
+      "operation": "import",
+      "request": "{\"operation\":\"import\",\"paths\":[\"C:\\\\Users\\\\Davi\\\\Downloads\\\\oma\\\\.oma\\\\development\\\\general-shared-tree-native\\\\validation\\\\0efc7bd0ad4444e6acbb5d167f1ce01b\\\\native-stores\\\\test_four_sink_generated_press0\\\\original.ifc\"]}",
+      "created_at": "2026-09-15T00:59:21.969590+00:00",
+      "updated_at": "2026-09-15T00:59:22.182100+00:00",
+      "detail": "IFC import complete; engineering checks have not yet run"
+    },
+    {
+      "id": "50b9de868e5d4a8a9c51df38fbff70f0",
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "base_revision": 1,
+      "base_root": "8569f01455baebd47ca1400651a272da7b3f08bc7509a5e8d2dd266dfda29fc7",
+      "status": "COMPLETED",
+      "desired_action": "run",
+      "operation": "propose_network",
+      "request": "{\"budget_seconds\":120,\"mission\":{\"generation_budget\":{\"max_partial_trees\":200000,\"max_work\":10000000},\"max_results\":2,\"requirements\":{\"allowed_zone\":{\"max\":[8,4,4],\"min\":[-3,-2,2]},\"assumptions\":[\"Predeclared synthetic equal-bore comb experiment; no building-equipment or measured-boundary claim.\"],\"clearance_m\":0.0625,\"coupled_tree\":{\"applicability\":\"New hypothetical ideal steady incompressible bore model. Each tee outlet has its own strictly positive TOTAL loss coefficient referenced to full inlet flow. Internal tee distributed loss is included; no tee skeleton Darcy term. Existing common-loss missions are unchanged.\",\"boundary_control_assumption\":\"Hypothetical regulated total-pressure intervals authored by independent exact Machin arithmetic on an explicit comb model before catalogue generation; the analytic target flow is not a prescribed delivered flow.\",\"boundary_loss_scope\":\"BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY\",\"connection_model\":\"NO_EXTRA_LOSS_AT_CHECKED_MATCHING_CONNECTED_CAPS\",\"darcy_friction\":\"1/50\",\"density_kg_m3\":\"1000\",\"elbow_loss_coefficient\":\"1/5\",\"elbow_loss_reference\":\"EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION\",\"flow_search_box_m3_s\":{\"sink-0\":{\"lower\":\"99/100000\",\"upper\":\"101/100000\"},\"sink-1\":{\"lower\":\"99/100000\",\"upper\":\"101/100000\"},\"sink-2\":{\"lower\":\"99/100000\",\"upper\":\"101/100000\"},\"sink-main\":{\"lower\":\"99/100000\",\"upper\":\"101/100000\"}},\"friction_convention\":\"DARCY\",\"gravity_m_s2\":\"9.80665\",\"hydraulic_section_interpretation\":\"IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION\",\"loss_model\":\"FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE\",\"maximum_velocity_m_s\":\"2\",\"minimum_sink_flows_m3_s\":{\"sink-0\":\"1/1250\",\"sink-1\":\"1/1250\",\"sink-2\":\"1/1250\",\"sink-main\":\"1/1250\"},\"pressure_reference\":\"TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION\",\"schema\":\"oma.coupled-tree-boundary/1\",\"sink_total_pressures_pa\":{\"sink-0\":{\"lower\":\"237540409/200000\",\"upper\":\"593851023/500000\"},\"sink-1\":{\"lower\":\"886573763/1000000\",\"upper\":\"221643441/250000\"},\"sink-2\":{\"lower\":\"375025779/500000\",\"upper\":\"750051559/1000000\"},\"sink-main\":{\"lower\":\"25298363/31250\",\"upper\":\"809547617/1000000\"}},\"source_total_pressure_pa\":{\"lower\":\"2000\",\"upper\":\"2000\"},\"tee_loss_reference\":\"OUTLET_SPECIFIC_TOTAL_LOSS_AT_TOTAL_INLET_FLOW\",\"tee_outlet_loss_coefficients\":{\"tee-0\":{\"b\":\"1/5\",\"branch\":\"3/10\"},\"tee-1\":{\"b\":\"1/4\",\"branch\":\"2/5\"},\"tee-2\":{\"b\":\"3/10\",\"branch\":\"1/2\"}}},\"diameter_m\":0.0625,\"insulation_m\":0.03125,\"minimum_bend_radius_m\":0.25,\"minimum_straight_m\":0.125,\"mission_type\":\"shared_network\",\"objective_weights\":{\"length_m\":1},\"scenario_terminals\":true,\"sinks\":[{\"demand_id\":\"demand-main\",\"end_m\":[6,0,3],\"id\":\"sink-main\"},{\"demand_id\":\"demand-0\",\"end_m\":[1,3,3],\"id\":\"sink-0\"},{\"demand_id\":\"demand-1\",\"end_m\":[2,3,3],\"id\":\"sink-1\"},{\"demand_id\":\"demand-2\",\"end_m\":[4,3,3],\"id\":\"sink-2\"}],\"source_representation_policy\":\"NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES\",\"start_m\":[-2,0,3],\"system_type\":\"PRESSURE_PIPE\",\"target_modality\":\"ENGINEERING_SERVICE\"},\"schema\":\"oma.shared-tree-proposal-job/1\",\"search\":{\"detour_planes\":[{\"axis\":1,\"value_m\":\"9/4\"}],\"schema\":\"oma.shared-tree-native-search/1\",\"sink_directions\":{\"sink-0\":[0,1,0],\"sink-1\":[0,1,0],\"sink-2\":[0,1,0],\"sink-main\":[1,0,0]},\"source_direction\":[1,0,0],\"stub_lengths_m\":[\"3/4\"],\"tee_instances\":[{\"axis_x\":[1,0,0],\"axis_y\":[0,1,0],\"branch_takeout_m\":\"1/4\",\"center_m\":[0,0,3],\"id\":\"tee-0\",\"trunk_takeout_m\":\"1/4\"},{\"axis_x\":[1,0,0],\"axis_y\":[0,1,0],\"branch_takeout_m\":\"1/4\",\"center_m\":[2,0,3],\"id\":\"tee-1\",\"trunk_takeout_m\":\"1/4\"},{\"axis_x\":[1,0,0],\"axis_y\":[0,1,0],\"branch_takeout_m\":\"1/4\",\"center_m\":[4,0,3],\"id\":\"tee-2\",\"trunk_takeout_m\":\"1/4\"}]}},\"operation\":\"propose_network\"}",
+      "created_at": "2026-09-15T00:59:22.195608+00:00",
+      "updated_at": "2026-09-15T00:59:32.497651+00:00",
+      "detail": "Generated shared-tree mission available for native optimization and checking"
+    }
+  ],
+  "candidates": [],
+  "revisions": [
+    {
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "revision": 0,
+      "root": "9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d",
+      "parent_root": null,
+      "status": "IMPORTED",
+      "created_at": "2026-09-15T00:59:21.958589+00:00",
+      "candidate_id": null
+    },
+    {
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "revision": 1,
+      "root": "8569f01455baebd47ca1400651a272da7b3f08bc7509a5e8d2dd266dfda29fc7",
+      "parent_root": "9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d",
+      "status": "BASELINE",
+      "created_at": "2026-09-15T00:59:22.174099+00:00",
+      "candidate_id": null
+    }
+  ],
+  "check_executions": [],
+  "candidate_check_executions": [],
+  "events": [
+    {
+      "seq": 1,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[\"9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d\"],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[],\"message\":\"Original import persisted\",\"payload\":{},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":null,\"stage\":\"import\",\"state_root\":\"9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d\",\"status\":\"IMPORTED\",\"timestamp\":\"2026-09-15T00:59:21.959589+00:00\"}"
+    },
+    {
+      "seq": 2,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[],\"message\":\"Run queued\",\"payload\":{},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":\"5c92972528094bfc9dde03e20797caec\",\"stage\":\"queue\",\"state_root\":\"9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d\",\"status\":\"QUEUED\",\"timestamp\":\"2026-09-15T00:59:21.970593+00:00\"}"
+    },
+    {
+      "seq": 3,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[],\"message\":\"Auditing original.ifc\",\"payload\":{\"file_count\":1,\"file_index\":1,\"source\":\"C:\\\\Users\\\\Davi\\\\Downloads\\\\oma\\\\.oma\\\\development\\\\general-shared-tree-native\\\\validation\\\\0efc7bd0ad4444e6acbb5d167f1ce01b\\\\native-stores\\\\test_four_sink_generated_press0\\\\original.ifc\"},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":\"5c92972528094bfc9dde03e20797caec\",\"stage\":\"import\",\"state_root\":\"9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d\",\"status\":\"RUNNING\",\"timestamp\":\"2026-09-15T00:59:22.000604+00:00\"}"
+    },
+    {
+      "seq": 4,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[\"051999f72750092d448671c0a2dcafc15fcc30daa10815a122534bc60d0f2cce\"],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[],\"message\":\"original.ifc: 2 represented / 3 products accounted\",\"payload\":{\"performance\":{\"geometry_seconds\":0.011965199999394827,\"geometry_threads\":4,\"metadata_seconds\":0.0008929000032367185,\"parse_seconds\":0.003494799995678477,\"total_seconds\":0.020123700000112876,\"triangles\":24,\"vertices\":16},\"source\":{\"artifacts\":{\"audit\":\"C:\\\\Users\\\\Davi\\\\Downloads\\\\oma\\\\.oma\\\\development\\\\general-shared-tree-native\\\\validation\\\\0efc7bd0ad4444e6acbb5d167f1ce01b\\\\native-stores\\\\test_four_sink_generated_press0\\\\store\\\\geometry\\\\56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1\\\\original-56b2bd4729cb.audit.json\",\"mesh_json_gz\":\"C:\\\\Users\\\\Davi\\\\Downloads\\\\oma\\\\.oma\\\\development\\\\general-shared-tree-native\\\\validation\\\\0efc7bd0ad4444e6acbb5d167f1ce01b\\\\native-stores\\\\test_four_sink_generated_press0\\\\store\\\\geometry\\\\56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1\\\\original-56b2bd4729cb.mesh.json.gz\",\"mesh_npz\":\"C:\\\\Users\\\\Davi\\\\Downloads\\\\oma\\\\.oma\\\\development\\\\general-shared-tree-native\\\\validation\\\\0efc7bd0ad4444e6acbb5d167f1ce01b\\\\native-stores\\\\test_four_sink_generated_press0\\\\store\\\\geometry\\\\56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1\\\\original-56b2bd4729cb.mesh.npz\"},\"audit_root\":\"051999f72750092d448671c0a2dcafc15fcc30daa10815a122534bc60d0f2cce\",\"blockers\":[],\"bounds\":{\"max\":[2.0,2.0,3.125],\"min\":[0.0,0.0,0.0]},\"discipline\":\"original\",\"geometry_counts\":{\"explicitly_non_geometric\":1,\"represented\":2},\"id\":\"56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1\",\"immutable_path\":\"C:\\\\Users\\\\Davi\\\\Downloads\\\\oma\\\\.oma\\\\development\\\\general-shared-tree-native\\\\validation\\\\0efc7bd0ad4444e6acbb5d167f1ce01b\\\\native-stores\\\\test_four_sink_generated_press0\\\\store\\\\imports\\\\56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1\\\\original.ifc\",\"name\":\"original.ifc\",\"original_path\":\"C:\\\\Users\\\\Davi\\\\Downloads\\\\oma\\\\.oma\\\\development\\\\general-shared-tree-native\\\\validation\\\\0efc7bd0ad4444e6acbb5d167f1ce01b\\\\native-stores\\\\test_four_sink_generated_press0\\\\original.ifc\",\"performance\":{\"geometry_seconds\":0.011965199999394827,\"geometry_threads\":4,\"metadata_seconds\":0.0008929000032367185,\"parse_seconds\":0.003494799995678477,\"total_seconds\":0.020123700000112876,\"triangles\":24,\"vertices\":16},\"product_count\":3,\"schema\":\"IFC4\",\"sha256\":\"56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1\",\"units\":{\"canonical\":\"m\",\"declarations\":[{\"Dimensions\":null,\"Name\":\"METRE\",\"Prefix\":null,\"UnitType\":\"LENGTHUNIT\",\"id\":2,\"type\":\"IfcSIUnit\"}],\"source_to_m\":1,\"status\":\"KNOWN\"}}},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":\"5c92972528094bfc9dde03e20797caec\",\"stage\":\"import\",\"state_root\":null,\"status\":\"IMPORTED\",\"timestamp\":\"2026-09-15T00:59:22.057114+00:00\"}"
+    },
+    {
+      "seq": 5,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[],\"message\":\"Rechecking source coordinate anchors\",\"payload\":{\"file_count\":1,\"file_index\":1,\"source\":\"C:\\\\Users\\\\Davi\\\\Downloads\\\\oma\\\\.oma\\\\development\\\\general-shared-tree-native\\\\validation\\\\0efc7bd0ad4444e6acbb5d167f1ce01b\\\\native-stores\\\\test_four_sink_generated_press0\\\\store\\\\imports\\\\56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1\\\\original.ifc\",\"source_sha256\":\"56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1\"},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":\"5c92972528094bfc9dde03e20797caec\",\"stage\":\"federation\",\"state_root\":\"9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d\",\"status\":\"RUNNING\",\"timestamp\":\"2026-09-15T00:59:22.071112+00:00\"}"
+    },
+    {
+      "seq": 6,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[],\"message\":\"Rechecking explicit source port ownership\",\"payload\":{\"file_count\":1,\"file_index\":1,\"port_count\":0,\"source\":\"original.ifc\",\"source_sha256\":\"56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1\"},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":\"5c92972528094bfc9dde03e20797caec\",\"stage\":\"connectivity_ownership\",\"state_root\":\"9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d\",\"status\":\"RUNNING\",\"timestamp\":\"2026-09-15T00:59:22.090620+00:00\"}"
+    },
+    {
+      "seq": 7,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[],\"message\":\"Normalizing explicit source ports and connections\",\"payload\":{\"completed_ports\":0,\"file_count\":1,\"file_index\":1,\"port_count\":0,\"source\":\"original.ifc\",\"source_sha256\":\"56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1\"},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":\"5c92972528094bfc9dde03e20797caec\",\"stage\":\"connectivity\",\"state_root\":\"9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d\",\"status\":\"RUNNING\",\"timestamp\":\"2026-09-15T00:59:22.107344+00:00\"}"
+    },
+    {
+      "seq": 8,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[],\"message\":\"Serializing complete source and connectivity inventory\",\"payload\":{\"alignment_status\":\"UNRESOLVED\",\"connection_count\":0,\"entity_count\":3,\"port_count\":0,\"source_count\":1},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":\"5c92972528094bfc9dde03e20797caec\",\"stage\":\"import_state\",\"state_root\":\"9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d\",\"status\":\"RUNNING\",\"timestamp\":\"2026-09-15T00:59:22.118593+00:00\"}"
+    },
+    {
+      "seq": 9,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[\"8569f01455baebd47ca1400651a272da7b3f08bc7509a5e8d2dd266dfda29fc7\",\"5846cd80181a5d5baed534e8be6e5ba506414a17997e611141b49de5ff45b100\"],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[\"56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1:13\",\"56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1:15\",\"56b2bd4729cb4a007566dde051c2cd1e06c59a64f41e18d140999f64531a76e1:38\"],\"message\":\"Revision 1 committed\",\"payload\":{\"current_physical_input_root\":null,\"derivation_root\":\"5846cd80181a5d5baed534e8be6e5ba506414a17997e611141b49de5ff45b100\",\"parent_root\":\"9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d\",\"revision\":1},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":null,\"stage\":\"state\",\"state_root\":\"8569f01455baebd47ca1400651a272da7b3f08bc7509a5e8d2dd266dfda29fc7\",\"status\":\"BASELINE\",\"timestamp\":\"2026-09-15T00:59:22.174099+00:00\"}"
+    },
+    {
+      "seq": 10,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[],\"message\":\"IFC import complete; engineering checks have not yet run\",\"payload\":{},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":\"5c92972528094bfc9dde03e20797caec\",\"stage\":\"import\",\"state_root\":\"9c9cab9040a733b2ba9641c8035d881ca8b958af7d20523e2fdc5661e3a9706d\",\"status\":\"COMPLETED\",\"timestamp\":\"2026-09-15T00:59:22.182100+00:00\"}"
+    },
+    {
+      "seq": 11,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[],\"message\":\"Run queued\",\"payload\":{},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":\"50b9de868e5d4a8a9c51df38fbff70f0\",\"stage\":\"queue\",\"state_root\":\"8569f01455baebd47ca1400651a272da7b3f08bc7509a5e8d2dd266dfda29fc7\",\"status\":\"QUEUED\",\"timestamp\":\"2026-09-15T00:59:22.196609+00:00\"}"
+    },
+    {
+      "seq": 12,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[],\"message\":\"Generating bounded directed connectors and shared-tree alternatives\",\"payload\":{},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":\"50b9de868e5d4a8a9c51df38fbff70f0\",\"stage\":\"network_generation\",\"state_root\":\"8569f01455baebd47ca1400651a272da7b3f08bc7509a5e8d2dd266dfda29fc7\",\"status\":\"RUNNING\",\"timestamp\":\"2026-09-15T00:59:22.247134+00:00\"}"
+    },
+    {
+      "seq": 13,
+      "project_id": "280737c261aa4202b4ecd46d95e0b6e4",
+      "payload": "{\"artifacts\":[\"8c0f2b1bcb0a310e3c4d1b27ecb4d68119134991d95c6f38af45f0b15152d8ba\"],\"branch_id\":\"main\",\"candidate_id\":null,\"changed_ids\":[],\"message\":\"Generated shared-tree mission available for native optimization and checking\",\"payload\":{\"native_checks_run\":false,\"project_state_changed\":false,\"proposal_artifact_root\":\"8c0f2b1bcb0a310e3c4d1b27ecb4d68119134991d95c6f38af45f0b15152d8ba\",\"proposal_count\":2},\"project_id\":\"280737c261aa4202b4ecd46d95e0b6e4\",\"run_id\":\"50b9de868e5d4a8a9c51df38fbff70f0\",\"stage\":\"network_generation_complete\",\"state_root\":\"8569f01455baebd47ca1400651a272da7b3f08bc7509a5e8d2dd266dfda29fc7\",\"status\":\"COMPLETED\",\"timestamp\":\"2026-09-15T00:59:32.497651+00:00\"}"
+    }
+  ]
+}
