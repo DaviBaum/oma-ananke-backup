@@ -1,0 +1,5103 @@
+{
+  "status": "PASS",
+  "proof_complete": true,
+  "certificate_root": "dbf8abea2e36edd67620931127ed301edfba0b438b3a139488e81f3474e72679",
+  "input_root": "998ff21a49761dee9c3a61052f962953c2b8d0d8ec3882c0a2471a31f1a63798",
+  "problem_root": "998ff21a49761dee9c3a61052f962953c2b8d0d8ec3882c0a2471a31f1a63798",
+  "scope": "EXACT_CAP_SECTION_TOPOLOGY_AND_NOMINAL_RANK_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+  "proposals": [
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-006",
+        "edge-012",
+        "edge-015",
+        "edge-025",
+        "edge-030",
+        "edge-036"
+      ],
+      "nominal_cost": [
+        "32/7",
+        "0"
+      ],
+      "assignment_root": "99100f964a152eaed84f7c77f0ce23900b035ce131aabd949312f4f62bc8f580",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-015"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-006",
+            "edge-036"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-006",
+            "edge-012",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-006",
+            "edge-012",
+            "edge-030"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-006",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-012",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-015",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-030",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-036",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-006",
+        "edge-012",
+        "edge-016",
+        "edge-025",
+        "edge-030",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "32/7",
+        "0"
+      ],
+      "assignment_root": "39779bb0aead506d5eb50c1efae1d056a534b08eab08c8af471033531ea847d5",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-006",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-016"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-006",
+            "edge-012",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-006",
+            "edge-012",
+            "edge-030"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-006",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-012",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-016",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-030",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-002",
+        "edge-005",
+        "edge-011",
+        "edge-015",
+        "edge-025",
+        "edge-030",
+        "edge-036"
+      ],
+      "nominal_cost": [
+        "32/7",
+        "0"
+      ],
+      "assignment_root": "cc9e90ce0319e29280101b51549b6369d4caba9aa5a9d720fb7f6eb5d9ff2ef9",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-002",
+            "edge-011",
+            "edge-015"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-002",
+            "edge-036"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-002",
+            "edge-011",
+            "edge-005",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-002",
+            "edge-011",
+            "edge-005",
+            "edge-030"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-002",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-011",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-015",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-030",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-036",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-002",
+        "edge-005",
+        "edge-011",
+        "edge-016",
+        "edge-025",
+        "edge-030",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "32/7",
+        "0"
+      ],
+      "assignment_root": "ffe32e6f3bf094412c80413f58b57a4be116d809e818d98a12d71ed0c8e66a11",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-002",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-002",
+            "edge-011",
+            "edge-016"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-002",
+            "edge-011",
+            "edge-005",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-002",
+            "edge-011",
+            "edge-005",
+            "edge-030"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-002",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-011",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-016",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-030",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-005",
+        "edge-010",
+        "edge-015",
+        "edge-025",
+        "edge-032",
+        "edge-038"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "58d63154d091e1fb3191788ba2d02544d5151b46925579e29066b835b5cc79a2",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-015"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-032"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-038"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-015",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-032",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-038",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-005",
+        "edge-010",
+        "edge-015",
+        "edge-025",
+        "edge-034",
+        "edge-036"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "9f72e28c7891e436289e49f384a77e7e6061201c2748640f513575fcc6219e5b",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-015"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-036"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-034"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-015",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-034",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-036",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-005",
+        "edge-010",
+        "edge-015",
+        "edge-026",
+        "edge-032",
+        "edge-037"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "41f29d5422afe3b6777e9302aad8a20ccf39cc62a85fd0f5d2448150e29d10cc",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-015"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-032"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-037"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-026"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-015",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-026",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-032",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-037",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-005",
+        "edge-010",
+        "edge-015",
+        "edge-026",
+        "edge-033",
+        "edge-036"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "b790a61aaa844bc64ee81a666cf060f284e6e85a56566011e8e4077ef0238c1c",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-015"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-036"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-033"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-026"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-015",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-026",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-033",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-036",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-005",
+        "edge-010",
+        "edge-016",
+        "edge-025",
+        "edge-031",
+        "edge-038"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "f3fb04e8d5d45d2180c8b21e53dea11599f6c2eeef47194297ee9f7491c6d1fc",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-031"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-016"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-038"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-016",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-031",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-038",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-005",
+        "edge-010",
+        "edge-016",
+        "edge-025",
+        "edge-034",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "3c43577f3800b71ad8b063105962e351033c723e3880598f67c7d7a917efc779",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-016"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-034"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-016",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-034",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-005",
+        "edge-010",
+        "edge-016",
+        "edge-026",
+        "edge-031",
+        "edge-037"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "e671d9e482f61123927d52f21fb2ce9ddcc23542cd3a9bb92399c8390e36e122",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-031"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-016"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-037"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-026"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-016",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-026",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-031",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-037",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-005",
+        "edge-010",
+        "edge-016",
+        "edge-026",
+        "edge-033",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "e5d452379f3cefbb5cdeaffbe54d873522694749b1364decb5a4ff0474162eae",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-016"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-033"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-026"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-016",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-026",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-033",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-005",
+        "edge-010",
+        "edge-017",
+        "edge-026",
+        "edge-031",
+        "edge-036"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "5a9fd61b4c16023245fcbf38fcef21a682e99352a528c8ce0886f7e0e3a36bd7",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-031"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-036"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-017"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-026"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-017",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-026",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-031",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-036",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-005",
+        "edge-010",
+        "edge-017",
+        "edge-026",
+        "edge-032",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "7fd3809fa9d78e5eea14adc821d70db24d20ef00ffc5991fbebddcbb687bd2ad",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-032"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-017"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-026"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-017",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-026",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-032",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-005",
+        "edge-010",
+        "edge-018",
+        "edge-025",
+        "edge-031",
+        "edge-036"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "ddfa127fdec9e0c1fc239f1613b0ee95f3a9dfb461b9c2dd9a5e2fa71a7d6b70",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-031"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-036"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-018"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-018",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-031",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-036",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-005",
+        "edge-010",
+        "edge-018",
+        "edge-025",
+        "edge-032",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "e4fb7b728ff6d2285037ef18cfa191f23426830a364ca298986309ae60241caf",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-010",
+            "edge-032"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-018"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-018",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-032",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-001",
+        "edge-010",
+        "edge-011",
+        "edge-015",
+        "edge-020",
+        "edge-025",
+        "edge-038"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "2d8dbfa32275ace6e545012017249b7544d9365810eeeac2e277d114e7463e68",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-015"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-020"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-038"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-001",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-011",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-015",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-020",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-038",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-001",
+        "edge-010",
+        "edge-011",
+        "edge-015",
+        "edge-020",
+        "edge-026",
+        "edge-037"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "098fd167dee10caf2c9b5558a9daa8f5e35d23da92681111cc377387d2a25988",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-015"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-020"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-037"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-026"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-001",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-011",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-015",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-020",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-026",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-037",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-001",
+        "edge-010",
+        "edge-011",
+        "edge-015",
+        "edge-021",
+        "edge-026",
+        "edge-036"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "d100f2034919d98aab57b9fa17e7b75390152f4b46637c656e1739762bd865a8",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-015"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-036"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-021"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-026"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-001",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-011",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-015",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-021",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-026",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-036",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-001",
+        "edge-010",
+        "edge-011",
+        "edge-015",
+        "edge-022",
+        "edge-025",
+        "edge-036"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "1cdf86daff0a92774450ec48ddf0c71a0f73efad4a1db6cbef3b6f89c2a6bfa6",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-015"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-036"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-022"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-001",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-011",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-015",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-022",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-036",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-001",
+        "edge-010",
+        "edge-011",
+        "edge-016",
+        "edge-021",
+        "edge-026",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "4e609a36509be3dd66f1e12a9ec887b787ccd47dbd44871bcb622a4b99e83f06",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-016"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-021"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-026"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-001",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-011",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-016",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-021",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-026",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-001",
+        "edge-010",
+        "edge-011",
+        "edge-016",
+        "edge-022",
+        "edge-025",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "e21f14e7d292ec94d5508c7424a94b8e9e572941de686736a4126616f9cb91e6",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-016"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-022"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-001",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-011",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-016",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-022",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-001",
+        "edge-010",
+        "edge-011",
+        "edge-017",
+        "edge-020",
+        "edge-026",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "590537b7bb5649b51d1647eb5c3686e8eff173754f6e0f313daabc119596a0a1",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-020"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-017"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-026"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-001",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-011",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-017",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-020",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-026",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-001",
+        "edge-010",
+        "edge-011",
+        "edge-018",
+        "edge-020",
+        "edge-025",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "33/7",
+        "0"
+      ],
+      "assignment_root": "bc09531f349bbb5f5e48fdc4b0a9d362e4bfaa2cd982db7c54a920f57a9a54a3",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-020"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-001",
+            "edge-010",
+            "edge-011",
+            "edge-018"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-001",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-011",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-018",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-020",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-003",
+        "edge-006",
+        "edge-025",
+        "edge-030",
+        "edge-031",
+        "edge-036"
+      ],
+      "nominal_cost": [
+        "34/7",
+        "0"
+      ],
+      "assignment_root": "0684febf5cdd529e376c77bd85a4fec131bd2aa53ad69e8deebf1c979d42b6fc",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-006",
+            "edge-031"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-006",
+            "edge-036"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-003",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-003",
+            "edge-030"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-003",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-006",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-030",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-031",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-036",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-003",
+        "edge-006",
+        "edge-025",
+        "edge-030",
+        "edge-032",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "34/7",
+        "0"
+      ],
+      "assignment_root": "fdfe23aed4a6d3e3f45f03583fb2d134595529b64e0ba1ff5b0f00cd52875ffb",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-006",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-006",
+            "edge-032"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-003",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-003",
+            "edge-030"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-003",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-006",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-030",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-032",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-004",
+        "edge-005",
+        "edge-025",
+        "edge-030",
+        "edge-031",
+        "edge-036"
+      ],
+      "nominal_cost": [
+        "34/7",
+        "0"
+      ],
+      "assignment_root": "d54e8b171e15c7ebe10663aadb28d3f7d2e58696148081b862c9cc7da4a39565",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-004",
+            "edge-031"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-004",
+            "edge-036"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-030"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-004",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-030",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-031",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-036",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-004",
+        "edge-005",
+        "edge-025",
+        "edge-030",
+        "edge-032",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "34/7",
+        "0"
+      ],
+      "assignment_root": "e859e9d92c9ccaa07806c11121e925eff65c1b331aaefa0d8eb0fd304f0c4797",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-004",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-004",
+            "edge-032"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-005",
+            "edge-030"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-004",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-005",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-030",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-032",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-004",
+        "edge-012",
+        "edge-020",
+        "edge-025",
+        "edge-030",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "34/7",
+        "0"
+      ],
+      "assignment_root": "1d9cf8079a3c75fc5372f7ac47a440f6222e44cd61e6bb09f6a2b6b04950dc29",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-004",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-020"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-004",
+            "edge-012",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-004",
+            "edge-012",
+            "edge-030"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-004",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-012",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-020",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-030",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-002",
+        "edge-003",
+        "edge-011",
+        "edge-020",
+        "edge-025",
+        "edge-030",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "34/7",
+        "0"
+      ],
+      "assignment_root": "ee31fb274959fa94d843fc6ef94652e4e61734025df6e2f9dda5dc64bb7b87fe",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-002",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-002",
+            "edge-011",
+            "edge-020"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-002",
+            "edge-011",
+            "edge-003",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-002",
+            "edge-011",
+            "edge-003",
+            "edge-030"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-002",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-003",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-011",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-020",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-030",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-003",
+        "edge-010",
+        "edge-020",
+        "edge-025",
+        "edge-031",
+        "edge-038"
+      ],
+      "nominal_cost": [
+        "5",
+        "0"
+      ],
+      "assignment_root": "bdebf17949a4cc26b1b6e4a6ba1f45a1d725ac4f1051eb4ff0ff88aa21e7967b",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-003",
+            "edge-010",
+            "edge-031"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-020"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-003",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-003",
+            "edge-010",
+            "edge-038"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-003",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-020",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-031",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-038",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "edge-000",
+        "edge-003",
+        "edge-010",
+        "edge-020",
+        "edge-025",
+        "edge-034",
+        "edge-035"
+      ],
+      "nominal_cost": [
+        "5",
+        "0"
+      ],
+      "assignment_root": "be19faa7c8020aaa1a5fa1ef82fd721f15e892ebef47b1b99148f3c794396769",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-003",
+            "edge-010",
+            "edge-035"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-020"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-003",
+            "edge-025"
+          ]
+        },
+        {
+          "id": "sink-3",
+          "demand_id": "demand-3",
+          "endpoint": {
+            "node": "sink-3",
+            "port": "in"
+          },
+          "connector_path": [
+            "edge-000",
+            "edge-003",
+            "edge-010",
+            "edge-034"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "edge-000",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-003",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-010",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "edge-020",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-025",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-034",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-3",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "edge-035",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "tee_instances": 3,
+    "connectors": 39,
+    "complete_assignments": 720,
+    "returned_proposals": 32,
+    "checked_partial_incidence_states": 2416,
+    "checked_partial_tree_attempts": 10645
+  },
+  "work": 173559
+}

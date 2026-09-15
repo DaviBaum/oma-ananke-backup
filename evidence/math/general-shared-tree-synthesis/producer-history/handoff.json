@@ -1,0 +1,63 @@
+{
+  "schema": "oma.general-shared-tree-synthesis-handoff/1",
+  "status": "PASS",
+  "private_only": true,
+  "module_sha256": "9a9f6c76b4691d70d5d9a21a5a371635549992f5de06fbd0f4ffaf745c97c55d",
+  "legacy_module_sha256": "0034130d057fbb012d031fb31a69ce89aac857ce6aeaf4d8a73f55c2d1a23d43",
+  "merge_files": {
+    "src/oma/optimization/shared_tree_synthesis.py": "9a9f6c76b4691d70d5d9a21a5a371635549992f5de06fbd0f4ffaf745c97c55d",
+    "tests/test_general_shared_tree_synthesis.py": "0b2a7918e15a3cd51dd9b57f349d8920f4dcb99d704358b355ec29f71a9fad52",
+    "tests/fixtures/general-shared-tree-synthesis/legacy003.py": "0034130d057fbb012d031fb31a69ce89aac857ce6aeaf4d8a73f55c2d1a23d43",
+    "docs/math/general-shared-tree-synthesis.md": "91731d699cafc64e56bccfcce36be992b90ec230bdf5649a0c2c5132c127e045"
+  },
+  "unchanged_test_preconditions": {
+    "tests/test_shared_tree_synthesis.py": "ce67b88733fbd7f9518d1a75af2f90f43e1df807797024bce47b8b743558993b",
+    "tests/fixtures/shared-tree-synthesis/catalogue-2.json": "5817b7beb0c5a803637fe7f6cb364c3e15564444d7551ad29e8e857921aee42a",
+    "tests/fixtures/shared-tree-synthesis/catalogue-3.json": "bd5ec2aa78efa789af3b69489d60a0ad727927e9f2fe6e1c1ce8307ce6defea9",
+    "tests/fixtures/shared-tree-synthesis/oracle-2.json": "0bf99e6167796f85fdfe4c9387b546ea006ad5cb4c8724e219007a8c34396a16",
+    "tests/fixtures/shared-tree-synthesis/oracle-3.json": "e471e75dad9613fd5909f52106caa574507bed30c02b0829d045a1fd3bea57ba"
+  },
+  "tested_input_files": {
+    "tests/fixtures/general-shared-tree-synthesis/legacy003.py": "0034130d057fbb012d031fb31a69ce89aac857ce6aeaf4d8a73f55c2d1a23d43",
+    "tests/fixtures/shared-tree-synthesis/catalogue-2.json": "5817b7beb0c5a803637fe7f6cb364c3e15564444d7551ad29e8e857921aee42a",
+    "tests/fixtures/shared-tree-synthesis/catalogue-3.json": "bd5ec2aa78efa789af3b69489d60a0ad727927e9f2fe6e1c1ce8307ce6defea9",
+    "tests/fixtures/shared-tree-synthesis/oracle-2.json": "0bf99e6167796f85fdfe4c9387b546ea006ad5cb4c8724e219007a8c34396a16",
+    "tests/fixtures/shared-tree-synthesis/oracle-3.json": "e471e75dad9613fd5909f52106caa574507bed30c02b0829d045a1fd3bea57ba",
+    "tests/test_general_shared_tree_synthesis.py": "0b2a7918e15a3cd51dd9b57f349d8920f4dcb99d704358b355ec29f71a9fad52",
+    "tests/test_shared_tree_synthesis.py": "ce67b88733fbd7f9518d1a75af2f90f43e1df807797024bce47b8b743558993b",
+    "pytest.ini": "bf86cec34582454295d6d58edcaa5238eb52160b89a3032263d679455e826480"
+  },
+  "tests": {
+    "passed": 175,
+    "unchanged_legacy": 85,
+    "new": 90,
+    "receipt": "validation\\4c88124f5d9d4cd4ac72f8e3a31c214f\\result.json",
+    "receipt_sha256": "369709bf4fac96685d3bd9283acd20e0622b5fbcd908b7c36e727ec7eb5eeab7",
+    "exact_node_multiset": true,
+    "inputs_unchanged": true
+  },
+  "api": {
+    "model_schema": "oma.shared-tree-catalogue/1",
+    "certificate_schema": "oma.shared-tree-synthesis-certificate/1",
+    "public_functions": [
+      "compile_shared_tree_catalogue",
+      "verify_shared_tree_catalogue"
+    ],
+    "new_domain": "4 through 8 sinks; old 2/3 result and callback bytes preserved",
+    "new_keyword": "max_partial_trees=20000, strict integer1..200000; attempted joins/transitions charged before allocations",
+    "required_success": "complete independently reconstructed ledger and exact nominal ranked prefix",
+    "resource_failure": "UNKNOWN, proof_complete false, no proposals or partial certificate authority"
+  },
+  "source_excerpts_sha256": "5d0e315698cab334b223a418968db3992bb0e86e6a6392fc268ee05d9da6f04c",
+  "full_original_algorithms_implemented": false,
+  "native_adapter_and_geometry_service_authority": "External; not implemented or authorized by this pure kernel handoff",
+  "independent_authored_oracle": {
+    "receipt": "evidence\\authored-oracle\\facbc3fa1d7a4da8a958d81ceb2f2db2\\result.json",
+    "sha256": "6a68eee96dbf5bd1439cc9f2f39d7e98ed2806c10543c51ae5988ef017c20d60",
+    "complete_assignments": 18048,
+    "prefix": 32
+  },
+  "index": "file-index.json",
+  "index_sha256": "828f84e85e247d81b10eb600a0cea0adbf53167adcbe3c201b1d86656809b20b",
+  "indexed_files": 124
+}

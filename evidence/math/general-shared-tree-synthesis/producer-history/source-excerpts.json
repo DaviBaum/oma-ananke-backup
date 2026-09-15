@@ -1,0 +1,367 @@
+{
+  "source": "math1/math1/the 5 things that combine ceiling router with ananke.docx",
+  "sha256": "72379f535f744b15ccbdcbbb6f68904f6c1177ace27a8fcc028229039b8bd129",
+  "paragraph_numbering": "one-based document.xml descendant w:p, unchanged original",
+  "paragraphs": [
+    {
+      "paragraph": 3787,
+      "text": "ADD-SIR2.1 — Multi-terminal route carrier repair"
+    },
+    {
+      "paragraph": 3788,
+      "text": "Original objects: DEF-SIR68, DEF-SIR73, DEF-SIR74, DEF-SIR75, DEF-SIR76."
+    },
+    {
+      "paragraph": 3789,
+      "text": "Defect. Their single-centerline notation is complete for an unbranched two-terminal route, but not for a branched multi-terminal physical network."
+    },
+    {
+      "paragraph": 3790,
+      "text": "Narrow validity. The original statements remain active for route objects homeomorphic to an interval."
+    },
+    {
+      "paragraph": 3791,
+      "text": "Corrected definition"
+    },
+    {
+      "paragraph": 3792,
+      "text": "A multi-terminal route carrier is a finite embedded one-dimensional CW complex"
+    },
+    {
+      "paragraph": 3793,
+      "text": "\\[ \\mathcal R = (V_{\\mathcal R},E_{\\mathcal R},\\partial_{\\mathcal R},\\gamma,\\kappa), \\]"
+    },
+    {
+      "paragraph": 3794,
+      "text": "where:"
+    },
+    {
+      "paragraph": 3795,
+      "text": "\\(V_{\\mathcal R}\\) contains terminals, fittings, junctions, supports, and transition points;"
+    },
+    {
+      "paragraph": 3796,
+      "text": "\\(E_{\\mathcal R}\\) contains directed or undirected physical segments;"
+    },
+    {
+      "paragraph": 3797,
+      "text": "\\(\\partial_{\\mathcal R}\\) gives segment endpoints;"
+    },
+    {
+      "paragraph": 3798,
+      "text": "\\(\\gamma_e:[0,1]\\to Q_s\\) is a continuous configuration path for each edge;"
+    },
+    {
+      "paragraph": 3799,
+      "text": "\\(\\kappa_v\\) is the fitting or junction state at each vertex."
+    },
+    {
+      "paragraph": 3800,
+      "text": "The swept route body is"
+    },
+    {
+      "paragraph": 3801,
+      "text": "\\[ \\operatorname{Sweep}(\\mathcal R) = \\bigcup_{e\\in E_{\\mathcal R}} \\operatorname{Sweep}(\\gamma_e,B_e) \\cup \\bigcup_{v\\in V_{\\mathcal R}}F_v. \\]"
+    },
+    {
+      "paragraph": 3802,
+      "text": "The corrected realization fiber is"
+    },
+    {
+      "paragraph": 3803,
+      "text": "\\[ \\Gamma_{\\mathrm{real}}^\\mu(n,\\Xi;m,\\omega) = \\left\\{ (\\mathcal R,q,a,p,\\eta): \\mathsf{RealizesGraph}_\\mu (n,\\Xi,m,\\omega,\\mathcal R,q,a,p,\\eta) \\right\\}. \\]"
+    },
+    {
+      "paragraph": 3804,
+      "text": "Proof of compatibility"
+    },
+    {
+      "paragraph": 3805,
+      "text": "If \\(\\mathcal R\\) is homeomorphic to \\([0,1]\\), order its edges from source to sink and concatenate their configuration paths. The corrected object reduces to the original centerline semantics. Therefore the repair conservatively extends rather than contradicts the original two-terminal theory. ∎"
+    },
+    {
+      "paragraph": 3806,
+      "text": "Downstream effect. Every multi-terminal theorem and algorithm in Prompt 2 uses \\(\\mathcal R\\), not a single curve."
+    },
+    {
+      "paragraph": 4472,
+      "text": "DEF-RTR39 — Fabrication state"
+    },
+    {
+      "paragraph": 4473,
+      "text": "\\[ k= (\\mathsf{incomingDirection}, \\mathsf{bendState}, \\mathsf{straightRun}, \\mathsf{fittingClass}, \\mathsf{slopeState}, \\mathsf{supportPhase}). \\]"
+    },
+    {
+      "paragraph": 4474,
+      "text": "DEF-RTR40 — Size state"
+    },
+    {
+      "paragraph": 4475,
+      "text": "\\[ q= (\\mathsf{catalogClass}, \\mathsf{section}, \\mathsf{insulation}, \\mathsf{clearanceClass}). \\]"
+    },
+    {
+      "paragraph": 4476,
+      "text": "DEF-RTR41 — Fabrication-size lifted graph"
+    },
+    {
+      "paragraph": 4477,
+      "text": "\\[ \\widehat G_s = V_s\\times\\mathcal W_s\\times\\mathcal K_s\\times\\Sigma_s. \\]"
+    },
+    {
+      "paragraph": 4478,
+      "text": "A transition exists only if:"
+    },
+    {
+      "paragraph": 4479,
+      "text": "base geometry is certified;"
+    },
+    {
+      "paragraph": 4480,
+      "text": "topology state updates correctly;"
+    },
+    {
+      "paragraph": 4481,
+      "text": "bend and straight-run rules remain admissible;"
+    },
+    {
+      "paragraph": 4482,
+      "text": "size transition is permitted;"
+    },
+    {
+      "paragraph": 4483,
+      "text": "support and slope state remain valid."
+    },
+    {
+      "paragraph": 4484,
+      "text": "Dominance may discard label \\(a\\) at the same base/topology state only if it is no worse in every future-relevant resource and fabrication coordinate."
+    },
+    {
+      "paragraph": 4485,
+      "text": ""
+    },
+    {
+      "paragraph": 4486,
+      "text": "28. Route skeletons"
+    },
+    {
+      "paragraph": 4487,
+      "text": "DEF-RTR42 — Route skeleton"
+    },
+    {
+      "paragraph": 4488,
+      "text": "\\[ \\boxed{ \\sigma= ( \\mathsf{net}, \\mathsf{embeddedSubgraph}, \\mathsf{terminals}, \\mathsf{routeClass}, \\mathsf{branching}, \\mathsf{fittingSlots}, \\mathsf{resourceIncidence}, \\mathsf{version} ). } \\]"
+    },
+    {
+      "paragraph": 4489,
+      "text": "DEF-RTR43 — Skeleton-family type"
+    },
+    {
+      "paragraph": 4490,
+      "text": "A skeleton is typed as one of:"
+    },
+    {
+      "paragraph": 4491,
+      "text": "path;"
+    },
+    {
+      "paragraph": 4492,
+      "text": "tree;"
+    },
+    {
+      "paragraph": 4493,
+      "text": "loop;"
+    },
+    {
+      "paragraph": 4494,
+      "text": "redundant forest;"
+    },
+    {
+      "paragraph": 4495,
+      "text": "manifold;"
+    },
+    {
+      "paragraph": 4496,
+      "text": "shared-trunk graph;"
+    },
+    {
+      "paragraph": 4497,
+      "text": "route bundle."
+    },
+    {
+      "paragraph": 4498,
+      "text": "It may still lack exact sizes, fitting models, supports, physical state, and exact cost."
+    },
+    {
+      "paragraph": 4499,
+      "text": ""
+    },
+    {
+      "paragraph": 4500,
+      "text": "29. Multi-terminal routes"
+    },
+    {
+      "paragraph": 4501,
+      "text": "DEF-RTR44 — Multi-terminal route skeleton"
+    },
+    {
+      "paragraph": 4502,
+      "text": "For terminal set \\(T_n\\), a multi-terminal skeleton is a connected embedded graph spanning every required terminal and satisfying the net’s allowed topology class."
+    },
+    {
+      "paragraph": 4503,
+      "text": "Allowed structures include:"
+    },
+    {
+      "paragraph": 4504,
+      "text": "rooted arborescence;"
+    },
+    {
+      "paragraph": 4505,
+      "text": "undirected tree;"
+    },
+    {
+      "paragraph": 4506,
+      "text": "trunk-and-branch tree;"
+    },
+    {
+      "paragraph": 4507,
+      "text": "loop;"
+    },
+    {
+      "paragraph": 4508,
+      "text": "redundant forest;"
+    },
+    {
+      "paragraph": 4509,
+      "text": "manifold distribution."
+    },
+    {
+      "paragraph": 4510,
+      "text": "Steiner vertices are allowed only in certified placement regions and only with compatible fittings."
+    },
+    {
+      "paragraph": 4511,
+      "text": "A flow-based tree model may use:"
+    },
+    {
+      "paragraph": 4512,
+      "text": "\\[ 0\\le f_{e,t}\\le y_e \\]"
+    },
+    {
+      "paragraph": 4513,
+      "text": "for each terminal \\(t\\), with one unit of root-to-terminal flow. Integral \\(y_e\\) and exact conservation imply connectivity but not fitting validity."
+    },
+    {
+      "paragraph": 4514,
+      "text": ""
+    },
+    {
+      "paragraph": 4515,
+      "text": "30. Shared trunks and route bundles"
+    },
+    {
+      "paragraph": 4516,
+      "text": "DEF-RTR45 — Shared trunk"
+    },
+    {
+      "paragraph": 4517,
+      "text": "A shared trunk is a connected route subgraph carrying the aggregate physical demand of several terminal branches or compatible nets where the net contract explicitly permits sharing."
+    },
+    {
+      "paragraph": 5254,
+      "text": "THM-RTR50 — A valid multi-terminal column gives connected Prompt-1 realization"
+    },
+    {
+      "paragraph": 5255,
+      "text": "M: deductive exact.S: valid exact column.D: ADD-SIR2.1, THM-RTR3.L: fixed represented modes/scenarios."
+    },
+    {
+      "paragraph": 5256,
+      "text": "The column’s skeleton spans all terminals, its fittings realize every junction, and its edge configurations are compatible. Therefore its projected repaired Prompt-1 route graph is connected and physically realized. ∎"
+    },
+    {
+      "paragraph": 5257,
+      "text": "THM-RTR51 — Multi-terminal pricing contains an NP-hard Steiner subproblem"
+    },
+    {
+      "paragraph": 5258,
+      "text": "M: polynomial reduction.S: exact finite route graph.D: Prompt-1 THM-SIR61.L: fixed terminal count may admit exponential-parameter algorithms."
+    },
+    {
+      "paragraph": 5259,
+      "text": "Set all physical and resource prices to zero except graph edge costs and request a minimum connected subgraph spanning terminals. This is graph Steiner Tree. ∎"
+    },
+    {
+      "paragraph": 5260,
+      "text": "THM-RTR52 — Shared trunks trade material against coupling"
+    },
+    {
+      "paragraph": 5261,
+      "text": "M: constructive nonimplication.S: two branch demands.D: none.L: objective dependent."
+    },
+    {
+      "paragraph": 5262,
+      "text": "Combining two branches can remove duplicate corridor length, reducing material. The aggregate trunk may require a larger section, use more scarce rack area, and become a common failure point. Therefore no monotone global preference follows. ∎"
+    },
+    {
+      "paragraph": 5263,
+      "text": "THM-RTR53 — Independent branch sizing need not size a valid shared trunk"
+    },
+    {
+      "paragraph": 5264,
+      "text": "M: counterexample.S: two branches sharing one trunk.D: physical conservation.L: none."
+    },
+    {
+      "paragraph": 5265,
+      "text": "Each branch carries flow \\(Q\\) and is independently sized for \\(Q\\). The shared trunk carries \\(2Q\\). A section valid at \\(Q\\) may violate velocity or pressure limits at \\(2Q\\). ∎"
+    },
+    {
+      "paragraph": 5526,
+      "text": "ALG-RTR17 — BuildMultiTerminalRouteSkeleton"
+    },
+    {
+      "paragraph": 5527,
+      "text": "I/O: terminal set, graph, topology contract \\(\\to\\) connected skeleton candidates.Trust: proposer untrusted. Mode: exact finite DP/MIP or heuristic.Cert: connectivity and topology proof.Failure: MULTITERMINAL_PRICING_INCOMPLETE.Time: NP-hard generally; Dreyfus-Wagner-like exponential in terminal count on finite graphs.Checkpoint: subset DP or solver state."
+    },
+    {
+      "paragraph": 5528,
+      "text": "ALG-RTR18 — CheckRouteSkeleton"
+    },
+    {
+      "paragraph": 5529,
+      "text": "I/O: skeleton and PCSIR \\(\\to\\) VALID_SKELETON, rejection, or UNKNOWN.Trust: trusted.Checks terminals, edge embeddings, junction degrees, loops, class, and fixed context.Time: skeleton size plus local geometry.Checkpoint: skeleton certificate."
+    },
+    {
+      "paragraph": 5530,
+      "text": "ALG-RTR19 — BuildRoutePhysicalFiber"
+    },
+    {
+      "paragraph": 5531,
+      "text": "I/O: valid skeleton, system model, modes/scenarios \\(\\to\\Phi_{n\\sigma}\\).Trust: trusted compiler. Mode: exact symbolic/bounded.Failure: PHYSICAL_MODEL_INAPPLICABLE.Time: model construction size.Reuse: by skeleton/model hash."
+    },
+    {
+      "paragraph": 5532,
+      "text": "ALG-RTR20 — SolveAndCertifyPhysicalFiber"
+    },
+    {
+      "paragraph": 5533,
+      "text": "I/O: \\(\\Phi_{n\\sigma}\\), objective policy \\(\\to\\) witness, bounds, or emptiness certificate.Trust: solver untrusted; certificate checker trusted.Mode: exact, bounded, or UNKNOWN.Failure: LOCAL_ONLY_RESULT, PHYSICAL_FIBER_EMPTY.Time: convex polynomial-time oracle scope or global-search complexity.Checkpoint: branch/enumeration/dual state."
+    },
+    {
+      "paragraph": 5534,
+      "text": "ALG-RTR21 — BuildProofCarryingRouteColumn"
+    },
+    {
+      "paragraph": 5535,
+      "text": "I/O: skeleton and accepted physical witness \\(\\to r\\).Trust: trusted assembler. Mode: inherited witness modality.Failure: COLUMN_INVALID.Time: route and proof size.Checkpoint: content-addressed column."
+    },
+    {
+      "paragraph": 5536,
+      "text": "ALG-RTR22 — CheckRouteColumn"
+    },
+    {
+      "paragraph": 5537,
+      "text": "I/O: column and fixed request \\(\\to\\) accepted column certificate.Recomputes geometry, physics, resource usage, cost enclosure, branch compatibility, and versions.Trust: trusted. Mode: exact/bounded.Time: explicit route-check cost.Reuse: only under complete root equality."
+    }
+  ]
+}
