@@ -1,5 +1,7 @@
 # GitHub backup and recovery
 
+The newer repository source checkpoint `b72cb24732b8` adds whole-project installed-service jobs and seven service catalogue models, with a 3,426-test original-native regression. Its [actual seven-model Hospital assessment](hospital-installed-services.md) retains complete network accounting, original-source references, recovered equipment labels and explicit unresolved design requirements. It does not replace the separate portable ZIP below or establish a construction-ready hospital redesign.
+
 Latest runnable backend: [f73 compact topology and pressure portable checkpoint](https://github.com/DaviBaum/oma-ananke-backup/releases/tag/validated-compact-pressure-2026-09-15). Read the [current portable guide](native-portable-candidate.md) for download, verification and launch instructions. The initial recovery release below supplies the separate original data backup.
 
 The private backup repository is [DaviBaum/oma-ananke-backup](https://github.com/DaviBaum/oma-ananke-backup). It retains the application's full Git history, implementation, tests, source-math traceability and committed validation evidence. The local `origin` remote points to it.

@@ -6,6 +6,8 @@ This operation provides installed topology and local engineering catalogue scree
 
 ## Backend entry points
 
+The validated local build runs at `http://127.0.0.1:8769`; see the [actual Hospital project and results](hospital-installed-services.md). The historical workbench on port 8768 retains its older source identity.
+
 Use `POST /api/projects/{project_id}/runs` with operation `design_services`. Its mission has schema `oma.building-service-design/1`, optional `source_disciplines` mapping source SHA-256 IDs to explicit discipline labels, and optional `contracts`. Omit contracts for the first whole-project inventory. Nonempty `scope` filters are rejected because this operation must retain all imported sources.
 
 The CLI provides the same supervised worker:

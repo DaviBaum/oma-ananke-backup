@@ -1,0 +1,487 @@
+{
+  "schema": "oma.validated-whole-services-backend/1",
+  "checker_version": "oma-independent-checker/2:b72cb24732b8b1d5ab08fdebda5e5649640a652b82bdda24a58f00d4da81b52c",
+  "source_files": {
+    "oma/api.py": "2fc64e71259de9f4dd2139c7a2ca7b4eda4da5f4033e33dbcf8b26386842f523",
+    "oma/assurance.py": "206a886df33d757f81b53f29ca880b6f6b0a878ad3a453cc650570f39ccddc44",
+    "oma/backup.py": "27098588dc6750b78539ee8f77482f90251a12fd7ea9c2c1a7c25ececcdebc0a",
+    "oma/broadphase.py": "44184c64145f9a5de9c053e5ac32824a74d3193a9f63eb4c3583327b63f4057b",
+    "oma/building_services.py": "3ea157eb3f1f25e5f63ba21496acfb0821077393ab24784cd9dabd478c06a351",
+    "oma/build_identity.py": "5bcb854d5e9c147105bc8c23e641919c4474b919d5e74a325904594e1a677575",
+    "oma/cli.py": "acdc20873c5bd0947cbc1d8ba56535ae15b14d44f28b40678a56582b14a4c8be",
+    "oma/dependencies.py": "301d3f65d8dac3387a54b96600c0b224041cc2ed0796783d5773e75fb258d79d",
+    "oma/exact.py": "0ab709cb0ed2c03f0bf74ec59b4b74180f5dee093da4c48d4c678ba94f7b8d20",
+    "oma/exporting.py": "c2ae165b372ab3d4f21e6df9d81259055eb0df9d7f3c8b513adda3b83242d496",
+    "oma/export_checks.py": "15eb7c9ea603893dca055333db4f59d15a2400f41ced8b0d68652bb1e9c327f5",
+    "oma/geometry_edits.py": "10cc839e54639634a43765ef33f46ba1423cff66503717823013a903fd9a8fd2",
+    "oma/geometry_stream.py": "77b28f787db28c6606480bbd2ab1a9bcf85086cbd790350227b0d3637f919ac0",
+    "oma/hardware.py": "5a13eeaa736d232cbd4bda55a637635a9d9265873608c742e4c97e837c196bfa",
+    "oma/models.py": "7d4eab69bc0b677473f3e8f09b396812dd5018c1bcc7debbef174ea9f32704bc",
+    "oma/normalization.py": "353155747aeeb7635143e209ceeb624f19566820a57a096f901483021bc582d3",
+    "oma/opening_inspection.py": "42f1d0d52175083082027ee118f2eb875d3703879f928f9507f396e34261acda",
+    "oma/physical_inputs.py": "71c8ba08520459b308598e8f117353a9f4f089b4caa120677d1f07d58479ce65",
+    "oma/project_assurance.py": "424609e59fd65a5a8692211e7bdaf8b61d0fbf2e994ac5910b5a7da3051d87c5",
+    "oma/project_dependencies.py": "110c62696393ba9e3e1be6260484f9239c029224a7e1292d43defa970d9a9d08",
+    "oma/service.py": "c46b901c86e6a67842bd3fd677b7aaec7ad71b2ce95eec3f09bb848af81d11a7",
+    "oma/store.py": "b35a40f43f0636048ad2b0516091a9b6160905e542d2344b67308e9c388baa71",
+    "oma/uploads.py": "ba347fae0027ed395e8f0d24d2fc83d5bce296a6131bcad3a9236ebb48a40a18",
+    "oma/validation_advisories.py": "870cd5aa77c1d16445369eeb1478127c78181f327bd392db3e0b9eb8256aeb88",
+    "oma/verification.py": "f2cbc490864a9f07455352571c2583876716962fd92c99eeea6c27528dfd333d",
+    "oma/windows_job.py": "00d79333a32cf93f0ec5d74f07fece45f4f59ba4a2fdef40a04fd4ca49a35366",
+    "oma/worker.py": "77524c1637f3f500dd31af090090a17e5c3396ac4e360f1ea2e76d7c63c818b9",
+    "oma/__init__.py": "db2cbf50224a1c63781b1fd06b69300ecb35aab94ae38b46b09dcfcd7672a834",
+    "oma/ifc/audit.py": "b57f4602239b7b0bc4721d520afda4175605e7c017024e551e8750998db80e9b",
+    "oma/ifc/cad.py": "8089f26991339369b4f433cd5ed7bcc277ca2e55907c4c6aa353aae643ccd073",
+    "oma/ifc/cad_cache.py": "987f9355fd7634e9386e385139e69c2b951ea34ce4c7c3b47fba33d86c157e36",
+    "oma/ifc/check.py": "a435ba2ae8e8c22482bdc537aea0746065a389d0c4b3cebe3d487510d589271a",
+    "oma/ifc/enclosure.py": "798be75dd170559a39eca6ed5c82237ceed73e5df18e1ffe0410fa60b9f0daf9",
+    "oma/ifc/export.py": "a1b64997467f5dc1506693297deb81e042ef071f9903f52dbe9fc4a1e227e68e",
+    "oma/ifc/federation.py": "728e152aa57d6e81f8bb5cc6b2316ecfb0cd91f5c565d0c97b591be5567f3612",
+    "oma/ifc/inventory.py": "31e78e4a1fe01813b22a09676077664c8240946ca84297a3fbe42fa3747fd0a5",
+    "oma/ifc/negative_witness.py": "61f875da1d3bf4fd4b6b93919e501510d1731841b64eb0f9f203fe30c540b6bc",
+    "oma/ifc/network.py": "05a062b889c1c4acc8bef0d7cb45ae0c5617c07db167b8dbf3eb6f43da686874",
+    "oma/ifc/network_contract.py": "8192ff679e5f9f262029fc8d31176ad66be14a4b340a4899e5698f1706586d8a",
+    "oma/ifc/network_semantics.py": "0e47957b4c3e6a5b84ba63eeb74cfbba5e4e5238e52afa337c13495ccdab22d3",
+    "oma/ifc/openings.py": "07d9e859ff536be4982aff5a4b26178867ba3df1ce75414c84d5c3fdf4352c4d",
+    "oma/ifc/orthogonal_fillet.py": "01ba350ed1615a402caba635139a9914d7f45627bad8d41184de7f5ca0e32a76",
+    "oma/ifc/ports.py": "edc0a1b8d4083f97927ea2b6ccca7274c6c794db78fb5d3b2ebc7a4daefdddd1",
+    "oma/ifc/protected_semantics.py": "f4d5ba70cc72193043e085e19e0c77c118dc08e6b6b8d227847b7474f5ee2652",
+    "oma/ifc/recheck.py": "047410e8df09892517c5145dbfe4d0d35cfc9532ab37cef18fd8990bbd62d38a",
+    "oma/ifc/service_networks.py": "9bafd44636ed139d0a13fd9028bfbc6ccdd0c49588d20f86ba931fedad70d1a6",
+    "oma/ifc/__init__.py": "7cfa118afe76246c389d7a145bd30048f9d9d7b34dfa310a8b1e7a598e1d0e64",
+    "oma/optimization/bisimulation.py": "f0935c7f03f98839d75a060523bb80923a1272c0991ad6352403e775e16efabe",
+    "oma/optimization/certificates.py": "cd835c40662763e2e0f40e42e93ae39174a06148cd50b9d13cbff2af5966ff7f",
+    "oma/optimization/checker.py": "2d59dde32f07463991826fdce0dba9d078326eb688f8b960782ff18fff2296b0",
+    "oma/optimization/codesign.py": "6507241902734ed8da44517f10060247a7300a908a3ccb7802804b94512e6603",
+    "oma/optimization/coupled_tree_pressure.py": "ce5a264c7815b860b9ce0b8001e1b35cc3ecf7f4acacafc4925f7a6e37060c90",
+    "oma/optimization/coupled_tree_univalence.py": "f433e0c007912aa9501306b2bfc95f0809a135e46b5ad898421410eabe10e4df",
+    "oma/optimization/fabrication.py": "458f1ccbef70da1479a38f7cc823a4eaf5814b9f8c26f070df8f6c2ea2664180",
+    "oma/optimization/fabrication_alternatives.py": "16857629268db3b601340d84c6dd9c563452ecdf9daf0e5bd212d387be2d7910",
+    "oma/optimization/fabrication_frontier.py": "569aebbfba5a4d26aa7a42ab552edf8a4520ee13037fdd0e53c05ff057b09b36",
+    "oma/optimization/fabrication_pricing.py": "b0077cc2e01d847c6123d2bc83e504758c0bb7712b6415167411f34c94a5c268",
+    "oma/optimization/fabrication_search.py": "78d3d69f4555754e37e1766a9f25acf233462020a55c4e5cbdc2ac127be25bfb",
+    "oma/optimization/factorized_tree_pressure.py": "0f07eec6d038efea629a257505adfd4d0650400a3194161d841cae130e582d81",
+    "oma/optimization/fdqa.py": "71622f541c9be26298311cc690fd48c3b236f22f2fe07d7316103f5e67c30dfa",
+    "oma/optimization/finite.py": "d0765e4061da5f110c07b4cde4fa7aefe16c6a978727e1c9de9be33c6ab0c816",
+    "oma/optimization/master.py": "103b3c9df73b8fd7256d3a16acf8de012545ac0cf3d83182c564cc884422cd48",
+    "oma/optimization/passive_pressure.py": "10fd4677d37952d4e0b41a1bf90aeba9bbdef5506e7e5c33ec8773dd456ec51e",
+    "oma/optimization/passive_residual.py": "553b92f34237b74018f3de7825c183149c3e5d0c07a271a26ca180592b6ee0fc",
+    "oma/optimization/physical.py": "20d8ebade5683ee0c642ec57c5b297e1c06801d6d3eaf08106287564e2ed83fd",
+    "oma/optimization/physical_menu.py": "30bc94a2b819fb0bd26fb4e6efb7976e228428d80c294ccb6a0e30c8186ef87e",
+    "oma/optimization/policy.py": "aebc0230cbcb30e1d274d8bba9c8518908c02e8cd9eb546ea93f6335e81592d4",
+    "oma/optimization/ports.py": "e50f4aa98a71f219b01b98aebe27113250879939c39353ae24288b4dd3fed811",
+    "oma/optimization/rectilinear_opening.py": "19a9c7a3193cc91d03e5729c18c513f1de0fcd99711878cb81003848ee3893d8",
+    "oma/optimization/route_cells.py": "4d6c16d20ae0db7f56a93ac66c83915c2d3a01c32e3f695ab986175546153a6c",
+    "oma/optimization/separator.py": "fc4ed186e4f2af871b8cb645655b91ba2476af4b1a488aa53b34884c646772bd",
+    "oma/optimization/service_design.py": "35baa8239bf30946e77aa03bae6428679477059f381ae1e8030c6a3a395f7e6f",
+    "oma/optimization/shared_tree_synthesis.py": "9a9f6c76b4691d70d5d9a21a5a371635549992f5de06fbd0f4ffaf745c97c55d",
+    "oma/optimization/shared_tree_topk.py": "116390796eab23e2921915d982130ee9739439d8696d11e1694c96b76e79e063",
+    "oma/optimization/symbolic.py": "26beaba9959042b608aa202c7425268daae6e1c1ed9aa074a9b6afa8c55c7aa0",
+    "oma/optimization/two_sink_pressure.py": "f8d739cc404db60c40aed2e386dd76c6820fc37a306c5fac354eb95b52486fd6",
+    "oma/optimization/__init__.py": "5eab05980fb0387642c47754f1e67569b9e72f767c3a561c5998bbc7186f9613",
+    "oma/routing/certified_cells.py": "9ff98bd461812fae725953d0e6c6e35ca47ca32b6465f21376f5727b0bc5862e",
+    "oma/routing/certified_fabrication.py": "3a1616d69a2d00c83587128e362b895dda57cf88e84082742624f9f5562d6be7",
+    "oma/routing/checker.py": "91118ac91e230ed4fce2f60eab8a0f89a5d9ba4b919287e6d466799ee9e5b23a",
+    "oma/routing/check_execution.py": "50f3d20752525833b262ae13f81c0acd85c33cdcc982e64c10336d2b0ef795d8",
+    "oma/routing/coupled_tree_pressure.py": "b33fc0cda6e4ad6c7c41634404cd00cd7f502592fe516ef0c3eeca9df52e38b8",
+    "oma/routing/coupled_tree_scenario.py": "a37d44faa7f834806f44f9d353d355f9e30b434a38903b43207d767df82e8d86",
+    "oma/routing/engine.py": "310b3ae8a932b941a07f662918f1c75f4dd28106e6ca53ce7de8672fa220fb60",
+    "oma/routing/fabrication_evidence.py": "3d7cba0f9bd5eba4d6a913e867e56cfb78a460afcd2026f9050e386349a1441e",
+    "oma/routing/fabrication_grid.py": "b721d9e5db69a3a89b4be8d6d6d3facec001991ab881dda17ba05f1214c9d63e",
+    "oma/routing/fabrication_residual.py": "152dfbd0cf8299cc35c2418a292365556da2c88d0e5c9cd21db703f735051515",
+    "oma/routing/fitting_budget.py": "245cffcd3b2faaff67d4607ca45f2ea7568077c64f94a8b1ca5b81c77d3acb52",
+    "oma/routing/generator.py": "ae56ab9e1c481ad16dc6ad63a037a188ce83a369ee0b5bb8e6017cb9e251d50c",
+    "oma/routing/joint.py": "474323771515c05a60831f0cca8bcba3d35f2a5512bdb2f7282244999bff2d5e",
+    "oma/routing/joint_checker.py": "0a00bb6c5a8a57dc7104483d40339ea33eaf4c65057e45d305c8b3a6f667073f",
+    "oma/routing/joint_export.py": "8804c35b00b7d0036f3070a5890668882e23be147e7a2ce55878e1849359d3d1",
+    "oma/routing/joint_materialize.py": "b7a7c91b32006aba2ca7c200bd9158846e2164cc5ba3065a248b205864573bda",
+    "oma/routing/joint_negative_probe.py": "482d6dda38bbca4c2bd479dbfefa8cb44f8933bf75570ac78f86dc30ded9dbd3",
+    "oma/routing/joint_scenario.py": "606867b488d3b553e74979b811a09103ffb7b70fba18341cca5b9f8ce6fe26c6",
+    "oma/routing/native_zone.py": "a86b2ab363b63ad481f789534510103e017a7fba9df820d7360a1bbf259276b1",
+    "oma/routing/negative_probe.py": "a8818630c1d83f89cc121992e6e212c73f776c642b868c6ed12967aea5d2e6e8",
+    "oma/routing/network_checker.py": "8b357d521bd62022dfac343dd4d3a34bcba5dba91792bb12905c5b7095fc0920",
+    "oma/routing/network_engine.py": "b754bb8cb5b4b3169f861d3097d9ee5d2e7517716295682f39e03420e312c479",
+    "oma/routing/network_export.py": "5536aff3de6ef102263facc6ba6338a621e81bd98197c3648ab7c39f1d1346ca",
+    "oma/routing/network_flow.py": "54a04e1489c5c1b9e0c28508686c672fa467a3be2a1e8e71786daf326898051b",
+    "oma/routing/network_pressure.py": "ff4ee882d3b9a498f8b3a1e52e8cee8ce1678ea589eb6d6aea850c8d6eddcade",
+    "oma/routing/network_scenario.py": "45c3e12b0db2b0372b1e97b1879a113a8de5da66c2715c844049f1f9c5e2f2d6",
+    "oma/routing/objectives.py": "51260381ca3a175282ff3a763511cf8c01823dc7768992dc089052288bc638cc",
+    "oma/routing/opening.py": "9f657152cbee1eee60b5280c356bccafe8371c57f388b0ce7d3eb120d69a75f2",
+    "oma/routing/opening_scenario.py": "b7f53358841f5c6106698be3fe4f9e9a21515dc76bfcdc2bc3e184e7ecb00972",
+    "oma/routing/passive_tree_pressure.py": "cfe2edb0bd3d5557508fb01ac0e5d9dd7ca38aa07350d799c83a9e5654a7168b",
+    "oma/routing/passive_tree_scenario.py": "345d5dd367d2785ac2b6bc9d230ccdc3841e42ffaf86b2226a75e53fd1bc73e5",
+    "oma/routing/physical_archive.py": "48b2c43ecccb2d2c3998f464d0e6b06be3f040d9b8246379fb299fb1d56128f7",
+    "oma/routing/proposals.py": "d365a3e1d41a2f4d6c6b23d811b5a1b042ba2c783f607d4a01709f0ef0e22819",
+    "oma/routing/scenario.py": "61ca27b80b565cb69c44d87b4adebd77428ef8b84397ddcca2f3045b9e7f5ab5",
+    "oma/routing/selection.py": "c71c30261402d1ba665c5db1be85c2bc71e4214272b0c990a1c7367bbb1b2598",
+    "oma/routing/shared_tree_catalogue_check.py": "9d0def135f87c723f15d3af8c2af949b17994a9b93968f75f4730ec3220446f7",
+    "oma/routing/shared_tree_job.py": "da164fab3e4e0bcb85826248e5d4249d72cba0809c81ef6f11d55e543fd4831e",
+    "oma/routing/shared_tree_proposals.py": "005b0b875abb41a7304cd66e5cb8f1a4d50c0a40c796eb370d7cfe99aea911da",
+    "oma/routing/shared_tree_requirements.py": "265ba1d998b3e6749cd8145efcdfa54367d7daee7037d7111abaad708757d59b",
+    "oma/routing/__init__.py": "76e529ff324d3d5b9804383053979ef4397b622ff4701b303dd4390e1fecb621"
+  },
+  "support_files": {
+    "ui/dist/index.html": "ec3e8645781ede15967cc70bb334a5ff65214db9dc6d74f81adc3a282d5cd4b6",
+    "ui/dist/mark.svg": "2dea18be65be293290879d67adfc897dd4a25a01303d89db104cd01db154a661",
+    "ui/dist/assets/index-BWzNLWFU.css": "1ca7a9d05bfa05eca36207c93068d6a5a7657de9ef730791cb2d2fa7ec9478aa",
+    "ui/dist/assets/index-Cpn4TXjd.js": "1663d9d791b79079382f6c364d52b83bcae82b196d0d2de783a55db693118db9",
+    "ui/dist/assets/react-DfSJUp79.js": "999456b7bf3c3e2b1d4e5413f1d292105ed8cc89bb89a8feba5ccaf9193936e0",
+    "ui/dist/assets/three-B9_R9M1B.js": "ecfa6ab7a0bfa90528ea456c001584e45ce919aead27746869cc9e0eaeafdfa0",
+    "docs/capabilities.json": "95d6039afbdb7589b8725b1c699eff3ea6dd2d77bed39933a511102214ede3bc"
+  },
+  "runtime": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\building-services-20260915\\live-backend\\b72cb-78c000e2088b477c9d04934338c364b3\\runtime",
+  "store": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\building-services-20260915\\live-backend\\b72cb-78c000e2088b477c9d04934338c364b3\\store",
+  "host": "127.0.0.1",
+  "port": 8769,
+  "timeout_graceful_shutdown": 10,
+  "recover": false,
+  "regression_result": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\building-services-20260915\\combined-validation\\c3482addaad441e5958746e2ab7a41ba\\result.json",
+  "regression_status_at_preparation": "RUNNING",
+  "closed_campaign_store": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\building-services-20260915\\stores\\1cbf8d8cc3c3485896f01b7a41a007fa",
+  "closed_campaign_file_inventory": {
+    "blobs/0fea7d27d2a1f53aed8f62ac080623df5e1803b2b1d5023d50eeebdedb2e6423.json.z": {
+      "sha256": "02cc7c1a31384c53c1d72f2d0505e60d4c1b853bcd9d15f18424ee7b1ec48b61",
+      "bytes": 647133
+    },
+    "blobs/17624f50ccba4bd048c1b56725a94d6f0fa170d608192d73be58a3cb13752eaf.json.z": {
+      "sha256": "17b1c333f3899387a49d02e3dfbf8637e911550aa8201b9ad4829c79eb1ded6b",
+      "bytes": 572
+    },
+    "blobs/26a2ef256dac57cd3f726ff3c615005ba052129b628ce91ecd53c68cbb95687c.json.z": {
+      "sha256": "2f84adbc02d58506da98e11ebdedd1047822e8bb228ef8c0cfcf0e1e09e2ab44",
+      "bytes": 3015819
+    },
+    "blobs/2c41c6a19bd593671eabdff5bd8d9a0b0af186db4df7e79f7979572383b3d37d.json.z": {
+      "sha256": "1249ba235ae3f50981727b4cf7c6ad8aae75fc050f4a92ee3b762b4d0c2ed143",
+      "bytes": 2026173
+    },
+    "blobs/3367d4e19c03766f34e4445d17b95fd34ed8c56b934a8e061b6e39ab76594ed0.json.z": {
+      "sha256": "2d720d4262d57aa5513357f40a5120550a2410db28e9d2259f72aa0291ce19af",
+      "bytes": 574
+    },
+    "blobs/4d6739c6bf45360b5c3c2cb697c4d9942c7abbe11c48eda49c7bdfd2adce3e7c.json.z": {
+      "sha256": "8a58839a3b85f8cdc837e106abade5732f09f1fafdd5f44cc18d35bd066c64ec",
+      "bytes": 13951079
+    },
+    "blobs/56c8cbc9c41cd2b8a2a84a9c96c90be9a9bb9b5debb12e0f126324bf78f9eaf0.json.z": {
+      "sha256": "ca7a8ce6873ce3c7d1bfbd6c651a04454790084a9bbf231d9b618c2c2a42af07",
+      "bytes": 15653127
+    },
+    "blobs/5c9568c10fe3ccfa32f3652228e3c57a8aa933f810b162644004d05473557218.json.z": {
+      "sha256": "8e55ee6b3d336f3249c6843b4e01af5cb765167b03489051b1f45a52df90fa32",
+      "bytes": 572
+    },
+    "blobs/6a12ad3fad87a68a1e1d7e7b7975473fb1c9849639dcac0e34b212970e5bbbcd.json.z": {
+      "sha256": "b90a11fb9e50118c629463fad835a6886b4a9054ff05a171006dc325a61013cf",
+      "bytes": 6277802
+    },
+    "blobs/7d12202c9179c91902070e4779038f0166b2a9d782e03f7d54ae5388d29936b8.json.z": {
+      "sha256": "06fd196f8c1f6b57d993b78721c82ceb0c5989a1e798356a580194fa814fa6e7",
+      "bytes": 1264778
+    },
+    "blobs/82a0a1e155f04424c648a9dd866ca490d13a78b5c1b4737675f56c78def5e167.json.z": {
+      "sha256": "1c26fdeb345f718754ae110d20c54c8277a0e0b2dd862b92043ed06f38ba0be6",
+      "bytes": 20882047
+    },
+    "blobs/8ccc0c0d3c238421f06c3abd52455455fc5e6d1059a103d4003330959fada270.json.z": {
+      "sha256": "e0451a4a0b264e60d6a17679fc5e50ba608ecfa5740a301c9f3c95fc3572e2f4",
+      "bytes": 8478691
+    },
+    "blobs/8f2aae2241a86e8effe7d8c3982145eaf6ec864a5ccbd6ad14a38abfc4328a62.json.z": {
+      "sha256": "12febf36a4699828e2934d0c6e36748fc0c39ec0516f59013f20c47c512878cf",
+      "bytes": 3958097
+    },
+    "blobs/99b13669f9ad462f71e2db9bf5231be18de4c7253e0da200f5f2f00f402e8ffd.json.z": {
+      "sha256": "585b8788bb68ccc77b94e4254a998985d1212f02b5dc4f50e7a3b8eb00426ef3",
+      "bytes": 572
+    },
+    "blobs/aabc5ad38ebce0e8ebe1e4e1ee196fd9a1adf6693f4507a8f84f135020e33be7.json.z": {
+      "sha256": "dbb1fb35ba8bc9d68628a7a37988853abe2278e7e4bb01ea917340b65cdbe353",
+      "bytes": 9416091
+    },
+    "blobs/b568379a0da8f660396e000400f449b94208ec7fef79b5595f4bd828b1c47e54.json.z": {
+      "sha256": "2baef2ad36110b8fab826783f8f400af7dfc1d2bb5e61266206145e3a47cc851",
+      "bytes": 561
+    },
+    "blobs/b6a9aec1226cf2aef063592cb9be557fa53fd109fa32fec760f6eada70e05a66.json.z": {
+      "sha256": "5d0d9bb2e192dddb0f9b3468f554827d31e488c1bc5425c8f0ca043ebee27208",
+      "bytes": 282571
+    },
+    "blobs/bcdc1786bebd224b50318978006f31ce435f1f6351823a85686a734c9ef5eaf7.json.z": {
+      "sha256": "7dff5984da19ca0a14a73205e7f54bcc0e7015fabc99350f3c7d4419e62d3aac",
+      "bytes": 561
+    },
+    "blobs/c313aa66169dba6c58137c1218be78c7f7b3c2ac7e29faf42fd1048afb685bdb.json.z": {
+      "sha256": "f3e08b55e652c42d72eedfac0e6929ceb123d351d9b91ef116b01187a92c7743",
+      "bytes": 792613
+    },
+    "blobs/d482d7e7ff95cd74c887bf05b5e6c070eb6322648a4ab4bf0401a867ec9abda2.json.z": {
+      "sha256": "3b527b6cfeb19b93964741679473e423686f299736c9bb3639708f8798f5a1d8",
+      "bytes": 169840
+    },
+    "blobs/d9e1a3c32f0de4225dd75948811b688e6123b984cfe6b6e21b83327646fea6ae.json.z": {
+      "sha256": "7cb14c0eaefa55c07edaa7eb6e0ae21eefafa26860abce009bbb429addd3dd07",
+      "bytes": 12874607
+    },
+    "blobs/db109fc15ce4712dd76b15673b7a0c909edb01633fedde7cd236c54031fa4df4.json.z": {
+      "sha256": "2b7930cb471613e22a360f4c3b9330553807cd43122ae27edfb312c95ff87a91",
+      "bytes": 1176840
+    },
+    "blobs/de846a61d05e205bbfb9e9e05632aa616b4ced430f009667a270559b2c70a253.json.z": {
+      "sha256": "d25938940834ebeda9248e7d810b862eeefd8c7a3bd27f48af7fc272ef86af9f",
+      "bytes": 564
+    },
+    "oma.sqlite3": {
+      "sha256": "c7a5f3fc410e22e1b35fb8ba9ab05bc48d6e6b86cfc28adff98a88af92869b9b",
+      "bytes": 135168
+    },
+    "oma.sqlite3-shm": {
+      "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+      "bytes": 32768
+    },
+    "oma.sqlite3-wal": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "initial_database_table_inventory": {
+    "asset_aliases": {
+      "rows": 0,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "candidate_check_executions": {
+      "rows": 0,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "candidates": {
+      "rows": 0,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "check_executions": {
+      "rows": 0,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "events": {
+      "rows": 11,
+      "sha256": "73cda84ae7ea583bb2e9eb3b5a84d6949a94222e260c625f5479b25082a21fbb"
+    },
+    "managed_acceptance_authorizations": {
+      "rows": 0,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "metadata": {
+      "rows": 1,
+      "sha256": "e766d3c4eba791f050a3aa8e4416592aeb55820b3737b33b14e34a2b797aa10f"
+    },
+    "projects": {
+      "rows": 1,
+      "sha256": "c101d289f1f37be987ef608bded9babf03b7dea0aab59b1a7405eff41f740dfc"
+    },
+    "requests": {
+      "rows": 0,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "revisions": {
+      "rows": 1,
+      "sha256": "5a4d3cc153f1158f6dd726f0ff56e7ff90cc7d087c19684d5cc5cfa381e2acce"
+    },
+    "run_controls": {
+      "rows": 0,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "run_owners": {
+      "rows": 2,
+      "sha256": "42ecab5d25c9626afc73355f74c5f086deb2e2e0b3d0f00beb092f3d17fcf0dc"
+    },
+    "runs": {
+      "rows": 1,
+      "sha256": "521ef3d638c1f9fedcd3642a24a0bde033dfaafdcb92e6119887c7ada8b0410d"
+    },
+    "sqlite_sequence": {
+      "rows": 1,
+      "sha256": "a21f121fb7d01dc323ea519213fba7590a0c771e29b307f56bc69d69a3464ad1"
+    }
+  },
+  "blob_inventory": {
+    "0fea7d27d2a1f53aed8f62ac080623df5e1803b2b1d5023d50eeebdedb2e6423.json.z": {
+      "sha256": "02cc7c1a31384c53c1d72f2d0505e60d4c1b853bcd9d15f18424ee7b1ec48b61",
+      "bytes": 647133
+    },
+    "17624f50ccba4bd048c1b56725a94d6f0fa170d608192d73be58a3cb13752eaf.json.z": {
+      "sha256": "17b1c333f3899387a49d02e3dfbf8637e911550aa8201b9ad4829c79eb1ded6b",
+      "bytes": 572
+    },
+    "26a2ef256dac57cd3f726ff3c615005ba052129b628ce91ecd53c68cbb95687c.json.z": {
+      "sha256": "2f84adbc02d58506da98e11ebdedd1047822e8bb228ef8c0cfcf0e1e09e2ab44",
+      "bytes": 3015819
+    },
+    "2c41c6a19bd593671eabdff5bd8d9a0b0af186db4df7e79f7979572383b3d37d.json.z": {
+      "sha256": "1249ba235ae3f50981727b4cf7c6ad8aae75fc050f4a92ee3b762b4d0c2ed143",
+      "bytes": 2026173
+    },
+    "3367d4e19c03766f34e4445d17b95fd34ed8c56b934a8e061b6e39ab76594ed0.json.z": {
+      "sha256": "2d720d4262d57aa5513357f40a5120550a2410db28e9d2259f72aa0291ce19af",
+      "bytes": 574
+    },
+    "4d6739c6bf45360b5c3c2cb697c4d9942c7abbe11c48eda49c7bdfd2adce3e7c.json.z": {
+      "sha256": "8a58839a3b85f8cdc837e106abade5732f09f1fafdd5f44cc18d35bd066c64ec",
+      "bytes": 13951079
+    },
+    "56c8cbc9c41cd2b8a2a84a9c96c90be9a9bb9b5debb12e0f126324bf78f9eaf0.json.z": {
+      "sha256": "ca7a8ce6873ce3c7d1bfbd6c651a04454790084a9bbf231d9b618c2c2a42af07",
+      "bytes": 15653127
+    },
+    "5c9568c10fe3ccfa32f3652228e3c57a8aa933f810b162644004d05473557218.json.z": {
+      "sha256": "8e55ee6b3d336f3249c6843b4e01af5cb765167b03489051b1f45a52df90fa32",
+      "bytes": 572
+    },
+    "6a12ad3fad87a68a1e1d7e7b7975473fb1c9849639dcac0e34b212970e5bbbcd.json.z": {
+      "sha256": "b90a11fb9e50118c629463fad835a6886b4a9054ff05a171006dc325a61013cf",
+      "bytes": 6277802
+    },
+    "7d12202c9179c91902070e4779038f0166b2a9d782e03f7d54ae5388d29936b8.json.z": {
+      "sha256": "06fd196f8c1f6b57d993b78721c82ceb0c5989a1e798356a580194fa814fa6e7",
+      "bytes": 1264778
+    },
+    "82a0a1e155f04424c648a9dd866ca490d13a78b5c1b4737675f56c78def5e167.json.z": {
+      "sha256": "1c26fdeb345f718754ae110d20c54c8277a0e0b2dd862b92043ed06f38ba0be6",
+      "bytes": 20882047
+    },
+    "8ccc0c0d3c238421f06c3abd52455455fc5e6d1059a103d4003330959fada270.json.z": {
+      "sha256": "e0451a4a0b264e60d6a17679fc5e50ba608ecfa5740a301c9f3c95fc3572e2f4",
+      "bytes": 8478691
+    },
+    "8f2aae2241a86e8effe7d8c3982145eaf6ec864a5ccbd6ad14a38abfc4328a62.json.z": {
+      "sha256": "12febf36a4699828e2934d0c6e36748fc0c39ec0516f59013f20c47c512878cf",
+      "bytes": 3958097
+    },
+    "99b13669f9ad462f71e2db9bf5231be18de4c7253e0da200f5f2f00f402e8ffd.json.z": {
+      "sha256": "585b8788bb68ccc77b94e4254a998985d1212f02b5dc4f50e7a3b8eb00426ef3",
+      "bytes": 572
+    },
+    "aabc5ad38ebce0e8ebe1e4e1ee196fd9a1adf6693f4507a8f84f135020e33be7.json.z": {
+      "sha256": "dbb1fb35ba8bc9d68628a7a37988853abe2278e7e4bb01ea917340b65cdbe353",
+      "bytes": 9416091
+    },
+    "b568379a0da8f660396e000400f449b94208ec7fef79b5595f4bd828b1c47e54.json.z": {
+      "sha256": "2baef2ad36110b8fab826783f8f400af7dfc1d2bb5e61266206145e3a47cc851",
+      "bytes": 561
+    },
+    "b6a9aec1226cf2aef063592cb9be557fa53fd109fa32fec760f6eada70e05a66.json.z": {
+      "sha256": "5d0d9bb2e192dddb0f9b3468f554827d31e488c1bc5425c8f0ca043ebee27208",
+      "bytes": 282571
+    },
+    "bcdc1786bebd224b50318978006f31ce435f1f6351823a85686a734c9ef5eaf7.json.z": {
+      "sha256": "7dff5984da19ca0a14a73205e7f54bcc0e7015fabc99350f3c7d4419e62d3aac",
+      "bytes": 561
+    },
+    "c313aa66169dba6c58137c1218be78c7f7b3c2ac7e29faf42fd1048afb685bdb.json.z": {
+      "sha256": "f3e08b55e652c42d72eedfac0e6929ceb123d351d9b91ef116b01187a92c7743",
+      "bytes": 792613
+    },
+    "d482d7e7ff95cd74c887bf05b5e6c070eb6322648a4ab4bf0401a867ec9abda2.json.z": {
+      "sha256": "3b527b6cfeb19b93964741679473e423686f299736c9bb3639708f8798f5a1d8",
+      "bytes": 169840
+    },
+    "d9e1a3c32f0de4225dd75948811b688e6123b984cfe6b6e21b83327646fea6ae.json.z": {
+      "sha256": "7cb14c0eaefa55c07edaa7eb6e0ae21eefafa26860abce009bbb429addd3dd07",
+      "bytes": 12874607
+    },
+    "db109fc15ce4712dd76b15673b7a0c909edb01633fedde7cd236c54031fa4df4.json.z": {
+      "sha256": "2b7930cb471613e22a360f4c3b9330553807cd43122ae27edfb312c95ff87a91",
+      "bytes": 1176840
+    },
+    "de846a61d05e205bbfb9e9e05632aa616b4ced430f009667a270559b2c70a253.json.z": {
+      "sha256": "d25938940834ebeda9248e7d810b862eeefd8c7a3bd27f48af7fc272ef86af9f",
+      "bytes": 564
+    }
+  },
+  "native_environment": {
+    "interpreter": "C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe",
+    "python_sha256": "0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14",
+    "version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "native_extensions": {
+      "OCP.OCP": {
+        "path": "C:\\Users\\Davi\\Downloads\\oma\\.venv\\Lib\\site-packages\\OCP\\OCP.cp312-win_amd64.pyd",
+        "sha256": "e5730764f80f94d4f585707ec501b59dcd0fb0c89a0aed73835f00def32a614c"
+      },
+      "ifcopenshell._ifcopenshell_wrapper": {
+        "path": "C:\\Users\\Davi\\Downloads\\oma\\.venv\\Lib\\site-packages\\ifcopenshell\\_ifcopenshell_wrapper.cp312-win_amd64.pyd",
+        "sha256": "354f439b6f9e94d588a2e9b675fd65e6597cf312d0bc429ed6c7c2da2b2f24b0"
+      }
+    },
+    "checker_version": "oma-independent-checker/2:b72cb24732b8b1d5ab08fdebda5e5649640a652b82bdda24a58f00d4da81b52c"
+  },
+  "projects": [
+    {
+      "id": "3b2ea6eaf87a42a5893caa3cbbe12a40",
+      "name": "Hospital - all installed MEP services",
+      "revision": 0,
+      "state_root": "56c8cbc9c41cd2b8a2a84a9c96c90be9a9bb9b5debb12e0f126324bf78f9eaf0",
+      "status": "IMPORTED",
+      "created_at": "2026-09-15T22:24:39.357417+00:00"
+    }
+  ],
+  "runs": [
+    {
+      "id": "103efcbb74c24897aee17f081585ba11",
+      "project_id": "3b2ea6eaf87a42a5893caa3cbbe12a40",
+      "base_revision": 0,
+      "base_root": "56c8cbc9c41cd2b8a2a84a9c96c90be9a9bb9b5debb12e0f126324bf78f9eaf0",
+      "status": "MISSING_INPUTS",
+      "desired_action": "run",
+      "operation": "design_services",
+      "request": "{\"budget_seconds\":1200,\"mission\":{\"contracts\":[],\"schema\":\"oma.building-service-design/1\",\"source_disciplines\":{\"04a29bc312fe0b026634ad86390e8b72c1d1c1765255351f787503d3d8ce1c13\":\"HVAC\",\"0e30c25a77ebcd75b2fc3a6cb87dc3891bd476f60a269e36eb5e0149bcc06ea7\":\"FIRE\",\"230afa4d72a59c9ce18cdd9a7bc7c5c3e409a46078de6e14b19741b4cf92cf09\":\"ARCHITECTURE\",\"7eed88eb21dafdc5a5950d9b1ee18df3fd00fcd376a14fd1bae80658e371975e\":\"STRUCTURE\",\"8e404c4e4c9085338383a89ae57a3a31ebe96ee406214392a1bf69a6775dcecc\":\"ELECTRICAL\",\"bb53f0eb8f7295e91e0fb6ec6b79a30022a2e0e248714aab6bb1a8930c4793dd\":\"PLUMBING\",\"f04e6fb62ad10cd78177d1d390758e912e3ad65881a184cca8ea1da07c59ae23\":\"FIRE\"}},\"operation\":\"design_services\",\"scope\":[]}",
+      "created_at": "2026-09-15T22:24:39.369925+00:00",
+      "updated_at": "2026-09-15T22:26:16.329850+00:00",
+      "detail": "Whole-project service accounting complete; physical network optimization and construction verification remain separate"
+    }
+  ],
+  "report_root": "db109fc15ce4712dd76b15673b7a0c909edb01633fedde7cd236c54031fa4df4",
+  "report_summary": {
+    "catalogue_status_counts": {},
+    "contract_count": 0,
+    "network_count": 5463,
+    "network_status_counts": {
+      "MISSING_DESIGN_CONTRACT": 5463
+    },
+    "source_count": 7
+  },
+  "original_ifcs": [
+    {
+      "path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-generated-tree\\stores\\6f55c59953f5457daba32dc8223101b2\\imports\\230afa4d72a59c9ce18cdd9a7bc7c5c3e409a46078de6e14b19741b4cf92cf09\\arc_ifc4.ifc",
+      "sha256": "230afa4d72a59c9ce18cdd9a7bc7c5c3e409a46078de6e14b19741b4cf92cf09",
+      "bytes": 80937122
+    },
+    {
+      "path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-generated-tree\\stores\\6f55c59953f5457daba32dc8223101b2\\imports\\8e404c4e4c9085338383a89ae57a3a31ebe96ee406214392a1bf69a6775dcecc\\elec_ifc4.ifc",
+      "sha256": "8e404c4e4c9085338383a89ae57a3a31ebe96ee406214392a1bf69a6775dcecc",
+      "bytes": 4435308
+    },
+    {
+      "path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-generated-tree\\stores\\6f55c59953f5457daba32dc8223101b2\\imports\\f04e6fb62ad10cd78177d1d390758e912e3ad65881a184cca8ea1da07c59ae23\\fire_ifc4.ifc",
+      "sha256": "f04e6fb62ad10cd78177d1d390758e912e3ad65881a184cca8ea1da07c59ae23",
+      "bytes": 905021
+    },
+    {
+      "path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-generated-tree\\stores\\6f55c59953f5457daba32dc8223101b2\\imports\\04a29bc312fe0b026634ad86390e8b72c1d1c1765255351f787503d3d8ce1c13\\mech_ifc4.ifc",
+      "sha256": "04a29bc312fe0b026634ad86390e8b72c1d1c1765255351f787503d3d8ce1c13",
+      "bytes": 73047260
+    },
+    {
+      "path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-generated-tree\\stores\\6f55c59953f5457daba32dc8223101b2\\imports\\bb53f0eb8f7295e91e0fb6ec6b79a30022a2e0e248714aab6bb1a8930c4793dd\\plumb_ifc4.ifc",
+      "sha256": "bb53f0eb8f7295e91e0fb6ec6b79a30022a2e0e248714aab6bb1a8930c4793dd",
+      "bytes": 23762808
+    },
+    {
+      "path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-generated-tree\\stores\\6f55c59953f5457daba32dc8223101b2\\imports\\0e30c25a77ebcd75b2fc3a6cb87dc3891bd476f60a269e36eb5e0149bcc06ea7\\sprinkle_ifc4.ifc",
+      "sha256": "0e30c25a77ebcd75b2fc3a6cb87dc3891bd476f60a269e36eb5e0149bcc06ea7",
+      "bytes": 33990094
+    },
+    {
+      "path": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-generated-tree\\stores\\6f55c59953f5457daba32dc8223101b2\\imports\\7eed88eb21dafdc5a5950d9b1ee18df3fd00fcd376a14fd1bae80658e371975e\\str_ifc4.ifc",
+      "sha256": "7eed88eb21dafdc5a5950d9b1ee18df3fd00fcd376a14fd1bae80658e371975e",
+      "bytes": 6484576
+    }
+  ]
+}
