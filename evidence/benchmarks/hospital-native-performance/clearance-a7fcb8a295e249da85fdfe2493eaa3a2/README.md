@@ -1,0 +1,13 @@
+# Hospital architecture cold clearance evidence
+
+The exact previously timed-out four-part candidate passes the full ARC geometry check under frozen f716dd5c in 305.41 s (312.58 s supervised; peak sampled RSS 4.02 GB). All 14,641 physical declarations remain accounted: 232 grounded assemblies and 14,409 represented obstacles, giving 57,636 source pairs and six self-pairs. No pair is failed, unknown, blocked or missing geometry.
+
+Complete checked source enclosures prove 13,151 obstacles separated from every route. The other 1,258 obstacles use actual native refinement. This is the existing explicitly declared source-support policy; enclosure-only products are not claimed to be native valid solids. Native route geometry is unchanged. The full original canonical parsed STEP records and both IFC byte hashes are rechecked. The original raw source bytes remain unchanged; canonical parsed entity preservation is distinct from raw serializer record identity.
+
+This is a geometry-only diagnostic. Direct CAD connectivity is NOT_RUN; no operating/service, selection, acceptance or newly exported result is claimed here. The separate fresh campaign records those obligations. All seven Hospital disciplines remain imported but unresolved for alignment; this ARC-only success does not validate the federation or installed clinical services.
+
+The generic changes are exact-source-support-first native refinement, cached immutable raw project-ID discovery, and exact self-reference federation identity. `base-src` and `combined-src` preserve 114-file snapshots. Final CAD-focused tests are 59 PASS; the initial one failed test expectation and all raw logs remain. The independent review covers affine transformations, all-route predicates, missing refinement, source mutation and callback propagation. The initial setup exception and instrumented 120 s timeout are retained without converting either to success.
+
+`cold-probe/cad-report.json.gz` is the exact losslessly compressed 50 MB report. `actual.ifc.gz` preserves the original retained gzip bytes; compression.json binds decompressed hashes. path-mapping.json maps original absolute provenance to public copies. The native cache and temporary test fixtures are excluded; closed-cache-seed.json separately documents later byte-exact cache reuse. The successful cold probe started without a populated cache. Original scripts retain their executed absolute-root assumptions; use the mapping when replaying elsewhere.
+
+The prior 1800 s result remains UNKNOWN_TIMEOUT and is not used to claim an exact whole-pipeline speedup ratio. No CAD, tests, live Store or source writes are performed by this retention script.

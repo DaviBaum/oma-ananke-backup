@@ -1,0 +1,31 @@
+........F..................................................              [100%]
+================================== FAILURES ===================================
+_____ test_query_transform_does_not_transform_returned_object_twice[True] _____
+
+tmp_path = WindowsPath('C:/Users/Davi/Downloads/oma/.oma/development/hospital-geometry-acceleration/validation/79506467013a42a6b29bf35e34d4b010/temporary/test_query_transform_does_not_1')
+near = True
+
+    @pytest.mark.parametrize('near', [False, True])
+    def test_query_transform_does_not_transform_returned_object_twice(tmp_path, near):
+        source = make_fixture(tmp_path/'source.ifc')
+        transform = np.array([[0.,-1.,0.,100.],[1.,0.,0.,200.],[0.,0.,1.,300.],[0.,0.,0.,1.]])
+        origin = (98.5,200.5,300.5) if near else (120.,230.,340.)
+        route = box('transformed-query', origin=origin, size=(.1,.1,.1))
+        objects, errors, report = lazy(source, [route], source_transform=transform)
+        assert not errors and len(objects) == 1
+>       assert objects[0].bounds == pytest.approx((0.,0.,0.,2.,2.,2.), abs=1e-6)
+E       AssertionError: assert (-1e-05, -1e-...0001, 2.00001) == approx((0.0 ±....0 ± 1.0e-06))
+E         
+E         comparison failed. Mismatched elements: 6 / 6:
+E         Max absolute difference: 1.0000000000065512e-05
+E         Max relative difference: 1.0
+E         Index | Obtained | Expected     
+E         0     | -1e-05   | 0.0 ± 1.0e-06
+E         1     | -1e-05   | 0.0 ± 1.0e-06...
+E         
+E         ...Full output truncated (4 lines hidden), use '-vv' to show
+
+.oma\development\hospital-geometry-acceleration\validation\79506467013a42a6b29bf35e34d4b010\tests\test_ifc_cad_lazy_support.py:80: AssertionError
+=========================== short test summary info ===========================
+FAILED .oma/development/hospital-geometry-acceleration/validation/79506467013a42a6b29bf35e34d4b010/tests/test_ifc_cad_lazy_support.py::test_query_transform_does_not_transform_returned_object_twice[True]
+1 failed, 58 passed in 9.71s
