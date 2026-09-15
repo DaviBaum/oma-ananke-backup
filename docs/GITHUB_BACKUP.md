@@ -20,6 +20,14 @@ The sealed portable package contains source5e8. The generated-tree backend at th
 
 The saved UI working files are a backup of unfinished work. They are separate from the six compiled interface assets used during backend validation.
 
+## Validated general-tree portable checkpoint
+
+The newer [validated-general-tree-2026-09-15 prerelease](https://github.com/DaviBaum/oma-ananke-backup/releases/tag/validated-general-tree-2026-09-15) contains the sealed EDF portable ZIP, its manifest and restore instructions: three assets totaling 1,174,189,376 bytes. GitHub's SHA-256 digests and sizes match all local assets. The ZIP digest is `ba61710a0cd3f02a5be9f3021c55ac3c7aef10f632ec33fe4c032556e8292eb0`.
+
+This package contains source `edf555760245` and bundled checker `b1f5ee819e5e`, with 14,578 sealed files. Its bundled suite passed 3,009 tests; three named direct-interpreter bridge tests do not apply to that runtime and pass in both other native environments. All three saved Office export roles passed fresh native rechecks. See the [verified release receipt](../evidence/release/github-edf-portable/completed-218ccb24ff4d4ba7824d1187b95f57e4/completed-handoff.json) and [independent package audit](../evidence/release/edf-portable-peer/sealed-2687db76a91942c9b137dacfcaa7b2fe/result.json).
+
+Extract this package into a new directory and use its own `OMA.cmd`. The subsequent compact topology and factorized pressure implementation has a different source identity and is not included in this EDF ZIP. Existing recovery releases remain intact.
+
 ## Ongoing hospital and mathematics work
 
 Hospital results and subsequent completed mathematical checkpoints are committed and pushed as they finish. Each report states its exact source model, coordinate assumptions, tested scope, failure/unknown outcomes, runtime identity and export verification. Incomplete runs are retained as incomplete evidence, never counted as successful validation.
