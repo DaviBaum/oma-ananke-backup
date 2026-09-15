@@ -21,16 +21,9 @@ def propose_shared_tree_run(store,run,control):
             raise subprocess.TimeoutExpired('shared_tree_generation',seconds)
     checkpoint('shared_tree_generation_start',forced=True)
     query=run['request'].get('mission')
-    required={'schema','requirements','search','max_results'}
-    if (not isinstance(query,dict) or set(query) not in (required,required|{'generation_budget'})
+    if (not isinstance(query,dict) or set(query)!={'schema','requirements','search','max_results'}
             or query.get('schema')!=JOB_SCHEMA):
         store.update_run(run['id'],'MISSING_INPUTS','A complete shared-tree generation request is required','network_generation')
-        return
-    limits=query.get('generation_budget',{'max_work':2_000_000,'max_partial_trees':20_000})
-    if (not isinstance(limits,dict) or set(limits)!={'max_work','max_partial_trees'}
-            or type(limits['max_work']) is not int or not 1<=limits['max_work']<=10_000_000
-            or type(limits['max_partial_trees']) is not int or not 1<=limits['max_partial_trees']<=200_000):
-        store.update_run(run['id'],'MISSING_INPUTS','Generation budget requires bounded integer max_work and max_partial_trees','network_generation')
         return
     baseline=store.get(run['base_root'])
     sources=baseline.get('sources',[])
@@ -44,8 +37,7 @@ def propose_shared_tree_run(store,run,control):
         'source_geometry_usage':'FIXED_CONTEXT_ONLY; NO_OBSTACLE_OR_NATIVE_AUTHORITY_FROM_GENERATION'}
     store.update_run(run['id'],'RUNNING','Generating bounded directed connectors and shared-tree alternatives','network_generation')
     generated=compile_shared_tree_proposals(query['requirements'],query['search'],context=context,
-        max_results=query['max_results'],max_work=limits['max_work'],
-        max_partial_trees=limits['max_partial_trees'],checkpoint=checkpoint)
+        max_results=query['max_results'],checkpoint=checkpoint)
     if generated['status']=='PROPOSALS_READY':
         try:
             scenario=SharedNetworkScenario.model_validate(generated['mission'])

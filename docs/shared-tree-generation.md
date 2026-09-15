@@ -1,6 +1,6 @@
 # Generated shared-tree backend
 
-The backend can construct two- or three-sink branching networks from fixed terminals, placed tees and a bounded connector search. The request supplies requirements and individual fitting locations. The generator constructs the complete alternative networks, retaining shared trunks once in both the design and nominal cost.
+The backend can construct two- through eight-sink branching networks from fixed terminals, placed tees and a bounded connector search. The request supplies requirements and individual fitting locations. The generator constructs complete alternatives, counting shared trunks once. Dense larger catalogues can exhaust the full-ledger budget; four sinks have completed native acceptance and fresh export on the current live version.
 
 This feature is available through the local backend API. The existing workbench interface is unchanged.
 
@@ -32,6 +32,8 @@ The empty objects above show the envelope only. `requirements` contains the exis
 
 The [three-sink pressure example](../examples/shared-tree-three-sink-request.json) is a complete synthetic request from the native regression fixture. Its coordinates and hydraulic assumptions were authored for that fixture. A building project needs its own terminals, zone, fitting locations and justified boundary data.
 
+The [four-sink pressure example](../examples/shared-tree-four-sink-request.json) supplies the complete new request. Optional `generation_budget` contains exactly integer `max_work` and `max_partial_trees`. Defaults are 2,000,000 work units and 20,000 partial trees; hard limits are 10,000,000 and 200,000. The four-sink example explicitly uses the larger limits. These resource limits do not alter physical requirements or authorize incomplete proofs. The compact top-K extension is being validated separately and is not part of this live checkpoint.
+
 Poll `GET /api/runs/{run_id}` and read `GET /api/projects/{project_id}/events`. The `network_generation_complete` event supplies `payload.proposal_artifact_root`. Fetch it through `GET /api/artifacts/{root}`. If `result.status` is `PROPOSALS_READY`, submit `result.mission` unchanged in a new run with `operation: "optimize"` and a new idempotency key. That ordinary run materializes the alternatives and performs native geometry and service checks. Acceptance and export use the existing candidate APIs and current project revision.
 
 Generation itself does not create candidates or change the project revision. Its immutable artifact binds the original request, source manifest, project state/revision, numerical policy and executable. Cancellation and deadlines use the existing supervised worker controls. An empty finite menu is reported as unresolved physical feasibility.
@@ -46,10 +48,12 @@ The geometry adapter currently requires exact binary64-representable coordinates
 
 ## Pressure-driven specialization
 
-Fixed-flow and geometry-only requirements remain supported. The unequal-outlet `coupled_tree` profile requires exactly one fixed site per named tee loss identity, two or three sinks, and exactly sinks-minus-one tees. Each `b` and `branch` coefficient stays attached to its original tee and outlet. The complete source/sink pressure intervals, minimum deliveries, proof proposal box, fluid/loss assumptions and velocity limits remain unchanged through generation.
+Fixed-flow and geometry-only requirements remain supported. The unequal-outlet `coupled_tree` profile requires exactly one fixed site per named tee loss identity, two through eight sinks, and exactly sinks-minus-one tees. Each `b` and `branch` coefficient stays attached to its original tee and outlet. The complete source/sink pressure intervals, minimum deliveries, proof proposal box, fluid/loss assumptions and velocity limits remain unchanged through generation.
 
 Each physical candidate still needs complete current native geometry and metric checks, independently reconstructed pressure equations, same-model local existence and global nonnegative uniqueness, and every delivery/port-velocity check. A pressure proof alone cannot override a geometry or service failure. Other generated pressure profiles remain unsupported.
 
 The retained three-sink example passes native checks, acceptance at revision 2 and a fresh exported IFC check: 11 parts, 24 ports, 22 source pairs and 55 component pairs. Its reverse-pressure case remains unaccepted. An earlier proof box was too narrow to certify the full native uncertainty; the later fixture widens only that computational box, retaining all physical pressures, losses and delivery requirements. Both attempts and the independent exact diagnosis are preserved.
 
-Mathematical contracts: [finite synthesis](math/shared-tree-synthesis.md), [catalogue provenance](math/shared-tree-catalogue-provenance.md), and [fixed-identity pressure provenance](math/shared-tree-coupled-provenance.md). Current validation and remaining work are recorded in [PROGRESS.md](PROGRESS.md). Full original mathematics and full production readiness remain incomplete.
+The four-sink accepted candidate and fresh export each pass 14 components, 31 ports, 28 source pairs, 91 unique component pairs, four deliveries, 32 continuity identities and 35 head paths. Its pressure boundary was independently authored with rational arithmetic and a separate Machin-series pi evaluation. Obstructed and reversed-pressure alternatives remain unaccepted.
+
+Mathematical contracts: [original synthesis](math/shared-tree-synthesis.md), [four-to-eight extension](math/general-shared-tree-synthesis.md), [catalogue provenance](math/shared-tree-catalogue-provenance.md), and [pressure provenance](math/shared-tree-coupled-provenance.md). Current validation and remaining work are recorded in [PROGRESS.md](PROGRESS.md). Full original mathematics and full production readiness remain incomplete.

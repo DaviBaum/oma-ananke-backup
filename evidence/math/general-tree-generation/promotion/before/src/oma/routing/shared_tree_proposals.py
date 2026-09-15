@@ -36,8 +36,8 @@ def _call(checkpoint, stage):
 
 class _Budget:
     def __init__(self, maximum, checkpoint):
-        if type(maximum) is not int or not 1 <= maximum <= 10_000_000:
-            raise ValueError('Work budget must be an integer from1 to10000000')
+        if type(maximum) is not int or not 1 <= maximum <= 2_000_000:
+            raise ValueError('Work budget must be an integer from1 to2000000')
         self.maximum, self.work, self.checkpoint = maximum, 0, checkpoint
         self.next_checkpoint=128
 
@@ -238,7 +238,7 @@ def build_connector_catalogue(requirements,search,*,context,max_work=250_000,max
             raise _Unavailable('GENERATED_PRESSURE_TEE_IDENTITY_PROFILE_NOT_IMPLEMENTED')
         if not isinstance(c,dict) or not c: raise ValueError('Current source/application context required')
         sinks=r['sinks']
-        if not isinstance(sinks,list) or not 2<=len(sinks)<=8: raise ValueError('Two to eight fixed sinks required')
+        if not isinstance(sinks,list) or len(sinks) not in (2,3): raise ValueError('Two or three fixed sinks required')
         sink_ids=[_identifier(x['id']) for x in sinks]
         if len(set(sink_ids))!=len(sink_ids) or set(s['sink_directions'])!=set(sink_ids):raise ValueError('Complete unique sink directions required')
         tees=s['tee_instances']
@@ -374,13 +374,11 @@ def _network_from_assignment(requirements,generated,proposal):
 
 
 def compile_shared_tree_proposals(requirements,search,*,context,max_results=8,max_work=2_000_000,
-        max_bytes=2_097_152,max_partial_trees=20_000,checkpoint=None):
+        max_bytes=2_097_152,checkpoint=None):
     """Produce a checked finite nominal proposal menu for the existing native run API."""
     budget=_Budget(max_work,checkpoint)
     try:
         if type(max_results) is not int or not 1<=max_results<=32:raise ValueError('One to32 returned proposals required')
-        if type(max_partial_trees) is not int or not 1<=max_partial_trees<=200_000:
-            raise ValueError('Partial-tree budget must be an integer from1 to200000')
         original={'requirements':requirements,'search':search,'context':context}
         captured=_snapshot(original,budget,max_bytes);original_root=digest(captured)
         r,s,c=(captured[k] for k in ('requirements','search','context'))
@@ -398,14 +396,13 @@ def compile_shared_tree_proposals(requirements,search,*,context,max_results=8,ma
         catalogue=generated['catalogue']
         r=generated['normalized_requirements']
         budget.use()
-        compiled=compile_shared_tree_catalogue(catalogue,max_results=max_results,max_work=budget.remaining(),
-            max_partial_trees=max_partial_trees,checkpoint=relay)
+        compiled=compile_shared_tree_catalogue(catalogue,max_results=max_results,max_work=budget.remaining(),checkpoint=relay)
         budget.use(compiled['work'])
         if compiled['status']!='CERTIFIED':
             return {'status':compiled['status'],'reason':compiled.get('reason'),'mission':None,'proof_complete':False,'work':budget.work}
         budget.use()
         checked=verify_shared_tree_catalogue(catalogue,compiled['certificate'],max_results=max_results,
-            max_work=budget.remaining(),max_partial_trees=max_partial_trees,checkpoint=relay)
+            max_work=budget.remaining(),checkpoint=relay)
         budget.use(checked['work'])
         if checked['status']!='PASS':raise _Unavailable('SYNTHESIS_INDEPENDENT_CHECK_'+checked['status'])
         if not checked['proposals']:

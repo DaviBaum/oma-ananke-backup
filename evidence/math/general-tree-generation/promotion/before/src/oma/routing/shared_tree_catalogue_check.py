@@ -358,7 +358,7 @@ def verify_generated_catalogue(requirements, search, generated, *, context,
             _keys(plane,{"axis","value_m"})
             if type(plane["axis"]) is not int or plane["axis"] not in (0,1,2):raise ValueError("Exact plane axis required")
             planes.append((plane["axis"],_q(plane["value_m"])))
-        if not 2<=len(r["sinks"])<=8:raise ValueError("Two to eight sinks required")
+        if len(r["sinks"]) not in (2,3):raise ValueError("Exactly two or three sinks required")
         sink_ids=[_identity(x["id"]) for x in r["sinks"]]
         demand_ids=[_identity(x["demand_id"]) for x in r["sinks"]]
         if len(set(sink_ids))!=len(sink_ids) or len(set(demand_ids))!=len(demand_ids) or "source" in sink_ids:

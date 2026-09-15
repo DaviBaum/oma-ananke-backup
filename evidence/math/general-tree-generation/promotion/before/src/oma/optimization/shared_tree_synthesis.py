@@ -1,4 +1,4 @@
-"""Exact finite 2--8-sink tee/connector catalogue synthesis (bounded RTR17/18).
+"""Exact finite 2/3-sink tee/connector catalogue synthesis (bounded RTR17/18).
 
 This module proves cap/section correspondence and finite combinatorial ranking.
 Caller-authored geometry/fabrication/loss roots are identities, not native proof.
@@ -58,17 +58,15 @@ class _Control:
 
 
 def _budgets(max_tee_instances, max_connectors, max_assignments, max_results,
-             max_work, max_bytes, max_rational_bits, max_pi_terms, max_partial_trees=20000):
+             max_work, max_bytes, max_rational_bits, max_pi_terms):
     values = dict(max_tee_instances=max_tee_instances, max_connectors=max_connectors,
                   max_assignments=max_assignments, max_results=max_results,
                   max_work=max_work, max_bytes=max_bytes,
-                  max_rational_bits=max_rational_bits, max_pi_terms=max_pi_terms,
-                  max_partial_trees=max_partial_trees)
+                  max_rational_bits=max_rational_bits, max_pi_terms=max_pi_terms)
     ranges = {"max_tee_instances": (1, 64), "max_connectors": (1, 4096),
               "max_assignments": (1, 100000), "max_results": (1, 256),
               "max_work": (1, 20000000), "max_bytes": (256, 67108864),
-              "max_rational_bits": (16, 4096), "max_pi_terms": (1, 256),
-              "max_partial_trees": (1, 200000)}
+              "max_rational_bits": (16, 4096), "max_pi_terms": (1, 256)}
     for name, (lo, hi) in ranges.items():
         if type(values[name]) is not int or not lo <= values[name] <= hi:
             raise ValueError("Invalid " + name)
@@ -85,13 +83,13 @@ def _shape(problem, limits):
                     "source", "sinks", "tee_instances", "connectors"})
     for key, limit, reason in (("tee_instances", limits["max_tee_instances"], "TEE_BUDGET"),
                                ("connectors", limits["max_connectors"], "CONNECTOR_BUDGET"),
-                               ("sinks", 8, "SINK_DOMAIN")):
+                               ("sinks", 3, "SINK_DOMAIN")):
         if type(problem[key]) is not list:
             raise ValueError("Lists required for catalogue inventories")
         if len(problem[key]) > limit:
             raise _Exhausted(reason)
-    if not 2 <= len(problem["sinks"]) <= 8:
-        raise ValueError("Between two and eight sinks required")
+    if not 2 <= len(problem["sinks"]) <= 3:
+        raise ValueError("Exactly two or three sinks required")
 
 
 def _certificate_shape(certificate, limits):
@@ -347,8 +345,6 @@ def _row(m, tee_ids, connector_ids, control, limits):
 
 
 def _producer_assignments(m, control, limits):
-    if len(m["sinks"]) > 3:
-        return _producer_general_assignments(m, control, limits)
     sinks, tees = sorted(m["sinks"]), sorted(m["tee_costs"])
     rows = []
     templates = 0
@@ -388,125 +384,24 @@ def _producer_assignments(m, control, limits):
     return rows, templates
 
 
-def _producer_general_assignments(m, control, limits):
-    """Bottom-up subtree joins, independent of the checker's open-slot walk.
-
-    A state is (sink mask, used-tee mask, complete subtree connector IDs).
-    States exclude their entering connector; labelled b/branch joins are unique.
-    Candidate joins are charged before overlap tests or result allocations.
-    """
-    sinks, tees = sorted(m["sinks"]), sorted(m["tee_costs"])
-    n = len(sinks)
-    leaf_bits = {name: 1 << i for i, name in enumerate(sinks)}
-    tee_bits = {name: 1 << i for i, name in enumerate(tees)}
-    table = {name: {} for name in tees}
-    attempted, stored = 0, 0
-
-    def visit():
-        nonlocal attempted
-        control.tick()
-        attempted += 1
-        if attempted > limits["max_partial_trees"]:
-            raise _Exhausted("PARTIAL_TREE_BUDGET")
-
-    def children(node, size):
-        if node in leaf_bits:
-            return ((leaf_bits[node], 0, ()),) if size == 1 else ()
-        return table[node].get(size, ())
-
-    for size in range(2, n+1):
-        for root in tees:
-            control.tick()
-            root_bit = tee_bits[root]
-            for left_id in m["outgoing"].get((root, "b"), ()):
-                control.tick()
-                left_node = m["by_id"][left_id][1][0]
-                for right_id in m["outgoing"].get((root, "branch"), ()):
-                    control.tick()
-                    right_node = m["by_id"][right_id][1][0]
-                    for left_size in range(1, size):
-                        control.tick()
-                        for ls, lt, le in children(left_node, left_size):
-                            control.tick()
-                            for rs, rt, re in children(right_node, size-left_size):
-                                visit()
-                                if ls & rs or lt & rt or root_bit & (lt | rt):
-                                    continue
-                                # <= 14 connector IDs and <= 7 tees in a stored state.
-                                state = (ls | rs, lt | rt | root_bit,
-                                         tuple(sorted(le + re + (left_id, right_id))))
-                                table[root].setdefault(size, []).append(state)
-                                stored += 1
-
-    rows = []
-    all_leaves = (1 << n)-1
-    for entrance in m["outgoing"].get((m["source"], "out"), ()):
-        control.tick()
-        root = m["by_id"][entrance][1][0]
-        for leaves, selected, edges in table[root].get(n, ()):
-            visit()
-            if leaves != all_leaves:
-                raise ValueError("Internal subtree leaf coverage mismatch")
-            if len(rows) >= limits["max_assignments"]:
-                raise _Exhausted("ASSIGNMENT_BUDGET")
-            control.tick(len(tees))
-            selected_tees = [name for name in tees if selected & tee_bits[name]]
-            rows.append(_row(m, selected_tees, edges+(entrance,), control, limits))
-    rows.sort(key=lambda row: tuple(row["connector_ids"]))
-    return rows, {"partial_join_attempts": attempted, "stored_subtrees": stored}
-
-
-def _checked_general_row(m, tee_ids, connector_ids, control, limits):
-    """Separate full shared-component cost reconstruction for the new domain."""
-    tees, connectors = sorted(tee_ids), sorted(connector_ids)
-    if (len(tees) != len(m["sinks"])-1 or len(connectors) != 2*len(m["sinks"])-1
-            or len(set(connectors)) != len(connectors)):
-        raise ValueError("Complete binary tree inventory mismatch")
-    a, b = Q(0), Q(0)
-    for item in m["normalized"]["tee_instances"]:
-        control.tick()
-        if item["id"] in tee_ids:
-            a = _checked_q(a + _q(item["nominal_cost"][0], limits), limits)
-            b = _checked_q(b + _q(item["nominal_cost"][1], limits), limits)
-    for name in connectors:
-        control.tick()
-        item = m["by_id"][name][3]
-        a = _checked_q(a + _q(item["nominal_cost"][0], limits), limits)
-        b = _checked_q(b + _q(item["nominal_cost"][1], limits), limits)
-    body = {"tee_ids": tees, "connector_ids": connectors, "nominal_cost": [str(a), str(b)]}
-    return {**body, "assignment_root": _hash({"problem_root": m["root"], **body}, control, limits)}
-
-
 def _checked_assignments(m, control, limits):
     """Independent rooted open-slot expansion; does not use producer templates."""
-    rows, visited, attempts = [], 0, 0
+    rows, visited = [], 0
     target_tees = len(m["sinks"])-1
-    general = len(m["sinks"]) > 3
-
-    def charge_attempt():
-        nonlocal attempts
-        attempts += 1
-        if attempts > limits["max_partial_trees"]:
-            raise _Exhausted("PARTIAL_TREE_BUDGET")
 
     def walk(frontier, used_tees, used_sinks, chosen):
         nonlocal visited
         control.tick()
         visited += 1
-        if general:
-            charge_attempt()
         if not frontier:
             if len(used_tees) == target_tees and used_sinks == set(m["sinks"]):
                 if len(rows) >= limits["max_assignments"]:
                     raise _Exhausted("ASSIGNMENT_BUDGET")
-                row = (_checked_general_row if general else _row)(m, used_tees, chosen, control, limits)
-                rows.append(row)
+                rows.append(_row(m, used_tees, chosen, control, limits))
             return
         current, rest = frontier[0], frontier[1:]
         for identity in m["outgoing"].get(current, ()):
             control.tick()
-            if general:
-                charge_attempt()
             _, target, _, _ = m["by_id"][identity]
             node = target[0]
             if m["nodes"][node] == "sink":
@@ -521,8 +416,7 @@ def _checked_assignments(m, control, limits):
 
     walk(((m["source"], "out"),), set(), set(), ())
     rows.sort(key=lambda row: tuple(row["connector_ids"]))
-    counts = {"checked_partial_incidence_states": visited, "checked_partial_tree_attempts": attempts}
-    return rows, counts if general else visited
+    return rows, visited
 
 
 def _pi_producer(n, control, limits):
@@ -619,11 +513,11 @@ def _failure(status, error, control):
 
 def compile_shared_tree_catalogue(problem, *, max_tee_instances=16, max_connectors=256,
         max_assignments=100000, max_results=32, max_work=2000000, max_bytes=16777216,
-        max_rational_bits=4096, max_pi_terms=128, max_partial_trees=20000, checkpoint=None):
+        max_rational_bits=4096, max_pi_terms=128, checkpoint=None):
     control = None
     try:
         limits = _budgets(max_tee_instances, max_connectors, max_assignments, max_results,
-                          max_work, max_bytes, max_rational_bits, max_pi_terms, max_partial_trees)
+                          max_work, max_bytes, max_rational_bits, max_pi_terms)
         control = _Control(max_work, checkpoint)
         _shape(problem, limits)
         control.pulse("shared_tree_input")
@@ -640,14 +534,13 @@ def compile_shared_tree_catalogue(problem, *, max_tee_instances=16, max_connecto
         # The advertised certificate byte limit includes its own digest field.
         _hash(certificate, control, limits)
         proposals = [_proposal(m, row) for row in ranked]
-        enumeration_counts = ({"topology_templates": templates} if type(templates) is int else templates)
         control.pulse("shared_tree_producer_complete")
         _final_inputs(problem, input_root, None, None, control, limits)
         return {"status": "CERTIFIED", "proof_complete": True, "certificate": certificate,
                 "certificate_root": certificate["certificate_root"], "input_root": input_root,
                 "problem_root": m["root"], "proposals": proposals, "scope": SCOPE,
                 "counts": {"tee_instances": len(m["tee_costs"]), "connectors": len(m["by_id"]),
-                           **enumeration_counts, "complete_assignments": len(rows),
+                           "topology_templates": templates, "complete_assignments": len(rows),
                            "returned_proposals": len(proposals)}, "work": control.used}
     except _Caller as error:
         raise error.error
@@ -659,11 +552,11 @@ def compile_shared_tree_catalogue(problem, *, max_tee_instances=16, max_connecto
 
 def verify_shared_tree_catalogue(problem, certificate, *, max_tee_instances=16, max_connectors=256,
         max_assignments=100000, max_results=32, max_work=2000000, max_bytes=16777216,
-        max_rational_bits=4096, max_pi_terms=128, max_partial_trees=20000, checkpoint=None):
+        max_rational_bits=4096, max_pi_terms=128, checkpoint=None):
     control = None
     try:
         limits = _budgets(max_tee_instances, max_connectors, max_assignments, max_results,
-                          max_work, max_bytes, max_rational_bits, max_pi_terms, max_partial_trees)
+                          max_work, max_bytes, max_rational_bits, max_pi_terms)
         control = _Control(max_work, checkpoint)
         _shape(problem, limits)
         _certificate_shape(certificate, limits)
@@ -691,12 +584,11 @@ def verify_shared_tree_catalogue(problem, certificate, *, max_tee_instances=16, 
         proposals = [_proposal(m, row) for row in ranked]
         control.pulse("shared_tree_verifier_complete")
         _final_inputs(problem, input_root, certificate, proof_raw_root, control, limits)
-        traversal_counts = ({"checked_partial_incidence_states": visited} if type(visited) is int else visited)
         return {"status": "PASS", "proof_complete": True, "certificate_root": root,
                 "input_root": input_root, "problem_root": m["root"], "scope": SCOPE,
                 "proposals": proposals, "counts": {"tee_instances": len(m["tee_costs"]),
                     "connectors": len(m["by_id"]), "complete_assignments": len(expected),
-                    "returned_proposals": len(proposals), **traversal_counts},
+                    "returned_proposals": len(proposals), "checked_partial_incidence_states": visited},
                 "work": control.used}
     except _Caller as error:
         raise error.error
