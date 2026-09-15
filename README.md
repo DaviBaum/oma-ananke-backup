@@ -6,6 +6,8 @@ runtime is required. **The complete production directive is not yet fulfilled.**
 The authoritative capability and coverage status is in [the capability register](docs/capabilities.json).
 See [the current checkpoint](docs/PROGRESS.md) for the running validated backend,
 completed native tests, hospital results and portable recovery downloads.
+The [checked Hospital comparison](docs/hospital-results.md) now includes two feasible
+architectural-model alternatives, 13.6% less routing and a freshly checked IFC export.
 
 Double-click **OMA.cmd**, or run `./Start-OMA.ps1`. The service binds only to
 `http://127.0.0.1:8765` by default. The existing validated session runs at
