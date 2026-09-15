@@ -1,0 +1,26 @@
+{
+  "status": "RETAINED_SCOPED_SMOKE",
+  "module_sha256": "354858ce592033ada73db90967c873d19b5f69367854ecd17071b348aa7564b5",
+  "cases": [
+    {
+      "sinks": 2,
+      "producer": "CERTIFIED",
+      "checker": "PASS"
+    },
+    {
+      "sinks": 4,
+      "producer": "CERTIFIED",
+      "checker": "PASS",
+      "assignments": 720
+    },
+    {
+      "sinks": 8,
+      "producer": "CERTIFIED",
+      "checker": "UNKNOWN",
+      "reason": "WORK_BUDGET",
+      "checker_work": 2000001,
+      "scope": "All potential mask partitions exceeded default budget; no checked result was claimed."
+    }
+  ],
+  "next_change": "Independent checker may prove zero for induced-disconnected states before partition enumeration, using necessary exact graph reachability."
+}

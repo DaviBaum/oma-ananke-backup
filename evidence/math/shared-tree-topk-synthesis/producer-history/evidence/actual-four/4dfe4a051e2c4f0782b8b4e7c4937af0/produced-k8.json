@@ -1,0 +1,5823 @@
+{
+  "status": "CERTIFIED",
+  "proof_complete": true,
+  "certificate_root": "a6a3df36844536e54c638d2f8792988915be94d66784b5968255ee3e85ed855d",
+  "input_root": "54489fec8bb34c00fb0639796edf296bea7f0b7fc2952f8c81d696b760176119",
+  "problem_root": "294b62a2f8e715eeb787b6c567e78cd74ea919d3dca1d6ce04177710703447a9",
+  "scope": "EXACT_NOMINAL_TOP_K_AND_COUNT_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+  "proposals": [
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "connector-04cb013e8d0aa10459b82c40",
+        "connector-7d11bed117588215abe8f19d",
+        "connector-85edc313e625ec7a9c38e5e9",
+        "connector-8bfebaf0aecd99f6f995999c",
+        "connector-91dd85b1e98941d48fcb1f31",
+        "connector-ab082257969acef2995cd924",
+        "connector-da739e797b947d00fa67ccaf"
+      ],
+      "nominal_cost": [
+        "17",
+        "1/4"
+      ],
+      "assignment_root": "f60c093d97a75c39e52225384358bac92e3e63ea03ceffd2e94eba486a561201",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-04cb013e8d0aa10459b82c40"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-ab082257969acef2995cd924"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-da739e797b947d00fa67ccaf"
+          ]
+        },
+        {
+          "id": "sink-main",
+          "demand_id": "demand-main",
+          "endpoint": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-8bfebaf0aecd99f6f995999c"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "connector-04cb013e8d0aa10459b82c40",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-7d11bed117588215abe8f19d",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-85edc313e625ec7a9c38e5e9",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-8bfebaf0aecd99f6f995999c",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-91dd85b1e98941d48fcb1f31",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-ab082257969acef2995cd924",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-da739e797b947d00fa67ccaf",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "connector-5f4d533bfcbd34340c589965",
+        "connector-7d11bed117588215abe8f19d",
+        "connector-85edc313e625ec7a9c38e5e9",
+        "connector-8bfebaf0aecd99f6f995999c",
+        "connector-91dd85b1e98941d48fcb1f31",
+        "connector-ab082257969acef2995cd924",
+        "connector-da739e797b947d00fa67ccaf"
+      ],
+      "nominal_cost": [
+        "17",
+        "1/4"
+      ],
+      "assignment_root": "6cd4f239d2d6215b98ba4f28d8bd947d5bff3ca4e91c59d3ba20568b336d782c",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-5f4d533bfcbd34340c589965"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-ab082257969acef2995cd924"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-da739e797b947d00fa67ccaf"
+          ]
+        },
+        {
+          "id": "sink-main",
+          "demand_id": "demand-main",
+          "endpoint": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-8bfebaf0aecd99f6f995999c"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "connector-5f4d533bfcbd34340c589965",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-7d11bed117588215abe8f19d",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-85edc313e625ec7a9c38e5e9",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-8bfebaf0aecd99f6f995999c",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-91dd85b1e98941d48fcb1f31",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-ab082257969acef2995cd924",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-da739e797b947d00fa67ccaf",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "connector-783877b6bf075c26ec3afc94",
+        "connector-7d11bed117588215abe8f19d",
+        "connector-85edc313e625ec7a9c38e5e9",
+        "connector-8bfebaf0aecd99f6f995999c",
+        "connector-91dd85b1e98941d48fcb1f31",
+        "connector-b4e0b75b2c20ef382d8879c4",
+        "connector-da739e797b947d00fa67ccaf"
+      ],
+      "nominal_cost": [
+        "18",
+        "1/2"
+      ],
+      "assignment_root": "59c9ac33faab085c8ab5c2e7e263117fae8685761f0278d9e4998a19e0e52bf1",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-b4e0b75b2c20ef382d8879c4"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-783877b6bf075c26ec3afc94"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-da739e797b947d00fa67ccaf"
+          ]
+        },
+        {
+          "id": "sink-main",
+          "demand_id": "demand-main",
+          "endpoint": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-8bfebaf0aecd99f6f995999c"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "connector-783877b6bf075c26ec3afc94",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-7d11bed117588215abe8f19d",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-85edc313e625ec7a9c38e5e9",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-8bfebaf0aecd99f6f995999c",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-91dd85b1e98941d48fcb1f31",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-b4e0b75b2c20ef382d8879c4",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-da739e797b947d00fa67ccaf",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "connector-783877b6bf075c26ec3afc94",
+        "connector-7d11bed117588215abe8f19d",
+        "connector-85edc313e625ec7a9c38e5e9",
+        "connector-8bfebaf0aecd99f6f995999c",
+        "connector-91dd85b1e98941d48fcb1f31",
+        "connector-da739e797b947d00fa67ccaf",
+        "connector-f9a6c0cc683a7b041cb9dc31"
+      ],
+      "nominal_cost": [
+        "18",
+        "1/2"
+      ],
+      "assignment_root": "6bc71318b43c16500a5b2a585395476ce61e6ba98590460c50b50ba308cf9d80",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-f9a6c0cc683a7b041cb9dc31"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-783877b6bf075c26ec3afc94"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-da739e797b947d00fa67ccaf"
+          ]
+        },
+        {
+          "id": "sink-main",
+          "demand_id": "demand-main",
+          "endpoint": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-8bfebaf0aecd99f6f995999c"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "connector-783877b6bf075c26ec3afc94",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-7d11bed117588215abe8f19d",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-85edc313e625ec7a9c38e5e9",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-8bfebaf0aecd99f6f995999c",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-91dd85b1e98941d48fcb1f31",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-da739e797b947d00fa67ccaf",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-f9a6c0cc683a7b041cb9dc31",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "connector-7d11bed117588215abe8f19d",
+        "connector-85edc313e625ec7a9c38e5e9",
+        "connector-8bfebaf0aecd99f6f995999c",
+        "connector-91dd85b1e98941d48fcb1f31",
+        "connector-b4e0b75b2c20ef382d8879c4",
+        "connector-da739e797b947d00fa67ccaf",
+        "connector-def134fd62400f280a289ef3"
+      ],
+      "nominal_cost": [
+        "18",
+        "1/2"
+      ],
+      "assignment_root": "88c25f0f3d5d72dbc31634a4b71c89a87939a87fbcc0fd868d764ad27b38b622",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-b4e0b75b2c20ef382d8879c4"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-def134fd62400f280a289ef3"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-da739e797b947d00fa67ccaf"
+          ]
+        },
+        {
+          "id": "sink-main",
+          "demand_id": "demand-main",
+          "endpoint": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-8bfebaf0aecd99f6f995999c"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "connector-7d11bed117588215abe8f19d",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-85edc313e625ec7a9c38e5e9",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-8bfebaf0aecd99f6f995999c",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-91dd85b1e98941d48fcb1f31",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-b4e0b75b2c20ef382d8879c4",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-da739e797b947d00fa67ccaf",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-def134fd62400f280a289ef3",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "connector-7d11bed117588215abe8f19d",
+        "connector-85edc313e625ec7a9c38e5e9",
+        "connector-8bfebaf0aecd99f6f995999c",
+        "connector-91dd85b1e98941d48fcb1f31",
+        "connector-da739e797b947d00fa67ccaf",
+        "connector-def134fd62400f280a289ef3",
+        "connector-f9a6c0cc683a7b041cb9dc31"
+      ],
+      "nominal_cost": [
+        "18",
+        "1/2"
+      ],
+      "assignment_root": "4e83120143e2324791f54620fd8ae363410d04ce1d68b7f9773b469b26a3e62a",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-f9a6c0cc683a7b041cb9dc31"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-def134fd62400f280a289ef3"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-da739e797b947d00fa67ccaf"
+          ]
+        },
+        {
+          "id": "sink-main",
+          "demand_id": "demand-main",
+          "endpoint": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-8bfebaf0aecd99f6f995999c"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "connector-7d11bed117588215abe8f19d",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-85edc313e625ec7a9c38e5e9",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-8bfebaf0aecd99f6f995999c",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-91dd85b1e98941d48fcb1f31",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-da739e797b947d00fa67ccaf",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-def134fd62400f280a289ef3",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-f9a6c0cc683a7b041cb9dc31",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "connector-8595fe8ed09e1392f310b008",
+        "connector-85edc313e625ec7a9c38e5e9",
+        "connector-8bfebaf0aecd99f6f995999c",
+        "connector-91dd85b1e98941d48fcb1f31",
+        "connector-ab082257969acef2995cd924",
+        "connector-d5e03c7eb59fb50011f55da0",
+        "connector-da739e797b947d00fa67ccaf"
+      ],
+      "nominal_cost": [
+        "18",
+        "1/2"
+      ],
+      "assignment_root": "a926fd51a15603cdbddc327a8984ccc35cfb4cb337ac7f65b0afb8952dd3e1e3",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-d5e03c7eb59fb50011f55da0"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-8595fe8ed09e1392f310b008",
+            "connector-ab082257969acef2995cd924"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-8595fe8ed09e1392f310b008",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-da739e797b947d00fa67ccaf"
+          ]
+        },
+        {
+          "id": "sink-main",
+          "demand_id": "demand-main",
+          "endpoint": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-8595fe8ed09e1392f310b008",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-8bfebaf0aecd99f6f995999c"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "connector-8595fe8ed09e1392f310b008",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-85edc313e625ec7a9c38e5e9",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-8bfebaf0aecd99f6f995999c",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-91dd85b1e98941d48fcb1f31",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-ab082257969acef2995cd924",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-d5e03c7eb59fb50011f55da0",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-da739e797b947d00fa67ccaf",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        }
+      ]
+    },
+    {
+      "tee_ids": [
+        "tee-0",
+        "tee-1",
+        "tee-2"
+      ],
+      "connector_ids": [
+        "connector-04cb013e8d0aa10459b82c40",
+        "connector-318552329b6d30fd21601da9",
+        "connector-7d11bed117588215abe8f19d",
+        "connector-85edc313e625ec7a9c38e5e9",
+        "connector-8e3a68e8a60b2ca5276d10e9",
+        "connector-91dd85b1e98941d48fcb1f31",
+        "connector-ab082257969acef2995cd924"
+      ],
+      "nominal_cost": [
+        "18",
+        "1"
+      ],
+      "assignment_root": "b6f1ea9056ab33d122b7762f7424c1db2609d928f88db2fc4bd42e0fa1751c7d",
+      "source": {
+        "node": "source",
+        "port": "out"
+      },
+      "sinks": [
+        {
+          "id": "sink-0",
+          "demand_id": "demand-0",
+          "endpoint": {
+            "node": "sink-0",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-04cb013e8d0aa10459b82c40"
+          ]
+        },
+        {
+          "id": "sink-1",
+          "demand_id": "demand-1",
+          "endpoint": {
+            "node": "sink-1",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-ab082257969acef2995cd924"
+          ]
+        },
+        {
+          "id": "sink-2",
+          "demand_id": "demand-2",
+          "endpoint": {
+            "node": "sink-2",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-318552329b6d30fd21601da9"
+          ]
+        },
+        {
+          "id": "sink-main",
+          "demand_id": "demand-main",
+          "endpoint": {
+            "node": "sink-main",
+            "port": "in"
+          },
+          "connector_path": [
+            "connector-85edc313e625ec7a9c38e5e9",
+            "connector-7d11bed117588215abe8f19d",
+            "connector-91dd85b1e98941d48fcb1f31",
+            "connector-8e3a68e8a60b2ca5276d10e9"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "connector_id": "connector-04cb013e8d0aa10459b82c40",
+          "from": {
+            "node": "tee-0",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-0",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-318552329b6d30fd21601da9",
+          "from": {
+            "node": "tee-2",
+            "port": "b"
+          },
+          "to": {
+            "node": "sink-2",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-7d11bed117588215abe8f19d",
+          "from": {
+            "node": "tee-0",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-1",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-85edc313e625ec7a9c38e5e9",
+          "from": {
+            "node": "source",
+            "port": "out"
+          },
+          "to": {
+            "node": "tee-0",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-8e3a68e8a60b2ca5276d10e9",
+          "from": {
+            "node": "tee-2",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-main",
+            "port": "in"
+          }
+        },
+        {
+          "connector_id": "connector-91dd85b1e98941d48fcb1f31",
+          "from": {
+            "node": "tee-1",
+            "port": "b"
+          },
+          "to": {
+            "node": "tee-2",
+            "port": "a"
+          }
+        },
+        {
+          "connector_id": "connector-ab082257969acef2995cd924",
+          "from": {
+            "node": "tee-1",
+            "port": "branch"
+          },
+          "to": {
+            "node": "sink-1",
+            "port": "in"
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "state_domain": 45,
+    "reachable_states": 45,
+    "stored_labels": 310,
+    "complete_assignments": "18048",
+    "returned_proposals": 8,
+    "transitions": 2819,
+    "label_pairs": 5021,
+    "induced_disconnected_states": 0
+  },
+  "work": 83641,
+  "certificate": {
+    "schema": "oma.shared-tree-topk-certificate/1",
+    "input_root": "54489fec8bb34c00fb0639796edf296bea7f0b7fc2952f8c81d696b760176119",
+    "problem_root": "294b62a2f8e715eeb787b6c567e78cd74ea919d3dca1d6ce04177710703447a9",
+    "k": 8,
+    "scope": "EXACT_NOMINAL_TOP_K_AND_COUNT_WITHIN_COMPLETE_FROZEN_FINITE_CATALOGUE",
+    "limitations": [
+      "Geometry, fabrication and loss roots bind identities; their physical truth is external.",
+      "Nominal catalogue cost is not an independently measured native objective or lower bound.",
+      "Every proposed complete tree still requires current native geometry and applicable service checks.",
+      "No physical infeasibility, unrestricted connector/placement completeness or continuous optimum.",
+      "State substitution concerns discrete catalogue incidence only, not cross-macro geometry or physics.",
+      "Distinct connector-ID trees can have identical physical geometry; no unique-geometry enumeration is claimed."
+    ],
+    "state_domain_count": 45,
+    "states": [
+      {
+        "state": [
+          "tee-0",
+          3,
+          1
+        ],
+        "tree_count": "6",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-68b2116331c2c70e68797013"
+            ],
+            "nominal_cost": [
+              "27/4",
+              "5/8"
+            ],
+            "label_root": "f02babbde4f3dd68a1fffa98959d36a3078ccfee5fcca06a03b4f69e405040cc"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-68b2116331c2c70e68797013"
+            ],
+            "nominal_cost": [
+              "27/4",
+              "5/8"
+            ],
+            "label_root": "3676ad9b808eaba15ae285bf4a989a53d6b04cbd3c03d22f6725a6138b0380ba"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-7831d62a3867df5e8cd53d78"
+            ],
+            "nominal_cost": [
+              "31/4",
+              "3/8"
+            ],
+            "label_root": "8e7ab04979651f73638eea431f35ef619f072524f6e81b12678f9149dbedd483"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7831d62a3867df5e8cd53d78"
+            ],
+            "nominal_cost": [
+              "31/4",
+              "3/8"
+            ],
+            "label_root": "5ff55beb454bd0b89b7258f3515aaf5277f75abe4beaddbaa31b8cba7f926c38"
+          },
+          {
+            "connector_ids": [
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "31/4",
+              "3/8"
+            ],
+            "label_root": "816fff9d0a87dbcbe4228e673fd71db1d6e35d2a7386ac16e4c1e8bed9a57e13"
+          },
+          {
+            "connector_ids": [
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "31/4",
+              "3/8"
+            ],
+            "label_root": "f98c23073f5e85871ff98bd65514970aa21dcf9511d7d27ddd91c49adb636c81"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          5,
+          1
+        ],
+        "tree_count": "6",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-04cb013e8d0aa10459b82c40"
+            ],
+            "nominal_cost": [
+              "35/4",
+              "5/8"
+            ],
+            "label_root": "b8ab2dd92c639b06a83fa47621ec7d04ac70609fccdf5ecd3af31436e4158c19"
+          },
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-5f4d533bfcbd34340c589965"
+            ],
+            "nominal_cost": [
+              "35/4",
+              "5/8"
+            ],
+            "label_root": "bfa795032f290286ea1aad43f7136116aaaaaa1ce94c22f26b3df348c961e43e"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-a88af72dd261224f065877f6"
+            ],
+            "nominal_cost": [
+              "39/4",
+              "3/8"
+            ],
+            "label_root": "b69ff3958cce6f56d4652998b5340ece8ecd187ab8c84ceb389519c6a206f090"
+          },
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "39/4",
+              "3/8"
+            ],
+            "label_root": "7aa55318c4d06bef234c5e22068c5b3564b83d8a3ab2e74d3a8a479af6e75e65"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-a88af72dd261224f065877f6"
+            ],
+            "nominal_cost": [
+              "39/4",
+              "3/8"
+            ],
+            "label_root": "263f9f00ca1a3682f90ab19f945962dd5c46bc285c3523eed8901f9537ed898d"
+          },
+          {
+            "connector_ids": [
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-e7499f13ab306b2d80f6d61c"
+            ],
+            "nominal_cost": [
+              "39/4",
+              "3/8"
+            ],
+            "label_root": "f78d864b9860f651236670b01333d836a860395ffaf868b436fe5a8e29807c09"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          6,
+          1
+        ],
+        "tree_count": "8",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-783877b6bf075c26ec3afc94"
+            ],
+            "nominal_cost": [
+              "39/4",
+              "5/8"
+            ],
+            "label_root": "25c21637f867ed5826a48b1b01177b23e3ec1a500786ff58382c61b9cde8a4d1"
+          },
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "39/4",
+              "5/8"
+            ],
+            "label_root": "fbf8d7aac4acd7ca8d93c913c6f07b37aebfb060ca7d417a4a55a3adf0792315"
+          },
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-68b2116331c2c70e68797013"
+            ],
+            "nominal_cost": [
+              "39/4",
+              "5/8"
+            ],
+            "label_root": "b814e50d3ff42d1fd00d562ac8afb47606d399784de2d3f2685e211d981e4d68"
+          },
+          {
+            "connector_ids": [
+              "connector-68b2116331c2c70e68797013",
+              "connector-e7499f13ab306b2d80f6d61c"
+            ],
+            "nominal_cost": [
+              "39/4",
+              "5/8"
+            ],
+            "label_root": "138fb1a50cde849c8662a69cdcee0bd889c9bf92d04ab26a3c7ad70c0f5f5b85"
+          },
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-7831d62a3867df5e8cd53d78"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "3/8"
+            ],
+            "label_root": "c880fa3a505fc36a16943b15dfc9114688d969703d68e726f68215426ec1afa6"
+          },
+          {
+            "connector_ids": [
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-e7499f13ab306b2d80f6d61c"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "3/8"
+            ],
+            "label_root": "5df1ad663aa878c898aec5c612ab7f33aac28648714b05ec0a5a3c0755cc9890"
+          },
+          {
+            "connector_ids": [
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-a88af72dd261224f065877f6"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "3/8"
+            ],
+            "label_root": "62f4f3c9fdc1f41548218aa7fd1186038507f010051ef81ad8149f0357f96278"
+          },
+          {
+            "connector_ids": [
+              "connector-a88af72dd261224f065877f6",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "3/8"
+            ],
+            "label_root": "1fb88c73cf331bf5965b4442246028cf7040f4038a725419e16b57cb454a7dfb"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          9,
+          1
+        ],
+        "tree_count": "6",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-7fa3efc69553b93f252ac732"
+            ],
+            "nominal_cost": [
+              "37/4",
+              "1/4"
+            ],
+            "label_root": "60639357aa1a4b4a2504388936c4ba29901d25862ce584d61d7df490967b7d7d"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7fa3efc69553b93f252ac732"
+            ],
+            "nominal_cost": [
+              "37/4",
+              "1/4"
+            ],
+            "label_root": "3a79b07f3f4d0109dd233bcaa5985f7b641130cd8e4468121c9fd282759afc0b"
+          },
+          {
+            "connector_ids": [
+              "connector-0ca56f28954f9e7642170917",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "41/4",
+              "1/2"
+            ],
+            "label_root": "2c9f046b81c2883bc8b8c9f0fa8596656075a46ca106ac8eb8f13474f9699e0c"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-c0b705cd4705871e13179e36"
+            ],
+            "nominal_cost": [
+              "47/4",
+              "3/4"
+            ],
+            "label_root": "fcc573c0d60991af48ebac1fbca69254bfbc106351c1bd2d02eb215640d0c43e"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-c0b705cd4705871e13179e36"
+            ],
+            "nominal_cost": [
+              "47/4",
+              "3/4"
+            ],
+            "label_root": "2c9f7a3fba20fd7ae14d1d78da5a6773ad3f82794dd71344c089056990dd58c0"
+          },
+          {
+            "connector_ids": [
+              "connector-673b339f2a0acf8576908492",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "1/2"
+            ],
+            "label_root": "9f2cfd72a65e6389a917a97f3d77c80d9671312be27df0318ca3c56b8ccd6a0c"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          10,
+          1
+        ],
+        "tree_count": "8",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-7fa3efc69553b93f252ac732"
+            ],
+            "nominal_cost": [
+              "41/4",
+              "1/4"
+            ],
+            "label_root": "c78ee3b3fcaefceb09eb66fc3f8a550e5fab5433716cb5e199d971f7127c55b0"
+          },
+          {
+            "connector_ids": [
+              "connector-7fa3efc69553b93f252ac732",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "41/4",
+              "1/4"
+            ],
+            "label_root": "e1f7b152211f26d4b51303b181edb19e1a21c7ea58f48614a873935ab5e08515"
+          },
+          {
+            "connector_ids": [
+              "connector-0ca56f28954f9e7642170917",
+              "connector-68b2116331c2c70e68797013"
+            ],
+            "nominal_cost": [
+              "41/4",
+              "3/4"
+            ],
+            "label_root": "344d14051ddc38597305c784badbe25cab1dc931e4d497383b3d93fd064e1d02"
+          },
+          {
+            "connector_ids": [
+              "connector-0ca56f28954f9e7642170917",
+              "connector-7831d62a3867df5e8cd53d78"
+            ],
+            "nominal_cost": [
+              "45/4",
+              "1/2"
+            ],
+            "label_root": "16ddd0d36aff23cf9e4a8fca61fb278a54354542358515112c0bbcc442cebc8d"
+          },
+          {
+            "connector_ids": [
+              "connector-673b339f2a0acf8576908492",
+              "connector-68b2116331c2c70e68797013"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "3/4"
+            ],
+            "label_root": "a3c9ea8e7482d3b2920ba7f9ced03339e61a4895695a83b0f173a6edb0c4dcdd"
+          },
+          {
+            "connector_ids": [
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-c0b705cd4705871e13179e36"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "3/4"
+            ],
+            "label_root": "01499eaf8bcb43a0d0908a5e38dc85c40c22b783d70fc1213a5de2fa61afd7ce"
+          },
+          {
+            "connector_ids": [
+              "connector-c0b705cd4705871e13179e36",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "3/4"
+            ],
+            "label_root": "c3a700fe1951482a69ea47a333c8faca1ef89607105903dac10586ccf176add2"
+          },
+          {
+            "connector_ids": [
+              "connector-673b339f2a0acf8576908492",
+              "connector-7831d62a3867df5e8cd53d78"
+            ],
+            "nominal_cost": [
+              "55/4",
+              "1/2"
+            ],
+            "label_root": "a82cb583c8939b33f8ed47afc0d5c9f76e5cd59890b79a91252bad4a8736eea2"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          12,
+          1
+        ],
+        "tree_count": "8",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-7fa3efc69553b93f252ac732"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1/4"
+            ],
+            "label_root": "b177d4bca51b02c1bc41a7a60e205d350afb7db7080ff959391f41f8d34fa396"
+          },
+          {
+            "connector_ids": [
+              "connector-7fa3efc69553b93f252ac732",
+              "connector-e7499f13ab306b2d80f6d61c"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1/4"
+            ],
+            "label_root": "60fbca72a530f373409fa9f2b104b7d9c13b09a4bfef277cc915271025fd7906"
+          },
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-0ca56f28954f9e7642170917"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "3/4"
+            ],
+            "label_root": "9a29c39c63763c5792e09b47d734023989221a0a119a7d60495d735e39ecc61b"
+          },
+          {
+            "connector_ids": [
+              "connector-0ca56f28954f9e7642170917",
+              "connector-a88af72dd261224f065877f6"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "46d4befc674c781e17fc349ece7c87e731798d051e9574ab2bdce917ff176e22"
+          },
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-673b339f2a0acf8576908492"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "3/4"
+            ],
+            "label_root": "6d392af35c7e51c698f8ae83b1443a403b763f5410a3cec491e873b458f28f1a"
+          },
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-c0b705cd4705871e13179e36"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "3/4"
+            ],
+            "label_root": "099d343d24db4a00519106d9f7784a224426d27571708b0e2fdaa13cf76926e9"
+          },
+          {
+            "connector_ids": [
+              "connector-c0b705cd4705871e13179e36",
+              "connector-e7499f13ab306b2d80f6d61c"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "3/4"
+            ],
+            "label_root": "219e7642f8dc3a6cb282d695ba5552893515f36ec9a1cc46a45a731f8606f58c"
+          },
+          {
+            "connector_ids": [
+              "connector-673b339f2a0acf8576908492",
+              "connector-a88af72dd261224f065877f6"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "1/2"
+            ],
+            "label_root": "e98accbe081fee7c1dfb3c2b435c904d327b990c2531cf4c26abd3b68f9c78e1"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          3,
+          2
+        ],
+        "tree_count": "3",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "27/4",
+              "5/8"
+            ],
+            "label_root": "7eeed43c079feb50891f914044d5df0e45c447f1d0a806805d20a417b983a6e7"
+          },
+          {
+            "connector_ids": [
+              "connector-cb19f1e298fea5b66bd443e0",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "27/4",
+              "5/8"
+            ],
+            "label_root": "99d8cd40e6d5b3e5abf8aee39f53caedd3cdbf9681f1cbde5fa7e3f6f42fae3a"
+          },
+          {
+            "connector_ids": [
+              "connector-6b88732681f8447d6d6611c7",
+              "connector-ab082257969acef2995cd924"
+            ],
+            "nominal_cost": [
+              "31/4",
+              "3/8"
+            ],
+            "label_root": "321d339b7f7f63ceb0035e1d484c3a5c5b989f544b11e070bc56dfd1dc2a8e46"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          5,
+          2
+        ],
+        "tree_count": "6",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "27/4",
+              "5/8"
+            ],
+            "label_root": "e4e984147ca813ba5df26ce9f6381611eb7b96c3fb7f138a11c9ec1b1150c89d"
+          },
+          {
+            "connector_ids": [
+              "connector-cff30deb202f070389484076",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "27/4",
+              "5/8"
+            ],
+            "label_root": "7882a859b3f981112cdc1ac52a492e4cf94496628cda9a3c99d38860d9b5c0d9"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-b4e0b75b2c20ef382d8879c4"
+            ],
+            "nominal_cost": [
+              "31/4",
+              "3/8"
+            ],
+            "label_root": "4019083ba7e5a521eaedf34e48a9eb47233671a9763d55a0b0303b3d97faa279"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "31/4",
+              "3/8"
+            ],
+            "label_root": "3649761b849643aa0b3f2d6bad7aa38f43f6ce8a8d9bc570b41b86ca641f4340"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-6b88732681f8447d6d6611c7"
+            ],
+            "nominal_cost": [
+              "35/4",
+              "5/8"
+            ],
+            "label_root": "51dfac96d3f39f0fb6b81f1a504fafead38773ba7087926d6d6f48e8c0b671fc"
+          },
+          {
+            "connector_ids": [
+              "connector-6b88732681f8447d6d6611c7",
+              "connector-6d6e7598c07ab18be3e68b8d"
+            ],
+            "nominal_cost": [
+              "35/4",
+              "5/8"
+            ],
+            "label_root": "07d005b7223205e647476d5b03cf26c5c327c7fc99114e7342b7922aa335a190"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          6,
+          2
+        ],
+        "tree_count": "4",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-ab082257969acef2995cd924",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "27/4",
+              "3/8"
+            ],
+            "label_root": "cadd79c8e44791820f9566ce48f76d82b95e10134c2474534ec178eebfb74a0b"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-ab082257969acef2995cd924"
+            ],
+            "nominal_cost": [
+              "31/4",
+              "1/8"
+            ],
+            "label_root": "52944dd625e80509e51a52ee507b7b08657da6f57c5d672d9d8d874c90f7afeb"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "31/4",
+              "5/8"
+            ],
+            "label_root": "1cf1ed70474d761d729d0a003a3c9928df5cae9faa7f268ed69d4b3cf04b14e0"
+          },
+          {
+            "connector_ids": [
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "31/4",
+              "5/8"
+            ],
+            "label_root": "017fcb9cb72a948bc0bf90816a12eeef776bb042aca5e94c37a89a3a6fe10ada"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          9,
+          2
+        ],
+        "tree_count": "6",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-b4e0b75b2c20ef382d8879c4"
+            ],
+            "nominal_cost": [
+              "29/4",
+              "1/4"
+            ],
+            "label_root": "5cebfcc731f4dee54651be38320d9a80255ab097f3da61bd7750d6be6e8cb869"
+          },
+          {
+            "connector_ids": [
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "29/4",
+              "1/4"
+            ],
+            "label_root": "0d950a2863138e944670921e6b5bd19088ea8da95b1c353bbbd0595ac10161a8"
+          },
+          {
+            "connector_ids": [
+              "connector-6b88732681f8447d6d6611c7",
+              "connector-cacc73be875ebcd1b8ba98c9"
+            ],
+            "nominal_cost": [
+              "37/4",
+              "3/4"
+            ],
+            "label_root": "9bd76d41acf920baf81f9e27ddf179c9ffa99703265025f03e77331b7d0b8b1d"
+          },
+          {
+            "connector_ids": [
+              "connector-98b64796994b55623fb91402",
+              "connector-b4e0b75b2c20ef382d8879c4"
+            ],
+            "nominal_cost": [
+              "39/4",
+              "3/4"
+            ],
+            "label_root": "6e96e91e3046cc34938788094a89583176cca7b73573d0d8917fd03b4941702d"
+          },
+          {
+            "connector_ids": [
+              "connector-98b64796994b55623fb91402",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "39/4",
+              "3/4"
+            ],
+            "label_root": "ea09650642f468a2991e1dbe6f8e22786f685645234764122e8bcd90fba14c79"
+          },
+          {
+            "connector_ids": [
+              "connector-2b7acedba48687f859970bd4",
+              "connector-6b88732681f8447d6d6611c7"
+            ],
+            "nominal_cost": [
+              "47/4",
+              "3/4"
+            ],
+            "label_root": "cdfd1e501f7ede49789239d7a6f7f23b3387b0335018c8ac48b1c5cb2d8d1672"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          10,
+          2
+        ],
+        "tree_count": "4",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-ab082257969acef2995cd924",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "29/4",
+              "0"
+            ],
+            "label_root": "d744dda48131a65775696443db564a09d00d6734d394877df369fcf19accce5f"
+          },
+          {
+            "connector_ids": [
+              "connector-cacc73be875ebcd1b8ba98c9",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "33/4",
+              "3/4"
+            ],
+            "label_root": "aea65f70278796456fc4339501fed377bf0b23c312c62de17b6d69f680125d56"
+          },
+          {
+            "connector_ids": [
+              "connector-98b64796994b55623fb91402",
+              "connector-ab082257969acef2995cd924"
+            ],
+            "nominal_cost": [
+              "39/4",
+              "1/2"
+            ],
+            "label_root": "ec1f3f5e68b3af950b5a3c71446a369cc4f59dc2df733e8827e93ed66a9d0ba0"
+          },
+          {
+            "connector_ids": [
+              "connector-2b7acedba48687f859970bd4",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "3/4"
+            ],
+            "label_root": "287da4a03b5ea36a79d6197c7b131d1b35521b51f99220a502590be2787dd25e"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          12,
+          2
+        ],
+        "tree_count": "8",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "33/4",
+              "1/4"
+            ],
+            "label_root": "9c47681876d9fde1a8941a2a6dd88091770ebac92e1297012611b674f7fc3f4a"
+          },
+          {
+            "connector_ids": [
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "33/4",
+              "1/4"
+            ],
+            "label_root": "26627bdd11736ae7ec41c3cfd424a5a291aa09f39a448af7917908c905bfbca8"
+          },
+          {
+            "connector_ids": [
+              "connector-cacc73be875ebcd1b8ba98c9",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "33/4",
+              "3/4"
+            ],
+            "label_root": "e510c144d8a6f249c896684295ad4115365947265642c80e82fe5974dcd9b1db"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-cacc73be875ebcd1b8ba98c9"
+            ],
+            "nominal_cost": [
+              "37/4",
+              "1/2"
+            ],
+            "label_root": "8cb089797033b733281d549cc6aa1edb764a613eeab3ab3c7f6f493a38937cb0"
+          },
+          {
+            "connector_ids": [
+              "connector-2b7acedba48687f859970bd4",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "3/4"
+            ],
+            "label_root": "0897c488ee4ca3ffe39505c613747ee592168f4057077951ab05137c9a7cb0a8"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-98b64796994b55623fb91402"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "3/4"
+            ],
+            "label_root": "031dec2b21f84b5e8db398c2e85f723fed523f44293b93152500c725659586f1"
+          },
+          {
+            "connector_ids": [
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-98b64796994b55623fb91402"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "3/4"
+            ],
+            "label_root": "e4efec3b96dead3df5a10e302e7eb72e9ea486d99d19f8e60dd46a96891b782e"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-2b7acedba48687f859970bd4"
+            ],
+            "nominal_cost": [
+              "47/4",
+              "1/2"
+            ],
+            "label_root": "f4cac888daf6c178e3ee519fc324070743cb091104617bb954a8540c0ab63f6f"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          3,
+          4
+        ],
+        "tree_count": "4",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-3039c40f1c623b1dafab4c25",
+              "connector-c40ce824c927026e75f8fef1"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "5/8"
+            ],
+            "label_root": "8f07f16973e0db4a7fd1255423e6d1292675e0dddb7176c4b4bf44be5238951a"
+          },
+          {
+            "connector_ids": [
+              "connector-b00f840bc48b4877199d1427",
+              "connector-b8d5b535e469847a6225f6b4"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "5/8"
+            ],
+            "label_root": "215dce33366c10009b429c0bcc3b2a2bda1113032a2df2d5901ffd42cd615974"
+          },
+          {
+            "connector_ids": [
+              "connector-b2e6e508aa901f1c58278dfe",
+              "connector-c40ce824c927026e75f8fef1"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "5/8"
+            ],
+            "label_root": "ac669f81a2c8299b3b91f80062bee842fd1afc572a779c15156bc52ed736c861"
+          },
+          {
+            "connector_ids": [
+              "connector-b8d5b535e469847a6225f6b4",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "5/8"
+            ],
+            "label_root": "3f0a8033ba6408b200eee28a1e49a49b86f0df4238226f6e6d0ca3ce882eea25"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          5,
+          4
+        ],
+        "tree_count": "3",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-3039c40f1c623b1dafab4c25",
+              "connector-318552329b6d30fd21601da9"
+            ],
+            "nominal_cost": [
+              "35/4",
+              "5/8"
+            ],
+            "label_root": "cae7e40d024b4be9694ac232977c766a52f88aa231bc4a0b5e7a343959ecb210"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-b2e6e508aa901f1c58278dfe"
+            ],
+            "nominal_cost": [
+              "35/4",
+              "5/8"
+            ],
+            "label_root": "d7c8da1317d9255a58d8cc816be2f7d3f16f8be3555344c5a0a29a1c037221b7"
+          },
+          {
+            "connector_ids": [
+              "connector-b8d5b535e469847a6225f6b4",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "39/4",
+              "3/8"
+            ],
+            "label_root": "b0da0c76c5f5a6b49acc84eeccf22e8a0994364fdc93484c4240337f1ade2ffc"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          6,
+          4
+        ],
+        "tree_count": "3",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-b00f840bc48b4877199d1427"
+            ],
+            "nominal_cost": [
+              "31/4",
+              "5/8"
+            ],
+            "label_root": "9317e873fdaed22e01e05457870091b79f8f5f80279a7d94a963fe30e0ac1627"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "31/4",
+              "5/8"
+            ],
+            "label_root": "a6d806a4432b019ea8647d18af424126be89bb3725a82528f29d73bfbc764d3b"
+          },
+          {
+            "connector_ids": [
+              "connector-c40ce824c927026e75f8fef1",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "35/4",
+              "3/8"
+            ],
+            "label_root": "944ecb966055094a160acd244ebc9b71a4eeac7a04a77ddbf93bfd733976b890"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          9,
+          4
+        ],
+        "tree_count": "4",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-3039c40f1c623b1dafab4c25",
+              "connector-8bfebaf0aecd99f6f995999c"
+            ],
+            "nominal_cost": [
+              "29/4",
+              "1/4"
+            ],
+            "label_root": "18c5e984ff8f177f69c29bfda8fbeaa71dcbf8c99e47d8bf62db37894a862e34"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b2e6e508aa901f1c58278dfe"
+            ],
+            "nominal_cost": [
+              "29/4",
+              "1/4"
+            ],
+            "label_root": "de327ccd4ba52da361bd23f849ea179c478fcc977ad4328b0a4b3aa49b0cfa61"
+          },
+          {
+            "connector_ids": [
+              "connector-8e3a68e8a60b2ca5276d10e9",
+              "connector-b8d5b535e469847a6225f6b4"
+            ],
+            "nominal_cost": [
+              "37/4",
+              "3/4"
+            ],
+            "label_root": "5bbd831d8d8e763546d33d0d1afa95770731c452398e167320201508b39de74d"
+          },
+          {
+            "connector_ids": [
+              "connector-b8d5b535e469847a6225f6b4",
+              "connector-f831214733bbb5994b0d397c"
+            ],
+            "nominal_cost": [
+              "47/4",
+              "3/4"
+            ],
+            "label_root": "20a846c49a6fc522c7efae7553bf2092492b6d1693bb9745d9be09af75138c6e"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          10,
+          4
+        ],
+        "tree_count": "4",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b00f840bc48b4877199d1427"
+            ],
+            "nominal_cost": [
+              "25/4",
+              "1/4"
+            ],
+            "label_root": "7aef33fac15a215c4ee7a54a7c13552ae033ab8dbed1459a6cf945fe54346b43"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "25/4",
+              "1/4"
+            ],
+            "label_root": "3fca34a11f6da34b3b79e8a86790f119841ba5af4a43ba17dc41c60f065bdb59"
+          },
+          {
+            "connector_ids": [
+              "connector-8e3a68e8a60b2ca5276d10e9",
+              "connector-c40ce824c927026e75f8fef1"
+            ],
+            "nominal_cost": [
+              "33/4",
+              "3/4"
+            ],
+            "label_root": "6be220b08235c9a1c249ebf55207fd0234fc309e9538687712abd8545dbdcf05"
+          },
+          {
+            "connector_ids": [
+              "connector-c40ce824c927026e75f8fef1",
+              "connector-f831214733bbb5994b0d397c"
+            ],
+            "nominal_cost": [
+              "43/4",
+              "3/4"
+            ],
+            "label_root": "93c00ce7e7a1eafa8130d8164ba43973a4363bce7c4d628d5208386a0630de9e"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          12,
+          4
+        ],
+        "tree_count": "3",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "21/4",
+              "0"
+            ],
+            "label_root": "bc45a6fe7ed7cd0f2fcdb9c8c08393f8d4e2b5f568e4dffc28f1eceef4912e66"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-8e3a68e8a60b2ca5276d10e9"
+            ],
+            "nominal_cost": [
+              "25/4",
+              "3/4"
+            ],
+            "label_root": "ca0f16cb5a7eff055fd502bf83a877793893144ec0471a2b8c1a76afdd57d43f"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-f831214733bbb5994b0d397c"
+            ],
+            "nominal_cost": [
+              "35/4",
+              "3/4"
+            ],
+            "label_root": "31edd9aca00d0c07d1a031713ca5e66dd5aaf4e43ded7315cee538b429067480"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          7,
+          3
+        ],
+        "tree_count": "70",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ab082257969acef2995cd924",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "47/4",
+              "5/8"
+            ],
+            "label_root": "0870fa48d3671738024ac1d6af321ff1c22c70eefb8ec99eeb1c89961f928afc"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ab082257969acef2995cd924",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "47/4",
+              "5/8"
+            ],
+            "label_root": "94fbca532670c97b822a78d1abb38e2356bbcc8cd5b21a59e9e688e68b6cbfa5"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ab082257969acef2995cd924"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "3/8"
+            ],
+            "label_root": "9fe263a765976f81264c74f1e950137b733aaaff69be0753db08b80460fce21c"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ab082257969acef2995cd924"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "3/8"
+            ],
+            "label_root": "1698c7fa88b17420a9eb0920c7c0fb7cecf176bd6b54f267ac8bc5eb4fe6cd6c"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "7/8"
+            ],
+            "label_root": "ae673c507ee16c382595ba131eb9b63f36dfdf99dde1cbe3dff6cd24c46d2ca1"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "7/8"
+            ],
+            "label_root": "f6d69a67f25084e55acc4504a56e3e97519119d432147d386884a3027b966db1"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "7/8"
+            ],
+            "label_root": "5bd14ccb016f7a0eef0390ff8a207b19e8a2e624041cc2f7f600a10bbc4c7c40"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "7/8"
+            ],
+            "label_root": "8ef80671cd3377138f624163f2ea20df622a48f9cab9027a65870fcfdab15a7b"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          7,
+          5
+        ],
+        "tree_count": "74",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-318552329b6d30fd21601da9",
+              "connector-b00f840bc48b4877199d1427",
+              "connector-cc0dca895c030b92c7b9effd"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "7/8"
+            ],
+            "label_root": "ce6f3876cfe999d39b86e79f6895e6952317bd1d7e70c31ad47ea36628bd1971"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-318552329b6d30fd21601da9",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "7/8"
+            ],
+            "label_root": "c5189ea667232eff4755db318ced423a4fd25f6c79a7b2af06031eba191fcd3a"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-b00f840bc48b4877199d1427",
+              "connector-cc0dca895c030b92c7b9effd"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "7/8"
+            ],
+            "label_root": "801bdbe2fcbd7c7eff1dc9c387fb9a325361e7ec8ec771ce082a35bbee0583f7"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "7/8"
+            ],
+            "label_root": "bfd3bada0a48fe7edb197d094c70657216fffa31e57169aec9af5ccdfeff2085"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-c40ce824c927026e75f8fef1",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "5/8"
+            ],
+            "label_root": "64dbe0055da04f712e6c98c9f7240c0e7def453cc6aed99cd06ef7d21800223b"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-c40ce824c927026e75f8fef1",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "5/8"
+            ],
+            "label_root": "8bc469cf84b91628eae010368288ed9147278b78d43914bc8be68cf757d4387e"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-a719fd838872990d360cafed",
+              "connector-b00f840bc48b4877199d1427",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "9/8"
+            ],
+            "label_root": "ce4ce2ffcf3b5d27a26d572007f0f6a83a4a231c4452bdc203a65463589ba620"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-a719fd838872990d360cafed",
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "9/8"
+            ],
+            "label_root": "385c6f130fb0af0ec0503b935e6bf4b791315b5577db9983aa12c7aa289719ce"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          11,
+          3
+        ],
+        "tree_count": "70",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ab082257969acef2995cd924",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1/4"
+            ],
+            "label_root": "bc67f3f27d6d7a5b99be675861af23966385ad25436309f631e39b11716116f8"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ab082257969acef2995cd924",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1/4"
+            ],
+            "label_root": "56ab38ce566b30b28210894ccdb44ed7fb49f7db69caaabab392e1726369bc1e"
+          },
+          {
+            "connector_ids": [
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-b4e0b75b2c20ef382d8879c4"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "bba87a75e0290daef761f10b7399ca1623402c49160e69b77b679867515feaaa"
+          },
+          {
+            "connector_ids": [
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "907440c3a3908c070fd38e8e080e86d78e39c682e481e8951efcc68baadbfd42"
+          },
+          {
+            "connector_ids": [
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "2da7112c51e1fe598a237c6a0249acde115fcf7c2a56483abb6b7d6179bda830"
+          },
+          {
+            "connector_ids": [
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-def134fd62400f280a289ef3",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "8da47ab74b622da5629e548335699299961ac6e4f998f9108b0743c4bb97cff2"
+          },
+          {
+            "connector_ids": [
+              "connector-8595fe8ed09e1392f310b008",
+              "connector-ab082257969acef2995cd924",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "16b7888525893175594d933739be5031c8fdbe5fe8f596f005cda29d9e799d88"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-cacc73be875ebcd1b8ba98c9",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1"
+            ],
+            "label_root": "e20e90fbc84ec57c5d30506d0e3d9fdbcc1a6fead66c3f2a0604a5a73bc1d0f1"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          11,
+          5
+        ],
+        "tree_count": "88",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b00f840bc48b4877199d1427",
+              "connector-cc0dca895c030b92c7b9effd"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "6edaa9970bb02814d4cdd2956c6860fc9df9ba89b6d4f74c3b7922eba49270cd"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "502f6cfa4b8efd974cebcc30ad02fde62f961d4cc48ab96a9df5deddafbbf2e3"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b00f840bc48b4877199d1427",
+              "connector-cc0dca895c030b92c7b9effd"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "1e8032aea8b6c7dfc846cc29ee4d258eccc54637577163cf7248c029d7cdb8a0"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "f7cfdcd2b0784ca83a448b292725aea3f78a2a1d75ec0b303f8ea6fe15f2a540"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-a719fd838872990d360cafed",
+              "connector-b00f840bc48b4877199d1427",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "3/4"
+            ],
+            "label_root": "b9f7d1ba8f68927573079a599c69373dd4a4c05095a4c41b5419a87a9185be2a"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-a719fd838872990d360cafed",
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "3/4"
+            ],
+            "label_root": "5ddb8b63719869d21769d55d4feffcc3ac3ff943d45a8aee2cf3823dfdeebde8"
+          },
+          {
+            "connector_ids": [
+              "connector-3039c40f1c623b1dafab4c25",
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cc0dca895c030b92c7b9effd"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1/2"
+            ],
+            "label_root": "dd91138581f6f44024f54a9617c7160c025479241e69a88295b444b5b6298961"
+          },
+          {
+            "connector_ids": [
+              "connector-3039c40f1c623b1dafab4c25",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1/2"
+            ],
+            "label_root": "13521c1bf464d99a408fe4d025341dd1e3dc07e08990fddabce769894bb4adbd"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          13,
+          3
+        ],
+        "tree_count": "104",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "21ff29e01acac89456481d66123b3064a1b61163b8859dda9ec2e6ce6fc42a3f"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "835d29228ecf57e6d11764298f5322a423ab8e9bb07a6cd2d15762a1d03d4289"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "85bb4c7bbb9b278c4bec5decb9b563ef6329edb9f35135ba04c78f860010f405"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "4984d1ec013fffb08b79e9adeb5ad486fa82a4a6836bce64e4a91eb71b363139"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-cacc73be875ebcd1b8ba98c9",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1"
+            ],
+            "label_root": "de473790ef8c13bb807c130ecb4794ae25c99360b481c83bb6a23cc0ed9176ac"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-cacc73be875ebcd1b8ba98c9",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1"
+            ],
+            "label_root": "e668ddf069555f9ac5dc0950976b02bb2300ca101917504f2d7714896a17f446"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-cacc73be875ebcd1b8ba98c9"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "3/4"
+            ],
+            "label_root": "bd34347ea06245774cff7de500d7fa5e7a42e3f7ac393bd149d49f113138cbc5"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-cacc73be875ebcd1b8ba98c9"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "3/4"
+            ],
+            "label_root": "2ecfe8e79c5f6f99f70c2ad0872a6e839f52a41ad8b80c617eade5298e49612b"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          13,
+          5
+        ],
+        "tree_count": "74",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1/4"
+            ],
+            "label_root": "2cc52ab7f93236b97a0a303fc001cc4fb2f5a639ae365ed7c48d9f342d96a1a4"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1/4"
+            ],
+            "label_root": "a9d85e6327cf3e03ec70e52b70703caa63d87653cf092adb82ba2731de111dea"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-a719fd838872990d360cafed",
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "371491130029422387d74f35b55d79a49a1fbe9085662b58850769758d0760de"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-318552329b6d30fd21601da9",
+              "connector-8e3a68e8a60b2ca5276d10e9",
+              "connector-cc0dca895c030b92c7b9effd"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1"
+            ],
+            "label_root": "be6697dd0226a86885112e1587a6248a18c8d2a34583a0131620091f6efaa27e"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-8e3a68e8a60b2ca5276d10e9",
+              "connector-cc0dca895c030b92c7b9effd"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1"
+            ],
+            "label_root": "c36837439682bb1f2905eb6e890fbca4a8942479a5d0f788b5953018abd1cf9a"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-21a86299e588641f431197ca",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "3/4"
+            ],
+            "label_root": "3b077a9df584e9ca11522c10f07d9eaadc2d08cf569e2444c3c3aeaa1380e81a"
+          },
+          {
+            "connector_ids": [
+              "connector-21a86299e588641f431197ca",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "3/4"
+            ],
+            "label_root": "6d8d0316ebb89c28b63b826a4bef906a40402e145c8876fcdd66416ef6498e42"
+          },
+          {
+            "connector_ids": [
+              "connector-8ac86bda2dfa1c318382312a",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "1/2"
+            ],
+            "label_root": "ef2c542109b77577580f007b06ea552f0c512e040298594b266af037cd62337d"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          14,
+          3
+        ],
+        "tree_count": "96",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "1/2"
+            ],
+            "label_root": "711a60d5a066da0b5f9321a9905065ef4f44fbf8b6a9322fb3146724fefdd236"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "1/2"
+            ],
+            "label_root": "9ef0112b631da1cfd835eb30db35976d9702f4bb5dcd61e9873f5bde13e0c23a"
+          },
+          {
+            "connector_ids": [
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "1/2"
+            ],
+            "label_root": "bbe9497d9c526741da955d45655b7c22d7d7f0e92c0c04a51bf7a46bc131cd5e"
+          },
+          {
+            "connector_ids": [
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "1/2"
+            ],
+            "label_root": "2ba29ebbc8cb4db8c496e6521402ac029e60671b1fe1425716ce2977fb110394"
+          },
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ab082257969acef2995cd924",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1/4"
+            ],
+            "label_root": "1b43c0c4480cd801fa96b19c426c4fa5b96a84920db53beb71c74324fa99ca71"
+          },
+          {
+            "connector_ids": [
+              "connector-7d11bed117588215abe8f19d",
+              "connector-ab082257969acef2995cd924",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-e7499f13ab306b2d80f6d61c"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1/4"
+            ],
+            "label_root": "8e8570c4527876c72aa1073617c6fb90f9901996f8d87686c50b703fcae3fddb"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-68b2116331c2c70e68797013",
+              "connector-8595fe8ed09e1392f310b008",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "1"
+            ],
+            "label_root": "132f389b07e1cc2b517df316331aba1f09c8bc2a478fc24806d8a02706174dc5"
+          },
+          {
+            "connector_ids": [
+              "connector-68b2116331c2c70e68797013",
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-8595fe8ed09e1392f310b008",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "1"
+            ],
+            "label_root": "c2053f4d753c6e040c0422321751aba9e73a583111824fb84849d86f6b656174"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          14,
+          5
+        ],
+        "tree_count": "80",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/4"
+            ],
+            "label_root": "7760dee82f91ba2dc395d07767989e4824d60fd5a818f17746626b14855efdf2"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-da739e797b947d00fa67ccaf",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/4"
+            ],
+            "label_root": "4c3ded7fd4ca71e88a8147b2b375a230f9eec875a2da606a5cda3e7db019fff4"
+          },
+          {
+            "connector_ids": [
+              "connector-68b2116331c2c70e68797013",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-a719fd838872990d360cafed",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "3/4"
+            ],
+            "label_root": "871339bd5fa35b7ec9e0f8b19e4b2e692399ae21ced946ef95e9cb8642d93ceb"
+          },
+          {
+            "connector_ids": [
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-a719fd838872990d360cafed",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "1/2"
+            ],
+            "label_root": "0a902ac81d0d669e61bcbe18c6bc22dc3b207a84dd9eceea7c5e2224ab6e2b81"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-8e3a68e8a60b2ca5276d10e9",
+              "connector-cc0dca895c030b92c7b9effd"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "1"
+            ],
+            "label_root": "80bc4b7537258ee8d426cc571a8b4306828688aeb168a376a22c4fec262190d3"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-8e3a68e8a60b2ca5276d10e9",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "1"
+            ],
+            "label_root": "26c797ba97bd6dd74c3d67a5732c591c1c1ee80f632164744b7d363132288ec0"
+          },
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b00f840bc48b4877199d1427",
+              "connector-cc0dca895c030b92c7b9effd"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "1/2"
+            ],
+            "label_root": "31f30713e697e85db852f59fb3f4d869a842546f07b0cc9cc6c67ee5a4aff831"
+          },
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "1/2"
+            ],
+            "label_root": "65128512a2232eb2e1226c2f50570ce9e2207360989f422437c9efcd987743f2"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          7,
+          3
+        ],
+        "tree_count": "86",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-68b2116331c2c70e68797013",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "11/8"
+            ],
+            "label_root": "14a8ead99d52cc8b5923f1c8a24711d108795ac491200458bc6644a6b2f5fc90"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-68b2116331c2c70e68797013",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "11/8"
+            ],
+            "label_root": "b7ccc983209e79ee0fe3b123bedf6762d8dbd0e38059e2a3fb5addbea979e110"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-68b2116331c2c70e68797013"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "9/8"
+            ],
+            "label_root": "0de14fd8bce40f5acb37591ab9010bee79540fecc35e6f9f1a902f7cfd9aeb7a"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "9/8"
+            ],
+            "label_root": "1f17b87465a6953ad7dfc0d99c63c274c2af42538220e77480cc3518986c5c40"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-68b2116331c2c70e68797013"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "9/8"
+            ],
+            "label_root": "9b3a7ac9094e61a342b88ad3191db02d2b6500a9815f4386e6340add2577dafc"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "9/8"
+            ],
+            "label_root": "fb2a80ad1cb8188f376625ccb810366c5d0ba1480cc4e06ccdc2f70cbda2738e"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-cff30deb202f070389484076",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "9/8"
+            ],
+            "label_root": "445b1de2c54d7739236eb4bc6e3196291721eedd49392813e95628a16fdeada7"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-cff30deb202f070389484076",
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "9/8"
+            ],
+            "label_root": "2702982f06290e9090eeded65c546a888323cebd4c01bbf79fac32758edf2fdc"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          7,
+          6
+        ],
+        "tree_count": "45",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b00f840bc48b4877199d1427",
+              "connector-b4e0b75b2c20ef382d8879c4"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "7/8"
+            ],
+            "label_root": "5f70690ce4172a6bf6674913dc4f1314a70d732e0fe721bb858dd173cb2f745c"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b00f840bc48b4877199d1427",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "7/8"
+            ],
+            "label_root": "8f38ba87b59e5bb75b776f3eda1ce0c92f17b230a6e4a8b320b2e3fe80e1c674"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "7/8"
+            ],
+            "label_root": "8af69d9a8c4cc2100db55d760b92df19ee6d1ca47b8efa337ad59a510e95feac"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-e64f9d05784d1faedae6ea59",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "51/4",
+              "7/8"
+            ],
+            "label_root": "5a067e5747fc7d5034bfa0d4b724e96a5f331c1aca21fbe1038c4d4d01e0bdc6"
+          },
+          {
+            "connector_ids": [
+              "connector-3039c40f1c623b1dafab4c25",
+              "connector-318552329b6d30fd21601da9",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-ab082257969acef2995cd924"
+            ],
+            "nominal_cost": [
+              "55/4",
+              "5/8"
+            ],
+            "label_root": "e1f5a3ca611fa52854249a44123822513508b3306ea58643572d4e52a14e368b"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-ab082257969acef2995cd924",
+              "connector-b2e6e508aa901f1c58278dfe"
+            ],
+            "nominal_cost": [
+              "55/4",
+              "5/8"
+            ],
+            "label_root": "32073cd63717bbb6875694fa5031de263f93172ff780d790efcd2712bc4b584e"
+          },
+          {
+            "connector_ids": [
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-c40ce824c927026e75f8fef1",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "55/4",
+              "5/8"
+            ],
+            "label_root": "17c2789e04b761e4e9c262497823dccc349e512044ced012e20d1fd235a564a9"
+          },
+          {
+            "connector_ids": [
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-c40ce824c927026e75f8fef1",
+              "connector-da739e797b947d00fa67ccaf",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "55/4",
+              "5/8"
+            ],
+            "label_root": "0286b0932d0b542d6669abb1b921ad1acc321a6e2eaf6940c9a603088620ab2b"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          11,
+          3
+        ],
+        "tree_count": "86",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-68b2116331c2c70e68797013",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1"
+            ],
+            "label_root": "8a4762b7feab9141fdffcae1363c0c4491f66abcdf19340f2ed50e1303cb6fd3"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-68b2116331c2c70e68797013",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1"
+            ],
+            "label_root": "683fb12ddd5c3671c6f2536f76ccdb725b96197567c81b9a599c701b432297da"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "3/4"
+            ],
+            "label_root": "c52b889b85e9a8977dc77382269af984ee9a1abd7f30e7e27ac1a0b25f963230"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "3/4"
+            ],
+            "label_root": "a084d168894277e4fa4e6d38566bd67cb7bf778e3174cc7c4d457da62e60d7ff"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "3/4"
+            ],
+            "label_root": "6b23cb086ed0669e9c65526108fcd3cdaa6a66e44927335bc2b7353ccffd2407"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "3/4"
+            ],
+            "label_root": "10e60ca9f0fa05f43d8d6b331c6ab1568dd023d1af43843311959f066831a10e"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-7fa3efc69553b93f252ac732",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "69/4",
+              "1"
+            ],
+            "label_root": "3091367fd22d4a4209fd15efe624135f519b9fa4a47f95eaac3f0c17d5f70e8b"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7fa3efc69553b93f252ac732",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "69/4",
+              "1"
+            ],
+            "label_root": "e171ec979f68b18482cfa9c2c7c46ad0a6aeddce14fc287e0b263656ee8eaf56"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          11,
+          6
+        ],
+        "tree_count": "52",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b00f840bc48b4877199d1427",
+              "connector-b4e0b75b2c20ef382d8879c4"
+            ],
+            "nominal_cost": [
+              "45/4",
+              "1/2"
+            ],
+            "label_root": "35d210853fd06a18c657dfd1595764fef3aabe6b095b246e6b9bfcd852e64979"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b00f840bc48b4877199d1427",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "45/4",
+              "1/2"
+            ],
+            "label_root": "416d0a979bc9063b943719de1685b8e3a4888001c8f88b495e1894345c77976a"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "45/4",
+              "1/2"
+            ],
+            "label_root": "2ea65e4cda9ba9f6f59ecd4ecf45b1cedfb63f423c6964ba918650f5df4d0e24"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-e64f9d05784d1faedae6ea59",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "45/4",
+              "1/2"
+            ],
+            "label_root": "a5296f90182f8e7af65da7b600e88d8ff6232a0b7b0dc8ba17ae6457a854e48f"
+          },
+          {
+            "connector_ids": [
+              "connector-3039c40f1c623b1dafab4c25",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-ab082257969acef2995cd924"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1/4"
+            ],
+            "label_root": "ca0aa49f8f10bc1cf260ab86c13692066116bc9f882b51b2596a45f0a9dc74f6"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-ab082257969acef2995cd924",
+              "connector-b2e6e508aa901f1c58278dfe"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1/4"
+            ],
+            "label_root": "3f1740b77aa0070604df74d021ac9702ed62ee804ae85bddaa967aa290209472"
+          },
+          {
+            "connector_ids": [
+              "connector-3039c40f1c623b1dafab4c25",
+              "connector-66700d7863d23d3881272f1c",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1"
+            ],
+            "label_root": "d1f5fcd5b65646c14c9d14e545cabebf868cc235b52fe9a2d1994eff0b7eb0df"
+          },
+          {
+            "connector_ids": [
+              "connector-66700d7863d23d3881272f1c",
+              "connector-6b88732681f8447d6d6611c7",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b00f840bc48b4877199d1427"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1"
+            ],
+            "label_root": "18b27913888f11e7e2f86da3916253f1d11bc875106d7560cd7c1c21df5d22e1"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          13,
+          3
+        ],
+        "tree_count": "104",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "69/4",
+              "1"
+            ],
+            "label_root": "2ca1a9ed1c15147d07c23b9784b4a5c3137878f839939dbbe6295a4709bc4fbb"
+          },
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "69/4",
+              "1"
+            ],
+            "label_root": "6338463c77d85a675c1f9bdf4bc865e84d47d49bef8fbc57613cad3fe5e6dc5a"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-7fa3efc69553b93f252ac732",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "69/4",
+              "1"
+            ],
+            "label_root": "11f62da9f6846db8154b475d73c5a8acfcf1617943646938706e55f57769d7ea"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7fa3efc69553b93f252ac732",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "69/4",
+              "1"
+            ],
+            "label_root": "3696e28ed857e0a2c41b3c1f1e5d7a52cddc233cc291e6f093d3eec2a67ac99d"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-7fa3efc69553b93f252ac732"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "3/4"
+            ],
+            "label_root": "7f7dd8d0bb2830fb5d38da5431b0e6066d82df7bcb2bcdc5f7437c159fcba4db"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-a88af72dd261224f065877f6",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "3/4"
+            ],
+            "label_root": "9a2e3e1b0521029abe037323a05583d5de2b834d3a1c418da7cb740f117d8d60"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7fa3efc69553b93f252ac732"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "3/4"
+            ],
+            "label_root": "c2bccc8a9b5696cd11477e90967636b9199f2e0a9ad3e4d12dc8c62c6d0795df"
+          },
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "3/4"
+            ],
+            "label_root": "367cf5be514290363d44cb2915351d2d6d6a0ec8dbce03c653e578388a862162"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          13,
+          6
+        ],
+        "tree_count": "54",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "41/4",
+              "1/4"
+            ],
+            "label_root": "4a270547e969f3c2f897355239138613ffa9163d3f4aa686a533a90810544126"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-da739e797b947d00fa67ccaf",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "41/4",
+              "1/4"
+            ],
+            "label_root": "3031453cd2e97fa74f0c1434622e5447f3db5e6896f4edc2612614bd0eb94fc5"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-8e3a68e8a60b2ca5276d10e9",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b4e0b75b2c20ef382d8879c4"
+            ],
+            "nominal_cost": [
+              "45/4",
+              "1"
+            ],
+            "label_root": "5c59cd0952fadc858d5ea9631de3fbed8ec978c2d0cde5b576bbf652d178410e"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-8e3a68e8a60b2ca5276d10e9",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "45/4",
+              "1"
+            ],
+            "label_root": "95e85573fe6e19b47b7301b28e7f4fc321d7d28cb0ef92097c1704ae3c0b0400"
+          },
+          {
+            "connector_ids": [
+              "connector-66700d7863d23d3881272f1c",
+              "connector-6b88732681f8447d6d6611c7",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "3/4"
+            ],
+            "label_root": "4b564fb7c2d48e803df91f6bafc44db0fca7b4dbc6fed47772c41cb376da20e7"
+          },
+          {
+            "connector_ids": [
+              "connector-3039c40f1c623b1dafab4c25",
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "502d2316601690837d2ff3cde43995a572cbe712fffdb5ed292e6c897c09f583"
+          },
+          {
+            "connector_ids": [
+              "connector-3039c40f1c623b1dafab4c25",
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "357cd0580625480c572ab440ef4418950ab356cd5bcd0c6617db16cd823510c2"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b2e6e508aa901f1c58278dfe"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1/2"
+            ],
+            "label_root": "583f89ca5597e1aef9f685fd1f66ef0d996cf1e245236b8a64738b1f80f254ac"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          14,
+          3
+        ],
+        "tree_count": "120",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "1"
+            ],
+            "label_root": "945c82af1000861190501746b94393add6b5774b2e4dfef83f250d59c0f05d8d"
+          },
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "1"
+            ],
+            "label_root": "a282d4423945a03528466186f5e5421d25c73e1129e8b8cef2223457c8dd4e56"
+          },
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-68b2116331c2c70e68797013",
+              "connector-ae1b936d5efec2aa6452c2c0"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "1"
+            ],
+            "label_root": "8c6522b9f83dd7476406647f99db6e3d4ed5bcd373c8de23d315f4d892f6a464"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-68b2116331c2c70e68797013",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-e7499f13ab306b2d80f6d61c"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "1"
+            ],
+            "label_root": "3408308aa808fc3e8906dbc1cc978eecbb65f587330e8152e4fc0fae85c6099e"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-7fa3efc69553b93f252ac732",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "1"
+            ],
+            "label_root": "fe7237d045ff6ed5e62fa0cf2816d893c17eb12a360f78834e1141ef6fe36d74"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-7fa3efc69553b93f252ac732",
+              "connector-cff30deb202f070389484076",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "1"
+            ],
+            "label_root": "340e19a42aff3282fbe43b19a2ca2f6f0be75b86a07d05f254f250a133f917c5"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-7fa3efc69553b93f252ac732"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "3/4"
+            ],
+            "label_root": "6e742d997b886ddb1ec6580e2d025d9aaace24a81f56a263463eb3682c11c059"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-7fa3efc69553b93f252ac732",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "3/4"
+            ],
+            "label_root": "7fae5a02b10431d6045b3029d5918b2d226d12ac1c3667253e05d775d5938930"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          14,
+          6
+        ],
+        "tree_count": "51",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-ab082257969acef2995cd924",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "41/4",
+              "0"
+            ],
+            "label_root": "83df61626ab41efb2806b55cc66857260ea7b24cbc2ddc32bdb7f443257d9797"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-8e3a68e8a60b2ca5276d10e9",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-ab082257969acef2995cd924"
+            ],
+            "nominal_cost": [
+              "45/4",
+              "3/4"
+            ],
+            "label_root": "a00ddec88422f72ee7d2742c719b5424c8e58d6bd281037ebf29729a8f50e74e"
+          },
+          {
+            "connector_ids": [
+              "connector-66700d7863d23d3881272f1c",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cb19f1e298fea5b66bd443e0",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "45/4",
+              "3/4"
+            ],
+            "label_root": "efc1bf90503efa12d551460fd4c1386b3c3ddd808dfcc83abd8eb5f66d5fcef1"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b00f840bc48b4877199d1427"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1/2"
+            ],
+            "label_root": "060c4ba535de2c8ba501f189778520fd17eb88990256485b027b36b34e485a75"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1/2"
+            ],
+            "label_root": "762f3af937310487d07b2b6486cb00c2f4b11e82a7f1c15b617a5c7fd26067e4"
+          },
+          {
+            "connector_ids": [
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b00f840bc48b4877199d1427"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1/2"
+            ],
+            "label_root": "e16cac817d7de9ff4807ce281db473e4ef76cd0cdb068fe6120d9c154d105379"
+          },
+          {
+            "connector_ids": [
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-e64f9d05784d1faedae6ea59"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1/2"
+            ],
+            "label_root": "4e9775f4417b37af0b1ee0c3be372dd58b0c392a1093743e1b72295394754c94"
+          },
+          {
+            "connector_ids": [
+              "connector-66700d7863d23d3881272f1c",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b00f840bc48b4877199d1427",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "49/4",
+              "1"
+            ],
+            "label_root": "0bbd7465645893e2e4951360e4fc949bd38096ec198882a0ba78259e0c7e9982"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          7,
+          5
+        ],
+        "tree_count": "74",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-318552329b6d30fd21601da9",
+              "connector-68b2116331c2c70e68797013",
+              "connector-82899e7cbb9165bb7788af35"
+            ],
+            "nominal_cost": [
+              "67/4",
+              "11/8"
+            ],
+            "label_root": "34ed8622f6c777744c961a2c621c3e81e8ef3b396be44588c49ae7c516dc30e3"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-68b2116331c2c70e68797013",
+              "connector-82899e7cbb9165bb7788af35"
+            ],
+            "nominal_cost": [
+              "67/4",
+              "11/8"
+            ],
+            "label_root": "b55578ccea65b17521b8c24eacb0baef3d23b665d8ecdf3a3cceb85ba1dfce40"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-318552329b6d30fd21601da9",
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-82899e7cbb9165bb7788af35"
+            ],
+            "nominal_cost": [
+              "71/4",
+              "9/8"
+            ],
+            "label_root": "d3d25aaf055a7edabfcc7c4cd7f64da481d1cfd92522b5facb62682d8d9d73bd"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-82899e7cbb9165bb7788af35"
+            ],
+            "nominal_cost": [
+              "71/4",
+              "9/8"
+            ],
+            "label_root": "71c4b86040f41bd6b423455696f87e9ef0541cb14b9ceb54e94bdadc91e583e7"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "71/4",
+              "9/8"
+            ],
+            "label_root": "bff6c0609df50732c32c3c54823c1fdb1eccdb0e88d37a108d75c5e63590db5c"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "71/4",
+              "9/8"
+            ],
+            "label_root": "b21eb6e47793ff51c592f03d7c9b349b92bfddcff97e75818ac1b6fe4df46da2"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-318552329b6d30fd21601da9",
+              "connector-68b2116331c2c70e68797013",
+              "connector-e6ccc890338a72571ebd3508"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "11/8"
+            ],
+            "label_root": "deb315665614de7dd6bd98068fa14f850b7628b5e6baef386f833919c8136b3f"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-68b2116331c2c70e68797013",
+              "connector-e6ccc890338a72571ebd3508"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "11/8"
+            ],
+            "label_root": "b3c6b8c4e28a1f02c0d3ed11fbe890778d2417484a74fde436ee83e41f34740d"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          7,
+          6
+        ],
+        "tree_count": "49",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "11/8"
+            ],
+            "label_root": "38a1413dcff416afcab99f9feb1a7dcca414790249c9e026d4f8b1292b49d522"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-cb19f1e298fea5b66bd443e0",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "59/4",
+              "11/8"
+            ],
+            "label_root": "8c4093f911c6e2cf10239ee3e05b9859734af56378eb666d4f69bc20988a81fe"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-6b88732681f8447d6d6611c7",
+              "connector-ab082257969acef2995cd924",
+              "connector-b184218f1ec1ce86ff83b3ee"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "9/8"
+            ],
+            "label_root": "b563b00a6a24e53001953b476f25b5506c50ffdb7adbc45108a4bbb625b71305"
+          },
+          {
+            "connector_ids": [
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-c40ce824c927026e75f8fef1",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "67/4",
+              "11/8"
+            ],
+            "label_root": "27a7592ad9f6ceb6056220037e5628e8c2268d8a2a8583fc136fa5cb26019cf1"
+          },
+          {
+            "connector_ids": [
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-c40ce824c927026e75f8fef1",
+              "connector-cff30deb202f070389484076",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "67/4",
+              "11/8"
+            ],
+            "label_root": "6dbb7cc51aaa838e18645def8ae1b76b5a44977c1af134fc0ede380335ddbd62"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-c40ce824c927026e75f8fef1"
+            ],
+            "nominal_cost": [
+              "71/4",
+              "9/8"
+            ],
+            "label_root": "dc0d7a8824e0fdf453ee06de68e8f03eaa47600e933e8950890804942fa982e4"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-c40ce824c927026e75f8fef1",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "71/4",
+              "9/8"
+            ],
+            "label_root": "a666e1e2050e20856516e28136d33f032476f8ba06ceed2a96a130730533db7e"
+          },
+          {
+            "connector_ids": [
+              "connector-ab082257969acef2995cd924",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-b8d5b535e469847a6225f6b4",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "71/4",
+              "9/8"
+            ],
+            "label_root": "2b0237ca54cfe8cb0f201fd88cf1f6474de204f7979233b3dc684fab887c153a"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          11,
+          5
+        ],
+        "tree_count": "80",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-68b2116331c2c70e68797013",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1"
+            ],
+            "label_root": "cff05e25037b0f1f9c85f78bab533e1ec32f046f96eff9db90d1110bbf86c218"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-68b2116331c2c70e68797013",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1"
+            ],
+            "label_root": "db3b334623823f006ea1c4a1cb48590444ee73d5e97fc3efe842484807872fc1"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "3/4"
+            ],
+            "label_root": "a1c553e6435e683919c1e969c57841eb3c7fde773e6e5ce610e08d80adeba548"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "3/4"
+            ],
+            "label_root": "89a467f35bddb9dc585a2e576e4b7173e58620b31973a6ac770cd044f8e92669"
+          },
+          {
+            "connector_ids": [
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "3/4"
+            ],
+            "label_root": "09a6cf7742bef2c928ee1c6efad6a38be081da9b574a4cf921c475b5fce7cc9f"
+          },
+          {
+            "connector_ids": [
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "3/4"
+            ],
+            "label_root": "807ca46a11324ac7f1919db9094f2063bdb5477f90273140a6ae13f3563ba089"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-68b2116331c2c70e68797013",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-e6ccc890338a72571ebd3508"
+            ],
+            "nominal_cost": [
+              "71/4",
+              "1"
+            ],
+            "label_root": "7c4a05b8835f4870b519fdfd33a531977d33eca2b9870d661d02f3a925fb4561"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-68b2116331c2c70e68797013",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-e6ccc890338a72571ebd3508"
+            ],
+            "nominal_cost": [
+              "71/4",
+              "1"
+            ],
+            "label_root": "0900be131b58f70a66025f1ff4078fd08a307ba922dccd78b24445ed96aa607c"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          11,
+          6
+        ],
+        "tree_count": "52",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1"
+            ],
+            "label_root": "58ba5324a79e9af9a83ffa095128f773e956e0650104dd1cc04baf38aed95250"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-cb19f1e298fea5b66bd443e0",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1"
+            ],
+            "label_root": "8d9ec0b81dbf78231fb03c212523aa60ec6cffa63056e0750cced7a15aaca888"
+          },
+          {
+            "connector_ids": [
+              "connector-6b88732681f8447d6d6611c7",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ab082257969acef2995cd924",
+              "connector-b184218f1ec1ce86ff83b3ee"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "3/4"
+            ],
+            "label_root": "34d0d78f3ec753c0b03593d166d6cd58739235e1110f0e11f5cbe461ff9d9614"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ac9dc2bf1eadf6ccb31f6392",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "1"
+            ],
+            "label_root": "3f9ee34c712903f3c50185086970de8866f55a8fd8eccf7eb41c75aa79614ea5"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ac9dc2bf1eadf6ccb31f6392",
+              "connector-cb19f1e298fea5b66bd443e0",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "1"
+            ],
+            "label_root": "ad06bcdb46cb70b01f4ed7477fdc9c578006b4ada7d26776bfd5b44290c79767"
+          },
+          {
+            "connector_ids": [
+              "connector-6b88732681f8447d6d6611c7",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ab082257969acef2995cd924",
+              "connector-ac9dc2bf1eadf6ccb31f6392"
+            ],
+            "nominal_cost": [
+              "67/4",
+              "3/4"
+            ],
+            "label_root": "5dbe22daf3e9d3a6ee89815c76f398e5e542f382b545c29d36c56db7b483131f"
+          },
+          {
+            "connector_ids": [
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-c40ce824c927026e75f8fef1"
+            ],
+            "nominal_cost": [
+              "69/4",
+              "1"
+            ],
+            "label_root": "c61052524c4b8dcaf33de9c331a341d89e0ba4b1eb93b3ed271c413b4afa4af2"
+          },
+          {
+            "connector_ids": [
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-c40ce824c927026e75f8fef1",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "69/4",
+              "1"
+            ],
+            "label_root": "ff9bd6c162fcd0b7bbc4445c69f478d0aa26001ac22c1b28aaed1587c516111a"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          13,
+          5
+        ],
+        "tree_count": "74",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c"
+            ],
+            "nominal_cost": [
+              "69/4",
+              "1"
+            ],
+            "label_root": "fac4d202ec72f76cf431af6790778800354831675071cda41b36205f07f73da5"
+          },
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c"
+            ],
+            "nominal_cost": [
+              "69/4",
+              "1"
+            ],
+            "label_root": "166f36e4d37df64bbdb9fed172e105070ca93bcc2e38fd8e5714e9a49538cdb0"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-a88af72dd261224f065877f6"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "3/4"
+            ],
+            "label_root": "2b7feb3412640efa4a6ecb8884ad7d5a9601853bc584c11887ec74f29834f48e"
+          },
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-d5e03c7eb59fb50011f55da0"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "3/4"
+            ],
+            "label_root": "7c5fe51fd3e350944dbb6154e3ff974ee7ac6b647786c6953f9d4b8d2f348384"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-a88af72dd261224f065877f6"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "3/4"
+            ],
+            "label_root": "aa41f3f85abf5ee87776258be8c60f8fbeac06dc4af016704c9c6041cb1b7743"
+          },
+          {
+            "connector_ids": [
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-e7499f13ab306b2d80f6d61c"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "3/4"
+            ],
+            "label_root": "a98e0f335b304e9b3f648cb9118cb826c9bdb650716a1dc32d923d65ced66359"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-318552329b6d30fd21601da9",
+              "connector-7fa3efc69553b93f252ac732",
+              "connector-82899e7cbb9165bb7788af35"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "1"
+            ],
+            "label_root": "585b23aee6f7c5ce27db881c0e1f763be0d73f33eb9475a555d8793cd6e7af76"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7fa3efc69553b93f252ac732",
+              "connector-82899e7cbb9165bb7788af35"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "1"
+            ],
+            "label_root": "869fe4f88e7dae529b105a6fba2697dbaddcdb2e48760934a995a3851820e158"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          13,
+          6
+        ],
+        "tree_count": "74",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1"
+            ],
+            "label_root": "902860e2ee435be1805e4f5bef118690b8b2c82fca645e8bd12e18d55ab7bde2"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-cff30deb202f070389484076",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "1"
+            ],
+            "label_root": "5fd08ae9c002482af863698437367c79bb89c15b0b1bdecbcf2cca3ce5dec6fc"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-b4e0b75b2c20ef382d8879c4"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "3/4"
+            ],
+            "label_root": "e2ca718175cb2b1a4b6477e1686dcc1f0a0aad013930f806c75ac0904f48664f"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "3/4"
+            ],
+            "label_root": "dca4d74b63f975dc80b4dba08e4a5e956214acdc0cb5371c515520224bf41523"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-b4e0b75b2c20ef382d8879c4"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1"
+            ],
+            "label_root": "5201922f9d632258f25bca9a6172f9ece95d975017d05a8155e2e9d8a1761de0"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1"
+            ],
+            "label_root": "928c5819dbf0cfcf72cdfced406971ad697b19f9f5f582ae01bd990bc0fee8d8"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-6b88732681f8447d6d6611c7",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b184218f1ec1ce86ff83b3ee"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1"
+            ],
+            "label_root": "c69a60aa36d7dbb98feb94e53d16e48b7df812312cf55ba864a14e502eb4bb70"
+          },
+          {
+            "connector_ids": [
+              "connector-6b88732681f8447d6d6611c7",
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b184218f1ec1ce86ff83b3ee"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1"
+            ],
+            "label_root": "8eb3a20054561c964df07630aee2781d3c00c2bb0f323602188bed03db1106b9"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          14,
+          5
+        ],
+        "tree_count": "88",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "1"
+            ],
+            "label_root": "82d761fea06c9733194775189ef45347f52000aa02e628208a76a8109ac3f93e"
+          },
+          {
+            "connector_ids": [
+              "connector-04b3815ad42e97ccf532f027",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "1"
+            ],
+            "label_root": "83f39d205e6cef396eaa993ed2bae70796515d13ec4e37d347151098c06a48c3"
+          },
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-68b2116331c2c70e68797013",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "1"
+            ],
+            "label_root": "1a9819d72a9acc90a6af71a72337c3daff3a79ebf7c80c7dfb639cb6868b14bd"
+          },
+          {
+            "connector_ids": [
+              "connector-68b2116331c2c70e68797013",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-e7499f13ab306b2d80f6d61c"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "1"
+            ],
+            "label_root": "153747e7bc3727b85707480823ed66bec26ba7f5559438e41ece19fc86b693a9"
+          },
+          {
+            "connector_ids": [
+              "connector-34b7d21b98b2e3755a2152a0",
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "3/4"
+            ],
+            "label_root": "f947f0a6cf73dea493d414819157339d119b838b1d547d7bb0b63404808667a1"
+          },
+          {
+            "connector_ids": [
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-e7499f13ab306b2d80f6d61c"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "3/4"
+            ],
+            "label_root": "2d4aca9a3624b0b83429edb4e02e9408fd409f7179c17646f6608d1b3747d661"
+          },
+          {
+            "connector_ids": [
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-a88af72dd261224f065877f6"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "3/4"
+            ],
+            "label_root": "1e1dbbcea639e977437c8adac43924a97523578f79fe31caacfa8b83f305912a"
+          },
+          {
+            "connector_ids": [
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-a88af72dd261224f065877f6",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "3/4"
+            ],
+            "label_root": "1d9fad964a706b1fa2635b0f9fa1c070abbeb464db84cdf963445b3d7b955563"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          14,
+          6
+        ],
+        "tree_count": "60",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ab082257969acef2995cd924",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "53/4",
+              "3/4"
+            ],
+            "label_root": "6fd25cf49c2d089ce564a49d3c8382583f3a687a096595b146ecf0fd360aa966"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ab082257969acef2995cd924",
+              "connector-b184218f1ec1ce86ff83b3ee"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "1/2"
+            ],
+            "label_root": "4ec6f51db04d0b60479c7512fa790098f5914edca9de377cbb78bc11514e4a24"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "1"
+            ],
+            "label_root": "9686de4e88f4961f842cd18134db3a13193ad19d4c6f3683ca74307a550dfca8"
+          },
+          {
+            "connector_ids": [
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-b184218f1ec1ce86ff83b3ee",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "57/4",
+              "1"
+            ],
+            "label_root": "681e15bfbdd55cd67d905311b995ed20ba335293406d3b2363908e468fcd200e"
+          },
+          {
+            "connector_ids": [
+              "connector-318552329b6d30fd21601da9",
+              "connector-ab082257969acef2995cd924",
+              "connector-ae1b936d5efec2aa6452c2c0",
+              "connector-b184218f1ec1ce86ff83b3ee"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "3/4"
+            ],
+            "label_root": "5326045826abd773d71287eb5a1287d7a1c366c7a0b0b061541744803225c967"
+          },
+          {
+            "connector_ids": [
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ab082257969acef2995cd924",
+              "connector-ac9dc2bf1eadf6ccb31f6392",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "63/4",
+              "3/4"
+            ],
+            "label_root": "41718511c3d135ca2496a0368d4fc36e3966cbcfa0a45602d7e43f0c124e1acf"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ab082257969acef2995cd924",
+              "connector-ac9dc2bf1eadf6ccb31f6392"
+            ],
+            "nominal_cost": [
+              "67/4",
+              "1/2"
+            ],
+            "label_root": "c6fd820549e5e85066d1aad9fc9464ee1c1dbf28aaf0994ab85d6d56526c32d5"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ac9dc2bf1eadf6ccb31f6392",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "67/4",
+              "1"
+            ],
+            "label_root": "0c62f57cb2643472c07e6727c55c38c92b4a62f48dd6e6a8e53d04982cb9e335"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-0",
+          15,
+          7
+        ],
+        "tree_count": "3536",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-ab082257969acef2995cd924",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1/4"
+            ],
+            "label_root": "547fd1f4342b93d5b37685df81d80c41cf3c12f9f2d4c1fad51360ba593a5ddf"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-ab082257969acef2995cd924",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "61/4",
+              "1/4"
+            ],
+            "label_root": "5eabf48eed1c63ca944ba6a831b4bf3e5ec7b445b7408831225e6d0192d4a670"
+          },
+          {
+            "connector_ids": [
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "1/2"
+            ],
+            "label_root": "45818c24c6f3656e39ed7feb7873a98426e6ef6b4dd9bc54bc06c622d974fbb9"
+          },
+          {
+            "connector_ids": [
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-da739e797b947d00fa67ccaf",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "1/2"
+            ],
+            "label_root": "f3c9e8b56d406c41a250f394de050aa168228adab3e8ebaa325b6daca1669dd0"
+          },
+          {
+            "connector_ids": [
+              "connector-7d11bed117588215abe8f19d",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-b4e0b75b2c20ef382d8879c4",
+              "connector-da739e797b947d00fa67ccaf",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "1/2"
+            ],
+            "label_root": "2550c54104cbbd1ce65f6c4d37b7d0f309e167521699fe58e135ccb702617506"
+          },
+          {
+            "connector_ids": [
+              "connector-7d11bed117588215abe8f19d",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-da739e797b947d00fa67ccaf",
+              "connector-def134fd62400f280a289ef3",
+              "connector-f9a6c0cc683a7b041cb9dc31"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "1/2"
+            ],
+            "label_root": "679ae525750b31fae2ffd9abfc5d452d0f87a8dbb8cd3de93c674c592e84a208"
+          },
+          {
+            "connector_ids": [
+              "connector-8595fe8ed09e1392f310b008",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-ab082257969acef2995cd924",
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "1/2"
+            ],
+            "label_root": "e9f4d3c8fbde9e5b0c71bd217bd2083ad8654c5c88c063eabbe529131579bd6b"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-318552329b6d30fd21601da9",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-8e3a68e8a60b2ca5276d10e9",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-ab082257969acef2995cd924"
+            ],
+            "nominal_cost": [
+              "65/4",
+              "1"
+            ],
+            "label_root": "e12b260d2d681ef4a873a3960e51abb6a6639ed071ad603d3d3919b218e5b6ff"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-1",
+          15,
+          7
+        ],
+        "tree_count": "3604",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-68b2116331c2c70e68797013",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "1"
+            ],
+            "label_root": "9a6784dcb984519ae4d13f10cf481f055d6d510c83a10a14ed9c1df3d62c58cc"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-68b2116331c2c70e68797013",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "73/4",
+              "1"
+            ],
+            "label_root": "f871dd5700c3ed8c9059c29bbc69c7e67d2ddbd43752bcfd08dd6dc40b33828b"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "3/4"
+            ],
+            "label_root": "8abcc8242004891e4b6ff907345aa682d5ff02bc28e1c1872aaff012f49da301"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7831d62a3867df5e8cd53d78",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "3/4"
+            ],
+            "label_root": "eba143481fc20f5917e1611dc7f53c0f924f175ca22c803a382aa334c68e094c"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-783877b6bf075c26ec3afc94",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "3/4"
+            ],
+            "label_root": "195dd68cc5ef9b7875eb650c1998ea938a8aaa31421221c5c9b95133c32a9496"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-91dd85b1e98941d48fcb1f31",
+              "connector-d5e03c7eb59fb50011f55da0",
+              "connector-da739e797b947d00fa67ccaf",
+              "connector-def134fd62400f280a289ef3"
+            ],
+            "nominal_cost": [
+              "77/4",
+              "3/4"
+            ],
+            "label_root": "bdc770e2fa79dec946a8efd907580ab83e7d98481fb8f9ab6ee02a75a9c0c9b3"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cb19f1e298fea5b66bd443e0",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "81/4",
+              "1"
+            ],
+            "label_root": "ff3a8910cc4925cf2cc453c3c3ce2ddbcc428dbafcaef030780e7d96068f007e"
+          },
+          {
+            "connector_ids": [
+              "connector-4705f6b1889b5e3c1f9e3b27",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cb19f1e298fea5b66bd443e0",
+              "connector-cc0dca895c030b92c7b9effd",
+              "connector-da739e797b947d00fa67ccaf"
+            ],
+            "nominal_cost": [
+              "81/4",
+              "1"
+            ],
+            "label_root": "33230c9b9e4bc45c0772b4503f9171980e417695fe41ca254b9ccd46a91bc794"
+          }
+        ]
+      },
+      {
+        "state": [
+          "tee-2",
+          15,
+          7
+        ],
+        "tree_count": "3652",
+        "labels": [
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ab082257969acef2995cd924",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "81/4",
+              "1"
+            ],
+            "label_root": "46f136fe895606c78d26a395a8b7128e6292b6862005f96fc8cf90492fbbf290"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ab082257969acef2995cd924",
+              "connector-cff30deb202f070389484076"
+            ],
+            "nominal_cost": [
+              "81/4",
+              "1"
+            ],
+            "label_root": "26cac2c6689aa6f270342d997025863c6ce30e8a39e470a7130ece7b77e62f31"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ab082257969acef2995cd924"
+            ],
+            "nominal_cost": [
+              "85/4",
+              "3/4"
+            ],
+            "label_root": "c6ec5e77f16f86e1cfcc9d24cb21c61be55d19cd8e0881975ce7bea74d017f12"
+          },
+          {
+            "connector_ids": [
+              "connector-18fa796629f7e7cb20a235ad",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-ab082257969acef2995cd924"
+            ],
+            "nominal_cost": [
+              "85/4",
+              "3/4"
+            ],
+            "label_root": "51a9829d83fa98d4bcc83b3fddd923bbeb9ceb57e1f7342d96df4ac9101c3128"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "85/4",
+              "5/4"
+            ],
+            "label_root": "807762916f8b05b40c9235aed771decd33b7d99277359e5aec60b3094811a06b"
+          },
+          {
+            "connector_ids": [
+              "connector-04cb013e8d0aa10459b82c40",
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "85/4",
+              "5/4"
+            ],
+            "label_root": "8937559a0bd2077446d0458ae9b0f4bd24795efc2338f1b143bc5044618c0ff0"
+          },
+          {
+            "connector_ids": [
+              "connector-341321c2bf853ba09e453dc9",
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "85/4",
+              "5/4"
+            ],
+            "label_root": "0a2bb16661465f5c0c136582bd96951ec4ed7fccc7991af72472c26f9053c4ba"
+          },
+          {
+            "connector_ids": [
+              "connector-5f4d533bfcbd34340c589965",
+              "connector-6d6e7598c07ab18be3e68b8d",
+              "connector-7d11bed117588215abe8f19d",
+              "connector-82899e7cbb9165bb7788af35",
+              "connector-8bfebaf0aecd99f6f995999c",
+              "connector-cb19f1e298fea5b66bd443e0"
+            ],
+            "nominal_cost": [
+              "85/4",
+              "5/4"
+            ],
+            "label_root": "ad78c37e2d4223933afec2ef42765acd42b68acdf1294fa9f6db8a275846fc9c"
+          }
+        ]
+      }
+    ],
+    "total_tree_count": "18048",
+    "ranked_prefix": [
+      {
+        "tee_ids": [
+          "tee-0",
+          "tee-1",
+          "tee-2"
+        ],
+        "connector_ids": [
+          "connector-04cb013e8d0aa10459b82c40",
+          "connector-7d11bed117588215abe8f19d",
+          "connector-85edc313e625ec7a9c38e5e9",
+          "connector-8bfebaf0aecd99f6f995999c",
+          "connector-91dd85b1e98941d48fcb1f31",
+          "connector-ab082257969acef2995cd924",
+          "connector-da739e797b947d00fa67ccaf"
+        ],
+        "nominal_cost": [
+          "17",
+          "1/4"
+        ],
+        "assignment_root": "f60c093d97a75c39e52225384358bac92e3e63ea03ceffd2e94eba486a561201"
+      },
+      {
+        "tee_ids": [
+          "tee-0",
+          "tee-1",
+          "tee-2"
+        ],
+        "connector_ids": [
+          "connector-5f4d533bfcbd34340c589965",
+          "connector-7d11bed117588215abe8f19d",
+          "connector-85edc313e625ec7a9c38e5e9",
+          "connector-8bfebaf0aecd99f6f995999c",
+          "connector-91dd85b1e98941d48fcb1f31",
+          "connector-ab082257969acef2995cd924",
+          "connector-da739e797b947d00fa67ccaf"
+        ],
+        "nominal_cost": [
+          "17",
+          "1/4"
+        ],
+        "assignment_root": "6cd4f239d2d6215b98ba4f28d8bd947d5bff3ca4e91c59d3ba20568b336d782c"
+      },
+      {
+        "tee_ids": [
+          "tee-0",
+          "tee-1",
+          "tee-2"
+        ],
+        "connector_ids": [
+          "connector-783877b6bf075c26ec3afc94",
+          "connector-7d11bed117588215abe8f19d",
+          "connector-85edc313e625ec7a9c38e5e9",
+          "connector-8bfebaf0aecd99f6f995999c",
+          "connector-91dd85b1e98941d48fcb1f31",
+          "connector-b4e0b75b2c20ef382d8879c4",
+          "connector-da739e797b947d00fa67ccaf"
+        ],
+        "nominal_cost": [
+          "18",
+          "1/2"
+        ],
+        "assignment_root": "59c9ac33faab085c8ab5c2e7e263117fae8685761f0278d9e4998a19e0e52bf1"
+      },
+      {
+        "tee_ids": [
+          "tee-0",
+          "tee-1",
+          "tee-2"
+        ],
+        "connector_ids": [
+          "connector-783877b6bf075c26ec3afc94",
+          "connector-7d11bed117588215abe8f19d",
+          "connector-85edc313e625ec7a9c38e5e9",
+          "connector-8bfebaf0aecd99f6f995999c",
+          "connector-91dd85b1e98941d48fcb1f31",
+          "connector-da739e797b947d00fa67ccaf",
+          "connector-f9a6c0cc683a7b041cb9dc31"
+        ],
+        "nominal_cost": [
+          "18",
+          "1/2"
+        ],
+        "assignment_root": "6bc71318b43c16500a5b2a585395476ce61e6ba98590460c50b50ba308cf9d80"
+      },
+      {
+        "tee_ids": [
+          "tee-0",
+          "tee-1",
+          "tee-2"
+        ],
+        "connector_ids": [
+          "connector-7d11bed117588215abe8f19d",
+          "connector-85edc313e625ec7a9c38e5e9",
+          "connector-8bfebaf0aecd99f6f995999c",
+          "connector-91dd85b1e98941d48fcb1f31",
+          "connector-b4e0b75b2c20ef382d8879c4",
+          "connector-da739e797b947d00fa67ccaf",
+          "connector-def134fd62400f280a289ef3"
+        ],
+        "nominal_cost": [
+          "18",
+          "1/2"
+        ],
+        "assignment_root": "88c25f0f3d5d72dbc31634a4b71c89a87939a87fbcc0fd868d764ad27b38b622"
+      },
+      {
+        "tee_ids": [
+          "tee-0",
+          "tee-1",
+          "tee-2"
+        ],
+        "connector_ids": [
+          "connector-7d11bed117588215abe8f19d",
+          "connector-85edc313e625ec7a9c38e5e9",
+          "connector-8bfebaf0aecd99f6f995999c",
+          "connector-91dd85b1e98941d48fcb1f31",
+          "connector-da739e797b947d00fa67ccaf",
+          "connector-def134fd62400f280a289ef3",
+          "connector-f9a6c0cc683a7b041cb9dc31"
+        ],
+        "nominal_cost": [
+          "18",
+          "1/2"
+        ],
+        "assignment_root": "4e83120143e2324791f54620fd8ae363410d04ce1d68b7f9773b469b26a3e62a"
+      },
+      {
+        "tee_ids": [
+          "tee-0",
+          "tee-1",
+          "tee-2"
+        ],
+        "connector_ids": [
+          "connector-8595fe8ed09e1392f310b008",
+          "connector-85edc313e625ec7a9c38e5e9",
+          "connector-8bfebaf0aecd99f6f995999c",
+          "connector-91dd85b1e98941d48fcb1f31",
+          "connector-ab082257969acef2995cd924",
+          "connector-d5e03c7eb59fb50011f55da0",
+          "connector-da739e797b947d00fa67ccaf"
+        ],
+        "nominal_cost": [
+          "18",
+          "1/2"
+        ],
+        "assignment_root": "a926fd51a15603cdbddc327a8984ccc35cfb4cb337ac7f65b0afb8952dd3e1e3"
+      },
+      {
+        "tee_ids": [
+          "tee-0",
+          "tee-1",
+          "tee-2"
+        ],
+        "connector_ids": [
+          "connector-04cb013e8d0aa10459b82c40",
+          "connector-318552329b6d30fd21601da9",
+          "connector-7d11bed117588215abe8f19d",
+          "connector-85edc313e625ec7a9c38e5e9",
+          "connector-8e3a68e8a60b2ca5276d10e9",
+          "connector-91dd85b1e98941d48fcb1f31",
+          "connector-ab082257969acef2995cd924"
+        ],
+        "nominal_cost": [
+          "18",
+          "1"
+        ],
+        "assignment_root": "b6f1ea9056ab33d122b7762f7424c1db2609d928f88db2fc4bd42e0fa1751c7d"
+      }
+    ],
+    "certificate_root": "a6a3df36844536e54c638d2f8792988915be94d66784b5968255ee3e85ed855d"
+  }
+}

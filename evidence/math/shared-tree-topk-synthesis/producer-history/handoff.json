@@ -1,0 +1,66 @@
+{
+  "schema": "oma.shared-tree-topk-handoff/1",
+  "status": "PASS",
+  "private_only": true,
+  "merge_files": {
+    "src/oma/optimization/shared_tree_topk.py": "d04f2ad9ffb72f9935cba93472f49f5dbbe257a0595ccc8c39dcb62d14ca2dbc",
+    "tests/test_shared_tree_topk.py": "cda7b4e5e7822a50baf71a4d318003378a5350851c49665e905b351ae9845b8d",
+    "tests/fixtures/shared-tree-topk/authored-four-catalogue.json": "d99a7edf525906fa093c0bbbbab5e69cf1bbc9753a06d0b0f3f29c5dd88e8be9",
+    "tests/fixtures/shared-tree-topk/authored-four-v1-prefix32.json": "07ed93c913858ec6dbf36bf01c48399d84e9e821f0d65e2c04f37e6463c9a064",
+    "docs/math/shared-tree-topk.md": "027da7f7e2ca70fdd7a5bbc5990b2717a193e1e235ebefe2341f772e12bd700c"
+  },
+  "source_dependencies": {
+    "src/oma/__init__.py": "db2cbf50224a1c63781b1fd06b69300ecb35aab94ae38b46b09dcfcd7672a834",
+    "src/oma/optimization/__init__.py": "5eab05980fb0387642c47754f1e67569b9e72f767c3a561c5998bbc7186f9613",
+    "src/oma/optimization/checker.py": "2d59dde32f07463991826fdce0dba9d078326eb688f8b960782ff18fff2296b0",
+    "src/oma/optimization/master.py": "103b3c9df73b8fd7256d3a16acf8de012545ac0cf3d83182c564cc884422cd48",
+    "src/oma/optimization/shared_tree_synthesis.py": "9a9f6c76b4691d70d5d9a21a5a371635549992f5de06fbd0f4ffaf745c97c55d"
+  },
+  "unchanged_test_dependencies": {
+    "tests/fixtures/general-shared-tree-synthesis/legacy003.py": "0034130d057fbb012d031fb31a69ce89aac857ce6aeaf4d8a73f55c2d1a23d43",
+    "tests/fixtures/shared-tree-synthesis/catalogue-2.json": "5817b7beb0c5a803637fe7f6cb364c3e15564444d7551ad29e8e857921aee42a",
+    "tests/fixtures/shared-tree-synthesis/catalogue-3.json": "bd5ec2aa78efa789af3b69489d60a0ad727927e9f2fe6e1c1ce8307ce6defea9",
+    "tests/fixtures/shared-tree-synthesis/oracle-2.json": "0bf99e6167796f85fdfe4c9387b546ea006ad5cb4c8724e219007a8c34396a16",
+    "tests/fixtures/shared-tree-synthesis/oracle-3.json": "e471e75dad9613fd5909f52106caa574507bed30c02b0829d045a1fd3bea57ba",
+    "tests/test_general_shared_tree_synthesis.py": "0b2a7918e15a3cd51dd9b57f349d8920f4dcb99d704358b355ec29f71a9fad52",
+    "tests/test_shared_tree_synthesis.py": "ce67b88733fbd7f9518d1a75af2f90f43e1df807797024bce47b8b743558993b",
+    "pytest.ini": "bf86cec34582454295d6d58edcaa5238eb52160b89a3032263d679455e826480"
+  },
+  "validation": {
+    "passed": 261,
+    "new_cases": 86,
+    "unchanged_cases": 175,
+    "receipt": "validation\\ef68bb4f7ebb443e99204d20e9fbb068\\result.json",
+    "receipt_sha256": "e45ba048c467db560d9961b3a055e8221533c8225ebff3a189322b311de2e871",
+    "exact_node_multiset": true,
+    "all_files_unchanged": true
+  },
+  "api": {
+    "functions": [
+      "compile_shared_tree_topk_catalogue",
+      "verify_shared_tree_topk_catalogue"
+    ],
+    "statuses": [
+      "CERTIFIED",
+      "PASS",
+      "UNKNOWN",
+      "INVALID_INPUT",
+      "FAIL"
+    ],
+    "proposal_shape": "identical to v1",
+    "count_encoding": "counts.complete_assignments is an exact canonical decimal string",
+    "certificate_schema": "oma.shared-tree-topk-certificate/1",
+    "k_default": 8,
+    "k_range": [
+      1,
+      32
+    ]
+  },
+  "actual_four_benchmark": "evidence/actual-four/4dfe4a051e2c4f0782b8b4e7c4937af0/result.json",
+  "actual_four_benchmark_sha256": "253b8a86a93dca0bd87527905ef4e4d41975b0def1cdd2963923d4266f3c9e1c",
+  "full_original_algorithms_implemented": false,
+  "native_authority": false,
+  "file_index": "file-index.json",
+  "file_index_sha256": "02420a17699eb34fe466740ef7b03b0b1e798179e1223086276796db77f69190",
+  "indexed_files": 65
+}
