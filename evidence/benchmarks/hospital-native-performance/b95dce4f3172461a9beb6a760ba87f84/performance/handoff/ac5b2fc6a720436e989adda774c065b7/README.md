@@ -1,0 +1,3 @@
+The private change delays expensive native topology analysis until the existing complete-solid prerequisites pass. All successful native solid checks remain mandatory. Twenty retained hospital BReps produced identical raw inspection tuples and promotion outcomes; 140 focused tests and six independent loader fault/cancellation tests passed.
+
+The bounded whole-loader observation advanced only from 736 to 748 represented products in 90 seconds. This does not resolve the historical 1,800-second hospital timeout. Exact-enclosure-first also processed only 707 products in its own 90-second observation. No full clearance, acceptance, export or whole-hospital speedup is claimed. Production and original IFC bytes were not modified.

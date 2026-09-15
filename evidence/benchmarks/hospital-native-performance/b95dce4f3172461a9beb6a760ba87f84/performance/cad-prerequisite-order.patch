@@ -1,0 +1,21 @@
+--- 33a/oma/ifc/cad.py
++++ private/oma/ifc/cad.py
+@@ -116,7 +116,6 @@
+         bounds = (lower.X(), lower.Y(), lower.Z(), upper.X(), upper.Y(), upper.Z())
+     if bounds is None or not np.isfinite(bounds).all() or any(bounds[i] > bounds[i+3] for i in range(3)):
+         return bounds, 0., 0., False, "MISSING_OR_INVALID_FINITE_NATIVE_BOUNDS"
+-    valid = BRepCheck_Analyzer(shape, True).IsValid()
+     solids = TopExp_Explorer(shape, TopAbs_SOLID)
+     if not solids.More():
+         return bounds, 0., 0., False, "NO_CLOSED_CAD_SOLID"
+@@ -132,6 +131,10 @@
+     if (all_faces != solid_faces or set(_subshapes(shape,TopAbs_EDGE)) != solid_edges
+             or set(_subshapes(shape,TopAbs_VERTEX)) != solid_vertices):
+         return bounds, 0., 0., False, "PARTIALLY_NON_SOLID_TOPOLOGY"
++    # Shapes lacking complete solid topology already have an unconditional
++    # rejection above. Only candidates with that prerequisite need the
++    # expensive geometric validity analysis; successful solids still do.
++    valid = BRepCheck_Analyzer(shape, True).IsValid()
+     props = GProp_GProps()
+     BRepGProp.VolumeProperties_s(shape, props)
+     volume = props.Mass()

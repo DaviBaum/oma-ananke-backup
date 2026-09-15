@@ -1,0 +1,46 @@
+........................................................................ [ 51%]
+................F...................................................     [100%]
+================================== FAILURES ===================================
+_____ test_network_native_volume_and_cap_checks_reject_unavailable_shape ______
+
+tmp_path = WindowsPath('C:/Users/Davi/AppData/Local/Temp/pytest-of-Davi/pytest-336/test_network_native_volume_and0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001D30A0F8260>
+
+    def test_network_native_volume_and_cap_checks_reject_unavailable_shape(tmp_path, monkeypatch):
+        import OCP.BRepClass3d
+        from oma.ifc.network import export_network, check_network_semantics
+        from test_ifc_network import example
+        source = make_fixture(tmp_path / "source.ifc")
+        output = tmp_path / "network.ifc"
+>       manifest = export_network(source, output, example())
+                                                  ^^^^^^^^^
+
+.oma\development\hospital-native-performance\validation\6730879b3299499db783b29e534f4e06\tests\test_ifc_cad_authority.py:206: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.oma\development\hospital-native-performance\validation\6730879b3299499db783b29e534f4e06\tests\test_ifc_network.py:19: in example
+    return json.loads((Path(__file__).parents[1]/"docs/ifc-network-spec.json").read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Davi/Downloads/oma/.oma/development/hospital-native-performance/validation/6730879b3299499db783b29e534f4e06/docs/ifc-network-spec.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-native-performance\\validation\\6730879b3299499db783b29e534f4e06\\docs\\ifc-network-spec.json'
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\pathlib.py:1013: FileNotFoundError
+=========================== short test summary info ===========================
+FAILED .oma\development\hospital-native-performance\validation\6730879b3299499db783b29e534f4e06\tests\test_ifc_cad_authority.py::test_network_native_volume_and_cap_checks_reject_unavailable_shape
+1 failed, 139 passed in 19.94s
