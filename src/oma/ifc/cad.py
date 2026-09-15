@@ -751,6 +751,139 @@ def _candidate_obstacle_pairs(routes, obstacles, clearance, tolerance, backend, 
     return candidates,metrics
 
 
+def _enclosure_far_from_routes(obj, routes, clearance, tolerance, transform=None):
+    """Exact scalar-axis omission test on outward support bounds, not meshes."""
+    from fractions import Fraction
+    if transform is not None:
+        obj = _transform_object(obj, transform)
+    if not _valid_bounds(obj.bounds):
+        return False
+    bounds = tuple(Fraction.from_float(float(x)) for x in obj.bounds)
+    for route in routes:
+        if not _has_native_geometry(route) or not _valid_bounds(route.bounds):
+            return False
+        budget = sum(Fraction.from_float(float(x)) for x in
+                     (clearance, tolerance, route.kernel_tolerance_m))
+        other = tuple(Fraction.from_float(float(x)) for x in route.bounds)
+        if not any(other[i] - bounds[i + 3] > budget or
+                   bounds[i] - other[i + 3] > budget for i in range(3)):
+            return False
+    return bool(routes)
+
+
+def _load_cad_route_obstacles(path, routes, *, clearance_m, numerical_tolerance_m,
+                              source_transform=None, threads=4, cache_directory=None,
+                              cache_report=None,
+                              source_representation_policy=DEFAULT_SOURCE_REPRESENTATION_POLICY,
+                              checkpoint=None):
+    """Retain every physical product, refining only unresolved/near support.
+
+    All parser and native consumers use one private copy of captured source bytes.
+    An enclosure is used only for separation; it never grants native solidity.
+    Native caches contain only the exact selected GUID subset, never lazy objects.
+    """
+    import hashlib
+    import tempfile
+    import ifcopenshell
+    from fractions import Fraction
+    from .enclosure import ExactIfcEncloser
+    from .inventory import physical_inventory, inventory_evidence, accounted_assemblies
+    _representation_interpretation(source_representation_policy)
+    original = Path(path).resolve()
+    if checkpoint:
+        checkpoint("cad_support_snapshot")
+    raw = original.read_bytes()
+    source = hashlib.sha256(raw).hexdigest()
+    report = cache_report if cache_report is not None else {}
+    with tempfile.TemporaryDirectory(prefix="oma-cad-support-") as directory:
+        snapshot = Path(directory) / "source.ifc"
+        snapshot.write_bytes(raw)
+        del raw
+        if checkpoint:
+            checkpoint("cad_support_source_parse")
+        model = ifcopenshell.open(str(snapshot))
+        inventory = physical_inventory(model)
+        products = inventory["products"]
+        selected = {p.id(): p for p in products}
+        represented = {p.id(): p for p in products if p.Representation is not None}
+        units = [u for assignment in model.by_type("IfcUnitAssignment") for u in assignment.Units
+                 if getattr(u, "UnitType", None) == "LENGTHUNIT"]
+        can_refine = (not inventory["errors"] and len(units) == 1 and
+                      len({p.GlobalId for p in products}) == len(products) and bool(routes) and
+                      all(_has_native_geometry(r) and _valid_bounds(r.bounds) for r in routes))
+        if not can_refine:
+            objects, errors = load_cad(snapshot, threads=threads, cache_directory=cache_directory,
+                                      cache_report=report, source_representation_policy=source_representation_policy,
+                                      checkpoint=checkpoint)
+            report["lazy_support"] = {"status": "FULL_NATIVE_FALLBACK", "physical_count": len(products)}
+        else:
+            reader = ExactIfcEncloser(snapshot, model, vertex_hull_completion=
+                source_representation_policy == VERTEX_HULL_SOURCE_REPRESENTATION_POLICY)
+            assert reader.raw.source_sha256 == source
+            far = {}
+            native_ids = set()
+            for step, product in represented.items():
+                if checkpoint:
+                    checkpoint("cad_source_support_product")
+                try:
+                    support = _complete_representation_support(model, product)
+                    certificate = reader.enclose_product(product)
+                    if (not support["complete_supported_body_representation"] or
+                            certificate["status"] != "ENCLOSURE_CHECKED" or
+                            certificate.get("source_sha256") != source or
+                            certificate.get("product_step_id") != step or
+                            certificate.get("frame") != "IFC_LOCAL_ENGINEERING_METRES"):
+                        native_ids.add(step)
+                        continue
+                    lo, hi = certificate["bounds_m"]
+                    bounds = tuple(np.nextafter(float(Fraction(v)), -np.inf) for v in lo) + tuple(
+                        np.nextafter(float(Fraction(v)), np.inf) for v in hi)
+                    support.update(exact_source_enclosure=certificate,
+                                   native_geometry_authority="NONE_ENCLOSURE_ONLY",
+                                   native_refinement="NOT_REQUIRED_FOR_ALL_ROUTE_SEPARATION")
+                    obj = CadObject(f"{source}:{step}", product.GlobalId, step, source, product.is_a(),
+                                    None, bounds, None, 0., False,
+                                    "NATIVE_REFINEMENT_NOT_REQUIRED_FOR_SEPARATED_SOURCE_ENCLOSURE",
+                                    "exact_source_support_enclosure", support)
+                    if _enclosure_far_from_routes(obj, routes, clearance_m, numerical_tolerance_m, source_transform):
+                        far[step] = obj
+                    else:
+                        native_ids.add(step)
+                except (ValueError, TypeError, AttributeError, OverflowError, RecursionError):
+                    # An unsuccessful outer bound cannot omit a native obstacle.
+                    native_ids.add(step)
+            assert set(far).isdisjoint(native_ids) and set(far) | native_ids == set(represented)
+            native_report = {}
+            if native_ids:
+                native, errors = load_cad(snapshot, guids={selected[s].GlobalId for s in native_ids},
+                    threads=threads, cache_directory=cache_directory, cache_report=native_report,
+                    source_representation_policy=source_representation_policy, checkpoint=checkpoint)
+            else:
+                native, errors = [], []
+            native_steps = [o.step_id for o in native]
+            error_steps = {int(e["entity_id"].rsplit(":", 1)[1]) for e in errors if e.get("entity_id")}
+            if (len(native_steps) != len(set(native_steps)) or
+                    set(native_steps) | error_steps != native_ids):
+                raise ValueError("Native refinement changed the exact source-product denominator")
+            objects = sorted([*far.values(), *native], key=lambda o: o.step_id)
+            accounted = set(far) | set(native_steps) | error_steps
+            assemblies = accounted_assemblies(inventory, selected, accounted)
+            if accounted | assemblies != set(selected):
+                raise ValueError("Lazy native loading omitted a physical product or assembly")
+            report.update(status="EXACT_SOURCE_SUPPORT_THEN_NATIVE_REFINEMENT",
+                physical_inventory=inventory_evidence(inventory, source), selected_physical_count=len(selected),
+                accounted_assembly_step_ids=sorted(assemblies), native_subset_cache=native_report,
+                lazy_support={"status": "COMPLETE", "represented_count": len(represented),
+                              "enclosure_only_count": len(far), "native_refinement_count": len(native_ids),
+                              "all_source_products_accounted": True,
+                              "scope": "Exact supported source enclosures omit native refinement only after all-route separation; every near/unknown product is refined"})
+        if checkpoint:
+            checkpoint("cad_support_source_complete")
+        if sha256_file(original) != source or sha256_file(snapshot) != source:
+            raise ValueError("Source bytes changed during source-support/native refinement")
+        return objects, errors
+
+
 def cad_check_routes(original_paths, export_path, route_guids, *, clearance_m=0., numerical_tolerance_m=1e-6,
                      authorized_contacts=None, threads=4, output_path=None, coordinate_evidence=None,
                      cache_directory=None, broadphase_backend="auto",
@@ -790,7 +923,11 @@ def cad_check_routes(original_paths, export_path, route_guids, *, clearance_m=0.
     for path in original_paths:
         source_started=time.perf_counter()
         cache_report = {}
-        objects, failures = load_cad(path, threads=threads, cache_directory=cache_directory, cache_report=cache_report,
+        source_root = sha256_file(path)
+        objects, failures = _load_cad_route_obstacles(path, routes, clearance_m=clearance_m,
+                                     numerical_tolerance_m=numerical_tolerance_m,
+                                     source_transform=transforms.get(source_root), threads=threads,
+                                     cache_directory=cache_directory, cache_report=cache_report,
                                      source_representation_policy=source_representation_policy, checkpoint=checkpoint)
         cache_reports.append(cache_report)
         source_loaded=time.perf_counter()

@@ -617,12 +617,7 @@ class ExactIfcEncloser:
             return _box_corners(lo,hi)
         previous_nonplanar = self.nonplanar_polygons
         local,count = self._points(item)
-        # Item-local caching evaluates many face vertices in the exact identity
-        # frame. Keep the same directed rounding as _apply while avoiding twelve
-        # interval products per vertex. This is exact equality, not a near-identity
-        # tolerance; nonidentity affine transforms still take the full path.
-        result = ([tuple(_outward(_iv(v)) for v in p) for p in local] if _is_identity(transform)
-                  else [_apply(transform,p) for p in local])
+        result = [_apply(transform,p) for p in local]
         coverage.append({"step_id":item.id(),"type":item.is_a(),"source_faces":count,
             "source_vertex_occurrences":len(local),"nonplanar_polygon_checks":self.nonplanar_polygons-previous_nonplanar,
             "support":"VERTEX_HULL_COMPLETION_FAMILY" if self.vertex_hull_completion else "PLANAR_VERTEX_CONVEX_HULL_ENCLOSURE"})

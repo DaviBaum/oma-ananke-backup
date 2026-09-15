@@ -90,11 +90,7 @@ def audited_local_federation(audits: list[dict], reference_source_id: str | None
             if not common_levels or any(abs(observed["named_storey_elevations_m"][k] - reference["named_storey_elevations_m"][k]) > 1e-7 for k in common_levels):
                 reasons.append("NAMED_STOREY_ELEVATION_CORRESPONDENCE_UNRESOLVED")
         transform = np.eye(4)
-        # The reference defines this frame; its self-map is exactly identity.
-        # Multiplying an anchor by its floating-point inverse introduces a
-        # spurious near-identity transform and needlessly rebuilds every native
-        # body. Other sources still require the full measured transform.
-        if not reasons and observed is not reference:
+        if not reasons:
             transform = np.asarray(reference["site_matrix_m"]) @ np.linalg.inv(observed["site_matrix_m"])
         evidence = {"method": "SHARED_SITE_BUILDING_GUID_ANCHORS_AND_RELATIVE_TRANSFORMS", "reference_source_sha256": reference["source_sha256"],
                     "observation": observed, "reasons": reasons}

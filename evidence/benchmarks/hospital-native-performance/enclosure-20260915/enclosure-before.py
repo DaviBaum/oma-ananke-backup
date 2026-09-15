@@ -235,12 +235,6 @@ def _box_corners(lo, hi):
 class ExactIfcEncloser:
     def __init__(self, source_path, model, *, vertex_hull_completion=False, memoize_item_support=True):
         self.raw = StepRationals(source_path, model)
-        # The raw reader captures one immutable source. Find project identities
-        # once: rescanning every STEP record for every product is quadratic in
-        # large models. Unit values and schema checks still use the raw reader
-        # on each request, and ambiguous/missing projects remain UNKNOWN.
-        self._source_project_ids = tuple(number for number, (kind, _) in self.raw.index.items()
-                                         if kind.upper() == "IFCPROJECT")
         self.model = model
         self.g = self.raw.get
         self.vertex_hull_completion = bool(vertex_hull_completion)
@@ -427,7 +421,7 @@ class ExactIfcEncloser:
         raise EnclosureUnknown("UNSUPPORTED_LENGTH_UNIT")
 
     def _length_scale(self):
-        projects = [self.model.by_id(number) for number in self._source_project_ids]
+        projects = [self.model.by_id(number) for number, (kind, _) in self.raw.index.items() if kind.upper() == "IFCPROJECT"]
         if len(projects) != 1:
             raise EnclosureUnknown("AMBIGUOUS_PROJECT_UNITS")
         assignment = self.g(projects[0], "UnitsInContext")
@@ -617,12 +611,7 @@ class ExactIfcEncloser:
             return _box_corners(lo,hi)
         previous_nonplanar = self.nonplanar_polygons
         local,count = self._points(item)
-        # Item-local caching evaluates many face vertices in the exact identity
-        # frame. Keep the same directed rounding as _apply while avoiding twelve
-        # interval products per vertex. This is exact equality, not a near-identity
-        # tolerance; nonidentity affine transforms still take the full path.
-        result = ([tuple(_outward(_iv(v)) for v in p) for p in local] if _is_identity(transform)
-                  else [_apply(transform,p) for p in local])
+        result = [_apply(transform,p) for p in local]
         coverage.append({"step_id":item.id(),"type":item.is_a(),"source_faces":count,
             "source_vertex_occurrences":len(local),"nonplanar_polygon_checks":self.nonplanar_polygons-previous_nonplanar,
             "support":"VERTEX_HULL_COMPLETION_FAMILY" if self.vertex_hull_completion else "PLANAR_VERTEX_CONVEX_HULL_ENCLOSURE"})
