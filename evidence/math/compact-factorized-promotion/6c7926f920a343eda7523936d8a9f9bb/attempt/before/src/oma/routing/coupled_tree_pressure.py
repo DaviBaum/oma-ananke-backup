@@ -9,7 +9,6 @@ import hashlib
 import json
 
 from oma.optimization import coupled_tree_pressure as local
-from oma.optimization import factorized_tree_pressure as factorized
 from oma.optimization import coupled_tree_univalence as global_proof
 from oma.optimization.physical import Interval, pi_interval
 from .network_scenario import NetworkDesign
@@ -328,12 +327,7 @@ def _service(n,model,derivation,local_check,global_check,c):
             or local_check.get("proof_complete") is not True or global_check.get("proof_complete") is not True
             or local_check["model_root"]!=global_check["model_root"]):
         raise ValueError("Both independently checked local existence and global uniqueness are required")
-    return _service_from_enclosure(n,model,derivation,local_check["root_enclosure"],c)
-
-
-def _service_from_enclosure(n,model,derivation,enclosure,c):
-    """Construct a service proposal; the full consumer establishes its authority."""
-    flows={sid:_interval(v) for sid,v in enclosure.items()}
+    flows={sid:_interval(v) for sid,v in local_check["root_enclosure"].items()}
     if set(flows)!=set(n["sinks"]) or any(v.lo<=0 for v in flows.values()):
         raise ValueError("Positive solution must cover every exact leaf")
     expressions={(row["component"],row["port"]):{sid:1 for sid in row["descendant_leaves"]} for row in derivation["port_paths"]}
@@ -465,10 +459,7 @@ def _invoke(c,function,*args,tail_inputs=(),**kwargs):
 
 def _checked_proofs(model,box,local_certificate,univalence_certificate,c,max_work,max_bytes):
     limits=_limits(model,c,max_work,max_bytes)
-    verifier=(factorized.verify_factorized_tree_pressure
-              if type(local_certificate) is dict and local_certificate.get("schema")==factorized.CERTIFICATE_SCHEMA
-              else local.verify_coupled_tree_pressure)
-    local_check=_invoke(c,verifier,model,box,local_certificate,max_matrix_entries=len(model["leaves"])**2,**limits)
+    local_check=_invoke(c,local.verify_coupled_tree_pressure,model,box,local_certificate,max_matrix_entries=len(model["leaves"])**2,**limits)
     if local_check.get("status")!="PASS":return local_check,None
     global_check=_invoke(c,global_proof.verify_coupled_tree_univalence,model,univalence_certificate,**limits)
     if global_check.get("status")=="PASS":
@@ -508,8 +499,7 @@ def verify_coupled_tree_envelope(boundary,network,native_metrics,certificate,*,c
         if _hash(packet["service"],c)!=_hash(service,c):raise ValueError("Forged physical port/flow/pressure/velocity/delivery/continuity report")
         c.tick("coupled_tree_verifier_complete");_finish(boundary,network,native_metrics,context,root,c,certificate,cert_root)
         return {"status":"PASS","verdict":service["verdict"],"scope":SCOPE,"proof_complete":True,"input_root":root,
-            "certificate_root":packet["certificate_root"],"full_certificate_root":cert_root,
-            "model_root":local_check["model_root"],"local_check":local_check,"global_check":global_check,
+            "certificate_root":packet["certificate_root"],"model_root":local_check["model_root"],"local_check":local_check,"global_check":global_check,
             "service":service,"counts":derivation["counts"],"work":c.used,"native_geometry_acceptance_authority":False,"limitations":deepcopy(LIMITATIONS)}
     except (ValueError,TypeError,KeyError,OverflowError,bounded._BudgetExceeded) as exc:
         return _failure(exc,c,True)
@@ -527,33 +517,18 @@ def evaluate_coupled_tree(boundary,network,native_metrics,*,context,max_componen
             return _no_proof("Global uniqueness premise/certificate is unavailable; box cannot hide other equilibria",global_producer=univalence_certificate)
         local_certificate=_invoke(c,local.compile_coupled_tree_pressure,model,box,tail_inputs=({"model":model,"flow_box":box},),
                                   max_matrix_entries=len(model["leaves"])**2,**limits)
-        # A stronger sufficient test of the identical physical model and box.
-        # Both attempts consume the same adapter budget. Resource exhaustion,
-        # invalid input, cancellation and global-proof failure never trigger it.
-        if local_certificate.get("status")=="UNKNOWN" and local_certificate.get("reason") in {
-                "STRICT_BOX_INCLUSION_NOT_ESTABLISHED","CONTRACTION_NOT_ESTABLISHED"}:
-            local_certificate=_invoke(c,factorized.compile_factorized_tree_pressure,model,box,
-                tail_inputs=({"model":model,"flow_box":box},),max_matrix_entries=len(model["leaves"])**2,**limits)
         if local_certificate.get("status")!="CERTIFIED_BOX":return _no_proof("Local positive-box existence was not established",local_producer=local_certificate)
-        # The producer constructs its service proposal from the proposed local
-        # enclosure. The mandatory full independent consumer below rebuilds the
-        # native model, checks BOTH complete proofs and recomputes all service
-        # values before anything receives certification. Do not run the same
-        # independent local/global pair twice against this identical packet.
-        service=_service_from_enclosure(n,model,derivation,local_certificate["root_enclosure"],c)
+        local_check,global_check=_checked_proofs(model,box,local_certificate,univalence_certificate,c,max_work,max_bytes)
+        if local_check.get("status")!="PASS" or global_check is None or global_check.get("status")!="PASS":
+            return _no_proof("Independent local/global proof checks did not pass",local_check=local_check,global_check=global_check)
+        service=_service(n,model,derivation,local_check,global_check,c)
         packet={"schema":CERTIFICATE_SCHEMA,"input_root":root,"model":model,"flow_box":box,"derivation":derivation,
             "local_certificate":local_certificate,"univalence_certificate":univalence_certificate,"service":service}
         packet["certificate_root"]=_hash(packet,c)
         independent=_invoke(c,verify_coupled_tree_envelope,raw["boundary"],raw["network"],raw["native_metrics"],packet,context=raw["context"],
             max_components=max_components,max_work=max_work,max_bytes=max_bytes)
         if independent.get("status")!="PASS":return _no_proof("Independent full physical derivation/service proof did not pass",independent_check=independent)
-        # Detach the completed consumer result before any later caller callback.
-        # The bounded copy and final full certificate guard share this budget.
-        callback=c.callback;c.callback=None
-        try:_,independent=bounded._snapshot(independent,c,"coupled_tree_checked_result")
-        finally:c.callback=callback
-        c.tick("coupled_tree_producer_complete")
-        _finish(boundary,network,native_metrics,context,root,c,packet,independent["full_certificate_root"])
+        c.tick("coupled_tree_producer_complete");_finish(boundary,network,native_metrics,context,root,c)
         return {"status":"CERTIFIED_ENVELOPE","verdict":independent["verdict"],"proof_complete":True,"scope":SCOPE,
             "certificate":packet,"independent_check":independent,"service":independent["service"],"work":c.used,"limitations":deepcopy(LIMITATIONS)}
     except (ValueError,TypeError,KeyError,OverflowError,bounded._BudgetExceeded) as exc:

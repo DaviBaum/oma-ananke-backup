@@ -1,0 +1,69 @@
+{
+  "status": "PREPARED_PARSED_NOT_EXECUTED_ROOT_REVIEW_REQUIRED",
+  "previous_workflow_sources": {
+    "preflight.py": "2bc17782738641f97349426c403323d8831c52911793534ba4f3bce6f0c0d59d",
+    "prepare_start.py": "91b7185ab7772601cb14b64e60db881e218d185ea65673712b6610db7fc33596",
+    "stop_owned.py": "84b3554785f85a4f5d13df19cf7dedf7995649bbd4a13fd4f8adc4317654c359",
+    "start.ps1": "fcc5845d68b85c35b80d7d7c9e7d6aabc582a6e6771fda5aad4ea07f6207ffcd",
+    "verify_after.py": "9fa48e358e236d7f037b0fc7a05826adaef50163d8b02ca0816bcd1b78a80d78",
+    "finalize.py": "efedc6359f92d69c0680011df35a41bdeb5ea4e36c892c8930c4ada52ff4cc47"
+  },
+  "prepared_sources": {
+    "validation_gate.py": "63f7e659e9bff586060041ffa587cc9acd3cf4cb04169c1791a7e806c578f390",
+    "store_inventory.py": "b59a74381a5ed3dcd3648994b71dfd48a9b91fe654f457be58720c821a008e83",
+    "promote.py": "45a8fb4470f3fd3220647598a367a7d541dfd9340accd08170eb6e97cd2fb5e2",
+    "preflight.py": "dc433362388b3349689d6e9072041854f665ec4afb8e840c9886f63ed12db366",
+    "prepare_start.py": "a93e75d9b730bbbda35ac46ed307074715c6b627d1df92cc526b1597c488ca71",
+    "stop_owned.py": "0dd417dd76eb28ae86d942bd691e9affe4ca6283a361cab34ad21807e8258815",
+    "start.ps1": "cf49b75d2bcc9526fc4be725f30a49e28a63fc20b624a1b164887bf2255f2624",
+    "verify_after.py": "61515d8543ac6fc42d7b5439a85de83b65a770d0ff98c12316dfba695754819e",
+    "finalize.py": "bdce55e903a586d730350d3e38456390448074ddbc2bf3c6156909fa0f469032"
+  },
+  "source_checkpoint": "f73a8793ae0df76d9ec53400cec18b05d2731f63c735b225c2246fee62df6b21",
+  "original_full": "evidence/release/compact-tree-original-full-d6d1204384b8",
+  "custom_full": "evidence/dependencies/native-build/checkpoint-validation/f73a8793ae0d-0cf1c8bf0868",
+  "exact_gate": {
+    "application_sources": 114,
+    "test_support_inputs": 305,
+    "nodes_per_original_and_custom": 3275,
+    "permitted_skips": 0
+  },
+  "source_promotion": {
+    "files": 5,
+    "test_support_files": 43,
+    "before_backup": true,
+    "root_only_execution": true
+  },
+  "old_owner": {
+    "launcher": 57692,
+    "server": 57360,
+    "port": 8768
+  },
+  "recover": false,
+  "ui_files": 6,
+  "sequence": [
+    "Root reviews all prepared scripts",
+    "promote.py (read-only plan after both full PASS)",
+    "Root executes promote.py --apply",
+    "preflight.py",
+    "prepare_start.py",
+    "stop_owned.py",
+    "start.ps1",
+    "verify_after.py",
+    "finalize.py"
+  ],
+  "preservation": "All SQLite tables+schema and all application data artifacts are compared. Raw WAL/checkpoint byte layout may change normally. Runtime/development trees and active logs are explicitly outside data hashes.",
+  "limitations": [
+    "No handover was executed. Missing validation, ownership, idleness or private-console guard fails closed; no force-stop fallback.",
+    "No application maintenance API exists. Final idleness checks precede the owned graceful signal; an external actor can still submit concurrently. Run during an agreed quiet window and treat any post-check data change as conflict, not overwrite/rollback.",
+    "If a new launcher fails health after graceful shutdown, retain logs and leave state unchanged; restoring the old immutable launcher requires a separately reviewed guarded action."
+  ],
+  "initial_prepared_review_sha256": "c6249049652b33ab7ee8c508bb09cff7a9c5319cf92896a644a4ba71aeb7cf7f",
+  "revision": 2,
+  "additional_guard_review": [
+    "Custom collection and full-suite command argv, cwd and stage are reconstructed exactly; metadata PASS/log hash alone is insufficient.",
+    "Original and custom OMA_SHARED_TREE_SOURCE recorded direct-load module paths and current SHA256 match the complete validated source map.",
+    "Source promotion rechecks every one of the305 current declared test/support inputs against its before image and every after image, including unchanged inputs.",
+    "All eight Python scripts parsed; PowerShell start script was separately parsed, never executed. No live preflight, Store data snapshot, promotion or shutdown was run."
+  ]
+}

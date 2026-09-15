@@ -2,6 +2,7 @@
 from fractions import Fraction as Q
 from itertools import permutations, product
 import json
+import hashlib
 import math
 import re
 
@@ -35,16 +36,16 @@ def _call(checkpoint, stage):
 
 
 class _Budget:
-    def __init__(self, maximum, checkpoint):
-        if type(maximum) is not int or not 1 <= maximum <= 10_000_000:
-            raise ValueError('Work budget must be an integer from1 to10000000')
+    def __init__(self, maximum, checkpoint, *, hard_maximum=10_000_000):
+        if type(maximum) is not int or not 1 <= maximum <= hard_maximum:
+            raise ValueError('Work budget must be an integer from1 to'+str(hard_maximum))
         self.maximum, self.work, self.checkpoint = maximum, 0, checkpoint
         self.next_checkpoint=128
 
-    def use(self, count=1):
+    def use(self, count=1, *, callbacks=True):
         self.work += count
         if self.work > self.maximum: raise _Unavailable('WORK_BUDGET')
-        if self.work >= self.next_checkpoint:
+        if callbacks and self.work >= self.next_checkpoint:
             self.next_checkpoint=self.work+128
             _call(self.checkpoint,'shared_tree_connectors')
 
@@ -53,32 +54,97 @@ class _Budget:
         return self.maximum-self.work
 
 
-def _snapshot(value, budget, max_bytes):
-    todo=[(value,0)]; items=0;estimated=0
-    while todo:
-        item,depth=todo.pop(); budget.use(); items+=1
-        if depth>32 or items>40_000: raise _Unavailable('INPUT_STRUCTURE_BUDGET')
-        if isinstance(item,dict):
-            if len(item)>4096: raise _Unavailable('INPUT_STRUCTURE_BUDGET')
-            if any(type(k) is not str for k in item): raise ValueError('String JSON keys required')
-            for key in item:
-                budget.use()
-                if len(key)>65536:raise _Unavailable('INPUT_STRING_BUDGET')
-                estimated+=len(key.encode())+3
-            todo.extend((v,depth+1) for v in item.values())
-        elif isinstance(item,(list,tuple)):
-            if len(item)>4096: raise _Unavailable('INPUT_STRUCTURE_BUDGET')
-            todo.extend((v,depth+1) for v in item)
-        elif type(item) is str:
-            if len(item)>65536: raise _Unavailable('INPUT_STRING_BUDGET')
-            estimated+=len(item.encode())+2
-        elif item is not None and type(item) not in (int,float,bool): raise ValueError('JSON input required')
-        elif type(item) is int and item.bit_length()>512: raise _Unavailable('INTEGER_BUDGET')
-        elif type(item) is float and not math.isfinite(item): raise ValueError('Finite JSON numbers required')
-        if estimated>max_bytes:raise _Unavailable('INPUT_BYTE_BUDGET')
-    encoded=json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False)
-    if len(encoded.encode())>max_bytes: raise _Unavailable('INPUT_BYTE_BUDGET')
-    return json.loads(encoded)
+def _bounded_json(value, budget, max_bytes, *, max_items=40_000, max_list_items=4096,
+                  callbacks=False, copy_value=False):
+    """Strict streamed canonical bytes/hash; allocate only after structural limits.
+
+    Work charges each visited value/key and each completed64 encoded bytes. The
+    returned optional copy contains no mutable caller aliases. No whole encoded
+    document is constructed before the byte limit is checked.
+    """
+    if type(max_bytes) is not int or max_bytes<1:raise ValueError('Positive byte budget required')
+    hasher=hashlib.sha256();size=0;items=0;encoded_work=0
+    def emit(data):
+        nonlocal size,encoded_work
+        next_size=size+len(data)
+        if next_size>max_bytes:raise _Unavailable('INPUT_BYTE_BUDGET')
+        charge=next_size//64-encoded_work
+        if charge:budget.use(charge,callbacks=callbacks)
+        encoded_work=next_size//64;size=next_size;hasher.update(data)
+    def visit(item,depth):
+        nonlocal items
+        budget.use(callbacks=callbacks);items+=1
+        if depth>32 or items>max_items:raise _Unavailable('INPUT_STRUCTURE_BUDGET')
+        kind=type(item)
+        if isinstance(item,(dict,list,tuple)) and len(item)>(4096 if isinstance(item,dict) else max_list_items):
+            raise _Unavailable('INPUT_STRUCTURE_BUDGET')
+        if kind is dict:
+            if len(item)>4096:raise _Unavailable('INPUT_STRUCTURE_BUDGET')
+            if any(type(key) is not str or len(key)>65536 for key in item):
+                raise ValueError('Bounded string JSON keys required')
+            keys=sorted(item);emit(b'{');result={} if copy_value else None
+            for index,key in enumerate(keys):
+                budget.use(callbacks=callbacks)
+                if index:emit(b',')
+                emit(json.dumps(key,ensure_ascii=False).encode('utf-8'));emit(b':')
+                child=visit(item[key],depth+1)
+                if copy_value:result[key]=child
+            emit(b'}');return result
+        if kind in (list,tuple):
+            if len(item)>max_list_items:raise _Unavailable('INPUT_STRUCTURE_BUDGET')
+            emit(b'[');result=[] if copy_value else None
+            for index in range(len(item)):
+                if index:emit(b',')
+                child=visit(item[index],depth+1)
+                if copy_value:result.append(child)
+            emit(b']');return result
+        if kind is str:
+            if len(item)>65536:raise _Unavailable('INPUT_STRING_BUDGET')
+        elif kind is int:
+            if item.bit_length()>512:raise _Unavailable('INTEGER_BUDGET')
+        elif kind is float:
+            if not math.isfinite(item):raise ValueError('Finite JSON numbers required')
+        elif item is not None and kind is not bool:raise ValueError('Strict JSON input required')
+        emit(json.dumps(item,ensure_ascii=False,allow_nan=False,separators=(',',':')).encode('utf-8'))
+        return item if copy_value else None
+    copied=visit(value,0)
+    return copied,hasher.hexdigest(),size
+
+
+def _snapshot(value, budget, max_bytes, *, max_items=40_000):
+    captured,root,_=_bounded_json(value,budget,max_bytes,max_items=max_items,callbacks=True,copy_value=True)
+    # A callback may replace an already visited field. Recheck current raw input
+    # without further callbacks, including all shapes, before accepting its copy.
+    _,current,_=_bounded_json(value,budget,max_bytes,max_items=max_items,callbacks=False)
+    if current!=root:raise ValueError('Input changed during bounded snapshot')
+    return captured
+
+
+def _proof_hash(value,budget,max_bytes):
+    return _bounded_json(value,budget,max_bytes,max_items=4_000_000,
+                         max_list_items=100_000,callbacks=False)[1]
+
+
+def _synthesis_binding(compiled,checked,budget,max_bytes,method):
+    if compiled.get('status')!='CERTIFIED' or compiled.get('proof_complete') is not True:
+        raise ValueError('Current synthesis result is not certified')
+    if checked.get('status')!='PASS' or checked.get('proof_complete') is not True:
+        raise ValueError('Current independent synthesis check is not complete')
+    certificate=compiled.get('certificate')
+    if type(certificate) is not dict or len(certificate)>32:raise ValueError('Bounded synthesis certificate required')
+    wanted='oma.shared-tree-topk-certificate/1' if method=='COMPACT_TOP_K' else 'oma.shared-tree-synthesis-certificate/1'
+    if certificate.get('schema')!=wanted:raise ValueError('Synthesis certificate kind changed')
+    root=certificate.get('certificate_root')
+    if type(root) is not str or len(root)!=64 or root!=compiled.get('certificate_root') or root!=checked.get('certificate_root'):
+        raise ValueError('Current synthesis certificate roots differ')
+    body={key:value for key,value in certificate.items() if key!='certificate_root'}
+    if _proof_hash(body,budget,max_bytes)!=root:raise ValueError('Current synthesis certificate changed after verification')
+    keys=('input_root','problem_root','certificate_root','scope','proposals')
+    def authority(value):
+        return {**{key:value[key] for key in keys},
+                'counts':{key:value['counts'][key] for key in ('complete_assignments','returned_proposals')}}
+    if _proof_hash(authority(compiled),budget,max_bytes)!=_proof_hash(authority(checked),budget,max_bytes):
+        raise ValueError('Current synthesis/check authority differs')
 
 
 def _q(value):
@@ -373,14 +439,30 @@ def _network_from_assignment(requirements,generated,proposal):
     return NetworkDesign.model_validate(raw).model_dump(mode='json',by_alias=True)
 
 
+def compact_proof_limits(value):
+    """Explicit bounded certificate policy; defaults retain the smaller policy."""
+    defaults={'max_transitions':500_000,'max_label_pairs':2_000_000,'max_bytes':16_777_216}
+    if value is None:return defaults
+    if type(value) is not dict or len(value)!=len(defaults) or set(value)!=set(defaults):raise ValueError('Complete compact proof limits required')
+    for key,maximum in (('max_transitions',2_000_000),('max_label_pairs',10_000_000),('max_bytes',33_554_432)):
+        if type(value[key]) is not int or not (256 if key=='max_bytes' else 1)<=value[key]<=maximum:raise ValueError('Invalid compact '+key)
+    return dict(value)
+
+
 def compile_shared_tree_proposals(requirements,search,*,context,max_results=8,max_work=2_000_000,
-        max_bytes=2_097_152,max_partial_trees=20_000,checkpoint=None):
+        max_bytes=2_097_152,max_partial_trees=20_000,proof_method='FULL_LEDGER',compact_limits=None,checkpoint=None):
     """Produce a checked finite nominal proposal menu for the existing native run API."""
-    budget=_Budget(max_work,checkpoint)
+    budget=_Budget(max_work,checkpoint,hard_maximum=48_000_000 if proof_method=='COMPACT_TOP_K' else 10_000_000)
     try:
         if type(max_results) is not int or not 1<=max_results<=32:raise ValueError('One to32 returned proposals required')
         if type(max_partial_trees) is not int or not 1<=max_partial_trees<=200_000:
             raise ValueError('Partial-tree budget must be an integer from1 to200000')
+        if type(proof_method) is not str or proof_method not in ('FULL_LEDGER','COMPACT_TOP_K'):
+            raise ValueError('Proof method must be FULL_LEDGER or COMPACT_TOP_K')
+        if compact_limits is not None and proof_method!='COMPACT_TOP_K':raise ValueError('Compact limits require COMPACT_TOP_K')
+        proof_limits=compact_proof_limits(compact_limits)
+        original_policy=compact_limits
+        policy_root=digest(original_policy)
         original={'requirements':requirements,'search':search,'context':context}
         captured=_snapshot(original,budget,max_bytes);original_root=digest(captured)
         r,s,c=(captured[k] for k in ('requirements','search','context'))
@@ -391,44 +473,65 @@ def compile_shared_tree_proposals(requirements,search,*,context,max_results=8,ma
         if generated['status']!='CATALOGUE_PROPOSED':
             return {'status':generated['status'],'reason':generated.get('reason'),'mission':None,'proof_complete':False,'work':budget.work}
         from oma.routing.shared_tree_catalogue_check import verify_generated_catalogue
-        catalogue_check=verify_generated_catalogue(r,s,generated,context=c,max_work=budget.remaining(),checkpoint=relay)
-        budget.use(catalogue_check['work'])
+        catalogue_check=verify_generated_catalogue(r,s,generated,context=c,max_work=min(10_000_000,budget.remaining()),checkpoint=relay)
+        budget.use(catalogue_check['work'],callbacks=False)
+        catalogue_check_root=_proof_hash(catalogue_check,budget,16_777_216)
+        budget.use(0)
         if catalogue_check['status']!='PASS':raise _Unavailable('GENERATED_CATALOGUE_INDEPENDENT_CHECK_'+catalogue_check['status'])
         from oma.optimization.shared_tree_synthesis import compile_shared_tree_catalogue,verify_shared_tree_catalogue
         catalogue=generated['catalogue']
         r=generated['normalized_requirements']
         budget.use()
-        compiled=compile_shared_tree_catalogue(catalogue,max_results=max_results,max_work=budget.remaining(),
-            max_partial_trees=max_partial_trees,checkpoint=relay)
+        if proof_method=='COMPACT_TOP_K':
+            from oma.optimization.shared_tree_topk import compile_shared_tree_topk_catalogue,verify_shared_tree_topk_catalogue
+            compiled=compile_shared_tree_topk_catalogue(catalogue,k=max_results,max_connectors=512,
+                max_work=min(20_000_000,budget.remaining()),**proof_limits,checkpoint=relay)
+        else:
+            compiled=compile_shared_tree_catalogue(catalogue,max_results=max_results,max_work=budget.remaining(),
+                max_partial_trees=max_partial_trees,checkpoint=relay)
         budget.use(compiled['work'])
         if compiled['status']!='CERTIFIED':
             return {'status':compiled['status'],'reason':compiled.get('reason'),'mission':None,'proof_complete':False,'work':budget.work}
         budget.use()
-        checked=verify_shared_tree_catalogue(catalogue,compiled['certificate'],max_results=max_results,
-            max_work=budget.remaining(),max_partial_trees=max_partial_trees,checkpoint=relay)
-        budget.use(checked['work'])
+        if proof_method=='COMPACT_TOP_K':
+            checked=verify_shared_tree_topk_catalogue(catalogue,compiled['certificate'],k=max_results,
+                max_connectors=512,max_work=min(20_000_000,budget.remaining()),**proof_limits,checkpoint=relay)
+        else:
+            checked=verify_shared_tree_catalogue(catalogue,compiled['certificate'],max_results=max_results,
+                max_work=budget.remaining(),max_partial_trees=max_partial_trees,checkpoint=relay)
+        budget.use(checked['work'],callbacks=False)
+        checked_root=_proof_hash(checked,budget,proof_limits['max_bytes'])
+        budget.use(0)
         if checked['status']!='PASS':raise _Unavailable('SYNTHESIS_INDEPENDENT_CHECK_'+checked['status'])
-        if not checked['proposals']:
-            _call(checkpoint,'shared_tree_proposal_complete');budget.checkpoint=None
-            if digest(_snapshot(original,budget,max_bytes))!=original_root:raise ValueError('Original proposal request changed')
-            if digest(_snapshot(generated,budget,16_777_216))!=catalogue_check['generated_root']:raise ValueError('Verified generated catalogue changed')
-            return {'status':'NO_FINITE_CATALOGUE_ASSIGNMENT','mission':None,'proof_complete':True,
-                'input_root':original_root,'generation':generated,'catalogue_check':catalogue_check,'proof_scope':PROOF_SCOPE,
-                'synthesis':compiled,'independent_check':checked,'work':budget.work,'limitations':LIMITATIONS}
         alternatives=[]
         for proposal in checked['proposals']:
             budget.use(1+len(proposal['connector_ids']))
             alternatives.append(_network_from_assignment(r,generated,proposal))
-        raw={**r,'network_alternatives':alternatives}
-        mission=SharedNetworkScenario.model_validate(raw).model_dump(mode='json',by_alias=True)
+        mission=None
+        if alternatives:
+            raw={**r,'network_alternatives':alternatives}
+            mission=SharedNetworkScenario.model_validate(raw).model_dump(mode='json',by_alias=True)
         _call(checkpoint,'shared_tree_proposal_complete');budget.checkpoint=None
+        if compact_proof_limits(original_policy)!=proof_limits or digest(original_policy)!=policy_root:
+            raise ValueError('Original compact proof policy changed')
         if digest(_snapshot(original,budget,max_bytes))!=original_root:raise ValueError('Original proposal request changed')
-        if digest(_snapshot(generated,budget,16_777_216))!=catalogue_check['generated_root']:raise ValueError('Verified generated catalogue changed')
-        result={'status':'PROPOSALS_READY','mission':mission,'input_root':original_root,'generation':generated,
+        if digest(_snapshot(generated,budget,16_777_216,max_items=400_000))!=catalogue_check['generated_root']:raise ValueError('Verified generated catalogue changed')
+        if _proof_hash(catalogue_check,budget,16_777_216)!=catalogue_check_root:
+            raise ValueError('Catalogue provenance check changed after verification')
+        if _proof_hash(checked,budget,proof_limits['max_bytes'])!=checked_root:
+            raise ValueError('Independent synthesis result changed after verification')
+        _synthesis_binding(compiled,checked,budget,proof_limits['max_bytes'],proof_method)
+        result={'status':'PROPOSALS_READY' if alternatives else 'NO_FINITE_CATALOGUE_ASSIGNMENT',
+            'mission':mission,'input_root':original_root,'generation':generated,
             'catalogue_check':catalogue_check,'synthesis':compiled,'independent_check':checked,
             'proof_complete':True,'proof_scope':PROOF_SCOPE,'work':budget.work,'limitations':LIMITATIONS}
-        if len(json.dumps(result,sort_keys=True,separators=(',',':')).encode())>16_777_216:raise _Unavailable('OUTPUT_BYTE_BUDGET')
+        output_limit=proof_limits['max_bytes'] if proof_method=='COMPACT_TOP_K' else 16_777_216
+        # The bounded streaming pass charges the whole output, without any late
+        # callback or unbounded full-string allocation. Reserve work-field growth.
+        _bounded_json(result,budget,output_limit-64,max_items=4_000_000,max_list_items=100_000,callbacks=False)
+        result['work']=budget.work
         return result
+
     except _CallerError as exc:raise exc.original
     except _Unavailable as exc:return {'status':'UNKNOWN','reason':str(exc),'mission':None,'proof_complete':False,'work':budget.work}
     except (ValueError,TypeError,KeyError,ZeroDivisionError,OverflowError) as exc:

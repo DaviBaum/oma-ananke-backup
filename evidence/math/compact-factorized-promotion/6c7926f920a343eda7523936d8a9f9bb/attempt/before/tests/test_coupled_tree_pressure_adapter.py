@@ -234,28 +234,15 @@ def test_missing_terminal_pipe_singleton_never_hides_other_equilibria():
     assert "service" not in r
 
 
-def test_formerly_unproved_narrow_box_has_same_model_factorized_certificate():
-    b,n,m,c=inputs()
-    for v in b["flow_search_box_m3_s"].values():
-        center=(Q(v["lower"])+Q(v["upper"]))/2;v.update(bound(center-Q(1,100000),center+Q(1,100000)))
-    original=deepcopy((b,n,m,c));model,box,_=a.derive_coupled_tree_model(b,n,m,context=c)
-    assert a.local.compile_coupled_tree_pressure(model,box)['status']=='UNKNOWN'
-    result=a.evaluate_coupled_tree(b,n,m,context=c)
-    assert result['status']=='CERTIFIED_ENVELOPE' and result['verdict']=='PASS'
-    assert result['certificate']['model']==model and result['certificate']['flow_box']==box
-    assert result['certificate']['local_certificate']['schema']==a.factorized.CERTIFICATE_SCHEMA
-    checked=a.verify_coupled_tree_envelope(b,n,m,result['certificate'],context=c)
-    assert checked['status']==checked['local_check']['status']==checked['global_check']['status']=='PASS'
-    oracle=load('independent-nominal-oracle')['ports']
-    for row in checked['service']['physical_ports']:
-        assert inside(oracle[row['component']+'.'+row['port']]['forward_flow_m3_s'],row['flow_m3_s'])
-    assert (b,n,m,c)==original
-
-
-def test_reversed_pressure_remains_unknown():
-    b,n,m,c=inputs();b['source_total_pressure_pa']=bound(-1000)
-    result=a.evaluate_coupled_tree(b,n,m,context=c)
-    assert result['status']=='UNKNOWN' and 'service' not in result
+def test_uniform_narrow_query_and_reversed_pressure_are_unknown():
+    for reverse in (False,True):
+        b,n,m,c=inputs()
+        if reverse:b["source_total_pressure_pa"]=bound(-1000)
+        else:
+            for v in b["flow_search_box_m3_s"].values():
+                center=(Q(v["lower"])+Q(v["upper"]))/2;v.update(bound(center-Q(1,100000),center+Q(1,100000)))
+        r=a.evaluate_coupled_tree(b,n,m,context=c)
+        assert r["status"]=="UNKNOWN" and "service" not in r
 
 
 def test_interval_source_boundary_supported():

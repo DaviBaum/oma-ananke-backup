@@ -37,7 +37,7 @@ def test_default_and_explicit_controls_are_forwarded_and_bound(tmp_path,monkeypa
     if limits is not None:query['generation_budget']=limits
     run=store.create_run(project['id'],{'operation':'propose_network','mission':query})
     def compiler(*args,**kw):
-        assert 0<kw['max_work']<expected[0] and kw['max_partial_trees']==expected[1]
+        assert (kw['max_work'],kw['max_partial_trees'])==expected
         return {'status':'UNKNOWN','reason':'WORK_BUDGET','mission':None,'proof_complete':False}
     monkeypatch.setattr(job,'compile_shared_tree_proposals',compiler)
     job.propose_shared_tree_run(store,run,WorkerControl(store,run['id']))
@@ -48,33 +48,29 @@ def test_default_and_explicit_controls_are_forwarded_and_bound(tmp_path,monkeypa
     assert store.project(project['id'])['state_root']==project['state_root']
 
 
-def generated_run(tmp_path,reverse=False,count=4,proof_method='FULL_LEDGER'):
+def generated_run(tmp_path,reverse=False):
     original=tmp_path/'original.ifc';make_original(original);original_sha=sha256_file(original)
     store=Store(tmp_path/'store');project=store.create_project('Four-sink generated pressure',{'sources':[],'entities':[]})
     imported=store.create_run(project['id'],{'operation':'import','paths':[str(original)]})
     import_sources(store,imported,WorkerControl(store,imported['id']));project=store.project(project['id'])
-    r,s,_,_=fixture(count,source_pressure=2000 if count<=5 else 4000)
+    r,s,_,_=fixture()
     if reverse:r['coupled_tree']['sink_total_pressures_pa']['sink-main']={'lower':'2001','upper':'2001'}
     original_boundary=deepcopy(r['coupled_tree'])
     query={'schema':job.JOB_SCHEMA,'requirements':r,'search':s,'max_results':2,
         'generation_budget':{'max_work':10000000,'max_partial_trees':200000}}
-    if proof_method!='FULL_LEDGER':query['proof_method']=proof_method
-    if proof_method=='COMPACT_TOP_K' and count>=6:
-        query['generation_budget']['max_work']=48_000_000
-        query['compact_limits']={'max_transitions':2_000_000,'max_label_pairs':10_000_000,'max_bytes':33_554_432}
-    proposal=store.create_run(project['id'],{'operation':'propose_network','mission':query,'budget_seconds':300 if count>=6 else 120})
+    proposal=store.create_run(project['id'],{'operation':'propose_network','mission':query,'budget_seconds':120})
     job.propose_shared_tree_run(store,proposal,WorkerControl(store,proposal['id']))
     assert store.run(proposal['id'])['status']=='COMPLETED',store.run(proposal['id'])
     event=next(e for e in store.events(project['id'],0,10000) if e.get('run_id')==proposal['id'] and e['stage']=='network_generation_complete')
     artifact=store.get(event['payload']['proposal_artifact_root']);result=artifact['result']
     assert result['status']=='PROPOSALS_READY' and result['catalogue_check']['status']=='PASS'
-    assert len(result['mission']['sinks'])==count and len(result['mission']['network_alternatives'])==2
+    assert len(result['mission']['sinks'])==4 and len(result['mission']['network_alternatives'])==2
     # Normalization changes decimal spelling, never the authored rational value.
     assert Q(original_boundary['gravity_m_s2'])==Q(result['mission']['coupled_tree']['gravity_m_s2'])
     canonical_boundary=deepcopy(original_boundary)
     canonical_boundary['gravity_m_s2']=str(Q(canonical_boundary['gravity_m_s2']))
     assert result['mission']['coupled_tree']==canonical_boundary
-    assert all(len(n['sinks'])==count and sum(c['kind']=='tee' for c in n['components'])==count-1 for n in result['mission']['network_alternatives'])
+    assert all(len(n['sinks'])==4 and sum(c['kind']=='tee' for c in n['components'])==3 for n in result['mission']['network_alternatives'])
     assert store.candidates(project['id'])==[]
     run=store.create_run(project['id'],{'operation':'optimize','mission':result['mission'],'budget_seconds':240})
     route_project_run(store,run,WorkerControl(store,run['id']))
