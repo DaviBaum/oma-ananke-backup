@@ -1,0 +1,57 @@
+{
+  "status": "LOCAL_TEE_INDEPENDENT_REGRESSION_PASS",
+  "scope": "Same nominal cylinder-union geometry, current native volume threshold, source preservation and native ports. No Hospital clearance/service/acceptance claim from these fixtures.",
+  "tests": {
+    "passed": 11,
+    "pytest_seconds": 11.8,
+    "before_expected_failures": 1,
+    "initial_unbound_run": "pyproject pythonpath overrode environment; this is current-source smoke only, excluded from historical comparison",
+    "test_sha256": "3900b375de9cf37aeabef669228b383ccc4bba5acbf3dd49887af742eec23ee3"
+  },
+  "before_source": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-clearance-20260915\\runtimes\\f716dd5cbdd84134a50d855b217b91a886832abc582ee761b1340cec2026b8e7\\src",
+  "after_source": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-clearance-20260915\\campaign-v2\\runtimes\\06aa865600b4ab2dc8f42f77b2cb5f82816dec99bbf8a1ff5f67673fb44c1949\\src",
+  "frozen_paths_unchanged_now": true,
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-o",
+        "pythonpath=C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-clearance-20260915\\runtimes\\f716dd5cbdd84134a50d855b217b91a886832abc582ee761b1340cec2026b8e7\\src",
+        "tests/test_network_local_tee.py",
+        "-k",
+        "False-True-IFC4",
+        "-q",
+        "--junitxml=.oma/development/hospital-outcome-audit/local-tee-tests/before-f716.xml"
+      ],
+      "cwd": "C:\\Users\\Davi\\Downloads\\oma",
+      "PYTHONPATH": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-clearance-20260915\\runtimes\\f716dd5cbdd84134a50d855b217b91a886832abc582ee761b1340cec2026b8e7\\src",
+      "observed_pytest_exit": 1
+    },
+    {
+      "argv": [
+        "C:\\Users\\Davi\\Downloads\\oma\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-o",
+        "pythonpath=C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-clearance-20260915\\campaign-v2\\runtimes\\06aa865600b4ab2dc8f42f77b2cb5f82816dec99bbf8a1ff5f67673fb44c1949\\src",
+        "tests/test_network_local_tee.py",
+        "-q",
+        "--junitxml=.oma/development/hospital-outcome-audit/local-tee-tests/after-06aa.xml"
+      ],
+      "cwd": "C:\\Users\\Davi\\Downloads\\oma",
+      "PYTHONPATH": "C:\\Users\\Davi\\Downloads\\oma\\.oma\\development\\hospital-clearance-20260915\\campaign-v2\\runtimes\\06aa865600b4ab2dc8f42f77b2cb5f82816dec99bbf8a1ff5f67673fb44c1949\\src",
+      "observed_pytest_exit": 0
+    }
+  ],
+  "provenance_note": "Exact command/exit logs captured during execution; this retention manifest and source-map reconciliation were assembled after those closed runs.",
+  "analytic_probe": {
+    "cases": 54,
+    "default_world_failures": 2,
+    "default_local_failures": 0,
+    "precision_forced_failures": 0,
+    "threshold_unchanged": true
+  },
+  "decision": "Do not change CAD integration or global precision; author equivalent tee CSG around component-local center, preserving full independent world geometry/port checks."
+}

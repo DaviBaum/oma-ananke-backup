@@ -1,0 +1,108 @@
+{
+  "mission_type": "shared_network",
+  "system_type": "PRESSURE_PIPE",
+  "start_m": [
+    -2,
+    0,
+    3
+  ],
+  "sinks": [
+    {
+      "id": "sink-a",
+      "demand_id": "demand-a",
+      "end_m": [
+        3,
+        0,
+        3
+      ]
+    },
+    {
+      "id": "sink-b",
+      "demand_id": "demand-b",
+      "end_m": [
+        1,
+        3,
+        3
+      ]
+    }
+  ],
+  "diameter_m": 0.125,
+  "insulation_m": 0.03125,
+  "clearance_m": 0.0625,
+  "minimum_straight_m": 0.125,
+  "minimum_bend_radius_m": 0.25,
+  "allowed_zone": {
+    "min": [
+      -3,
+      -2,
+      2
+    ],
+    "max": [
+      5,
+      4,
+      4
+    ]
+  },
+  "scenario_terminals": true,
+  "target_modality": "ENGINEERING_SERVICE",
+  "source_representation_policy": "NATIVE_CAD_WITH_EXACT_PLANAR_ENCLOSURES",
+  "physics": null,
+  "objective_weights": {
+    "length_m": 1
+  },
+  "assumptions": [
+    "New explicit hypothetical coupled nominal-provenance fixture, no hydraulic proof or native acceptance"
+  ],
+  "coupled_tree": {
+    "schema": "oma.coupled-tree-boundary/1",
+    "source_total_pressure_pa": {
+      "lower": "200",
+      "upper": "200"
+    },
+    "sink_total_pressures_pa": {
+      "sink-a": {
+        "lower": "0",
+        "upper": "0"
+      },
+      "sink-b": {
+        "lower": "0",
+        "upper": "0"
+      }
+    },
+    "minimum_sink_flows_m3_s": {
+      "sink-a": "1/10000",
+      "sink-b": "1/10000"
+    },
+    "flow_search_box_m3_s": {
+      "sink-a": {
+        "lower": "1/1000",
+        "upper": "1/500"
+      },
+      "sink-b": {
+        "lower": "1/1000",
+        "upper": "1/500"
+      }
+    },
+    "density_kg_m3": "1000",
+    "darcy_friction": "1/50",
+    "maximum_velocity_m_s": "2",
+    "gravity_m_s2": "0",
+    "elbow_loss_coefficient": "1/5",
+    "tee_outlet_loss_coefficients": {
+      "tee-a": {
+        "b": "1/5",
+        "branch": "3/10"
+      }
+    },
+    "applicability": "Explicit hypothetical fixed-loss ideal-bore declaration for NOMINAL CATALOGUE PROVENANCE ONLY; no operating point is asserted.",
+    "boundary_control_assumption": "Hypothetical regulated total-pressure boundaries; exact minima and query box remain fixed. No service result is asserted.",
+    "pressure_reference": "TOTAL_PRESSURE_P_PLUS_KINETIC_EXCLUDING_ELEVATION",
+    "loss_model": "FIXED_COEFFICIENT_STEADY_INCOMPRESSIBLE",
+    "hydraulic_section_interpretation": "IDEAL_CIRCULAR_BORE_FROM_NATIVE_ENVELOPE_MINUS_DECLARED_INSULATION",
+    "friction_convention": "DARCY",
+    "elbow_loss_reference": "EXCESS_LOCAL_LOSS_EXCLUDING_CURVED_PIPE_FRICTION",
+    "tee_loss_reference": "OUTLET_SPECIFIC_TOTAL_LOSS_AT_TOTAL_INLET_FLOW",
+    "connection_model": "NO_EXTRA_LOSS_AT_CHECKED_MATCHING_CONNECTED_CAPS",
+    "boundary_loss_scope": "BETWEEN_PHYSICAL_NETWORK_PORTS_ONLY"
+  }
+}
