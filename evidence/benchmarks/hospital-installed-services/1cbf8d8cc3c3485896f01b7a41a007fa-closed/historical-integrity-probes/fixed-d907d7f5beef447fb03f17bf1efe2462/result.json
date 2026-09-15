@@ -1,0 +1,65 @@
+{
+  "source_files": {
+    "src/oma/building_services.py": "fe0609fc0b0a2a8de15ff81d0d8844475e0cb45457c9ee9a8b75542c29838d16",
+    "src/oma/ifc/service_networks.py": "a7245e94ddabd5e02f3cd43eb21ce7ac64bf391843b5358e026cfdd1a3e8ddc2",
+    "src/oma/optimization/service_design.py": "35baa8239bf30946e77aa03bae6428679477059f381ae1e8030c6a3a395f7e6f",
+    "tests/test_building_services.py": "0af0a39246df78c2dc529ec677288d42eb87b102abacdb2194fffbab07a28545",
+    "tests/test_service_networks.py": "b7e7f87e0a15fb80563e6359b471fe119911747c3243bb1df5cb383281f939a6"
+  },
+  "prior_failure_receipt": "../probe-c9d0f02b6e404946b29b6b7c7c7ecc8f/result.json",
+  "late_source_callback": {
+    "rejected": true,
+    "exception": "Original IFC changed or differs from the imported source",
+    "run_status": "QUEUED"
+  },
+  "ownership_contract_binding": {
+    "rejected": true,
+    "exception": "Design contract is stale or belongs to another installed network",
+    "old_contract_root": "a97fae4ccef6b1200db0f5ff3523bf2591062cd12d40bffb292a171171da3fef",
+    "new_contract_root": "898420e4b1543bf5b3e6b26adb9077f97833d233c8d9e1c04da3178197a0778f",
+    "same_component_id": true,
+    "changed_contract_root": true
+  },
+  "contradictory_declared_denominator": {
+    "graph_status": "EXTRACTED_WITH_ISSUES",
+    "network_count": 0,
+    "accounting": {
+      "products_by_category": {},
+      "declared_audit_denominators_consistent": false,
+      "all_products_accounted": true,
+      "service_product_step_ids": [],
+      "all_service_products_in_exactly_one_network": true,
+      "all_audited_ports_in_exactly_one_network": true,
+      "all_explicit_connections_in_exactly_one_network": true,
+      "unresolved_port_step_ids": [],
+      "original_source_completeness_verified": false
+    },
+    "issues": [
+      {
+        "id": 0,
+        "code": "AUDIT_DENOMINATOR_MISMATCH",
+        "field": "product_count",
+        "declared": 5,
+        "accounted": 0
+      },
+      {
+        "id": 1,
+        "code": "AUDIT_DENOMINATOR_MISMATCH",
+        "field": "physical_object_count",
+        "declared": 5,
+        "accounted": 0
+      },
+      {
+        "id": 2,
+        "code": "AUDIT_DENOMINATOR_MISMATCH",
+        "field": "product_counts",
+        "declared": {
+          "IfcPipeSegment": 5
+        },
+        "accounted": {}
+      }
+    ]
+  },
+  "source_unchanged_during_replay": true,
+  "status": "THREE_RETAINED_BINDING_COVERAGE_PROBES_FIXED"
+}

@@ -1,5 +1,7 @@
 # Hospital: checked routing comparison
 
+For the subsequent all-seven-model HVAC, plumbing, electrical, sprinkler and fire-alarm assessment, see [whole-project installed services](hospital-installed-services.md). That run accounts for the existing hospital population; the checked routing comparison below remains a separate hypothetical two-terminal case.
+
 On 2026-09-15, source build `06aa865600b4ab2dc8f42f77b2cb5f82816dec99bbf8a1ff5f67673fb44c1949` completed generation, independent checking of both alternatives, selection, revision-2 acceptance and a fresh exported-IFC check. The complete campaign took **1,347.828 seconds (22.46 minutes)**.
 
 This is a **two-terminal hypothetical pressure-pipe scenario against the complete Hospital architectural model**. Every architectural obstacle is included. The six other disciplines are outside this declared mission; this is not an installed-services redesign or a seven-discipline coordination result.
