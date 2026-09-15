@@ -1,0 +1,15 @@
+# Current live Store backup closure
+
+The published initial portable Store already covers the current live project state: **zero required files and zero required bytes are missing** at this audit snapshot. No new Store delta archive is needed for those projects.
+
+The apparent 4,816-versus-13,190 discrepancy compares different inventories. The portable manifest contains the database, reachable documents/assets and archived checker runtimes. The later live-upgrade inventory also contains caches, unused intermediate outputs, diagnostics and other files that are not referenced by current project records. At identical relative paths, 11,819 live files totaling 2,312,894,467 bytes are absent from the portable manifest; that raw difference is not a required-data deficit.
+
+The audit opens all databases with SQLite `mode=ro`. Current live tables match the completed f73 snapshot. All application records also match the initial backup: 31 projects, 73 revisions, 55 runs, 99 candidates, events, requests and checker records. The only backup differences are its 13 relocation aliases, one relocation metadata row and deliberately removed 75 process-owner rows. Restoring must not resume those old processes.
+
+Starting from every database JSON/root field, the audit independently follows all 1,086 reachable immutable blob documents, checks their compressed and decoded content hashes, and extracts the portable-store contract's file references. All 298 unique referenced files, including applicable IFC materialization sidecars, are present in the published manifest with matching freshly measured hashes. The two additional blob files, totaling 7,521 bytes, are not reachable from current database roots through those documents. `verified-required-assets.json` and `reachable-blob-roots.json` provide the exact denominator.
+
+No archive was downloaded, created or extracted; the audit relies on the previously verified published archive manifests and rereads the current files. It does not claim that every private development/test Store or unused artifact is backed up. The current committed source and separately versioned runtime remain necessary alongside the portable Store. Existing reports can require new verification under another executable; recovery does not promote their authority.
+
+For later actual project changes, take a consistent SQLite snapshot, clear live ownership, preserve immutable roots and relocation aliases, compute its full referenced closure and copy only files not supplied by a hash-pinned base. Publish a complete assembled manifest and base/delta hashes. Assemble in a new directory and verify the restored backup and reference closure before release. Do not copy caches merely to make raw file counts equal.
+
+The initial audit-only alias separator mismatch is retained in `initial-failure.json` and `initial-audit.py`; it was corrected without source, database or original-backup changes. This is a recovery-byte audit, not a native geometry test or mathematical completion claim.

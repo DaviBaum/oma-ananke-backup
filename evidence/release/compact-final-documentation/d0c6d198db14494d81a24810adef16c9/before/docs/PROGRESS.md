@@ -24,7 +24,7 @@ Contracts and focused evidence: [compact synthesis](math/shared-tree-topk.md), [
 
 ## Runnable package and remaining limits
 
-The [f73 portable release](https://github.com/DaviBaum/oma-ananke-backup/releases/tag/validated-compact-pressure-2026-09-15) is sealed, published and remotely hash-verified. Its bundled runtime passes 3,272 tests plus three named direct-interpreter bridge cases that do not apply; those cases pass in both other native environments. All three saved Office export roles pass fresh bundled checks. The ZIP includes a separately indexed current API/math documentation companion. Read the [portable guide](native-portable-candidate.md) and [backup/restore instructions](GITHUB_BACKUP.md). Earlier EDF and 5e8 packages remain separate recovery checkpoints.
+The live f73 runtime and the published EDF portable archive are different checkpoints. The [EDF release](https://github.com/DaviBaum/oma-ananke-backup/releases/tag/validated-general-tree-2026-09-15) remains the verified recovery package: its 1,174,186,526-byte ZIP, manifest and restore instructions have matching remote sizes and SHA-256 digests. The f73 bundle is still pending. See [backup/restore instructions](GITHUB_BACKUP.md).
 
 Hospital remains unresolved. The [seven-source federation](../evidence/benchmarks/hospital-generated-tree/full-federation-1e87dd6ad9af48b5962cd500603fdfdc/README.md) lacks resolved discipline alignment. The separate [architecture-only run](../evidence/benchmarks/hospital-generated-tree/architecture-d3e1be8f981146fcadede8107addadbe/README.md) exhausted its 1,800-second native-clearance budget and accepted or exported nothing. A private inspection optimization does not supersede that outcome.
 

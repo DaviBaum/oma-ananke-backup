@@ -1,5 +1,7 @@
 # GitHub backup and recovery
 
+Latest runnable backend: [f73 compact topology and pressure portable checkpoint](https://github.com/DaviBaum/oma-ananke-backup/releases/tag/validated-compact-pressure-2026-09-15). Read the [current portable guide](native-portable-candidate.md) for download, verification and launch instructions. The initial recovery release below supplies the separate original data backup.
+
 The private backup repository is [DaviBaum/oma-ananke-backup](https://github.com/DaviBaum/oma-ananke-backup). It retains the application's full Git history, implementation, tests, source-math traceability and committed validation evidence. The local `origin` remote points to it.
 
 The private [backup-2026-09-15 prerelease](https://github.com/DaviBaum/oma-ananke-backup/releases/tag/backup-2026-09-15) is complete: 13 assets totaling 4,152,478,214 bytes. Archive members were independently reread and hashed, and uploaded asset sizes and SHA-256 digests match GitHub's records. Download `BACKUP-COMPLETE.json` for the recovery index. The [completed handoff](../evidence/release/github-backup/1a202fcf467a47368a4b3abc1167eb94/completed-handoff.json) retains the verification evidence. This is a backup release, not a claim that the complete production directive is finished.
@@ -16,7 +18,7 @@ Download the required completed release assets and their manifests. Verify their
 
 For a portable Store backup, extract every numbered part into the same new directory, preserving relative paths. Use `oma.backup.verify_backup` on the extracted directory. `oma.backup.restore_store` creates a separate restored Store, checks every recorded asset and database root, and does not inherit live worker ownership. Choose a new destination; do not overwrite an existing project Store.
 
-The sealed portable package contains source5e8. The generated-tree backend at this backup's initial Git checkpoint contains source33a. They are distinct validated versions. Restore the sealed package as its own directory and launch its `OMA.cmd`; do not replace its source files and continue calling it the original sealed package. The repository's current code and pinned development/runtime requirements provide the newer application checkpoint.
+The initial recovery release's sealed portable package contains source5e8. The generated-tree backend at that backup's initial Git checkpoint contains source33a. They are distinct validated versions. Restore the sealed package as its own directory and launch its `OMA.cmd`; do not replace its source files and continue calling it the original sealed package. The repository's current code and pinned development/runtime requirements provide the newer application checkpoint.
 
 The saved UI working files are a backup of unfinished work. They are separate from the six compiled interface assets used during backend validation.
 
@@ -31,3 +33,10 @@ Extract this package into a new directory and use its own `OMA.cmd`. The subsequ
 ## Ongoing hospital and mathematics work
 
 Hospital results and subsequent completed mathematical checkpoints are committed and pushed as they finish. Each report states its exact source model, coordinate assumptions, tested scope, failure/unknown outcomes, runtime identity and export verification. Incomplete runs are retained as incomplete evidence, never counted as successful validation.
+
+
+## Compact topology and pressure portable checkpoint
+
+The newest [validated-compact-pressure-2026-09-15 prerelease](https://github.com/DaviBaum/oma-ananke-backup/releases/tag/validated-compact-pressure-2026-09-15) contains the f73 portable ZIP, manifest and restore instructions: three assets totaling 1,175,670,105 bytes. All remote asset sizes and SHA-256 values match. ZIP SHA-256: `9d9ba8b2a6710d049ea58fe369703a1fbce992b96410413eb7f3e2a08cb5d035`. The [completed upload receipt](../evidence/release/github-compact-portable/5f95cfb7b71341e88756c644711c81e0/completed-handoff.json) and [package handoff](../evidence/release/factorized-tree-portable-completed-ddbee4976390/handoff.json) bind the exact files and validation.
+
+Extract to a new directory. The ZIP contains the sealed `f73a8793ae0d-ddbee4976390` application folder and the separate `f73-checkpoint-documentation` companion. Read the companion's `CHECKPOINT.md`, then launch `OMA.cmd` inside the application folder. Use its configured port (8765 by default); the existing workspace service on 8768 is separate. Runtime data, original mathematics and hospital inputs remain in the initial recovery release; this ZIP does not replace that data backup. See [current portable details](native-portable-candidate.md).
