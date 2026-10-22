@@ -3,10 +3,10 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 const SYSTEM_COLORS = {
-  hvac: "#438c80",
-  plumbing: "#527faf",
-  electrical: "#c18b40",
-  fire: "#bc6b57",
+  hvac: "#347e73",
+  plumbing: "#547b9b",
+  electrical: "#b58b4b",
+  fire: "#b5695f",
 };
 const FLOOR_HEIGHT = 2.65;
 const FOOTPRINT = [
@@ -47,7 +47,9 @@ export default function BuildingViewer({
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.16;
+    renderer.toneMappingExposure = 1.05;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.domElement.setAttribute("role", "img");
     renderer.domElement.setAttribute(
       "aria-label",
@@ -62,7 +64,7 @@ export default function BuildingViewer({
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-25, 25, 22, -22, 0.1, 250);
-    const defaultPosition = new THREE.Vector3(41, 32, 43);
+    const defaultPosition = new THREE.Vector3(42, 31, 38);
     const defaultTarget = new THREE.Vector3(0, 6, 0);
     camera.position.copy(defaultPosition);
     camera.lookAt(defaultTarget);
@@ -78,11 +80,21 @@ export default function BuildingViewer({
     controls.rotateSpeed = 0.55;
     controls.zoomSpeed = 0.65;
 
-    scene.add(new THREE.HemisphereLight("#ffffff", "#c9c6bb", 3.1));
-    const sun = new THREE.DirectionalLight("#fff8e9", 2.7);
-    sun.position.set(-18, 35, 25);
+    scene.add(new THREE.HemisphereLight("#fffdf8", "#c9c4b7", 2.5));
+    const sun = new THREE.DirectionalLight("#fff9ef", 2.2);
+    sun.position.set(-15, 40, 22);
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(1024, 1024);
+    sun.shadow.camera.left = -27;
+    sun.shadow.camera.right = 27;
+    sun.shadow.camera.top = 28;
+    sun.shadow.camera.bottom = -22;
+    sun.shadow.camera.near = 1;
+    sun.shadow.camera.far = 95;
+    sun.shadow.normalBias = 0.055;
+    sun.shadow.bias = -0.0002;
     scene.add(sun);
-    const fill = new THREE.DirectionalLight("#d9e4eb", 1.3);
+    const fill = new THREE.DirectionalLight("#e7edf0", 0.8);
     fill.position.set(25, 12, -18);
     scene.add(fill);
 
@@ -101,13 +113,13 @@ export default function BuildingViewer({
       materials.add(value);
       return value;
     }
-    const slabMaterial = material("#e8e8df", 0.7);
-    const groundSlabMaterial = material("#d5d8cf");
-    const columnMaterial = material("#b9c3bb", 0.6);
-    const wallMaterial = material("#d5ddd6", 0.14, { side: THREE.DoubleSide });
-    const roomMaterial = material("#c0cbc3", 0.22);
-    const plantMaterial = material("#b0bdb5");
-    const plantDetailMaterial = material("#7f9489");
+    const slabMaterial = material("#e6e3d9", 0.7);
+    const groundSlabMaterial = material("#d4d0c4");
+    const columnMaterial = material("#b9b9ad", 0.6);
+    const wallMaterial = material("#d8d8cf", 0.14, { side: THREE.DoubleSide });
+    const roomMaterial = material("#c7c9bd", 0.22);
+    const plantMaterial = material("#b1b9b1");
+    const plantDetailMaterial = material("#7c8c82");
     const serviceMaterials = Object.fromEntries(
       Object.entries(SYSTEM_COLORS).map(([key, color]) => [
         key,
@@ -115,7 +127,7 @@ export default function BuildingViewer({
       ]),
     );
     const outlineMaterial = new THREE.LineBasicMaterial({
-      color: "#899b90",
+      color: "#8c9488",
       transparent: true,
       opacity: 0.22,
     });
@@ -129,6 +141,8 @@ export default function BuildingViewer({
       const mesh = new THREE.Mesh(unitBox, mat);
       mesh.scale.set(width, height, depth);
       mesh.position.set(x, y, z);
+      mesh.castShadow = mat.opacity === 1;
+      mesh.receiveShadow = true;
       parent.add(mesh);
       if (outlined) {
         const line = new THREE.LineSegments(unitBoxEdges, outlineMaterial);
@@ -158,6 +172,8 @@ export default function BuildingViewer({
       }
       mesh.position.copy(start.add(end).multiplyScalar(0.5));
       mesh.quaternion.setFromUnitVectors(verticalAxis, difference.normalize());
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
       parent.add(mesh);
     }
     function route(parent, points, radius, mat, rectangular = false) {
@@ -425,6 +441,8 @@ export default function BuildingViewer({
           batch[0].material,
           batch.length,
         );
+        merged.castShadow = batch[0].castShadow;
+        merged.receiveShadow = batch[0].receiveShadow;
         batch.forEach((mesh, index) => {
           mesh.updateMatrix();
           merged.setMatrixAt(index, mesh.matrix);
@@ -441,10 +459,24 @@ export default function BuildingViewer({
     // A restrained site datum anchors the axonometric model.
     const site = new THREE.Group();
     scene.add(site);
+    // A neutral shadow receiver lets the page's paper color show through.
+    const shadowGeometry = new THREE.PlaneGeometry(90, 80);
+    const shadowMaterial = new THREE.ShadowMaterial({
+      color: "#5f655d",
+      opacity: 0.13,
+      depthWrite: false,
+    });
+    geometries.add(shadowGeometry);
+    materials.add(shadowMaterial);
+    const shadowPlane = new THREE.Mesh(shadowGeometry, shadowMaterial);
+    shadowPlane.rotation.x = -Math.PI / 2;
+    shadowPlane.position.y = -0.31;
+    shadowPlane.receiveShadow = true;
+    site.add(shadowPlane);
     const gridMaterial = new THREE.LineBasicMaterial({
-      color: "#9ca79c",
+      color: "#aaa89b",
       transparent: true,
-      opacity: 0.12,
+      opacity: 0.08,
     });
     materials.add(gridMaterial);
     for (let x = -24; x <= 24; x += 4) {
@@ -610,6 +642,7 @@ export default function BuildingViewer({
       instancedMeshes.forEach((mesh) => mesh.dispose());
       geometries.forEach((geometry) => geometry.dispose());
       materials.forEach((mat) => mat.dispose());
+      sun.shadow.map?.dispose();
       renderer.dispose();
       if (renderer.domElement.parentNode === element)
         element.removeChild(renderer.domElement);
@@ -663,8 +696,8 @@ export default function BuildingViewer({
             placeContent: "center",
             textAlign: "center",
             padding: 32,
-            background: "#f1f3ed",
-            color: "#607066",
+            background: "#f5f2e9",
+            color: "#656c61",
             zIndex: 1,
           }}
         >
@@ -680,8 +713,8 @@ export default function BuildingViewer({
               <path
                 key={floor}
                 d={`M20 ${62 - floor * 11} 80 ${32 - floor * 11} 140 ${62 - floor * 11} 80 ${92 - floor * 11}Z`}
-                stroke="#74998b"
-                fill="#e0e8df"
+                stroke="#8b9a8c"
+                fill="#e4e5d9"
                 fillOpacity=".5"
                 transform="translate(0 24)"
               />

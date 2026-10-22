@@ -1,4 +1,7 @@
-// Public demo data: aggregate counts from the retained 2026-09-15 Hospital runs.
+import { hospital } from "./hospital.js";
+export { hospital, comparison } from "./hospital.js";
+
+// Public demo data: aggregate counts from the retained Hospital runs.
 // No source geometry, owner details, authenticated project prices, or private file paths.
 // Keep the whole-building inventory and bounded route benchmark as separate claims.
 
@@ -31,7 +34,7 @@ export const project = {
   engineeringStatus: "More design information needed",
   wholeBuildingOptimized: false,
   verifiedForConstruction: false,
-  monetarySavings: null,
+  monetarySavings: null, // No verified whole-building net saving. See hospital for scoped purchasing estimates.
 };
 
 export const disciplines = [
@@ -310,6 +313,7 @@ export const demo = {
 };
 
 export const evidence = {
+  hospital,
   project,
   disciplines,
   routeComparison,

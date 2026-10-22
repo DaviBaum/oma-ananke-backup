@@ -1,140 +1,84 @@
 import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
 import {
+  ArrowDown,
+  ArrowDownRight,
   ArrowRight,
   ArrowUpRight,
-  Box,
-  Building2,
-  Cable,
   Check,
-  CheckCircle2,
   ChevronDown,
-  ChevronRight,
-  CircleHelp,
-  Clock3,
   Download,
-  Droplets,
-  FileText,
-  Flame,
-  GitBranch,
   Layers,
-  Maximize2,
   Menu,
-  Minus,
-  Network,
-  Play,
-  Plus,
-  RotateCw,
-  SlidersHorizontal,
-  Upload,
-  Wind,
+  RotateCcw,
   X,
+  Plus,
+  FileText,
+  Upload,
+  Maximize2,
+  Minimize2,
 } from "lucide-react";
-import evidence, {
-  project,
-  disciplines,
-  routeComparison,
-  workflow,
-  capabilities,
-} from "./evidence.js";
+import evidence, { disciplines } from "./evidence.js";
+import { hospital, comparison } from "./hospital.js";
 import { calculateScenario, inspectIfcText, sampleTypes } from "./scenario.js";
 
 const BuildingViewer = lazy(() => import("./BuildingViewer.jsx"));
-const n = (value) => new Intl.NumberFormat("en-US").format(value);
-const money = (value) =>
+const number = (v, digits = 0) =>
+  new Intl.NumberFormat("en-US", { maximumFractionDigits: digits }).format(v);
+const money = (v) =>
   new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
     maximumFractionDigits: 0,
-  }).format(value);
-const systems = [
-  { id: "hvac", label: "Heating & cooling", color: "#2e8b79", icon: Wind },
-  { id: "plumbing", label: "Plumbing", color: "#447eaf", icon: Droplets },
-  { id: "electrical", label: "Electrical", color: "#b98632", icon: Cable },
-  { id: "fire", label: "Sprinklers", color: "#be675d", icon: Flame },
+  }).format(v);
+const tradeNames = {
+  all: "All trades",
+  hvac: "Heating & cooling",
+  plumbing: "Plumbing",
+  sprinkler: "Sprinklers",
+  electrical: "Electrical",
+};
+const viewerSystems = [
+  { id: "hvac", label: "Heating & cooling", color: "#347e73" },
+  { id: "plumbing", label: "Plumbing", color: "#547b9b" },
+  { id: "electrical", label: "Electrical", color: "#b58b4b" },
+  { id: "fire", label: "Sprinklers", color: "#b5695f" },
 ];
-const nav = [
-  { id: "overview", label: "Results", icon: Box },
-  { id: "scenarios", label: "Cost calculator", icon: SlidersHorizontal },
-  { id: "evidence", label: "What was tested", icon: ClipboardIcon },
-  { id: "history", label: "Saved calculations", icon: Clock3 },
-];
-function ClipboardIcon(props) {
-  return <FileText {...props} />;
+
+function saveFile(value, name) {
+  const url = URL.createObjectURL(
+    new Blob([JSON.stringify(value, null, 2)], { type: "application/json" }),
+  );
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = name;
+  anchor.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 function Mark() {
   return (
-    <svg viewBox="0 0 40 40" aria-hidden="true">
+    <svg viewBox="0 0 32 32" aria-hidden="true">
       <path
-        d="M7 32 20 8l13 24M12 23h16M20 8v24"
+        d="M3 27 16 4l13 23M8 19h16M16 4v23"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
+        strokeWidth="1.8"
       />
     </svg>
   );
 }
-function Pill({ children, neutral = false }) {
+function IconButton({ label, children, ...props }) {
   return (
-    <span className={`pill ${neutral ? "neutral" : ""}`}>
-      <span />
-      {children}
-    </span>
-  );
-}
-function IconButton({ label, children, active, ...props }) {
-  return (
-    <button
-      className={`icon-btn ${active ? "active" : ""}`}
-      title={label}
-      aria-label={label}
-      aria-pressed={active === undefined ? undefined : active}
-      {...props}
-    >
+    <button className="icon-button" aria-label={label} title={label} {...props}>
       {children}
     </button>
   );
 }
-function download(value, name) {
-  const url = URL.createObjectURL(
-    new Blob([JSON.stringify(value, null, 2)], { type: "application/json" }),
-  );
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = name;
-  link.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
-function readHistory() {
-  try {
-    const records = JSON.parse(
-      localStorage.getItem("oma-demo-scenarios") || "[]",
-    );
-    if (!Array.isArray(records)) return [];
-    return records.slice(0, 12).flatMap((r) => {
-      try {
-        if (
-          typeof r?.id !== "string" ||
-          !Number.isFinite(Date.parse(r?.at)) ||
-          !r?.result
-        )
-          return [];
-        return [{ id: r.id, at: r.at, result: calculateScenario(r.result) }];
-      } catch {
-        return [];
-      }
-    });
-  } catch {
-    return [];
-  }
-}
-
-function Dialog({ title, eyebrow, children, close, wide = false }) {
+function Dialog({ title, label, children, close, wide = false }) {
   const ref = useRef(null);
   useEffect(() => {
-    const dialog = ref.current;
-    dialog.showModal();
-    return () => dialog.close();
+    const d = ref.current;
+    d.showModal();
+    return () => d.close();
   }, []);
   return (
     <dialog
@@ -145,1379 +89,1002 @@ function Dialog({ title, eyebrow, children, close, wide = false }) {
         if (e.target === ref.current) close();
       }}
     >
-      <div className="dialog-head">
+      <header className="dialog-head">
         <div>
-          <span className="eyebrow">{eyebrow}</span>
+          <span className="eyebrow">{label}</span>
           <h2>{title}</h2>
         </div>
         <IconButton label="Close dialog" onClick={close}>
           <X size={20} />
         </IconButton>
-      </div>
+      </header>
       {children}
     </dialog>
   );
 }
+function StockBar({ data, max, tone }) {
+  return (
+    <div className={`stock-bar ${tone}`} aria-hidden="true">
+      <span
+        className="stock-used"
+        style={{ width: `${(data.requiredM / max) * 100}%` }}
+      />
+      <span
+        className="stock-waste"
+        style={{ width: `${(data.wasteM / max) * 100}%` }}
+      />
+    </div>
+  );
+}
+function OrderPanel({ title, subtitle, data, max, after = false }) {
+  return (
+    <article className={`order-panel ${after ? "after" : "before"}`}>
+      <div className="order-title">
+        <span className="eyebrow">{title}</span>
+        <span className="order-index">{after ? "02" : "01"}</span>
+      </div>
+      <h3>{subtitle}</h3>
+      <p className="price-scope">Pipe, duct, conduit &amp; tray only</p>
+      <div className="order-cost">{money(data.costUsd)}</div>
+      <span className="cost-caption">
+        Material purchase estimate · installation excluded
+      </span>
+      <StockBar data={data} max={max} tone={after ? "selected" : "original"} />
+      <dl className="order-details">
+        <div>
+          <dt>Material purchased</dt>
+          <dd>
+            {number(data.purchasedM)} <small>m</small>
+          </dd>
+        </div>
+        <div>
+          <dt>Lengths to buy</dt>
+          <dd>{number(data.stockCount)}</dd>
+        </div>
+        <div>
+          <dt>Material waste</dt>
+          <dd>
+            {number(data.wasteM)} <small>m</small>
+          </dd>
+        </div>
+      </dl>
+    </article>
+  );
+}
+function loadHistory() {
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem("oma-demo-scenarios") || "[]",
+    );
+    return Array.isArray(saved)
+      ? saved.slice(0, 8).flatMap((item) => {
+          try {
+            return [{ id: item.id, result: calculateScenario(item.result) }];
+          } catch {
+            return [];
+          }
+        })
+      : [];
+  } catch {
+    return [];
+  }
+}
 
 export default function App() {
-  const [page, setPage] = useState("overview");
-  const [mobileNav, setMobileNav] = useState(false);
-  const [visible, setVisible] = useState(systems.map((s) => s.id));
+  const [scenarioId, setScenarioId] = useState("broad");
+  const [baselineId, setBaselineId] = useState("perNetwork");
+  const [trade, setTrade] = useState("all");
+  const [visibleSystems, setVisibleSystems] = useState(
+    viewerSystems.map((s) => s.id),
+  );
   const [level, setLevel] = useState("all");
   const [exploded, setExploded] = useState(false);
-  const [rotation, setRotation] = useState(false);
   const [reset, setReset] = useState(0);
-  const [fullscreen, setFullscreen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
   const [dialog, setDialog] = useState(null);
-  const [discipline, setDiscipline] = useState(null);
-  const [history, setHistory] = useState(readHistory);
   const [toast, setToast] = useState("");
-  const [scenario, setScenario] = useState(() => calculateScenario());
   const [inputs, setInputs] = useState({
     type: "plumbing",
     stockM: 6,
     price: 18,
     kerfMm: 3,
   });
-  const [running, setRunning] = useState(false);
-  const [scenarioError, setScenarioError] = useState("");
-  const [ifc, setIfc] = useState(null);
-  const [ifcError, setIfcError] = useState("");
+  const [sample, setSample] = useState(() => calculateScenario());
+  const [history, setHistory] = useState(loadHistory);
+  const [error, setError] = useState("");
+  const [fileInfo, setFileInfo] = useState(null);
+  const [fileError, setFileError] = useState("");
   const [reading, setReading] = useState(false);
-  const fileRef = useRef(null);
-  const runTimer = useRef(null);
-  const readGeneration = useRef(0);
+  const fileRef = useRef(null),
+    readGeneration = useRef(0);
+  const total = comparison(scenarioId, baselineId),
+    view = comparison(scenarioId, baselineId, trade);
+  const tradeIds = ["hvac", "plumbing", "sprinkler", "electrical"];
   useEffect(() => {
-    if (toast) {
-      const t = setTimeout(() => setToast(""), 4500);
-      return () => clearTimeout(t);
-    }
+    if (!toast) return;
+    const t = setTimeout(() => setToast(""), 4000);
+    return () => clearTimeout(t);
   }, [toast]);
-  useEffect(() => () => clearTimeout(runTimer.current), []);
   useEffect(() => {
     const escape = (e) => {
       if (e.key === "Escape") {
-        setFullscreen(false);
-        setMobileNav(false);
+        setExpanded(false);
+        setNavOpen(false);
       }
     };
     window.addEventListener("keydown", escape);
     return () => window.removeEventListener("keydown", escape);
   }, []);
-  const go = (id) => {
-    setPage(id);
-    setMobileNav(false);
-    window.scrollTo({ top: 0, behavior: "instant" });
-  };
-  const toggle = (id) =>
-    setVisible((current) =>
-      current.includes(id) ? current.filter((i) => i !== id) : [...current, id],
-    );
-  const report = () => {
-    download(
+  const downloadReport = () => {
+    saveFile(
       {
-        title: "OMA customer demonstration",
+        title: "OMA — Hospital purchasing study",
         exportedAt: new Date().toISOString(),
         evidence,
-        sampleScenario: scenario,
+        hospital,
+        selectedComparison: total,
+        sampleScenario: sample,
         notice:
-          "Historical evidence and a separate synthetic purchasing example. No live engineering backend or whole-hospital savings claim.",
+          "Recorded purchasing estimates. Original installed geometry unchanged. Engineering and code compliance are unverified. The separate calculator uses synthetic sample data.",
       },
-      "oma-demonstration-report.json",
+      "oma-hospital-results.json",
     );
-    setToast("Demonstration report downloaded");
+    setToast("Hospital results downloaded");
   };
-  const runScenario = () => {
-    setRunning(true);
-    setScenarioError("");
-    runTimer.current = setTimeout(() => {
-      try {
-        const result = calculateScenario(inputs);
-        setScenario(result);
-        setToast("Calculated · all 48 required pieces fit");
-      } catch (error) {
-        setScenarioError(error.message);
-      } finally {
-        setRunning(false);
-      }
-    }, 220);
-  };
-  const saveScenario = () => {
-    const record = {
-      id: crypto.randomUUID(),
-      at: new Date().toISOString(),
-      result: scenario,
-    };
-    const next = [record, ...history].slice(0, 12);
+  const toggleSystem = (id) =>
+    setVisibleSystems((old) =>
+      old.includes(id) ? old.filter((s) => s !== id) : [...old, id],
+    );
+  const saveSample = () => {
+    const next = [
+      { id: crypto.randomUUID(), result: sample },
+      ...history,
+    ].slice(0, 8);
     setHistory(next);
     try {
       localStorage.setItem("oma-demo-scenarios", JSON.stringify(next));
       setToast("Calculation saved on this device");
     } catch {
-      setToast(
-        "Saved for this visit; this browser cannot keep it after closing",
-      );
+      setToast("Saved for this visit; browser storage is unavailable");
     }
   };
   async function inspectFile(file) {
     if (!file) return;
     const generation = ++readGeneration.current;
-    setIfc(null);
-    setIfcError("");
+    setFileError("");
+    setFileInfo(null);
     setReading(true);
     try {
       if (!/\.ifc$/i.test(file.name))
-        throw new Error("Choose an .ifc file for the local inspector.");
+        throw new Error("Choose an .ifc building file.");
       if (file.size > 25 * 1024 * 1024)
-        throw new Error(
-          "The browser inspector supports files up to 25 MB. The full engine handles larger models.",
-        );
-      const text = await file.text();
-      const result = inspectIfcText(text, file.name);
-      if (generation === readGeneration.current) setIfc(result);
-    } catch (error) {
-      if (generation === readGeneration.current) setIfcError(error.message);
+        throw new Error("The local file preview supports files up to 25 MB.");
+      const result = inspectIfcText(await file.text(), file.name);
+      if (generation === readGeneration.current) setFileInfo(result);
+    } catch (e) {
+      if (generation === readGeneration.current) setFileError(e.message);
     } finally {
       if (generation === readGeneration.current) setReading(false);
     }
   }
-  const scenarioDirty =
-    inputs.type !== scenario.type ||
-    Number(inputs.stockM) !== scenario.stockM ||
-    Number(inputs.price) !== scenario.price ||
-    Number(inputs.kerfMm) !== scenario.kerfMm;
 
   return (
-    <div className="app-shell">
+    <div className="site-shell">
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      {mobileNav && (
-        <button
-          className="nav-scrim"
-          aria-label="Close navigation"
-          onClick={() => setMobileNav(false)}
-        />
-      )}
-      <aside className={`sidebar ${mobileNav ? "open" : ""}`}>
-        <button
-          className="brand"
-          onClick={() => go("overview")}
-          aria-label="OMA home"
-        >
-          <span className="brand-symbol">
-            <Mark />
-          </span>
+      <header className="site-header">
+        <a className="wordmark" href="#" aria-label="OMA home">
+          <Mark />
           <span>
-            oma<span className="brand-period">.</span>
+            oma<span className="brand-stop">.</span>
           </span>
-        </button>
-        <div className="workspace-picker">
-          <span className="workspace-avatar">A</span>
-          <div>
-            OMA + ANANKE<small>Customer preview</small>
-          </div>
-          <span className="preview-dot" />
-        </div>
-        <p className="nav-label">EXPLORE THE DEMO</p>
-        <nav aria-label="Main navigation">
-          {nav.map((item) => (
-            <button
-              key={item.id}
-              className={`nav-item ${page === item.id ? "selected" : ""}`}
-              onClick={() => go(item.id)}
-              aria-current={page === item.id ? "page" : undefined}
-            >
-              <item.icon size={18} />
-              <span>{item.label}</span>
-              {item.id === "history" && history.length > 0 && (
-                <span className="nav-count">{history.length}</span>
-              )}
-            </button>
-          ))}
+        </a>
+        <span className="brand-descriptor">
+          Material planning,
+          <br />
+          with the whole building in view.
+        </span>
+        <nav className={navOpen ? "open" : ""} aria-label="Main navigation">
+          <a href="#comparison" onClick={() => setNavOpen(false)}>
+            Before & after
+          </a>
+          <a href="#breakdown" onClick={() => setNavOpen(false)}>
+            By trade
+          </a>
+          <a href="#scope" onClick={() => setNavOpen(false)}>
+            Study details
+          </a>
         </nav>
-        <div className="sidebar-divider" />
-        <p className="nav-label">BUILDING EXAMPLE</p>
-        <button className="project-link" onClick={() => go("overview")}>
-          <Building2 size={17} />
-          <span>
-            Hospital<small>Hospital · 7 building files</small>
-          </span>
+        <button className="button header-download" onClick={downloadReport}>
+          Download study <ArrowDown size={15} />
         </button>
-        <div className="sidebar-bottom">
-          <div className="sidebar-note">
-            <span className="tiny-label">WHAT CHANGES?</span>
-            <p>
-              Fewer parts.
-              <br />
-              Less material to buy.
-            </p>
-            <button onClick={() => go("evidence")}>
-              See the test results <ArrowUpRight size={15} />
-            </button>
-          </div>
-          <button className="help-button" onClick={() => setDialog("guide")}>
-            <CircleHelp size={17} /> Demo guide <span>?</span>
-          </button>
-          <div className="sidebar-foot">
-            <span className="user-avatar">G</span>
-            <div>
-              No sign-in needed<small>Interactive demo</small>
+        <IconButton
+          label={navOpen ? "Close navigation" : "Open navigation"}
+          onClick={() => setNavOpen(!navOpen)}
+          aria-expanded={navOpen}
+          className="icon-button mobile-menu"
+        >
+          {navOpen ? <X size={22} /> : <Menu size={22} />}
+        </IconButton>
+      </header>
+      <main id="main">
+        <section className="hero section-width" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <div className="eyebrow project-eyebrow">
+              <span className="signal-dot" /> Hospital material-purchasing study{" "}
+              <span className="study-number">No. 001</span>
             </div>
-            <span className="version">v0.1</span>
+            <h1 id="hero-title">
+              The hospital.
+              <br />
+              <em>Less waste.</em>
+            </h1>
+            <p className="hero-description">
+              Purchase planning for straight pipe, duct, conduit and cable tray
+              across the hospital.
+            </p>
+            <div className="hero-result">
+              <span className="eyebrow">
+                Estimated saving on these materials
+              </span>
+              <strong>
+                {money(total.savings.costUsd)}
+                <span>USD</span>
+              </strong>
+              <p>
+                {baselineId === "perNetwork"
+                  ? "Compared with purchasing each network separately."
+                  : "Compared with purchases already combined."}
+              </p>
+            </div>
+            <p className="hero-budget-note">
+              Materials only. This is not the hospital construction budget.
+            </p>
+            <a className="button dark" href="#comparison">
+              See the before & after <ArrowDownRight size={18} />
+            </a>
+            <p className="hero-note">
+              A purchasing estimate. Engineering review required.
+              <br />
+              Installation costs and additional joints are not priced.
+            </p>
+          </div>
+          <div className={`model-panel ${expanded ? "expanded" : ""}`}>
+            <div className="model-header">
+              <div>
+                <span className="eyebrow">West Riverside</span>
+                <span className="model-name">Hospital study</span>
+              </div>
+              <span className="outline-label">7 source files</span>
+            </div>
+            <div className="model-stage">
+              <div className="model-axis">
+                N <span>↑</span>
+              </div>
+              <Suspense
+                fallback={
+                  <div className="model-loading">
+                    Preparing the building view…
+                  </div>
+                }
+              >
+                <BuildingViewer
+                  visibleSystems={visibleSystems}
+                  level={level}
+                  exploded={exploded}
+                  resetKey={reset}
+                />
+              </Suspense>
+            </div>
+            <div className="model-tools">
+              <label>
+                <span className="sr-only">Visible building level</span>
+                <select
+                  aria-label="Visible building level"
+                  value={level}
+                  onChange={(e) =>
+                    setLevel(
+                      e.target.value === "all" ? "all" : Number(e.target.value),
+                    )
+                  }
+                >
+                  <option value="all">All floors</option>
+                  {[0, 1, 2, 3, 4].map((v) => (
+                    <option key={v} value={v}>
+                      Level {v + 1}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown size={12} />
+              </label>
+              <div>
+                <IconButton
+                  label="Separate floors"
+                  aria-pressed={exploded}
+                  onClick={() => setExploded(!exploded)}
+                >
+                  <Layers size={16} />
+                </IconButton>
+                <IconButton
+                  label="Reset camera"
+                  onClick={() => setReset((v) => v + 1)}
+                >
+                  <RotateCcw size={16} />
+                </IconButton>
+                <IconButton
+                  label={expanded ? "Collapse viewer" : "Expand viewer"}
+                  onClick={() => setExpanded(!expanded)}
+                >
+                  {expanded ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+                </IconButton>
+              </div>
+            </div>
+            <div className="model-trades" aria-label="Visible building systems">
+              {viewerSystems.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => toggleSystem(s.id)}
+                  aria-pressed={visibleSystems.includes(s.id)}
+                  style={{ "--trade-color": s.color }}
+                >
+                  <span />
+                  {s.label}
+                </button>
+              ))}
+            </div>
+            <div className="model-caption">
+              <span>Illustrative model · not the source hospital geometry</span>
+              <span>Drag to explore</span>
+            </div>
+          </div>
+        </section>
+        <div className="study-strip section-width">
+          <div>
+            <strong>7</strong>
+            <span>
+              building files
+              <br />
+              processed
+            </span>
+          </div>
+          <div>
+            <strong>
+              {number(hospital.scenarios[scenarioId].plannedOriginalSegments)}
+            </strong>
+            <span>
+              measured sections
+              <br />
+              included
+            </span>
+          </div>
+          <div>
+            <strong>{number(total.savings.purchasedM)}</strong>
+            <span>
+              metres less
+              <br />
+              material to buy
+            </span>
+          </div>
+          <div>
+            <strong>
+              {number(total.savings.wastePercent, 1)}
+              <small>%</small>
+            </strong>
+            <span>
+              less material
+              <br />
+              waste
+            </span>
           </div>
         </div>
-      </aside>
-      <div className="main-shell">
-        <header className="topbar">
-          <div className="breadcrumbs">
-            <IconButton
-              label="Open navigation"
-              onClick={() => setMobileNav(!mobileNav)}
-            >
-              <Menu size={19} />
-            </IconButton>
-            <span>Projects</span>
-            <ChevronRight size={14} />
-            <span>Hospital</span>
-            <span className="header-divider" />
-            <span className="demo-tag">PRODUCT DEMO</span>
-          </div>
-          <button
-            className="text-button top-help"
-            onClick={() => setDialog("guide")}
-          >
-            How to explore <CircleHelp size={16} />
-          </button>
-        </header>
-        <main id="main">
-          <div className="page-heading">
-            <div>
-              <div className="eyebrow">
-                <span className="heading-line" />
-                {page === "overview"
-                  ? "LESS MATERIAL. FEWER FITTINGS."
-                  : page === "scenarios"
-                    ? "TRY THE NUMBERS"
-                    : page === "evidence"
-                      ? "RESULTS FROM THE PIPE TEST"
-                      : "YOUR SAVED CALCULATIONS"}
-              </div>
-              <h1>
-                {page === "overview"
-                  ? "Build with less waste."
-                  : page === "scenarios"
-                    ? "How much could you save on material?"
-                    : page === "evidence"
-                      ? "See how the results were checked."
-                      : "Your saved cost comparisons."}
-              </h1>
-              <p>
-                {page === "overview"
-                  ? "Shorter pipe routes. Fewer fittings. Less leftover material. See the difference below."
-                  : page === "scenarios"
-                    ? "Change the purchase length and price. See how buying and cutting together changes the bill."
-                    : page === "evidence"
-                      ? "What changed, what was checked, and what still needs an engineer."
-                      : "Reopen a calculation or compare different prices. Saved on this device only."}
-              </p>
-            </div>
-            <div className="heading-actions">
-              <button
-                className="button secondary"
-                onClick={() => setDialog("import")}
-              >
-                <Upload size={16} /> Open building file
-              </button>
-              <button
-                className="button primary"
-                onClick={page === "overview" ? () => go("scenarios") : report}
-              >
-                {page === "overview" ? (
-                  <>
-                    <ArrowRight size={16} /> Try the cost calculator
-                  </>
-                ) : (
-                  <>
-                    <Download size={16} /> Download results
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
 
-          {page === "overview" && (
-            <>
-              <div className="project-strip">
-                <div>
-                  <span className="project-icon">
-                    <Building2 size={21} />
-                  </span>
-                  <div>
-                    <strong>Hospital example</strong>
-                    <span>
-                      7 building files <i /> Recorded test
-                    </span>
-                  </div>
-                </div>
-                <Pill>Files counted</Pill>
+        <section
+          className="comparison-section section-width"
+          id="comparison"
+          aria-labelledby="comparison-title"
+        >
+          <div className="section-top">
+            <div className="section-number">01 / THE CHANGE</div>
+            <div>
+              <h2 id="comparison-title">Materials, before &amp; after.</h2>
+              <p>Straight pipe, duct, conduit and cable tray purchases only.</p>
+            </div>
+            <a href="#breakdown" className="text-link">
+              See each trade <ArrowDown size={15} />
+            </a>
+          </div>
+          <div className="budget-scope">
+            <strong>Not a total construction budget.</strong>
+            <span>
+              These prices exclude the structure, finishes, equipment, wiring,
+              labor and other building costs.
+            </span>
+          </div>
+          <div className="comparison-controls">
+            <div>
+              <span className="control-label">Compare with</span>
+              <div className="segmented" aria-label="Purchasing baseline">
+                <button
+                  aria-pressed={baselineId === "perNetwork"}
+                  onClick={() => setBaselineId("perNetwork")}
+                >
+                  Separate orders
+                </button>
+                <button
+                  aria-pressed={baselineId === "pooled"}
+                  onClick={() => setBaselineId("pooled")}
+                >
+                  Orders already combined
+                </button>
               </div>
-              <section
-                className="impact-grid"
-                aria-label="What improved in the examples"
+            </div>
+            <label className="scenario-select">
+              <span className="control-label">Purchasing option</span>
+              <select
+                aria-label="Purchasing option"
+                value={scenarioId}
+                onChange={(e) => setScenarioId(e.target.value)}
               >
-                <button
-                  className="impact-card"
-                  onClick={() => setDialog("route")}
-                >
-                  <span className="impact-source">RECORDED PIPE TEST</span>
-                  <strong>4 fewer</strong>
-                  <h2>fittings to install</h2>
-                  <p>
-                    One fitting instead of five. Fewer parts to join together.
-                  </p>
-                  <span className="impact-link">
-                    See the change <ArrowUpRight size={17} />
-                  </span>
-                </button>
-                <button
-                  className="impact-card"
-                  onClick={() => setDialog("route")}
-                >
-                  <span className="impact-source">SAME PIPE TEST</span>
-                  <strong>13.6% shorter</strong>
-                  <h2>pipe route</h2>
-                  <p>5.79 m down to 5.00 m. The same water delivery points.</p>
-                  <span className="impact-link">
-                    Compare the routes <ArrowUpRight size={17} />
-                  </span>
-                </button>
-                <button
-                  className="impact-card cost-impact"
-                  onClick={() => go("scenarios")}
-                >
-                  <span className="impact-source">
-                    SEPARATE SAMPLE COST CALCULATION
-                  </span>
-                  <strong>$972 less</strong>
-                  <h2>spent on material</h2>
-                  <p>
-                    Buy 90 m instead of 144 m at an assumed $18/m. All 48 pieces
-                    still fit.
-                  </p>
-                  <span className="impact-link">
-                    Try your own price <ArrowRight size={17} />
-                  </span>
-                </button>
-              </section>
-              <p className="impact-scope">
-                The pipe test is a small route comparison. The cost example uses
-                sample lengths and prices; neither is a whole-hospital savings
-                estimate.
-              </p>
-              <div className="workspace-grid">
-                <section
-                  className={`viewer-card ${fullscreen ? "expanded" : ""}`}
-                  aria-label="Interactive building viewer"
-                >
-                  <div className="panel-header">
-                    <div>
-                      <span className="panel-title">
-                        Look inside the building
-                      </span>
-                      <span className="subtle-tag">3D VIEW</span>
-                    </div>
-                    <div className="viewer-options">
-                      <label className="level-select">
-                        <Layers size={15} />
-                        <select
-                          aria-label="Visible building level"
-                          value={level}
-                          onChange={(e) =>
-                            setLevel(
-                              e.target.value === "all"
-                                ? "all"
-                                : Number(e.target.value),
-                            )
-                          }
-                        >
-                          <option value="all">All levels</option>
-                          {[0, 1, 2, 3, 4].map((l) => (
-                            <option value={l} key={l}>
-                              Level {String(l + 1).padStart(2, "0")}
-                            </option>
-                          ))}
-                        </select>
-                      </label>
-                      <IconButton
-                        label={
-                          fullscreen ? "Exit expanded view" : "Expand viewer"
-                        }
-                        active={fullscreen}
-                        onClick={() => setFullscreen(!fullscreen)}
-                      >
-                        {fullscreen ? <X size={17} /> : <Maximize2 size={16} />}
-                      </IconButton>
-                    </div>
-                  </div>
-                  <div className="viewer-stage">
-                    <div className="viewer-caption">
-                      <span>HOSPITAL / EXAMPLE VIEW</span>
-                      <small>Simplified demonstration</small>
-                    </div>
-                    <Suspense
-                      fallback={
-                        <div className="viewer-loading">
-                          <Box size={28} />
-                          <span>Preparing the building view…</span>
-                        </div>
-                      }
-                    >
-                      <BuildingViewer
-                        visibleSystems={visible}
-                        level={level}
-                        exploded={exploded}
-                        rotation={rotation}
-                        resetKey={reset}
-                      />
-                    </Suspense>
-                    <div className="viewer-tools">
-                      <IconButton
-                        label="Reset camera"
-                        onClick={() => setReset((r) => r + 1)}
-                      >
-                        <RotateCw size={17} />
-                      </IconButton>
-                      <IconButton
-                        label="Separate floors"
-                        active={exploded}
-                        onClick={() => setExploded(!exploded)}
-                      >
-                        <Layers size={17} />
-                      </IconButton>
-                      <IconButton
-                        label="Auto rotate model"
-                        active={rotation}
-                        onClick={() => setRotation(!rotation)}
-                      >
-                        <Play size={16} />
-                      </IconButton>
-                    </div>
-                    <div className="viewer-scale">
-                      <span />
-                      10 m <small>example scale</small>
-                    </div>
-                    <div className="orientation">
-                      <span>N</span>
-                      <svg viewBox="0 0 40 40">
-                        <path d="m20 6 7 25-7-5-7 5Z" fill="#6e7e75" />
-                        <path d="m20 6 0 20-7 5Z" fill="#c1c9c1" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="system-controls">
-                    {systems.map((s) => (
-                      <button
-                        key={s.id}
-                        className={`system-toggle ${visible.includes(s.id) ? "on" : ""}`}
-                        style={{ "--system-color": s.color }}
-                        aria-pressed={visible.includes(s.id)}
-                        onClick={() => toggle(s.id)}
-                      >
-                        <span className="system-check">
-                          {visible.includes(s.id) && <Check size={10} />}
+                <option value="broad">
+                  Include long runs · added joints assumed
+                </option>
+                <option value="noSplice">No new joints · smaller scope</option>
+              </select>
+            </label>
+          </div>
+          <div className="comparison-context">
+            <span>{tradeNames[trade]}</span>
+            <p>
+              {baselineId === "perNetwork"
+                ? "Before: each connected network ordered separately. After: matching stock planned together."
+                : "Before: purchases already combined using a standard cutting plan. After: the selected cutting plan."}
+            </p>
+            {trade !== "all" && (
+              <button className="text-link" onClick={() => setTrade("all")}>
+                Show all trades <X size={13} />
+              </button>
+            )}
+          </div>
+          <div className="order-comparison" aria-live="polite">
+            <OrderPanel
+              title="Before"
+              subtitle={
+                baselineId === "perNetwork"
+                  ? "Separate network orders"
+                  : "Orders already combined"
+              }
+              data={view.before}
+              max={Math.max(view.before.purchasedM, view.after.purchasedM)}
+            />
+            <span className="comparison-arrow" aria-hidden="true">
+              <ArrowRight size={22} />
+            </span>
+            <OrderPanel
+              title="After"
+              subtitle="Combined cutting plan"
+              data={view.after}
+              max={Math.max(view.before.purchasedM, view.after.purchasedM)}
+              after
+            />
+          </div>
+          <div className="comparison-bottom">
+            <div className="bar-legend">
+              <span>
+                <i className="used-key" />
+                Required pieces
+              </span>
+              <span>
+                <i className="waste-key" />
+                Material waste
+              </span>
+            </div>
+            <div className="saving-line">
+              <ArrowDownRight size={23} />
+              <strong>{money(view.savings.costUsd)}</strong>
+              <span>
+                estimated material saving{" "}
+                <small>({number(view.savings.costPercent, 2)}%)</small>
+              </span>
+            </div>
+          </div>
+          <p className="comparison-footnote">
+            {scenarioId === "broad"
+              ? "18,559 measured sections. Assumes 3,457 added joints in both purchasing alternatives. Joint costs are excluded."
+              : "16,446 measured sections. No new splits; 2,113 longer sections remain outside this plan. This is a smaller included scope."}{" "}
+            Materials and fabrication details remain unverified.
+          </p>
+        </section>
+
+        <section
+          className="trade-section section-width"
+          id="breakdown"
+          aria-labelledby="trade-title"
+        >
+          <div className="section-top">
+            <div className="section-number">02 / THE BREAKDOWN</div>
+            <div>
+              <h2 id="trade-title">Where the difference comes from.</h2>
+              <p>Four trades. One view of the material bill.</p>
+            </div>
+            <span className="table-unit">USD · estimated material costs</span>
+          </div>
+          <div
+            className="trade-table-wrap"
+            tabIndex="0"
+            role="region"
+            aria-label="Material costs by trade; scroll horizontally on small screens"
+          >
+            <table className="trade-table">
+              <thead>
+                <tr>
+                  <th>Trade</th>
+                  <th>Before</th>
+                  <th>After</th>
+                  <th>Estimated saving</th>
+                  <th>
+                    <span className="sr-only">Compare trade</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {tradeIds.map((id, i) => {
+                  const c = comparison(scenarioId, baselineId, id);
+                  return (
+                    <tr key={id} className={trade === id ? "selected" : ""}>
+                      <th scope="row">
+                        <span className={`trade-index trade-${id}`}>
+                          {String(i + 1).padStart(2, "0")}
                         </span>
-                        {s.label}
-                      </button>
-                    ))}
-                    <button
-                      className="show-all"
-                      onClick={() =>
-                        setVisible(
-                          visible.length === 4 ? [] : systems.map((s) => s.id),
-                        )
-                      }
-                    >
-                      {visible.length === 4 ? "Hide all" : "Show all"}
-                    </button>
-                  </div>
-                  <div className="viewer-foot">
-                    <span>
-                      <span className="small-dot" />
-                      Example 3D view, not the actual hospital design
-                    </span>
-                    <span>Drag to rotate · Scroll to zoom</span>
-                  </div>
-                </section>
-                <aside className="insights">
-                  <div className="insight-header">
-                    <span className="eyebrow">WHAT THE CHANGES MEAN</span>
-                    <span className="round-arrow">
-                      <ArrowUpRight size={18} />
-                    </span>
-                  </div>
-                  <h2>
-                    Fewer parts to fit. <br /> Less waste to pay for.
-                  </h2>
-                  <p className="insight-intro">
-                    Compare the pipe change, or try a price in the calculator.
-                  </p>
-                  <button
-                    className="opportunity"
-                    onClick={() => setDialog("route")}
-                  >
-                    <div className="opportunity-top">
-                      <span className="tiny-label">PIPE ROUTE TEST</span>
-                      <ArrowUpRight size={18} />
-                    </div>
-                    <div className="opportunity-number">
-                      5 <span>→</span> 1<span className="decrease">↘</span>
-                    </div>
-                    <h3>Four fewer fittings to install.</h3>
-                    <p>
-                      The shorter option uses one fitting instead of five. Open
-                      the test to see what changed.
-                    </p>
-                    <div className="opportunity-foot">
-                      <span>See the two routes</span>
-                      <ArrowRight size={17} />
-                    </div>
-                  </button>
-                  <button
-                    className="lab-teaser"
-                    onClick={() => go("scenarios")}
-                  >
-                    <span className="lab-icon">
-                      <SlidersHorizontal size={20} />
-                    </span>
-                    <div>
-                      <strong>Buy fewer lengths. Cut the same pieces.</strong>
-                      <span>Change the price and see the cost difference.</span>
-                    </div>
-                    <ChevronRight size={18} />
-                  </button>
-                  <div className="evidence-note">
-                    <CheckCircle2 size={17} />
-                    <p>
-                      See the change before deciding.
-                      <br />
-                      <span>See both options and the numbers behind them.</span>
-                    </p>
-                  </div>
-                </aside>
-              </div>
-              <details className="discipline-section source-details">
-                <summary className="section-heading">
-                  <div>
-                    <span className="eyebrow">THE HOSPITAL FILES</span>
-                    <h2>What is included in the building example?</h2>
-                  </div>
-                  <span className="table-subtitle">
-                    Open file details <ChevronDown size={16} />
-                  </span>
-                </summary>
-                <div className="table-scroll">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Part of the building</th>
-                        <th>File entries</th>
-                        <th>Parts to review</th>
-                        <th>Recorded connections</th>
-                        <th>File review</th>
-                        <th>
-                          <span className="sr-only">Inspect</span>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {disciplines.map((d) => (
-                        <tr
-                          key={d.id}
-                          onClick={() => {
-                            setDiscipline(d);
-                            setDialog("discipline");
-                          }}
+                        {tradeNames[id]}
+                        <small>
+                          {id === "hvac"
+                            ? "Straight pipe & duct"
+                            : id === "plumbing"
+                              ? "Straight pipe"
+                              : id === "sprinkler"
+                                ? "Sprinkler pipe"
+                                : "Conduit & cable tray"}
+                        </small>
+                      </th>
+                      <td>{money(c.before.costUsd)}</td>
+                      <td>{money(c.after.costUsd)}</td>
+                      <td className="trade-saving">
+                        {money(c.savings.costUsd)}
+                        <span className="trade-spark" aria-hidden="true">
+                          <i
+                            style={{
+                              width: `${Math.max(2, (c.savings.costUsd / Math.max(total.savings.costUsd, 1)) * 100)}%`,
+                            }}
+                          />
+                        </span>
+                      </td>
+                      <td>
+                        <a
+                          href="#comparison"
+                          aria-label={`Compare ${tradeNames[id]}`}
+                          onClick={() => setTrade(id)}
                         >
-                          <td>
-                            <span
-                              className="discipline-code"
-                              style={{ "--system-color": d.color }}
-                            >
-                              {d.code}
-                            </span>
-                            <strong>{d.label}</strong>
-                          </td>
-                          <td>{n(d.products)}</td>
-                          <td>{n(d.objects)}</td>
-                          <td>{n(d.connections)}</td>
-                          <td>
-                            <span
-                              className={`table-status ${d.id === "architecture" ? "review" : ""}`}
-                            >
-                              <span />
-                              {d.status}
-                            </span>
-                          </td>
-                          <td>
-                            <button
-                              className="row-open"
-                              aria-label={`Inspect ${d.label}`}
-                            >
-                              <ArrowUpRight size={16} />
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                          <ArrowUpRight size={19} />
+                        </a>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Total included</th>
+                  <td>{money(total.before.costUsd)}</td>
+                  <td>{money(total.after.costUsd)}</td>
+                  <td>{money(total.savings.costUsd)}</td>
+                  <td>
+                    <a
+                      href="#comparison"
+                      aria-label="Compare all trades"
+                      onClick={() => setTrade("all")}
+                    >
+                      <ArrowUpRight size={19} />
+                    </a>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <p className="trade-note">
+            Fire alarm, architecture and structure were also processed. No
+            purchasing savings are claimed for those files. Electrical savings
+            cover conduit and tray, not wires or equipment. Totals use unrounded
+            values.
+          </p>
+        </section>
+
+        <section className="scope-section" id="scope">
+          <div className="section-width scope-layout">
+            <div className="scope-intro">
+              <span className="section-number">03 / BEHIND THE NUMBERS</span>
+              <h2>
+                What the numbers
+                <br />
+                <em>include.</em>
+              </h2>
+              <p>
+                This study brings the hospital’s files together and compares how
+                its measured stock could be purchased and cut.
+              </p>
+              <p>
+                The original building geometry stays unchanged. This is not a
+                redesign of every installed system.
+              </p>
+              <button className="text-link" onClick={downloadReport}>
+                Download the numbers <Download size={16} />
+              </button>
+            </div>
+            <div className="scope-content">
+              <div className="scope-row">
+                <span className="scope-symbol">
+                  <Check size={17} />
+                </span>
+                <div>
+                  <h3>The purchasing arithmetic was checked.</h3>
+                  <p>
+                    Piece quantities, cut lengths, stock capacity and costs were
+                    independently recalculated for both plans.
+                  </p>
                 </div>
-                <div className="table-note">
-                  The files contain 45,946 service parts and 1,770 items that
-                  still need identifying. File entries also include rooms and
-                  connection points. These counts are not savings or a design
-                  approval.
+              </div>
+              <div className="scope-row">
+                <span className="scope-symbol neutral">≈</span>
+                <div>
+                  <h3>The price is an estimate.</h3>
+                  <p>
+                    Supplier price references and size estimates, not a
+                    contractor quote. Labor, added joints, equipment, delivery
+                    and taxes are excluded.
+                  </p>
+                </div>
+              </div>
+              <details className="review-details">
+                <summary>
+                  <span className="scope-symbol review-symbol">!</span>
+                  <span>
+                    <strong>Engineering review is still required.</strong>
+                    <small>See what needs to be resolved</small>
+                  </span>
+                  <Plus size={19} />
+                </summary>
+                <div className="review-body">
+                  <p>
+                    <strong>
+                      Neither plan is cleared for construction or confirmed
+                      code-compliant.
+                    </strong>{" "}
+                    Material specifications, design requirements and the
+                    governing code remain unresolved.
+                  </p>
+                  <ul>
+                    <li>The broader plan assumes 3,457 additional joints.</li>
+                    <li>
+                      149 new cut pieces are shorter than 100 mm, including a 3
+                      mm duct piece. Product-specific minimum lengths and
+                      connection allowances need to be added. The 100 mm
+                      threshold is a review flag, not a code limit.
+                    </li>
+                    <li>
+                      Ventilation, circuit protection, sprinkler hydraulics,
+                      fire alarm performance and structural safety have not been
+                      verified for this hospital.
+                    </li>
+                  </ul>
+                  <p>
+                    These are open design and fabrication questions. Missing
+                    model data alone does not prove a code violation.
+                  </p>
                 </div>
               </details>
-              <div className="bottom-cta">
-                <div>
-                  <span className="eyebrow">
-                    TRY A PRICE THAT MAKES SENSE TO YOU
+              <details className="source-details">
+                <summary>
+                  <span>
+                    <strong>All seven building files, accounted for.</strong>
+                    <small>
+                      149,822 model entries · 19,352 pipe, duct & tray sections
+                    </small>
                   </span>
-                  <h2>See the effect on the material bill.</h2>
-                </div>
-                <button
-                  className="button primary"
-                  onClick={() => go("scenarios")}
-                >
-                  Try the cost calculator <ArrowRight size={16} />
-                </button>
-              </div>
-            </>
-          )}
-
-          {page === "scenarios" && (
-            <>
-              <div className="context-banner">
-                <span className="sample-tag">SAMPLE DATA</span>
-                <p>
-                  This example needs 48 finished pieces. See how cutting them
-                  together reduces leftover material. Lengths and prices are
-                  sample inputs, not hospital costs.
-                </p>
-              </div>
-              <div className="scenario-grid">
-                <section className="scenario-inputs panel">
-                  <div className="panel-header">
-                    <span className="panel-title">
-                      Choose your prices and lengths
-                    </span>
-                    <SlidersHorizontal size={18} />
-                  </div>
-                  <div className="input-body">
-                    <label>
-                      Material
-                      <select
-                        value={inputs.type}
-                        onChange={(e) =>
-                          setInputs({
-                            ...inputs,
-                            type: e.target.value,
-                            price: sampleTypes[e.target.value].rate,
-                          })
-                        }
-                      >
-                        {Object.entries(sampleTypes).map(([key, v]) => (
-                          <option key={key} value={key}>
-                            {v.label}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                    <fieldset className="stock-fieldset">
-                      <legend>Length sold by the supplier</legend>
-                      <div className="segmented">
-                        {[3, 6, 12].map((m) => (
-                          <button
-                            className={
-                              Number(inputs.stockM) === m ? "selected" : ""
-                            }
-                            key={m}
-                            onClick={() => setInputs({ ...inputs, stockM: m })}
-                          >
-                            {m} m
-                          </button>
-                        ))}
-                      </div>
-                    </fieldset>
-                    <label>
-                      Your assumed price <span>USD / metre</span>
-                      <div className="price-input">
-                        <span>$</span>
-                        <input
-                          type="number"
-                          min="0"
-                          max="1000"
-                          step="1"
-                          aria-label="Material price per metre"
-                          value={inputs.price}
-                          onChange={(e) =>
-                            setInputs({ ...inputs, price: e.target.value })
-                          }
-                        />
-                      </div>
-                    </label>
-                    <label>
-                      Material lost in each cut
-                      <select
-                        value={inputs.kerfMm}
-                        onChange={(e) =>
-                          setInputs({
-                            ...inputs,
-                            kerfMm: Number(e.target.value),
-                          })
-                        }
-                      >
-                        <option value="0">0 mm per piece</option>
-                        <option value="3">3 mm per piece</option>
-                        <option value="5">5 mm per piece</option>
-                      </select>
-                    </label>
-                    <div className="fixed-inputs">
-                      <div>
-                        <span>Required pieces</span>
-                        <strong>48</strong>
-                      </div>
-                      <div>
-                        <span>Separate orders</span>
-                        <strong>12</strong>
-                      </div>
-                      <div>
-                        <span>Required length</span>
-                        <strong>{scenario.requiredM.toFixed(2)} m</strong>
-                      </div>
-                      <div>
-                        <span>Finished piece sizes</span>
-                        <strong>Unchanged</strong>
-                      </div>
-                    </div>
-                    <button
-                      className="button primary full"
-                      disabled={running}
-                      onClick={runScenario}
-                    >
-                      {running ? (
-                        <RotateCw className="spin" size={16} />
-                      ) : (
-                        <Play size={16} />
-                      )}{" "}
-                      {running ? "Calculating…" : "Calculate savings"}
-                    </button>
-                    {scenarioError && (
-                      <p className="form-error" role="alert">
-                        {scenarioError}
-                      </p>
-                    )}
-                    <p className="input-note">
-                      Use your own price. The starting price is an example, not
-                      a supplier quote.
-                    </p>
-                  </div>
-                </section>
-                <section className="scenario-results">
-                  <div className="result-heading">
-                    <div>
-                      <span className="eyebrow">
-                        {scenarioDirty
-                          ? "INPUTS CHANGED · RECALCULATE TO UPDATE"
-                          : "COST DIFFERENCE IN THIS EXAMPLE"}
-                      </span>
-                      <h2>Same 48 pieces. Less material to buy.</h2>
-                    </div>
-                    <Pill neutral={scenarioDirty}>
-                      {scenarioDirty
-                        ? "Previous calculation"
-                        : "All 48 pieces still fit"}
-                    </Pill>
-                  </div>
-                  <div className="saving-summary">
-                    <div>
-                      <span>Estimated savings in this sample</span>
-                      <strong>
-                        {money(scenario.savedCost)}
-                        <small>less to spend on material</small>
-                      </strong>
-                      <p>
-                        {scenario.savedM.toFixed(1)} m less purchased ·{" "}
-                        {scenario.savedPercent.toFixed(1)}% reduction
-                      </p>
-                    </div>
-                    <div
-                      className="saving-ring"
-                      style={{ "--percent": `${scenario.savedPercent}%` }}
-                    >
-                      <span>
-                        {scenario.savedPercent.toFixed(0)}
-                        <small>% less</small>
-                      </span>
-                    </div>
-                  </div>
-                  <div className="comparison-columns">
-                    <div>
-                      <span className="tiny-label">
-                        BUYING FOR EACH ORDER SEPARATELY
-                      </span>
-                      <strong>
-                        {scenario.baseline.purchasedM.toFixed(0)}
-                        <small> m</small>
-                      </strong>
-                      <p>
-                        {scenario.baseline.bars} full lengths <i />{" "}
-                        {money(scenario.baseline.cost)}
-                      </p>
-                      <div className="comparison-bar">
-                        <span style={{ width: "100%" }} />
-                      </div>
-                    </div>
-                    <div className="after">
-                      <span className="tiny-label">
-                        BUYING AND CUTTING TOGETHER
-                      </span>
-                      <strong>
-                        {scenario.selected.purchasedM.toFixed(0)}
-                        <small> m</small>
-                      </strong>
-                      <p>
-                        {scenario.selected.bars} full lengths <i />{" "}
-                        {money(scenario.selected.cost)}
-                      </p>
-                      <div className="comparison-bar">
-                        <span
-                          style={{
-                            width: `${(scenario.selected.purchasedM / scenario.baseline.purchasedM) * 100}%`,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="cut-plan">
-                    <div className="cut-plan-head">
-                      <h3>Where each piece comes from</h3>
-                      <span>
-                        First {Math.min(6, scenario.after.length)} of{" "}
-                        {scenario.after.length} full lengths
-                      </span>
-                    </div>
-                    {scenario.after.slice(0, 6).map((bar, i) => (
-                      <div className="cut-row" key={i}>
-                        <span>{String(i + 1).padStart(2, "0")}</span>
-                        <div className="cut-bar">
-                          {bar.cuts.map((piece, j) => (
-                            <span
-                              title={`${piece.id}: ${(piece.length / 1000).toFixed(2)} m`}
-                              key={piece.id}
-                              style={{
-                                width: `${((piece.length + scenario.kerfMm) / (scenario.stockM * 1000)) * 100}%`,
-                                background: j % 2 ? "#90ac99" : "#668975",
-                              }}
-                            >
-                              {piece.length >= 1200 &&
-                                (piece.length / 1000).toFixed(2)}
-                            </span>
-                          ))}
-                        </div>
-                        <small>
-                          {((scenario.stockM * 1000 - bar.used) / 1000).toFixed(
-                            2,
-                          )}{" "}
-                          m
-                        </small>
-                      </div>
-                    ))}
-                    <div className="cut-legend">
-                      <span>
-                        <i />
-                        Required pieces
-                      </span>
-                      <span>
-                        <i />
-                        Material left over
-                      </span>
-                      <span>{scenario.kerfMm} mm lost per cut included</span>
-                    </div>
-                  </div>
-                  <div className="result-actions">
-                    <button className="button secondary" onClick={saveScenario}>
-                      <Plus size={16} />
-                      Save calculation
-                    </button>
-                    <button
-                      className="text-button"
-                      onClick={() => {
-                        download(scenario, "oma-sample-cutting-plan.json");
-                        setToast("Complete cutting plan downloaded");
-                      }}
-                    >
-                      Download cutting list <Download size={16} />
-                    </button>
-                  </div>
-                  <p className="scenario-scope">
-                    The first plan buys material for each of 12 orders
-                    separately. The second combines them and uses leftovers for
-                    other pieces. Both supply the same 48 pieces and allow for
-                    material lost while cutting. Savings cover material only,
-                    before labor, fittings and delivery. This is one workable
-                    plan; a better one may exist.
-                  </p>
-                </section>
-              </div>
-            </>
-          )}
-
-          {page === "evidence" && (
-            <>
-              <div className="evidence-hero">
-                <div>
-                  <span className="eyebrow">ONE PIPE ROUTE, TWO OPTIONS</span>
-                  <h2>
-                    Four fewer fittings. <br /> The same water delivery points.
-                  </h2>
-                  <p>
-                    The shorter route uses one fitting instead of five. That
-                    means four fewer parts to join. It also passed the test’s
-                    space, connection and water-flow checks. Installation time
-                    was not measured.
-                  </p>
-                  <button
-                    className="button primary"
-                    onClick={() => setDialog("route")}
-                  >
-                    See what changed <ArrowRight size={16} />
-                  </button>
-                </div>
-                <div className="evidence-stats">
-                  <div>
-                    <strong>5 → 1</strong>
-                    <span>Fittings needed</span>
-                  </div>
-                  <div>
-                    <strong>5.79 → 5.00 m</strong>
-                    <span>Length of the pipe route</span>
-                  </div>
-                  <div>
-                    <strong>4.625 m</strong>
-                    <span>Straight pipe needed in either option</span>
-                  </div>
-                </div>
-              </div>
-              <section className="workflow">
-                <div className="section-heading">
-                  <div>
-                    <span className="eyebrow">HOW IT WORKS</span>
-                    <h2>From a building file to a comparison.</h2>
-                  </div>
-                </div>
-                <div className="workflow-steps">
-                  {workflow.map((w) => (
-                    <div key={w.number}>
-                      <span className="step-number">{w.number}</span>
-                      <h3>{w.title}</h3>
-                      <p>{w.text}</p>
+                  <Plus size={19} />
+                </summary>
+                <div className="source-list">
+                  {disciplines.map((d) => (
+                    <div key={d.id}>
+                      <span>{d.label}</span>
+                      <span>{number(d.products)} entries</span>
                     </div>
                   ))}
-                </div>
-              </section>
-              <section className="capabilities panel">
-                <div className="panel-header">
-                  <span className="panel-title">
-                    What you can do, and what is still being built
-                  </span>
-                  <span className="subtle-tag">DEVELOPMENT PREVIEW</span>
-                </div>
-                {capabilities.map((c) => (
-                  <div className="capability" key={c.id}>
-                    <div>
-                      <h3>{c.label}</h3>
-                      <p>{c.text}</p>
-                    </div>
-                    <span
-                      className={`capability-status ${c.status === "Still being developed" ? "development" : ""}`}
-                    >
-                      {c.status}
-                    </span>
-                  </div>
-                ))}
-              </section>
-              <p className="evidence-source">
-                These tests were recorded on 15 September 2026. This website
-                shows those results and runs a separate sample cost calculation.
-                It does not redesign the hospital or approve it for
-                construction.
-              </p>
-            </>
-          )}
-
-          {page === "history" && (
-            <section className="history-section">
-              {history.length === 0 ? (
-                <div className="empty-state">
-                  <div>
-                    <Clock3 size={30} />
-                  </div>
-                  <span className="eyebrow">A CLEAN SLATE</span>
-                  <h2>No saved calculations yet.</h2>
                   <p>
-                    Try different prices and purchase lengths, then save a
-                    calculation here.
+                    18,559 sections measured; 793 could not be measured
+                    reliably. These are counts from the files, not the number of
+                    code checks.
                   </p>
-                  <button
-                    className="button primary"
-                    onClick={() => go("scenarios")}
-                  >
-                    Try the cost calculator <ArrowRight size={16} />
-                  </button>
                 </div>
-              ) : (
-                <>
-                  <div className="history-header">
-                    <span>
-                      {history.length} saved{" "}
-                      {history.length === 1 ? "calculation" : "calculations"}
-                    </span>
-                    <span>Stored on this device only</span>
-                  </div>
-                  {history.map((h, i) => (
-                    <button
-                      className="history-row"
-                      key={h.id}
-                      onClick={() => {
-                        setScenario(h.result);
-                        setInputs({
-                          type: h.result.type,
-                          stockM: h.result.stockM,
-                          price: h.result.price,
-                          kerfMm: h.result.kerfMm,
-                        });
-                        go("scenarios");
-                      }}
-                    >
-                      <span className="history-icon">
-                        <SlidersHorizontal size={21} />
-                      </span>
-                      <div>
-                        <strong>
-                          {h.result.label} · {h.result.stockM} m purchase
-                          lengths
-                        </strong>
-                        <p>
-                          48 sample pieces · {money(h.result.price)} / m ·{" "}
-                          {new Date(h.at).toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                          })}
-                        </p>
-                      </div>
-                      <span className="history-saving">
-                        {money(h.result.savedCost)}
-                        <small>sample savings</small>
-                      </span>
-                      <ArrowUpRight size={19} />
-                    </button>
-                  ))}
-                </>
-              )}
-            </section>
-          )}
-          <footer className="page-footer">
-            <span>
-              <strong>oma.</strong> Compare the changes and the costs.
-            </span>
-            <span>
-              OMA + ANANKE <i /> Interactive product demo
-            </span>
-          </footer>
-        </main>
-      </div>
-      {toast && (
-        <div className="toast" role="status">
-          <CheckCircle2 size={17} />
-          {toast}
+              </details>
+            </div>
+          </div>
+        </section>
+        <section className="explore-section section-width">
+          <div>
+            <span className="eyebrow">A closer look at the method</span>
+            <h2>Try the numbers yourself.</h2>
+            <p>
+              Adjust a material price and stock length in a small, separate
+              example.
+            </p>
+          </div>
           <button
-            aria-label="Dismiss notification"
-            onClick={() => setToast("")}
+            className="button dark"
+            onClick={() => setDialog("calculator")}
           >
-            <X size={15} />
+            Open cost calculator <ArrowUpRight size={18} />
+          </button>
+        </section>
+      </main>
+      <footer className="site-footer section-width">
+        <a className="wordmark" href="#" aria-label="Back to top">
+          <Mark />
+          <span>oma.</span>
+        </a>
+        <p>
+          OMA + ANANKE
+          <br />
+          <span>Hospital purchasing study · October 2026</span>
+        </p>
+        <div>
+          <button onClick={() => setDialog("import")}>
+            Open a building file <Upload size={14} />
+          </button>
+          <button onClick={downloadReport}>
+            Download study <ArrowDown size={14} />
           </button>
         </div>
-      )}
-      {dialog === "guide" && (
+        <span className="footer-note">Customer demonstration</span>
+      </footer>
+
+      {dialog === "calculator" && (
         <Dialog
-          title="Try these four things."
-          eyebrow="WELCOME TO OMA"
+          title="A smaller order, piece by piece."
+          label="Interactive example · sample data"
           close={() => setDialog(null)}
-        >
-          <p className="dialog-intro">
-            See a pipe-route test, try a sample cost calculation, or look inside
-            the example building.
-          </p>
-          <div className="guide-steps">
-            {[
-              [
-                "01",
-                "Explore the building",
-                "Drag to rotate the example building. Choose a floor or turn pipes and cables on and off.",
-              ],
-              [
-                "02",
-                "Try the cost calculator",
-                "Enter a price and choose a purchase length. See the bill for two ways of cutting the same 48 pieces.",
-              ],
-              [
-                "03",
-                "See what was tested",
-                "Compare the two pipe routes and see the checks that were run.",
-              ],
-              [
-                "04",
-                "Download the results",
-                "Get the numbers and cutting list. Your saved calculations stay in this browser.",
-              ],
-            ].map(([i, t, b]) => (
-              <div key={i}>
-                <span>{i}</span>
-                <div>
-                  <h3>{t}</h3>
-                  <p>{b}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="dialog-notice">
-            The pipe test is a recorded result. The building view and cost
-            calculator use examples. The demo does not approve a design for
-            construction.
-          </div>
-          <button
-            className="button primary full"
-            onClick={() => setDialog(null)}
-          >
-            Start exploring <ArrowRight size={16} />
-          </button>
-        </Dialog>
-      )}
-      {dialog === "discipline" && discipline && (
-        <Dialog
-          title={discipline.label}
-          eyebrow="WHAT IS IN THIS BUILDING FILE"
-          close={() => setDialog(null)}
-        >
-          <p className="dialog-intro">{discipline.detail}</p>
-          <div className="detail-metrics">
-            {[
-              ["File entries", discipline.products],
-              ["Parts to review", discipline.objects],
-              ["Connected groups or single parts", discipline.components],
-              ["Connections", discipline.connections],
-            ].map(([k, v]) => (
-              <div key={k}>
-                <span>{k}</span>
-                <strong>{n(v)}</strong>
-              </div>
-            ))}
-          </div>
-          <div className="detail-info">
-            <h3>What the file contains</h3>
-            <p>
-              {n(discipline.ports)} connection points · {n(discipline.systems)}{" "}
-              systems · {n(discipline.objectsWithoutPorts)} parts with no
-              connection points listed.
-            </p>
-            <h3>What an engineer still needs</h3>
-            <p>{discipline.designInput}.</p>
-          </div>
-          <div className="dialog-notice">
-            These numbers show what is in the file. An engineer still needs to
-            check whether the system will work for this building.
-          </div>
-        </Dialog>
-      )}
-      {dialog === "route" && (
-        <Dialog
-          title="From five fittings to one."
-          eyebrow="PIPE TEST · SMALL EXAMPLE"
           wide
-          close={() => setDialog(null)}
         >
           <p className="dialog-intro">
-            Two possible pipe routes were tested in the hospital’s architectural
-            model. The shorter option uses four fewer fittings. This was a small
-            route test, not a whole-building redesign.
+            These 48 sample pieces are separate from the hospital. Change a
+            price or length to see how pooling orders changes the material bill.
           </p>
-          <div className="route-visuals">
-            <div>
-              <span>FIRST ROUTE OPTION</span>
-              <svg
-                viewBox="0 0 300 100"
-                role="img"
-                aria-label="Schematic indirect route"
-              >
-                <path
-                  d="M25 65H85V30H165V65H260"
-                  fill="none"
-                  stroke="#a7aea7"
-                  strokeWidth="7"
-                  strokeLinejoin="round"
+          <div className="calculator-layout">
+            <form
+              className="calculator-inputs"
+              onSubmit={(e) => {
+                e.preventDefault();
+                try {
+                  setSample(calculateScenario(inputs));
+                  setError("");
+                } catch (e) {
+                  setError(e.message);
+                }
+              }}
+            >
+              <label>
+                Material
+                <select
+                  value={inputs.type}
+                  onChange={(e) =>
+                    setInputs({
+                      ...inputs,
+                      type: e.target.value,
+                      price: sampleTypes[e.target.value].rate,
+                    })
+                  }
+                >
+                  {Object.entries(sampleTypes).map(([key, v]) => (
+                    <option key={key} value={key}>
+                      {v.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Length sold by the supplier
+                <select
+                  value={inputs.stockM}
+                  onChange={(e) =>
+                    setInputs({ ...inputs, stockM: Number(e.target.value) })
+                  }
+                >
+                  {[3, 6, 12].map((m) => (
+                    <option value={m} key={m}>
+                      {m} m
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Material price per metre
+                <input
+                  type="number"
+                  min="0"
+                  max="1000"
+                  step="0.01"
+                  value={inputs.price}
+                  onChange={(e) =>
+                    setInputs({ ...inputs, price: e.target.value })
+                  }
+                  required
                 />
-                <circle cx="25" cy="65" r="7" fill="#4c6657" />
-                <circle cx="260" cy="65" r="7" fill="#4c6657" />
-              </svg>
-              <strong>
-                5.785 m <small>5 fittings</small>
+              </label>
+              <label>
+                Material lost per cut
+                <select
+                  value={inputs.kerfMm}
+                  onChange={(e) =>
+                    setInputs({ ...inputs, kerfMm: Number(e.target.value) })
+                  }
+                >
+                  {[0, 3, 5].map((v) => (
+                    <option value={v} key={v}>
+                      {v} mm
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <button className="button dark" type="submit">
+                Calculate savings <ArrowRight size={17} />
+              </button>
+              {error && <p role="alert">{error}</p>}
+            </form>
+            <div className="calculator-results" aria-live="polite">
+              <span className="eyebrow">Sample material saving</span>
+              <strong className="sample-saving">
+                {money(sample.savedCost)}
               </strong>
-            </div>
-            <div>
-              <span>SHORTER ROUTE OPTION</span>
-              <svg
-                viewBox="0 0 300 100"
-                role="img"
-                aria-label="Schematic direct route"
-              >
-                <path
-                  d="M25 65H260"
-                  fill="none"
-                  stroke="#3d7159"
-                  strokeWidth="7"
-                />
-                <circle cx="25" cy="65" r="7" fill="#294d3c" />
-                <circle cx="260" cy="65" r="7" fill="#294d3c" />
-              </svg>
-              <strong>
-                5.000 m <small>1 fitting</small>
-              </strong>
-            </div>
-          </div>
-          <p className="figure-caption">
-            Simple sketches showing the idea, not construction drawings.
-          </p>
-          <div className="route-metrics">
-            <div>
-              <strong>13.6%</strong>
-              <span>Shorter pipe route</span>
-            </div>
-            <div>
-              <strong>80%</strong>
-              <span>Fewer fittings</span>
-            </div>
-            <div>
-              <strong>4.625 m</strong>
-              <span>Straight pipe needed in both</span>
-            </div>
-          </div>
-          <div className="route-checks">
-            {routeComparison.checks.map((c) => (
-              <div key={c.label}>
-                <CheckCircle2 size={18} />
-                <div>
-                  <strong>{c.label}</strong>
-                  <span>{c.note}</span>
-                </div>
-                <span>Passed</span>
+              <div className="sample-costs">
+                <span>
+                  Separate orders <strong>{money(sample.baseline.cost)}</strong>
+                </span>
+                <span>
+                  Pooled order <strong>{money(sample.selected.cost)}</strong>
+                </span>
               </div>
-            ))}
+              <div className="sample-stock">
+                <div>
+                  <span>Before · {sample.baseline.bars} lengths</span>
+                  <div>
+                    {sample.before.map((b, i) => (
+                      <i
+                        key={i}
+                        style={{
+                          "--filled": `${(b.used / (sample.stockM * 1000)) * 100}%`,
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <span>After · {sample.selected.bars} lengths</span>
+                  <div>
+                    {sample.after.map((b, i) => (
+                      <i
+                        key={i}
+                        style={{
+                          "--filled": `${(b.used / (sample.stockM * 1000)) * 100}%`,
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <p>
+                <Check size={15} /> All 48 pieces still fit
+              </p>
+              <div className="sample-actions">
+                <button className="text-link" onClick={saveSample}>
+                  Save calculation <Plus size={15} />
+                </button>
+                <button
+                  className="text-link"
+                  onClick={() =>
+                    saveFile(sample, "oma-sample-cutting-plan.json")
+                  }
+                >
+                  Download cuts <Download size={15} />
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="dialog-notice">
-            <strong>What these numbers cover</strong>
-            <p>{routeComparison.scopeNote}</p>
-            <p>{routeComparison.costNote}</p>
-            <p>
-              The test uses stated pipe dimensions, flow rates and resistance
-              values. Those assumptions still need to match the real
-              installation; these checks are not construction approval.
-            </p>
-          </div>
-          <button
-            className="button primary"
-            onClick={() => {
-              download(routeComparison, "oma-recorded-route-study.json");
-              setToast("Routing study downloaded");
-            }}
-          >
-            <Download size={16} />
-            Download this study
-          </button>
+          {history.length > 0 && (
+            <details className="saved-calculations">
+              <summary>
+                Saved calculations on this device <ChevronDown size={15} />
+              </summary>
+              {history.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setSample(item.result);
+                    setInputs({
+                      type: item.result.type,
+                      stockM: item.result.stockM,
+                      price: item.result.price,
+                      kerfMm: item.result.kerfMm,
+                    });
+                  }}
+                >
+                  {item.result.label} · {item.result.stockM} m stock{" "}
+                  <span>
+                    {money(item.result.savedCost)} saved{" "}
+                    <ArrowUpRight size={15} />
+                  </span>
+                </button>
+              ))}
+            </details>
+          )}
+          <p className="dialog-small">
+            Sample lengths and editable prices. A feasible cutting calculation;
+            no engineering or code approval.
+          </p>
         </Dialog>
       )}
       {dialog === "import" && (
         <Dialog
-          title="Open a building design file."
-          eyebrow="YOUR FILE STAYS ON THIS DEVICE"
+          title="Take a look inside a file."
+          label="Local file preview"
           close={() => setDialog(null)}
         >
           <p className="dialog-intro">
-            IFC is a file format for sharing 3D building designs. Open one to
-            see its version and the types of records it contains. Your file is
-            never uploaded.
+            Count the entries in an IFC building file. The file stays in this
+            browser; it is not uploaded.
           </p>
+          <button
+            className="file-picker"
+            onClick={() => fileRef.current.click()}
+          >
+            <Upload size={28} />
+            <strong>Choose a building file</strong>
+            <span>.ifc · up to 25 MB</span>
+          </button>
           <input
             ref={fileRef}
             type="file"
             accept=".ifc"
             className="sr-only"
-            tabIndex={-1}
-            onChange={(e) => inspectFile(e.target.files?.[0])}
+            onChange={(e) => inspectFile(e.target.files[0])}
           />
-          <button
-            className="drop-zone"
-            onClick={() => fileRef.current?.click()}
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={(e) => {
-              e.preventDefault();
-              inspectFile(e.dataTransfer.files?.[0]);
-            }}
-          >
-            <Upload size={25} />
-            <strong>
-              {reading ? "Reading local file…" : "Drop an IFC file here"}
-            </strong>
-            <span>or click to browse · .ifc · up to 25 MB</span>
-          </button>
-          {ifcError && (
-            <p className="form-error" role="alert">
-              {ifcError}
+          {reading && <p role="status">Reading file…</p>}
+          {fileError && (
+            <p role="alert" className="form-error">
+              {fileError}
             </p>
           )}
-          {ifc && (
+          {fileInfo && (
             <div className="file-result">
+              <FileText size={20} />
               <div>
-                <FileText size={21} />
-                <strong>{ifc.filename}</strong>
-                <span>{ifc.schema}</span>
+                <strong>{fileInfo.filename}</strong>
+                <p>
+                  {number(fileInfo.records)} file records · {fileInfo.schema}
+                </p>
               </div>
-              <p>
-                <strong>{n(ifc.records)}</strong> file records ·{" "}
-                {ifc.classes.length} record types
-              </p>
-              <ul>
-                {ifc.classes.slice(0, 5).map(([key, count]) => (
-                  <li key={key}>
-                    <span>{key}</span>
-                    <strong>{n(count)}</strong>
-                  </li>
-                ))}
-              </ul>
-              <button
-                className="text-button"
-                onClick={() => download(ifc, "oma-local-ifc-inspection.json")}
-              >
-                Download file summary <Download size={16} />
-              </button>
             </div>
           )}
-          <div className="dialog-notice">
-            This tool reads and counts records. It does not display your
-            building, check its shape, or test its engineering.
-          </div>
+          <p className="dialog-small">
+            A file-content preview only. This does not import geometry,
+            calculate a design or assess code compliance.
+          </p>
         </Dialog>
+      )}
+      {toast && (
+        <div className="toast" role="status">
+          <Check size={16} />
+          {toast}
+        </div>
       )}
     </div>
   );
