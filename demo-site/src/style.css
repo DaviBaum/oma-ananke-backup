@@ -563,6 +563,316 @@ svg {
   line-height: 1.7;
   color: #747c6c;
 }
+.model-comparison {
+  container-type: inline-size;
+  margin: 32px 0;
+  border: 1px solid #d4d9cc;
+  background: #efefe6;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.model-comparison-header {
+  padding: 24px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  border-bottom: 1px solid #d4d9cc;
+  background: #f4f4ed;
+}
+.model-comparison-header .eyebrow {
+  color: #66715d;
+  font-size: 10px;
+  letter-spacing: 1.3px;
+}
+.model-comparison-header h3 {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.3;
+  margin-top: 5px;
+}
+.model-comparison .model-view-switch {
+  flex-shrink: 0;
+}
+.model-comparison .model-view-switch button {
+  padding: 9px 16px;
+}
+.model-comparison-stage {
+  height: 500px;
+  position: relative;
+  isolation: isolate;
+}
+.model-comparison-stage > .building-viewer {
+  position: absolute !important;
+  inset: 0;
+}
+.model-comparison-stage > .model-loading {
+  position: absolute;
+  inset: 0;
+}
+.model-comparison-stage.mode-compare::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: #ced4c6;
+  pointer-events: none;
+  z-index: 1;
+}
+.model-view-label,
+.model-purchase {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  z-index: 1;
+  pointer-events: none;
+}
+.model-view-label {
+  top: 22px;
+}
+.model-state-name {
+  display: inline-block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  font-weight: 750;
+  color: #6e6e5e;
+}
+.model-view-label.after .model-state-name {
+  color: #3d5e48;
+}
+.model-view-label p {
+  font-size: 11px;
+  color: #68715f;
+  margin: 1px 0 4px;
+}
+.model-view-label strong {
+  display: block;
+  font-size: 31px;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+  font-weight: 500;
+}
+.model-price-caption {
+  font-size: 10px;
+  color: #707564;
+}
+.mode-compare .model-view-label.before,
+.mode-compare .model-purchase.before {
+  right: calc(50% + 28px);
+}
+.mode-compare .model-view-label.after,
+.mode-compare .model-purchase.after {
+  left: calc(50% + 28px);
+}
+.model-purchase {
+  bottom: 24px;
+}
+.model-purchase .stock-bar {
+  margin: 0 0 9px;
+  height: 7px;
+  background: #dde1d3;
+}
+.model-purchase > div:last-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 11px;
+  color: #68705f;
+}
+.model-purchase strong {
+  font-weight: 650;
+  color: var(--ink);
+}
+.model-purchase i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #b98b5b;
+  margin-right: 6px;
+}
+.model-same-layout {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #e6e9dc;
+  border: 1px solid #ced4c6;
+  color: #57644e;
+  font-size: 10px;
+  line-height: 1.5;
+  padding: 7px 10px;
+  width: 93px;
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+}
+.mode-before .model-same-layout,
+.mode-after .model-same-layout {
+  top: 24px;
+  right: 28px;
+  left: auto;
+  width: auto;
+  transform: none;
+}
+.model-comparison-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 28px;
+  border-top: 1px solid #d4d9cc;
+  background: #f4f4ed;
+}
+.model-display-options,
+.model-camera-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.model-display-options label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 11px;
+  color: #68715f;
+}
+.model-display-options select {
+  padding: 6px 8px;
+  border: 1px solid #d0d5c7;
+  border-radius: 2px;
+  background: #fbfbf6;
+  color: #344735;
+  font-size: 12px;
+  max-width: 175px;
+}
+.model-camera-tools {
+  gap: 4px;
+}
+.model-camera-tools > span {
+  font-size: 10px;
+  color: #727a68;
+  margin-right: 10px;
+}
+.model-camera-tools .icon-button {
+  width: 33px;
+  height: 33px;
+  color: #5b6d51;
+}
+.model-camera-tools .icon-button[aria-pressed="true"] {
+  background: #dfe6d4;
+}
+.model-comparison-note {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 17px 28px;
+  border-top: 1px solid #d4d9cc;
+  background: #f8f8f2;
+  color: #68715f;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.model-comparison-note p {
+  max-width: 620px;
+}
+.model-comparison-note strong {
+  color: #43533c;
+  font-weight: 650;
+}
+.model-comparison-note > span {
+  max-width: 215px;
+}
+@container (max-width: 850px) {
+  .model-comparison-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .model-camera-tools > span {
+    display: none;
+  }
+}
+@container (max-width: 599px) {
+  .model-comparison-header {
+    padding: 20px;
+  }
+  .model-comparison-header h3 {
+    font-size: 23px;
+  }
+  .model-comparison .model-view-switch {
+    width: 100%;
+  }
+  .model-comparison .model-view-switch button {
+    flex: 1;
+    padding: 10px;
+  }
+  .model-comparison-stage {
+    height: 430px;
+  }
+  .model-comparison-stage.mode-compare {
+    height: 860px;
+  }
+  .model-comparison-stage.mode-compare::before {
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    height: 1px;
+    width: auto;
+  }
+  .mode-compare .model-view-label.before,
+  .mode-compare .model-purchase.before,
+  .mode-compare .model-view-label.after,
+  .mode-compare .model-purchase.after,
+  .model-view-label,
+  .model-purchase {
+    left: 20px;
+    right: 20px;
+  }
+  .mode-compare .model-view-label.after {
+    top: calc(50% + 22px);
+  }
+  .mode-compare .model-purchase.before {
+    bottom: calc(50% + 24px);
+  }
+  .model-same-layout {
+    width: auto;
+    white-space: nowrap;
+  }
+  .mode-before .model-same-layout,
+  .mode-after .model-same-layout {
+    top: 145px;
+    left: 20px;
+    right: auto;
+  }
+  .model-comparison-toolbar {
+    padding: 14px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .model-display-options {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .model-display-options label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .model-comparison-note {
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 20px;
+  }
+  .model-comparison-note > span {
+    max-width: none;
+  }
+}
 .comparison-section {
   padding-top: 91px;
   padding-bottom: 76px;

@@ -23,6 +23,7 @@ export default function BuildingViewer({
   rotation = false,
   resetKey = 0,
   compare = false,
+  paired = false,
 }) {
   const host = useRef(null);
   const sceneRef = useRef(null);
@@ -49,7 +50,9 @@ export default function BuildingViewer({
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.05;
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
+    renderer.shadowMap.autoUpdate = false;
+    renderer.autoClear = false;
     renderer.domElement.setAttribute("role", "img");
     renderer.domElement.setAttribute(
       "aria-label",
@@ -500,14 +503,92 @@ export default function BuildingViewer({
     let disposed = false;
     let inView = true;
     let lastTime = 0;
+    let pairedMode = false;
+    let viewportWidth = 1;
+    let viewportHeight = 1;
+    let viewports = [{ x: 0, y: 0, width: 1, height: 1 }];
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    function setProjection(width, height) {
+      const aspect = Math.max(width, 1) / Math.max(height, 1);
+      const halfHeight = Math.max(17.5, 23 / aspect);
+      camera.left = -halfHeight * aspect;
+      camera.right = halfHeight * aspect;
+      camera.top = halfHeight;
+      camera.bottom = -halfHeight;
+      camera.updateProjectionMatrix();
+    }
+    function resizeLayout() {
+      viewportWidth = Math.max(element.clientWidth, 1);
+      viewportHeight = Math.max(element.clientHeight, 1);
+      const stacked = pairedMode && viewportWidth < 600;
+      element.dataset.viewLayout = pairedMode
+        ? stacked
+          ? "stacked"
+          : "side-by-side"
+        : "single";
+      if (stacked) {
+        const bottomHeight = Math.floor(viewportHeight / 2);
+        // WebGL uses a bottom-left origin: the before view occupies the top.
+        viewports = [
+          {
+            x: 0,
+            y: bottomHeight,
+            width: viewportWidth,
+            height: viewportHeight - bottomHeight,
+          },
+          { x: 0, y: 0, width: viewportWidth, height: bottomHeight },
+        ];
+      } else if (pairedMode) {
+        const leftWidth = Math.floor(viewportWidth / 2);
+        viewports = [
+          { x: 0, y: 0, width: leftWidth, height: viewportHeight },
+          {
+            x: leftWidth,
+            y: 0,
+            width: viewportWidth - leftWidth,
+            height: viewportHeight,
+          },
+        ];
+      } else {
+        viewports = [
+          { x: 0, y: 0, width: viewportWidth, height: viewportHeight },
+        ];
+      }
+      setProjection(viewports[0].width, viewports[0].height);
+      renderer.setSize(viewportWidth, viewportHeight, false);
+      invalidate();
+    }
     function render(time = 0) {
       frame = 0;
       if (disposed || !inView || document.hidden) return;
       const delta = Math.min(Math.max((time - lastTime) / 1000, 0), 0.05);
       lastTime = time;
       controls.update(delta);
-      renderer.render(scene, camera);
+      renderer.setScissorTest(false);
+      renderer.setViewport(0, 0, viewportWidth, viewportHeight);
+      renderer.clear();
+      renderer.shadowMap.needsUpdate = true;
+      // One scene and camera are rendered twice. Purchasing results never
+      // substitute different routes or architecture for the after view.
+      renderer.setScissorTest(true);
+      for (const viewport of viewports) {
+        if (viewport.width < 1 || viewport.height < 1) continue;
+        setProjection(viewport.width, viewport.height);
+        renderer.setViewport(
+          viewport.x,
+          viewport.y,
+          viewport.width,
+          viewport.height,
+        );
+        renderer.setScissor(
+          viewport.x,
+          viewport.y,
+          viewport.width,
+          viewport.height,
+        );
+        renderer.render(scene, camera);
+      }
+      renderer.setScissorTest(false);
       if (controls.autoRotate) invalidate();
     }
     function invalidate() {
@@ -515,20 +596,9 @@ export default function BuildingViewer({
         frame = requestAnimationFrame(render);
     }
     controls.addEventListener("change", invalidate);
-    const resizeObserver = new ResizeObserver(() => {
-      const width = Math.max(element.clientWidth, 1);
-      const height = Math.max(element.clientHeight, 1);
-      const aspect = width / height;
-      const halfHeight = Math.max(17.5, 23 / aspect);
-      camera.left = -halfHeight * aspect;
-      camera.right = halfHeight * aspect;
-      camera.top = halfHeight;
-      camera.bottom = -halfHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(width, height, false);
-      invalidate();
-    });
+    const resizeObserver = new ResizeObserver(resizeLayout);
     resizeObserver.observe(element);
+    resizeLayout();
     const intersectionObserver = new IntersectionObserver(([entry]) => {
       inView = entry.isIntersecting;
       if (inView) invalidate();
@@ -544,6 +614,16 @@ export default function BuildingViewer({
       controls,
       reducedMotion,
       requestedRotation: false,
+      setPaired(value) {
+        pairedMode = Boolean(value);
+        renderer.domElement.setAttribute(
+          "aria-label",
+          pairedMode
+            ? "Synchronized before and after views of the same unchanged illustrative five-level hospital. These views show no building redesign. Drag either view or use arrow keys to orbit both; scroll or press plus and minus to zoom both."
+            : "Illustrative five-level hospital with mechanical, plumbing, electrical and fire service routes. Drag or use arrow keys to orbit; scroll or press plus and minus to zoom.",
+        );
+        resizeLayout();
+      },
       reset() {
         camera.position.copy(defaultPosition);
         camera.zoom = 1;
@@ -648,6 +728,10 @@ export default function BuildingViewer({
         element.removeChild(renderer.domElement);
     };
   }, []);
+
+  useEffect(() => {
+    sceneRef.current?.setPaired(paired);
+  }, [paired]);
 
   useEffect(() => {
     const state = sceneRef.current;

@@ -151,6 +151,174 @@ function OrderPanel({ title, subtitle, data, max, after = false }) {
     </article>
   );
 }
+
+function ModelComparison({ scenarioId, baselineId }) {
+  const [mode, setMode] = useState("compare");
+  const [modelTrade, setModelTrade] = useState("all");
+  const [floor, setFloor] = useState("all");
+  const [separated, setSeparated] = useState(false);
+  const [cameraReset, setCameraReset] = useState(0);
+  const result = comparison(scenarioId, baselineId, modelTrade);
+  const systems =
+    modelTrade === "all"
+      ? viewerSystems.map((s) => s.id)
+      : [modelTrade === "sprinkler" ? "fire" : modelTrade];
+  const states = mode === "compare" ? ["before", "after"] : [mode];
+  const maxOrder = Math.max(result.before.purchasedM, result.after.purchasedM);
+
+  return (
+    <section
+      className="model-comparison"
+      id="model-comparison"
+      aria-label="3D before and after"
+    >
+      <header className="model-comparison-header">
+        <div>
+          <span className="eyebrow">Explore the change in 3D</span>
+          <h3>Same hospital. Less material to buy.</h3>
+        </div>
+        <div
+          className="segmented model-view-switch"
+          aria-label="3D comparison view"
+        >
+          {[
+            ["before", "Before"],
+            ["after", "After"],
+            ["compare", "Side by side"],
+          ].map(([value, label]) => (
+            <button
+              key={value}
+              aria-label={
+                value === "compare" ? "Compare models" : `${label} model`
+              }
+              aria-pressed={mode === value}
+              onClick={() => setMode(value)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </header>
+      <div className={`model-comparison-stage mode-${mode}`}>
+        <Suspense
+          fallback={
+            <div className="model-loading">Preparing the comparison…</div>
+          }
+        >
+          <BuildingViewer
+            paired={mode === "compare"}
+            visibleSystems={systems}
+            level={floor}
+            exploded={separated}
+            resetKey={cameraReset}
+          />
+        </Suspense>
+        {states.map((state) => (
+          <React.Fragment key={state}>
+            <div className={`model-view-label ${state}`}>
+              <span className="model-state-name">
+                {state === "before" ? "Before" : "After"}
+              </span>
+              <p>
+                {state === "before"
+                  ? baselineId === "perNetwork"
+                    ? "Separate network orders"
+                    : "Orders already combined"
+                  : "Combined cutting plan"}
+              </p>
+              <strong>{money(result[state].costUsd)}</strong>
+              <span className="model-price-caption">
+                Estimated material purchase
+              </span>
+            </div>
+            <div className={`model-purchase ${state}`}>
+              <StockBar
+                data={result[state]}
+                max={maxOrder}
+                tone={state === "after" ? "selected" : "original"}
+              />
+              <div>
+                <span>
+                  <strong>{number(result[state].purchasedM)} m</strong> ordered
+                </span>
+                <span>
+                  <i aria-hidden="true" />
+                  <strong>{number(result[state].wasteM)} m</strong> waste
+                </span>
+              </div>
+            </div>
+          </React.Fragment>
+        ))}
+        <span className="model-same-layout">Building geometry unchanged</span>
+      </div>
+      <div className="model-comparison-toolbar">
+        <div className="model-display-options">
+          <label>
+            <span>Systems</span>
+            <select
+              aria-label="Model comparison trade"
+              value={modelTrade}
+              onChange={(e) => setModelTrade(e.target.value)}
+            >
+              {Object.entries(tradeNames).map(([value, name]) => (
+                <option key={value} value={value}>
+                  {name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span>Floor</span>
+            <select
+              aria-label="Model comparison floor"
+              value={floor}
+              onChange={(e) => setFloor(e.target.value)}
+            >
+              <option value="all">All floors</option>
+              {[0, 1, 2, 3, 4].map((value) => (
+                <option key={value} value={value}>
+                  Level {value + 1}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div className="model-camera-tools">
+          <span>
+            {mode === "compare"
+              ? "Drag either view to rotate both"
+              : "Drag to rotate · scroll to zoom"}
+          </span>
+          <IconButton
+            label="Separate comparison floors"
+            aria-pressed={separated}
+            onClick={() => setSeparated(!separated)}
+          >
+            <Layers size={17} />
+          </IconButton>
+          <IconButton
+            label="Reset comparison camera"
+            onClick={() => setCameraReset((n) => n + 1)}
+          >
+            <RotateCcw size={17} />
+          </IconButton>
+        </div>
+      </div>
+      <div className="model-comparison-note">
+        <p>
+          <strong>The layout stays the same.</strong> This run changes material
+          orders and cutting plans. Both views use the same illustrative model,
+          not the source hospital geometry.
+        </p>
+        <span>
+          Pipe, duct, conduit &amp; tray only. Prices cover all floors.
+          Installation excluded.
+        </span>
+      </div>
+    </section>
+  );
+}
+
 function loadHistory() {
   try {
     const saved = JSON.parse(
@@ -201,6 +369,10 @@ export default function App() {
   const total = comparison(scenarioId, baselineId),
     view = comparison(scenarioId, baselineId, trade);
   const tradeIds = ["hvac", "plumbing", "sprinkler", "electrical"];
+  useEffect(() => {
+    const target = document.getElementById(window.location.hash.slice(1));
+    target?.scrollIntoView({ behavior: "instant" });
+  }, []);
   useEffect(() => {
     if (!toast) return;
     const t = setTimeout(() => setToast(""), 4000);
@@ -342,8 +514,8 @@ export default function App() {
             <p className="hero-budget-note">
               Materials only. This is not the hospital construction budget.
             </p>
-            <a className="button dark" href="#comparison">
-              See the before & after <ArrowDownRight size={18} />
+            <a className="button dark" href="#model-comparison">
+              See the 3D before & after <ArrowDownRight size={18} />
             </a>
             <p className="hero-note">
               A purchasing estimate. Engineering review required.
@@ -534,6 +706,7 @@ export default function App() {
               </select>
             </label>
           </div>
+          <ModelComparison scenarioId={scenarioId} baselineId={baselineId} />
           <div className="comparison-context">
             <span>{tradeNames[trade]}</span>
             <p>

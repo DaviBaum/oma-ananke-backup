@@ -16,6 +16,7 @@ Local preview: `http://127.0.0.1:5188/`.
 
 - Orbit, zoom, keyboard navigation, floor isolation, floor separation and discipline visibility in an illustrative five-level model.
 - Hospital results across all seven source files, a before-and-after purchasing comparison, and per-discipline quantities.
+- A paired 3D before-and-after view with synchronized building controls and material-purchasing figures. Both sides deliberately show the same illustrative geometry because the purchasing study did not redesign the building.
 - Switch the purchasing baseline, compare a smaller plan with no additional joints, and filter the before-and-after view by trade.
 - Browser-computed cutting plans for a synthetic 48-piece sample: change stock size, discipline, price or cutting allowance; compare identical demands across purchasing policies.
 - Save scenarios locally, restore them, download the complete cut plan or demonstration report.
@@ -37,6 +38,8 @@ The main comparison uses identical measured demands, assumed stock lengths, pric
 Neither the before nor the after figure is the cost of building the hospital. Both cover only the included straight pipe, duct, conduit and cable-tray material. The $35,063.93 is a conditional gross material estimate, not a construction quote or verified net project saving. It excludes labor, extra joints, fittings, equipment and installation costs. Most of the reduction comes from combining orders: the selected plan saves another $292.42 against a basic combined-order calculation. The installed building geometry was not changed.
 
 The wider purchasing plan assumes 3,457 new joints. A subsequent review found missing product and fabrication constraints, including 149 new pieces shorter than 100 mm. Neither this plan nor the separate no-new-splice scenario is approved for construction. The figures remain useful for demonstrating purchasing analysis, but must not be presented as a safe, code-compliant redesign. See `../docs/hospital-whole-procurement.md` and `../docs/hospital-code-review.md` for the full evidence and limitations.
+
+The 3D comparison separates the two purchasing alternatives visually; it does not depict changed installed pipework, smaller building systems or savings on the hospital construction budget. Its before/after prices and purchased quantities use the selected recorded scenario and baseline. The model itself is an illustration shared by both sides, with linked camera, floor and system controls.
 
 The older routing evidence in the downloadable report describes a two-terminal comparison, not whole-Hospital optimization. The interactive calculator uses synthetic lengths and assumed editable prices, not Hospital quantities or supplier quotes. It verifies quantity preservation and stock capacity for a feasible heuristic; no global optimum, full-system design or construction approval is claimed.
 
@@ -62,6 +65,6 @@ npx vercel deploy --prod
 
 An authenticated Vercel account is required for a durable production deployment. The earlier demo used an anonymous temporary deployment; its stored expiry was 22 October 2026 at 21:45 UTC. It is not a permanent production URL. Vercel rejects updates using expired anonymous state. To retain a temporary deployment, it must be claimed into a Vercel account before its returned expiry. Keep `.vercel/anonymous.json`, private deployment receipts and claim links out of source control and public artifacts.
 
-The refreshed demo was deployed to `https://snappy-mauve-35ypwfb.tmp.now` on 22 October 2026. Its server-assigned expiry is **22 October 2026 at 23:02:13 UTC** (18:02 Chicago time). All nine hosted build files match the verified local build byte for byte; the three desktop/mobile browser journeys passed against the public address. This remains a temporary preview, not permanent hosting.
+The refreshed demo was deployed to `https://snappy-mauve-35ypwfb.tmp.now` on 22 October 2026 and updated with the paired 3D comparison. Its server-assigned expiry is **22 October 2026 at 23:02:13 UTC** (18:02 Chicago time). All nine hosted build files match the verified local build byte for byte; the four desktop/mobile browser journeys passed against the public address, including direct navigation to `/#model-comparison`, paired and single model modes, pricing scope, controls, persistence and downloads. This remains a temporary preview, not permanent hosting.
 
 Manrope is self-hosted under its bundled SIL Open Font License. The static deployment has no customer telemetry, server-side secrets or external runtime dependencies.

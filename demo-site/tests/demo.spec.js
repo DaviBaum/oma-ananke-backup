@@ -32,7 +32,7 @@ test("hospital comparisons preserve their baseline, scope and downloadable evide
   await expect(page.locator(".order-panel.after")).toContainText("$521,710");
   await expect(page.locator(".saving-line")).toContainText("$35,064");
 
-  await expect(page.locator("canvas")).toBeVisible();
+  await expect(page.locator(".model-panel canvas")).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
   await page.screenshot({ path: "qa/hospital-desktop.png", fullPage: true });
   const heating = page.getByRole("button", { name: "Heating & cooling", exact: true });
@@ -91,6 +91,59 @@ test("hospital comparisons preserve their baseline, scope and downloadable evide
   expect(errors).toEqual([]);
 });
 
+test("3D comparison follows the purchasing scope and keeps the unchanged layout clear", async ({ page }) => {
+  const errors = [];
+  page.on("pageerror", error => errors.push(error.message));
+  await page.goto("/#model-comparison");
+  const model = page.getByRole("region", { name: "3D before and after", exact: true });
+  await expect.poll(() => model.evaluate(el => {
+    const top = el.getBoundingClientRect().top;
+    return top >= -5 && top < 200;
+  })).toBe(true);
+  await expect(model.locator("canvas")).toBeVisible();
+  await expect(model.locator(".building-viewer")).toHaveAttribute("data-view-layout", "side-by-side");
+  await expect(model.locator(".model-view-label.before")).toContainText("$556,774");
+  await expect(model.locator(".model-view-label.after")).toContainText("$521,710");
+  await expect(model.locator(".model-view-label.before")).toContainText("Estimated material purchase");
+  await expect(model.locator(".model-view-label.after")).toContainText("Estimated material purchase");
+  await expect(model.locator(".model-purchase.before")).toContainText("24,995 m");
+  await expect(model.locator(".model-purchase.after")).toContainText("23,326 m");
+  await expect(model.locator(".model-same-layout")).toHaveText("Building geometry unchanged");
+  await expect(model.locator(".model-comparison-note")).toContainText("The layout stays the same");
+  await expect(model.getByRole("button", { name: "Compare models", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await page.evaluate(() => document.fonts.ready);
+  await model.screenshot({ path: "qa/model-comparison-desktop.png" });
+
+  await model.getByLabel("Model comparison trade").selectOption("electrical");
+  await expect(model.locator(".model-view-label.before")).toContainText("$16,833");
+  await expect(model.locator(".model-view-label.after")).toContainText("$16,749");
+  await model.getByLabel("Model comparison floor").selectOption("2");
+  await expect(model.getByLabel("Model comparison floor")).toHaveValue("2");
+  await model.getByRole("button", { name: "Separate comparison floors", exact: true }).click();
+  await expect(model.getByRole("button", { name: "Separate comparison floors", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await model.getByRole("button", { name: "Before model", exact: true }).click();
+  await expect(model.locator(".building-viewer")).toHaveAttribute("data-view-layout", "single");
+  await expect(model.locator(".model-view-label.before")).toBeVisible();
+  await expect(model.locator(".model-view-label.after")).toHaveCount(0);
+  await model.getByRole("button", { name: "After model", exact: true }).click();
+  await expect(model.locator(".model-view-label.after")).toBeVisible();
+  await expect(model.locator(".model-view-label.before")).toHaveCount(0);
+  await model.getByRole("button", { name: "Compare models", exact: true }).click();
+  await expect(model.locator(".model-view-label")).toHaveCount(2);
+  await model.getByRole("button", { name: "Reset comparison camera", exact: true }).click();
+  await model.getByLabel("Model comparison trade").selectOption("all");
+
+  await page.getByRole("button", { name: "Orders already combined", exact: true }).click();
+  await expect(model.locator(".model-view-label.before")).toContainText("$522,002");
+  await expect(model.locator(".model-view-label.after")).toContainText("$521,710");
+  await page.getByLabel("Purchasing option").selectOption("noSplice");
+  await page.getByRole("button", { name: "Separate orders", exact: true }).click();
+  await expect(model.locator(".model-view-label.before")).toContainText("$232,197");
+  await expect(model.locator(".model-view-label.after")).toContainText("$202,792");
+  await expect(model.locator(".model-same-layout")).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
 test("sample calculator saves, restores and downloads cuts; file preview stays scoped", async ({ page }) => {
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
@@ -138,7 +191,7 @@ test("sample calculator saves, restores and downloads cuts; file preview stays s
 test("mobile comparisons, navigation and calculator remain usable without page overflow", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  await expect(page.locator("canvas")).toBeVisible();
+  await expect(page.locator(".model-panel canvas")).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
   await expect(page.locator(".hero-budget-note")).toBeVisible();
   await expect(page.locator(".hero-budget-note")).toContainText("not the hospital construction budget");
@@ -147,6 +200,22 @@ test("mobile comparisons, navigation and calculator remain usable without page o
   await expect(page.locator(".order-panel.after .price-scope")).toBeVisible();
   await expectNoPageOverflow(page);
   await page.screenshot({ path: "qa/hospital-mobile.png", fullPage: true });
+  const model = page.getByRole("region", { name: "3D before and after", exact: true });
+  await model.scrollIntoViewIfNeeded();
+  await expect(model.locator("canvas")).toBeVisible();
+  await expect(model.locator(".building-viewer")).toHaveAttribute("data-view-layout", "stacked");
+  await expect(model.locator(".model-view-label.before")).toContainText("$556,774");
+  await expect(model.locator(".model-view-label.after")).toContainText("$521,710");
+  await expect(model.locator(".model-same-layout")).toBeVisible();
+  await model.screenshot({ path: "qa/model-comparison-mobile.png" });
+  await model.getByLabel("Model comparison floor").selectOption("1");
+  await model.getByLabel("Model comparison trade").selectOption("electrical");
+  await expect(model.locator(".model-view-label.after")).toContainText("$16,749");
+  await model.getByRole("button", { name: "After model", exact: true }).click();
+  await expect(model.locator(".model-view-label.before")).toHaveCount(0);
+  await model.getByRole("button", { name: "Compare models", exact: true }).click();
+  await expect(model.locator(".model-view-label")).toHaveCount(2);
+  await expectNoPageOverflow(page);
   await page.getByRole("button", { name: "Open navigation", exact: true }).click();
   await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Before & after", exact: true }).click();
   await expect(page.getByRole("button", { name: "Open navigation", exact: true })).toHaveAttribute("aria-expanded", "false");
