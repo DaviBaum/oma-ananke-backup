@@ -4,9 +4,9 @@
 
 export const project = {
   id: "hospital-reference",
-  name: "Hospital reference project",
+  name: "Hospital example",
   shortName: "Hospital",
-  subtitle: "Seven IFC models. One coordinated view.",
+  subtitle: "Seven building design files, in one place.",
   type: "Healthcare",
   format: "IFC4",
   sourceCount: 7,
@@ -23,12 +23,12 @@ export const project = {
   cyclicComponents: 32,
   inventorySeconds: 129.672,
   evidenceDate: "2026-09-15",
-  status: "Inventory reconciled",
-  scope: "Whole-project service inventory",
+  status: "Counted",
+  scope: "Equipment, pipes and connections across the hospital",
   scopeNote:
-    "Counts cover all seven source models. Components include isolated objects; they are not all complete engineered networks.",
-  sourcePreservation: "Original source files unchanged",
-  engineeringStatus: "Design inputs required",
+    "All seven building design files are included. Some groups contain just one item with no recorded connections.",
+  sourcePreservation: "Original files kept unchanged",
+  engineeringStatus: "More design information needed",
   wholeBuildingOptimized: false,
   verifiedForConstruction: false,
   monetarySavings: null,
@@ -38,8 +38,8 @@ export const disciplines = [
   {
     id: "hvac",
     code: "M",
-    label: "Mechanical / HVAC",
-    shortLabel: "HVAC",
+    label: "Heating & cooling",
+    shortLabel: "Heating & cooling",
     color: "#2e8b79",
     products: 59215,
     objects: 19670,
@@ -48,9 +48,10 @@ export const disciplines = [
     connections: 19766,
     systems: 466,
     objectsWithoutPorts: 159,
-    status: "Inventory reconciled",
-    detail: "Mechanical equipment, ductwork, piping and explicit connections.",
-    designInput: "Airflow, equipment duties and supply conditions",
+    status: "Counted",
+    detail:
+      "Heating and cooling equipment, ducts, pipes and their recorded connections.",
+    designInput: "Required airflow, equipment capacity and supply conditions",
   },
   {
     id: "plumbing",
@@ -65,9 +66,9 @@ export const disciplines = [
     connections: 8907,
     systems: 65,
     objectsWithoutPorts: 264,
-    status: "Inventory reconciled",
-    detail: "Pipes, fittings, devices and authored network connectivity.",
-    designInput: "Demand, pressure boundaries and material specifications",
+    status: "Counted",
+    detail: "Water pipes, fittings, equipment and their recorded connections.",
+    designInput: "Required water flow, available pressure and pipe materials",
   },
   {
     id: "electrical",
@@ -82,15 +83,17 @@ export const disciplines = [
     connections: 1749,
     systems: 221,
     objectsWithoutPorts: 869,
-    status: "Inventory reconciled",
-    detail: "Electrical equipment, lighting and modeled containment.",
-    designInput: "Circuit loads, impedance and installation limits",
+    status: "Counted",
+    detail:
+      "Electrical equipment, lights, cable trays and conduits in the design files.",
+    designInput:
+      "Circuit power requirements, cable properties and installation rules",
   },
   {
     id: "sprinkler",
     code: "S",
-    label: "Sprinkler",
-    shortLabel: "Sprinkler",
+    label: "Sprinklers",
+    shortLabel: "Sprinklers",
     color: "#be675d",
     products: 38255,
     objects: 13490,
@@ -99,9 +102,10 @@ export const disciplines = [
     connections: 12379,
     systems: 17,
     objectsWithoutPorts: 1079,
-    status: "Inventory reconciled",
-    detail: "Sprinkler piping, fittings and devices across the source model.",
-    designInput: "Hazard criteria, hydraulic demand and water supply",
+    status: "Counted",
+    detail:
+      "Sprinkler pipes, fittings and equipment throughout the design file.",
+    designInput: "Fire risk, required water flow and available water supply",
   },
   {
     id: "fire",
@@ -116,10 +120,10 @@ export const disciplines = [
     connections: 0,
     systems: 21,
     objectsWithoutPorts: 867,
-    status: "Inventory reconciled",
-    detail:
-      "867 devices and candidates retained. Source exports contain no explicit ports or connections.",
-    designInput: "Circuit topology, device duties and panel requirements",
+    status: "Counted",
+    detail: "867 items counted. The files do not show how these items connect.",
+    designInput:
+      "Wiring connections, device requirements and control panel details",
   },
   {
     id: "architecture",
@@ -134,11 +138,11 @@ export const disciplines = [
     connections: 0,
     systems: 0,
     objectsWithoutPorts: 1770,
-    status: "Classification review",
+    status: "Needs identification",
     detail:
-      "1,770 generic physical proxies remain visible as unresolved service candidates.",
-    designInput: "Classification of generic physical proxies",
-    objectsLabel: "Unresolved candidates",
+      "1,770 items have no clear equipment type. They stay visible for review.",
+    designInput: "Identify the 1,770 items without a clear type",
+    objectsLabel: "Items to identify",
   },
   {
     id: "structure",
@@ -153,24 +157,24 @@ export const disciplines = [
     connections: 0,
     systems: 0,
     objectsWithoutPorts: 0,
-    status: "Source accounted for",
+    status: "Counted",
     detail:
-      "Structural source records are preserved and counted separately from services.",
-    designInput: "Structural analysis is outside this demonstrated workflow",
+      "Structural items are kept and counted separately from building equipment.",
+    designInput: "Structural performance is not assessed in this demo",
   },
 ];
 
 export const routeComparison = {
   id: "two-terminal-pressure-pipe",
-  title: "A simpler route. A checked result.",
-  label: "Bounded routing benchmark",
-  scope: "Two-terminal pressure-pipe study",
+  title: "Four fewer bends. A simpler pipe route.",
+  label: "Pipe route comparison",
+  scope: "A pipe layout serving two outlets",
   scopeNote:
-    "A hypothetical two-terminal route checked against the full architectural model. This is a comparison of two generated alternatives, not a redesign of installed hospital services.",
+    "Two example pipe layouts were checked against the hospital's full architectural model. The results apply to this small test, not to the hospital's existing pipework.",
   architecturalObstacles: 14409,
   alternativesChecked: 2,
   baseline: {
-    label: "Alternative A",
+    label: "Longer option",
     lengthM: 5.785398,
     fittings: 5,
     elbows: 4,
@@ -184,7 +188,7 @@ export const routeComparison = {
     componentPairs: 66,
   },
   selected: {
-    label: "Selected alternative",
+    label: "Simpler option",
     lengthM: 5,
     fittings: 1,
     elbows: 0,
@@ -206,102 +210,103 @@ export const routeComparison = {
     straightStockReductionM: 0,
   },
   requirements: [
-    "0.5 L/s prescribed delivery at each terminal",
-    "100 Pa available static pressure difference",
-    "2 m/s velocity limit",
+    "Each outlet must receive 0.5 litres of water per second",
+    "100 Pa of pressure available to move the water",
+    "Maximum water speed: 2 metres per second",
   ],
   checks: [
     {
-      label: "Geometry & clearance",
+      label: "Fits around the building",
       status: "Passed",
-      note: "All 14,409 architectural obstacles included",
+      note: "Checked against all 14,409 obstacles in the architectural model",
     },
     {
-      label: "Physical connectivity",
+      label: "Pipe parts connect",
       status: "Passed",
-      note: "Declared route ports and connections checked",
+      note: "The pipe ends and connections in the test were checked",
     },
     {
-      label: "Declared service",
+      label: "Delivers the required water",
       status: "Passed",
-      note: "Specified fixed-flow pressure and velocity requirements",
+      note: "Meets the test's pressure and water-speed limits at the specified flow",
     },
     {
-      label: "Exported IFC recheck",
+      label: "Saved design passes again",
       status: "Passed",
-      note: "Selected exported geometry checked in a separate execution",
+      note: "The saved building design file was checked again in a separate run",
     },
   ],
   monetarySavings: null,
   costNote:
-    "Both alternatives use 4.625 m of straight stock. Four fewer elbows and eight fewer modeled interfaces provide a pricing basis; monetary savings are not established.",
+    "Both options need 4.625 m of straight pipe. The simpler option removes four bends and eight connections between parts. That could reduce fitting and assembly costs; actual savings have not been priced.",
   assumptions:
-    "Ideal bore, prescribed fixed flows, declared Darcy friction and fitting-loss coefficients. Only the two supplied alternatives are compared.",
+    "The test uses idealized inside pipe dimensions, fixed water flow and specified resistance values for pipes and fittings. It compares only these two options.",
 };
 
 export const workflow = [
   {
     number: "01",
-    title: "Bring the building together",
-    text: "Account for every source model, service object and authored connection.",
+    title: "See what is in the building",
+    text: "Bring the design files together to count equipment, pipes and connections.",
   },
   {
     number: "02",
-    title: "Define what must hold",
-    text: "Make delivery requirements, clearances and catalogue choices explicit.",
+    title: "Set the requirements",
+    text: "Specify what each system must deliver, how much space it needs and which parts it can use.",
   },
   {
     number: "03",
-    title: "Compare viable alternatives",
-    text: "Inspect routing quantities and declared service checks side by side.",
+    title: "Find where less can do the job",
+    text: "Compare pipe lengths, fittings and performance to see what each option changes.",
   },
   {
     number: "04",
-    title: "Keep the evidence",
-    text: "Trace the selected alternative through independent checks and exported IFC.",
+    title: "Save the design and check it again",
+    text: "Check the saved design file and keep the results for review.",
   },
 ];
 
 export const capabilities = [
   {
     id: "inventory",
-    label: "Multi-discipline IFC inventory",
-    status: "Demonstrated",
-    text: "Source reconciliation across seven Hospital models.",
+    label: "See what is in the building",
+    status: "Tested",
+    text: "Equipment and connections counted across all seven hospital design files.",
   },
   {
     id: "routing",
-    label: "Bounded routing comparison",
-    status: "Demonstrated",
-    text: "Checked alternatives with geometry, connectivity and declared service requirements.",
+    label: "Compare simpler pipe routes",
+    status: "Tested",
+    text: "Two example layouts compared for fit, connections and water delivery.",
   },
   {
     id: "export",
-    label: "Checked IFC export",
-    status: "Demonstrated",
-    text: "An exported selected route receives a separate verification run.",
+    label: "Save the changed design and check it again",
+    status: "Tested",
+    text: "The chosen pipe layout was saved as a building design file (IFC) and checked again.",
   },
   {
     id: "catalogues",
-    label: "Service catalogue calculations",
-    status: "Implemented",
-    text: "HVAC, pipe, drainage, electrical and fire-service screens with supplied inputs.",
+    label: "Calculate what each system needs",
+    status: "Built",
+    text: "Calculations for heating, cooling, water, drainage, electrical and fire systems using supplied design values.",
   },
   {
     id: "whole-building",
-    label: "Full installed-system redesign",
-    status: "In development",
-    text: "Coupled network redesign and full-system approval are not demonstrated here.",
+    label: "Improve every system in a building",
+    status: "Still being developed",
+    text: "A complete redesign of the hospital's connected systems has not been demonstrated.",
   },
 ];
 
 export const demo = {
-  label: "Interactive product demo",
+  label: "Try the demo",
   notice:
-    "Explore retained project data and a checked routing study. Interactions in this demo do not run the engineering backend.",
-  viewerNotice: "Illustrative model view · not source IFC geometry",
-  reportTitle: "OMA / ANANKE — Hospital demonstration report",
-  releaseStatus: "Development preview",
+    "Explore recorded hospital results and try the pipe comparison. The demo uses saved results; it does not calculate a new building design.",
+  viewerNotice:
+    "Example building illustration · not the hospital's actual design",
+  reportTitle: "OMA / ANANKE — Hospital demo results",
+  releaseStatus: "Demo version",
 };
 
 export const evidence = {
@@ -316,11 +321,12 @@ export const evidence = {
       "b72cb24732b8b1d5ab08fdebda5e5649640a652b82bdda24a58f00d4da81b52c",
     routingBuild:
       "06aa865600b4ab2dc8f42f77b2cb5f82816dec99bbf8a1ff5f67673fb44c1949",
-    inventoryReview: "Independent source and graph reconciliation passed",
+    inventoryReview:
+      "A separate check confirmed the file counts and recorded connections",
     inventoryRegressionCases: 3426,
     inventoryDate: "2026-09-15",
     routeDate: "2026-09-15",
-    dataType: "Retained historical evidence; not live telemetry",
+    dataType: "Saved test results",
   },
 };
 

@@ -47,16 +47,16 @@ const money = (value) =>
     maximumFractionDigits: 0,
   }).format(value);
 const systems = [
-  { id: "hvac", label: "HVAC", color: "#2e8b79", icon: Wind },
+  { id: "hvac", label: "Heating & cooling", color: "#2e8b79", icon: Wind },
   { id: "plumbing", label: "Plumbing", color: "#447eaf", icon: Droplets },
   { id: "electrical", label: "Electrical", color: "#b98632", icon: Cable },
   { id: "fire", label: "Sprinklers", color: "#be675d", icon: Flame },
 ];
 const nav = [
-  { id: "overview", label: "Project overview", icon: Box },
-  { id: "scenarios", label: "Scenario lab", icon: SlidersHorizontal },
-  { id: "evidence", label: "Evidence & checks", icon: ClipboardIcon },
-  { id: "history", label: "Saved scenarios", icon: Clock3 },
+  { id: "overview", label: "Results", icon: Box },
+  { id: "scenarios", label: "Cost calculator", icon: SlidersHorizontal },
+  { id: "evidence", label: "What was tested", icon: ClipboardIcon },
+  { id: "history", label: "Saved calculations", icon: Clock3 },
 ];
 function ClipboardIcon(props) {
   return <FileText {...props} />;
@@ -234,7 +234,7 @@ export default function App() {
       try {
         const result = calculateScenario(inputs);
         setScenario(result);
-        setToast("Scenario calculated · all 48 pieces accounted for");
+        setToast("Calculated · all 48 required pieces fit");
       } catch (error) {
         setScenarioError(error.message);
       } finally {
@@ -252,10 +252,10 @@ export default function App() {
     setHistory(next);
     try {
       localStorage.setItem("oma-demo-scenarios", JSON.stringify(next));
-      setToast("Scenario saved in this browser");
+      setToast("Calculation saved on this device");
     } catch {
       setToast(
-        "Scenario saved for this session; browser storage is unavailable",
+        "Saved for this visit; this browser cannot keep it after closing",
       );
     }
   };
@@ -315,11 +315,11 @@ export default function App() {
         <div className="workspace-picker">
           <span className="workspace-avatar">A</span>
           <div>
-            ANANKE workspace<small>Customer preview</small>
+            OMA + ANANKE<small>Customer preview</small>
           </div>
           <span className="preview-dot" />
         </div>
-        <p className="nav-label">WORKSPACE</p>
+        <p className="nav-label">EXPLORE THE DEMO</p>
         <nav aria-label="Main navigation">
           {nav.map((item) => (
             <button
@@ -337,22 +337,23 @@ export default function App() {
           ))}
         </nav>
         <div className="sidebar-divider" />
-        <p className="nav-label">REFERENCE PROJECT</p>
+        <p className="nav-label">BUILDING EXAMPLE</p>
         <button className="project-link" onClick={() => go("overview")}>
           <Building2 size={17} />
           <span>
-            Hospital<small>Healthcare · 7 source models</small>
+            Hospital<small>Hospital · 7 building files</small>
           </span>
         </button>
         <div className="sidebar-bottom">
           <div className="sidebar-note">
-            <span className="tiny-label">BUILT TO BE INSPECTED</span>
+            <span className="tiny-label">WHAT CHANGES?</span>
             <p>
-              Better decisions.
-              <br />A clear trail of evidence.
+              Fewer parts.
+              <br />
+              Less material to buy.
             </p>
             <button onClick={() => go("evidence")}>
-              See the methodology <ArrowUpRight size={15} />
+              See the test results <ArrowUpRight size={15} />
             </button>
           </div>
           <button className="help-button" onClick={() => setDialog("guide")}>
@@ -361,7 +362,7 @@ export default function App() {
           <div className="sidebar-foot">
             <span className="user-avatar">G</span>
             <div>
-              Guest workspace<small>Interactive demo</small>
+              No sign-in needed<small>Interactive demo</small>
             </div>
             <span className="version">v0.1</span>
           </div>
@@ -395,30 +396,30 @@ export default function App() {
               <div className="eyebrow">
                 <span className="heading-line" />
                 {page === "overview"
-                  ? "BUILDING INTELLIGENCE"
+                  ? "LESS MATERIAL. FEWER FITTINGS."
                   : page === "scenarios"
-                    ? "MAKE THE TRADE-OFFS TANGIBLE"
+                    ? "TRY THE NUMBERS"
                     : page === "evidence"
-                      ? "TRACE EVERY CLAIM"
-                      : "YOUR WORKSPACE"}
+                      ? "RESULTS FROM THE PIPE TEST"
+                      : "YOUR SAVED CALCULATIONS"}
               </div>
               <h1>
                 {page === "overview"
-                  ? "See the whole picture."
+                  ? "Build with less waste."
                   : page === "scenarios"
-                    ? "Less waste. Same requirements."
+                    ? "How much could you save on material?"
                     : page === "evidence"
-                      ? "Confidence has a paper trail."
-                      : "Pick up where you left off."}
+                      ? "See how the results were checked."
+                      : "Your saved cost comparisons."}
               </h1>
               <p>
                 {page === "overview"
-                  ? "Every discipline. One building. A clearer way forward."
+                  ? "Shorter pipe routes. Fewer fittings. Less leftover material. See the difference below."
                   : page === "scenarios"
-                    ? "Change the inputs. Compare the plan. Keep every required piece."
+                    ? "Change the purchase length and price. See how buying and cutting together changes the bill."
                     : page === "evidence"
-                      ? "Recorded results, explicit assumptions, and a result you can inspect."
-                      : "Your sample calculations, saved locally in this browser."}
+                      ? "What changed, what was checked, and what still needs an engineer."
+                      : "Reopen a calculation or compare different prices. Saved on this device only."}
               </p>
             </div>
             <div className="heading-actions">
@@ -426,10 +427,21 @@ export default function App() {
                 className="button secondary"
                 onClick={() => setDialog("import")}
               >
-                <Upload size={16} /> Inspect IFC
+                <Upload size={16} /> Open building file
               </button>
-              <button className="button primary" onClick={report}>
-                <Download size={16} /> Export report
+              <button
+                className="button primary"
+                onClick={page === "overview" ? () => go("scenarios") : report}
+              >
+                {page === "overview" ? (
+                  <>
+                    <ArrowRight size={16} /> Try the cost calculator
+                  </>
+                ) : (
+                  <>
+                    <Download size={16} /> Download results
+                  </>
+                )}
               </button>
             </div>
           </div>
@@ -442,38 +454,67 @@ export default function App() {
                     <Building2 size={21} />
                   </span>
                   <div>
-                    <strong>Hospital reference project</strong>
+                    <strong>Hospital example</strong>
                     <span>
-                      Healthcare <i /> IFC4 federation <i /> Recorded study
+                      7 building files <i /> Recorded test
                     </span>
                   </div>
                 </div>
-                <Pill>Inventory reconciled</Pill>
+                <Pill>Files counted</Pill>
               </div>
               <section
-                className="metrics"
-                aria-label="Hospital inventory totals"
+                className="impact-grid"
+                aria-label="What improved in the examples"
               >
-                {[
-                  ["149,822", "IFC products", "Across all source models"],
-                  ["45,946", "Service objects", "Five MEP source models"],
-                  [
-                    "42,801",
-                    "Explicit connections",
-                    "Reconciled against source",
-                  ],
-                  ["7", "Source models", "Architecture through fire alarm"],
-                ].map(([value, label, note], i) => (
-                  <div className="metric" key={label}>
-                    <div className="metric-label">
-                      {label}
-                      <span>0{i + 1}</span>
-                    </div>
-                    <div className="metric-value">{value}</div>
-                    <small>{note}</small>
-                  </div>
-                ))}
+                <button
+                  className="impact-card"
+                  onClick={() => setDialog("route")}
+                >
+                  <span className="impact-source">RECORDED PIPE TEST</span>
+                  <strong>4 fewer</strong>
+                  <h2>fittings to install</h2>
+                  <p>
+                    One fitting instead of five. Fewer parts to join together.
+                  </p>
+                  <span className="impact-link">
+                    See the change <ArrowUpRight size={17} />
+                  </span>
+                </button>
+                <button
+                  className="impact-card"
+                  onClick={() => setDialog("route")}
+                >
+                  <span className="impact-source">SAME PIPE TEST</span>
+                  <strong>13.6% shorter</strong>
+                  <h2>pipe route</h2>
+                  <p>5.79 m down to 5.00 m. The same water delivery points.</p>
+                  <span className="impact-link">
+                    Compare the routes <ArrowUpRight size={17} />
+                  </span>
+                </button>
+                <button
+                  className="impact-card cost-impact"
+                  onClick={() => go("scenarios")}
+                >
+                  <span className="impact-source">
+                    SEPARATE SAMPLE COST CALCULATION
+                  </span>
+                  <strong>$972 less</strong>
+                  <h2>spent on material</h2>
+                  <p>
+                    Buy 90 m instead of 144 m at an assumed $18/m. All 48 pieces
+                    still fit.
+                  </p>
+                  <span className="impact-link">
+                    Try your own price <ArrowRight size={17} />
+                  </span>
+                </button>
               </section>
+              <p className="impact-scope">
+                The pipe test is a small route comparison. The cost example uses
+                sample lengths and prices; neither is a whole-hospital savings
+                estimate.
+              </p>
               <div className="workspace-grid">
                 <section
                   className={`viewer-card ${fullscreen ? "expanded" : ""}`}
@@ -481,7 +522,9 @@ export default function App() {
                 >
                   <div className="panel-header">
                     <div>
-                      <span className="panel-title">Building explorer</span>
+                      <span className="panel-title">
+                        Look inside the building
+                      </span>
                       <span className="subtle-tag">3D VIEW</span>
                     </div>
                     <div className="viewer-options">
@@ -519,8 +562,8 @@ export default function App() {
                   </div>
                   <div className="viewer-stage">
                     <div className="viewer-caption">
-                      <span>HOSPITAL / STUDY MODEL</span>
-                      <small>Illustrative geometry</small>
+                      <span>HOSPITAL / EXAMPLE VIEW</span>
+                      <small>Simplified demonstration</small>
                     </div>
                     <Suspense
                       fallback={
@@ -562,7 +605,7 @@ export default function App() {
                     </div>
                     <div className="viewer-scale">
                       <span />
-                      10 m <small>schematic</small>
+                      10 m <small>example scale</small>
                     </div>
                     <div className="orientation">
                       <span>N</span>
@@ -601,46 +644,42 @@ export default function App() {
                   <div className="viewer-foot">
                     <span>
                       <span className="small-dot" />
-                      Illustrative model · not source IFC geometry
+                      Example 3D view, not the actual hospital design
                     </span>
-                    <span>Drag to orbit · Scroll to zoom</span>
+                    <span>Drag to rotate · Scroll to zoom</span>
                   </div>
                 </section>
                 <aside className="insights">
                   <div className="insight-header">
-                    <span className="eyebrow">A CLOSER LOOK</span>
+                    <span className="eyebrow">WHAT THE CHANGES MEAN</span>
                     <span className="round-arrow">
                       <ArrowUpRight size={18} />
                     </span>
                   </div>
                   <h2>
-                    From complexity
-                    <br />
-                    to a clear decision.
+                    Fewer parts to fit. <br /> Less waste to pay for.
                   </h2>
                   <p className="insight-intro">
-                    Explore a checked route study, then test a purchasing
-                    scenario yourself.
+                    Compare the pipe change, or try a price in the calculator.
                   </p>
                   <button
                     className="opportunity"
                     onClick={() => setDialog("route")}
                   >
                     <div className="opportunity-top">
-                      <span className="tiny-label">RECORDED ROUTING STUDY</span>
+                      <span className="tiny-label">PIPE ROUTE TEST</span>
                       <ArrowUpRight size={18} />
                     </div>
                     <div className="opportunity-number">
-                      13.6<span>%</span>
-                      <span className="decrease">↘</span>
+                      5 <span>→</span> 1<span className="decrease">↘</span>
                     </div>
-                    <h3>Shorter route. Fewer fittings.</h3>
+                    <h3>Four fewer fittings to install.</h3>
                     <p>
-                      A two-terminal comparison checked against 14,409
-                      architectural obstacles.
+                      The shorter option uses one fitting instead of five. Open
+                      the test to see what changed.
                     </p>
                     <div className="opportunity-foot">
-                      <span>View the comparison</span>
+                      <span>See the two routes</span>
                       <ArrowRight size={17} />
                     </div>
                   </button>
@@ -652,43 +691,40 @@ export default function App() {
                       <SlidersHorizontal size={20} />
                     </span>
                     <div>
-                      <strong>What could less waste look like?</strong>
-                      <span>Try an interactive stock-cutting example.</span>
+                      <strong>Buy fewer lengths. Cut the same pieces.</strong>
+                      <span>Change the price and see the cost difference.</span>
                     </div>
                     <ChevronRight size={18} />
                   </button>
                   <div className="evidence-note">
                     <CheckCircle2 size={17} />
                     <p>
-                      Evidence first.
+                      See the change before deciding.
                       <br />
-                      <span>
-                        Recorded inventory. Explicit assumptions. No hidden
-                        savings claims.
-                      </span>
+                      <span>See both options and the numbers behind them.</span>
                     </p>
                   </div>
                 </aside>
               </div>
-              <section className="discipline-section">
-                <div className="section-heading">
+              <details className="discipline-section source-details">
+                <summary className="section-heading">
                   <div>
-                    <span className="eyebrow">THE FULL PROJECT</span>
-                    <h2>Every discipline, accounted for.</h2>
+                    <span className="eyebrow">THE HOSPITAL FILES</span>
+                    <h2>What is included in the building example?</h2>
                   </div>
                   <span className="table-subtitle">
-                    Retained source inventory · 15 Sep 2026
+                    Open file details <ChevronDown size={16} />
                   </span>
-                </div>
+                </summary>
                 <div className="table-scroll">
                   <table>
                     <thead>
                       <tr>
-                        <th>Source discipline</th>
-                        <th>IFC products</th>
-                        <th>Service objects / candidates</th>
-                        <th>Explicit connections</th>
-                        <th>Inventory status</th>
+                        <th>Part of the building</th>
+                        <th>File entries</th>
+                        <th>Parts to review</th>
+                        <th>Recorded connections</th>
+                        <th>File review</th>
                         <th>
                           <span className="sr-only">Inspect</span>
                         </th>
@@ -737,23 +773,24 @@ export default function App() {
                   </table>
                 </div>
                 <div className="table-note">
-                  Service inventory includes 45,946 service-class objects and
-                  1,770 unresolved architectural candidates. Counts do not imply
-                  design approval.
+                  The files contain 45,946 service parts and 1,770 items that
+                  still need identifying. File entries also include rooms and
+                  connection points. These counts are not savings or a design
+                  approval.
                 </div>
-              </section>
+              </details>
               <div className="bottom-cta">
                 <div>
                   <span className="eyebrow">
-                    LESS GUESSWORK. MORE VISIBILITY.
+                    TRY A PRICE THAT MAKES SENSE TO YOU
                   </span>
-                  <h2>Take a scenario for a test drive.</h2>
+                  <h2>See the effect on the material bill.</h2>
                 </div>
                 <button
                   className="button primary"
                   onClick={() => go("scenarios")}
                 >
-                  Open scenario lab <ArrowRight size={16} />
+                  Try the cost calculator <ArrowRight size={16} />
                 </button>
               </div>
             </>
@@ -764,19 +801,22 @@ export default function App() {
               <div className="context-banner">
                 <span className="sample-tag">SAMPLE DATA</span>
                 <p>
-                  A working stock-cutting calculation with 48 illustrative
-                  pieces. These are not the hospital’s quantities or prices.
+                  This example needs 48 finished pieces. See how cutting them
+                  together reduces leftover material. Lengths and prices are
+                  sample inputs, not hospital costs.
                 </p>
               </div>
               <div className="scenario-grid">
                 <section className="scenario-inputs panel">
                   <div className="panel-header">
-                    <span className="panel-title">Define your scenario</span>
+                    <span className="panel-title">
+                      Choose your prices and lengths
+                    </span>
                     <SlidersHorizontal size={18} />
                   </div>
                   <div className="input-body">
                     <label>
-                      Service type
+                      Material
                       <select
                         value={inputs.type}
                         onChange={(e) =>
@@ -795,7 +835,7 @@ export default function App() {
                       </select>
                     </label>
                     <fieldset className="stock-fieldset">
-                      <legend>Available stock length</legend>
+                      <legend>Length sold by the supplier</legend>
                       <div className="segmented">
                         {[3, 6, 12].map((m) => (
                           <button
@@ -811,7 +851,7 @@ export default function App() {
                       </div>
                     </fieldset>
                     <label>
-                      Assumed material price <span>USD / metre</span>
+                      Your assumed price <span>USD / metre</span>
                       <div className="price-input">
                         <span>$</span>
                         <input
@@ -828,7 +868,7 @@ export default function App() {
                       </div>
                     </label>
                     <label>
-                      Cutting allowance
+                      Material lost in each cut
                       <select
                         value={inputs.kerfMm}
                         onChange={(e) =>
@@ -849,7 +889,7 @@ export default function App() {
                         <strong>48</strong>
                       </div>
                       <div>
-                        <span>Purchasing batches</span>
+                        <span>Separate orders</span>
                         <strong>12</strong>
                       </div>
                       <div>
@@ -857,8 +897,8 @@ export default function App() {
                         <strong>{scenario.requiredM.toFixed(2)} m</strong>
                       </div>
                       <div>
-                        <span>Piece dimensions</span>
-                        <strong>Preserved</strong>
+                        <span>Finished piece sizes</span>
+                        <strong>Unchanged</strong>
                       </div>
                     </div>
                     <button
@@ -871,7 +911,7 @@ export default function App() {
                       ) : (
                         <Play size={16} />
                       )}{" "}
-                      {running ? "Calculating…" : "Calculate scenario"}
+                      {running ? "Calculating…" : "Calculate savings"}
                     </button>
                     {scenarioError && (
                       <p className="form-error" role="alert">
@@ -879,8 +919,8 @@ export default function App() {
                       </p>
                     )}
                     <p className="input-note">
-                      Calculated in your browser. Prices are editable
-                      assumptions, not supplier quotes.
+                      Use your own price. The starting price is an example, not
+                      a supplier quote.
                     </p>
                   </div>
                 </section>
@@ -890,22 +930,22 @@ export default function App() {
                       <span className="eyebrow">
                         {scenarioDirty
                           ? "INPUTS CHANGED · RECALCULATE TO UPDATE"
-                          : "CALCULATED SAMPLE RESULT"}
+                          : "COST DIFFERENCE IN THIS EXAMPLE"}
                       </span>
-                      <h2>A better plan for the same pieces.</h2>
+                      <h2>Same 48 pieces. Less material to buy.</h2>
                     </div>
                     <Pill neutral={scenarioDirty}>
                       {scenarioDirty
                         ? "Previous calculation"
-                        : "48 / 48 pieces checked"}
+                        : "All 48 pieces still fit"}
                     </Pill>
                   </div>
                   <div className="saving-summary">
                     <div>
-                      <span>Illustrative material difference</span>
+                      <span>Estimated savings in this sample</span>
                       <strong>
                         {money(scenario.savedCost)}
-                        <small>less stock spend</small>
+                        <small>less to spend on material</small>
                       </strong>
                       <p>
                         {scenario.savedM.toFixed(1)} m less purchased ·{" "}
@@ -925,14 +965,14 @@ export default function App() {
                   <div className="comparison-columns">
                     <div>
                       <span className="tiny-label">
-                        SEPARATE BATCH PURCHASING
+                        BUYING FOR EACH ORDER SEPARATELY
                       </span>
                       <strong>
                         {scenario.baseline.purchasedM.toFixed(0)}
                         <small> m</small>
                       </strong>
                       <p>
-                        {scenario.baseline.bars} stock lengths <i />{" "}
+                        {scenario.baseline.bars} full lengths <i />{" "}
                         {money(scenario.baseline.cost)}
                       </p>
                       <div className="comparison-bar">
@@ -940,13 +980,15 @@ export default function App() {
                       </div>
                     </div>
                     <div className="after">
-                      <span className="tiny-label">POOLED CUTTING PLAN</span>
+                      <span className="tiny-label">
+                        BUYING AND CUTTING TOGETHER
+                      </span>
                       <strong>
                         {scenario.selected.purchasedM.toFixed(0)}
                         <small> m</small>
                       </strong>
                       <p>
-                        {scenario.selected.bars} stock lengths <i />{" "}
+                        {scenario.selected.bars} full lengths <i />{" "}
                         {money(scenario.selected.cost)}
                       </p>
                       <div className="comparison-bar">
@@ -960,10 +1002,10 @@ export default function App() {
                   </div>
                   <div className="cut-plan">
                     <div className="cut-plan-head">
-                      <h3>Inside the cutting plan</h3>
+                      <h3>Where each piece comes from</h3>
                       <span>
                         First {Math.min(6, scenario.after.length)} of{" "}
-                        {scenario.after.length} stock lengths
+                        {scenario.after.length} full lengths
                       </span>
                     </div>
                     {scenario.after.slice(0, 6).map((bar, i) => (
@@ -999,15 +1041,15 @@ export default function App() {
                       </span>
                       <span>
                         <i />
-                        Remaining offcut
+                        Material left over
                       </span>
-                      <span>{scenario.kerfMm} mm cut allowance included</span>
+                      <span>{scenario.kerfMm} mm lost per cut included</span>
                     </div>
                   </div>
                   <div className="result-actions">
                     <button className="button secondary" onClick={saveScenario}>
                       <Plus size={16} />
-                      Save scenario
+                      Save calculation
                     </button>
                     <button
                       className="text-button"
@@ -1016,15 +1058,16 @@ export default function App() {
                         setToast("Complete cutting plan downloaded");
                       }}
                     >
-                      Download all cuts <Download size={16} />
+                      Download cutting list <Download size={16} />
                     </button>
                   </div>
                   <p className="scenario-scope">
-                    Comparison: first-fit cutting within each batch versus
-                    pooled best-fit cutting. Same pieces and allowances in both
-                    plans. Feasible heuristic, not a global optimum. Material
-                    only; excludes labor, connections and delivery. No installed
-                    geometry is changed.
+                    The first plan buys material for each of 12 orders
+                    separately. The second combines them and uses leftovers for
+                    other pieces. Both supply the same 48 pieces and allow for
+                    material lost while cutting. Savings cover material only,
+                    before labor, fittings and delivery. This is one workable
+                    plan; a better one may exist.
                   </p>
                 </section>
               </div>
@@ -1035,46 +1078,43 @@ export default function App() {
             <>
               <div className="evidence-hero">
                 <div>
-                  <span className="eyebrow">RETAINED ENGINE RESULTS</span>
+                  <span className="eyebrow">ONE PIPE ROUTE, TWO OPTIONS</span>
                   <h2>
-                    A result is only as useful
-                    <br />
-                    as the evidence behind it.
+                    Four fewer fittings. <br /> The same water delivery points.
                   </h2>
                   <p>
-                    OMA separates what was counted, what was calculated, and
-                    what was independently checked. Explore those boundaries
-                    here.
+                    The shorter route uses one fitting instead of five. That
+                    means four fewer parts to join. It also passed the test’s
+                    space, connection and water-flow checks. Installation time
+                    was not measured.
                   </p>
                   <button
                     className="button primary"
                     onClick={() => setDialog("route")}
                   >
-                    Inspect routing comparison <ArrowRight size={16} />
+                    See what changed <ArrowRight size={16} />
                   </button>
                 </div>
                 <div className="evidence-stats">
                   <div>
-                    <strong>
-                      7<span>/7</span>
-                    </strong>
-                    <span>Source models reconciled</span>
+                    <strong>5 → 1</strong>
+                    <span>Fittings needed</span>
                   </div>
                   <div>
-                    <strong>3,426</strong>
-                    <span>Passing tests on the retained inventory build</span>
+                    <strong>5.79 → 5.00 m</strong>
+                    <span>Length of the pipe route</span>
                   </div>
                   <div>
-                    <strong>0</strong>
-                    <span>Original source files changed</span>
+                    <strong>4.625 m</strong>
+                    <span>Straight pipe needed in either option</span>
                   </div>
                 </div>
               </div>
               <section className="workflow">
                 <div className="section-heading">
                   <div>
-                    <span className="eyebrow">THE WORKFLOW</span>
-                    <h2>Each decision has a next check.</h2>
+                    <span className="eyebrow">HOW IT WORKS</span>
+                    <h2>From a building file to a comparison.</h2>
                   </div>
                 </div>
                 <div className="workflow-steps">
@@ -1089,7 +1129,9 @@ export default function App() {
               </section>
               <section className="capabilities panel">
                 <div className="panel-header">
-                  <span className="panel-title">What this demo represents</span>
+                  <span className="panel-title">
+                    What you can do, and what is still being built
+                  </span>
                   <span className="subtle-tag">DEVELOPMENT PREVIEW</span>
                 </div>
                 {capabilities.map((c) => (
@@ -1099,7 +1141,7 @@ export default function App() {
                       <p>{c.text}</p>
                     </div>
                     <span
-                      className={`capability-status ${c.status === "In development" ? "development" : ""}`}
+                      className={`capability-status ${c.status === "Still being developed" ? "development" : ""}`}
                     >
                       {c.status}
                     </span>
@@ -1107,10 +1149,10 @@ export default function App() {
                 ))}
               </section>
               <p className="evidence-source">
-                Evidence recorded 15 September 2026. Interactive visuals and the
-                scenario lab are browser demonstrations; they do not invoke the
-                engineering backend. Full installed-system redesign and
-                construction approval are not demonstrated.
+                These tests were recorded on 15 September 2026. This website
+                shows those results and runs a separate sample cost calculation.
+                It does not redesign the hospital or approve it for
+                construction.
               </p>
             </>
           )}
@@ -1123,16 +1165,16 @@ export default function App() {
                     <Clock3 size={30} />
                   </div>
                   <span className="eyebrow">A CLEAN SLATE</span>
-                  <h2>Your next decision starts here.</h2>
+                  <h2>No saved calculations yet.</h2>
                   <p>
-                    Calculate a sample scenario and save it to compare your
-                    options later.
+                    Try different prices and purchase lengths, then save a
+                    calculation here.
                   </p>
                   <button
                     className="button primary"
                     onClick={() => go("scenarios")}
                   >
-                    Create a scenario <ArrowRight size={16} />
+                    Try the cost calculator <ArrowRight size={16} />
                   </button>
                 </div>
               ) : (
@@ -1140,7 +1182,7 @@ export default function App() {
                   <div className="history-header">
                     <span>
                       {history.length} saved{" "}
-                      {history.length === 1 ? "scenario" : "scenarios"}
+                      {history.length === 1 ? "calculation" : "calculations"}
                     </span>
                     <span>Stored on this device only</span>
                   </div>
@@ -1164,7 +1206,8 @@ export default function App() {
                       </span>
                       <div>
                         <strong>
-                          {h.result.label} · {h.result.stockM} m stock
+                          {h.result.label} · {h.result.stockM} m purchase
+                          lengths
                         </strong>
                         <p>
                           48 sample pieces · {money(h.result.price)} / m ·{" "}
@@ -1176,7 +1219,7 @@ export default function App() {
                       </div>
                       <span className="history-saving">
                         {money(h.result.savedCost)}
-                        <small>illustrative difference</small>
+                        <small>sample savings</small>
                       </span>
                       <ArrowUpRight size={19} />
                     </button>
@@ -1187,7 +1230,7 @@ export default function App() {
           )}
           <footer className="page-footer">
             <span>
-              <strong>oma.</strong> Built for the decisions that matter.
+              <strong>oma.</strong> Compare the changes and the costs.
             </span>
             <span>
               OMA + ANANKE <i /> Interactive product demo
@@ -1209,35 +1252,35 @@ export default function App() {
       )}
       {dialog === "guide" && (
         <Dialog
-          title="A few good places to start."
+          title="Try these four things."
           eyebrow="WELCOME TO OMA"
           close={() => setDialog(null)}
         >
           <p className="dialog-intro">
-            A hands-on introduction to building-system decisions. No account
-            required.
+            See a pipe-route test, try a sample cost calculation, or look inside
+            the example building.
           </p>
           <div className="guide-steps">
             {[
               [
                 "01",
                 "Explore the building",
-                "Orbit the illustrative model, isolate a floor, and toggle individual systems.",
+                "Drag to rotate the example building. Choose a floor or turn pipes and cables on and off.",
               ],
               [
                 "02",
-                "Try the scenario lab",
-                "Change stock lengths and material prices. A local solver computes a real cut plan for the sample pieces.",
+                "Try the cost calculator",
+                "Enter a price and choose a purchase length. See the bill for two ways of cutting the same 48 pieces.",
               ],
               [
                 "03",
-                "Inspect the evidence",
-                "Open the recorded route comparison and review what was independently checked.",
+                "See what was tested",
+                "Compare the two pipe routes and see the checks that were run.",
               ],
               [
                 "04",
-                "Take the work with you",
-                "Download a report or cutting plan. Saved scenarios stay in this browser.",
+                "Download the results",
+                "Get the numbers and cutting list. Your saved calculations stay in this browser.",
               ],
             ].map(([i, t, b]) => (
               <div key={i}>
@@ -1250,9 +1293,9 @@ export default function App() {
             ))}
           </div>
           <div className="dialog-notice">
-            This customer demo uses retained project evidence and clearly
-            labeled examples. It is not a live engineering service or
-            construction approval.
+            The pipe test is a recorded result. The building view and cost
+            calculator use examples. The demo does not approve a design for
+            construction.
           </div>
           <button
             className="button primary full"
@@ -1265,15 +1308,15 @@ export default function App() {
       {dialog === "discipline" && discipline && (
         <Dialog
           title={discipline.label}
-          eyebrow="SOURCE INVENTORY"
+          eyebrow="WHAT IS IN THIS BUILDING FILE"
           close={() => setDialog(null)}
         >
           <p className="dialog-intro">{discipline.detail}</p>
           <div className="detail-metrics">
             {[
-              ["IFC products", discipline.products],
-              ["Objects / candidates", discipline.objects],
-              ["Components", discipline.components],
+              ["File entries", discipline.products],
+              ["Parts to review", discipline.objects],
+              ["Connected groups or single parts", discipline.components],
               ["Connections", discipline.connections],
             ].map(([k, v]) => (
               <div key={k}>
@@ -1283,35 +1326,36 @@ export default function App() {
             ))}
           </div>
           <div className="detail-info">
-            <h3>What the source tells us</h3>
+            <h3>What the file contains</h3>
             <p>
-              {n(discipline.ports)} authored ports · {n(discipline.systems)}{" "}
-              systems · {n(discipline.objectsWithoutPorts)} objects without
-              ports.
+              {n(discipline.ports)} connection points · {n(discipline.systems)}{" "}
+              systems · {n(discipline.objectsWithoutPorts)} parts with no
+              connection points listed.
             </p>
-            <h3>Inputs for the next design step</h3>
+            <h3>What an engineer still needs</h3>
             <p>{discipline.designInput}.</p>
           </div>
           <div className="dialog-notice">
-            Inventory reconciliation confirms source accounting. It does not
-            establish system performance or design approval.
+            These numbers show what is in the file. An engineer still needs to
+            check whether the system will work for this building.
           </div>
         </Dialog>
       )}
       {dialog === "route" && (
         <Dialog
-          title="A simpler route. A checked result."
-          eyebrow="RECORDED TWO-TERMINAL STUDY"
+          title="From five fittings to one."
+          eyebrow="PIPE TEST · SMALL EXAMPLE"
           wide
           close={() => setDialog(null)}
         >
           <p className="dialog-intro">
-            Two generated alternatives, compared against 14,409 architectural
-            obstacles.
+            Two possible pipe routes were tested in the hospital’s architectural
+            model. The shorter option uses four fewer fittings. This was a small
+            route test, not a whole-building redesign.
           </p>
           <div className="route-visuals">
             <div>
-              <span>ALTERNATIVE A</span>
+              <span>FIRST ROUTE OPTION</span>
               <svg
                 viewBox="0 0 300 100"
                 role="img"
@@ -1332,7 +1376,7 @@ export default function App() {
               </strong>
             </div>
             <div>
-              <span>SELECTED ALTERNATIVE</span>
+              <span>SHORTER ROUTE OPTION</span>
               <svg
                 viewBox="0 0 300 100"
                 role="img"
@@ -1353,12 +1397,12 @@ export default function App() {
             </div>
           </div>
           <p className="figure-caption">
-            Concept sketches, not exported route geometry.
+            Simple sketches showing the idea, not construction drawings.
           </p>
           <div className="route-metrics">
             <div>
               <strong>13.6%</strong>
-              <span>Less centerline length</span>
+              <span>Shorter pipe route</span>
             </div>
             <div>
               <strong>80%</strong>
@@ -1366,7 +1410,7 @@ export default function App() {
             </div>
             <div>
               <strong>4.625 m</strong>
-              <span>Same straight stock in both</span>
+              <span>Straight pipe needed in both</span>
             </div>
           </div>
           <div className="route-checks">
@@ -1382,13 +1426,13 @@ export default function App() {
             ))}
           </div>
           <div className="dialog-notice">
-            <strong>Scope of this result</strong>
+            <strong>What these numbers cover</strong>
             <p>{routeComparison.scopeNote}</p>
             <p>{routeComparison.costNote}</p>
             <p>
-              Checks assume prescribed flow, ideal bore and declared loss
-              coefficients. They are not an unrestricted system or structural
-              approval.
+              The test uses stated pipe dimensions, flow rates and resistance
+              values. Those assumptions still need to match the real
+              installation; these checks are not construction approval.
             </p>
           </div>
           <button
@@ -1405,13 +1449,14 @@ export default function App() {
       )}
       {dialog === "import" && (
         <Dialog
-          title="Take a look inside your IFC."
-          eyebrow="LOCAL FILE INSPECTOR"
+          title="Open a building design file."
+          eyebrow="YOUR FILE STAYS ON THIS DEVICE"
           close={() => setDialog(null)}
         >
           <p className="dialog-intro">
-            Check a file’s schema and entity counts. Your file stays in this
-            browser and is never uploaded.
+            IFC is a file format for sharing 3D building designs. Open one to
+            see its version and the types of records it contains. Your file is
+            never uploaded.
           </p>
           <input
             ref={fileRef}
@@ -1449,8 +1494,8 @@ export default function App() {
                 <span>{ifc.schema}</span>
               </div>
               <p>
-                <strong>{n(ifc.records)}</strong> STEP entity records ·{" "}
-                {ifc.classes.length} entity classes
+                <strong>{n(ifc.records)}</strong> file records ·{" "}
+                {ifc.classes.length} record types
               </p>
               <ul>
                 {ifc.classes.slice(0, 5).map(([key, count]) => (
@@ -1464,14 +1509,13 @@ export default function App() {
                 className="text-button"
                 onClick={() => download(ifc, "oma-local-ifc-inspection.json")}
               >
-                Download inspection <Download size={16} />
+                Download file summary <Download size={16} />
               </button>
             </div>
           )}
           <div className="dialog-notice">
-            A lightweight record scan, not a semantic IFC import or geometry
-            validation. The Hospital reference project and illustrative viewer
-            remain unchanged.
+            This tool reads and counts records. It does not display your
+            building, check its shape, or test its engineering.
           </div>
         </Dialog>
       )}
