@@ -41,7 +41,7 @@ class ImportRequest(Input):
 
 
 class RunRequest(Input):
-    operation: Literal["check", "route", "optimize", "normalize", "propose_network", "design_services"] = "check"
+    operation: Literal["check", "route", "optimize", "normalize", "propose_network", "design_services", "optimize_procurement"] = "check"
     scope: list[str] = Field(default_factory=list, max_length=100000)
     mission: dict[str, Any] | None = None
     budget_seconds: float = Field(default=300, ge=1, le=3600, allow_inf_nan=False)

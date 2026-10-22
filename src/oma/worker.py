@@ -258,6 +258,9 @@ def execute(directory: str, run_id: str):
         elif run["operation"] == "design_services":
             from .building_services import design_services_run
             design_services_run(store, run, control)
+        elif run["operation"] == "optimize_procurement":
+            from .procurement import optimize_procurement_run
+            optimize_procurement_run(store, run, control)
         elif run["operation"] == "normalize":
             from .normalization import normalize_project_run
             normalize_project_run(store, run, control)

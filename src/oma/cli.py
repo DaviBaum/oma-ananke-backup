@@ -138,6 +138,12 @@ def route(project_id: str, mission: Path, budget_seconds: float = 300, seed: int
     run_job(project_id, "route", json.loads(mission.read_text(encoding="utf-8")), budget_seconds, seed, data_dir)
 
 
+@app.command("optimize-procurement")
+def optimize_procurement(project_id: str, mission: Path, budget_seconds: float = 1200, data_dir: Path = Path(".oma")):
+    """Optimize whole-project cutting/purchasing scenarios with explicit stock assumptions."""
+    run_job(project_id, "optimize_procurement", json.loads(mission.read_text(encoding="utf-8")), budget_seconds, 0, data_dir)
+
+
 @app.command()
 def optimize(project_id: str, mission: Path, budget_seconds: float = 300, seed: int = 0, data_dir: Path = Path(".oma")):
     """Run the currently implemented finite checked-route optimization scope."""

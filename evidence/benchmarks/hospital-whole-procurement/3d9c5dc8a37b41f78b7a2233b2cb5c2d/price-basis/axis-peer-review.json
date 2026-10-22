@@ -1,0 +1,174 @@
+{
+  "schema": "oma.takeoff-declared-precision-peer-review/1",
+  "status": "PASS_NO_BLOCKING_FINDINGS",
+  "reviewed_source": {
+    "src/oma/ifc/service_takeoff.py": "85d1f40409f9dd77967649b2314e1bb335bfcc36cb7022c0fe371b7f4c568469",
+    "tests/test_service_takeoff.py": "bf4ea42c38e7003668e6a212a282a91c20a8cdd8bfd9f136bc29189c4c9780f7",
+    "src/oma/ifc/enclosure.py": "798be75dd170559a39eca6ed5c82237ceed73e5df18e1ffe0410fa60b9f0daf9"
+  },
+  "separate_cases": [
+    {
+      "name": "cap_accept_99micrometres",
+      "expected_eligible": true,
+      "actual_eligible": true,
+      "source_sha256": "ba11c553b5e54f7ea313806f5e3859840407e3341e581962e40bf9d6764fa2a8",
+      "axis_evidence": {
+        "method": "EXPLICIT_STRAIGHT_AXIS",
+        "axis_step_id": 28,
+        "mapping_step_ids": [],
+        "exact_body_endpoints_matched": false,
+        "bounded_body_endpoints_matched": true,
+        "endpoint_tolerance_m": "1/10000",
+        "maximum_endpoint_residual_squared_m2": "2450249999999999703000000000000009/250000000000000000000000000000000000000000",
+        "endpoint_arithmetic": "OUTWARD_RATIONAL_INTERVALS",
+        "unique_axis_proven_within_declared_precision": true,
+        "body_dimension_adjusted": false,
+        "context_precisions": [
+          {
+            "context_step_id": 8,
+            "global_frame_status": "DEFINED_RIGID_FRAME_NOT_NATIVE_VERIFIED",
+            "declared_precision_m": "1"
+          }
+        ],
+        "endpoints_product_units_intervals": [
+          [
+            {
+              "lower": "49499999999999997/500000000000000000000",
+              "upper": "49499999999999997/500000000000000000000",
+              "arithmetic": "exact_rational_enclosure"
+            },
+            {
+              "lower": "0",
+              "upper": "0",
+              "arithmetic": "exact_rational_enclosure"
+            },
+            {
+              "lower": "0",
+              "upper": "0",
+              "arithmetic": "exact_rational_enclosure"
+            }
+          ],
+          [
+            {
+              "lower": "49499999999999997/500000000000000000000",
+              "upper": "49499999999999997/500000000000000000000",
+              "arithmetic": "exact_rational_enclosure"
+            },
+            {
+              "lower": "0",
+              "upper": "0",
+              "arithmetic": "exact_rational_enclosure"
+            },
+            {
+              "lower": "2",
+              "upper": "2",
+              "arithmetic": "exact_rational_enclosure"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "name": "cap_reject_101micrometres",
+      "expected_eligible": false,
+      "actual_eligible": false,
+      "source_sha256": "3385e4860ec20874d3bb2198d0d67dae7c4553d94bc5374311a5d1ba5cd6ea53",
+      "reason": "AXIS_BODY_LENGTH_OR_ALIGNMENT_AMBIGUOUS"
+    },
+    {
+      "name": "strict_axis_context_rejects",
+      "expected_eligible": false,
+      "actual_eligible": false,
+      "source_sha256": "381c850b5523c73df08df2d44445796f490f1f94986179155dd20020d1b78896",
+      "reason": "AXIS_BODY_LENGTH_OR_ALIGNMENT_AMBIGUOUS"
+    },
+    {
+      "name": "strict_axis_context_accepts_inside",
+      "expected_eligible": true,
+      "actual_eligible": true,
+      "source_sha256": "ffd512b71356e26bd108eaa669cef963fa79113afe8add7fc2909e56a5e0f32f",
+      "axis_evidence": {
+        "method": "EXPLICIT_STRAIGHT_AXIS",
+        "axis_step_id": 28,
+        "mapping_step_ids": [],
+        "exact_body_endpoints_matched": false,
+        "bounded_body_endpoints_matched": true,
+        "endpoint_tolerance_m": "19999999999999999/20000000000000000000000",
+        "maximum_endpoint_residual_squared_m2": "624999999999999950000000000000001/2500000000000000000000000000000000000000000000",
+        "endpoint_arithmetic": "OUTWARD_RATIONAL_INTERVALS",
+        "unique_axis_proven_within_declared_precision": true,
+        "body_dimension_adjusted": false,
+        "context_precisions": [
+          {
+            "context_step_id": 8,
+            "global_frame_status": "DEFINED_RIGID_FRAME_NOT_NATIVE_VERIFIED",
+            "declared_precision_m": "10000000000000001/1000000000000000000000"
+          },
+          {
+            "context_step_id": 34,
+            "global_frame_status": "DEFINED_RIGID_FRAME_NOT_NATIVE_VERIFIED",
+            "declared_precision_m": "19999999999999999/20000000000000000000000"
+          }
+        ],
+        "endpoints_product_units_intervals": [
+          [
+            {
+              "lower": "24999999999999999/50000000000000000000000",
+              "upper": "24999999999999999/50000000000000000000000",
+              "arithmetic": "exact_rational_enclosure"
+            },
+            {
+              "lower": "0",
+              "upper": "0",
+              "arithmetic": "exact_rational_enclosure"
+            },
+            {
+              "lower": "0",
+              "upper": "0",
+              "arithmetic": "exact_rational_enclosure"
+            }
+          ],
+          [
+            {
+              "lower": "24999999999999999/50000000000000000000000",
+              "upper": "24999999999999999/50000000000000000000000",
+              "arithmetic": "exact_rational_enclosure"
+            },
+            {
+              "lower": "0",
+              "upper": "0",
+              "arithmetic": "exact_rational_enclosure"
+            },
+            {
+              "lower": "2",
+              "upper": "2",
+              "arithmetic": "exact_rational_enclosure"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "name": "missing_precision_rejects",
+      "expected_eligible": false,
+      "actual_eligible": false,
+      "source_sha256": "d7c7c4160a500601cc775b2f2bc28b428aa3c13af4b03b37545b7abf369f70f3",
+      "reason": "AXIS_ENDPOINT_MATCH_NEEDS_DECLARED_PRECISION"
+    },
+    {
+      "name": "nonrigid_nearunity_not_snapped",
+      "expected_eligible": false,
+      "actual_eligible": false,
+      "source_sha256": "359efe3b3397e6fe80314a1e52212e13c0f1c42785e68ceac6c6d64df1892237",
+      "reason": "NONRIGID_MAPPING_SCALE"
+    }
+  ],
+  "existing_test_file": "53 passed in1.67s",
+  "conclusions": [
+    "Fallback is restricted to nonrational frame normalization or endpoint mismatch; unsupported bodies, nonrigid scales, openings and ambiguous topology do not enter via this catch.",
+    "All observed contexts must declare positive precision. The minimum context precision, converted to metres, is capped at0.0001m. Missing precision produces unknown/rejection.",
+    "Matching requires both endpoint Euclidean squared-distance upper bounds below tolerance squared for one ordering and one candidate prism axis. Every other axis whose lower bound may match is rejected as ambiguous.",
+    "The source authored body dimension remains unchanged. Axis fallback produces a bounded identification witness, not an adjusted or surveyed installed length.",
+    "Local stock quantity authority intentionally does not verify global placement. It cannot establish connectivity, collision clearance, code compliance or an executable fabrication plan."
+  ]
+}
