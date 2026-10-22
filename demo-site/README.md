@@ -57,14 +57,16 @@ Calculation tests exercise the synthetic sample independently of the saved Hospi
 
 ## Vercel
 
-The project contains `vercel.json`; Vercel builds with `npm run build` and publishes `dist/`. `.vercelignore` excludes local credentials, dependencies, QA and test source. Do not deploy from the parent repository.
+Production: **https://oma-ananke-demo.vercel.app**. Direct 3D comparison: **https://oma-ananke-demo.vercel.app/#model-comparison**.
+
+The demo is deployed to the authenticated `davibaum` account's `dave-ce1c` team as `oma-ananke-demo`, on the existing Hobby plan. This is an account-owned production deployment with a stable alias, not an anonymous temporary preview. The earlier `tmp.now` links are superseded.
+
+The project contains `vercel.json`; Vercel builds with `npm run build` and publishes `dist/`. The local `demo-site/` checkout is linked to the production project. `.vercelignore` excludes dependencies, QA and test source; production releases are staged from an explicit source/public/config allowlist. Do not deploy the parent repository or copy private deployment state into a release.
 
 ```powershell
-npx vercel deploy --prod
+vercel deploy --prod --scope dave-ce1c --project oma-ananke-demo --yes
 ```
 
-An authenticated Vercel account is required for a durable production deployment. The earlier demo used an anonymous temporary deployment; its stored expiry was 22 October 2026 at 21:45 UTC. It is not a permanent production URL. Vercel rejects updates using expired anonymous state. To retain a temporary deployment, it must be claimed into a Vercel account before its returned expiry. Keep `.vercel/anonymous.json`, private deployment receipts and claim links out of source control and public artifacts.
-
-The refreshed demo was deployed to `https://snappy-mauve-35ypwfb.tmp.now` on 22 October 2026 and updated with the paired 3D comparison. Its server-assigned expiry is **22 October 2026 at 23:02:13 UTC** (18:02 Chicago time). All nine hosted build files match the verified local build byte for byte; the four desktop/mobile browser journeys passed against the public address, including direct navigation to `/#model-comparison`, paired and single model modes, pricing scope, controls, persistence and downloads. This remains a temporary preview, not permanent hosting.
+Production was verified on 22 October 2026: all nine hosted build files match the checked local build byte for byte, and all four desktop/mobile browser journeys passed against the production alias. Checks include direct navigation to `/#model-comparison`, paired and single model modes, pricing scope, controls, persistence and downloads. Old anonymous state and the CLI-generated local token were preserved privately outside the active app folder. Keep `.vercel/`, `.env` files, private receipts and claim links out of source control and public artifacts.
 
 Manrope is self-hosted under its bundled SIL Open Font License. The static deployment has no customer telemetry, server-side secrets or external runtime dependencies.
