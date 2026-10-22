@@ -1,0 +1,140 @@
+{
+  "schema": "oma.documentary-code-review-rules/1",
+  "scope": "Evidence prerequisite review and limited conditional manufacturer screening; no governing code selected and no full code predicate evaluated.",
+  "missing_evidence_policy": "UNRESOLVED, never PASS and never automatically a proven violation.",
+  "checks": [
+    {
+      "id": "jurisdiction",
+      "area": "Governing requirements",
+      "status": "UNRESOLVED",
+      "observation": "All street addresses are placeholders; source coordinates and postal fields conflict. The public repository does not establish the project address, permit date or governing code.",
+      "required": "Authenticated location, authority, permit/design dates, occupancy/clinical uses, adopted editions, amendments and healthcare obligations.",
+      "references": [
+        "ICC_ADOPTION",
+        "FGI_ADOPTION",
+        "CMS_ADOPTED_EDITIONS"
+      ]
+    },
+    {
+      "id": "materials",
+      "area": "Pipe, duct and electrical containment products",
+      "status": "UNRESOLVED",
+      "observation": "All 19,352 IFC4 service segments lack direct/type material and property-set assignments. All purchasing groups lack a verified specification or product match. Family names and pricing proxies do not authenticate wall thickness, gauge, listing or service suitability.",
+      "required": "Project material schedules and exact product specifications, service/pressure/temperature ratings, listings and compatible fittings.",
+      "references": [
+        "IMC2018_DUCT_JOINTS",
+        "IMC2018_HYDRONIC_JOINTS",
+        "IPC2021_WATER",
+        "OSHA_ELECTRICAL"
+      ]
+    },
+    {
+      "id": "fabrication",
+      "area": "Added fabrication joints",
+      "status": "UNRESOLVED",
+      "observation": "The broad scenario assumes 3,457 additional joints: HVAC 2,591, plumbing 286, sprinkler 474, electrical containment 106. Joint positions, end preparation, engagement, tolerances, support changes and installed performance have not been validated.",
+      "required": "Fabrication details tied to actual specified products and tools; account for fitting take-up and losses; check supports, clearance, accessibility and applicable inspection/testing.",
+      "references": [
+        "IMC2018_DUCT_JOINTS",
+        "IMC2018_HYDRONIC_JOINTS",
+        "IPC2021_WATER",
+        "NFPA13_MODIFICATION_GUIDANCE",
+        "OSHA_ELECTRICAL"
+      ]
+    },
+    {
+      "id": "short_split_tails",
+      "area": "Fabrication lengths",
+      "status": "CONDITIONAL_MANUFACTURER_CONFLICT",
+      "observation": "The splitter creates 149 new tails below 100 mm; the shortest is a 3 mm round-duct piece (#842498). Sprinkler #167783 creates a 90 mm grooved-label tail, below the cited Victaulic tool-specific 205 mm roll-grooving minimum. Actual supplier/tool applicability is not established; neither threshold is a universal code limit.",
+      "required": "Select actual products and tools, enforce their minimum finished-piece and end requirements, and rebalance or retain affected spans. See proposals/manufacturer-screen.json for exact source identity and manufacturer reference.",
+      "references": []
+    },
+    {
+      "id": "hvac",
+      "area": "HVAC",
+      "status": "UNRESOLVED",
+      "observation": "No explicit IfcSpace/IfcZone objects, authenticated served-room schedule, complete ventilation targets, pressure/filtration requirements or whole-network design duties were established. Equipment labels are not selected operating duties.",
+      "required": "Room-use and volume schedule, served-room mappings, airflows and pressure relationships, filtration, fan/pump duties, duct construction class and applicable design calculations.",
+      "references": [
+        "ASHRAE170_ROOM_REQUIREMENTS",
+        "IMC2018_DUCT_JOINTS",
+        "IMC2018_HYDRONIC_JOINTS"
+      ]
+    },
+    {
+      "id": "plumbing",
+      "area": "Plumbing and drainage",
+      "status": "UNRESOLVED",
+      "observation": "No complete service/material schedule, design flow/pressure criteria, demand calculations or drainage/venting design contract was established. Cut-length preservation is not a slope or hydraulic check.",
+      "required": "Service identification, fixture demands, supply conditions, sizing calculations, drainage invert/slope and vent details, backflow provisions and actual joint specifications.",
+      "references": [
+        "IPC2021_WATER",
+        "IPC2021_DRAINAGE"
+      ]
+    },
+    {
+      "id": "electrical",
+      "area": "Electrical",
+      "status": "UNRESOLVED",
+      "observation": "The electrical model has 84 conduit/tray segments and no explicit IfcCableSegment objects. A complete circuit, conductor, protective-device and healthcare power design contract was not established.",
+      "required": "Circuit and load schedules, actual cable/conductor and containment specifications, ampacity/protection/fault data, grounding/bonding, essential-power design and equipment instructions.",
+      "references": [
+        "NFPA70_SCOPE",
+        "OSHA_ELECTRICAL",
+        "NFPA99_SCOPE"
+      ]
+    },
+    {
+      "id": "sprinklers",
+      "area": "Sprinklers",
+      "status": "UNRESOLVED",
+      "observation": "The 1,354 sprinkler terminals have no assigned property sets/materials. The original hazard/design basis, water supply, verified sprinkler product data and hydraulic substantiation were not established; 474 added joints are assumed in the broad scenario.",
+      "required": "Approved original design basis, hazard/coverage data, water-supply test, sprinkler and pipe/fitting specifications and hydraulic substantiation appropriate to the proposed changes.",
+      "references": [
+        "NFPA13_SCOPE",
+        "NFPA13_MODIFICATION_GUIDANCE"
+      ]
+    },
+    {
+      "id": "fire_alarm",
+      "area": "Fire alarm",
+      "status": "UNRESOLVED",
+      "observation": "The fire model has 861 control devices without assigned property sets; the purchasing scenario does not design alarm wiring, power, coverage or cause-and-effect logic.",
+      "required": "Device specifications, circuit/power/battery calculations, detector/notification coverage, interfaces, cause-and-effect matrix and acceptance test requirements.",
+      "references": [
+        "NFPA72_SCOPE"
+      ]
+    },
+    {
+      "id": "medical_gas",
+      "area": "Medical gas/vacuum and other healthcare services",
+      "status": "APPLICABILITY_UNRESOLVED",
+      "observation": "Generic pipe labels do not establish whether each healthcare service is represented, required or appropriately specified.",
+      "required": "Authenticated service schedule and clinical risk classifications, applicable requirements and complete designs for required systems.",
+      "references": [
+        "NFPA99_SCOPE"
+      ]
+    },
+    {
+      "id": "structure",
+      "area": "Structural safety and service supports",
+      "status": "NOT_VERIFIED",
+      "observation": "No structural analysis model, load groups, load objects or analysis results are embedded. Strength-like material names do not establish capacity. No new structural analysis was performed.",
+      "required": "Approved structural design basis/calculations, material specifications, loads and combinations, connections, support/anchorage and seismic requirements.",
+      "references": []
+    },
+    {
+      "id": "building_life_safety",
+      "area": "Egress, accessibility and fire/smoke compartments",
+      "status": "NOT_VERIFIED",
+      "observation": "No full building-code geometry/occupancy review was performed. Fifty-five curtain-wall FireRating properties contain an ambiguous multi-rating string; it is not an authenticated installed or required assembly rating.",
+      "required": "Applicable occupancy and accessibility criteria, life-safety plans, compartment/assembly listings and penetration/firestop details, then dedicated geometry and documentary checks.",
+      "references": [
+        "ICC_ADOPTION",
+        "FGI_ADOPTION",
+        "CMS_ADOPTED_EDITIONS"
+      ]
+    }
+  ]
+}

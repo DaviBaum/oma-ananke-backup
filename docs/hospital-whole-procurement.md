@@ -1,5 +1,7 @@
 # Actual whole-hospital purchasing results
 
+**Construction status:** the [2026-10-22 code review](hospital-code-review.md) does not clear either purchasing scenario. It verifies the cutting arithmetic but identifies unresolved material/design requirements and 149 newly split pieces below 100 mm, including a 3 mm duct piece. Product-specific minimum lengths and connection details must be resolved before fabrication use. The estimates below remain conditional.
+
 The engine processed **all seven original Hospital IFC files**, accounting for **149,822 IFC products** and **47,716 service objects or unresolved physical candidates**. It measured **18,559 of 19,352 straight service segments (95.9%)**, totaling **22,395.595 m**. The remaining **793 segments** are explicitly unresolved. Original building geometry and project revisions remain unchanged.
 
 The broader purchasing scenario estimates **$35,063.93 less straight-material purchasing** compared with buying each connected network separately. It requires **1,668.780 m less stock (6.68%)**, **687 fewer stock lengths**, and reduces modeled cutting/trim waste from **2,589.788 m to 921.008 m (64.44%)**. These are purchasing and cutting improvements across actual hospital quantities. They do not establish a redesigned or construction-approved hospital.

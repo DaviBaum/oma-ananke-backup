@@ -1,0 +1,148 @@
+{
+  "schema": "oma.hospital-proposal-buildability-findings/1",
+  "generated_at_utc": "2026-10-22T21:37:40.789901+00:00",
+  "audit_sha256": "ad4359f2bda03ac7783d176f55ad28c65d2b67aa392e3e9d47a0f16721e831fa",
+  "audit_script_sha256": "01128cc75c1b81791e7e60a176e8dec23454c05a0822925fe543d658346f2e41",
+  "closed_campaign_identities": [
+    {
+      "campaign": "2f25fd1064cb4547ae3667b9bbd4e69b",
+      "run_id": "d78c7888d76c4957aa49146b9536e9cb",
+      "packet_root": "0cf967e84c6da3385aa6683ee2c664a6e0cd1c8f8e3843f63f82e15a3182df17",
+      "plan_root": "710c4dd3ce91a237aa523aa20af34f8eaec8626a8a2c4c40c9cb9aeb5154390c",
+      "request_root": "f6d4a9fa245bd8b816be0caa01fa3bbad478c66e4cf94f705515bc4f5133d642",
+      "checker_version": "oma-independent-checker/2:1ccc8728fbf6ba0ad1bbb16b2dd339896e8bb292b03e08754e3b1b93156b48c6",
+      "all_closed_handoff_file_hashes_match": true,
+      "closed_handoff_file_count": 325
+    },
+    {
+      "campaign": "3d9c5dc8a37b41f78b7a2233b2cb5c2d",
+      "run_id": "b2a02149223347f9b984caf7e48f9052",
+      "packet_root": "275a726bd26458ab8c45ce6687af7cca9bcd46551a472399b300bce6dab52036",
+      "plan_root": "00a5f38955c4d9765dae36334e80633f2067ba78f5cf8a795de8a752b935262f",
+      "request_root": "753ab07900d28eee3b26951e464de432750e9b679ea6a961cdcd2dc5d36c8360",
+      "checker_version": "oma-independent-checker/2:1ccc8728fbf6ba0ad1bbb16b2dd339896e8bb292b03e08754e3b1b93156b48c6",
+      "all_closed_handoff_file_hashes_match": true,
+      "closed_handoff_file_count": 325
+    }
+  ],
+  "overall_verdict": "NOT_READY_FOR_PROCUREMENT_OR_CONSTRUCTION_UNVERIFIED_MATERIALS_AND_JOINTS",
+  "demonstrated_applicable_code_violations": [],
+  "no_violations_established_is_not_compliance": true,
+  "findings": [
+    {
+      "id": "P01",
+      "classification": "PASS_BOUNDED_ARITHMETIC",
+      "statement": "Both retained campaigns, requests, missions, source hashes, takeoff roots, plan roots and frozen checker identities bind. Every cut in all three plans independently rechecks for identity, exactly-once coverage, declared stock capacity, kerf, trim, offcut and price arithmetic. This does not check geometry or engineering.",
+      "evidence_fields": [
+        "campaigns[*].fresh_cut_arithmetic_checks",
+        "campaigns[*].artifact_bindings",
+        "campaigns[*].source_checks",
+        "campaigns[*].all_closed_handoff_file_hashes_match"
+      ]
+    },
+    {
+      "id": "P02",
+      "classification": "UNVERIFIED_MATERIAL_AND_COMPATIBILITY",
+      "statement": "Every included source piece lacks associated authenticated material and verified compatibility; all price groups explicitly report no actual material or project quote match. No selected wall thickness, duct gauge, pressure class, corrosion class, end treatment or listed product submittal binds these cuts.",
+      "affected_broader_segments": 18559,
+      "affected_broader_stock_groups": 472,
+      "affected_no_split_segments": 16446,
+      "acceptance_blocker": "Bind approved specifications and manufacturer product/coupling identities before procurement or construction use."
+    },
+    {
+      "id": "P03",
+      "classification": "UNVERIFIED_ASSUMED_JOINTS",
+      "statement": "The broader estimate introduces 3,457 assumed extra joints with no approved joint geometry, pressure/flow losses, supports, access, leakage/fire performance or installation cost. The original IFC is unchanged; a mathematical split is not an installed connection.",
+      "by_discipline": {
+        "PLUMBING": 286,
+        "HVAC": 2591,
+        "FIRE": 474,
+        "ELECTRICAL": 106
+      },
+      "acceptance_blocker": "Approve joint design, end preparation, effective assembled lengths, installation method and applicable tests; recompute net savings."
+    },
+    {
+      "id": "P04",
+      "classification": "CONDITIONAL_MANUFACTURER_FABRICATION_CONFLICT",
+      "statement": "The split rule creates a 90 mm final piece for sprinkler source #167783 labelled Groved Over 50mm. That is shorter than the 205 mm minimum in the cited Victaulic small-size roll-grooving table. The actual product, grooving tool and manufacturing method are unspecified, so this is not a demonstrated project code violation. It demonstrates the current split plan cannot be released to those fabrication instructions as written.",
+      "example": {
+        "piece_id": "0e30c25a77ebcd75b2fc3a6cb87dc3891bd476f60a269e36eb5e0149bcc06ea7:#167783",
+        "fabrication_index": 1,
+        "length_m": "9/100",
+        "original_length_m": "81016541531379129/12500000000000000",
+        "created_by_splitting_long_span": true,
+        "type": "Pipe Types:Groved Over 50mm",
+        "profile": {
+          "authored_profile_type": "IfcCircleProfileDef",
+          "outer_diameter_m": "63500000000000127/625000000000000000",
+          "shape": "CIRCULAR"
+        }
+      },
+      "manufacturer_reference": "victaulic_i100",
+      "additional_context": "55 grooved-label cuts are below 205 mm: 54 were already small source spans; one is newly created by the splitter. The no-split plan includes those 54 existing small spans. All require actual fabrication/product review.",
+      "acceptance_blocker": "Select the actual joint/tool, enforce its minimum segment and end rules, and rebalance or retain affected spans before quoting fabrication."
+    },
+    {
+      "id": "P05",
+      "classification": "OBSERVED_UNCONSTRAINED_SPLITTER_OUTPUT",
+      "statement": "The split rule creates 149 final pieces below 100 mm, with a shortest new remainder of 3 mm. This threshold is an audit screen, not an adopted code limit; the model has no minimum finished-piece or tool/workholding constraints.",
+      "new_short_remainder_count": 149,
+      "shortest_new_piece": {
+        "piece_id": "04a29bc312fe0b026634ad86390e8b72c1d1c1765255351f787503d3d8ce1c13:#842498",
+        "fabrication_index": 1,
+        "length_m": "3/1000",
+        "original_length_m": "76000460465831/50000000000000",
+        "created_by_splitting_long_span": true,
+        "type": "Round Duct:Taps"
+      },
+      "acceptance_blocker": "Use material-specific manufacturability constraints and reject or rebalance short remnants."
+    },
+    {
+      "id": "P06",
+      "classification": "UNVERIFIED_EFFECTIVE_ASSEMBLED_LENGTH",
+      "statement": "Raw piece lengths sum to rounded IFC spans. This arithmetic does not account for a selected socket/overlap/thread/groove/coupling geometry. Where the selected joint changes effective assembled length, the current arithmetic cannot prove endpoints remain in place.",
+      "manufacturer_references": [
+        "charlotte_tm_pl",
+        "gaf_masterflow"
+      ],
+      "acceptance_blocker": "Bind each joint interface and effective length before asserting physical equivalence."
+    },
+    {
+      "id": "P07",
+      "classification": "NOT_APPLICABLE_TO_CURRENT_PLAN_ARITHMETIC",
+      "statement": "Sizing, flow, voltage drop, breaker coordination, air changes, infection-control pressure relationships, sprinkler coverage/hydraulic adequacy, equipment loads, firestopping and structural adequacy are not computations performed by a stock-cutting plan. They remain unverified system-level acceptance requirements."
+    }
+  ],
+  "primary_manufacturer_sources": [
+    {
+      "id": "victaulic_i100",
+      "url": "https://assets.victaulic.com/assets/uploads/literature/I-100.pdf",
+      "publisher": "Victaulic",
+      "title": "I-100 Field Installation Handbook, Rev H, Pipe preparation and grooving specifications",
+      "location": "I-100_3 roll-grooving pipe length table",
+      "accessed": "2026-10-22",
+      "retrieval": "Primary publisher PDF indexed search text; full web PDF open exceeded size limit",
+      "paraphrase": "For the listed small pipe sizes, the handbook gives 205 mm minimum length for safe roll grooving with the covered tools. For shorter final pieces it directs reallocating length from the preceding piece. Tool and joint specifications must be selected before applying this limit to the hospital."
+    },
+    {
+      "id": "charlotte_tm_pl",
+      "url": "https://www.charlottepipe.com/uploads/documents/technical/TM-PL.pdf",
+      "publisher": "Charlotte Pipe and Foundry",
+      "title": "Plastics Technical and Installation Manual, updated June 5, 2026",
+      "location": "Printed pages 57-59 and 60-62",
+      "accessed": "2026-10-22",
+      "retrieval": "Primary PDF opened and indexed text inspected",
+      "paraphrase": "Installation instructions for PVC require suitable cuts, deburring, beveling, compatible primers/cements and correct insertion to the socket bottom. The arithmetic stock plan has no selected coupling dimensions, socket engagement, field fabrication method or curing/testing evidence."
+    },
+    {
+      "id": "gaf_masterflow",
+      "url": "https://www.gaf.com/en-us/document-library/documents/brochures-%26-literature/brochure__master_flow_ductwork_product_catalog_resmf164.pdf",
+      "publisher": "GAF",
+      "title": "Master Flow Ductwork Product Catalog RESMF164",
+      "accessed": "2026-10-22",
+      "retrieval": "Primary PDF opened and indexed text inspected",
+      "paraphrase": "The round metal duct catalogue uses crimped ends for interlocking connections; beaded versions include a stop bead. Arbitrarily cut sections therefore need an explicit end and connection method before reuse can be approved."
+    }
+  ],
+  "sidecar_note": "Initial mode=ro SQLite reads may have created WAL/SHM sidecars. Preexistence was not inventoried. No sidecars removed. Final audit uses immutable=1, and all closed handoff-listed files including SQLite match their retained hashes."
+}

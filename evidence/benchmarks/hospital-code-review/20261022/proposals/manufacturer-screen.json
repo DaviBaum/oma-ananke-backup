@@ -1,0 +1,59 @@
+{
+  "schema": "oma.hospital-proposal-manufacturer-screen/1",
+  "status": "CONDITIONAL_FABRICATION_CONFLICT_NOT_PROJECT_CODE_VIOLATION",
+  "audit_sha256": "ad4359f2bda03ac7783d176f55ad28c65d2b67aa392e3e9d47a0f16721e831fa",
+  "campaign_id": "2f25fd1064cb4547ae3667b9bbd4e69b",
+  "run_id": "d78c7888d76c4957aa49146b9536e9cb",
+  "request_root": "f6d4a9fa245bd8b816be0caa01fa3bbad478c66e4cf94f705515bc4f5133d642",
+  "plan_root": "710c4dd3ce91a237aa523aa20af34f8eaec8626a8a2c4c40c9cb9aeb5154390c",
+  "checker_version": "oma-independent-checker/2:1ccc8728fbf6ba0ad1bbb16b2dd339896e8bb292b03e08754e3b1b93156b48c6",
+  "source_sha256": "0e30c25a77ebcd75b2fc3a6cb87dc3891bd476f60a269e36eb5e0149bcc06ea7",
+  "source_step_id": 167783,
+  "source_piece_id": "0e30c25a77ebcd75b2fc3a6cb87dc3891bd476f60a269e36eb5e0149bcc06ea7:#167783",
+  "fabrication_piece_id": "0e30c25a77ebcd75b2fc3a6cb87dc3891bd476f60a269e36eb5e0149bcc06ea7:#167783/fabrication/1",
+  "source_type_label": "Pipe Types:Groved Over 50mm",
+  "source_span_length_m": "81016541531379129/12500000000000000",
+  "source_span_length_m_approx": 6.48132332251033,
+  "new_last_piece_length_m": "9/100",
+  "authored_profile_outer_diameter_m": "63500000000000127/625000000000000000",
+  "authored_profile_outer_diameter_m_approx": 0.1016000000000002,
+  "not_authenticated_product_diameter": true,
+  "manufacturer_reference": {
+    "id": "victaulic_i100",
+    "url": "https://assets.victaulic.com/assets/uploads/literature/I-100.pdf",
+    "publisher": "Victaulic",
+    "title": "I-100 Field Installation Handbook, Rev H, Pipe preparation and grooving specifications",
+    "location": "I-100_3 roll-grooving pipe length table",
+    "accessed": "2026-10-22",
+    "retrieval": "Primary publisher PDF indexed search text; full web PDF open exceeded size limit",
+    "paraphrase": "For the listed small pipe sizes, the handbook gives 205 mm minimum length for safe roll grooving with the covered tools. For shorter final pieces it directs reallocating length from the preceding piece. Tool and joint specifications must be selected before applying this limit to the hospital."
+  },
+  "table_interpretation": "Victaulic I-100 Rev H page I-100_3 lists 8 in /205 mm minimum safe roll-grooving length for the listed small-size tools; the table includes actual OD76.1-108.0 mm. The authored model diameter is about101.6 mm, but no Victaulic product/tool or authenticated pipe specification is selected.",
+  "conditional_result": "90 mm <205 mm; this remainder cannot be accepted as-is under those roll-grooving instructions. Rebalance previous and last pieces or use an explicitly approved different fabrication method.",
+  "limits": "This is a tool and manufacturer fabrication requirement, not a universal code minimum or a proven applicable Hospital code violation. The source geometry could represent nominal dimensions and does not authenticate a manufactured OD.",
+  "broader_screen": {
+    "grooved_label_cuts_under_205mm": 55,
+    "already_short_source_spans": 54,
+    "new_split_tail_count": 1,
+    "new_tail_pieces_under_100mm_all_families": 149,
+    "shortest_new_tail_m": "3/1000"
+  },
+  "closed_store_integrity": [
+    {
+      "campaign": "2f25fd1064cb4547ae3667b9bbd4e69b",
+      "all_325_retained_file_hashes_match": true,
+      "retained_files_checked": 325,
+      "sqlite_sha256": "85d411e9b7a82630eeac6afc0b30d3ccc36b24cbbc2b6610f2363364a1365529",
+      "handoff_sha256": "6f8478573083547c7d44e08b1da972924bfe9bd2d0d58596c044dd7b9c7415b6"
+    },
+    {
+      "campaign": "3d9c5dc8a37b41f78b7a2233b2cb5c2d",
+      "all_325_retained_file_hashes_match": true,
+      "retained_files_checked": 325,
+      "sqlite_sha256": "342471ec6994e076a6513b5999498bc157e747694d45b1fcb23ec09efe0333d1",
+      "handoff_sha256": "258f89956e2b8f9ca16a13f6b5584af9ed77e020549e3fa8b74f420ffa1d7320"
+    }
+  ],
+  "no_old_evidence_files_modified": true,
+  "sidecar_note": "Initial mode=ro SQLite reads may have created WAL/SHM sidecars. Preexistence was not inventoried. No sidecars removed. Final audit uses immutable=1, and all closed handoff-listed files including SQLite match their retained hashes."
+}
