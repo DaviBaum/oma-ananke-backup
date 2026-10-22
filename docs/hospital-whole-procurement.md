@@ -30,6 +30,8 @@ Both supervised jobs completed on frozen software `1ccc8728fbf6ba0ad1bbb16b2dd33
 
 The broader run used **55,984 search nodes**. Of 472 groups, 402 reached the declared capacity lower bound and 27 completed exhaustive partition search; 43 remain heuristic. These are bounded one-dimensional purchasing claims under the supplied stock catalogue, not full building-design optimality or proof of the original full mathematics.
 
+A follow-up [independent arithmetic calculation](../evidence/benchmarks/hospital-value-review/20261022/capacity-bound.json), which does not trust the solver's optimality labels, limits any further cutting-search saving to **at most $7,927.64** under the same demands, stock catalogue and price assumptions. This is an optimistic upper limit, not an attainable or achieved result. Substantially different savings would require evaluating different designs, specifications, equipment, stock options or real quoted costs. The current run does not establish those savings. The [value review](../evidence/benchmarks/hospital-value-review/20261022/value-drivers.json) also records that **71.8% of selected material cost uses proportional size extrapolation**, so precise dollar arithmetic must not be confused with a precise project estimate.
+
 Evidence and exact selected cut schedules:
 
 - [Broader scenario handoff](../evidence/benchmarks/hospital-whole-procurement/2f25fd1064cb4547ae3667b9bbd4e69b/handoff.json) and [readable results](../evidence/benchmarks/hospital-whole-procurement/2f25fd1064cb4547ae3667b9bbd4e69b/campaign/readable-results.json).

@@ -2,7 +2,7 @@
 
 The `optimize_procurement` job measures supported straight service segments in every imported IFC and compares stock purchasing/cutting plans. It keeps the building's installed geometry and project revision unchanged. It is a separate, bounded purchasing capability; it does not complete the original OMA/ANANKE mathematics or redesign an installed engineering network.
 
-Run it through `POST /projects/{project_id}/runs` with `operation: "optimize_procurement"`, an empty scope, a mission and a finite job budget. The CLI exposes the same worker:
+Run it through `POST /api/projects/{project_id}/runs` with `operation: "optimize_procurement"`, an empty scope, a mission and a finite job budget. The CLI exposes the same worker:
 
 ```powershell
 .venv/Scripts/python.exe -m oma.cli optimize-procurement PROJECT_ID --mission MISSION.json --budget-seconds 1200 --data-dir STORE
